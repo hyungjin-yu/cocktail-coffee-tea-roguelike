@@ -49,6 +49,8 @@ namespace CCT
         public float projectileSpeed = 6f;
         public float projectileDamage;
         public float attackInterval = 2f;
+        /// <summary>발사체 아이콘 Resources 경로. 없으면 색상 원(SpriteFactory.Circle) placeholder.</summary>
+        public string projectileSpriteResourcePath;
         /// <summary>1 이면 플레이어를 조준한 단발, 그 이상이면 원형으로 흩뿌리는 탄막.</summary>
         public int barrageCount = 1;
 
@@ -99,6 +101,7 @@ namespace CCT
             projectileSpeed = 6f,
             projectileDamage = 10f,
             attackInterval = 2.0f,
+            projectileSpriteResourcePath = "Icons/Enemies/ice_shard",
         };
 
         /// <summary>폭발형(Suicide). 접근해 자폭 → 화염(알콜) 장판을 잠시 남긴다.</summary>
@@ -167,6 +170,7 @@ namespace CCT
             contactDamage = 6f,
             ingredientAmount = 1,
             dropType = IngredientType.Tea,
+            spriteResourcePath = "Icons/Enemies/teabag_imp",
         };
 
         /// <summary>투척형(Ranged). 쉐이커 골렘의 차 트랙 대칭 — 뜨거운 물방울 투척.</summary>
@@ -180,11 +184,13 @@ namespace CCT
             contactDamage = 5f,
             ingredientAmount = 2,
             dropType = IngredientType.Tea,
+            spriteResourcePath = "Icons/Enemies/kettle_cannon",
             archetype = EnemyArchetype.Ranged,
             keepDistance = 4.5f,
             projectileSpeed = 6f,
             projectileDamage = 10f,
             attackInterval = 2.0f,
+            projectileSpriteResourcePath = "Icons/Enemies/water_drop",
         };
 
         /// <summary>폭발형(Suicide). 올리브 바머의 차 트랙 대칭 — 피해 대신 둔화 장판(끈적한 설탕)으로 차별화.</summary>
@@ -198,6 +204,7 @@ namespace CCT
             contactDamage = 8f,
             ingredientAmount = 2,
             dropType = IngredientType.Tea,
+            spriteResourcePath = "Icons/Enemies/sugar_cube_bomber",
             explodesOnContact = true,
             burstZoneRadius = 1.8f,
             burstZoneSeconds = 3f,

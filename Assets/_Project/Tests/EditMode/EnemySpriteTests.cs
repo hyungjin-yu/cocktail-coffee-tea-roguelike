@@ -9,6 +9,7 @@ namespace CCT.Tests
         static readonly EnemyDef[] DefsWithArt =
         {
             EnemyDef.Imp, EnemyDef.MartiniSpirit, EnemyDef.OliveBomber, EnemyDef.SwirlConjuror, EnemyDef.ShakerGolem,
+            EnemyDef.TeabagImp, EnemyDef.KettleCannon, EnemyDef.SugarCubeBomber,
         };
 
         [Test]

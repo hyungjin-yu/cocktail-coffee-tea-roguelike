@@ -14,16 +14,20 @@ namespace CCT
         float life;
 
         public static void Spawn(Vector2 position, Vector2 direction, float speed, float damage,
-            PlayerController player, Transform parent)
+            PlayerController player, Transform parent, string spriteResourcePath = null)
         {
             var go = new GameObject("EnemyProjectile");
             go.transform.SetParent(parent, false);
             go.transform.position = position;
-            go.transform.localScale = Vector3.one * (HitRadius * 2f);
+
+            var icon = string.IsNullOrEmpty(spriteResourcePath) ? null : Resources.Load<Sprite>(spriteResourcePath);
+            // 실제 아이콘은 캔버스 여백 때문에 작아 보여서 시각적으로만 키운다 (히트 판정은 HitRadius 그대로).
+            float visualScale = icon != null ? Balance.EnemyProjectileIconVisualScale : 1f;
+            go.transform.localScale = Vector3.one * (HitRadius * 2f * visualScale);
 
             var sr = go.AddComponent<SpriteRenderer>();
-            sr.sprite = SpriteFactory.Circle;
-            sr.color = new Color(0.65f, 0.88f, 1f, 0.95f);
+            sr.sprite = icon != null ? icon : SpriteFactory.Circle;
+            sr.color = icon != null ? Color.white : new Color(0.65f, 0.88f, 1f, 0.95f);
             sr.sortingOrder = 2;
 
             var p = go.AddComponent<EnemyProjectile>();

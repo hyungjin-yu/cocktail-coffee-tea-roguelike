@@ -63,6 +63,9 @@ namespace CCT
         /// <summary>재료 픽업 아이콘도 캔버스 여백 때문에 작아 보여서 시각적으로만 키운다.</summary>
         public const float IngredientIconVisualScale = 1.6f;
 
+        /// <summary>몹 발사체 아이콘도 캔버스 여백 때문에 작아 보여서 시각적으로만 키운다 (히트 판정 반지름은 무관).</summary>
+        public const float EnemyProjectileIconVisualScale = 1.8f;
+
         // 강화 보스(에스프레소 리바이어던)의 "압력 게이지 폭발" 패턴
         public const float PressureExplosionKnockbackSpeed = 6f;
         public const float PressureKnockbackDuration = 0.25f;

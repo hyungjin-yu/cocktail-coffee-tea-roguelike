@@ -58,7 +58,8 @@ namespace CCT
             var parent = enemy.transform.parent;
             if (count == 1)
             {
-                EnemyProjectile.Spawn(origin, baseDir, def.projectileSpeed, def.projectileDamage, player, parent);
+                EnemyProjectile.Spawn(origin, baseDir, def.projectileSpeed, def.projectileDamage, player, parent,
+                    def.projectileSpriteResourcePath);
                 return;
             }
 
@@ -66,7 +67,8 @@ namespace CCT
             {
                 float angle = 360f / count * i;
                 Vector2 dir = Quaternion.Euler(0f, 0f, angle) * baseDir;
-                EnemyProjectile.Spawn(origin, dir, def.projectileSpeed, def.projectileDamage, player, parent);
+                EnemyProjectile.Spawn(origin, dir, def.projectileSpeed, def.projectileDamage, player, parent,
+                    def.projectileSpriteResourcePath);
             }
         }
     }
