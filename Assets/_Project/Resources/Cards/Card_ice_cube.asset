@@ -15,9 +15,12 @@ MonoBehaviour:
   id: ice_cube
   displayName: "\uC5BC\uC74C \uD55C \uC870\uAC01"
   description: "\uCD5C\uB300 \uCCB4\uB825 +20"
+  flavorText: "\uCE75\uD14C\uC77C\uC744 \uCC28\uAC11\uAC8C, \uADF8\uB9AC\uACE0 \uCC9C\uCC9C\uD788
+    \uBB3D\uC5B4\uC9C0\uAC8C \uD55C\uB2E4."
   category: 0
   rarity: 0
   maxStacks: 5
   effects:
   - type: 4
     value: 20
+  weaponRestriction: 0

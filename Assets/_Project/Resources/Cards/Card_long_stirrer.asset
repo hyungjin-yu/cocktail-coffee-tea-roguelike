@@ -15,6 +15,8 @@ MonoBehaviour:
   id: long_stirrer
   displayName: "\uB871 \uC2A4\uD130\uB7EC"
   description: "\uC0AC\uAC70\uB9AC +15%"
+  flavorText: "\uC5BC\uC74C\uACFC \uC7AC\uB8CC\uB97C \uAE38\uAC8C \uC800\uC5B4 \uC11E\uB294
+    \uBC14 \uC2A4\uD47C."
   category: 0
   rarity: 0
   maxStacks: 5

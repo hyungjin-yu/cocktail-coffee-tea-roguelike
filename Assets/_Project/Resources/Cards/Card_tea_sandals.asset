@@ -15,9 +15,12 @@ MonoBehaviour:
   id: tea_sandals
   displayName: "\uB2E4\uB3C4\uC6A9 \uC2E0\uBC1C"
   description: "\uC774\uB3D9 \uC18D\uB3C4 +10%"
+  flavorText: "\uC815\uAC08\uD55C \uAC78\uC74C\uC744 \uC704\uD55C \uC870\uC6A9\uD55C
+    \uC2E0\uBC1C."
   category: 1
   rarity: 0
   maxStacks: 5
   effects:
   - type: 3
     value: 0.1
+  weaponRestriction: 0

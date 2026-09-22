@@ -15,9 +15,12 @@ MonoBehaviour:
   id: blazer
   displayName: "\uBE14\uB808\uC774\uC800"
   description: "\uD654\uC5FC \uD3ED\uBC1C Lv +2"
+  flavorText: "\uBD88\uBD99\uC778 \uC704\uC2A4\uD0A4\uB97C \uC794 \uC0AC\uC774\uB85C
+    \uC62E\uACA8 \uBD93\uB294 \uACE1\uC608 \uAC19\uC740 \uAE30\uBC95."
   category: 0
   rarity: 2
   maxStacks: 3
   effects:
   - type: 8
     value: 2
+  weaponRestriction: 0

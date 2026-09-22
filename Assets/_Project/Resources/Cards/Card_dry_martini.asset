@@ -15,6 +15,8 @@ MonoBehaviour:
   id: dry_martini
   displayName: "\uB4DC\uB77C\uC774 \uB9C8\uD2F0\uB2C8"
   description: "\uACF5\uACA9\uB825 +25%, \uACF5\uACA9 \uC18D\uB3C4 +20%"
+  flavorText: "\uBCA0\uB974\uBB34\uD2B8\uB97C \uCD5C\uC18C\uB85C, \uC9C4\uC758 \uC874\uC7AC\uAC10\uC744
+    \uADF9\uB300\uD654\uD55C \uD074\uB798\uC2DD."
   category: 0
   rarity: 2
   maxStacks: 3
@@ -23,3 +25,4 @@ MonoBehaviour:
     value: 0.25
   - type: 1
     value: 0.2
+  weaponRestriction: 0

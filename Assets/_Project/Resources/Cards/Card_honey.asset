@@ -15,9 +15,12 @@ MonoBehaviour:
   id: honey
   displayName: "\uAFC0 \uD55C \uC2A4\uD47C"
   description: "\uC7AC\uB8CC \uAC8C\uC774\uC9C0 \uD544\uC694\uB7C9 -8%"
+  flavorText: "\uCC28\uC758 \uC4F4\uB9DB\uC744 \uBD80\uB4DC\uB7FD\uAC8C \uAC10\uC2F8\uB294
+    \uCC9C\uC5F0 \uB2E8\uB9DB."
   category: 1
   rarity: 0
   maxStacks: 5
   effects:
   - type: 6
     value: -0.08
+  weaponRestriction: 0

@@ -15,9 +15,12 @@ MonoBehaviour:
   id: tea_whisk
   displayName: "\uCC28\uC120"
   description: "\uACF5\uACA9 \uC18D\uB3C4 +12%"
+  flavorText: "\uB9D0\uCC28\uB97C \uACF1\uAC8C \uD480\uC5B4 \uAC70\uD488 \uB0B4\uB294
+    \uB300\uB098\uBB34 \uC194."
   category: 1
   rarity: 0
   maxStacks: 5
   effects:
   - type: 1
     value: 0.12
+  weaponRestriction: 0

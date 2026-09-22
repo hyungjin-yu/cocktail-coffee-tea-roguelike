@@ -15,9 +15,12 @@ MonoBehaviour:
   id: ginseng_root
   displayName: "\uC0B0\uC0BC \uBFCC\uB9AC"
   description: "\uCD08\uB2F9 \uD68C\uBCF5\uB7C9 +3"
+  flavorText: "\uADC0\uD55C \uC57D\uC7AC \uBFCC\uB9AC \u2014 \uAC15\uD55C \uAE30\uC6B4\uC744
+    \uBD88\uC5B4\uB123\uB294\uB2E4."
   category: 1
   rarity: 2
   maxStacks: 3
   effects:
   - type: 9
     value: 3
+  weaponRestriction: 0

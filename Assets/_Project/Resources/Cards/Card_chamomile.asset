@@ -15,9 +15,12 @@ MonoBehaviour:
   id: chamomile
   displayName: "\uCE74\uBAA8\uB9C8\uC77C"
   description: "\uCD08\uB2F9 \uD68C\uBCF5\uB7C9 +1.2"
+  flavorText: "\uC740\uC740\uD55C \uC0AC\uACFC \uD5A5\uC758 \uD5C8\uBE0C\uCC28. \uB9C8\uC74C\uC744
+    \uAC00\uB77C\uC549\uD78C\uB2E4."
   category: 1
   rarity: 1
   maxStacks: 5
   effects:
   - type: 9
     value: 1.2
+  weaponRestriction: 0

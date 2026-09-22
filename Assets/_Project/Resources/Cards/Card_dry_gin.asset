@@ -15,9 +15,12 @@ MonoBehaviour:
   id: dry_gin
   displayName: "\uB4DC\uB77C\uC774 \uC9C4"
   description: "\uACF5\uACA9\uB825 +15%"
+  flavorText: "\uB2EC\uC9C0 \uC54A\uACE0 \uAE54\uB054\uD55C \uC815\uD1B5 \uC9C4.
+    \uB9C8\uD2F0\uB2C8\uC758 \uBCA0\uC774\uC2A4\uB85C \uD754\uD788 \uC4F0\uC778\uB2E4."
   category: 0
   rarity: 0
   maxStacks: 5
   effects:
   - type: 0
     value: 0.15
+  weaponRestriction: 0

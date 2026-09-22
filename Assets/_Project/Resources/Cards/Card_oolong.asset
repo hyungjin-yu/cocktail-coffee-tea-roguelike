@@ -15,9 +15,12 @@ MonoBehaviour:
   id: oolong
   displayName: "\uC6B0\uB871\uCC28"
   description: "\uACF5\uACA9\uB825 +30%"
+  flavorText: "\uB179\uCC28\uC640 \uD64D\uCC28 \uC0AC\uC774, \uBC18\uCBE4 \uBC1C\uD6A8\uC2DC\uD0A8
+    \uAE4A\uC740 \uD5A5\uC758 \uCC28."
   category: 1
   rarity: 1
   maxStacks: 4
   effects:
   - type: 0
     value: 0.3
+  weaponRestriction: 0

@@ -15,6 +15,8 @@ MonoBehaviour:
   id: second_infusion
   displayName: "\uB450 \uBC88\uC9F8 \uC6B0\uB9BC"
   description: "\uCC0C\uB974\uAE30 +1\uD68C (\uC5F0\uC18D \uACF5\uACA9)"
+  flavorText: "\uD55C \uBC88 \uC6B0\uB9B0 \uCC3B\uC78E\uC5D0 \uB2E4\uC2DC \uBB3C\uC744
+    \uBD80\uC5B4 \uC5BB\uB294 \uB610 \uB2E4\uB978 \uD48D\uBBF8."
   category: 1
   rarity: 1
   maxStacks: 3

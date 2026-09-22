@@ -15,9 +15,12 @@ MonoBehaviour:
   id: brew_rhythm
   displayName: "\uC6B0\uB9BC \uB9AC\uB4EC"
   description: "\uACF5\uACA9 \uC18D\uB3C4 +25%"
+  flavorText: "\uCC3B\uC78E\uC744 \uC6B0\uB9AC\uB294 \uC808\uBB18\uD55C \uD0C0\uC774\uBC0D\uC758
+    \uAC10\uAC01."
   category: 1
   rarity: 1
   maxStacks: 4
   effects:
   - type: 1
     value: 0.25
+  weaponRestriction: 0

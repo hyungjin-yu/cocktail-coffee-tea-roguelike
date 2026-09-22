@@ -15,9 +15,12 @@ MonoBehaviour:
   id: long_spout
   displayName: "\uAE34 \uC8FC\uB465\uC774 \uC8FC\uC804\uC790"
   description: "\uC0AC\uAC70\uB9AC +15%"
+  flavorText: "\uBA40\uB9AC, \uAC00\uB298\uAC8C \uB530\uB97C \uC218 \uC788\uB294
+    \uB2E4\uB3C4\uC6A9 \uC8FC\uC804\uC790."
   category: 1
   rarity: 0
   maxStacks: 5
   effects:
   - type: 2
     value: 0.15
+  weaponRestriction: 0

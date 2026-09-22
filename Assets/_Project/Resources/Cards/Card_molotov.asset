@@ -16,9 +16,12 @@ MonoBehaviour:
   displayName: "\uD654\uC5FC\uBCD1 \uCE75\uD14C\uC77C"
   description: "\uC8FC\uAE30\uC801\uC73C\uB85C \uC8FC\uBCC0\uC5D0 \uD654\uC5FC \uD3ED\uBC1C
     (Lv +1)"
+  flavorText: "\uC774\uB984 \uADF8\uB300\uB85C \uC704\uD5D8\uD558\uACE0 \uAC15\uB82C\uD55C
+    \uD55C \uC794."
   category: 0
   rarity: 1
   maxStacks: 5
   effects:
   - type: 8
     value: 1
+  weaponRestriction: 0

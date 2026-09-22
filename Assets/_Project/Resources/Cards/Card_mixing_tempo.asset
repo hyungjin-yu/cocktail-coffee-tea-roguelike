@@ -15,9 +15,12 @@ MonoBehaviour:
   id: mixing_tempo
   displayName: "\uBBF9\uC2F1 \uD15C\uD3EC"
   description: "\uACF5\uACA9 \uC18D\uB3C4 +25%"
+  flavorText: "\uC170\uC774\uCEE4\uB97C \uD754\uB4DC\uB294 \uB9AC\uB4EC. \uBE60\uB97C\uC218\uB85D
+    \uC798 \uC11E\uC774\uACE0 \uC798 \uD76C\uC11D\uB41C\uB2E4."
   category: 0
   rarity: 1
   maxStacks: 4
   effects:
   - type: 1
     value: 0.25
+  weaponRestriction: 0

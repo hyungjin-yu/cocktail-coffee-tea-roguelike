@@ -15,9 +15,12 @@ MonoBehaviour:
   id: shot_glass
   displayName: "\uC0F7 \uAE00\uB798\uC2A4"
   description: "\uACF5\uACA9 \uC18D\uB3C4 +12%"
+  flavorText: "\uD55C \uBC88\uC5D0 \uD138\uC5B4 \uB123\uB294 \uC791\uC740 \uC794.
+    \uBE60\uB978 \uB9AC\uB4EC\uC758 \uC0C1\uC9D5."
   category: 0
   rarity: 0
   maxStacks: 5
   effects:
   - type: 1
     value: 0.12
+  weaponRestriction: 0

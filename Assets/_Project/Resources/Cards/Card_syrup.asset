@@ -15,9 +15,11 @@ MonoBehaviour:
   id: syrup
   displayName: "\uC2DC\uB7FD \uD55C \uBC29\uC6B8"
   description: "\uC7AC\uB8CC \uCD94\uAC00 \uB4DC\uB78D \uD655\uB960 +10%"
+  flavorText: "\uC124\uD0D5\uC744 \uB179\uC5EC \uB9CC\uB4E0 \uB2E8\uB9DB\uC758 \uC6D0\uCC9C."
   category: 0
   rarity: 0
   maxStacks: 5
   effects:
   - type: 5
     value: 0.1
+  weaponRestriction: 0

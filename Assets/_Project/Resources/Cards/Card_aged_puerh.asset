@@ -15,9 +15,12 @@ MonoBehaviour:
   id: aged_puerh
   displayName: "\uC219\uC131 \uBCF4\uC774\uCC28"
   description: "\uACF5\uACA9\uB825 +50%"
+  flavorText: "\uC624\uB798 \uBB35\uD790\uC218\uB85D \uAE4A\uC5B4\uC9C0\uB294 \uBC1C\uD6A8\uCC28\uC758
+    \uC815\uC810."
   category: 1
   rarity: 2
   maxStacks: 3
   effects:
   - type: 0
     value: 0.5
+  weaponRestriction: 0

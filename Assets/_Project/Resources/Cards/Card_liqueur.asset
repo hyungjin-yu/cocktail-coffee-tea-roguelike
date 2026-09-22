@@ -15,9 +15,12 @@ MonoBehaviour:
   id: liqueur
   displayName: "\uB9AC\uD050\uB974 \uBCD1"
   description: "\uC7AC\uB8CC \uAC8C\uC774\uC9C0 \uD544\uC694\uB7C9 -8%"
+  flavorText: "\uACFC\uC77C\xB7\uD5C8\uBE0C \uD5A5\uC744 \uC785\uD78C \uB2EC\uCF64\uD55C
+    \uC220. \uC18C\uB7C9\uC73C\uB85C\uB3C4 \uD48D\uBBF8\uB97C \uBC14\uAFBC\uB2E4."
   category: 0
   rarity: 0
   maxStacks: 5
   effects:
   - type: 6
     value: -0.08
+  weaponRestriction: 0

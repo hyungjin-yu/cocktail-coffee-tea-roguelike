@@ -15,6 +15,8 @@ MonoBehaviour:
   id: golden_ratio
   displayName: "\uD669\uAE08 \uBE44\uC728 \uB2E4\uB3C4"
   description: "\uACF5\uACA9\uB825 +25%, \uACF5\uACA9 \uC18D\uB3C4 +20%"
+  flavorText: "\uBB3C \uC628\uB3C4\xB7\uCC3B\uC78E\uB7C9\xB7\uC2DC\uAC04\uC758 \uC644\uBCBD\uD55C
+    \uADE0\uD615."
   category: 1
   rarity: 2
   maxStacks: 3
@@ -23,3 +25,4 @@ MonoBehaviour:
     value: 0.25
   - type: 1
     value: 0.2
+  weaponRestriction: 0

@@ -15,6 +15,8 @@ MonoBehaviour:
   id: rifled_barrel
   displayName: "\uAC15\uC120 \uAC1C\uC870"
   description: "\uBC1C\uC0AC\uCCB4 \uAD00\uD1B5 +1 (\uBAB9\uC744 \uB6AB\uACE0 \uC9C0\uB098\uAC10)"
+  flavorText: "\uCD1D\uC5F4\uC5D0 \uB098\uC120\uC744 \uC0C8\uACA8 \uD0C4\uC774 \uB6AB\uACE0
+    \uB098\uAC00\uB294 \uD798\uC744 \uB354\uD55C\uB2E4."
   category: 0
   rarity: 2
   maxStacks: 3

@@ -53,6 +53,9 @@ namespace CCT
         public string id;
         public string displayName;
         [TextArea] public string description;
+        /// <summary>카드 제목(이름)이 실제로 뭘 가리키는지 설명하는 풍미 텍스트. 효과 설명(description)과
+        /// 달리 게임플레이에 영향 없는 순수 플레이버 — 카드 도감에 표시된다.</summary>
+        [TextArea] public string flavorText;
         public CardCategory category;
         public CardRarity rarity;
         [Min(1)] public int maxStacks = 5;

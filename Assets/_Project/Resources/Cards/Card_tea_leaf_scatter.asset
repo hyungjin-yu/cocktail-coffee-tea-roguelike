@@ -15,6 +15,8 @@ MonoBehaviour:
   id: tea_leaf_scatter
   displayName: "\uCC3B\uC78E \uD769\uBFCC\uB9AC\uAE30"
   description: "\uB2E4\uC911 \uBC1C\uC0AC +1\uBC1C (\uBD80\uCC44\uAF34\uB85C \uD769\uBFCC\uB9BC)"
+  flavorText: "\uCC3B\uC78E\uC744 \uD5C8\uACF5\uC5D0 \uD769\uBFCC\uB824 \uD5A5\uC744
+    \uD37C\uB728\uB9AC\uB294 \uD37C\uD3EC\uBA3C\uC2A4."
   category: 1
   rarity: 1
   maxStacks: 3

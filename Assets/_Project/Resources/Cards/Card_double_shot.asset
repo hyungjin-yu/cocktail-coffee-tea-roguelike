@@ -15,9 +15,11 @@ MonoBehaviour:
   id: double_shot
   displayName: "\uB354\uBE14 \uC0F7"
   description: "\uACF5\uACA9\uB825 +30%"
+  flavorText: "\uBCF4\uD1B5\uC758 \uB450 \uBC30 \u2014 \uB3C5\uD558\uAC8C, \uD654\uB048\uD558\uAC8C."
   category: 0
   rarity: 1
   maxStacks: 4
   effects:
   - type: 0
     value: 0.3
+  weaponRestriction: 0

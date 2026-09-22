@@ -15,9 +15,12 @@ MonoBehaviour:
   id: dried_leaf
   displayName: "\uB9D0\uB9B0 \uCC3B\uC78E"
   description: "\uC7AC\uB8CC \uCD94\uAC00 \uB4DC\uB78D \uD655\uB960 +10%"
+  flavorText: "\uBCD5\uC5D0 \uB9D0\uB824 \uC624\uB798 \uB450\uACE0 \uC6B0\uB9B4 \uC218
+    \uC788\uAC8C \uD55C \uCC3B\uC78E."
   category: 1
   rarity: 0
   maxStacks: 5
   effects:
   - type: 5
     value: 0.1
+  weaponRestriction: 0
