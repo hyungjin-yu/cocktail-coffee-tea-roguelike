@@ -5,67 +5,118 @@ using UnityEngine.UI;
 namespace CCT
 {
     /// <summary>
-    /// 런 시작 전 직업 선택 화면 (기획서 5장). 지금은 직업당 무기가 1개뿐이라(레이피어/검)
-    /// 별도의 무기 선택 단계 없이 직업 선택에 합쳐뒀다 — 총/활이 추가되면 2단계로 나눌 것.
+    /// 런 시작 전 직업 → 무기 2단계 선택 화면 (기획서 5장).
     /// GameManager 가 아직 없는 시점에 뜨는 화면이라 스스로 최상위 Canvas를 만든다.
     /// </summary>
     public class CharacterSelectView : MonoBehaviour
     {
+        Canvas canvas;
+        RectTransform root;
+        Action<Job, WeaponKind> onChosen;
+
         public Button BartenderButton { get; private set; }
         public Button TeaSommelierButton { get; private set; }
+        /// <summary>2단계(무기 선택) 진입 후에만 채워진다. weapons[0]/[1] 순서는 JobPreset.weapons 와 같다.</summary>
+        public Button WeaponButtonA { get; private set; }
+        public Button WeaponButtonB { get; private set; }
 
-        public static CharacterSelectView Show(Action<Job> onChosen)
+        public static CharacterSelectView Show(Action<Job, WeaponKind> onChosen)
         {
             var canvas = UiFactory.CreateCanvas(null, "CharacterSelect", 100);
             var view = canvas.gameObject.AddComponent<CharacterSelectView>();
+            view.canvas = canvas;
+            view.onChosen = onChosen;
+            view.ShowJobStep();
+            return view;
+        }
 
-            var root = UiFactory.Stretch("Root", canvas.transform);
+        void ClearRoot()
+        {
+            if (root != null) Destroy(root.gameObject);
+            WeaponButtonA = null;
+            WeaponButtonB = null;
+        }
+
+        void ShowJobStep()
+        {
+            ClearRoot();
+            root = UiFactory.Stretch("Root", canvas.transform);
             UiFactory.AddImage(root, new Color(0.06f, 0.05f, 0.08f, 1f));
 
             var title = UiFactory.Place("Title", root, new Vector2(0.5f, 1f), new Vector2(0f, -110f),
                 new Vector2(1200f, 90f));
             UiFactory.AddText(title, "직업을 선택하세요", 60, TextAnchor.MiddleCenter, Color.white);
 
-            view.BartenderButton = BuildOption(root, -1, JobPreset.Bartender, canvas.gameObject, onChosen);
-            view.TeaSommelierButton = BuildOption(root, 1, JobPreset.TeaSommelier, canvas.gameObject, onChosen);
-            return view;
+            BartenderButton = BuildJobOption(-1, JobPreset.Bartender);
+            TeaSommelierButton = BuildJobOption(1, JobPreset.TeaSommelier);
         }
 
-        static Button BuildOption(Transform root, float side, JobPreset preset, GameObject canvasGo,
-            Action<Job> onChosen)
+        void ShowWeaponStep(JobPreset job)
         {
-            // 타이틀과 같은 위쪽 기준(anchor top)으로 둬야 실제 캔버스 높이가 기준 해상도와 달라도
-            // 겹치지 않는다 (전에 center 기준을 섞어 썼다가 화면비에 따라 겹치는 버그가 있었음).
+            ClearRoot();
+            root = UiFactory.Stretch("Root", canvas.transform);
+            UiFactory.AddImage(root, new Color(0.06f, 0.05f, 0.08f, 1f));
+
+            var title = UiFactory.Place("Title", root, new Vector2(0.5f, 1f), new Vector2(0f, -110f),
+                new Vector2(1200f, 90f));
+            UiFactory.AddText(title, $"{job.name} — 무기를 선택하세요", 56, TextAnchor.MiddleCenter, Color.white);
+
+            WeaponButtonA = BuildWeaponOption(-1, job, job.weapons[0]);
+            WeaponButtonB = BuildWeaponOption(1, job, job.weapons[1]);
+        }
+
+        Button BuildJobOption(float side, JobPreset preset)
+        {
             var rt = UiFactory.Place($"Option_{preset.job}", root, new Vector2(0.5f, 1f),
                 new Vector2(side * 300f, -220f), new Vector2(520f, 640f));
             var bg = UiFactory.AddImage(rt, new Color(0.16f, 0.13f, 0.2f, 1f));
 
-            var button = rt.gameObject.AddComponent<Button>();
-            button.targetGraphic = bg;
-            var colors = button.colors;
-            colors.highlightedColor = new Color(1.25f, 1.25f, 1.25f, 1f);
-            colors.pressedColor = new Color(0.8f, 0.8f, 0.8f, 1f);
-            button.colors = colors;
-            button.onClick.AddListener(() =>
-            {
-                Destroy(canvasGo);
-                onChosen(preset.job);
-            });
+            var button = MakeButton(rt, bg, () => ShowWeaponStep(preset));
 
-            // 전부 같은 기준(카드 위쪽에서부터 아래로)으로 쌓는다 — 서로 다른 앵커를 섞으면 겹친다.
             var swatchRt = UiFactory.Place("Swatch", rt, new Vector2(0.5f, 1f), new Vector2(0f, -50f),
                 new Vector2(90f, 90f));
             UiFactory.AddImage(swatchRt, preset.playerColor);
 
             UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -170f),
                 new Vector2(460f, 70f)), preset.name, 46, TextAnchor.MiddleCenter, Color.white);
-            UiFactory.AddText(UiFactory.Place("Weapon", rt, new Vector2(0.5f, 1f), new Vector2(0f, -260f),
-                new Vector2(460f, 50f)), $"시작 무기: {preset.weaponName}", 30, TextAnchor.MiddleCenter,
-                new Color(1f, 0.85f, 0.5f));
-            UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -340f),
+            UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -260f),
                 new Vector2(440f, 260f)), preset.description, 30, TextAnchor.UpperCenter,
                 new Color(0.9f, 0.9f, 0.9f));
 
+            return button;
+        }
+
+        Button BuildWeaponOption(float side, JobPreset job, WeaponPreset weapon)
+        {
+            var rt = UiFactory.Place($"Weapon_{weapon.kind}", root, new Vector2(0.5f, 1f),
+                new Vector2(side * 300f, -220f), new Vector2(520f, 500f));
+            var bg = UiFactory.AddImage(rt, new Color(0.16f, 0.13f, 0.2f, 1f));
+
+            var button = MakeButton(rt, bg, () =>
+            {
+                var chosen = onChosen;
+                Destroy(canvas.gameObject);
+                chosen(job.job, weapon.kind);
+            });
+
+            UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -50f),
+                new Vector2(460f, 70f)), weapon.name, 46, TextAnchor.MiddleCenter, Color.white);
+            UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -140f),
+                new Vector2(440f, 260f)), weapon.description, 30, TextAnchor.UpperCenter,
+                new Color(0.9f, 0.9f, 0.9f));
+
+            return button;
+        }
+
+        static Button MakeButton(RectTransform rt, Image bg, Action onClick)
+        {
+            var button = rt.gameObject.AddComponent<Button>();
+            button.targetGraphic = bg;
+            var colors = button.colors;
+            colors.highlightedColor = new Color(1.25f, 1.25f, 1.25f, 1f);
+            colors.pressedColor = new Color(0.8f, 0.8f, 0.8f, 1f);
+            button.colors = colors;
+            button.onClick.AddListener(() => onClick());
             return button;
         }
     }

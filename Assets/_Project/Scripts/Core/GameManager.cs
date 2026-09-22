@@ -27,6 +27,7 @@ namespace CCT
 
         public GameState State { get; private set; } = GameState.Playing;
         public Job Job { get; private set; }
+        public WeaponKind Weapon { get; private set; }
         public PlayerStats Stats { get; private set; }
         public PlayerController Player { get; private set; }
         public IngredientGauge CocktailGauge { get; private set; }
@@ -58,10 +59,11 @@ namespace CCT
             Time.timeScale = 1f;
         }
 
-        public void Initialize(Job job)
+        public void Initialize(Job job, WeaponKind weapon)
         {
             Time.timeScale = 1f;
             Job = job;
+            Weapon = weapon;
             var preset = JobPreset.For(job);
 
             Stats = new PlayerStats();
@@ -79,7 +81,7 @@ namespace CCT
 
             var camera = SetupCamera();
             var background = CreateBackground();
-            Player = CreatePlayer(preset);
+            Player = CreatePlayer(preset, weapon);
             gameObject.AddComponent<CameraRig>().Init(camera, Player.transform, background);
 
             var spawner = new GameObject("Spawner");
@@ -134,15 +136,20 @@ namespace CCT
             return go.transform;
         }
 
-        PlayerController CreatePlayer(JobPreset preset)
+        PlayerController CreatePlayer(JobPreset preset, WeaponKind weapon)
         {
             var go = new GameObject("Player");
             go.transform.SetParent(transform, false);
             go.transform.localPosition = new Vector3(0f, Balance.LaneCenterY, 0f);
             var player = go.AddComponent<PlayerController>();
             player.Init(Stats, preset.playerColor);
-            // 레이피어/검은 지금 메커닉이 동일함(치장만 다름) — 총/활이 생기면 직업별로 갈라낼 것
-            go.AddComponent<RapierWeapon>().Init(Stats, player);
+
+            // 레이피어/검(근접), 총/활(원거리)은 각 쌍끼리 메커닉이 같음 — 치장만 다른 임시 처리.
+            if (weapon == WeaponKind.Gun || weapon == WeaponKind.Bow)
+                go.AddComponent<PlayerProjectileWeapon>().Init(Stats, player);
+            else
+                go.AddComponent<RapierWeapon>().Init(Stats, player);
+
             go.AddComponent<FlameBurst>().Init(Stats, player);
             go.AddComponent<PoisonAura>().Init(Stats, player);
             return player;

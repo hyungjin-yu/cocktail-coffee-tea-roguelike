@@ -2,7 +2,6 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 
 namespace CCT.Tests
 {
@@ -32,28 +31,50 @@ namespace CCT.Tests
         }
 
         [UnityTest]
-        public IEnumerator Show_ClickingTeaSommelier_InvokesCallback_AndDestroysScreen()
+        public IEnumerator ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen()
         {
-            Job? chosen = null;
-            var view = CharacterSelectView.Show(j => chosen = j);
+            (Job job, WeaponKind weapon)? chosen = null;
+            var view = CharacterSelectView.Show((j, w) => chosen = (j, w));
             yield return null;
 
             Assert.IsNotNull(view.TeaSommelierButton);
+            Assert.IsNull(view.WeaponButtonA, "무기 선택은 직업을 고른 뒤에야 나와야 한다");
             view.TeaSommelierButton.onClick.Invoke();
+            yield return null;
 
-            Assert.AreEqual(Job.TeaSommelier, chosen);
+            Assert.IsNotNull(view.WeaponButtonA);
+            Assert.IsNotNull(view.WeaponButtonB);
+            view.WeaponButtonB.onClick.Invoke(); // 티 소믈리에의 두 번째 무기 = 활
+
+            Assert.IsTrue(chosen.HasValue);
+            Assert.AreEqual(Job.TeaSommelier, chosen.Value.job);
+            Assert.AreEqual(WeaponKind.Bow, chosen.Value.weapon);
 
             yield return null;
             Assert.IsTrue(view == null, "선택 후 화면(Canvas)이 파괴되어야 한다");
         }
 
         [UnityTest]
-        public IEnumerator Build_WithChosenJob_AppliesJobPreset()
+        public IEnumerator Build_WithChosenJobAndWeapon_AppliesBoth()
         {
-            var game = GameBootstrap.Build(Job.TeaSommelier);
+            var game = GameBootstrap.Build(Job.TeaSommelier, WeaponKind.Bow);
             yield return null;
 
             Assert.AreEqual(Job.TeaSommelier, game.Job);
+            Assert.AreEqual(WeaponKind.Bow, game.Weapon);
+            Assert.IsNotNull(game.Player.GetComponent<PlayerProjectileWeapon>(),
+                "총/활은 PlayerProjectileWeapon 을 붙여야 한다");
+            Assert.IsNull(game.Player.GetComponent<RapierWeapon>());
+        }
+
+        [UnityTest]
+        public IEnumerator Build_WithMeleeWeapon_AttachesRapierWeapon()
+        {
+            var game = GameBootstrap.Build(Job.Bartender, WeaponKind.Rapier);
+            yield return null;
+
+            Assert.IsNotNull(game.Player.GetComponent<RapierWeapon>());
+            Assert.IsNull(game.Player.GetComponent<PlayerProjectileWeapon>());
         }
     }
 }
