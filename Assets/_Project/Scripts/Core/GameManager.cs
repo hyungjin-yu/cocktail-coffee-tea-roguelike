@@ -24,6 +24,10 @@ namespace CCT
         /// <summary>재료 게이지가 찰 때마다 그 게이지의 카드 카테고리를 여기 쌓고, 한 번에 하나씩 처리한다.</summary>
         readonly Queue<CardCategory> pendingCardDraws = new Queue<CardCategory>();
         int pendingSkillPoints;
+        /// <summary>이번 런에서 모은 재료량 (도감 표시용 누적치는 런 종료 시 한 번에 반영).</summary>
+        int cocktailCollectedThisRun;
+        int teaCollectedThisRun;
+        int beansCollectedThisRun;
 
         public GameState State { get; private set; } = GameState.Playing;
         public Job Job { get; private set; }
@@ -183,9 +187,19 @@ namespace CCT
 
             switch (type)
             {
-                case IngredientType.Cocktail: CocktailGauge.Add(amount); break;
-                case IngredientType.Tea: TeaGauge.Add(amount); break;
-                case IngredientType.Coffee: BeanGauge.Add(Mathf.RoundToInt(amount * BeanGainMultiplier)); break;
+                case IngredientType.Cocktail:
+                    CocktailGauge.Add(amount);
+                    cocktailCollectedThisRun += amount;
+                    break;
+                case IngredientType.Tea:
+                    TeaGauge.Add(amount);
+                    teaCollectedThisRun += amount;
+                    break;
+                case IngredientType.Coffee:
+                    int beanAmount = Mathf.RoundToInt(amount * BeanGainMultiplier);
+                    BeanGauge.Add(beanAmount);
+                    beansCollectedThisRun += beanAmount;
+                    break;
             }
         }
 
@@ -282,6 +296,7 @@ namespace CCT
             Cleared = cleared;
             State = GameState.GameOver;
             Time.timeScale = 0f;
+            PermanentProgress.AddMaterialsCollected(cocktailCollectedThisRun, teaCollectedThisRun, beansCollectedThisRun);
             resultView.Show(cleared, RunTime, Kills, CocktailGauge.Level, TeaGauge.Level, Skills.UnlockedCount,
                 PermanentProgress.Current.specialtyPoints);
         }

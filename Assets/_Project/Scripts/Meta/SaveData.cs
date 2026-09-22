@@ -18,5 +18,11 @@ namespace CCT
 
         /// <summary>지금까지 한 번이라도 획득한 카드 id 목록 (카드 도감, CardCodexView). 런이 끝나도 유지된다.</summary>
         public List<string> discoveredCardIds = new List<string>();
+
+        /// <summary>재료별 누적 수집량 (도감 표시용). 런 종료 시 그 런에서 모은 양만큼 더해진다 — 픽업마다
+        /// 저장하면 I/O가 너무 잦아서 런 단위로만 반영한다.</summary>
+        public int cocktailIngredientsCollected;
+        public int teaLeavesCollected;
+        public int coffeeBeansCollected;
     }
 }

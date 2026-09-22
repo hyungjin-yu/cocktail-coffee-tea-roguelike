@@ -63,5 +63,32 @@ namespace CCT.Tests
 
             Assert.AreEqual(2, PermanentProgress.Current.discoveredCardIds.Count);
         }
+
+        [Test]
+        public void AddMaterialsCollected_AccumulatesEachType_AndPersists()
+        {
+            PermanentProgress.AddMaterialsCollected(5, 3, 1);
+            PermanentProgress.AddMaterialsCollected(2, 0, 4);
+
+            Assert.AreEqual(7, PermanentProgress.Current.cocktailIngredientsCollected);
+            Assert.AreEqual(3, PermanentProgress.Current.teaLeavesCollected);
+            Assert.AreEqual(5, PermanentProgress.Current.coffeeBeansCollected);
+
+            var reloaded = SaveSystem.Load(tempPath);
+            Assert.AreEqual(7, reloaded.cocktailIngredientsCollected);
+            Assert.AreEqual(3, reloaded.teaLeavesCollected);
+            Assert.AreEqual(5, reloaded.coffeeBeansCollected);
+        }
+
+        [Test]
+        public void AddMaterialsCollected_AllZeroOrNegative_DoesNothing()
+        {
+            PermanentProgress.AddMaterialsCollected(0, 0, 0);
+            PermanentProgress.AddMaterialsCollected(-3, -1, 0);
+
+            Assert.AreEqual(0, PermanentProgress.Current.cocktailIngredientsCollected);
+            Assert.AreEqual(0, PermanentProgress.Current.teaLeavesCollected);
+            Assert.AreEqual(0, PermanentProgress.Current.coffeeBeansCollected);
+        }
     }
 }

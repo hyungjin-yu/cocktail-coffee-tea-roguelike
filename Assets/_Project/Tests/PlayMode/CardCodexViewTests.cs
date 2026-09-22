@@ -49,8 +49,38 @@ namespace CCT.Tests
             view.CardCodexButton.onClick.Invoke();
             yield return null;
 
-            Assert.IsTrue(view.CodexView.IsOpen, "버튼을 누르면 카드 도감이 열려야 한다");
+            Assert.IsTrue(view.CodexView.IsOpen, "버튼을 누르면 도감이 열려야 한다");
             Assert.Greater(view.CodexView.EntryCount, 0, "카드 데이터베이스의 모든 카드가 항목으로 나와야 한다");
+            Assert.Greater(view.CodexView.SkillEntryCount, 0, "영구 강화 노드도 항목으로 나와야 한다");
+        }
+
+        [UnityTest]
+        public IEnumerator CodexShows_UnlockedPermanentSkill_AndCollectedMaterials()
+        {
+            PermanentProgress.AddSpecialty(3);
+            PermanentProgress.UnlockPermanentSkill("bean_cupper");
+            PermanentProgress.AddMaterialsCollected(12, 7, 2);
+
+            var view = CharacterSelectView.Show((j, w) => { });
+            yield return null;
+            view.CardCodexButton.onClick.Invoke();
+            yield return null;
+
+            var materialsRt = view.CodexView.transform.Find("Materials");
+            Assert.IsNotNull(materialsRt, "재료 줄이 있어야 한다");
+
+            var cocktailText = materialsRt.Find("Material_칵테일 재료/Text").GetComponent<UnityEngine.UI.Text>();
+            Assert.IsTrue(cocktailText.text.Contains("12"), "칵테일 재료 누적 수집량이 표시되어야 한다");
+
+            var teaText = materialsRt.Find("Material_찻잎/Text").GetComponent<UnityEngine.UI.Text>();
+            Assert.IsTrue(teaText.text.Contains("7"));
+
+            var beanText = materialsRt.Find("Material_커피 원두/Text").GetComponent<UnityEngine.UI.Text>();
+            Assert.IsTrue(beanText.text.Contains("2"));
+
+            var skillRow = view.CodexView.transform.Find("ScrollArea/Viewport/Content/SkillRow_bean_cupper/Name")
+                .GetComponent<UnityEngine.UI.Text>();
+            Assert.AreEqual("원두 감별사", skillRow.text, "해금된 영구 강화 노드는 이름이 그대로 보여야 한다(비밀 아님)");
         }
 
         [UnityTest]

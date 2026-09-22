@@ -45,6 +45,17 @@ namespace CCT
             SaveSystem.Save(Current, overridePath);
         }
 
+        /// <summary>런 종료 시 그 런에서 모은 재료량을 누적 수집량에 더한다 (도감 표시용). 픽업마다 저장하면
+        /// I/O가 너무 잦아서 런이 끝날 때 한 번만 반영한다.</summary>
+        public static void AddMaterialsCollected(int cocktail, int tea, int coffee)
+        {
+            if (cocktail <= 0 && tea <= 0 && coffee <= 0) return;
+            if (cocktail > 0) Current.cocktailIngredientsCollected += cocktail;
+            if (tea > 0) Current.teaLeavesCollected += tea;
+            if (coffee > 0) Current.coffeeBeansCollected += coffee;
+            SaveSystem.Save(Current, overridePath);
+        }
+
         /// <summary>테스트 전용 — 실제 세이브 파일 대신 임시 경로를 쓰게 한다. null을 주면 원래 경로로 되돌린다.</summary>
         public static void SetPathForTests(string path)
         {
