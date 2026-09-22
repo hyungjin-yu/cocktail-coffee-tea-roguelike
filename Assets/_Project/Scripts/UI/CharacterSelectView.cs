@@ -34,8 +34,10 @@ namespace CCT
         static Button BuildOption(Transform root, float side, JobPreset preset, GameObject canvasGo,
             Action<Job> onChosen)
         {
-            var rt = UiFactory.Place($"Option_{preset.job}", root, new Vector2(0.5f, 0.5f),
-                new Vector2(side * 300f, 0f), new Vector2(520f, 640f));
+            // 타이틀과 같은 위쪽 기준(anchor top)으로 둬야 실제 캔버스 높이가 기준 해상도와 달라도
+            // 겹치지 않는다 (전에 center 기준을 섞어 썼다가 화면비에 따라 겹치는 버그가 있었음).
+            var rt = UiFactory.Place($"Option_{preset.job}", root, new Vector2(0.5f, 1f),
+                new Vector2(side * 300f, -220f), new Vector2(520f, 640f));
             var bg = UiFactory.AddImage(rt, new Color(0.16f, 0.13f, 0.2f, 1f));
 
             var button = rt.gameObject.AddComponent<Button>();
