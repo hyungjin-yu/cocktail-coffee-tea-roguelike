@@ -35,9 +35,26 @@ namespace CCT
                     enemy.TakeDamage(damage);
             }
 
+            // 중심에서 짧게 번쩍이는 코어 플래시 + 사방으로 튀는 불티 파티클을 겹쳐서
+            // 단순 도형 하나보다 "타격감" 있게 보이도록 함.
             FadeVfx.Spawn(SpriteFactory.Circle, player.Position, 0f,
-                Vector2.one * Radius * 0.6f, Vector2.one * Radius * 2f,
-                new Color(1f, 0.5f, 0.15f, 0.55f), 0.35f, 1);
+                Vector2.one * Radius * 0.5f, Vector2.one * Radius * 1.3f,
+                new Color(1f, 0.55f, 0.2f, 0.6f), 0.22f, 1);
+
+            var fireConfig = ParticleBurstConfig.Default;
+            fireConfig.count = 22;
+            fireConfig.minSpeed = 1.5f;
+            fireConfig.maxSpeed = 1.2f + Radius * 1.6f;
+            fireConfig.minLifetime = 0.3f;
+            fireConfig.maxLifetime = 0.5f;
+            fireConfig.minSize = 0.18f;
+            fireConfig.maxSize = 0.34f;
+            fireConfig.startColor = new Color(1f, 0.92f, 0.55f, 1f); // 밝은 노랑(불꽃 중심)
+            fireConfig.endColor = new Color(0.95f, 0.25f, 0.05f, 0.6f); // 어두운 주황-빨강(꺼지는 불씨)
+            fireConfig.gravityModifier = -0.35f; // 불꽃이라 살짝 위로 뜸
+            fireConfig.shapeRadius = Radius * 0.15f;
+            fireConfig.sortingOrder = 2;
+            ParticleFx.SpawnBurst(player.Position, transform.parent, fireConfig);
         }
     }
 }
