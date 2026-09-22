@@ -21,7 +21,12 @@ namespace CCT.Tests
         public IEnumerator SetUp()
         {
             InputSettings.Scheme = MovementScheme.Keyboard;
-            Assert.IsNotNull(GameBootstrap.Build());
+            var game = GameBootstrap.Build();
+            Assert.IsNotNull(game);
+            // 기본 무기(레이피어)가 가까이 스폰된 보스를 자동 공격하면 압력 게이지 딜레이스가 계속 발동돼서
+            // 이 클래스의 시간 기반 압력 게이지 시나리오가 불안정해진다 — 여기선 보스 패턴만 격리해서 본다.
+            var weapon = game.Player.GetComponent<RapierWeapon>();
+            if (weapon != null) Object.Destroy(weapon);
             yield return null;
         }
 

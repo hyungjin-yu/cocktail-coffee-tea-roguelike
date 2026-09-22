@@ -39,6 +39,8 @@ namespace CCT
         /// </summary>
         public IngredientGauge BeanGauge { get; private set; }
         public SkillTree Skills { get; private set; }
+        /// <summary>스페셜티로 직접 찍는 영구 강화 트리. 런 시작 시 세이브에서 읽어 스탯에 적용한다.</summary>
+        public PermanentSkillTree PermanentSkills { get; private set; }
         public BossDirector Director { get; private set; }
         public HudView Hud { get; private set; }
         public CardSystem Cards => cards;
@@ -73,10 +75,11 @@ namespace CCT
             cards = new CardSystem(CardDatabase.LoadAll());
             Skills = new SkillTree(SkillDatabase.LoadAll());
 
-            // 스페셜티(영구 재화) 보너스는 런 시작 시 한 번 적용 — 런 종료해도 사라지지 않는 유일한 진행치.
-            int specialty = PermanentProgress.Current.specialtyPoints;
-            Stats.damagePercent += SpecialtyBonus.DamagePercent(specialty);
-            BeanGainMultiplier = SpecialtyBonus.BeanGainMultiplier(specialty);
+            // 스페셜티로 미리 찍어둔 영구 강화는 런 시작 시 한 번 적용 — 런 종료해도 사라지지 않는 유일한 진행치.
+            var save = PermanentProgress.Current;
+            PermanentSkills = new PermanentSkillTree(PermanentSkillDatabase.LoadAll(), save.unlockedPermanentSkillIds);
+            PermanentSkills.ApplyAll(Stats);
+            BeanGainMultiplier = 1f + Stats.beanGainPercent;
 
             CocktailGauge = new IngredientGauge(IngredientType.Cocktail, Balance.CocktailGaugeStart,
                 Balance.CocktailGaugeGrowth, () => Stats.GaugeNeedMultiplier);

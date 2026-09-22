@@ -27,6 +27,8 @@ namespace CCT
         PoisonLevel,
         /// <summary>원거리 전용 — 발사체가 뚫고 지나갈 수 있는 추가 대상 수.</summary>
         PierceCount,
+        /// <summary>영구 강화 전용 — 커피 원두 획득량 % 보너스 (PermanentSkillData가 사용).</summary>
+        BeanGainPercent,
     }
 
     [Serializable]

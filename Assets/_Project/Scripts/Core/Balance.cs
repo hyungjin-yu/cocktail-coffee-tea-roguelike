@@ -67,13 +67,10 @@ namespace CCT
         public const float PressureExplosionKnockbackSpeed = 6f;
         public const float PressureKnockbackDuration = 0.25f;
 
-        // 스페셜티(영구 재화) — 강화 보스 처치 시 드랍량, 영구 보너스는 상한을 둬서
-        // 후반 난이도가 무너지지 않게 한다 (기획서 11장 리스크 대응).
+        /// <summary>스페셜티(영구 재화) — 강화 보스 처치 시 드랍량. 실제 보너스는 자동 %가 아니라
+        /// PermanentSkillTree에서 플레이어가 직접 찍는 노드 비용/효과로 정해진다 (2026-09-22 변경:
+        /// "적용된 건지, 어떻게 찍는지 모르겠다"는 피드백으로 자동 % 방식에서 전환).</summary>
         public const int SpecialtyDropAmount = 3;
-        public const float SpecialtyDamagePercentPerPoint = 0.015f;
-        public const float SpecialtyDamagePercentCap = 0.30f;
-        public const float SpecialtyBeanBonusPerPoint = 0.03f;
-        public const float SpecialtyBeanBonusCap = 0.50f;
 
         public static float EnemyHpScale(float runTimeSeconds) => 1f + runTimeSeconds / EnemyHpGrowthSeconds;
     }

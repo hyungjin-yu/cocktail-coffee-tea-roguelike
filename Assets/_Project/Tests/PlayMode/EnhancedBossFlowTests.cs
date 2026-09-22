@@ -1,5 +1,6 @@
 using System.Collections;
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -64,26 +65,45 @@ namespace CCT.Tests
         }
 
         [UnityTest]
-        public IEnumerator PermanentSpecialty_FromPreviousRuns_BoostsNextRunDamageAndBeanGain()
+        public IEnumerator PermanentSkill_UnlockedInPreviousRun_AppliesAtNextRunStart()
         {
-            // 이 GameManager는 스페셜티 0인 상태로 이미 만들어졌으니, 재시작해서 새로 반영되는지 확인한다.
-            PermanentProgress.AddSpecialty(10);
+            // 강화 보스 1마리 분량(3)을 모아서 1단계 노드 두 개를 직접 찍는다 (원두 감별사엔 3만 있으면 충분).
+            PermanentProgress.AddSpecialty(3);
+            var cupper = PermanentSkillDatabase.LoadAll().Single(n => n.id == "bean_cupper");
+            var tree = new PermanentSkillTree(PermanentSkillDatabase.LoadAll(),
+                PermanentProgress.Current.unlockedPermanentSkillIds);
+            Assert.IsTrue(tree.TryUnlock(cupper, 3), "포인트가 충분하면 1단계 노드를 찍을 수 있어야 한다");
+            PermanentProgress.UnlockPermanentSkill(cupper.id);
 
+            // 이 GameManager는 아직 반영 전 상태로 만들어졌으니, 재시작해서 새로 반영되는지 확인한다.
             GameManager.Instance.Restart();
             yield return null;
             var game = GameBootstrap.Build(Job.Bartender, WeaponKind.Rapier);
             yield return null;
 
-            float expectedDamagePercent = SpecialtyBonus.DamagePercent(10);
-            Assert.AreEqual(expectedDamagePercent, game.Stats.damagePercent, 0.0001f,
-                "영구 스페셜티 보너스는 런 시작 시 바로 적용돼야 한다");
-
-            float expectedMultiplier = SpecialtyBonus.BeanGainMultiplier(10);
-            Assert.AreEqual(expectedMultiplier, game.BeanGainMultiplier, 0.0001f);
+            Assert.IsTrue(game.PermanentSkills.IsUnlocked(cupper), "이전 런에서 찍은 노드는 다음 런에도 해금 상태여야 한다");
+            Assert.AreEqual(0.20f, game.Stats.beanGainPercent, 0.0001f, "원두 감별사(+20%) 효과가 적용돼야 한다");
+            Assert.AreEqual(1.20f, game.BeanGainMultiplier, 0.0001f);
 
             game.AddIngredient(IngredientType.Coffee, 4);
-            Assert.AreEqual(Mathf.RoundToInt(4 * expectedMultiplier), game.BeanGauge.Current,
-                "원두 획득량에도 배율이 적용돼야 한다");
+            Assert.AreEqual(Mathf.RoundToInt(4 * 1.20f), game.BeanGauge.Current, "원두 획득량에도 배율이 적용돼야 한다");
+        }
+
+        [UnityTest]
+        public IEnumerator PermanentSkill_CannotBeUnlocked_WithoutEnoughPoints_OrPrerequisite()
+        {
+            var cupper = PermanentSkillDatabase.LoadAll().Single(n => n.id == "bean_cupper");
+            var roasting = PermanentSkillDatabase.LoadAll().Single(n => n.id == "skilled_roasting"); // cupper의 2단계
+
+            var tree = new PermanentSkillTree(PermanentSkillDatabase.LoadAll(),
+                PermanentProgress.Current.unlockedPermanentSkillIds);
+
+            Assert.IsFalse(tree.TryUnlock(cupper, 2), "비용(3)보다 적은 포인트로는 찍을 수 없어야 한다");
+            Assert.IsFalse(tree.TryUnlock(roasting, 999), "선행 노드 없이는 포인트가 충분해도 찍을 수 없어야 한다");
+
+            Assert.IsTrue(tree.TryUnlock(cupper, 3));
+            Assert.IsTrue(tree.TryUnlock(roasting, 6), "선행 노드를 찍은 뒤에는 2단계도 찍을 수 있어야 한다");
+            yield return null;
         }
     }
 }

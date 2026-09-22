@@ -28,6 +28,8 @@ namespace CCT
         public int poisonLevel;
         /// <summary>원거리 전용 — 발사체가 뚫고 지나갈 수 있는 추가 대상 수.</summary>
         public int pierceCount;
+        /// <summary>영구 강화(스페셜티) 전용 — 커피 원두 획득량 % 보너스. GameManager.BeanGainMultiplier가 읽는다.</summary>
+        public float beanGainPercent;
 
         public event Action Changed;
 
@@ -96,6 +98,7 @@ namespace CCT
                 case CardEffectType.RegenBonus: regenBonus += effect.value; break;
                 case CardEffectType.PoisonLevel: poisonLevel += Mathf.RoundToInt(effect.value); break;
                 case CardEffectType.PierceCount: pierceCount += Mathf.RoundToInt(effect.value); break;
+                case CardEffectType.BeanGainPercent: beanGainPercent += effect.value; break;
             }
             Changed?.Invoke();
         }

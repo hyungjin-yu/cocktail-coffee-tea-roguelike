@@ -13,12 +13,17 @@ namespace CCT
         Canvas canvas;
         RectTransform root;
         Action<Job, WeaponKind> onChosen;
+        PermanentSkillView shopView;
 
         public Button BartenderButton { get; private set; }
         public Button TeaSommelierButton { get; private set; }
         /// <summary>2단계(무기 선택) 진입 후에만 채워진다. weapons[0]/[1] 순서는 JobPreset.weapons 와 같다.</summary>
         public Button WeaponButtonA { get; private set; }
         public Button WeaponButtonB { get; private set; }
+        /// <summary>직업 선택 화면에서 여는 영구 강화 버튼 (테스트용으로도 참조).</summary>
+        public Button PermanentShopButton { get; private set; }
+        /// <summary>영구 강화 화면 (테스트용으로도 참조).</summary>
+        public PermanentSkillView ShopView => shopView;
 
         public static CharacterSelectView Show(Action<Job, WeaponKind> onChosen)
         {
@@ -26,6 +31,7 @@ namespace CCT
             var view = canvas.gameObject.AddComponent<CharacterSelectView>();
             view.canvas = canvas;
             view.onChosen = onChosen;
+            view.shopView = PermanentSkillView.Create(canvas.transform, view.ShowJobStep);
             view.ShowJobStep();
             return view;
         }
@@ -49,6 +55,23 @@ namespace CCT
 
             BartenderButton = BuildJobOption(-1, JobPreset.Bartender);
             TeaSommelierButton = BuildJobOption(1, JobPreset.TeaSommelier);
+            PermanentShopButton = BuildPermanentShopButton();
+        }
+
+        Button BuildPermanentShopButton()
+        {
+            int specialty = PermanentProgress.Current.specialtyPoints;
+            var rt = UiFactory.Place("PermanentShopButton", root, new Vector2(1f, 1f), new Vector2(-210f, -50f),
+                new Vector2(380f, 80f));
+            var bg = UiFactory.AddImage(rt, new Color(0.4f, 0.24f, 0.5f));
+            var button = MakeButton(rt, bg, () =>
+            {
+                root.gameObject.SetActive(false);
+                shopView.Show();
+            });
+            UiFactory.AddText(UiFactory.Stretch("Label", rt), $"영구 강화 (스페셜티 {specialty})", 26,
+                TextAnchor.MiddleCenter, Color.white);
+            return button;
         }
 
         void ShowWeaponStep(JobPreset job)

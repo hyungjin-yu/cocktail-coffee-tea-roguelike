@@ -1,13 +1,19 @@
+using System.Collections.Generic;
+
 namespace CCT
 {
     /// <summary>
-    /// 런 종료 시에도 초기화되지 않는 영구 데이터 (기획서 11장, 13장).
-    /// 지금은 스페셜티(강화 보스 처치로 얻는 영구 재화) 하나뿐이지만, 나중에 항목이 늘어도
-    /// JsonUtility로 그대로 직렬화되도록 필드만 추가하면 된다.
+    /// 런 종료 시에도 초기화되지 않는 영구 데이터 (기획서 11장, 13장). JsonUtility로 그대로 직렬화되도록
+    /// 필드만 추가하면 된다.
     /// </summary>
     [System.Serializable]
     public class SaveData
     {
+        /// <summary>누적으로 획득한 스페셜티 총량 (쓴 만큼 줄어들지 않음 — "총 획득"). 실제로 쓸 수 있는
+        /// 잔여량은 이 값에서 unlockedPermanentSkillIds에 해당하는 비용 합을 뺀 값이다.</summary>
         public int specialtyPoints;
+
+        /// <summary>스페셜티로 직접 해금한 영구 강화 노드 id 목록 (PermanentSkillTree).</summary>
+        public List<string> unlockedPermanentSkillIds = new List<string>();
     }
 }
