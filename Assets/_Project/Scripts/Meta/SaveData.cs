@@ -15,5 +15,8 @@ namespace CCT
 
         /// <summary>스페셜티로 직접 해금한 영구 강화 노드 id 목록 (PermanentSkillTree).</summary>
         public List<string> unlockedPermanentSkillIds = new List<string>();
+
+        /// <summary>지금까지 한 번이라도 획득한 카드 id 목록 (카드 도감, CardCodexView). 런이 끝나도 유지된다.</summary>
+        public List<string> discoveredCardIds = new List<string>();
     }
 }

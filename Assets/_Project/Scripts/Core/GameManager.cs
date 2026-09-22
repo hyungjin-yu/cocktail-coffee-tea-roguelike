@@ -238,6 +238,7 @@ namespace CCT
         void ChooseCard(CardOffer offer)
         {
             cards.Take(offer.card, Stats);
+            PermanentProgress.DiscoverCard(offer.card.id);
             Player.Heal(Balance.LevelUpHealFraction);
             State = GameState.Playing;
             Time.timeScale = 1f;

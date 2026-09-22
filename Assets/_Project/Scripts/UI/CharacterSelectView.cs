@@ -14,6 +14,7 @@ namespace CCT
         RectTransform root;
         Action<Job, WeaponKind> onChosen;
         PermanentSkillView shopView;
+        CardCodexView codexView;
 
         public Button BartenderButton { get; private set; }
         public Button TeaSommelierButton { get; private set; }
@@ -24,6 +25,10 @@ namespace CCT
         public Button PermanentShopButton { get; private set; }
         /// <summary>영구 강화 화면 (테스트용으로도 참조).</summary>
         public PermanentSkillView ShopView => shopView;
+        /// <summary>직업 선택 화면에서 여는 카드 도감 버튼 (테스트용으로도 참조).</summary>
+        public Button CardCodexButton { get; private set; }
+        /// <summary>카드 도감 화면 (테스트용으로도 참조).</summary>
+        public CardCodexView CodexView => codexView;
 
         public static CharacterSelectView Show(Action<Job, WeaponKind> onChosen)
         {
@@ -32,6 +37,7 @@ namespace CCT
             view.canvas = canvas;
             view.onChosen = onChosen;
             view.shopView = PermanentSkillView.Create(canvas.transform, view.ShowJobStep);
+            view.codexView = CardCodexView.Create(canvas.transform, view.ShowJobStep);
             view.ShowJobStep();
             return view;
         }
@@ -56,6 +62,7 @@ namespace CCT
             BartenderButton = BuildJobOption(-1, JobPreset.Bartender);
             TeaSommelierButton = BuildJobOption(1, JobPreset.TeaSommelier);
             PermanentShopButton = BuildPermanentShopButton();
+            CardCodexButton = BuildCardCodexButton();
         }
 
         Button BuildPermanentShopButton()
@@ -71,6 +78,20 @@ namespace CCT
             });
             UiFactory.AddText(UiFactory.Stretch("Label", rt), $"영구 강화 (스페셜티 {specialty})", 26,
                 TextAnchor.MiddleCenter, Color.white);
+            return button;
+        }
+
+        Button BuildCardCodexButton()
+        {
+            var rt = UiFactory.Place("CardCodexButton", root, new Vector2(0f, 1f), new Vector2(210f, -50f),
+                new Vector2(380f, 80f));
+            var bg = UiFactory.AddImage(rt, new Color(0.24f, 0.4f, 0.5f));
+            var button = MakeButton(rt, bg, () =>
+            {
+                root.gameObject.SetActive(false);
+                codexView.Show();
+            });
+            UiFactory.AddText(UiFactory.Stretch("Label", rt), "카드 도감", 26, TextAnchor.MiddleCenter, Color.white);
             return button;
         }
 

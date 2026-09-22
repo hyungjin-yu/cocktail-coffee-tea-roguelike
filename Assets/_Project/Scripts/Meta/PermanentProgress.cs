@@ -37,6 +37,14 @@ namespace CCT
             SaveSystem.Save(Current, overridePath);
         }
 
+        /// <summary>카드를 처음 획득한 순간 도감에 기록한다 (카드 도감, CardCodexView).</summary>
+        public static void DiscoverCard(string id)
+        {
+            if (string.IsNullOrEmpty(id) || Current.discoveredCardIds.Contains(id)) return;
+            Current.discoveredCardIds.Add(id);
+            SaveSystem.Save(Current, overridePath);
+        }
+
         /// <summary>테스트 전용 — 실제 세이브 파일 대신 임시 경로를 쓰게 한다. null을 주면 원래 경로로 되돌린다.</summary>
         public static void SetPathForTests(string path)
         {
