@@ -36,14 +36,14 @@ namespace CCT
             var crema = Make("perfect_crema", "완벽한 크레마", "영구 공격 속도 +10%", SkillBranch.Attack, 2, 6,
                 roast, new CardEffect(CardEffectType.AttackSpeedPercent, 0.10f));
 
-            var tumbler = Make("sturdy_tumbler", "튼튼한 텀블러", "영구 최대 체력 +30", SkillBranch.Survival, 1, 3,
+            var tumbler = Make("sturdy_tumbler", "아이스음료의 필수품", "영구 최대 체력 +30", SkillBranch.Survival, 1, 3,
                 null, new CardEffect(CardEffectType.MaxHpFlat, 30f));
             var veteran = Make("veteran_instinct", "베테랑의 감각", "영구 이동 속도 +10%", SkillBranch.Survival, 2, 6,
                 tumbler, new CardEffect(CardEffectType.MoveSpeedPercent, 0.10f));
 
             var cupper = Make("bean_cupper", "원두 감별사", "영구 원두 획득량 +20%", SkillBranch.Ingredient, 1, 3,
                 null, new CardEffect(CardEffectType.BeanGainPercent, 0.20f));
-            var roasting = Make("skilled_roasting", "숙련된 로스팅", "영구 재료 게이지 필요량 -10%",
+            var roasting = Make("skilled_roasting", "정확한 계량", "영구 재료 게이지 필요량 -10%",
                 SkillBranch.Ingredient, 2, 6, cupper, new CardEffect(CardEffectType.GaugeNeedPercent, -0.10f));
 
             return new List<PermanentSkillData> { roast, crema, tumbler, veteran, cupper, roasting };
