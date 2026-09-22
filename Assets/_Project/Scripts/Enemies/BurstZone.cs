@@ -1,0 +1,55 @@
+using UnityEngine;
+
+namespace CCT
+{
+    /// <summary>올리브 바머가 자폭 후 남기는 화염(알콜) 장판. 범위 안에 있으면 지속 피해.</summary>
+    public class BurstZone : MonoBehaviour
+    {
+        const float TickInterval = 0.4f;
+
+        PlayerController player;
+        float radius;
+        float damagePerSecond;
+        float remaining;
+        float tickTimer;
+
+        public static void Spawn(Vector2 position, float radius, float damagePerSecond, float seconds,
+            PlayerController player, Transform parent)
+        {
+            var go = new GameObject("BurstZone");
+            go.transform.SetParent(parent, false);
+            go.transform.position = position;
+            go.transform.localScale = Vector3.one * (radius * 2f);
+
+            var sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = SpriteFactory.Circle;
+            sr.color = new Color(1f, 0.5f, 0.15f, 0.35f);
+            sr.sortingOrder = 1;
+
+            var zone = go.AddComponent<BurstZone>();
+            zone.player = player;
+            zone.radius = radius;
+            zone.damagePerSecond = damagePerSecond;
+            zone.remaining = seconds;
+        }
+
+        void Update()
+        {
+            remaining -= Time.deltaTime;
+            if (remaining <= 0f)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            if (player == null || player.IsDead) return;
+
+            tickTimer -= Time.deltaTime;
+            if (tickTimer > 0f) return;
+            tickTimer = TickInterval;
+
+            if (Vector2.Distance(transform.position, player.Position) <= radius)
+                player.TakeDamage(damagePerSecond * TickInterval);
+        }
+    }
+}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4c593a99b730843a51fecaaffdda34, type: 3}
+  m_Name: Card_molotov
+  m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
+  id: molotov
+  displayName: "\uD654\uC5FC\uBCD1 \uCE75\uD14C\uC77C"
+  description: "\uC8FC\uAE30\uC801\uC73C\uB85C \uC8FC\uBCC0\uC5D0 \uD654\uC5FC \uD3ED\uBC1C
+    (Lv +1)"
+  category: 0
+  rarity: 1
+  maxStacks: 5
+  effects:
+  - type: 8
+    value: 1

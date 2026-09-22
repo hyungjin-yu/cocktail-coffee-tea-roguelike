@@ -1,0 +1,79 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace CCT
+{
+    /// <summary>
+    /// 칵테일 카드 기본 세트 (전부 가안 수치). Resources/Cards 에 에셋이 없으면 이 목록이 런타임에 쓰인다.
+    /// 에디터 메뉴 CCT/Create Default Card Assets 로 에셋화하면 이후에는 인스펙터에서 튜닝 가능.
+    /// </summary>
+    public static class DefaultCards
+    {
+        public static List<CardData> CreateRuntime()
+        {
+            return new List<CardData>
+            {
+                // 일반
+                Make("dry_gin", "드라이 진", "공격력 +15%", CardRarity.Common, 5,
+                    new CardEffect(CardEffectType.DamagePercent, 0.15f)),
+                Make("shot_glass", "샷 글래스", "공격 속도 +12%", CardRarity.Common, 5,
+                    new CardEffect(CardEffectType.AttackSpeedPercent, 0.12f)),
+                Make("long_stirrer", "롱 스터러", "찌르기 사거리 +15%", CardRarity.Common, 5,
+                    new CardEffect(CardEffectType.RangePercent, 0.15f)),
+                Make("bar_shoes", "바텐더 슈즈", "이동 속도 +10%", CardRarity.Common, 5,
+                    new CardEffect(CardEffectType.MoveSpeedPercent, 0.10f)),
+                Make("ice_cube", "얼음 한 조각", "최대 체력 +20", CardRarity.Common, 5,
+                    new CardEffect(CardEffectType.MaxHpFlat, 20f)),
+                Make("liqueur", "리큐르 병", "재료 게이지 필요량 -8%", CardRarity.Common, 5,
+                    new CardEffect(CardEffectType.GaugeNeedPercent, -0.08f)),
+                Make("syrup", "시럽 한 방울", "재료 추가 드랍 확률 +10%", CardRarity.Common, 5,
+                    new CardEffect(CardEffectType.DropChancePercent, 0.10f)),
+
+                // 희귀
+                Make("double_shot", "더블 샷", "공격력 +30%", CardRarity.Rare, 4,
+                    new CardEffect(CardEffectType.DamagePercent, 0.30f)),
+                Make("mixing_tempo", "믹싱 템포", "공격 속도 +25%", CardRarity.Rare, 4,
+                    new CardEffect(CardEffectType.AttackSpeedPercent, 0.25f)),
+                Make("flambe", "플람베", "찌르기 +1회 (연속 공격)", CardRarity.Rare, 3,
+                    new CardEffect(CardEffectType.ExtraThrust, 1f)),
+                Make("molotov", "화염병 칵테일", "주기적으로 주변에 화염 폭발 (Lv +1)", CardRarity.Rare, 5,
+                    new CardEffect(CardEffectType.FlameLevel, 1f)),
+
+                // 영웅
+                Make("scotch_rocks", "스카치 온 더 락", "공격력 +50%", CardRarity.Epic, 3,
+                    new CardEffect(CardEffectType.DamagePercent, 0.50f)),
+                Make("dry_martini", "드라이 마티니", "공격력 +25%, 공격 속도 +20%", CardRarity.Epic, 3,
+                    new CardEffect(CardEffectType.DamagePercent, 0.25f),
+                    new CardEffect(CardEffectType.AttackSpeedPercent, 0.20f)),
+                Make("blazer", "블레이저", "화염 폭발 Lv +2", CardRarity.Epic, 3,
+                    new CardEffect(CardEffectType.FlameLevel, 2f)),
+            };
+        }
+
+        static CardData Make(string id, string displayName, string description, CardRarity rarity,
+            int maxStacks, params CardEffect[] effects)
+        {
+            var card = ScriptableObject.CreateInstance<CardData>();
+            card.name = id;
+            card.id = id;
+            card.displayName = displayName;
+            card.description = description;
+            card.category = CardCategory.Cocktail;
+            card.rarity = rarity;
+            card.maxStacks = maxStacks;
+            card.effects = effects;
+            return card;
+        }
+    }
+
+    public static class CardDatabase
+    {
+        public static List<CardData> LoadAll()
+        {
+            var loaded = Resources.LoadAll<CardData>("Cards");
+            if (loaded != null && loaded.Length > 0)
+                return new List<CardData>(loaded);
+            return DefaultCards.CreateRuntime();
+        }
+    }
+}

@@ -1,0 +1,68 @@
+namespace CCT
+{
+    /// <summary>난이도 관련 가안 수치 모음. 플레이 테스트하며 여기서 조정한다.</summary>
+    public static class Balance
+    {
+        // 스폰
+        public const float SpawnIntervalStart = 1.2f;
+        public const float SpawnIntervalMin = 0.35f;
+        public const float SpawnIntervalDecayPerSecond = 0.001f;
+        public const int MaxAliveEnemies = 100;
+
+        /// <summary>화면 가장자리 바깥으로 이 만큼 떨어진 곳에서 걸어들어온다 (벨트스크롤 진입 연출).</summary>
+        public const float SpawnEdgeMargin = 1.5f;
+        /// <summary>양쪽에서 동시에 몰려오는 웨이브 간격(초)과 한쪽당 마리 수.</summary>
+        public const float WaveIntervalSeconds = 14f;
+        public const int WaveCountPerSide = 4;
+
+        /// <summary>몹 체력 배율 = 1 + 런 시간(초) / 이 값.</summary>
+        public const float EnemyHpGrowthSeconds = 240f;
+
+        // 플레이어 생존
+        public const float PlayerInvulnerableSeconds = 0.8f;
+        public const float PlayerRegenPerSecond = 0.5f;
+        /// <summary>카드 선택(레벨업) 시 최대 체력 대비 회복 비율.</summary>
+        public const float LevelUpHealFraction = 0.3f;
+        /// <summary>중간보스 처치 시 최대 체력 대비 회복 비율.</summary>
+        public const float MidBossHealFraction = 0.3f;
+
+        // 재료 게이지 (칵테일): 8 → 11 → 15 → 21 …
+        public const float CocktailGaugeStart = 8f;
+        public const float CocktailGaugeGrowth = 1.4f;
+
+        // 원두 게이지: 8 → 11 → 15 → 21 … (칵테일과 동일 성장)
+        // 중간보스 1마리가 원두 20을 주므로: 1번째 보스 = 스킬 포인트 2개(8+11 소진),
+        // 2번째 보스 = 1개(15 소진, 잔량은 21짜리 다음 칸에 남음) — 보스를 잡을수록 자연히 줄어든다.
+        // (실제 선택 화면은 항상 1번만 뜬다. GameManager 의 pendingSkillPoints 캡핑 참고.)
+        public const float BeanGaugeStart = 8f;
+        public const float BeanGaugeGrowth = 1.4f;
+
+        /// <summary>
+        /// 벨트스크롤(던파식) 시점: 좌우는 자유, 위아래는 이 "레인" 폭 안에서만 움직인다.
+        /// 레인은 화면 정중앙이 아니라 아래쪽에 오도록, 카메라를 레인 중심보다 위에 고정한다.
+        /// (2026-09-22 피드백 반영: 레인이 화면 세로 길이의 2/3을 차지하도록, 아래쪽에 치우치게 배치.
+        ///  카메라 orthographicSize(6, GameManager.SetupCamera)가 바뀌면 이 두 값도 다시 계산해야 한다:
+        ///  DepthHalfWidth = orthographicSize * (2/3), CameraAboveLaneOffset ≈ orthographicSize/4 정도로 아래쪽에 치우치게.)
+        /// </summary>
+        public const float LaneCenterY = -2.0f;
+        public const float DepthHalfWidth = 4.0f;
+        public const float DepthMin = LaneCenterY - DepthHalfWidth;
+        public const float DepthMax = LaneCenterY + DepthHalfWidth;
+
+        /// <summary>카메라가 레인 중심보다 이만큼 위에 고정되어, 플레이 영역이 화면 아래쪽에 놓인다.</summary>
+        public const float CameraAboveLaneOffset = 1.5f;
+        public const float CameraFixedY = LaneCenterY + CameraAboveLaneOffset;
+
+        /// <summary>
+        /// 실제 몹 아이콘은 1024px 캔버스 안에 여백이 많아(그림 자체는 절반 정도만 차 있음)
+        /// def.radius 그대로 스케일하면 플레이어에 비해 작아 보인다. 시각적으로만 이 배율만큼 키운다
+        /// (콜라이더·전투 판정은 def.radius 그대로 영향 없음). Capsule placeholder는 캔버스를 꽉 채우므로 해당 없음.
+        /// </summary>
+        public const float EnemyIconVisualScale = 2.0f;
+
+        /// <summary>재료 픽업 아이콘도 캔버스 여백 때문에 작아 보여서 시각적으로만 키운다.</summary>
+        public const float IngredientIconVisualScale = 1.6f;
+
+        public static float EnemyHpScale(float runTimeSeconds) => 1f + runTimeSeconds / EnemyHpGrowthSeconds;
+    }
+}
