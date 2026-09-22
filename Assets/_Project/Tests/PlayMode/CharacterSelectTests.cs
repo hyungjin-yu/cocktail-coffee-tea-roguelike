@@ -55,6 +55,24 @@ namespace CCT.Tests
         }
 
         [UnityTest]
+        public IEnumerator WeaponCard_RendersItsIcon()
+        {
+            var view = CharacterSelectView.Show((j, w) => { });
+            yield return null;
+            view.TeaSommelierButton.onClick.Invoke();
+            yield return null;
+
+            var expected = Resources.Load<Sprite>(WeaponPreset.Sword.iconResourcePath);
+            Assert.IsNotNull(expected);
+
+            var iconTransform = view.WeaponButtonA.transform.Find("Icon");
+            Assert.IsNotNull(iconTransform, "무기 카드에 Icon 자식이 있어야 한다");
+
+            var image = iconTransform.GetComponent<UnityEngine.UI.Image>();
+            Assert.AreEqual(expected, image.sprite);
+        }
+
+        [UnityTest]
         public IEnumerator Build_WithChosenJobAndWeapon_AppliesBoth()
         {
             var game = GameBootstrap.Build(Job.TeaSommelier, WeaponKind.Bow);

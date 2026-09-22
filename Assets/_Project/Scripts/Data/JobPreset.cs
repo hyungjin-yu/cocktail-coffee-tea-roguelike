@@ -22,15 +22,29 @@ namespace CCT
         public WeaponKind kind;
         public string name;
         public string description;
+        /// <summary>Resources 아이콘 경로. CharacterSelectView 무기 선택 카드가 쓴다.</summary>
+        public string iconResourcePath;
 
         public static readonly WeaponPreset Rapier = new WeaponPreset
-        { kind = WeaponKind.Rapier, name = "레이피어", description = "근접 찌르기. 연속 공격에 강하다." };
+        {
+            kind = WeaponKind.Rapier, name = "레이피어", description = "근접 찌르기. 연속 공격에 강하다.",
+            iconResourcePath = "Icons/Weapons/rapier",
+        };
         public static readonly WeaponPreset Gun = new WeaponPreset
-        { kind = WeaponKind.Gun, name = "총", description = "원거리 사격. 더 먼 거리에서 안전하게 싸운다." };
+        {
+            kind = WeaponKind.Gun, name = "총", description = "원거리 사격. 더 먼 거리에서 안전하게 싸운다.",
+            iconResourcePath = "Icons/Weapons/gun",
+        };
         public static readonly WeaponPreset Sword = new WeaponPreset
-        { kind = WeaponKind.Sword, name = "검", description = "근접 베기. 연속 공격에 강하다." };
+        {
+            kind = WeaponKind.Sword, name = "검", description = "근접 베기. 연속 공격에 강하다.",
+            iconResourcePath = "Icons/Weapons/sword",
+        };
         public static readonly WeaponPreset Bow = new WeaponPreset
-        { kind = WeaponKind.Bow, name = "활", description = "원거리 사격. 더 먼 거리에서 안전하게 싸운다." };
+        {
+            kind = WeaponKind.Bow, name = "활", description = "원거리 사격. 더 먼 거리에서 안전하게 싸운다.",
+            iconResourcePath = "Icons/Weapons/bow",
+        };
     }
 
     /// <summary>직업별 프리셋. 직업당 무기 선택지 2개(기획서 5장 표).</summary>

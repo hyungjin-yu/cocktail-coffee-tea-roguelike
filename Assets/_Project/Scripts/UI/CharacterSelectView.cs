@@ -112,7 +112,7 @@ namespace CCT
         Button BuildWeaponOption(float side, JobPreset job, WeaponPreset weapon)
         {
             var rt = UiFactory.Place($"Weapon_{weapon.kind}", root, new Vector2(0.5f, 1f),
-                new Vector2(side * 300f, -220f), new Vector2(520f, 500f));
+                new Vector2(side * 300f, -220f), new Vector2(520f, 580f));
             var bg = UiFactory.AddImage(rt, new Color(0.16f, 0.13f, 0.2f, 1f));
 
             var button = MakeButton(rt, bg, () =>
@@ -122,9 +122,21 @@ namespace CCT
                 chosen(job.job, weapon.kind);
             });
 
-            UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -50f),
+            var icon = string.IsNullOrEmpty(weapon.iconResourcePath)
+                ? null : Resources.Load<Sprite>(weapon.iconResourcePath);
+            if (icon != null)
+            {
+                var iconRt = UiFactory.Place("Icon", rt, new Vector2(0.5f, 1f), new Vector2(0f, -24f),
+                    new Vector2(140f, 140f));
+                var iconImg = iconRt.gameObject.AddComponent<Image>();
+                iconImg.sprite = icon;
+                iconImg.preserveAspect = true;
+                iconImg.raycastTarget = false;
+            }
+
+            UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -190f),
                 new Vector2(460f, 70f)), weapon.name, 46, TextAnchor.MiddleCenter, Color.white);
-            UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -140f),
+            UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -280f),
                 new Vector2(440f, 260f)), weapon.description, 30, TextAnchor.UpperCenter,
                 new Color(0.9f, 0.9f, 0.9f));
 
