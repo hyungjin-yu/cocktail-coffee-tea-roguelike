@@ -19,7 +19,7 @@ namespace CCT
                 Make("tea_whisk", "차선", "공격 속도 +12%", CardRarity.Common, 5,
                     new CardEffect(CardEffectType.AttackSpeedPercent, 0.12f)),
                 Make("long_spout", "긴 주둥이 주전자", "사거리 +15%", CardRarity.Common, 5,
-                    new CardEffect(CardEffectType.RangePercent, 0.15f)),
+                    new CardEffect(CardEffectType.RangePercent, 0.15f)), // 근접/원거리 공용 (제한 없음)
                 Make("tea_sandals", "다도용 신발", "이동 속도 +10%", CardRarity.Common, 5,
                     new CardEffect(CardEffectType.MoveSpeedPercent, 0.10f)),
                 Make("warm_cup", "따뜻한 찻잔", "최대 체력 +20", CardRarity.Common, 5,
@@ -35,7 +35,9 @@ namespace CCT
                 Make("brew_rhythm", "우림 리듬", "공격 속도 +25%", CardRarity.Rare, 4,
                     new CardEffect(CardEffectType.AttackSpeedPercent, 0.25f)),
                 Make("second_infusion", "두 번째 우림", "찌르기 +1회 (연속 공격)", CardRarity.Rare, 3,
-                    new CardEffect(CardEffectType.ExtraThrust, 1f)),
+                    WeaponRestriction.MeleeOnly, new CardEffect(CardEffectType.ExtraThrust, 1f)),
+                Make("tea_leaf_scatter", "찻잎 흩뿌리기", "다중 발사 +1발 (부채꼴로 흩뿌림)", CardRarity.Rare, 3,
+                    WeaponRestriction.RangedOnly, new CardEffect(CardEffectType.ExtraThrust, 1f)),
                 Make("chamomile", "카모마일", "초당 회복량 +1.2", CardRarity.Rare, 5,
                     new CardEffect(CardEffectType.RegenBonus, 1.2f)),
                 Make("nettle_tea", "쐐기풀차", "주기적으로 주변에 독 피해 (Lv +1)", CardRarity.Rare, 5,
@@ -55,7 +57,11 @@ namespace CCT
         }
 
         static CardData Make(string id, string displayName, string description, CardRarity rarity,
-            int maxStacks, params CardEffect[] effects)
+            int maxStacks, params CardEffect[] effects) =>
+            Make(id, displayName, description, rarity, maxStacks, WeaponRestriction.Any, effects);
+
+        static CardData Make(string id, string displayName, string description, CardRarity rarity,
+            int maxStacks, WeaponRestriction weaponRestriction, params CardEffect[] effects)
         {
             var card = ScriptableObject.CreateInstance<CardData>();
             card.name = id;
@@ -66,6 +72,7 @@ namespace CCT
             card.rarity = rarity;
             card.maxStacks = maxStacks;
             card.effects = effects;
+            card.weaponRestriction = weaponRestriction;
             return card;
         }
     }

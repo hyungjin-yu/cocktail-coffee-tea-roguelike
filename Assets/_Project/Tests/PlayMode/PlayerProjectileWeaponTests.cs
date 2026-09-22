@@ -46,6 +46,22 @@ namespace CCT.Tests
         }
 
         [UnityTest]
+        public IEnumerator ExtraThrust_FiresMultipleProjectiles_InASpread()
+        {
+            stats.Apply(new CardEffect(CardEffectType.ExtraThrust, 2f)); // 총 3발
+            playerGo.AddComponent<PlayerProjectileWeapon>().Init(stats, player);
+
+            var enemy = Enemy.SpawnAt(player.Position + new Vector2(3f, 0f), EnemyDef.Brute, 1f, player, null);
+
+            yield return null; // 첫 프레임에 즉시 발사됨 (cooldown 초기값 0)
+
+            var projectiles = Object.FindObjectsByType<PlayerProjectile>(FindObjectsSortMode.None);
+            Assert.AreEqual(3, projectiles.Length, "연속 공격 +2 카드는 원거리에서 3발을 동시에 쏴야 한다");
+
+            Object.Destroy(enemy.gameObject);
+        }
+
+        [UnityTest]
         public IEnumerator PlayerProjectile_HitsEnemy_ThenDestroysItself()
         {
             var enemy = Enemy.SpawnAt(player.Position + new Vector2(2f, 0f), EnemyDef.Brute, 1f, player, null);

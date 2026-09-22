@@ -21,3 +21,4 @@ MonoBehaviour:
   effects:
   - type: 7
     value: 1
+  weaponRestriction: 1

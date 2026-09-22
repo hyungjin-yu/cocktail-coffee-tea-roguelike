@@ -24,7 +24,10 @@ namespace CCT.Tests
         }
 
         CardData MakeCard(string id, CardCategory category, CardRarity rarity, int maxStacks,
-            params CardEffect[] effects)
+            params CardEffect[] effects) => MakeCard(id, category, rarity, maxStacks, WeaponRestriction.Any, effects);
+
+        CardData MakeCard(string id, CardCategory category, CardRarity rarity, int maxStacks,
+            WeaponRestriction weaponRestriction, params CardEffect[] effects)
         {
             var card = ScriptableObject.CreateInstance<CardData>();
             card.id = id;
@@ -32,6 +35,7 @@ namespace CCT.Tests
             card.rarity = rarity;
             card.maxStacks = maxStacks;
             card.effects = effects;
+            card.weaponRestriction = weaponRestriction;
             created.Add(card);
             return card;
         }
@@ -43,7 +47,7 @@ namespace CCT.Tests
 
             for (int i = 0; i < 50; i++)
             {
-                var offers = system.Draw(CardCategory.Cocktail);
+                var offers = system.Draw(CardCategory.Cocktail, false);
                 Assert.AreEqual(3, offers.Count);
                 Assert.AreEqual(3, offers.Select(o => o.card).Distinct().Count());
                 Assert.IsTrue(offers.All(o => o.card.category == CardCategory.Cocktail));
@@ -54,7 +58,7 @@ namespace CCT.Tests
         public void Draw_ExposesRarityPercent_ThatSumsOverAvailableRarities()
         {
             var system = new CardSystem(DefaultPool(), new System.Random(2));
-            var offers = system.Draw(CardCategory.Cocktail);
+            var offers = system.Draw(CardCategory.Cocktail, false);
 
             foreach (var offer in offers)
             {
@@ -67,7 +71,7 @@ namespace CCT.Tests
         public void Draw_OtherCategory_ReturnsNothing()
         {
             var system = new CardSystem(DefaultPool(), new System.Random(3));
-            Assert.AreEqual(0, system.Draw(CardCategory.Tea).Count);
+            Assert.AreEqual(0, system.Draw(CardCategory.Tea, false).Count);
         }
 
         [Test]
@@ -78,7 +82,7 @@ namespace CCT.Tests
                 MakeCard("a", CardCategory.Cocktail, CardRarity.Common, 1),
                 MakeCard("b", CardCategory.Cocktail, CardRarity.Epic, 1),
             };
-            var offers = new CardSystem(pool, new System.Random(4)).Draw(CardCategory.Cocktail);
+            var offers = new CardSystem(pool, new System.Random(4)).Draw(CardCategory.Cocktail, false);
 
             Assert.AreEqual(2, offers.Count);
             // 남은 등급이 Common/Epic 뿐이면 60:10 → 85.7% / 14.3%
@@ -112,7 +116,7 @@ namespace CCT.Tests
             var system = new CardSystem(new[] { once, other }, new System.Random(6));
 
             system.Take(once, new PlayerStats());
-            var offers = system.Draw(CardCategory.Cocktail);
+            var offers = system.Draw(CardCategory.Cocktail, false);
 
             Assert.AreEqual(1, offers.Count);
             Assert.AreSame(other, offers[0].card);
@@ -124,6 +128,34 @@ namespace CCT.Tests
             var stats = new PlayerStats();
             stats.Apply(new CardEffect(CardEffectType.GaugeNeedPercent, -0.9f));
             Assert.AreEqual(0.5f, stats.GaugeNeedMultiplier, 0.0001f);
+        }
+
+        [Test]
+        public void Draw_ExcludesMeleeOnlyCards_ForRangedWeapon()
+        {
+            var melee = MakeCard("melee_only", CardCategory.Cocktail, CardRarity.Common, 1,
+                WeaponRestriction.MeleeOnly);
+            var any = MakeCard("any", CardCategory.Cocktail, CardRarity.Common, 1, WeaponRestriction.Any);
+            var system = new CardSystem(new[] { melee, any }, new System.Random(7));
+
+            var offers = system.Draw(CardCategory.Cocktail, true); // 원거리
+
+            Assert.AreEqual(1, offers.Count);
+            Assert.AreSame(any, offers[0].card);
+        }
+
+        [Test]
+        public void Draw_ExcludesRangedOnlyCards_ForMeleeWeapon()
+        {
+            var ranged = MakeCard("ranged_only", CardCategory.Cocktail, CardRarity.Common, 1,
+                WeaponRestriction.RangedOnly);
+            var any = MakeCard("any2", CardCategory.Cocktail, CardRarity.Common, 1, WeaponRestriction.Any);
+            var system = new CardSystem(new[] { ranged, any }, new System.Random(8));
+
+            var offers = system.Draw(CardCategory.Cocktail, false); // 근접
+
+            Assert.AreEqual(1, offers.Count);
+            Assert.AreSame(any, offers[0].card);
         }
 
         [Test]

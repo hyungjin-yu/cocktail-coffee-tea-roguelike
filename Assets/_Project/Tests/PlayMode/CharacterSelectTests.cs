@@ -76,5 +76,35 @@ namespace CCT.Tests
             Assert.IsNotNull(game.Player.GetComponent<RapierWeapon>());
             Assert.IsNull(game.Player.GetComponent<PlayerProjectileWeapon>());
         }
+
+        [UnityTest]
+        public IEnumerator RangedWeapon_NeverOffersMeleeOnlyCards()
+        {
+            var game = GameBootstrap.Build(Job.Bartender, WeaponKind.Gun);
+            yield return null;
+
+            for (int i = 0; i < 30; i++)
+            {
+                var offers = game.Cards.Draw(CardCategory.Cocktail, game.Weapon.IsRanged());
+                foreach (var offer in offers)
+                    Assert.AreNotEqual(WeaponRestriction.MeleeOnly, offer.card.weaponRestriction,
+                        $"원거리인데 근접 전용 카드({offer.card.id})가 뽑혔다");
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator MeleeWeapon_NeverOffersRangedOnlyCards()
+        {
+            var game = GameBootstrap.Build(Job.Bartender, WeaponKind.Rapier);
+            yield return null;
+
+            for (int i = 0; i < 30; i++)
+            {
+                var offers = game.Cards.Draw(CardCategory.Cocktail, game.Weapon.IsRanged());
+                foreach (var offer in offers)
+                    Assert.AreNotEqual(WeaponRestriction.RangedOnly, offer.card.weaponRestriction,
+                        $"근접인데 원거리 전용 카드({offer.card.id})가 뽑혔다");
+            }
+        }
     }
 }

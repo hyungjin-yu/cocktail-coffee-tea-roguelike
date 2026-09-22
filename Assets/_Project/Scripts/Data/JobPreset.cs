@@ -11,6 +11,12 @@ namespace CCT
     /// </summary>
     public enum WeaponKind { Rapier, Gun, Sword, Bow }
 
+    public static class WeaponKindExtensions
+    {
+        /// <summary>총/활 = 원거리, 레이피어/검 = 근접. 카드 필터링에 쓴다.</summary>
+        public static bool IsRanged(this WeaponKind kind) => kind == WeaponKind.Gun || kind == WeaponKind.Bow;
+    }
+
     public class WeaponPreset
     {
         public WeaponKind kind;

@@ -7,6 +7,9 @@ namespace CCT
 
     public enum CardRarity { Common, Rare, Epic }
 
+    /// <summary>이 카드가 어느 무기군에만 나올지. 대부분 카드는 Any(둘 다). 무기별 정체성이 있는 카드만 제한.</summary>
+    public enum WeaponRestriction { Any, MeleeOnly, RangedOnly }
+
     public enum CardEffectType
     {
         DamagePercent,
@@ -50,6 +53,7 @@ namespace CCT
         public CardRarity rarity;
         [Min(1)] public int maxStacks = 5;
         public CardEffect[] effects;
+        public WeaponRestriction weaponRestriction = WeaponRestriction.Any;
     }
 
     /// <summary>등급별 가중치 (가안). 카드 UI에 노출되는 확률의 기준.</summary>

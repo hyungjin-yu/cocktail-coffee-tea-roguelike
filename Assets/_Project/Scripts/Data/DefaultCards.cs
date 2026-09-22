@@ -18,7 +18,7 @@ namespace CCT
                     new CardEffect(CardEffectType.DamagePercent, 0.15f)),
                 Make("shot_glass", "샷 글래스", "공격 속도 +12%", CardRarity.Common, 5,
                     new CardEffect(CardEffectType.AttackSpeedPercent, 0.12f)),
-                Make("long_stirrer", "롱 스터러", "찌르기 사거리 +15%", CardRarity.Common, 5,
+                Make("long_stirrer", "롱 스터러", "사거리 +15%", CardRarity.Common, 5,
                     new CardEffect(CardEffectType.RangePercent, 0.15f)),
                 Make("bar_shoes", "바텐더 슈즈", "이동 속도 +10%", CardRarity.Common, 5,
                     new CardEffect(CardEffectType.MoveSpeedPercent, 0.10f)),
@@ -35,7 +35,9 @@ namespace CCT
                 Make("mixing_tempo", "믹싱 템포", "공격 속도 +25%", CardRarity.Rare, 4,
                     new CardEffect(CardEffectType.AttackSpeedPercent, 0.25f)),
                 Make("flambe", "플람베", "찌르기 +1회 (연속 공격)", CardRarity.Rare, 3,
-                    new CardEffect(CardEffectType.ExtraThrust, 1f)),
+                    WeaponRestriction.MeleeOnly, new CardEffect(CardEffectType.ExtraThrust, 1f)),
+                Make("champagne_spray", "샴페인 스프레이", "다중 발사 +1발 (부채꼴로 흩뿌림)", CardRarity.Rare, 3,
+                    WeaponRestriction.RangedOnly, new CardEffect(CardEffectType.ExtraThrust, 1f)),
                 Make("molotov", "화염병 칵테일", "주기적으로 주변에 화염 폭발 (Lv +1)", CardRarity.Rare, 5,
                     new CardEffect(CardEffectType.FlameLevel, 1f)),
 
@@ -51,7 +53,11 @@ namespace CCT
         }
 
         static CardData Make(string id, string displayName, string description, CardRarity rarity,
-            int maxStacks, params CardEffect[] effects)
+            int maxStacks, params CardEffect[] effects) =>
+            Make(id, displayName, description, rarity, maxStacks, WeaponRestriction.Any, effects);
+
+        static CardData Make(string id, string displayName, string description, CardRarity rarity,
+            int maxStacks, WeaponRestriction weaponRestriction, params CardEffect[] effects)
         {
             var card = ScriptableObject.CreateInstance<CardData>();
             card.name = id;
@@ -62,6 +68,7 @@ namespace CCT
             card.rarity = rarity;
             card.maxStacks = maxStacks;
             card.effects = effects;
+            card.weaponRestriction = weaponRestriction;
             return card;
         }
     }

@@ -207,7 +207,7 @@ namespace CCT
         void BeginLevelUp()
         {
             var category = pendingCardDraws.Dequeue();
-            var offers = cards.Draw(category);
+            var offers = cards.Draw(category, Weapon.IsRanged());
             if (offers.Count == 0) return; // 이 카테고리 카드가 모두 소진됨 — 다음 대기열은 다음 프레임에 처리
 
             State = GameState.LevelUp;

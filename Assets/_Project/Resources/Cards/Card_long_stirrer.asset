@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: long_stirrer
   displayName: "\uB871 \uC2A4\uD130\uB7EC"
-  description: "\uCC0C\uB974\uAE30 \uC0AC\uAC70\uB9AC +15%"
+  description: "\uC0AC\uAC70\uB9AC +15%"
   category: 0
   rarity: 0
   maxStacks: 5
   effects:
   - type: 2
     value: 0.15
+  weaponRestriction: 0

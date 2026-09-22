@@ -34,11 +34,11 @@ namespace CCT
             return total;
         }
 
-        public List<CardOffer> Draw(CardCategory category, int count = 3)
+        public List<CardOffer> Draw(CardCategory category, bool isRanged, int count = 3)
         {
             var eligible = new List<CardData>();
             foreach (var card in pool)
-                if (card.category == category && GetStacks(card) < card.maxStacks)
+                if (card.category == category && GetStacks(card) < card.maxStacks && IsWeaponCompatible(card, isRanged))
                     eligible.Add(card);
 
             // 노출 확률: 지금 뽑을 수 있는 카드가 남아있는 등급들끼리 가중치를 정규화
@@ -70,6 +70,16 @@ namespace CCT
                 });
             }
             return offers;
+        }
+
+        static bool IsWeaponCompatible(CardData card, bool isRanged)
+        {
+            return card.weaponRestriction switch
+            {
+                WeaponRestriction.MeleeOnly => !isRanged,
+                WeaponRestriction.RangedOnly => isRanged,
+                _ => true,
+            };
         }
 
         public void Take(CardData card, PlayerStats stats)
