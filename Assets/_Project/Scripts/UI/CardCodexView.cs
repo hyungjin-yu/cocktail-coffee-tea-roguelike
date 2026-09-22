@@ -15,7 +15,8 @@ namespace CCT
         class Entry
         {
             public CardData card;
-            public Text text;
+            public Text nameText;
+            public Text descText;
         }
 
         readonly List<Entry> entries = new List<Entry>();
@@ -74,10 +75,16 @@ namespace CCT
 
             for (int i = 0; i < ordered.Count; i++)
             {
-                var rowRt = UiFactory.Place($"Row_{ordered[i].id}", root.transform, new Vector2(0.5f, 1f),
-                    new Vector2(x, -206f - i * 40f), new Vector2(440f, 36f));
-                var text = UiFactory.AddText(rowRt, "", 26, TextAnchor.MiddleLeft, Color.white);
-                entries.Add(new Entry { card = ordered[i], text = text });
+                var card = ordered[i];
+                var rowRt = UiFactory.Place($"Row_{card.id}", root.transform, new Vector2(0.5f, 1f),
+                    new Vector2(x, -206f - i * 40f), new Vector2(440f, 38f));
+
+                var nameText = UiFactory.AddText(UiFactory.Place("Name", rowRt, new Vector2(0.5f, 1f),
+                    Vector2.zero, new Vector2(440f, 20f)), "", 19, TextAnchor.MiddleLeft, Color.white);
+                var descText = UiFactory.AddText(UiFactory.Place("Desc", rowRt, new Vector2(0.5f, 0f),
+                    Vector2.zero, new Vector2(440f, 17f)), "", 15, TextAnchor.MiddleLeft, Color.white);
+
+                entries.Add(new Entry { card = card, nameText = nameText, descText = descText });
             }
         }
 
@@ -96,10 +103,14 @@ namespace CCT
             {
                 bool has = discovered.Contains(entry.card.id);
                 if (has) found++;
-                entry.text.text = has
+
+                entry.nameText.text = has
                     ? $"{entry.card.displayName}  ({RarityTable.Label(entry.card.rarity)})"
                     : "???";
-                entry.text.color = has ? RarityTable.Color(entry.card.rarity) : new Color(1f, 1f, 1f, 0.35f);
+                entry.nameText.color = has ? RarityTable.Color(entry.card.rarity) : new Color(1f, 1f, 1f, 0.35f);
+
+                entry.descText.text = has ? entry.card.description : "";
+                entry.descText.color = new Color(0.75f, 0.75f, 0.75f, has ? 1f : 0.35f);
             }
             countLabel.text = $"발견한 카드: {found} / {entries.Count}";
         }
