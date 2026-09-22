@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CCT
 {
-    public enum BossKind { None, Mid, Final }
+    public enum BossKind { None, Mid, Enhanced, Final }
 
     /// <summary>
     /// 몹 행동 아키타입 ([[01_몹 디자인 - 칵테일 & 차]] 0장 공통 설계 원칙).
@@ -257,6 +257,39 @@ namespace CCT
             boss = BossKind.Mid,
         };
 
+        /// <summary>중간보스 B: 드립 서버 스펙터. 둥둥 떠다니며 장판(드립 웨이브)과 투명화로 회피를 요구한다
+        /// ([[02_몹 디자인 - 커피 & 중간보스]] 상대 HP 55, 그라인더 골렘의 500/40 비율로 환산).</summary>
+        public static readonly EnemyDef DripServerSpecter = new EnemyDef
+        {
+            name = "드립 서버 스펙터",
+            color = new Color(0.45f, 0.32f, 0.4f),
+            radius = 1.0f,
+            hp = 700f,
+            speed = 1.6f,
+            contactDamage = 14f,
+            dropType = IngredientType.Coffee,
+            dropCount = 5,
+            ingredientAmount = 4,
+            boss = BossKind.Mid,
+        };
+
+        /// <summary>강화 보스(3번째 중간보스): 에스프레소 머신 리바이어던.
+        /// 그라인더 골렘 + 드립 서버 스펙터 패턴을 압축 계승하고 신규 "압력 게이지 폭발" 패턴을 더한다.
+        /// 처치 시 커피 원두(대량) + 스페셜티(영구 재화)를 드랍한다.</summary>
+        public static readonly EnemyDef EspressoLeviathan = new EnemyDef
+        {
+            name = "에스프레소 머신 리바이어던",
+            color = new Color(0.3f, 0.18f, 0.12f),
+            radius = 1.5f,
+            hp = 1250f,
+            speed = 1.3f,
+            contactDamage = 22f,
+            dropType = IngredientType.Coffee,
+            dropCount = 8,
+            ingredientAmount = 5,
+            boss = BossKind.Enhanced,
+        };
+
         /// <summary>최종보스. 클리어 시 런 종료.</summary>
         public static readonly EnemyDef DifficultCustomer = new EnemyDef
         {
@@ -299,6 +332,12 @@ namespace CCT
         public float Hp { get; private set; }
         public float MaxHp { get; private set; }
         public bool IsDead => dead;
+
+        /// <summary>true면 TakeDamage가 전부 무시된다 (드립 서버 스펙터의 "투명화" 패턴 등).</summary>
+        public bool Invulnerable { get; set; }
+
+        /// <summary>실제로 적용된 피해량과 함께 발생 (보스 패턴이 "받은 피해"에 반응할 때 사용, 예: 압력 게이지 딜레이스).</summary>
+        public event System.Action<float> Damaged;
 
         /// <summary>피격 플래시가 끝나면 돌아갈 색. 보스 텔레그래프 표시에도 쓴다.</summary>
         public Color BaseColor { get; set; }
@@ -417,11 +456,12 @@ namespace CCT
 
         public void TakeDamage(float amount)
         {
-            if (dead) return;
+            if (dead || Invulnerable) return;
 
             Hp -= amount;
             flash = 0.06f;
             sr.color = Color.white;
+            Damaged?.Invoke(amount);
             if (Hp <= 0f) Die();
         }
 

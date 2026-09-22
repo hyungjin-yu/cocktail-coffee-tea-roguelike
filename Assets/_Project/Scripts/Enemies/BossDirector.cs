@@ -13,12 +13,16 @@ namespace CCT
             public float hpScale = 1f;
         }
 
-        /// <summary>가안 스케줄. 기획서의 1런 15~20분보다 짧게 잡은 MVP 검증용 (8분).</summary>
+        /// <summary>
+        /// 가안 스케줄. 기획서 10장의 중간보스 A → B → 강화 보스 → 진상 손님 순서를 그대로 따른다.
+        /// 보스가 2종 늘어난 만큼 기존(8분)보다 1런이 길어졌다 — 밸런스는 플레이 테스트 후 조정.
+        /// </summary>
         public static List<Spec> DefaultSchedule() => new List<Spec>
         {
             new Spec { time = 150f, def = EnemyDef.GrinderGolem, hpScale = 1f },
-            new Spec { time = 300f, def = EnemyDef.GrinderGolem, hpScale = 1.8f },
-            new Spec { time = 480f, def = EnemyDef.DifficultCustomer, hpScale = 1f },
+            new Spec { time = 320f, def = EnemyDef.DripServerSpecter, hpScale = 1f },
+            new Spec { time = 500f, def = EnemyDef.EspressoLeviathan, hpScale = 1f },
+            new Spec { time = 680f, def = EnemyDef.DifficultCustomer, hpScale = 1f },
         };
 
         GameManager game;
@@ -51,6 +55,16 @@ namespace CCT
             {
                 boss.gameObject.AddComponent<CustomerBossDriver>().Init(boss, game);
                 game.Hud.ShowBanner("진상 손님 등장!", "최종보스를 처치하면 클리어", 3f);
+            }
+            else if (spec.def == EnemyDef.EspressoLeviathan)
+            {
+                boss.gameObject.AddComponent<EspressoLeviathanDriver>().Init(boss, game);
+                game.Hud.ShowBanner("강화 보스 출현: 에스프레소 머신 리바이어던", "처치하면 스페셜티(영구 재화) 획득!", 3f);
+            }
+            else if (spec.def == EnemyDef.DripServerSpecter)
+            {
+                boss.gameObject.AddComponent<DripSpecterDriver>().Init(boss, game);
+                game.Hud.ShowBanner($"중간보스 출현: {spec.def.name}", "장판을 피해 안전지대를 찾으세요", 3f);
             }
             else
             {

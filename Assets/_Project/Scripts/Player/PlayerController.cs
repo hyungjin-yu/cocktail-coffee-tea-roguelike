@@ -20,6 +20,8 @@ namespace CCT
         float invulnerable;
         float lastMaxHp;
         Color baseColor;
+        Vector2 knockbackVelocity;
+        float knockbackRemaining;
 
         public event Action Died;
 
@@ -94,7 +96,14 @@ namespace CCT
         {
             if (IsDead) return;
 
-            Vector2 next = rb.position + input * stats.MoveSpeed * Time.fixedDeltaTime;
+            Vector2 velocity = input * stats.MoveSpeed;
+            if (knockbackRemaining > 0f)
+            {
+                knockbackRemaining -= Time.fixedDeltaTime;
+                velocity += knockbackVelocity;
+            }
+
+            Vector2 next = rb.position + velocity * Time.fixedDeltaTime;
             next.y = Mathf.Clamp(next.y, Balance.DepthMin, Balance.DepthMax);
             rb.MovePosition(next);
         }
@@ -147,6 +156,13 @@ namespace CCT
         {
             if (!Mathf.Approximately(towardWorldX, Position.x))
                 Facing = towardWorldX > Position.x ? 1f : -1f;
+        }
+
+        /// <summary>일정 시간 동안 velocity 만큼 이동 입력에 더해서 밀려난다 (보스 패턴의 넉백 등).</summary>
+        public void ApplyKnockback(Vector2 velocity, float duration)
+        {
+            knockbackVelocity = velocity;
+            knockbackRemaining = duration;
         }
 
         public void TakeDamage(float amount)

@@ -63,6 +63,18 @@ namespace CCT
         /// <summary>재료 픽업 아이콘도 캔버스 여백 때문에 작아 보여서 시각적으로만 키운다.</summary>
         public const float IngredientIconVisualScale = 1.6f;
 
+        // 강화 보스(에스프레소 리바이어던)의 "압력 게이지 폭발" 패턴
+        public const float PressureExplosionKnockbackSpeed = 6f;
+        public const float PressureKnockbackDuration = 0.25f;
+
+        // 스페셜티(영구 재화) — 강화 보스 처치 시 드랍량, 영구 보너스는 상한을 둬서
+        // 후반 난이도가 무너지지 않게 한다 (기획서 11장 리스크 대응).
+        public const int SpecialtyDropAmount = 3;
+        public const float SpecialtyDamagePercentPerPoint = 0.015f;
+        public const float SpecialtyDamagePercentCap = 0.30f;
+        public const float SpecialtyBeanBonusPerPoint = 0.03f;
+        public const float SpecialtyBeanBonusCap = 0.50f;
+
         public static float EnemyHpScale(float runTimeSeconds) => 1f + runTimeSeconds / EnemyHpGrowthSeconds;
     }
 }

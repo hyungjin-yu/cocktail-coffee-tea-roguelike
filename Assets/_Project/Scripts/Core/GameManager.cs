@@ -48,6 +48,9 @@ namespace CCT
         public int Kills { get; private set; }
         public bool Cleared { get; private set; }
 
+        /// <summary>스페셜티(영구 재화)로 얻은 커피 원두 획득 배율. 1 = 보너스 없음.</summary>
+        public float BeanGainMultiplier { get; private set; } = 1f;
+
         /// <summary>현재 살아있는 보스. 없으면 null.</summary>
         public Enemy ActiveBoss { get; set; }
 
@@ -69,6 +72,11 @@ namespace CCT
             Stats = new PlayerStats();
             cards = new CardSystem(CardDatabase.LoadAll());
             Skills = new SkillTree(SkillDatabase.LoadAll());
+
+            // 스페셜티(영구 재화) 보너스는 런 시작 시 한 번 적용 — 런 종료해도 사라지지 않는 유일한 진행치.
+            int specialty = PermanentProgress.Current.specialtyPoints;
+            Stats.damagePercent += SpecialtyBonus.DamagePercent(specialty);
+            BeanGainMultiplier = SpecialtyBonus.BeanGainMultiplier(specialty);
 
             CocktailGauge = new IngredientGauge(IngredientType.Cocktail, Balance.CocktailGaugeStart,
                 Balance.CocktailGaugeGrowth, () => Stats.GaugeNeedMultiplier);
@@ -174,7 +182,7 @@ namespace CCT
             {
                 case IngredientType.Cocktail: CocktailGauge.Add(amount); break;
                 case IngredientType.Tea: TeaGauge.Add(amount); break;
-                case IngredientType.Coffee: BeanGauge.Add(amount); break;
+                case IngredientType.Coffee: BeanGauge.Add(Mathf.RoundToInt(amount * BeanGainMultiplier)); break;
             }
         }
 
@@ -199,9 +207,18 @@ namespace CCT
             if (def.IsBoss)
             {
                 ActiveBoss = null;
-                if (def.boss == BossKind.Mid) Player.Heal(Balance.MidBossHealFraction);
+                if (def.boss == BossKind.Mid || def.boss == BossKind.Enhanced)
+                    Player.Heal(Balance.MidBossHealFraction);
+                if (def.boss == BossKind.Enhanced) GrantSpecialty();
                 if (def.boss == BossKind.Final) Clear();
             }
+        }
+
+        /// <summary>강화 보스 처치 시 즉시 영구 저장 — 이후 플레이어가 죽어도 이번에 얻은 스페셜티는 남는다.</summary>
+        void GrantSpecialty()
+        {
+            PermanentProgress.AddSpecialty(Balance.SpecialtyDropAmount);
+            Hud.ShowBanner("스페셜티 획득!", $"+{Balance.SpecialtyDropAmount} (영구 재화, 다음 런부터 적용)", 3f);
         }
 
         void BeginLevelUp()
@@ -261,7 +278,8 @@ namespace CCT
             Cleared = cleared;
             State = GameState.GameOver;
             Time.timeScale = 0f;
-            resultView.Show(cleared, RunTime, Kills, CocktailGauge.Level, TeaGauge.Level, Skills.UnlockedCount);
+            resultView.Show(cleared, RunTime, Kills, CocktailGauge.Level, TeaGauge.Level, Skills.UnlockedCount,
+                PermanentProgress.Current.specialtyPoints);
         }
 
         public void Restart()
