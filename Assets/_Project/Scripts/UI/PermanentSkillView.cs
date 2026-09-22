@@ -84,7 +84,7 @@ namespace CCT
             {
                 float y = 60f - (data.tier - 1) * 280f;
                 var rt = UiFactory.Place($"Node_{data.id}", root.transform, new Vector2(0.5f, 0.5f),
-                    new Vector2(ColumnX(data.branch), y), new Vector2(400f, 240f));
+                    new Vector2(ColumnX(data.branch), y), new Vector2(400f, 250f));
 
                 var slot = new NodeSlot { data = data, background = UiFactory.AddImage(rt, LockedColor) };
                 var button = rt.gameObject.AddComponent<Button>();
@@ -96,13 +96,25 @@ namespace CCT
                 var captured = data;
                 button.onClick.AddListener(() => TryBuy(captured));
 
-                UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -40f),
-                    new Vector2(370f, 50f)), data.displayName, 36, TextAnchor.MiddleCenter, Color.white);
-                UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 0.5f), new Vector2(0f, 0f),
-                    new Vector2(370f, 80f)), data.description, 28, TextAnchor.MiddleCenter,
+                var icon = string.IsNullOrEmpty(data.iconResourcePath)
+                    ? null : Resources.Load<Sprite>(data.iconResourcePath);
+                if (icon != null)
+                {
+                    var iconRt = UiFactory.Place("Icon", rt, new Vector2(0.5f, 1f), new Vector2(0f, -14f),
+                        new Vector2(56f, 56f));
+                    var iconImg = iconRt.gameObject.AddComponent<Image>();
+                    iconImg.sprite = icon;
+                    iconImg.preserveAspect = true;
+                    iconImg.raycastTarget = false;
+                }
+
+                UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -78f),
+                    new Vector2(370f, 36f)), data.displayName, 32, TextAnchor.MiddleCenter, Color.white);
+                UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -122f),
+                    new Vector2(370f, 66f)), data.description, 26, TextAnchor.MiddleCenter,
                     new Color(0.92f, 0.92f, 0.92f));
                 slot.status = UiFactory.AddText(UiFactory.Place("Status", rt, new Vector2(0.5f, 0f),
-                    new Vector2(0f, 30f), new Vector2(370f, 40f)), "", 26, TextAnchor.MiddleCenter, Color.white);
+                    new Vector2(0f, 22f), new Vector2(370f, 34f)), "", 24, TextAnchor.MiddleCenter, Color.white);
 
                 slots.Add(slot);
             }

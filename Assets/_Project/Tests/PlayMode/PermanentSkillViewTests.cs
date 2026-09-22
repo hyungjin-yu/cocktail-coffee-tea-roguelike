@@ -80,6 +80,25 @@ namespace CCT.Tests
         }
 
         [UnityTest]
+        public IEnumerator NodeCard_RendersItsIcon()
+        {
+            var view = CharacterSelectView.Show((j, w) => { });
+            yield return null;
+            view.PermanentShopButton.onClick.Invoke();
+            yield return null;
+
+            var cupper = view.ShopView.Nodes.Single(n => n.id == "bean_cupper");
+            var expected = Resources.Load<Sprite>(cupper.iconResourcePath);
+            Assert.IsNotNull(expected);
+
+            var iconTransform = view.ShopView.transform.Find($"Node_{cupper.id}/Icon");
+            Assert.IsNotNull(iconTransform, "노드 카드에 Icon 자식이 있어야 한다");
+
+            var image = iconTransform.GetComponent<UnityEngine.UI.Image>();
+            Assert.AreEqual(expected, image.sprite);
+        }
+
+        [UnityTest]
         public IEnumerator BuyingNode_WithoutEnoughPoints_DoesNothing()
         {
             var view = CharacterSelectView.Show((j, w) => { });

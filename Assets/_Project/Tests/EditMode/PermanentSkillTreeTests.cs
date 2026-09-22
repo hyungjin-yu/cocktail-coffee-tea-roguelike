@@ -35,6 +35,17 @@ namespace CCT.Tests
         }
 
         [Test]
+        public void DefaultSet_EveryNodeHasAResolvableIcon()
+        {
+            foreach (var node in DefaultNodes())
+            {
+                Assert.IsFalse(string.IsNullOrEmpty(node.iconResourcePath), node.id);
+                Assert.IsNotNull(Resources.Load<Sprite>(node.iconResourcePath),
+                    $"{node.id} -> {node.iconResourcePath} 아이콘이 Resources 에 있어야 한다");
+            }
+        }
+
+        [Test]
         public void FreshTree_OnlyTier1NodesAreAvailable()
         {
             var nodes = DefaultNodes();

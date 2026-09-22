@@ -21,6 +21,8 @@ namespace CCT
         /// <summary>해금에 필요한 스페셜티 포인트.</summary>
         [Min(1)] public int cost = 3;
         public CardEffect[] effects;
+        /// <summary>Resources 아이콘 경로. 없으면 PermanentSkillView가 아이콘 없이 텍스트만 보여준다.</summary>
+        public string iconResourcePath;
     }
 
     /// <summary>영구 강화 기본 세트 (3갈래 × 2단계, 가안 수치). 1단계는 강화 보스 1마리(스페셜티 3)면
@@ -60,6 +62,7 @@ namespace CCT
             skill.cost = cost;
             skill.prerequisite = prerequisite;
             skill.effects = effects;
+            skill.iconResourcePath = "Icons/PermanentSkills/" + id;
             return skill;
         }
     }
