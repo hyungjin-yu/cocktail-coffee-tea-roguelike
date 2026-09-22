@@ -73,7 +73,10 @@ namespace CCT
             var loaded = Resources.LoadAll<CardData>("Cards");
             if (loaded != null && loaded.Length > 0)
                 return new List<CardData>(loaded);
-            return DefaultCards.CreateRuntime();
+
+            var runtime = DefaultCards.CreateRuntime();
+            runtime.AddRange(DefaultTeaCards.CreateRuntime());
+            return runtime;
         }
     }
 }

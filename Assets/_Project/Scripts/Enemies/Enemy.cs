@@ -35,10 +35,13 @@ namespace CCT
 
         /// <summary>true 면 플레이어에 닿는 즉시 한 방 터지고 자폭한다 (Suicide 아키타입).</summary>
         public bool explodesOnContact;
-        /// <summary>자폭 후 남기는 피해 장판 (0 이면 장판 없음).</summary>
+        /// <summary>자폭 후 남기는 장판 (0 이면 장판 없음).</summary>
         public float burstZoneRadius;
         public float burstZoneDamagePerSecond;
         public float burstZoneSeconds;
+        /// <summary>true면 장판이 피해(BurstZone) 대신 둔화(SlowZone)를 준다 (슈가 큐브 바머 전용 — 차 트랙 차별화).</summary>
+        public bool burstZoneSlows;
+        public float burstSlowMultiplier = 0.5f;
 
         // Ranged / EliteBarrage 공용 (RangedAttackDriver)
         /// <summary>이 거리를 유지하며(너무 가까우면 물러남, 너무 멀면 접근) 원거리 공격.</summary>
@@ -143,6 +146,93 @@ namespace CCT
             contactDamage = 8f,
             ingredientAmount = 4,
             spriteResourcePath = "Icons/Enemies/martini_spirit",
+            archetype = EnemyArchetype.EliteBarrage,
+            keepDistance = 3.5f,
+            projectileSpeed = 5f,
+            projectileDamage = 7f,
+            attackInterval = 3.2f,
+            barrageCount = 8,
+        };
+
+        // ── 차 트랙 (Tea) — 칵테일 트랙과 동일 아키타입을 재사용, 대칭 구조 ([[01_몹 디자인 - 칵테일 & 차]] 3장) ──
+
+        /// <summary>돌진형(Rush). 라임웨지의 차 트랙 대칭.</summary>
+        public static readonly EnemyDef TeabagImp = new EnemyDef
+        {
+            name = "티백 임프",
+            color = new Color(0.85f, 0.7f, 0.45f),
+            radius = 0.35f,
+            hp = 20f,
+            speed = 2.6f,
+            contactDamage = 6f,
+            ingredientAmount = 1,
+            dropType = IngredientType.Tea,
+        };
+
+        /// <summary>투척형(Ranged). 쉐이커 골렘의 차 트랙 대칭 — 뜨거운 물방울 투척.</summary>
+        public static readonly EnemyDef KettleCannon = new EnemyDef
+        {
+            name = "케틀 캐논",
+            color = new Color(0.55f, 0.35f, 0.2f),
+            radius = 0.45f,
+            hp = 55f,
+            speed = 2.0f,
+            contactDamage = 5f,
+            ingredientAmount = 2,
+            dropType = IngredientType.Tea,
+            archetype = EnemyArchetype.Ranged,
+            keepDistance = 4.5f,
+            projectileSpeed = 6f,
+            projectileDamage = 10f,
+            attackInterval = 2.0f,
+        };
+
+        /// <summary>폭발형(Suicide). 올리브 바머의 차 트랙 대칭 — 피해 대신 둔화 장판(끈적한 설탕)으로 차별화.</summary>
+        public static readonly EnemyDef SugarCubeBomber = new EnemyDef
+        {
+            name = "슈가 큐브 바머",
+            color = new Color(0.92f, 0.87f, 0.72f),
+            radius = 0.32f,
+            hp = 35f,
+            speed = 3.0f,
+            contactDamage = 8f,
+            ingredientAmount = 2,
+            dropType = IngredientType.Tea,
+            explodesOnContact = true,
+            burstZoneRadius = 1.8f,
+            burstZoneSeconds = 3f,
+            burstZoneSlows = true,
+            burstSlowMultiplier = 0.5f,
+            archetype = EnemyArchetype.Suicide,
+        };
+
+        /// <summary>소환형(Summoner). 스월스틱 컨저러의 차 트랙 대칭 — 제자리에서 티백 임프를 주기 소환.</summary>
+        public static readonly EnemyDef LeafWarden = new EnemyDef
+        {
+            name = "리프 워든",
+            color = new Color(0.35f, 0.6f, 0.3f),
+            radius = 0.4f,
+            hp = 40f,
+            speed = 0f,
+            contactDamage = 4f,
+            ingredientAmount = 3,
+            dropType = IngredientType.Tea,
+            archetype = EnemyArchetype.Summoner,
+            summonDef = TeabagImp,
+            summonInterval = 6f,
+        };
+
+        /// <summary>[엘리트] 탄막형(EliteBarrage). 마티니 스피릿의 차 트랙 대칭 — 뜨거운 물줄기 탄막.</summary>
+        public static readonly EnemyDef TeaCeremonyGuardian = new EnemyDef
+        {
+            name = "티 세리머니 가디언",
+            color = new Color(0.6f, 0.42f, 0.25f),
+            radius = 0.42f,
+            hp = 150f,
+            speed = 2.0f,
+            contactDamage = 8f,
+            ingredientAmount = 4,
+            dropType = IngredientType.Tea,
             archetype = EnemyArchetype.EliteBarrage,
             keepDistance = 3.5f,
             projectileSpeed = 5f,
@@ -302,17 +392,25 @@ namespace CCT
             }
         }
 
-        /// <summary>Suicide 아키타입 전용: 닿으면 한 방 터뜨리고(위 TakeDamage 로 이미 처리) 자폭, 화염 장판을 남긴다.</summary>
+        /// <summary>Suicide 아키타입 전용: 닿으면 한 방 터뜨리고(위 TakeDamage 로 이미 처리) 자폭, 장판을 남긴다.</summary>
         void Explode()
         {
+            var vfxColor = def.burstZoneSlows ? new Color(0.95f, 0.9f, 0.7f, 0.65f) : new Color(1f, 0.45f, 0.15f, 0.65f);
             FadeVfx.Spawn(SpriteFactory.Circle, transform.position, 0f,
-                Vector2.one * (def.radius * 1.2f), Vector2.one * (def.radius * 5f),
-                new Color(1f, 0.45f, 0.15f, 0.65f), 0.25f, 3);
+                Vector2.one * (def.radius * 1.2f), Vector2.one * (def.radius * 5f), vfxColor, 0.25f, 3);
 
             if (def.burstZoneSeconds > 0f)
             {
-                BurstZone.Spawn(transform.position, def.burstZoneRadius, def.burstZoneDamagePerSecond,
-                    def.burstZoneSeconds, player, transform.parent);
+                if (def.burstZoneSlows)
+                {
+                    SlowZone.Spawn(transform.position, def.burstZoneRadius, def.burstSlowMultiplier,
+                        def.burstZoneSeconds, player, transform.parent);
+                }
+                else
+                {
+                    BurstZone.Spawn(transform.position, def.burstZoneRadius, def.burstZoneDamagePerSecond,
+                        def.burstZoneSeconds, player, transform.parent);
+                }
             }
             Die();
         }

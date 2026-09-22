@@ -18,6 +18,10 @@ namespace CCT
         GaugeNeedPercent,
         ExtraThrust,
         FlameLevel,
+        /// <summary>차 스킬 — 초당 회복량 보너스.</summary>
+        RegenBonus,
+        /// <summary>차 스킬 — 독 오라 레벨 (FlameLevel과 같은 방식, 다른 컬러/이름).</summary>
+        PoisonLevel,
     }
 
     [Serializable]

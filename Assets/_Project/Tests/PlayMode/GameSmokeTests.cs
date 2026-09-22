@@ -21,6 +21,9 @@ namespace CCT.Tests
         public IEnumerator TearDown()
         {
             if (GameManager.Instance != null) Object.Destroy(GameManager.Instance.gameObject);
+            // 재시작 테스트가 띄운 직업 선택 화면(클릭 안 하고 우회)이 남아있으면 정리
+            foreach (var v in Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None))
+                Object.Destroy(v.gameObject);
             Time.timeScale = 1f;
             yield return null; // 파괴가 프레임 끝에 처리되므로 다음 테스트 전에 한 프레임 넘긴다
         }
@@ -48,14 +51,15 @@ namespace CCT.Tests
 
             Assert.Greater(game.Kills, 0, "자동 공격으로 몹을 처치해야 한다");
 
-            // 드랍이 생겼고, 플레이어가 가까이 있으면 게이지가 오른다
+            // 드랍이 생겼고, 플레이어가 가까이 있으면 게이지가 오른다.
+            // 몹은 칵테일/차 50:50 이라 둘 중 하나(또는 둘 다)가 올라야 한다.
             deadline = Time.realtimeSinceStartup + 10f;
-            while (game.CocktailGauge.Current == 0 && game.CocktailGauge.Level == 1
-                   && Time.realtimeSinceStartup < deadline)
+            bool AnyProgress() => game.CocktailGauge.Current > 0 || game.CocktailGauge.Level > 1
+                                   || game.TeaGauge.Current > 0 || game.TeaGauge.Level > 1;
+            while (!AnyProgress() && Time.realtimeSinceStartup < deadline)
                 yield return null;
 
-            Assert.IsTrue(game.CocktailGauge.Current > 0 || game.CocktailGauge.Level > 1,
-                "처치한 몹의 재료가 게이지에 들어가야 한다");
+            Assert.IsTrue(AnyProgress(), "처치한 몹의 재료가 게이지(칵테일 또는 차)에 들어가야 한다");
         }
 
         [UnityTest]
@@ -151,11 +155,11 @@ namespace CCT.Tests
             Assert.AreEqual(GameState.GameOver, game.State);
             Assert.AreEqual(0f, Time.timeScale);
 
-            game.Restart();
+            game.Restart(); // 직업 선택 화면을 띄움
             yield return null;
+            var fresh = GameBootstrap.Build(Job.Bartender); // 테스트에서는 화면 클릭 대신 직접 진행
             yield return null;
 
-            var fresh = GameManager.Instance;
             Assert.IsNotNull(fresh);
             Assert.AreNotSame(game, fresh);
             Assert.AreEqual(GameState.Playing, fresh.State);

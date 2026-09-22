@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CCT
@@ -7,7 +8,7 @@ namespace CCT
     /// <summary>
     /// 한 판(런)의 루트. 몹 처치 → 재료 드랍 → 게이지 → 레벨업 → 카드 선택 루프,
     /// 보스 → 원두 → 스킬 해금 루프, 런 종료(사망/클리어)를 관리한다.
-    /// 재시작은 이 오브젝트를 통째로 파괴하고 GameBootstrap 으로 새로 만든다.
+    /// 재시작은 이 오브젝트를 통째로 파괴하고 직업 선택 화면부터 다시 띄운다.
     /// </summary>
     public class GameManager : MonoBehaviour
     {
@@ -20,13 +21,16 @@ namespace CCT
         CardSelectView cardView;
         SkillTreeView skillView;
         ResultView resultView;
-        int pendingLevelUps;
+        /// <summary>재료 게이지가 찰 때마다 그 게이지의 카드 카테고리를 여기 쌓고, 한 번에 하나씩 처리한다.</summary>
+        readonly Queue<CardCategory> pendingCardDraws = new Queue<CardCategory>();
         int pendingSkillPoints;
 
         public GameState State { get; private set; } = GameState.Playing;
+        public Job Job { get; private set; }
         public PlayerStats Stats { get; private set; }
         public PlayerController Player { get; private set; }
         public IngredientGauge CocktailGauge { get; private set; }
+        public IngredientGauge TeaGauge { get; private set; }
         /// <summary>
         /// 원두 게이지. 한 번 찰 때마다 스킬 포인트 1.
         /// 한 번의 드랍으로 게이지가 여러 단계 넘어가도(예: 보스 한 방에 원두가 몰려 들어옴)
@@ -54,9 +58,11 @@ namespace CCT
             Time.timeScale = 1f;
         }
 
-        public void Initialize()
+        public void Initialize(Job job)
         {
             Time.timeScale = 1f;
+            Job = job;
+            var preset = JobPreset.For(job);
 
             Stats = new PlayerStats();
             cards = new CardSystem(CardDatabase.LoadAll());
@@ -64,13 +70,16 @@ namespace CCT
 
             CocktailGauge = new IngredientGauge(IngredientType.Cocktail, Balance.CocktailGaugeStart,
                 Balance.CocktailGaugeGrowth, () => Stats.GaugeNeedMultiplier);
-            CocktailGauge.LeveledUp += _ => pendingLevelUps++;
+            CocktailGauge.LeveledUp += _ => pendingCardDraws.Enqueue(CardCategory.Cocktail);
+            TeaGauge = new IngredientGauge(IngredientType.Tea, Balance.CocktailGaugeStart,
+                Balance.CocktailGaugeGrowth, () => Stats.GaugeNeedMultiplier);
+            TeaGauge.LeveledUp += _ => pendingCardDraws.Enqueue(CardCategory.Tea);
             BeanGauge = new IngredientGauge(IngredientType.Coffee, Balance.BeanGaugeStart, Balance.BeanGaugeGrowth);
             BeanGauge.LeveledUp += _ => pendingSkillPoints = Mathf.Min(1, pendingSkillPoints + 1);
 
             var camera = SetupCamera();
             var background = CreateBackground();
-            Player = CreatePlayer();
+            Player = CreatePlayer(preset);
             gameObject.AddComponent<CameraRig>().Init(camera, Player.transform, background);
 
             var spawner = new GameObject("Spawner");
@@ -125,15 +134,17 @@ namespace CCT
             return go.transform;
         }
 
-        PlayerController CreatePlayer()
+        PlayerController CreatePlayer(JobPreset preset)
         {
             var go = new GameObject("Player");
             go.transform.SetParent(transform, false);
             go.transform.localPosition = new Vector3(0f, Balance.LaneCenterY, 0f);
             var player = go.AddComponent<PlayerController>();
-            player.Init(Stats);
+            player.Init(Stats, preset.playerColor);
+            // 레이피어/검은 지금 메커닉이 동일함(치장만 다름) — 총/활이 생기면 직업별로 갈라낼 것
             go.AddComponent<RapierWeapon>().Init(Stats, player);
             go.AddComponent<FlameBurst>().Init(Stats, player);
+            go.AddComponent<PoisonAura>().Init(Stats, player);
             return player;
         }
 
@@ -144,7 +155,7 @@ namespace CCT
             RunTime += Time.deltaTime;
             Stats.Tick(Time.deltaTime);
 
-            if (pendingLevelUps > 0) BeginLevelUp();
+            if (pendingCardDraws.Count > 0) BeginLevelUp();
             else if (pendingSkillPoints > 0) BeginSkillSelect();
         }
 
@@ -155,6 +166,7 @@ namespace CCT
             switch (type)
             {
                 case IngredientType.Cocktail: CocktailGauge.Add(amount); break;
+                case IngredientType.Tea: TeaGauge.Add(amount); break;
                 case IngredientType.Coffee: BeanGauge.Add(amount); break;
             }
         }
@@ -187,9 +199,9 @@ namespace CCT
 
         void BeginLevelUp()
         {
-            pendingLevelUps--;
-            var offers = cards.Draw(CardCategory.Cocktail);
-            if (offers.Count == 0) return; // 뽑을 카드가 모두 소진됨
+            var category = pendingCardDraws.Dequeue();
+            var offers = cards.Draw(category);
+            if (offers.Count == 0) return; // 이 카테고리 카드가 모두 소진됨 — 다음 대기열은 다음 프레임에 처리
 
             State = GameState.LevelUp;
             Time.timeScale = 0f;
@@ -242,7 +254,7 @@ namespace CCT
             Cleared = cleared;
             State = GameState.GameOver;
             Time.timeScale = 0f;
-            resultView.Show(cleared, RunTime, Kills, CocktailGauge.Level, Skills.UnlockedCount);
+            resultView.Show(cleared, RunTime, Kills, CocktailGauge.Level, TeaGauge.Level, Skills.UnlockedCount);
         }
 
         public void Restart()
@@ -250,7 +262,7 @@ namespace CCT
             Time.timeScale = 1f;
             Instance = null;
             Destroy(gameObject);
-            GameBootstrap.Build();
+            GameBootstrap.RestartToSelect();
         }
     }
 }

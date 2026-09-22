@@ -5,15 +5,24 @@ using UnityEngine.InputSystem.UI;
 namespace CCT
 {
     /// <summary>
-    /// 씬에 아무것도 배치하지 않아도 재생 즉시 게임이 구성되게 하는 진입점 (MVP 단계 임시 구조).
+    /// 씬에 아무것도 배치하지 않아도 재생 즉시 직업 선택 → 게임이 구성되게 하는 진입점 (MVP 단계 임시 구조).
     /// 메뉴 씬 등이 생기면 이 자동 시작을 끄고 씬 기반으로 옮긴다.
     /// </summary>
     public static class GameBootstrap
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        static void AutoStart() => Build();
+        static void AutoStart() => RestartToSelect();
 
-        public static GameManager Build()
+        /// <summary>직업 선택 화면부터 다시 띄운다. 재시작 시에도 이걸 탄다 (매 런 직업을 새로 고른다).</summary>
+        public static void RestartToSelect()
+        {
+            if (GameManager.Instance != null) return;
+            EnsureEventSystem();
+            CharacterSelectView.Show(job => Build(job));
+        }
+
+        /// <summary>선택 화면 없이 바로 게임을 만든다. 테스트나 직업이 이미 정해진 경우에 쓴다.</summary>
+        public static GameManager Build(Job job = Job.Bartender)
         {
             if (GameManager.Instance != null) return GameManager.Instance;
 
@@ -21,7 +30,7 @@ namespace CCT
 
             var root = new GameObject("Game");
             var game = root.AddComponent<GameManager>();
-            game.Initialize();
+            game.Initialize(job);
             return game;
         }
 

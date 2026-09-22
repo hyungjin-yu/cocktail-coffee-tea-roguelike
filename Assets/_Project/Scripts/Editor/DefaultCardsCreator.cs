@@ -29,8 +29,11 @@ namespace CCT.Editor
         {
             Directory.CreateDirectory(CardFolder);
 
+            var all = DefaultCards.CreateRuntime();
+            all.AddRange(DefaultTeaCards.CreateRuntime());
+
             int created = 0;
-            foreach (var card in DefaultCards.CreateRuntime())
+            foreach (var card in all)
             {
                 string path = $"{CardFolder}/Card_{card.id}.asset";
                 if (File.Exists(path))

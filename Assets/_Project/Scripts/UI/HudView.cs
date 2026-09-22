@@ -9,6 +9,7 @@ namespace CCT
         GameManager game;
         FillBar hpBar;
         FillBar gaugeBar;
+        FillBar teaBar;
         FillBar beanBar;
         FillBar bossBar;
         Text info;
@@ -28,7 +29,9 @@ namespace CCT
                 new Vector2(420f, 30f), new Color(0.85f, 0.25f, 0.3f), 22);
             view.gaugeBar = new FillBar(root, "GaugeBar", new Vector2(0.5f, 1f), new Vector2(0f, -30f),
                 new Vector2(900f, 30f), new Color(0.9f, 0.35f, 0.75f), 22);
-            view.beanBar = new FillBar(root, "BeanBar", new Vector2(0.5f, 1f), new Vector2(0f, -68f),
+            view.teaBar = new FillBar(root, "TeaBar", new Vector2(0.5f, 1f), new Vector2(0f, -66f),
+                new Vector2(900f, 26f), new Color(0.45f, 0.75f, 0.4f), 20);
+            view.beanBar = new FillBar(root, "BeanBar", new Vector2(0.5f, 1f), new Vector2(0f, -98f),
                 new Vector2(600f, 24f), new Color(0.65f, 0.42f, 0.25f), 20);
 
             var infoRt = UiFactory.Place("Info", root, new Vector2(1f, 1f), new Vector2(-30f, -24f),
@@ -90,6 +93,10 @@ namespace CCT
             var gauge = game.CocktailGauge;
             gaugeBar.Set(gauge.Fill01);
             gaugeBar.Label.text = $"Lv {gauge.Level}   칵테일 재료 {gauge.Current} / {gauge.Threshold}";
+
+            var tea = game.TeaGauge;
+            teaBar.Set(tea.Fill01);
+            teaBar.Label.text = $"Lv {tea.Level}   찻잎 {tea.Current} / {tea.Threshold}";
 
             var beans = game.BeanGauge;
             beanBar.Set(beans.Fill01);

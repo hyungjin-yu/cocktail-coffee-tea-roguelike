@@ -19,7 +19,7 @@ namespace CCT
         Vector2 input;
         float invulnerable;
         float lastMaxHp;
-        static readonly Color BaseColor = new Color(0.35f, 0.85f, 0.95f);
+        Color baseColor;
 
         public event Action Died;
 
@@ -28,13 +28,15 @@ namespace CCT
         public bool IsDead { get; private set; }
         public Vector2 Position => transform.position;
         public float PickupRadius => stats.PickupRadius;
+        public PlayerStats Stats => stats;
 
         /// <summary>좌(-1)/우(+1) 바라보는 방향. 스프라이트 반전과 공격 방향에 쓰인다.</summary>
         public float Facing { get; private set; } = 1f;
 
-        public void Init(PlayerStats stats)
+        public void Init(PlayerStats stats, Color color)
         {
             this.stats = stats;
+            baseColor = color;
             rb = GetComponent<Rigidbody2D>();
             sr = GetComponent<SpriteRenderer>();
 
@@ -42,7 +44,7 @@ namespace CCT
             rb.gravityScale = 0f;
 
             sr.sprite = SpriteFactory.Capsule;
-            sr.color = BaseColor;
+            sr.color = baseColor;
             sr.sortingOrder = 2; // 몹과 같은 순서 → 카메라의 깊이 정렬(Y)로 앞뒤가 갈린다
             transform.localScale = Vector3.one * Radius * 2f;
 
@@ -74,13 +76,13 @@ namespace CCT
             input = ReadMoveInput();
             if (Mathf.Abs(input.x) > 0.01f) Facing = Mathf.Sign(input.x);
 
-            Hp = Mathf.Min(stats.MaxHp, Hp + Balance.PlayerRegenPerSecond * Time.deltaTime);
+            Hp = Mathf.Min(stats.MaxHp, Hp + (Balance.PlayerRegenPerSecond + stats.regenBonus) * Time.deltaTime);
             if (invulnerable > 0f)
             {
                 invulnerable -= Time.deltaTime;
                 bool blink = Mathf.FloorToInt(Time.time * 20f) % 2 == 0;
-                sr.color = blink ? new Color(1f, 0.4f, 0.4f) : BaseColor;
-                if (invulnerable <= 0f) sr.color = BaseColor;
+                sr.color = blink ? new Color(1f, 0.4f, 0.4f) : baseColor;
+                if (invulnerable <= 0f) sr.color = baseColor;
             }
 
             var scale = transform.localScale;

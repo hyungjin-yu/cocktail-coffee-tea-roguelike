@@ -22,10 +22,16 @@ namespace CCT
         public float gaugeNeedPercent;
         public int extraThrusts;
         public int flameLevel;
+        /// <summary>차 스킬 — 초당 회복량 보너스.</summary>
+        public float regenBonus;
+        /// <summary>차 스킬 — 독 오라 레벨.</summary>
+        public int poisonLevel;
 
         public event Action Changed;
 
         float suppressedRemaining;
+        float slowRemaining;
+        float slowMultiplier = 1f;
 
         /// <summary>진상 손님 "환불해주세요!" 등으로 공격/이동 % 보너스가 무효화된 상태.</summary>
         public bool BonusesSuppressed => suppressedRemaining > 0f;
@@ -37,16 +43,31 @@ namespace CCT
             suppressedRemaining = Mathf.Max(suppressedRemaining, duration);
         }
 
+        /// <summary>슈가 큐브 바머 등이 거는 이동속도 둔화. 더 강하거나(낮은 배율) 더 긴 효과로만 갱신된다.</summary>
+        public bool IsSlowed => slowRemaining > 0f;
+
+        public void ApplySlow(float duration, float multiplier)
+        {
+            slowRemaining = Mathf.Max(slowRemaining, duration);
+            slowMultiplier = IsSlowed ? Mathf.Min(slowMultiplier, multiplier) : multiplier;
+        }
+
         public void Tick(float deltaTime)
         {
             if (suppressedRemaining > 0f)
                 suppressedRemaining = Mathf.Max(0f, suppressedRemaining - deltaTime);
+
+            if (slowRemaining > 0f)
+            {
+                slowRemaining = Mathf.Max(0f, slowRemaining - deltaTime);
+                if (slowRemaining <= 0f) slowMultiplier = 1f;
+            }
         }
 
         float Live(float percent) => BonusesSuppressed ? 0f : percent;
 
         public float DamageBonus => Live(damagePercent);
-        public float MoveSpeed => baseMoveSpeed * (1f + Live(moveSpeedPercent));
+        public float MoveSpeed => baseMoveSpeed * (1f + Live(moveSpeedPercent)) * (IsSlowed ? slowMultiplier : 1f);
         public float MaxHp => baseMaxHp + maxHpFlat;
         public float Damage => baseDamage * (1f + DamageBonus);
         public float AttackInterval => baseAttackInterval / (1f + Live(attackSpeedPercent));
@@ -70,6 +91,8 @@ namespace CCT
                 case CardEffectType.GaugeNeedPercent: gaugeNeedPercent += effect.value; break;
                 case CardEffectType.ExtraThrust: extraThrusts += Mathf.RoundToInt(effect.value); break;
                 case CardEffectType.FlameLevel: flameLevel += Mathf.RoundToInt(effect.value); break;
+                case CardEffectType.RegenBonus: regenBonus += effect.value; break;
+                case CardEffectType.PoisonLevel: poisonLevel += Mathf.RoundToInt(effect.value); break;
             }
             Changed?.Invoke();
         }

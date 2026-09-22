@@ -9,7 +9,7 @@ namespace CCT.Tests
         {
             var go = new GameObject("TestPlayer", typeof(Rigidbody2D), typeof(SpriteRenderer));
             var player = go.AddComponent<PlayerController>();
-            player.Init(new PlayerStats());
+            player.Init(new PlayerStats(), Color.white);
             return player;
         }
 

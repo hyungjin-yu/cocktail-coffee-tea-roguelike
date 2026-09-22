@@ -36,6 +36,8 @@ namespace CCT.Tests
         public IEnumerator TearDown()
         {
             if (GameManager.Instance != null) Object.Destroy(GameManager.Instance.gameObject);
+            foreach (var v in Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None))
+                Object.Destroy(v.gameObject);
             Time.timeScale = 1f;
             yield return null;
         }
@@ -213,8 +215,9 @@ namespace CCT.Tests
             Assert.AreEqual(0f, Time.timeScale);
             Assert.AreEqual(0, Object.FindObjectsByType<IngredientPickup>(FindObjectsSortMode.None).Length);
 
-            game.Restart();
+            game.Restart(); // 직업 선택 화면을 띄움
             yield return null;
+            GameBootstrap.Build(Job.Bartender); // 테스트에서는 화면 클릭 대신 직접 진행
             yield return null;
             Assert.IsFalse(GameManager.Instance.Cleared);
             Assert.AreEqual(GameState.Playing, GameManager.Instance.State);

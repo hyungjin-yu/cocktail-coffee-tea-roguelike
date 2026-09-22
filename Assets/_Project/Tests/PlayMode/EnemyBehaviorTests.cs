@@ -62,11 +62,13 @@ namespace CCT.Tests
         public IEnumerator SwirlConjuror_StaysStill_AndPeriodicallySummonsImp()
         {
             var game = GameManager.Instance;
-            var spawnPos = game.Player.Position + new Vector2(6f, 0f);
-            var conjuror = Enemy.SpawnAt(spawnPos, EnemyDef.SwirlConjuror, 1f, game.Player, game.transform);
-            EnemyRoster.AttachBehavior(conjuror, game, game.Player);
+            // 배경에서 계속 돌아가는 EnemySpawner 도 라임웨지를 만들 수 있어서(같은 EnemyDef.Imp),
+            // 전용 컨테이너를 부모로 줘서 이 컨저러가 소환한 것만 골라 셀 수 있게 격리한다.
+            var container = new GameObject("TestContainer").transform;
 
-            int impCountBefore = CountImps();
+            var spawnPos = game.Player.Position + new Vector2(6f, 0f);
+            var conjuror = Enemy.SpawnAt(spawnPos, EnemyDef.SwirlConjuror, 1f, game.Player, container);
+            EnemyRoster.AttachBehavior(conjuror, game, game.Player);
 
             yield return new WaitForSeconds(0.5f);
             Assert.Less(Vector2.Distance(conjuror.transform.position, spawnPos), 0.1f,
@@ -75,7 +77,12 @@ namespace CCT.Tests
             // 첫 소환까지 텀(summonInterval*0.5=3초)을 넘기기 충분히 대기
             yield return new WaitForSeconds(3f);
 
-            Assert.Greater(CountImps(), impCountBefore, "주기적으로 라임웨지를 소환해야 한다");
+            int summonedImps = 0;
+            foreach (Transform child in container)
+                if (child.TryGetComponent<Enemy>(out var e) && e.Def == EnemyDef.Imp) summonedImps++;
+            Assert.GreaterOrEqual(summonedImps, 1, "주기적으로 라임웨지를 소환해야 한다");
+
+            Object.Destroy(container.gameObject);
         }
 
         [UnityTest]
@@ -104,14 +111,6 @@ namespace CCT.Tests
             yield return new WaitForSeconds(3.2f); // Lifetime(3초) 초과
 
             Assert.IsNull(Object.FindFirstObjectByType<EnemyProjectile>(), "수명이 다하면 스스로 사라져야 한다");
-        }
-
-        static int CountImps()
-        {
-            int count = 0;
-            foreach (var e in Enemy.Active)
-                if (e != null && e.Def == EnemyDef.Imp) count++;
-            return count;
         }
     }
 }
