@@ -50,16 +50,17 @@ namespace CCT
                 onChosen(preset.job);
             });
 
+            // 전부 같은 기준(카드 위쪽에서부터 아래로)으로 쌓는다 — 서로 다른 앵커를 섞으면 겹친다.
             var swatchRt = UiFactory.Place("Swatch", rt, new Vector2(0.5f, 1f), new Vector2(0f, -50f),
                 new Vector2(90f, 90f));
             UiFactory.AddImage(swatchRt, preset.playerColor);
 
             UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -170f),
                 new Vector2(460f, 70f)), preset.name, 46, TextAnchor.MiddleCenter, Color.white);
-            UiFactory.AddText(UiFactory.Place("Weapon", rt, new Vector2(0.5f, 1f), new Vector2(0f, -240f),
+            UiFactory.AddText(UiFactory.Place("Weapon", rt, new Vector2(0.5f, 1f), new Vector2(0f, -260f),
                 new Vector2(460f, 50f)), $"시작 무기: {preset.weaponName}", 30, TextAnchor.MiddleCenter,
                 new Color(1f, 0.85f, 0.5f));
-            UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 0.5f), new Vector2(0f, -60f),
+            UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -340f),
                 new Vector2(440f, 260f)), preset.description, 30, TextAnchor.UpperCenter,
                 new Color(0.9f, 0.9f, 0.9f));
 

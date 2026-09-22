@@ -119,8 +119,11 @@ namespace CCT.Tests
             game.CardView.Choose(0);
             yield return null;
 
-            float expected = Mathf.Min(game.Player.MaxHp, before + game.Player.MaxHp * Balance.LevelUpHealFraction);
-            Assert.AreEqual(expected, game.Player.Hp, 1f);
+            // 뽑힌 카드가 우연히 최대 체력 카드면 그만큼 추가로 회복되므로(OnStatsChanged), 정확한 값 대신
+            // "적어도 LevelUpHealFraction 만큼은 회복했다"만 확인한다.
+            float minExpected = Mathf.Min(game.Player.MaxHp, before + game.Player.MaxHp * Balance.LevelUpHealFraction);
+            Assert.GreaterOrEqual(game.Player.Hp, minExpected - 1f);
+            Assert.LessOrEqual(game.Player.Hp, game.Player.MaxHp);
         }
 
         [UnityTest]
