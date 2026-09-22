@@ -35,6 +35,14 @@ namespace CCT
             p.velocity = direction.sqrMagnitude > 0.0001f ? direction.normalized * speed : Vector2.zero;
             p.damage = damage;
             p.life = Lifetime;
+
+            // 물방울/얼음조각 아트는 위쪽이 뾰족하고 아래쪽(로컬 -Y)이 두꺼운 모양이라,
+            // 두꺼운 쪽이 진행 방향(플레이어 쪽)을 향하도록 발사 방향으로 회전시킨다.
+            if (p.velocity.sqrMagnitude > 0.0001f)
+            {
+                float angle = Mathf.Atan2(p.velocity.y, p.velocity.x) * Mathf.Rad2Deg + 90f;
+                go.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            }
         }
 
         void Update()
