@@ -90,5 +90,35 @@ namespace CCT.Tests
             Assert.AreEqual(0, PermanentProgress.Current.teaLeavesCollected);
             Assert.AreEqual(0, PermanentProgress.Current.coffeeBeansCollected);
         }
+
+        [Test]
+        public void DiscoverMaterialVariety_AddsToPermanentList_AndPersists()
+        {
+            Assert.AreEqual(0, PermanentProgress.Current.discoveredMaterialVarietyIds.Count);
+
+            PermanentProgress.DiscoverMaterialVariety("gin");
+
+            Assert.IsTrue(PermanentProgress.Current.discoveredMaterialVarietyIds.Contains("gin"));
+            Assert.IsTrue(SaveSystem.Load(tempPath).discoveredMaterialVarietyIds.Contains("gin"),
+                "즉시 저장되어야 한다");
+        }
+
+        [Test]
+        public void DiscoverMaterialVariety_SameVarietyTwice_DoesNotDuplicate()
+        {
+            PermanentProgress.DiscoverMaterialVariety("gin");
+            PermanentProgress.DiscoverMaterialVariety("gin");
+
+            Assert.AreEqual(1, PermanentProgress.Current.discoveredMaterialVarietyIds.Count);
+        }
+
+        [Test]
+        public void DiscoverMaterialVariety_IgnoresNullOrEmpty()
+        {
+            PermanentProgress.DiscoverMaterialVariety(null);
+            PermanentProgress.DiscoverMaterialVariety("");
+
+            Assert.AreEqual(0, PermanentProgress.Current.discoveredMaterialVarietyIds.Count);
+        }
     }
 }

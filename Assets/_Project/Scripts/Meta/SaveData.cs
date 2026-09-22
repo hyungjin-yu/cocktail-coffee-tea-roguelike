@@ -24,5 +24,9 @@ namespace CCT
         public int cocktailIngredientsCollected;
         public int teaLeavesCollected;
         public int coffeeBeansCollected;
+
+        /// <summary>지금까지 한 번이라도 나온 재료 품종 id 목록 (MaterialVariety). 재료를 주울 때마다
+        /// 그 종류 안에서 품종이 무작위로 골라지고, 처음 나온 품종이 여기 기록된다.</summary>
+        public List<string> discoveredMaterialVarietyIds = new List<string>();
     }
 }

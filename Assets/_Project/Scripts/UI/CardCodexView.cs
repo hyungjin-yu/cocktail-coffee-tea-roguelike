@@ -31,8 +31,10 @@ namespace CCT
         class MaterialEntry
         {
             public string label;
+            public IngredientType type;
             public Func<SaveData, int> getCount;
-            public Text text;
+            public Text headerText;
+            public Text varietyText;
         }
 
         const float RowStep = 68f;
@@ -80,8 +82,8 @@ namespace CCT
             view.BuildMaterialsRow(rootRt);
 
             // 스크롤 영역: 재료 줄 아래 ~ 뒤로 버튼 위 사이에만 배치, 안쪽은 RectMask2D로 잘라낸다.
-            var scrollAreaRt = UiFactory.Place("ScrollArea", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -222f),
-                new Vector2(1450f, 710f));
+            var scrollAreaRt = UiFactory.Place("ScrollArea", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -276f),
+                new Vector2(1450f, 656f));
             var viewportRt = UiFactory.Stretch("Viewport", scrollAreaRt);
             viewportRt.gameObject.AddComponent<RectMask2D>();
 
@@ -92,7 +94,7 @@ namespace CCT
             contentRt.anchorMax = new Vector2(1f, 1f);
             contentRt.pivot = new Vector2(0.5f, 1f);
             contentRt.anchoredPosition = Vector2.zero;
-            contentRt.sizeDelta = new Vector2(0f, 710f); // 실제 행 개수에 맞춰 BuildRows에서 다시 계산
+            contentRt.sizeDelta = new Vector2(0f, 656f); // 실제 행 개수에 맞춰 BuildRows에서 다시 계산
             view.content = contentRt;
 
             var scrollRect = scrollAreaRt.gameObject.AddComponent<ScrollRect>();
@@ -118,17 +120,20 @@ namespace CCT
         void BuildMaterialsRow(RectTransform rootRt)
         {
             var rowRt = UiFactory.Place("Materials", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -140f),
-                new Vector2(1450f, 76f));
+                new Vector2(1450f, 130f));
 
-            AddMaterialSlot(rowRt, -480f, "Icons/cocktail_ingredient", "칵테일 재료", s => s.cocktailIngredientsCollected);
-            AddMaterialSlot(rowRt, 0f, "Icons/tea", "찻잎", s => s.teaLeavesCollected);
-            AddMaterialSlot(rowRt, 480f, "Icons/coffee_bean", "커피 원두", s => s.coffeeBeansCollected);
+            AddMaterialSlot(rowRt, -480f, "Icons/cocktail_ingredient", "칵테일 재료", IngredientType.Cocktail,
+                s => s.cocktailIngredientsCollected);
+            AddMaterialSlot(rowRt, 0f, "Icons/tea", "찻잎", IngredientType.Tea, s => s.teaLeavesCollected);
+            AddMaterialSlot(rowRt, 480f, "Icons/coffee_bean", "커피 원두", IngredientType.Coffee,
+                s => s.coffeeBeansCollected);
         }
 
-        void AddMaterialSlot(RectTransform parent, float x, string iconPath, string label, Func<SaveData, int> getCount)
+        void AddMaterialSlot(RectTransform parent, float x, string iconPath, string label, IngredientType type,
+            Func<SaveData, int> getCount)
         {
             var slotRt = UiFactory.Place($"Material_{label}", parent, new Vector2(0.5f, 0.5f), new Vector2(x, 0f),
-                new Vector2(420f, 72f));
+                new Vector2(420f, 130f));
 
             var icon = Resources.Load<Sprite>(iconPath);
             if (icon != null)
@@ -141,11 +146,19 @@ namespace CCT
                 iconImg.raycastTarget = false;
             }
 
-            var textRt = UiFactory.Place("Text", slotRt, new Vector2(0f, 0.5f), new Vector2(80f, 0f),
-                new Vector2(330f, 64f));
-            var text = UiFactory.AddText(textRt, "", 22, TextAnchor.MiddleLeft, new Color(0.92f, 0.92f, 0.92f));
+            var headerRt = UiFactory.Place("Header", slotRt, new Vector2(0f, 1f), new Vector2(80f, -4f),
+                new Vector2(330f, 30f));
+            var headerText = UiFactory.AddText(headerRt, "", 19, TextAnchor.UpperLeft, new Color(0.92f, 0.92f, 0.92f));
 
-            materialEntries.Add(new MaterialEntry { label = label, getCount = getCount, text = text });
+            var varietyRt = UiFactory.Place("Varieties", slotRt, new Vector2(0f, 1f), new Vector2(80f, -36f),
+                new Vector2(330f, 92f));
+            var varietyText = UiFactory.AddText(varietyRt, "", 15, TextAnchor.UpperLeft, Color.white);
+            varietyText.supportRichText = true;
+
+            materialEntries.Add(new MaterialEntry
+            {
+                label = label, type = type, getCount = getCount, headerText = headerText, varietyText = varietyText,
+            });
         }
 
         void BuildRows()
@@ -275,8 +288,18 @@ namespace CCT
                 entry.descText.color = has ? new Color(0.75f, 0.75f, 0.75f) : new Color(1f, 1f, 1f, 0.35f);
             }
 
+            var discoveredVarieties = new HashSet<string>(save.discoveredMaterialVarietyIds);
             foreach (var entry in materialEntries)
-                entry.text.text = $"{entry.label}\n총 {entry.getCount(save)}개 수집";
+            {
+                var varieties = MaterialVarieties.For(entry.type);
+                int foundVarieties = varieties.Count(v => discoveredVarieties.Contains(v.id));
+                entry.headerText.text = $"{entry.label} — 총 {entry.getCount(save)}개 수집 ({foundVarieties}/{varieties.Count}종)";
+
+                var names = varieties.Select(v => discoveredVarieties.Contains(v.id)
+                    ? $"<color=#E8E8E8>{v.displayName}</color>"
+                    : "<color=#6A6A6A>???</color>");
+                entry.varietyText.text = string.Join(", ", names);
+            }
         }
 
         void Close()

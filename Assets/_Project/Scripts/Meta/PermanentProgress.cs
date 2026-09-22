@@ -56,6 +56,14 @@ namespace CCT
             SaveSystem.Save(Current, overridePath);
         }
 
+        /// <summary>재료를 주울 때 무작위로 골라진 품종이 처음 나온 것이면 도감에 기록한다.</summary>
+        public static void DiscoverMaterialVariety(string id)
+        {
+            if (string.IsNullOrEmpty(id) || Current.discoveredMaterialVarietyIds.Contains(id)) return;
+            Current.discoveredMaterialVarietyIds.Add(id);
+            SaveSystem.Save(Current, overridePath);
+        }
+
         /// <summary>테스트 전용 — 실제 세이브 파일 대신 임시 경로를 쓰게 한다. null을 주면 원래 경로로 되돌린다.</summary>
         public static void SetPathForTests(string path)
         {

@@ -185,6 +185,11 @@ namespace CCT
         {
             if (State == GameState.GameOver) return;
 
+            // 재료를 주울 때마다 그 종류 안에서 품종이 무작위로 하나 골라진다 — 도감의 "품종 수집" 대상.
+            var varieties = MaterialVarieties.For(type);
+            if (varieties.Count > 0)
+                PermanentProgress.DiscoverMaterialVariety(varieties[Random.Range(0, varieties.Count)].id);
+
             switch (type)
             {
                 case IngredientType.Cocktail:

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -69,18 +70,40 @@ namespace CCT.Tests
             var materialsRt = view.CodexView.transform.Find("Materials");
             Assert.IsNotNull(materialsRt, "재료 줄이 있어야 한다");
 
-            var cocktailText = materialsRt.Find("Material_칵테일 재료/Text").GetComponent<UnityEngine.UI.Text>();
+            var cocktailText = materialsRt.Find("Material_칵테일 재료/Header").GetComponent<UnityEngine.UI.Text>();
             Assert.IsTrue(cocktailText.text.Contains("12"), "칵테일 재료 누적 수집량이 표시되어야 한다");
 
-            var teaText = materialsRt.Find("Material_찻잎/Text").GetComponent<UnityEngine.UI.Text>();
+            var teaText = materialsRt.Find("Material_찻잎/Header").GetComponent<UnityEngine.UI.Text>();
             Assert.IsTrue(teaText.text.Contains("7"));
 
-            var beanText = materialsRt.Find("Material_커피 원두/Text").GetComponent<UnityEngine.UI.Text>();
+            var beanText = materialsRt.Find("Material_커피 원두/Header").GetComponent<UnityEngine.UI.Text>();
             Assert.IsTrue(beanText.text.Contains("2"));
 
             var skillRow = view.CodexView.transform.Find("ScrollArea/Viewport/Content/SkillRow_bean_cupper/Name")
                 .GetComponent<UnityEngine.UI.Text>();
             Assert.AreEqual("원두 감별사", skillRow.text, "해금된 영구 강화 노드는 이름이 그대로 보여야 한다(비밀 아님)");
+        }
+
+        [UnityTest]
+        public IEnumerator CodexShows_DiscoveredVariety_ByName_AndUndiscoveredAsQuestionMarks()
+        {
+            var known = MaterialVarieties.Cocktail[0];
+            PermanentProgress.DiscoverMaterialVariety(known.id);
+
+            var view = CharacterSelectView.Show((j, w) => { });
+            yield return null;
+            view.CardCodexButton.onClick.Invoke();
+            yield return null;
+
+            var varietyText = view.CodexView.transform.Find("Materials/Material_칵테일 재료/Varieties")
+                .GetComponent<UnityEngine.UI.Text>();
+
+            Assert.IsTrue(varietyText.text.Contains(known.displayName), "발견한 품종은 이름이 보여야 한다");
+            Assert.IsTrue(varietyText.text.Contains("???"), "아직 못 본 품종은 ???로 보여야 한다");
+
+            var otherNames = MaterialVarieties.Cocktail.Where(v => v.id != known.id).Select(v => v.displayName);
+            foreach (var name in otherNames)
+                Assert.IsFalse(varietyText.text.Contains(name), $"아직 안 나온 품종({name})의 이름이 그대로 보이면 안 된다");
         }
 
         [UnityTest]

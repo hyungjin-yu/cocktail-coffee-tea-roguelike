@@ -77,5 +77,37 @@ namespace CCT.Tests
             foreach (var v in Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None))
                 Object.DestroyImmediate(v.gameObject);
         }
+
+        [UnityTest]
+        public IEnumerator AddIngredient_DiscoversAMaterialVariety_FromTheRightCategory()
+        {
+            var game = GameBootstrap.Build(Job.Bartender, WeaponKind.Rapier);
+            yield return null;
+
+            Assert.AreEqual(0, PermanentProgress.Current.discoveredMaterialVarietyIds.Count);
+
+            game.AddIngredient(IngredientType.Cocktail, 1);
+            yield return null;
+
+            Assert.AreEqual(1, PermanentProgress.Current.discoveredMaterialVarietyIds.Count,
+                "재료를 주우면 품종이 하나 무작위로 골라져 도감에 기록되어야 한다");
+            var discoveredId = PermanentProgress.Current.discoveredMaterialVarietyIds[0];
+            Assert.IsTrue(MaterialVarieties.Cocktail.Exists(v => v.id == discoveredId),
+                "칵테일 재료를 주웠으면 칵테일 품종 목록에서 골라져야 한다");
+        }
+
+        [UnityTest]
+        public IEnumerator AddIngredient_EnoughPickups_EventuallyDiscoversAllVarietiesInCategory()
+        {
+            var game = GameBootstrap.Build(Job.Bartender, WeaponKind.Rapier);
+            yield return null;
+
+            // 품종이 6개뿐이라 충분히 많이 주우면(50회) 전부 다 나올 확률이 사실상 100%에 가까움
+            for (int i = 0; i < 50; i++)
+                game.AddIngredient(IngredientType.Cocktail, 1);
+            yield return null;
+
+            Assert.AreEqual(MaterialVarieties.Cocktail.Count, PermanentProgress.Current.discoveredMaterialVarietyIds.Count);
+        }
     }
 }
