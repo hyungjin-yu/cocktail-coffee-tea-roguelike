@@ -67,22 +67,44 @@ namespace CCT.Tests
             var enemy = Enemy.SpawnAt(player.Position + new Vector2(2f, 0f), EnemyDef.Brute, 1f, player, null);
             float hpBefore = enemy.Hp;
 
-            PlayerProjectile.Spawn(player.Position, Vector2.right, 9f, 15f, null);
+            PlayerProjectile.Spawn(player.Position, Vector2.right, 9f, 15f, 0, null);
             yield return new WaitForSeconds(0.4f); // 2유닛 / 9유닛초 ≈ 0.22초면 명중
 
             Assert.Less(enemy.Hp, hpBefore);
-            Assert.IsNull(Object.FindFirstObjectByType<PlayerProjectile>(), "명중하면 곧바로 사라져야 한다");
+            Assert.IsNull(Object.FindFirstObjectByType<PlayerProjectile>(), "관통이 없으면 명중 즉시 사라져야 한다");
             Object.Destroy(enemy.gameObject);
         }
 
         [UnityTest]
         public IEnumerator PlayerProjectile_Miss_ExpiresAfterLifetime()
         {
-            PlayerProjectile.Spawn(player.Position, Vector2.up, 9f, 15f, null); // 아무도 없는 방향
+            PlayerProjectile.Spawn(player.Position, Vector2.up, 9f, 15f, 0, null); // 아무도 없는 방향
 
             yield return new WaitForSeconds(2.2f); // Lifetime(2초) 초과
 
             Assert.IsNull(Object.FindFirstObjectByType<PlayerProjectile>(), "수명이 다하면 스스로 사라져야 한다");
+        }
+
+        [UnityTest]
+        public IEnumerator PlayerProjectile_WithPierce_HitsMultipleEnemies_WithoutDoubleHitting()
+        {
+            var enemyA = Enemy.SpawnAt(player.Position + new Vector2(2f, 0f), EnemyDef.Brute, 1f, player, null);
+            var enemyB = Enemy.SpawnAt(player.Position + new Vector2(4f, 0f), EnemyDef.Brute, 1f, player, null);
+            float hpABefore = enemyA.Hp;
+            float hpBBefore = enemyB.Hp;
+
+            PlayerProjectile.Spawn(player.Position, Vector2.right, 9f, 15f, 1, null); // 관통 +1
+
+            yield return new WaitForSeconds(0.15f); // A만 지나칠 시점 (2유닛 / 9유닛초 ≈ 0.22초)
+            Assert.Less(enemyA.Hp, hpABefore, "관통 발사체는 첫 번째 몹도 맞혀야 한다");
+
+            yield return new WaitForSeconds(0.4f); // B까지 도달 + 관통 소진 후 소멸할 시간
+            Assert.Less(enemyB.Hp, hpBBefore, "관통 발사체는 두 번째 몹까지 뚫고 지나가야 한다");
+            Assert.AreEqual(hpABefore - 15f, enemyA.Hp, 0.01f, "같은 몹을 두 번 때리면 안 된다");
+            Assert.IsNull(Object.FindFirstObjectByType<PlayerProjectile>(), "관통 횟수를 다 쓰면 사라져야 한다");
+
+            Object.Destroy(enemyA.gameObject);
+            Object.Destroy(enemyB.gameObject);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace CCT
     /// 연속 공격 카드(플람베/두 번째 우림 등, stats.extraThrusts)는 근접에서는 같은 자리를 여러 번
     /// 찌르지만, 원거리에서는 부채꼴로 동시에 여러 발을 쏜다 — 한 발씩만 나가면 근접의 박스 히트(여러 마리
     /// 동시 타격)보다 몹을 처리하는 속도가 크게 밀려서 몹이 순식간에 쌓이는 문제가 있었음 (2026-09-22 피드백).
+    /// 관통 카드(강선 개조 등, stats.pierceCount)는 발사체 하나가 진행 경로의 여러 몹을 연달아 때리게 한다.
     /// </summary>
     public class PlayerProjectileWeapon : MonoBehaviour
     {
@@ -52,9 +53,10 @@ namespace CCT
 
             int count = 1 + stats.extraThrusts;
             float damage = stats.Damage;
+            int pierce = stats.pierceCount;
             if (count <= 1)
             {
-                PlayerProjectile.Spawn(origin, baseDir, ProjectileSpeed, damage, transform.parent);
+                PlayerProjectile.Spawn(origin, baseDir, ProjectileSpeed, damage, pierce, transform.parent);
                 return;
             }
 
@@ -65,7 +67,7 @@ namespace CCT
             for (int i = 0; i < count; i++)
             {
                 var dir = Quaternion.Euler(0f, 0f, startAngle + step * i) * baseDir;
-                PlayerProjectile.Spawn(origin, dir, ProjectileSpeed, damage, transform.parent);
+                PlayerProjectile.Spawn(origin, dir, ProjectileSpeed, damage, pierce, transform.parent);
             }
         }
     }

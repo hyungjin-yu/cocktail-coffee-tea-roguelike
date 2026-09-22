@@ -26,6 +26,8 @@ namespace CCT
         public float regenBonus;
         /// <summary>차 스킬 — 독 오라 레벨.</summary>
         public int poisonLevel;
+        /// <summary>원거리 전용 — 발사체가 뚫고 지나갈 수 있는 추가 대상 수.</summary>
+        public int pierceCount;
 
         public event Action Changed;
 
@@ -93,6 +95,7 @@ namespace CCT
                 case CardEffectType.FlameLevel: flameLevel += Mathf.RoundToInt(effect.value); break;
                 case CardEffectType.RegenBonus: regenBonus += effect.value; break;
                 case CardEffectType.PoisonLevel: poisonLevel += Mathf.RoundToInt(effect.value); break;
+                case CardEffectType.PierceCount: pierceCount += Mathf.RoundToInt(effect.value); break;
             }
             Changed?.Invoke();
         }

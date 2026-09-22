@@ -1,18 +1,25 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CCT
 {
-    /// <summary>총/활(원거리 무기)이 쏘는 단순 직선 발사체. 처음 맞힌 몹에게 피해를 주고 사라진다.</summary>
+    /// <summary>
+    /// 총/활(원거리 무기)이 쏘는 단순 직선 발사체. 기본은 처음 맞힌 몹에게 피해를 주고 사라지지만,
+    /// pierceCount 만큼 더 뚫고 지나가며 같은 몹은 두 번 때리지 않는다.
+    /// </summary>
     public class PlayerProjectile : MonoBehaviour
     {
         const float Lifetime = 2f;
         const float HitRadius = 0.18f;
 
+        readonly HashSet<Enemy> alreadyHit = new HashSet<Enemy>();
         Vector2 velocity;
         float damage;
         float life;
+        int pierceRemaining;
 
-        public static void Spawn(Vector2 position, Vector2 direction, float speed, float damage, Transform parent)
+        public static void Spawn(Vector2 position, Vector2 direction, float speed, float damage, int pierceCount,
+            Transform parent)
         {
             var go = new GameObject("PlayerProjectile");
             go.transform.SetParent(parent, false);
@@ -28,6 +35,7 @@ namespace CCT
             p.velocity = direction.sqrMagnitude > 0.0001f ? direction.normalized * speed : Vector2.zero;
             p.damage = damage;
             p.life = Lifetime;
+            p.pierceRemaining = Mathf.Max(0, pierceCount);
         }
 
         void Update()
@@ -44,12 +52,17 @@ namespace CCT
             var hits = Physics2D.OverlapCircleAll(transform.position, HitRadius);
             foreach (var hit in hits)
             {
-                if (hit.TryGetComponent<Enemy>(out var enemy))
+                if (!hit.TryGetComponent<Enemy>(out var enemy) || alreadyHit.Contains(enemy)) continue;
+
+                enemy.TakeDamage(damage);
+                alreadyHit.Add(enemy);
+
+                if (pierceRemaining <= 0)
                 {
-                    enemy.TakeDamage(damage);
                     Destroy(gameObject);
                     return;
                 }
+                pierceRemaining--;
             }
         }
     }

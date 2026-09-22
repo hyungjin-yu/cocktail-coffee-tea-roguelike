@@ -53,6 +53,8 @@ namespace CCT
                     new CardEffect(CardEffectType.RegenBonus, 3f)),
                 Make("nightshade_blend", "가지속 블렌드", "독 피해 Lv +2", CardRarity.Epic, 3,
                     new CardEffect(CardEffectType.PoisonLevel, 2f)),
+                Make("piercing_arrowhead", "관통 화살촉", "발사체 관통 +1 (몹을 뚫고 지나감)", CardRarity.Epic, 3,
+                    WeaponRestriction.RangedOnly, new CardEffect(CardEffectType.PierceCount, 1f)),
             };
         }
 

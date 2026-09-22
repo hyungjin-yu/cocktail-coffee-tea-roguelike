@@ -25,6 +25,8 @@ namespace CCT
         RegenBonus,
         /// <summary>차 스킬 — 독 오라 레벨 (FlameLevel과 같은 방식, 다른 컬러/이름).</summary>
         PoisonLevel,
+        /// <summary>원거리 전용 — 발사체가 뚫고 지나갈 수 있는 추가 대상 수.</summary>
+        PierceCount,
     }
 
     [Serializable]

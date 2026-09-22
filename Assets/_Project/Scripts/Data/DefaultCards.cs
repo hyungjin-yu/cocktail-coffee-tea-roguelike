@@ -49,6 +49,8 @@ namespace CCT
                     new CardEffect(CardEffectType.AttackSpeedPercent, 0.20f)),
                 Make("blazer", "블레이저", "화염 폭발 Lv +2", CardRarity.Epic, 3,
                     new CardEffect(CardEffectType.FlameLevel, 2f)),
+                Make("rifled_barrel", "강선 개조", "발사체 관통 +1 (몹을 뚫고 지나감)", CardRarity.Epic, 3,
+                    WeaponRestriction.RangedOnly, new CardEffect(CardEffectType.PierceCount, 1f)),
             };
         }
 
