@@ -64,6 +64,20 @@ namespace CCT.Tests
         }
 
         [Test]
+        public void SpawnBurst_MaterialUsesTheCircleTexture_NotAFlatQuad()
+        {
+            // 실제로 겪은 버그: 텍스처를 못 붙이면 알파 컷아웃이 없어서 파티클이 그냥 네모(빌보드
+            // 쿼드 원본 모양)로 보인다. mainTexture가 SpriteFactory.Circle과 같은지 반드시 확인한다.
+            var ps = ParticleFx.SpawnBurst(Vector2.zero, null, ParticleBurstConfig.Default);
+            var renderer = ps.GetComponent<ParticleSystemRenderer>();
+
+            Assert.AreEqual(SpriteFactory.Circle.texture, renderer.sharedMaterial.mainTexture,
+                "파티클이 둥글게 보이려면 원 텍스처가 실제로 적용되어 있어야 한다");
+
+            Object.DestroyImmediate(ps.gameObject);
+        }
+
+        [Test]
         public void SpawnBurst_PositionsAtGivenWorldPosition()
         {
             var pos = new Vector2(3f, -1f);

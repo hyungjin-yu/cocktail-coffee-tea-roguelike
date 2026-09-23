@@ -77,10 +77,20 @@ namespace CCT
                 mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.One);
                 mat.SetInt("_ZWrite", 0);
                 mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
-                if (mat.HasProperty("_BaseMap")) mat.SetTexture("_BaseMap", SpriteFactory.Circle.texture);
+                ApplyCircleTexture(mat);
                 additiveMaterial = mat;
                 return additiveMaterial;
             }
+        }
+
+        /// <summary>원(SpriteFactory.Circle)의 부드러운 알파 텍스처를 씌운다 — 이게 없으면 파티클이
+        /// 그냥 네모(빌보드 쿼드 원본 모양)로 보인다. URP 셰이더는 _BaseMap, 예전 셰이더는 _MainTex라
+        /// 이름이 달라서 둘 다 시도한다.</summary>
+        static void ApplyCircleTexture(Material mat)
+        {
+            var texture = SpriteFactory.Circle.texture;
+            if (mat.HasProperty("_BaseMap")) mat.SetTexture("_BaseMap", texture);
+            if (mat.HasProperty("_MainTex")) mat.SetTexture("_MainTex", texture);
         }
 
         public static ParticleSystem SpawnBurst(Vector2 position, Transform parent, ParticleBurstConfig config)
@@ -146,7 +156,9 @@ namespace CCT
             else
             {
                 // 가산 블렌딩 셰이더를 못 찾으면(드문 경우) 최소한 렌더는 되는 기본 스프라이트 머티리얼로.
-                renderer.material = new Material(Shader.Find("Sprites/Default")) { hideFlags = HideFlags.HideAndDontSave };
+                var fallback = new Material(Shader.Find("Sprites/Default")) { hideFlags = HideFlags.HideAndDontSave };
+                ApplyCircleTexture(fallback);
+                renderer.material = fallback;
             }
 
             ps.Play();
