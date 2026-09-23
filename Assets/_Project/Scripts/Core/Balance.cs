@@ -11,6 +11,11 @@ namespace CCT
 
         /// <summary>화면 가장자리 바깥으로 이 만큼 떨어진 곳에서 걸어들어온다 (벨트스크롤 진입 연출).</summary>
         public const float SpawnEdgeMargin = 1.5f;
+        /// <summary>한 번 화면 안으로 들어온 몹은 카메라가 움직여도 이 여백만큼은 항상 화면 안에 남는다
+        /// (Enemy.ClampToCameraView) — 화면 가장자리에서 반쯤 잘려 보이거나, 카메라를 못 따라잡는
+        /// 느린/제자리 몹이 뒤에 남겨지는 걸 막는다. 스폰 직후(아직 한 번도 화면에 안 들어온 상태)는
+        /// 적용하지 않아 SpawnEdgeMargin 진입 연출은 그대로 유지된다.</summary>
+        public const float EnemyViewClampMargin = 0.2f;
         /// <summary>양쪽에서 동시에 몰려오는 웨이브 간격(초)과 한쪽당 마리 수.</summary>
         public const float WaveIntervalSeconds = 14f;
         public const int WaveCountPerSide = 4;
@@ -52,13 +57,6 @@ namespace CCT
         /// <summary>카메라가 레인 중심보다 이만큼 위에 고정되어, 플레이 영역이 화면 아래쪽에 놓인다.</summary>
         public const float CameraAboveLaneOffset = 1.5f;
         public const float CameraFixedY = LaneCenterY + CameraAboveLaneOffset;
-
-        /// <summary>
-        /// 실제 몹 아이콘은 1024px 캔버스 안에 여백이 많아(그림 자체는 절반 정도만 차 있음)
-        /// def.radius 그대로 스케일하면 플레이어에 비해 작아 보인다. 시각적으로만 이 배율만큼 키운다
-        /// (콜라이더·전투 판정은 def.radius 그대로 영향 없음). Capsule placeholder는 캔버스를 꽉 채우므로 해당 없음.
-        /// </summary>
-        public const float EnemyIconVisualScale = 2.0f;
 
         /// <summary>재료 픽업 아이콘도 캔버스 여백 때문에 작아 보여서 시각적으로만 키운다.</summary>
         public const float IngredientIconVisualScale = 1.6f;

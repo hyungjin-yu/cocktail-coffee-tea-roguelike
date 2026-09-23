@@ -32,6 +32,12 @@ namespace CCT
         public string spriteResourcePath;
         /// <summary>진상 손님 전용: HP 50% 미만("Enraged") 진입 시 바꿔 낄 2페 아트. 없으면 항상 기본 아트 유지.</summary>
         public string enragedSpriteResourcePath;
+        /// <summary>아이콘이 있을 때만 적용되는 시각 배율(콜라이더는 영향 없음, def.radius 그대로).
+        /// 이미지마다 캔버스 안에서 캐릭터가 차지하는 비율이 달라서(칵테일/차 로스터 원화는 여백이
+        /// 있어 2배를 줘야 체감 크기가 맞고, 보스/엘리트 신규 아트는 캔버스를 거의 꽉 채워서 그대로
+        /// 1배가 맞다) — 알파 채널을 읽어 자동으로 계산해봤지만(연기/오라 효과가 캔버스 가장자리까지
+        /// 닿는 이미지가 많아) 신뢰할 수 없어서 이미지를 직접 보고 수동으로 값을 정한다.</summary>
+        public float iconVisualScale = 1f;
 
         public EnemyArchetype archetype = EnemyArchetype.Rush;
 
@@ -73,6 +79,7 @@ namespace CCT
             contactDamage = 6f,
             ingredientAmount = 1,
             spriteResourcePath = "Icons/Enemies/lime_wedge",
+            iconVisualScale = 2f,
         };
 
         /// <summary>디자인 문서엔 없는 자체 추가 잡몹 (덩치 큰 돌진형, 다양성용).</summary>
@@ -104,6 +111,7 @@ namespace CCT
             projectileDamage = 10f,
             attackInterval = 2.0f,
             projectileSpriteResourcePath = "Icons/Enemies/ice_shard",
+            iconVisualScale = 2f,
         };
 
         /// <summary>폭발형(Suicide). 접근해 자폭 → 화염(알콜) 장판을 잠시 남긴다.</summary>
@@ -122,6 +130,7 @@ namespace CCT
             burstZoneSeconds = 2.5f,
             spriteResourcePath = "Icons/Enemies/olive_bomber",
             archetype = EnemyArchetype.Suicide,
+            iconVisualScale = 2f,
         };
 
         /// <summary>소환형(Summoner). 제자리에서 라임웨지를 주기적으로 소환, 직접 공격은 거의 없음.</summary>
@@ -138,6 +147,7 @@ namespace CCT
             archetype = EnemyArchetype.Summoner,
             summonDef = Imp,
             summonInterval = 6f,
+            iconVisualScale = 2f,
         };
 
         /// <summary>[엘리트] 탄막형(EliteBarrage). 원형 유리 파편 탄막. 체력이 높고 웨이브 후반에 드물게 등장.</summary>
@@ -157,6 +167,7 @@ namespace CCT
             projectileDamage = 7f,
             attackInterval = 3.2f,
             barrageCount = 8,
+            iconVisualScale = 2f,
         };
 
         // ── 차 트랙 (Tea) — 칵테일 트랙과 동일 아키타입을 재사용, 대칭 구조 ([[01_몹 디자인 - 칵테일 & 차]] 3장) ──
@@ -173,6 +184,7 @@ namespace CCT
             ingredientAmount = 1,
             dropType = IngredientType.Tea,
             spriteResourcePath = "Icons/Enemies/teabag_imp",
+            iconVisualScale = 2f,
         };
 
         /// <summary>투척형(Ranged). 쉐이커 골렘의 차 트랙 대칭 — 뜨거운 물방울 투척.</summary>
@@ -193,6 +205,7 @@ namespace CCT
             projectileDamage = 10f,
             attackInterval = 2.0f,
             projectileSpriteResourcePath = "Icons/Enemies/water_drop",
+            iconVisualScale = 2f,
         };
 
         /// <summary>폭발형(Suicide). 올리브 바머의 차 트랙 대칭 — 피해 대신 둔화 장판(끈적한 설탕)으로 차별화.</summary>
@@ -213,6 +226,7 @@ namespace CCT
             burstZoneSlows = true,
             burstSlowMultiplier = 0.5f,
             archetype = EnemyArchetype.Suicide,
+            iconVisualScale = 2f,
         };
 
         /// <summary>소환형(Summoner). 스월스틱 컨저러의 차 트랙 대칭 — 제자리에서 티백 임프를 주기 소환.</summary>
@@ -383,6 +397,7 @@ namespace CCT
         Sprite normalIcon;
         Sprite enragedIcon;
         bool isEnragedVisual;
+        bool hasEnteredView;
 
         public EnemyDef Def => def;
         public float Hp { get; private set; }
@@ -428,12 +443,12 @@ namespace CCT
 
             var icon = string.IsNullOrEmpty(def.spriteResourcePath) ? null : Resources.Load<Sprite>(def.spriteResourcePath);
 
-            // 스프라이트를 별도 자식에 둬서, 실제 아이콘의 캔버스 여백(그림이 1024px 안에 절반 정도만
-            // 차 있음) 때문에 체감 크기가 작아지는 걸 시각적으로만 보정한다.
-            // 루트(=이 오브젝트)는 스케일 1을 유지해 콜라이더·전투 판정은 def.radius 그대로 간다.
+            // 스프라이트를 별도 자식에 둬서, 실제 아이콘의 캔버스 여백(이미지마다 캐릭터가 차지하는
+            // 비율이 다 다름 — def.iconVisualScale) 때문에 체감 크기가 달라지는 걸 시각적으로만
+            // 보정한다. 루트(=이 오브젝트)는 스케일 1을 유지해 콜라이더·전투 판정은 def.radius 그대로 간다.
             var visualGo = new GameObject("Visual");
             visualGo.transform.SetParent(transform, false);
-            float visualScale = icon != null ? Balance.EnemyIconVisualScale : 1f;
+            float visualScale = icon != null ? def.iconVisualScale : 1f;
             visualGo.transform.localScale = Vector3.one * def.radius * 2f * visualScale;
 
             sr = visualGo.AddComponent<SpriteRenderer>();
@@ -469,12 +484,38 @@ namespace CCT
 
         void Update()
         {
+            ClampToCameraView();
+
             if (flash > 0f)
             {
                 flash -= Time.deltaTime;
                 if (flash > 0f) return;
             }
             sr.color = BaseColor;
+        }
+
+        /// <summary>한 번 화면 안에 들어온 뒤로는 카메라 밖으로 못 나가게 X축만 붙잡는다.
+        /// 스폰 직후(아직 화면에 한 번도 안 들어온 상태)는 SpawnEdgeMargin 진입 연출을 그대로 살려둔다.</summary>
+        void ClampToCameraView()
+        {
+            if (dead) return;
+            var cam = Camera.main;
+            if (cam == null) return;
+
+            float halfWidth = cam.orthographicSize * cam.aspect - Balance.EnemyViewClampMargin - def.radius;
+            if (halfWidth <= 0f) return;
+
+            float camX = cam.transform.position.x;
+            float x = rb.position.x;
+
+            if (!hasEnteredView)
+            {
+                if (Mathf.Abs(x - camX) > halfWidth) return; // 아직 진입 연출 중 — 그대로 둔다
+                hasEnteredView = true;
+            }
+
+            float clampedX = Mathf.Clamp(x, camX - halfWidth, camX + halfWidth);
+            if (!Mathf.Approximately(clampedX, x)) rb.position = new Vector2(clampedX, rb.position.y);
         }
 
         void FixedUpdate()

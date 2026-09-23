@@ -30,8 +30,8 @@ namespace CCT.Tests
                 Assert.AreEqual(expected, sr.sprite, $"{def.name} 는 자기 아이콘을 써야 한다");
                 Assert.AreEqual(Color.white, sr.color);
                 Assert.AreEqual(Color.white, enemy.NormalColor);
-                Assert.AreEqual(def.radius * 2f * Balance.EnemyIconVisualScale, sr.transform.localScale.x, 0.001f,
-                    "실제 아이콘은 캔버스 여백 보정 배율이 적용돼야 한다");
+                Assert.AreEqual(def.radius * 2f * def.iconVisualScale, sr.transform.localScale.x, 0.001f,
+                    "실제 아이콘은 def.iconVisualScale 배율이 적용돼야 한다");
                 Assert.AreEqual(def.radius, enemy.GetComponent<CircleCollider2D>().radius, 0.001f,
                     "콜라이더 반지름은 시각적 배율과 무관하게 def.radius 그대로여야 한다");
 
@@ -39,6 +39,23 @@ namespace CCT.Tests
             }
 
             Object.DestroyImmediate(parent.gameObject);
+        }
+
+        [Test]
+        public void NewBossAndEliteArt_DoesNotGetTheOldRosterCanvasScale()
+        {
+            // 실제 버그: 보스/신규 아트는 칵테일·차 로스터 원화보다 캔버스를 훨씬 꽉 채우는데
+            // 옛 2배 보정을 그대로 물려받아서 화면을 반쯤 채울 정도로 거대하게 렌더링됐다
+            // ("이게 맞나 싶은데" 사용자 리포트, 2026-09-23). 신규 아트는 배율 보정 없이(1배) 써야 한다.
+            foreach (var def in new[]
+                     {
+                         EnemyDef.GrinderGolem, EnemyDef.DripServerSpecter, EnemyDef.EspressoLeviathan,
+                         EnemyDef.DifficultCustomer, EnemyDef.LeafWarden, EnemyDef.TeaCeremonyGuardian,
+                         EnemyDef.EspressoBug, EnemyDef.MilkFoamer,
+                     })
+            {
+                Assert.AreEqual(1f, def.iconVisualScale, $"{def.name} 은 캔버스를 거의 꽉 채우는 아트라 추가 배율이 필요 없다");
+            }
         }
 
         [Test]
