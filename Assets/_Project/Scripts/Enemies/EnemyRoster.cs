@@ -10,11 +10,29 @@ namespace CCT
     /// </summary>
     public static class EnemyRoster
     {
+        /// <summary>커피 트랙(에스프레소 벅/밀크 포머)이 섞이기 시작하는 시점. 그라인더 골렘(중간보스 A) 등장
+        /// 시점(2:30)과 맞춰서, "중간보스 A 처치 이후"라는 기획 의도를 런타임 타이머로 근사한다
+        /// ([[02_몹 디자인 - 커피 & 중간보스]] 1장 — 원두 게이지가 중간보스 킬에만 의존하지 않게 하는 완충재).</summary>
+        const float CoffeeTrackUnlockTime = 150f;
+
         public static EnemyDef PickCommon(float runTime)
         {
+            if (runTime >= CoffeeTrackUnlockTime)
+            {
+                // 커피 합류 후 비율(가안): 칵테일 40 / 차 40 / 커피 20
+                float roll = Random.value;
+                if (roll < 0.4f) return PickTrack(runTime, CocktailTrack);
+                if (roll < 0.8f) return PickTrack(runTime, TeaTrack);
+                return PickCoffee();
+            }
+
             bool tea = Random.value < 0.5f;
             return tea ? PickTrack(runTime, TeaTrack) : PickTrack(runTime, CocktailTrack);
         }
+
+        /// <summary>커피 트랙은 칵테일/차처럼 시간에 따라 늘어나는 여러 아키타입이 아니라, 소량 완충용
+        /// 돌진형/투척형 2종만 고정 비율로 섞는다 (에스프레소 벅이 더 흔함).</summary>
+        static EnemyDef PickCoffee() => Random.value < 0.65f ? EnemyDef.EspressoBug : EnemyDef.MilkFoamer;
 
         /// <summary>트랙별 아키타입 슬롯 (레몬 브루트는 디자인 문서에 없는 자체 추가라 칵테일에만 있음).</summary>
         class Track

@@ -10,6 +10,8 @@ namespace CCT.Tests
         {
             EnemyDef.Imp, EnemyDef.MartiniSpirit, EnemyDef.OliveBomber, EnemyDef.SwirlConjuror, EnemyDef.ShakerGolem,
             EnemyDef.TeabagImp, EnemyDef.KettleCannon, EnemyDef.SugarCubeBomber,
+            EnemyDef.LeafWarden, EnemyDef.TeaCeremonyGuardian, EnemyDef.EspressoBug, EnemyDef.MilkFoamer,
+            EnemyDef.GrinderGolem, EnemyDef.DripServerSpecter, EnemyDef.EspressoLeviathan, EnemyDef.DifficultCustomer,
         };
 
         [Test]
@@ -42,10 +44,29 @@ namespace CCT.Tests
         [Test]
         public void SpawnAt_DefWithoutArt_UsesCapsulePlaceholder()
         {
+            // 브루트는 디자인 문서에 없는 자체 추가 잡몹이라 전용 아트가 없다.
             AssertPlaceholder(EnemyDef.Brute);
-            // 쉐이커 골렘 아트가 일반 몹으로 분리되면서, 중간보스(그라인더 골렘)는 전용 아트가 없어졌다
-            // ([[02_몹 디자인 - 커피 & 중간보스]] 기준 재정렬, 2026-09-22).
-            AssertPlaceholder(EnemyDef.GrinderGolem);
+        }
+
+        [Test]
+        public void DifficultCustomer_SwitchesToEnragedArt_BelowHalfHp_AndBackAbove()
+        {
+            var parent = new GameObject("Parent").transform;
+            var enemy = Enemy.SpawnAt(Vector2.zero, EnemyDef.DifficultCustomer, 1f, null, parent);
+            var sr = enemy.GetComponentInChildren<SpriteRenderer>();
+
+            var normal = Resources.Load<Sprite>(EnemyDef.DifficultCustomer.spriteResourcePath);
+            var enraged = Resources.Load<Sprite>(EnemyDef.DifficultCustomer.enragedSpriteResourcePath);
+            Assert.AreEqual(normal, sr.sprite, "초기에는 1페 아트여야 한다");
+
+            enemy.SetEnragedVisual(true);
+            Assert.AreEqual(enraged, sr.sprite, "Enraged 진입 시 2페 아트로 바뀌어야 한다");
+
+            enemy.SetEnragedVisual(false);
+            Assert.AreEqual(normal, sr.sprite, "Enraged 해제 시 1페 아트로 돌아와야 한다");
+
+            Object.DestroyImmediate(enemy.gameObject);
+            Object.DestroyImmediate(parent.gameObject);
         }
 
         static void AssertPlaceholder(EnemyDef def)

@@ -30,6 +30,8 @@ namespace CCT
 
         /// <summary>Resources 경로 (예: "Icons/Enemies/lime_wedge"). 없으면 Capsule placeholder + color.</summary>
         public string spriteResourcePath;
+        /// <summary>진상 손님 전용: HP 50% 미만("Enraged") 진입 시 바꿔 낄 2페 아트. 없으면 항상 기본 아트 유지.</summary>
+        public string enragedSpriteResourcePath;
 
         public EnemyArchetype archetype = EnemyArchetype.Rush;
 
@@ -227,6 +229,7 @@ namespace CCT
             archetype = EnemyArchetype.Summoner,
             summonDef = TeabagImp,
             summonInterval = 6f,
+            spriteResourcePath = "Icons/Enemies/leaf_warden",
         };
 
         /// <summary>[엘리트] 탄막형(EliteBarrage). 마티니 스피릿의 차 트랙 대칭 — 뜨거운 물줄기 탄막.</summary>
@@ -246,10 +249,47 @@ namespace CCT
             projectileDamage = 7f,
             attackInterval = 3.2f,
             barrageCount = 8,
+            spriteResourcePath = "Icons/Enemies/tea_ceremony_guardian",
         };
 
-        /// <summary>중간보스 A: 돌진 패턴. 처치하면 커피 원두를 쏟아낸다 (5개 × 4 = 원두 20).
-        /// 전용 아트는 아직 없음 (쉐이커 골렘은 별개의 일반 몹으로 분리됨) — 캡슐 placeholder.</summary>
+        // ── 커피 트랙 일반 몹 (완충용, 소량) — [[02_몹 디자인 - 커피 & 중간보스]] 1장.
+        // 중간보스만으로는 원두 게이지가 뭉텅이로만 차서, 후반 웨이브에 아주 낮은 비율로만 섞는다.
+        // EnemyRoster.PickCommon 의 CoffeeTrackUnlockTime 이후에만 등장.
+
+        /// <summary>돌진형(Rush). 라임웨지/티백 임프와 체력은 같지만 더 빠르다 — "커피는 빠르다".</summary>
+        public static readonly EnemyDef EspressoBug = new EnemyDef
+        {
+            name = "에스프레소 벅",
+            color = new Color(0.32f, 0.2f, 0.12f),
+            radius = 0.3f,
+            hp = 20f,
+            speed = 3.6f,
+            contactDamage = 6f,
+            ingredientAmount = 1,
+            dropType = IngredientType.Coffee,
+            spriteResourcePath = "Icons/Enemies/espresso_bug",
+        };
+
+        /// <summary>투척형(Ranged). 우유 거품 투척 — 시야 방해 연출은 이번 범위 밖(피해만 준다).</summary>
+        public static readonly EnemyDef MilkFoamer = new EnemyDef
+        {
+            name = "밀크 포머",
+            color = new Color(0.92f, 0.88f, 0.8f),
+            radius = 0.35f,
+            hp = 35f,
+            speed = 1.8f,
+            contactDamage = 4f,
+            ingredientAmount = 2,
+            dropType = IngredientType.Coffee,
+            spriteResourcePath = "Icons/Enemies/milk_foamer",
+            archetype = EnemyArchetype.Ranged,
+            keepDistance = 4.5f,
+            projectileSpeed = 6f,
+            projectileDamage = 8f,
+            attackInterval = 2.2f,
+        };
+
+        /// <summary>중간보스 A: 돌진 패턴. 처치하면 커피 원두를 쏟아낸다 (5개 × 4 = 원두 20).</summary>
         public static readonly EnemyDef GrinderGolem = new EnemyDef
         {
             name = "그라인더 골렘",
@@ -262,6 +302,7 @@ namespace CCT
             dropCount = 5,
             ingredientAmount = 4,
             boss = BossKind.Mid,
+            spriteResourcePath = "Icons/Enemies/grinder_golem",
         };
 
         /// <summary>중간보스 B: 드립 서버 스펙터. 둥둥 떠다니며 장판(드립 웨이브)과 투명화로 회피를 요구한다
@@ -278,6 +319,7 @@ namespace CCT
             dropCount = 5,
             ingredientAmount = 4,
             boss = BossKind.Mid,
+            spriteResourcePath = "Icons/Enemies/drip_server_specter",
         };
 
         /// <summary>강화 보스(3번째 중간보스): 에스프레소 머신 리바이어던.
@@ -295,9 +337,11 @@ namespace CCT
             dropCount = 8,
             ingredientAmount = 5,
             boss = BossKind.Enhanced,
+            spriteResourcePath = "Icons/Enemies/espresso_leviathan",
         };
 
-        /// <summary>최종보스. 클리어 시 런 종료.</summary>
+        /// <summary>최종보스. 클리어 시 런 종료. HP 50% 미만("Enraged") 진입 시 2페 아트(rage_overlay)로 바뀐다
+        /// (CustomerBossDriver.Enraged 기준 — 소환/환불 쿨타임이 줄어드는 시점과 동일).</summary>
         public static readonly EnemyDef DifficultCustomer = new EnemyDef
         {
             name = "진상 손님",
@@ -308,6 +352,8 @@ namespace CCT
             contactDamage = 20f,
             dropCount = 0,
             boss = BossKind.Final,
+            spriteResourcePath = "Icons/Enemies/difficult_customer",
+            enragedSpriteResourcePath = "Icons/Enemies/difficult_customer_enraged",
         };
     }
 
@@ -334,6 +380,9 @@ namespace CCT
         IEnemyDriver driver;
         float flash;
         bool dead;
+        Sprite normalIcon;
+        Sprite enragedIcon;
+        bool isEnragedVisual;
 
         public EnemyDef Def => def;
         public float Hp { get; private set; }
@@ -389,6 +438,9 @@ namespace CCT
 
             sr = visualGo.AddComponent<SpriteRenderer>();
             sr.sprite = icon != null ? icon : SpriteFactory.Capsule;
+            normalIcon = sr.sprite;
+            enragedIcon = string.IsNullOrEmpty(def.enragedSpriteResourcePath)
+                ? null : Resources.Load<Sprite>(def.enragedSpriteResourcePath);
             // 실제 아이콘은 원본 색 그대로(흰색 틴트), 없으면 placeholder를 def.color로 물들인다.
             // 피격 플래시 후 이 색으로 돌아가므로 BaseColor 도 함께 맞춘다.
             NormalColor = icon != null ? Color.white : def.color;
@@ -402,6 +454,15 @@ namespace CCT
 
         /// <summary>보스 패턴 컴포넌트가 자신을 등록한다.</summary>
         public void SetDriver(IEnemyDriver driver) => this.driver = driver;
+
+        /// <summary>진상 손님의 HP 50% 미만("Enraged") 2페 아트 전환. enragedSpriteResourcePath가 없으면 아무 효과 없음.
+        /// 매 프레임 호출해도 안전 — 이미 같은 상태면 무시한다.</summary>
+        public void SetEnragedVisual(bool enraged)
+        {
+            if (enraged == isEnragedVisual || enragedIcon == null) return;
+            isEnragedVisual = enraged;
+            sr.sprite = enraged ? enragedIcon : normalIcon;
+        }
 
         void OnEnable() => Active.Add(this);
         void OnDisable() => Active.Remove(this);

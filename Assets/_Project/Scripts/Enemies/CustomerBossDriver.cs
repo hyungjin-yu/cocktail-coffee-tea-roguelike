@@ -35,6 +35,8 @@ namespace CCT
         {
             if (enemy == null || enemy.IsDead || game == null || game.State != GameState.Playing) return;
 
+            enemy.SetEnragedVisual(Enraged);
+
             timer -= Time.deltaTime;
             if (timer > 0f) return;
 

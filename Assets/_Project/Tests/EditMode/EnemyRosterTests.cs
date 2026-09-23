@@ -64,6 +64,28 @@ namespace CCT.Tests
         }
 
         [Test]
+        public void CoffeeTrack_NeverAppears_BeforeUnlockTime()
+        {
+            var seen = new HashSet<EnemyDef>();
+            for (int i = 0; i < 12000; i++) seen.Add(EnemyRoster.PickCommon(125f));
+
+            Assert.IsFalse(seen.Contains(EnemyDef.EspressoBug), "150초 전에는 에스프레소 벅이 나오면 안 된다");
+            Assert.IsFalse(seen.Contains(EnemyDef.MilkFoamer), "150초 전에는 밀크 포머가 나오면 안 된다");
+        }
+
+        [Test]
+        public void CoffeeTrack_AppearsAfterUnlockTime_AlongsideCocktailAndTea()
+        {
+            var seen = new HashSet<EnemyDef>();
+            for (int i = 0; i < 4000; i++) seen.Add(EnemyRoster.PickCommon(150f));
+
+            Assert.IsTrue(seen.Contains(EnemyDef.EspressoBug));
+            Assert.IsTrue(seen.Contains(EnemyDef.MilkFoamer));
+            Assert.IsTrue(seen.Contains(EnemyDef.Imp), "커피가 섞여도 칵테일 트랙은 계속 나와야 한다");
+            Assert.IsTrue(seen.Contains(EnemyDef.TeabagImp), "커피가 섞여도 차 트랙은 계속 나와야 한다");
+        }
+
+        [Test]
         public void AttachBehavior_GivesRangedAndSummonerDefsTheirDriver_ButNotRush()
         {
             var parent = new UnityEngine.GameObject("Parent").transform;
