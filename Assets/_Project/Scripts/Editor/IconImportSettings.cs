@@ -18,6 +18,9 @@ namespace CCT.Editor
             var importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;
+            // 테스트가 알파 채널을 읽어서 "가짜 투명"(체크무늬가 픽셀로 그려진 완전 불투명 PNG)을
+            // 잡아내는 데 필요 (2026-09-25, grinder_golem 등 6개 파일에서 실제로 겪은 문제).
+            importer.isReadable = true;
             importer.GetSourceTextureWidthAndHeight(out int width, out _);
             if (width > 0) importer.spritePixelsPerUnit = width;
             // 1024px 원본을 인게임에서 20~30px 수준으로 작게 그리므로(캐릭터 스케일), 밉맵이 없으면

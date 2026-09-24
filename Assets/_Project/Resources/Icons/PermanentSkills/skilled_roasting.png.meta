@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -129,10 +129,10 @@ TextureImporter:
       name: skilled_roasting_0
       rect:
         serializedVersion: 2
-        x: 79
-        y: 95
-        width: 354
-        height: 306
+        x: 111
+        y: 79
+        width: 290
+        height: 338
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

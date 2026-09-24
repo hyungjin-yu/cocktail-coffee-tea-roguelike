@@ -34,7 +34,8 @@ namespace CCT
         /// 돌진형/투척형 2종만 고정 비율로 섞는다 (에스프레소 벅이 더 흔함).</summary>
         static EnemyDef PickCoffee() => Random.value < 0.65f ? EnemyDef.EspressoBug : EnemyDef.MilkFoamer;
 
-        /// <summary>트랙별 아키타입 슬롯 (레몬 브루트는 디자인 문서에 없는 자체 추가라 칵테일에만 있음).</summary>
+        /// <summary>트랙별 아키타입 슬롯 (레몬 브루트는 06 로스터 표에 칵테일 트랙 전용으로만 있고
+        /// 차 트랙 대칭이 없음 — "문서에 없는 자체 추가"라던 예전 설명은 틀렸다, 04/06에 정식 등재됨).</summary>
         class Track
         {
             public EnemyDef rush;

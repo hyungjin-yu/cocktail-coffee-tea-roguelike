@@ -82,7 +82,10 @@ namespace CCT
             iconVisualScale = 2f,
         };
 
-        /// <summary>디자인 문서엔 없는 자체 추가 잡몹 (덩치 큰 돌진형, 다양성용).</summary>
+        /// <summary>덩치 큰 돌진형(칵테일 트랙 전용, 다양성용). "디자인 문서에 없어서 아트가 없는 게
+        /// 정상"이라던 예전 주석은 틀렸다 — 06 로스터 표에 lemon_brute로 정식 등재돼 있고, 04 아트
+        /// 제작 기준도 이 몹을 필수 아트로 명시한다(2026-09-25 Orca 감사로 정정). 아트는 아직 Codex가
+        /// 만들지 않아 placeholder 유지 — "필요 없음"이 아니라 "아직 없음".</summary>
         public static readonly EnemyDef Brute = new EnemyDef
         {
             name = "레몬 브루트",
@@ -295,7 +298,10 @@ namespace CCT
             contactDamage = 4f,
             ingredientAmount = 2,
             dropType = IngredientType.Coffee,
-            spriteResourcePath = "Icons/Enemies/milk_foamer",
+            // _bgfix: 원본 PNG가 가짜 알파(체크무늬가 픽셀로 그려짐, 실제 투명 0%)라 배경을 직접
+            // 제거한 파생본. 임시 조치이며 Codex가 실제 투명 배경으로 재납품하면 교체한다
+            // (2026-09-25 Orca 감사, Delivery/orchestration-art-gap-review.md).
+            spriteResourcePath = "Icons/Enemies/milk_foamer_bgfix",
             archetype = EnemyArchetype.Ranged,
             keepDistance = 4.5f,
             projectileSpeed = 6f,
@@ -316,7 +322,8 @@ namespace CCT
             dropCount = 5,
             ingredientAmount = 4,
             boss = BossKind.Mid,
-            spriteResourcePath = "Icons/Enemies/grinder_golem",
+            // _bgfix: 가짜 알파 배경 제거 파생본 (위 milk_foamer 주석 참고).
+            spriteResourcePath = "Icons/Enemies/grinder_golem_bgfix",
         };
 
         /// <summary>중간보스 B: 드립 서버 스펙터. 둥둥 떠다니며 장판(드립 웨이브)과 투명화로 회피를 요구한다
@@ -333,7 +340,8 @@ namespace CCT
             dropCount = 5,
             ingredientAmount = 4,
             boss = BossKind.Mid,
-            spriteResourcePath = "Icons/Enemies/drip_server_specter",
+            // _bgfix: 가짜 알파 배경 제거 파생본 (위 milk_foamer 주석 참고).
+            spriteResourcePath = "Icons/Enemies/drip_server_specter_bgfix",
         };
 
         /// <summary>강화 보스(3번째 중간보스): 에스프레소 머신 리바이어던.
@@ -351,7 +359,8 @@ namespace CCT
             dropCount = 8,
             ingredientAmount = 5,
             boss = BossKind.Enhanced,
-            spriteResourcePath = "Icons/Enemies/espresso_leviathan",
+            // _bgfix: 가짜 알파 배경 제거 파생본 (위 milk_foamer 주석 참고).
+            spriteResourcePath = "Icons/Enemies/espresso_leviathan_bgfix",
         };
 
         /// <summary>최종보스. 클리어 시 런 종료. HP 50% 미만("Enraged") 진입 시 2페 아트(rage_overlay)로 바뀐다
@@ -366,8 +375,9 @@ namespace CCT
             contactDamage = 20f,
             dropCount = 0,
             boss = BossKind.Final,
-            spriteResourcePath = "Icons/Enemies/difficult_customer",
-            enragedSpriteResourcePath = "Icons/Enemies/difficult_customer_enraged",
+            // _bgfix: 가짜 알파 배경 제거 파생본 (위 milk_foamer 주석 참고).
+            spriteResourcePath = "Icons/Enemies/difficult_customer_bgfix",
+            enragedSpriteResourcePath = "Icons/Enemies/difficult_customer_enraged_bgfix",
         };
     }
 
