@@ -85,13 +85,13 @@ namespace CCT.Tests
             yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 0.1f);
 
             // HP 25%까지 미리 깎아서 압력 축적 속도를 30% 페이즈(13/초)로 끌어올려 테스트 시간을 줄인다.
-            // (딜레이스 때문에 압력이 0으로 리셋되지만, 그 뒤로 100 차는 데 100/13 ≈ 7.7초)
+            // (딜레이스 때문에 압력이 0으로 리셋되지만, 그 뒤로 100 차는 데 100/13 ≈ 7.7초 + 폭발 예고 0.6초)
             boss.TakeDamage(boss.MaxHp * 0.75f);
 
             float hpBefore = game.Player.Hp;
             Vector2 posBefore = game.Player.Position;
 
-            float deadline = Time.time + 9f;
+            float deadline = Time.time + 10f;
             while (Time.time < deadline)
             {
                 DismissPopups(game);
@@ -102,6 +102,43 @@ namespace CCT.Tests
             // 이동 입력이 전혀 없으므로, 위치가 눈에 띄게 바뀌었다면 넉백이 실제로 작동했다는 뜻
             Assert.Greater(Vector2.Distance(posBefore, game.Player.Position), 0.2f,
                 "압력 게이지 폭발은 플레이어를 밀어내야 한다 (입력 없이는 다른 이동 수단이 없음)");
+        }
+
+        [UnityTest]
+        public IEnumerator SteamBeam_FreezesMovement_DuringTelegraph()
+        {
+            var game = GameManager.Instance;
+            // 플레이어를 멀리 둬서 얼려있지 않다면 계속 추적(속도>0)하게 만든다
+            game.Player.transform.position = new Vector3(8f, game.Player.Position.y, 0f);
+
+            var boss = Enemy.SpawnAt(game.Player.Position + new Vector2(-6f, 0f), EnemyDef.EspressoLeviathan, 1f,
+                game.Player, game.transform);
+            var driver = boss.gameObject.AddComponent<EspressoLeviathanDriver>();
+            driver.Init(boss, game);
+            var rb = boss.GetComponent<Rigidbody2D>();
+
+            // 등장 안내(1초) + 첫 지연(3초)을 넘겨 증기 예고(0.8초) 구간으로 진입
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 3f + 0.3f);
+
+            Assert.AreEqual(Vector2.zero, rb.linearVelocity,
+                "06:127 — 증기 분사 시전(예고 포함) 중에는 제자리에 멈춰야 한다");
+        }
+
+        [UnityTest]
+        public IEnumerator DripRain_DoesNotSpawnZones_BeforeTelegraphElapses()
+        {
+            var game = GameManager.Instance;
+            var boss = Enemy.SpawnAt(game.Player.Position + new Vector2(4f, 0f), EnemyDef.EspressoLeviathan, 1f,
+                game.Player, game.transform);
+            var driver = boss.gameObject.AddComponent<EspressoLeviathanDriver>();
+            driver.Init(boss, game);
+
+            // 첫 패턴은 증기(패턴0), 두 번째가 드립 폭우(패턴1) — 쿨타임(6.5초) 뒤.
+            // 등장 안내(1) + 첫 지연(3) + 쿨타임(6.5) 직후, 드립 폭우 예고(0.6초) "안"에 관찰한다.
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 3f + 6.5f + 0.2f);
+
+            Assert.IsNull(Object.FindFirstObjectByType<BurstZone>(),
+                "06:128 — 예고(0.6초)가 끝나기 전에는 장판이 생기면 안 된다");
         }
     }
 }

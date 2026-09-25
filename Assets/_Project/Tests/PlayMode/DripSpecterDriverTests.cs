@@ -68,16 +68,39 @@ namespace CCT.Tests
             // 그 뒤 무적 1.2초 → 여유 있게 11.5초
             float deadline = Time.time + 11.5f;
             bool wasInvulnerable = false;
+            bool wasFrozenWhileInvulnerable = false;
+            var rb = specter.GetComponent<Rigidbody2D>();
             while (Time.time < deadline)
             {
-                if (specter != null && specter.Invulnerable) wasInvulnerable = true;
+                if (specter != null && specter.Invulnerable)
+                {
+                    wasInvulnerable = true;
+                    if (rb.linearVelocity == Vector2.zero) wasFrozenWhileInvulnerable = true;
+                }
                 DismissPopups(game);
                 yield return null;
             }
 
             Assert.IsTrue(wasInvulnerable, "투명화 중에는 한 번은 무적 상태였어야 한다");
+            Assert.IsTrue(wasFrozenWhileInvulnerable, "06:123 — 투명화 중에는 이동도 멈춰야 한다");
             Assert.IsNotNull(specter, "이 시나리오에서 스펙터가 죽으면 안 된다");
             Assert.IsFalse(specter.Invulnerable, "재등장 후에는 무적이 풀려 있어야 한다");
+        }
+
+        [UnityTest]
+        public IEnumerator DripWave_DoesNotSpawnZoneImmediately_WaitsOutTelegraph()
+        {
+            var game = GameManager.Instance;
+            game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
+            var specter = Enemy.SpawnAt(game.Player.Position + new Vector2(3f, 0f), EnemyDef.DripServerSpecter,
+                1f, game.Player, game.transform);
+            specter.gameObject.AddComponent<DripSpecterDriver>().Init(specter, game);
+
+            // 등장 안내(1초) + 첫 텀(2.5초) 직후, 첫 장판의 예고(0.6초)가 끝나기 전 시점을 관찰
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 2.5f + 0.2f);
+
+            Assert.IsNull(Object.FindFirstObjectByType<BurstZone>(),
+                "06:121 — 웨이브 첫 점도 예고(0.6초) 없이 즉시 장판이 생기면 안 된다");
         }
     }
 }

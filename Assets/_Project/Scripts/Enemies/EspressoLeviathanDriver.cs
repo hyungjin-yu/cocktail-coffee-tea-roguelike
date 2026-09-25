@@ -4,12 +4,13 @@ using UnityEngine;
 namespace CCT
 {
     /// <summary>
-    /// 강화 보스(3번째 중간보스): 에스프레소 머신 리바이어던 ([[02_몹 디자인 - 커피 & 중간보스]] 참고).
+    /// 강화 보스(3번째 중간보스): 에스프레소 머신 리바이어던 ([[06_전투와 런 규칙 v1.0]] 강화 절 참고).
     /// 그라인더 골렘의 "직선 위협"(증기 분사)과 드립 서버 스펙터의 "장판"(드립 폭우) 패턴을 압축 계승하고,
     /// 신규 패턴 "압력 게이지 폭발"을 더한다. 압력 게이지는 시간이 지나면 자동으로 차고, 플레이어가
     /// 보스에게 주는 피해로 늦출 수 있다(딜레이스). HP 60%/30% 이하에서 축적 속도가 빨라진다.
+    /// 06:130 — 압력이 100에 도달하면 진행 중이던 증기/폭우 예고를 취소하고 압력 시전으로 전환한다.
     /// </summary>
-    public class EspressoLeviathanDriver : MonoBehaviour
+    public class EspressoLeviathanDriver : MonoBehaviour, IEnemyDriver
     {
         const float FirstAttackDelay = 3f;
         const float AttackCooldown = 6.5f;
@@ -24,6 +25,7 @@ namespace CCT
         const float DripRainDamagePerSecond = 9f;
         const float DripRainZoneSeconds = 2.5f;
         const float DripRainSpread = 4f;
+        const float DripRainTelegraphSeconds = 0.6f;
 
         const float PressureMax = 100f;
         const float PressureFillPerSecond = 6f;
@@ -31,6 +33,7 @@ namespace CCT
         const float PressureFillPerSecondPhase30 = 13f;
         /// <summary>플레이어가 보스에게 준 피해 1당 압력 게이지가 이만큼 줄어든다 (딜레이스 체크).</summary>
         const float PressureReliefPerDamage = 0.15f;
+        const float PressureTelegraphSeconds = 0.6f;
         const float PressureExplosionRadius = 3.5f;
         const float PressureExplosionDamage = 20f;
 
@@ -39,12 +42,18 @@ namespace CCT
         float attackTimer = FirstAttackDelay;
         int patternIndex;
         float pressure;
+        /// <summary>증기/폭우 예고~시전 중이거나 압력 폭발 예고 중이면 true — 그동안 제자리에 멈춘다(06:127/128 "시전 중 정지").</summary>
+        bool frozen;
+        /// <summary>압력 폭발 예고가 시작된 뒤로는 true — 그동안 압력이 고정되어 피해로도 줄지 않는다(06:130).</summary>
+        bool pressureLocked;
+        Coroutine currentPattern;
 
         public void Init(Enemy enemy, GameManager game)
         {
             this.enemy = enemy;
             this.game = game;
             enemy.Damaged += OnDamaged;
+            enemy.SetDriver(this);
         }
 
         void OnDestroy()
@@ -52,7 +61,17 @@ namespace CCT
             if (enemy != null) enemy.Damaged -= OnDamaged;
         }
 
-        void OnDamaged(float amount) => pressure = Mathf.Max(0f, pressure - amount * PressureReliefPerDamage);
+        public bool TryGetVelocity(Vector2 selfPosition, Vector2 playerPosition, out Vector2 velocity)
+        {
+            velocity = Vector2.zero;
+            return frozen; // frozen이 아니면 false를 돌려줘서 Enemy의 기본 추적을 그대로 쓴다
+        }
+
+        void OnDamaged(float amount)
+        {
+            if (pressureLocked) return; // 06:130 — 예고 중 압력은 고정되어 피해로 취소되지 않음
+            pressure = Mathf.Max(0f, pressure - amount * PressureReliefPerDamage);
+        }
 
         /// <summary>테스트용 — 현재 압력 게이지(0~PressureMax).</summary>
         public float Pressure => pressure;
@@ -79,11 +98,38 @@ namespace CCT
 
         void TickPressure()
         {
+            if (pressureLocked) return;
             pressure += FillRate * Time.deltaTime;
             if (pressure < PressureMax) return;
 
+            // 06:130 — 기존 미발동 공격 경고 취소, 압력 시전으로 전환
+            if (currentPattern != null)
+            {
+                StopCoroutine(currentPattern);
+                currentPattern = null;
+            }
+            currentPattern = StartCoroutine(PressureExplosionRoutine());
+        }
+
+        IEnumerator PressureExplosionRoutine()
+        {
+            pressureLocked = true;
+            frozen = true;
+
+            game.Hud.ShowBanner("압력 게이지 폭발 예고!", "곧 넓은 범위에 피해 + 넉백!", PressureTelegraphSeconds);
+            FadeVfx.Spawn(SpriteFactory.Circle, enemy.transform.position, 0f,
+                Vector2.one * 0.4f, Vector2.one * (PressureExplosionRadius * 2f),
+                new Color(0.95f, 0.7f, 0.25f, 0.5f), PressureTelegraphSeconds, 5);
+
+            yield return new WaitForSeconds(PressureTelegraphSeconds);
+
+            if (enemy != null && !enemy.IsDead) Explode();
+
             pressure = 0f;
-            Explode();
+            pressureLocked = false;
+            frozen = false;
+            currentPattern = null;
+            attackTimer = AttackCooldown; // 06:130 — 이후 대기 6.5초 후 중단됐던 패턴 순서부터 재개(기존 활성 장판은 남는다)
         }
 
         void Explode()
@@ -107,17 +153,18 @@ namespace CCT
 
         void TickAttackPattern()
         {
+            if (pressureLocked) return; // 06:131 — 압력 경고와 다른 단발 예고를 동시에 시작하지 않는다
             attackTimer -= Time.deltaTime;
             if (attackTimer > 0f) return;
 
             attackTimer = AttackCooldown;
-            if (patternIndex++ % 2 == 0) StartCoroutine(SteamBeam());
-            else DripRain();
+            currentPattern = patternIndex++ % 2 == 0 ? StartCoroutine(SteamBeam()) : StartCoroutine(DripRainRoutine());
         }
 
         IEnumerator SteamBeam()
         {
-            if (game.Player == null || game.Player.IsDead) yield break;
+            frozen = true;
+            if (game.Player == null || game.Player.IsDead) { frozen = false; currentPattern = null; yield break; }
 
             Vector2 origin = enemy.transform.position;
             Vector2 dir = game.Player.Position.x >= origin.x ? Vector2.right : Vector2.left;
@@ -131,7 +178,12 @@ namespace CCT
 
             yield return new WaitForSeconds(SteamTelegraphSeconds);
 
-            if (enemy == null || enemy.IsDead || game.Player == null || game.Player.IsDead) yield break;
+            if (enemy == null || enemy.IsDead || game.Player == null || game.Player.IsDead)
+            {
+                frozen = false;
+                currentPattern = null;
+                yield break;
+            }
 
             // 조준선은 텔레그래프가 시작될 때 고정한 방향으로 발사 (재조준 없음 — 옆으로 피하면 안전)
             Vector2 endPoint = origin + dir * SteamRange;
@@ -141,20 +193,42 @@ namespace CCT
             FadeVfx.Spawn(SpriteFactory.Square, mid, angle,
                 new Vector2(SteamRange, SteamWidth), new Vector2(SteamRange, SteamWidth * 0.3f),
                 new Color(1f, 0.85f, 0.6f, 0.7f), 0.25f, 4);
+
+            frozen = false;
+            currentPattern = null;
         }
 
-        void DripRain()
+        IEnumerator DripRainRoutine()
         {
-            game.Hud.ShowBanner("드립 폭우", "안전지대를 찾아 움직이세요!", 2f);
-            if (game.Player == null) return;
+            frozen = true;
+            game.Hud.ShowBanner("드립 폭우 예고", "곧 안전지대를 찾아 움직이세요!", DripRainTelegraphSeconds);
 
+            // 06:128 — 시작 시 위치를 고정하고 0.6초 예고 후 동시에 생성.
+            var positions = new Vector2[DripRainZoneCount];
+            bool havePlayer = game.Player != null;
             for (int i = 0; i < DripRainZoneCount; i++)
             {
-                Vector2 pos = game.Player.Position + Random.insideUnitCircle * DripRainSpread;
+                Vector2 pos = havePlayer
+                    ? game.Player.Position + Random.insideUnitCircle * DripRainSpread
+                    : (Vector2)enemy.transform.position;
                 pos.y = Mathf.Clamp(pos.y, Balance.DepthMin, Balance.DepthMax);
-                BurstZone.Spawn(pos, DripRainRadius, DripRainDamagePerSecond, DripRainZoneSeconds,
-                    game.Player, enemy.transform.parent);
+                positions[i] = pos;
+                FadeVfx.Spawn(SpriteFactory.Circle, pos, 0f,
+                    Vector2.one * 0.3f, Vector2.one * (DripRainRadius * 2f),
+                    new Color(0.85f, 0.5f, 0.2f, 0.35f), DripRainTelegraphSeconds);
             }
+
+            yield return new WaitForSeconds(DripRainTelegraphSeconds);
+
+            if (enemy != null && !enemy.IsDead && game.Player != null)
+            {
+                foreach (var pos in positions)
+                    BurstZone.Spawn(pos, DripRainRadius, DripRainDamagePerSecond, DripRainZoneSeconds,
+                        game.Player, enemy.transform.parent);
+            }
+
+            frozen = false; // 생성 시 패턴 종료 (장판 수명은 독립)
+            currentPattern = null;
         }
 
         static float DistancePointToSegment(Vector2 p, Vector2 a, Vector2 b)
