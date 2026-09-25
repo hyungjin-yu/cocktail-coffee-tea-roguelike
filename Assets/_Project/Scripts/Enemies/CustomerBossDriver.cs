@@ -139,7 +139,7 @@ namespace CCT
                     float side = (i % 2 == 0) ? -1f : 1f;
                     float depth = Random.Range(Balance.DepthMin, Balance.DepthMax);
                     float x = enemy.transform.position.x + side * (enemy.Def.radius + 2f + Random.Range(0f, 2f));
-                    var summoned = Enemy.SpawnAt(new Vector2(x, depth), EnemyRoster.PickCommon(game.RunTime), hpScale,
+                    var summoned = Enemy.SpawnAt(new Vector2(x, depth), EnemyRoster.PickCommon(game.RunTime, game.SpawnRng), hpScale,
                         game.Player, enemy.transform.parent);
                     EnemyRoster.AttachBehavior(summoned, game, game.Player);
                 }

@@ -53,6 +53,11 @@ namespace CCT
         public float RunTime { get; private set; }
         public int Kills { get; private set; }
         public bool Cleared { get; private set; }
+        /// <summary>이번 런의 기본 시드 (06:98). 카드/스폰/품종/보스 위치는 여기서 파생된 독립 스트림을 쓴다.</summary>
+        public int Seed => rng.Seed;
+        public IRandomSource SpawnRng => rng.Spawns;
+        public IRandomSource BossPositionRng => rng.BossPositions;
+        RunRandom rng;
 
         /// <summary>스페셜티(영구 재화)로 얻은 커피 원두 획득 배율. 1 = 보너스 없음.</summary>
         public float BeanGainMultiplier { get; private set; } = 1f;
@@ -75,8 +80,9 @@ namespace CCT
             Weapon = weapon;
             var preset = JobPreset.For(job);
 
+            rng = new RunRandom(RunRandom.GenerateSeed());
             Stats = new PlayerStats();
-            cards = new CardSystem(CardDatabase.LoadAll());
+            cards = new CardSystem(CardDatabase.LoadAll(), rng.Cards);
             Skills = new SkillTree(SkillDatabase.LoadAll());
 
             // 스페셜티로 미리 찍어둔 영구 강화는 런 시작 시 한 번 적용 — 런 종료해도 사라지지 않는 유일한 진행치.
@@ -186,9 +192,10 @@ namespace CCT
             if (State == GameState.GameOver) return;
 
             // 재료를 주울 때마다 그 종류 안에서 품종이 무작위로 하나 골라진다 — 도감의 "품종 수집" 대상.
+            // 06:98 — 품종은 시드에서 파생된 독립 스트림을 쓴다.
             var varieties = MaterialVarieties.For(type);
             if (varieties.Count > 0)
-                PermanentProgress.DiscoverMaterialVariety(varieties[Random.Range(0, varieties.Count)].id);
+                PermanentProgress.DiscoverMaterialVariety(varieties[rng.Varieties.RangeInt(varieties.Count)].id);
 
             switch (type)
             {
@@ -303,7 +310,7 @@ namespace CCT
             Time.timeScale = 0f;
             PermanentProgress.AddMaterialsCollected(cocktailCollectedThisRun, teaCollectedThisRun, beansCollectedThisRun);
             resultView.Show(cleared, RunTime, Kills, CocktailGauge.Level, TeaGauge.Level, Skills.UnlockedCount,
-                PermanentProgress.Current.specialtyPoints);
+                PermanentProgress.Current.specialtyPoints, Seed);
         }
 
         public void Restart()

@@ -46,8 +46,9 @@ namespace CCT
 
         public Enemy SpawnNow(Spec spec)
         {
-            // 벨트스크롤 시점: 보스도 화면 좌/우 바깥에서 걸어들어온다
-            float side = Random.value < 0.5f ? -1f : 1f;
+            // 벨트스크롤 시점: 보스도 화면 좌/우 바깥에서 걸어들어온다. 06:98 — 보스 위치는 시드에서
+            // 파생된 독립 스트림을 쓴다.
+            float side = game.BossPositionRng.Value() < 0.5f ? -1f : 1f;
             var pos = BeltScroll.EdgePosition(Camera.main, side, Balance.SpawnEdgeMargin);
             var boss = Enemy.SpawnAt(pos, spec.def, spec.hpScale, game.Player, game.transform);
 

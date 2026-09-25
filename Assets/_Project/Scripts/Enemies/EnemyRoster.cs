@@ -15,24 +15,29 @@ namespace CCT
         /// ([[02_몹 디자인 - 커피 & 중간보스]] 1장 — 원두 게이지가 중간보스 킬에만 의존하지 않게 하는 완충재).</summary>
         const float CoffeeTrackUnlockTime = 150f;
 
-        public static EnemyDef PickCommon(float runTime)
+        /// <summary>rng를 생략하면 기존 UnityEngine.Random(전역)을 그대로 쓴다 — 기존 호출부/테스트는
+        /// 아무것도 안 바꿔도 된다. 실제 런에서는 GameManager가 시드에서 파생한 스트림(06:98)을 넘긴다.</summary>
+        public static EnemyDef PickCommon(float runTime, IRandomSource rng = null)
         {
+            rng ??= UnityRandomSource.Instance;
+
             if (runTime >= CoffeeTrackUnlockTime)
             {
                 // 커피 합류 후 비율(가안): 칵테일 40 / 차 40 / 커피 20
-                float roll = Random.value;
-                if (roll < 0.4f) return PickTrack(runTime, CocktailTrack);
-                if (roll < 0.8f) return PickTrack(runTime, TeaTrack);
-                return PickCoffee();
+                float roll = rng.Value();
+                if (roll < 0.4f) return PickTrack(runTime, CocktailTrack, rng);
+                if (roll < 0.8f) return PickTrack(runTime, TeaTrack, rng);
+                return PickCoffee(rng);
             }
 
-            bool tea = Random.value < 0.5f;
-            return tea ? PickTrack(runTime, TeaTrack) : PickTrack(runTime, CocktailTrack);
+            bool tea = rng.Value() < 0.5f;
+            return tea ? PickTrack(runTime, TeaTrack, rng) : PickTrack(runTime, CocktailTrack, rng);
         }
 
         /// <summary>커피 트랙은 칵테일/차처럼 시간에 따라 늘어나는 여러 아키타입이 아니라, 소량 완충용
         /// 돌진형/투척형 2종만 고정 비율로 섞는다 (에스프레소 벅이 더 흔함).</summary>
-        static EnemyDef PickCoffee() => Random.value < 0.65f ? EnemyDef.EspressoBug : EnemyDef.MilkFoamer;
+        static EnemyDef PickCoffee(IRandomSource rng) =>
+            rng.Value() < 0.65f ? EnemyDef.EspressoBug : EnemyDef.MilkFoamer;
 
         /// <summary>트랙별 아키타입 슬롯 (레몬 브루트는 06 로스터 표에 칵테일 트랙 전용으로만 있고
         /// 차 트랙 대칭이 없음 — "문서에 없는 자체 추가"라던 예전 설명은 틀렸다, 04/06에 정식 등재됨).</summary>
@@ -66,7 +71,7 @@ namespace CCT
             elite = EnemyDef.TeaCeremonyGuardian,
         };
 
-        static EnemyDef PickTrack(float runTime, Track track)
+        static EnemyDef PickTrack(float runTime, Track track, IRandomSource rng)
         {
             const float wRush = 1f;
             float wRanged = runTime >= 15f ? 0.4f : 0f;
@@ -77,7 +82,7 @@ namespace CCT
             // 엘리트: 웨이브 후반에 드물게 단독 등장 컨셉이라 등장 시점도 늦고 가중치도 낮게
             float wElite = runTime >= 120f ? 0.08f : 0f;
 
-            float roll = Random.value * (wRush + wRanged + wExtra + wSuicide + wSummoner + wElite);
+            float roll = rng.Value() * (wRush + wRanged + wExtra + wSuicide + wSummoner + wElite);
             if ((roll -= wElite) < 0f) return track.elite;
             if ((roll -= wSummoner) < 0f) return track.summoner;
             if ((roll -= wSuicide) < 0f) return track.suicide;

@@ -51,9 +51,10 @@ namespace CCT
         void SpawnOne(float t)
         {
             if (Enemy.Active.Count >= Balance.MaxAliveEnemies) return;
-            float side = Random.value < 0.5f ? -1f : 1f;
+            var rng = game.SpawnRng; // 06:98 — 스폰은 시드에서 파생된 독립 스트림을 쓴다
+            float side = rng.Value() < 0.5f ? -1f : 1f;
             var pos = BeltScroll.EdgePosition(cam, side, Balance.SpawnEdgeMargin);
-            var enemy = Enemy.SpawnAt(pos, EnemyRoster.PickCommon(t), Balance.EnemyHpScale(t), player, transform);
+            var enemy = Enemy.SpawnAt(pos, EnemyRoster.PickCommon(t, rng), Balance.EnemyHpScale(t), player, transform);
             EnemyRoster.AttachBehavior(enemy, game, player);
         }
 
@@ -62,17 +63,18 @@ namespace CCT
         {
             game.Hud.ShowBanner("몹 웨이브!", "양쪽에서 몰려온다", 1.6f);
             float hpScale = Balance.EnemyHpScale(t);
+            var rng = game.SpawnRng;
 
             for (int i = 0; i < Balance.WaveCountPerSide; i++)
             {
                 if (Enemy.Active.Count >= Balance.MaxAliveEnemies) break;
                 var left = Enemy.SpawnAt(BeltScroll.EdgePosition(cam, -1f, Balance.SpawnEdgeMargin),
-                    EnemyRoster.PickCommon(t), hpScale, player, transform);
+                    EnemyRoster.PickCommon(t, rng), hpScale, player, transform);
                 EnemyRoster.AttachBehavior(left, game, player);
 
                 if (Enemy.Active.Count >= Balance.MaxAliveEnemies) break;
                 var right = Enemy.SpawnAt(BeltScroll.EdgePosition(cam, 1f, Balance.SpawnEdgeMargin),
-                    EnemyRoster.PickCommon(t), hpScale, player, transform);
+                    EnemyRoster.PickCommon(t, rng), hpScale, player, transform);
                 EnemyRoster.AttachBehavior(right, game, player);
             }
         }

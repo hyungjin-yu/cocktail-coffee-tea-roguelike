@@ -45,7 +45,7 @@ namespace CCT
         }
 
         public void Show(bool cleared, float runTime, int kills, int cocktailLevel, int teaLevel, int skillsUnlocked,
-            int totalSpecialty)
+            int totalSpecialty, int seed)
         {
             title.text = cleared ? "런 클리어!" : "런 종료";
             title.color = cleared ? new Color(1f, 0.85f, 0.4f) : new Color(1f, 0.5f, 0.6f);
@@ -53,7 +53,8 @@ namespace CCT
             int seconds = Mathf.FloorToInt(runTime);
             stats.text = $"{(cleared ? "클리어 시간" : "생존 시간")}  {seconds / 60:00}:{seconds % 60:00}\n" +
                          $"처치 수  {kills}\n칵테일 Lv {cocktailLevel} / 차 Lv {teaLevel}\n" +
-                         $"해금한 커피 스킬  {skillsUnlocked}  ·  보유 스페셜티  {totalSpecialty}";
+                         $"해금한 커피 스킬  {skillsUnlocked}  ·  보유 스페셜티  {totalSpecialty}\n" +
+                         $"시드  {seed}"; // 06:98 — 결과 화면에 표시
             root.SetActive(true);
         }
 
