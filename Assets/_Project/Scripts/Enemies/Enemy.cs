@@ -591,7 +591,9 @@ namespace CCT
             Destroy(gameObject);
         }
 
-        /// <summary>origin 기준 maxDistance 안에서 가장 가까운 몹. 없으면 null.</summary>
+        /// <summary>origin 기준 maxDistance 안에서 가장 가까운 "타격 가능한"(무적 제외) 몹. 없으면 null.
+        /// 동일 거리면 먼저 스폰한 적이 우선한다 (06:18 — Active는 스폰 순서로 추가됨, `&lt;`로 비교해
+        /// 나중에 검사된 적이 동률로 덮어쓰지 않게 한다).</summary>
         public static Enemy FindNearest(Vector2 origin, float maxDistance)
         {
             Enemy best = null;
@@ -599,9 +601,9 @@ namespace CCT
             for (int i = 0; i < Active.Count; i++)
             {
                 var e = Active[i];
-                if (e == null || e.dead) continue;
+                if (e == null || e.dead || e.Invulnerable) continue;
                 float sqr = ((Vector2)e.transform.position - origin).sqrMagnitude;
-                if (sqr <= bestSqr)
+                if (sqr < bestSqr)
                 {
                     bestSqr = sqr;
                     best = e;

@@ -26,6 +26,8 @@ namespace CCT
         // 플레이어 생존
         public const float PlayerInvulnerableSeconds = 0.8f;
         public const float PlayerRegenPerSecond = 0.5f;
+        /// <summary>장판(DOT) 피해 틱 간격 (06:23). BurstZone류와 PlayerZoneDamage가 공유한다.</summary>
+        public const float ZoneTickInterval = 0.4f;
         /// <summary>카드 선택(레벨업) 시 최대 체력 대비 회복 비율.</summary>
         public const float LevelUpHealFraction = 0.3f;
         /// <summary>중간보스 처치 시 최대 체력 대비 회복 비율.</summary>

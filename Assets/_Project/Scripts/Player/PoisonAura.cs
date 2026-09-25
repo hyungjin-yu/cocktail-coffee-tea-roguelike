@@ -13,7 +13,16 @@ namespace CCT
         {
             this.stats = stats;
             this.player = player;
+            stats.Changed += OnStatsChanged;
         }
+
+        void OnDestroy()
+        {
+            if (stats != null) stats.Changed -= OnStatsChanged;
+        }
+
+        /// <summary>레벨 추가는 남은 타이머를 새 간격 "이하로만" 줄인다 — 늘리지 않는다 (06:20).</summary>
+        void OnStatsChanged() => timer = Mathf.Min(timer, Interval);
 
         float Interval => Mathf.Max(1.0f, 2.6f - 0.2f * stats.poisonLevel);
         float Radius => 1.6f + 0.25f * stats.poisonLevel;

@@ -78,7 +78,7 @@ namespace CCT
             input = ReadMoveInput();
             if (Mathf.Abs(input.x) > 0.01f) Facing = Mathf.Sign(input.x);
 
-            Hp = Mathf.Min(stats.MaxHp, Hp + (Balance.PlayerRegenPerSecond + stats.regenBonus) * Time.deltaTime);
+            Hp = Mathf.Min(stats.MaxHp, Hp + stats.RegenPerSecond * Time.deltaTime);
             if (invulnerable > 0f)
             {
                 invulnerable -= Time.deltaTime;
@@ -90,6 +90,15 @@ namespace CCT
             var scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x) * Facing;
             transform.localScale = scale;
+        }
+
+        /// <summary>이번 프레임 모든 장판의 Update가 끝난 뒤, 가장 높은 DPS 후보 하나만 실제로 적용한다
+        /// (06:23 — 중첩 피해 장판은 가장 높은 DPS 하나만).</summary>
+        void LateUpdate()
+        {
+            if (IsDead) return;
+            float dps = PlayerZoneDamage.ConsumeFrame();
+            if (dps > 0f) TakeZoneDamage(dps * Balance.ZoneTickInterval);
         }
 
         void FixedUpdate()
@@ -165,12 +174,25 @@ namespace CCT
             knockbackRemaining = duration;
         }
 
+        /// <summary>접촉·발사체·보스 단발 피해. 0.8초 무적을 걸고, 그 무적에 막힌다 (06:22).</summary>
         public void TakeDamage(float amount)
         {
             if (IsDead || invulnerable > 0f) return;
+            ApplyDamage(amount);
+            if (!IsDead) invulnerable = Balance.PlayerInvulnerableSeconds;
+        }
 
-            Hp = Mathf.Max(0f, Hp - amount);
-            invulnerable = Balance.PlayerInvulnerableSeconds;
+        /// <summary>장판(DOT) 틱 피해. 단발 무적을 걸지도, 그 무적에 막히지도 않는다 (06:22 — "단발 무적을
+        /// 만들거나 그 무적에 막히지 않는다"). 피해 감소율은 단발과 동일하게 적용된다.</summary>
+        public void TakeZoneDamage(float amount)
+        {
+            if (IsDead) return;
+            ApplyDamage(amount);
+        }
+
+        void ApplyDamage(float amount)
+        {
+            Hp = Mathf.Max(0f, Hp - amount * stats.DamageTakenMultiplier);
             if (Hp <= 0f)
             {
                 IsDead = true;

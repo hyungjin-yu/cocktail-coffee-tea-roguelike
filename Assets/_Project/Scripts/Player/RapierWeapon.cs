@@ -65,15 +65,16 @@ namespace CCT
             float damage = stats.Damage;
             foreach (var hit in hits)
             {
-                if (hit.TryGetComponent<Enemy>(out var enemy))
+                if (hit.TryGetComponent<Enemy>(out var enemy) && !enemy.Invulnerable)
                     enemy.TakeDamage(damage);
             }
 
             float angle = facing > 0f ? 0f : 180f;
             Vector2 vfxCenter = new Vector2(forwardX, player.Position.y);
+            // 발밑 청록색 얇은 범위 잔광으로 실제 박스 범위를 0.12초 표시 (06:37).
             FadeVfx.Spawn(SpriteFactory.Square, vfxCenter, angle,
                 new Vector2(range, 0.22f), new Vector2(range, 0.04f),
-                new Color(1f, 1f, 1f, 0.9f), 0.12f);
+                new Color(0.25f, 0.9f, 0.85f, 0.9f), 0.12f);
         }
     }
 }

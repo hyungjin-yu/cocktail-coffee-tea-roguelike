@@ -2,11 +2,10 @@ using UnityEngine;
 
 namespace CCT
 {
-    /// <summary>올리브 바머가 자폭 후 남기는 화염(알콜) 장판. 범위 안에 있으면 지속 피해.</summary>
+    /// <summary>올리브 바머가 자폭 후 남기는 화염(알콜) 장판. 범위 안에 있으면 지속 피해.
+    /// 실제 피해는 PlayerZoneDamage를 거친다 — 겹친 장판끼리는 가장 높은 DPS 하나만 적용된다(06:23).</summary>
     public class BurstZone : MonoBehaviour
     {
-        const float TickInterval = 0.4f;
-
         PlayerController player;
         float radius;
         float damagePerSecond;
@@ -31,6 +30,7 @@ namespace CCT
             zone.radius = radius;
             zone.damagePerSecond = damagePerSecond;
             zone.remaining = seconds;
+            zone.tickTimer = Balance.ZoneTickInterval; // 첫 틱은 생성 0.4초 후 (06:23)
         }
 
         void Update()
@@ -46,10 +46,10 @@ namespace CCT
 
             tickTimer -= Time.deltaTime;
             if (tickTimer > 0f) return;
-            tickTimer = TickInterval;
+            tickTimer = Balance.ZoneTickInterval;
 
             if (Vector2.Distance(transform.position, player.Position) <= radius)
-                player.TakeDamage(damagePerSecond * TickInterval);
+                PlayerZoneDamage.RequestTick(damagePerSecond);
         }
     }
 }

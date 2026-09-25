@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,12 +48,22 @@ namespace CCT
                 return;
             }
 
-            transform.position += (Vector3)(velocity * Time.deltaTime);
+            // 프레임 간 선분 스윕으로 고속 이동 시 통과 누락을 막는다 (06:20). 경로상 가까운
+            // 충돌부터 순서대로 처리하고, 무적 적은 피해·관통 횟수를 소비하지 않고 통과한다(06:23).
+            Vector2 prev = transform.position;
+            Vector2 delta = velocity * Time.deltaTime;
+            Vector2 next = prev + delta;
+            float dist = delta.magnitude;
 
-            var hits = Physics2D.OverlapCircleAll(transform.position, HitRadius);
+            var hits = dist > 0.0001f
+                ? Physics2D.CircleCastAll(prev, HitRadius, delta.normalized, dist)
+                : Physics2D.CircleCastAll(prev, HitRadius, Vector2.right, 0f);
+            Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
             foreach (var hit in hits)
             {
-                if (!hit.TryGetComponent<Enemy>(out var enemy) || alreadyHit.Contains(enemy)) continue;
+                if (!hit.collider.TryGetComponent<Enemy>(out var enemy)) continue;
+                if (enemy.Invulnerable || alreadyHit.Contains(enemy)) continue;
 
                 enemy.TakeDamage(damage);
                 alreadyHit.Add(enemy);
@@ -64,6 +75,8 @@ namespace CCT
                 }
                 pierceRemaining--;
             }
+
+            transform.position = next;
         }
     }
 }

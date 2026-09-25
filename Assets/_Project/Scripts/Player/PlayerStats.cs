@@ -6,6 +6,11 @@ namespace CCT
     /// <summary>플레이어 스탯. 기본값 + 카드로 쌓인 보너스를 합산해 최종값을 낸다.</summary>
     public class PlayerStats
     {
+        /// <summary>06:23 — 연속타/동시발사 정수 합계 상한. 카드/노드 출처 수 기준 안전판이며 정상 플레이에서
+        /// 이 값에 못 미치게 임의로 잘라내는 용도가 아니다.</summary>
+        public const int MaxExtraThrusts = 7;
+        public const int MaxPierceCount = 6;
+
         public float baseMoveSpeed = 5f;
         public float baseMaxHp = 100f;
         public float baseDamage = 12f;
@@ -30,6 +35,10 @@ namespace CCT
         public int pierceCount;
         /// <summary>영구 강화(스페셜티) 전용 — 커피 원두 획득량 % 보너스. GameManager.BeanGainMultiplier가 읽는다.</summary>
         public float beanGainPercent;
+        /// <summary>받은 피해 감소율 (0~0.25로 clamp). 단발/장판 피해 모두에 적용, 0.8초 무적과는 별개.</summary>
+        public float damageReduction;
+        /// <summary>줍기 반경 가산치 (커피 노드 wide_tray/zero_waste 등).</summary>
+        public float pickupRadiusFlat;
 
         public event Action Changed;
 
@@ -71,13 +80,17 @@ namespace CCT
         float Live(float percent) => BonusesSuppressed ? 0f : percent;
 
         public float DamageBonus => Live(damagePercent);
-        public float MoveSpeed => baseMoveSpeed * (1f + Live(moveSpeedPercent)) * (IsSlowed ? slowMultiplier : 1f);
+        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent))) * (IsSlowed ? slowMultiplier : 1f);
         public float MaxHp => baseMaxHp + maxHpFlat;
         public float Damage => baseDamage * (1f + DamageBonus);
-        public float AttackInterval => baseAttackInterval / (1f + Live(attackSpeedPercent));
+        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval / (1f + Live(attackSpeedPercent)));
         public float Range => baseRange * (1f + Live(rangePercent));
-        public float PickupRadius => basePickupRadius;
+        public float PickupRadius => basePickupRadius + pickupRadiusFlat;
         public float ExtraDropChance => Mathf.Clamp01(dropChancePercent);
+        /// <summary>받은 피해에 곱할 배율 (1 - clamp(damageReduction, 0, 0.25)).</summary>
+        public float DamageTakenMultiplier => 1f - Mathf.Clamp(damageReduction, 0f, 0.25f);
+        /// <summary>실제 초당 회복량. 음수로 떨어지지 않게 하한 0.</summary>
+        public float RegenPerSecond => Mathf.Max(0f, Balance.PlayerRegenPerSecond + regenBonus);
 
         /// <summary>게이지 필요량 배율. 과도한 감소 방지를 위해 하한 0.5.</summary>
         public float GaugeNeedMultiplier => Mathf.Max(0.5f, 1f + gaugeNeedPercent);
@@ -93,12 +106,18 @@ namespace CCT
                 case CardEffectType.MaxHpFlat: maxHpFlat += effect.value; break;
                 case CardEffectType.DropChancePercent: dropChancePercent += effect.value; break;
                 case CardEffectType.GaugeNeedPercent: gaugeNeedPercent += effect.value; break;
-                case CardEffectType.ExtraThrust: extraThrusts += Mathf.RoundToInt(effect.value); break;
+                case CardEffectType.ExtraThrust:
+                    extraThrusts = Mathf.Min(MaxExtraThrusts, extraThrusts + Mathf.RoundToInt(effect.value));
+                    break;
                 case CardEffectType.FlameLevel: flameLevel += Mathf.RoundToInt(effect.value); break;
                 case CardEffectType.RegenBonus: regenBonus += effect.value; break;
                 case CardEffectType.PoisonLevel: poisonLevel += Mathf.RoundToInt(effect.value); break;
-                case CardEffectType.PierceCount: pierceCount += Mathf.RoundToInt(effect.value); break;
+                case CardEffectType.PierceCount:
+                    pierceCount = Mathf.Min(MaxPierceCount, pierceCount + Mathf.RoundToInt(effect.value));
+                    break;
                 case CardEffectType.BeanGainPercent: beanGainPercent += effect.value; break;
+                case CardEffectType.DamageReduction: damageReduction += effect.value; break;
+                case CardEffectType.PickupRadiusFlat: pickupRadiusFlat += effect.value; break;
             }
             Changed?.Invoke();
         }

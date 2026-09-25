@@ -29,6 +29,10 @@ namespace CCT
         PierceCount,
         /// <summary>영구 강화 전용 — 커피 원두 획득량 % 보너스 (PermanentSkillData가 사용).</summary>
         BeanGainPercent,
+        /// <summary>받은 피해 감소 % (07:19 steady_hand 등). PlayerStats.DamageTakenMultiplier에서 0~0.25로 clamp.</summary>
+        DamageReduction,
+        /// <summary>줍기 반경 가산치 (07:141 wide_tray/zero_waste 등).</summary>
+        PickupRadiusFlat,
     }
 
     [Serializable]
