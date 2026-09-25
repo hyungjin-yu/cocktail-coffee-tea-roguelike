@@ -60,6 +60,7 @@ namespace CCT
         void Update()
         {
             if (enemy == null || enemy.IsDead || game == null || game.State != GameState.Playing) return;
+            if (!enemy.HasArrived) return; // 06:24 — 등장 안내 1초 뒤부터 "첫 지연" 시작
 
             TickPressure();
             TickAttackPattern();

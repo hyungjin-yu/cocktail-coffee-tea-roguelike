@@ -48,6 +48,7 @@ namespace CCT.Tests
                 game.Player, game.transform);
             game.ActiveBoss = boss;
 
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 0.1f); // 06:24 등장 안내 동안은 무적
             boss.TakeDamage(999999f);
             yield return null;
 

@@ -40,8 +40,9 @@ namespace CCT
 
             float hpScale = game != null ? Balance.EnemyHpScale(game.RunTime) : 1f;
             var offset = Random.insideUnitCircle.normalized * (def.radius + 1f);
-            Enemy.SpawnAt((Vector2)enemy.transform.position + offset, def.summonDef, hpScale, player,
-                enemy.transform.parent);
+            var pos = (Vector2)enemy.transform.position + offset;
+            pos.y = Mathf.Clamp(pos.y, Balance.DepthMin, Balance.DepthMax); // 06:22 — y를 레인으로 제한
+            Enemy.SpawnAt(pos, def.summonDef, hpScale, player, enemy.transform.parent);
         }
     }
 }

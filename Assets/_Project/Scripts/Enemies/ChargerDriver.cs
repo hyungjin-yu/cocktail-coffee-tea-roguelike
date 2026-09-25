@@ -49,7 +49,7 @@ namespace CCT
 
         void Update()
         {
-            if (enemy == null || enemy.IsDead) return;
+            if (enemy == null || enemy.IsDead || !enemy.HasArrived) return; // 06:24 — 등장 안내 1초 뒤부터 "첫 지연" 시작
 
             timer -= Time.deltaTime;
 
@@ -66,9 +66,11 @@ namespace CCT
                 case Phase.Chase:
                     phase = Phase.Telegraph;
                     timer = TelegraphSeconds;
+                    // 06:116 최종판 변경 — 돌진 방향은 "예고 시작 시" 고정한다. 예고 끝에 재조준하지 않는다.
+                    dashDirection = (lastPlayer - lastSelf).normalized;
+                    ShowChargePath();
                     break;
                 case Phase.Telegraph:
-                    dashDirection = (lastPlayer - lastSelf).normalized;
                     enemy.BaseColor = enemy.NormalColor;
                     phase = Phase.Dash;
                     timer = DashSeconds;
@@ -78,6 +80,17 @@ namespace CCT
                     timer = ChaseSeconds;
                     break;
             }
+        }
+
+        /// <summary>예고 동안 실제 돌진 경로를 표시한다 (06:37 "예고 동안 실제 돌진 경로 표시").</summary>
+        void ShowChargePath()
+        {
+            float length = DashSpeed * DashSeconds;
+            Vector2 mid = lastSelf + dashDirection * (length * 0.5f);
+            float angle = Mathf.Atan2(dashDirection.y, dashDirection.x) * Mathf.Rad2Deg;
+            FadeVfx.Spawn(SpriteFactory.Square, mid, angle,
+                new Vector2(length, 0.08f), new Vector2(length, 0.3f),
+                new Color(1f, 0.2f, 0.15f, 0.55f), TelegraphSeconds);
         }
     }
 }

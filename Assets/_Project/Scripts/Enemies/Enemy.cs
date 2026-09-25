@@ -408,6 +408,11 @@ namespace CCT
         Sprite enragedIcon;
         bool isEnragedVisual;
         bool hasEnteredView;
+        float arrivalGrace;
+
+        /// <summary>보스 등장 1초 안내가 끝나 실제로 행동/피해를 주고받을 수 있는 상태인지.
+        /// 보스가 아니면 항상 true. 드라이버는 이게 true가 되기 전까지 자기 타이머를 멈춰야 한다.</summary>
+        public bool HasArrived => arrivalGrace <= 0f;
 
         public EnemyDef Def => def;
         public float Hp { get; private set; }
@@ -450,6 +455,11 @@ namespace CCT
             rb.freezeRotation = true;
             // 보스가 다른 몹에 밀려 튕기지 않도록 무겁게
             if (def.IsBoss) rb.mass = 50f;
+            if (def.IsBoss)
+            {
+                arrivalGrace = Balance.BossArrivalGraceSeconds;
+                Invulnerable = true; // 안내 1초 동안은 무적 + 접촉 피해 없음(FixedUpdate에서 HasArrived로 게이트)
+            }
 
             var icon = string.IsNullOrEmpty(def.spriteResourcePath) ? null : Resources.Load<Sprite>(def.spriteResourcePath);
 
@@ -496,6 +506,12 @@ namespace CCT
         {
             ClampToCameraView();
 
+            if (arrivalGrace > 0f)
+            {
+                arrivalGrace -= Time.deltaTime;
+                if (arrivalGrace <= 0f) Invulnerable = false;
+            }
+
             if (flash > 0f)
             {
                 flash -= Time.deltaTime;
@@ -536,11 +552,18 @@ namespace CCT
                 return;
             }
 
+            // 적 루트 y를 레인으로 제한한다 (06:14). 직전 스텝에서 벗어났으면 여기서 되돌린다 —
+            // 돌진 같은 임의 방향 이동도 레인 밖으로 더 나아가지 못하게 막는다(06:117 그라인더 돌진).
+            float clampedY = Mathf.Clamp(rb.position.y, Balance.DepthMin, Balance.DepthMax);
+            if (!Mathf.Approximately(clampedY, rb.position.y)) rb.position = new Vector2(rb.position.x, clampedY);
+
             Vector2 toPlayer = player.Position - rb.position;
             if (driver != null && driver.TryGetVelocity(rb.position, player.Position, out var driven))
                 rb.linearVelocity = driven;
             else
                 rb.linearVelocity = toPlayer.normalized * def.speed;
+
+            if (!HasArrived) return; // 보스 등장 안내 1초 동안은 접촉 피해 없음 (06:24)
 
             float touch = def.radius + PlayerController.Radius + 0.15f;
             if (toPlayer.sqrMagnitude <= touch * touch)

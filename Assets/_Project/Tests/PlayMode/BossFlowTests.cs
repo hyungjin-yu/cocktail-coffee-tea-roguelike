@@ -53,6 +53,7 @@ namespace CCT.Tests
             Assert.IsNotNull(boss.GetComponent<ChargerDriver>());
             Assert.AreEqual(BossKind.Mid, boss.Def.boss);
 
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 0.1f); // 06:24 등장 안내 동안은 무적
             boss.TakeDamage(999999f);
             yield return null;
 
@@ -207,6 +208,7 @@ namespace CCT.Tests
             var boss = game.Director.SpawnNow(Final());
             yield return null;
 
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 0.1f); // 06:24 등장 안내 동안은 무적
             boss.TakeDamage(999999f);
             yield return null;
 

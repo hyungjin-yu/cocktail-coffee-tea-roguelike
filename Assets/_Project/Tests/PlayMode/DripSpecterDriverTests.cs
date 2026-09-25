@@ -43,8 +43,8 @@ namespace CCT.Tests
                 1f, game.Player, game.transform);
             specter.gameObject.AddComponent<DripSpecterDriver>().Init(specter, game);
 
-            // 첫 패턴(드립 웨이브)까지 텀(2.5초) + 순차 생성(4발×0.4초)을 넘기기 충분히 대기
-            float deadline = Time.time + 5f;
+            // 등장 안내(1초, 06:24) + 첫 패턴(드립 웨이브)까지 텀(2.5초) + 순차 생성(4발×0.4초)을 넘기기 충분히 대기
+            float deadline = Time.time + 6f;
             while (Time.time < deadline)
             {
                 DismissPopups(game);
@@ -64,8 +64,9 @@ namespace CCT.Tests
                 1f, game.Player, game.transform);
             specter.gameObject.AddComponent<DripSpecterDriver>().Init(specter, game);
 
-            // 두 번째 패턴(투명화)까지: 첫 텀(2.5초) + 쿨타임(6초) = 8.5초, 그 뒤 무적 1.2초 → 여유 있게 10.5초
-            float deadline = Time.time + 10.5f;
+            // 두 번째 패턴(투명화)까지: 등장 안내(1초, 06:24) + 첫 텀(2.5초) + 쿨타임(6초) = 9.5초,
+            // 그 뒤 무적 1.2초 → 여유 있게 11.5초
+            float deadline = Time.time + 11.5f;
             bool wasInvulnerable = false;
             while (Time.time < deadline)
             {

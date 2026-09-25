@@ -47,7 +47,8 @@ namespace CCT.Tests
             var driver = boss.gameObject.AddComponent<EspressoLeviathanDriver>();
             driver.Init(boss, game);
 
-            yield return new WaitForSeconds(1f);
+            // 06:24 — 등장 안내 1초 동안은 압력도 차지 않는다. 그 뒤로 1초치(기본 6/초)를 관찰한다.
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 1f);
 
             Assert.Greater(driver.Pressure, 4f, "압력 게이지는 시간이 지나면 저절로 차야 한다 (기본 6/초)");
             Assert.Less(driver.Pressure, 8f);
@@ -62,7 +63,8 @@ namespace CCT.Tests
             var driver = boss.gameObject.AddComponent<EspressoLeviathanDriver>();
             driver.Init(boss, game);
 
-            yield return new WaitForSeconds(1f); // 압력이 어느 정도 쌓일 시간
+            // 06:24 — 등장 안내(무적) 1초를 넘겨야 피해도 들어가고 압력도 쌓인다.
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 1f); // 압력이 어느 정도 쌓일 시간
 
             boss.TakeDamage(50f); // 딜레이스: 피해 1당 압력 -0.15
             Assert.AreEqual(0f, driver.Pressure, 0.01f, "50 피해(-7.5)는 1초치 압력(~6)보다 커서 0까지 떨어져야 한다");
@@ -78,6 +80,9 @@ namespace CCT.Tests
                 game.Player, game.transform);
             var driver = boss.gameObject.AddComponent<EspressoLeviathanDriver>();
             driver.Init(boss, game);
+
+            // 06:24 — 등장 안내(무적) 1초를 넘겨야 피해가 들어간다.
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 0.1f);
 
             // HP 25%까지 미리 깎아서 압력 축적 속도를 30% 페이즈(13/초)로 끌어올려 테스트 시간을 줄인다.
             // (딜레이스 때문에 압력이 0으로 리셋되지만, 그 뒤로 100 차는 데 100/13 ≈ 7.7초)

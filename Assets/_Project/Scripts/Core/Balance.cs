@@ -28,6 +28,9 @@ namespace CCT
         public const float PlayerRegenPerSecond = 0.5f;
         /// <summary>장판(DOT) 피해 틱 간격 (06:23). BurstZone류와 PlayerZoneDamage가 공유한다.</summary>
         public const float ZoneTickInterval = 0.4f;
+        /// <summary>보스 등장 시 1초 "안내" — 이 동안 무적이고 접촉 피해도 없다. 보스 드라이버의
+        /// "첫 지연"은 이 1초가 끝난 뒤부터 센다 (06:24).</summary>
+        public const float BossArrivalGraceSeconds = 1f;
         /// <summary>카드 선택(레벨업) 시 최대 체력 대비 회복 비율.</summary>
         public const float LevelUpHealFraction = 0.3f;
         /// <summary>중간보스 처치 시 최대 체력 대비 회복 비율.</summary>
