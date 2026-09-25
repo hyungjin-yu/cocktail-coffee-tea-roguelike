@@ -121,5 +121,44 @@ namespace CCT.Tests
             stats.regenBonus = -10f; // 이론상 음수 보너스가 들어와도
             Assert.AreEqual(0f, stats.RegenPerSecond, "07:18 — max(0, 0.5+regenBonus)");
         }
+
+        [Test]
+        public void LockFlame_TicksDown_ThenUnlocks()
+        {
+            var stats = new PlayerStats();
+            Assert.IsFalse(stats.FlameLocked);
+
+            stats.LockFlame(5f);
+            Assert.IsTrue(stats.FlameLocked);
+
+            stats.Tick(4.9f);
+            Assert.IsTrue(stats.FlameLocked, "06:142 — 봉인 시간이 남아있으면 계속 잠겨 있어야 한다");
+
+            stats.Tick(0.2f);
+            Assert.IsFalse(stats.FlameLocked);
+        }
+
+        [Test]
+        public void LockPoison_IsIndependentFromLockFlame()
+        {
+            var stats = new PlayerStats();
+            stats.LockPoison(3f);
+
+            Assert.IsTrue(stats.PoisonLocked);
+            Assert.IsFalse(stats.FlameLocked, "화염과 독 봉인은 서로 독립적이어야 한다");
+        }
+
+        [Test]
+        public void LockFlame_LongerDurationExtendsRemaining_ShorterDoesNotShorten()
+        {
+            var stats = new PlayerStats();
+            stats.LockFlame(2f);
+            stats.LockFlame(6f); // 더 긴 지속시간으로 갱신
+            stats.Tick(5.9f);
+            Assert.IsTrue(stats.FlameLocked, "더 긴 지속시간으로 갱신됐으니 아직 풀리면 안 된다");
+
+            stats.LockFlame(0.5f); // 더 짧은 지속시간은 기존 남은 시간을 줄이면 안 된다
+            Assert.IsTrue(stats.FlameLocked);
+        }
     }
 }

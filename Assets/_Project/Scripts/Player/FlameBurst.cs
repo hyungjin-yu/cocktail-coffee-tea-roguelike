@@ -31,6 +31,7 @@ namespace CCT
         void Update()
         {
             if (player == null || player.IsDead || stats.flameLevel <= 0) return;
+            if (stats.FlameLocked) return; // 06:142 — 주문 부정으로 잠긴 동안은 타이머도 멈춘다
 
             timer -= Time.deltaTime;
             if (timer > 0f) return;

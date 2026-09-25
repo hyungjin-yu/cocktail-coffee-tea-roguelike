@@ -177,9 +177,12 @@ namespace CCT.Tests
 
             var boss = game.Director.SpawnNow(Final());
             Assert.IsNotNull(boss.GetComponent<CustomerBossDriver>());
+            // 06:139 — 환불은 "범위 안" 플레이어에게만 적용되므로, 보스가 화면 밖에서 걸어 들어오는
+            // 시간에 기대지 않고 확실히 사거리 안에 있도록 플레이어를 보스 근처로 붙여준다.
+            game.Player.transform.position = boss.transform.position + new Vector3(1f, 0f, 0f);
 
-            // 첫 패턴(3초 후)은 "환불해주세요!"
-            float deadline = Time.time + 6f;
+            // 첫 패턴(등장 안내 1초 + 3초 후)은 "환불해주세요!"
+            float deadline = Time.time + 7f;
             while (!game.Stats.BonusesSuppressed && Time.time < deadline)
             {
                 DismissPopups(game);

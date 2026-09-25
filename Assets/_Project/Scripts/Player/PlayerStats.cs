@@ -45,6 +45,8 @@ namespace CCT
         float suppressedRemaining;
         float slowRemaining;
         float slowMultiplier = 1f;
+        float flameLockRemaining;
+        float poisonLockRemaining;
 
         /// <summary>진상 손님 "환불해주세요!" 등으로 공격/이동 % 보너스가 무효화된 상태.</summary>
         public bool BonusesSuppressed => suppressedRemaining > 0f;
@@ -65,6 +67,14 @@ namespace CCT
             slowMultiplier = IsSlowed ? Mathf.Min(slowMultiplier, multiplier) : multiplier;
         }
 
+        /// <summary>진상 손님 "주문한 거 아닌데?" — 화염/독 주기 스킬을 duration초 동안 잠근다.
+        /// 스킬 자체(Lv)는 그대로고, FlameBurst/PoisonAura가 잠긴 동안 자기 타이머를 멈춰서
+        /// 남은 시간을 보존한다(06:20 "타이머도 멈췄다가 남은 시간부터 재개").</summary>
+        public bool FlameLocked => flameLockRemaining > 0f;
+        public bool PoisonLocked => poisonLockRemaining > 0f;
+        public void LockFlame(float duration) => flameLockRemaining = Mathf.Max(flameLockRemaining, duration);
+        public void LockPoison(float duration) => poisonLockRemaining = Mathf.Max(poisonLockRemaining, duration);
+
         public void Tick(float deltaTime)
         {
             if (suppressedRemaining > 0f)
@@ -75,6 +85,11 @@ namespace CCT
                 slowRemaining = Mathf.Max(0f, slowRemaining - deltaTime);
                 if (slowRemaining <= 0f) slowMultiplier = 1f;
             }
+
+            // 06:144 — 선택 UI에서 시간을 보내도(Time.timeScale=0) 남은 봉인 시간은 줄지 않는다.
+            // Tick은 GameManager.Update에서 Playing 상태일 때만 호출되므로 이미 그 조건을 만족한다.
+            if (flameLockRemaining > 0f) flameLockRemaining = Mathf.Max(0f, flameLockRemaining - deltaTime);
+            if (poisonLockRemaining > 0f) poisonLockRemaining = Mathf.Max(0f, poisonLockRemaining - deltaTime);
         }
 
         float Live(float percent) => BonusesSuppressed ? 0f : percent;
