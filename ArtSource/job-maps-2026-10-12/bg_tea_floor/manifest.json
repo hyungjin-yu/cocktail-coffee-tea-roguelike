@@ -1,0 +1,54 @@
+{
+ "assetId": "bg_tea_floor",
+ "request": "47 직업별 맵 (실제 바텐더=칵테일 바 / 티 소믈리에=찻집)",
+ "kind": "floor_tile",
+ "provenance": {
+  "tool": "Aseprite 1.3.18.6 + PixelLab extension (GUI)",
+  "pixellabTool": "Create image (Pro) / Create S-XL image (pro)",
+  "description": "pixel art game floor for a side-scrolling tea house: light natural wood plank floor with a woven straw tatami runner, seen from a slight high angle, soft daylight, a few scattered green tea leaves near the edges, seamless repeating texture",
+  "seed": 147102,
+  "removeBackground": false,
+  "generationHistory": "2026-10-12_13-31-18 - Create S-XL image (pro) - 001",
+  "variants": 1,
+  "chosenVariant": 0,
+  "asepriteSource": "bg_tea_floor.aseprite (Aseprite CLI from the PixelLab output frames)",
+  "otherGenerators": "none",
+  "note": "PixelLab account tier limits images to 256x256, so assets are made at half resolution and imported at 64 PPU"
+ },
+ "runtime": {
+  "path": "Assets/_Project/Resources/ArtExtra/bg_tea_floor/bg_tea_floor_00.png",
+  "sizePx": [
+   256,
+   128
+  ],
+  "pixelsPerUnit": 64,
+  "worldSize": [
+   4.0,
+   2.0
+  ],
+  "pivot": "center",
+  "filter": "point",
+  "meshType": "FullRect",
+  "opaqueBBox": [
+   0,
+   0,
+   256,
+   128
+  ],
+  "cornersAlpha": [
+   255,
+   255,
+   255,
+   255
+  ],
+  "sha256": "f92c4a9fe8000efae4aeef9d9eca42f5ebc3ff0fa475830da6217629cc017320"
+ },
+ "seam": {
+  "leftRightMeanAbs": 19.9,
+  "innerNeighbourMeanAbs": 15.2,
+  "topBottomMeanAbs": 16.6
+ },
+ "postprocess": [
+  "none (PixelLab output as-is)"
+ ]
+}

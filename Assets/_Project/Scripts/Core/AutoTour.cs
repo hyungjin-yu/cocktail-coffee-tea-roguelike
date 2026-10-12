@@ -269,6 +269,7 @@ namespace CCT
                 if (mode == "remaining") yield return RemainingRun();
                 if (mode == "focus") yield return FocusRun();
                 if (mode == "vfx") yield return VfxRun();
+                if (mode == "jobmap") yield return JobMapRun();
                 if (mode == "review-fixes") yield return ReviewFixesRun();
             }
             var used = new List<string>(ArtLibrary.UsedIds);
@@ -613,6 +614,62 @@ namespace CCT
             if (scroll != null) { scroll.verticalNormalizedPosition = 0.35f; }
             yield return Wait(0.3f);
             yield return Shot($"vfx_{Screen.height}_codex_hidden_mid");
+        }
+
+        // ── 2026-10-12 47/48 직업별 맵·몬스터 테마·검 실제 화면(jobmap 모드) ─────────────────────
+        // 강제 경로(보고 표기): 플레이어 HP 크게(관찰 중 사망 방지), 보상 창 첫 선택지 자동 닫기, 런 시간 건너뛰기(SetRunTimeForTests)로 후반 몹 구성 관찰.
+        // 스폰·몹 선택·맵은 실제 경로 그대로.
+        static string TrackOf(EnemyDef d) => d.dropType == IngredientType.Cocktail ? "cocktail" : d.dropType == IngredientType.Tea ? "tea" : "coffee";
+
+        IEnumerator JobMapRun()
+        {
+            foreach (var job in new[] { Job.Bartender, Job.TeaSommelier })
+            {
+                TitleView title = null;
+                for (int i = 0; i < 100 && title == null; i++) { title = FindFirstObjectByType<TitleView>(); yield return Wait(0.1f); }
+                if (title == null) { Fail("no title"); yield break; }
+                title.RequestStart();
+                CharacterSelectView select = null;
+                for (int i = 0; i < 50 && select == null; i++) { select = FindFirstObjectByType<CharacterSelectView>(); yield return Wait(0.1f); }
+                string tag = job == Job.Bartender ? "bar" : "tea";
+                yield return Shot($"jobmap_{Screen.height}_{tag}_00_jobselect");
+                (job == Job.Bartender ? select.BartenderButton : select.TeaSommelierButton).onClick.Invoke();
+                yield return Wait(0.3f);
+                yield return Shot($"jobmap_{Screen.height}_{tag}_01_weaponselect");
+                select.StartButton.onClick.Invoke();
+                yield return Wait(1f);
+                var tutorial = FindFirstObjectByType<FirstRunTutorialView>();
+                if (tutorial != null && tutorial.IsOpen) tutorial.Dismiss();
+                var game = GameManager.Instance;
+                if (game == null) { Fail("run did not start"); yield break; }
+                game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
+                game.Player.Heal(1f);
+                Line($"JOBMAP {tag}: job={game.Job} weapon={game.Weapon} map={CafeBackground.ActiveMapPrefix}");
+                var counts = new Dictionary<string, int> { ["cocktail"] = 0, ["tea"] = 0, ["coffee"] = 0 };
+                var seen = new HashSet<Enemy>();
+                foreach (var (t, label) in new[] { (0f, "early"), (240f, "mid"), (700f, "late") })
+                {
+                    if (t > 0f) game.SetRunTimeForTests(t);
+                    float end = Time.realtimeSinceStartup + 7f;
+                    while (Time.realtimeSinceStartup < end)
+                    {
+                        ResolveRewardScreens(game, "jobmap");
+                        foreach (var e in Enemy.Active)
+                            if (e != null && !e.Def.IsBoss && seen.Add(e)) counts[TrackOf(e.Def)]++;
+                        yield return null;
+                    }
+                    yield return Shot($"jobmap_{Screen.height}_{tag}_{label}", game);
+                    Line($"JOBMAP {tag} {label}: alive={Enemy.Active.Count} seenTotal cocktail={counts["cocktail"]} tea={counts["tea"]} coffee={counts["coffee"]} " +
+                         $"cocktailGauge={game.CocktailGauge.Level}/{game.CocktailGauge.Current} teaGauge={game.TeaGauge.Level}/{game.TeaGauge.Current}");
+                }
+                if (job == Job.TeaSommelier && counts["cocktail"] > 0) Fail("cocktail monster appeared in tea house run");
+                game.GiveUp();
+                yield return Wait(1.5f);
+                var result = FindFirstObjectByType<ResultView>();
+                var toTitle = result != null ? result.GetComponentsInChildren<Button>(true).FirstOrDefault(b => b.name == "TitleButton") : null;
+                if (toTitle != null) toTitle.onClick.Invoke(); else { Destroy(game.gameObject); TitleView.Show(); }
+                yield return Wait(1f);
+            }
         }
 
         /// <summary>장착 무기 보이는 길이(월드)와 몸 높이 비율 — 총 2배 지시 검증용.</summary>

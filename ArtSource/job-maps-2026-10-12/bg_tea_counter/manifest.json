@@ -1,0 +1,53 @@
+{
+ "assetId": "bg_tea_counter",
+ "request": "47 직업별 맵 (실제 바텐더=칵테일 바 / 티 소믈리에=찻집)",
+ "kind": "prop",
+ "provenance": {
+  "tool": "Aseprite 1.3.18.6 + PixelLab extension (GUI)",
+  "pixellabTool": "Create image (Pro) / Create S-XL image (pro)",
+  "description": "side view pixel art of a long low wooden tea serving counter in a tea shop: a clay kettle on a small charcoal brazier with steam, a glass teapot with steeping leaves, a gaiwan and small tea cups on a bamboo tray, a tea scale, jars of loose leaf tea, a honey jar and lemon slices, isolated object, no people",
+  "seed": 147103,
+  "removeBackground": true,
+  "generationHistory": "2026-10-12_13-33-26 - Create S-XL image (pro) - 001",
+  "variants": 1,
+  "chosenVariant": 0,
+  "asepriteSource": "bg_tea_counter.aseprite (Aseprite CLI from the PixelLab output frames)",
+  "otherGenerators": "none",
+  "note": "PixelLab account tier limits images to 256x256, so assets are made at half resolution and imported at 64 PPU"
+ },
+ "runtime": {
+  "path": "Assets/_Project/Resources/ArtExtra/bg_tea_counter/bg_tea_counter_00.png",
+  "sizePx": [
+   256,
+   128
+  ],
+  "pixelsPerUnit": 64,
+  "worldSize": [
+   4.0,
+   2.0
+  ],
+  "pivot": "center",
+  "filter": "point",
+  "meshType": "FullRect",
+  "opaqueBBox": [
+   7,
+   5,
+   248,
+   119
+  ],
+  "cornersAlpha": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "sha256": "4e2d09aa49e5f20889651abd6a4d6b2d46ffb6dd2197122d6967a0de18857f9e"
+ },
+ "seam": {
+  "leftRightMeanAbs": 0.0,
+  "innerNeighbourMeanAbs": 2.1
+ },
+ "postprocess": [
+  "none (PixelLab output as-is)"
+ ]
+}

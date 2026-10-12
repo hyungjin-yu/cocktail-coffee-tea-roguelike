@@ -148,7 +148,7 @@ namespace CCT
             Weapon = weapon;
             var preset = JobPreset.For(job);
 
-            rng = new RunRandom(RunRandom.GenerateSeed());
+            rng = new RunRandom(RunRandom.QaSeedOverride ?? RunRandom.GenerateSeed());
             Stats = new PlayerStats();
             // 활 초반 군중 처리: 기본 한 발이 두 대상까지 명중. 카드 관통은 기존 상한까지 누적.
             if (weapon == WeaponKind.Bow) Stats.pierceCount = 1;
@@ -167,7 +167,7 @@ namespace CCT
             CocktailGauge = new IngredientGauge(IngredientType.Cocktail, Balance.CocktailGaugeStart,
                 Balance.CocktailGaugeGrowth, () => Stats.GaugeNeedMultiplier);
             TeaGauge = new IngredientGauge(IngredientType.Tea, Balance.CocktailGaugeStart,
-                Balance.CocktailGaugeGrowth, () => Stats.GaugeNeedMultiplier);
+                job == Job.TeaSommelier ? Balance.TeaHouseGaugeGrowth : Balance.CocktailGaugeGrowth, () => Stats.GaugeNeedMultiplier);
             BeanGauge = new CoffeeBeanGauge(Stats.beanGainPercent);
             rewards = new RunRewards(CocktailGauge, TeaGauge, BeanGauge);
 
@@ -226,7 +226,7 @@ namespace CCT
         }
 
         /// <summary>04 §8 카페 배경(아트 있으면 cafe_floor/wall/counter/lamp, 없으면 기존 격자 타일).</summary>
-        Transform CreateBackground() => CafeBackground.Create(transform);
+        Transform CreateBackground() => CafeBackground.Create(transform, Job); // 47 직업 맵(바/찻집)
 
         PlayerController CreatePlayer(JobPreset preset, WeaponKind weapon)
         {
@@ -656,6 +656,7 @@ namespace CCT
             public bool Hybrid => g.HybridUnlocked;
             public int FinalFormCount => g.Player.FinalForms.Count;
             public bool HasFinalForm(AttackFinalForm form) => g.Player.FinalForms.Has(form);
+            public Job Job => g.Job;
         }
 
         /// <summary>07:116 — 랜덤 추첨이 아닌 확정 해금 창을 연다.</summary>

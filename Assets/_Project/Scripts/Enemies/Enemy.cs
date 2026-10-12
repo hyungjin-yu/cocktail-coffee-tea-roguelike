@@ -455,6 +455,19 @@ namespace CCT
         /// <summary>41 히든 불꽃 쇼: 화상 중인 일반 적의 기본 추적 이동 배율(EnemyHitStatus가 설정). 패턴/돌진 속도는 그대로.</summary>
         public float StatusSpeedMultiplier { get; set; } = 1f;
 
+        // 48(2026-10-12) 검 타격 경직: 일반 적만, 짧게(Balance.SwordStaggerSeconds), 같은 적은 쿨다운 동안 다시 경직되지 않는다(무한 경직 방지).
+        float staggerRemaining;
+        float staggerReadyAt = float.MinValue;
+        public bool Staggered => staggerRemaining > 0f;
+        /// <returns>실제로 경직이 걸렸으면 true(보스·쿨다운 중·사망은 false).</returns>
+        public bool TryStagger(float seconds, float cooldown)
+        {
+            if (dead || def.IsBoss || Time.time < staggerReadyAt) return false;
+            staggerRemaining = seconds;
+            staggerReadyAt = Time.time + cooldown;
+            return true;
+        }
+
         /// <summary>피격 플래시가 끝나면 돌아갈 색. 보스 텔레그래프 표시에도 쓴다.</summary>
         public Color BaseColor { get; set; }
 
@@ -729,12 +742,14 @@ namespace CCT
             if (!Mathf.Approximately(clampedY, rb.position.y)) rb.position = new Vector2(rb.position.x, clampedY);
 
             Vector2 toPlayer = player.Position - rb.position;
+            if (staggerRemaining > 0f) staggerRemaining -= Time.fixedDeltaTime;
             if (driver != null && driver.TryGetVelocity(rb.position, player.Position, out var driven))
-                rb.linearVelocity = driven;
+                rb.linearVelocity = driven; // 돌진·보스 패턴 이동은 경직이 끊지 않는다
             else
-                rb.linearVelocity = toPlayer.normalized * def.speed * StatusSpeedMultiplier;
+                rb.linearVelocity = Staggered ? Vector2.zero : toPlayer.normalized * def.speed * StatusSpeedMultiplier;
 
             if (!HasArrived) return; // 보스 등장 안내 1초 동안은 접촉 피해 없음 (06:24)
+            if (Staggered) return; // 48 검 경직: 짧은 동안 접촉 피해·자폭 없음
 
             float touch = def.radius + PlayerController.Radius + 0.15f;
             if (toPlayer.sqrMagnitude <= touch * touch)

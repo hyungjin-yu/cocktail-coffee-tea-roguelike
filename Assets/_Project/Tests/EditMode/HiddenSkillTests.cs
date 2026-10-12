@@ -18,6 +18,7 @@ namespace CCT.Tests
             public bool Hybrid => hybrid;
             public int FinalFormCount => forms.Count;
             public bool HasFinalForm(AttackFinalForm f) => forms.Contains(f);
+            public Job Job => Job.Bartender; // 47: 이 표는 바텐더 조건
         }
 
         // 문서 41 표 그대로: 카드 id→중첩, 커피 노드, 하이브리드, 최종 형태.

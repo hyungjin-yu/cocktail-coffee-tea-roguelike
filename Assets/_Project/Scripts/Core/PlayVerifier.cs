@@ -82,6 +82,8 @@ namespace CCT
 
         static readonly CultureInfo Inv = CultureInfo.InvariantCulture;
 
+        bool forcedJob;
+
         public void Init(string dir, string weaponArg, string runsArg, bool abandonCheck, string buyNode = null, bool dieAfterEnhancedKill = false,
             bool recklessFromRunStart = false)
         {
@@ -95,6 +97,13 @@ namespace CCT
             Directory.CreateDirectory(outDir);
             weapon = ParseWeapon(weaponArg);
             job = weapon == WeaponKind.Rapier || weapon == WeaponKind.Gun ? Job.Bartender : Job.TeaSommelier;
+            // 48 QA 강제 비교: 같은 시드·같은 직업(맵·몹 구성)에서 무기만 바꾼다. 정상 플레이 근거와 구분해 보고.
+            var argv = System.Environment.GetCommandLineArgs();
+            int si = System.Array.IndexOf(argv, "-cct-playverify-seed");
+            if (si >= 0 && si + 1 < argv.Length && int.TryParse(argv[si + 1], out var seed)) RunRandom.QaSeedOverride = seed;
+            RapierWeapon.QaDisableSwordStagger = System.Array.Exists(argv, a => a == "-cct-playverify-nostagger");
+            int ji = System.Array.IndexOf(argv, "-cct-playverify-forcejob");
+            if (ji >= 0 && ji + 1 < argv.Length) { forcedJob = true; job = argv[ji + 1] == "tea" ? Job.TeaSommelier : Job.Bartender; }
             maxRuns = int.TryParse(runsArg, out var n) ? Mathf.Clamp(n, 1, 3) : 3;
             doAbandonCheck = abandonCheck;
             startedReal = Time.realtimeSinceStartup;
@@ -258,6 +267,17 @@ namespace CCT
             while (select == null && Time.realtimeSinceStartup < wait) { yield return null; select = FindFirstObjectByType<CharacterSelectView>(); }
             if (select == null) { Event("FAIL no CharacterSelectView"); yield break; }
             if (buyPending && runIndex > 1) yield return BuyPermanent(select);
+            if (forcedJob)
+            {
+                Destroy(select.gameObject);
+                yield return null;
+                GameBootstrap.Build(job, weapon);
+                Event($"QA forced start job={job} weapon={weapon} seed={GameManager.Instance?.Seed}");
+                yield return Human(0.8f);
+                var forcedTutorial = FindFirstObjectByType<FirstRunTutorialView>();
+                if (forcedTutorial != null && forcedTutorial.IsOpen) ClickNamed(forcedTutorial, "DismissButton");
+                yield break;
+            }
             (job == Job.Bartender ? select.BartenderButton : select.TeaSommelierButton).onClick.Invoke();
             Event($"clicked job {job}");
             yield return Human();

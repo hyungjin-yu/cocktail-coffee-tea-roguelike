@@ -22,6 +22,8 @@ namespace CCT
         bool Hybrid { get; }
         int FinalFormCount { get; }
         bool HasFinalForm(AttackFinalForm form);
+        /// <summary>47(2026-10-12): 이번 런 직업 — 찻집(티 소믈리에) 런은 칵테일 카드가 나오지 않으므로 차 전용 조건을 쓴다.</summary>
+        Job Job { get; }
     }
 
     public sealed class HiddenSkillDef
@@ -30,6 +32,14 @@ namespace CCT
         public string id, name, condition, hint, effect;
         public HiddenTier tier;
         public Func<IHiddenRunState, bool> met;
+        /// <summary>47: 티 소믈리에 런 조건(차·커피·최종 형태만). null이면 바텐더 전용(술·불꽃·바 도구 개념).</summary>
+        public string teaCondition, teaHint;
+        public Func<IHiddenRunState, bool> teaMet;
+
+        public bool AvailableFor(Job job) => job == Job.Bartender || teaMet != null;
+        public string ConditionFor(Job job) => job == Job.Bartender ? condition : teaCondition ?? "바텐더 전용";
+        public string HintFor(Job job) => job == Job.Bartender ? hint : teaHint ?? "바텐더 전용";
+        public bool MetFor(IHiddenRunState s) => s != null && (s.Job == Job.Bartender ? met(s) : teaMet != null && teaMet(s));
     }
 
     public static class HiddenSkillDatabase
@@ -96,6 +106,34 @@ namespace CCT
         };
 
         public static HiddenSkillDef Get(HiddenSkill skill) => All[(int)skill];
+
+        /// <summary>47: 티 소믈리에(찻집) 조건 — 바텐더 조건의 칵테일 카드를 같은 역할의 차 카드로 옮기고 그 중첩을 합친다(최대 중첩 안).
+        /// 술·불꽃·바 도구가 핵심인 7종(핫 토디·독한 블렌딩·셰이킹 리듬·탄산 펌프·불꽃 쇼·티니 보우 마스터·바 템포 마스터)은 바텐더 전용.</summary>
+        static HiddenSkillDatabase()
+        {
+            void T(HiddenSkill s, string cond, string hint, Func<IHiddenRunState, bool> met)
+            { var d = Get(s); d.teaCondition = cond; d.teaHint = hint; d.teaMet = met; }
+            T(HiddenSkill.FirstSip, "녹차 잎 4", "녹차 잎", r => r.Stacks("green_tea") >= 4);
+            T(HiddenSkill.IcedCup, "따뜻한 찻잔 5", "따뜻한 찻잔", r => r.Stacks("warm_cup") >= 5);
+            T(HiddenSkill.WeekendRush, "다도용 신발 4", "다도용 신발", r => r.Stacks("tea_sandals") >= 4);
+            T(HiddenSkill.CalmService, "커피 도피오 체력 + 카모마일 2", "커피 도피오 체력", r => r.Coffee("doppio_body") && r.Stacks("chamomile") >= 2);
+            T(HiddenSkill.LongReach, "긴 주둥이 주전자 4", "긴 주둥이 주전자", r => r.Stacks("long_spout") >= 4);
+            T(HiddenSkill.DoubleFinish, "두 번째 우림 3 (근접)", "두 번째 우림", r => r.Stacks("second_infusion") >= 3);
+            T(HiddenSkill.PointBlank, "찻잎 흩뿌리기 3 (원거리)", "찻잎 흩뿌리기", r => r.Stacks("tea_leaf_scatter") >= 3);
+            T(HiddenSkill.BitterWake, "커피 에스프레소 샷 + 우롱차 1", "우롱차", r => r.Coffee("espresso_shot") && r.Stacks("oolong") >= 1);
+            T(HiddenSkill.VipService, "숙성 보이차 2 + 커피 풀바디 로스트", "숙성 보이차", r => r.Stacks("aged_puerh") >= 2 && r.Coffee("full_body_roast"));
+            T(HiddenSkill.HerbGarden, "카모마일 2 + 산삼 뿌리 1 + 커피 부드러운 여운", "산삼 뿌리",
+                r => r.Stacks("chamomile") >= 2 && r.Stacks("ginseng_root") >= 1 && r.Coffee("mellow_finish"));
+            T(HiddenSkill.PoisonGarden, "쐐기풀차 2 + 가지속 블렌드 1 + 커피 리스트레토", "가지속 블렌드",
+                r => r.Stacks("nettle_tea") >= 2 && r.Stacks("nightshade_blend") >= 1 && r.Coffee("ristretto"));
+            T(HiddenSkill.BeanCrate, "말린 찻잎 4 + 커피 곱게 갈기", "말린 찻잎", r => r.Stacks("dried_leaf") >= 4 && r.Coffee("fine_grind"));
+            T(HiddenSkill.ThickMug, "따뜻한 찻잔 4 + 커피 보온 컵", "커피 보온 컵", r => r.Stacks("warm_cup") >= 4 && r.Coffee("insulated_cup"));
+            T(HiddenSkill.TrayGuard, "따뜻한 찻잔 2 + 커피 넓은 트레이", "커피 넓은 트레이", r => r.Stacks("warm_cup") >= 2 && r.Coffee("wide_tray"));
+            T(HiddenSkill.LongSteep, "쐐기풀차 2 + 커피 균형 추출", "커피 균형 추출", r => r.Stacks("nettle_tea") >= 2 && r.Coffee("balanced_extraction"));
+            T(HiddenSkill.PerfectCup, "커피 완전 추출 + 최종 형태 1개", "커피 완전 추출", r => r.Coffee("perfect_extraction") && r.FinalFormCount >= 1);
+            T(HiddenSkill.TriRoast, "커피 균형 추출 + 부드러운 여운 + 넓은 트레이", "커피 세 갈래 3단",
+                r => r.Coffee("balanced_extraction") && r.Coffee("mellow_finish") && r.Coffee("wide_tray"));
+        }
         public static string TierLabel(HiddenTier tier) => tier == HiddenTier.Two ? "2요소" : tier == HiddenTier.Three ? "3요소" : "고난도";
     }
 
@@ -113,7 +151,7 @@ namespace CCT
             if (state == null) return unlocked;
             foreach (var def in HiddenSkillDatabase.All)
             {
-                if (owned[(int)def.skill] || !def.met(state)) continue;
+                if (owned[(int)def.skill] || !def.MetFor(state)) continue; // 47 직업별 조건
                 owned[(int)def.skill] = true;
                 Count++;
                 unlocked.Add(def);

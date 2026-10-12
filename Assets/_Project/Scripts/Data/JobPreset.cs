@@ -43,7 +43,7 @@ namespace CCT
         };
         public static readonly WeaponPreset Sword = new WeaponPreset
         {
-            kind = WeaponKind.Sword, name = "검", description = "전방 레인을 연속 공격.\n근접 강화 카드를 사용.",
+            kind = WeaponKind.Sword, name = "검", description = "넓게 베기 · 피해 +25%.\n맞은 일반 몹 0.25초 경직(보스 제외).\n근접 강화 카드를 사용.",
             iconResourcePath = "Icons/Weapons/sword", heldLengthRatio = 0.65f,
         };
         public static readonly WeaponPreset Bow = new WeaponPreset
@@ -63,6 +63,15 @@ namespace CCT
         public WeaponPreset[] weapons;
         /// <summary>04 §5 몸체 아트 ID(ArtLibrary). 아트가 없으면 캡슐 플레이스홀더.</summary>
         public string bodyArtId;
+        /// <summary>47(2026-10-12): 직업 맵 이름과 배경 아트 접두(Resources/ArtExtra/&lt;prefix&gt;_wall 등). 아트가 없으면 공용 카페.</summary>
+        public string mapName;
+        public string mapArtPrefix;
+        /// <summary>47: 칵테일+차 트랙 중 이 직업 주 테마(바텐더=칵테일, 티 소믈리에=차)의 출현 비중. 공개 표시.</summary>
+        public const float MainThemeShare = 0.65f;
+        /// <summary>직업 선택 카드에 붙는 맵·몬스터 비중 한 줄(숨은 편향이 아니라 공개 규칙).</summary>
+        public string ThemeLine => job == Job.Bartender
+            ? $"{mapName} · 칵테일 몹 {MainThemeShare * 100f:0}% · 차 몹 {(1f - MainThemeShare) * 100f:0}%"
+            : $"{mapName} · 차 몹 중심 · 칵테일 몹·카드 없음"; // 2026-10-12 사용자 지시: 찻집에는 칵테일 몹 없음
 
         public static readonly JobPreset Bartender = new JobPreset
         {
@@ -72,6 +81,8 @@ namespace CCT
             playerColor = new Color(0.35f, 0.85f, 0.95f),
             weapons = new[] { WeaponPreset.Rapier, WeaponPreset.Gun },
             bodyArtId = "bartender",
+            mapName = "칵테일 바",
+            mapArtPrefix = "bg_bar",
         };
 
         public static readonly JobPreset TeaSommelier = new JobPreset
@@ -82,6 +93,8 @@ namespace CCT
             playerColor = new Color(0.55f, 0.85f, 0.5f),
             weapons = new[] { WeaponPreset.Sword, WeaponPreset.Bow },
             bodyArtId = "tea_sommelier",
+            mapName = "찻집",
+            mapArtPrefix = "bg_tea",
         };
 
         public static JobPreset For(Job job) => job == Job.TeaSommelier ? TeaSommelier : Bartender;

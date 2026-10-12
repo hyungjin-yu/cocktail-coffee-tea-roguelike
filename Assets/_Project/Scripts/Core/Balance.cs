@@ -8,6 +8,12 @@ namespace CCT
         public const float SpawnIntervalMin = 0.35f;
         public const float SpawnIntervalDecayPerSecond = 0.001f;
         public const int MaxAliveEnemies = 100;
+
+        // 48(2026-10-12) 검 위험 대비 보상(레이피어·총·활은 그대로): 넓은 베기·높은 순간 피해·짧은 경직(일반 적, 보스 면역).
+        public const float SwordRangeMultiplier = 1.15f;
+        public const float SwordDamageMultiplier = 1.25f;
+        public const float SwordStaggerSeconds = 0.25f;
+        public const float SwordStaggerCooldown = 0.8f;
         /// <summary>40(2026-10-12): 유효 영구 해금 총수 N당 일반 스폰 +3%(최대 +60%). 일반 동시 상한도 100→floor(100×배율),
         /// 보스·소환 포함 전체 절대 상한 160(LoadScenario/진상 손님 소환 상한과 같음)은 넘지 않는다.</summary>
         public const int SpawnBonusPercentPerUnlock = 3;
@@ -53,6 +59,9 @@ namespace CCT
         // 재료 게이지 (칵테일): 8 → 11 → 15 → 21 …
         public const float CocktailGaugeStart = 8f;
         public const float CocktailGaugeGrowth = 1.4f;
+        /// <summary>47(2026-10-12): 찻집(티 소믈리에) 런은 칵테일 몹이 없어 재료가 찻잎 게이지 하나로만 들어간다. 같은 ×1.4면 카드가
+        /// 바(칵테일+차 두 게이지, 정상 런 약 26장) 대비 약 15장으로 줄어 같은 드랍 총량에서 약 25~26장이 되도록 찻잎 성장만 ×1.2.</summary>
+        public const float TeaHouseGaugeGrowth = 1.2f;
 
         // 07 §2 "커피 변경"(2026-10-04 적용): 원두 10개마다 커피 포인트 1, 임계치 증가 없음, 포인트 전부 보존.
         // 보스A 20→2, B 20→2, 강화 40→4 = 런당 8포인트(영구 원두 +20%면 96 → 9포인트·잔량6).

@@ -240,6 +240,10 @@ namespace CCT
             UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -260f),
                 new Vector2(440f, 260f)), preset.description, 26, TextAnchor.UpperCenter,
                 new Color(0.9f, 0.9f, 0.9f));
+            // 47(2026-10-12): 직업 맵과 몬스터 출현 비중(숨은 편향이 아닌 공개 규칙). 특성 설명 아래 별도 줄.
+            UiFactory.AddText(UiFactory.Place("Theme", rt, new Vector2(0.5f, 1f), new Vector2(0f, -545f),
+                new Vector2(460f, 70f)), preset.ThemeLine, 24, TextAnchor.MiddleCenter,
+                new Color(1f, 0.82f, 0.55f));
 
             return button;
         }

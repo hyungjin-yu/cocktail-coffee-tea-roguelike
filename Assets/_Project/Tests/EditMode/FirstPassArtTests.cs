@@ -1140,7 +1140,8 @@ namespace CCT.Tests
                 StringAssert.DoesNotContain("재료", job.description, job.name);
             Assert.AreEqual("전방 레인을 연속 공격. 칵테일3+차3 획득 시 티니 보우 해금.", WeaponPreset.Rapier.description.Replace("\n", " "));
             Assert.AreEqual("자동 조준 사격. 다중 발사·관통 카드로 강화.", WeaponPreset.Gun.description.Replace("\n", " "));
-            Assert.AreEqual("전방 레인을 연속 공격. 근접 강화 카드를 사용.", WeaponPreset.Sword.description.Replace("\n", " "));
+            // 48(2026-10-12) 사용자 승인 검 밸런스: 넓은 베기·피해·경직 설명
+            Assert.AreEqual("넓게 베기 · 피해 +25%. 맞은 일반 몹 0.25초 경직(보스 제외). 근접 강화 카드를 사용.", WeaponPreset.Sword.description.Replace("\n", " "));
             Assert.AreEqual("자동 조준 사격. 기본 관통 1. 다중 발사·관통 카드로 강화.", WeaponPreset.Bow.description.Replace("\n", " "));
         }
     }

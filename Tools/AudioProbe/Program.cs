@@ -303,7 +303,7 @@ static class Program
         [PreserveSig] int GetPeakValue(out float peak);
     }
 
-    [ComImport, Guid("87CE5498-68D6-44E5-9215-6F0DD6F1A4B0"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComImport, Guid("87CE5498-68D6-44E5-9215-6DA47EF883D8"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)] // ISimpleAudioVolume (2026-10-12: 이전 6F0DD6F1A4B0은 QueryInterface 실패)
     interface ISimpleAudioVolume
     {
         [PreserveSig] int SetMasterVolume(float level, ref Guid ctx);

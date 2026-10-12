@@ -22,24 +22,37 @@ namespace CCT
 
         /// <summary>rng를 생략하면 기존 UnityEngine.Random(전역)을 그대로 쓴다 — 기존 호출부/테스트는
         /// 아무것도 안 바꿔도 된다. 실제 런에서는 GameManager가 시드에서 파생한 스트림(06:98)을 넘긴다.</summary>
-        public static EnemyDef PickCommon(float runTime, IRandomSource rng = null)
+        public static EnemyDef PickCommon(float runTime, IRandomSource rng = null) => PickCommon(runTime, rng, null);
+
+        /// <summary>47(2026-10-12) 직업 테마: 칵테일+차 몫 안에서 직업 주 테마가 65%(JobPreset.MainThemeShare), 커피 2%·트랙 내부
+        /// 시간표·난수 소비 횟수(트랙 1회 + 아키타입 1회)는 그대로. job이 null이면 기존 50:50(49/49/2)과 완전히 같다.</summary>
+        public static EnemyDef PickCommon(float runTime, IRandomSource rng, Job? job)
         {
             rng ??= UnityRandomSource.Instance;
+            float cocktailOfPair = CocktailShareOfPair(job);
 
             if (runTime >= CoffeeTrackUnlockTime)
             {
                 // 커피 합류 후 비율: 칵테일 49 / 차 49 / 커피 2 (2026-10-06 기획 변경, 02/07/27).
                 // 이전 20%에서는 일반 몹 원두가 런당 278~385개라 커피 15노드가 드립 직후 전부 해금됐다
                 // (Delivery/Reports/coffee-economy-analysis-2026-10-06.md). 보스 원두 80=8포인트는 그대로다.
+                float pair = CocktailShareAfterCoffee + TeaShareAfterCoffee;
+                float cocktail = job == null ? CocktailShareAfterCoffee : pair * cocktailOfPair;
                 float roll = rng.Value();
-                if (roll < CocktailShareAfterCoffee) return PickTrack(runTime, CocktailTrack, rng);
-                if (roll < CocktailShareAfterCoffee + TeaShareAfterCoffee) return PickTrack(runTime, TeaTrack, rng);
+                if (roll < cocktail) return PickTrack(runTime, CocktailTrack, rng);
+                if (roll < pair) return PickTrack(runTime, TeaTrack, rng);
                 return PickCoffee(rng);
             }
 
-            bool tea = rng.Value() < 0.5f;
+            // 기존: roll < 0.5면 차. 직업 테마는 차 몫(1 - 칵테일 몫) 미만이면 차.
+            bool tea = rng.Value() < 1f - cocktailOfPair;
             return tea ? PickTrack(runTime, TeaTrack, rng) : PickTrack(runTime, CocktailTrack, rng);
         }
+
+        /// <summary>칵테일+차 중 칵테일 몫: 직업 없음 0.5, 바텐더 0.65(차 몹 35% 허용), 티 소믈리에 0 —
+        /// 2026-10-12 사용자 지시 "차에는 칵테일 몹 나오지 않게": 찻집 런의 일반·웨이브·소환(사장 나와!) 모두 칵테일 트랙 제외.</summary>
+        public static float CocktailShareOfPair(Job? job) => job == null ? 0.5f
+            : job == Job.Bartender ? JobPreset.MainThemeShare : 0f;
 
         /// <summary>커피 트랙은 칵테일/차처럼 시간에 따라 늘어나는 여러 아키타입이 아니라, 소량 완충용
         /// 돌진형/투척형 2종만 고정 비율로 섞는다 (에스프레소 벅이 더 흔함).</summary>

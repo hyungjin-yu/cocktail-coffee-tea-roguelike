@@ -21,7 +21,11 @@ namespace CCT
         string swingSfxId = "swing_rapier";
         bool finalChainHit;
         bool thrustStyle;
+        bool isSword;
         int swingIndex;
+        float ReachRange => stats.Range * (isSword ? Balance.SwordRangeMultiplier : 1f);
+        /// <summary>48 QA A/B 전용(PlayVerifier가 설정): 검 경직만 끈다. 출시 빌드에서는 설정하는 코드가 없다.</summary>
+        public static bool QaDisableSwordStagger;
 
         public void Init(PlayerStats stats, PlayerController player, WeaponKind weapon = WeaponKind.Rapier)
         {
@@ -30,6 +34,7 @@ namespace CCT
             // 09: swing_rapier/swing_sword — 레이피어·검이 메커닉은 같아도 소리는 다르다.
             swingSfxId = weapon == WeaponKind.Sword ? "swing_sword" : "swing_rapier";
             thrustStyle = weapon != WeaponKind.Sword;
+            isSword = weapon == WeaponKind.Sword; // 48: 검만 넓은 베기·피해·경직(레이피어는 기존)
         }
 
         void Update()
@@ -39,7 +44,7 @@ namespace CCT
             cooldown -= Time.deltaTime;
             if (cooldown > 0f || attacking) return;
 
-            var target = Enemy.FindNearest(player.Position, stats.Range + AcquireMargin);
+            var target = Enemy.FindNearest(player.Position, ReachRange + AcquireMargin);
             if (target == null) return;
 
             cooldown = stats.AttackInterval;
@@ -52,7 +57,7 @@ namespace CCT
             int thrusts = 1 + stats.extraThrusts;
             for (int i = 0; i < thrusts; i++)
             {
-                var target = Enemy.FindNearest(player.Position, stats.Range + AcquireMargin);
+                var target = Enemy.FindNearest(player.Position, ReachRange + AcquireMargin);
                 if (target == null) break;
 
                 player.SetFacing(target.transform.position.x);
@@ -69,12 +74,12 @@ namespace CCT
         /// 맞지 않는다 — 내적 부호로 앞/뒤를 가른다(각도 계산 없이 반원 절반평면과 동치).</summary>
         void Slash(float facing)
         {
-            float range = stats.Range * (finalChainHit ? 1.25f : 1f);
+            float range = ReachRange * (finalChainHit ? 1.25f : 1f);
             Vector2 origin = player.Position;
             Vector2 forwardDir = new Vector2(facing, 0f);
 
             var hits = Physics2D.OverlapCircleAll(origin, range);
-            float damage = stats.Damage * (finalChainHit ? 1.5f : 1f);
+            float damage = stats.Damage * (finalChainHit ? 1.5f : 1f) * (isSword ? Balance.SwordDamageMultiplier : 1f);
             var hitEnemies = new System.Collections.Generic.HashSet<Enemy>();
             foreach (var hit in hits)
             {
@@ -85,6 +90,7 @@ namespace CCT
                 var hidden = player.HiddenRuntime;
                 enemy.TakeDamage(hidden != null ? hidden.ModifyDirectDamage(enemy, damage) : damage);
                 hidden?.AfterDirectHit(enemy);
+                if (isSword && !QaDisableSwordStagger && !enemy.IsDead) enemy.TryStagger(Balance.SwordStaggerSeconds, Balance.SwordStaggerCooldown);
             }
 
             float angle = facing > 0f ? 0f : 180f;

@@ -62,6 +62,9 @@ namespace CCT
 
         static int Derive(int seed, int salt) => unchecked(seed * 397 ^ salt);
 
+        /// <summary>48 QA 강제 비교 전용(PlayVerifier가 설정): 같은 시드로 무기만 바꿔 비교. 출시 빌드에서는 설정하는 코드가 없다.</summary>
+        public static int? QaSeedOverride;
+
         /// <summary>런 시작마다 새 32비트 시드를 만든다. 전역 UnityEngine.Random 상태와는 무관하다.</summary>
         public static int GenerateSeed() =>
             unchecked((int)System.DateTime.UtcNow.Ticks ^ System.Guid.NewGuid().GetHashCode());

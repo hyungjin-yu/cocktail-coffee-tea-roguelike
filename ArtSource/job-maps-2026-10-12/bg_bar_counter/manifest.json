@@ -1,0 +1,53 @@
+{
+ "assetId": "bg_bar_counter",
+ "request": "47 직업별 맵 (실제 바텐더=칵테일 바 / 티 소믈리에=찻집)",
+ "kind": "prop",
+ "provenance": {
+  "tool": "Aseprite 1.3.18.6 + PixelLab extension (GUI)",
+  "pixellabTool": "Create image (Pro) / Create S-XL image (pro)",
+  "description": "side view pixel art of a long wooden cocktail bar counter with a polished brass foot rail, beer taps, a cocktail shaker, jigger, bar spoon, muddler, bottles of simple syrup and bitters, a cutting board with lemons and mint, a few cocktail glasses, isolated object, no people",
+  "seed": 147003,
+  "removeBackground": true,
+  "generationHistory": "2026-10-12_13-23-43 - Create S-XL image (pro) - 001",
+  "variants": 1,
+  "chosenVariant": 0,
+  "asepriteSource": "bg_bar_counter.aseprite (Aseprite CLI from the PixelLab output frames)",
+  "otherGenerators": "none",
+  "note": "PixelLab account tier limits images to 256x256, so assets are made at half resolution and imported at 64 PPU"
+ },
+ "runtime": {
+  "path": "Assets/_Project/Resources/ArtExtra/bg_bar_counter/bg_bar_counter_00.png",
+  "sizePx": [
+   256,
+   128
+  ],
+  "pixelsPerUnit": 64,
+  "worldSize": [
+   4.0,
+   2.0
+  ],
+  "pivot": "center",
+  "filter": "point",
+  "meshType": "FullRect",
+  "opaqueBBox": [
+   0,
+   2,
+   256,
+   128
+  ],
+  "cornersAlpha": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "sha256": "19f5195af7a7961836f60724fadf38410dadf9f54208b58f222c6320fff6b338"
+ },
+ "seam": {
+  "leftRightMeanAbs": 0.3,
+  "innerNeighbourMeanAbs": 20.9
+ },
+ "postprocess": [
+  "none (PixelLab output as-is)"
+ ]
+}

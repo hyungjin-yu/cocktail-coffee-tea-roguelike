@@ -58,6 +58,14 @@ namespace CCT
                 new Vector2(900f, 26f), new Color(0.45f, 0.75f, 0.4f), 20);
             view.beanBar = new FillBar(root, "BeanBar", new Vector2(0.5f, 1f), new Vector2(0f, -98f),
                 new Vector2(600f, 24f), new Color(0.65f, 0.42f, 0.25f), 20);
+            // 47(2026-10-12): 찻집(티 소믈리에) 런은 칵테일 몹·재료가 없다 — 비어 있는 칵테일 바를 숨기고 찻잎·원두를 한 칸씩 올린다.
+            if (game != null && game.Job == Job.TeaSommelier)
+            {
+                view.gaugeBar.Root.gameObject.SetActive(false);
+                view.teaBar.Root.anchoredPosition = new Vector2(0f, -30f);
+                view.beanBar.Root.anchoredPosition = new Vector2(0f, -62f);
+                gaugeBackRt.sizeDelta = new Vector2(940f, 76f);
+            }
 
             var infoRt = UiFactory.Place("Info", root, new Vector2(1f, 1f), new Vector2(-30f, -24f),
                 new Vector2(320f, 90f));

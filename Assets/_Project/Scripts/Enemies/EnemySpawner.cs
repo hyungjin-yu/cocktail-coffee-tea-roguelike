@@ -86,7 +86,7 @@ namespace CCT
             var rng = game.SpawnRng; // 06:98 — 스폰은 시드에서 파생된 독립 스트림을 쓴다
             float side = rng.Value() < 0.5f ? -1f : 1f;
             var pos = BeltScroll.EdgePosition(cam, side, Balance.SpawnEdgeMargin);
-            var enemy = Enemy.SpawnAt(pos, EnemyRoster.PickCommon(t, rng), Balance.EnemyHpScale(t), player, transform);
+            var enemy = Enemy.SpawnAt(pos, EnemyRoster.PickCommon(t, rng, game.Job), Balance.EnemyHpScale(t), player, transform); // 47 직업 테마
             EnemyRoster.AttachBehavior(enemy, game, player);
             RegularSpawns++;
         }
@@ -102,13 +102,13 @@ namespace CCT
             {
                 if (!UnderCap) break;
                 var left = Enemy.SpawnAt(BeltScroll.EdgePosition(cam, -1f, Balance.SpawnEdgeMargin),
-                    EnemyRoster.PickCommon(t, rng), hpScale, player, transform);
+                    EnemyRoster.PickCommon(t, rng, game.Job), hpScale, player, transform);
                 EnemyRoster.AttachBehavior(left, game, player);
                 WaveSpawns++;
 
                 if (!UnderCap) break;
                 var right = Enemy.SpawnAt(BeltScroll.EdgePosition(cam, 1f, Balance.SpawnEdgeMargin),
-                    EnemyRoster.PickCommon(t, rng), hpScale, player, transform);
+                    EnemyRoster.PickCommon(t, rng, game.Job), hpScale, player, transform);
                 EnemyRoster.AttachBehavior(right, game, player);
                 WaveSpawns++;
             }

@@ -1,0 +1,55 @@
+{
+ "assetId": "bg_tea_wall",
+ "request": "47 직업별 맵 (실제 바텐더=칵테일 바 / 티 소믈리에=찻집)",
+ "kind": "wall_tile",
+ "provenance": {
+  "tool": "Aseprite 1.3.18.6 + PixelLab extension (GUI)",
+  "pixellabTool": "Create image (Pro) / Create S-XL image (pro)",
+  "description": "side view pixel art game background: interior wall of a traditional tea house, warm wooden lattice paper screens, wooden shelves with tea canisters, clay teapots and small tea cups, bundles of dried tea leaves hanging, a calligraphy scroll, soft warm daylight, no people, wide wall that tiles horizontally",
+  "seed": 147101,
+  "removeBackground": false,
+  "generationHistory": "2026-10-12_13-28-39 - Create S-XL image (pro) - 001",
+  "variants": 1,
+  "chosenVariant": 0,
+  "asepriteSource": "bg_tea_wall.aseprite (Aseprite CLI from the PixelLab output frames)",
+  "otherGenerators": "none",
+  "note": "PixelLab account tier limits images to 256x256, so assets are made at half resolution and imported at 64 PPU"
+ },
+ "runtime": {
+  "path": "Assets/_Project/Resources/ArtExtra/bg_tea_wall/bg_tea_wall_00.png",
+  "sizePx": [
+   256,
+   156
+  ],
+  "pixelsPerUnit": 64,
+  "worldSize": [
+   4.0,
+   2.4375
+  ],
+  "pivot": "center",
+  "filter": "point",
+  "meshType": "FullRect",
+  "opaqueBBox": [
+   0,
+   0,
+   256,
+   156
+  ],
+  "cornersAlpha": [
+   255,
+   255,
+   255,
+   255
+  ],
+  "sha256": "8b3e3f3977d91707af7bd463dc169396a5f43395a26dc7ec73111d5dadf0d212"
+ },
+ "seam": {
+  "leftRightMeanAbs": 53.9,
+  "innerNeighbourMeanAbs": 16.7,
+  "leftRightMeanAbsAfterPost": 67.2
+ },
+ "postprocess": [
+  "crop [0, 0, 256, 156] (PixelLab drew a floor strip under the baseboard; the game draws its own floor tile below the wall)",
+  "right edge x248-255 replaced by the wall's own wooden post (copied from x215-222) so the horizontal repeat lands on a post instead of a cut cabinet"
+ ]
+}

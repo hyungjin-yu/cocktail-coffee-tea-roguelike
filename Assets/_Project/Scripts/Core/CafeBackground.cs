@@ -17,11 +17,24 @@ namespace CCT
         public static float SnapStep { get; private set; } = PlaceholderSnapStep;
         public static bool UsesArt { get; private set; }
 
-        public static Transform Create(Transform parent)
+        /// <summary>47(2026-10-12) 직업 맵: 바텐더=칵테일 바(bg_bar_*), 티 소믈리에=찻집(bg_tea_*). PixelLab+Aseprite 제작
+        /// Resources/ArtExtra/&lt;prefix&gt;_floor|_wall|_counter|_lamp. 네 장이 모두 있을 때만 쓰고, 아니면 공용 카페(아래 기존 경로).</summary>
+        public static string ActiveMapPrefix { get; private set; }
+
+        public static Sprite JobSprite(string prefix, string part)
+        {
+            if (string.IsNullOrEmpty(prefix)) return null;
+            var all = Resources.LoadAll<Sprite>($"ArtExtra/{prefix}_{part}");
+            return all != null && all.Length > 0 ? all[0] : null;
+        }
+
+        public static Transform Create(Transform parent, Job? job = null)
         {
             var root = new GameObject("Background");
             root.transform.SetParent(parent, false);
             root.transform.localPosition = new Vector3(0f, Balance.LaneCenterY, 0f);
+            ActiveMapPrefix = null;
+            if (job != null && TryJobMap(root.transform, JobPreset.For(job.Value).mapArtPrefix)) return root.transform;
 
             var floor = ArtLibrary.Get("cafe_floor");
             var wall = ArtLibrary.Get("cafe_wall");
@@ -69,6 +82,29 @@ namespace CCT
                 if (lamp != null) Prop(root.transform, "Lamp", lamp, new Vector2(x + 6f, wallBottomLocal + 2.4f));
             }
             return root.transform;
+        }
+
+        static bool TryJobMap(Transform root, string prefix)
+        {
+            var floor = JobSprite(prefix, "floor");
+            var wall = JobSprite(prefix, "wall");
+            var counter = JobSprite(prefix, "counter");
+            var lamp = JobSprite(prefix, "lamp");
+            if (floor == null || wall == null || counter == null || lamp == null) return false;
+            UsesArt = true;
+            SnapStep = ArtSnapStep; // 벽 4·바닥 4 유닛 반복, 소품 12 유닛 — 24의 약수
+            ActiveMapPrefix = prefix;
+            float wallBottomLocal = Balance.DepthMax - Balance.LaneCenterY + 0.6f;
+            float floorHeight = wallBottomLocal + Balance.DepthHalfWidth + 3f;
+            Tiled(root, "Floor", floor, new Vector2(Width, floorHeight), new Vector2(0f, wallBottomLocal - floorHeight * 0.5f), SortOrders.Background);
+            float h = wall.bounds.size.y;
+            Tiled(root, "Wall", wall, new Vector2(Width, h), new Vector2(0f, wallBottomLocal + h * 0.5f), SortOrders.Background);
+            for (float x = -Width * 0.5f + 6f; x < Width * 0.5f; x += 12f)
+            {
+                Prop(root, "Counter", counter, new Vector2(x, wallBottomLocal + counter.bounds.size.y * 0.5f - 0.2f));
+                Prop(root, "Lamp", lamp, new Vector2(x + 6f, wallBottomLocal + 2.4f));
+            }
+            return true;
         }
 
         static void Tiled(Transform parent, string name, Sprite sprite, Vector2 size, Vector2 localPos, int order)

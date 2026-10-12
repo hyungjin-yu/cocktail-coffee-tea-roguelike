@@ -440,8 +440,8 @@ namespace CCT
         {
             bool has = PermanentProgress.Current.discoveredCardIds.Contains(def.id);
             ShowDetail(has ? def.name : "???",
-                has ? $"히든 스킬 · {HiddenSkillDatabase.TierLabel(def.tier)}\n조건: {def.condition}\n효과: {def.effect}\n런마다 조건을 다시 채우면 그 런에서 발동"
-                    : $"히든 스킬 · {HiddenSkillDatabase.TierLabel(def.tier)}\n힌트: {def.hint} 포함\n아직 발견하지 않았습니다");
+                has ? $"히든 스킬 · {HiddenSkillDatabase.TierLabel(def.tier)}\n바텐더: {def.ConditionFor(Job.Bartender)}\n티 소믈리에: {def.ConditionFor(Job.TeaSommelier)}\n효과: {def.effect}\n런마다 조건을 다시 채우면 그 런에서 발동"
+                    : $"히든 스킬 · {HiddenSkillDatabase.TierLabel(def.tier)}\n힌트: 바텐더 {def.HintFor(Job.Bartender)} · 티 소믈리에 {def.HintFor(Job.TeaSommelier)}\n아직 발견하지 않았습니다");
         }
 
         /// <summary>행 안 글줄: 상자 높이를 넘는 줄은 잘라 이웃 행을 덮지 않는다(전문은 상세). leftAnchored면 좌상단 기준.</summary>
@@ -540,7 +540,9 @@ namespace CCT
                 entry.nameText.text = has ? $"{entry.def.name}  ({HiddenSkillDatabase.TierLabel(entry.def.tier)})"
                     : $"???  ({HiddenSkillDatabase.TierLabel(entry.def.tier)})";
                 entry.nameText.color = has ? new Color(0.75f, 0.9f, 1f) : new Color(1f, 1f, 1f, 0.45f);
-                entry.descText.text = has ? entry.def.condition : $"힌트: {entry.def.hint} 포함";
+                // 47: 직업별 조건 — 찻집 런은 칵테일 카드가 없어 차 전용 조건 또는 바텐더 전용
+                entry.descText.text = has ? $"바텐더: {entry.def.ConditionFor(Job.Bartender)}\n티: {entry.def.ConditionFor(Job.TeaSommelier)}"
+                    : $"힌트: {entry.def.HintFor(Job.Bartender)} / 티: {entry.def.HintFor(Job.TeaSommelier)}";
                 entry.descText.color = new Color(0.75f, 0.75f, 0.75f, has ? 1f : 0.6f);
                 entry.effectText.text = has ? entry.def.effect : "";
                 entry.effectText.color = new Color(0.6f, 0.85f, 0.95f);
