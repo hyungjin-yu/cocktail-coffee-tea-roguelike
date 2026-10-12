@@ -398,6 +398,21 @@ namespace CCT
             spriteResourcePath = "Icons/Enemies/difficult_customer_bgfix",
             enragedSpriteResourcePath = "Icons/Enemies/difficult_customer_enraged_bgfix",
         };
+
+        static EnemyDef TeaVariant(EnemyDef source, string name, string art)
+        {
+            var copy=(EnemyDef)source.MemberwiseClone();
+            copy.name=name; copy.artId=art; copy.spriteResourcePath=null;
+            copy.color=new Color(.58f,.76f,.42f);
+            return copy;
+        }
+        public static readonly EnemyDef GaiwanSentinel=TeaVariant(GrinderGolem,"개완 수호자","gaiwan_sentinel");
+        public static readonly EnemyDef SteamKettleElder=TeaVariant(DripServerSpecter,"김 서린 주전자 장로","steam_kettle_elder");
+        public static readonly EnemyDef TeaKilnDragon=TeaVariant(EspressoLeviathan,"차 화로 용","tea_kiln_dragon");
+        public static readonly EnemyDef SpringLeafSprite=TeaVariant(TeabagImp,"새싹 찻잎 정령","spring_leaf_sprite");
+        public static readonly EnemyDef BambooScoopArcher=TeaVariant(KettleCannon,"차시 궁수","bamboo_scoop_archer");
+        public static readonly EnemyDef TeaLeafScholar=TeaVariant(EspressoBug,"차 연구 정령","leaf_warden");
+        public static readonly EnemyDef TeaCustomer=TeaVariant(DifficultCustomer,"까다로운 차 손님",DifficultCustomer.ArtId);
     }
 
     /// <summary>몹의 기본 추적 이동을 대신할 수 있는 행동 (보스 패턴용).</summary>
@@ -498,6 +513,7 @@ namespace CCT
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.gravityScale = 0f;
             rb.freezeRotation = true;
+            rb.interpolation = RigidbodyInterpolation2D.Interpolate;
             // 보스가 다른 몹에 밀려 튕기지 않도록 무겁게
             if (def.IsBoss) rb.mass = 50f;
             if (def.IsBoss)
@@ -678,10 +694,13 @@ namespace CCT
         {
             if (animator == null || dead) return;
             Vector2 pos = transform.position;
-            Vector2 delta = pos - lastPosition;
+            Vector2 delta = rb.linearVelocity;
             lastPosition = pos;
-            float dirX = Mathf.Abs(delta.x) > 0.0005f ? Mathf.Sign(delta.x)
+            float dirX = Mathf.Abs(delta.x) > 0.05f ? Mathf.Sign(delta.x)
                 : player != null ? Mathf.Sign(player.Position.x - pos.x) : 1f;
+            if (player != null && (def.archetype == EnemyArchetype.Ranged || def.archetype == EnemyArchetype.EliteBarrage))
+                dirX = Mathf.Abs(player.Position.x - pos.x) > 0.1f
+                    ? Mathf.Sign(player.Position.x - pos.x) : Mathf.Sign(animator.transform.localScale.x);
             if (faceLockTimer > 0f)
             {
                 faceLockTimer -= Time.deltaTime;
@@ -699,7 +718,7 @@ namespace CCT
                 actionTimer -= Time.deltaTime;
                 return;
             }
-            bool moving = delta.sqrMagnitude > 0.000001f;
+            bool moving = delta.sqrMagnitude > 0.0025f;
             var clip = moving ? bodyArt.Clip("move") ?? bodyArt.Clip("idle") : bodyArt.Clip("idle");
             animator.Play(clip);
         }

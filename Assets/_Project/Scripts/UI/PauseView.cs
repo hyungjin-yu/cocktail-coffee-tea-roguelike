@@ -86,7 +86,7 @@ namespace CCT
                 view.HideMenuForSubView(view.skillTreeButton.gameObject);
                 view.game.SkillView.ShowReadOnly(view.game.Skills, () => view.game.CoffeePoints, view.RestoreMenuAfterSubView);
             });
-            UiFactory.AddText(UiFactory.Stretch("Label", skillTreeRt), "커피 트리", 27,
+            UiFactory.AddText(UiFactory.Stretch("Label", skillTreeRt), JobStudyTheme.TreeTitle(game != null ? game.Job : Job.Bartender), 27,
                 TextAnchor.MiddleCenter, Color.white);
             view.skillTreeReasonText = UiFactory.AddText(UiFactory.Place("Reason", skillTreeRt,
                 new Vector2(0.5f, 0f), new Vector2(0f, -20f), new Vector2(380f, 26f)),

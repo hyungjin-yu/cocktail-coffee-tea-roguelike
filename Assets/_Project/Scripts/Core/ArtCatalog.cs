@@ -182,7 +182,12 @@ namespace CCT
         {
             if (string.IsNullOrEmpty(assetId)) return null;
             EnsureLoaded();
-            if (!byId.TryGetValue(assetId, out var a)) return null;
+            if (!byId.TryGetValue(assetId, out var a))
+            {
+                a=TeaEncounterArt.Load(assetId);
+                if(a==null) return null;
+                byId[assetId]=a;
+            }
             used.Add(assetId);
             return a;
         }

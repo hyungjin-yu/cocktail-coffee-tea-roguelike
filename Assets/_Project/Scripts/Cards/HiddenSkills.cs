@@ -37,8 +37,8 @@ namespace CCT
         public Func<IHiddenRunState, bool> teaMet;
 
         public bool AvailableFor(Job job) => job == Job.Bartender || teaMet != null;
-        public string ConditionFor(Job job) => job == Job.Bartender ? condition : teaCondition ?? "바텐더 전용";
-        public string HintFor(Job job) => job == Job.Bartender ? hint : teaHint ?? "바텐더 전용";
+        public string ConditionFor(Job job) => job == Job.Bartender ? condition : JobStudyTheme.Text(teaCondition ?? "바텐더 전용",job);
+        public string HintFor(Job job) => job == Job.Bartender ? hint : JobStudyTheme.Text(teaHint ?? "바텐더 전용",job);
         public bool MetFor(IHiddenRunState s) => s != null && (s.Job == Job.Bartender ? met(s) : teaMet != null && teaMet(s));
     }
 

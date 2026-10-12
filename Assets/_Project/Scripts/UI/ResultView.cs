@@ -202,6 +202,7 @@ namespace CCT
             statsSmall.text = $"처치  {last.kills}  ·  칵테일 Lv {last.cocktailLevel}  ·  차 Lv {last.teaLevel}  ·  커피 스킬 해금  {last.coffeeSkillsUnlocked}\n" +
                               $"획득 재료  칵테일 {last.cocktailCollected}  ·  찻잎 {last.teaCollected}  ·  원두 {last.beansCollected}";
             seedText.text = $"seed  {last.seed}";
+            statsSmall.text=JobStudyTheme.Text(statsSmall.text,last.job);
         }
 
         public void ToggleSeed()

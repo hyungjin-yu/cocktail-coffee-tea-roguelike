@@ -25,6 +25,19 @@ namespace CCT
             new Spec { time = 680f, def = EnemyDef.DifficultCustomer, hpScale = 1f },
         };
 
+        public static List<Spec> DefaultSchedule(Job job)
+        {
+            var specs=DefaultSchedule();
+            if(job==Job.TeaSommelier)
+            {
+                specs[0].def=EnemyDef.GaiwanSentinel;
+                specs[1].def=EnemyDef.SteamKettleElder;
+                specs[2].def=EnemyDef.TeaKilnDragon;
+                specs[3].def=EnemyDef.TeaCustomer;
+            }
+            return specs;
+        }
+
         GameManager game;
         List<Spec> schedule;
         int next;
@@ -32,7 +45,7 @@ namespace CCT
         public void Init(GameManager game, List<Spec> schedule = null)
         {
             this.game = game;
-            this.schedule = schedule ?? DefaultSchedule();
+            this.schedule = schedule ?? DefaultSchedule(game.Job);
         }
 
         void Update()
@@ -55,14 +68,14 @@ namespace CCT
             if (spec.def.boss == BossKind.Final)
             {
                 boss.gameObject.AddComponent<CustomerBossDriver>().Init(boss, game);
-                game.Hud.ShowBanner("진상 손님 등장!", "최종보스를 처치하면 클리어", 3f);
+                game.Hud.ShowBanner($"{spec.def.name} 등장!", "최종보스를 처치하면 클리어", 3f);
             }
-            else if (spec.def == EnemyDef.EspressoLeviathan)
+            else if (spec.def == EnemyDef.EspressoLeviathan || spec.def == EnemyDef.TeaKilnDragon)
             {
                 boss.gameObject.AddComponent<EspressoLeviathanDriver>().Init(boss, game);
-                game.Hud.ShowBanner("강화 보스 출현: 에스프레소 머신 리바이어던", "처치하면 스페셜티(영구 재화) 획득!", 3f);
+                game.Hud.ShowBanner($"강화 보스 출현: {spec.def.name}", "처치하면 스페셜티(영구 재화) 획득!", 3f);
             }
-            else if (spec.def == EnemyDef.DripServerSpecter)
+            else if (spec.def == EnemyDef.DripServerSpecter || spec.def == EnemyDef.SteamKettleElder)
             {
                 boss.gameObject.AddComponent<DripSpecterDriver>().Init(boss, game);
                 game.Hud.ShowBanner($"중간보스 출현: {spec.def.name}", "장판을 피해 안전지대를 찾으세요", 3f);

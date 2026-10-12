@@ -271,6 +271,7 @@ namespace CCT
                 if (mode == "vfx") yield return VfxRun();
                 if (mode == "jobmap") yield return JobMapRun();
                 if (mode == "review-fixes") yield return ReviewFixesRun();
+                if (mode == "tea-encounters") yield return TeaEncountersRun();
             }
             var used = new List<string>(ArtLibrary.UsedIds);
             used.Sort();
@@ -669,6 +670,186 @@ namespace CCT
                 var toTitle = result != null ? result.GetComponentsInChildren<Button>(true).FirstOrDefault(b => b.name == "TitleButton") : null;
                 if (toTitle != null) toTitle.onClick.Invoke(); else { Destroy(game.gameObject); TitleView.Show(); }
                 yield return Wait(1f);
+            }
+        }
+
+
+        // ── 2026-10-12 찻집 전용 몬스터·보스 실제 화면(tea-encounters 모드) ─────────────────────
+        // 강제 경로(보고 표기): 플레이어 HP 크게, 보상 창 자동 닫기, 런 시간 건너뛰기, 관찰 구간 동안 플레이어 무기 끔,
+        // 보스는 BossDirector.SpawnNow(찻집 기본 일정 항목)로 즉시 등장 후 관찰 뒤 큰 피해로 처치. 드라이버·장판·보상은 실제 경로.
+        IEnumerator TeaEncountersRun()
+        {
+            TitleView title = null;
+            for (int i = 0; i < 100 && title == null; i++) { title = FindFirstObjectByType<TitleView>(); yield return Wait(0.1f); }
+            if (title == null) { Fail("no title"); yield break; }
+            title.RequestStart();
+            CharacterSelectView select = null;
+            for (int i = 0; i < 50 && select == null; i++) { select = FindFirstObjectByType<CharacterSelectView>(); yield return Wait(0.1f); }
+            if (select == null) { Fail("no select"); yield break; }
+            select.TeaSommelierButton.onClick.Invoke();
+            yield return Wait(0.3f);
+            select.StartButton.onClick.Invoke();
+            yield return Wait(1f);
+            var tutorial = FindFirstObjectByType<FirstRunTutorialView>();
+            if (tutorial != null && tutorial.IsOpen) tutorial.Dismiss();
+            var game = GameManager.Instance;
+            if (game == null || game.Job != Job.TeaSommelier) { Fail("tea run did not start"); yield break; }
+            game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
+            game.Player.Heal(1f);
+            string H = Screen.height.ToString();
+            Line($"TEA start: job={game.Job} weapon={game.Weapon} map={CafeBackground.ActiveMapPrefix}");
+
+            // 1) 자연 스폰 풀(실제 스포너): 원거리 등장 이후·커피 몫 이후 구간.
+            var byName = new SortedDictionary<string, int>();
+            var seen = new HashSet<Enemy>();
+            foreach (var (t, label) in new[] { (60f, "pool_early"), (200f, "pool_mid") })
+            {
+                game.SetRunTimeForTests(t);
+                float end = Time.realtimeSinceStartup + 8f;
+                while (Time.realtimeSinceStartup < end)
+                {
+                    ResolveRewardScreens(game, "tea");
+                    foreach (var e in Enemy.Active)
+                        if (e != null && !e.Def.IsBoss && seen.Add(e))
+                        {
+                            byName[e.Def.name] = byName.TryGetValue(e.Def.name, out var c) ? c + 1 : 1;
+                            if (e.Def.dropType == IngredientType.Cocktail) Fail("cocktail monster in tea house: " + e.Def.name);
+                        }
+                    yield return null;
+                }
+                yield return Shot($"tea_{H}_{label}", game);
+                Line($"TEA {label}: seen {string.Join(", ", byName.Select(kv => kv.Key + "=" + kv.Value))}");
+            }
+            // 무작위 16초 표본은 등장 보장이 아니다 — 없으면 정보로만 남긴다(풀 구성은 TeaEncounterRosterTests, 이동은 아래 강제 확인).
+            if (!byName.ContainsKey(EnemyDef.SpringLeafSprite.name)) Line("TEA info: spring leaf sprite not drawn in this random sample");
+            if (!byName.ContainsKey(EnemyDef.BambooScoopArcher.name)) Line("TEA info: bamboo scoop archer not drawn in this random sample");
+
+            // 2) 차시 궁수 실제 이동: 가까이 두고 물러남·정지 관찰(무기 끔).
+            FreezeWorld(game);
+            SetPlayerWeapons(game.Player, false);
+            game.Player.AutoInputOverride = Vector2.zero;
+            var archer = Enemy.SpawnAt(game.Player.Position + new Vector2(1.4f, 0.3f), EnemyDef.BambooScoopArcher, 1f, game.Player, game.transform);
+            EnemyRoster.AttachBehavior(archer, game, game.Player);
+            var rb = archer.GetComponent<Rigidbody2D>();
+            int frames = 0, moveFrames = 0, idleFrames = 0, other = 0, facingWrong = 0, clipSwitches = 0, frameSteps = 0, lastIdx = -1;
+            string lastClip = null;
+            float startDist = Vector2.Distance(archer.transform.position, game.Player.Position);
+            var samples = new StringBuilder();
+            float probeEnd = Time.realtimeSinceStartup + 4f;
+            bool shotMove = false;
+            while (Time.realtimeSinceStartup < probeEnd && archer != null && !archer.IsDead)
+            {
+                yield return null;
+                frames++;
+                var clip = archer.Animator.Current != null ? archer.Animator.Current.name : "none";
+                if (clip == "move") moveFrames++; else if (clip == "idle") idleFrames++; else other++;
+                if (lastClip != null && clip != lastClip) clipSwitches++;
+                if (clip == lastClip && archer.Animator.FrameIndex != lastIdx) frameSteps++;
+                lastClip = clip; lastIdx = archer.Animator.FrameIndex;
+                float dx = game.Player.Position.x - archer.transform.position.x;
+                if (Mathf.Abs(dx) > 0.1f && Mathf.Sign(archer.Animator.transform.localScale.x) != Mathf.Sign(dx)) facingWrong++;
+                if (frames % 6 == 0)
+                    samples.Append($"{Time.realtimeSinceStartup:0.00}:{clip}#{archer.Animator.FrameIndex} v={rb.linearVelocity.magnitude:0.00} " +
+                                   $"d={Vector2.Distance(archer.transform.position, game.Player.Position):0.00} sx={Mathf.Sign(archer.Animator.transform.localScale.x):0}; ");
+                if (!shotMove && clip == "move" && moveFrames > 8) { shotMove = true; yield return Shot($"tea_{H}_archer_retreat", game); }
+            }
+            float endDist = archer != null ? Vector2.Distance(archer.transform.position, game.Player.Position) : -1f;
+            yield return Shot($"tea_{H}_archer_settled", game);
+            Line($"TEA archer: art={(archer != null && archer.UsesBodyArt)} frames={frames} move={moveFrames} idle={idleFrames} other={other} clipSwitches={clipSwitches} " +
+                 $"frameSteps={frameSteps} facingWrong={facingWrong} dist {startDist:0.00}->{endDist:0.00} keep={EnemyDef.BambooScoopArcher.keepDistance}");
+            Line("TEA archer samples: " + samples);
+            if (archer == null || !archer.UsesBodyArt) Fail("archer art missing");
+            if (moveFrames < 10 || frameSteps < 3) Fail("archer move clip did not play while moving");
+            if (facingWrong > 0) Fail("archer faced away from player");
+            if (endDist < startDist + 1f) Fail("archer did not retreat");
+            // 이동 시작·정지·발사 동작 전환 외 깜박임 기준: 4초 동안 10회 초과면 실패.
+            if (clipSwitches > 10) Fail("archer clip flicker");
+            if (archer != null) Destroy(archer.gameObject);
+
+            // 3) 찻집 보스 4종(찻집 기본 일정 그대로의 def).
+            var schedule = BossDirector.DefaultSchedule(Job.TeaSommelier);
+            for (int i = 0; i < schedule.Count; i++)
+            {
+                FreezeWorld(game);
+                var spec = schedule[i];
+                int specialtyBefore = PermanentProgress.Current.specialtyPoints;
+                var boss = game.Director.SpawnNow(spec);
+                var driver = boss.GetComponents<MonoBehaviour>().FirstOrDefault(m => m is IEnemyDriver);
+                var clips = new HashSet<string>();
+                int teaZoneMax = 0, coffeeZoneMax = 0, shotN = 0;
+                float obsEnd = Time.realtimeSinceStartup + 14f;
+                float nextShot = Time.realtimeSinceStartup + 3f;
+                while (Time.realtimeSinceStartup < obsEnd && boss != null && !boss.IsDead)
+                {
+                    ResolveRewardScreens(game, "tea-boss");
+                    if (boss.Animator != null && boss.Animator.Current != null) clips.Add(boss.Animator.Current.name);
+                    int tz = 0, cz = 0;
+                    foreach (var sr in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None))
+                    {
+                        if (sr.sprite == null || !sr.enabled) continue;
+                        if (sr.sprite.name.Contains("tea_pool")) tz++; else if (sr.sprite.name.Contains("coffee_pool")) cz++;
+                    }
+                    teaZoneMax = Mathf.Max(teaZoneMax, tz); coffeeZoneMax = Mathf.Max(coffeeZoneMax, cz);
+                    if (Time.realtimeSinceStartup >= nextShot && shotN < 3)
+                    {
+                        yield return Shot($"tea_{H}_boss{i + 1}_{spec.def.ArtId}_{shotN++}", game);
+                        nextShot = Time.realtimeSinceStartup + 3.5f;
+                    }
+                    yield return null;
+                }
+                if (boss == null || boss.IsDead) { Fail("boss died during observation " + spec.def.name); continue; }
+                Line($"TEA boss{i + 1} {spec.def.name}: kind={spec.def.boss} driver={(driver != null ? driver.GetType().Name : "none")} art={boss.UsesBodyArt}:{spec.def.ArtId} " +
+                     $"clips=[{string.Join(",", clips.OrderBy(c => c))}] teaZoneMax={teaZoneMax} coffeeZoneMax={coffeeZoneMax}");
+                string want = i == 0 ? nameof(ChargerDriver) : i == 1 ? nameof(DripSpecterDriver) : i == 2 ? nameof(EspressoLeviathanDriver) : nameof(CustomerBossDriver);
+                if (driver == null || driver.GetType().Name != want) Fail($"boss {spec.def.name} driver != {want}");
+                if (!boss.UsesBodyArt) Fail("boss art missing " + spec.def.name);
+                if (coffeeZoneMax > 0) Fail("coffee pool art in tea boss " + spec.def.name);
+                if ((i == 1 || i == 2) && teaZoneMax == 0) Line($"TEA note: no tea pool seen during 14s for {spec.def.name}");
+
+                if (spec.def.boss == BossKind.Final)
+                {
+                    // 환불(원 안) HUD 무효 표시와 주문 부정 대체 찻물 장판을 직접 한 번씩 실행해 촬영(패턴 순환 끔).
+                    var cd = boss.GetComponent<CustomerBossDriver>();
+                    cd.enabled = false;
+                    var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+                    boss.transform.position = game.Player.Position + new Vector2(2f, 0f);
+                    cd.StartCoroutine((IEnumerator)typeof(CustomerBossDriver).GetMethod("Refund", flags).Invoke(cd, null));
+                    yield return Wait(0.4f);
+                    yield return Shot($"tea_{H}_refund_warning", game);
+                    yield return Wait(0.8f);
+                    yield return Shot($"tea_{H}_refund_status", game);
+                    Line($"TEA refund: suppressed={game.Stats.BonusesSuppressed} hudBack={game.Hud.SuppressedStatusVisible} text='{game.Hud.SuppressedText}'");
+                    if (!game.Stats.BonusesSuppressed || !game.Hud.SuppressedStatusVisible) Fail("refund status not visible");
+                    cd.StartCoroutine((IEnumerator)typeof(CustomerBossDriver).GetMethod("SpellBlock", flags).Invoke(cd, new object[] { false }));
+                    yield return Wait(2.0f); // 거부 0.8초 + 장판 예고 0.8초 뒤 생성
+                    int tz = 0, cz = 0;
+                    foreach (var sr in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None))
+                        if (sr.sprite != null && sr.enabled) { if (sr.sprite.name.Contains("tea_pool")) tz++; else if (sr.sprite.name.Contains("coffee_pool")) cz++; }
+                    yield return Shot($"tea_{H}_spellblock_fallback", game);
+                    Line($"TEA spellblock fallback: teaPool={tz} coffeePool={cz}");
+                    bool sealedPath = game.Stats.FlameLocked || game.Stats.PoisonLocked || game.Stats.HybridLocked; // 주기 스킬 보유 시 봉인 경로(대체 장판 없음)
+                    if (sealedPath) Line("TEA info: spellblock sealed periodic skills (fallback zone path not taken)");
+                    else if (cz > 0 || tz == 0) Fail("tea spellblock fallback zone art");
+                }
+                boss.TakeDamage(999999f);
+                yield return Wait(0.6f);
+                int pickups = FindObjectsByType<IngredientPickup>(FindObjectsSortMode.None).Length;
+                int specialtyGain = PermanentProgress.Current.specialtyPoints - specialtyBefore;
+                Line($"TEA boss{i + 1} killed: activeBossNull={game.ActiveBoss == null} state={game.State} cleared={game.Cleared} pickups={pickups} specialty+={specialtyGain}");
+                if (spec.def.boss == BossKind.Enhanced && specialtyGain != Balance.SpecialtyDropAmount) Fail("enhanced tea boss specialty " + specialtyGain);
+                if (spec.def.boss != BossKind.Enhanced && specialtyGain != 0) Fail("unexpected specialty " + spec.def.name);
+                if (spec.def.boss == BossKind.Final)
+                {
+                    if (!game.Cleared) Fail("tea final boss did not clear");
+                    yield return Wait(2.5f);
+                    yield return Shot($"tea_{H}_result");
+                }
+                else
+                {
+                    if (game.Cleared || game.ActiveBoss != null) Fail("mid/enhanced kill state " + spec.def.name);
+                    yield return Wait(0.6f);
+                    yield return ClearOverlays(game, "tea-boss-kill");
+                }
             }
         }
 

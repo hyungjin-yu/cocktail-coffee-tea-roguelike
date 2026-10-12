@@ -30,6 +30,7 @@ namespace CCT
         {
             rng ??= UnityRandomSource.Instance;
             float cocktailOfPair = CocktailShareOfPair(job);
+            var teaRoster=job==Job.TeaSommelier ? TeaHouseTrack : TeaTrack;
 
             if (runTime >= CoffeeTrackUnlockTime)
             {
@@ -40,13 +41,14 @@ namespace CCT
                 float cocktail = job == null ? CocktailShareAfterCoffee : pair * cocktailOfPair;
                 float roll = rng.Value();
                 if (roll < cocktail) return PickTrack(runTime, CocktailTrack, rng);
-                if (roll < pair) return PickTrack(runTime, TeaTrack, rng);
-                return PickCoffee(rng);
+                if (roll < pair) return PickTrack(runTime, teaRoster, rng);
+                var coffee=PickCoffee(rng);
+                return job==Job.TeaSommelier ? EnemyDef.TeaLeafScholar : coffee;
             }
 
             // 기존: roll < 0.5면 차. 직업 테마는 차 몫(1 - 칵테일 몫) 미만이면 차.
             bool tea = rng.Value() < 1f - cocktailOfPair;
-            return tea ? PickTrack(runTime, TeaTrack, rng) : PickTrack(runTime, CocktailTrack, rng);
+            return tea ? PickTrack(runTime, teaRoster, rng) : PickTrack(runTime, CocktailTrack, rng);
         }
 
         /// <summary>칵테일+차 중 칵테일 몫: 직업 없음 0.5, 바텐더 0.65(차 몹 35% 허용), 티 소믈리에 0 —
@@ -69,6 +71,7 @@ namespace CCT
             public EnemyDef suicide;
             public EnemyDef summoner;
             public EnemyDef elite;
+            public EnemyDef secondRanged;
         }
 
         static readonly Track CocktailTrack = new Track
@@ -91,10 +94,20 @@ namespace CCT
             elite = EnemyDef.TeaCeremonyGuardian,
         };
 
+        static readonly Track TeaHouseTrack=new Track
+        {
+            rush=EnemyDef.SpringLeafSprite, ranged=EnemyDef.BambooScoopArcher,
+            extra=EnemyDef.TeabagImp, secondRanged=EnemyDef.KettleCannon,
+            suicide=EnemyDef.SugarCubeBomber, summoner=EnemyDef.LeafWarden,
+            elite=EnemyDef.TeaCeremonyGuardian
+        };
+
         static EnemyDef PickTrack(float runTime, Track track, IRandomSource rng)
         {
             const float wRush = 1f;
             float wRanged = runTime >= 15f ? 0.4f : 0f;
+            float wSecond=track.secondRanged!=null ? wRanged*.5f : 0f;
+            if(wSecond>0f) wRanged-=wSecond;
             float wExtra = track.extra != null && runTime >= 45f
                 ? Mathf.Min(0.55f, 0.15f + (runTime - 45f) * 0.0015f) : 0f;
             float wSuicide = runTime >= 60f ? 0.3f : 0f;
@@ -102,11 +115,12 @@ namespace CCT
             // 엘리트: 웨이브 후반에 드물게 단독 등장 컨셉이라 등장 시점도 늦고 가중치도 낮게
             float wElite = runTime >= 120f ? 0.08f : 0f;
 
-            float roll = rng.Value() * (wRush + wRanged + wExtra + wSuicide + wSummoner + wElite);
+            float roll = rng.Value() * (wRush + wRanged + wSecond + wExtra + wSuicide + wSummoner + wElite);
             if ((roll -= wElite) < 0f) return track.elite;
             if ((roll -= wSummoner) < 0f) return track.summoner;
             if ((roll -= wSuicide) < 0f) return track.suicide;
             if ((roll -= wExtra) < 0f) return track.extra;
+            if ((roll -= wSecond) < 0f) return track.secondRanged;
             if ((roll -= wRanged) < 0f) return track.ranged;
             return track.rush;
         }

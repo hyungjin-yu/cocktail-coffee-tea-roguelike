@@ -29,6 +29,8 @@ namespace CCT
         GameObject root;
         GameObject closeButtonGo;
         Text pointsText;
+        Text treeTitle;
+        Job CurrentJob => GetComponentInParent<GameManager>()?.Job ?? GameManager.Instance?.Job ?? Job.Bartender;
         SkillTree tree;
         Func<int> pointsSource;
         Func<SkillData, bool> trySpend;
@@ -73,7 +75,7 @@ namespace CCT
 
             var title = UiFactory.Place("Title", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -48f),
                 new Vector2(1400f, 50f));
-            UiFactory.AddText(title, "커피 트리", 48, TextAnchor.MiddleCenter, Cream);
+            view.treeTitle = UiFactory.AddText(title, "커피 트리", 48, TextAnchor.MiddleCenter, Cream);
 
             var pointsRt = UiFactory.Place("Points", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -104f),
                 new Vector2(1740f, 36f));
@@ -159,9 +161,9 @@ namespace CCT
                 // 이름 위 / 효과 가운데(최대 2줄) / 상태·비용 아래. 단축키 표시가 왼쪽 위 모서리라 이름 칸을
                 // 좌우로 줄여 겹치지 않게 한다.
                 slot.name = UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -12f),
-                    new Vector2(400f, 36f)), data.displayName, 24, TextAnchor.MiddleCenter, Cream);
+                    new Vector2(400f, 36f)), JobStudyTheme.Name(data,CurrentJob), 24, TextAnchor.MiddleCenter, Cream);
                 slot.desc = UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 0.5f), new Vector2(0f, 0f),
-                    new Vector2(556f, 36f)), data.description, 24, TextAnchor.MiddleCenter, Cream);
+                    new Vector2(556f, 36f)), JobStudyTheme.Text(data.description,CurrentJob), 24, TextAnchor.MiddleCenter, Cream);
                 slot.status = UiFactory.AddText(UiFactory.Place("Status", rt, new Vector2(0.5f, 0f),
                     new Vector2(0f, 12f), new Vector2(556f, 36f)), "", 24, TextAnchor.MiddleCenter, Cream);
 
@@ -226,6 +228,8 @@ namespace CCT
             else if (challenge != null)
                 pointsText.text = $"남은 커피 포인트 {points} · 다음 해금:몹 체력 +{(challenge.NextCoffeeHp-challenge.HpMultiplier)*100f:0.#}%p / 피해 +{(challenge.NextCoffeeDamage-challenge.DamageMultiplier)*100f:0.#}%p → 체력 {challenge.NextCoffeeHp*100f:0.#}% / 피해 {challenge.NextCoffeeDamage*100f:0.#}%";
 
+            treeTitle.text=JobStudyTheme.TreeTitle(CurrentJob);
+            pointsText.text=JobStudyTheme.Text(pointsText.text,CurrentJob);
             foreach (var slot in slots)
             {
                 var state = tree.StateOf(slot.data, points);

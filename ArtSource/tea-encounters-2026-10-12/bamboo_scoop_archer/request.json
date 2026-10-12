@@ -1,0 +1,8 @@
+{
+  "description": "side view crisp pixel art enemy for a 2D tea house action game, facing right, centered full body, fixed scale, dark pixel outline, limited warm palette, transparent background, no text, a small animated bamboo tea scoop guardian, bamboo scoop body and curved scoop beak, jade leaf quiver, two short wooden legs, expressive face, holding a loose tea leaf ready to throw, not a kettle or bottle",
+  "action": "slow seamless walk in place facing right, alternate wooden legs, hold tea leaf ready, steady upper body, no translation, four distinct frames, no morphing, no camera movement",
+  "seed": "149005",
+  "no_background": true,
+  "output_method": "New frame",
+  "model_name": "generate_animate_character_object"
+}

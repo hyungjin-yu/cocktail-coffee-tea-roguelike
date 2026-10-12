@@ -92,7 +92,7 @@ namespace CCT
         IEnumerator Refund()
         {
             frozen = true;
-            game.Hud.ShowBanner("\"환불해주세요!\"", "곧 강화 효과가 무효화됩니다!", RefundTelegraphSeconds);
+            game.Hud.ShowBanner("\"환불해주세요!\"", "빨간 원 밖으로! 안에 있으면 강화 효과 무효", RefundTelegraphSeconds);
             enemy.PlayAction("refund", RefundTelegraphSeconds);
             FadeVfx.Spawn(SpriteFactory.Circle, enemy.transform.position, 0f,
                 Vector2.one * 0.4f, Vector2.one * (RefundRadius * 2f),
@@ -113,6 +113,7 @@ namespace CCT
                         FadeVfx.Spawn(SpriteFactory.Circle, game.Player.Position, 0f,
                             Vector2.one * 0.5f, Vector2.one * 6f, new Color(1f, 0.2f, 0.25f, 0.6f), 0.5f, 5);
                 }
+                else game.Hud.ShowBanner("환불 회피!", "원 밖이라 강화 효과가 유지됩니다", 1.5f); // 2026-10-12: 피했을 때 "아무 일 없음"처럼 보이지 않게
             }
 
             frozen = false;
@@ -235,7 +236,8 @@ namespace CCT
 
             // 06:142 — 보유한 주기 스킬이 하나도 없으면 대체: 플레이어 중심 커피 장판
             Vector2 pos = game.Player.Position;
-            game.Hud.ShowBanner("주문 부정!", "대신 발밑에 커피 장판이 생깁니다!", CoffeeZoneTelegraphSeconds);
+            bool tea = game.Job == Job.TeaSommelier; // 2026-10-12 찻집: 찻물 장판·문구
+            game.Hud.ShowBanner("주문 부정!", tea ? "대신 발밑에 뜨거운 찻물이 고입니다!" : "대신 발밑에 커피 장판이 생깁니다!", CoffeeZoneTelegraphSeconds);
             if (ZoneTelegraphV2.Spawn(pos, CoffeeZoneRadius, CoffeeZoneTelegraphSeconds, new Color(1f, .62f, .3f), enemy.transform.parent) == null)
             {
                 FadeVfx.Spawn(SpriteFactory.Circle, pos, 0f,
@@ -248,7 +250,7 @@ namespace CCT
 
             if (game.Player != null)
                 BurstZone.Spawn(pos, CoffeeZoneRadius, CoffeeZoneDamagePerSecond, CoffeeZoneSeconds,
-                    game.Player, enemy.transform.parent, BurstZone.CoffeePoolArt);
+                    game.Player, enemy.transform.parent, tea ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt);
 
             frozen = false;
         }

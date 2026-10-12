@@ -1,0 +1,1 @@
+{"assetId":"bamboo_scoop_archer","bodyHeightPx":93,"targetBodyHeightWorld":1.2,"footPixelY":10,"clips":[{"name":"idle","frames":4,"fps":4,"loop":true},{"name":"move","frames":4,"fps":8,"loop":true},{"name":"action","frames":4,"fps":8,"loop":false},{"name":"defeat","frames":4,"fps":8,"loop":false}]}

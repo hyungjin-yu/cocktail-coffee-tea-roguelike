@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace CCT
@@ -15,6 +15,7 @@ namespace CCT
         Text info;
         Text coffeePoints;
         Text suppressed;
+        GameObject suppressedBack;
         Text bannerTitle;
         Text bannerSub;
         Text schemeLabel;
@@ -72,10 +73,21 @@ namespace CCT
             view.info = UiFactory.AddText(infoRt, "", 30, TextAnchor.UpperRight, Color.white);
 
             // 08:79 "상단 우측: 커피 미사용 포인트와 K 안내"
-            var pointsRt = UiFactory.Place("CoffeePoints", root, new Vector2(1f, 1f), new Vector2(-30f, -120f),
-                new Vector2(420f, 40f));
-            view.coffeePoints = UiFactory.AddText(pointsRt, CoffeePointsLabel(0), 26, TextAnchor.UpperRight,
+            // 2026-10-12: 찻집 "우림 연구 포인트 … [K] 우림 연구 트리"가 길고 다탁 그림 위에 바로 놓여 안 읽혔다 — 어두운 바탕+여백,
+            // 넘치면 글자만 줄인다. 폭 450은 중앙 게이지 바탕(x 490..1430) 오른쪽, 높이는 Info(-114) 아래·Challenge(-164) 위.
+            var pointsRt = UiFactory.Place("CoffeePoints", root, new Vector2(1f, 1f), new Vector2(-30f, -118f),
+                new Vector2(450f, 42f));
+            UiFactory.AddImage(pointsRt, new Color(.06f, .05f, .08f, .82f)).raycastTarget = false;
+            var pointsLabel = UiFactory.Stretch("Label", pointsRt);
+            pointsLabel.offsetMin = new Vector2(12f, 4f);
+            pointsLabel.offsetMax = new Vector2(-12f, -4f);
+            view.coffeePoints = UiFactory.AddText(pointsLabel, CoffeePointsLabel(0), 24, TextAnchor.MiddleRight,
                 new Color(0.9f, 0.7f, 0.45f));
+            view.coffeePoints.horizontalOverflow = HorizontalWrapMode.Wrap;
+            view.coffeePoints.verticalOverflow = VerticalWrapMode.Truncate;
+            view.coffeePoints.resizeTextForBestFit = true;
+            view.coffeePoints.resizeTextMinSize = 16;
+            view.coffeePoints.resizeTextMaxSize = 24;
             var challengeRt = UiFactory.Place("Challenge", root, new Vector2(1f,1f), new Vector2(-30f,-164f), new Vector2(430f,160f));
             UiFactory.AddImage(challengeRt,new Color(.06f,.05f,.08f,.82f)).raycastTarget=false;
             view.challengeLabel=PaddedLabel(challengeRt,"",22,TextAnchor.MiddleRight,Color.white);
@@ -87,6 +99,12 @@ namespace CCT
             foreach (var icon in new[] { view.slowIcon, view.suppressedIcon, view.sealIcon })
                 if (icon != null) icon.gameObject.SetActive(false);
             bool hasStatusIcons = view.slowIcon != null;
+            // 2026-10-12: 환불 무효 상태가 선반 그림 위 글자만이라 안 보였다 — 걸렸을 때만 어두운 바탕(입력 안 막음).
+            var suppressBackRt = UiFactory.Place("SuppressedBacking", root, new Vector2(0f, 1f), new Vector2(hasStatusIcons ? 176f : 22f, -66f),
+                new Vector2(hasStatusIcons ? 336f : 536f, 46f));
+            UiFactory.AddImage(suppressBackRt, new Color(.06f, .05f, .08f, .86f)).raycastTarget = false;
+            view.suppressedBack = suppressBackRt.gameObject;
+            view.suppressedBack.SetActive(false);
             var suppressRt = UiFactory.Place("Suppressed", root, new Vector2(0f, 1f), new Vector2(hasStatusIcons ? 184f : 30f, -70f),
                 new Vector2(hasStatusIcons ? 320f : 520f, 40f));
             view.suppressed = UiFactory.AddText(suppressRt, "", 26, TextAnchor.UpperLeft,
@@ -200,11 +218,11 @@ namespace CCT
                 if(!game.Player.Hidden.Has(def.skill)) continue;
                 var rt=UiFactory.Place(def.id,hiddenContent,new Vector2(.5f,1f),new Vector2(0,-row*116f),new Vector2(890f,108f));
                 UiFactory.AddImage(rt,new Color(.19f,.14f,.17f,1f)).raycastTarget=false;
-                UiFactory.AddText(UiFactory.Place("Name",rt,new Vector2(.5f,1),new Vector2(0,-4),new Vector2(860,34)),def.name+" · "+HiddenSkillDatabase.TierLabel(def.tier),26,TextAnchor.MiddleLeft,new Color(1f,.85f,.4f));
+                UiFactory.AddText(UiFactory.Place("Name",rt,new Vector2(.5f,1),new Vector2(0,-4),new Vector2(860,34)),JobStudyTheme.HiddenName(def,game.Job)+" · "+HiddenSkillDatabase.TierLabel(def.tier),26,TextAnchor.MiddleLeft,new Color(1f,.85f,.4f));
                 UiFactory.AddText(UiFactory.Place("Effect",rt,new Vector2(.5f,1),new Vector2(0,-40),new Vector2(860,66)),game.Player.HiddenRuntime.StateLabel(def.skill),24,TextAnchor.UpperLeft,Color.white);
                 row++;
             }
-            if(row==0) UiFactory.AddText(UiFactory.Place("Empty",hiddenContent,new Vector2(.5f,1),Vector2.zero,new Vector2(880,80)),"이번 런에는 아직 해금한 히든 스킬이 없습니다.\n카드·커피 조합 조건을 달성하면 자동으로 적용됩니다.",26,TextAnchor.MiddleCenter,Color.white);
+            if(row==0) UiFactory.AddText(UiFactory.Place("Empty",hiddenContent,new Vector2(.5f,1),Vector2.zero,new Vector2(880,80)),JobStudyTheme.Text("이번 런에는 아직 해금한 히든 스킬이 없습니다.\n카드·커피 조합 조건을 달성하면 자동으로 적용됩니다.",game.Job),26,TextAnchor.MiddleCenter,Color.white);
             hiddenContent.sizeDelta=new Vector2(0,Mathf.Max(100,row*116)); hiddenContent.anchoredPosition=Vector2.zero;
             hiddenDetails.SetActive(true); hiddenDetails.transform.SetAsLastSibling();
         }
@@ -249,6 +267,8 @@ namespace CCT
 
         /// <summary>테스트용 — HUD 상단 우측 커피 포인트 문구.</summary>
         public string CoffeePointsText => coffeePoints.text;
+        public bool SuppressedStatusVisible => suppressedBack != null && suppressedBack.activeSelf;
+        public string SuppressedText => suppressed.text;
 
         void RefreshSchemeLabel()
         {
@@ -265,11 +285,13 @@ namespace CCT
                 var runtime=game.Player.HiddenRuntime;
                 hiddenActivity.text=runtime.LastActivationRemaining>0f ? "효과 발동: "+runtime.LastActivation
                     : game.Player.Hidden.Count>0 ? "해금 효과는 조건에 따라 자동 적용됩니다.\n[H] 현재 수치 · 활성 상태 · 재충전 확인"
-                    : "카드·커피 조합으로 히든 스킬을 발견하세요.";
+                    : game.Job==Job.TeaSommelier ? "차 조합과 우림 연구로 히든 스킬을 발견하세요." : "카드·커피 조합으로 히든 스킬을 발견하세요.";
             }
             if (challengeLabel != null && game.Challenge != null)
                 challengeLabel.text=$"도전 {game.Challenge.Stage} (영구 {game.Challenge.PermanentCount} + 커피 {game.Challenge.CoffeeCount})\n몹 체력 {game.Challenge.HpMultiplier*100f:0.#}% · 피해 {game.Challenge.DamageMultiplier*100f:0.#}%\n시간 스폰 ×{Balance.TimeSpawnMultiplier(game.RunTime):0.00} · 영구 +{RunChallenge.SpawnBonusPercentFor(game.Challenge.PermanentUnlockTotal)}%\n동시 상한 {Balance.TimeAliveCap(game.RunTime, game.Challenge.RegularAliveCap)}";
             bool saveFailed = PermanentProgress.LastSaveFailed;
+            if(game.Job==Job.TeaSommelier && challengeLabel!=null)
+                challengeLabel.text=JobStudyTheme.Text(challengeLabel.text,game.Job);
             if (saveFailedRoot.activeSelf != saveFailed) saveFailedRoot.SetActive(saveFailed);
 
             var player = game.Player;
@@ -286,8 +308,8 @@ namespace CCT
 
             var beans = game.BeanGauge;
             beanBar.Set(beans.Fill01);
-            beanBar.Label.text = $"Lv {beans.Level}   원두 {beans.Current} / {beans.Threshold}  (스킬 {game.Skills.UnlockedCount}/{game.Skills.Nodes.Count})";
-            coffeePoints.text = CoffeePointsLabel(game.CoffeePoints);
+            beanBar.Label.text = JobStudyTheme.Text($"Lv {beans.Level}   원두 {beans.Current} / {beans.Threshold}  (스킬 {game.Skills.UnlockedCount}/{game.Skills.Nodes.Count})",game.Job);
+            coffeePoints.text = JobStudyTheme.Text(CoffeePointsLabel(game.CoffeePoints),game.Job);
 
             int seconds = Mathf.FloorToInt(game.RunTime);
             info.text = $"{seconds / 60:00}:{seconds % 60:00}\n처치 {game.Kills}";
@@ -297,8 +319,9 @@ namespace CCT
             SetIcon(suppressedIcon, stats.BonusesSuppressed);
             SetIcon(sealIcon, stats.FlameLocked || stats.PoisonLocked || stats.HybridLocked);
             suppressed.text = stats.BonusesSuppressed
-                ? $"강화 효과 무효  {stats.SuppressedRemaining:0.0}초"
+                ? $"환불 · 강화 무효 {stats.SuppressedRemaining:0.0}초"
                 : "";
+            if (suppressedBack.activeSelf != stats.BonusesSuppressed) suppressedBack.SetActive(stats.BonusesSuppressed);
 
             var boss = game.ActiveBoss;
             bool showBoss = boss != null && !boss.IsDead;

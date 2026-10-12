@@ -60,6 +60,11 @@ namespace CCT
             go.transform.position = position;
 
             var (sprite, color, isRealIcon) = VisualFor(type);
+            if(type==IngredientType.Coffee && game!=null && game.Job==Job.TeaSommelier)
+            {
+                var study=ArtLibrary.Sprite("ui_codex");
+                if(study!=null) { sprite=study; color=Color.white; isRealIcon=true; }
+            }
             // 실제 아이콘은 캔버스 여백(그림이 절반 정도만 차 있음) 때문에 작아 보여서 시각적으로 더 키운다.
             float visualScale = isRealIcon ? Balance.IngredientIconVisualScale : 1f;
             go.transform.localScale = Vector3.one * (0.22f + 0.04f * amount) * visualScale;

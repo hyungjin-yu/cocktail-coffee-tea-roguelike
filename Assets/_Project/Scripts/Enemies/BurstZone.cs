@@ -24,6 +24,7 @@ namespace CCT
         /// <summary>04 §8 장판 아트: 올리브 바머 화염은 olive_fire, 커피 보스 장판은 coffee_pool.</summary>
         public const string OliveFireArt = "olive_fire";
         public const string CoffeePoolArt = "coffee_pool";
+        public const string TeaPoolArt = "tea_pool";
 
         public static void Spawn(Vector2 position, float radius, float damagePerSecond, float seconds,
             PlayerController player, Transform parent, string artId = OliveFireArt)
@@ -46,7 +47,7 @@ namespace CCT
         /// <summary>장판 그림: 아트가 있으면 판정 원이 타원 안에 들어가는 배율로 반복 재생, 없으면 기존 색 원.</summary>
         /// <summary>43: v1 장판 아트 id → PixelLab v2(판정 원 경계 일치·나타남/소멸 연출). 없으면 v1.</summary>
         public static string V2For(string artId) => artId == OliveFireArt ? "zone_olive_fire_v2" :
-            artId == CoffeePoolArt ? "zone_coffee_pool_v2" : artId == "sugar_pool" ? "zone_sugar_pool_v2" : null;
+            artId == CoffeePoolArt ? "zone_coffee_pool_v2" : artId == TeaPoolArt ? "zone_tea_pool_v2" : artId == "sugar_pool" ? "zone_sugar_pool_v2" : null;
 
         public static void ApplyZoneVisual(GameObject go, SpriteRenderer sr, string artId, float radius, Color fallback,
             float lifetime = float.MaxValue)

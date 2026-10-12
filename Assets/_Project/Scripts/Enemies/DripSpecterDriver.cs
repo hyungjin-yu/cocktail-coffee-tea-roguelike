@@ -94,7 +94,7 @@ namespace CCT
 
             if (enemy == null || enemy.IsDead || game.Player == null) yield break;
             BurstZone.Spawn(pos, DripWaveZoneRadius, DripWaveDamagePerSecond, DripWaveZoneSeconds,
-                game.Player, enemy.transform.parent, BurstZone.CoffeePoolArt);
+                game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.SteamKettleElder ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt));
         }
 
         IEnumerator Invisibility()
@@ -139,7 +139,7 @@ namespace CCT
             enemy.transform.position = target;
             enemy.PlayAction("appear");
             BurstZone.Spawn(target, ReappearZoneRadius, ReappearDamagePerSecond, ReappearZoneSeconds,
-                game.Player, enemy.transform.parent, BurstZone.CoffeePoolArt);
+                game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.SteamKettleElder ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt));
         }
     }
 }

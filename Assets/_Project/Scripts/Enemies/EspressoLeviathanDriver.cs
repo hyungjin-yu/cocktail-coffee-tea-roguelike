@@ -267,7 +267,7 @@ namespace CCT
             {
                 foreach (var pos in positions)
                     BurstZone.Spawn(pos, DripRainRadius, DripRainDamagePerSecond, DripRainZoneSeconds,
-                        game.Player, enemy.transform.parent, BurstZone.CoffeePoolArt);
+                        game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.TeaKilnDragon ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt));
             }
 
             frozen = false; // 생성 시 패턴 종료 (장판 수명은 독립)

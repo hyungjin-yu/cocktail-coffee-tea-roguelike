@@ -127,6 +127,8 @@ namespace CCT.Editor
             ValidatePermanentSkills(problems);
 
             ValidateArt(problems);
+            try { TeaEncounterArtImport.Validate(); }
+            catch(Exception error) { problems.Add(error.Message); }
 
             return problems;
         }
