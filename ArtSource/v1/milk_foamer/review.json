@@ -1,0 +1,255 @@
+{
+  "assetId": "milk_foamer",
+  "frames": 19,
+  "checks": [
+    {
+      "file": "frames/milk_foamer_action_right_00.png",
+      "bboxTopLeft": [
+        42,
+        68,
+        212,
+        224
+      ],
+      "pixelSha256": "82a5c9e2868338ab814d410fdcb03f510c23554336a427947014fc9459f54914",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_action_right_01.png",
+      "bboxTopLeft": [
+        44,
+        66,
+        210,
+        222
+      ],
+      "pixelSha256": "33ad58cf209a53d64bc4899d5dffa08a9c86b85d6d76388391d972f76c525138",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_action_right_02.png",
+      "bboxTopLeft": [
+        30,
+        72,
+        224,
+        224
+      ],
+      "pixelSha256": "816331ece296736f50dd53fecb9038c84615b11964c99d66d81f17662fe9935e",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_action_right_03.png",
+      "bboxTopLeft": [
+        40,
+        60,
+        212,
+        222
+      ],
+      "pixelSha256": "ec2e3edb68127acdd98159f32283bb17ecf5799bede7de8a93a3d237e65056f5",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_defeat_right_00.png",
+      "bboxTopLeft": [
+        42,
+        94,
+        212,
+        224
+      ],
+      "pixelSha256": "1c99510f2b27d4588b599d57979029a2dad13583df99b1401b99d738865fd9ce",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_defeat_right_01.png",
+      "bboxTopLeft": [
+        38,
+        84,
+        216,
+        224
+      ],
+      "pixelSha256": "14e81d61ec21b71558dcb8bd0168b780c7c995f7a7026f072b3f48d36b8e143e",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_defeat_right_02.png",
+      "bboxTopLeft": [
+        18,
+        114,
+        238,
+        224
+      ],
+      "pixelSha256": "9a27bb1e34b67b5086d15e9a571ecfda83661db0f7b103e27921c8aef513398f",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_defeat_right_03.png",
+      "bboxTopLeft": [
+        18,
+        130,
+        236,
+        224
+      ],
+      "pixelSha256": "b533e8fa62e9ae46916fdea57b0ff5b9c917882b4b8cde71e9edecd1ce7e854a",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_hurt_right_00.png",
+      "bboxTopLeft": [
+        46,
+        74,
+        208,
+        224
+      ],
+      "pixelSha256": "e34397da939fcc1e1b9cec57459d51d33f0defa149518994d6109cf3d3276916",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_idle_right_00.png",
+      "bboxTopLeft": [
+        44,
+        62,
+        210,
+        224
+      ],
+      "pixelSha256": "93134bf21e3c1b1a5de0d9cbe61ac7906ae7701c8f31229bc68a23b7be0535dd",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_idle_right_01.png",
+      "bboxTopLeft": [
+        46,
+        60,
+        210,
+        224
+      ],
+      "pixelSha256": "15a7c12f955dc8b3c8bc8a6e82c44966febc20ad0aa73570cf4cdcfff99c1d5f",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_idle_right_02.png",
+      "bboxTopLeft": [
+        38,
+        62,
+        216,
+        224
+      ],
+      "pixelSha256": "53f01554cec872f8926c150641ae759c04e96d82122f08ae9173186400ed1f99",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_idle_right_03.png",
+      "bboxTopLeft": [
+        28,
+        64,
+        226,
+        224
+      ],
+      "pixelSha256": "4a069fc9777dfb2bfb3186c902bd785b8fe3ca5ec69e71f118c18a3b53e7fbaa",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_move_right_00.png",
+      "bboxTopLeft": [
+        42,
+        68,
+        210,
+        224
+      ],
+      "pixelSha256": "f299f3dbeb1cc5b07b51b192da2f08f10d1ad956b4e4c119812e5b24ccb36b96",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_move_right_01.png",
+      "bboxTopLeft": [
+        42,
+        62,
+        212,
+        224
+      ],
+      "pixelSha256": "89846567cf668285300f5d38dc737c4ff0726c18133c10f8ebed5b3a494d1957",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_move_right_02.png",
+      "bboxTopLeft": [
+        46,
+        64,
+        210,
+        224
+      ],
+      "pixelSha256": "c1f046b227875a67c9a9311f3c7012d411c86a6d41f3d01210851f539fe93866",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_move_right_03.png",
+      "bboxTopLeft": [
+        42,
+        64,
+        210,
+        224
+      ],
+      "pixelSha256": "af20d748814720e5897a342e4bfe199a02b45b2ac1c85a4faf2aed687ffec6e7",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_move_right_04.png",
+      "bboxTopLeft": [
+        44,
+        60,
+        210,
+        224
+      ],
+      "pixelSha256": "caf38a1972f9052b306c8a54a4283e64c10619aab4a750c41d7abfa58d8d3e68",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/milk_foamer_move_right_05.png",
+      "bboxTopLeft": [
+        38,
+        60,
+        216,
+        222
+      ],
+      "pixelSha256": "14ac7c9e70ca20e0c4f3ede8c8bf9d591216cb5d74d854a8ea6905f829ef28e8",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

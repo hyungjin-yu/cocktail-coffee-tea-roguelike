@@ -13,7 +13,12 @@ namespace CCT
         /// <summary>커피 트랙(에스프레소 벅/밀크 포머)이 섞이기 시작하는 시점. 그라인더 골렘(중간보스 A) 등장
         /// 시점(2:30)과 맞춰서, "중간보스 A 처치 이후"라는 기획 의도를 런타임 타이머로 근사한다
         /// ([[02_몹 디자인 - 커피 & 중간보스]] 1장 — 원두 게이지가 중간보스 킬에만 의존하지 않게 하는 완충재).</summary>
-        const float CoffeeTrackUnlockTime = 150f;
+        public const float CoffeeTrackUnlockTime = 150f;
+
+        /// <summary>커피 합류(150초) 이후 트랙 비율. 칵테일+차+커피 = 1.</summary>
+        public const float CocktailShareAfterCoffee = 0.49f;
+        public const float TeaShareAfterCoffee = 0.49f;
+        public const float CoffeeShareAfterCoffee = 1f - CocktailShareAfterCoffee - TeaShareAfterCoffee;
 
         /// <summary>rng를 생략하면 기존 UnityEngine.Random(전역)을 그대로 쓴다 — 기존 호출부/테스트는
         /// 아무것도 안 바꿔도 된다. 실제 런에서는 GameManager가 시드에서 파생한 스트림(06:98)을 넘긴다.</summary>
@@ -23,10 +28,12 @@ namespace CCT
 
             if (runTime >= CoffeeTrackUnlockTime)
             {
-                // 커피 합류 후 비율(가안): 칵테일 40 / 차 40 / 커피 20
+                // 커피 합류 후 비율: 칵테일 49 / 차 49 / 커피 2 (2026-10-06 기획 변경, 02/07/27).
+                // 이전 20%에서는 일반 몹 원두가 런당 278~385개라 커피 15노드가 드립 직후 전부 해금됐다
+                // (Delivery/Reports/coffee-economy-analysis-2026-10-06.md). 보스 원두 80=8포인트는 그대로다.
                 float roll = rng.Value();
-                if (roll < 0.4f) return PickTrack(runTime, CocktailTrack, rng);
-                if (roll < 0.8f) return PickTrack(runTime, TeaTrack, rng);
+                if (roll < CocktailShareAfterCoffee) return PickTrack(runTime, CocktailTrack, rng);
+                if (roll < CocktailShareAfterCoffee + TeaShareAfterCoffee) return PickTrack(runTime, TeaTrack, rng);
                 return PickCoffee(rng);
             }
 

@@ -1,0 +1,203 @@
+{
+  "assetId": "espresso_bug",
+  "frames": 15,
+  "checks": [
+    {
+      "file": "frames/espresso_bug_defeat_right_00.png",
+      "bboxTopLeft": [
+        24,
+        118,
+        230,
+        224
+      ],
+      "pixelSha256": "c0e29de11f8f126aa923ca3d5e29119c600fb76ca2bd33aaf04e4ead6d25b298",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_defeat_right_01.png",
+      "bboxTopLeft": [
+        20,
+        128,
+        236,
+        224
+      ],
+      "pixelSha256": "05f2a2945b44e2da465fafac02bfc55197b32f72e2d3dfc136792a519e8712f0",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_defeat_right_02.png",
+      "bboxTopLeft": [
+        18,
+        144,
+        238,
+        224
+      ],
+      "pixelSha256": "5db42d0e4ebd98e9a1c6dc46fde993a2c06767274711de7a4c7e2d7f647d4a87",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_defeat_right_03.png",
+      "bboxTopLeft": [
+        34,
+        172,
+        222,
+        224
+      ],
+      "pixelSha256": "12ab30f4b94288bdc8689811e98812770fd9e455fad48ef90166f43c01bd9920",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_hurt_right_00.png",
+      "bboxTopLeft": [
+        64,
+        98,
+        192,
+        224
+      ],
+      "pixelSha256": "a236d7fb2d90276e91c5df09de20fac5db804c159dd80f0bdb70e5e6b45ad07f",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_idle_right_00.png",
+      "bboxTopLeft": [
+        34,
+        116,
+        222,
+        224
+      ],
+      "pixelSha256": "5f82982dd4d7e2c9a33a2ad165c284be8822b84d1f7c6a0fd0ed1133e402c205",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_idle_right_01.png",
+      "bboxTopLeft": [
+        36,
+        114,
+        220,
+        224
+      ],
+      "pixelSha256": "81408755e2f9a2488dcb1cf818c59286b98e0a70187441cd842e4b6b7b48355e",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_idle_right_02.png",
+      "bboxTopLeft": [
+        34,
+        116,
+        220,
+        224
+      ],
+      "pixelSha256": "f9ec2d4ecb3fbe628985af6ca468bc10f204688325516a60657a52873c28a58b",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_idle_right_03.png",
+      "bboxTopLeft": [
+        26,
+        118,
+        228,
+        224
+      ],
+      "pixelSha256": "32ec2aaf8e5517eab0c5a03188cb92b1651fe929c05c9e52ac34b4cc00c62867",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_move_right_00.png",
+      "bboxTopLeft": [
+        26,
+        110,
+        230,
+        224
+      ],
+      "pixelSha256": "634854274cae902cb899e12246aba0d93f7aa2a3617479e7b61c2bd1524e4742",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_move_right_01.png",
+      "bboxTopLeft": [
+        22,
+        108,
+        232,
+        224
+      ],
+      "pixelSha256": "856dc252d6d1638cc7746f68eeb1906bc554c5cb18a630f31a91af6f253e2ec5",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_move_right_02.png",
+      "bboxTopLeft": [
+        26,
+        108,
+        230,
+        224
+      ],
+      "pixelSha256": "c0e4f6b38f7766284b360609bb3a821fb55fe759a553e91aeeecfd644700fadb",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_move_right_03.png",
+      "bboxTopLeft": [
+        24,
+        108,
+        232,
+        224
+      ],
+      "pixelSha256": "c2cd640a8bad2b7807a7d1718b5d30cb4ac468028155d60609c80e73f026a077",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_move_right_04.png",
+      "bboxTopLeft": [
+        18,
+        102,
+        236,
+        224
+      ],
+      "pixelSha256": "a7aa60a2b6f160a9c27900b59bdc957c4a00c9254c71c3841f6d9fadbd96a0a7",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/espresso_bug_move_right_05.png",
+      "bboxTopLeft": [
+        30,
+        108,
+        226,
+        224
+      ],
+      "pixelSha256": "b6a9070c7de572740ade613ebeb5d1d8d907aa2211bae665f456810e2208bc03",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

@@ -34,12 +34,12 @@ namespace CCT
                     CardRarity.Rare, 4, new CardEffect(CardEffectType.DamagePercent, 0.30f)),
                 Make("mixing_tempo", "믹싱 템포", "공격 속도 +25%", "셰이커를 흔드는 리듬. 빠를수록 잘 섞이고 잘 희석된다.",
                     CardRarity.Rare, 4, new CardEffect(CardEffectType.AttackSpeedPercent, 0.25f)),
-                Make("flambe", "플람베", "찌르기 +1회 (연속 공격)", "술에 불을 붙여 향과 알코올을 날리는 화려한 기법.",
+                Make("flambe", "플람베", "베기 +1회 (연속 공격)", "술에 불을 붙여 향과 알코올을 날리는 화려한 기법.",
                     CardRarity.Rare, 3, WeaponRestriction.MeleeOnly, new CardEffect(CardEffectType.ExtraThrust, 1f)),
                 Make("champagne_spray", "샴페인 스프레이", "다중 발사 +1발 (부채꼴로 흩뿌림)",
                     "코르크를 터뜨리며 사방으로 흩뿌리는 축하의 세리머니.",
                     CardRarity.Rare, 3, WeaponRestriction.RangedOnly, new CardEffect(CardEffectType.ExtraThrust, 1f)),
-                Make("molotov", "화염병 칵테일", "주기적으로 주변에 화염 폭발 (Lv +1)", "이름 그대로 위험하고 강렬한 한 잔.",
+                Make("molotov", "화염병 칵테일", "주무기 적중 화염 (Lv +1): 1초마다 3초 지속", "이름 그대로 위험하고 강렬한 한 잔.",
                     CardRarity.Rare, 5, new CardEffect(CardEffectType.FlameLevel, 1f)),
 
                 // 영웅
@@ -49,7 +49,7 @@ namespace CCT
                     "베르무트를 최소로, 진의 존재감을 극대화한 클래식.",
                     CardRarity.Epic, 3, new CardEffect(CardEffectType.DamagePercent, 0.25f),
                     new CardEffect(CardEffectType.AttackSpeedPercent, 0.20f)),
-                Make("blazer", "블레이저", "화염 폭발 Lv +2", "불붙인 위스키를 잔 사이로 옮겨 붓는 곡예 같은 기법.",
+                Make("blazer", "블레이저", "주무기 적중 화염 Lv +2 · 3초 지속", "불붙인 위스키를 잔 사이로 옮겨 붓는 곡예 같은 기법.",
                     CardRarity.Epic, 3, new CardEffect(CardEffectType.FlameLevel, 2f)),
                 Make("rifled_barrel", "강선 개조", "발사체 관통 +1 (몹을 뚫고 지나감)", "총열에 나선을 새겨 탄이 뚫고 나가는 힘을 더한다.",
                     CardRarity.Epic, 3, WeaponRestriction.RangedOnly, new CardEffect(CardEffectType.PierceCount, 1f)),
@@ -88,6 +88,7 @@ namespace CCT
 
             var runtime = DefaultCards.CreateRuntime();
             runtime.AddRange(DefaultTeaCards.CreateRuntime());
+            runtime.AddRange(DefaultHybridCards.CreateRuntime());
             return runtime;
         }
     }

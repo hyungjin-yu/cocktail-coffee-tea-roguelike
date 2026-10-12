@@ -1,0 +1,131 @@
+{
+  "acceptance": {
+    "generated": false,
+    "structurallyValid": true,
+    "visuallyReviewed": true,
+    "sourceReady": true,
+    "unityVerified": true,
+    "strictReleaseReady": true,
+    "userApproved": false,
+    "reviewEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\review\\canonical-contact-sheet.png",
+    "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\review\\canonical-source-evidence.csv",
+    "reviewer": "Codex task_28c4072e13bb dispatch ctx_81f46896a503",
+    "pending": [
+      "userApproved remains false until the user reviews the final build"
+    ],
+    "unityReviewer": "Claude (delegated implementation+approval owner, 2026-10-09)",
+    "unityEvidence": {
+      "mapping": "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/release-review-2026-10-09/claude-unity-review/ui-14-state-mapping.csv",
+      "checklist": "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/release-review-2026-10-09/claude-unity-review/runtime-checklist-claude.csv",
+      "captures720": "C:/UnityScratch/resume-2026-10-09/runs/s720-c7/out",
+      "captures1080": "C:/UnityScratch/resume-2026-10-09/runs/s1080-c8/out",
+      "osKeyboard720": "C:/UnityScratch/resume-2026-10-09/runs/os720b",
+      "osKeyboard1080": "C:/UnityScratch/resume-2026-10-09/runs/os1080"
+    }
+  },
+  "assetId": "ui_cafe_tab",
+  "checks": {
+    "structural": "pass: exact RGBA8 dimensions, binary alpha, 2px clusters, pivot/borders/clips/files",
+    "nativeRoundTrip": "pass: all declared frames pixel exact after native reopening, single-frame named tags and slice center verified",
+    "visual": "pass: each source frame and representative actual layout1080/nearest720 simulation inspected; fixed corners preserved; source evidence CSV",
+    "unity": "pass: actual Unity 1280x720 and 1920x1080 captures (QA tour s720-c7/s1080-c8, 0 errors) map this asset's every clip/frame to the live Image.overrideSprite; imported PNG bytes equal source; button/tab normal/hover/pressed/disabled driven through the real Selectable; text/focus/occlusion reviewed incl. spec-38 shop/result; real OS keyboard pass at both resolutions",
+    "unityVerified": true,
+    "strictReleaseReady": true
+  },
+  "clips": {
+    "disabled": {
+      "files": [
+        "frames/ui_cafe_tab_disabled_right_00.png"
+      ],
+      "fps": 0,
+      "loop": false
+    },
+    "hover": {
+      "files": [
+        "frames/ui_cafe_tab_hover_right_00.png"
+      ],
+      "fps": 0,
+      "loop": false
+    },
+    "normal": {
+      "files": [
+        "frames/ui_cafe_tab_normal_right_00.png"
+      ],
+      "fps": 0,
+      "loop": false
+    },
+    "pressed": {
+      "files": [
+        "frames/ui_cafe_tab_pressed_right_00.png"
+      ],
+      "fps": 0,
+      "loop": false
+    }
+  },
+  "deviations": [],
+  "files": [
+    "frames/ui_cafe_tab_normal_right_00.png",
+    "frames/ui_cafe_tab_hover_right_00.png",
+    "frames/ui_cafe_tab_pressed_right_00.png",
+    "frames/ui_cafe_tab_disabled_right_00.png"
+  ],
+  "frameSizePx": [
+    80,
+    32
+  ],
+  "kind": "ui",
+  "pivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "pixelsPerUnit": 128,
+  "provenance": {
+    "concept": "PixelLab actual generation1 edit0; source pixels Aseprite authored",
+    "tool": "Aseprite 1.3.18.6 Lua"
+  },
+  "scope": "ui_polish_2026_10_08",
+  "sourceReferences": [
+    "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\build_canonical.lua",
+    "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\pixellab-raw.aseprite",
+    "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\generation-log.json"
+  ],
+  "specVersion": "1.0",
+  "spriteBorderPx": [
+    8,
+    8,
+    8,
+    8
+  ],
+  "status": "ready",
+  "anchorsByFrame": {},
+  "nativeFile": "ui_cafe_tab.aseprite",
+  "nativeSha256": "8a55f2e8f792f529fc9d3e026f7ba72ff59d338cd7aa9d8dd7ae8d99a70732f2",
+  "hashes": [
+    {
+      "file": "frames/ui_cafe_tab_normal_right_00.png",
+      "sha256": "c323aa0d786cb8a677c581506ffc776aa96ced3418e5ad42171f9254077fb591",
+      "pngColorType": 6
+    },
+    {
+      "file": "frames/ui_cafe_tab_hover_right_00.png",
+      "sha256": "6c6efb6a424322f719644520641f091315469a26c56f544dd2d930a066a158b1",
+      "pngColorType": 6
+    },
+    {
+      "file": "frames/ui_cafe_tab_pressed_right_00.png",
+      "sha256": "917a7aeb8863250890b38b2f2bd8736abb9819faf9e334d5788cdf519b7b05bf",
+      "pngColorType": 6
+    },
+    {
+      "file": "frames/ui_cafe_tab_disabled_right_00.png",
+      "sha256": "89c6a7ace0a32a6387e2d42f6f0eb2fedbdd88d54e8ca8526e9de32dd30606bb",
+      "pngColorType": 6
+    }
+  ],
+  "textBaked": false,
+  "alphaValues": [
+    0,
+    255
+  ],
+  "recommendedTextColor": "#F4F1E7"
+}

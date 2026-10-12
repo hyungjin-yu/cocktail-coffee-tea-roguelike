@@ -1,0 +1,763 @@
+{
+  "acceptance": {
+    "coordinatorAcceptedForStagedIntegration": true,
+    "strictReleaseReady": false,
+    "userApproved": false,
+    "unityVerified": false,
+    "runtimeVisualReview": "pending"
+  },
+  "anchorsByFrame": {
+    "frames/tea_sommelier_defeat_right_00.png": {
+      "hand": [
+        152,
+        61
+      ],
+      "grip": [
+        152,
+        61
+      ],
+      "rightHand": [
+        152,
+        61
+      ],
+      "offHand": [
+        115,
+        47
+      ]
+    },
+    "frames/tea_sommelier_defeat_right_01.png": {
+      "hand": [
+        139,
+        70
+      ],
+      "grip": [
+        139,
+        70
+      ],
+      "rightHand": [
+        139,
+        70
+      ],
+      "offHand": [
+        64,
+        40
+      ]
+    },
+    "frames/tea_sommelier_defeat_right_02.png": {
+      "hand": [
+        86,
+        47
+      ],
+      "grip": [
+        86,
+        47
+      ],
+      "rightHand": [
+        86,
+        47
+      ],
+      "offHand": [
+        65,
+        42
+      ]
+    },
+    "frames/tea_sommelier_defeat_right_03.png": {
+      "hand": [
+        76,
+        45
+      ],
+      "grip": [
+        76,
+        45
+      ],
+      "rightHand": [
+        76,
+        45
+      ],
+      "offHand": [
+        50,
+        42
+      ]
+    },
+    "frames/tea_sommelier_hurt_right_00.png": {
+      "hand": [
+        138,
+        81
+      ],
+      "grip": [
+        138,
+        81
+      ],
+      "rightHand": [
+        138,
+        81
+      ],
+      "offHand": [
+        100,
+        94
+      ]
+    },
+    "frames/tea_sommelier_idle_right_00.png": {
+      "hand": [
+        162,
+        88
+      ],
+      "offHand": [
+        98,
+        90
+      ],
+      "grip": [
+        162,
+        88
+      ],
+      "rightHand": [
+        162,
+        88
+      ]
+    },
+    "frames/tea_sommelier_idle_right_01.png": {
+      "hand": [
+        162,
+        88
+      ],
+      "offHand": [
+        98,
+        90
+      ],
+      "grip": [
+        162,
+        88
+      ],
+      "rightHand": [
+        162,
+        88
+      ]
+    },
+    "frames/tea_sommelier_idle_right_02.png": {
+      "hand": [
+        162,
+        90
+      ],
+      "offHand": [
+        98,
+        92
+      ],
+      "grip": [
+        162,
+        90
+      ],
+      "rightHand": [
+        162,
+        90
+      ]
+    },
+    "frames/tea_sommelier_idle_right_03.png": {
+      "hand": [
+        162,
+        90
+      ],
+      "offHand": [
+        98,
+        92
+      ],
+      "grip": [
+        162,
+        90
+      ],
+      "rightHand": [
+        162,
+        90
+      ]
+    },
+    "frames/tea_sommelier_melee_right_00.png": {
+      "hand": [
+        167,
+        125
+      ],
+      "grip": [
+        167,
+        125
+      ],
+      "rightHand": [
+        167,
+        125
+      ],
+      "offHand": [
+        101,
+        124
+      ]
+    },
+    "frames/tea_sommelier_melee_right_01.png": {
+      "hand": [
+        191,
+        163
+      ],
+      "grip": [
+        191,
+        163
+      ],
+      "rightHand": [
+        191,
+        163
+      ],
+      "offHand": [
+        91,
+        136
+      ]
+    },
+    "frames/tea_sommelier_melee_right_02.png": {
+      "hand": [
+        208,
+        148
+      ],
+      "grip": [
+        208,
+        148
+      ],
+      "rightHand": [
+        208,
+        148
+      ],
+      "offHand": [
+        76,
+        124
+      ]
+    },
+    "frames/tea_sommelier_melee_right_03.png": {
+      "hand": [
+        160,
+        119
+      ],
+      "grip": [
+        160,
+        119
+      ],
+      "rightHand": [
+        160,
+        119
+      ],
+      "offHand": [
+        104,
+        117
+      ]
+    },
+    "frames/tea_sommelier_move_right_00.png": {
+      "hand": [
+        166,
+        88
+      ],
+      "grip": [
+        166,
+        88
+      ],
+      "rightHand": [
+        166,
+        88
+      ],
+      "offHand": [
+        94,
+        90
+      ]
+    },
+    "frames/tea_sommelier_move_right_01.png": {
+      "hand": [
+        164,
+        86
+      ],
+      "grip": [
+        164,
+        86
+      ],
+      "rightHand": [
+        164,
+        86
+      ],
+      "offHand": [
+        96,
+        88
+      ]
+    },
+    "frames/tea_sommelier_move_right_02.png": {
+      "hand": [
+        160,
+        90
+      ],
+      "grip": [
+        160,
+        90
+      ],
+      "rightHand": [
+        160,
+        90
+      ],
+      "offHand": [
+        100,
+        92
+      ]
+    },
+    "frames/tea_sommelier_move_right_03.png": {
+      "hand": [
+        158,
+        88
+      ],
+      "grip": [
+        158,
+        88
+      ],
+      "rightHand": [
+        158,
+        88
+      ],
+      "offHand": [
+        102,
+        90
+      ]
+    },
+    "frames/tea_sommelier_move_right_04.png": {
+      "hand": [
+        160,
+        86
+      ],
+      "grip": [
+        160,
+        86
+      ],
+      "rightHand": [
+        160,
+        86
+      ],
+      "offHand": [
+        100,
+        88
+      ]
+    },
+    "frames/tea_sommelier_move_right_05.png": {
+      "hand": [
+        164,
+        90
+      ],
+      "grip": [
+        164,
+        90
+      ],
+      "rightHand": [
+        164,
+        90
+      ],
+      "offHand": [
+        96,
+        92
+      ]
+    },
+    "frames/tea_sommelier_ranged_right_00.png": {
+      "hand": [
+        181,
+        148
+      ],
+      "grip": [
+        181,
+        148
+      ],
+      "rightHand": [
+        181,
+        148
+      ],
+      "offHand": [
+        88,
+        142
+      ],
+      "bowString": [
+        88,
+        142
+      ]
+    },
+    "frames/tea_sommelier_ranged_right_01.png": {
+      "hand": [
+        198,
+        153
+      ],
+      "grip": [
+        198,
+        153
+      ],
+      "rightHand": [
+        198,
+        153
+      ],
+      "offHand": [
+        83,
+        159
+      ],
+      "bowString": [
+        83,
+        159
+      ]
+    },
+    "frames/tea_sommelier_ranged_right_02.png": {
+      "hand": [
+        201,
+        154
+      ],
+      "grip": [
+        201,
+        154
+      ],
+      "rightHand": [
+        201,
+        154
+      ],
+      "offHand": [
+        53,
+        144
+      ],
+      "bowString": [
+        53,
+        144
+      ]
+    },
+    "frames/tea_sommelier_ranged_right_03.png": {
+      "hand": [
+        173,
+        101
+      ],
+      "grip": [
+        173,
+        101
+      ],
+      "rightHand": [
+        173,
+        101
+      ],
+      "offHand": [
+        82,
+        100
+      ],
+      "bowString": [
+        82,
+        100
+      ]
+    }
+  },
+  "assetId": "tea_sommelier",
+  "bodyHeightPx": 192.0,
+  "checks": {
+    "structural": "pass: RGBA canvas, binary alpha, margins, baseline bounds, unique frame pixels and ordered clip files",
+    "unity": "not_run",
+    "visual": "pass: canonical source and all normalized poses personally viewed; animated preview generated",
+    "anchors": "pass:23 records keyed exact frames/... paths; primary cyan/offHand magenta visually reviewed, mounted right/left attachments reviewed",
+    "posePlan": "pass: explicit near-support frames00-02 and far-support03-05; one boot touches224 top-left footplane each frame; no gait exception requested"
+  },
+  "clips": {
+    "defeat": {
+      "files": [
+        "frames/tea_sommelier_defeat_right_00.png",
+        "frames/tea_sommelier_defeat_right_01.png",
+        "frames/tea_sommelier_defeat_right_02.png",
+        "frames/tea_sommelier_defeat_right_03.png"
+      ],
+      "fps": 10,
+      "loop": false
+    },
+    "hurt": {
+      "files": [
+        "frames/tea_sommelier_hurt_right_00.png"
+      ],
+      "fps": 0,
+      "loop": false,
+      "durationSeconds": 0.08
+    },
+    "idle": {
+      "fps": 3,
+      "loop": true,
+      "files": [
+        "frames/tea_sommelier_idle_right_00.png",
+        "frames/tea_sommelier_idle_right_01.png",
+        "frames/tea_sommelier_idle_right_02.png",
+        "frames/tea_sommelier_idle_right_03.png"
+      ]
+    },
+    "melee": {
+      "files": [
+        "frames/tea_sommelier_melee_right_00.png",
+        "frames/tea_sommelier_melee_right_01.png",
+        "frames/tea_sommelier_melee_right_02.png",
+        "frames/tea_sommelier_melee_right_03.png"
+      ],
+      "fps": 12,
+      "loop": false
+    },
+    "move": {
+      "fps": 10,
+      "loop": true,
+      "files": [
+        "frames/tea_sommelier_move_right_00.png",
+        "frames/tea_sommelier_move_right_01.png",
+        "frames/tea_sommelier_move_right_02.png",
+        "frames/tea_sommelier_move_right_03.png",
+        "frames/tea_sommelier_move_right_04.png",
+        "frames/tea_sommelier_move_right_05.png"
+      ]
+    },
+    "ranged": {
+      "files": [
+        "frames/tea_sommelier_ranged_right_00.png",
+        "frames/tea_sommelier_ranged_right_01.png",
+        "frames/tea_sommelier_ranged_right_02.png",
+        "frames/tea_sommelier_ranged_right_03.png"
+      ],
+      "fps": 12,
+      "loop": false
+    }
+  },
+  "deviations": [
+    "Final coordinator decision: idle 4 frames at 3fps; feet fixed."
+  ],
+  "frameSizePx": [
+    256,
+    256
+  ],
+  "kind": "body",
+  "pivotNormalized": [
+    0.5,
+    0.125
+  ],
+  "pixelsPerUnit": 128,
+  "provenance": {
+    "method": "unique generated keyposes, shared-scale nearest-neighbor pixel normalization; no interpolation",
+    "tool": "built-in imagegen + native Aseprite Lua",
+    "move": "Six native articulated near/far contact/load/passing leg keyposes; canonical head/chest/apron retained, no interpolation"
+  },
+  "sourceReferences": [
+    "reference/canonical.png",
+    "reference/generated-sheet.png",
+    "reference/six-phase-move/canonical.png",
+    "reference/six-phase-move/generated-sheet.png",
+    "reference/author_sommelier_keyposes.lua"
+  ],
+  "specVersion": "1.0",
+  "status": "needs_fix",
+  "targetBodyHeightWorld": 1.6,
+  "scope": "complete23 player body frames; four+six+four+four+one+four",
+  "posePlan": [
+    {
+      "bob": 0,
+      "far": [
+        [
+          118,
+          170
+        ],
+        [
+          108,
+          194
+        ],
+        [
+          104,
+          218
+        ]
+      ],
+      "name": "near_contact_far_back",
+      "near": [
+        [
+          136,
+          170
+        ],
+        [
+          144,
+          194
+        ],
+        [
+          154,
+          218
+        ]
+      ],
+      "support": "near",
+      "swing": -4
+    },
+    {
+      "bob": 2,
+      "far": [
+        [
+          118,
+          172
+        ],
+        [
+          106,
+          190
+        ],
+        [
+          104,
+          200
+        ]
+      ],
+      "name": "near_load_far_lift",
+      "near": [
+        [
+          136,
+          172
+        ],
+        [
+          136,
+          196
+        ],
+        [
+          138,
+          218
+        ]
+      ],
+      "support": "near",
+      "swing": -2
+    },
+    {
+      "bob": -2,
+      "far": [
+        [
+          118,
+          168
+        ],
+        [
+          142,
+          186
+        ],
+        [
+          148,
+          202
+        ]
+      ],
+      "name": "near_support_far_pass",
+      "near": [
+        [
+          136,
+          168
+        ],
+        [
+          128,
+          192
+        ],
+        [
+          122,
+          218
+        ]
+      ],
+      "support": "near",
+      "swing": 2
+    },
+    {
+      "bob": 0,
+      "far": [
+        [
+          118,
+          170
+        ],
+        [
+          142,
+          194
+        ],
+        [
+          154,
+          218
+        ]
+      ],
+      "name": "far_contact_near_back",
+      "near": [
+        [
+          136,
+          170
+        ],
+        [
+          116,
+          194
+        ],
+        [
+          104,
+          218
+        ]
+      ],
+      "support": "far",
+      "swing": 4
+    },
+    {
+      "bob": 2,
+      "far": [
+        [
+          118,
+          172
+        ],
+        [
+          134,
+          196
+        ],
+        [
+          138,
+          218
+        ]
+      ],
+      "name": "far_load_near_lift",
+      "near": [
+        [
+          136,
+          172
+        ],
+        [
+          116,
+          188
+        ],
+        [
+          108,
+          200
+        ]
+      ],
+      "support": "far",
+      "swing": 2
+    },
+    {
+      "bob": -2,
+      "far": [
+        [
+          118,
+          168
+        ],
+        [
+          120,
+          192
+        ],
+        [
+          122,
+          218
+        ]
+      ],
+      "name": "far_support_near_pass",
+      "near": [
+        [
+          136,
+          168
+        ],
+        [
+          146,
+          186
+        ],
+        [
+          150,
+          202
+        ]
+      ],
+      "support": "far",
+      "swing": -2
+    }
+  ],
+  "finalCandidateProvenance": {
+    "parentManifestSha256": "2f2ffe48f2eb0e937735b72a39cf72fd749c357939aca3a62752b6f5b53fbb50",
+    "batches": [
+      {
+        "candidateId": "tea_sommelier_idle_d3_rebuild_2026-10-06",
+        "manifest": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\final-candidates-2026-10-06\\d3_tea_idle\\candidate-manifest.json",
+        "sha256": "911a1b69a251b0b03c87e2020d7ad5478a9d4af326025ecaf9639628a8325679"
+      },
+      {
+        "candidateId": "tea_sommelier_move_d2_gapfill_2026-10-06",
+        "manifest": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\final-candidates-2026-10-06\\d2_move_gap_fill\\tea_sommelier\\candidate-manifest.json",
+        "sha256": "e1a3578273b34484239da882ed3fbda1704146d83441f1d1d1af143e7f80366a"
+      }
+    ],
+    "note": "Reviewed candidates staged for native runtime QA; original sources preserved."
+  }
+}

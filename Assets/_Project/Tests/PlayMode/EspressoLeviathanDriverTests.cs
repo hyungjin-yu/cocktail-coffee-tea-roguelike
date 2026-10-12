@@ -27,6 +27,11 @@ namespace CCT.Tests
             // 이 클래스의 시간 기반 압력 게이지 시나리오가 불안정해진다 — 여기선 보스 패턴만 격리해서 본다.
             var weapon = game.Player.GetComponent<RapierWeapon>();
             if (weapon != null) Object.Destroy(weapon);
+            // 무기 없이 보스·일반 몹 사이에 서 있으면 ~8초 안에 죽는다(2026-10-05 PlayMode 재현: t≈9 GameOver).
+            // GameOver는 timeScale=0이라 WaitForSeconds가 영원히 안 끝나고, UTF 180초 타임아웃도 코루틴이
+            // 양보하지 않아 걸리지 않아 러너 전체가 멈췄다. 이 클래스는 보스 패턴만 보므로 사망을 막는다
+            // (기존 폭발 테스트와 같은 방식, 단언은 그대로).
+            game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
             yield return null;
         }
 
@@ -120,8 +125,14 @@ namespace CCT.Tests
             // 등장 안내(1초) + 첫 지연(3초)을 넘겨 증기 예고(0.8초) 구간으로 진입
             yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 3f + 0.3f);
 
-            Assert.AreEqual(Vector2.zero, rb.linearVelocity,
-                "06:127 — 증기 분사 시전(예고 포함) 중에는 제자리에 멈춰야 한다");
+            // 2026-10-06 play4: 정확한 Vector2 비교가 간헐 실패("Expected (0.00, 0.00) But was (0.00, 0.00)"). Enemy.FixedUpdate가
+            // 매 스텝 0으로 세팅한 뒤 물리 스텝이 웨이브 적과의 접촉을 풀며 아주 작은 잔여 속도를 남긴다. 멈춤 의도는 드라이버가
+            // 내는 속도로 정확히 검사하고, 실제 강체 속도는 추적 속도보다 한참 작은지(접촉 잔여만 허용) 검사한다.
+            Assert.IsTrue(driver.TryGetVelocity(rb.position, game.Player.Position, out var driven),
+                "06:127 — 증기 분사 시전(예고 포함) 중에는 드라이버가 이동을 직접 멈춰야 한다");
+            Assert.AreEqual(Vector2.zero, driven, "멈춤 중 드라이버 속도는 정확히 0");
+            Assert.Less(rb.linearVelocity.magnitude, 0.05f,
+                $"06:127 — 증기 분사 시전 중에는 제자리에 멈춰야 한다(추적 속도 {EnemyDef.EspressoLeviathan.speed}, 실제 {rb.linearVelocity.magnitude:F5})");
         }
 
         [UnityTest]

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a445bc81f26e6774ab6f4f2386bac954, type: 3}
+  m_Name: restorative_break
+  m_EditorClassIdentifier: CCT.Runtime::CCT.PermanentSkillData
+  id: restorative_break
+  displayName: "\uC7A0\uAE50\uC758 \uD2F0\uD0C0\uC784"
+  description: "\uC601\uAD6C \uCD08\uB2F9 \uD68C\uBCF5 +0.15"
+  branch: 1
+  tier: 4
+  prerequisite: {fileID: 11400000, guid: fc30f748adf7c414a9603b5abe3afa5f, type: 2}
+  additionalPrerequisites: []
+  minimumClears: 1
+  weaponSpecific: 0
+  targetWeapon: 0
+  group: 1
+  cost: 6
+  effects:
+  - type: 9
+    value: 0.15
+  iconResourcePath: 
+  iconArtId: skill_survival

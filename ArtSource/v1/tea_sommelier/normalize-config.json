@@ -1,0 +1,290 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-v1/bodies/tea_sommelier/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-v1/bodies/tea_sommelier",
+  "assetId": "tea_sommelier",
+  "columns": 6,
+  "rows": 4,
+  "size": 256,
+  "bodyHeight": 192.0,
+  "height": 1.6,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "melee",
+      "index": 0,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "melee",
+      "index": 1,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "melee",
+      "index": 2,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "melee",
+      "index": 3,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "ranged",
+      "index": 0,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "ranged",
+      "index": 1,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "ranged",
+      "index": 2,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "ranged",
+      "index": 3,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 78,
+      "top": 28,
+      "right": 190,
+      "bottom": 255
+    },
+    {
+      "left": 334,
+      "top": 28,
+      "right": 446,
+      "bottom": 255
+    },
+    {
+      "left": 585,
+      "top": 30,
+      "right": 697,
+      "bottom": 255
+    },
+    {
+      "left": 838,
+      "top": 30,
+      "right": 950,
+      "bottom": 255
+    },
+    {
+      "left": 1084,
+      "top": 29,
+      "right": 1222,
+      "bottom": 255
+    },
+    {
+      "left": 1338,
+      "top": 28,
+      "right": 1470,
+      "bottom": 255
+    },
+    {
+      "left": 61,
+      "top": 283,
+      "right": 202,
+      "bottom": 509
+    },
+    {
+      "left": 323,
+      "top": 283,
+      "right": 458,
+      "bottom": 509
+    },
+    {
+      "left": 574,
+      "top": 284,
+      "right": 699,
+      "bottom": 509
+    },
+    {
+      "left": 837,
+      "top": 284,
+      "right": 958,
+      "bottom": 509
+    },
+    {
+      "left": 1068,
+      "top": 294,
+      "right": 1228,
+      "bottom": 506
+    },
+    {
+      "left": 1322,
+      "top": 288,
+      "right": 1503,
+      "bottom": 507
+    },
+    {
+      "left": 37,
+      "top": 551,
+      "right": 256,
+      "bottom": 764
+    },
+    {
+      "left": 310,
+      "top": 545,
+      "right": 462,
+      "bottom": 764
+    },
+    {
+      "left": 567,
+      "top": 540,
+      "right": 723,
+      "bottom": 764
+    },
+    {
+      "left": 809,
+      "top": 543,
+      "right": 1002,
+      "bottom": 764
+    },
+    {
+      "left": 1051,
+      "top": 545,
+      "right": 1269,
+      "bottom": 764
+    },
+    {
+      "left": 1344,
+      "top": 543,
+      "right": 1478,
+      "bottom": 764
+    },
+    {
+      "left": 67,
+      "top": 804,
+      "right": 205,
+      "bottom": 986
+    },
+    {
+      "left": 292,
+      "top": 817,
+      "right": 447,
+      "bottom": 980
+    },
+    {
+      "left": 523,
+      "top": 836,
+      "right": 746,
+      "bottom": 983
+    },
+    {
+      "left": 780,
+      "top": 897,
+      "right": 1012,
+      "bottom": 980
+    },
+    {
+      "left": 1037,
+      "top": 906,
+      "right": 1289,
+      "bottom": 980
+    }
+  ]
+}

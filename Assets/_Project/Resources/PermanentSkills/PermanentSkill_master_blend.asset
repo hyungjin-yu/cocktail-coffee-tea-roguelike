@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a445bc81f26e6774ab6f4f2386bac954, type: 3}
+  m_Name: master_blend
+  m_EditorClassIdentifier: CCT.Runtime::CCT.PermanentSkillData
+  id: master_blend
+  displayName: "\uB098\uB9CC\uC758 \uC2DC\uADF8\uB2C8\uCC98"
+  description: "\uCD94\uAC00 \uB4DC\uB78D +5%p \xB7 \uC6D0\uB450 +10% \xB7 \uC90D\uAE30
+    +0.5"
+  branch: 2
+  tier: 6
+  prerequisite: {fileID: 11400000, guid: 44f4cd1f053b1dc4d8fbe27b98a3a75f, type: 2}
+  additionalPrerequisites:
+  - {fileID: 11400000, guid: 9d4d40587b5d2244486793d14a912662, type: 2}
+  - {fileID: 11400000, guid: 4cca3c2435383e44dbc851e9cd33cbed, type: 2}
+  minimumClears: 5
+  weaponSpecific: 0
+  targetWeapon: 0
+  group: 4
+  cost: 12
+  effects:
+  - type: 5
+    value: 0.05
+  - type: 12
+    value: 0.1
+  - type: 14
+    value: 0.5
+  iconResourcePath: 
+  iconArtId: specialty

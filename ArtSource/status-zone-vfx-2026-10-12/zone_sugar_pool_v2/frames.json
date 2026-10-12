@@ -1,0 +1,94 @@
+{
+ "assetId": "zone_sugar_pool_v2",
+ "history": "C:\\Users\\user\\AppData\\Roaming/Aseprite/extensions/pixellab/generation_history/2026-10-12_09-51-17 - Create animated object-character (pro) - 001",
+ "frames": [
+  {
+   "file": "zone_sugar_pool_v2_00.png",
+   "sourceFrame": 0,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    12,
+    23,
+    116,
+    108
+   ],
+   "opaquePx": 7089,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "46846e3af321a190f2fab9a51b1fb96a86dfcb6776ac3caad88b17fb266201c3"
+  },
+  {
+   "file": "zone_sugar_pool_v2_01.png",
+   "sourceFrame": 1,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    12,
+    23,
+    117,
+    110
+   ],
+   "opaquePx": 7483,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "e4752ec08ac0e5aced7c39190f9dc4467c72c56b7498d681f33f3801544a534b"
+  },
+  {
+   "file": "zone_sugar_pool_v2_02.png",
+   "sourceFrame": 2,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    12,
+    22,
+    116,
+    109
+   ],
+   "opaquePx": 7418,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "efac6cc15a9d9b9d569b07f3d9964790486018e8d80345df0d3bcd134d5a0c3e"
+  },
+  {
+   "file": "zone_sugar_pool_v2_03.png",
+   "sourceFrame": 3,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    12,
+    22,
+    117,
+    109
+   ],
+   "opaquePx": 7250,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "be1401302ae750c0b701dcd3d66837d7b6a82a1b03848e55b124e36062c9609f"
+  }
+ ]
+}

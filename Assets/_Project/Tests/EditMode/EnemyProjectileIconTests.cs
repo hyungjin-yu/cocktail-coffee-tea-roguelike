@@ -37,10 +37,12 @@ namespace CCT.Tests
         [Test]
         public void ShakerGolem_And_KettleCannon_HaveMatchingTrackProjectileIcons()
         {
-            Assert.AreEqual("Icons/Enemies/ice_shard", EnemyDef.ShakerGolem.projectileSpriteResourcePath);
-            Assert.AreEqual("Icons/Enemies/water_drop", EnemyDef.KettleCannon.projectileSpriteResourcePath);
-            Assert.IsNotNull(Resources.Load<Sprite>(EnemyDef.ShakerGolem.projectileSpriteResourcePath));
-            Assert.IsNotNull(Resources.Load<Sprite>(EnemyDef.KettleCannon.projectileSpriteResourcePath));
+            // 2026-10-04 1차 통합: 04 §8 v1 아트(art:ice_shard / art:water_drop)를 우선 쓰고, 미반입 시 같은 이름의
+            // 기존 Icons/Enemies 아이콘으로 대체한다 — 경로 문자열 대신 실제로 쓸 스프라이트가 있는지를 검사.
+            Assert.AreEqual(EnemyProjectile.ArtPrefix + "ice_shard", EnemyDef.ShakerGolem.projectileSpriteResourcePath);
+            Assert.AreEqual(EnemyProjectile.ArtPrefix + "water_drop", EnemyDef.KettleCannon.projectileSpriteResourcePath);
+            Assert.IsNotNull(ArtLibrary.Sprite("ice_shard") ?? Resources.Load<Sprite>("Icons/Enemies/ice_shard"));
+            Assert.IsNotNull(ArtLibrary.Sprite("water_drop") ?? Resources.Load<Sprite>("Icons/Enemies/water_drop"));
         }
     }
 }

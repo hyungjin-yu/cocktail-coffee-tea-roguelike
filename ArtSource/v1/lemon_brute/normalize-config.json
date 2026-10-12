@@ -1,0 +1,195 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/lemon_brute/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/lemon_brute",
+  "assetId": "lemon_brute",
+  "columns": 5,
+  "rows": 3,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 1.4,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 39,
+      "right": 320,
+      "top": 29,
+      "bottom": 308
+    },
+    {
+      "left": 347,
+      "right": 638,
+      "top": 27,
+      "bottom": 312
+    },
+    {
+      "left": 669,
+      "right": 950,
+      "top": 29,
+      "bottom": 308
+    },
+    {
+      "left": 978,
+      "right": 1267,
+      "top": 37,
+      "bottom": 310
+    },
+    {
+      "left": 1298,
+      "right": 1581,
+      "top": 43,
+      "bottom": 310
+    },
+    {
+      "left": 29,
+      "right": 326,
+      "top": 347,
+      "bottom": 628
+    },
+    {
+      "left": 353,
+      "right": 658,
+      "top": 343,
+      "bottom": 628
+    },
+    {
+      "left": 681,
+      "right": 964,
+      "top": 353,
+      "bottom": 628
+    },
+    {
+      "left": 979,
+      "right": 1288,
+      "top": 343,
+      "bottom": 630
+    },
+    {
+      "left": 1302,
+      "right": 1599,
+      "top": 351,
+      "bottom": 628
+    },
+    {
+      "left": 55,
+      "right": 304,
+      "top": 667,
+      "bottom": 920
+    },
+    {
+      "left": 359,
+      "right": 640,
+      "top": 669,
+      "bottom": 920
+    },
+    {
+      "left": 668,
+      "right": 957,
+      "top": 723,
+      "bottom": 920
+    },
+    {
+      "left": 973,
+      "right": 1286,
+      "top": 765,
+      "bottom": 922
+    },
+    {
+      "left": 1298,
+      "right": 1587,
+      "top": 819,
+      "bottom": 922
+    }
+  ],
+  "canonical": "C:/Users/user/Desktop/\uac1c\ubc1c/\ucee4\ud53c\uce75\ud14c\uc77c\ucc28/\uc774\ubbf8\uc9c0/\ubab9/\uce75\ud14c\uc77c/\uc81c\uc791\uc911/lemon_brute_v01/lemon_brute_idle_right_00_source.png"
+}

@@ -40,6 +40,14 @@ namespace CCT
             if (amount <= 0) return 0;
 
             Current += amount;
+            return Reevaluate();
+        }
+
+        /// <summary>07:31 "요구 감소 카드/스킬을 적용한 직후에도 잔량이 새 요구 이상이면 루프를 한 번
+        /// 평가하고 보상을 예약한다" — 재료 추가 없이 현재 잔량만으로 레벨업 루프를 돈다.</summary>
+        /// <returns>이번 호출로 발생한 레벨업 횟수</returns>
+        public int Reevaluate()
+        {
             int levelUps = 0;
             while (Current >= Threshold)
             {

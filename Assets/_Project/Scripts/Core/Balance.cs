@@ -8,6 +8,11 @@ namespace CCT
         public const float SpawnIntervalMin = 0.35f;
         public const float SpawnIntervalDecayPerSecond = 0.001f;
         public const int MaxAliveEnemies = 100;
+        /// <summary>40(2026-10-12): 유효 영구 해금 총수 N당 일반 스폰 +3%(최대 +60%). 일반 동시 상한도 100→floor(100×배율),
+        /// 보스·소환 포함 전체 절대 상한 160(LoadScenario/진상 손님 소환 상한과 같음)은 넘지 않는다.</summary>
+        public const int SpawnBonusPercentPerUnlock = 3;
+        public const int SpawnBonusPercentMax = 60;
+        public const int MaxAliveEnemiesAbsolute = 160;
 
         /// <summary>화면 가장자리 바깥으로 이 만큼 떨어진 곳에서 걸어들어온다 (벨트스크롤 진입 연출).</summary>
         public const float SpawnEdgeMargin = 1.5f;
@@ -20,8 +25,17 @@ namespace CCT
         public const float WaveIntervalSeconds = 14f;
         public const int WaveCountPerSide = 4;
 
+        // 사용자 후반 스폰 피드백: 20분 동안 계속 증가(영구 해금 배율과 별개).
+        public static float TimeSpawnMultiplier(float seconds) => 1f + UnityEngine.Mathf.Clamp(seconds, 0f, RunTimeLimitSeconds) / 600f;
+        public static int TimeWaveCountPerSide(float seconds) => WaveCountPerSide + UnityEngine.Mathf.FloorToInt(UnityEngine.Mathf.Clamp(seconds, 0f, RunTimeLimitSeconds) / 180f);
+        public static int TimeAliveCap(float seconds, int permanentCap) => UnityEngine.Mathf.Min(MaxAliveEnemiesAbsolute,
+            permanentCap + UnityEngine.Mathf.FloorToInt(UnityEngine.Mathf.Clamp(seconds, 0f, RunTimeLimitSeconds) / 20f));
+
         /// <summary>몹 체력 배율 = 1 + 런 시간(초) / 이 값.</summary>
         public const float EnemyHpGrowthSeconds = 240f;
+
+        /// <summary>런 제한시간(06:148, "20분 영업 종료"). 이 시각까지 최종보스를 못 잡으면 실패로 종료한다.</summary>
+        public const float RunTimeLimitSeconds = 1200f;
 
         // 플레이어 생존
         public const float PlayerInvulnerableSeconds = 0.8f;
@@ -40,12 +54,10 @@ namespace CCT
         public const float CocktailGaugeStart = 8f;
         public const float CocktailGaugeGrowth = 1.4f;
 
-        // 원두 게이지: 8 → 11 → 15 → 21 … (칵테일과 동일 성장)
-        // 중간보스 1마리가 원두 20을 주므로: 1번째 보스 = 스킬 포인트 2개(8+11 소진),
-        // 2번째 보스 = 1개(15 소진, 잔량은 21짜리 다음 칸에 남음) — 보스를 잡을수록 자연히 줄어든다.
-        // (실제 선택 화면은 항상 1번만 뜬다. GameManager 의 pendingSkillPoints 캡핑 참고.)
-        public const float BeanGaugeStart = 8f;
-        public const float BeanGaugeGrowth = 1.4f;
+        // 07 §2 "커피 변경"(2026-10-04 적용): 원두 10개마다 커피 포인트 1, 임계치 증가 없음, 포인트 전부 보존.
+        // 보스A 20→2, B 20→2, 강화 40→4 = 런당 8포인트(영구 원두 +20%면 96 → 9포인트·잔량6).
+        // 이전의 8→11→15 성장 게이지와 포인트 1개 캡핑은 폐기했다(CoffeeBeanGauge 참고).
+        public const int BeanPointThreshold = 10;
 
         /// <summary>
         /// 벨트스크롤(던파식) 시점: 좌우는 자유, 위아래는 이 "레인" 폭 안에서만 움직인다.

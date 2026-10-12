@@ -1,0 +1,92 @@
+{
+ "assetId": "tea_sommelier_sword_swing",
+ "scope": "user_request_2026-10-09_melee_swing",
+ "kind": "character_action_clip",
+ "frameSizePx": [
+  256,
+  256
+ ],
+ "pixelsPerUnit": 128,
+ "pivotNormalized": [
+  0.328125,
+  0.1875
+ ],
+ "pivotNote": "character shifted -44px x / +16px y inside the 256 canvas so the swing fits PixelLab's 256px limit; feet pixel (84,48) bottom-origin equals tea_sommelier (128,32)",
+ "clips": {
+  "sword_swing": {
+   "files": [
+    "frames/tea_sommelier_sword_swing_right_00.png",
+    "frames/tea_sommelier_sword_swing_right_01.png",
+    "frames/tea_sommelier_sword_swing_right_02.png",
+    "frames/tea_sommelier_sword_swing_right_03.png",
+    "frames/tea_sommelier_sword_swing_right_04.png",
+    "frames/tea_sommelier_sword_swing_right_05.png",
+    "frames/tea_sommelier_sword_swing_right_06.png",
+    "frames/tea_sommelier_sword_swing_right_07.png"
+   ],
+   "fps": 30,
+   "loop": false,
+   "runtimeStartFrame": 3,
+   "impactFrame": 5,
+   "phases": [
+    "ready_blade_forward",
+    "raise",
+    "raised_high",
+    "windup_peak_behind_head",
+    "forward_swing",
+    "impact_diagonal_down",
+    "follow_through_low",
+    "idle_return"
+   ],
+   "runtimeNote": "game plays frames 03..07 at 30fps (0.167s) from each actual hit; impact frame shows 0.067s after the unchanged instant hit, and the crescent VFX is delayed by the same 0.067s (visual only)"
+  }
+ },
+ "files": [
+  "frames/tea_sommelier_sword_swing_right_00.png",
+  "frames/tea_sommelier_sword_swing_right_01.png",
+  "frames/tea_sommelier_sword_swing_right_02.png",
+  "frames/tea_sommelier_sword_swing_right_03.png",
+  "frames/tea_sommelier_sword_swing_right_04.png",
+  "frames/tea_sommelier_sword_swing_right_05.png",
+  "frames/tea_sommelier_sword_swing_right_06.png",
+  "frames/tea_sommelier_sword_swing_right_07.png"
+ ],
+ "sha256": {
+  "tea_sommelier_sword_swing_right_00.png": "bd67cf74b58d3e1a19c28836a003bd9fbce40df4ac64b9e1748ebc377a864667",
+  "tea_sommelier_sword_swing_right_01.png": "5ff204006374bd4de810ac755adba5cbc0c489500933701a32238bc827ac56fc",
+  "tea_sommelier_sword_swing_right_02.png": "ef3ffeea85cd2a86e002e0469058c2b4700f6d001e4226f69c800cf5ed6e8f88",
+  "tea_sommelier_sword_swing_right_03.png": "76391117850bcb33f4cb367dcbf7104c0f3e32f3d74c8302f160cc39c6e7e054",
+  "tea_sommelier_sword_swing_right_04.png": "7d39983e5360f32b8960c5e49e5daf166ceca31332e4cf4d8da857f82f741487",
+  "tea_sommelier_sword_swing_right_05.png": "e89818940b52fb59fcca6874f564b620632658adef3791450c02fdc6bf4070d4",
+  "tea_sommelier_sword_swing_right_06.png": "b5716b343a6dede2609227a4f37afe44fb8dccc9bb9eaf9a70d7ad93bb85e1dc",
+  "tea_sommelier_sword_swing_right_07.png": "ed14c8f1ee998be2a1da9271df8e107a3ee5f40e512dc6470aa4e68c9e5294a7"
+ },
+ "includesWeapon": "weapon_sword drawn into the body frames; runtime hides the separate held-weapon renderer while this clip plays",
+ "provenance": {
+  "tool": "PixelLab Aseprite extension 0.4.127 'Animate with Text (v3)' in Aseprite 1.3.18.6 GUI (driven via orca computer-use)",
+  "seed": "3270830880",
+  "frameCount": 8,
+  "startFrame": "reference/start_idle_with_sword_shifted.png",
+  "lastFrame": "same as start",
+  "prompt": "sword slash attack: wind up raising the sword over the right shoulder, rotate torso and arm, swing the blade down and forward in one arc, follow through low, return to idle stance. Facing screen-right, feet planted, same character and outfit",
+  "removeBackground": true,
+  "native": "tea_sommelier_sword_swing_pixellab.aseprite (frame1=input start frame, frames2-9=generated)",
+  "rawFrames": "raw-frames/gen_0..8.png (Aseprite batch export of the native file, unedited)",
+  "postProcessing": "none (frames copied byte-for-byte from raw export, gen_1..gen_8)",
+  "references": [
+   "Assets/_Project/Art/v1/tea_sommelier/frames/tea_sommelier_idle_right_00.png",
+   "Assets/_Project/Art/v1/weapon_sword/frames/weapon_sword_effect_right_00.png"
+  ],
+  "creditsDebited": "unknown; PixelLab UI states 1-9 generations for this tool; no account/balance page inspected"
+ },
+ "acceptance": {
+  "structural": "8 frames 256x256 RGBA, alpha {0,255}",
+  "visuallyReviewed": "frame sheet + zoom reviewed by implementer 2026-10-09",
+  "unityVerified": false,
+  "userApproved": false
+ },
+ "originalsUntouched": [
+  "tea_sommelier body art and manifest",
+  "weapon_sword art"
+ ]
+}

@@ -1,0 +1,247 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/milk_foamer/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/milk_foamer",
+  "assetId": "milk_foamer",
+  "columns": 5,
+  "rows": 4,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 1.25,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "action",
+      "index": 0,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 1,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 2,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 3,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 51,
+      "right": 282,
+      "top": 57,
+      "bottom": 282
+    },
+    {
+      "left": 380,
+      "right": 617,
+      "top": 43,
+      "bottom": 280
+    },
+    {
+      "left": 704,
+      "right": 945,
+      "top": 59,
+      "bottom": 280
+    },
+    {
+      "left": 1026,
+      "right": 1265,
+      "top": 93,
+      "bottom": 286
+    },
+    {
+      "left": 22,
+      "right": 257,
+      "top": 329,
+      "bottom": 544
+    },
+    {
+      "left": 291,
+      "right": 526,
+      "top": 321,
+      "bottom": 544
+    },
+    {
+      "left": 581,
+      "right": 808,
+      "top": 323,
+      "bottom": 544
+    },
+    {
+      "left": 851,
+      "right": 1084,
+      "top": 323,
+      "bottom": 544
+    },
+    {
+      "left": 1143,
+      "right": 1374,
+      "top": 319,
+      "bottom": 544
+    },
+    {
+      "left": 151,
+      "right": 794,
+      "top": 172,
+      "bottom": 761,
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/milk_foamer/reference/supplemental.png",
+      "targetHeight": 184
+    },
+    {
+      "left": 39,
+      "right": 276,
+      "top": 599,
+      "bottom": 814
+    },
+    {
+      "left": 378,
+      "right": 607,
+      "top": 601,
+      "bottom": 818
+    },
+    {
+      "left": 718,
+      "right": 989,
+      "top": 609,
+      "bottom": 818
+    },
+    {
+      "left": 1053,
+      "right": 1292,
+      "top": 597,
+      "bottom": 822
+    },
+    {
+      "left": 42,
+      "right": 265,
+      "top": 876,
+      "bottom": 1081
+    },
+    {
+      "left": 1096,
+      "right": 1665,
+      "top": 332,
+      "bottom": 767,
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/milk_foamer/reference/supplemental.png",
+      "targetHeight": 130
+    },
+    {
+      "left": 355,
+      "right": 602,
+      "top": 890,
+      "bottom": 1081
+    },
+    {
+      "left": 667,
+      "right": 972,
+      "top": 930,
+      "bottom": 1081
+    },
+    {
+      "left": 1019,
+      "right": 1322,
+      "top": 952,
+      "bottom": 1081
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/milk_foamer_bgfix.png"
+}

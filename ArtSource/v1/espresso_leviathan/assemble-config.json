@@ -1,0 +1,536 @@
+{
+  "assetId": "espresso_leviathan",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips",
+  "frames": [
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/idle-generated.png",
+      "box": {
+        "left": 52,
+        "right": 617,
+        "top": 37,
+        "bottom": 591,
+        "area": 169991,
+        "seed": [
+          360,
+          37
+        ]
+      },
+      "scale": 0.6918918918918919,
+      "file": "frames/espresso_leviathan_idle_right_00.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/idle-generated.png",
+      "box": {
+        "left": 639,
+        "right": 1232,
+        "top": 51,
+        "bottom": 594,
+        "area": 167442,
+        "seed": [
+          958,
+          51
+        ]
+      },
+      "scale": 0.6918918918918919,
+      "file": "frames/espresso_leviathan_idle_right_01.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/idle-generated.png",
+      "box": {
+        "left": 35,
+        "right": 622,
+        "top": 651,
+        "bottom": 1198,
+        "area": 176860,
+        "seed": [
+          372,
+          651
+        ]
+      },
+      "scale": 0.6918918918918919,
+      "file": "frames/espresso_leviathan_idle_right_02.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/idle-generated.png",
+      "box": {
+        "left": 637,
+        "right": 1240,
+        "top": 683,
+        "bottom": 1201,
+        "area": 173686,
+        "seed": [
+          952,
+          683
+        ]
+      },
+      "scale": 0.6918918918918919,
+      "file": "frames/espresso_leviathan_idle_right_03.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/move-generated.png",
+      "box": {
+        "left": 16,
+        "right": 521,
+        "top": 10,
+        "bottom": 486,
+        "area": 119093,
+        "seed": [
+          262,
+          10
+        ]
+      },
+      "scale": 0.8050314465408805,
+      "file": "frames/espresso_leviathan_move_right_00.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/move-generated.png",
+      "box": {
+        "left": 585,
+        "right": 1026,
+        "top": 13,
+        "bottom": 485,
+        "area": 109983,
+        "seed": [
+          804,
+          13
+        ]
+      },
+      "scale": 0.8050314465408805,
+      "file": "frames/espresso_leviathan_move_right_01.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/move-generated.png",
+      "box": {
+        "left": 1089,
+        "right": 1521,
+        "top": 13,
+        "bottom": 479,
+        "area": 111541,
+        "seed": [
+          1298,
+          13
+        ]
+      },
+      "scale": 0.8050314465408805,
+      "file": "frames/espresso_leviathan_move_right_02.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/move-generated.png",
+      "box": {
+        "left": 53,
+        "right": 490,
+        "top": 510,
+        "bottom": 979,
+        "area": 111847,
+        "seed": [
+          266,
+          510
+        ]
+      },
+      "scale": 0.8050314465408805,
+      "file": "frames/espresso_leviathan_move_right_03.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/move-generated.png",
+      "box": {
+        "left": 538,
+        "right": 1026,
+        "top": 513,
+        "bottom": 982,
+        "area": 116703,
+        "seed": [
+          794,
+          513
+        ]
+      },
+      "scale": 0.8050314465408805,
+      "file": "frames/espresso_leviathan_move_right_04.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/move-generated.png",
+      "box": {
+        "left": 1061,
+        "right": 1521,
+        "top": 512,
+        "bottom": 986,
+        "area": 113392,
+        "seed": [
+          1303,
+          512
+        ]
+      },
+      "scale": 0.8050314465408805,
+      "file": "frames/espresso_leviathan_move_right_05.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 17,
+        "right": 481,
+        "top": 136,
+        "bottom": 594,
+        "area": 109324,
+        "seed": [
+          354,
+          136
+        ]
+      },
+      "scale": 0.8366013071895425,
+      "file": "frames/espresso_leviathan_hurt_right_00.png",
+      "clip": "hurt",
+      "fps": 12.5
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 493,
+        "right": 841,
+        "top": 163,
+        "bottom": 594,
+        "area": 101299,
+        "seed": [
+          745,
+          163
+        ]
+      },
+      "scale": 0.8366013071895425,
+      "file": "frames/espresso_leviathan_defeat_right_00.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 863,
+        "right": 1260,
+        "top": 186,
+        "bottom": 597,
+        "area": 107410,
+        "seed": [
+          1124,
+          186
+        ]
+      },
+      "scale": 0.8366013071895425,
+      "file": "frames/espresso_leviathan_defeat_right_01.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 1271,
+        "right": 1733,
+        "top": 363,
+        "bottom": 625,
+        "area": 77908,
+        "seed": [
+          1533,
+          363
+        ]
+      },
+      "scale": 0.8366013071895425,
+      "file": "frames/espresso_leviathan_defeat_right_02.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 1758,
+        "right": 2142,
+        "top": 403,
+        "bottom": 624,
+        "area": 51880,
+        "seed": [
+          1940,
+          403
+        ]
+      },
+      "scale": 0.8366013071895425,
+      "file": "frames/espresso_leviathan_defeat_right_03.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/steam-generated.png",
+      "box": {
+        "left": 32,
+        "right": 652,
+        "top": 86,
+        "bottom": 598,
+        "area": 161115,
+        "seed": [
+          387,
+          86
+        ]
+      },
+      "scale": 0.6547619047619048,
+      "file": "frames/espresso_leviathan_steam_right_00.png",
+      "clip": "steam",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/steam-generated.png",
+      "box": {
+        "left": 701,
+        "right": 1186,
+        "top": 90,
+        "bottom": 601,
+        "area": 156595,
+        "seed": [
+          941,
+          90
+        ]
+      },
+      "scale": 0.6547619047619048,
+      "file": "frames/espresso_leviathan_steam_right_01.png",
+      "clip": "steam",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/steam-generated.png",
+      "box": {
+        "left": 13,
+        "right": 684,
+        "top": 655,
+        "bottom": 1189,
+        "area": 180022,
+        "seed": [
+          198,
+          655
+        ]
+      },
+      "scale": 0.6547619047619048,
+      "file": "frames/espresso_leviathan_steam_right_02.png",
+      "clip": "steam",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/steam-generated.png",
+      "box": {
+        "left": 691,
+        "right": 1243,
+        "top": 669,
+        "bottom": 1189,
+        "area": 166778,
+        "seed": [
+          958,
+          669
+        ]
+      },
+      "scale": 0.6547619047619048,
+      "file": "frames/espresso_leviathan_steam_right_03.png",
+      "clip": "steam",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/rain-generated.png",
+      "box": {
+        "left": 88,
+        "right": 580,
+        "top": 49,
+        "bottom": 582,
+        "area": 152293,
+        "seed": [
+          122,
+          49
+        ]
+      },
+      "scale": 0.7191011235955056,
+      "file": "frames/espresso_leviathan_rain_right_00.png",
+      "clip": "rain",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/rain-generated.png",
+      "box": {
+        "left": 665,
+        "right": 1224,
+        "top": 49,
+        "bottom": 582,
+        "area": 141748,
+        "seed": [
+          1192,
+          49
+        ]
+      },
+      "scale": 0.7191011235955056,
+      "file": "frames/espresso_leviathan_rain_right_01.png",
+      "clip": "rain",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/rain-generated.png",
+      "box": {
+        "left": 39,
+        "right": 626,
+        "top": 639,
+        "bottom": 1175,
+        "area": 145319,
+        "seed": [
+          593,
+          639
+        ]
+      },
+      "scale": 0.7191011235955056,
+      "file": "frames/espresso_leviathan_rain_right_02.png",
+      "clip": "rain",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/rain-generated.png",
+      "box": {
+        "left": 679,
+        "right": 1225,
+        "top": 687,
+        "bottom": 1175,
+        "area": 144639,
+        "seed": [
+          893,
+          687
+        ]
+      },
+      "scale": 0.7191011235955056,
+      "file": "frames/espresso_leviathan_rain_right_03.png",
+      "clip": "rain",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/pressure-generated.png",
+      "box": {
+        "left": 123,
+        "right": 580,
+        "top": 48,
+        "bottom": 604,
+        "area": 170116,
+        "seed": [
+          385,
+          48
+        ]
+      },
+      "scale": 0.6894075403949731,
+      "file": "frames/espresso_leviathan_pressure_right_00.png",
+      "clip": "pressure",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/pressure-generated.png",
+      "box": {
+        "left": 700,
+        "right": 1200,
+        "top": 71,
+        "bottom": 603,
+        "area": 168979,
+        "seed": [
+          962,
+          71
+        ]
+      },
+      "scale": 0.6894075403949731,
+      "file": "frames/espresso_leviathan_pressure_right_01.png",
+      "clip": "pressure",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/pressure-generated.png",
+      "box": {
+        "left": 24,
+        "right": 647,
+        "top": 659,
+        "bottom": 1178,
+        "area": 171253,
+        "seed": [
+          345,
+          659
+        ]
+      },
+      "scale": 0.6894075403949731,
+      "file": "frames/espresso_leviathan_pressure_right_02.png",
+      "clip": "pressure",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/espresso_leviathan-clips/reference/pressure-generated.png",
+      "box": {
+        "left": 667,
+        "right": 1227,
+        "top": 649,
+        "bottom": 1188,
+        "area": 168911,
+        "seed": [
+          960,
+          649
+        ]
+      },
+      "scale": 0.6894075403949731,
+      "file": "frames/espresso_leviathan_pressure_right_03.png",
+      "clip": "pressure",
+      "fps": 12
+    }
+  ],
+  "tags": [
+    {
+      "name": "idle",
+      "first": 1,
+      "last": 4,
+      "loop": true
+    },
+    {
+      "name": "move",
+      "first": 5,
+      "last": 10,
+      "loop": true
+    },
+    {
+      "name": "hurt",
+      "first": 11,
+      "last": 11,
+      "loop": false
+    },
+    {
+      "name": "defeat",
+      "first": 12,
+      "last": 15,
+      "loop": false
+    },
+    {
+      "name": "steam",
+      "first": 16,
+      "last": 19,
+      "loop": false
+    },
+    {
+      "name": "rain",
+      "first": 20,
+      "last": 23,
+      "loop": false
+    },
+    {
+      "name": "pressure",
+      "first": 24,
+      "last": 27,
+      "loop": false
+    }
+  ]
+}

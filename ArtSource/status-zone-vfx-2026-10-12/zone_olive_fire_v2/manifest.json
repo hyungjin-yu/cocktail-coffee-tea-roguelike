@@ -1,0 +1,137 @@
+{
+ "assetId": "zone_olive_fire_v2",
+ "request": "43 올리브 바머 알코올 불 장판 v2",
+ "kind": "monster_ground_zone_loop",
+ "provenance": {
+  "tool": "Aseprite 1.3.18.6 + PixelLab extension (GUI)",
+  "pixellabTool": "Create animated object/character (pro)",
+  "description": "top-down view of a flat puddle of spilled burning liquor on a cafe floor, wide oval shape twice as wide as tall filling the canvas width, olive-green liquid surface with low orange and blue flames licking along the outer rim, dark outline, pixel art, transparent background",
+  "animationAction": "low flames flickering and dancing along the puddle rim in a seamless loop",
+  "seed": 121004,
+  "removeBackground": true,
+  "outputMethod": "New frame",
+  "generationHistory": "C:/Users/user/AppData/Roaming/Aseprite/extensions/pixellab/generation_history/2026-10-12_09-41-31 - Create animated object-character (pro) - 001",
+  "asepriteSource": "zone_olive_fire_v2.aseprite",
+  "asepriteSourceSha256": "42b69807fa490d216d91e30602e8dc29563dc09bf944b7f689f9f913d6f7541f",
+  "asepriteSave": "Aseprite CLI (frames_to_aseprite.lua) from PixelLab history frames — GUI save interrupted when the user minimized the window",
+  "otherGenerators": "none"
+ },
+ "runtime": {
+  "path": "Assets/_Project/Resources/ArtExtra/zone_olive_fire_v2",
+  "frameSizePx": [
+   128,
+   128
+  ],
+  "frames": 4,
+  "fps": 10,
+  "loop": true,
+  "pixelsPerUnit": 128,
+  "pivot": "center",
+  "filter": "point",
+  "readable": true,
+  "opaqueUnionBBoxPx": [
+   7,
+   17,
+   122,
+   111
+  ],
+  "fitRule": "per-axis scale so opaque union bbox = 2r x 2r"
+ },
+ "postprocess": "kept largest 8-connected component (detached smoke specks removed)",
+ "frames": [
+  {
+   "file": "zone_olive_fire_v2_00.png",
+   "sourceFrame": 0,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    7,
+    20,
+    122,
+    111
+   ],
+   "opaquePx": 6876,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "c5f727984440e8c99e557791ad7258718cd95746d0ca3e75b5746e5fdf0019ba"
+  },
+  {
+   "file": "zone_olive_fire_v2_01.png",
+   "sourceFrame": 1,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    7,
+    30,
+    121,
+    111
+   ],
+   "opaquePx": 6680,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "67cb8cfc670a3d6467eb6c90be2d97c6ee64fdaa9bc354df3cd58fa51fef6696"
+  },
+  {
+   "file": "zone_olive_fire_v2_02.png",
+   "sourceFrame": 2,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    7,
+    29,
+    122,
+    111
+   ],
+   "opaquePx": 6709,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "5391c54bc799d5b9aaa97ba8b87f2a0163ad590acf976b90b277e75a184df125"
+  },
+  {
+   "file": "zone_olive_fire_v2_03.png",
+   "sourceFrame": 3,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    7,
+    17,
+    122,
+    111
+   ],
+   "opaquePx": 7080,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "60c2419f6edc2a7e298886c28f55077713cc0d77676736a05af7f61e483bc8fa"
+  }
+ ],
+ "rawFrames": [
+  "zone_olive_fire_v2_raw_00.png",
+  "zone_olive_fire_v2_raw_01.png",
+  "zone_olive_fire_v2_raw_02.png",
+  "zone_olive_fire_v2_raw_03.png"
+ ]
+}

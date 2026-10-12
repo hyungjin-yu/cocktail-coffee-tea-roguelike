@@ -116,7 +116,7 @@ namespace CCT
 
             var emission = ps.emission;
             emission.rateOverTime = 0f;
-            emission.SetBursts(new[] { new ParticleSystem.Burst(0f, (short)config.count) });
+            emission.SetBursts(new[] { new ParticleSystem.Burst(0f, (short)DecorativeCount(config.count)) });
 
             var shape = ps.shape;
             shape.shapeType = ParticleSystemShapeType.Circle;
@@ -164,5 +164,9 @@ namespace CCT
             ps.Play();
             return ps;
         }
+
+        /// <summary>08:123 효과 강도 "낮음"이면 장식 파티클 수 50%(경고·탄환·판정 표시는 이 경로를 쓰지 않아 그대로).</summary>
+        public static int DecorativeCount(int count) =>
+            SettingsService.Current.effectsLevel == SettingsData.EffectsLow ? Mathf.Max(1, Mathf.CeilToInt(count * 0.5f)) : count;
     }
 }

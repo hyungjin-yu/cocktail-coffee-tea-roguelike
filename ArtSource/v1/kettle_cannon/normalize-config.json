@@ -1,0 +1,245 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/kettle_cannon/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/kettle_cannon",
+  "assetId": "kettle_cannon",
+  "columns": 5,
+  "rows": 4,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 1.25,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "action",
+      "index": 0,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 1,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 2,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 3,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 49,
+      "right": 300,
+      "top": 73,
+      "bottom": 298
+    },
+    {
+      "left": 325,
+      "right": 580,
+      "top": 59,
+      "bottom": 298
+    },
+    {
+      "left": 599,
+      "right": 850,
+      "top": 81,
+      "bottom": 298
+    },
+    {
+      "left": 877,
+      "right": 1136,
+      "top": 95,
+      "bottom": 300
+    },
+    {
+      "left": 32,
+      "right": 259,
+      "top": 348,
+      "bottom": 551
+    },
+    {
+      "left": 275,
+      "right": 492,
+      "top": 344,
+      "bottom": 551
+    },
+    {
+      "left": 495,
+      "right": 706,
+      "top": 342,
+      "bottom": 547
+    },
+    {
+      "left": 713,
+      "right": 930,
+      "top": 350,
+      "bottom": 549
+    },
+    {
+      "left": 942,
+      "right": 1165,
+      "top": 350,
+      "bottom": 547
+    },
+    {
+      "left": 1175,
+      "right": 1378,
+      "top": 342,
+      "bottom": 543
+    },
+    {
+      "left": 34,
+      "right": 287,
+      "top": 572,
+      "bottom": 805
+    },
+    {
+      "left": 320,
+      "right": 603,
+      "top": 584,
+      "bottom": 805
+    },
+    {
+      "left": 623,
+      "right": 912,
+      "top": 614,
+      "bottom": 805
+    },
+    {
+      "left": 920,
+      "right": 1177,
+      "top": 588,
+      "bottom": 805
+    },
+    {
+      "left": 52,
+      "right": 269,
+      "top": 845,
+      "bottom": 1052
+    },
+    {
+      "left": 321,
+      "right": 542,
+      "top": 863,
+      "bottom": 1050
+    },
+    {
+      "left": 160,
+      "right": 957,
+      "top": 148,
+      "bottom": 721,
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/kettle_cannon/reference/supplemental.png",
+      "targetHeight": 130
+    },
+    {
+      "left": 573,
+      "right": 836,
+      "top": 877,
+      "bottom": 1062
+    },
+    {
+      "left": 847,
+      "right": 1144,
+      "top": 921,
+      "bottom": 1064
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/kettle_cannon.png"
+}

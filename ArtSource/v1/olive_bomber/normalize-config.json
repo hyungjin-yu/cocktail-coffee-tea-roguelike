@@ -1,0 +1,195 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/olive_bomber/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/olive_bomber",
+  "assetId": "olive_bomber",
+  "columns": 5,
+  "rows": 3,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 0.85,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 92,
+      "right": 271,
+      "top": 48,
+      "bottom": 320
+    },
+    {
+      "left": 402,
+      "right": 579,
+      "top": 41,
+      "bottom": 320
+    },
+    {
+      "left": 703,
+      "right": 884,
+      "top": 51,
+      "bottom": 320
+    },
+    {
+      "left": 1008,
+      "right": 1189,
+      "top": 55,
+      "bottom": 320
+    },
+    {
+      "left": 1324,
+      "right": 1508,
+      "top": 47,
+      "bottom": 320
+    },
+    {
+      "left": 91,
+      "right": 276,
+      "top": 361,
+      "bottom": 642
+    },
+    {
+      "left": 411,
+      "right": 591,
+      "top": 368,
+      "bottom": 641
+    },
+    {
+      "left": 711,
+      "right": 898,
+      "top": 368,
+      "bottom": 642
+    },
+    {
+      "left": 1019,
+      "right": 1201,
+      "top": 361,
+      "bottom": 642
+    },
+    {
+      "left": 1328,
+      "right": 1508,
+      "top": 360,
+      "bottom": 642
+    },
+    {
+      "left": 73,
+      "right": 266,
+      "top": 694,
+      "bottom": 933
+    },
+    {
+      "left": 411,
+      "right": 603,
+      "top": 735,
+      "bottom": 933
+    },
+    {
+      "left": 686,
+      "right": 923,
+      "top": 795,
+      "bottom": 928
+    },
+    {
+      "left": 985,
+      "right": 1267,
+      "top": 815,
+      "bottom": 933
+    },
+    {
+      "left": 1307,
+      "right": 1566,
+      "top": 832,
+      "bottom": 935
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/olive_bomber.png"
+}

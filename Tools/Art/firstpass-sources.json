@@ -1,0 +1,16 @@
+{
+  "comment": "FirstPassArtIntegrator 입력. readyRoots는 뒤쪽이 우선(Codex 정식 ArtSource/v1이 기획 스테이징보다 우선). status ready만 Assets/_Project/Art/v1로 복사. provisional은 사용자가 1차 실행본에만 명시 허용한 미완성 소스로 Assets/_Project/Art/firstpass에 따로 복사하며 출시 검사(BuildRelease)는 이를 통과로 보지 않는다.",
+  "readyRoots": [
+    "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/2026-10-04/assets",
+    "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/first-pass-v1",
+    "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/first-pass-ui",
+    "C:/Users/user/Documents/Projects/CocktailCoffeeTea/ArtSource/v1",
+    "C:/Users/user/Documents/Projects/CocktailCoffeeTea/ArtSource/v1-final-candidates-2026-10-06",
+    "C:/Users/user/Documents/Projects/CocktailCoffeeTea/ArtSource/ui-polish-2026-10-08"
+  ],
+  "provisional": [],
+  "rejectPathFragments": [
+    "bartender-refined-v3",
+    "bartender-refined-v4"
+  ]
+}

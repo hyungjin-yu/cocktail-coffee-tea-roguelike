@@ -1,0 +1,422 @@
+{
+  "assetId": "grinder_golem",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips",
+  "frames": [
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/idle-generated.png",
+      "box": {
+        "left": 44,
+        "right": 574,
+        "top": 73,
+        "bottom": 598,
+        "area": 165711,
+        "seed": [
+          502,
+          73
+        ]
+      },
+      "scale": 0.7300380228136882,
+      "file": "frames/grinder_golem_idle_right_00.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/idle-generated.png",
+      "box": {
+        "left": 638,
+        "right": 1208,
+        "top": 65,
+        "bottom": 598,
+        "area": 171925,
+        "seed": [
+          1133,
+          65
+        ]
+      },
+      "scale": 0.7300380228136882,
+      "file": "frames/grinder_golem_idle_right_01.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/idle-generated.png",
+      "box": {
+        "left": 38,
+        "right": 581,
+        "top": 658,
+        "bottom": 1178,
+        "area": 165055,
+        "seed": [
+          505,
+          658
+        ]
+      },
+      "scale": 0.7300380228136882,
+      "file": "frames/grinder_golem_idle_right_02.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/idle-generated.png",
+      "box": {
+        "left": 662,
+        "right": 1213,
+        "top": 669,
+        "bottom": 1178,
+        "area": 162125,
+        "seed": [
+          1152,
+          669
+        ]
+      },
+      "scale": 0.7300380228136882,
+      "file": "frames/grinder_golem_idle_right_03.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/move-generated.png",
+      "box": {
+        "left": 53,
+        "right": 503,
+        "top": 33,
+        "bottom": 479,
+        "area": 108184,
+        "seed": [
+          427,
+          33
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/grinder_golem_move_right_00.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/move-generated.png",
+      "box": {
+        "left": 550,
+        "right": 988,
+        "top": 46,
+        "bottom": 479,
+        "area": 100982,
+        "seed": [
+          913,
+          46
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/grinder_golem_move_right_01.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/move-generated.png",
+      "box": {
+        "left": 1049,
+        "right": 1505,
+        "top": 23,
+        "bottom": 478,
+        "area": 103143,
+        "seed": [
+          1401,
+          23
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/grinder_golem_move_right_02.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/move-generated.png",
+      "box": {
+        "left": 46,
+        "right": 502,
+        "top": 523,
+        "bottom": 981,
+        "area": 113049,
+        "seed": [
+          428,
+          523
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/grinder_golem_move_right_03.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/move-generated.png",
+      "box": {
+        "left": 548,
+        "right": 1004,
+        "top": 527,
+        "bottom": 981,
+        "area": 108979,
+        "seed": [
+          929,
+          527
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/grinder_golem_move_right_04.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/move-generated.png",
+      "box": {
+        "left": 1047,
+        "right": 1509,
+        "top": 523,
+        "bottom": 978,
+        "area": 104704,
+        "seed": [
+          1427,
+          523
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/grinder_golem_move_right_05.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 27,
+        "right": 427,
+        "top": 105,
+        "bottom": 571,
+        "area": 92809,
+        "seed": [
+          349,
+          105
+        ]
+      },
+      "scale": 0.8222698072805139,
+      "file": "frames/grinder_golem_hurt_right_00.png",
+      "clip": "hurt",
+      "fps": 12.5
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 492,
+        "right": 887,
+        "top": 196,
+        "bottom": 576,
+        "area": 89683,
+        "seed": [
+          721,
+          196
+        ]
+      },
+      "scale": 0.8222698072805139,
+      "file": "frames/grinder_golem_defeat_right_00.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 844,
+        "right": 1295,
+        "top": 273,
+        "bottom": 582,
+        "area": 76903,
+        "seed": [
+          1076,
+          273
+        ]
+      },
+      "scale": 0.8222698072805139,
+      "file": "frames/grinder_golem_defeat_right_01.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 1250,
+        "right": 1747,
+        "top": 396,
+        "bottom": 592,
+        "area": 58906,
+        "seed": [
+          1515,
+          396
+        ]
+      },
+      "scale": 0.8222698072805139,
+      "file": "frames/grinder_golem_defeat_right_02.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 1764,
+        "right": 2155,
+        "top": 415,
+        "bottom": 594,
+        "area": 38245,
+        "seed": [
+          1832,
+          415
+        ]
+      },
+      "scale": 0.8222698072805139,
+      "file": "frames/grinder_golem_defeat_right_03.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/charge_prepare-generated.png",
+      "box": {
+        "left": 44,
+        "right": 589,
+        "top": 70,
+        "bottom": 610,
+        "area": 170302,
+        "seed": [
+          549,
+          70
+        ]
+      },
+      "scale": 0.7097966728280961,
+      "file": "frames/grinder_golem_charge_prepare_right_00.png",
+      "clip": "charge_prepare",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/charge_prepare-generated.png",
+      "box": {
+        "left": 688,
+        "right": 1209,
+        "top": 45,
+        "bottom": 610,
+        "area": 144313,
+        "seed": [
+          787,
+          45
+        ]
+      },
+      "scale": 0.7097966728280961,
+      "file": "frames/grinder_golem_charge_prepare_right_01.png",
+      "clip": "charge_prepare",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/charge_prepare-generated.png",
+      "box": {
+        "left": 62,
+        "right": 673,
+        "top": 697,
+        "bottom": 1156,
+        "area": 168268,
+        "seed": [
+          617,
+          697
+        ]
+      },
+      "scale": 0.7097966728280961,
+      "file": "frames/grinder_golem_charge_prepare_right_02.png",
+      "clip": "charge_prepare",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/charge_prepare-generated.png",
+      "box": {
+        "left": 720,
+        "right": 1214,
+        "top": 731,
+        "bottom": 1163,
+        "area": 142018,
+        "seed": [
+          1159,
+          731
+        ]
+      },
+      "scale": 0.7097966728280961,
+      "file": "frames/grinder_golem_charge_prepare_right_03.png",
+      "clip": "charge_prepare",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/charge-generated.png",
+      "box": {
+        "left": 55,
+        "right": 882,
+        "top": 115,
+        "bottom": 776,
+        "area": 285977,
+        "seed": [
+          810,
+          115
+        ]
+      },
+      "scale": 0.5314009661835749,
+      "file": "frames/grinder_golem_charge_right_00.png",
+      "clip": "charge",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/grinder_golem-clips/reference/charge-generated.png",
+      "box": {
+        "left": 969,
+        "right": 1730,
+        "top": 98,
+        "bottom": 776,
+        "area": 274113,
+        "seed": [
+          1668,
+          98
+        ]
+      },
+      "scale": 0.5314009661835749,
+      "file": "frames/grinder_golem_charge_right_01.png",
+      "clip": "charge",
+      "fps": 10
+    }
+  ],
+  "tags": [
+    {
+      "name": "idle",
+      "first": 1,
+      "last": 4,
+      "loop": true
+    },
+    {
+      "name": "move",
+      "first": 5,
+      "last": 10,
+      "loop": true
+    },
+    {
+      "name": "hurt",
+      "first": 11,
+      "last": 11,
+      "loop": false
+    },
+    {
+      "name": "defeat",
+      "first": 12,
+      "last": 15,
+      "loop": false
+    },
+    {
+      "name": "charge_prepare",
+      "first": 16,
+      "last": 19,
+      "loop": false
+    },
+    {
+      "name": "charge",
+      "first": 20,
+      "last": 21,
+      "loop": true
+    }
+  ]
+}

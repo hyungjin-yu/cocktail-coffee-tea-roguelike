@@ -88,6 +88,34 @@ namespace CCT.Tests
         }
 
         [UnityTest]
+        public IEnumerator Invisibility_TelegraphsReappearPoint_BeforeReappearing()
+        {
+            // 2026-09-25 G11 감사에서 발견: 재등장 지점을 투명화 "끝"에 정해서 플레이어가 미리 못 피하던
+            // 스펙 위반(06:122는 "시작"에 확정·표시를 요구). 투명화(무적) 중에 예고(FadeVfx)가 실제로
+            // 떠 있는지 — 즉 재등장 지점이 이미 정해져 표시 중인지 — 확인하는 회귀 테스트.
+            var game = GameManager.Instance;
+            game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
+            var specter = Enemy.SpawnAt(game.Player.Position + new Vector2(3f, 0f), EnemyDef.DripServerSpecter,
+                1f, game.Player, game.transform);
+            specter.gameObject.AddComponent<DripSpecterDriver>().Init(specter, game);
+
+            bool sawTelegraphWhileInvisible = false;
+            // 등장 안내(1초) + 첫 텀(2.5초) + 쿨타임(6초) + 무적(1.2초) = 10.7초, 여유 있게 11.5초
+            float deadline = Time.time + 11.5f;
+            while (Time.time < deadline)
+            {
+                if (specter != null && specter.Invulnerable &&
+                    Object.FindObjectsByType<FadeVfx>(FindObjectsSortMode.None).Length > 0)
+                    sawTelegraphWhileInvisible = true;
+                DismissPopups(game);
+                yield return null;
+            }
+
+            Assert.IsTrue(sawTelegraphWhileInvisible,
+                "재등장 지점 예고가 투명화(무적) 중에 떠 있어야 한다 — 끝날 때 정하면 미리 피할 수 없다(06:122)");
+        }
+
+        [UnityTest]
         public IEnumerator DripWave_DoesNotSpawnZoneImmediately_WaitsOutTelegraph()
         {
             var game = GameManager.Instance;

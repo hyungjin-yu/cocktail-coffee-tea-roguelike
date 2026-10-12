@@ -42,11 +42,21 @@ namespace CCT
 
         public event Action Changed;
 
+        // 41 히든 스킬 런 중 보정(HiddenSkillRuntime이 매 프레임 설정). 공속/이동은 다른 % 보너스처럼 환불 봉인을 받는다.
+        public float hiddenAttackSpeed;
+        public float hiddenMoveSpeed;
+        public float hiddenRegenMultiplier = 1f;
+        public float jobDamagePercent, jobAttackSpeedPercent, jobRegenBonus;
+        /// <summary>받는 둔화 약화 비율(0.4면 둔화량의 40%를 덜 받음).</summary>
+        public float slowResist;
+        public float suppressDurationScale = 1f;
+
         float suppressedRemaining;
         float slowRemaining;
         float slowMultiplier = 1f;
         float flameLockRemaining;
         float poisonLockRemaining;
+        float hybridLockRemaining;
 
         /// <summary>진상 손님 "환불해주세요!" 등으로 공격/이동 % 보너스가 무효화된 상태.</summary>
         public bool BonusesSuppressed => suppressedRemaining > 0f;
@@ -55,7 +65,7 @@ namespace CCT
         /// <summary>공격력·공속·사거리·이동속도 % 보너스를 duration 초 동안 무효화 (체력·드랍 관련은 유지).</summary>
         public void SuppressBonuses(float duration)
         {
-            suppressedRemaining = Mathf.Max(suppressedRemaining, duration);
+            suppressedRemaining = Mathf.Max(suppressedRemaining, duration * suppressDurationScale);
         }
 
         /// <summary>슈가 큐브 바머 등이 거는 이동속도 둔화. 더 강하거나(낮은 배율) 더 긴 효과로만 갱신된다.</summary>
@@ -64,6 +74,7 @@ namespace CCT
         public void ApplySlow(float duration, float multiplier)
         {
             slowRemaining = Mathf.Max(slowRemaining, duration);
+            multiplier = 1f - (1f - multiplier) * (1f - Mathf.Clamp01(slowResist));
             slowMultiplier = IsSlowed ? Mathf.Min(slowMultiplier, multiplier) : multiplier;
         }
 
@@ -72,8 +83,11 @@ namespace CCT
         /// 남은 시간을 보존한다(06:20 "타이머도 멈췄다가 남은 시간부터 재개").</summary>
         public bool FlameLocked => flameLockRemaining > 0f;
         public bool PoisonLocked => poisonLockRemaining > 0f;
+        /// <summary>07:119 — "주문 부정은 보조 활만 정지". 화염/독과 같은 잠금 패턴.</summary>
+        public bool HybridLocked => hybridLockRemaining > 0f;
         public void LockFlame(float duration) => flameLockRemaining = Mathf.Max(flameLockRemaining, duration);
         public void LockPoison(float duration) => poisonLockRemaining = Mathf.Max(poisonLockRemaining, duration);
+        public void LockHybrid(float duration) => hybridLockRemaining = Mathf.Max(hybridLockRemaining, duration);
 
         public void Tick(float deltaTime)
         {
@@ -90,22 +104,25 @@ namespace CCT
             // Tick은 GameManager.Update에서 Playing 상태일 때만 호출되므로 이미 그 조건을 만족한다.
             if (flameLockRemaining > 0f) flameLockRemaining = Mathf.Max(0f, flameLockRemaining - deltaTime);
             if (poisonLockRemaining > 0f) poisonLockRemaining = Mathf.Max(0f, poisonLockRemaining - deltaTime);
+            if (hybridLockRemaining > 0f) hybridLockRemaining = Mathf.Max(0f, hybridLockRemaining - deltaTime);
         }
 
         float Live(float percent) => BonusesSuppressed ? 0f : percent;
 
-        public float DamageBonus => Live(damagePercent);
-        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent))) * (IsSlowed ? slowMultiplier : 1f);
+        public float DamageBonus => Live(damagePercent + jobDamagePercent);
+        /// <summary>환불("환불해주세요!") 중엔 0 — 보조 활의 자체 간격 공식(07:118)도 이걸 통해 무효화를 받는다.</summary>
+        public float AttackSpeedBonus => Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent);
+        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed))) * (IsSlowed ? slowMultiplier : 1f);
         public float MaxHp => baseMaxHp + maxHpFlat;
         public float Damage => baseDamage * (1f + DamageBonus);
-        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval / (1f + Live(attackSpeedPercent)));
+        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent)));
         public float Range => baseRange * (1f + Live(rangePercent));
         public float PickupRadius => basePickupRadius + pickupRadiusFlat;
         public float ExtraDropChance => Mathf.Clamp01(dropChancePercent);
         /// <summary>받은 피해에 곱할 배율 (1 - clamp(damageReduction, 0, 0.25)).</summary>
         public float DamageTakenMultiplier => 1f - Mathf.Clamp(damageReduction, 0f, 0.25f);
         /// <summary>실제 초당 회복량. 음수로 떨어지지 않게 하한 0.</summary>
-        public float RegenPerSecond => Mathf.Max(0f, Balance.PlayerRegenPerSecond + regenBonus);
+        public float RegenPerSecond => Mathf.Max(0f, Balance.PlayerRegenPerSecond + regenBonus + jobRegenBonus) * Mathf.Max(1f, hiddenRegenMultiplier);
 
         /// <summary>게이지 필요량 배율. 과도한 감소 방지를 위해 하한 0.5.</summary>
         public float GaugeNeedMultiplier => Mathf.Max(0.5f, 1f + gaugeNeedPercent);

@@ -1,0 +1,243 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/tea_ceremony_guardian/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/tea_ceremony_guardian",
+  "assetId": "tea_ceremony_guardian",
+  "columns": 5,
+  "rows": 4,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 1.45,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "action",
+      "index": 0,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 1,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 2,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 3,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 49,
+      "right": 268,
+      "top": 66,
+      "bottom": 291
+    },
+    {
+      "left": 314,
+      "right": 537,
+      "top": 66,
+      "bottom": 291
+    },
+    {
+      "left": 586,
+      "right": 807,
+      "top": 66,
+      "bottom": 291
+    },
+    {
+      "left": 863,
+      "right": 1092,
+      "top": 66,
+      "bottom": 291
+    },
+    {
+      "left": 37,
+      "right": 260,
+      "top": 339,
+      "bottom": 562
+    },
+    {
+      "left": 288,
+      "right": 480,
+      "top": 333,
+      "bottom": 556
+    },
+    {
+      "left": 483,
+      "right": 690,
+      "top": 333,
+      "bottom": 564
+    },
+    {
+      "left": 709,
+      "right": 932,
+      "top": 341,
+      "bottom": 562
+    },
+    {
+      "left": 951,
+      "right": 1151,
+      "top": 335,
+      "bottom": 562
+    },
+    {
+      "left": 1154,
+      "right": 1377,
+      "top": 333,
+      "bottom": 566
+    },
+    {
+      "left": 63,
+      "right": 264,
+      "top": 629,
+      "bottom": 834
+    },
+    {
+      "left": 299,
+      "right": 560,
+      "top": 607,
+      "bottom": 832
+    },
+    {
+      "left": 583,
+      "right": 910,
+      "top": 631,
+      "bottom": 832
+    },
+    {
+      "left": 958,
+      "right": 1199,
+      "top": 625,
+      "bottom": 832
+    },
+    {
+      "left": 55,
+      "right": 240,
+      "top": 878,
+      "bottom": 1075
+    },
+    {
+      "left": 284,
+      "right": 545,
+      "top": 910,
+      "bottom": 1079
+    },
+    {
+      "left": 568,
+      "right": 831,
+      "top": 932,
+      "bottom": 1079
+    },
+    {
+      "left": 854,
+      "right": 1125,
+      "top": 952,
+      "bottom": 1077
+    },
+    {
+      "left": 1152,
+      "right": 1379,
+      "top": 986,
+      "bottom": 1079
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/tea_ceremony_guardian.png"
+}

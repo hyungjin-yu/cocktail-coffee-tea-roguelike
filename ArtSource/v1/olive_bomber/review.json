@@ -1,0 +1,203 @@
+{
+  "assetId": "olive_bomber",
+  "frames": 15,
+  "checks": [
+    {
+      "file": "frames/olive_bomber_defeat_right_00.png",
+      "bboxTopLeft": [
+        62,
+        90,
+        192,
+        224
+      ],
+      "pixelSha256": "2c68093f7cc8c2ebd6beb7a77de3b20c7ba3a83a3fa2a9464eb69e70a80eb942",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_defeat_right_01.png",
+      "bboxTopLeft": [
+        48,
+        134,
+        208,
+        224
+      ],
+      "pixelSha256": "7e2e91d01ba82cc3fce0294bce080cd43a23f3b1243ee446b9fa9271406d8c8e",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_defeat_right_02.png",
+      "bboxTopLeft": [
+        32,
+        144,
+        222,
+        224
+      ],
+      "pixelSha256": "9a330c97bb19e2ae39c330bd6bf11744a2fb351b79799b839eab962d860679ed",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_defeat_right_03.png",
+      "bboxTopLeft": [
+        40,
+        154,
+        216,
+        224
+      ],
+      "pixelSha256": "4a7aeb077c29068e0c2acb7867ab43d75d5d0fdca42b52bd3b4d4208128ed036",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_hurt_right_00.png",
+      "bboxTopLeft": [
+        62,
+        62,
+        194,
+        224
+      ],
+      "pixelSha256": "92dae00831bfb6bb2507befca8f9b514c86b197a8e3b4b517611280feef5e0fb",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_idle_right_00.png",
+      "bboxTopLeft": [
+        68,
+        42,
+        188,
+        224
+      ],
+      "pixelSha256": "c0ec578ee6d43230d13be9019ece05f4715503d7909208cbc7feafd936274436",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_idle_right_01.png",
+      "bboxTopLeft": [
+        68,
+        40,
+        186,
+        224
+      ],
+      "pixelSha256": "99585248588010f715ade3752a249b88bfd0e6c2ecdc08defd0b2bfe70bf2343",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_idle_right_02.png",
+      "bboxTopLeft": [
+        68,
+        42,
+        190,
+        224
+      ],
+      "pixelSha256": "6be7e9963e9ae08057cefcd16ba5c045ebeb03cee6bfe86a167fe512febf149c",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_idle_right_03.png",
+      "bboxTopLeft": [
+        66,
+        44,
+        182,
+        224
+      ],
+      "pixelSha256": "0677472505362cb917ebf312b85ab7a0f6b10a38811401dd7817051d8a34bd18",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_move_right_00.png",
+      "bboxTopLeft": [
+        64,
+        40,
+        188,
+        224
+      ],
+      "pixelSha256": "28b4924c8abfb57f357b1f53b83cdf59873260deadcd03f5e6f4a0fb860ab3be",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_move_right_01.png",
+      "bboxTopLeft": [
+        66,
+        34,
+        190,
+        224
+      ],
+      "pixelSha256": "77b5d4f6d130a5dfc07b369e51731a3097875696d4ec645934b4ac076672141a",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_move_right_02.png",
+      "bboxTopLeft": [
+        66,
+        40,
+        188,
+        224
+      ],
+      "pixelSha256": "903fe0ab9789e50c2838564262081d8083b562876d89e4eee0d8751d69c78722",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_move_right_03.png",
+      "bboxTopLeft": [
+        64,
+        38,
+        192,
+        224
+      ],
+      "pixelSha256": "a6af4ff873989f078048b7460d24b83c59980f0ff06d43609d6ae92d5d9e462a",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_move_right_04.png",
+      "bboxTopLeft": [
+        66,
+        34,
+        190,
+        224
+      ],
+      "pixelSha256": "fb939dbf45475bb2affb2d4c9f7b01bc9b3afbae9c21512ff7ef47bf3b4f8f4e",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/olive_bomber_move_right_05.png",
+      "bboxTopLeft": [
+        66,
+        34,
+        188,
+        224
+      ],
+      "pixelSha256": "9529271ffce4b792a75ea8dd184dc86d882d123ffd6f6b14fccf56201f189ecd",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

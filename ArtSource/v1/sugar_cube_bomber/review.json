@@ -1,0 +1,203 @@
+{
+  "assetId": "sugar_cube_bomber",
+  "frames": 15,
+  "checks": [
+    {
+      "file": "frames/sugar_cube_bomber_defeat_right_00.png",
+      "bboxTopLeft": [
+        46,
+        66,
+        210,
+        224
+      ],
+      "pixelSha256": "b959fb4a7315950fcaf4f0456aeedb903a62dd2af801eadcf24ecdf5c7560217",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_defeat_right_01.png",
+      "bboxTopLeft": [
+        44,
+        70,
+        212,
+        224
+      ],
+      "pixelSha256": "33d6cb83c078cee6ce339482729fe5b510293cf6c7097ef648d6a5db360eb58d",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_defeat_right_02.png",
+      "bboxTopLeft": [
+        34,
+        94,
+        222,
+        224
+      ],
+      "pixelSha256": "478b778afb0448cd0c9b7ca221e2d43921ea3c2800661382ddea2c045dbaf181",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_defeat_right_03.png",
+      "bboxTopLeft": [
+        32,
+        126,
+        224,
+        224
+      ],
+      "pixelSha256": "17d03dd7992b474f1b097e63cdcc4fec0dec8c8676d7ca2938bc5dc965a0d09e",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_hurt_right_00.png",
+      "bboxTopLeft": [
+        38,
+        48,
+        216,
+        224
+      ],
+      "pixelSha256": "3de3d16c296010da222775e17a16ace0973c379042ed5b077518a74584c8fe0a",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_idle_right_00.png",
+      "bboxTopLeft": [
+        48,
+        40,
+        208,
+        224
+      ],
+      "pixelSha256": "d32379094e8b254dfde6b19e2888a41e48b201146db22f0ff6d78fe765a79e29",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_idle_right_01.png",
+      "bboxTopLeft": [
+        44,
+        38,
+        212,
+        224
+      ],
+      "pixelSha256": "79712bfa4323946e09f8ad42290fbaab8a4f88a3594b826a66f0dc29746514b3",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_idle_right_02.png",
+      "bboxTopLeft": [
+        48,
+        40,
+        208,
+        224
+      ],
+      "pixelSha256": "c203b1d2e3cf3b439ab2757b990fe063f5d276948f5cd21eaeabd20b1cae7329",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_idle_right_03.png",
+      "bboxTopLeft": [
+        38,
+        42,
+        218,
+        224
+      ],
+      "pixelSha256": "057c11d521aecd15ebb5aa1efccda7456fa9fc75c796ac8ace668e63ba8afdae",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_move_right_00.png",
+      "bboxTopLeft": [
+        44,
+        50,
+        210,
+        224
+      ],
+      "pixelSha256": "2d740c4417c00a3d1cdb75c4cfbe44b414d7f71545ecfffe98a23fafe8cf62ae",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_move_right_01.png",
+      "bboxTopLeft": [
+        44,
+        42,
+        210,
+        224
+      ],
+      "pixelSha256": "19bb1b990d21f90504c0c8e758f34231cfcee9a6279a819492bf34700af90c7c",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_move_right_02.png",
+      "bboxTopLeft": [
+        48,
+        40,
+        208,
+        224
+      ],
+      "pixelSha256": "01e7f995c7f71403d8ab0b1fb9d446006a6759aee538e46051ccc5051ab394d5",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_move_right_03.png",
+      "bboxTopLeft": [
+        50,
+        40,
+        206,
+        224
+      ],
+      "pixelSha256": "68b950b6b03bfc5aa1041ecd01e1c4404544f1d6b42d5749c67a82ea8db4d5f3",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_move_right_04.png",
+      "bboxTopLeft": [
+        42,
+        36,
+        212,
+        224
+      ],
+      "pixelSha256": "83770f4d5e91eccbb06977d7bf36045a9f0e6349f524c5b0d5c6ce499f99ddf4",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/sugar_cube_bomber_move_right_05.png",
+      "bboxTopLeft": [
+        50,
+        40,
+        206,
+        224
+      ],
+      "pixelSha256": "8cfe67b697457617b4ce77f7e1215c091507e7b85326f896890e6328c9986dc6",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

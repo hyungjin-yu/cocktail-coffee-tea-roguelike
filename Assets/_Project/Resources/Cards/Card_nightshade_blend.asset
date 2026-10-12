@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: nightshade_blend
   displayName: "\uAC00\uC9C0\uC18D \uBE14\uB80C\uB4DC"
-  description: "\uB3C5 \uD53C\uD574 Lv +2"
+  description: "\uC8FC\uBB34\uAE30 \uC801\uC911 \uB3C5 Lv +2 \xB7 3\uCD08 \uC9C0\uC18D"
   flavorText: "\uB3C5\uC131 \uC2DD\uBB3C\uC5D0\uC11C \uC870\uC2EC\uC2A4\uB808 \uCD94\uCD9C\uD55C
     \uAC15\uD55C \uBE14\uB80C\uB4DC."
   category: 1

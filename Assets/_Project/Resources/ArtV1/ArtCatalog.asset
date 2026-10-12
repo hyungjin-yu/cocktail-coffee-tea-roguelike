@@ -1,0 +1,3879 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f12076cb81aa8984fb9a7be5afd1ea33, type: 3}
+  m_Name: ArtCatalog
+  m_EditorClassIdentifier: CCT.Runtime::CCT.ArtCatalog
+  generatedUtc: 2026-10-08T10:20:49.2194295Z
+  assets:
+  - assetId: arrow
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/arrow
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.140625
+      y: 0.34375
+      width: 0.765625
+      height: 0.28125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: bc26bbb4f4f3ff14da39df55e0c41551, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: bartender
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/bartender
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 1.6
+    bodyHeightPx: 186
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.3125
+      y: 0.125
+      width: 0.375
+      height: 0.7265625
+    clips:
+    - name: idle
+      fps: 3
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 6f465bcad5bdb904dbe2ef2a8a567ec6, type: 3}
+      - {fileID: 21300000, guid: 39d9a7cbd0f4d924090d773277f115d2, type: 3}
+      - {fileID: 21300000, guid: 2a50a5ae6e70eb244bcaaf5310f85247, type: 3}
+      - {fileID: 21300000, guid: 09556b18747a35149a91e0866a55dffd, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 8457ef58ecf06de439349266fae263b5, type: 3}
+      - {fileID: 21300000, guid: 0e0fb67d7f3d7ac4da3ed1a46d24e803, type: 3}
+      - {fileID: 21300000, guid: 38d384835a92b834f9a914cc72cfa405, type: 3}
+      - {fileID: 21300000, guid: b53fd7d11887e0047a87544285d215a0, type: 3}
+      - {fileID: 21300000, guid: ea846cf1c2aa8b143951594bd277d238, type: 3}
+      - {fileID: 21300000, guid: 5fd87727a28f0bc42a0fa1a60fb5c144, type: 3}
+    - name: melee
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 7330c26c8092c1d44b06459ed799a096, type: 3}
+      - {fileID: 21300000, guid: ed12b930d37c80f4a96c6076b93c2821, type: 3}
+      - {fileID: 21300000, guid: bb83154eb4ec3594ea65785ea55de143, type: 3}
+      - {fileID: 21300000, guid: 25b13c4e106f8db4faafa431ef7e0a68, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: fb6049e3927dc7a44a919177c0f53f13, type: 3}
+      - {fileID: 21300000, guid: 2d85fb23bcb2db54b93ed6f388e1045c, type: 3}
+      - {fileID: 21300000, guid: c13db62b909a8ba488bd25f0fe2c9340, type: 3}
+      - {fileID: 21300000, guid: 002cf9a863f3c2f44a8b10372946fc62, type: 3}
+    - name: hurt
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 7e1cc0ecf4418be4287418e2b0c6a9d7, type: 3}
+    - name: ranged
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 1dd17f87f65abfd4a93b8de440c480bd, type: 3}
+      - {fileID: 21300000, guid: 18a5faeee2f5287449c1a658acf13543, type: 3}
+      - {fileID: 21300000, guid: 68b112a4e167ea141b188a09e3f59ec9, type: 3}
+      - {fileID: 21300000, guid: dd3ad26f5c278db44a8a389171e3f7ee, type: 3}
+    anchors:
+    - clip: idle
+      frame: 0
+      name: hand
+      px: {x: 164, y: 87}
+    - clip: idle
+      frame: 0
+      name: offHand
+      px: {x: 105, y: 87}
+    - clip: idle
+      frame: 0
+      name: grip
+      px: {x: 164, y: 87}
+    - clip: idle
+      frame: 0
+      name: rightHand
+      px: {x: 164, y: 87}
+    - clip: idle
+      frame: 1
+      name: hand
+      px: {x: 164, y: 87}
+    - clip: idle
+      frame: 1
+      name: offHand
+      px: {x: 105, y: 87}
+    - clip: idle
+      frame: 1
+      name: grip
+      px: {x: 164, y: 87}
+    - clip: idle
+      frame: 1
+      name: rightHand
+      px: {x: 164, y: 87}
+    - clip: idle
+      frame: 2
+      name: hand
+      px: {x: 164, y: 89}
+    - clip: idle
+      frame: 2
+      name: offHand
+      px: {x: 105, y: 89}
+    - clip: idle
+      frame: 2
+      name: grip
+      px: {x: 164, y: 89}
+    - clip: idle
+      frame: 2
+      name: rightHand
+      px: {x: 164, y: 89}
+    - clip: idle
+      frame: 3
+      name: hand
+      px: {x: 164, y: 89}
+    - clip: idle
+      frame: 3
+      name: offHand
+      px: {x: 105, y: 89}
+    - clip: idle
+      frame: 3
+      name: grip
+      px: {x: 164, y: 89}
+    - clip: idle
+      frame: 3
+      name: rightHand
+      px: {x: 164, y: 89}
+    - clip: move
+      frame: 0
+      name: hand
+      px: {x: 160, y: 87}
+    - clip: move
+      frame: 0
+      name: grip
+      px: {x: 160, y: 87}
+    - clip: move
+      frame: 0
+      name: rightHand
+      px: {x: 160, y: 87}
+    - clip: move
+      frame: 0
+      name: offHand
+      px: {x: 109, y: 87}
+    - clip: move
+      frame: 1
+      name: hand
+      px: {x: 162, y: 85}
+    - clip: move
+      frame: 1
+      name: grip
+      px: {x: 162, y: 85}
+    - clip: move
+      frame: 1
+      name: rightHand
+      px: {x: 162, y: 85}
+    - clip: move
+      frame: 1
+      name: offHand
+      px: {x: 107, y: 85}
+    - clip: move
+      frame: 2
+      name: hand
+      px: {x: 164, y: 89}
+    - clip: move
+      frame: 2
+      name: grip
+      px: {x: 164, y: 89}
+    - clip: move
+      frame: 2
+      name: rightHand
+      px: {x: 164, y: 89}
+    - clip: move
+      frame: 2
+      name: offHand
+      px: {x: 105, y: 89}
+    - clip: move
+      frame: 3
+      name: hand
+      px: {x: 166, y: 87}
+    - clip: move
+      frame: 3
+      name: grip
+      px: {x: 166, y: 87}
+    - clip: move
+      frame: 3
+      name: rightHand
+      px: {x: 166, y: 87}
+    - clip: move
+      frame: 3
+      name: offHand
+      px: {x: 101, y: 87}
+    - clip: move
+      frame: 4
+      name: hand
+      px: {x: 166, y: 85}
+    - clip: move
+      frame: 4
+      name: grip
+      px: {x: 166, y: 85}
+    - clip: move
+      frame: 4
+      name: rightHand
+      px: {x: 166, y: 85}
+    - clip: move
+      frame: 4
+      name: offHand
+      px: {x: 103, y: 85}
+    - clip: move
+      frame: 5
+      name: hand
+      px: {x: 164, y: 89}
+    - clip: move
+      frame: 5
+      name: grip
+      px: {x: 164, y: 89}
+    - clip: move
+      frame: 5
+      name: rightHand
+      px: {x: 164, y: 89}
+    - clip: move
+      frame: 5
+      name: offHand
+      px: {x: 105, y: 89}
+    - clip: melee
+      frame: 0
+      name: hand
+      px: {x: 171, y: 133}
+    - clip: melee
+      frame: 0
+      name: grip
+      px: {x: 171, y: 133}
+    - clip: melee
+      frame: 0
+      name: rightHand
+      px: {x: 171, y: 133}
+    - clip: melee
+      frame: 0
+      name: offHand
+      px: {x: 111, y: 131}
+    - clip: melee
+      frame: 1
+      name: hand
+      px: {x: 161, y: 148}
+    - clip: melee
+      frame: 1
+      name: grip
+      px: {x: 161, y: 148}
+    - clip: melee
+      frame: 1
+      name: rightHand
+      px: {x: 161, y: 148}
+    - clip: melee
+      frame: 1
+      name: offHand
+      px: {x: 79, y: 185}
+    - clip: melee
+      frame: 2
+      name: hand
+      px: {x: 200, y: 140}
+    - clip: melee
+      frame: 2
+      name: grip
+      px: {x: 200, y: 140}
+    - clip: melee
+      frame: 2
+      name: rightHand
+      px: {x: 200, y: 140}
+    - clip: melee
+      frame: 2
+      name: offHand
+      px: {x: 103, y: 123}
+    - clip: melee
+      frame: 3
+      name: hand
+      px: {x: 169, y: 134}
+    - clip: melee
+      frame: 3
+      name: grip
+      px: {x: 169, y: 134}
+    - clip: melee
+      frame: 3
+      name: rightHand
+      px: {x: 169, y: 134}
+    - clip: melee
+      frame: 3
+      name: offHand
+      px: {x: 108, y: 129}
+    - clip: defeat
+      frame: 0
+      name: hand
+      px: {x: 145, y: 78}
+    - clip: defeat
+      frame: 0
+      name: grip
+      px: {x: 145, y: 78}
+    - clip: defeat
+      frame: 0
+      name: rightHand
+      px: {x: 145, y: 78}
+    - clip: defeat
+      frame: 0
+      name: offHand
+      px: {x: 112, y: 69}
+    - clip: defeat
+      frame: 1
+      name: hand
+      px: {x: 156, y: 39}
+    - clip: defeat
+      frame: 1
+      name: grip
+      px: {x: 156, y: 39}
+    - clip: defeat
+      frame: 1
+      name: rightHand
+      px: {x: 156, y: 39}
+    - clip: defeat
+      frame: 1
+      name: offHand
+      px: {x: 123, y: 42}
+    - clip: defeat
+      frame: 2
+      name: hand
+      px: {x: 176, y: 41}
+    - clip: defeat
+      frame: 2
+      name: grip
+      px: {x: 176, y: 41}
+    - clip: defeat
+      frame: 2
+      name: rightHand
+      px: {x: 176, y: 41}
+    - clip: defeat
+      frame: 2
+      name: offHand
+      px: {x: 121, y: 42}
+    - clip: defeat
+      frame: 3
+      name: hand
+      px: {x: 186, y: 49}
+    - clip: defeat
+      frame: 3
+      name: grip
+      px: {x: 186, y: 49}
+    - clip: defeat
+      frame: 3
+      name: rightHand
+      px: {x: 186, y: 49}
+    - clip: defeat
+      frame: 3
+      name: offHand
+      px: {x: 169, y: 48}
+    - clip: hurt
+      frame: 0
+      name: hand
+      px: {x: 161, y: 82}
+    - clip: hurt
+      frame: 0
+      name: grip
+      px: {x: 161, y: 82}
+    - clip: hurt
+      frame: 0
+      name: rightHand
+      px: {x: 161, y: 82}
+    - clip: hurt
+      frame: 0
+      name: offHand
+      px: {x: 121, y: 111}
+    - clip: ranged
+      frame: 0
+      name: hand
+      px: {x: 161, y: 133}
+    - clip: ranged
+      frame: 0
+      name: grip
+      px: {x: 161, y: 133}
+    - clip: ranged
+      frame: 0
+      name: rightHand
+      px: {x: 161, y: 133}
+    - clip: ranged
+      frame: 0
+      name: offHand
+      px: {x: 112, y: 132}
+    - clip: ranged
+      frame: 1
+      name: hand
+      px: {x: 180, y: 152}
+    - clip: ranged
+      frame: 1
+      name: grip
+      px: {x: 180, y: 152}
+    - clip: ranged
+      frame: 1
+      name: rightHand
+      px: {x: 180, y: 152}
+    - clip: ranged
+      frame: 1
+      name: offHand
+      px: {x: 107, y: 141}
+    - clip: ranged
+      frame: 2
+      name: hand
+      px: {x: 160, y: 121}
+    - clip: ranged
+      frame: 2
+      name: grip
+      px: {x: 160, y: 121}
+    - clip: ranged
+      frame: 2
+      name: rightHand
+      px: {x: 160, y: 121}
+    - clip: ranged
+      frame: 2
+      name: offHand
+      px: {x: 90, y: 141}
+    - clip: ranged
+      frame: 3
+      name: hand
+      px: {x: 165, y: 88}
+    - clip: ranged
+      frame: 3
+      name: grip
+      px: {x: 165, y: 88}
+    - clip: ranged
+      frame: 3
+      name: rightHand
+      px: {x: 165, y: 88}
+    - clip: ranged
+      frame: 3
+      name: offHand
+      px: {x: 99, y: 89}
+    tints: []
+    deviations:
+    - User-authorized first-pass v5 idle3fps instead of6; v5 move gait polish explicitly
+      deferred.
+    - 'Final coordinator decision: idle 4 frames at 3fps; feet fixed.'
+  - assetId: boss_arrival
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/boss_arrival
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.0859375
+      y: 0.171875
+      width: 0.8359375
+      height: 0.640625
+    clips:
+    - name: effect
+      fps: 8
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 9baf2c5143db0144e96d89c6afb244df, type: 3}
+      - {fileID: 21300000, guid: 2156f05eacbe29944a3ddc708a974341, type: 3}
+      - {fileID: 21300000, guid: 924b2ebf51291874d88fffc5b84af273, type: 3}
+      - {fileID: 21300000, guid: 1d0f5b8fef661504b9afba55db495a57, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: bullet
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/bullet
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.234375
+      y: 0.421875
+      width: 0.578125
+      height: 0.15625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 5f42f688fbb12a24b867006f43b8df43, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: cafe_counter
+    kind: background
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/cafe_counter
+    pixelsPerUnit: 128
+    frameSizePx: {x: 512, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.0078125
+      y: 0.2421875
+      width: 0.98046875
+      height: 0.5234375
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 96cf702d737a97746b26cbdd5b5e2670, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: cafe_floor
+    kind: background
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/cafe_floor
+    pixelsPerUnit: 128
+    frameSizePx: {x: 512, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 2a950ad6de0884447b04e16db35bf164, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: cafe_lamp
+    kind: background
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/cafe_lamp
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.03125
+      y: 0.0390625
+      width: 0.9375
+      height: 0.9296875
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 611c78916986b2e42959aa41cfa4f812, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: cafe_wall
+    kind: background
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/cafe_wall
+    pixelsPerUnit: 128
+    frameSizePx: {x: 1024, y: 512}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: d1acf5327d07eab4c887f59f9765abfb, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: coffee_pool
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/coffee_pool
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.078125
+      y: 0.15625
+      width: 0.8515625
+      height: 0.671875
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 9756f55cbea5c7544bcaca6372a58ce3, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: difficult_customer
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/difficult_customer
+    pixelsPerUnit: 128
+    frameSizePx: {x: 512, y: 512}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 2.65
+    bodyHeightPx: 384
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.171875
+      y: 0.125
+      width: 0.65625
+      height: 0.75
+    clips:
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 072fb7a7797705a429a6fe25b4a30539, type: 3}
+      - {fileID: 21300000, guid: 8d213ac8f833f364aa195d306eeedce9, type: 3}
+      - {fileID: 21300000, guid: 112f151aceba02e448d5004e519ed4f9, type: 3}
+      - {fileID: 21300000, guid: 6b9c6d8bab9df2047ba1835078a68e19, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 3cfd6d8af76fe9e46bcdadb967f16ec3, type: 3}
+      - {fileID: 21300000, guid: e92c106a80a5bbe45be743c1a239b4a1, type: 3}
+      - {fileID: 21300000, guid: 9af310c1cf8f8654980e7c5d3a014eed, type: 3}
+      - {fileID: 21300000, guid: a69880a1ae9111d49a083ec5e2691b66, type: 3}
+      - {fileID: 21300000, guid: 67b448efb7a224a48b397b004ea31aa6, type: 3}
+      - {fileID: 21300000, guid: 422753bac1540ca45a097d67730b078b, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: b4898348a5e79154c92375f6fdcd47cc, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: f41281599bff86947902d8a1684bfe4a, type: 3}
+      - {fileID: 21300000, guid: 7a4b092c349b1e9479a9f5dffb9a4b6b, type: 3}
+      - {fileID: 21300000, guid: ac0f7d9f5eac6ef47820d32b536bc874, type: 3}
+      - {fileID: 21300000, guid: f5da91a0ec219c842916740e9d666561, type: 3}
+    - name: refund
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 3cc3f18743dd05346b1ad5b75b2db2ba, type: 3}
+      - {fileID: 21300000, guid: c4b94b8da07c06548a50e4556b712881, type: 3}
+      - {fileID: 21300000, guid: 6a16404c9df3dea42a0f86d489663f49, type: 3}
+      - {fileID: 21300000, guid: 0ffdb381384b2eb47bd4cb18dca0dedb, type: 3}
+    - name: summon
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 018c11e397ce0e244a480f68ec3a9caf, type: 3}
+      - {fileID: 21300000, guid: 98bbbb17e2e898f4f93d8f891bbeec9a, type: 3}
+      - {fileID: 21300000, guid: 5d70f69a89eb64b43bbf3a656ca2a19d, type: 3}
+      - {fileID: 21300000, guid: f25097d955e79474d80246171ab19808, type: 3}
+    - name: review
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 4467f3babc578c642b95fce6102d72af, type: 3}
+      - {fileID: 21300000, guid: f999a5440dfc6b342823e5c8aebec96c, type: 3}
+      - {fileID: 21300000, guid: ca14675f32a7be84d891a99748938817, type: 3}
+      - {fileID: 21300000, guid: 8c60f1e39daec054c84af16a33ed898a, type: 3}
+    - name: reject
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: eb829d92040b70444860279dc68f29b8, type: 3}
+      - {fileID: 21300000, guid: b0506a9adb423a241bd4367c57786443, type: 3}
+      - {fileID: 21300000, guid: f1c772ae38eee374e8773ddd6b4e05cb, type: 3}
+      - {fileID: 21300000, guid: 71cdff9d193a9a04e99fcd49b56e8232, type: 3}
+    anchors:
+    - clip: review
+      frame: 0
+      name: phoneScreen
+      px: {x: 356, y: 284}
+    - clip: review
+      frame: 0
+      name: reviewOrigin
+      px: {x: 356, y: 284}
+    - clip: review
+      frame: 1
+      name: phoneScreen
+      px: {x: 374, y: 432}
+    - clip: review
+      frame: 1
+      name: reviewOrigin
+      px: {x: 374, y: 432}
+    - clip: review
+      frame: 2
+      name: phoneScreen
+      px: {x: 418, y: 252}
+    - clip: review
+      frame: 2
+      name: reviewOrigin
+      px: {x: 418, y: 252}
+    - clip: review
+      frame: 3
+      name: phoneScreen
+      px: {x: 376, y: 288}
+    - clip: review
+      frame: 3
+      name: reviewOrigin
+      px: {x: 376, y: 288}
+    tints: []
+    deviations: []
+  - assetId: drip_server_specter
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/drip_server_specter
+    pixelsPerUnit: 128
+    frameSizePx: {x: 512, y: 512}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 2.2
+    bodyHeightPx: 380
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.1640625
+      y: 0.1875
+      width: 0.671875
+      height: 0.6796875
+    clips:
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 86e9d9c66c65a6c4ba169642b423fc8c, type: 3}
+      - {fileID: 21300000, guid: 0833c92d9e894274b9d2e433d53c3c40, type: 3}
+      - {fileID: 21300000, guid: 3759438619fa3ac44b72ef0f16f3fa57, type: 3}
+      - {fileID: 21300000, guid: 41f776e88a6ee5b41a08e214ee9a191e, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 14f2d9f6c4728ba448fffe5b725c4c84, type: 3}
+      - {fileID: 21300000, guid: 069f934015b63f342880d8a7a4271911, type: 3}
+      - {fileID: 21300000, guid: fbae7796b3e075641aad64fa6238a6cb, type: 3}
+      - {fileID: 21300000, guid: 07c399f45e4c45a4cb3f16dc59429837, type: 3}
+      - {fileID: 21300000, guid: e27487220d089bf4a99be4a427f2e249, type: 3}
+      - {fileID: 21300000, guid: 58644ffb1ff401d4481c8ed7e6e229a3, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: b0675eae5c843f447b294ce73bac2874, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 86f76549071404c4eaedc1217419c486, type: 3}
+      - {fileID: 21300000, guid: 56bae4edd4ce1e34391f39356b37ec82, type: 3}
+      - {fileID: 21300000, guid: d3ec2a203ae335b45a0c4a6f74ab2540, type: 3}
+      - {fileID: 21300000, guid: a2770c271b3934f458baac7abe8bdcc1, type: 3}
+    - name: drip
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: ff89f104514daea4ba2bec87ae167365, type: 3}
+      - {fileID: 21300000, guid: 947366a73c6321e46a0d0968eebf11bc, type: 3}
+      - {fileID: 21300000, guid: 88845e6f167cf6341a70a5e4b07eddb0, type: 3}
+      - {fileID: 21300000, guid: 91adbd2f00310124ea37b4b7c42ef5b0, type: 3}
+    - name: vanish
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 5802752aeb5411c44ac6685b36dbf110, type: 3}
+      - {fileID: 21300000, guid: 4bf6d223b4ec4de48b5e66f8a0970332, type: 3}
+      - {fileID: 21300000, guid: 4585585600152334999e1e021823cb70, type: 3}
+      - {fileID: 21300000, guid: 71b3ecc366e53054e9cb789eb780d6b4, type: 3}
+    - name: appear
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 8807eb8233608e34d92ed059d7204b4f, type: 3}
+      - {fileID: 21300000, guid: 667b595bfbc5e624ea3b66cfc653dde2, type: 3}
+      - {fileID: 21300000, guid: 318d225ff3597f849ac1d93a332ee8c3, type: 3}
+      - {fileID: 21300000, guid: 06e7ab976c11b6f40af71faba4735d1b, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: espresso_bug
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/espresso_bug
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 0.9
+    bodyHeightPx: 108
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.1328125
+      y: 0.125
+      width: 0.734375
+      height: 0.421875
+    clips:
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 3ded6fd8eb1cb044bb57362a85a39367, type: 3}
+      - {fileID: 21300000, guid: 1995798e8fd405240aaf8457f004956e, type: 3}
+      - {fileID: 21300000, guid: 10ddf6686959dae40ad7aeed950af4d4, type: 3}
+      - {fileID: 21300000, guid: f36ef85b21d434e4c8dcbb95b97b10d4, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: fdcd00ee53f73a7489968859c7e924db, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 217c1ef95fb2f8948aacf62b82e857c1, type: 3}
+      - {fileID: 21300000, guid: 6d3626dbc6e379f45b2c6279cdfdff6e, type: 3}
+      - {fileID: 21300000, guid: 8eff4de6496d6c74f92b84a7f1d1d48e, type: 3}
+      - {fileID: 21300000, guid: 7543521295576cd4cb8218efbb97cc97, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: f6ed90a3172f0ce4fb23e7e9410ee9d6, type: 3}
+      - {fileID: 21300000, guid: 8225b0672de04984aaa47e789092106d, type: 3}
+      - {fileID: 21300000, guid: 4680819a5fe39be42854fee1c41ea8b7, type: 3}
+      - {fileID: 21300000, guid: 4e3ef00d231a7fe44ac61975e9982d62, type: 3}
+      - {fileID: 21300000, guid: d8c179b8868cf634ab4d950a330dac7f, type: 3}
+      - {fileID: 21300000, guid: 3c1d743768ecfc04295023e49f931d82, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: espresso_leviathan
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/espresso_leviathan
+    pixelsPerUnit: 128
+    frameSizePx: {x: 512, y: 512}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 3.1
+    bodyHeightPx: 384
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.1171875
+      y: 0.125
+      width: 0.765625
+      height: 0.75
+    clips:
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: bd7d81d1afdc2614586fb7a6d534cd2e, type: 3}
+      - {fileID: 21300000, guid: c766fcfb7a0c5fa45987a831b98001e6, type: 3}
+      - {fileID: 21300000, guid: eae4faa39e5301f479535d7edf291c64, type: 3}
+      - {fileID: 21300000, guid: 87c782dca1f39d1498ef39d48619e1df, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 291dd027f18408b47906c80674eb49a3, type: 3}
+      - {fileID: 21300000, guid: 7e1144c75f68ee64c9384b00b4fe1961, type: 3}
+      - {fileID: 21300000, guid: 52cdfefe7e7a6d240a747ab4c93e5963, type: 3}
+      - {fileID: 21300000, guid: 47972593a0e9d714595557c2c71036f7, type: 3}
+      - {fileID: 21300000, guid: 97c447bc4bbcb0c4eb456aff2fd3c1f1, type: 3}
+      - {fileID: 21300000, guid: 59d0e2d160e4aa34c870209101d6c32d, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 00cbac31b269e6e4494c953d6790c67b, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: ff76682eafa83a24389e4ad4c0dd4006, type: 3}
+      - {fileID: 21300000, guid: 9dc554c80d9eec240a727f421f5e3634, type: 3}
+      - {fileID: 21300000, guid: 573d4848793bc734b9a50843dcb78aa5, type: 3}
+      - {fileID: 21300000, guid: 7941640ca16cbd74691a702c0a10665e, type: 3}
+    - name: steam
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: ca99d086f1a4da545bdfe0c2e21db4d4, type: 3}
+      - {fileID: 21300000, guid: 3e18f6c2ee008c04da7dc1ef42b64131, type: 3}
+      - {fileID: 21300000, guid: 1095c56505954ea43b98ad498798fb90, type: 3}
+      - {fileID: 21300000, guid: 43078a03d92aaa748ad904d6d46ac932, type: 3}
+    - name: rain
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 170e97c365004564896c60407ef431d7, type: 3}
+      - {fileID: 21300000, guid: 34adeeb3fad31314fbc00caf1b8a588a, type: 3}
+      - {fileID: 21300000, guid: 14f53d0e6390ace4088002801558f502, type: 3}
+      - {fileID: 21300000, guid: 6fc5ec5fc304a36428204b6d917f4350, type: 3}
+    - name: pressure
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 95b5b4990afea6045bc38ff13fc41592, type: 3}
+      - {fileID: 21300000, guid: 157ed6715ff411e4480384f02c64117e, type: 3}
+      - {fileID: 21300000, guid: 255989b3b09ba844c8b95fc4287e6270, type: 3}
+      - {fileID: 21300000, guid: 942dbbb9915af8b4c9fb2b82e424b786, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: glass_shard
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/glass_shard
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.203125
+      y: 0.234375
+      width: 0.578125
+      height: 0.515625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: f28f9eda7d1eb4b46898db8e4df3fbe1, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: grinder_golem
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/grinder_golem
+    pixelsPerUnit: 128
+    frameSizePx: {x: 512, y: 512}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 2.4
+    bodyHeightPx: 384
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.1171875
+      y: 0.125
+      width: 0.7578125
+      height: 0.75
+    clips:
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 7d778bb72b1f11f45b4188622e1e737a, type: 3}
+      - {fileID: 21300000, guid: 84c772fbfc92bae4daafd1b0e7f3a916, type: 3}
+      - {fileID: 21300000, guid: 028561794fb26b348b2936f809764838, type: 3}
+      - {fileID: 21300000, guid: c902a2600fcc0ae4c93a2cd065745731, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 59f957b7cf51ede488a3598f796b0f82, type: 3}
+      - {fileID: 21300000, guid: 9cac2bc86e37bd645bc565fec54a2e75, type: 3}
+      - {fileID: 21300000, guid: b9f996eb63904714cb170f93d8fbaad4, type: 3}
+      - {fileID: 21300000, guid: d05f09058b2762841892dc0638f925c1, type: 3}
+      - {fileID: 21300000, guid: ee12394eb67a5954fb58d8cf7cfa25ba, type: 3}
+      - {fileID: 21300000, guid: b236d54973e754a43be783feb15e8b2e, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: e45b6715977451c4aa8f16275e71d22f, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 3da4bcd599d67ee489c36a2935bbbe74, type: 3}
+      - {fileID: 21300000, guid: b4e60357d39ab7b4b897f69d4a792e05, type: 3}
+      - {fileID: 21300000, guid: e69e3c113181a00418f8dcd9c2256c3a, type: 3}
+      - {fileID: 21300000, guid: 2da17315ab3301340b61b470d21e56b6, type: 3}
+    - name: charge_prepare
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 0bcc26ff24a270f45b1c0104e763d437, type: 3}
+      - {fileID: 21300000, guid: bf8c01550e64b7a4a92649fa5672bc39, type: 3}
+      - {fileID: 21300000, guid: 2a781050b15b05b42a71737608ad2522, type: 3}
+      - {fileID: 21300000, guid: ca85449ef52e89a43941da42e0c6d7e7, type: 3}
+    - name: charge
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: a9264a5a7d833c44898f0f4798196ed7, type: 3}
+      - {fileID: 21300000, guid: d61100d5739b6d24f8b0f65117130a43, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ground_shadow
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ground_shadow
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 0.22
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.09375
+      y: 0.234375
+      width: 0.8203125
+      height: 0.515625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: e04572a0a203f00409a9da931129e6a1, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: hit_spark
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/hit_spark
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.390625
+      y: 0.390625
+      width: 0.234375
+      height: 0.21875
+    clips:
+    - name: effect
+      fps: 16
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 70823c7297c900d458e6de6727d70d30, type: 3}
+      - {fileID: 21300000, guid: 5603f2b7709d89643a2ed921a372e6f3, type: 3}
+      - {fileID: 21300000, guid: 3acef9e7ac922e048896fb3e5ef35a57, type: 3}
+      - {fileID: 21300000, guid: baa170fbfd19a444b8983218046ca1f9, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: hybrid_tea_martini
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/hybrid_tea_martini
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.09375
+      y: 0.078125
+      width: 0.828125
+      height: 0.828125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: d9a6c58b3cf0ca0468c0aa54920ab62d, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ice_shard
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ice_shard
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.0625
+      y: 0.03125
+      width: 0.859375
+      height: 0.9375
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 2b7ce42d0be6cbf43acb1c37fd30f237, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: kettle_cannon
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/kettle_cannon
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 1.25
+    bodyHeightPx: 166
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.1328125
+      y: 0.125
+      width: 0.7265625
+      height: 0.6484375
+    clips:
+    - name: action
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 67a3f53f30ff5bd42bbf4943b3af5e36, type: 3}
+      - {fileID: 21300000, guid: c7a70dcfa99397a47af3df2c8abfb351, type: 3}
+      - {fileID: 21300000, guid: d1799b8d4352fd14d9557d212feacf48, type: 3}
+      - {fileID: 21300000, guid: 032349069afeb0d42ae340cc57a766b7, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: f408055ceea581044937247d81772777, type: 3}
+      - {fileID: 21300000, guid: 62d16bf263a3520478cce057e3f1b7dc, type: 3}
+      - {fileID: 21300000, guid: 8619912be7367594781dc0a8147c805c, type: 3}
+      - {fileID: 21300000, guid: 4278441d8ee560140a7c7d4102357ae7, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: c8dd25a6516cc5640b28909d4ce9a0fa, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: e65d138a400af7e45ae90b0bb8a461d7, type: 3}
+      - {fileID: 21300000, guid: 58372b99102a7a84fb6cf292f06a28d0, type: 3}
+      - {fileID: 21300000, guid: ace0b00e0b7fed049a59f14d0f11ff6f, type: 3}
+      - {fileID: 21300000, guid: 815252a4cfc61e64ab05c2db5f192caf, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 4ca1cfda5819ee34ab0d57d22c204fb7, type: 3}
+      - {fileID: 21300000, guid: 724dbbd3606a204409d80b2ecc7b8451, type: 3}
+      - {fileID: 21300000, guid: e1b813d8618e40941a666df6787e804c, type: 3}
+      - {fileID: 21300000, guid: a15c950109686854da9e907d19ed2e0c, type: 3}
+      - {fileID: 21300000, guid: 9bdd5f3dacf19e1429c26c907be2e47b, type: 3}
+      - {fileID: 21300000, guid: 0cdc1206df584774fb844da14ac24948, type: 3}
+    anchors:
+    - clip: action
+      frame: 0
+      name: muzzle
+      px: {x: 204, y: 132}
+    - clip: action
+      frame: 1
+      name: muzzle
+      px: {x: 216, y: 156}
+    - clip: action
+      frame: 2
+      name: muzzle
+      px: {x: 224, y: 94}
+    - clip: action
+      frame: 3
+      name: muzzle
+      px: {x: 206, y: 122}
+    tints: []
+    deviations: []
+  - assetId: leaf_mote
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/leaf_mote
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.25
+      y: 0.234375
+      width: 0.53125
+      height: 0.53125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: cc07a9381f0c9ce40b2419530ca1e506, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: leaf_warden
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/leaf_warden
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 1.2
+    bodyHeightPx: 174
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.21875
+      y: 0.125
+      width: 0.5546875
+      height: 0.6796875
+    clips:
+    - name: action
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: c2702d1357aa9224693e75af894096ed, type: 3}
+      - {fileID: 21300000, guid: 7362b5501183b494784d07af133219d0, type: 3}
+      - {fileID: 21300000, guid: 6f8d3236e41e638439dd882e0a3b24f4, type: 3}
+      - {fileID: 21300000, guid: dc2a0537ae15d8844b0dceb5424a2797, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: a345a4c2d1adc934fa110222e9262457, type: 3}
+      - {fileID: 21300000, guid: 9ad89d6b766b37c44aee9905f7ec7f35, type: 3}
+      - {fileID: 21300000, guid: 2f67ebd21f7184841ad5e225d3f5c456, type: 3}
+      - {fileID: 21300000, guid: 45fd7bea3a3c7ff468f73a027dd53ae3, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 7e1df8dac7b490d4dbd76bc4366caa8d, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 4a6637d1d195142468bcd63ff6875738, type: 3}
+      - {fileID: 21300000, guid: 2dad542136682e1409de4ff7a3c4ec2b, type: 3}
+      - {fileID: 21300000, guid: 67bfa94d7041dde47a5cfdc8f785b8b7, type: 3}
+      - {fileID: 21300000, guid: 6da01e28b88206a41bcd0d683cda02e6, type: 3}
+    anchors:
+    - clip: action
+      frame: 0
+      name: summon
+      px: {x: 128, y: 146}
+    - clip: action
+      frame: 1
+      name: summon
+      px: {x: 128, y: 136}
+    - clip: action
+      frame: 2
+      name: summon
+      px: {x: 128, y: 176}
+    - clip: action
+      frame: 3
+      name: summon
+      px: {x: 128, y: 146}
+    tints: []
+    deviations: []
+  - assetId: lemon_brute
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/lemon_brute
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 1.4
+    bodyHeightPx: 184
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.1328125
+      y: 0.125
+      width: 0.71875
+      height: 0.71875
+    clips:
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 29f2e63bcc592ff4f9419963d8960274, type: 3}
+      - {fileID: 21300000, guid: c4d5e2276fe048a449da1bf6b3a90a5d, type: 3}
+      - {fileID: 21300000, guid: d9685f029ad6e7646af2c7ea8d43ba2b, type: 3}
+      - {fileID: 21300000, guid: c8cddc34b5d82be40bf986ade4ba8e0d, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: c1b159a7d8e7ee841859912e7132da59, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 46af04802c089ec4cb98aa1de1dc3145, type: 3}
+      - {fileID: 21300000, guid: 7a93cf3a9c7ffb94786818cea1938024, type: 3}
+      - {fileID: 21300000, guid: f32b4333ed92cdf49b52b555c2442b81, type: 3}
+      - {fileID: 21300000, guid: 336a7735609a3f549968ff02abbd92e1, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 0b630f1f6f46aa54aadd71427018fb15, type: 3}
+      - {fileID: 21300000, guid: 4b2fa555fd6799d4fa7a284aeae9888a, type: 3}
+      - {fileID: 21300000, guid: 74acabca789184b42879d2669864e9a2, type: 3}
+      - {fileID: 21300000, guid: 0d9cf7fb18656304ab4b1a09da46c6e8, type: 3}
+      - {fileID: 21300000, guid: f30afeea8b88179459bba723ea0470a4, type: 3}
+      - {fileID: 21300000, guid: d18286b2f6c54474ea6d1ce6101bbb0e, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: levelup_glint
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/levelup_glint
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.296875
+      y: 0.171875
+      width: 0.4375
+      height: 0.28125
+    clips:
+    - name: effect
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 6d282367da5dfe64c9728438650b19d5, type: 3}
+      - {fileID: 21300000, guid: 7d78e859c48895e45a5f9a0014abeff4, type: 3}
+      - {fileID: 21300000, guid: 7a7b5549a49e33d419efb8b574444a1c, type: 3}
+      - {fileID: 21300000, guid: de0b7b8871f62f543a5127f60fff1b5d, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: lime_wedge
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/lime_wedge
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 0.9
+    bodyHeightPx: 184
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.203125
+      y: 0.125
+      width: 0.5859375
+      height: 0.71875
+    clips:
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 2f3ad5efff5aba448993e9b0f7309eac, type: 3}
+      - {fileID: 21300000, guid: 974ea12f0f97bbb439c5dbc27f6b129b, type: 3}
+      - {fileID: 21300000, guid: 848a2ed5e6e19044ba4653155963c372, type: 3}
+      - {fileID: 21300000, guid: 04715def5156f5e45acbec6f243bd906, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 01b87f3d15a77e647bfd8503ddf78761, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 20dcacef28731c540a170a154f38c81a, type: 3}
+      - {fileID: 21300000, guid: 548f272185c9020418ecb2e0c5fa3de4, type: 3}
+      - {fileID: 21300000, guid: 997d656a2f7939244941f6b2390ec134, type: 3}
+      - {fileID: 21300000, guid: f632aa826a70d9846a50993a6f50c1e2, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 168d78d0ea0e88b43b2e95400cc90d76, type: 3}
+      - {fileID: 21300000, guid: b5c70ae2a02d4d64fa12f5403b25c1c4, type: 3}
+      - {fileID: 21300000, guid: 9af4217e464a54e468fdba31c5d3f67c, type: 3}
+      - {fileID: 21300000, guid: f0c442a9a26a57944b360c3f92c016d7, type: 3}
+      - {fileID: 21300000, guid: cf357f9ef08ab2746a6dc8d909e5897d, type: 3}
+      - {fileID: 21300000, guid: c820b7d83a19dbc4481c18a3fb25df26, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: martini_spirit
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/martini_spirit
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 1.45
+    bodyHeightPx: 182
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.21875
+      y: 0.125
+      width: 0.5546875
+      height: 0.7109375
+    clips:
+    - name: action
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: e60487500588700409ff572405ed1a7b, type: 3}
+      - {fileID: 21300000, guid: 59bfda7641278dd418de79be9d85c654, type: 3}
+      - {fileID: 21300000, guid: 16543e67e96a2b943810bbf6c31e394b, type: 3}
+      - {fileID: 21300000, guid: 4eaf50df715d9de48b8c4dce34b0f2c1, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 771ffdaf5d695604e873c0e6df431472, type: 3}
+      - {fileID: 21300000, guid: abe773632c2077248a379603b7b5fc9b, type: 3}
+      - {fileID: 21300000, guid: c50c7dc3a97642e46bbc76bca15b08e0, type: 3}
+      - {fileID: 21300000, guid: ee899f900746daa41a136d2a86529478, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: d7ba1d7943938154a9c4894f8faf7912, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: fa42da3cae2f28f47994495aa6e5bb27, type: 3}
+      - {fileID: 21300000, guid: 28c15b7762820b04981dca9511fc2bfe, type: 3}
+      - {fileID: 21300000, guid: 0218c3ec865089044932983627497cc8, type: 3}
+      - {fileID: 21300000, guid: e61a8272fff023f43a5814efeaec9e2d, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 93e115a5ff55c4147936d11a5ad02818, type: 3}
+      - {fileID: 21300000, guid: bc67f92acbd327a419806e2f43b423df, type: 3}
+      - {fileID: 21300000, guid: 8aeed22f583924c4b94c9af5357db533, type: 3}
+      - {fileID: 21300000, guid: c5e7b3d88f95f674cb5cb9b58c2db840, type: 3}
+      - {fileID: 21300000, guid: bb6eb06c0fc66de459d75b6eccf010d0, type: 3}
+      - {fileID: 21300000, guid: 383e25855b01dc04ab503fb96ff7ea49, type: 3}
+    anchors:
+    - clip: action
+      frame: 0
+      name: emitter
+      px: {x: 172, y: 62}
+    - clip: action
+      frame: 1
+      name: emitter
+      px: {x: 170, y: 174}
+    - clip: action
+      frame: 2
+      name: emitter
+      px: {x: 220, y: 132}
+    - clip: action
+      frame: 3
+      name: emitter
+      px: {x: 178, y: 82}
+    tints: []
+    deviations: []
+  - assetId: melee_streak
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/melee_streak
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.28125
+      y: 0.46875
+      width: 0.359375
+      height: 0.0625
+    clips:
+    - name: effect
+      fps: 16
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 610f1c83bb333bc4d8b6b11d0fe9b80a, type: 3}
+      - {fileID: 21300000, guid: 0de70da87c086b942882188e14f04ec3, type: 3}
+      - {fileID: 21300000, guid: aa7c7dbe2a8e0df44babacf3476f50c8, type: 3}
+      - {fileID: 21300000, guid: 03bde3c7f107bc6438214d4ba4451934, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: milk_foamer
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/milk_foamer
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 1.25
+    bodyHeightPx: 162
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.171875
+      y: 0.125
+      width: 0.6484375
+      height: 0.6328125
+    clips:
+    - name: action
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: df4017915a243334ba7d8f68e35be5cf, type: 3}
+      - {fileID: 21300000, guid: 44a4d8fbd6abf4541bc5d32621911660, type: 3}
+      - {fileID: 21300000, guid: 7df24c18532baaa4c949e7f3cdb53064, type: 3}
+      - {fileID: 21300000, guid: 98f793a10ab638347a403f935d001943, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 67532451ce4c47b47943e775638b4690, type: 3}
+      - {fileID: 21300000, guid: a6ac335492cd21e4b89241e9fe584eed, type: 3}
+      - {fileID: 21300000, guid: fb1b9fb15fb3ba34b84e1738cf2a432f, type: 3}
+      - {fileID: 21300000, guid: a869f921a8240fd4385cf05e1031e12f, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: a06ca89d12bc0c642bbafac6d5ef683d, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: f8696f494df1136408e7579595bac8dc, type: 3}
+      - {fileID: 21300000, guid: ff45d35bb25db3c45b89af8e474d9571, type: 3}
+      - {fileID: 21300000, guid: bf0117517924078458d7b8d1edcd3353, type: 3}
+      - {fileID: 21300000, guid: 4afbd073802d64e4c817c4c0198b46fc, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 0566648c910c18046ad6b46d9b8ddb7f, type: 3}
+      - {fileID: 21300000, guid: 95699dfaafe3a164f9f225d16662f19f, type: 3}
+      - {fileID: 21300000, guid: a672971ba0f3fc64ab56ee688bab44fe, type: 3}
+      - {fileID: 21300000, guid: d5b22d906cfc4bd4abd88d94b86bca2a, type: 3}
+      - {fileID: 21300000, guid: 4c62b91bd30ff3249896bed15c78dc21, type: 3}
+      - {fileID: 21300000, guid: d5b054e2616e8fa479f5b27bc991e512, type: 3}
+    anchors:
+    - clip: action
+      frame: 0
+      name: emitter
+      px: {x: 188, y: 146}
+    - clip: action
+      frame: 1
+      name: emitter
+      px: {x: 190, y: 92}
+    - clip: action
+      frame: 2
+      name: emitter
+      px: {x: 210, y: 100}
+    - clip: action
+      frame: 3
+      name: emitter
+      px: {x: 188, y: 100}
+    tints: []
+    deviations: []
+  - assetId: olive_bomber
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/olive_bomber
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 0.85
+    bodyHeightPx: 182
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.265625
+      y: 0.125
+      width: 0.46875
+      height: 0.7109375
+    clips:
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 8c57febf3b7d7dd42ac04efff986756d, type: 3}
+      - {fileID: 21300000, guid: 2272094ca94d232418e13b29a7379202, type: 3}
+      - {fileID: 21300000, guid: dfbe18a86b9fe784c8764b1a631becd0, type: 3}
+      - {fileID: 21300000, guid: e89e74de7c636db4b91182c1edf3af4d, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 2be4b5e6e2acbd14bb773470b7b84148, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 92e842d0d3d549c44b6d8da07bf75b8b, type: 3}
+      - {fileID: 21300000, guid: d49f4186f509af94ea329c807e8a0278, type: 3}
+      - {fileID: 21300000, guid: a84e6dadc7a66614bae8f72ec9b5a209, type: 3}
+      - {fileID: 21300000, guid: 437578fb4d052984097fe144f229d3b4, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 256640a298eef0744b67233d6ed63e36, type: 3}
+      - {fileID: 21300000, guid: a9d7989d12ba3934b9729c8ec016d98f, type: 3}
+      - {fileID: 21300000, guid: d28fc691d8b077c4bbb446e0a40895ea, type: 3}
+      - {fileID: 21300000, guid: 4c09cad39a5c55a41801e824c225b1fe, type: 3}
+      - {fileID: 21300000, guid: e14c33976b1e7774f8ba437a59745f4d, type: 3}
+      - {fileID: 21300000, guid: 9143a387f2c138949ae73200eb3b5ddc, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: olive_fire
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/olive_fire
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.0859375
+      y: 0.171875
+      width: 0.8359375
+      height: 0.640625
+    clips:
+    - name: effect
+      fps: 8
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 80688bd499a18144ab83582b04d0efb5, type: 3}
+      - {fileID: 21300000, guid: 5d85d5a0e71f532408356272764d4671, type: 3}
+      - {fileID: 21300000, guid: 8c381906a146e3c4c890382ae9aea919, type: 3}
+      - {fileID: 21300000, guid: 1e7c2402e60121e4abff005d46b61723, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: pickup_glint
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/pickup_glint
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.421875
+      y: 0.421875
+      width: 0.171875
+      height: 0.15625
+    clips:
+    - name: effect
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: cafae3a3cf10ec748a5b3760bb3fc095, type: 3}
+      - {fileID: 21300000, guid: 4d5d077a1ec88e74f9a40de5b8ae0642, type: 3}
+      - {fileID: 21300000, guid: 63dc37ace29a52c4f8fbe9a3ea73425e, type: 3}
+      - {fileID: 21300000, guid: a99dd706778202b41a102bad63bcce04, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: player_melee_area
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/player_melee_area
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 0.12
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.03125
+      y: 0.0625
+      width: 0.9375
+      height: 0.875
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 6de834edc2ffa0840bbe9fd65cbeeda3, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: pressure_wave
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/pressure_wave
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.375
+      y: 0.390625
+      width: 0.2578125
+      height: 0.203125
+    clips:
+    - name: effect
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 14678d45ce65f774588ea6f40d775c26, type: 3}
+      - {fileID: 21300000, guid: 43ced34bd9d3f3249a8dc6ed691cb2cd, type: 3}
+      - {fileID: 21300000, guid: b80a26a7946613542b4f02ac993f94c2, type: 3}
+      - {fileID: 21300000, guid: bea4689c33edb4140bcf7a0a2b1794a4, type: 3}
+    anchors: []
+    tints:
+    - name: pressure
+      color: {r: 0.9372549, g: 0.39607844, b: 0.34509805, a: 1}
+    - name: refund
+      color: {r: 0.6509804, g: 0.43529412, b: 0.68235296, a: 1}
+    deviations: []
+  - assetId: rage_overlay
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/rage_overlay
+    pixelsPerUnit: 128
+    frameSizePx: {x: 512, y: 512}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.1640625
+      y: 0.1171875
+      width: 0.671875
+      height: 0.765625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 98b09d5e5211273429b82ebd4ab41139, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: review_star
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/review_star
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.15625
+      y: 0.1875
+      width: 0.703125
+      height: 0.703125
+    clips:
+    - name: effect
+      fps: 12
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 59002d9daa94b1248bb0275acccc1789, type: 3}
+      - {fileID: 21300000, guid: c8d8f5f52b0d8fc49aef7bc6d2c44df1, type: 3}
+      - {fileID: 21300000, guid: 25d4f68c767dbc14e83fa5ee37a9a42f, type: 3}
+      - {fileID: 21300000, guid: 1bd9c37203298474f9fabc1049cfa29f, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: seal_burst
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/seal_burst
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.234375
+      y: 0.234375
+      width: 0.515625
+      height: 0.546875
+    clips:
+    - name: effect
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: adc7d4f537ad66845a9c72086e9da5c3, type: 3}
+      - {fileID: 21300000, guid: 94d516c79f1b9304ca25b01e361ee35e, type: 3}
+      - {fileID: 21300000, guid: 7b357b049c67907449964e92ba31676f, type: 3}
+      - {fileID: 21300000, guid: 93a461906b0e3f44498eb5f45aa2ae2f, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: seal_lock
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/seal_lock
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.25
+      y: 0.1875
+      width: 0.46875
+      height: 0.65625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 53b083de699f0bd4c889419fb5fe30c3, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: shaker_golem
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/shaker_golem
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 1.25
+    bodyHeightPx: 184
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.15625
+      y: 0.125
+      width: 0.671875
+      height: 0.71875
+    clips:
+    - name: action
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: c29fdc7b27ff9ff4dafd5859fff29d40, type: 3}
+      - {fileID: 21300000, guid: 2ee47837cd3ac3e46a34be633947fc00, type: 3}
+      - {fileID: 21300000, guid: 79213d465f4c6434d8ac630c9b0a29d5, type: 3}
+      - {fileID: 21300000, guid: fc168f632998dea47894c17884bac372, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: c5d593c085e009342bea1e00f2022f4b, type: 3}
+      - {fileID: 21300000, guid: 1bc38b2140581694abdffde60610a625, type: 3}
+      - {fileID: 21300000, guid: aa11c67f718d36a49a1c5fd12147f2d5, type: 3}
+      - {fileID: 21300000, guid: a515529c932bc1d44ab4f214f31b8801, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: c08b6dc28e09f5847b91e01e68a8fa35, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 1b35bef98ebf39c478a8f8756340d0c1, type: 3}
+      - {fileID: 21300000, guid: a450b395e41b2fc459fa5a0380cebf1d, type: 3}
+      - {fileID: 21300000, guid: def9eafe150107b4b82a7308e6a87304, type: 3}
+      - {fileID: 21300000, guid: 9cc3e243204d4be41ad509680059c29d, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 5dee7affa94d9014baf9b0748896e269, type: 3}
+      - {fileID: 21300000, guid: 10f4dbddd2eb098499d9c938fc8c111f, type: 3}
+      - {fileID: 21300000, guid: 6b853615fde3d7f4e84abb65e343e399, type: 3}
+      - {fileID: 21300000, guid: d7c43dae7ae5f1a4082e9b6c2172d2bd, type: 3}
+      - {fileID: 21300000, guid: 95e571605f8075546b70be7012f838f8, type: 3}
+      - {fileID: 21300000, guid: 26ccd7f0fe210164abc5ae87c0d2f746, type: 3}
+    anchors:
+    - clip: action
+      frame: 0
+      name: muzzle
+      px: {x: 190, y: 192}
+    - clip: action
+      frame: 1
+      name: muzzle
+      px: {x: 214, y: 94}
+    - clip: action
+      frame: 2
+      name: muzzle
+      px: {x: 220, y: 126}
+    - clip: action
+      frame: 3
+      name: muzzle
+      px: {x: 198, y: 98}
+    tints: []
+    deviations: []
+  - assetId: skill_attack
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/skill_attack
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.125
+      y: 0.1875
+      width: 0.703125
+      height: 0.703125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: c934638183035724ea92959f214eb8ea, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: skill_ingredient
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/skill_ingredient
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.125
+      y: 0.171875
+      width: 0.75
+      height: 0.53125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 8ed9d9ad0ad2a35488b7e88eb13e68ab, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: skill_survival
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/skill_survival
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.265625
+      y: 0.203125
+      width: 0.453125
+      height: 0.640625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 8e73c86c8d3b83544aa4292364a890c1, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: specialty
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/specialty
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.125
+      y: 0.109375
+      width: 0.765625
+      height: 0.796875
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 924b788a8e9403c4c926bee4be38c681, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: status_invulnerable
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/status_invulnerable
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.203125
+      y: 0.125
+      width: 0.609375
+      height: 0.75
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 249916bafab6bb948bb5aa376ebbf67e, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: status_slow
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/status_slow
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.21875
+      y: 0.125
+      width: 0.578125
+      height: 0.75
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 7d4b8f3faf76da5429563566816e9b90, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: status_suppressed
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/status_suppressed
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.1875
+      y: 0.140625
+      width: 0.65625
+      height: 0.703125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 49053f364a2351a41b2a2f57d3022c00, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: steam_jet
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/steam_jet
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.046875
+      y: 0.328125
+      width: 0.8125
+      height: 0.359375
+    clips:
+    - name: effect
+      fps: 12
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 22d6aac87a9e1714fb2b6985ef596733, type: 3}
+      - {fileID: 21300000, guid: 9d5d9dad9e80de84fbd2af215c4b200e, type: 3}
+      - {fileID: 21300000, guid: 860d204d27fac1d43b6bc90109c92898, type: 3}
+      - {fileID: 21300000, guid: fedf837bf7b509e45a0f0519dec407e0, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: sugar_cube_bomber
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/sugar_cube_bomber
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 0.85
+    bodyHeightPx: 184
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.1875
+      y: 0.125
+      width: 0.625
+      height: 0.71875
+    clips:
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 5078cac870d913d4db50519c490a33e9, type: 3}
+      - {fileID: 21300000, guid: 9fda923ed64b5f2418dccc3848de3318, type: 3}
+      - {fileID: 21300000, guid: 3acea02b46997464ab357f228b821fad, type: 3}
+      - {fileID: 21300000, guid: 5f6eac79fa80ad6418804b37400563c0, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 6545a032209de8d45bab1bb52e3b5c7f, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 8f987a6aa45a9734a80d61d426bd2bd1, type: 3}
+      - {fileID: 21300000, guid: de1045d49e3ef66428ad1c85bd645fe9, type: 3}
+      - {fileID: 21300000, guid: 8e1126e5f98dd6d40b3a37e59e67afa7, type: 3}
+      - {fileID: 21300000, guid: fb17256d2349e5e4eb647319add03050, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 87a4e613b1582d34eaf11421431e5fb5, type: 3}
+      - {fileID: 21300000, guid: 91f41103b15abe3459feef5c5b1239b0, type: 3}
+      - {fileID: 21300000, guid: 617304ce72b24ae4abc6634f2ca7056a, type: 3}
+      - {fileID: 21300000, guid: 3326c35a8f3fc1146a602c88960c8a98, type: 3}
+      - {fileID: 21300000, guid: 82caa508b29209b4fa8dcb3b19299915, type: 3}
+      - {fileID: 21300000, guid: d55c999ec51eab14abe55b375cff8d09, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: sugar_pool
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/sugar_pool
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.078125
+      y: 0.15625
+      width: 0.8515625
+      height: 0.671875
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: f8bdb9608f1eb6b4b857ee48c34c146e, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: summon_ring
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/summon_ring
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.0859375
+      y: 0.203125
+      width: 0.8359375
+      height: 0.578125
+    clips:
+    - name: effect
+      fps: 8
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: c9d1b3cd7546d3443a6da1237387f84a, type: 3}
+      - {fileID: 21300000, guid: 9ec3c482be4529848a76e7a1f2d3e151, type: 3}
+      - {fileID: 21300000, guid: 4282d78b95298314fa5ff61ec875561a, type: 3}
+      - {fileID: 21300000, guid: 694970b96bd835649806aeaad26d0b83, type: 3}
+    anchors: []
+    tints:
+    - name: cocktail
+      color: {r: 0.28627452, g: 0.7882353, b: 0.9490196, a: 1}
+    - name: tea
+      color: {r: 0.5568628, g: 0.6784314, b: 0.40784314, a: 1}
+    deviations: []
+  - assetId: swirl_stick_conjuror
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/swirl_stick_conjuror
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 1.2
+    bodyHeightPx: 182
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.3046875
+      y: 0.125
+      width: 0.375
+      height: 0.7109375
+    clips:
+    - name: action
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: c223e40c2bee8a74a9f911519996d24a, type: 3}
+      - {fileID: 21300000, guid: cb173d132647ee343b2030d1d6906331, type: 3}
+      - {fileID: 21300000, guid: b9a8b945dd898e949bf0ebfbe7ccb41f, type: 3}
+      - {fileID: 21300000, guid: 280a382bb20b9f946a8e297e47a283a6, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: ac80e40cb82af2d49aa12f0249d56a76, type: 3}
+      - {fileID: 21300000, guid: 58e8e8c6067e9a54390b43e11bff27bf, type: 3}
+      - {fileID: 21300000, guid: 7bf04c55b94e4df43a35d8a282b4e63a, type: 3}
+      - {fileID: 21300000, guid: 3ab803528dd540f4ebb81e3977a65999, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 24373a3c7fda05848bfbd7d4462205c3, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 7a04161a090f4514fb53fe571b556a6c, type: 3}
+      - {fileID: 21300000, guid: 96c08e7a97e21af4aaf84c21d847fb80, type: 3}
+      - {fileID: 21300000, guid: 72a60d47ad7a08044acf9b986ee1425b, type: 3}
+      - {fileID: 21300000, guid: 2c5e11c2bfe34d244b8237cc93a899a7, type: 3}
+    anchors:
+    - clip: action
+      frame: 0
+      name: summon
+      px: {x: 128, y: 144}
+    - clip: action
+      frame: 1
+      name: summon
+      px: {x: 128, y: 138}
+    - clip: action
+      frame: 2
+      name: summon
+      px: {x: 128, y: 192}
+    - clip: action
+      frame: 3
+      name: summon
+      px: {x: 128, y: 146}
+    tints: []
+    deviations: []
+  - assetId: tea_arrow
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/tea_arrow
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.140625
+      y: 0.296875
+      width: 0.765625
+      height: 0.390625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 4eb163a2b6f74294c8f9fb55dfcb28e9, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: tea_ceremony_guardian
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/tea_ceremony_guardian
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 1.45
+    bodyHeightPx: 150
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.2109375
+      y: 0.125
+      width: 0.5703125
+      height: 0.5859375
+    clips:
+    - name: action
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 79a534ee9f0d5c542a8cde0cbbe0c9b0, type: 3}
+      - {fileID: 21300000, guid: c64794bcab4bc2e448c647626373dcc3, type: 3}
+      - {fileID: 21300000, guid: 16b29fe3b4fde05418e750965f6fd5b0, type: 3}
+      - {fileID: 21300000, guid: 8d0b5fae131b6c8499038fec70138ce8, type: 3}
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 17d627b1c2f563c428332f3d3a97d918, type: 3}
+      - {fileID: 21300000, guid: a75e51a5e468ca74b8954e2d6ecd2e90, type: 3}
+      - {fileID: 21300000, guid: a67df42266b61444dbc13d6ffffbef49, type: 3}
+      - {fileID: 21300000, guid: 1499abe9495bdac498a9740c31c07a5c, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 51253a7c2921b5649a8803966c7af357, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 4eef9ff8e516eb44f883e018cc2564bb, type: 3}
+      - {fileID: 21300000, guid: 449161fdfe23521448af4275a83c299c, type: 3}
+      - {fileID: 21300000, guid: 02411f36830a48f41b7406d42c9be718, type: 3}
+      - {fileID: 21300000, guid: be6538f8e0bcdef448adb563a076ff06, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: b1a5d9c92e0e3224785445647550b23f, type: 3}
+      - {fileID: 21300000, guid: 856b4788f28d0bc4fb58917a251a7a2a, type: 3}
+      - {fileID: 21300000, guid: 53f787c2d81063848986a30447113404, type: 3}
+      - {fileID: 21300000, guid: f8399d97aff8db84bbc4e4648c37c795, type: 3}
+      - {fileID: 21300000, guid: 3217f85207db317448cadf2a84cb2a43, type: 3}
+      - {fileID: 21300000, guid: 6faa1e02e6282ec40a08392a015345e0, type: 3}
+    anchors:
+    - clip: action
+      frame: 0
+      name: muzzle
+      px: {x: 174, y: 122}
+    - clip: action
+      frame: 1
+      name: muzzle
+      px: {x: 204, y: 162}
+    - clip: action
+      frame: 2
+      name: muzzle
+      px: {x: 220, y: 140}
+    - clip: action
+      frame: 3
+      name: muzzle
+      px: {x: 196, y: 140}
+    tints: []
+    deviations: []
+  - assetId: tea_sommelier
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/tea_sommelier
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 1.6
+    bodyHeightPx: 192
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.3125
+      y: 0.125
+      width: 0.375
+      height: 0.75
+    clips:
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: e4496cc3ea976fb47a9b940b0b1afae7, type: 3}
+      - {fileID: 21300000, guid: f886557966c81504eab1d893bc70a824, type: 3}
+      - {fileID: 21300000, guid: 95b76c1bec524244492852856e800d56, type: 3}
+      - {fileID: 21300000, guid: 688d09e78dc5c9d48bd1264fc082fe43, type: 3}
+    - name: hurt
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: ebd59bd5e50d16b45ae8e9d360491158, type: 3}
+    - name: idle
+      fps: 3
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: c7a5fde7b5c125d4cac10e6b8d3aa14a, type: 3}
+      - {fileID: 21300000, guid: 8f4b33f46c426454d8ed46a20b8668b0, type: 3}
+      - {fileID: 21300000, guid: 90d059537636ca04bbfd52261120a58f, type: 3}
+      - {fileID: 21300000, guid: 12d6d8b0102eb5842830e569b85083ec, type: 3}
+    - name: melee
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 5894d1cab3f2aa5408b51f3d675593b3, type: 3}
+      - {fileID: 21300000, guid: 13ef2ee9e852daf48bd1f459f34aced9, type: 3}
+      - {fileID: 21300000, guid: 7fa12aa5e5c171146a75ff9280055ab7, type: 3}
+      - {fileID: 21300000, guid: 524d4163970e57e4388f8d92ab6b6185, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 69650fcad75de1046811dfc2c03293a5, type: 3}
+      - {fileID: 21300000, guid: d8897dcae404a7a449039f7318045dc8, type: 3}
+      - {fileID: 21300000, guid: d16e851bfbca3eb49b0b1a81afc00483, type: 3}
+      - {fileID: 21300000, guid: f16ed8798ce0c724cb4a93d6928975bd, type: 3}
+      - {fileID: 21300000, guid: 2158c29ba13a85448bc72ac10e5be29f, type: 3}
+      - {fileID: 21300000, guid: dc840b68553f5e54ba0792e693354aef, type: 3}
+    - name: ranged
+      fps: 12
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 5946d01f4bf701e489189e3f60449586, type: 3}
+      - {fileID: 21300000, guid: 7145aa9eb181a7a4dad62f815ac3ab47, type: 3}
+      - {fileID: 21300000, guid: bd5404ec4a4bb814aa9f02052054f414, type: 3}
+      - {fileID: 21300000, guid: 249f861b869228c43baa958a8dd3a64d, type: 3}
+    anchors:
+    - clip: defeat
+      frame: 0
+      name: hand
+      px: {x: 152, y: 61}
+    - clip: defeat
+      frame: 0
+      name: grip
+      px: {x: 152, y: 61}
+    - clip: defeat
+      frame: 0
+      name: rightHand
+      px: {x: 152, y: 61}
+    - clip: defeat
+      frame: 0
+      name: offHand
+      px: {x: 115, y: 47}
+    - clip: defeat
+      frame: 1
+      name: hand
+      px: {x: 139, y: 70}
+    - clip: defeat
+      frame: 1
+      name: grip
+      px: {x: 139, y: 70}
+    - clip: defeat
+      frame: 1
+      name: rightHand
+      px: {x: 139, y: 70}
+    - clip: defeat
+      frame: 1
+      name: offHand
+      px: {x: 64, y: 40}
+    - clip: defeat
+      frame: 2
+      name: hand
+      px: {x: 86, y: 47}
+    - clip: defeat
+      frame: 2
+      name: grip
+      px: {x: 86, y: 47}
+    - clip: defeat
+      frame: 2
+      name: rightHand
+      px: {x: 86, y: 47}
+    - clip: defeat
+      frame: 2
+      name: offHand
+      px: {x: 65, y: 42}
+    - clip: defeat
+      frame: 3
+      name: hand
+      px: {x: 76, y: 45}
+    - clip: defeat
+      frame: 3
+      name: grip
+      px: {x: 76, y: 45}
+    - clip: defeat
+      frame: 3
+      name: rightHand
+      px: {x: 76, y: 45}
+    - clip: defeat
+      frame: 3
+      name: offHand
+      px: {x: 50, y: 42}
+    - clip: hurt
+      frame: 0
+      name: hand
+      px: {x: 138, y: 81}
+    - clip: hurt
+      frame: 0
+      name: grip
+      px: {x: 138, y: 81}
+    - clip: hurt
+      frame: 0
+      name: rightHand
+      px: {x: 138, y: 81}
+    - clip: hurt
+      frame: 0
+      name: offHand
+      px: {x: 100, y: 94}
+    - clip: idle
+      frame: 0
+      name: hand
+      px: {x: 162, y: 88}
+    - clip: idle
+      frame: 0
+      name: offHand
+      px: {x: 98, y: 90}
+    - clip: idle
+      frame: 0
+      name: grip
+      px: {x: 162, y: 88}
+    - clip: idle
+      frame: 0
+      name: rightHand
+      px: {x: 162, y: 88}
+    - clip: idle
+      frame: 1
+      name: hand
+      px: {x: 162, y: 88}
+    - clip: idle
+      frame: 1
+      name: offHand
+      px: {x: 98, y: 90}
+    - clip: idle
+      frame: 1
+      name: grip
+      px: {x: 162, y: 88}
+    - clip: idle
+      frame: 1
+      name: rightHand
+      px: {x: 162, y: 88}
+    - clip: idle
+      frame: 2
+      name: hand
+      px: {x: 162, y: 90}
+    - clip: idle
+      frame: 2
+      name: offHand
+      px: {x: 98, y: 92}
+    - clip: idle
+      frame: 2
+      name: grip
+      px: {x: 162, y: 90}
+    - clip: idle
+      frame: 2
+      name: rightHand
+      px: {x: 162, y: 90}
+    - clip: idle
+      frame: 3
+      name: hand
+      px: {x: 162, y: 90}
+    - clip: idle
+      frame: 3
+      name: offHand
+      px: {x: 98, y: 92}
+    - clip: idle
+      frame: 3
+      name: grip
+      px: {x: 162, y: 90}
+    - clip: idle
+      frame: 3
+      name: rightHand
+      px: {x: 162, y: 90}
+    - clip: melee
+      frame: 0
+      name: hand
+      px: {x: 167, y: 125}
+    - clip: melee
+      frame: 0
+      name: grip
+      px: {x: 167, y: 125}
+    - clip: melee
+      frame: 0
+      name: rightHand
+      px: {x: 167, y: 125}
+    - clip: melee
+      frame: 0
+      name: offHand
+      px: {x: 101, y: 124}
+    - clip: melee
+      frame: 1
+      name: hand
+      px: {x: 191, y: 163}
+    - clip: melee
+      frame: 1
+      name: grip
+      px: {x: 191, y: 163}
+    - clip: melee
+      frame: 1
+      name: rightHand
+      px: {x: 191, y: 163}
+    - clip: melee
+      frame: 1
+      name: offHand
+      px: {x: 91, y: 136}
+    - clip: melee
+      frame: 2
+      name: hand
+      px: {x: 208, y: 148}
+    - clip: melee
+      frame: 2
+      name: grip
+      px: {x: 208, y: 148}
+    - clip: melee
+      frame: 2
+      name: rightHand
+      px: {x: 208, y: 148}
+    - clip: melee
+      frame: 2
+      name: offHand
+      px: {x: 76, y: 124}
+    - clip: melee
+      frame: 3
+      name: hand
+      px: {x: 160, y: 119}
+    - clip: melee
+      frame: 3
+      name: grip
+      px: {x: 160, y: 119}
+    - clip: melee
+      frame: 3
+      name: rightHand
+      px: {x: 160, y: 119}
+    - clip: melee
+      frame: 3
+      name: offHand
+      px: {x: 104, y: 117}
+    - clip: move
+      frame: 0
+      name: hand
+      px: {x: 166, y: 88}
+    - clip: move
+      frame: 0
+      name: grip
+      px: {x: 166, y: 88}
+    - clip: move
+      frame: 0
+      name: rightHand
+      px: {x: 166, y: 88}
+    - clip: move
+      frame: 0
+      name: offHand
+      px: {x: 94, y: 90}
+    - clip: move
+      frame: 1
+      name: hand
+      px: {x: 164, y: 86}
+    - clip: move
+      frame: 1
+      name: grip
+      px: {x: 164, y: 86}
+    - clip: move
+      frame: 1
+      name: rightHand
+      px: {x: 164, y: 86}
+    - clip: move
+      frame: 1
+      name: offHand
+      px: {x: 96, y: 88}
+    - clip: move
+      frame: 2
+      name: hand
+      px: {x: 160, y: 90}
+    - clip: move
+      frame: 2
+      name: grip
+      px: {x: 160, y: 90}
+    - clip: move
+      frame: 2
+      name: rightHand
+      px: {x: 160, y: 90}
+    - clip: move
+      frame: 2
+      name: offHand
+      px: {x: 100, y: 92}
+    - clip: move
+      frame: 3
+      name: hand
+      px: {x: 158, y: 88}
+    - clip: move
+      frame: 3
+      name: grip
+      px: {x: 158, y: 88}
+    - clip: move
+      frame: 3
+      name: rightHand
+      px: {x: 158, y: 88}
+    - clip: move
+      frame: 3
+      name: offHand
+      px: {x: 102, y: 90}
+    - clip: move
+      frame: 4
+      name: hand
+      px: {x: 160, y: 86}
+    - clip: move
+      frame: 4
+      name: grip
+      px: {x: 160, y: 86}
+    - clip: move
+      frame: 4
+      name: rightHand
+      px: {x: 160, y: 86}
+    - clip: move
+      frame: 4
+      name: offHand
+      px: {x: 100, y: 88}
+    - clip: move
+      frame: 5
+      name: hand
+      px: {x: 164, y: 90}
+    - clip: move
+      frame: 5
+      name: grip
+      px: {x: 164, y: 90}
+    - clip: move
+      frame: 5
+      name: rightHand
+      px: {x: 164, y: 90}
+    - clip: move
+      frame: 5
+      name: offHand
+      px: {x: 96, y: 92}
+    - clip: ranged
+      frame: 0
+      name: hand
+      px: {x: 181, y: 148}
+    - clip: ranged
+      frame: 0
+      name: grip
+      px: {x: 181, y: 148}
+    - clip: ranged
+      frame: 0
+      name: rightHand
+      px: {x: 181, y: 148}
+    - clip: ranged
+      frame: 0
+      name: offHand
+      px: {x: 88, y: 142}
+    - clip: ranged
+      frame: 0
+      name: bowString
+      px: {x: 88, y: 142}
+    - clip: ranged
+      frame: 1
+      name: hand
+      px: {x: 198, y: 153}
+    - clip: ranged
+      frame: 1
+      name: grip
+      px: {x: 198, y: 153}
+    - clip: ranged
+      frame: 1
+      name: rightHand
+      px: {x: 198, y: 153}
+    - clip: ranged
+      frame: 1
+      name: offHand
+      px: {x: 83, y: 159}
+    - clip: ranged
+      frame: 1
+      name: bowString
+      px: {x: 83, y: 159}
+    - clip: ranged
+      frame: 2
+      name: hand
+      px: {x: 201, y: 154}
+    - clip: ranged
+      frame: 2
+      name: grip
+      px: {x: 201, y: 154}
+    - clip: ranged
+      frame: 2
+      name: rightHand
+      px: {x: 201, y: 154}
+    - clip: ranged
+      frame: 2
+      name: offHand
+      px: {x: 53, y: 144}
+    - clip: ranged
+      frame: 2
+      name: bowString
+      px: {x: 53, y: 144}
+    - clip: ranged
+      frame: 3
+      name: hand
+      px: {x: 173, y: 101}
+    - clip: ranged
+      frame: 3
+      name: grip
+      px: {x: 173, y: 101}
+    - clip: ranged
+      frame: 3
+      name: rightHand
+      px: {x: 173, y: 101}
+    - clip: ranged
+      frame: 3
+      name: offHand
+      px: {x: 82, y: 100}
+    - clip: ranged
+      frame: 3
+      name: bowString
+      px: {x: 82, y: 100}
+    tints: []
+    deviations:
+    - 'Final coordinator decision: idle 4 frames at 3fps; feet fixed.'
+  - assetId: teabag_imp
+    kind: body
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/teabag_imp
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.125}
+    targetBodyHeightWorld: 0.9
+    bodyHeightPx: 192
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.28125
+      y: 0.125
+      width: 0.4375
+      height: 0.75
+    clips:
+    - name: defeat
+      fps: 10
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 16258b9a989227f48872872ebe82a951, type: 3}
+      - {fileID: 21300000, guid: 4d8a5ab450e8c944496e71908bd27df8, type: 3}
+      - {fileID: 21300000, guid: 9924b71519989014d96ca69c34a84c52, type: 3}
+      - {fileID: 21300000, guid: 1e8d9afcd2a70d24f88c1d05b37237b5, type: 3}
+    - name: hurt
+      fps: 12.5
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: df51dd69a6cf30f42aebaf22b49431bc, type: 3}
+    - name: idle
+      fps: 6
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 5287fd4ee61cfa64eb3c69048e8b0968, type: 3}
+      - {fileID: 21300000, guid: 4f26c55b96e9921438abaeb282469b7f, type: 3}
+      - {fileID: 21300000, guid: f846139191cee5c4582287d6187f6e91, type: 3}
+      - {fileID: 21300000, guid: ada23966437af534d9cb32fd23f95fc8, type: 3}
+    - name: move
+      fps: 10
+      loop: 1
+      frames:
+      - {fileID: 21300000, guid: 3ac7395b5b7d9df4eafa409fa26254e4, type: 3}
+      - {fileID: 21300000, guid: c69265dd93c19de4f82c47f0ab8631cc, type: 3}
+      - {fileID: 21300000, guid: 9ddca03c17321e94d92f30d519bd7dfa, type: 3}
+      - {fileID: 21300000, guid: f604598e2059d35419592fb77e3b157e, type: 3}
+      - {fileID: 21300000, guid: dcbc036cf133d1240ad88bb0d21f3a00, type: 3}
+      - {fileID: 21300000, guid: 4f367822da5e96e49b1b66ac161a011d, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_button
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_button
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 64}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.015625
+      y: 0.0625
+      width: 0.96875
+      height: 0.875
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 9019d84e6a63e52468da35688d2f272a, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_cafe_bar_fill
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_cafe_bar_fill
+    pixelsPerUnit: 128
+    frameSizePx: {x: 32, y: 8}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 8ca1d63d62e37dd45b76f639eb79120d, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_cafe_bar_frame
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_cafe_bar_frame
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 16}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 21b330fc96758eb4cad72cf1640c1600, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_cafe_button
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_cafe_button
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 40}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    clips:
+    - name: disabled
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 546bde1e751725949b4d970626b13b19, type: 3}
+    - name: hover
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: dc546c409d2f531478b812f1efcb1788, type: 3}
+    - name: normal
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 10d0fbc331e00bb4dbf246d754be7f69, type: 3}
+    - name: pressed
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 36be6c8323ae0ff4baf823219789f140, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_cafe_card
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_cafe_card
+    pixelsPerUnit: 128
+    frameSizePx: {x: 96, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 98775fd4626eecb4b89df4ca29d5df65, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_cafe_focus
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_cafe_focus
+    pixelsPerUnit: 128
+    frameSizePx: {x: 96, y: 96}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 69e05c4059cdacf4c80dc84d57d4a1b0, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_cafe_header
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_cafe_header
+    pixelsPerUnit: 128
+    frameSizePx: {x: 96, y: 24}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: a0394d551f566434c9f0cd9ce6022d6e, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_cafe_panel
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_cafe_panel
+    pixelsPerUnit: 128
+    frameSizePx: {x: 96, y: 96}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 82a7e4707e89c4a4581c25a485d60dc2, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_cafe_tab
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_cafe_tab
+    pixelsPerUnit: 128
+    frameSizePx: {x: 80, y: 32}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    clips:
+    - name: disabled
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 9f329e74c54dd4a468a1d30f14eca63a, type: 3}
+    - name: hover
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: a7adfcaf33a799a47ac657401a6ba8d9, type: 3}
+    - name: normal
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 9e682366df2be4e46894980dece9ef0c, type: 3}
+    - name: pressed
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 4db6edc5121cc864e9faa7dba5442496, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_card_frame
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_card_frame
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 384}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.015625
+      y: 0.010416667
+      width: 0.96875
+      height: 0.9791667
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: a37d440b1171f72499dbaa6b44fd4d0a, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_codex
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_codex
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.140625
+      y: 0.1875
+      width: 0.734375
+      height: 0.578125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 04087ed32be8b4f4b84e2b96bf9a464b, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_panel
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_panel
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.015625
+      y: 0.015625
+      width: 0.96875
+      height: 0.96875
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 01cf10d06c7326c46b0c98e1b7cce5cc, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_pause
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_pause
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.265625
+      y: 0.1875
+      width: 0.46875
+      height: 0.625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 26b7b0bf833839440b491508ede54bd3, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_save_error
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_save_error
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.25
+      y: 0.078125
+      width: 0.65625
+      height: 0.703125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: ac0bb8ded81a89545b6d9bdf6d5e9243, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_save_ok
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_save_ok
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.25
+      y: 0.078125
+      width: 0.65625
+      height: 0.703125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 7f95121ccb5dff84dbd4e19831b2b116, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: ui_settings
+    kind: ui
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/ui_settings
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.125
+      y: 0.125
+      width: 0.765625
+      height: 0.734375
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: e34065e9f3c75c34b92e945b21485027, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: warning_line
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/warning_line
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.078125
+      y: 0.46875
+      width: 0.84375
+      height: 0.0625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 0e5ade7e82cbccd479d3c1b5d460d17a, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: warning_ring
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/warning_ring
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.0859375
+      y: 0.171875
+      width: 0.8359375
+      height: 0.640625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 5d5db854afc80e44a8e8f545af541c07, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: water_drop
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/water_drop
+    pixelsPerUnit: 128
+    frameSizePx: {x: 128, y: 128}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.140625
+      y: 0.03125
+      width: 0.703125
+      height: 0.9375
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 309f9f4437e421c4f9450dce1cf91618, type: 3}
+    anchors: []
+    tints: []
+    deviations: []
+  - assetId: weapon_bow
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/weapon_bow
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.296875, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0.7
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.2421875
+      y: 0.125
+      width: 0.390625
+      height: 0.7109375
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 36ee698b6de56a4488d45f11542ac789, type: 3}
+    anchors:
+    - clip: effect
+      frame: 0
+      name: arrow
+      px: {x: 142, y: 128}
+    - clip: effect
+      frame: 0
+      name: grip
+      px: {x: 76, y: 128}
+    - clip: effect
+      frame: 0
+      name: muzzle
+      px: {x: 142, y: 128}
+    - clip: effect
+      frame: 0
+      name: string
+      px: {x: 142, y: 128}
+    tints: []
+    deviations: []
+  - assetId: weapon_gun
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/weapon_gun
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.40625, y: 0.5625}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0.8
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.1328125
+      y: 0.40625
+      width: 0.796875
+      height: 0.2265625
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 7ed4d609fcb6d4143b19408053a52e39, type: 3}
+    anchors:
+    - clip: effect
+      frame: 0
+      name: grip
+      px: {x: 104, y: 144}
+    - clip: effect
+      frame: 0
+      name: muzzle
+      px: {x: 226, y: 128}
+    tints: []
+    deviations: []
+  - assetId: weapon_rapier
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/weapon_rapier
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.1796875, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0.8
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.0703125
+      y: 0.421875
+      width: 0.84375
+      height: 0.125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 0149f112da024774fb1e8ab5d6d86740, type: 3}
+    anchors:
+    - clip: effect
+      frame: 0
+      name: grip
+      px: {x: 46, y: 128}
+    - clip: effect
+      frame: 0
+      name: muzzle
+      px: {x: 226, y: 128}
+    tints: []
+    deviations: []
+  - assetId: weapon_sword
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/weapon_sword
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.1796875, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0.65
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.0703125
+      y: 0.3984375
+      width: 0.859375
+      height: 0.1953125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: 77f7cd59e51e0de4fb8de29b28f22489, type: 3}
+    anchors:
+    - clip: effect
+      frame: 0
+      name: grip
+      px: {x: 46, y: 128}
+    - clip: effect
+      frame: 0
+      name: muzzle
+      px: {x: 226, y: 128}
+    tints: []
+    deviations: []
+  - assetId: weapon_tea_bow
+    kind: vfx
+    status: ready
+    firstPassProvisional: 0
+    sourcePath: Assets/_Project/Art/v1/weapon_tea_bow
+    pixelsPerUnit: 128
+    frameSizePx: {x: 256, y: 256}
+    pivotNormalized: {x: 0.5, y: 0.5}
+    targetBodyHeightWorld: 0
+    bodyHeightPx: 0
+    bodyHeightEstimated: 0
+    runtimeOpacity: 1
+    targetVisualLengthRelativeToPlayer: 0.7
+    contentRectNormalized:
+      serializedVersion: 2
+      x: 0.3359375
+      y: 0.234375
+      width: 0.2734375
+      height: 0.53125
+    clips:
+    - name: effect
+      fps: 0
+      loop: 0
+      frames:
+      - {fileID: 21300000, guid: aaa07a38d4d47f941914d03883e0b7fe, type: 3}
+    anchors:
+    - clip: effect
+      frame: 0
+      name: grip
+      px: {x: 94, y: 126}
+    - clip: effect
+      frame: 0
+      name: muzzle
+      px: {x: 148, y: 128}
+    - clip: effect
+      frame: 0
+      name: arrow
+      px: {x: 148, y: 128}
+    tints: []
+    deviations: []

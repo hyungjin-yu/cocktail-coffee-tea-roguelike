@@ -13,6 +13,68 @@ namespace CCT.Editor
     {
         void OnPreprocessTexture()
         {
+            if (assetPath.Contains("/Resources/ArtExtra/tea_sommelier_sword_swing/"))
+            {
+                // 2026-10-09 사용자 요청 검 휘두르기(ArtSource/melee-swing-2026-10-09/manifest.json): 몸체 v1 아트와 같은 픽셀 설정,
+                // 256 캔버스 안에서 캐릭터를 -44/+16px 옮겼으므로 발 위치 (84,48)을 pivot으로 쓴다.
+                var swing = (TextureImporter)assetImporter;
+                swing.textureType = TextureImporterType.Sprite;
+                swing.spriteImportMode = SpriteImportMode.Single;
+                var settings = new TextureImporterSettings();
+                swing.ReadTextureSettings(settings);
+                settings.spriteAlignment = (int)SpriteAlignment.Custom;
+                settings.spritePivot = new Vector2(84f / 256f, 48f / 256f);
+                settings.spritePixelsPerUnit = 128f;
+                settings.spriteMeshType = SpriteMeshType.FullRect;
+                swing.SetTextureSettings(settings);
+                swing.mipmapEnabled = false;
+                swing.filterMode = FilterMode.Point;
+                swing.wrapMode = TextureWrapMode.Clamp;
+                swing.alphaIsTransparency = true;
+                swing.textureCompression = TextureImporterCompression.Uncompressed;
+                return;
+            }
+            if (assetPath.Contains("/Resources/ArtExtra/weapon_bow_v2/"))
+            {
+                // 2026-10-09 사용자 피드백 활 원본 최소 보정 v2(ArtSource/weapon-bow-v2-2026-10-09): v1 weapon_bow와 같은 캔버스·pivot·PPU.
+                var bow = (TextureImporter)assetImporter;
+                bow.textureType = TextureImporterType.Sprite;
+                bow.spriteImportMode = SpriteImportMode.Single;
+                var bs = new TextureImporterSettings();
+                bow.ReadTextureSettings(bs);
+                bs.spriteAlignment = (int)SpriteAlignment.Custom;
+                bs.spritePivot = new Vector2(0.296875f, 0.5f);
+                bs.spritePixelsPerUnit = 128f;
+                bs.spriteMeshType = SpriteMeshType.FullRect;
+                bow.SetTextureSettings(bs);
+                bow.mipmapEnabled = false;
+                bow.filterMode = FilterMode.Point;
+                bow.wrapMode = TextureWrapMode.Clamp;
+                bow.alphaIsTransparency = true;
+                bow.textureCompression = TextureImporterCompression.Uncompressed;
+                return;
+            }
+            if (assetPath.Contains("/Resources/ArtExtra/status_") || assetPath.Contains("/Resources/ArtExtra/zone_"))
+            {
+                // 2026-10-12 42/43: PixelLab(Aseprite 확장) 제작 상태 표식·몬스터 장판 v2 프레임(ArtSource/status-zone-vfx-2026-10-12).
+                // 가운데 pivot, 128 PPU(64px 표식 = 0.5 유닛, 판정 맞춤은 코드에서 배율), 점 필터·밉맵 없음·무압축.
+                var vfx = (TextureImporter)assetImporter;
+                vfx.textureType = TextureImporterType.Sprite;
+                vfx.spriteImportMode = SpriteImportMode.Single;
+                var vs = new TextureImporterSettings();
+                vfx.ReadTextureSettings(vs);
+                vs.spriteAlignment = (int)SpriteAlignment.Center;
+                vs.spritePixelsPerUnit = 128f;
+                vs.spriteMeshType = SpriteMeshType.FullRect;
+                vfx.SetTextureSettings(vs);
+                vfx.mipmapEnabled = false;
+                vfx.filterMode = FilterMode.Point;
+                vfx.wrapMode = TextureWrapMode.Clamp;
+                vfx.alphaIsTransparency = true;
+                vfx.isReadable = true; // ZoneVisualV2가 프레임 불투명 영역을 실측해 판정 원에 맞춘다(작은 텍스처)
+                vfx.textureCompression = TextureImporterCompression.Uncompressed;
+                return;
+            }
             if (!assetPath.Contains("/Resources/Icons/")) return;
 
             var importer = (TextureImporter)assetImporter;

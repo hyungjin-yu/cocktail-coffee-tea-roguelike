@@ -11,6 +11,21 @@ namespace CCT
         Color color;
         float life;
         float elapsed;
+        ArtClip clip;
+        bool fade = true;
+        bool unscaled;
+
+        public SpriteRenderer Renderer => sr;
+
+        /// <summary>04 §8 아트 클립을 수명 동안 재생한다(프레임 시간은 클립 fps). fade=false면 알파를 줄이지 않는다.
+        /// unscaled=true면 시간정지(보상창 등) 중에도 재생한다.</summary>
+        public void SetClip(ArtClip value, bool fadeOut = true, bool useUnscaledTime = false)
+        {
+            clip = value;
+            fade = fadeOut;
+            unscaled = useUnscaledTime;
+            Apply(0f);
+        }
 
         public static FadeVfx Spawn(Sprite sprite, Vector2 position, float angleDeg, Vector2 startScale,
             Vector2 endScale, Color color, float life, int sortingOrder = 4)
@@ -33,7 +48,7 @@ namespace CCT
 
         void Update()
         {
-            elapsed += Time.deltaTime;
+            elapsed += unscaled ? Time.unscaledDeltaTime : Time.deltaTime;
             float k = elapsed / life;
             if (k >= 1f)
             {
@@ -47,8 +62,13 @@ namespace CCT
         {
             transform.localScale = Vector3.Lerp(startScale, endScale, k);
             var c = color;
-            c.a *= 1f - k;
+            if (fade) c.a *= 1f - k;
             sr.color = c;
+            if (clip != null)
+            {
+                var frame = clip.FrameAt(elapsed);
+                if (frame != null) sr.sprite = frame;
+            }
         }
     }
 }

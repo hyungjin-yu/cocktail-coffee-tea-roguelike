@@ -1,0 +1,577 @@
+{
+  "assetId": "drip_server_specter",
+  "expectedFrameCount": 27,
+  "actualFrameCount": 27,
+  "frames": [
+    {
+      "file": "frames/drip_server_specter_idle_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        84,
+        68,
+        428,
+        416
+      ],
+      "sha256": "8d4cf3b4d76c0254f128df6f4bc486c9f127b8bfea035bcaacb9ffa3bb330ef5",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_idle_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        84,
+        64,
+        428,
+        416
+      ],
+      "sha256": "7a3d453d398c6891241ee79b6d03239e9e5ed79aff912d95fc982cd7fd1adcfd",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_idle_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        80,
+        68,
+        424,
+        416
+      ],
+      "sha256": "04846bef8739d318efe0e1b70fe8918b6d667b473237dde5eaf1254c7cb03429",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_idle_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        84,
+        72,
+        428,
+        416
+      ],
+      "sha256": "1e3241119b0d500c98b595995a88fc6e01bfbfc8b3bf93da8f35781a46b00900",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_move_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        72,
+        60,
+        436,
+        416
+      ],
+      "sha256": "62a752d6158717b355c33a9a12f9cd3c9bb4eb981922af7d4e565d6ac55cc4fb",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_move_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        72,
+        80,
+        436,
+        416
+      ],
+      "sha256": "acce6acaeaa2a7e909d402aa0727d6fc9bc430045e484a696ace87b40ad35644",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_move_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        84,
+        48,
+        424,
+        416
+      ],
+      "sha256": "9190206c481b3813fd311f60301c7b26743c1c84e93073c4f9bfe1fc8e0589fc",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_move_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        80,
+        96,
+        432,
+        416
+      ],
+      "sha256": "fc2c524e6c5891b2834a73071aa8d19879080e9fe456588b1186322ceeb4f25f",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_move_right_04.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        112,
+        448,
+        416
+      ],
+      "sha256": "e855b0d6abcf1b2c55638cfd097340acd9626ac2ad2d333165238ba75a196600",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_move_right_05.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        80,
+        80,
+        428,
+        416
+      ],
+      "sha256": "68997c98a88e7897e04decbe66c7519a0b86a241567447a30c6c3eba6d4c1aef",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_hurt_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        96,
+        64,
+        412,
+        416
+      ],
+      "sha256": "5b39cb404b872be7f0d2981eb7a51e74bee18a5b8df7badc768f6f8323853def",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_defeat_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        136,
+        64,
+        372,
+        416
+      ],
+      "sha256": "7291a914208281a0282344a800765ad89d82e9218e5435e94123b53e4df0b8e1",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_defeat_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        132,
+        72,
+        380,
+        416
+      ],
+      "sha256": "968a0ceade712512025c3eed7a62da5a9313610b8ac365be571c2e0f11d0a8ca",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_defeat_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        96,
+        196,
+        416,
+        416
+      ],
+      "sha256": "992d8e08c357b5b6c44340508027c7e49241e7b39be96f804b44424346a9fa72",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_defeat_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        112,
+        272,
+        396,
+        416
+      ],
+      "sha256": "e4f1122c0ce63184b786ef2742c7e8c497045226faa9885a48eaf0291540db0f",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_drip_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        100,
+        64,
+        412,
+        416
+      ],
+      "sha256": "baed5f390bb16b4fe2c81191a94e01358d118205bf99c256df2d886fa7e97352",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_drip_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        84,
+        100,
+        424,
+        416
+      ],
+      "sha256": "d3ae4c78bfea992d0c9e15c781471cbb66c64b761b4927a5bd5f669402a935f4",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_drip_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        84,
+        76,
+        424,
+        416
+      ],
+      "sha256": "e31e46c34ba62e00e88373dd8802a7da065435e882df4c080ff16cfa19f9b32a",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_drip_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        92,
+        72,
+        420,
+        412
+      ],
+      "sha256": "f25cd2545972a8af6fbfdf1039e98bc5147c8df10328989e1d20d4dff5dbf115",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_vanish_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        52,
+        64,
+        456,
+        416
+      ],
+      "sha256": "0499f484d6c8239510a20b266bb46d9787db4b6b2742744065f22eb855a78847",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_vanish_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        120,
+        108,
+        388,
+        416
+      ],
+      "sha256": "9c3fccc828ac06ffb55877e7a45992149e43a431e4f5f4a1994a8015d44feb94",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_vanish_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        92,
+        48,
+        420,
+        416
+      ],
+      "sha256": "74239216665fe35415e85d65a2f7bbb54bfe7824d8b12267b0d5553094b65f87",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_vanish_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        160,
+        244,
+        352,
+        416
+      ],
+      "sha256": "a332c127141e745e4c09903294d8be72e3b5a44474035f2ff8ee5d94c3aab15c",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_appear_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        164,
+        172,
+        344,
+        416
+      ],
+      "sha256": "873b742bb96fd81810128e9cfd41e22191710a3d2c233f2861e6139ec0bb4bc9",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_appear_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        116,
+        48,
+        388,
+        416
+      ],
+      "sha256": "9451542c314fb8705cd528629d9c0fabc383a4b991c6b80652549d972870401e",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_appear_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        88,
+        84,
+        420,
+        416
+      ],
+      "sha256": "f92aee7599d5af799b7ff0af8722ca579fbb6ab37e7ec313a3a4e7c3ee6fc17f",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/drip_server_specter_appear_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        56,
+        40,
+        452,
+        412
+      ],
+      "sha256": "0ff5dbc2ee0b9b3669fec86d78078c82984f474a6518c8b018d719e823e60c29",
+      "duplicateOf": null,
+      "grid4": true
+    }
+  ],
+  "bodyHeightPx": 380,
+  "integrated": false,
+  "unityVerification": "not_run"
+}

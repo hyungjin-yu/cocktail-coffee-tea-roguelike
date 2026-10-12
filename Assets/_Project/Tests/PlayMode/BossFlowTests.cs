@@ -77,9 +77,12 @@ namespace CCT.Tests
             Assert.AreEqual(GameState.SkillSelect, game.State);
             Assert.AreEqual(0f, Time.timeScale);
             Assert.IsTrue(game.SkillView.IsOpen);
+            Assert.AreEqual(0,game.Challenge.CoffeeCount,"Opening/preview must not increase challenge.");
+            StringAssert.Contains("다음 해금",game.SkillView.PointsLabel);
 
             var locked = game.Skills.Nodes.First(n => n.id == "ristretto");
             game.SkillView.Choose(locked);
+            Assert.AreEqual(0,game.Challenge.CoffeeCount,"A denied prerequisite does not increase challenge.");
             Assert.IsTrue(game.SkillView.IsOpen, "선행 노드가 없는 노드는 선택되면 안 된다");
 
             var root = game.Skills.Nodes.First(n => n.id == "espresso_shot");
@@ -89,27 +92,124 @@ namespace CCT.Tests
             Assert.AreEqual(GameState.Playing, game.State);
             Assert.AreEqual(1f, Time.timeScale);
             Assert.IsTrue(game.Skills.IsUnlocked(root));
+            Assert.AreEqual(1,game.Challenge.CoffeeCount);
+            game.SkillView.Choose(root);
+            Assert.AreEqual(1,game.Challenge.CoffeeCount,"A duplicate/closed choice never increases challenge.");
             Assert.Greater(game.Stats.Damage, damageBefore);
         }
 
         [UnityTest]
-        public IEnumerator BeanGaugeOverflow_StillOpensSkillTreeOnlyOnce()
+        public IEnumerator AllFifteenCoffeeNodes_HeaderShowsCurrentChallengeNotNextUnlock()
+        {
+            // 2026-10-09 실제720 검수: 15노드 전부 해금 뒤에도 "다음 해금 → 137.2%"처럼 불가능한 예측을 보였다.
+            var game = GameManager.Instance;
+            game.AddIngredient(IngredientType.Coffee, 200); // 새 런 기준 15포인트 이상
+            yield return null;
+            yield return null;
+            for (int pass = 0; pass < 6; pass++)
+                foreach (var node in game.Skills.Nodes.ToList())
+                    if (game.SkillView.IsOpen) game.SkillView.Choose(node);
+            Assert.AreEqual(15, game.Skills.UnlockedCount);
+            if (!game.SkillView.IsOpen) game.OpenCoffeeTree();
+            yield return null;
+            StringAssert.Contains("모두 해금", game.SkillView.PointsLabel);
+            StringAssert.DoesNotContain("다음 해금", game.SkillView.PointsLabel);
+            StringAssert.Contains($"{game.Challenge.HpMultiplier * 100f:0.#}%", game.SkillView.PointsLabel);
+        }
+
+        [UnityTest]
+        public IEnumerator BossBeans20_GiveTwoPoints_AllocatedInOneOpening()
         {
             var game = GameManager.Instance;
 
-            // 원두 20 = 게이지 8 → 11 두 단계를 한 번에 넘긴다 (중간보스 1마리 분량과 동일)
+            // 07:36 — 중간보스 1마리 분량 원두 20 = 포인트 2개(임계치 10 고정, 캡핑 없음).
             game.AddIngredient(IngredientType.Coffee, 20);
-            Assert.GreaterOrEqual(game.BeanGauge.Level, 3, "실제로 두 단계 이상 올라야 검증 의미가 있다");
+            Assert.AreEqual(3, game.BeanGauge.Level);
+            Assert.AreEqual(2, game.CoffeePoints);
             yield return null;
             yield return null;
 
+            Assert.AreEqual(GameState.SkillSelect, game.State, "새 포인트가 생기면 트리가 1회 열린다");
+            game.SkillView.Choose(game.Skills.Nodes.First(n => n.id == "espresso_shot"));
+            Assert.IsTrue(game.SkillView.IsOpen, "포인트가 남아 있으면 같은 창에서 계속 배분한다");
+            Assert.AreEqual(1, game.CoffeePoints);
+            game.SkillView.Choose(game.Skills.Nodes.First(n => n.id == "ristretto"));
+            Assert.IsFalse(game.SkillView.IsOpen, "포인트를 다 쓰면 닫힌다");
+            Assert.AreEqual(GameState.Playing, game.State);
+            Assert.AreEqual(2, game.Skills.UnlockedCount);
+            yield return null;
+            yield return null;
+            Assert.AreEqual(GameState.Playing, game.State, "새 포인트 없이 다시 열리면 안 된다");
+        }
+
+        [UnityTest]
+        public IEnumerator Continue_KeepsPoints_NoAutoReopen_UntilNewPointOrK()
+        {
+            var game = GameManager.Instance;
+            game.AddIngredient(IngredientType.Coffee, 20);
+            yield return null;
+            yield return null;
             Assert.AreEqual(GameState.SkillSelect, game.State);
-            game.SkillView.Choose(game.Skills.Nodes.First(n => game.Skills.IsAvailable(n)));
-            yield return null;
 
-            Assert.AreEqual(GameState.Playing, game.State,
-                "게이지가 여러 단계 넘어가도 스킬 선택 화면은 한 번만 떠야 한다");
-            Assert.AreEqual(1, game.Skills.UnlockedCount);
+            game.SkillView.Continue();
+            Assert.AreEqual(GameState.Playing, game.State);
+            Assert.AreEqual(2, game.CoffeePoints, "계속하기는 남은 포인트를 보존한다");
+            for (int i = 0; i < 5; i++) yield return null;
+            Assert.AreEqual(GameState.Playing, game.State, "08:49 — 매 프레임 자동 재열림 금지");
+
+            game.OpenCoffeeTree(); // K와 같은 진입점
+            Assert.AreEqual(GameState.SkillSelect, game.State);
+            Assert.AreEqual(0f, Time.timeScale);
+            game.SkillView.Continue();
+
+            game.AddIngredient(IngredientType.Coffee, 10); // 새 포인트 → 다시 1회 자동
+            yield return null;
+            yield return null;
+            Assert.AreEqual(GameState.SkillSelect, game.State);
+            Assert.AreEqual(3, game.CoffeePoints);
+        }
+
+        [UnityTest]
+        public IEnumerator K_OpensWithZeroPoints_ButNotDuringPauseOrCountdown()
+        {
+            var game = GameManager.Instance;
+            Assert.AreEqual(0, game.CoffeePoints);
+
+            game.OpenPause();
+            game.OpenCoffeeTree();
+            Assert.AreEqual(GameState.Playing, game.State, "Pause 중에는 K로 열리지 않는다");
+            game.ClosePause();
+            Assert.IsTrue(game.IsResuming);
+            game.OpenCoffeeTree();
+            Assert.AreEqual(GameState.Playing, game.State, "1초 계속 카운트다운 중에는 열리지 않는다");
+            yield return new WaitForSecondsRealtime(1.2f);
+
+            game.OpenCoffeeTree();
+            Assert.AreEqual(GameState.SkillSelect, game.State, "포인트 0이어도 조회용으로 열린다");
+            Assert.AreEqual(0f, Time.timeScale);
+            StringAssert.Contains("남은 커피 포인트 0", game.SkillView.PointsLabel);
+            game.SkillView.Choose(game.Skills.Nodes.First(n => n.id == "espresso_shot"));
+            Assert.AreEqual(0, game.Skills.UnlockedCount, "포인트 없이 해금되면 안 된다");
+            game.SkillView.Continue();
+            Assert.AreEqual(GameState.Playing, game.State);
+            Assert.AreEqual(1f, Time.timeScale);
+        }
+
+        [UnityTest]
+        public IEnumerator CardThenTree_ChainWithoutPlayingFrame()
+        {
+            var game = GameManager.Instance;
+            game.AddIngredient(IngredientType.Cocktail, game.CocktailGauge.Threshold);
+            game.AddIngredient(IngredientType.Coffee, 10);
+            yield return null;
+            Assert.AreEqual(GameState.LevelUp, game.State);
+            float runTime = game.RunTime;
+
+            game.CardView.Choose(0);
+            Assert.AreEqual(GameState.SkillSelect, game.State, "07:46 — 선택 직후 같은 호출에서 다음 보상으로");
+            Assert.AreEqual(0f, Time.timeScale, "보상 사이에 시간이 풀리면 안 된다");
+            yield return null;
+            Assert.AreEqual(runTime, game.RunTime, "보상 사이에 전투 시간이 흐르면 안 된다");
         }
 
         [UnityTest]

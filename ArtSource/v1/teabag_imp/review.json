@@ -1,0 +1,203 @@
+{
+  "assetId": "teabag_imp",
+  "frames": 15,
+  "checks": [
+    {
+      "file": "frames/teabag_imp_defeat_right_00.png",
+      "bboxTopLeft": [
+        70,
+        56,
+        186,
+        224
+      ],
+      "pixelSha256": "828840adbba1c39b089c110b80523b6aa51bd90b037b6cf7cdf513edb0510f64",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_defeat_right_01.png",
+      "bboxTopLeft": [
+        36,
+        74,
+        164,
+        224
+      ],
+      "pixelSha256": "71fa6a388731ff3779f4e7633fd14f5ac0cf15996183c2720f8df919c25181ab",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_defeat_right_02.png",
+      "bboxTopLeft": [
+        34,
+        120,
+        222,
+        224
+      ],
+      "pixelSha256": "c82410441736bb8f1545b1b1b2dd77077eb711a80c8c779a98783ae656532b03",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_defeat_right_03.png",
+      "bboxTopLeft": [
+        38,
+        124,
+        216,
+        224
+      ],
+      "pixelSha256": "07b8931f23e9308fc551f2e6435fb032a97706b7d5f6e381c8ee21fd5ec4b106",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_hurt_right_00.png",
+      "bboxTopLeft": [
+        70,
+        58,
+        184,
+        224
+      ],
+      "pixelSha256": "0ebf4c8b7b6bd56fb9216752f1b33e25bba8a014b4687cee336ce9c29d858b0a",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_idle_right_00.png",
+      "bboxTopLeft": [
+        72,
+        32,
+        184,
+        224
+      ],
+      "pixelSha256": "bae1fa799e9438d04d255cf418598e4d2260973aaf0d5c4dd9f6fbd2fc6a98d9",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_idle_right_01.png",
+      "bboxTopLeft": [
+        72,
+        32,
+        184,
+        224
+      ],
+      "pixelSha256": "7156ade8a8c401935c3d9e9c73b35fca3477e16e7a4bfe8910d2cbb637ff70aa",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_idle_right_02.png",
+      "bboxTopLeft": [
+        72,
+        32,
+        182,
+        224
+      ],
+      "pixelSha256": "4b74c17a17f873a344cebd1521a9a90babae09774e20807cb0e75eddbc58caa9",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_idle_right_03.png",
+      "bboxTopLeft": [
+        74,
+        32,
+        182,
+        224
+      ],
+      "pixelSha256": "c3ac05b8d898ee6761e6c72175a7d4efdba1dbea2ac908a14b1b4d3074dfbb63",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_move_right_00.png",
+      "bboxTopLeft": [
+        72,
+        32,
+        184,
+        224
+      ],
+      "pixelSha256": "21195b1c1aa77df282204fd73ad4329bf33420a223f32feb170fd313c892c8b1",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_move_right_01.png",
+      "bboxTopLeft": [
+        70,
+        32,
+        186,
+        224
+      ],
+      "pixelSha256": "75a68c3e837b5e8a35a918a60956f9fee8a2a03bc6627371a613c949b45a479f",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_move_right_02.png",
+      "bboxTopLeft": [
+        70,
+        34,
+        184,
+        224
+      ],
+      "pixelSha256": "303cb6c999a0e3d9dfd0c6cf1d5953bdd81f5f8f2dc5c23e03dcda1e20a8e237",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_move_right_03.png",
+      "bboxTopLeft": [
+        70,
+        32,
+        184,
+        224
+      ],
+      "pixelSha256": "cc5153342db45de516406b6afff2844f34c6fa443a2804fc0d56b115862725bb",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_move_right_04.png",
+      "bboxTopLeft": [
+        70,
+        32,
+        184,
+        224
+      ],
+      "pixelSha256": "3a979ce5de6026ae8dc4821e1f701e87a4a2543bc2347e423117a2d65e6dec5a",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/teabag_imp_move_right_05.png",
+      "bboxTopLeft": [
+        70,
+        32,
+        186,
+        224
+      ],
+      "pixelSha256": "a94ca12ac0ca5dbb6c578546b90103f6f2e7f564a807b72220367704cfbc7492",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

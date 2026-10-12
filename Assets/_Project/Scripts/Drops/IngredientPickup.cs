@@ -5,6 +5,15 @@ namespace CCT
     /// <summary>몹이 떨어뜨리는 재료. 플레이어가 가까이 오면 끌려가서 게이지에 들어간다.</summary>
     public class IngredientPickup : MonoBehaviour
     {
+        /// <summary>살아 있는 개수(10 §3 고정 부하 시나리오 계측용). 활성/비활성 시점에만 갱신한다.</summary>
+        public static int ActiveCount { get; private set; }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetActiveCount() => ActiveCount = 0;
+
+        void OnEnable() => ActiveCount++;
+        void OnDisable() => ActiveCount--;
+
         const float CollectDistance = 0.35f;
 
         GameManager game;
@@ -13,6 +22,9 @@ namespace CCT
         int amount;
         float pullSpeed = 6f;
         bool pulling;
+        /// <summary>41 히든: 이 재료가 속한 런의 플레이어 / 강제 끌어오기(탄산 펌프).</summary>
+        public PlayerController RunPlayer => player;
+        public void ForceAttract() => pulling = true;
 
         public static readonly Color CocktailColor = new Color(1f, 0.4f, 0.85f);
         public static readonly Color TeaColor = new Color(0.45f, 0.9f, 0.5f);
@@ -41,7 +53,7 @@ namespace CCT
         }
 
         public static void Spawn(GameManager game, PlayerController player, Vector2 position,
-            IngredientType type, int amount, Transform parent)
+            IngredientType type, int amount, Transform parent, bool forceAttraction = false)
         {
             var go = new GameObject("Ingredient");
             go.transform.SetParent(parent, false);
@@ -62,6 +74,7 @@ namespace CCT
             pickup.player = player;
             pickup.type = type;
             pickup.amount = amount;
+            pickup.pulling = forceAttraction;
         }
 
         void Update()
@@ -76,7 +89,10 @@ namespace CCT
 
             if (dist <= CollectDistance)
             {
+                AudioService.PlaySfx("pickup", transform.position);
                 game.AddIngredient(type, amount);
+                player.HiddenRuntime?.OnPickup(); // 41 원두 상자
+                ArtVfx.Spawn("pickup_glint", transform.position, 0f, 0.6f, 0.33f, Color.white); // 09 pickup_glint
                 Destroy(gameObject);
                 return;
             }

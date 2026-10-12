@@ -1,0 +1,747 @@
+{
+  "assetId": "bartender",
+  "checks": {
+    "structural": "pass: RGBA canvas, binary alpha, margins, baseline bounds, unique frame pixels and ordered clip files",
+    "visual": "pass: canonical source and all normalized poses personally viewed; animated preview generated",
+    "unity": "not_run",
+    "v5Preservation": "pass: all10 frames byte-identical to accepted v5 source; idle00/02 reference-repeat preserved",
+    "anchors": "pass:23 measured frame records; visible hand pixel positions reviewed in anchor-review.png"
+  },
+  "clips": {
+    "idle": {
+      "fps": 3,
+      "loop": true,
+      "files": [
+        "frames/bartender_idle_right_00.png",
+        "frames/bartender_idle_right_01.png",
+        "frames/bartender_idle_right_02.png",
+        "frames/bartender_idle_right_03.png"
+      ]
+    },
+    "move": {
+      "fps": 10,
+      "loop": true,
+      "files": [
+        "frames/bartender_move_right_00.png",
+        "frames/bartender_move_right_01.png",
+        "frames/bartender_move_right_02.png",
+        "frames/bartender_move_right_03.png",
+        "frames/bartender_move_right_04.png",
+        "frames/bartender_move_right_05.png"
+      ]
+    },
+    "melee": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/bartender_melee_right_00.png",
+        "frames/bartender_melee_right_01.png",
+        "frames/bartender_melee_right_02.png",
+        "frames/bartender_melee_right_03.png"
+      ]
+    },
+    "defeat": {
+      "fps": 10,
+      "loop": false,
+      "files": [
+        "frames/bartender_defeat_right_00.png",
+        "frames/bartender_defeat_right_01.png",
+        "frames/bartender_defeat_right_02.png",
+        "frames/bartender_defeat_right_03.png"
+      ]
+    },
+    "hurt": {
+      "fps": 0,
+      "loop": false,
+      "files": [
+        "frames/bartender_hurt_right_00.png"
+      ],
+      "durationSeconds": 0.08
+    },
+    "ranged": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/bartender_ranged_right_00.png",
+        "frames/bartender_ranged_right_01.png",
+        "frames/bartender_ranged_right_02.png",
+        "frames/bartender_ranged_right_03.png"
+      ]
+    }
+  },
+  "deviations": [
+    "User-authorized first-pass v5 idle3fps instead of6; v5 move gait polish explicitly deferred.",
+    "Final coordinator decision: idle 4 frames at 3fps; feet fixed."
+  ],
+  "frameSizePx": [
+    256,
+    256
+  ],
+  "kind": "body",
+  "pivotNormalized": [
+    0.5,
+    0.125
+  ],
+  "pixelsPerUnit": 128,
+  "posePlan": [
+    {
+      "bob": 0,
+      "far": [
+        [
+          122,
+          170
+        ],
+        [
+          112,
+          194
+        ],
+        [
+          98,
+          218
+        ]
+      ],
+      "name": "near_contact",
+      "near": [
+        [
+          138,
+          170
+        ],
+        [
+          150,
+          194
+        ],
+        [
+          164,
+          218
+        ]
+      ],
+      "swing": -4
+    },
+    {
+      "bob": 2,
+      "far": [
+        [
+          122,
+          172
+        ],
+        [
+          108,
+          188
+        ],
+        [
+          108,
+          204
+        ]
+      ],
+      "name": "near_load_far_lift",
+      "near": [
+        [
+          138,
+          172
+        ],
+        [
+          140,
+          196
+        ],
+        [
+          142,
+          218
+        ]
+      ],
+      "swing": -2
+    },
+    {
+      "bob": -2,
+      "far": [
+        [
+          122,
+          168
+        ],
+        [
+          142,
+          186
+        ],
+        [
+          148,
+          204
+        ]
+      ],
+      "name": "near_support_far_pass",
+      "near": [
+        [
+          138,
+          168
+        ],
+        [
+          124,
+          194
+        ],
+        [
+          120,
+          218
+        ]
+      ],
+      "swing": 2
+    },
+    {
+      "bob": 0,
+      "far": [
+        [
+          122,
+          170
+        ],
+        [
+          150,
+          194
+        ],
+        [
+          164,
+          218
+        ]
+      ],
+      "name": "far_contact",
+      "near": [
+        [
+          138,
+          170
+        ],
+        [
+          114,
+          194
+        ],
+        [
+          98,
+          218
+        ]
+      ],
+      "swing": 4
+    },
+    {
+      "bob": 2,
+      "far": [
+        [
+          122,
+          172
+        ],
+        [
+          140,
+          196
+        ],
+        [
+          142,
+          218
+        ]
+      ],
+      "name": "far_load_near_lift",
+      "near": [
+        [
+          138,
+          172
+        ],
+        [
+          110,
+          188
+        ],
+        [
+          108,
+          204
+        ]
+      ],
+      "swing": 2
+    },
+    {
+      "bob": -2,
+      "far": [
+        [
+          122,
+          168
+        ],
+        [
+          124,
+          194
+        ],
+        [
+          120,
+          218
+        ]
+      ],
+      "name": "far_support_near_pass",
+      "near": [
+        [
+          138,
+          168
+        ],
+        [
+          144,
+          186
+        ],
+        [
+          148,
+          204
+        ]
+      ],
+      "swing": -2
+    }
+  ],
+  "provenance": "Six authored contact/load/passing poses; no frame interpolation; canonical upper-body pixels retained",
+  "sourceReferences": [
+    "reference/v5-manifest.json",
+    "reference/v5-preview.png",
+    "reference/bartender_melee/canonical.png",
+    "reference/bartender_melee/generated-sheet.png",
+    "reference/bartender_other/generated-sheet.png"
+  ],
+  "specVersion": "1.0",
+  "status": "needs_fix",
+  "targetBodyHeightWorld": 1.6,
+  "bodyHeightPx": 186.0,
+  "scope": "complete23 player body frames; user-authorized first-pass v5 idle/move exception",
+  "anchorsByFrame": {
+    "frames/bartender_idle_right_00.png": {
+      "hand": [
+        164,
+        87
+      ],
+      "offHand": [
+        105,
+        87
+      ],
+      "grip": [
+        164,
+        87
+      ],
+      "rightHand": [
+        164,
+        87
+      ]
+    },
+    "frames/bartender_idle_right_01.png": {
+      "hand": [
+        164,
+        87
+      ],
+      "offHand": [
+        105,
+        87
+      ],
+      "grip": [
+        164,
+        87
+      ],
+      "rightHand": [
+        164,
+        87
+      ]
+    },
+    "frames/bartender_idle_right_02.png": {
+      "hand": [
+        164,
+        89
+      ],
+      "offHand": [
+        105,
+        89
+      ],
+      "grip": [
+        164,
+        89
+      ],
+      "rightHand": [
+        164,
+        89
+      ]
+    },
+    "frames/bartender_idle_right_03.png": {
+      "hand": [
+        164,
+        89
+      ],
+      "offHand": [
+        105,
+        89
+      ],
+      "grip": [
+        164,
+        89
+      ],
+      "rightHand": [
+        164,
+        89
+      ]
+    },
+    "frames/bartender_move_right_00.png": {
+      "hand": [
+        160,
+        87
+      ],
+      "grip": [
+        160,
+        87
+      ],
+      "rightHand": [
+        160,
+        87
+      ],
+      "offHand": [
+        109,
+        87
+      ]
+    },
+    "frames/bartender_move_right_01.png": {
+      "hand": [
+        162,
+        85
+      ],
+      "grip": [
+        162,
+        85
+      ],
+      "rightHand": [
+        162,
+        85
+      ],
+      "offHand": [
+        107,
+        85
+      ]
+    },
+    "frames/bartender_move_right_02.png": {
+      "hand": [
+        164,
+        89
+      ],
+      "grip": [
+        164,
+        89
+      ],
+      "rightHand": [
+        164,
+        89
+      ],
+      "offHand": [
+        105,
+        89
+      ]
+    },
+    "frames/bartender_move_right_03.png": {
+      "hand": [
+        166,
+        87
+      ],
+      "grip": [
+        166,
+        87
+      ],
+      "rightHand": [
+        166,
+        87
+      ],
+      "offHand": [
+        101,
+        87
+      ]
+    },
+    "frames/bartender_move_right_04.png": {
+      "hand": [
+        166,
+        85
+      ],
+      "grip": [
+        166,
+        85
+      ],
+      "rightHand": [
+        166,
+        85
+      ],
+      "offHand": [
+        103,
+        85
+      ]
+    },
+    "frames/bartender_move_right_05.png": {
+      "hand": [
+        164,
+        89
+      ],
+      "grip": [
+        164,
+        89
+      ],
+      "rightHand": [
+        164,
+        89
+      ],
+      "offHand": [
+        105,
+        89
+      ]
+    },
+    "frames/bartender_melee_right_00.png": {
+      "hand": [
+        171,
+        133
+      ],
+      "grip": [
+        171,
+        133
+      ],
+      "rightHand": [
+        171,
+        133
+      ],
+      "offHand": [
+        111,
+        131
+      ]
+    },
+    "frames/bartender_melee_right_01.png": {
+      "hand": [
+        161,
+        148
+      ],
+      "grip": [
+        161,
+        148
+      ],
+      "rightHand": [
+        161,
+        148
+      ],
+      "offHand": [
+        79,
+        185
+      ]
+    },
+    "frames/bartender_melee_right_02.png": {
+      "hand": [
+        200,
+        140
+      ],
+      "grip": [
+        200,
+        140
+      ],
+      "rightHand": [
+        200,
+        140
+      ],
+      "offHand": [
+        103,
+        123
+      ]
+    },
+    "frames/bartender_melee_right_03.png": {
+      "hand": [
+        169,
+        134
+      ],
+      "grip": [
+        169,
+        134
+      ],
+      "rightHand": [
+        169,
+        134
+      ],
+      "offHand": [
+        108,
+        129
+      ]
+    },
+    "frames/bartender_defeat_right_00.png": {
+      "hand": [
+        145,
+        78
+      ],
+      "grip": [
+        145,
+        78
+      ],
+      "rightHand": [
+        145,
+        78
+      ],
+      "offHand": [
+        112,
+        69
+      ]
+    },
+    "frames/bartender_defeat_right_01.png": {
+      "hand": [
+        156,
+        39
+      ],
+      "grip": [
+        156,
+        39
+      ],
+      "rightHand": [
+        156,
+        39
+      ],
+      "offHand": [
+        123,
+        42
+      ]
+    },
+    "frames/bartender_defeat_right_02.png": {
+      "hand": [
+        176,
+        41
+      ],
+      "grip": [
+        176,
+        41
+      ],
+      "rightHand": [
+        176,
+        41
+      ],
+      "offHand": [
+        121,
+        42
+      ]
+    },
+    "frames/bartender_defeat_right_03.png": {
+      "hand": [
+        186,
+        49
+      ],
+      "grip": [
+        186,
+        49
+      ],
+      "rightHand": [
+        186,
+        49
+      ],
+      "offHand": [
+        169,
+        48
+      ]
+    },
+    "frames/bartender_hurt_right_00.png": {
+      "hand": [
+        161,
+        82
+      ],
+      "grip": [
+        161,
+        82
+      ],
+      "rightHand": [
+        161,
+        82
+      ],
+      "offHand": [
+        121,
+        111
+      ]
+    },
+    "frames/bartender_ranged_right_00.png": {
+      "hand": [
+        161,
+        133
+      ],
+      "grip": [
+        161,
+        133
+      ],
+      "rightHand": [
+        161,
+        133
+      ],
+      "offHand": [
+        112,
+        132
+      ]
+    },
+    "frames/bartender_ranged_right_01.png": {
+      "hand": [
+        180,
+        152
+      ],
+      "grip": [
+        180,
+        152
+      ],
+      "rightHand": [
+        180,
+        152
+      ],
+      "offHand": [
+        107,
+        141
+      ]
+    },
+    "frames/bartender_ranged_right_02.png": {
+      "hand": [
+        160,
+        121
+      ],
+      "grip": [
+        160,
+        121
+      ],
+      "rightHand": [
+        160,
+        121
+      ],
+      "offHand": [
+        90,
+        141
+      ]
+    },
+    "frames/bartender_ranged_right_03.png": {
+      "hand": [
+        165,
+        88
+      ],
+      "grip": [
+        165,
+        88
+      ],
+      "rightHand": [
+        165,
+        88
+      ],
+      "offHand": [
+        99,
+        89
+      ]
+    }
+  },
+  "integrationAllowed": true,
+  "acceptance": {
+    "coordinatorAcceptedForStagedIntegration": true,
+    "strictReleaseReady": false,
+    "userApproved": false,
+    "unityVerified": false,
+    "runtimeVisualReview": "pending"
+  },
+  "clipAcceptance": {
+    "idle": "first_pass_accepted",
+    "move": "first_pass_accepted",
+    "melee": "visually_reviewed",
+    "defeat": "visually_reviewed",
+    "hurt": "visually_reviewed",
+    "ranged": "visually_reviewed"
+  },
+  "finalCandidateProvenance": {
+    "parentManifestSha256": "1eacf5b5dc9e15d4c210035a9a3da826d9fed56c35db77ea513e2e93b5e3e789",
+    "batches": [
+      {
+        "candidateId": "bartender_idle_d4_breath_2026-10-06",
+        "manifest": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\final-candidates-2026-10-06\\d4_bartender_idle\\candidate-manifest.json",
+        "sha256": "292078fe14af2309d93fe3e559865820701a01f6f28b43ceec56add38f170bc4"
+      },
+      {
+        "candidateId": "bartender_move_d1_walk_2026-10-06",
+        "manifest": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\final-candidates-2026-10-06\\d1_bartender_walk\\candidate-manifest.json",
+        "sha256": "00a99333c4f4d158f0a1182a32d6bade9d3bf8b4235fee6da532db482d167ea3"
+      }
+    ],
+    "note": "Reviewed candidates staged for native runtime QA; original sources preserved."
+  }
+}

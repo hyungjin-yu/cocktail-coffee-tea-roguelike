@@ -5,68 +5,60 @@ using UnityEngine.TestTools;
 
 namespace CCT.Tests
 {
-    /// <summary>
-    /// FlameBurst 만 격리해서 검증 (GameBootstrap 을 쓰지 않음).
-    /// 전체 게임을 띄우면 플레이어의 레이피어 자동공격도 같은 몹을 때려서 피해량이 섞이기 때문.
-    /// </summary>
+    // User change 35 replaces the removed automatic burst with direct-hit status.
     public class FlameBurstTests
     {
-        GameObject playerGo;
+        GameObject root;
         PlayerController player;
         PlayerStats stats;
-
-        [UnitySetUp]
-        public IEnumerator SetUp()
+        Enemy Target(float x = 2f)
         {
-            playerGo = new GameObject("TestPlayer", typeof(Rigidbody2D), typeof(SpriteRenderer));
-            player = playerGo.AddComponent<PlayerController>();
-            stats = new PlayerStats();
-            player.Init(stats, Color.white);
-            playerGo.AddComponent<FlameBurst>().Init(stats, player);
-            yield return null;
+            var e = Enemy.SpawnAt(new Vector2(x, Balance.LaneCenterY), EnemyDef.Brute, 10f, player, root.transform);
+            e.enabled = false; e.GetComponent<Rigidbody2D>().simulated = false;
+            return e;
         }
-
-        [UnityTearDown]
-        public IEnumerator TearDown()
+        [UnitySetUp] public IEnumerator Setup()
         {
-            Object.Destroy(playerGo);
-            // 이 테스트는 GameManager 없이 격리해서 도는 거라, 스폰된 파티클이 부모 없이 씬 루트에 남는다
-            // (실제 게임에서는 GameManager 밑이라 같이 정리됨). 수명이 남아있으면 다음 테스트로 새는 걸 방지.
-            foreach (var ps in Object.FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None))
-                Object.Destroy(ps.gameObject);
-            yield return null;
+            Time.timeScale=1;root=new GameObject("DirectStatus35");
+            var go=new GameObject("Player");go.transform.SetParent(root.transform);
+            go.transform.position=new Vector2(0,Balance.LaneCenterY);
+            player=go.AddComponent<PlayerController>();stats=new PlayerStats { flameLevel=1 };
+            player.Init(stats,Color.white);player.enabled=false;yield return null;
         }
-
-        [UnityTest]
-        public IEnumerator FlameLevel_Zero_DoesNothing()
+        [UnityTearDown] public IEnumerator Cleanup(){Time.timeScale=1;Object.Destroy(root);yield return null;}
+        [UnityTest] public IEnumerator WithoutDirectHit_NoAutomaticDamageOrFloorVfx()
         {
-            var enemy = Enemy.SpawnAt(player.Position, EnemyDef.Brute, 1f, player, null);
-            float hpBefore = enemy.Hp;
-
-            yield return new WaitForSeconds(0.2f);
-
-            Assert.AreEqual(hpBefore, enemy.Hp, "flameLevel이 0이면 아무 피해도 없어야 한다");
-            Assert.IsNull(Object.FindFirstObjectByType<ParticleSystem>(), "이펙트도 생기면 안 된다");
-            Object.Destroy(enemy.gameObject);
+            var e=Target();float before=e.Hp;yield return new WaitForSeconds(3.2f);
+            Assert.AreEqual(before,e.Hp);Assert.IsNull(e.GetComponent<EnemyHitStatus>());
+            Assert.AreEqual(0,Object.FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None).Length);
         }
-
-        [UnityTest]
-        public IEnumerator FlameLevel_DealsDamage_AndSpawnsParticleBurst()
+        [UnityTest] public IEnumerator DirectHit_OnlyTarget_ThreeExactTicks_RefreshNotStack()
         {
-            stats.Apply(new CardEffect(CardEffectType.FlameLevel, 1f));
-
-            var enemy = Enemy.SpawnAt(player.Position, EnemyDef.Brute, 1f, player, null);
-            float hpBefore = enemy.Hp;
-
-            yield return null; // 첫 프레임에 즉시 발동 (timer 초기값 0)
-
-            Assert.Less(enemy.Hp, hpBefore, "화염 폭발이 주변 몹에 피해를 줘야 한다");
-
-            var particles = Object.FindFirstObjectByType<ParticleSystem>();
-            Assert.IsNotNull(particles, "파티클 기반 이펙트가 생겨야 한다");
-            Assert.IsTrue(particles.isPlaying, "생성되면 바로 재생 중이어야 한다");
-
-            Object.Destroy(enemy.gameObject);
+            var hit=Target();var other=Target(3f);float before=hit.Hp,untouched=other.Hp;
+            EnemyHitStatus.AttachDirect(hit,player);EnemyHitStatus.AttachDirect(hit,player);
+            var s=hit.GetComponent<EnemyHitStatus>();Assert.AreEqual(2.5f,s.FlameDps,.0001f);
+            yield return new WaitForSeconds(3.2f);
+            Assert.AreEqual(before-7.5f,hit.Hp,.001f);Assert.AreEqual(untouched,other.Hp);
+            Assert.AreEqual(0,s.FlameRemaining);Assert.IsNotNull(hit.transform.Find("FlameHitMarker"));
+        }
+        [UnityTest] public IEnumerator LockAndPause_PreserveRemaining_RejectNewAttachment()
+        {
+            var hit=Target();var other=Target(3f);EnemyHitStatus.AttachDirect(hit,player);
+            var s=hit.GetComponent<EnemyHitStatus>();stats.LockFlame(2);
+            float before=hit.Hp,remaining=s.FlameRemaining;EnemyHitStatus.AttachDirect(other,player);
+            yield return new WaitForSeconds(.3f);Assert.AreEqual(before,hit.Hp);Assert.AreEqual(remaining,s.FlameRemaining);
+            Assert.IsNull(other.GetComponent<EnemyHitStatus>());
+            stats.Tick(2);Time.timeScale=0;yield return new WaitForSecondsRealtime(.2f);
+            Assert.AreEqual(remaining,s.FlameRemaining);Time.timeScale=1;
+            yield return new WaitForSeconds(1.1f);Assert.AreEqual(before-2.5f,hit.Hp,.001f);
+        }
+        [UnityTest] public IEnumerator MaximumCard_ConcentratedFlame_FourTicksAt150Percent()
+        {
+            var card=ScriptableObject.CreateInstance<CardData>();card.id="molotov";card.maxStacks=3;
+            player.FinalForms.OnCardTaken(card,3);Object.Destroy(card);
+            var e=Target();float before=e.Hp;EnemyHitStatus.AttachDirect(e,player);
+            Assert.AreEqual(3.75f,e.GetComponent<EnemyHitStatus>().FlameDps,.001f);
+            yield return new WaitForSeconds(4.2f);Assert.AreEqual(before-15f,e.Hp,.001f);
         }
     }
 }

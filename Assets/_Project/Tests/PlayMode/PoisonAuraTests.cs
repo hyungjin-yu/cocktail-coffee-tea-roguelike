@@ -5,58 +5,53 @@ using UnityEngine.TestTools;
 
 namespace CCT.Tests
 {
-    /// <summary>
-    /// PoisonAura 만 격리해서 검증 (GameBootstrap 을 쓰지 않음).
-    /// 전체 게임을 띄우면 플레이어의 레이피어 자동공격도 같은 몹을 때려서 피해량이 섞이기 때문.
-    /// </summary>
+    // 35: no aura. Enemy-attached direct-hit poison and nonrecursive death propagation.
     public class PoisonAuraTests
     {
-        GameObject playerGo;
+        GameObject root;
         PlayerController player;
         PlayerStats stats;
-
-        [UnitySetUp]
-        public IEnumerator SetUp()
+        Enemy Target(float x)
         {
-            playerGo = new GameObject("TestPlayer", typeof(Rigidbody2D), typeof(SpriteRenderer));
-            player = playerGo.AddComponent<PlayerController>();
-            stats = new PlayerStats();
-            player.Init(stats, Color.white);
-            playerGo.AddComponent<PoisonAura>().Init(stats, player);
+            var e=Enemy.SpawnAt(new Vector2(x,Balance.LaneCenterY),EnemyDef.Brute,10,player,root.transform);
+            e.SetDriver(new Stationary());e.GetComponent<Rigidbody2D>().simulated=false;return e;
+        }
+        class Stationary : IEnemyDriver
+        { public bool TryGetVelocity(Vector2 a,Vector2 b,out Vector2 velocity){velocity=Vector2.zero;return true;} }
+        [UnitySetUp]public IEnumerator Setup()
+        {
+            Time.timeScale=1;root=new GameObject("PoisonDirect35");var go=new GameObject("Player");go.transform.SetParent(root.transform);
+            player=go.AddComponent<PlayerController>();stats=new PlayerStats {poisonLevel=1};player.Init(stats,Color.white);player.enabled=false;
             yield return null;
         }
-
-        [UnityTearDown]
-        public IEnumerator TearDown()
+        [UnityTearDown]public IEnumerator Cleanup(){Time.timeScale=1;Object.Destroy(root);yield return null;}
+        [UnityTest]public IEnumerator NoHit_NoDamage_AndDirectHitThreeTicksOnly()
         {
-            Object.Destroy(playerGo);
-            yield return null;
+            var a=Target(2);var b=Target(3);float before=a.Hp,other=b.Hp;
+            yield return new WaitForSeconds(.2f);Assert.AreEqual(before,a.Hp);
+            EnemyHitStatus.AttachDirect(a,player);yield return new WaitForSeconds(3.2f);
+            Assert.AreEqual(before-5.25f,a.Hp,.001f);Assert.AreEqual(other,b.Hp);
         }
-
-        [UnityTest]
-        public IEnumerator PoisonLevel_Zero_DoesNothing()
+        [UnityTest]public IEnumerator StrongerDamageSurvivesRefresh_AndLockedTimerStops()
         {
-            var enemy = Enemy.SpawnAt(player.Position, EnemyDef.Brute, 1f, player, null);
-            float hpBefore = enemy.Hp;
-
-            yield return new WaitForSeconds(0.5f);
-
-            Assert.AreEqual(hpBefore, enemy.Hp, "poisonLevel 이 0이면 아무 피해도 없어야 한다");
-            Object.Destroy(enemy.gameObject);
+            var a=Target(2);stats.poisonLevel=3;EnemyHitStatus.AttachDirect(a,player);
+            stats.poisonLevel=1;EnemyHitStatus.AttachDirect(a,player);
+            var s=a.GetComponent<EnemyHitStatus>();Assert.AreEqual(3.25f,s.PoisonDps,.001f);
+            stats.LockPoison(1);float before=a.Hp,remaining=s.PoisonRemaining;
+            yield return new WaitForSeconds(.2f);Assert.AreEqual(before,a.Hp);Assert.AreEqual(remaining,s.PoisonRemaining);
         }
-
-        [UnityTest]
-        public IEnumerator PoisonLevel_AppliesPeriodicDamage_ToNearbyEnemies()
+        [UnityTest]public IEnumerator FinalLastPoisonTickDeath_ThreeNearestRecipients_NoRecursivePropagation()
         {
-            stats.Apply(new CardEffect(CardEffectType.PoisonLevel, 1f));
-
-            var enemy = Enemy.SpawnAt(player.Position, EnemyDef.Brute, 1f, player, null);
-            float hpBefore = enemy.Hp;
-
-            yield return new WaitForSeconds(2.7f); // 초기 간격(2.6초 - 0.2×1 = 2.4초)을 넘기기 충분히
-
-            Assert.Less(enemy.Hp, hpBefore, "독 오라가 주기적으로 주변 몹에 피해를 줘야 한다");
-            Object.Destroy(enemy.gameObject);
+            var card=ScriptableObject.CreateInstance<CardData>();card.id="nettle_tea";card.maxStacks=3;
+            player.FinalForms.OnCardTaken(card,3);Object.Destroy(card);
+            var a=Target(2);var b=Target(2.4f);var c=Target(2.8f);var d=Target(3.2f);var outside=Target(4.1f);
+            a.TakeDamage(a.Hp-5.2f);EnemyHitStatus.AttachDirect(a,player);
+            yield return new WaitForSeconds(3.2f);
+            Assert.IsTrue(a==null||a.IsDead,"The third and final poison tick must kill and still propagate.");
+            foreach(var e in new[]{b,c,d})Assert.AreEqual(.875f,e.GetComponent<EnemyHitStatus>().PoisonDps,.001f);
+            Assert.IsNull(outside.GetComponent<EnemyHitStatus>());
+            b.TakeDamage(b.Hp);yield return null;
+            Assert.IsNull(outside.GetComponent<EnemyHitStatus>(),"Propagated poison cannot repropagate.");
         }
     }
 }

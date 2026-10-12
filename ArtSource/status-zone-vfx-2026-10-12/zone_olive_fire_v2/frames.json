@@ -1,0 +1,94 @@
+{
+ "assetId": "zone_olive_fire_v2",
+ "history": "C:\\Users\\user\\AppData\\Roaming/Aseprite/extensions/pixellab/generation_history/2026-10-12_09-41-31 - Create animated object-character (pro) - 001",
+ "frames": [
+  {
+   "file": "zone_olive_fire_v2_00.png",
+   "sourceFrame": 0,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    7,
+    20,
+    122,
+    111
+   ],
+   "opaquePx": 6876,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "c5f727984440e8c99e557791ad7258718cd95746d0ca3e75b5746e5fdf0019ba"
+  },
+  {
+   "file": "zone_olive_fire_v2_01.png",
+   "sourceFrame": 1,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    7,
+    30,
+    121,
+    111
+   ],
+   "opaquePx": 6680,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "67cb8cfc670a3d6467eb6c90be2d97c6ee64fdaa9bc354df3cd58fa51fef6696"
+  },
+  {
+   "file": "zone_olive_fire_v2_02.png",
+   "sourceFrame": 2,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    7,
+    29,
+    122,
+    111
+   ],
+   "opaquePx": 6709,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "5391c54bc799d5b9aaa97ba8b87f2a0163ad590acf976b90b277e75a184df125"
+  },
+  {
+   "file": "zone_olive_fire_v2_03.png",
+   "sourceFrame": 3,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    7,
+    17,
+    122,
+    111
+   ],
+   "opaquePx": 7080,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "60c2419f6edc2a7e298886c28f55077713cc0d77676736a05af7f61e483bc8fa"
+  }
+ ]
+}

@@ -1,0 +1,419 @@
+{
+  "assetId": "difficult_customer",
+  "specVersion": "1.0",
+  "kind": "body",
+  "status": "ready",
+  "frameSizePx": [
+    512,
+    512
+  ],
+  "pixelsPerUnit": 128,
+  "pivotNormalized": [
+    0.5,
+    0.125
+  ],
+  "targetBodyHeightWorld": 2.65,
+  "bodyHeightPx": 384,
+  "clips": {
+    "idle": {
+      "fps": 6,
+      "loop": true,
+      "files": [
+        "frames/difficult_customer_idle_right_00.png",
+        "frames/difficult_customer_idle_right_01.png",
+        "frames/difficult_customer_idle_right_02.png",
+        "frames/difficult_customer_idle_right_03.png"
+      ]
+    },
+    "move": {
+      "fps": 10,
+      "loop": true,
+      "files": [
+        "frames/difficult_customer_move_right_00.png",
+        "frames/difficult_customer_move_right_01.png",
+        "frames/difficult_customer_move_right_02.png",
+        "frames/difficult_customer_move_right_03.png",
+        "frames/difficult_customer_move_right_04.png",
+        "frames/difficult_customer_move_right_05.png"
+      ]
+    },
+    "hurt": {
+      "fps": 12.5,
+      "loop": false,
+      "files": [
+        "frames/difficult_customer_hurt_right_00.png"
+      ]
+    },
+    "defeat": {
+      "fps": 10,
+      "loop": false,
+      "files": [
+        "frames/difficult_customer_defeat_right_00.png",
+        "frames/difficult_customer_defeat_right_01.png",
+        "frames/difficult_customer_defeat_right_02.png",
+        "frames/difficult_customer_defeat_right_03.png"
+      ]
+    },
+    "refund": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/difficult_customer_refund_right_00.png",
+        "frames/difficult_customer_refund_right_01.png",
+        "frames/difficult_customer_refund_right_02.png",
+        "frames/difficult_customer_refund_right_03.png"
+      ]
+    },
+    "summon": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/difficult_customer_summon_right_00.png",
+        "frames/difficult_customer_summon_right_01.png",
+        "frames/difficult_customer_summon_right_02.png",
+        "frames/difficult_customer_summon_right_03.png"
+      ]
+    },
+    "review": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/difficult_customer_review_right_00.png",
+        "frames/difficult_customer_review_right_01.png",
+        "frames/difficult_customer_review_right_02.png",
+        "frames/difficult_customer_review_right_03.png"
+      ]
+    },
+    "reject": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/difficult_customer_reject_right_00.png",
+        "frames/difficult_customer_reject_right_01.png",
+        "frames/difficult_customer_reject_right_02.png",
+        "frames/difficult_customer_reject_right_03.png"
+      ]
+    }
+  },
+  "anchorsByFrame": {
+    "frames/difficult_customer_review_right_00.png": {
+      "phoneScreen": [
+        356,
+        284
+      ],
+      "reviewOrigin": [
+        356,
+        284
+      ]
+    },
+    "frames/difficult_customer_review_right_01.png": {
+      "phoneScreen": [
+        374,
+        432
+      ],
+      "reviewOrigin": [
+        374,
+        432
+      ]
+    },
+    "frames/difficult_customer_review_right_02.png": {
+      "phoneScreen": [
+        418,
+        252
+      ],
+      "reviewOrigin": [
+        418,
+        252
+      ]
+    },
+    "frames/difficult_customer_review_right_03.png": {
+      "phoneScreen": [
+        376,
+        288
+      ],
+      "reviewOrigin": [
+        376,
+        288
+      ]
+    }
+  },
+  "sourceReferences": [
+    "reference/original.png",
+    "reference/canonical.png",
+    "reference/hurt_defeat-generated.png",
+    "reference/idle-generated.png",
+    "reference/move-generated.png",
+    "reference/refund-generated.png",
+    "reference/reject-generated.png",
+    "reference/review-generated.png",
+    "reference/summon-generated.png"
+  ],
+  "deviations": [],
+  "checks": {
+    "structural": "pass",
+    "rgbaAlpha": "pass",
+    "frameCounts": "pass",
+    "uniqueFrames": "pass",
+    "pixelGrid4": "pass",
+    "sourceReferences": "pass",
+    "nativeSource": "pass",
+    "visualFrames": "pass",
+    "bodyIdentity": "pass",
+    "bakedVfxSeparated": "pass",
+    "loopSeams": "pass",
+    "anchors": "pass",
+    "unity": "pass: All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+    "imagesReviewed": [
+      "frames/difficult_customer_idle_right_00.png",
+      "frames/difficult_customer_idle_right_01.png",
+      "frames/difficult_customer_idle_right_02.png",
+      "frames/difficult_customer_idle_right_03.png",
+      "frames/difficult_customer_move_right_00.png",
+      "frames/difficult_customer_move_right_01.png",
+      "frames/difficult_customer_move_right_02.png",
+      "frames/difficult_customer_move_right_03.png",
+      "frames/difficult_customer_move_right_04.png",
+      "frames/difficult_customer_move_right_05.png",
+      "frames/difficult_customer_hurt_right_00.png",
+      "frames/difficult_customer_defeat_right_00.png",
+      "frames/difficult_customer_defeat_right_01.png",
+      "frames/difficult_customer_defeat_right_02.png",
+      "frames/difficult_customer_defeat_right_03.png",
+      "frames/difficult_customer_refund_right_00.png",
+      "frames/difficult_customer_refund_right_01.png",
+      "frames/difficult_customer_refund_right_02.png",
+      "frames/difficult_customer_refund_right_03.png",
+      "frames/difficult_customer_summon_right_00.png",
+      "frames/difficult_customer_summon_right_01.png",
+      "frames/difficult_customer_summon_right_02.png",
+      "frames/difficult_customer_summon_right_03.png",
+      "frames/difficult_customer_review_right_00.png",
+      "frames/difficult_customer_review_right_01.png",
+      "frames/difficult_customer_review_right_02.png",
+      "frames/difficult_customer_review_right_03.png",
+      "frames/difficult_customer_reject_right_00.png",
+      "frames/difficult_customer_reject_right_01.png",
+      "frames/difficult_customer_reject_right_02.png",
+      "frames/difficult_customer_reject_right_03.png"
+    ],
+    "loopReviewImages": [
+      "reference/idle-loop-seam.png",
+      "reference/move-loop-seam.png"
+    ],
+    "nativeRenderMatchesPng": "pass",
+    "anchorReviewImage": "reference/review-anchor-check.png"
+  },
+  "acceptance": {
+    "generated": true,
+    "structurallyValid": true,
+    "visuallyReviewed": true,
+    "sourceReady": true,
+    "firstPassAccepted": true,
+    "unityVerified": true,
+    "strictReleaseReady": true,
+    "runtimeVisualReview": "accepted_verified_scope",
+    "runtimeReview": {
+      "reviewer": "Codex art worker task_523ad2e66a6c",
+      "dispatch": "ctx_db39a1e69bf4",
+      "date": "2026-10-08",
+      "result": "accepted_verified_scope",
+      "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+      "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+      "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+      "additionalEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\body-720-final-evidence.csv",
+      "pending": [],
+      "captureRoots": [
+        "C:/UnityScratch/r14/runs/rc-t1080/out",
+        "C:/UnityScratch/r14/runs/rc-t720/out",
+        "C:/UnityScratch/r14/runs/rc-b1080/out",
+        "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+        "C:/UnityScratch/r14/runs/rc2-ice/out",
+        "C:/UnityScratch/r14/runs/rc2-save-recovery/out",
+        "C:/UnityScratch/r14/runs/rc3-deaths720/out",
+        "C:/UnityScratch/r14/runs/b720/out"
+      ],
+      "acceptedClipsBothFacings": [
+        "idle",
+        "move",
+        "hurt",
+        "defeat",
+        "refund",
+        "summon",
+        "review",
+        "reject"
+      ]
+    },
+    "runtimeReviewHistory": [
+      {
+        "reviewer": "Codex art worker task_15d755821ed6",
+        "date": "2026-10-08",
+        "result": "partial_visual_acceptance",
+        "acceptedClipsBothFacings": [
+          "idle",
+          "move",
+          "hurt"
+        ],
+        "evidence": "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/release-review-2026-10-08/motion-final-review.md",
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/b1080/out"
+        ],
+        "pending": [
+          "defeat00..03 facing L native gallery",
+          "720p complete native review",
+          "Special pattern source-frame/facing coverage",
+          "difficult_customer defeat00..03 facing R without result UI"
+        ]
+      },
+      {
+        "reviewer": "Codex art worker task_523ad2e66a6c",
+        "dispatch": "ctx_db39a1e69bf4",
+        "date": "2026-10-08",
+        "result": "accepted_verified_scope",
+        "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained.",
+        "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+        "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+        "pending": [
+          "720p complete enemy native review (previous explicit pending retained)"
+        ],
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/rc-t1080/out",
+          "C:/UnityScratch/r14/runs/rc-t720/out",
+          "C:/UnityScratch/r14/runs/rc-b1080/out",
+          "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+          "C:/UnityScratch/r14/runs/rc2-ice/out"
+        ],
+        "acceptedClipsBothFacings": [
+          "idle",
+          "move",
+          "hurt",
+          "defeat",
+          "refund",
+          "summon",
+          "review",
+          "reject"
+        ]
+      },
+      {
+        "reviewer": "Codex art worker task_523ad2e66a6c",
+        "dispatch": "ctx_db39a1e69bf4",
+        "date": "2026-10-08",
+        "result": "accepted_verified_scope",
+        "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+        "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+        "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+        "additionalEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\body-720-final-evidence.csv",
+        "pending": [],
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/rc-t1080/out",
+          "C:/UnityScratch/r14/runs/rc-t720/out",
+          "C:/UnityScratch/r14/runs/rc-b1080/out",
+          "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+          "C:/UnityScratch/r14/runs/rc2-ice/out",
+          "C:/UnityScratch/r14/runs/rc2-save-recovery/out",
+          "C:/UnityScratch/r14/runs/rc3-deaths720/out",
+          "C:/UnityScratch/r14/runs/b720/out"
+        ],
+        "acceptedClipsBothFacings": [
+          "idle",
+          "move",
+          "hurt",
+          "defeat",
+          "refund",
+          "summon",
+          "review",
+          "reject"
+        ]
+      }
+    ]
+  },
+  "provenance": {
+    "tool": "built-in imagegen and native Aseprite",
+    "method": "independent articulated keypose generation; nearest-neighbor4px normalization, no interpolated/duplicate padding",
+    "idleMethod": "Native torso/arm articulation from neutral generated pose; planted lower body;4 unique cels, maximum4px breathing. Other clips use independently generated poses. Native component isolation removes neighboring figures and VFX; no interpolated or duplicate padding.",
+    "originalPathsActuallyViewed": [
+      "C:\\Users\\user\\Desktop\\개발\\커피칵테일차\\이미지\\몹\\최종 보스\\진상손님_1페_1차.png",
+      "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\Icons\\Enemies\\difficult_customer_bgfix.png"
+    ],
+    "sourceChecks": [
+      {
+        "path": "reference/original.png",
+        "sha256": "4e155e92ad24c577e8f29deffad097a4d650ba7c2e075b4bdc0231797b73de22",
+        "exists": true
+      },
+      {
+        "path": "reference/canonical.png",
+        "sha256": "21469f550c9a467a2b324ceed36b1e3610dbee05b378d12494526bd23373bb23",
+        "exists": true
+      },
+      {
+        "path": "reference/hurt_defeat-generated.png",
+        "sha256": "8ff6725427c3a9742dd25d84921260df18863da2e9ec43739e5a51c1ff731f77",
+        "exists": true
+      },
+      {
+        "path": "reference/idle-generated.png",
+        "sha256": "3289f49cfa06dfd1e8ec03b4ebc7ab4f3e95b51a47987aa7765d716445659096",
+        "exists": true
+      },
+      {
+        "path": "reference/move-generated.png",
+        "sha256": "3846e3be8afea64317f9609105e9177141bf80ff060d13d030814558af1f84c7",
+        "exists": true
+      },
+      {
+        "path": "reference/refund-generated.png",
+        "sha256": "3470e0ac2f2a5f25d3c9ce4679dc97b177257bb44080c84af838124b91a2f1e2",
+        "exists": true
+      },
+      {
+        "path": "reference/reject-generated.png",
+        "sha256": "b09c067fa66ba5e0c14f2438e288a0a66e8de235ede9db6bceed2a88bdb335b6",
+        "exists": true
+      },
+      {
+        "path": "reference/review-generated.png",
+        "sha256": "175924b9cf9a6cf98f18e3d353bb06e21d8a944945d124cfa5655093197c4212",
+        "exists": true
+      },
+      {
+        "path": "reference/summon-generated.png",
+        "sha256": "15a69ffd2a57f7aacab2e767a032be6aea627b0a9b92d4851fd7eaa55e1ba2e8",
+        "exists": true
+      }
+    ]
+  },
+  "scope": "full_boss_body_v1",
+  "nativeSourceFiles": [
+    "difficult_customer.aseprite"
+  ],
+  "missingClips": [],
+  "integrated": false,
+  "anchorPolicy": "No externally equipped weapon layer on these bosses; crank, portafilters, phone and receipt are intrinsic body props. Customer review emission anchors provided where required.",
+  "lockedIdleSha256": "7079bff19e259b1c3420c54669d68690b7dfd66f600a806cb1ea6c410c82967e",
+  "crownRegionBottomLeft": [
+    164,
+    336,
+    304,
+    448
+  ],
+  "timing": {
+    "dispatchStartedUtc": "2026-10-04T07:11:56Z",
+    "sourceReadyUtc": "2026-10-04T07:56:17.173592+00:00",
+    "finalSourceAuditUtc": "2026-10-04T08:10:24.964057+00:00"
+  },
+  "usage": {
+    "builtInImageGenerationCallsObserved": 8,
+    "providerTokenCounters": null,
+    "providerCreditCounters": null,
+    "providerCountersExposed": false,
+    "pixelLabGenerationCalls": 0
+  },
+  "nativeSourceCheck": {
+    "frames": 31,
+    "width": 512,
+    "height": 512,
+    "colorDepth": 32,
+    "sha256": "9a98937add7e131f16ef5341eaced1943b06ee5e938f2f0c117e428e84fedb80",
+    "renderMatchedFrameCount": 31
+  }
+}

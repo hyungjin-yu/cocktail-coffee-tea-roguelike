@@ -17,6 +17,9 @@ namespace CCT.Tests
         {
             foreach (var v in Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None))
                 Object.DestroyImmediate(v.gameObject);
+            // AutoStart가 씬 시작 시 CharacterSelectView 대신 TitleView를 띄우므로(2026-09-28) 같이 치운다.
+            foreach (var v in Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None))
+                Object.DestroyImmediate(v.gameObject);
         }
 
         [UnitySetUp]

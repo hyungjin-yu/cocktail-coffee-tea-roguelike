@@ -1,0 +1,358 @@
+{
+ "assetId": "status_burn",
+ "history": "C:\\Users\\user\\AppData\\Roaming/Aseprite/extensions/pixellab/generation_history/2026-10-12_09-29-38 - Create animated object-character (pro) - 001",
+ "frames": [
+  {
+   "file": "status_burn_00.png",
+   "sourceFrame": 0,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    28,
+    46,
+    48
+   ],
+   "opaquePx": 332,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "b216035d4af5ad2abbcca053ccc3d6c7f8c22a1c95e43a2b6f8af5f0a8ea901a"
+  },
+  {
+   "file": "status_burn_01.png",
+   "sourceFrame": 1,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    12,
+    48,
+    48
+   ],
+   "opaquePx": 472,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "f358316a0fba315114d1e7de9254f6c9987cf7012b6c5c4fe0e7f28d0d7b0f50"
+  },
+  {
+   "file": "status_burn_02.png",
+   "sourceFrame": 2,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    4,
+    48,
+    48
+   ],
+   "opaquePx": 564,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "9943910a771f62646cb1e7a22dcceb3ddd4de97a91376c166ddf46bb9be2ca9c"
+  },
+  {
+   "file": "status_burn_03.png",
+   "sourceFrame": 3,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    16,
+    48,
+    48
+   ],
+   "opaquePx": 556,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "a67be2a61d6ecfa9ed9d602e48a3a3147ce5dfd3f7e420c83d88039ebee0f719"
+  },
+  {
+   "file": "status_burn_04.png",
+   "sourceFrame": 4,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    6,
+    48,
+    48
+   ],
+   "opaquePx": 452,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "d4812f6c521448af21cce41fb3b66f6244ccb789f04a50063d1c79bbc3ab9d71"
+  },
+  {
+   "file": "status_burn_05.png",
+   "sourceFrame": 5,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    18,
+    48,
+    49
+   ],
+   "opaquePx": 580,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "4eab3603c95dafcaaa5d01a2e6fd3d334a660922cd3ee84754d7551b73fe6074"
+  },
+  {
+   "file": "status_burn_06.png",
+   "sourceFrame": 6,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    2,
+    48,
+    49
+   ],
+   "opaquePx": 620,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "ba134ecb494a1b85a16b3f0f459896f7c9ffd6d6a22046bdc6cc69f76ab88119"
+  },
+  {
+   "file": "status_burn_07.png",
+   "sourceFrame": 7,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    20,
+    48,
+    49
+   ],
+   "opaquePx": 592,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "12bda2d42330c4795ef3b92bff04d9c1f34742c154d7b2972833e9b74b29ac61"
+  },
+  {
+   "file": "status_burn_08.png",
+   "sourceFrame": 8,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    20,
+    48,
+    49
+   ],
+   "opaquePx": 548,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "ad892bee0cbf1ad6834ebcf982e797496a958c8650ef1d9542f99ea740f3008e"
+  },
+  {
+   "file": "status_burn_09.png",
+   "sourceFrame": 9,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    18,
+    48,
+    49
+   ],
+   "opaquePx": 502,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "269a1d6a6af9e2e39edd8fe38cd3bd62a944236636af85961117f8bdcc344a6c"
+  },
+  {
+   "file": "status_burn_10.png",
+   "sourceFrame": 10,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    20,
+    48,
+    49
+   ],
+   "opaquePx": 604,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "c3d2107be67c9f46ffb65d4e26ca2e8baf4d1b74ee69f72cb08576182c0a020f"
+  },
+  {
+   "file": "status_burn_11.png",
+   "sourceFrame": 11,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    22,
+    48,
+    49
+   ],
+   "opaquePx": 484,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "de58f32c54b5c93593d346c6faf253fe7b80b8d1ae8ed6bbf40779c40a2ca4b3"
+  },
+  {
+   "file": "status_burn_12.png",
+   "sourceFrame": 12,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    20,
+    48,
+    49
+   ],
+   "opaquePx": 392,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "869f01e35523c37dd13a8c6c1d4146ba29beec7485272b7b7ca82f1b109e4038"
+  },
+  {
+   "file": "status_burn_13.png",
+   "sourceFrame": 13,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    18,
+    26,
+    48,
+    49
+   ],
+   "opaquePx": 368,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "51d7ad852640d68e1716b89c5e3ad6a6b6c56bdf54ba0f9b18ddcccdaff0d420"
+  },
+  {
+   "file": "status_burn_14.png",
+   "sourceFrame": 14,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    14,
+    46,
+    49
+   ],
+   "opaquePx": 436,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "17a97ad7ee85d18577b3863c228f019bad59a55eda290ae1e6a263e764164d14"
+  },
+  {
+   "file": "status_burn_15.png",
+   "sourceFrame": 15,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    16,
+    12,
+    46,
+    49
+   ],
+   "opaquePx": 392,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "efdd9715ffd083a2425e8b0080dc485b498950a4ebf042df8f6dfcbffc819987"
+  }
+ ]
+}

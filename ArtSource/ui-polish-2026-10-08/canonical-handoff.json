@@ -1,0 +1,109 @@
+{
+  "assetCount": 8,
+  "sourcePNGCount": 14,
+  "canonicalAssets": [
+    {
+      "assetId": "ui_cafe_bar_fill",
+      "manifestPath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_bar_fill\\manifest.json",
+      "manifestSha256": "da780f971cd102abe472eb35e9e57464563ce170a2bef71eff36f87f29dbb8e4",
+      "nativePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_bar_fill\\ui_cafe_bar_fill.aseprite",
+      "nativeSha256": "4370cce34ae4454b3cf53f39dfcc8d0ab22d25c4c7d42e8205dfb65bb6073b2d",
+      "borderLTRB": "[3, 2, 3, 2]",
+      "sourceFrames": 1,
+      "sourceReady": true,
+      "unityVerified": false,
+      "strictReleaseReady": false
+    },
+    {
+      "assetId": "ui_cafe_bar_frame",
+      "manifestPath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_bar_frame\\manifest.json",
+      "manifestSha256": "93f48560708d7972765c196affa7cd06f122feeb349229bebd61ead6c8f88c9f",
+      "nativePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_bar_frame\\ui_cafe_bar_frame.aseprite",
+      "nativeSha256": "881bc5e98d73b200dd381002f36bb05319b8cb37a029b5a93e4cef18d12bed82",
+      "borderLTRB": "[6, 6, 6, 6]",
+      "sourceFrames": 1,
+      "sourceReady": true,
+      "unityVerified": false,
+      "strictReleaseReady": false
+    },
+    {
+      "assetId": "ui_cafe_button",
+      "manifestPath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_button\\manifest.json",
+      "manifestSha256": "f3af33d93abdd8002a9f1edce14f7bb9dd8d6460dd1cf441dbcd23fd17289fdb",
+      "nativePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_button\\ui_cafe_button.aseprite",
+      "nativeSha256": "27361835cea2ac68c1ef9849104cbd4a0161e9efe965bef27b4522bafe24bc2c",
+      "borderLTRB": "[10, 10, 10, 10]",
+      "sourceFrames": 4,
+      "sourceReady": true,
+      "unityVerified": false,
+      "strictReleaseReady": false
+    },
+    {
+      "assetId": "ui_cafe_card",
+      "manifestPath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_card\\manifest.json",
+      "manifestSha256": "9cf8081df8e60083bf3b91c719251379f5adaa6db75d311002bca54e0bbb842e",
+      "nativePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_card\\ui_cafe_card.aseprite",
+      "nativeSha256": "f7b6a0d17a37de0ec596cdc6176451f7e010518ba51653b0b37966ee5e887b98",
+      "borderLTRB": "[12, 12, 12, 12]",
+      "sourceFrames": 1,
+      "sourceReady": true,
+      "unityVerified": false,
+      "strictReleaseReady": false
+    },
+    {
+      "assetId": "ui_cafe_focus",
+      "manifestPath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_focus\\manifest.json",
+      "manifestSha256": "b772f52563b6fe3a75f99cbeab868ed156e72d3249398393d5ac033debde841d",
+      "nativePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_focus\\ui_cafe_focus.aseprite",
+      "nativeSha256": "c99e59111c592559bf516d5695984a998c5ea79b95920404e919fe9a8fd45cc7",
+      "borderLTRB": "[12, 12, 12, 12]",
+      "sourceFrames": 1,
+      "sourceReady": true,
+      "unityVerified": false,
+      "strictReleaseReady": false
+    },
+    {
+      "assetId": "ui_cafe_header",
+      "manifestPath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_header\\manifest.json",
+      "manifestSha256": "4f5d9d0a3aa631c03ef18f902a6c0a0fdba15092aa148852dfcf16baabaf7a5f",
+      "nativePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_header\\ui_cafe_header.aseprite",
+      "nativeSha256": "2f4f65210c8909c05438561c7a094b56892ba26f7e25c885b2dd2078b891afd0",
+      "borderLTRB": "[8, 8, 8, 8]",
+      "sourceFrames": 1,
+      "sourceReady": true,
+      "unityVerified": false,
+      "strictReleaseReady": false
+    },
+    {
+      "assetId": "ui_cafe_panel",
+      "manifestPath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_panel\\manifest.json",
+      "manifestSha256": "9c1fab9d2d2d9f5391903d19d47ca15c60651f1761304fa477d5dec4b6f42365",
+      "nativePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_panel\\ui_cafe_panel.aseprite",
+      "nativeSha256": "b6f3b6ad3141f055ac2dba8cf337db2e22ddd444afef4ca37af9e66d617038c2",
+      "borderLTRB": "[12, 12, 12, 12]",
+      "sourceFrames": 1,
+      "sourceReady": true,
+      "unityVerified": false,
+      "strictReleaseReady": false
+    },
+    {
+      "assetId": "ui_cafe_tab",
+      "manifestPath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_tab\\manifest.json",
+      "manifestSha256": "b7b59a0a9c02cb390df07330442c1e3d86601965fc0f0fddf7cab8867bf39bcf",
+      "nativePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_cafe_tab\\ui_cafe_tab.aseprite",
+      "nativeSha256": "8a55f2e8f792f529fc9d3e026f7ba72ff59d338cd7aa9d8dd7ae8d99a70732f2",
+      "borderLTRB": "[8, 8, 8, 8]",
+      "sourceFrames": 4,
+      "sourceReady": true,
+      "unityVerified": false,
+      "strictReleaseReady": false
+    }
+  ],
+  "conceptGenerationCount": 1,
+  "conceptEditCount": 0,
+  "stagedVariants": "skin-manifest.json 24 assets preserved as source reference; not canonical catalog input",
+  "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\report.md",
+  "evidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\review\\canonical-source-evidence.csv",
+  "contractConfirmedMessage": "msg_14d7fa31c020",
+  "scope": "source-ready only; runtime pending"
+}

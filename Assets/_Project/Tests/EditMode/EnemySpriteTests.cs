@@ -21,17 +21,28 @@ namespace CCT.Tests
 
             foreach (var def in DefsWithArt)
             {
-                var expected = Resources.Load<Sprite>(def.spriteResourcePath);
-                Assert.IsNotNull(expected, $"{def.spriteResourcePath} 리소스가 있어야 한다");
+                var icon = Resources.Load<Sprite>(def.spriteResourcePath);
+                Assert.IsNotNull(icon, $"{def.spriteResourcePath} 리소스가 있어야 한다(새 몸체 아트가 없을 때의 대체)");
 
                 var enemy = Enemy.SpawnAt(Vector2.zero, def, 1f, null, parent);
                 var sr = enemy.GetComponentInChildren<SpriteRenderer>();
-
-                Assert.AreEqual(expected, sr.sprite, $"{def.name} 는 자기 아이콘을 써야 한다");
                 Assert.AreEqual(Color.white, sr.color);
                 Assert.AreEqual(Color.white, enemy.NormalColor);
-                Assert.AreEqual(def.radius * 2f * def.iconVisualScale, sr.transform.localScale.x, 0.001f,
-                    "실제 아이콘은 def.iconVisualScale 배율이 적용돼야 한다");
+
+                // 2026-10-04 1차 통합: 04 §9 새 몸체 아트(ArtSource ready → Art/v1)가 있으면 그 idle_00과
+                // H/(bodyHeightPx/128) 배율을, 없으면 기존 아이콘과 iconVisualScale을 쓴다(단계적 전환).
+                var body = ArtLibrary.Get(def.ArtId);
+                if (body != null && body.IsBody)
+                {
+                    Assert.AreEqual(body.Clip("idle").frames[0], sr.sprite, $"{def.name} 새 몸체 idle_00");
+                    Assert.AreEqual(body.BodyVisualScale, sr.transform.localScale.y, 0.001f, "EnemyIconVisualScale 미적용");
+                }
+                else
+                {
+                    Assert.AreEqual(icon, sr.sprite, $"{def.name} 는 자기 아이콘을 써야 한다");
+                    Assert.AreEqual(def.radius * 2f * def.iconVisualScale, sr.transform.localScale.x, 0.001f,
+                        "실제 아이콘은 def.iconVisualScale 배율이 적용돼야 한다");
+                }
                 Assert.AreEqual(def.radius, enemy.GetComponent<CircleCollider2D>().radius, 0.001f,
                     "콜라이더 반지름은 시각적 배율과 무관하게 def.radius 그대로여야 한다");
 
@@ -86,10 +97,21 @@ namespace CCT.Tests
         [Test]
         public void SpawnAt_DefWithoutArt_UsesCapsulePlaceholder()
         {
-            // 브루트는 04/06에 필수 아트로 등재돼 있지만(2026-09-25 Orca 감사로 확인) Codex가 아직
-            // 만들지 않아서 placeholder다 — "아트 필요 없음"이 아니라 "아직 없음"이니 아트가 오면
-            // 이 테스트도 함께 갱신해야 한다.
-            AssertPlaceholder(EnemyDef.Brute);
+            // 2026-10-04: 레몬 브루트 몸체 아트(lemon_brute)가 ArtSource ready로 반입돼 이제 새 아트를 쓴다(예고대로 갱신).
+            // 아이콘도 새 아트도 없는 정의는 여전히 Capsule placeholder여야 한다.
+            if (ArtLibrary.Get(EnemyDef.Brute.ArtId) != null)
+            {
+                var parent = new GameObject("Parent").transform;
+                var brute = Enemy.SpawnAt(Vector2.zero, EnemyDef.Brute, 1f, null, parent);
+                Assert.IsTrue(brute.UsesBodyArt, "lemon_brute 새 몸체 아트");
+                Object.DestroyImmediate(parent.gameObject);
+            }
+            else AssertPlaceholder(EnemyDef.Brute);
+
+            AssertPlaceholder(new EnemyDef
+            {
+                name = "아트 없는 정의", color = new Color(0.3f, 0.6f, 0.9f), radius = 0.4f, hp = 1f, artId = "no_such_art",
+            });
         }
 
         [Test]
@@ -98,6 +120,24 @@ namespace CCT.Tests
             var parent = new GameObject("Parent").transform;
             var enemy = Enemy.SpawnAt(Vector2.zero, EnemyDef.DifficultCustomer, 1f, null, parent);
             var sr = enemy.GetComponentInChildren<SpriteRenderer>();
+
+            if (enemy.UsesBodyArt)
+            {
+                // 2026-10-04 1차 통합: 새 몸체(difficult_customer)가 있으면 04 §8대로 "동일 클립 + rage_overlay" — 몸체 스프라이트는
+                // 바꾸지 않고 같은 피벗의 오버레이만 켜고 끈다.
+                var bodySprite = sr.sprite;
+                enemy.SetEnragedVisual(true);
+                var overlay = sr.transform.Find("RageOverlay");
+                Assert.IsNotNull(overlay, "rage_overlay 오버레이");
+                Assert.IsTrue(overlay.gameObject.activeSelf);
+                Assert.AreEqual(ArtLibrary.Sprite("rage_overlay"), overlay.GetComponent<SpriteRenderer>().sprite);
+                Assert.AreEqual(bodySprite, sr.sprite, "몸체는 동일 클립 유지");
+                enemy.SetEnragedVisual(false);
+                Assert.IsFalse(overlay.gameObject.activeSelf, "해제 시 오버레이 끔");
+                Object.DestroyImmediate(enemy.gameObject);
+                Object.DestroyImmediate(parent.gameObject);
+                return;
+            }
 
             var normal = Resources.Load<Sprite>(EnemyDef.DifficultCustomer.spriteResourcePath);
             var enraged = Resources.Load<Sprite>(EnemyDef.DifficultCustomer.enragedSpriteResourcePath);

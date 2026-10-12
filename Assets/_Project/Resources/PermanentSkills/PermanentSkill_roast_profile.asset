@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a445bc81f26e6774ab6f4f2386bac954, type: 3}
+  m_Name: roast_profile
+  m_EditorClassIdentifier: CCT.Runtime::CCT.PermanentSkillData
+  id: roast_profile
+  displayName: "\uB85C\uC2A4\uD305 \uD504\uB85C\uD30C\uC77C"
+  description: "\uC601\uAD6C \uACF5\uACA9\uB825 +10%"
+  branch: 0
+  tier: 4
+  prerequisite: {fileID: 11400000, guid: fd6f0d33f71753a4d8b6aad28e4f49ab, type: 2}
+  additionalPrerequisites: []
+  minimumClears: 1
+  weaponSpecific: 0
+  targetWeapon: 0
+  group: 0
+  cost: 6
+  effects:
+  - type: 0
+    value: 0.1
+  iconResourcePath: 
+  iconArtId: skill_attack

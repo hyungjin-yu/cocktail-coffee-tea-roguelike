@@ -64,6 +64,7 @@ namespace CCT
         IEnumerator DripWave()
         {
             game.Hud.ShowBanner("드립 웨이브", "바닥에 뜨거운 커피가 순서대로 떨어진다!", 2f);
+            enemy.PlayAction("drip");
 
             for (int i = 0; i < DripWaveCount; i++)
             {
@@ -80,15 +81,20 @@ namespace CCT
 
         IEnumerator DripWaveZone(Vector2 pos)
         {
-            FadeVfx.Spawn(SpriteFactory.Circle, pos, 0f,
-                Vector2.one * 0.3f, Vector2.one * (DripWaveZoneRadius * 2f),
-                new Color(0.85f, 0.5f, 0.2f, 0.35f), DripWaveTelegraphSeconds);
+            // 43: v2 예고(판정 원 테두리 + 예고 시간에 맞춰 차오르는 링). 아트가 없으면 기존 채움 원 + warning_ring.
+            if (ZoneTelegraphV2.Spawn(pos, DripWaveZoneRadius, DripWaveTelegraphSeconds, new Color(1f, .62f, .3f), enemy.transform.parent) == null)
+            {
+                FadeVfx.Spawn(SpriteFactory.Circle, pos, 0f,
+                    Vector2.one * 0.3f, Vector2.one * (DripWaveZoneRadius * 2f),
+                    new Color(0.85f, 0.5f, 0.2f, 0.35f), DripWaveTelegraphSeconds);
+                ArtVfx.GroundRing("warning_ring", pos, DripWaveZoneRadius, DripWaveTelegraphSeconds, Color.white);
+            }
 
             yield return new WaitForSeconds(DripWaveTelegraphSeconds);
 
             if (enemy == null || enemy.IsDead || game.Player == null) yield break;
             BurstZone.Spawn(pos, DripWaveZoneRadius, DripWaveDamagePerSecond, DripWaveZoneSeconds,
-                game.Player, enemy.transform.parent);
+                game.Player, enemy.transform.parent, BurstZone.CoffeePoolArt);
         }
 
         IEnumerator Invisibility()
@@ -98,8 +104,27 @@ namespace CCT
             game.Hud.ShowBanner("투명화", "스펙터가 잠시 사라진다...", 1.5f);
             enemy.Invulnerable = true;
             frozen = true;
+            enemy.PlayAction("vanish");
             var normal = enemy.NormalColor;
             enemy.BaseColor = new Color(normal.r, normal.g, normal.b, 0.25f);
+
+            // 06:122 — 재등장 지점은 투명화 "시작"에 확정·표시한다(끝날 때 정하면 미리 피할 수 없음,
+            // 2026-09-25 G11 감사에서 발견한 스펙 위반 수정). 표시 위치는 투명화 내내 고정.
+            bool hasTarget = game.Player != null && !game.Player.IsDead;
+            Vector2 target = Vector2.zero;
+            if (hasTarget)
+            {
+                Vector2 dir = Random.insideUnitCircle.normalized;
+                target = game.Player.Position + dir * TeleportDistance;
+                target.y = Mathf.Clamp(target.y, Balance.DepthMin, Balance.DepthMax);
+                if (ZoneTelegraphV2.Spawn(target, ReappearZoneRadius, InvisibleSeconds, new Color(.8f, .7f, 1f), enemy.transform.parent) == null)
+                {
+                    FadeVfx.Spawn(SpriteFactory.Circle, target, 0f,
+                        Vector2.one * (ReappearZoneRadius * 2f), Vector2.one * (ReappearZoneRadius * 2f),
+                        new Color(0.6f, 0.45f, 0.75f, 0.45f), InvisibleSeconds);
+                    ArtVfx.GroundRing("warning_ring", target, ReappearZoneRadius, InvisibleSeconds, new Color(0.8f, 0.7f, 1f, 1f));
+                }
+            }
 
             yield return new WaitForSeconds(InvisibleSeconds);
 
@@ -109,14 +134,12 @@ namespace CCT
             enemy.Invulnerable = false;
             frozen = false;
 
-            if (game.Player == null || game.Player.IsDead) yield break;
+            if (!hasTarget || game.Player == null || game.Player.IsDead) yield break;
 
-            Vector2 dir = Random.insideUnitCircle.normalized;
-            Vector2 target = game.Player.Position + dir * TeleportDistance;
-            target.y = Mathf.Clamp(target.y, Balance.DepthMin, Balance.DepthMax);
             enemy.transform.position = target;
+            enemy.PlayAction("appear");
             BurstZone.Spawn(target, ReappearZoneRadius, ReappearDamagePerSecond, ReappearZoneSeconds,
-                game.Player, enemy.transform.parent);
+                game.Player, enemy.transform.parent, BurstZone.CoffeePoolArt);
         }
     }
 }

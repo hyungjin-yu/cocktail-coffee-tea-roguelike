@@ -1,0 +1,74 @@
+{
+  "anchorsByFrame": {
+    "frames/weapon_rapier_effect_right_00.png": {
+      "grip": [
+        46,
+        128
+      ],
+      "muzzle": [
+        226,
+        128
+      ]
+    }
+  },
+  "assetId": "weapon_rapier",
+  "checks": {
+    "structural": "pass: exact canvas, PNG RGBA8, nonempty alpha, native 2px grid",
+    "visual": "pass: every frame and all-support sheet visually inspected; game-scale composite and tile seams reviewed",
+    "unity": "pass: source PNG SHA256 equals staged runtime PNG; primary-weapon idle/move/attack/hurt L/R and transitions personally reviewed at 1080p and 720p; scope and evidence in runtimeReview"
+  },
+  "clips": {
+    "effect": {
+      "files": [
+        "frames/weapon_rapier_effect_right_00.png"
+      ],
+      "fps": 0,
+      "loop": false
+    }
+  },
+  "deviations": [],
+  "files": [
+    "frames/weapon_rapier_effect_right_00.png"
+  ],
+  "frameSizePx": [
+    256,
+    256
+  ],
+  "kind": "vfx",
+  "pivotNormalized": [
+    0.1796875,
+    0.5
+  ],
+  "pixelsPerUnit": 128,
+  "provenance": {
+    "method": "existing icon sampled and oriented in native Aseprite; original unchanged",
+    "tool": "Aseprite 1.3.18.6 Lua"
+  },
+  "scope": "full_game_v1",
+  "sourceReferences": [
+    "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Weapons/rapier.png"
+  ],
+  "specVersion": "1.0",
+  "status": "ready",
+  "targetVisualLengthRelativeToPlayer": 0.8,
+  "acceptance": {
+    "gameScaleEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\first-pass-ui\\review\\game-scale-1280x720.png",
+    "sourceReady": true,
+    "unityVerified": true,
+    "reviewEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\first-pass-ui\\review\\all-support-frames.png",
+    "runtimeReview": {
+      "reviewer": "Codex art worker task_15d755821ed6",
+      "date": "2026-10-08",
+      "result": "accepted_primary_weapon_visual",
+      "scope": "Single source frame, primary held weapon attachment, facing and basic action transitions; does not approve player defeat, hybrid weapon_tea_bow or whole release",
+      "evidence": "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/release-review-2026-10-08/motion-final-review.md",
+      "captureRoots": [
+        "C:/UnityScratch/r14/runs/t1080/out",
+        "C:/UnityScratch/r14/runs/t720/out"
+      ],
+      "sourcePngSha256": {
+        "frames/weapon_rapier_effect_right_00.png": "76c5c509f38bf5b5f834df729d9d60dbc9b0966d9c51de1f453d027252d5c0e7"
+      }
+    }
+  }
+}

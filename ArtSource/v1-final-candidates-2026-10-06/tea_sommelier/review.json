@@ -1,0 +1,284 @@
+{
+  "assetId": "tea_sommelier",
+  "frames": 23,
+  "visuallyReviewed": true,
+  "checks": [
+    {
+      "file": "frames/tea_sommelier_defeat_right_00.png",
+      "bboxTopLeft": [
+        62,
+        84,
+        194,
+        224
+      ],
+      "sha256": "fe51b9aa0680bd970e7ac06d6d7ccb5a825a608fd5facd0532bcd069c3f66594",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_defeat_right_01.png",
+      "bboxTopLeft": [
+        32,
+        98,
+        222,
+        224
+      ],
+      "sha256": "0de2fc20c4c3afaca29e77909ae04115f8d035aa78d5482e84e818211d4b883c",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_defeat_right_02.png",
+      "bboxTopLeft": [
+        28,
+        152,
+        226,
+        224
+      ],
+      "sha256": "967ecef819dcb3af1e5f4958766e19eee33e1dc7996a418f81a53ca38b8e7cc8",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_defeat_right_03.png",
+      "bboxTopLeft": [
+        20,
+        160,
+        234,
+        224
+      ],
+      "sha256": "f85303decf234b026a28fb377b8fd67da6b6906856e95153985a73eb07188ec5",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_hurt_right_00.png",
+      "bboxTopLeft": [
+        68,
+        68,
+        186,
+        224
+      ],
+      "sha256": "cf8d51ec95f9da47d6d917e18a9e2e94f1410630336deea2247e8683ef0019eb",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_idle_right_00.png",
+      "bboxTopLeft": [
+        80,
+        32,
+        176,
+        224
+      ],
+      "sha256": "fb7c9781005dcbd5aa802fb10e8f4366ece9c9e4ebadaf3566635f0044608a30",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_idle_right_01.png",
+      "bboxTopLeft": [
+        80,
+        32,
+        176,
+        224
+      ],
+      "sha256": "c7ad37a7b8126797a8e8fcba48278fac882521053727fcc22127d99965c0fa4e",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_idle_right_02.png",
+      "bboxTopLeft": [
+        80,
+        32,
+        176,
+        224
+      ],
+      "sha256": "cc7d081daa9844d64781756e645a399678d63b21993fcfe9e8acbe4557f678ca",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_idle_right_03.png",
+      "bboxTopLeft": [
+        80,
+        32,
+        176,
+        224
+      ],
+      "sha256": "8061e93873fca2bbd2f0e5fe8bce353e5520c4c38a0d38844503a1630d06ded0",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_melee_right_00.png",
+      "bboxTopLeft": [
+        60,
+        44,
+        196,
+        224
+      ],
+      "sha256": "a02f672ea0a0c013dc7f5d1de45d79421c0573024ee410aa42641481738c8156",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_melee_right_01.png",
+      "bboxTopLeft": [
+        50,
+        38,
+        204,
+        224
+      ],
+      "sha256": "300f1cd0207b46fc83cdfa332438e5fdfaf7d867211723939dcb0aa4d4feb214",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_melee_right_02.png",
+      "bboxTopLeft": [
+        34,
+        42,
+        220,
+        224
+      ],
+      "sha256": "b23b9e155d0a7bef51c2be641dd37e622ef96c7e3bde6810625fce23ca5b2462",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_melee_right_03.png",
+      "bboxTopLeft": [
+        62,
+        38,
+        192,
+        224
+      ],
+      "sha256": "46873b62bc30ed306f701e622438856b5d349dc0846e7574e14529211cda9bb6",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_move_right_00.png",
+      "bboxTopLeft": [
+        80,
+        32,
+        180,
+        224
+      ],
+      "sha256": "09d1c88aab01d2715990fc9167d1166de17b71cf9223552b85681ea491fd7da7",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_move_right_01.png",
+      "bboxTopLeft": [
+        80,
+        34,
+        178,
+        224
+      ],
+      "sha256": "32a295765d2adc92d0b4119e45c6793b40c05f6a75bae08f95dbd3be16dcb524",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_move_right_02.png",
+      "bboxTopLeft": [
+        80,
+        30,
+        174,
+        224
+      ],
+      "sha256": "9af68f6af814ebcff58fcbd3644669a9b3f995b07ca00ed7ccbf32426df449ab",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_move_right_03.png",
+      "bboxTopLeft": [
+        80,
+        32,
+        174,
+        224
+      ],
+      "sha256": "36971a2ca905ea99840af2d305a987027e067c792a6c11f46d29add35f757e82",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_move_right_04.png",
+      "bboxTopLeft": [
+        80,
+        34,
+        174,
+        224
+      ],
+      "sha256": "8e74ca7b1b0295846c483eee0691fa3b3413b98070a54dbd7e786f5ce485f045",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_move_right_05.png",
+      "bboxTopLeft": [
+        80,
+        30,
+        178,
+        224
+      ],
+      "sha256": "f68796e9f9554de1813297662ad2ca94ca49314bdbab2f90ff16eec10ad328c5",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_ranged_right_00.png",
+      "bboxTopLeft": [
+        60,
+        34,
+        194,
+        224
+      ],
+      "sha256": "a7ab39d28eafd8ec7f29b39e51cf5a9de9a1629ef5bbfcde41c19d82372102ab",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_ranged_right_01.png",
+      "bboxTopLeft": [
+        46,
+        36,
+        210,
+        224
+      ],
+      "sha256": "a921d42338b53fbe4c659be45dcf27165889479a810ba64d12724de1d77f615d",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_ranged_right_02.png",
+      "bboxTopLeft": [
+        34,
+        38,
+        220,
+        224
+      ],
+      "sha256": "075d8275351cec37cc3016a94845f93f55e6a9199b46b6a683901dab126cb732",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/tea_sommelier_ranged_right_03.png",
+      "bboxTopLeft": [
+        70,
+        36,
+        184,
+        224
+      ],
+      "sha256": "5a6cbed9c24d956ba8363bc8f829ff204fbf287dbfdd32a8962a4cf491711f68",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    }
+  ],
+  "unity": "not_run"
+}

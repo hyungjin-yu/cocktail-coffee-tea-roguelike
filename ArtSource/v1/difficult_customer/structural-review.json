@@ -1,0 +1,661 @@
+{
+  "assetId": "difficult_customer",
+  "expectedFrameCount": 31,
+  "actualFrameCount": 31,
+  "frames": [
+    {
+      "file": "frames/difficult_customer_idle_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        88,
+        64,
+        424,
+        448
+      ],
+      "sha256": "804dc8800e74805d037726a1270c261a31e3fb8f2296df549232dce440de16ee",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_idle_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        88,
+        60,
+        424,
+        448
+      ],
+      "sha256": "93e3bcc3b16489809a82f5d8dc497a09b21736871aa18285a4510f11afdd8112",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_idle_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        84,
+        64,
+        424,
+        448
+      ],
+      "sha256": "5597ff11a8fd64d289ed18bbc283abd9fb73673ce94930d84ed2d6dbafbdcd9f",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_idle_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        88,
+        68,
+        424,
+        448
+      ],
+      "sha256": "efa83b4db13d442884f356cfb7f51c1de3e9270222cddd69e51ad49f6f191df1",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_move_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        48,
+        64,
+        464,
+        448
+      ],
+      "sha256": "f9bba16aed084e2bc83605e57b8e93892f6a310b63b6e09a9d6b9bc845f6eebb",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_move_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        68,
+        452,
+        448
+      ],
+      "sha256": "f96c0ee977d16c154bec0538e45d643157960cc3e00532816e64941201252f13",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_move_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        64,
+        64,
+        448,
+        448
+      ],
+      "sha256": "4ee218154a863253b5d3545950150957c7a49c3add4b17ec43ce73bcf4af812e",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_move_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        64,
+        68,
+        448,
+        448
+      ],
+      "sha256": "6bd42fbf43e9684d56763f2a634defbd65f8157ad39b577513142fd954c71bcb",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_move_right_04.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        64,
+        72,
+        448,
+        448
+      ],
+      "sha256": "99aea09a5a38ec665872849f3b0bfc72d36c70f2278793cec61e138033bf715c",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_move_right_05.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        68,
+        68,
+        440,
+        448
+      ],
+      "sha256": "74418f34abe6be9bd95d4381c4cf9b44a4a77f4b29c41dd81aa1c41a8d8e1e52",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_hurt_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        100,
+        64,
+        408,
+        448
+      ],
+      "sha256": "4662828b958394cf181e823f64c875318ad86a6b4d6b60f32c0fef8fe113bbb6",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_defeat_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        100,
+        76,
+        404,
+        448
+      ],
+      "sha256": "f850ec68bf84d879f3d636cdee2121114448b2d9f1d968bc69d0cbcf0169a245",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_defeat_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        100,
+        156,
+        412,
+        448
+      ],
+      "sha256": "a46170c8d89d6497095a639c525b117bb18382f988f463f73fdd3637cd8e03e7",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_defeat_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        144,
+        448,
+        448
+      ],
+      "sha256": "6552c0b9bfb9cb21b4a7a4aae51023c82381d8ffd2b2af1b812f19a491a2a3dc",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_defeat_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        64,
+        268,
+        444,
+        448
+      ],
+      "sha256": "840666db80948d9921113c145748323a859f2a4644f501cd314574d1b549d569",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_refund_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        92,
+        68,
+        420,
+        448
+      ],
+      "sha256": "6483d29168c65f9418eda62880116d5a29d49d3106c2e59dd223b41380b6234c",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_refund_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        80,
+        116,
+        432,
+        448
+      ],
+      "sha256": "33689d56d7ede61c0b8fec9224b13e3dde47981049c3c9634913de7ba727e323",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_refund_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        36,
+        140,
+        476,
+        448
+      ],
+      "sha256": "e4dabbaa4fa61d73cf1ab70b0b4f1a18e743666e710b0e2ecd713dad2f07b371",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_refund_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        104,
+        112,
+        404,
+        448
+      ],
+      "sha256": "eabae0b4716d090cc7230dbcd98175cdf2cb89af6264f5fecf0d1dfb68ef9c5f",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_summon_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        116,
+        452,
+        448
+      ],
+      "sha256": "b1e1ce1ea7468932bfe1b93176a5a53d6f14623ef1ac09fb1bddc42a7cb46da5",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_summon_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        52,
+        40,
+        456,
+        448
+      ],
+      "sha256": "55fc92eb616187f4c6f7ad0a20a22f39705d6862c9e61829c116a7eb81cea187",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_summon_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        44,
+        52,
+        468,
+        448
+      ],
+      "sha256": "0acaded37a0275d643c365438a7aa1f9939d6402767e4784dfa1a1d4e64dc079",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_summon_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        76,
+        48,
+        432,
+        448
+      ],
+      "sha256": "e279045070e7966bfd2889e9306d6ac0f81a321faad6607af678995b65fb9bc2",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_review_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        92,
+        96,
+        420,
+        448
+      ],
+      "sha256": "21144c2c89c182b126cfd876cb11816bbcf4d3a1710f550b867efe6c15d30c2d",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_review_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        84,
+        40,
+        424,
+        448
+      ],
+      "sha256": "e0e7f65435e30a5e6b5c24ecb180ed6708eddc34af3670d15a4e4221f4560c9b",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_review_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        48,
+        128,
+        464,
+        448
+      ],
+      "sha256": "4ad1a9582542569ac72697c0babf2bf57bfdcd55272f83dd91f447cc013f2779",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_review_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        92,
+        96,
+        416,
+        448
+      ],
+      "sha256": "655834f85e55fe8087d3305c32c4311de276ce240005c112473c27f7a230395c",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_reject_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        84,
+        64,
+        428,
+        448
+      ],
+      "sha256": "70a370b1bfd078bf4f9cbae6bac620e81b60d876895c228e17c47c70586e42de",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_reject_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        88,
+        92,
+        420,
+        448
+      ],
+      "sha256": "fa7706323625bc75425e9f2e022219fa7ddb54c86c86175d111f3c571e81aaa2",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_reject_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        92,
+        92,
+        420,
+        448
+      ],
+      "sha256": "909c3e76e2414ce251ffa7723405a633f26c7f271e752a17ed3216007a9b1bf2",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/difficult_customer_reject_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        88,
+        96,
+        424,
+        448
+      ],
+      "sha256": "65adfed35307b57c9436afc4facb831cd73cb4468f320a91811ed29ca4d7a04f",
+      "duplicateOf": null,
+      "grid4": true
+    }
+  ],
+  "bodyHeightPx": 384,
+  "integrated": false,
+  "unityVerification": "not_run"
+}

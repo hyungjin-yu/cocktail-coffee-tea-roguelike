@@ -44,13 +44,15 @@ namespace CCT
             if (timer > 0f) return;
             timer = enemy.Def.attackInterval;
 
+            // 04 §6 T/E 투척 action(발사 시점은 로직 그대로). 쏘는 동안 플레이어 쪽을 보게 해 총구/손이 등 뒤에 오지 않게 한다.
+            if (enemy.PlayAction("action")) enemy.FaceTowards(player.Position.x, enemy.Animator.Current.Duration);
             Fire();
         }
 
         void Fire()
         {
             var def = enemy.Def;
-            Vector2 origin = enemy.transform.position;
+            Vector2 origin = EmitterOrigin(enemy);
             Vector2 toPlayer = player.Position - origin;
             Vector2 baseDir = toPlayer.sqrMagnitude > 0.0001f ? toPlayer.normalized : Vector2.right;
 
@@ -70,6 +72,15 @@ namespace CCT
                 EnemyProjectile.Spawn(origin, dir, def.projectileSpeed, def.projectileDamage, player, parent,
                     def.projectileSpriteResourcePath);
             }
+        }
+
+        /// <summary>몸체 action 프레임의 muzzle(T: 주전자·셰이커·다도 가디언) 또는 emitter(E/T: 마티니·밀크 포머) anchor
+        /// 월드 위치. 없으면(아이콘 몹·anchor 없는 프레임) 기존대로 몸 중심.</summary>
+        public static Vector2 EmitterOrigin(Enemy enemy)
+        {
+            if (enemy.TryGetActionAnchorWorld("action", "muzzle", out var world)) return world;
+            enemy.TryGetActionAnchorWorld("action", "emitter", out world);
+            return world;
         }
     }
 }

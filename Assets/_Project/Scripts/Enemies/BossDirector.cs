@@ -74,6 +74,9 @@ namespace CCT
             }
 
             game.ActiveBoss = boss;
+            game.Player?.HiddenRuntime?.OnBossSpawned(); // 41 삼색 원두
+            AudioService.PlaySfx("boss_warning"); // 09: "보스 입장/위험" — 중앙 고정(worldPos 없음)
+            AudioService.SetMusicState(AudioService.MusicState.Boss); // 09:135 "보스 생존은 boss"
             return boss;
         }
     }

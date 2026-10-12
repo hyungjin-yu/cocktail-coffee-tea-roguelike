@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a445bc81f26e6774ab6f4f2386bac954, type: 3}
+  m_Name: tidy_counter
+  m_EditorClassIdentifier: CCT.Runtime::CCT.PermanentSkillData
+  id: tidy_counter
+  displayName: "\uC815\uB3C8\uB41C \uCE74\uC6B4\uD130"
+  description: "\uC601\uAD6C \uC90D\uAE30 \uBC18\uACBD +0.5"
+  branch: 2
+  tier: 3
+  prerequisite: {fileID: 11400000, guid: 7e5e7b4e71c62b743bbc3cf116492e74, type: 2}
+  additionalPrerequisites: []
+  minimumClears: 0
+  weaponSpecific: 0
+  targetWeapon: 0
+  group: 2
+  cost: 3
+  effects:
+  - type: 14
+    value: 0.5
+  iconResourcePath: 
+  iconArtId: skill_ingredient

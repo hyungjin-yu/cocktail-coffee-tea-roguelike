@@ -1,0 +1,245 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/martini_spirit/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/martini_spirit",
+  "assetId": "martini_spirit",
+  "columns": 5,
+  "rows": 4,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 1.45,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "action",
+      "index": 0,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 1,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 2,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 3,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 48,
+      "right": 243,
+      "top": 23,
+      "bottom": 276
+    },
+    {
+      "left": 325,
+      "right": 522,
+      "top": 9,
+      "bottom": 272
+    },
+    {
+      "left": 606,
+      "right": 803,
+      "top": 23,
+      "bottom": 276
+    },
+    {
+      "left": 891,
+      "right": 1092,
+      "top": 25,
+      "bottom": 276
+    },
+    {
+      "left": 1173,
+      "right": 1368,
+      "top": 39,
+      "bottom": 276
+    },
+    {
+      "left": 30,
+      "right": 261,
+      "top": 297,
+      "bottom": 548
+    },
+    {
+      "left": 308,
+      "right": 543,
+      "top": 293,
+      "bottom": 546
+    },
+    {
+      "left": 590,
+      "right": 829,
+      "top": 303,
+      "bottom": 546
+    },
+    {
+      "left": 880,
+      "right": 1101,
+      "top": 307,
+      "bottom": 548
+    },
+    {
+      "left": 1161,
+      "right": 1376,
+      "top": 303,
+      "bottom": 548
+    },
+    {
+      "left": 75,
+      "right": 240,
+      "top": 577,
+      "bottom": 816
+    },
+    {
+      "left": 337,
+      "right": 530,
+      "top": 567,
+      "bottom": 818
+    },
+    {
+      "left": 608,
+      "right": 879,
+      "top": 575,
+      "bottom": 816
+    },
+    {
+      "left": 915,
+      "right": 1138,
+      "top": 575,
+      "bottom": 818
+    },
+    {
+      "left": 75,
+      "right": 238,
+      "top": 852,
+      "bottom": 1089
+    },
+    {
+      "left": 345,
+      "right": 532,
+      "top": 872,
+      "bottom": 1091
+    },
+    {
+      "left": 269,
+      "right": 874,
+      "top": 112,
+      "bottom": 721,
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/martini_spirit/reference/supplemental.png",
+      "targetHeight": 150
+    },
+    {
+      "left": 582,
+      "right": 853,
+      "top": 902,
+      "bottom": 1095
+    },
+    {
+      "left": 884,
+      "right": 1151,
+      "top": 946,
+      "bottom": 1095
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/martini_spirit.png"
+}

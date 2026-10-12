@@ -1,0 +1,321 @@
+{
+  "assetId": "grinder_golem",
+  "specVersion": "1.0",
+  "kind": "body",
+  "status": "ready",
+  "frameSizePx": [
+    512,
+    512
+  ],
+  "pixelsPerUnit": 128,
+  "pivotNormalized": [
+    0.5,
+    0.125
+  ],
+  "targetBodyHeightWorld": 2.4,
+  "bodyHeightPx": 384,
+  "clips": {
+    "idle": {
+      "fps": 6,
+      "loop": true,
+      "files": [
+        "frames/grinder_golem_idle_right_00.png",
+        "frames/grinder_golem_idle_right_01.png",
+        "frames/grinder_golem_idle_right_02.png",
+        "frames/grinder_golem_idle_right_03.png"
+      ]
+    },
+    "move": {
+      "fps": 10,
+      "loop": true,
+      "files": [
+        "frames/grinder_golem_move_right_00.png",
+        "frames/grinder_golem_move_right_01.png",
+        "frames/grinder_golem_move_right_02.png",
+        "frames/grinder_golem_move_right_03.png",
+        "frames/grinder_golem_move_right_04.png",
+        "frames/grinder_golem_move_right_05.png"
+      ]
+    },
+    "hurt": {
+      "fps": 12.5,
+      "loop": false,
+      "files": [
+        "frames/grinder_golem_hurt_right_00.png"
+      ]
+    },
+    "defeat": {
+      "fps": 10,
+      "loop": false,
+      "files": [
+        "frames/grinder_golem_defeat_right_00.png",
+        "frames/grinder_golem_defeat_right_01.png",
+        "frames/grinder_golem_defeat_right_02.png",
+        "frames/grinder_golem_defeat_right_03.png"
+      ]
+    },
+    "charge_prepare": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/grinder_golem_charge_prepare_right_00.png",
+        "frames/grinder_golem_charge_prepare_right_01.png",
+        "frames/grinder_golem_charge_prepare_right_02.png",
+        "frames/grinder_golem_charge_prepare_right_03.png"
+      ]
+    },
+    "charge": {
+      "fps": 10,
+      "loop": true,
+      "files": [
+        "frames/grinder_golem_charge_right_00.png",
+        "frames/grinder_golem_charge_right_01.png"
+      ]
+    }
+  },
+  "anchorsByFrame": {},
+  "sourceReferences": [
+    "reference/original.png",
+    "reference/canonical.png",
+    "reference/charge-generated.png",
+    "reference/charge_prepare-generated.png",
+    "reference/hurt_defeat-generated.png",
+    "reference/idle-generated.png",
+    "reference/move-generated.png"
+  ],
+  "deviations": [],
+  "checks": {
+    "structural": "pass",
+    "rgbaAlpha": "pass",
+    "frameCounts": "pass",
+    "uniqueFrames": "pass",
+    "pixelGrid4": "pass",
+    "sourceReferences": "pass",
+    "nativeSource": "pass",
+    "visualFrames": "pass",
+    "bodyIdentity": "pass",
+    "bakedVfxSeparated": "pass",
+    "loopSeams": "pass",
+    "anchors": "pass",
+    "unity": "pass: All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+    "imagesReviewed": [
+      "frames/grinder_golem_idle_right_00.png",
+      "frames/grinder_golem_idle_right_01.png",
+      "frames/grinder_golem_idle_right_02.png",
+      "frames/grinder_golem_idle_right_03.png",
+      "frames/grinder_golem_move_right_00.png",
+      "frames/grinder_golem_move_right_01.png",
+      "frames/grinder_golem_move_right_02.png",
+      "frames/grinder_golem_move_right_03.png",
+      "frames/grinder_golem_move_right_04.png",
+      "frames/grinder_golem_move_right_05.png",
+      "frames/grinder_golem_hurt_right_00.png",
+      "frames/grinder_golem_defeat_right_00.png",
+      "frames/grinder_golem_defeat_right_01.png",
+      "frames/grinder_golem_defeat_right_02.png",
+      "frames/grinder_golem_defeat_right_03.png",
+      "frames/grinder_golem_charge_prepare_right_00.png",
+      "frames/grinder_golem_charge_prepare_right_01.png",
+      "frames/grinder_golem_charge_prepare_right_02.png",
+      "frames/grinder_golem_charge_prepare_right_03.png",
+      "frames/grinder_golem_charge_right_00.png",
+      "frames/grinder_golem_charge_right_01.png"
+    ],
+    "loopReviewImages": [
+      "reference/charge-loop-seam.png",
+      "reference/idle-loop-seam.png",
+      "reference/move-loop-seam.png"
+    ],
+    "nativeRenderMatchesPng": "pass"
+  },
+  "acceptance": {
+    "generated": true,
+    "structurallyValid": true,
+    "visuallyReviewed": true,
+    "sourceReady": true,
+    "firstPassAccepted": true,
+    "unityVerified": true,
+    "strictReleaseReady": true,
+    "runtimeVisualReview": "accepted_verified_scope",
+    "runtimeReview": {
+      "reviewer": "Codex art worker task_523ad2e66a6c",
+      "dispatch": "ctx_db39a1e69bf4",
+      "date": "2026-10-08",
+      "result": "accepted_verified_scope",
+      "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+      "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+      "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+      "additionalEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\body-720-final-evidence.csv",
+      "pending": [],
+      "captureRoots": [
+        "C:/UnityScratch/r14/runs/rc-t1080/out",
+        "C:/UnityScratch/r14/runs/rc-t720/out",
+        "C:/UnityScratch/r14/runs/rc-b1080/out",
+        "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+        "C:/UnityScratch/r14/runs/rc2-ice/out",
+        "C:/UnityScratch/r14/runs/rc2-save-recovery/out",
+        "C:/UnityScratch/r14/runs/rc3-deaths720/out",
+        "C:/UnityScratch/r14/runs/b720/out"
+      ],
+      "acceptedClipsBothFacings": [
+        "idle",
+        "move",
+        "hurt",
+        "defeat",
+        "charge_prepare",
+        "charge"
+      ]
+    },
+    "runtimeReviewHistory": [
+      {
+        "reviewer": "Codex art worker task_15d755821ed6",
+        "date": "2026-10-08",
+        "result": "partial_visual_acceptance",
+        "acceptedClipsBothFacings": [
+          "idle",
+          "move",
+          "hurt"
+        ],
+        "evidence": "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/release-review-2026-10-08/motion-final-review.md",
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/b1080/out"
+        ],
+        "pending": [
+          "defeat00..03 facing L native gallery",
+          "720p complete native review",
+          "Special pattern source-frame/facing coverage",
+          "difficult_customer defeat00..03 facing R without result UI"
+        ]
+      },
+      {
+        "reviewer": "Codex art worker task_523ad2e66a6c",
+        "dispatch": "ctx_db39a1e69bf4",
+        "date": "2026-10-08",
+        "result": "accepted_verified_scope",
+        "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained.",
+        "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+        "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+        "pending": [
+          "720p complete enemy native review (previous explicit pending retained)"
+        ],
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/rc-t1080/out",
+          "C:/UnityScratch/r14/runs/rc-t720/out",
+          "C:/UnityScratch/r14/runs/rc-b1080/out",
+          "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+          "C:/UnityScratch/r14/runs/rc2-ice/out"
+        ],
+        "acceptedClipsBothFacings": [
+          "idle",
+          "move",
+          "hurt",
+          "defeat",
+          "charge_prepare",
+          "charge"
+        ]
+      },
+      {
+        "reviewer": "Codex art worker task_523ad2e66a6c",
+        "dispatch": "ctx_db39a1e69bf4",
+        "date": "2026-10-08",
+        "result": "accepted_verified_scope",
+        "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+        "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+        "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+        "additionalEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\body-720-final-evidence.csv",
+        "pending": [],
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/rc-t1080/out",
+          "C:/UnityScratch/r14/runs/rc-t720/out",
+          "C:/UnityScratch/r14/runs/rc-b1080/out",
+          "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+          "C:/UnityScratch/r14/runs/rc2-ice/out",
+          "C:/UnityScratch/r14/runs/rc2-save-recovery/out",
+          "C:/UnityScratch/r14/runs/rc3-deaths720/out",
+          "C:/UnityScratch/r14/runs/b720/out"
+        ],
+        "acceptedClipsBothFacings": [
+          "idle",
+          "move",
+          "hurt",
+          "defeat",
+          "charge_prepare",
+          "charge"
+        ]
+      }
+    ]
+  },
+  "provenance": {
+    "tool": "built-in imagegen and native Aseprite",
+    "method": "independent articulated keypose generation; nearest-neighbor4px normalization, no interpolated/duplicate padding",
+    "idleMethod": "Native torso/arm articulation from neutral generated pose; planted lower body;4 unique cels, maximum4px breathing. Other clips use independently generated poses. Native component isolation removes neighboring figures and VFX; no interpolated or duplicate padding.",
+    "originalPathsActuallyViewed": [
+      "C:\\Users\\user\\Desktop\\개발\\커피칵테일차\\이미지\\몹\\중간 보스\\그라인더 골렘_1차.png",
+      "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\Icons\\Enemies\\grinder_golem_bgfix.png"
+    ],
+    "sourceChecks": [
+      {
+        "path": "reference/original.png",
+        "sha256": "b6b9985ec26791059e9c559da1f0bc31811923d71bf3db6a8a150d3268b7edec",
+        "exists": true
+      },
+      {
+        "path": "reference/canonical.png",
+        "sha256": "01e9b48c22ce86b1962aea84e8843276212c07d5bde903cc36ab742fbaee0539",
+        "exists": true
+      },
+      {
+        "path": "reference/charge-generated.png",
+        "sha256": "32a6cfec15757827bd8f97b5151460de6b327d734dd2e5cc3bc854e28c2eb9c4",
+        "exists": true
+      },
+      {
+        "path": "reference/charge_prepare-generated.png",
+        "sha256": "7485a7ba5bec4b27e16d63981f01d1e3106f4f14ac95648d4720014629578c81",
+        "exists": true
+      },
+      {
+        "path": "reference/hurt_defeat-generated.png",
+        "sha256": "2642609194f7b00d2941c73bfd25d41f738632c7cec4e1c09c276ca7ba70f50b",
+        "exists": true
+      },
+      {
+        "path": "reference/idle-generated.png",
+        "sha256": "7cf07afbe8a1fb54ae69a3eb7f43da93f9a36b5c96369c6a5f8ab67c2b64fe8a",
+        "exists": true
+      },
+      {
+        "path": "reference/move-generated.png",
+        "sha256": "cb03139f9d74c248ff7c8e1f332df6baa31d02c5cc173e90c282ba1998893608",
+        "exists": true
+      }
+    ]
+  },
+  "scope": "full_boss_body_v1",
+  "nativeSourceFiles": [
+    "grinder_golem.aseprite"
+  ],
+  "missingClips": [],
+  "integrated": false,
+  "anchorPolicy": "No externally equipped weapon layer on these bosses; crank, portafilters, phone and receipt are intrinsic body props. Customer review emission anchors provided where required.",
+  "timing": {
+    "dispatchStartedUtc": "2026-10-04T07:11:56Z",
+    "sourceReadyUtc": "2026-10-04T07:54:52.356326+00:00",
+    "finalSourceAuditUtc": "2026-10-04T08:10:24.951456+00:00"
+  },
+  "usage": {
+    "builtInImageGenerationCallsObserved": 8,
+    "providerTokenCounters": null,
+    "providerCreditCounters": null,
+    "providerCountersExposed": false,
+    "pixelLabGenerationCalls": 0
+  },
+  "nativeSourceCheck": {
+    "frames": 21,
+    "width": 512,
+    "height": 512,
+    "colorDepth": 32,
+    "sha256": "d9e4a9f26b16b2bb412681ef0d18ae622393bf4717946d0827b9464416ee4435",
+    "renderMatchedFrameCount": 21
+  }
+}

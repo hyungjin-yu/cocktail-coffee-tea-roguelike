@@ -26,12 +26,15 @@ namespace CCT.Tests
         PermanentSkillData Find(List<PermanentSkillData> nodes, string id) => nodes.Single(n => n.id == id);
 
         [Test]
-        public void DefaultSet_HasThreeBranchesOfTwoTiers()
+        public void DefaultSet_Has24NodesWithFiveGroupsAndLegacyCosts()
         {
             var nodes = DefaultNodes();
-            Assert.AreEqual(6, nodes.Count);
-            foreach (SkillBranch branch in System.Enum.GetValues(typeof(SkillBranch)))
-                Assert.AreEqual(2, nodes.Count(n => n.branch == branch), branch.ToString());
+            Assert.AreEqual(24, nodes.Count);
+            foreach (var group in new[] {PermanentSkillGroup.Attack,PermanentSkillGroup.Survival,PermanentSkillGroup.Ingredient})
+                Assert.AreEqual(5,nodes.Count(n=>n.group==group));
+            Assert.AreEqual(8,nodes.Count(n=>n.group==PermanentSkillGroup.Weapon));
+            Assert.AreEqual(1,nodes.Count(n=>n.group==PermanentSkillGroup.Master));
+            Assert.AreEqual(129,nodes.Sum(n=>n.cost));
         }
 
         [Test]
@@ -39,8 +42,7 @@ namespace CCT.Tests
         {
             foreach (var node in DefaultNodes())
             {
-                Assert.IsFalse(string.IsNullOrEmpty(node.iconResourcePath), node.id);
-                Assert.IsNotNull(Resources.Load<Sprite>(node.iconResourcePath),
+                Assert.IsNotNull(PermanentSkillView.Icon(node),
                     $"{node.id} -> {node.iconResourcePath} 아이콘이 Resources 에 있어야 한다");
             }
         }

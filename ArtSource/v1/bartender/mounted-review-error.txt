@@ -1,0 +1,1 @@
+C:\Users\user\Documents\Personal_Note\03_프로젝트\칵테일 커피 티 로그라이크 기획\ArtProduction\first-pass-v1\mounted_player_review.lua:3: expected value, got (-17)

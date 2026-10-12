@@ -1,0 +1,141 @@
+{
+ "assetId": "zone_coffee_pool_v2",
+ "request": "43 커피 장판 v2(드립 스펙터·리바이어던·진상 손님)",
+ "kind": "monster_ground_zone_loop",
+ "provenance": {
+  "tool": "Aseprite 1.3.18.6 + PixelLab extension (GUI)",
+  "pixellabTool": "Create animated object/character (pro)",
+  "description": "top-down view of a flat spilled hot coffee puddle on a cafe floor, wide oval shape twice as wide as tall filling the canvas width, dark brown coffee with lighter caramel crema rim and glossy highlights, pixel art, transparent background",
+  "animationAction": "coffee surface gently rippling with small bubbles rising and popping in a seamless loop",
+  "seed": 121003,
+  "removeBackground": true,
+  "outputMethod": "New frame",
+  "generationHistory": "C:/Users/user/AppData/Roaming/Aseprite/extensions/pixellab/generation_history/2026-10-12_09-37-40 - Create animated object-character (pro) - 001",
+  "asepriteSource": "zone_coffee_pool_v2.aseprite",
+  "asepriteSourceSha256": "7364e53bc23c07079d3b8586cf4a4fbd0cae6d404c5fa9f474fa338fdc7711dc",
+  "asepriteSave": "GUI Ctrl+S (native Save As)",
+  "otherGenerators": "none"
+ },
+ "runtime": {
+  "path": "Assets/_Project/Resources/ArtExtra/zone_coffee_pool_v2",
+  "frameSizePx": [
+   128,
+   128
+  ],
+  "frames": 4,
+  "fps": 10,
+  "loop": true,
+  "pixelsPerUnit": 128,
+  "pivot": "center",
+  "filter": "point",
+  "readable": true,
+  "opaqueUnionBBoxPx": [
+   5,
+   25,
+   123,
+   109
+  ],
+  "fitRule": "per-axis scale so opaque union bbox = 2r x 2r (visual edge == world hit circle)"
+ },
+ "postprocess": "kept largest 8-connected component; removed top-connected neutral-gray steam so the crema rim is the boundary",
+ "frames": [
+  {
+   "file": "zone_coffee_pool_v2_00.png",
+   "sourceFrame": 0,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    5,
+    29,
+    123,
+    109
+   ],
+   "opaquePx": 6736,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "b445802bf2c154aaf6fb292c5b8997e270b17c2ab1ec3d81adfd7dbb2d92bd7c",
+   "postprocess": "largest connected component + removed top-connected neutral-gray steam (boundary = crema rim)"
+  },
+  {
+   "file": "zone_coffee_pool_v2_01.png",
+   "sourceFrame": 1,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    5,
+    29,
+    123,
+    109
+   ],
+   "opaquePx": 6887,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "0fe5bccee2ca12357d149272ca680aea34baafd304bb8c6a6fa90f2b7c68605e",
+   "postprocess": "largest connected component + removed top-connected neutral-gray steam (boundary = crema rim)"
+  },
+  {
+   "file": "zone_coffee_pool_v2_02.png",
+   "sourceFrame": 2,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    6,
+    25,
+    123,
+    109
+   ],
+   "opaquePx": 7316,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "529f0806c3e5955ab84342ebe89043172f043d0953dfaca3413230a95a9999cc",
+   "postprocess": "largest connected component + removed top-connected neutral-gray steam (boundary = crema rim)"
+  },
+  {
+   "file": "zone_coffee_pool_v2_03.png",
+   "sourceFrame": 3,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    6,
+    25,
+    123,
+    109
+   ],
+   "opaquePx": 7377,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "ab8d93579ad0f21ebe7161987f97d024d6fbd6f57a59ee06e7d62c99668484b5",
+   "postprocess": "largest connected component + removed top-connected neutral-gray steam (boundary = crema rim)"
+  }
+ ],
+ "rawFrames": [
+  "zone_coffee_pool_v2_raw_00.png",
+  "zone_coffee_pool_v2_raw_01.png",
+  "zone_coffee_pool_v2_raw_02.png",
+  "zone_coffee_pool_v2_raw_03.png"
+ ]
+}

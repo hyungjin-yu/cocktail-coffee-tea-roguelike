@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: molotov
   displayName: "\uD654\uC5FC\uBCD1 \uCE75\uD14C\uC77C"
-  description: "\uC8FC\uAE30\uC801\uC73C\uB85C \uC8FC\uBCC0\uC5D0 \uD654\uC5FC \uD3ED\uBC1C
-    (Lv +1)"
+  description: "\uC8FC\uBB34\uAE30 \uC801\uC911 \uD654\uC5FC (Lv +1): 1\uCD08\uB9C8\uB2E4
+    3\uCD08 \uC9C0\uC18D"
   flavorText: "\uC774\uB984 \uADF8\uB300\uB85C \uC704\uD5D8\uD558\uACE0 \uAC15\uB82C\uD55C
     \uD55C \uC794."
   category: 0

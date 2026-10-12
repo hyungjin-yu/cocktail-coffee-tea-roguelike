@@ -1,0 +1,347 @@
+{
+  "assetId": "drip_server_specter",
+  "specVersion": "1.0",
+  "kind": "body",
+  "status": "ready",
+  "frameSizePx": [
+    512,
+    512
+  ],
+  "pixelsPerUnit": 128,
+  "pivotNormalized": [
+    0.5,
+    0.125
+  ],
+  "targetBodyHeightWorld": 2.2,
+  "bodyHeightPx": 380,
+  "clips": {
+    "idle": {
+      "fps": 6,
+      "loop": true,
+      "files": [
+        "frames/drip_server_specter_idle_right_00.png",
+        "frames/drip_server_specter_idle_right_01.png",
+        "frames/drip_server_specter_idle_right_02.png",
+        "frames/drip_server_specter_idle_right_03.png"
+      ]
+    },
+    "move": {
+      "fps": 10,
+      "loop": true,
+      "files": [
+        "frames/drip_server_specter_move_right_00.png",
+        "frames/drip_server_specter_move_right_01.png",
+        "frames/drip_server_specter_move_right_02.png",
+        "frames/drip_server_specter_move_right_03.png",
+        "frames/drip_server_specter_move_right_04.png",
+        "frames/drip_server_specter_move_right_05.png"
+      ]
+    },
+    "hurt": {
+      "fps": 12.5,
+      "loop": false,
+      "files": [
+        "frames/drip_server_specter_hurt_right_00.png"
+      ]
+    },
+    "defeat": {
+      "fps": 10,
+      "loop": false,
+      "files": [
+        "frames/drip_server_specter_defeat_right_00.png",
+        "frames/drip_server_specter_defeat_right_01.png",
+        "frames/drip_server_specter_defeat_right_02.png",
+        "frames/drip_server_specter_defeat_right_03.png"
+      ]
+    },
+    "drip": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/drip_server_specter_drip_right_00.png",
+        "frames/drip_server_specter_drip_right_01.png",
+        "frames/drip_server_specter_drip_right_02.png",
+        "frames/drip_server_specter_drip_right_03.png"
+      ]
+    },
+    "vanish": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/drip_server_specter_vanish_right_00.png",
+        "frames/drip_server_specter_vanish_right_01.png",
+        "frames/drip_server_specter_vanish_right_02.png",
+        "frames/drip_server_specter_vanish_right_03.png"
+      ]
+    },
+    "appear": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/drip_server_specter_appear_right_00.png",
+        "frames/drip_server_specter_appear_right_01.png",
+        "frames/drip_server_specter_appear_right_02.png",
+        "frames/drip_server_specter_appear_right_03.png"
+      ]
+    }
+  },
+  "anchorsByFrame": {},
+  "sourceReferences": [
+    "reference/original.png",
+    "reference/canonical.png",
+    "reference/appear-generated.png",
+    "reference/drip-generated.png",
+    "reference/hurt_defeat-generated.png",
+    "reference/idle-generated.png",
+    "reference/move-generated.png",
+    "reference/vanish-generated.png"
+  ],
+  "deviations": [],
+  "checks": {
+    "structural": "pass",
+    "rgbaAlpha": "pass",
+    "frameCounts": "pass",
+    "uniqueFrames": "pass",
+    "pixelGrid4": "pass",
+    "sourceReferences": "pass",
+    "nativeSource": "pass",
+    "visualFrames": "pass",
+    "bodyIdentity": "pass",
+    "bakedVfxSeparated": "pass",
+    "loopSeams": "pass",
+    "anchors": "pass",
+    "unity": "pass: All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+    "imagesReviewed": [
+      "frames/drip_server_specter_idle_right_00.png",
+      "frames/drip_server_specter_idle_right_01.png",
+      "frames/drip_server_specter_idle_right_02.png",
+      "frames/drip_server_specter_idle_right_03.png",
+      "frames/drip_server_specter_move_right_00.png",
+      "frames/drip_server_specter_move_right_01.png",
+      "frames/drip_server_specter_move_right_02.png",
+      "frames/drip_server_specter_move_right_03.png",
+      "frames/drip_server_specter_move_right_04.png",
+      "frames/drip_server_specter_move_right_05.png",
+      "frames/drip_server_specter_hurt_right_00.png",
+      "frames/drip_server_specter_defeat_right_00.png",
+      "frames/drip_server_specter_defeat_right_01.png",
+      "frames/drip_server_specter_defeat_right_02.png",
+      "frames/drip_server_specter_defeat_right_03.png",
+      "frames/drip_server_specter_drip_right_00.png",
+      "frames/drip_server_specter_drip_right_01.png",
+      "frames/drip_server_specter_drip_right_02.png",
+      "frames/drip_server_specter_drip_right_03.png",
+      "frames/drip_server_specter_vanish_right_00.png",
+      "frames/drip_server_specter_vanish_right_01.png",
+      "frames/drip_server_specter_vanish_right_02.png",
+      "frames/drip_server_specter_vanish_right_03.png",
+      "frames/drip_server_specter_appear_right_00.png",
+      "frames/drip_server_specter_appear_right_01.png",
+      "frames/drip_server_specter_appear_right_02.png",
+      "frames/drip_server_specter_appear_right_03.png"
+    ],
+    "loopReviewImages": [
+      "reference/idle-loop-seam.png",
+      "reference/move-loop-seam.png"
+    ],
+    "nativeRenderMatchesPng": "pass"
+  },
+  "acceptance": {
+    "generated": true,
+    "structurallyValid": true,
+    "visuallyReviewed": true,
+    "sourceReady": true,
+    "firstPassAccepted": true,
+    "unityVerified": true,
+    "strictReleaseReady": true,
+    "runtimeVisualReview": "accepted_verified_scope",
+    "runtimeReview": {
+      "reviewer": "Codex art worker task_523ad2e66a6c",
+      "dispatch": "ctx_db39a1e69bf4",
+      "date": "2026-10-08",
+      "result": "accepted_verified_scope",
+      "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+      "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+      "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+      "additionalEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\body-720-final-evidence.csv",
+      "pending": [],
+      "captureRoots": [
+        "C:/UnityScratch/r14/runs/rc-t1080/out",
+        "C:/UnityScratch/r14/runs/rc-t720/out",
+        "C:/UnityScratch/r14/runs/rc-b1080/out",
+        "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+        "C:/UnityScratch/r14/runs/rc2-ice/out",
+        "C:/UnityScratch/r14/runs/rc2-save-recovery/out",
+        "C:/UnityScratch/r14/runs/rc3-deaths720/out",
+        "C:/UnityScratch/r14/runs/b720/out"
+      ],
+      "acceptedClipsBothFacings": [
+        "idle",
+        "move",
+        "hurt",
+        "defeat",
+        "drip",
+        "vanish",
+        "appear"
+      ]
+    },
+    "runtimeReviewHistory": [
+      {
+        "reviewer": "Codex art worker task_15d755821ed6",
+        "date": "2026-10-08",
+        "result": "partial_visual_acceptance",
+        "acceptedClipsBothFacings": [
+          "idle",
+          "move",
+          "hurt"
+        ],
+        "evidence": "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/release-review-2026-10-08/motion-final-review.md",
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/b1080/out"
+        ],
+        "pending": [
+          "defeat00..03 facing L native gallery",
+          "720p complete native review",
+          "Special pattern source-frame/facing coverage",
+          "difficult_customer defeat00..03 facing R without result UI"
+        ]
+      },
+      {
+        "reviewer": "Codex art worker task_523ad2e66a6c",
+        "dispatch": "ctx_db39a1e69bf4",
+        "date": "2026-10-08",
+        "result": "accepted_verified_scope",
+        "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained.",
+        "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+        "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+        "pending": [
+          "720p complete enemy native review (previous explicit pending retained)"
+        ],
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/rc-t1080/out",
+          "C:/UnityScratch/r14/runs/rc-t720/out",
+          "C:/UnityScratch/r14/runs/rc-b1080/out",
+          "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+          "C:/UnityScratch/r14/runs/rc2-ice/out"
+        ],
+        "acceptedClipsBothFacings": [
+          "idle",
+          "move",
+          "hurt",
+          "defeat",
+          "drip",
+          "vanish",
+          "appear"
+        ]
+      },
+      {
+        "reviewer": "Codex art worker task_523ad2e66a6c",
+        "dispatch": "ctx_db39a1e69bf4",
+        "date": "2026-10-08",
+        "result": "accepted_verified_scope",
+        "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+        "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+        "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+        "additionalEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\body-720-final-evidence.csv",
+        "pending": [],
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/rc-t1080/out",
+          "C:/UnityScratch/r14/runs/rc-t720/out",
+          "C:/UnityScratch/r14/runs/rc-b1080/out",
+          "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+          "C:/UnityScratch/r14/runs/rc2-ice/out",
+          "C:/UnityScratch/r14/runs/rc2-save-recovery/out",
+          "C:/UnityScratch/r14/runs/rc3-deaths720/out",
+          "C:/UnityScratch/r14/runs/b720/out"
+        ],
+        "acceptedClipsBothFacings": [
+          "idle",
+          "move",
+          "hurt",
+          "defeat",
+          "drip",
+          "vanish",
+          "appear"
+        ]
+      }
+    ]
+  },
+  "provenance": {
+    "tool": "built-in imagegen and native Aseprite",
+    "method": "independent articulated keypose generation; nearest-neighbor4px normalization, no interpolated/duplicate padding",
+    "idleMethod": "Native torso/arm articulation from neutral generated pose; planted lower body;4 unique cels, maximum4px breathing. Other clips use independently generated poses. Native component isolation removes neighboring figures and VFX; no interpolated or duplicate padding.",
+    "originalPathsActuallyViewed": [
+      "C:\\Users\\user\\Desktop\\개발\\커피칵테일차\\이미지\\몹\\중간 보스\\드립 서버 스펙터_1차.png",
+      "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\Icons\\Enemies\\drip_server_specter_bgfix.png"
+    ],
+    "sourceChecks": [
+      {
+        "path": "reference/original.png",
+        "sha256": "b65ba3563c04f2b3b967e18d50f6e9690f2c6b9520ba53ad0fa12f78f1e7c39e",
+        "exists": true
+      },
+      {
+        "path": "reference/canonical.png",
+        "sha256": "893656041ba626b08ba275bd8ed2beab1d89f54cec4bc6102a05ad935228d030",
+        "exists": true
+      },
+      {
+        "path": "reference/appear-generated.png",
+        "sha256": "1f9b7b99ace53eac2e172753dc71a925aeba08f0618d6f5d533221440f327100",
+        "exists": true
+      },
+      {
+        "path": "reference/drip-generated.png",
+        "sha256": "719ad076bb7b3607fd02a456e64eebbd8f646f31bf9285933c6babca57d8caad",
+        "exists": true
+      },
+      {
+        "path": "reference/hurt_defeat-generated.png",
+        "sha256": "98eee3d620c28779e5440b981c6314eb8eba2e4bf945ffaedcb613864230c7ac",
+        "exists": true
+      },
+      {
+        "path": "reference/idle-generated.png",
+        "sha256": "25fb00cfd8acca59e7df1a51179d5662f05ef3c599e6abb6dd198ad091065af8",
+        "exists": true
+      },
+      {
+        "path": "reference/move-generated.png",
+        "sha256": "8da9841d85fdab5866d99601b807e3f0ebf09bc9d8caf263f46234d1d26572d0",
+        "exists": true
+      },
+      {
+        "path": "reference/vanish-generated.png",
+        "sha256": "adbae91a02020ad668f1f6f50522ab15ee5b7653a9cacf5f4e4a281134bac637",
+        "exists": true
+      }
+    ]
+  },
+  "scope": "full_boss_body_v1",
+  "nativeSourceFiles": [
+    "drip_server_specter.aseprite"
+  ],
+  "missingClips": [],
+  "integrated": false,
+  "anchorPolicy": "No externally equipped weapon layer on these bosses; crank, portafilters, phone and receipt are intrinsic body props. Customer review emission anchors provided where required.",
+  "timing": {
+    "dispatchStartedUtc": "2026-10-04T07:11:56Z",
+    "sourceReadyUtc": "2026-10-04T07:56:16.725863+00:00",
+    "finalSourceAuditUtc": "2026-10-04T08:10:24.957438+00:00"
+  },
+  "usage": {
+    "builtInImageGenerationCallsObserved": 7,
+    "providerTokenCounters": null,
+    "providerCreditCounters": null,
+    "providerCountersExposed": false,
+    "pixelLabGenerationCalls": 0
+  },
+  "nativeSourceCheck": {
+    "frames": 27,
+    "width": 512,
+    "height": 512,
+    "colorDepth": 32,
+    "sha256": "213a478dd6fcb63ce689e794a0abe7460a55e306c985b0a37bd7ccd80a333d26",
+    "renderMatchedFrameCount": 27
+  }
+}

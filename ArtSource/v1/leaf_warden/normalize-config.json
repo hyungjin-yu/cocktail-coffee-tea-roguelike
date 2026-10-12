@@ -1,0 +1,173 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/leaf_warden/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/leaf_warden",
+  "assetId": "leaf_warden",
+  "columns": 5,
+  "rows": 3,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 1.2,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "action",
+      "index": 0,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 1,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 2,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 3,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 47,
+      "right": 268,
+      "top": 48,
+      "bottom": 317
+    },
+    {
+      "left": 362,
+      "right": 577,
+      "top": 42,
+      "bottom": 305
+    },
+    {
+      "left": 668,
+      "right": 887,
+      "top": 56,
+      "bottom": 317
+    },
+    {
+      "left": 984,
+      "right": 1213,
+      "top": 70,
+      "bottom": 317
+    },
+    {
+      "left": 32,
+      "right": 299,
+      "top": 386,
+      "bottom": 653
+    },
+    {
+      "left": 370,
+      "right": 559,
+      "top": 386,
+      "bottom": 653
+    },
+    {
+      "left": 656,
+      "right": 925,
+      "top": 370,
+      "bottom": 661
+    },
+    {
+      "left": 984,
+      "right": 1221,
+      "top": 398,
+      "bottom": 653
+    },
+    {
+      "left": 61,
+      "right": 254,
+      "top": 739,
+      "bottom": 962
+    },
+    {
+      "left": 362,
+      "right": 565,
+      "top": 739,
+      "bottom": 962
+    },
+    {
+      "left": 170,
+      "right": 737,
+      "top": 165,
+      "bottom": 822,
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/leaf_warden/reference/supplemental.png",
+      "targetHeight": 130
+    },
+    {
+      "left": 648,
+      "right": 893,
+      "top": 813,
+      "bottom": 954
+    },
+    {
+      "left": 961,
+      "right": 1220,
+      "top": 845,
+      "bottom": 950
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/leaf_warden.png"
+}

@@ -1,0 +1,451 @@
+{
+  "assetId": "grinder_golem",
+  "expectedFrameCount": 21,
+  "actualFrameCount": 21,
+  "frames": [
+    {
+      "file": "frames/grinder_golem_idle_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        64,
+        448,
+        448
+      ],
+      "sha256": "9d11979d41581465edece184a2ed05526be178ecd86541afac6a035a1581763b",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_idle_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        60,
+        448,
+        448
+      ],
+      "sha256": "591a142d49b86c0f4ef08d5c6ec607065d3ecbfddca9b12fbbe8a38fd4b72f85",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_idle_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        56,
+        64,
+        444,
+        448
+      ],
+      "sha256": "1ac58a6e152056b02c95464ee792f7686785ed9980406545a29b9e449d6acd89",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_idle_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        68,
+        448,
+        448
+      ],
+      "sha256": "a3b31220415a0d20c1c8c6f6479909a6ccf0be47f18eef59c8520dee411b55d0",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_move_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        64,
+        448,
+        448
+      ],
+      "sha256": "d4a974170b940a27e1d70a81b4528f505a10da03f0ca54e1aa426fab5c9793b1",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_move_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        64,
+        72,
+        444,
+        448
+      ],
+      "sha256": "483f2b83daa59d46d90d19d61021ebdebf5c8869af07c7dd73f923c6f4d6a33a",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_move_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        56,
+        56,
+        452,
+        448
+      ],
+      "sha256": "c81118c6fa9eef379b76d5bc7449770c44268f79498de5e9d48329607fd47f02",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_move_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        56,
+        52,
+        452,
+        448
+      ],
+      "sha256": "321348d4ae81b58743386822aed2a98a76afe849c04123c50d3cb21eb8557f08",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_move_right_04.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        56,
+        56,
+        452,
+        448
+      ],
+      "sha256": "1bd55977019499b5dc2ea44eb006ac8d08934086ce148c7e6db65ff48d761461",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_move_right_05.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        56,
+        56,
+        456,
+        448
+      ],
+      "sha256": "10105b07b472ea2bd0a9d20dc852f4c8b43f8ec00e05b3a235a1b40aeb8613cf",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_hurt_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        88,
+        64,
+        420,
+        448
+      ],
+      "sha256": "2b972be2091e68829159ca74fba9400961e693499d4cc4625865eaf1a82b3f25",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_defeat_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        92,
+        132,
+        420,
+        448
+      ],
+      "sha256": "e1eec90edbc70d838c66443fa57d5cec0cd56fbc55135b122a92388e095d683e",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_defeat_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        68,
+        192,
+        440,
+        448
+      ],
+      "sha256": "9b804882c59adac079e600d5dc9c345401f2e93c258fd489354ddd3e44cd2f77",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_defeat_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        48,
+        284,
+        460,
+        448
+      ],
+      "sha256": "6e24023e5fe48f5b414939eb17398646c2271ee9dedfaf98905978759cdceb40",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_defeat_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        92,
+        296,
+        416,
+        448
+      ],
+      "sha256": "f75f997f2065e39e79e47dd5976b4f6af9a03e7344e49a2f6e76a4c8cc7bd7c8",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_charge_prepare_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        64,
+        448,
+        448
+      ],
+      "sha256": "604993c048316fe56654d75b91a8ae446bc28e65e878a46791e47f50642e4f4b",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_charge_prepare_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        68,
+        44,
+        440,
+        448
+      ],
+      "sha256": "2220238be90dd4efb3fdb3acea910407c603f98a0380bfd3262d9997b4c33347",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_charge_prepare_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        36,
+        120,
+        472,
+        448
+      ],
+      "sha256": "d7186693fe72d74042760b2ac195084230101bfcd21f92224ae3ba2338e2b1b4",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_charge_prepare_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        80,
+        140,
+        432,
+        448
+      ],
+      "sha256": "bf096cd37f206868c48af1d0fcbde6d4c58aded282d374a913d1a91791bb74b2",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_charge_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        36,
+        96,
+        476,
+        448
+      ],
+      "sha256": "a74cb737635c771347fff47b12ba671a49c8a1f893fca8c444bad2611fc10dff",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/grinder_golem_charge_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        52,
+        84,
+        460,
+        448
+      ],
+      "sha256": "5f98265f554b6cf9d964024260916a4e0ba58c64556587107463e5bffdd27302",
+      "duplicateOf": null,
+      "grid4": true
+    }
+  ],
+  "bodyHeightPx": 384,
+  "integrated": false,
+  "unityVerification": "not_run"
+}

@@ -1,0 +1,230 @@
+{
+  "files": {
+    "bgm_boss": {
+      "channels": 2,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 60.0,
+      "peakDbfs": -11.73,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0003
+    },
+    "bgm_menu": {
+      "channels": 2,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 42.6667,
+      "peakDbfs": -12.15,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0003
+    },
+    "bgm_run": {
+      "channels": 2,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 68.5714,
+      "peakDbfs": -11.71,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0003
+    },
+    "boss_warning": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.5,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "clear": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 1.2,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "defeat": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 1.0,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "enemy_defeat": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.18,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "explosion": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.35,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "hit_enemy": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.08,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "hit_player": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.22,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "hybrid_unlock": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.6,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "levelup": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.45,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "pickup": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.08,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "shot_bow": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.14,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "shot_gun": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.13,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "shot_hybrid": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.18,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "skill_unlock": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.36,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "spell": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.3,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "steam": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.8,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "swing_rapier": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.12,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "swing_sword": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.16,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "ui_cancel": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.12,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "ui_confirm": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.12,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "ui_denied": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.16,
+      "peakDbfs": -6.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    },
+    "ui_focus": {
+      "channels": 1,
+      "sampleRate": 48000,
+      "bitDepth": 16,
+      "durationSeconds": 0.05,
+      "peakDbfs": -12.0,
+      "loopSeamJump": 0.0,
+      "loopSlopeJump": 0.0
+    }
+  },
+  "issues": []
+}

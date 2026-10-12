@@ -40,3 +40,22 @@ crashlytics-build.properties
 /[Pp]ackages/*
 !/[Pp]ackages/manifest.json
 !/[Pp]ackages/packages-lock.json
+
+# Generated delivery evidence and packaged players
+/Delivery/**
+!/Delivery/*.md
+!/Delivery/Reports/
+!/Delivery/Reports/*.md
+
+# Temporary Unity test scenes
+/Assets/InitTestScene*.unity
+/Assets/InitTestScene*.unity.meta
+
+# Local credentials and saves
+.env
+.env.*
+*.pem
+*.key
+save.json
+settings.json
+guest_session.json

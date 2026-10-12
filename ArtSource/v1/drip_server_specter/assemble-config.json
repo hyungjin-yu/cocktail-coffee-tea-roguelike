@@ -1,0 +1,536 @@
+{
+  "assetId": "drip_server_specter",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips",
+  "frames": [
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/idle-generated.png",
+      "box": {
+        "left": 138,
+        "right": 618,
+        "top": 113,
+        "bottom": 596,
+        "area": 120113,
+        "seed": [
+          324,
+          113
+        ]
+      },
+      "scale": 0.7786259541984732,
+      "file": "frames/drip_server_specter_idle_right_00.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/idle-generated.png",
+      "box": {
+        "left": 706,
+        "right": 1224,
+        "top": 81,
+        "bottom": 604,
+        "area": 130184,
+        "seed": [
+          926,
+          81
+        ]
+      },
+      "scale": 0.7786259541984732,
+      "file": "frames/drip_server_specter_idle_right_01.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/idle-generated.png",
+      "box": {
+        "left": 114,
+        "right": 617,
+        "top": 718,
+        "bottom": 1205,
+        "area": 118841,
+        "seed": [
+          325,
+          718
+        ]
+      },
+      "scale": 0.7786259541984732,
+      "file": "frames/drip_server_specter_idle_right_02.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/idle-generated.png",
+      "box": {
+        "left": 723,
+        "right": 1225,
+        "top": 705,
+        "bottom": 1205,
+        "area": 123358,
+        "seed": [
+          922,
+          705
+        ]
+      },
+      "scale": 0.7786259541984732,
+      "file": "frames/drip_server_specter_idle_right_03.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/move-generated.png",
+      "box": {
+        "left": 64,
+        "right": 490,
+        "top": 80,
+        "bottom": 495,
+        "area": 86638,
+        "seed": [
+          251,
+          80
+        ]
+      },
+      "scale": 0.9230769230769231,
+      "file": "frames/drip_server_specter_move_right_00.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/move-generated.png",
+      "box": {
+        "left": 575,
+        "right": 1001,
+        "top": 86,
+        "bottom": 480,
+        "area": 81479,
+        "seed": [
+          775,
+          86
+        ]
+      },
+      "scale": 0.9230769230769231,
+      "file": "frames/drip_server_specter_move_right_01.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/move-generated.png",
+      "box": {
+        "left": 1086,
+        "right": 1484,
+        "top": 62,
+        "bottom": 493,
+        "area": 81496,
+        "seed": [
+          1285,
+          62
+        ]
+      },
+      "scale": 0.9230769230769231,
+      "file": "frames/drip_server_specter_move_right_02.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/move-generated.png",
+      "box": {
+        "left": 54,
+        "right": 465,
+        "top": 561,
+        "bottom": 935,
+        "area": 83632,
+        "seed": [
+          256,
+          561
+        ]
+      },
+      "scale": 0.9230769230769231,
+      "file": "frames/drip_server_specter_move_right_03.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/move-generated.png",
+      "box": {
+        "left": 582,
+        "right": 1038,
+        "top": 576,
+        "bottom": 931,
+        "area": 86492,
+        "seed": [
+          828,
+          576
+        ]
+      },
+      "scale": 0.9230769230769231,
+      "file": "frames/drip_server_specter_move_right_04.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/move-generated.png",
+      "box": {
+        "left": 1090,
+        "right": 1498,
+        "top": 562,
+        "bottom": 954,
+        "area": 83347,
+        "seed": [
+          1255,
+          562
+        ]
+      },
+      "scale": 0.9230769230769231,
+      "file": "frames/drip_server_specter_move_right_05.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 59,
+        "right": 483,
+        "top": 138,
+        "bottom": 613,
+        "area": 106667,
+        "seed": [
+          242,
+          138
+        ]
+      },
+      "scale": 0.8067226890756303,
+      "file": "frames/drip_server_specter_hurt_right_00.png",
+      "clip": "hurt",
+      "fps": 12.5
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 514,
+        "right": 828,
+        "top": 154,
+        "bottom": 627,
+        "area": 85201,
+        "seed": [
+          674,
+          154
+        ]
+      },
+      "scale": 0.8067226890756303,
+      "file": "frames/drip_server_specter_defeat_right_00.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 887,
+        "right": 1218,
+        "top": 170,
+        "bottom": 629,
+        "area": 84325,
+        "seed": [
+          1043,
+          170
+        ]
+      },
+      "scale": 0.8067226890756303,
+      "file": "frames/drip_server_specter_defeat_right_01.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 1290,
+        "right": 1718,
+        "top": 335,
+        "bottom": 630,
+        "area": 79578,
+        "seed": [
+          1427,
+          335
+        ]
+      },
+      "scale": 0.8067226890756303,
+      "file": "frames/drip_server_specter_defeat_right_02.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 1740,
+        "right": 2120,
+        "top": 450,
+        "bottom": 640,
+        "area": 41622,
+        "seed": [
+          1929,
+          450
+        ]
+      },
+      "scale": 0.8067226890756303,
+      "file": "frames/drip_server_specter_defeat_right_03.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/drip-generated.png",
+      "box": {
+        "left": 91,
+        "right": 574,
+        "top": 65,
+        "bottom": 611,
+        "area": 132175,
+        "seed": [
+          339,
+          65
+        ]
+      },
+      "scale": 0.7020109689213894,
+      "file": "frames/drip_server_specter_drip_right_00.png",
+      "clip": "drip",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/drip-generated.png",
+      "box": {
+        "left": 686,
+        "right": 1213,
+        "top": 130,
+        "bottom": 615,
+        "area": 127753,
+        "seed": [
+          933,
+          130
+        ]
+      },
+      "scale": 0.7020109689213894,
+      "file": "frames/drip_server_specter_drip_right_01.png",
+      "clip": "drip",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/drip-generated.png",
+      "box": {
+        "left": 79,
+        "right": 601,
+        "top": 669,
+        "bottom": 1194,
+        "area": 131367,
+        "seed": [
+          280,
+          669
+        ]
+      },
+      "scale": 0.7020109689213894,
+      "file": "frames/drip_server_specter_drip_right_02.png",
+      "clip": "drip",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/drip-generated.png",
+      "box": {
+        "left": 707,
+        "right": 1215,
+        "top": 669,
+        "bottom": 1200,
+        "area": 132916,
+        "seed": [
+          929,
+          669
+        ]
+      },
+      "scale": 0.7020109689213894,
+      "file": "frames/drip_server_specter_drip_right_03.png",
+      "clip": "drip",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/vanish-generated.png",
+      "box": {
+        "left": 67,
+        "right": 677,
+        "top": 91,
+        "bottom": 624,
+        "area": 170502,
+        "seed": [
+          291,
+          91
+        ]
+      },
+      "scale": 0.7191011235955056,
+      "file": "frames/drip_server_specter_vanish_right_00.png",
+      "clip": "vanish",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/vanish-generated.png",
+      "box": {
+        "left": 738,
+        "right": 1141,
+        "top": 151,
+        "bottom": 613,
+        "area": 129282,
+        "seed": [
+          847,
+          151
+        ]
+      },
+      "scale": 0.7191011235955056,
+      "file": "frames/drip_server_specter_vanish_right_01.png",
+      "clip": "vanish",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/vanish-generated.png",
+      "box": {
+        "left": 157,
+        "right": 653,
+        "top": 665,
+        "bottom": 1219,
+        "area": 101636,
+        "seed": [
+          362,
+          665
+        ]
+      },
+      "scale": 0.7191011235955056,
+      "file": "frames/drip_server_specter_vanish_right_02.png",
+      "clip": "vanish",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/vanish-generated.png",
+      "box": {
+        "left": 836,
+        "right": 1125,
+        "top": 967,
+        "bottom": 1223,
+        "area": 47141,
+        "seed": [
+          910,
+          967
+        ]
+      },
+      "scale": 0.7191011235955056,
+      "file": "frames/drip_server_specter_vanish_right_03.png",
+      "clip": "vanish",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/appear-generated.png",
+      "box": {
+        "left": 221,
+        "right": 478,
+        "top": 242,
+        "bottom": 590,
+        "area": 41228,
+        "seed": [
+          287,
+          242
+        ]
+      },
+      "scale": 0.7555555555555555,
+      "file": "frames/drip_server_specter_appear_right_00.png",
+      "clip": "appear",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/appear-generated.png",
+      "box": {
+        "left": 766,
+        "right": 1159,
+        "top": 75,
+        "bottom": 602,
+        "area": 81333,
+        "seed": [
+          894,
+          75
+        ]
+      },
+      "scale": 0.7555555555555555,
+      "file": "frames/drip_server_specter_appear_right_01.png",
+      "clip": "appear",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/appear-generated.png",
+      "box": {
+        "left": 107,
+        "right": 582,
+        "top": 709,
+        "bottom": 1185,
+        "area": 100204,
+        "seed": [
+          275,
+          709
+        ]
+      },
+      "scale": 0.7555555555555555,
+      "file": "frames/drip_server_specter_appear_right_02.png",
+      "clip": "appear",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/drip_server_specter-clips/reference/appear-generated.png",
+      "box": {
+        "left": 656,
+        "right": 1225,
+        "top": 664,
+        "bottom": 1203,
+        "area": 154013,
+        "seed": [
+          868,
+          664
+        ]
+      },
+      "scale": 0.7555555555555555,
+      "file": "frames/drip_server_specter_appear_right_03.png",
+      "clip": "appear",
+      "fps": 12
+    }
+  ],
+  "tags": [
+    {
+      "name": "idle",
+      "first": 1,
+      "last": 4,
+      "loop": true
+    },
+    {
+      "name": "move",
+      "first": 5,
+      "last": 10,
+      "loop": true
+    },
+    {
+      "name": "hurt",
+      "first": 11,
+      "last": 11,
+      "loop": false
+    },
+    {
+      "name": "defeat",
+      "first": 12,
+      "last": 15,
+      "loop": false
+    },
+    {
+      "name": "drip",
+      "first": 16,
+      "last": 19,
+      "loop": false
+    },
+    {
+      "name": "vanish",
+      "first": 20,
+      "last": 23,
+      "loop": false
+    },
+    {
+      "name": "appear",
+      "first": 24,
+      "last": 27,
+      "loop": false
+    }
+  ]
+}

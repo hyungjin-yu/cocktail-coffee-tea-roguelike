@@ -1,0 +1,121 @@
+{
+  "anchorsByFrame": {},
+  "assetId": "summon_ring",
+  "checks": {
+    "structural": "pass: exact canvas, PNG RGBA8, nonempty alpha, native 2px grid",
+    "visual": "pass: every frame and all-support sheet visually inspected; game-scale composite and tile seams reviewed",
+    "unity": "pass: All 4 source frames directly viewed in mapped UI/combat/background context; layer, readability and applicable termination inspected. Details in common-evidence.csv and report."
+  },
+  "clips": {
+    "effect": {
+      "files": [
+        "frames/summon_ring_effect_right_00.png",
+        "frames/summon_ring_effect_right_01.png",
+        "frames/summon_ring_effect_right_02.png",
+        "frames/summon_ring_effect_right_03.png"
+      ],
+      "fps": 8,
+      "loop": true
+    }
+  },
+  "deviations": [],
+  "files": [
+    "frames/summon_ring_effect_right_00.png",
+    "frames/summon_ring_effect_right_01.png",
+    "frames/summon_ring_effect_right_02.png",
+    "frames/summon_ring_effect_right_03.png"
+  ],
+  "frameSizePx": [
+    256,
+    128
+  ],
+  "kind": "vfx",
+  "pivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "pixelsPerUnit": 128,
+  "provenance": {
+    "method": "four visually distinct phase correction; original source preserved in reference",
+    "tool": "Aseprite 1.3.18.6 Lua"
+  },
+  "runtimeTintVariants": {
+    "cocktail": "#49C9F2",
+    "tea": "#8EAD68"
+  },
+  "scope": "04+09 support art",
+  "sourceReferences": [
+    "reference/original/source/summon_ring.aseprite",
+    "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\first-pass-ui\\fix_support_animation.lua"
+  ],
+  "specVersion": "1.0",
+  "status": "ready",
+  "acceptance": {
+    "gameScaleEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\first-pass-ui\\review\\game-scale-1280x720.png",
+    "sourceReady": true,
+    "unityVerified": true,
+    "reviewEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\first-pass-ui\\review\\all-support-frames.png",
+    "runtimeReviewHistory": [
+      {
+        "reviewer": "Codex art worker task_523ad2e66a6c",
+        "dispatch": "ctx_db39a1e69bf4",
+        "date": "2026-10-08",
+        "result": "accepted_verified_scope",
+        "scope": "All 4 source frames directly viewed in mapped UI/combat/background context; layer, readability and applicable termination inspected. Details in common-evidence.csv and report.",
+        "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+        "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\common-evidence.csv",
+        "pending": [],
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/rc-t1080/out",
+          "C:/UnityScratch/r14/runs/rc-t720/out",
+          "C:/UnityScratch/r14/runs/rc-b1080/out",
+          "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+          "C:/UnityScratch/r14/runs/rc2-ice/out"
+        ]
+      },
+      {
+        "reviewer": "Codex art worker task_523ad2e66a6c",
+        "dispatch": "ctx_db39a1e69bf4",
+        "date": "2026-10-08",
+        "result": "accepted_verified_scope",
+        "scope": "All 4 source frames directly viewed in mapped UI/combat/background context; layer, readability and applicable termination inspected. Details in common-evidence.csv and report.",
+        "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+        "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\common-evidence.csv",
+        "additionalEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\common-lifetime-evidence.csv",
+        "pending": [],
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/rc-t1080/out",
+          "C:/UnityScratch/r14/runs/rc-t720/out",
+          "C:/UnityScratch/r14/runs/rc-b1080/out",
+          "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+          "C:/UnityScratch/r14/runs/rc2-ice/out",
+          "C:/UnityScratch/r14/runs/rc2-save-recovery/out",
+          "C:/UnityScratch/r14/runs/rc3-deaths720/out",
+          "C:/UnityScratch/r14/runs/b720/out"
+        ]
+      }
+    ],
+    "runtimeVisualReview": "accepted_verified_scope",
+    "runtimeReview": {
+      "reviewer": "Codex art worker task_523ad2e66a6c",
+      "dispatch": "ctx_db39a1e69bf4",
+      "date": "2026-10-08",
+      "result": "accepted_verified_scope",
+      "scope": "All 4 source frames directly viewed in mapped UI/combat/background context; layer, readability and applicable termination inspected. Details in common-evidence.csv and report.",
+      "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+      "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\common-evidence.csv",
+      "additionalEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\common-lifetime-evidence.csv",
+      "pending": [],
+      "captureRoots": [
+        "C:/UnityScratch/r14/runs/rc-t1080/out",
+        "C:/UnityScratch/r14/runs/rc-t720/out",
+        "C:/UnityScratch/r14/runs/rc-b1080/out",
+        "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+        "C:/UnityScratch/r14/runs/rc2-ice/out",
+        "C:/UnityScratch/r14/runs/rc2-save-recovery/out",
+        "C:/UnityScratch/r14/runs/rc3-deaths720/out",
+        "C:/UnityScratch/r14/runs/b720/out"
+      ]
+    }
+  }
+}

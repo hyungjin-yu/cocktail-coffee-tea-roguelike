@@ -1,0 +1,137 @@
+{
+ "assetId": "zone_sugar_pool_v2",
+ "request": "43 슈가 큐브 바머 설탕 시럽 둔화 장판 v2",
+ "kind": "monster_ground_zone_loop",
+ "provenance": {
+  "tool": "Aseprite 1.3.18.6 + PixelLab extension (GUI)",
+  "pixellabTool": "Create animated object/character (pro)",
+  "description": "top-down view of a flat sticky spilled sugar syrup puddle on a cafe floor, wide oval shape twice as wide as tall filling the canvas width, pale golden translucent syrup with glossy white highlights, a thicker amber rim and a few small white sugar crystals, pixel art, transparent background",
+  "animationAction": "syrup surface slowly glistening and oozing with highlights shimmering in a seamless loop",
+  "seed": 121005,
+  "removeBackground": true,
+  "outputMethod": "New frame",
+  "generationHistory": "C:/Users/user/AppData/Roaming/Aseprite/extensions/pixellab/generation_history/2026-10-12_09-51-17 - Create animated object-character (pro) - 001",
+  "asepriteSource": "zone_sugar_pool_v2.aseprite",
+  "asepriteSourceSha256": "2663b974d1a46592140be85eab176f4c01fb1fa950f2795d4a1f5340bbfb97e3",
+  "asepriteSave": "GUI Ctrl+S (native Save As)",
+  "otherGenerators": "none"
+ },
+ "runtime": {
+  "path": "Assets/_Project/Resources/ArtExtra/zone_sugar_pool_v2",
+  "frameSizePx": [
+   128,
+   128
+  ],
+  "frames": 4,
+  "fps": 10,
+  "loop": true,
+  "pixelsPerUnit": 128,
+  "pivot": "center",
+  "filter": "point",
+  "readable": true,
+  "opaqueUnionBBoxPx": [
+   12,
+   22,
+   117,
+   110
+  ],
+  "fitRule": "per-axis scale so opaque union bbox = 2r x 2r"
+ },
+ "postprocess": "kept largest 8-connected component (scattered sugar crystals outside the rim removed)",
+ "frames": [
+  {
+   "file": "zone_sugar_pool_v2_00.png",
+   "sourceFrame": 0,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    12,
+    23,
+    116,
+    108
+   ],
+   "opaquePx": 7089,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "46846e3af321a190f2fab9a51b1fb96a86dfcb6776ac3caad88b17fb266201c3"
+  },
+  {
+   "file": "zone_sugar_pool_v2_01.png",
+   "sourceFrame": 1,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    12,
+    23,
+    117,
+    110
+   ],
+   "opaquePx": 7483,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "e4752ec08ac0e5aced7c39190f9dc4467c72c56b7498d681f33f3801544a534b"
+  },
+  {
+   "file": "zone_sugar_pool_v2_02.png",
+   "sourceFrame": 2,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    12,
+    22,
+    116,
+    109
+   ],
+   "opaquePx": 7418,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "efac6cc15a9d9b9d569b07f3d9964790486018e8d80345df0d3bcd134d5a0c3e"
+  },
+  {
+   "file": "zone_sugar_pool_v2_03.png",
+   "sourceFrame": 3,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    12,
+    22,
+    117,
+    109
+   ],
+   "opaquePx": 7250,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "be1401302ae750c0b701dcd3d66837d7b6a82a1b03848e55b124e36062c9609f"
+  }
+ ],
+ "rawFrames": [
+  "zone_sugar_pool_v2_raw_00.png",
+  "zone_sugar_pool_v2_raw_01.png",
+  "zone_sugar_pool_v2_raw_02.png",
+  "zone_sugar_pool_v2_raw_03.png"
+ ]
+}

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a445bc81f26e6774ab6f4f2386bac954, type: 3}
+  m_Name: balanced_tray
+  m_EditorClassIdentifier: CCT.Runtime::CCT.PermanentSkillData
+  id: balanced_tray
+  displayName: "\uADE0\uD615 \uC7A1\uD78C \uD2B8\uB808\uC774"
+  description: "\uC601\uAD6C \uCD5C\uB300 \uCCB4\uB825 +20"
+  branch: 1
+  tier: 5
+  prerequisite: {fileID: 11400000, guid: 4606d98287c63e1429cd5c3fefa99709, type: 2}
+  additionalPrerequisites: []
+  minimumClears: 3
+  weaponSpecific: 0
+  targetWeapon: 0
+  group: 1
+  cost: 9
+  effects:
+  - type: 4
+    value: 20
+  iconResourcePath: 
+  iconArtId: skill_survival

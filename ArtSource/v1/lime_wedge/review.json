@@ -1,0 +1,203 @@
+{
+  "assetId": "lime_wedge",
+  "frames": 15,
+  "checks": [
+    {
+      "file": "frames/lime_wedge_defeat_right_00.png",
+      "bboxTopLeft": [
+        50,
+        60,
+        204,
+        224
+      ],
+      "pixelSha256": "0ec1f8db429e2da49428493991ecb08cb52406430747ec6f375723bd5955ab0a",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_defeat_right_01.png",
+      "bboxTopLeft": [
+        32,
+        70,
+        224,
+        224
+      ],
+      "pixelSha256": "10bde0b0751e775cd88ff0ed95a590c41afa74137f04dd8021f95f2286152860",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_defeat_right_02.png",
+      "bboxTopLeft": [
+        30,
+        108,
+        226,
+        224
+      ],
+      "pixelSha256": "1267623f87cd37cb8a7b15a9ec440a55521264f406e41e78b35ec229fed1cd02",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_defeat_right_03.png",
+      "bboxTopLeft": [
+        30,
+        126,
+        226,
+        224
+      ],
+      "pixelSha256": "32f42519bda71a1efadf0c0f996e4e56e47d56f56c9d0b0e2496ce1b3f97ae11",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_hurt_right_00.png",
+      "bboxTopLeft": [
+        52,
+        50,
+        202,
+        224
+      ],
+      "pixelSha256": "5779661923b32d894e7f93826c9409f71713c192f4d94ea82b1798c4b78a410c",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_idle_right_00.png",
+      "bboxTopLeft": [
+        52,
+        40,
+        202,
+        224
+      ],
+      "pixelSha256": "21d0c28dc426fa341fd207d323db50245b8b91294e6f0c9a4d574886d33ad489",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_idle_right_01.png",
+      "bboxTopLeft": [
+        50,
+        38,
+        206,
+        224
+      ],
+      "pixelSha256": "64838faca7cb5b84298b964ddac8573832225f190d410c64c3b810802496d5fb",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_idle_right_02.png",
+      "bboxTopLeft": [
+        48,
+        40,
+        208,
+        224
+      ],
+      "pixelSha256": "d34c7e5aa6d974edf2ccbb0f46cd42a9532ecad880a467820d19d0b95cbdf71f",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_idle_right_03.png",
+      "bboxTopLeft": [
+        52,
+        42,
+        202,
+        224
+      ],
+      "pixelSha256": "e30f0280e82303efa8b681fe2d78fd29f33d2533302196acdda1c28c52d499e0",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_move_right_00.png",
+      "bboxTopLeft": [
+        50,
+        42,
+        206,
+        224
+      ],
+      "pixelSha256": "6485c1f1a916feb9d49592c80d80f29e837e8a19a5e05956b879c135b9e6ebec",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_move_right_01.png",
+      "bboxTopLeft": [
+        50,
+        40,
+        204,
+        224
+      ],
+      "pixelSha256": "08da06ccf0dd98e2dd581d6ee4f7b062496f21c5519d58657c01bec884d53831",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_move_right_02.png",
+      "bboxTopLeft": [
+        52,
+        40,
+        202,
+        224
+      ],
+      "pixelSha256": "26f1c979e91469884e706f946a6f679cf3bb6de96bbf58e1d6c391bf5011ca70",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_move_right_03.png",
+      "bboxTopLeft": [
+        50,
+        40,
+        204,
+        224
+      ],
+      "pixelSha256": "29925a9b79756760687207e92308c45db2570ecdaae530a800bb44283f6f25c0",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_move_right_04.png",
+      "bboxTopLeft": [
+        48,
+        36,
+        208,
+        224
+      ],
+      "pixelSha256": "f5bab2975fbe5fad476e1ad888a94047d73352930413a28bd7547079c46424ee",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lime_wedge_move_right_05.png",
+      "bboxTopLeft": [
+        48,
+        36,
+        206,
+        224
+      ],
+      "pixelSha256": "364a5202b8777fc7584e21631b555bed8f16270f2c8848059dd7494e81e4f7f6",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

@@ -1,0 +1,177 @@
+{
+  "assetId": "leaf_warden",
+  "frames": 13,
+  "checks": [
+    {
+      "file": "frames/leaf_warden_action_right_00.png",
+      "bboxTopLeft": [
+        40,
+        48,
+        214,
+        224
+      ],
+      "pixelSha256": "9def728500c5b60038c88a1abe28cc5766a6f14ca21103a13f9f7bd3d2e18092",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_action_right_01.png",
+      "bboxTopLeft": [
+        66,
+        48,
+        188,
+        224
+      ],
+      "pixelSha256": "29a0ae732fa8ff1ac9781ced955c875d05577788a7adde387a625a0f359777d5",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_action_right_02.png",
+      "bboxTopLeft": [
+        40,
+        34,
+        216,
+        224
+      ],
+      "pixelSha256": "6450391e84e9540b887a98b7a8d2b0bfdfa911dba1d5b411abe7d26930971acd",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_action_right_03.png",
+      "bboxTopLeft": [
+        50,
+        56,
+        206,
+        224
+      ],
+      "pixelSha256": "a480156b4c88d5f5f72c1b4dc109b96f0f58f46dfd5d28614f912c11dc9374b4",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_defeat_right_00.png",
+      "bboxTopLeft": [
+        60,
+        78,
+        194,
+        224
+      ],
+      "pixelSha256": "f34263eeb6e2a39513ac25e63e5d1f0c92d5e55ec5b67567dd8a34c66306be43",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_defeat_right_01.png",
+      "bboxTopLeft": [
+        70,
+        94,
+        182,
+        224
+      ],
+      "pixelSha256": "65a0157fccebf7ca213b421d79255e495ab26a6ee1e4ec82eac8f6921fddca13",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_defeat_right_02.png",
+      "bboxTopLeft": [
+        46,
+        130,
+        206,
+        224
+      ],
+      "pixelSha256": "ab93aac8c80849a9496aaa5b9075e523ec6a3ddb927e9cd87f56aadf1ff62270",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_defeat_right_03.png",
+      "bboxTopLeft": [
+        42,
+        154,
+        212,
+        224
+      ],
+      "pixelSha256": "f53eeb05ea514dc63983c0622baf4d855aa198fd524704bfb681f12287bd19c7",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_hurt_right_00.png",
+      "bboxTopLeft": [
+        64,
+        78,
+        190,
+        224
+      ],
+      "pixelSha256": "92704fbd9723e7c0d6e077fea8cf14b0cd11822f1c507ebb156660686d7d4a45",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_idle_right_00.png",
+      "bboxTopLeft": [
+        56,
+        50,
+        198,
+        224
+      ],
+      "pixelSha256": "5a0d8d5d02636f56c226dcfdc215734c2afe3a5e9424ae6a0eb7b9a24df3fa61",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_idle_right_01.png",
+      "bboxTopLeft": [
+        56,
+        48,
+        200,
+        224
+      ],
+      "pixelSha256": "65d3f7fa3af0da4bc5a2c266f96c9498daa7d0ee6b43a5ae009a647405b96d75",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_idle_right_02.png",
+      "bboxTopLeft": [
+        54,
+        50,
+        202,
+        224
+      ],
+      "pixelSha256": "1a34d7fd68892359efec8f5bdcc322db3ff25a9275211bab4091c7ba317cb5fb",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/leaf_warden_idle_right_03.png",
+      "bboxTopLeft": [
+        48,
+        52,
+        206,
+        224
+      ],
+      "pixelSha256": "077d9e128ee80e59a95464f9cbdf44c1ad897e6ff069be10f3e13bc37f5e4fc3",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

@@ -1,0 +1,83 @@
+{
+  "source": "Existing PixelLab tea_sommelier ranged01/02; native Aseprite authored leg poses; no new generator used",
+  "tools": "Aseprite native CLI, reuse existing PixelLab source",
+  "frames": [
+    {
+      "file": "bow_idle_right_00.png",
+      "sha256": "b27863a7194dbc513cf3d5eea5f9d502698a5d45cb7eeca6f7ae593a46e78cbf"
+    },
+    {
+      "file": "bow_move_right_00.png",
+      "sha256": "7366824dc63bab52f031602e7baa6508712e526ec79eb398a3cbc6288fd2f045"
+    },
+    {
+      "file": "bow_move_right_01.png",
+      "sha256": "8d38e920f443b63825469cdd31647086be220145dd1a3a9ad918a1f41d91d6f4"
+    },
+    {
+      "file": "bow_move_right_02.png",
+      "sha256": "2ab12f3857d144b9b4443fc1685115c9c3835221b5e8ecec825e3896df272a0b"
+    },
+    {
+      "file": "bow_move_right_03.png",
+      "sha256": "1f31a9e9a522f21f9aa202df8336dfd6fc2acf6d62c378676aa006d8b95f1a6a"
+    },
+    {
+      "file": "bow_move_right_04.png",
+      "sha256": "ed0efd402105e2dea4c9bef97101beca40afe1b865296cf28dcb0192628c4b72"
+    },
+    {
+      "file": "bow_move_right_05.png",
+      "sha256": "5a6a3e880e6d627d168201c0574610b69af087ae67cc5c67017c24b4346434c8"
+    },
+    {
+      "file": "bow_ranged_right_00.png",
+      "sha256": "b27863a7194dbc513cf3d5eea5f9d502698a5d45cb7eeca6f7ae593a46e78cbf"
+    },
+    {
+      "file": "bow_ranged_right_01.png",
+      "sha256": "b27863a7194dbc513cf3d5eea5f9d502698a5d45cb7eeca6f7ae593a46e78cbf"
+    },
+    {
+      "file": "bow_ranged_right_02.png",
+      "sha256": "6b3daba2689730dcdd4c17c809c0982df1c76c43c01cedb8d797211d60e7ed6d"
+    },
+    {
+      "file": "bow_ranged_right_03.png",
+      "sha256": "b27863a7194dbc513cf3d5eea5f9d502698a5d45cb7eeca6f7ae593a46e78cbf"
+    }
+  ],
+  "handIdle": [
+    198,
+    153
+  ],
+  "moveBob": [
+    0,
+    2,
+    -2,
+    0,
+    2,
+    -2
+  ],
+  "rangedHands": [
+    [
+      198,
+      153
+    ],
+    [
+      198,
+      153
+    ],
+    [
+      201,
+      154
+    ],
+    [
+      198,
+      153
+    ]
+  ],
+  "originalsPreserved": true,
+  "reviewedSource": true,
+  "unityVerified": false
+}

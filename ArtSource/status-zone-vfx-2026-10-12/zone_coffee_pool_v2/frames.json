@@ -1,0 +1,98 @@
+{
+ "assetId": "zone_coffee_pool_v2",
+ "history": "C:\\Users\\user\\AppData\\Roaming/Aseprite/extensions/pixellab/generation_history/2026-10-12_09-37-40 - Create animated object-character (pro) - 001",
+ "frames": [
+  {
+   "file": "zone_coffee_pool_v2_00.png",
+   "sourceFrame": 0,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    5,
+    29,
+    123,
+    109
+   ],
+   "opaquePx": 6736,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "b445802bf2c154aaf6fb292c5b8997e270b17c2ab1ec3d81adfd7dbb2d92bd7c",
+   "postprocess": "largest connected component + removed top-connected neutral-gray steam (boundary = crema rim)"
+  },
+  {
+   "file": "zone_coffee_pool_v2_01.png",
+   "sourceFrame": 1,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    5,
+    29,
+    123,
+    109
+   ],
+   "opaquePx": 6887,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "0fe5bccee2ca12357d149272ca680aea34baafd304bb8c6a6fa90f2b7c68605e",
+   "postprocess": "largest connected component + removed top-connected neutral-gray steam (boundary = crema rim)"
+  },
+  {
+   "file": "zone_coffee_pool_v2_02.png",
+   "sourceFrame": 2,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    6,
+    25,
+    123,
+    109
+   ],
+   "opaquePx": 7316,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "529f0806c3e5955ab84342ebe89043172f043d0953dfaca3413230a95a9999cc",
+   "postprocess": "largest connected component + removed top-connected neutral-gray steam (boundary = crema rim)"
+  },
+  {
+   "file": "zone_coffee_pool_v2_03.png",
+   "sourceFrame": 3,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    6,
+    25,
+    123,
+    109
+   ],
+   "opaquePx": 7377,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "ab8d93579ad0f21ebe7161987f97d024d6fbd6f57a59ee06e7d62c99668484b5",
+   "postprocess": "largest connected component + removed top-connected neutral-gray steam (boundary = crema rim)"
+  }
+ ]
+}

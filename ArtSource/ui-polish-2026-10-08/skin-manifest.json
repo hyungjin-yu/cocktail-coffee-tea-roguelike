@@ -1,0 +1,1261 @@
+{
+  "alpha": "RGBA8 binary alpha",
+  "assets": [
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_panel",
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "file": "ui_panel/ui_panel.png",
+      "frameSizePx": [
+        96,
+        96
+      ],
+      "kind": "panel",
+      "native": "ui_panel/ui_panel.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "abc1798b83308883286a94856480222d4cda55803093a1a11f1e9d40273ec748",
+      "nativeSha256": "19fb2ff1672efbadd516c1310bd7a2f249e61c98b70ff6d63ece2fa371f164e6",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_panel-stretch0.png",
+        "review/ui_panel-stretch1.png",
+        "review/ui_panel-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 16,
+      "minimumSlicedSizePx": [
+        26,
+        26
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_button_normal",
+      "border": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "file": "ui_button_normal/ui_button_normal.png",
+      "frameSizePx": [
+        128,
+        40
+      ],
+      "kind": "button",
+      "native": "ui_button_normal/ui_button_normal.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "18afa5b05e081e96a737ab0a828cce7a406d2d963576b9a4bf57837a6dc0a329",
+      "nativeSha256": "5bb65e1984567eb5d7daf1da457489037a0318abd3cfae5878ebb13329b13f12",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_button_normal-stretch0.png",
+        "review/ui_button_normal-stretch1.png",
+        "review/ui_button_normal-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 12,
+      "minimumSlicedSizePx": [
+        22,
+        22
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_card_normal",
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "file": "ui_card_normal/ui_card_normal.png",
+      "frameSizePx": [
+        96,
+        128
+      ],
+      "kind": "card",
+      "native": "ui_card_normal/ui_card_normal.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "3019e41dbae95efd7003c52d5ada1d443d073faeca8d4d489242bbeb9a5645be",
+      "nativeSha256": "1f3a1e568ff8d6d9881d81f7bf543069e8c58dc153aadd78ed8a360c5078e545",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_card_normal-stretch0.png",
+        "review/ui_card_normal-stretch1.png",
+        "review/ui_card_normal-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 16,
+      "minimumSlicedSizePx": [
+        26,
+        26
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_button_hover",
+      "border": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "file": "ui_button_hover/ui_button_hover.png",
+      "frameSizePx": [
+        128,
+        40
+      ],
+      "kind": "button",
+      "native": "ui_button_hover/ui_button_hover.aseprite",
+      "state": "hover",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "664a28fd9d81fe0e02b09617c129b5207e09e1c6eba9184644005c92bf0c4cb1",
+      "nativeSha256": "fa0a815e9c7b70e1d4e320b48763e077170137b2fa556a894530211bbf800e51",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_button_hover-stretch0.png",
+        "review/ui_button_hover-stretch1.png",
+        "review/ui_button_hover-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 12,
+      "minimumSlicedSizePx": [
+        22,
+        22
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_card_hover",
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "file": "ui_card_hover/ui_card_hover.png",
+      "frameSizePx": [
+        96,
+        128
+      ],
+      "kind": "card",
+      "native": "ui_card_hover/ui_card_hover.aseprite",
+      "state": "hover",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "38c83ab26173ba35b8bd632aa9d6cd453dfd5113601cdfc16fbdc60d97ac84f7",
+      "nativeSha256": "3d2f46b75ce0b07d920e4b633d607386520cf403aaab472176f8028effcfddff",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_card_hover-stretch0.png",
+        "review/ui_card_hover-stretch1.png",
+        "review/ui_card_hover-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 16,
+      "minimumSlicedSizePx": [
+        26,
+        26
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_button_pressed",
+      "border": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "file": "ui_button_pressed/ui_button_pressed.png",
+      "frameSizePx": [
+        128,
+        40
+      ],
+      "kind": "button",
+      "native": "ui_button_pressed/ui_button_pressed.aseprite",
+      "state": "pressed",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "bcd891b54bcafb3088f9e3b72dd4ef8c148f8ce21d2b28bb699c2413317b8160",
+      "nativeSha256": "99524b802f4329d1ad4037fb8f6aadce9515669430c60881c5af75e07410b49f",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_button_pressed-stretch0.png",
+        "review/ui_button_pressed-stretch1.png",
+        "review/ui_button_pressed-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 12,
+      "minimumSlicedSizePx": [
+        22,
+        22
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_card_pressed",
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "file": "ui_card_pressed/ui_card_pressed.png",
+      "frameSizePx": [
+        96,
+        128
+      ],
+      "kind": "card",
+      "native": "ui_card_pressed/ui_card_pressed.aseprite",
+      "state": "pressed",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "37ed962415bb02e52d9b1b061b5fec242cd397b293c98ed6ad9a18d9526174bd",
+      "nativeSha256": "601213e095af0de13b75756ee3536c3ccdc9c8eec2b9e0e8996e01d30155a965",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_card_pressed-stretch0.png",
+        "review/ui_card_pressed-stretch1.png",
+        "review/ui_card_pressed-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 16,
+      "minimumSlicedSizePx": [
+        26,
+        26
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_button_disabled",
+      "border": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "file": "ui_button_disabled/ui_button_disabled.png",
+      "frameSizePx": [
+        128,
+        40
+      ],
+      "kind": "button",
+      "native": "ui_button_disabled/ui_button_disabled.aseprite",
+      "state": "disabled",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "48fe6d5b2a07d80e818cef872e429073078f623f0f6aaaf42b45ce87afcabbc6",
+      "nativeSha256": "0313af9a91d262450a8c46fe8de95c641357f93839e1ace301745b41989d1f69",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_button_disabled-stretch0.png",
+        "review/ui_button_disabled-stretch1.png",
+        "review/ui_button_disabled-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 12,
+      "minimumSlicedSizePx": [
+        22,
+        22
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_card_disabled",
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "file": "ui_card_disabled/ui_card_disabled.png",
+      "frameSizePx": [
+        96,
+        128
+      ],
+      "kind": "card",
+      "native": "ui_card_disabled/ui_card_disabled.aseprite",
+      "state": "disabled",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "49ca02dd9344f1a7bbcc6b49afbe3685cc98673a25c4925cd3c59ddcd2d44410",
+      "nativeSha256": "7bbc269ae68ee1a7679a9c0acd4b7bedd7b11884b729faf39e995ca080d4e696",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_card_disabled-stretch0.png",
+        "review/ui_card_disabled-stretch1.png",
+        "review/ui_card_disabled-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 16,
+      "minimumSlicedSizePx": [
+        26,
+        26
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_card_header",
+      "border": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "file": "ui_card_header/ui_card_header.png",
+      "frameSizePx": [
+        96,
+        24
+      ],
+      "kind": "card_header",
+      "native": "ui_card_header/ui_card_header.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "32951144d7f6b0f0d2e94f05adc9aaa985e8c632a7c437af8c547ff3b88b4321",
+      "nativeSha256": "3fc91d725a4954a6f42d0342c68dd86759791871cdf1f95aeca3373ba04b7709",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_card_header-stretch0.png",
+        "review/ui_card_header-stretch1.png",
+        "review/ui_card_header-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 8,
+      "minimumSlicedSizePx": [
+        18,
+        18
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_tab_cocktail_normal",
+      "border": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "file": "ui_tab_cocktail_normal/ui_tab_cocktail_normal.png",
+      "frameSizePx": [
+        80,
+        32
+      ],
+      "kind": "tab",
+      "native": "ui_tab_cocktail_normal/ui_tab_cocktail_normal.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "c323aa0d786cb8a677c581506ffc776aa96ced3418e5ad42171f9254077fb591",
+      "nativeSha256": "a74902cac069d08ad6770d95b3081782bfeb5aa83da9e17820d7accbacd02bea",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_tab_cocktail_normal-stretch0.png",
+        "review/ui_tab_cocktail_normal-stretch1.png",
+        "review/ui_tab_cocktail_normal-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 10,
+      "minimumSlicedSizePx": [
+        18,
+        18
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_tab_cocktail_selected",
+      "border": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "file": "ui_tab_cocktail_selected/ui_tab_cocktail_selected.png",
+      "frameSizePx": [
+        80,
+        32
+      ],
+      "kind": "tab",
+      "native": "ui_tab_cocktail_selected/ui_tab_cocktail_selected.aseprite",
+      "state": "selected",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "278ccdfa2d2936ec2382ba7effb2d9998713572a29220e1c89da57ca5b206372",
+      "nativeSha256": "2653a69fd576f3dcadde96aaa07832d143668dd30e31234fb98dc775637941a3",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_tab_cocktail_selected-stretch0.png",
+        "review/ui_tab_cocktail_selected-stretch1.png",
+        "review/ui_tab_cocktail_selected-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 10,
+      "minimumSlicedSizePx": [
+        18,
+        18
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_tab_tea_normal",
+      "border": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "file": "ui_tab_tea_normal/ui_tab_tea_normal.png",
+      "frameSizePx": [
+        80,
+        32
+      ],
+      "kind": "tab",
+      "native": "ui_tab_tea_normal/ui_tab_tea_normal.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "c323aa0d786cb8a677c581506ffc776aa96ced3418e5ad42171f9254077fb591",
+      "nativeSha256": "a74902cac069d08ad6770d95b3081782bfeb5aa83da9e17820d7accbacd02bea",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_tab_tea_normal-stretch0.png",
+        "review/ui_tab_tea_normal-stretch1.png",
+        "review/ui_tab_tea_normal-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 10,
+      "minimumSlicedSizePx": [
+        18,
+        18
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_tab_tea_selected",
+      "border": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "file": "ui_tab_tea_selected/ui_tab_tea_selected.png",
+      "frameSizePx": [
+        80,
+        32
+      ],
+      "kind": "tab",
+      "native": "ui_tab_tea_selected/ui_tab_tea_selected.aseprite",
+      "state": "selected",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "0f460f6010776d1bb8c124f364aab3fc2759d540284e6bac0572c063b85a8913",
+      "nativeSha256": "29493afba0c324d9c3f569cc13b9dde84ad681ab914db6f48996a779a76beefe",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_tab_tea_selected-stretch0.png",
+        "review/ui_tab_tea_selected-stretch1.png",
+        "review/ui_tab_tea_selected-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 10,
+      "minimumSlicedSizePx": [
+        18,
+        18
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_tab_neutral_normal",
+      "border": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "file": "ui_tab_neutral_normal/ui_tab_neutral_normal.png",
+      "frameSizePx": [
+        80,
+        32
+      ],
+      "kind": "tab",
+      "native": "ui_tab_neutral_normal/ui_tab_neutral_normal.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "c323aa0d786cb8a677c581506ffc776aa96ced3418e5ad42171f9254077fb591",
+      "nativeSha256": "a74902cac069d08ad6770d95b3081782bfeb5aa83da9e17820d7accbacd02bea",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_tab_neutral_normal-stretch0.png",
+        "review/ui_tab_neutral_normal-stretch1.png",
+        "review/ui_tab_neutral_normal-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 10,
+      "minimumSlicedSizePx": [
+        18,
+        18
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_tab_neutral_selected",
+      "border": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "file": "ui_tab_neutral_selected/ui_tab_neutral_selected.png",
+      "frameSizePx": [
+        80,
+        32
+      ],
+      "kind": "tab",
+      "native": "ui_tab_neutral_selected/ui_tab_neutral_selected.aseprite",
+      "state": "selected",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "6c6efb6a424322f719644520641f091315469a26c56f544dd2d930a066a158b1",
+      "nativeSha256": "7cc09f899716bd03fb2046ba55cff49ab602b4ca23e00aea7d7bf96c80989054",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_tab_neutral_selected-stretch0.png",
+        "review/ui_tab_neutral_selected-stretch1.png",
+        "review/ui_tab_neutral_selected-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 10,
+      "minimumSlicedSizePx": [
+        18,
+        18
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_tab_coffee_normal",
+      "border": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "file": "ui_tab_coffee_normal/ui_tab_coffee_normal.png",
+      "frameSizePx": [
+        80,
+        32
+      ],
+      "kind": "tab",
+      "native": "ui_tab_coffee_normal/ui_tab_coffee_normal.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "c323aa0d786cb8a677c581506ffc776aa96ced3418e5ad42171f9254077fb591",
+      "nativeSha256": "a74902cac069d08ad6770d95b3081782bfeb5aa83da9e17820d7accbacd02bea",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_tab_coffee_normal-stretch0.png",
+        "review/ui_tab_coffee_normal-stretch1.png",
+        "review/ui_tab_coffee_normal-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 10,
+      "minimumSlicedSizePx": [
+        18,
+        18
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_tab_coffee_selected",
+      "border": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "file": "ui_tab_coffee_selected/ui_tab_coffee_selected.png",
+      "frameSizePx": [
+        80,
+        32
+      ],
+      "kind": "tab",
+      "native": "ui_tab_coffee_selected/ui_tab_coffee_selected.aseprite",
+      "state": "selected",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "bb6c9dcab718d2fe35be378da3a5c1088064958478e43f89ba98116b156432b7",
+      "nativeSha256": "68dc8beca65fc1f0885c7ba146c9fee643c427a33bdf0a2fb6eb3594c88407ba",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_tab_coffee_selected-stretch0.png",
+        "review/ui_tab_coffee_selected-stretch1.png",
+        "review/ui_tab_coffee_selected-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 10,
+      "minimumSlicedSizePx": [
+        18,
+        18
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_bar_frame",
+      "border": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "file": "ui_bar_frame/ui_bar_frame.png",
+      "frameSizePx": [
+        128,
+        16
+      ],
+      "kind": "bar_frame",
+      "native": "ui_bar_frame/ui_bar_frame.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "68203b3df3d769662e69e185ac0d27aaa85367083251aa28ce571e5a8f625e62",
+      "nativeSha256": "b5e591fc9d584edb7bc7c927ddfb1d2e226523ff16821e028eb72c448983c5a6",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_bar_frame-stretch0.png",
+        "review/ui_bar_frame-stretch1.png",
+        "review/ui_bar_frame-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 6,
+      "minimumSlicedSizePx": [
+        14,
+        14
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_bar_fill_hp",
+      "border": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "file": "ui_bar_fill_hp/ui_bar_fill_hp.png",
+      "frameSizePx": [
+        128,
+        16
+      ],
+      "kind": "bar_fill",
+      "native": "ui_bar_fill_hp/ui_bar_fill_hp.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "de6183b2b93bcc9390fcfc6e8c6b582bed2d29b9a679535c44053137b4298394",
+      "nativeSha256": "1d71183898aad2f707ea3282a819a093f16e5e311d69b1349ccb4ba22e74cb95",
+      "alphaValues": [
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_bar_fill_hp-stretch0.png",
+        "review/ui_bar_fill_hp-stretch1.png",
+        "review/ui_bar_fill_hp-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 6,
+      "minimumSlicedSizePx": [
+        14,
+        14
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_bar_fill_cocktail",
+      "border": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "file": "ui_bar_fill_cocktail/ui_bar_fill_cocktail.png",
+      "frameSizePx": [
+        128,
+        16
+      ],
+      "kind": "bar_fill",
+      "native": "ui_bar_fill_cocktail/ui_bar_fill_cocktail.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "3be27417d0531cfb3f82af21cf9b600835b3e310435efcb69f56d70c6e4ad098",
+      "nativeSha256": "cd5c4e79ee3c82709072ac695ba94dca2c4859086d7731abffa91e3609637214",
+      "alphaValues": [
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_bar_fill_cocktail-stretch0.png",
+        "review/ui_bar_fill_cocktail-stretch1.png",
+        "review/ui_bar_fill_cocktail-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 6,
+      "minimumSlicedSizePx": [
+        14,
+        14
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_bar_fill_tea",
+      "border": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "file": "ui_bar_fill_tea/ui_bar_fill_tea.png",
+      "frameSizePx": [
+        128,
+        16
+      ],
+      "kind": "bar_fill",
+      "native": "ui_bar_fill_tea/ui_bar_fill_tea.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "7ddd1306e1d4edf2047956a4a1fbb79065e56b5afc1c549995632ade0cd666c7",
+      "nativeSha256": "caeaa7ec31f983faf0cd2736c494bb901c94649897a9226598b6d378d48121ba",
+      "alphaValues": [
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_bar_fill_tea-stretch0.png",
+        "review/ui_bar_fill_tea-stretch1.png",
+        "review/ui_bar_fill_tea-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 6,
+      "minimumSlicedSizePx": [
+        14,
+        14
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_bar_fill_coffee",
+      "border": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "file": "ui_bar_fill_coffee/ui_bar_fill_coffee.png",
+      "frameSizePx": [
+        128,
+        16
+      ],
+      "kind": "bar_fill",
+      "native": "ui_bar_fill_coffee/ui_bar_fill_coffee.aseprite",
+      "state": "normal",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "b1fffeab5f402b01578239793be7e5e74881ad2648171b5b7f37e51ea2deb880",
+      "nativeSha256": "b791b7b5ce3cb71474dc762ffcabec3185c8d8445c2f19f6a52df3aca8b527ea",
+      "alphaValues": [
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_bar_fill_coffee-stretch0.png",
+        "review/ui_bar_fill_coffee-stretch1.png",
+        "review/ui_bar_fill_coffee-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 6,
+      "minimumSlicedSizePx": [
+        14,
+        14
+      ]
+    },
+    {
+      "acceptance": {
+        "sourceReady": true,
+        "unityVerified": false
+      },
+      "assetId": "ui_selection",
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "file": "ui_selection/ui_selection.png",
+      "frameSizePx": [
+        96,
+        96
+      ],
+      "kind": "selection",
+      "native": "ui_selection/ui_selection.aseprite",
+      "state": "selected",
+      "status": "ready",
+      "textBaked": false,
+      "pngSha256": "b1a981e35d34a2f45815cfa2e1b4b61a55a43afd9ab7276b4c060da8179f42d3",
+      "nativeSha256": "f3cce4df9541b46870964fbf732588055e43eb2258ae5e023c8d67603861ff0a",
+      "alphaValues": [
+        0,
+        255
+      ],
+      "roundtrip": "pixel_exact",
+      "grid2": "pass",
+      "nineSliceCorners": "preserved_at_3_sizes",
+      "reviewFiles": [
+        "review/ui_selection-stretch0.png",
+        "review/ui_selection-stretch1.png",
+        "review/ui_selection-stretch2.png"
+      ],
+      "visualReview": "pass: source pixels and all three nine-slice samples personally inspected; no clipping, quiet text center, fixed corners",
+      "sourceReferences": [
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+        "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\tools\\build_skin.lua"
+      ],
+      "provenance": {
+        "pixels": "Aseprite Lua authored pixel geometry",
+        "concept": "one actual PixelLab UI generation; walnut/brass/paper material reference, not directly sliced provider pixels"
+      },
+      "textPaddingPx": 6,
+      "minimumSlicedSizePx": [
+        26,
+        26
+      ]
+    }
+  ],
+  "borderOrder": "left,bottom,right,top",
+  "compression": "None",
+  "filterMode": "Point",
+  "mipmaps": false,
+  "pixelsPerUnit": 128,
+  "tool": "Aseprite 1.3.18.6 Lua",
+  "version": "ui-polish-2026-10-08",
+  "contract": {
+    "buttonStates": {
+      "normal": "ui_button_normal",
+      "highlighted": "ui_button_hover",
+      "selected": "ui_button_hover",
+      "pressed": "ui_button_pressed",
+      "disabled": "ui_button_disabled"
+    },
+    "cardStates": {
+      "normal": "ui_card_normal",
+      "highlighted": "ui_card_hover",
+      "selected": "ui_card_hover",
+      "pressed": "ui_card_pressed",
+      "disabled": "ui_card_disabled"
+    },
+    "imageType": "Sliced except fills can be Simple/Filled",
+    "text": "all text Unity NotoSansKR; ivory on dark; #302028 on cream header",
+    "raycast": "selection/frame decorations false; existing interactive root keeps input contract",
+    "bar": "fill inside fixed 6px content inset; frame drawn over fill; never stretch unmasked fill across frame",
+    "canvas": "1920x1080 reference; retain existing layout and 64px minimum hit area",
+    "pixelSizing": "PPU128 + Canvas referencePPU100: Image pixelsPerUnitMultiplier 0.78125 makes slice borders native UI pixels; implementation verify own canvas setting",
+    "implementationVerification": "pending; runtime screenshots, import, text, focus and disabled reasons belong to implementation worker"
+  },
+  "reviewRoot": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\ui-polish-2026-10-08\\review",
+  "acceptance": {
+    "sourceReady": true,
+    "unityVerified": false,
+    "strictReleaseReady": false
+  }
+}

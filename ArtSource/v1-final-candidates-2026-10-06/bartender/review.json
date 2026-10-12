@@ -1,0 +1,284 @@
+{
+  "assetId": "bartender",
+  "frames": 23,
+  "visuallyReviewed": true,
+  "checks": [
+    {
+      "file": "frames/bartender_idle_right_00.png",
+      "bboxTopLeft": [
+        80,
+        38,
+        176,
+        224
+      ],
+      "sha256": "cbefeaa3338fb82a4747757cc6f262f1de51312228e5f51e0a04d2db8b1e504d",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_idle_right_01.png",
+      "bboxTopLeft": [
+        80,
+        36,
+        176,
+        224
+      ],
+      "sha256": "85ae32d2eec100cd41a70aaf46f10341925581627fc8e101f80a18969f638d7f",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_idle_right_02.png",
+      "bboxTopLeft": [
+        80,
+        38,
+        176,
+        224
+      ],
+      "sha256": "cbefeaa3338fb82a4747757cc6f262f1de51312228e5f51e0a04d2db8b1e504d",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": false
+    },
+    {
+      "file": "frames/bartender_idle_right_03.png",
+      "bboxTopLeft": [
+        80,
+        40,
+        176,
+        224
+      ],
+      "sha256": "db93c28088818d1c849fd911beb4999cfd6d911945162fb3e2f1a94350b8fbce",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_move_right_00.png",
+      "bboxTopLeft": [
+        78,
+        38,
+        186,
+        224
+      ],
+      "sha256": "2c868ff7cf551cf0d85f7406be6da7810f3f0b2e6bafd723d8233e7df413c7f4",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_move_right_01.png",
+      "bboxTopLeft": [
+        80,
+        40,
+        178,
+        224
+      ],
+      "sha256": "ed45224749f30fb5b48497b7daa43ef95eda7b5b002e77adbc442bb08b8e5ca9",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_move_right_02.png",
+      "bboxTopLeft": [
+        80,
+        36,
+        174,
+        224
+      ],
+      "sha256": "bda7c99eb72fa7e4c2edc64b24a4cce5b84d8c28f4db4ec3cda6db99efc57ff9",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_move_right_03.png",
+      "bboxTopLeft": [
+        80,
+        38,
+        186,
+        224
+      ],
+      "sha256": "2a368122877962335686f1aaf097e3d776964543770585970f857383d32bd178",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_move_right_04.png",
+      "bboxTopLeft": [
+        80,
+        40,
+        174,
+        224
+      ],
+      "sha256": "ee45f0c1a3a2b87ee64c6cd044bd335615ac7cbc7408ba5b03b05ee0c3264acd",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_move_right_05.png",
+      "bboxTopLeft": [
+        80,
+        36,
+        178,
+        224
+      ],
+      "sha256": "f2377d2d9907c973102b4ddf1939e79db22b5b91ead1f21d75ff769d04760fb0",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_melee_right_00.png",
+      "bboxTopLeft": [
+        72,
+        38,
+        182,
+        224
+      ],
+      "sha256": "9c68f41f57045e1e656e98d3bcac4800b71a95dbc1d15a3be8a4a7e165c121fc",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_melee_right_01.png",
+      "bboxTopLeft": [
+        62,
+        38,
+        192,
+        224
+      ],
+      "sha256": "0e92d3cab93ac40cab2cd6a56d48f54ce439e40dfc533460625f7608c9c90be1",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_melee_right_02.png",
+      "bboxTopLeft": [
+        28,
+        48,
+        226,
+        224
+      ],
+      "sha256": "79299e4fe61c25d1b9896189cbb397bd7ca5a92bdef9bc8fbf0a2364d39cef2c",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_melee_right_03.png",
+      "bboxTopLeft": [
+        74,
+        38,
+        180,
+        224
+      ],
+      "sha256": "48bbfd0addcf492166035629443625872ed36cbda85f68c33f405df98142fa16",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_defeat_right_00.png",
+      "bboxTopLeft": [
+        72,
+        66,
+        184,
+        224
+      ],
+      "sha256": "3b6df6d3e98e8866f3ed6896e352369c32a44a4479f60a40db2895ad4e527df9",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_defeat_right_01.png",
+      "bboxTopLeft": [
+        56,
+        100,
+        200,
+        224
+      ],
+      "sha256": "1504e72138e7e0ce7886dbaded581d88cbd0d36263029041b0e05aa83a21c373",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_defeat_right_02.png",
+      "bboxTopLeft": [
+        38,
+        144,
+        218,
+        224
+      ],
+      "sha256": "740edfbf7b5558f19ce185c05a41f68e88c3af843abf630b02e1aaf915fccf0e",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_defeat_right_03.png",
+      "bboxTopLeft": [
+        26,
+        160,
+        230,
+        224
+      ],
+      "sha256": "c9836d42c87a1fabeec09264e45a404bb5ab331ec88df3667574ef5b7f117237",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_hurt_right_00.png",
+      "bboxTopLeft": [
+        76,
+        56,
+        178,
+        224
+      ],
+      "sha256": "3c564cfc4814bcce600bf32c8e6700c9fdd594a377482d3e7e80a337db28f2b5",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_ranged_right_00.png",
+      "bboxTopLeft": [
+        78,
+        38,
+        176,
+        224
+      ],
+      "sha256": "35434a01ee61b2cc670c7505ffaf94aafcc801043bd268d182d77acbb5e8b343",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_ranged_right_01.png",
+      "bboxTopLeft": [
+        58,
+        38,
+        198,
+        224
+      ],
+      "sha256": "bd71ecce79a62e069697b6c0f83378db729542a33a02411f6b6e6d52ea79d289",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_ranged_right_02.png",
+      "bboxTopLeft": [
+        64,
+        38,
+        190,
+        224
+      ],
+      "sha256": "0f2f846dec5ca5b05a59d900b1efcc2f6736de37a575e85077b4318a50a577b5",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    },
+    {
+      "file": "frames/bartender_ranged_right_03.png",
+      "bboxTopLeft": [
+        78,
+        32,
+        178,
+        224
+      ],
+      "sha256": "7a638a38f05fae60fbff39a87a610b416011c2297d0757cbf3445d4860572910",
+      "alpha": "binary",
+      "uniqueAgainstPrevious": true
+    }
+  ],
+  "unity": "not_run"
+}

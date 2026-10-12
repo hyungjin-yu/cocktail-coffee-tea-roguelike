@@ -8,22 +8,25 @@ namespace CCT
     /// 이동(WASD/방향키/패드)과 체력. 공격은 무기 컴포넌트가 자동으로 처리한다.
     /// 벨트스크롤(던파식) 시점: 좌우는 자유, 위아래는 Balance.DepthMin~DepthMax 레인 폭 안에서만 움직인다.
     /// </summary>
-    [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer))]
+    // 04 §9: 시각(반전·확대·애니메이션)은 Visual 자식(PlayerVisual)만 담당하고 이 루트는 스케일 1·판정만 가진다.
+    [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour
     {
         public const float Radius = 0.4f;
 
         PlayerStats stats;
         Rigidbody2D rb;
-        SpriteRenderer sr;
+        PlayerVisual visual;
         Vector2 input;
         float invulnerable;
         float lastMaxHp;
-        Color baseColor;
         Vector2 knockbackVelocity;
         float knockbackRemaining;
 
         public event Action Died;
+
+        /// <summary>자동 캡처 투어(-cct-autotour) 전용 이동 입력. null이면 실제 키보드/마우스.</summary>
+        public Vector2? AutoInputOverride { get; set; }
 
         public float Hp { get; private set; }
         public float MaxHp => stats.MaxHp;
@@ -31,27 +34,36 @@ namespace CCT
         public Vector2 Position => transform.position;
         public float PickupRadius => stats.PickupRadius;
         public PlayerStats Stats => stats;
+        public RunChallenge Challenge { get; private set; }
+        public AttackFinalForms FinalForms { get; private set; } = new AttackFinalForms();
+        /// <summary>41 이번 런 히든 스킬(런마다 새 플레이어 = 재시작 초기화).</summary>
+        public RunHiddenSkills Hidden { get; private set; } = new RunHiddenSkills();
+        public HiddenSkillRuntime HiddenRuntime { get; private set; }
+        /// <summary>이번 프레임 이동 입력이 있는지(히든 정지/이동 조건).</summary>
+        public bool IsMovingInput => input.sqrMagnitude > 0.0001f;
 
         /// <summary>좌(-1)/우(+1) 바라보는 방향. 스프라이트 반전과 공격 방향에 쓰인다.</summary>
         public float Facing { get; private set; } = 1f;
 
-        public void Init(PlayerStats stats, Color color)
+        /// <summary>시각 담당 자식(몸체 아트/캡슐, 무기, 그림자).</summary>
+        public PlayerVisual Visual => visual;
+
+        /// <param name="bodyArtId">직업 몸체 아트 ID(bartender/tea_sommelier). 목록에 없으면 캡슐 플레이스홀더.</param>
+        public void Init(PlayerStats stats, Color color, string bodyArtId = null, RunChallenge challenge = null)
         {
             this.stats = stats;
-            baseColor = color;
+            Challenge = challenge;
+            if (HiddenRuntime == null) HiddenRuntime = HiddenSkillRuntime.Attach(this);
             rb = GetComponent<Rigidbody2D>();
-            sr = GetComponent<SpriteRenderer>();
 
             rb.bodyType = RigidbodyType2D.Kinematic;
             rb.gravityScale = 0f;
 
-            sr.sprite = SpriteFactory.Capsule;
-            sr.color = baseColor;
-            sr.sortingOrder = 2; // 몹과 같은 순서 → 카메라의 깊이 정렬(Y)로 앞뒤가 갈린다
-            transform.localScale = Vector3.one * Radius * 2f;
+            transform.localScale = Vector3.one; // 물리 루트는 스케일 1 — 판정 반지름을 직접 지정
+            visual = PlayerVisual.Create(transform, Radius, color, bodyArtId);
 
             var col = gameObject.AddComponent<CircleCollider2D>();
-            col.radius = 0.5f; // 스케일 적용 후 월드 반지름 = Radius
+            col.radius = Radius;
 
             Hp = stats.MaxHp;
             lastMaxHp = stats.MaxHp;
@@ -75,21 +87,18 @@ namespace CCT
         {
             if (IsDead) return;
 
-            input = ReadMoveInput();
+            input = AutoInputOverride ?? ReadMoveInput();
             if (Mathf.Abs(input.x) > 0.01f) Facing = Mathf.Sign(input.x);
 
             Hp = Mathf.Min(stats.MaxHp, Hp + stats.RegenPerSecond * Time.deltaTime);
+            bool blink = false;
             if (invulnerable > 0f)
             {
                 invulnerable -= Time.deltaTime;
-                bool blink = Mathf.FloorToInt(Time.time * 20f) % 2 == 0;
-                sr.color = blink ? new Color(1f, 0.4f, 0.4f) : baseColor;
-                if (invulnerable <= 0f) sr.color = baseColor;
+                blink = invulnerable > 0f && Mathf.FloorToInt(Time.time * 20f) % 2 == 0;
             }
 
-            var scale = transform.localScale;
-            scale.x = Mathf.Abs(scale.x) * Facing;
-            transform.localScale = scale;
+            if (visual != null) visual.Tick(Facing, input.sqrMagnitude > 0.0001f, blink);
         }
 
         /// <summary>이번 프레임 모든 장판의 Update가 끝난 뒤, 가장 높은 DPS 후보 하나만 실제로 적용한다
@@ -160,6 +169,29 @@ namespace CCT
             Hp = Mathf.Min(stats.MaxHp, Hp + stats.MaxHp * fraction);
         }
 
+        /// <summary>고정량 회복(히든 처치/줍기 회복).</summary>
+        public void HealFlat(float amount)
+        {
+            if (IsDead || amount <= 0f) return;
+            Hp = Mathf.Min(stats.MaxHp, Hp + amount);
+        }
+
+        /// <summary>단발 무적 시간을 최소 seconds로 늘린다(히든 삼색 원두 보스 등장).</summary>
+        public void GrantInvulnerability(float seconds)
+        {
+            if (!IsDead) invulnerable = Mathf.Max(invulnerable, seconds);
+        }
+
+        /// <summary>적 몸 접촉 피해. 히든 독초 정원(중독 적 -15%)·쟁반 방패(반격)를 거친 뒤 일반 단발 피해와 같다.</summary>
+        public void TakeContactDamage(Enemy source, float amount)
+        {
+            if (IsDead || invulnerable > 0f) return;
+            if (HiddenRuntime != null) amount = HiddenRuntime.ModifyContactDamage(source, amount);
+            float before = Hp;
+            TakeDamage(amount);
+            if (Hp < before) HiddenRuntime?.OnContactHit(source);
+        }
+
         /// <summary>월드 X 좌표 쪽을 바라보도록 즉시 방향을 돌린다 (공격 시작 시 대상 쪽으로 스냅).</summary>
         public void SetFacing(float towardWorldX)
         {
@@ -178,6 +210,11 @@ namespace CCT
         public void TakeDamage(float amount)
         {
             if (IsDead || invulnerable > 0f) return;
+            if (HiddenRuntime != null && HiddenRuntime.TryBlockHit())
+            {
+                invulnerable = Balance.PlayerInvulnerableSeconds; // 보호막도 일반 피격처럼 0.8초 무적
+                return;
+            }
             ApplyDamage(amount);
             if (!IsDead) invulnerable = Balance.PlayerInvulnerableSeconds;
         }
@@ -192,10 +229,20 @@ namespace CCT
 
         void ApplyDamage(float amount)
         {
-            Hp = Mathf.Max(0f, Hp - amount * stats.DamageTakenMultiplier);
+            amount *= Challenge?.DamageMultiplier ?? 1f;
+            // 09:84 "플레이어가 무적이라 피해0이면 hit_player 재생하지 않는다" — 무적 중엔 애초에
+            // TakeDamage에서 걸러져 여기까지 안 온다. amount>0 방어는 남겨둔다.
+            if (amount > 0f) AudioService.PlaySfx("hit_player", transform.position);
+            float taken = stats.DamageTakenMultiplier;
+            if (HiddenRuntime != null) taken *= HiddenRuntime.ExtraTakenMultiplier(taken);
+            Hp = Mathf.Max(0f, Hp - amount * taken);
+            if (amount > 0f) HiddenRuntime?.OnDamaged();
+            if (amount > 0f && Hp > 0f) visual?.PlayHurt(); // 04 §6 hurt 0.08초(있을 때만)
+            if (amount > 0f) CameraRig.Shake(0.12f, 0.15f); // 08:122 피격 흔들림(설정 0이면 없음)
             if (Hp <= 0f)
             {
                 IsDead = true;
+                visual?.PlayDefeat();
                 Died?.Invoke();
             }
         }

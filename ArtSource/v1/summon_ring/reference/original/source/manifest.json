@@ -1,0 +1,62 @@
+{
+  "assetId": "summon_ring",
+  "checks": {
+    "structural": "pass: RGBA, expected size/frame count, alpha, 2px grid, nonempty, transparent corners",
+    "visual": "pass: all frame contact sheet reviewed on dark, white and wooden floor backgrounds",
+    "browserPreview": "pass: 42 cards, 126/126 images loaded; animation runtime active",
+    "unity": "not_run: runtime scale, timing, sorting and combat readability still required"
+  },
+  "clips": {
+    "effect": {
+      "files": [
+        "frames/summon_ring_effect_right_00.png",
+        "frames/summon_ring_effect_right_01.png",
+        "frames/summon_ring_effect_right_02.png",
+        "frames/summon_ring_effect_right_03.png"
+      ],
+      "fps": 8,
+      "loop": true
+    }
+  },
+  "deviations": [],
+  "files": [
+    "frames/summon_ring_effect_right_00.png",
+    "frames/summon_ring_effect_right_01.png",
+    "frames/summon_ring_effect_right_02.png",
+    "frames/summon_ring_effect_right_03.png"
+  ],
+  "frameSizePx": [
+    256,
+    128
+  ],
+  "kind": "vfx",
+  "pivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "pixelsPerUnit": 128,
+  "provenance": {
+    "aiGenerationUnits": 0,
+    "method": "original pixel drawing",
+    "tool": "Aseprite 1.3.18.6 Lua"
+  },
+  "scope": "04+09 support art",
+  "sourceReferences": [
+    "reference/create_support_art.lua"
+  ],
+  "specVersion": "1.0",
+  "status": "ready",
+  "anchorsByFrame": {},
+  "runtimeTintVariants": {
+    "cocktail": "#49C9F2",
+    "tea": "#8EAD68"
+  },
+  "acceptance": {
+    "generated": false,
+    "structurallyValid": true,
+    "visuallyReviewed": true,
+    "sourceReady": true,
+    "unityVerified": false,
+    "reviewEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\first-pass-v1\\support-inspection.png"
+  }
+}

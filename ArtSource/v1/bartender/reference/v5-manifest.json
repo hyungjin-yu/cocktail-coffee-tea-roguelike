@@ -1,0 +1,256 @@
+{
+  "assetId": "bartender",
+  "checks": {
+    "geometry": "pass: 10 RGBA frames, 2px grid, bounds, fixed ground baseline, identical head/chest markers",
+    "unity": "not_run",
+    "visual": "candidate reviewed as contact sheet; animated review and Unity scale/speed verification separate",
+    "posePlan": "pass: alternating support feet, matched opposite contact/lift/passing poses; six distinct authored movement frames",
+    "gif": "pass: six frames at 100ms"
+  },
+  "clips": {
+    "idle": {
+      "files": [
+        "frames/bartender_idle_right_00.png",
+        "frames/bartender_idle_right_01.png",
+        "frames/bartender_idle_right_02.png",
+        "frames/bartender_idle_right_03.png"
+      ],
+      "fps": 3,
+      "loop": true
+    },
+    "move": {
+      "files": [
+        "frames/bartender_move_right_00.png",
+        "frames/bartender_move_right_01.png",
+        "frames/bartender_move_right_02.png",
+        "frames/bartender_move_right_03.png",
+        "frames/bartender_move_right_04.png",
+        "frames/bartender_move_right_05.png"
+      ],
+      "fps": 10,
+      "loop": true
+    }
+  },
+  "deviations": [
+    "Candidate hand-authored leg rig: verify natural gait and trousers material consistency in motion",
+    "Idle slowed to 3fps for restrained breathing instead of spec 6fps",
+    "Missing attack/hurt/defeat clips and frame weapon anchors"
+  ],
+  "frameSizePx": [
+    256,
+    256
+  ],
+  "kind": "body",
+  "pivotNormalized": [
+    0.5,
+    0.125
+  ],
+  "pixelsPerUnit": 128,
+  "posePlan": [
+    {
+      "bob": 0,
+      "far": [
+        [
+          122,
+          170
+        ],
+        [
+          112,
+          194
+        ],
+        [
+          98,
+          218
+        ]
+      ],
+      "name": "near_contact",
+      "near": [
+        [
+          138,
+          170
+        ],
+        [
+          150,
+          194
+        ],
+        [
+          164,
+          218
+        ]
+      ],
+      "swing": -4
+    },
+    {
+      "bob": 2,
+      "far": [
+        [
+          122,
+          172
+        ],
+        [
+          108,
+          188
+        ],
+        [
+          108,
+          204
+        ]
+      ],
+      "name": "near_load_far_lift",
+      "near": [
+        [
+          138,
+          172
+        ],
+        [
+          140,
+          196
+        ],
+        [
+          142,
+          218
+        ]
+      ],
+      "swing": -2
+    },
+    {
+      "bob": -2,
+      "far": [
+        [
+          122,
+          168
+        ],
+        [
+          142,
+          186
+        ],
+        [
+          148,
+          204
+        ]
+      ],
+      "name": "near_support_far_pass",
+      "near": [
+        [
+          138,
+          168
+        ],
+        [
+          124,
+          194
+        ],
+        [
+          120,
+          218
+        ]
+      ],
+      "swing": 2
+    },
+    {
+      "bob": 0,
+      "far": [
+        [
+          122,
+          170
+        ],
+        [
+          150,
+          194
+        ],
+        [
+          164,
+          218
+        ]
+      ],
+      "name": "far_contact",
+      "near": [
+        [
+          138,
+          170
+        ],
+        [
+          114,
+          194
+        ],
+        [
+          98,
+          218
+        ]
+      ],
+      "swing": 4
+    },
+    {
+      "bob": 2,
+      "far": [
+        [
+          122,
+          172
+        ],
+        [
+          140,
+          196
+        ],
+        [
+          142,
+          218
+        ]
+      ],
+      "name": "far_load_near_lift",
+      "near": [
+        [
+          138,
+          172
+        ],
+        [
+          110,
+          188
+        ],
+        [
+          108,
+          204
+        ]
+      ],
+      "swing": 2
+    },
+    {
+      "bob": -2,
+      "far": [
+        [
+          122,
+          168
+        ],
+        [
+          124,
+          194
+        ],
+        [
+          120,
+          218
+        ]
+      ],
+      "name": "far_support_near_pass",
+      "near": [
+        [
+          138,
+          168
+        ],
+        [
+          144,
+          186
+        ],
+        [
+          148,
+          204
+        ]
+      ],
+      "swing": -2
+    }
+  ],
+  "provenance": "Six authored contact/load/passing poses; no frame interpolation; canonical upper-body pixels retained",
+  "sourceReferences": [
+    "../build_bartender_keyposes_v5.lua",
+    "../bartender-move-aligned/frames/bartender_idle_right_00.png"
+  ],
+  "specVersion": "1.0",
+  "status": "needs_fix"
+}

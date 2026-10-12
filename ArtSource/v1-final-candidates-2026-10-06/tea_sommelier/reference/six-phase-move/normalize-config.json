@@ -1,0 +1,86 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-v1/bodies/tea_sommelier_move/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-v1/bodies/tea_sommelier_move",
+  "assetId": "tea_sommelier_move",
+  "columns": 6,
+  "rows": 1,
+  "size": 256,
+  "bodyHeight": 192.0,
+  "height": 1.6,
+  "frames": [
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    }
+  ],
+  "boxes": [
+    {
+      "left": 43,
+      "top": 116,
+      "right": 312,
+      "bottom": 626
+    },
+    {
+      "left": 399,
+      "top": 116,
+      "right": 677,
+      "bottom": 626
+    },
+    {
+      "left": 767,
+      "top": 116,
+      "right": 1033,
+      "bottom": 626
+    },
+    {
+      "left": 1128,
+      "top": 117,
+      "right": 1397,
+      "bottom": 626
+    },
+    {
+      "left": 1497,
+      "top": 116,
+      "right": 1768,
+      "bottom": 626
+    },
+    {
+      "left": 1852,
+      "top": 117,
+      "right": 2126,
+      "bottom": 626
+    }
+  ]
+}

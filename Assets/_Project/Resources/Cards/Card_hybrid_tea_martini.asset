@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4c593a99b730843a51fecaaffdda34, type: 3}
+  m_Name: Card_hybrid_tea_martini
+  m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
+  id: hybrid_tea_martini
+  displayName: "\uD2F0\uB2C8 \uBCF4\uC6B0"
+  description: "\uB808\uC774\uD53C\uC5B4\uC5D0 \uCC28\uC758 \uD65C\uC744 \uB354\uD569\uB2C8\uB2E4
+    \u2014 \uBCF4\uC870 \uD654\uC0B4\uC774 \uC790\uB3D9 \uBC1C\uC0AC\uB429\uB2C8\uB2E4."
+  flavorText: 
+  category: 2
+  rarity: 3
+  maxStacks: 1
+  effects: []
+  weaponRestriction: 0

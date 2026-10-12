@@ -11,6 +11,9 @@ namespace CCT.Tests
         {
             foreach (var v in Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None))
                 Object.DestroyImmediate(v.gameObject);
+            // AutoStart가 씬 시작 시 CharacterSelectView 대신 TitleView를 띄우므로(2026-09-28) 같이 치운다.
+            foreach (var v in Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None))
+                Object.DestroyImmediate(v.gameObject);
         }
 
         [UnitySetUp]
@@ -45,6 +48,9 @@ namespace CCT.Tests
             Assert.IsNotNull(view.WeaponButtonA);
             Assert.IsNotNull(view.WeaponButtonB);
             view.WeaponButtonB.onClick.Invoke(); // 티 소믈리에의 두 번째 무기 = 활
+            Assert.IsFalse(chosen.HasValue, "08:67 무기 카드는 선택만 — 영업 시작으로 확정");
+            Assert.AreEqual(WeaponKind.Bow, view.SelectedWeapon);
+            view.StartButton.onClick.Invoke();
 
             Assert.IsTrue(chosen.HasValue);
             Assert.AreEqual(Job.TeaSommelier, chosen.Value.job);
@@ -80,6 +86,9 @@ namespace CCT.Tests
 
             Assert.AreEqual(Job.TeaSommelier, game.Job);
             Assert.AreEqual(WeaponKind.Bow, game.Weapon);
+            Assert.AreEqual(1, game.Stats.pierceCount, "활은 시작부터 두 대상까지 맞혀야 한다");
+            game.Stats.Apply(new CardEffect(CardEffectType.PierceCount, 1f));
+            Assert.AreEqual(2, game.Stats.pierceCount, "기본 관통과 카드 관통이 누적돼야 한다");
             Assert.IsNotNull(game.Player.GetComponent<PlayerProjectileWeapon>(),
                 "총/활은 PlayerProjectileWeapon 을 붙여야 한다");
             Assert.IsNull(game.Player.GetComponent<RapierWeapon>());
@@ -100,6 +109,8 @@ namespace CCT.Tests
         {
             var game = GameBootstrap.Build(Job.Bartender, WeaponKind.Gun);
             yield return null;
+
+            Assert.AreEqual(0, game.Stats.pierceCount, "활 보정이 총에 적용되면 안 된다");
 
             for (int i = 0; i < 30; i++)
             {

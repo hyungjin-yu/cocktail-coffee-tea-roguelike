@@ -1,0 +1,195 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/espresso_bug/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/espresso_bug",
+  "assetId": "espresso_bug",
+  "columns": 5,
+  "rows": 3,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 0.9,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 33,
+      "right": 275,
+      "top": 140,
+      "bottom": 279
+    },
+    {
+      "left": 364,
+      "right": 615,
+      "top": 128,
+      "bottom": 278
+    },
+    {
+      "left": 687,
+      "right": 934,
+      "top": 136,
+      "bottom": 279
+    },
+    {
+      "left": 1007,
+      "right": 1257,
+      "top": 147,
+      "bottom": 279
+    },
+    {
+      "left": 1329,
+      "right": 1588,
+      "top": 136,
+      "bottom": 279
+    },
+    {
+      "left": 28,
+      "right": 296,
+      "top": 445,
+      "bottom": 591
+    },
+    {
+      "left": 359,
+      "right": 617,
+      "top": 445,
+      "bottom": 591
+    },
+    {
+      "left": 685,
+      "right": 949,
+      "top": 444,
+      "bottom": 591
+    },
+    {
+      "left": 1006,
+      "right": 1283,
+      "top": 441,
+      "bottom": 595
+    },
+    {
+      "left": 1351,
+      "right": 1599,
+      "top": 445,
+      "bottom": 591
+    },
+    {
+      "left": 65,
+      "right": 227,
+      "top": 740,
+      "bottom": 900
+    },
+    {
+      "left": 353,
+      "right": 615,
+      "top": 768,
+      "bottom": 902
+    },
+    {
+      "left": 674,
+      "right": 949,
+      "top": 782,
+      "bottom": 902
+    },
+    {
+      "left": 995,
+      "right": 1276,
+      "top": 801,
+      "bottom": 900
+    },
+    {
+      "left": 1334,
+      "right": 1573,
+      "top": 835,
+      "bottom": 900
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/espresso_bug.png"
+}

@@ -87,7 +87,10 @@ namespace CCT.Tests
             Assert.AreEqual(1.20f, game.BeanGainMultiplier, 0.0001f);
 
             game.AddIngredient(IngredientType.Coffee, 4);
-            Assert.AreEqual(Mathf.RoundToInt(4 * 1.20f), game.BeanGauge.Current, "원두 획득량에도 배율이 적용돼야 한다");
+            // 07:34 — 픽업별 반올림이 아니라 누적 원량 기준 floor(4×1.2)=4. 다음 원두 1개로 R=5 → E=6.
+            Assert.AreEqual(4, game.BeanGauge.Current, "원두 획득량에도 배율이 적용돼야 한다(누적 floor)");
+            game.AddIngredient(IngredientType.Coffee, 1);
+            Assert.AreEqual(6, game.BeanGauge.Current, "누적 R=5 → E=floor(6.0)=6 — 픽업별 반올림 차익 없음");
         }
 
         [UnityTest]

@@ -1,0 +1,238 @@
+{
+  "acceptance": {
+    "firstPassAccepted": true,
+    "generated": true,
+    "strictReleaseReady": true,
+    "structurallyValid": true,
+    "unityVerified": true,
+    "visuallyReviewed": true,
+    "sourceReady": true,
+    "runtimeVisualReview": "accepted_verified_scope",
+    "runtimeReview": {
+      "reviewer": "Codex art worker task_523ad2e66a6c",
+      "dispatch": "ctx_db39a1e69bf4",
+      "date": "2026-10-08",
+      "result": "accepted_verified_scope",
+      "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+      "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+      "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+      "additionalEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\body-720-final-evidence.csv",
+      "pending": [],
+      "captureRoots": [
+        "C:/UnityScratch/r14/runs/rc-t1080/out",
+        "C:/UnityScratch/r14/runs/rc-t720/out",
+        "C:/UnityScratch/r14/runs/rc-b1080/out",
+        "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+        "C:/UnityScratch/r14/runs/rc2-ice/out",
+        "C:/UnityScratch/r14/runs/rc2-save-recovery/out",
+        "C:/UnityScratch/r14/runs/rc3-deaths720/out",
+        "C:/UnityScratch/r14/runs/b720/out"
+      ],
+      "acceptedClipsBothFacings": [
+        "defeat",
+        "hurt",
+        "idle",
+        "move"
+      ]
+    },
+    "runtimeReviewHistory": [
+      {
+        "reviewer": "Codex art worker task_15d755821ed6",
+        "date": "2026-10-08",
+        "result": "partial_visual_acceptance",
+        "acceptedClipsBothFacings": [
+          "idle",
+          "move",
+          "hurt",
+          "action"
+        ],
+        "evidence": "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/release-review-2026-10-08/motion-final-review.md",
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/b1080/out"
+        ],
+        "pending": [
+          "defeat00..03 facing L native gallery",
+          "720p complete native review"
+        ]
+      },
+      {
+        "reviewer": "Codex art worker task_523ad2e66a6c",
+        "dispatch": "ctx_db39a1e69bf4",
+        "date": "2026-10-08",
+        "result": "accepted_verified_scope",
+        "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained.",
+        "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+        "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+        "pending": [
+          "720p complete enemy native review (previous explicit pending retained)"
+        ],
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/rc-t1080/out",
+          "C:/UnityScratch/r14/runs/rc-t720/out",
+          "C:/UnityScratch/r14/runs/rc-b1080/out",
+          "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+          "C:/UnityScratch/r14/runs/rc2-ice/out"
+        ],
+        "acceptedClipsBothFacings": [
+          "defeat",
+          "hurt",
+          "idle",
+          "move"
+        ]
+      },
+      {
+        "reviewer": "Codex art worker task_523ad2e66a6c",
+        "dispatch": "ctx_db39a1e69bf4",
+        "date": "2026-10-08",
+        "result": "accepted_verified_scope",
+        "scope": "All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+        "report": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\report.md",
+        "sourceFrameEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\source-direction-evidence.csv",
+        "additionalEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\release-review-2026-10-08\\rc1\\body-720-final-evidence.csv",
+        "pending": [],
+        "captureRoots": [
+          "C:/UnityScratch/r14/runs/rc-t1080/out",
+          "C:/UnityScratch/r14/runs/rc-t720/out",
+          "C:/UnityScratch/r14/runs/rc-b1080/out",
+          "C:/UnityScratch/r14/runs/rc2-add1080-fixed/out",
+          "C:/UnityScratch/r14/runs/rc2-ice/out",
+          "C:/UnityScratch/r14/runs/rc2-save-recovery/out",
+          "C:/UnityScratch/r14/runs/rc3-deaths720/out",
+          "C:/UnityScratch/r14/runs/b720/out"
+        ],
+        "acceptedClipsBothFacings": [
+          "defeat",
+          "hurt",
+          "idle",
+          "move"
+        ]
+      }
+    ]
+  },
+  "anchorsByFrame": {},
+  "assetId": "sugar_cube_bomber",
+  "bodyFrameTotal": 363,
+  "bodyHeightPx": 184,
+  "checks": {
+    "structural": "pass: every RGBA256 frame binary alpha, 2px grid, safe32..223 vertical and16..239 horizontal bounds, unique pixel content",
+    "unity": "pass: All source body clips L/R: previous 241 basic poses reused with unchanged SHA; additions directly inspected at 1080. Enemy specials/death use qualified clip-driver QA; actual boss pattern context retained. Complete native720 readability corroboration: previous basic203, current boss-special46, new clean-death68; see body-720-final-evidence.csv.",
+    "visual": "personally inspected all frames in contact sheet; native Aseprite GIF previews and articulated pose sequence reviewed",
+    "idleHeightRangePx": 4,
+    "idleWithinTwoPercent": true,
+    "reviewedImages": [
+      "preview.png",
+      "frames/sugar_cube_bomber_defeat_right_00.png",
+      "frames/sugar_cube_bomber_defeat_right_01.png",
+      "frames/sugar_cube_bomber_defeat_right_02.png",
+      "frames/sugar_cube_bomber_defeat_right_03.png",
+      "frames/sugar_cube_bomber_hurt_right_00.png",
+      "frames/sugar_cube_bomber_idle_right_00.png",
+      "frames/sugar_cube_bomber_idle_right_01.png",
+      "frames/sugar_cube_bomber_idle_right_02.png",
+      "frames/sugar_cube_bomber_idle_right_03.png",
+      "frames/sugar_cube_bomber_move_right_00.png",
+      "frames/sugar_cube_bomber_move_right_01.png",
+      "frames/sugar_cube_bomber_move_right_02.png",
+      "frames/sugar_cube_bomber_move_right_03.png",
+      "frames/sugar_cube_bomber_move_right_04.png",
+      "frames/sugar_cube_bomber_move_right_05.png",
+      "white-review.png",
+      "floor-review.png",
+      "black-review.png",
+      "anchor-review.png"
+    ],
+    "sourceReferences": {
+      "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/sugar_cube_bomber.png": {
+        "exists": true
+      },
+      "reference/generated-sheet.png": {
+        "exists": true
+      },
+      "reference/canonical.png": {
+        "exists": true
+      }
+    },
+    "nativeSource": "sugar_cube_bomber.aseprite",
+    "desktopReference": {
+      "path": "C:\\Users\\user\\Desktop\\개발\\커피칵테일차\\이미지\\몹\\티\\슈가 큐브 바머_1차.png",
+      "sha256": "619c8cd8e5cc9b098d6e39cf63d1fb250383129df2c1a538c7b213626210fd7b",
+      "sizePx": [
+        1024,
+        1024
+      ],
+      "identicalBytesToCanonical": false
+    },
+    "nativeRoundTrip": "pass: native Aseprite timeline re-export matches every frame pixel-for-pixel",
+    "anchorsExactClipPaths": true
+  },
+  "clips": {
+    "defeat": {
+      "files": [
+        "frames/sugar_cube_bomber_defeat_right_00.png",
+        "frames/sugar_cube_bomber_defeat_right_01.png",
+        "frames/sugar_cube_bomber_defeat_right_02.png",
+        "frames/sugar_cube_bomber_defeat_right_03.png"
+      ],
+      "fps": 10,
+      "loop": false
+    },
+    "hurt": {
+      "files": [
+        "frames/sugar_cube_bomber_hurt_right_00.png"
+      ],
+      "fps": 12.5,
+      "loop": false
+    },
+    "idle": {
+      "files": [
+        "frames/sugar_cube_bomber_idle_right_00.png",
+        "frames/sugar_cube_bomber_idle_right_01.png",
+        "frames/sugar_cube_bomber_idle_right_02.png",
+        "frames/sugar_cube_bomber_idle_right_03.png"
+      ],
+      "fps": 6,
+      "loop": true
+    },
+    "move": {
+      "files": [
+        "frames/sugar_cube_bomber_move_right_00.png",
+        "frames/sugar_cube_bomber_move_right_01.png",
+        "frames/sugar_cube_bomber_move_right_02.png",
+        "frames/sugar_cube_bomber_move_right_03.png",
+        "frames/sugar_cube_bomber_move_right_04.png",
+        "frames/sugar_cube_bomber_move_right_05.png"
+      ],
+      "fps": 10,
+      "loop": true
+    }
+  },
+  "deviations": [],
+  "frameSizePx": [
+    256,
+    256
+  ],
+  "kind": "body",
+  "pivotNormalized": [
+    0.5,
+    0.125
+  ],
+  "pixelsPerUnit": 128,
+  "provenance": {
+    "method": "unique generated articulated keyposes; native pixel normalization; no interpolation",
+    "tool": "built-in imagegen + native Aseprite Lua"
+  },
+  "regularBodyFrameTotal": 211,
+  "scope": "full_game_v1",
+  "sourceReferences": [
+    "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/sugar_cube_bomber.png",
+    "reference/generated-sheet.png",
+    "reference/canonical.png",
+    "C:/Users/user/Desktop/개발/커피칵테일차/이미지/몹/티/슈가 큐브 바머_1차.png"
+  ],
+  "specVersion": "1.0",
+  "status": "ready",
+  "targetBodyHeightWorld": 0.85,
+  "productionTier": "first_pass_source",
+  "reviewedUtc": "2026-10-04T07:23:23.793113+00:00",
+  "sourceRevision": "regular-bodies-20261004-r2"
+}

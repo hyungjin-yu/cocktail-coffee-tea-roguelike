@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: blazer
   displayName: "\uBE14\uB808\uC774\uC800"
-  description: "\uD654\uC5FC \uD3ED\uBC1C Lv +2"
+  description: "\uC8FC\uBB34\uAE30 \uC801\uC911 \uD654\uC5FC Lv +2 \xB7 3\uCD08 \uC9C0\uC18D"
   flavorText: "\uBD88\uBD99\uC778 \uC704\uC2A4\uD0A4\uB97C \uC794 \uC0AC\uC774\uB85C
     \uC62E\uACA8 \uBD93\uB294 \uACE1\uC608 \uAC19\uC740 \uAE30\uBC95."
   category: 0

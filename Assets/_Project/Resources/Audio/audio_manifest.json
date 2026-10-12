@@ -1,0 +1,111 @@
+{
+  "sampleRate": 48000,
+  "bitDepth": 16,
+  "sfx": {
+    "ui_focus": {
+      "durationSeconds": 0.05,
+      "seed": 861
+    },
+    "ui_confirm": {
+      "durationSeconds": 0.12,
+      "seed": 1067
+    },
+    "ui_cancel": {
+      "durationSeconds": 0.12,
+      "seed": 931
+    },
+    "ui_denied": {
+      "durationSeconds": 0.16,
+      "seed": 934
+    },
+    "swing_rapier": {
+      "durationSeconds": 0.12,
+      "seed": 1290
+    },
+    "swing_sword": {
+      "durationSeconds": 0.16,
+      "seed": 1206
+    },
+    "shot_gun": {
+      "durationSeconds": 0.13,
+      "seed": 871
+    },
+    "shot_bow": {
+      "durationSeconds": 0.14,
+      "seed": 869
+    },
+    "shot_hybrid": {
+      "durationSeconds": 0.18,
+      "seed": 1183
+    },
+    "hit_enemy": {
+      "durationSeconds": 0.08,
+      "seed": 962
+    },
+    "hit_player": {
+      "durationSeconds": 0.22,
+      "seed": 1073
+    },
+    "enemy_defeat": {
+      "durationSeconds": 0.18,
+      "seed": 1254
+    },
+    "pickup": {
+      "durationSeconds": 0.08,
+      "seed": 652
+    },
+    "levelup": {
+      "durationSeconds": 0.45,
+      "seed": 765
+    },
+    "skill_unlock": {
+      "durationSeconds": 0.36,
+      "seed": 1290
+    },
+    "hybrid_unlock": {
+      "durationSeconds": 0.6,
+      "seed": 1389
+    },
+    "boss_warning": {
+      "durationSeconds": 0.5,
+      "seed": 1292
+    },
+    "explosion": {
+      "durationSeconds": 0.35,
+      "seed": 993
+    },
+    "steam": {
+      "durationSeconds": 0.8,
+      "seed": 538
+    },
+    "spell": {
+      "durationSeconds": 0.3,
+      "seed": 544
+    },
+    "clear": {
+      "durationSeconds": 1.2,
+      "seed": 519
+    },
+    "defeat": {
+      "durationSeconds": 1.0,
+      "seed": 617
+    }
+  },
+  "bgm": {
+    "bgm_menu": {
+      "bpm": 90,
+      "bars": 16,
+      "durationSeconds": 42.6667
+    },
+    "bgm_run": {
+      "bpm": 112,
+      "bars": 32,
+      "durationSeconds": 68.5714
+    },
+    "bgm_boss": {
+      "bpm": 128,
+      "bars": 32,
+      "durationSeconds": 60.0
+    }
+  }
+}

@@ -1,0 +1,614 @@
+{
+  "assetId": "difficult_customer",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips",
+  "frames": [
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/idle-generated.png",
+      "box": {
+        "left": 103,
+        "right": 584,
+        "top": 43,
+        "bottom": 596,
+        "area": 159613,
+        "seed": [
+          376,
+          43
+        ]
+      },
+      "scale": 0.6931407942238267,
+      "file": "frames/difficult_customer_idle_right_00.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/idle-generated.png",
+      "box": {
+        "left": 666,
+        "right": 1189,
+        "top": 69,
+        "bottom": 596,
+        "area": 167249,
+        "seed": [
+          958,
+          69
+        ]
+      },
+      "scale": 0.6931407942238267,
+      "file": "frames/difficult_customer_idle_right_01.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/idle-generated.png",
+      "box": {
+        "left": 105,
+        "right": 584,
+        "top": 652,
+        "bottom": 1199,
+        "area": 157303,
+        "seed": [
+          363,
+          652
+        ]
+      },
+      "scale": 0.6931407942238267,
+      "file": "frames/difficult_customer_idle_right_02.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/idle-generated.png",
+      "box": {
+        "left": 718,
+        "right": 1197,
+        "top": 713,
+        "bottom": 1195,
+        "area": 147641,
+        "seed": [
+          991,
+          713
+        ]
+      },
+      "scale": 0.6931407942238267,
+      "file": "frames/difficult_customer_idle_right_03.png",
+      "clip": "idle",
+      "fps": 6
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/move-generated.png",
+      "box": {
+        "left": 27,
+        "right": 507,
+        "top": 31,
+        "bottom": 477,
+        "area": 109289,
+        "seed": [
+          365,
+          31
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/difficult_customer_move_right_00.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/move-generated.png",
+      "box": {
+        "left": 541,
+        "right": 992,
+        "top": 41,
+        "bottom": 482,
+        "area": 101179,
+        "seed": [
+          846,
+          41
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/difficult_customer_move_right_01.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/move-generated.png",
+      "box": {
+        "left": 1064,
+        "right": 1507,
+        "top": 37,
+        "bottom": 482,
+        "area": 103333,
+        "seed": [
+          1333,
+          37
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/difficult_customer_move_right_02.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/move-generated.png",
+      "box": {
+        "left": 35,
+        "right": 480,
+        "top": 541,
+        "bottom": 979,
+        "area": 104762,
+        "seed": [
+          294,
+          541
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/difficult_customer_move_right_03.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/move-generated.png",
+      "box": {
+        "left": 544,
+        "right": 989,
+        "top": 544,
+        "bottom": 977,
+        "area": 99013,
+        "seed": [
+          808,
+          544
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/difficult_customer_move_right_04.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/move-generated.png",
+      "box": {
+        "left": 1066,
+        "right": 1494,
+        "top": 538,
+        "bottom": 979,
+        "area": 99752,
+        "seed": [
+          1319,
+          538
+        ]
+      },
+      "scale": 0.8590604026845637,
+      "file": "frames/difficult_customer_move_right_05.png",
+      "clip": "move",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 33,
+        "right": 407,
+        "top": 145,
+        "bottom": 614,
+        "area": 112083,
+        "seed": [
+          259,
+          145
+        ]
+      },
+      "scale": 0.8170212765957446,
+      "file": "frames/difficult_customer_hurt_right_00.png",
+      "clip": "hurt",
+      "fps": 12.5
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 460,
+        "right": 832,
+        "top": 164,
+        "bottom": 614,
+        "area": 108266,
+        "seed": [
+          726,
+          164
+        ]
+      },
+      "scale": 0.8170212765957446,
+      "file": "frames/difficult_customer_defeat_right_00.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 839,
+        "right": 1217,
+        "top": 258,
+        "bottom": 614,
+        "area": 90581,
+        "seed": [
+          1128,
+          258
+        ]
+      },
+      "scale": 0.8170212765957446,
+      "file": "frames/difficult_customer_defeat_right_01.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 1212,
+        "right": 1682,
+        "top": 250,
+        "bottom": 621,
+        "area": 96756,
+        "seed": [
+          1419,
+          250
+        ]
+      },
+      "scale": 0.8170212765957446,
+      "file": "frames/difficult_customer_defeat_right_02.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/hurt_defeat-generated.png",
+      "box": {
+        "left": 1691,
+        "right": 2154,
+        "top": 404,
+        "bottom": 620,
+        "area": 66613,
+        "seed": [
+          1996,
+          404
+        ]
+      },
+      "scale": 0.8170212765957446,
+      "file": "frames/difficult_customer_defeat_right_03.png",
+      "clip": "defeat",
+      "fps": 10
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/refund-generated.png",
+      "box": {
+        "left": 83,
+        "right": 569,
+        "top": 35,
+        "bottom": 600,
+        "area": 160207,
+        "seed": [
+          272,
+          35
+        ]
+      },
+      "scale": 0.6656580937972768,
+      "file": "frames/difficult_customer_refund_right_00.png",
+      "clip": "refund",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/refund-generated.png",
+      "box": {
+        "left": 686,
+        "right": 1213,
+        "top": 108,
+        "bottom": 601,
+        "area": 153423,
+        "seed": [
+          990,
+          108
+        ]
+      },
+      "scale": 0.6656580937972768,
+      "file": "frames/difficult_customer_refund_right_01.png",
+      "clip": "refund",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/refund-generated.png",
+      "box": {
+        "left": 69,
+        "right": 729,
+        "top": 706,
+        "bottom": 1166,
+        "area": 150331,
+        "seed": [
+          395,
+          706
+        ]
+      },
+      "scale": 0.6656580937972768,
+      "file": "frames/difficult_customer_refund_right_02.png",
+      "clip": "refund",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/refund-generated.png",
+      "box": {
+        "left": 739,
+        "right": 1188,
+        "top": 670,
+        "bottom": 1170,
+        "area": 144883,
+        "seed": [
+          942,
+          670
+        ]
+      },
+      "scale": 0.6656580937972768,
+      "file": "frames/difficult_customer_refund_right_03.png",
+      "clip": "refund",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/summon-generated.png",
+      "box": {
+        "left": 51,
+        "right": 574,
+        "top": 139,
+        "bottom": 580,
+        "area": 147997,
+        "seed": [
+          289,
+          139
+        ]
+      },
+      "scale": 0.7458866544789763,
+      "file": "frames/difficult_customer_summon_right_00.png",
+      "clip": "summon",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/summon-generated.png",
+      "box": {
+        "left": 659,
+        "right": 1198,
+        "top": 37,
+        "bottom": 583,
+        "area": 166163,
+        "seed": [
+          792,
+          37
+        ]
+      },
+      "scale": 0.7458866544789763,
+      "file": "frames/difficult_customer_summon_right_01.png",
+      "clip": "summon",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/summon-generated.png",
+      "box": {
+        "left": 51,
+        "right": 617,
+        "top": 650,
+        "bottom": 1179,
+        "area": 165599,
+        "seed": [
+          367,
+          650
+        ]
+      },
+      "scale": 0.7458866544789763,
+      "file": "frames/difficult_customer_summon_right_02.png",
+      "clip": "summon",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/summon-generated.png",
+      "box": {
+        "left": 725,
+        "right": 1197,
+        "top": 650,
+        "bottom": 1182,
+        "area": 156247,
+        "seed": [
+          941,
+          650
+        ]
+      },
+      "scale": 0.7458866544789763,
+      "file": "frames/difficult_customer_summon_right_03.png",
+      "clip": "summon",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/review-generated.png",
+      "box": {
+        "left": 96,
+        "right": 578,
+        "top": 98,
+        "bottom": 617,
+        "area": 158986,
+        "seed": [
+          319,
+          98
+        ]
+      },
+      "scale": 0.6754966887417219,
+      "file": "frames/difficult_customer_review_right_00.png",
+      "clip": "review",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/review-generated.png",
+      "box": {
+        "left": 687,
+        "right": 1189,
+        "top": 14,
+        "bottom": 617,
+        "area": 168559,
+        "seed": [
+          1107,
+          14
+        ]
+      },
+      "scale": 0.6754966887417219,
+      "file": "frames/difficult_customer_review_right_01.png",
+      "clip": "review",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/review-generated.png",
+      "box": {
+        "left": 41,
+        "right": 654,
+        "top": 712,
+        "bottom": 1180,
+        "area": 167076,
+        "seed": [
+          363,
+          712
+        ]
+      },
+      "scale": 0.6754966887417219,
+      "file": "frames/difficult_customer_review_right_02.png",
+      "clip": "review",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/review-generated.png",
+      "box": {
+        "left": 729,
+        "right": 1205,
+        "top": 668,
+        "bottom": 1187,
+        "area": 151661,
+        "seed": [
+          998,
+          668
+        ]
+      },
+      "scale": 0.6754966887417219,
+      "file": "frames/difficult_customer_review_right_03.png",
+      "clip": "review",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/reject-generated.png",
+      "box": {
+        "left": 81,
+        "right": 593,
+        "top": 28,
+        "bottom": 604,
+        "area": 178444,
+        "seed": [
+          182,
+          28
+        ]
+      },
+      "scale": 0.6655112651646448,
+      "file": "frames/difficult_customer_reject_right_00.png",
+      "clip": "reject",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/reject-generated.png",
+      "box": {
+        "left": 701,
+        "right": 1195,
+        "top": 72,
+        "bottom": 604,
+        "area": 155330,
+        "seed": [
+          931,
+          72
+        ]
+      },
+      "scale": 0.6655112651646448,
+      "file": "frames/difficult_customer_reject_right_01.png",
+      "clip": "reject",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/reject-generated.png",
+      "box": {
+        "left": 89,
+        "right": 577,
+        "top": 659,
+        "bottom": 1189,
+        "area": 150786,
+        "seed": [
+          323,
+          659
+        ]
+      },
+      "scale": 0.6655112651646448,
+      "file": "frames/difficult_customer_reject_right_02.png",
+      "clip": "reject",
+      "fps": 12
+    },
+    {
+      "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-boss/difficult_customer-clips/reference/reject-generated.png",
+      "box": {
+        "left": 701,
+        "right": 1203,
+        "top": 666,
+        "bottom": 1189,
+        "area": 164082,
+        "seed": [
+          929,
+          666
+        ]
+      },
+      "scale": 0.6655112651646448,
+      "file": "frames/difficult_customer_reject_right_03.png",
+      "clip": "reject",
+      "fps": 12
+    }
+  ],
+  "tags": [
+    {
+      "name": "idle",
+      "first": 1,
+      "last": 4,
+      "loop": true
+    },
+    {
+      "name": "move",
+      "first": 5,
+      "last": 10,
+      "loop": true
+    },
+    {
+      "name": "hurt",
+      "first": 11,
+      "last": 11,
+      "loop": false
+    },
+    {
+      "name": "defeat",
+      "first": 12,
+      "last": 15,
+      "loop": false
+    },
+    {
+      "name": "refund",
+      "first": 16,
+      "last": 19,
+      "loop": false
+    },
+    {
+      "name": "summon",
+      "first": 20,
+      "last": 23,
+      "loop": false
+    },
+    {
+      "name": "review",
+      "first": 24,
+      "last": 27,
+      "loop": false
+    },
+    {
+      "name": "reject",
+      "first": 28,
+      "last": 31,
+      "loop": false
+    }
+  ]
+}

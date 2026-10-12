@@ -1,0 +1,83 @@
+{
+  "anchorsByFrame": {
+    "frames/weapon_bow_effect_right_00.png": {
+      "arrow": [
+        142,
+        128
+      ],
+      "grip": [
+        76,
+        128
+      ],
+      "muzzle": [
+        142,
+        128
+      ],
+      "string": [
+        142,
+        128
+      ]
+    }
+  },
+  "assetId": "weapon_bow",
+  "checks": {
+    "structural": "pass: exact canvas, PNG RGBA8, nonempty alpha, native 2px grid",
+    "visual": "pass: every frame and all-support sheet visually inspected; game-scale composite and tile seams reviewed",
+    "unity": "pass: source PNG SHA256 equals staged runtime PNG; primary-weapon idle/move/attack/hurt L/R and transitions personally reviewed at 1080p and 720p; scope and evidence in runtimeReview"
+  },
+  "clips": {
+    "effect": {
+      "files": [
+        "frames/weapon_bow_effect_right_00.png"
+      ],
+      "fps": 0,
+      "loop": false
+    }
+  },
+  "deviations": [],
+  "files": [
+    "frames/weapon_bow_effect_right_00.png"
+  ],
+  "frameSizePx": [
+    256,
+    256
+  ],
+  "kind": "vfx",
+  "pivotNormalized": [
+    0.296875,
+    0.5
+  ],
+  "pixelsPerUnit": 128,
+  "provenance": {
+    "method": "existing icon sampled and oriented in native Aseprite; original unchanged",
+    "tool": "Aseprite 1.3.18.6 Lua"
+  },
+  "scope": "full_game_v1",
+  "sourceReferences": [
+    "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Weapons/bow.png"
+  ],
+  "specVersion": "1.0",
+  "status": "ready",
+  "targetVisualLengthRelativeToPlayer": 0.7,
+  "acceptance": {
+    "gameScaleEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\first-pass-ui\\review\\game-scale-1280x720.png",
+    "sourceReady": true,
+    "unityVerified": true,
+    "reviewEvidence": "C:\\Users\\user\\Documents\\Personal_Note\\03_프로젝트\\칵테일 커피 티 로그라이크 기획\\ArtProduction\\first-pass-ui\\review\\all-support-frames.png",
+    "runtimeReview": {
+      "reviewer": "Codex art worker task_15d755821ed6",
+      "date": "2026-10-08",
+      "result": "accepted_primary_weapon_visual",
+      "scope": "Single source frame, primary held weapon attachment, facing and basic action transitions; does not approve player defeat, hybrid weapon_tea_bow or whole release",
+      "evidence": "C:/Users/user/Documents/Personal_Note/03_프로젝트/칵테일 커피 티 로그라이크 기획/ArtProduction/release-review-2026-10-08/motion-final-review.md",
+      "captureRoots": [
+        "C:/UnityScratch/r14/runs/t1080/out",
+        "C:/UnityScratch/r14/runs/t720/out"
+      ],
+      "sourcePngSha256": {
+        "frames/weapon_bow_effect_right_00.png": "2eae2a5ea77deb3f0cc6144fc2c6da3954e48c5a65e145b2158992c053bfa27c"
+      },
+      "note": "Primary tea bow curve faces shot direction and string stays rear at L/R. Ranged00 string briefly crosses face (~3 frames), then clears; bounded P2 overlap, no reversal or grip break."
+    }
+  }
+}

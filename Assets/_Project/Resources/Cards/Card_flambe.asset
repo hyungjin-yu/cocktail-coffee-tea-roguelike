@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: flambe
   displayName: "\uD50C\uB78C\uBCA0"
-  description: "\uCC0C\uB974\uAE30 +1\uD68C (\uC5F0\uC18D \uACF5\uACA9)"
+  description: "\uBCA0\uAE30 +1\uD68C (\uC5F0\uC18D \uACF5\uACA9)"
   flavorText: "\uC220\uC5D0 \uBD88\uC744 \uBD99\uC5EC \uD5A5\uACFC \uC54C\uCF54\uC62C\uC744
     \uB0A0\uB9AC\uB294 \uD654\uB824\uD55C \uAE30\uBC95."
   category: 0

@@ -10,6 +10,15 @@ namespace CCT
     /// </summary>
     public class PlayerProjectile : MonoBehaviour
     {
+        /// <summary>살아 있는 개수(10 §3 고정 부하 시나리오 계측용). 활성/비활성 시점에만 갱신한다.</summary>
+        public static int ActiveCount { get; private set; }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetActiveCount() => ActiveCount = 0;
+
+        void OnEnable() => ActiveCount++;
+        void OnDisable() => ActiveCount--;
+
         const float Lifetime = 2f;
         const float HitRadius = 0.18f;
 
@@ -18,29 +27,57 @@ namespace CCT
         float damage;
         float life;
         int pierceRemaining;
+        PlayerController owner;
+        bool original;
+        float remainingDistance = float.PositiveInfinity;
+        string projectileArtId;
 
+        /// <param name="artId">04 §8 탄 아트(bullet/arrow/tea_arrow). 없거나 미반입이면 노란 원 placeholder.</param>
         public static void Spawn(Vector2 position, Vector2 direction, float speed, float damage, int pierceCount,
-            Transform parent)
+            Transform parent, string artId = null, PlayerController owner = null, bool original = false,
+            Enemy excluded = null, float lifetime = Lifetime, float maxDistance = float.PositiveInfinity)
         {
             var go = new GameObject("PlayerProjectile");
             go.transform.SetParent(parent, false);
             go.transform.position = position;
-            go.transform.localScale = Vector3.one * (HitRadius * 2f);
 
+            var art = ArtLibrary.Get(artId);
+            var sprite = art?.FirstSprite;
             var sr = go.AddComponent<SpriteRenderer>();
-            sr.sprite = SpriteFactory.Circle;
-            sr.color = new Color(1f, 0.9f, 0.5f, 0.95f);
-            sr.sortingOrder = 3;
+            if (sprite != null)
+            {
+                // 시각 길이 ≈ 판정 지름 × 3(가늘고 긴 탄), 오른쪽이 진행 방향. 판정(HitRadius)은 그대로.
+                go.transform.localScale = Vector3.one * (HitRadius * 2f * 3f / Mathf.Max(0.01f, art.ContentWorldSize.x));
+                if (direction.sqrMagnitude > 0.0001f)
+                    go.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+                sr.sprite = sprite;
+                sr.color = Color.white;
+            }
+            else
+            {
+                go.transform.localScale = Vector3.one * (HitRadius * 2f);
+                sr.sprite = SpriteFactory.Circle;
+                sr.color = new Color(1f, 0.9f, 0.5f, 0.95f);
+            }
+            go.transform.localScale *= 0.5f; // 사용자 피드백: 모든 탄 그림을 절반으로. HitRadius/피해/속도는 유지.
+            sr.sortingOrder = SortOrders.Projectile;
 
             var p = go.AddComponent<PlayerProjectile>();
             p.velocity = direction.sqrMagnitude > 0.0001f ? direction.normalized * speed : Vector2.zero;
             p.damage = damage;
-            p.life = Lifetime;
+            p.life = lifetime;
             p.pierceRemaining = Mathf.Max(0, pierceCount);
+            p.owner = owner;
+            p.original = original;
+            p.projectileArtId = artId;
+            p.remainingDistance = maxDistance;
+            if (excluded != null) p.alreadyHit.Add(excluded);
         }
 
         void Update()
         {
+            if (owner != null && owner.IsDead) { Destroy(gameObject); return; }
+            if (Time.timeScale <= 0f) return;
             life -= Time.deltaTime;
             if (life <= 0f)
             {
@@ -52,6 +89,7 @@ namespace CCT
             // 충돌부터 순서대로 처리하고, 무적 적은 피해·관통 횟수를 소비하지 않고 통과한다(06:23).
             Vector2 prev = transform.position;
             Vector2 delta = velocity * Time.deltaTime;
+            if (delta.magnitude > remainingDistance) delta = delta.normalized * remainingDistance;
             Vector2 next = prev + delta;
             float dist = delta.magnitude;
 
@@ -63,10 +101,24 @@ namespace CCT
             foreach (var hit in hits)
             {
                 if (!hit.collider.TryGetComponent<Enemy>(out var enemy)) continue;
-                if (enemy.Invulnerable || alreadyHit.Contains(enemy)) continue;
+                if (enemy.IsDead || enemy.Invulnerable || alreadyHit.Contains(enemy) ||
+                    (owner != null && enemy.RunPlayer != owner)) continue;
 
-                enemy.TakeDamage(damage);
+                if (original) EnemyHitStatus.AttachDirect(enemy, owner);
+                var hidden = original && owner != null ? owner.HiddenRuntime : null; // 41 히든: 원래 탄의 직접 타격만
+                enemy.TakeDamage(hidden != null ? hidden.ModifyDirectDamage(enemy, damage) : damage);
+                hidden?.AfterDirectHit(enemy);
                 alreadyHit.Add(enemy);
+                if (original && owner != null && owner.FinalForms.Has(AttackFinalForm.Pierce))
+                {
+                    Vector2 impact = hit.point;
+                    for (int i = 0; i < 8; i++)
+                    {
+                        float angle = i * Mathf.PI / 4f;
+                        Spawn(impact, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), 5f, damage * .2f, 0,
+                            transform.parent, projectileArtId, owner, false, enemy, .6f, 3f);
+                    }
+                }
 
                 if (pierceRemaining <= 0)
                 {
@@ -77,6 +129,8 @@ namespace CCT
             }
 
             transform.position = next;
+            remainingDistance -= dist;
+            if (remainingDistance <= 0f) Destroy(gameObject);
         }
     }
 }

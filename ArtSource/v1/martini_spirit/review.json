@@ -1,0 +1,255 @@
+{
+  "assetId": "martini_spirit",
+  "frames": 19,
+  "checks": [
+    {
+      "file": "frames/martini_spirit_action_right_00.png",
+      "bboxTopLeft": [
+        68,
+        50,
+        186,
+        222
+      ],
+      "pixelSha256": "a704841792e5fc744c5aee49370399f83773401c6bfff0ac1c5968401e6457e1",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_action_right_01.png",
+      "bboxTopLeft": [
+        58,
+        42,
+        196,
+        222
+      ],
+      "pixelSha256": "d4fd43c8d84c31d671c207f49cdea1965cc3a14fac781c36decbd559b797cbb5",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_action_right_02.png",
+      "bboxTopLeft": [
+        30,
+        48,
+        226,
+        222
+      ],
+      "pixelSha256": "a8956aab03b26bd8b8baeff07adca82b210be762a78f828530b157ac1dcbae10",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_action_right_03.png",
+      "bboxTopLeft": [
+        46,
+        48,
+        206,
+        222
+      ],
+      "pixelSha256": "ba88c4865f8de733eebb4b8ea0c0dae79ad5f72a47347784f6f29aeb644f5022",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_defeat_right_00.png",
+      "bboxTopLeft": [
+        60,
+        64,
+        196,
+        222
+      ],
+      "pixelSha256": "22fc1002acd6437d7206a02af51c4c112cdfc88b995b462fa6b38faf31fca0a9",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_defeat_right_01.png",
+      "bboxTopLeft": [
+        52,
+        74,
+        200,
+        224
+      ],
+      "pixelSha256": "01ead7646bbe0f85b668e65d27f0d4df72485545d1f1b73ef0b4877740eb6fcd",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_defeat_right_02.png",
+      "bboxTopLeft": [
+        30,
+        84,
+        226,
+        222
+      ],
+      "pixelSha256": "10cbe92fbd965b073dee11f2b2f93a0702d1a7751a266458e8ec81a2d4ae8a47",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_defeat_right_03.png",
+      "bboxTopLeft": [
+        30,
+        116,
+        224,
+        224
+      ],
+      "pixelSha256": "d4f5d9d54b5619c42548f7914f923474eeacef0ad7025f23c529e69c2b959b9d",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_hurt_right_00.png",
+      "bboxTopLeft": [
+        68,
+        52,
+        188,
+        224
+      ],
+      "pixelSha256": "839ff2814a68e3a28e83a0638e48fc059aa743c9724835c1ce6633ae5c59e5e2",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_idle_right_00.png",
+      "bboxTopLeft": [
+        56,
+        42,
+        198,
+        224
+      ],
+      "pixelSha256": "ce5e4ae7ac3c89948b4e837d5efad1c9e20af02769156363ba74a3b43467580b",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_idle_right_01.png",
+      "bboxTopLeft": [
+        58,
+        40,
+        196,
+        224
+      ],
+      "pixelSha256": "087e9e13b730d60085b8840792573f9fcad05a9a7a3838da064e9a78fe67b4d7",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_idle_right_02.png",
+      "bboxTopLeft": [
+        56,
+        42,
+        198,
+        224
+      ],
+      "pixelSha256": "ad55cc80585bc6022958ad9d851b51993d20ca938e5ed89d69140694a19d1701",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_idle_right_03.png",
+      "bboxTopLeft": [
+        54,
+        44,
+        198,
+        224
+      ],
+      "pixelSha256": "8569eaa22b3fb8287e52fc49a8cd833a99c1eeb6ea555c1b4f5c71ced00c64a8",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_move_right_00.png",
+      "bboxTopLeft": [
+        56,
+        52,
+        196,
+        224
+      ],
+      "pixelSha256": "1c014cb83fa557f7616390ed1e74ecad1b147f25183111510dec3827083f9ce2",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_move_right_01.png",
+      "bboxTopLeft": [
+        44,
+        42,
+        212,
+        222
+      ],
+      "pixelSha256": "34d2428d7667a02f261e687e058b0fc6193b8968cc77c53163dc7fa61311f202",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_move_right_02.png",
+      "bboxTopLeft": [
+        42,
+        40,
+        212,
+        222
+      ],
+      "pixelSha256": "656007995dcd36e2ff84af17f2645e8249d1a3629094ce8a1174ef619c488019",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_move_right_03.png",
+      "bboxTopLeft": [
+        40,
+        48,
+        212,
+        222
+      ],
+      "pixelSha256": "ac026f1a9a074fc961e6a16091ae5480aa909f1c3a4b0ba6e1a17a8cef89dc06",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_move_right_04.png",
+      "bboxTopLeft": [
+        48,
+        48,
+        208,
+        222
+      ],
+      "pixelSha256": "2e0ed0e8d23e4dcf3d3773065478e8500f7f067a5644e074d177692a79cd42a4",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/martini_spirit_move_right_05.png",
+      "bboxTopLeft": [
+        50,
+        46,
+        206,
+        222
+      ],
+      "pixelSha256": "d0419746919cc9a80cd7dcd24d6686f1fb359e34d2380d8ad635d1f42e3d12c4",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

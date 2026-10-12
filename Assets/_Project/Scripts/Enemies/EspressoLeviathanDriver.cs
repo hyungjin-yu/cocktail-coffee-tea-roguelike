@@ -47,6 +47,20 @@ namespace CCT
         /// <summary>압력 폭발 예고가 시작된 뒤로는 true — 그동안 압력이 고정되어 피해로도 줄지 않는다(06:130).</summary>
         bool pressureLocked;
         Coroutine currentPattern;
+        /// <summary>진행 중인 증기/폭우 패턴의 예고 표시. 압력 시전으로 패턴이 취소되면 함께 지운다(06:130 "기존 미발동 공격 경고 취소").</summary>
+        readonly System.Collections.Generic.List<FadeVfx> pendingWarnings = new System.Collections.Generic.List<FadeVfx>();
+
+        void Warn(FadeVfx v) { if (v != null) pendingWarnings.Add(v); }
+
+        readonly System.Collections.Generic.List<ZoneTelegraphV2> pendingV2 = new System.Collections.Generic.List<ZoneTelegraphV2>();
+
+        void ClearPendingWarnings()
+        {
+            foreach (var v in pendingWarnings) if (v != null) Destroy(v.gameObject);
+            pendingWarnings.Clear();
+            foreach (var v in pendingV2) if (v != null) Destroy(v.gameObject);
+            pendingV2.Clear();
+        }
 
         public void Init(Enemy enemy, GameManager game)
         {
@@ -107,6 +121,7 @@ namespace CCT
             {
                 StopCoroutine(currentPattern);
                 currentPattern = null;
+                ClearPendingWarnings(); // 취소된 패턴의 예고가 화면에 남아 계속 경고하지 않게
             }
             currentPattern = StartCoroutine(PressureExplosionRoutine());
         }
@@ -117,9 +132,11 @@ namespace CCT
             frozen = true;
 
             game.Hud.ShowBanner("압력 게이지 폭발 예고!", "곧 넓은 범위에 피해 + 넉백!", PressureTelegraphSeconds);
+            enemy.PlayAction("pressure", PressureTelegraphSeconds);
             FadeVfx.Spawn(SpriteFactory.Circle, enemy.transform.position, 0f,
                 Vector2.one * 0.4f, Vector2.one * (PressureExplosionRadius * 2f),
                 new Color(0.95f, 0.7f, 0.25f, 0.5f), PressureTelegraphSeconds, 5);
+            ArtVfx.GroundRing("warning_ring", enemy.transform.position, PressureExplosionRadius, PressureTelegraphSeconds, Color.white);
 
             yield return new WaitForSeconds(PressureTelegraphSeconds);
 
@@ -134,10 +151,14 @@ namespace CCT
 
         void Explode()
         {
+            AudioService.PlaySfx("explosion", enemy.transform.position);
             game.Hud.ShowBanner("압력 게이지 폭발!", "밀려남 + 광역 피해!", 2f);
-            FadeVfx.Spawn(SpriteFactory.Circle, enemy.transform.position, 0f,
-                Vector2.one * 0.6f, Vector2.one * (PressureExplosionRadius * 2.2f),
-                new Color(0.9f, 0.6f, 0.2f, 0.6f), 0.4f, 5);
+            CameraRig.Shake(0.35f, 0.3f); // 08:122
+            if (ArtVfx.GroundRing("pressure_wave", enemy.transform.position, PressureExplosionRadius, 0.4f, Color.white, true,
+                    SortOrders.AirVfx, "pressure") == null)
+                FadeVfx.Spawn(SpriteFactory.Circle, enemy.transform.position, 0f,
+                    Vector2.one * 0.6f, Vector2.one * (PressureExplosionRadius * 2.2f),
+                    new Color(0.9f, 0.6f, 0.2f, 0.6f), 0.4f, 5);
 
             if (game.Player == null || game.Player.IsDead) return;
 
@@ -171,9 +192,14 @@ namespace CCT
             Vector2 mid = origin + dir * (SteamRange * 0.5f);
             float angle = dir.x >= 0f ? 0f : 180f;
 
-            FadeVfx.Spawn(SpriteFactory.Square, mid, angle,
+            pendingWarnings.Clear();
+            Warn(FadeVfx.Spawn(SpriteFactory.Square, mid, angle,
                 new Vector2(SteamRange, 0.15f), new Vector2(SteamRange, SteamWidth),
-                new Color(1f, 0.3f, 0.2f, 0.55f), SteamTelegraphSeconds, 4);
+                new Color(1f, 0.3f, 0.2f, 0.35f), SteamTelegraphSeconds, SortOrders.GroundZone));
+            // 증기 예고 띠는 바닥 층(캐릭터 아래) — 불투명 경고선이 플레이어 몸을 가리던 문제(2026-10-08 아트 검수 P1). 폭·사거리·시간·피해 불변.
+            Warn(ArtVfx.Band("warning_line", mid, angle, SteamRange, SteamWidth, SteamTelegraphSeconds, Color.white, false, SortOrders.GroundZone));
+            AudioService.PlaySfx("steam", mid);
+            enemy.PlayAction("steam", SteamTelegraphSeconds);
             game.Hud.ShowBanner("증기 분사", "조준선 방향을 피하세요!", SteamTelegraphSeconds);
 
             yield return new WaitForSeconds(SteamTelegraphSeconds);
@@ -190,9 +216,18 @@ namespace CCT
             if (DistancePointToSegment(game.Player.Position, origin, endPoint) <= SteamWidth * 0.5f)
                 game.Player.TakeDamage(SteamDamage);
 
-            FadeVfx.Spawn(SpriteFactory.Square, mid, angle,
-                new Vector2(SteamRange, SteamWidth), new Vector2(SteamRange, SteamWidth * 0.3f),
-                new Color(1f, 0.85f, 0.6f, 0.7f), 0.25f, 4);
+            // 04 §8 steam_jet "연결 타일" — 사거리를 따라 여러 조각을 이어 붙인다(판정은 선분 거리 그대로).
+            if (ArtLibrary.Get("steam_jet") != null)
+            {
+                int segments = Mathf.Max(1, Mathf.CeilToInt(SteamRange / SteamWidth));
+                float seg = SteamRange / segments;
+                for (int i = 0; i < segments; i++)
+                    ArtVfx.Band("steam_jet", origin + dir * (seg * (i + 0.5f)), angle, seg, SteamWidth, 0.33f, Color.white);
+            }
+            else
+                FadeVfx.Spawn(SpriteFactory.Square, mid, angle,
+                    new Vector2(SteamRange, SteamWidth), new Vector2(SteamRange, SteamWidth * 0.3f),
+                    new Color(1f, 0.85f, 0.6f, 0.7f), 0.25f, 4);
 
             frozen = false;
             currentPattern = null;
@@ -202,8 +237,10 @@ namespace CCT
         {
             frozen = true;
             game.Hud.ShowBanner("드립 폭우 예고", "곧 안전지대를 찾아 움직이세요!", DripRainTelegraphSeconds);
+            enemy.PlayAction("rain", DripRainTelegraphSeconds);
 
             // 06:128 — 시작 시 위치를 고정하고 0.6초 예고 후 동시에 생성.
+            pendingWarnings.Clear();
             var positions = new Vector2[DripRainZoneCount];
             bool havePlayer = game.Player != null;
             for (int i = 0; i < DripRainZoneCount; i++)
@@ -213,9 +250,15 @@ namespace CCT
                     : (Vector2)enemy.transform.position;
                 pos.y = Mathf.Clamp(pos.y, Balance.DepthMin, Balance.DepthMax);
                 positions[i] = pos;
-                FadeVfx.Spawn(SpriteFactory.Circle, pos, 0f,
-                    Vector2.one * 0.3f, Vector2.one * (DripRainRadius * 2f),
-                    new Color(0.85f, 0.5f, 0.2f, 0.35f), DripRainTelegraphSeconds);
+                var v2 = ZoneTelegraphV2.Spawn(pos, DripRainRadius, DripRainTelegraphSeconds, new Color(1f, .62f, .3f), enemy.transform.parent);
+                if (v2 != null) pendingV2.Add(v2); // 43 v2 예고(압력 시전 취소 시 함께 제거)
+                else
+                {
+                    Warn(FadeVfx.Spawn(SpriteFactory.Circle, pos, 0f,
+                        Vector2.one * 0.3f, Vector2.one * (DripRainRadius * 2f),
+                        new Color(0.85f, 0.5f, 0.2f, 0.35f), DripRainTelegraphSeconds));
+                    Warn(ArtVfx.GroundRing("warning_ring", pos, DripRainRadius, DripRainTelegraphSeconds, Color.white));
+                }
             }
 
             yield return new WaitForSeconds(DripRainTelegraphSeconds);
@@ -224,7 +267,7 @@ namespace CCT
             {
                 foreach (var pos in positions)
                     BurstZone.Spawn(pos, DripRainRadius, DripRainDamagePerSecond, DripRainZoneSeconds,
-                        game.Player, enemy.transform.parent);
+                        game.Player, enemy.transform.parent, BurstZone.CoffeePoolArt);
             }
 
             frozen = false; // 생성 시 패턴 종료 (장판 수명은 독립)

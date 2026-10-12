@@ -1,0 +1,98 @@
+{
+ "assetId": "zone_warning_v2",
+ "history": "C:\\Users\\user\\AppData\\Roaming/Aseprite/extensions/pixellab/generation_history/2026-10-12_09-53-53 - Create animated object-character (pro) - 001",
+ "frames": [
+  {
+   "file": "zone_warning_v2_00.png",
+   "sourceFrame": 0,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    9,
+    21,
+    119,
+    110
+   ],
+   "opaquePx": 7730,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "6ab9840434f8c4200d8544c3b4eeec7a45796cf068ad264631462efa7aabcfea",
+   "postprocess": "largest component; interior (wood floor) cleared by 4-way flood fill from center stopping at bright red/orange ring pixels; then removed specks not connected to the ring"
+  },
+  {
+   "file": "zone_warning_v2_01.png",
+   "sourceFrame": 1,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    9,
+    21,
+    119,
+    110
+   ],
+   "opaquePx": 7724,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "ddf8211e6fe41606ca930f8ff6003181995e4021224e4dc83d92236db0ff1657",
+   "postprocess": "largest component; interior (wood floor) cleared by 4-way flood fill from center stopping at bright red/orange ring pixels; then removed specks not connected to the ring"
+  },
+  {
+   "file": "zone_warning_v2_02.png",
+   "sourceFrame": 2,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    10,
+    21,
+    118,
+    113
+   ],
+   "opaquePx": 7845,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "d7a0bc1668933a657b3780f64caa2bdc2554a96bbebe7fe71525bb7fd289e5cf",
+   "postprocess": "largest component; interior (wood floor) cleared by 4-way flood fill from center stopping at bright red/orange ring pixels; then removed specks not connected to the ring"
+  },
+  {
+   "file": "zone_warning_v2_03.png",
+   "sourceFrame": 3,
+   "size": [
+    128,
+    128
+   ],
+   "bbox": [
+    10,
+    21,
+    118,
+    113
+   ],
+   "opaquePx": 7872,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "c6c2a019c3a7b48cbe50aba43f9be4c65341ea7f613adee748eb7192059062ab",
+   "postprocess": "largest component; interior (wood floor) cleared by 4-way flood fill from center stopping at bright red/orange ring pixels; then removed specks not connected to the ring"
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "assetId": "weapon_bow_v2",
+ "replacesDisplayOf": "weapon_bow (v1 kept unchanged as the catalog asset; v1 manifest anchors reused)",
+ "scope": "user feedback 2026-10-09: bow looked crude (thick green/red rind outline, angular curve)",
+ "frameSizePx": [
+  256,
+  256
+ ],
+ "pixelsPerUnit": 128,
+ "pivotNormalized": [
+  0.296875,
+  0.5
+ ],
+ "anchorsBottomOrigin": {
+  "grip": [
+   76,
+   128
+  ],
+  "arrow": [
+   142,
+   128
+  ],
+  "note": "same as v1; final frame shifted +4px x so the slim limb's grip column (66..85) centers on x=76; string at x=144..151"
+ },
+ "files": [
+  "frames/weapon_bow_v2_right_00.png"
+ ],
+ "sha256": {
+  "frames/weapon_bow_v2_right_00.png": "71828a9d3fac453084ae23bc6b71dadaee17a62bbe69f29d5c77159bd1f281bb",
+  "raw/pixellab_edit_pro_0.png": "29665952b804e0317fb3880506245e42f7185a517d5270de65c590c13fad78e5",
+  "reference/weapon_bow_effect_right_00.png": "2eae2a5ea77deb3f0cc6144fc2c6da3954e48c5a65e145b2158992c053bfa27c",
+  "weapon_bow_v2.aseprite": "aba2a3d544dce9e5ff43cb675b67484f164b23849f21b876730ade897b7a7053"
+ },
+ "provenance": {
+  "tool": "PixelLab Aseprite extension 0.4.127 'Edit image (Pro)', method 'Edit with text', in Aseprite 1.3.18.6 GUI (driven via orca computer-use)",
+  "instruction": "make this bow slimmer and more natural: thin 3px curved limb with one smooth continuous arc, thin dark outline, muted green rind only near the tips, keep the cream string, same size, same position, same orientation, crisp pixel art",
+  "input": "reference/weapon_bow_effect_right_00.png (v1, unchanged)",
+  "rawOutput": "raw/pixellab_edit_pro_0.png (copied byte-exact from the extension's local generation_history 2026-10-09_17-25-59)",
+  "postProcessing": "translate +4px x only (build_v2.lua); no repaint",
+  "native": "weapon_bow_v2.aseprite (frame1 v1 reference, frame2 raw PixelLab, frame3 final)",
+  "creditsDebited": "unknown; tool UI states 20-40 generations; no account page inspected",
+  "unusedGuiFile": "weapon_bow_v2_pixellab.aseprite = pre-generation input only (GUI document with the result was closed unsaved; result preserved via history copy)"
+ },
+ "runtime": {
+  "resource": "Assets/_Project/Resources/ArtExtra/weapon_bow_v2/weapon_bow_v2_right_00.png",
+  "displayLength": "0.5 x body height using v2 alpha height 200px",
+  "used": "primary weapon_bow held sprite only; hybrid weapon_tea_bow unchanged"
+ },
+ "acceptance": {
+  "structural": "256x256 RGBA, alpha {0,255}",
+  "visuallyReviewed": "side-by-side with v1 by implementer",
+  "unityVerified": false,
+  "userApproved": false
+ }
+}

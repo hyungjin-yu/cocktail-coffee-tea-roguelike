@@ -1,0 +1,255 @@
+{
+  "assetId": "kettle_cannon",
+  "frames": 19,
+  "checks": [
+    {
+      "file": "frames/kettle_cannon_action_right_00.png",
+      "bboxTopLeft": [
+        34,
+        50,
+        222,
+        222
+      ],
+      "pixelSha256": "b82f67431e3c47c3e1776a5ee60509262d41c248d21d401ed221d9ce209cbc38",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_action_right_01.png",
+      "bboxTopLeft": [
+        22,
+        60,
+        232,
+        224
+      ],
+      "pixelSha256": "f60aa345665018d1dcd6ddc09d0308f03e61af24c52d80253df7dcd0c8779a1b",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_action_right_02.png",
+      "bboxTopLeft": [
+        20,
+        82,
+        236,
+        224
+      ],
+      "pixelSha256": "45863424bfa3d75021bd012994baefa06990ef05c2b5900a439ede986b4a6664",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_action_right_03.png",
+      "bboxTopLeft": [
+        32,
+        62,
+        222,
+        222
+      ],
+      "pixelSha256": "0f813c85d3e150f5d77ffe07c7ad050db2dee0a20f8b4a0a81b0f4648edbc7d3",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_defeat_right_00.png",
+      "bboxTopLeft": [
+        46,
+        84,
+        210,
+        222
+      ],
+      "pixelSha256": "f3f445975f1749518799082260df887e4cdd663fb5c952f086af57b86af5e24b",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_defeat_right_01.png",
+      "bboxTopLeft": [
+        36,
+        94,
+        218,
+        224
+      ],
+      "pixelSha256": "31fdfce9bd52fdcf6ec5dffdd867a54a903bec6f73714d86ab5ae2fcbf43a819",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_defeat_right_02.png",
+      "bboxTopLeft": [
+        30,
+        86,
+        226,
+        222
+      ],
+      "pixelSha256": "91c75234a3a5d1d2b2e07f66ff2910abdfae1ac4451c9e5738c2d2dd58ed442a",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_defeat_right_03.png",
+      "bboxTopLeft": [
+        18,
+        116,
+        238,
+        224
+      ],
+      "pixelSha256": "91e0381b4ddc6806d11425e0fc50be244766d6e61654a019e2ddedcbbe2bda24",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_hurt_right_00.png",
+      "bboxTopLeft": [
+        46,
+        70,
+        208,
+        222
+      ],
+      "pixelSha256": "c780c5684018143e72dc0b584d0580d1d178a288c98dfe762ae1f2af315fd9fe",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_idle_right_00.png",
+      "bboxTopLeft": [
+        34,
+        58,
+        220,
+        224
+      ],
+      "pixelSha256": "f07a27c82ba7a9a805110260caad9fe38359f2d6c0bfca278503b076ec3bda29",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_idle_right_01.png",
+      "bboxTopLeft": [
+        38,
+        56,
+        216,
+        224
+      ],
+      "pixelSha256": "07a374e3febe0ae520ec4cefd7381a06c92956b8baf541a57fc6b091bfc52b5c",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_idle_right_02.png",
+      "bboxTopLeft": [
+        32,
+        58,
+        224,
+        224
+      ],
+      "pixelSha256": "e75101366d613caa9fe7c304ae430b18e4b9047fde1c62fd2bafb38825a61f43",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_idle_right_03.png",
+      "bboxTopLeft": [
+        24,
+        60,
+        230,
+        224
+      ],
+      "pixelSha256": "ef4ab7d45800ca6b845ef1d9ed87c9d31aae69726fd3cc8a67faf0bfa2c0f843",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_move_right_00.png",
+      "bboxTopLeft": [
+        42,
+        72,
+        210,
+        222
+      ],
+      "pixelSha256": "85455afcb3c354414e8fdf64b555fa85cf607168423ed5ea299c31eb4981d92f",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_move_right_01.png",
+      "bboxTopLeft": [
+        46,
+        70,
+        206,
+        222
+      ],
+      "pixelSha256": "5161cfdd248fa21bdbb182aaf084e51213c783cc24d25528178b7317a01dcf7f",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_move_right_02.png",
+      "bboxTopLeft": [
+        48,
+        70,
+        204,
+        224
+      ],
+      "pixelSha256": "6687fd210bb7ce704d53f903c3be4a7efae603e4f98abdd648730e717da221d9",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_move_right_03.png",
+      "bboxTopLeft": [
+        46,
+        76,
+        208,
+        222
+      ],
+      "pixelSha256": "b7b0bfd835274379cd7e5db0b2616b5f858e6445fe925e03b3405cae37c637d9",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_move_right_04.png",
+      "bboxTopLeft": [
+        44,
+        76,
+        208,
+        224
+      ],
+      "pixelSha256": "9797a8c4087bf9d33424eb267d912047dd526991251e1b63899dae1d96aa50de",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/kettle_cannon_move_right_05.png",
+      "bboxTopLeft": [
+        52,
+        74,
+        202,
+        224
+      ],
+      "pixelSha256": "4bc87b67943036a3e890c8fbf16db2938b63319984d29835aa84fe38fb7b2e69",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

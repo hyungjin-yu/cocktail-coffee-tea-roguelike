@@ -1,0 +1,413 @@
+{
+ "assetId": "status_poison",
+ "request": "42 중독 적 부착 표식",
+ "kind": "status_marker_loop",
+ "provenance": {
+  "tool": "Aseprite 1.3.18.6 + PixelLab extension (GUI)",
+  "pixellabTool": "Create animated object/character (pro)",
+  "description": "tiny poison status icon: a green toxic droplet with small bubbling green bubbles around it, dark green outline, pixel art, transparent background",
+  "animationAction": "bubbles swelling and popping in a seamless loop while a small drip falls down",
+  "seed": 121002,
+  "removeBackground": true,
+  "outputMethod": "New frame",
+  "generationHistory": "C:/Users/user/AppData/Roaming/Aseprite/extensions/pixellab/generation_history/2026-10-12_09-34-06 - Create animated object-character (pro) - 001",
+  "asepriteSource": "status_poison.aseprite",
+  "asepriteSourceSha256": "4984ded597358f16342e275ca92ee4814b52afcc10b66c3f29a312424a638968",
+  "asepriteSave": "GUI Ctrl+S (native Save As)",
+  "otherGenerators": "none"
+ },
+ "runtime": {
+  "path": "Assets/_Project/Resources/ArtExtra/status_poison",
+  "frameSizePx": [
+   64,
+   64
+  ],
+  "frames": 16,
+  "fps": 12,
+  "loop": true,
+  "pixelsPerUnit": 128,
+  "pivot": "center",
+  "filter": "point",
+  "readable": true,
+  "opaqueUnionBBoxPx": [
+   10,
+   2,
+   56,
+   64
+  ],
+  "fitRule": "same as status_burn, enemy upper-right at (+0.75r, 0.95r)"
+ },
+ "postprocess": "none (PixelLab output as-is)",
+ "frames": [
+  {
+   "file": "status_poison_00.png",
+   "sourceFrame": 0,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    13,
+    2,
+    50,
+    50
+   ],
+   "opaquePx": 928,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "429fdd5292856c12cce6e6854c944c6908b9fdf560e7043888a31239589bc9a7"
+  },
+  {
+   "file": "status_poison_01.png",
+   "sourceFrame": 1,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    11,
+    2,
+    50,
+    56
+   ],
+   "opaquePx": 1042,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "f3232758c5cfbf7db76a15a30792394b6ae90b3b83ace05abdf78261f6d616ec"
+  },
+  {
+   "file": "status_poison_02.png",
+   "sourceFrame": 2,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    13,
+    2,
+    52,
+    61
+   ],
+   "opaquePx": 1142,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "92f6269c523f07b5e813db2d807ae73d5be84c945b7f9f441fe5625d1c042665"
+  },
+  {
+   "file": "status_poison_03.png",
+   "sourceFrame": 3,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    10,
+    2,
+    51,
+    62
+   ],
+   "opaquePx": 1135,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "30b460edcae0dd974e7cda547843915e1f2fc0e42ca3571d24e85c4de7a434d4"
+  },
+  {
+   "file": "status_poison_04.png",
+   "sourceFrame": 4,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    10,
+    2,
+    56,
+    60
+   ],
+   "opaquePx": 1077,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "c9a9804c10c66a127d37b4fd42d4b21ec047242b683ac28db68ada0f99628c79"
+  },
+  {
+   "file": "status_poison_05.png",
+   "sourceFrame": 5,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    15,
+    2,
+    51,
+    62
+   ],
+   "opaquePx": 952,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "e8541f5dcb6a945ad5291c4ad9745d613a923e041b352aa8760bfeed430263a0"
+  },
+  {
+   "file": "status_poison_06.png",
+   "sourceFrame": 6,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    18,
+    2,
+    46,
+    64
+   ],
+   "opaquePx": 843,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "065cdcd5ee001712ec073e7d7d6676bb6401b414dc72d2ffac8dcadc4485979c"
+  },
+  {
+   "file": "status_poison_07.png",
+   "sourceFrame": 7,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    10,
+    6,
+    54,
+    51
+   ],
+   "opaquePx": 1078,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "aa80d3e16e70727edb3f88a719daab84494c8d19a6ca88bcf38475f0ea0d625c"
+  },
+  {
+   "file": "status_poison_08.png",
+   "sourceFrame": 8,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    14,
+    10,
+    54,
+    52
+   ],
+   "opaquePx": 943,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "7973146ae81352fe7c582474a9d4d874d0a356d2fe21d76b39a27085f4bf5cd0"
+  },
+  {
+   "file": "status_poison_09.png",
+   "sourceFrame": 9,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    10,
+    10,
+    52,
+    53
+   ],
+   "opaquePx": 1016,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "64ec77a4ad2518a341a4f3a30319d7f2f3aaf885aedf443836e0aff20dbcc91d"
+  },
+  {
+   "file": "status_poison_10.png",
+   "sourceFrame": 10,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    10,
+    9,
+    51,
+    55
+   ],
+   "opaquePx": 989,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "5498aacc1ba2eae385f7667ac26e7f0c874390355122bdfcf7956a1e710e6cca"
+  },
+  {
+   "file": "status_poison_11.png",
+   "sourceFrame": 11,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    13,
+    9,
+    46,
+    55
+   ],
+   "opaquePx": 864,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "737f837749d8731761e0b4083ad8ea16ae9dc627746131bc0356cbb54ed4127e"
+  },
+  {
+   "file": "status_poison_12.png",
+   "sourceFrame": 12,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    13,
+    9,
+    54,
+    52
+   ],
+   "opaquePx": 998,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "7be7ed08438d704be5693bc74d4f038fdf8c63c8e3caf07094ff4681c4f85443"
+  },
+  {
+   "file": "status_poison_13.png",
+   "sourceFrame": 13,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    10,
+    9,
+    46,
+    52
+   ],
+   "opaquePx": 852,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "e59b9ac2ba155a60fd3a174a1532ec7bef5ce60926c3eae89fc4bfd85530d834"
+  },
+  {
+   "file": "status_poison_14.png",
+   "sourceFrame": 14,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    13,
+    9,
+    51,
+    55
+   ],
+   "opaquePx": 891,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "a513090caf7a47fc75a591dd7a3ff3d8ee057c30ba273929c0be0b6eb9a53128"
+  },
+  {
+   "file": "status_poison_15.png",
+   "sourceFrame": 15,
+   "size": [
+    64,
+    64
+   ],
+   "bbox": [
+    13,
+    7,
+    54,
+    57
+   ],
+   "opaquePx": 955,
+   "cornersAlpha": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sha256": "5b18855a22e06f7825cc313ac6980d6083b2ac87f788561075f3a1bec2aa2de0"
+  }
+ ],
+ "rawFrames": [
+  "status_poison_raw_00.png",
+  "status_poison_raw_01.png",
+  "status_poison_raw_02.png",
+  "status_poison_raw_03.png",
+  "status_poison_raw_04.png",
+  "status_poison_raw_05.png",
+  "status_poison_raw_06.png",
+  "status_poison_raw_07.png",
+  "status_poison_raw_08.png",
+  "status_poison_raw_09.png",
+  "status_poison_raw_10.png",
+  "status_poison_raw_11.png",
+  "status_poison_raw_12.png",
+  "status_poison_raw_13.png",
+  "status_poison_raw_14.png",
+  "status_poison_raw_15.png"
+ ]
+}

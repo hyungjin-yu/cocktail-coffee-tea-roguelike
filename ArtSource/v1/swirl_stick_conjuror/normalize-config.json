@@ -1,0 +1,171 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/swirl_stick_conjuror/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/swirl_stick_conjuror",
+  "assetId": "swirl_stick_conjuror",
+  "columns": 5,
+  "rows": 3,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 1.2,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "action",
+      "index": 0,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 1,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 2,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 3,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 49,
+      "right": 236,
+      "top": 56,
+      "bottom": 407
+    },
+    {
+      "left": 299,
+      "right": 494,
+      "top": 50,
+      "bottom": 397
+    },
+    {
+      "left": 547,
+      "right": 734,
+      "top": 56,
+      "bottom": 409
+    },
+    {
+      "left": 804,
+      "right": 967,
+      "top": 64,
+      "bottom": 411
+    },
+    {
+      "left": 31,
+      "right": 288,
+      "top": 455,
+      "bottom": 820
+    },
+    {
+      "left": 355,
+      "right": 466,
+      "top": 455,
+      "bottom": 818
+    },
+    {
+      "left": 549,
+      "right": 750,
+      "top": 457,
+      "bottom": 818
+    },
+    {
+      "left": 1043,
+      "right": 1216,
+      "top": 54,
+      "bottom": 411
+    },
+    {
+      "left": 822,
+      "right": 941,
+      "top": 463,
+      "bottom": 818
+    },
+    {
+      "left": 1039,
+      "right": 1228,
+      "top": 463,
+      "bottom": 822
+    },
+    {
+      "left": 73,
+      "right": 210,
+      "top": 879,
+      "bottom": 1192
+    },
+    {
+      "left": 298,
+      "right": 499,
+      "top": 961,
+      "bottom": 1186
+    },
+    {
+      "left": 510,
+      "right": 781,
+      "top": 1097,
+      "bottom": 1200
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/swirl_stick_conjuror.png"
+}

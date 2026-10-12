@@ -1,0 +1,26 @@
+{
+  "assetId": "bartender",
+  "status": "needs_fix",
+  "stage": "idle_00_reference",
+  "sourceSizePx": [
+    1254,
+    1254
+  ],
+  "requiredFrameSizePx": [
+    256,
+    256
+  ],
+  "tool": "built-in image_gen",
+  "deviations": [
+    "Generated reference has not been converted to delivery resolution.",
+    "Proportions appear taller than the specified three-head body; correction needed before animation production.",
+    "Foot pivot and weapon anchors not yet measured; no Unity validation."
+  ],
+  "files": [
+    "bartender_idle_right_00_source.png"
+  ],
+  "sourceReferences": [
+    "Assets/_Project/Resources/Icons/Enemies/shaker_golem.png",
+    "Assets/_Project/Resources/Icons/Enemies/teabag_imp.png"
+  ]
+}

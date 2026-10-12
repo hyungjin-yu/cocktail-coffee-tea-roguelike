@@ -1,0 +1,243 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/shaker_golem/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/shaker_golem",
+  "assetId": "shaker_golem",
+  "columns": 5,
+  "rows": 4,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 1.25,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "action",
+      "index": 0,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 1,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 2,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "action",
+      "index": 3,
+      "fps": 12,
+      "loop": false
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 50,
+      "right": 309,
+      "top": 18,
+      "bottom": 295
+    },
+    {
+      "left": 403,
+      "right": 650,
+      "top": 12,
+      "bottom": 295
+    },
+    {
+      "left": 746,
+      "right": 999,
+      "top": 20,
+      "bottom": 295
+    },
+    {
+      "left": 1091,
+      "right": 1346,
+      "top": 46,
+      "bottom": 295
+    },
+    {
+      "left": 10,
+      "right": 249,
+      "top": 314,
+      "bottom": 567
+    },
+    {
+      "left": 271,
+      "right": 478,
+      "top": 310,
+      "bottom": 565
+    },
+    {
+      "left": 494,
+      "right": 707,
+      "top": 314,
+      "bottom": 567
+    },
+    {
+      "left": 719,
+      "right": 946,
+      "top": 314,
+      "bottom": 567
+    },
+    {
+      "left": 957,
+      "right": 1166,
+      "top": 316,
+      "bottom": 567
+    },
+    {
+      "left": 1182,
+      "right": 1393,
+      "top": 316,
+      "bottom": 567
+    },
+    {
+      "left": 65,
+      "right": 306,
+      "top": 585,
+      "bottom": 836
+    },
+    {
+      "left": 379,
+      "right": 680,
+      "top": 589,
+      "bottom": 828
+    },
+    {
+      "left": 696,
+      "right": 1013,
+      "top": 599,
+      "bottom": 830
+    },
+    {
+      "left": 1052,
+      "right": 1305,
+      "top": 585,
+      "bottom": 834
+    },
+    {
+      "left": 24,
+      "right": 231,
+      "top": 855,
+      "bottom": 1092
+    },
+    {
+      "left": 292,
+      "right": 497,
+      "top": 865,
+      "bottom": 1090
+    },
+    {
+      "left": 513,
+      "right": 756,
+      "top": 901,
+      "bottom": 1092
+    },
+    {
+      "left": 825,
+      "right": 1054,
+      "top": 937,
+      "bottom": 1096
+    },
+    {
+      "left": 1070,
+      "right": 1385,
+      "top": 985,
+      "bottom": 1102
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/shaker_golem.png"
+}

@@ -1,0 +1,21 @@
+{
+  "generationRequests": 1,
+  "completedGenerations": 1,
+  "editRequests": 0,
+  "seed": "494397517.0",
+  "tool": "existing installed PixelLab Aseprite extension Create UI elements (Pro)",
+  "canvas": [
+    128,
+    128
+  ],
+  "prompt": "Night cafe pixel UI kit: walnut wood panel, brass corner studs, cream paper card, button and narrow health bar. Flat front view, crisp square pixels, no text, no icons, quiet empty centers, transparent background.",
+  "colorPalette": "dark walnut brown, antique brass gold, cream ivory, restrained turquoise accent",
+  "removeBackground": true,
+  "actualCreditsDebited": "unknown; UI stated 20-40 generation units for this operation; no balance/account inspected",
+  "nativeRaw": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\pixellab-raw.aseprite",
+  "nativeSha256": "09cefaa3f691ce8ac168bf9e958ad3f0723805ea14d0da919f6ec54ba76c7aa5",
+  "rawPNG": "C:\\Users\\user\\Documents\\Personal_Note\\03_\ud504\ub85c\uc81d\ud2b8\\\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d\\ArtProduction\\ui-polish-2026-10-08\\reference\\pixellab-raw.png",
+  "rawPNGSha256": "cc256488c0443fad3149e2c470d0fdba94317295a308be9c337a68c1ccabd9ef",
+  "rawFrame": 2,
+  "notes": "Native stores original blank frame1 and generated frame2; no edits/regenerations. Provider concept contains bundled visual controls and cannot be directly 9-sliced into independent widgets; production geometry authored separately in Aseprite."
+}

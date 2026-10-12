@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a445bc81f26e6774ab6f4f2386bac954, type: 3}
+  m_Name: skilled_roasting
+  m_EditorClassIdentifier: CCT.Runtime::CCT.PermanentSkillData
+  id: skilled_roasting
+  displayName: "\uC815\uD655\uD55C \uACC4\uB7C9"
+  description: "\uC601\uAD6C \uC7AC\uB8CC \uAC8C\uC774\uC9C0 \uD544\uC694\uB7C9 -10%"
+  branch: 2
+  tier: 2
+  prerequisite: {fileID: 11400000, guid: d92b08d34679607478a8e7421a6ac36b, type: 2}
+  additionalPrerequisites: []
+  minimumClears: 0
+  weaponSpecific: 0
+  targetWeapon: 0
+  group: 2
+  cost: 6
+  effects:
+  - type: 6
+    value: -0.1
+  iconResourcePath: Icons/PermanentSkills/skilled_roasting
+  iconArtId: 

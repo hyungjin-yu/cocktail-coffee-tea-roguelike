@@ -17,6 +17,9 @@ namespace CCT.Tests
         {
             foreach (var v in Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None))
                 Object.DestroyImmediate(v.gameObject);
+            // AutoStart가 씬 시작 시 CharacterSelectView 대신 TitleView를 띄우므로(2026-09-28) 같이 치운다.
+            foreach (var v in Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None))
+                Object.DestroyImmediate(v.gameObject);
         }
 
         [UnitySetUp]
@@ -53,6 +56,66 @@ namespace CCT.Tests
             Assert.IsTrue(view.CodexView.IsOpen, "버튼을 누르면 도감이 열려야 한다");
             Assert.Greater(view.CodexView.EntryCount, 0, "카드 데이터베이스의 모든 카드가 항목으로 나와야 한다");
             Assert.Greater(view.CodexView.SkillEntryCount, 0, "영구 강화 노드도 항목으로 나와야 한다");
+        }
+
+        [UnityTest]
+        public IEnumerator Tabs_FilterOnlyTheMatchingCardColumn()
+        {
+            var view = CharacterSelectView.Show((j, w) => { });
+            yield return null;
+            view.CardCodexButton.onClick.Invoke();
+            yield return null;
+            var codex = view.CodexView;
+
+            // 08:95 기본값 "전체" — 세 카드 열이 모두 보여야 한다.
+            Assert.IsTrue(codex.IsCocktailColumnVisible);
+            Assert.IsTrue(codex.IsTeaColumnVisible);
+            Assert.IsTrue(codex.IsHybridColumnVisible);
+
+            codex.SelectCocktailTab();
+            Assert.IsTrue(codex.IsCocktailColumnVisible);
+            Assert.IsFalse(codex.IsTeaColumnVisible);
+            Assert.IsFalse(codex.IsHybridColumnVisible);
+
+            codex.SelectHybridTab();
+            Assert.IsFalse(codex.IsCocktailColumnVisible);
+            Assert.IsFalse(codex.IsTeaColumnVisible);
+            Assert.IsTrue(codex.IsHybridColumnVisible);
+
+            codex.SelectAllTab();
+            Assert.IsTrue(codex.IsCocktailColumnVisible);
+            Assert.IsTrue(codex.IsTeaColumnVisible);
+            Assert.IsTrue(codex.IsHybridColumnVisible);
+        }
+
+        [UnityTest]
+        public IEnumerator HybridCard_ShowsNameAndUnlockCondition_EvenBeforeDiscovery()
+        {
+            var view = CharacterSelectView.Show((j, w) => { });
+            yield return null;
+            view.CardCodexButton.onClick.Invoke();
+            yield return null;
+
+            var (name, desc) = view.CodexView.GetCardText("hybrid_tea_martini");
+
+            Assert.IsNotNull(name, "07:114 티니 보우 카드가 도감에 있어야 한다");
+            Assert.IsTrue(name.Contains("티니 보우"), "07:167 — 하이브리드는 미발견이어도 '???' 대신 이름이 보여야 한다");
+            Assert.IsTrue(desc.Contains("레이피어") && desc.Contains("3"),
+                "07:167 — 해금 조건(레이피어: 칵테일3 + 차3)이 보여야 한다");
+        }
+
+        [UnityTest]
+        public IEnumerator HybridCard_ShowsRealDescription_AfterDiscovery()
+        {
+            PermanentProgress.DiscoverCard("hybrid_tea_martini");
+            var view = CharacterSelectView.Show((j, w) => { });
+            yield return null;
+            view.CardCodexButton.onClick.Invoke();
+            yield return null;
+
+            var (_, desc) = view.CodexView.GetCardText("hybrid_tea_martini");
+
+            Assert.IsFalse(desc.Contains("해금 조건"), "발견 후엔 조건 문구 대신 실제 효과 설명이 보여야 한다");
         }
 
         [UnityTest]

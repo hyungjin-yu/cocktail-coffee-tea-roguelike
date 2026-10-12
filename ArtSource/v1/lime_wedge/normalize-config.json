@@ -1,0 +1,195 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/lime_wedge/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/lime_wedge",
+  "assetId": "lime_wedge",
+  "columns": 5,
+  "rows": 3,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 0.9,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 67,
+      "right": 277,
+      "top": 50,
+      "bottom": 310
+    },
+    {
+      "left": 386,
+      "right": 600,
+      "top": 52,
+      "bottom": 310
+    },
+    {
+      "left": 702,
+      "right": 918,
+      "top": 59,
+      "bottom": 310
+    },
+    {
+      "left": 1031,
+      "right": 1243,
+      "top": 52,
+      "bottom": 310
+    },
+    {
+      "left": 1358,
+      "right": 1576,
+      "top": 54,
+      "bottom": 310
+    },
+    {
+      "left": 67,
+      "right": 282,
+      "top": 363,
+      "bottom": 623
+    },
+    {
+      "left": 387,
+      "right": 598,
+      "top": 365,
+      "bottom": 623
+    },
+    {
+      "left": 709,
+      "right": 925,
+      "top": 365,
+      "bottom": 623
+    },
+    {
+      "left": 1027,
+      "right": 1251,
+      "top": 363,
+      "bottom": 627
+    },
+    {
+      "left": 1355,
+      "right": 1576,
+      "top": 363,
+      "bottom": 627
+    },
+    {
+      "left": 62,
+      "right": 272,
+      "top": 678,
+      "bottom": 923
+    },
+    {
+      "left": 390,
+      "right": 605,
+      "top": 688,
+      "bottom": 919
+    },
+    {
+      "left": 672,
+      "right": 942,
+      "top": 705,
+      "bottom": 922
+    },
+    {
+      "left": 997,
+      "right": 1273,
+      "top": 761,
+      "bottom": 924
+    },
+    {
+      "left": 1309,
+      "right": 1586,
+      "top": 786,
+      "bottom": 924
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/lime_wedge.png"
+}

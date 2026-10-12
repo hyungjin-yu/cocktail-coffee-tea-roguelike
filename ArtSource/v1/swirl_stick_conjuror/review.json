@@ -1,0 +1,177 @@
+{
+  "assetId": "swirl_stick_conjuror",
+  "frames": 13,
+  "checks": [
+    {
+      "file": "frames/swirl_stick_conjuror_action_right_00.png",
+      "bboxTopLeft": [
+        60,
+        34,
+        194,
+        224
+      ],
+      "pixelSha256": "ae96d92ab790cc406746ed83dfc77706f246a8d26cc5654e987b151c6698c607",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_action_right_01.png",
+      "bboxTopLeft": [
+        98,
+        34,
+        156,
+        224
+      ],
+      "pixelSha256": "b5957b33f64250be8bb3f633fe02287f86688d2dd6cdc59c7f082f6e32732adf",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_action_right_02.png",
+      "bboxTopLeft": [
+        74,
+        36,
+        178,
+        224
+      ],
+      "pixelSha256": "61bfdd7c3b39e004627da264101b8e253dd347be681af7cd01584f36370e5409",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_action_right_03.png",
+      "bboxTopLeft": [
+        82,
+        38,
+        174,
+        224
+      ],
+      "pixelSha256": "856dafa1c374a1d430d23444a8e8da77e5ae74fab67179fab1ae0b0b4056e208",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_defeat_right_00.png",
+      "bboxTopLeft": [
+        78,
+        36,
+        176,
+        222
+      ],
+      "pixelSha256": "6761013c49703a25c91be24f02ca4f2991fd7d6e5c84de0dbbaa471c4eade25c",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_defeat_right_01.png",
+      "bboxTopLeft": [
+        92,
+        60,
+        164,
+        224
+      ],
+      "pixelSha256": "88533a499a1bddaaedb1bc44e7217be6f6efd153ace1fb6c08d55ebfd4ffbff2",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_defeat_right_02.png",
+      "bboxTopLeft": [
+        74,
+        106,
+        178,
+        224
+      ],
+      "pixelSha256": "b86c0aa3700f9d139f5a57e272023a15c56cb68d205d146b2b740d1e8e80427b",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_defeat_right_03.png",
+      "bboxTopLeft": [
+        56,
+        170,
+        196,
+        224
+      ],
+      "pixelSha256": "5562923bc4453d91965bc580e7d3c16a7f627a27b0427bf5bcdc5c144cb26c59",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_hurt_right_00.png",
+      "bboxTopLeft": [
+        96,
+        38,
+        160,
+        224
+      ],
+      "pixelSha256": "2617e918b7155921a829719a53c456f41e781bded61c4dd6eabbfd322f9c941e",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_idle_right_00.png",
+      "bboxTopLeft": [
+        78,
+        42,
+        174,
+        224
+      ],
+      "pixelSha256": "ef6d94299383bc295508d23c80a1d3c4278dd71f1fcaab38def73aeb54814f96",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_idle_right_01.png",
+      "bboxTopLeft": [
+        76,
+        40,
+        180,
+        224
+      ],
+      "pixelSha256": "c8f8696c96704449290250bbac0909d2f97ecc04e685ed5a753626df9b7b6d5e",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_idle_right_02.png",
+      "bboxTopLeft": [
+        78,
+        42,
+        176,
+        224
+      ],
+      "pixelSha256": "a2b14affd571b3022b0b61fb09fe7e9a30493d4e5f6a0e9247953245f74965cd",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/swirl_stick_conjuror_idle_right_03.png",
+      "bboxTopLeft": [
+        84,
+        44,
+        170,
+        224
+      ],
+      "pixelSha256": "bd3a4a5eaae04dfe47921f1b5310e12bcf9fb4bd6bce6ff4c9e7f38ab71794f0",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

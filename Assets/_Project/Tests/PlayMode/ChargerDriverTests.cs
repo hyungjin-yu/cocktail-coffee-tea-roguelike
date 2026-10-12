@@ -53,5 +53,27 @@ namespace CCT.Tests
             Assert.Greater(Vector2.Dot(expectedDir, actualDir), 0.9f,
                 "돌진 방향은 예고 시작 시의 플레이어 위치로 고정돼야 하고, 예고 중 플레이어가 움직여도 재조준되면 안 된다");
         }
+
+        /// <summary>2026-10-08 아트 검수 P1: 예고 띠(warning_line·예고 사각)는 캐릭터(Actor) 아래 바닥 층에 그려 몸을 가리지 않는다.</summary>
+        [UnityTest]
+        public IEnumerator TelegraphBand_IsDrawnBelowActors()
+        {
+            player.transform.position = new Vector3(5f, 0f, 0f);
+            var boss = Enemy.SpawnAt(Vector2.zero, EnemyDef.GrinderGolem, 1f, player, parentGo.transform);
+            boss.gameObject.AddComponent<ChargerDriver>().Init(boss);
+            var before = new System.Collections.Generic.HashSet<FadeVfx>(Object.FindObjectsByType<FadeVfx>(FindObjectsSortMode.None));
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 3.5f + 0.15f); // 예고 시작 직후
+            int telegraphs = 0;
+            foreach (var v in Object.FindObjectsByType<FadeVfx>(FindObjectsSortMode.None))
+            {
+                if (before.Contains(v)) continue;
+                var sr = v.GetComponent<SpriteRenderer>();
+                if (sr == null || sr.transform.localScale.x < 3f) continue; // 길이 5.4 띠만(작은 효과 제외)
+                telegraphs++;
+                Assert.Less(sr.sortingOrder, SortOrders.Actor, "예고 띠는 캐릭터 아래 층이어야 한다");
+            }
+            Assert.Greater(telegraphs, 0, "예고 띠가 실제로 생성돼야 한다");
+            Object.Destroy(boss.gameObject);
+        }
     }
 }

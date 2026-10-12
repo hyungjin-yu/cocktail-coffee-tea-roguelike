@@ -8,7 +8,36 @@ namespace CCT
     /// </summary>
     public class CameraRig : MonoBehaviour
     {
-        const float TileSize = 2f;
+        /// <summary>배경 스냅 단위 — 배경 반복 단위의 배수(CafeBackground.SnapStep).</summary>
+        float TileSize => CafeBackground.SnapStep;
+
+        static CameraRig current;
+        float shakeRemaining, shakeDuration, shakeAmplitude;
+        Vector2 lastShake;
+
+        /// <summary>08:122 화면 흔들림 — 설정 shakePercent(0이면 완전 비활성)를 곱한 진폭으로 짧게 흔든다.
+        /// 판정·카메라 추적과 무관한 시각 오프셋.</summary>
+        public static void Shake(float amplitude, float duration)
+        {
+            if (current == null) return;
+            float scaled = amplitude * SettingsService.Current.shakePercent / 100f;
+            if (scaled <= 0f) return;
+            float remainingStrength = current.shakeRemaining > 0f
+                ? current.shakeAmplitude * current.shakeRemaining / Mathf.Max(0.01f, current.shakeDuration) : 0f;
+            if (scaled < remainingStrength) return;
+            current.shakeAmplitude = scaled;
+            current.shakeDuration = current.shakeRemaining = Mathf.Max(0.01f, duration);
+        }
+
+        /// <summary>테스트용 — 현재 흔들림 진폭(0이면 없음).</summary>
+        public static float CurrentShakeAmplitude => current == null || current.shakeRemaining <= 0f ? 0f : current.shakeAmplitude;
+
+        void OnEnable() => current = this;
+
+        void OnDisable()
+        {
+            if (current == this) current = null;
+        }
 
         Camera cam;
         Transform target;
@@ -20,6 +49,7 @@ namespace CCT
         {
             this.cam = cam;
             this.target = target;
+            current = this;
             this.background = background;
             fixedCamY = cam.transform.position.y;
             fixedBackgroundY = background != null ? background.position.y : 0f;
@@ -31,9 +61,17 @@ namespace CCT
             if (cam == null || target == null) return;
 
             float t = 1f - Mathf.Exp(-12f * Time.unscaledDeltaTime);
-            float x = Mathf.Lerp(cam.transform.position.x, target.position.x, t);
-            cam.transform.position = new Vector3(x, fixedCamY, -10f);
-            SnapBackground(x);
+            float baseX = Mathf.Lerp(cam.transform.position.x - lastShake.x, target.position.x, t);
+            Vector2 shake = Vector2.zero;
+            if (shakeRemaining > 0f)
+            {
+                shakeRemaining -= Time.unscaledDeltaTime;
+                float k = Mathf.Clamp01(shakeRemaining / shakeDuration);
+                shake = Random.insideUnitCircle * shakeAmplitude * k;
+            }
+            lastShake = shake;
+            cam.transform.position = new Vector3(baseX + shake.x, fixedCamY + shake.y, -10f);
+            SnapBackground(baseX);
         }
 
         void Snap()

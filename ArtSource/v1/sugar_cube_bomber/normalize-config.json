@@ -1,0 +1,195 @@
+{
+  "source": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/sugar_cube_bomber/reference/generated-sheet.png",
+  "out": "C:/Users/user/Documents/Personal_Note/03_\ud504\ub85c\uc81d\ud2b8/\uce75\ud14c\uc77c \ucee4\ud53c \ud2f0 \ub85c\uadf8\ub77c\uc774\ud06c \uae30\ud68d/ArtProduction/first-pass-enemies/sugar_cube_bomber",
+  "assetId": "sugar_cube_bomber",
+  "columns": 5,
+  "rows": 3,
+  "size": 256,
+  "bodyHeight": 184,
+  "height": 0.85,
+  "frames": [
+    {
+      "clip": "idle",
+      "index": 0,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 1,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 2,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "idle",
+      "index": 3,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 0,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 1,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 2,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 3,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 4,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "move",
+      "index": 5,
+      "fps": 10,
+      "loop": true
+    },
+    {
+      "clip": "hurt",
+      "index": 0,
+      "fps": 12.5,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 0,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 1,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 2,
+      "fps": 10,
+      "loop": false
+    },
+    {
+      "clip": "defeat",
+      "index": 3,
+      "fps": 10,
+      "loop": false
+    }
+  ],
+  "boxes": [
+    {
+      "left": 30,
+      "right": 261,
+      "top": 50,
+      "bottom": 318
+    },
+    {
+      "left": 355,
+      "right": 592,
+      "top": 49,
+      "bottom": 314
+    },
+    {
+      "left": 683,
+      "right": 915,
+      "top": 50,
+      "bottom": 318
+    },
+    {
+      "left": 1022,
+      "right": 1265,
+      "top": 72,
+      "bottom": 318
+    },
+    {
+      "left": 1357,
+      "right": 1598,
+      "top": 66,
+      "bottom": 318
+    },
+    {
+      "left": 29,
+      "right": 268,
+      "top": 362,
+      "bottom": 627
+    },
+    {
+      "left": 362,
+      "right": 593,
+      "top": 360,
+      "bottom": 627
+    },
+    {
+      "left": 688,
+      "right": 914,
+      "top": 359,
+      "bottom": 627
+    },
+    {
+      "left": 1014,
+      "right": 1261,
+      "top": 356,
+      "bottom": 627
+    },
+    {
+      "left": 1369,
+      "right": 1596,
+      "top": 359,
+      "bottom": 627
+    },
+    {
+      "left": 21,
+      "right": 279,
+      "top": 675,
+      "bottom": 929
+    },
+    {
+      "left": 361,
+      "right": 597,
+      "top": 711,
+      "bottom": 940
+    },
+    {
+      "left": 683,
+      "right": 926,
+      "top": 719,
+      "bottom": 942
+    },
+    {
+      "left": 995,
+      "right": 1266,
+      "top": 752,
+      "bottom": 940
+    },
+    {
+      "left": 1328,
+      "right": 1605,
+      "top": 799,
+      "bottom": 941
+    }
+  ],
+  "canonical": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/Icons/Enemies/sugar_cube_bomber.png"
+}

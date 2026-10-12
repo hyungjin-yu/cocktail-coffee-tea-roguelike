@@ -5,7 +5,10 @@ namespace CCT
 {
     public enum CardCategory { Cocktail, Tea, Hybrid }
 
-    public enum CardRarity { Common, Rare, Epic }
+    /// <summary>Special은 07:114 "티니 보우"(하이브리드) 전용 — 랜덤 카드 뽑기 풀에 절대 섞이지 않는다
+    /// (CardSystem.Draw는 category==Hybrid를 절대 요청하지 않음). RarityTable.Weight가 있어도 실제로
+    /// 쓰이지 않는다.</summary>
+    public enum CardRarity { Common, Rare, Epic, Special }
 
     /// <summary>이 카드가 어느 무기군에만 나올지. 대부분 카드는 Any(둘 다). 무기별 정체성이 있는 카드만 제한.</summary>
     public enum WeaponRestriction { Any, MeleeOnly, RangedOnly }
@@ -76,7 +79,8 @@ namespace CCT
             {
                 case CardRarity.Common: return 60f;
                 case CardRarity.Rare: return 30f;
-                default: return 10f;
+                case CardRarity.Epic: return 10f;
+                default: return 0f; // Special — 절대 랜덤 뽑기 대상이 아님
             }
         }
 
@@ -86,7 +90,8 @@ namespace CCT
             {
                 case CardRarity.Common: return "일반";
                 case CardRarity.Rare: return "희귀";
-                default: return "영웅";
+                case CardRarity.Epic: return "영웅";
+                default: return "특수";
             }
         }
 
@@ -96,7 +101,8 @@ namespace CCT
             {
                 case CardRarity.Common: return new Color(0.82f, 0.82f, 0.82f);
                 case CardRarity.Rare: return new Color(0.4f, 0.72f, 1f);
-                default: return new Color(0.82f, 0.5f, 1f);
+                case CardRarity.Epic: return new Color(0.82f, 0.5f, 1f);
+                default: return new Color(1f, 0.75f, 0.35f); // Special
             }
         }
     }

@@ -1,0 +1,577 @@
+{
+  "assetId": "espresso_leviathan",
+  "expectedFrameCount": 27,
+  "actualFrameCount": 27,
+  "frames": [
+    {
+      "file": "frames/espresso_leviathan_idle_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        64,
+        452,
+        448
+      ],
+      "sha256": "27160d7b02217769a489098ba8477ba0ecd5352cf38f238860bb7c38fa8e3bbc",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_idle_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        60,
+        452,
+        448
+      ],
+      "sha256": "a9dfeb13a9dcad5e612bceffedbc06c8371798d6d964cc021781bd518c138ce9",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_idle_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        56,
+        64,
+        448,
+        448
+      ],
+      "sha256": "51d6c920be5151a868b5f7319f80be03af79f1ec78a7f9f1c463f6a4ab9a8989",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_idle_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        68,
+        452,
+        448
+      ],
+      "sha256": "747bcf18d3a1bafc00d20093f7c83d58b96fd1aa77d37f66a357cc1c51d1377e",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_move_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        52,
+        64,
+        460,
+        448
+      ],
+      "sha256": "15f93acbda47ad18715b515fc59fe9985acf486830027390fc4fcec6b7211db5",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_move_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        76,
+        64,
+        432,
+        448
+      ],
+      "sha256": "f5bd87848c1fcf675da77454ddc3fde60be4dd180da4f195d83ca33715d63a9a",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_move_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        80,
+        72,
+        432,
+        448
+      ],
+      "sha256": "dbacaf357be2eba1f50888b57fe322d00280e3cb99f7a9916bbbe74a37366c1a",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_move_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        76,
+        68,
+        432,
+        448
+      ],
+      "sha256": "eb1a7dbaef1454ecb8353c2eb7c2d055e70722b21782034ceba6f9d34ebf855b",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_move_right_04.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        56,
+        68,
+        452,
+        448
+      ],
+      "sha256": "502924309e6726124d14b5e29e5ad6b7c226f9ed0f6c8dbc62a765b9f76ff6b4",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_move_right_05.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        68,
+        64,
+        440,
+        448
+      ],
+      "sha256": "08d39dda2cbbe2153c5fdff50c211bfcc80598e1676ee249f9646009c8b86294",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_hurt_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        64,
+        452,
+        448
+      ],
+      "sha256": "0436f7e6a9c3f0c1f95a146cfb0103435d458e16dcd605ca1d678a721e3db4b1",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_defeat_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        108,
+        84,
+        400,
+        448
+      ],
+      "sha256": "6e255b5fed4d41ee41708ff51c0a2786c3149d351ea70303613978bf7c4f42a4",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_defeat_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        88,
+        100,
+        424,
+        448
+      ],
+      "sha256": "5139a1a36ca58db00525103e687b916aef97e1a2d916ae9d67b59696f3ed5bdf",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_defeat_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        224,
+        448,
+        448
+      ],
+      "sha256": "a15d154eb4be59b8b05aa16e6d86fcd829f7d284e6394eb371f2714844f1fa14",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_defeat_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        92,
+        260,
+        412,
+        448
+      ],
+      "sha256": "06ef5473233fa110efff0bef561b57f4bd996b23e801068ecf17710647d358ca",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_steam_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        52,
+        112,
+        460,
+        448
+      ],
+      "sha256": "e4856458206764e1daae9eabaccc1475da2b0fc870eddfca034022514b54cc18",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_steam_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        96,
+        112,
+        412,
+        448
+      ],
+      "sha256": "1570e8936ffadda790bee81f1b42f4e2c232d6b1f4ba406007027895fa69fd1c",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_steam_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        36,
+        96,
+        476,
+        448
+      ],
+      "sha256": "e1c5bdb2ce181b19ad33dfb15638632e848f4a041515b8fd94a20ca351288846",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_steam_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        72,
+        104,
+        436,
+        448
+      ],
+      "sha256": "82b3ca8d728e0fecda8bbb92babedb8f563bda08c7215a5dbfb87e47f56a0425",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_rain_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        76,
+        64,
+        432,
+        448
+      ],
+      "sha256": "7a15059e9e73384a2b496d8ca049d50a620c0ad31e87e5945570f62e156c2319",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_rain_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        52,
+        64,
+        456,
+        448
+      ],
+      "sha256": "f5e443150eafcf6da239156521396db6ca18334d20fce679c2d7ae1195ba8f65",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_rain_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        44,
+        60,
+        468,
+        448
+      ],
+      "sha256": "80a61349c1dda653f736d8e0c6d896b00400965937bec86e204eefd034fd1fdd",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_rain_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        56,
+        96,
+        452,
+        448
+      ],
+      "sha256": "29f9f71ad241ac645f5ec35421123aa62dbd7043d00b2abc22292a26c6b4dbf7",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_pressure_right_00.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        96,
+        64,
+        412,
+        448
+      ],
+      "sha256": "0ed36bf5bd6693190c1da241a918c08f49ff1628a4471871077d66b91bb7bfb4",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_pressure_right_01.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        80,
+        80,
+        428,
+        448
+      ],
+      "sha256": "013a32d527263088b5d678319cf22a7af315444e1376d1807417d4a1a9bfe4fb",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_pressure_right_02.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        40,
+        88,
+        448,
+        448
+      ],
+      "sha256": "b1d400d1496d576faddba93f35b079da7cb8f7cb0c01a956f080eb330913666a",
+      "duplicateOf": null,
+      "grid4": true
+    },
+    {
+      "file": "frames/espresso_leviathan_pressure_right_03.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        72,
+        448,
+        448
+      ],
+      "sha256": "4271b30161c28e508a1e111891e5ea37ecacb03cf54410ff258df746fa3d0628",
+      "duplicateOf": null,
+      "grid4": true
+    }
+  ],
+  "bodyHeightPx": 384,
+  "integrated": false,
+  "unityVerification": "not_run"
+}

@@ -1,0 +1,203 @@
+{
+  "assetId": "lemon_brute",
+  "frames": 15,
+  "checks": [
+    {
+      "file": "frames/lemon_brute_defeat_right_00.png",
+      "bboxTopLeft": [
+        34,
+        58,
+        220,
+        224
+      ],
+      "pixelSha256": "b39f06f92b40ac7dbd93225a20f2f39b70854d021c342cbc13c2f9ee0097596f",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_defeat_right_01.png",
+      "bboxTopLeft": [
+        32,
+        92,
+        224,
+        224
+      ],
+      "pixelSha256": "8bb6bb777198fa13d5a38ec906ee6aabf1b677d13659117c4c82833e0b05d10b",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_defeat_right_02.png",
+      "bboxTopLeft": [
+        24,
+        120,
+        230,
+        224
+      ],
+      "pixelSha256": "6e3f320a4d959afe2477d4164905a4e71acfb4396e9ae1e041d21b0fca52360b",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_defeat_right_03.png",
+      "bboxTopLeft": [
+        32,
+        154,
+        224,
+        222
+      ],
+      "pixelSha256": "0c5d1a2279ed00471346241d3c0fa47af99acd9d133d28e0d4bae140661757c3",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_hurt_right_00.png",
+      "bboxTopLeft": [
+        44,
+        56,
+        208,
+        224
+      ],
+      "pixelSha256": "bec84239614abd48dabafe266d30c9642fa77be3d270a95d4713fbee439881f8",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_idle_right_00.png",
+      "bboxTopLeft": [
+        34,
+        40,
+        218,
+        224
+      ],
+      "pixelSha256": "b0b74c0e6c6b7c494c54a43c990d3fc405ea1218dc558fd4bf0714cb0e08ef8c",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_idle_right_01.png",
+      "bboxTopLeft": [
+        32,
+        38,
+        222,
+        224
+      ],
+      "pixelSha256": "c647b7bed9d73f4b14a5e5484e75219c075c06dc45dafdf2315e05a642ed39e5",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_idle_right_02.png",
+      "bboxTopLeft": [
+        34,
+        40,
+        218,
+        224
+      ],
+      "pixelSha256": "6f6e1e35a2cc2b7f7a8f28a371a4fe3e187ad504122e1c6ce6556823d8b022f7",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_idle_right_03.png",
+      "bboxTopLeft": [
+        30,
+        42,
+        222,
+        224
+      ],
+      "pixelSha256": "fb118a579c98f9e1ab3265eaf6774ed4e871306f454767989972b0eeae6f1d88",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_move_right_00.png",
+      "bboxTopLeft": [
+        34,
+        46,
+        222,
+        224
+      ],
+      "pixelSha256": "528400a7a447d3a112cdf1fab35ef77cde86531f22a3d8acc47c2877d0f1c209",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_move_right_01.png",
+      "bboxTopLeft": [
+        30,
+        38,
+        226,
+        224
+      ],
+      "pixelSha256": "1abff4e231f778addff0f8ff4560131a20d5fa4cf2f12c0be3342e0ced328f3b",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_move_right_02.png",
+      "bboxTopLeft": [
+        26,
+        36,
+        228,
+        224
+      ],
+      "pixelSha256": "e915775efa9251fc1cf3cfcb57f59ab13f5b7ce70814363e36263eb62e14423d",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_move_right_03.png",
+      "bboxTopLeft": [
+        34,
+        42,
+        220,
+        224
+      ],
+      "pixelSha256": "7673a3230ba698642b429b8795d10901334f4e123b6de697a9cf9ba89d895893",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_move_right_04.png",
+      "bboxTopLeft": [
+        26,
+        34,
+        230,
+        222
+      ],
+      "pixelSha256": "4dc4a669dd0283bad89bf9b345a1caac766baa5e238a0a13a12bc622dd7f0fec",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/lemon_brute_move_right_05.png",
+      "bboxTopLeft": [
+        30,
+        40,
+        226,
+        224
+      ],
+      "pixelSha256": "99bff4bdc817318222ce82b302773961879e4cf8fbc8489770dbeceb3d5f4aab",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

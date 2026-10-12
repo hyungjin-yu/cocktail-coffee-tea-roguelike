@@ -31,6 +31,7 @@ namespace CCT.Editor
 
             var all = DefaultCards.CreateRuntime();
             all.AddRange(DefaultTeaCards.CreateRuntime());
+            all.AddRange(DefaultHybridCards.CreateRuntime());
 
             int created = 0;
             foreach (var card in all)

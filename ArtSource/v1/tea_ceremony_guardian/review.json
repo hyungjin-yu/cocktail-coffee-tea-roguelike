@@ -1,0 +1,255 @@
+{
+  "assetId": "tea_ceremony_guardian",
+  "frames": 19,
+  "checks": [
+    {
+      "file": "frames/tea_ceremony_guardian_action_right_00.png",
+      "bboxTopLeft": [
+        60,
+        84,
+        194,
+        224
+      ],
+      "pixelSha256": "554bab5df7987a095f73e377a00aca4916654d107e6a75885d1c7fc25046c9e7",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_action_right_01.png",
+      "bboxTopLeft": [
+        40,
+        72,
+        216,
+        222
+      ],
+      "pixelSha256": "7ab8ecb5e66bdbdd9344f92576d357ad661ba29de20b605a69e132a5eeebf30b",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_action_right_02.png",
+      "bboxTopLeft": [
+        18,
+        88,
+        238,
+        222
+      ],
+      "pixelSha256": "dcffd1dedfab4664fe2d3e67617fa5ec804b454387d8c11580e9b5b188460a09",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_action_right_03.png",
+      "bboxTopLeft": [
+        46,
+        84,
+        210,
+        222
+      ],
+      "pixelSha256": "04e86dbbfbcedc86c6cce11f079638acc19d02afed908c87c20c5ea3dfc5f5eb",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_defeat_right_00.png",
+      "bboxTopLeft": [
+        40,
+        108,
+        216,
+        222
+      ],
+      "pixelSha256": "535dae1f577b0962fd4e23a62545ad71173ba95c95f472c451cb307a0793cbff",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_defeat_right_01.png",
+      "bboxTopLeft": [
+        38,
+        124,
+        214,
+        222
+      ],
+      "pixelSha256": "ce35f33c0bcae73b5a660a36efe913be311bef6e6f6edf3d79490ab96573798a",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_defeat_right_02.png",
+      "bboxTopLeft": [
+        36,
+        138,
+        220,
+        224
+      ],
+      "pixelSha256": "c4a97f81a1ca1a69de3b62918970d0f96f1f1fa963fc979607b5e96845b7fd49",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_defeat_right_03.png",
+      "bboxTopLeft": [
+        50,
+        160,
+        204,
+        222
+      ],
+      "pixelSha256": "e18c44d285df1b6993385194f1658d37c41a88669c70c213541355cb4a8af0c4",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_hurt_right_00.png",
+      "bboxTopLeft": [
+        64,
+        90,
+        190,
+        222
+      ],
+      "pixelSha256": "f6b41df552ce9112932b8ed237fc8e51d1001c45b89744e7cc08951b31621e55",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_idle_right_00.png",
+      "bboxTopLeft": [
+        54,
+        74,
+        200,
+        224
+      ],
+      "pixelSha256": "46c44a848b5983200a906167487382bd8832517f582a5d68439b679938de3eb5",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_idle_right_01.png",
+      "bboxTopLeft": [
+        52,
+        72,
+        204,
+        224
+      ],
+      "pixelSha256": "97460b466963df173c6261a7c1df37e605e9e8459dfe2a905fd7155ee8670e98",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_idle_right_02.png",
+      "bboxTopLeft": [
+        54,
+        74,
+        202,
+        224
+      ],
+      "pixelSha256": "0c748cb8630581479075f9a31deb153ac2db574bcf1276559f98d91f4b28e95d",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_idle_right_03.png",
+      "bboxTopLeft": [
+        52,
+        76,
+        202,
+        224
+      ],
+      "pixelSha256": "9c4cf779cf7cee49149b7043ffbcc91a5d0e6a1abf4dbf4bab86f8509694184f",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_move_right_00.png",
+      "bboxTopLeft": [
+        52,
+        72,
+        204,
+        222
+      ],
+      "pixelSha256": "39149670c544c898f3b309567157840dc830b2d442138a7520acd88a8ce22557",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_move_right_01.png",
+      "bboxTopLeft": [
+        62,
+        72,
+        192,
+        224
+      ],
+      "pixelSha256": "28b7df372196b6c4a9703e920f02d3d79cacc8d1be5b87ea25181e9e2548f775",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_move_right_02.png",
+      "bboxTopLeft": [
+        58,
+        68,
+        198,
+        224
+      ],
+      "pixelSha256": "6b6aa4cd1f9a7719d26326655cb0b84e5bc7730ec6ef339b3d008391c972d8ed",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_move_right_03.png",
+      "bboxTopLeft": [
+        52,
+        74,
+        202,
+        222
+      ],
+      "pixelSha256": "7d0513c59a6128eb198d3c733ff6b14cf98947f48d3bbc9d9c967c257ec57460",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_move_right_04.png",
+      "bboxTopLeft": [
+        60,
+        70,
+        196,
+        222
+      ],
+      "pixelSha256": "84ea1e1301bc46cfa3f37056326b86adff2f4b36a4e6fa183a7c783d0f0c720c",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/tea_ceremony_guardian_move_right_05.png",
+      "bboxTopLeft": [
+        52,
+        66,
+        202,
+        222
+      ],
+      "pixelSha256": "195fc5996ffa45c4d2d1f5d89454e7d3145e1c665b9b963655f6899a57517e76",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

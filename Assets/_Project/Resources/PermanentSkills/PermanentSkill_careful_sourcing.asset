@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a445bc81f26e6774ab6f4f2386bac954, type: 3}
+  m_Name: careful_sourcing
+  m_EditorClassIdentifier: CCT.Runtime::CCT.PermanentSkillData
+  id: careful_sourcing
+  displayName: "\uC5C4\uC120\uD55C \uC7AC\uB8CC"
+  description: "\uC601\uAD6C \uCD94\uAC00 \uC7AC\uB8CC \uB4DC\uB78D +5%p"
+  branch: 2
+  tier: 4
+  prerequisite: {fileID: 11400000, guid: 4c1a7992cf4dc2f4eadda46530ffc1a3, type: 2}
+  additionalPrerequisites: []
+  minimumClears: 1
+  weaponSpecific: 0
+  targetWeapon: 0
+  group: 2
+  cost: 6
+  effects:
+  - type: 5
+    value: 0.05
+  iconResourcePath: 
+  iconArtId: skill_ingredient

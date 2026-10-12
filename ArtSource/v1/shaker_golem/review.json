@@ -1,0 +1,255 @@
+{
+  "assetId": "shaker_golem",
+  "frames": 19,
+  "checks": [
+    {
+      "file": "frames/shaker_golem_action_right_00.png",
+      "bboxTopLeft": [
+        46,
+        56,
+        208,
+        222
+      ],
+      "pixelSha256": "5ba773d8104fdb5d25bdb30b99620a58f75f143b21d4f4a7b25aa4c626669192",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_action_right_01.png",
+      "bboxTopLeft": [
+        28,
+        64,
+        228,
+        222
+      ],
+      "pixelSha256": "ae55a26fb1de3437196c1306bd17c3ac74c3dc6432eb0696bb20d1642292c161",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_action_right_02.png",
+      "bboxTopLeft": [
+        22,
+        70,
+        232,
+        224
+      ],
+      "pixelSha256": "bab6c9dcdd06595f20273d360367afcbe45acf264d8b1f06a87ee590d0dd0424",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_action_right_03.png",
+      "bboxTopLeft": [
+        42,
+        58,
+        210,
+        222
+      ],
+      "pixelSha256": "7d905393f8e71200764406cd8eb4b848111767ed2345456dfe15899451bf1ded",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_defeat_right_00.png",
+      "bboxTopLeft": [
+        58,
+        74,
+        194,
+        224
+      ],
+      "pixelSha256": "52922cde7977893171e8e733af466c4d48888f6dcd88d676759fb31cfa6e3b90",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_defeat_right_01.png",
+      "bboxTopLeft": [
+        46,
+        96,
+        206,
+        222
+      ],
+      "pixelSha256": "98dc78a609618b7e7b54b015471c1cf3f390922fe48cb33fd089cb31a8cc477a",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_defeat_right_02.png",
+      "bboxTopLeft": [
+        50,
+        118,
+        204,
+        224
+      ],
+      "pixelSha256": "86ee68283857f0975fd21db2aac1d45e4e3347e3144cded2b0781ccc5ffc5f78",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_defeat_right_03.png",
+      "bboxTopLeft": [
+        22,
+        144,
+        230,
+        224
+      ],
+      "pixelSha256": "8f367399cde5e7a15eac52d8f1d2748b0d7da13033d5c7628fcc49574c1daadc",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_hurt_right_00.png",
+      "bboxTopLeft": [
+        58,
+        66,
+        196,
+        224
+      ],
+      "pixelSha256": "5d5b2745be8f1879dae8956892d61cf6d61f1b65a0a6649b0ec31216594ce391",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_idle_right_00.png",
+      "bboxTopLeft": [
+        40,
+        40,
+        212,
+        224
+      ],
+      "pixelSha256": "2a4ef86a02dd23b976e65f85ed5f40a9465c7f067d61182fb6d183e2c0a92662",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_idle_right_01.png",
+      "bboxTopLeft": [
+        46,
+        38,
+        210,
+        224
+      ],
+      "pixelSha256": "df007b13d9ad837d5b419b49f1607352e0b348808cbc98be6991652f34f0ddb9",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_idle_right_02.png",
+      "bboxTopLeft": [
+        42,
+        40,
+        210,
+        224
+      ],
+      "pixelSha256": "d795895c61fb6c2c3fa3d6723f46feb30afe89b343a9d63523aeb8a4869dc9a0",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_idle_right_03.png",
+      "bboxTopLeft": [
+        34,
+        42,
+        220,
+        224
+      ],
+      "pixelSha256": "895cfbfd4a8e5f732939d8e63f6593439747640a150daabd722d2eb76cd97abc",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_move_right_00.png",
+      "bboxTopLeft": [
+        40,
+        40,
+        214,
+        224
+      ],
+      "pixelSha256": "7bdc51e4b502fca51540ac76fce0769dde7211438db44769ba50270e87e06f8c",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_move_right_01.png",
+      "bboxTopLeft": [
+        52,
+        40,
+        202,
+        224
+      ],
+      "pixelSha256": "8d50d3560f66a651efa56e5245b905e1a763131ee428f7d5f10a275d4d0f9545",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_move_right_02.png",
+      "bboxTopLeft": [
+        50,
+        40,
+        206,
+        224
+      ],
+      "pixelSha256": "098f116f7f80544c2e2ddcdb31a905f8a71c2c6993a58abcefefdf35096163e8",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_move_right_03.png",
+      "bboxTopLeft": [
+        44,
+        40,
+        210,
+        224
+      ],
+      "pixelSha256": "37613e0988274bd42cd3bcff48dea71eb9b6840511fdaa86571922b7d7763417",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_move_right_04.png",
+      "bboxTopLeft": [
+        50,
+        40,
+        202,
+        224
+      ],
+      "pixelSha256": "b88b764d0102e4cd3be476d5b3aac9005baa78438fb3598a51b751a933f0daf6",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    },
+    {
+      "file": "frames/shaker_golem_move_right_05.png",
+      "bboxTopLeft": [
+        50,
+        40,
+        206,
+        224
+      ],
+      "pixelSha256": "2a8b1b0f540d9b938db0d419087abd6661d616fe888e45638671bb2bb10ed9df",
+      "alpha": "binary",
+      "grid": "2x2",
+      "unique": true
+    }
+  ],
+  "visuallyReviewed": true,
+  "unityVerified": false
+}

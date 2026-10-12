@@ -148,6 +148,56 @@ namespace CCT.Tests
             Assert.AreEqual(expectedPicks, game.Cards.CountOwned(CardCategory.Cocktail));
         }
 
+        /// <summary>2026-10-08: 사망은 집계·저장을 즉시 1회 확정하고 쓰러지는 동작 뒤에 결과 패널을 연다. 그 사이 재시작해도
+        /// 옛 결과 패널이 새 런 위에 열리지 않는다.</summary>
+        [UnityTest]
+        public IEnumerator PlayerDeath_ResultAfterDefeatDelay_AndNotReopenedAfterRestart()
+        {
+            var game = GameManager.Instance;
+            int failedBefore = PermanentProgress.Current.failedRuns;
+            game.Player.TakeDamage(9999f);
+            yield return null;
+            Assert.AreEqual(GameState.GameOver, game.State);
+            Assert.AreEqual(failedBefore + 1, PermanentProgress.Current.failedRuns, "사망 집계는 즉시 1회");
+            Assert.IsTrue(game.ResultPending, "결과 패널은 쓰러지는 동작 뒤에");
+            foreach (var r in Object.FindObjectsByType<ResultView>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                Assert.IsFalse(r.IsOpen, "사망 직후 결과 패널이 몸을 덮지 않는다");
+            yield return new WaitForSecondsRealtime(0.5f);
+            var deathAnimator = game.Player.Visual.GetComponent<SpriteAnimator>();
+            Assert.IsNotNull(deathAnimator, "실제 카탈로그의 사망 애니메이터 필요");
+            Assert.AreEqual("defeat", deathAnimator.Current.name);
+            Assert.AreEqual(3, deathAnimator.FrameIndex, "결과 전 defeat가 끝 프레임까지 재생");
+
+            game.Restart(); // 대기 중에 나감
+            yield return null;
+            var fresh = GameBootstrap.Build(Job.Bartender);
+            yield return new WaitForSecondsRealtime(GameManager.DeathResultDelaySeconds + 0.3f);
+            Assert.AreEqual(GameState.Playing, fresh.State);
+            foreach (var r in Object.FindObjectsByType<ResultView>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                Assert.IsFalse(r.IsOpen, "옛 런의 결과 패널이 새 런 위에 열리면 안 된다");
+            Assert.AreEqual(failedBefore + 1, PermanentProgress.Current.failedRuns, "재시작해도 집계는 1회 그대로");
+        }
+
+        [UnityTest]
+        public IEnumerator DeathPending_LeaveToTitle_CancelsImmediately_AndNeverShowsOldResult()
+        {
+            var game = GameManager.Instance;
+            game.Player.TakeDamage(9999f);
+            yield return null;
+            Assert.IsTrue(game.ResultPending);
+            int failed = PermanentProgress.Current.failedRuns;
+            game.GoToTitle();
+            Assert.IsFalse(game.ResultPending, "파괴 프레임을 기다리지 않고 예약 취소");
+            yield return new WaitForSecondsRealtime(GameManager.DeathResultDelaySeconds + 0.2f);
+            var title = Object.FindFirstObjectByType<TitleView>();
+            Assert.IsNotNull(title);
+            Assert.IsTrue(title.IsOpen);
+            foreach (var r in Object.FindObjectsByType<ResultView>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                Assert.IsFalse(r.IsOpen, "타이틀 위에 옛 결과가 열리지 않는다");
+            Assert.AreEqual(failed, PermanentProgress.Current.failedRuns, "사망 1회 집계 유지");
+            Object.Destroy(title.gameObject);
+        }
+
         [UnityTest]
         public IEnumerator PlayerDeath_ShowsResult_AndRestartCreatesFreshRun()
         {
