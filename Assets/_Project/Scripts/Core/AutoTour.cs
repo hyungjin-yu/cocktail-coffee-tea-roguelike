@@ -423,6 +423,15 @@ namespace CCT
             QaKeyboard=UnityEngine.InputSystem.InputSystem.AddDevice<UnityEngine.InputSystem.Keyboard>("ReviewKeyboard");
             QaKeyboard.MakeCurrent();
             yield return Shot("review_title");
+            var shop=FindFirstObjectByType<TitleView>().ShopView;
+            FindFirstObjectByType<TitleView>().GetComponentsInChildren<Button>().First(b=>b.name=="PermanentShopButton").onClick.Invoke();
+            shop.SelectGroup(PermanentSkillGroup.Survival);
+            yield return Wait(.2f); yield return Shot("review_permanent_detail_top");
+            var shopScroll=shop.GetComponentsInChildren<ScrollRect>().First(s=>s.name=="DetailScroll");
+            shopScroll.verticalNormalizedPosition=0f;
+            yield return Wait(.2f); yield return Shot("review_permanent_detail_bottom");
+            if(shopScroll.content.rect.height<=shopScroll.viewport.rect.height) Fail("long permanent detail did not get scrollable content");
+            shop.GetComponentsInChildren<Button>().First(b=>b.name=="BackButton").onClick.Invoke(); yield return Wait(.2f);
             FindFirstObjectByType<TitleView>().RequestStart();
             yield return StartCombo(Combos[0],true);
             var game=GameManager.Instance; FreezeWorld(game); yield return Wait(.3f);
@@ -1841,4 +1850,6 @@ namespace CCT
     }
 }
 #endif
+
+
 

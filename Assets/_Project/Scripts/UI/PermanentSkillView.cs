@@ -24,6 +24,8 @@ namespace CCT
         GameObject root;
         Text balanceLabel, unlockedLabel, secondaryLabel, noticeLabel;
         Text detailTitle, detailEffect, detailState, detailBody, detailForecast;
+        RectTransform detailContent;
+        ScrollRect detailScroll;
         PermanentSkillTree tree;
         List<PermanentSkillData> nodes;
         Action onClose;
@@ -100,10 +102,25 @@ namespace CCT
             detailTitle.color = DarkInk;
             detailEffect = UiFactory.AddText(UiFactory.Place("DetailEffect", rt, new Vector2(.5f,1f), new Vector2(0,-84), new Vector2(w,40)), "", 26, TextAnchor.MiddleCenter, Gold);
             detailState = UiFactory.AddText(UiFactory.Place("DetailState", rt, new Vector2(.5f,1f), new Vector2(0,-128), new Vector2(w,40)), "", 26, TextAnchor.MiddleCenter, Color.white);
-            detailBody = UiFactory.AddText(UiFactory.Place("DetailBody", rt, new Vector2(.5f,1f), new Vector2(0,-182), new Vector2(w,200)), "", 24, TextAnchor.UpperLeft, Color.white);
+            var viewport=UiFactory.Place("DetailScroll",rt,new Vector2(.5f,1f),new Vector2(-12,-182),new Vector2(w-24,DetailHeight-206));
+            UiFactory.AddImage(viewport,Color.clear).raycastTarget=true;
+            viewport.gameObject.AddComponent<RectMask2D>();
+            detailScroll=viewport.gameObject.AddComponent<ScrollRect>();
+            detailScroll.horizontal=false; detailScroll.movementType=ScrollRect.MovementType.Clamped; detailScroll.scrollSensitivity=40f;
+            detailContent=UiFactory.Stretch("Content",viewport);
+            detailContent.anchorMin=new Vector2(0,1); detailContent.anchorMax=new Vector2(1,1); detailContent.pivot=new Vector2(.5f,1);
+            detailScroll.viewport=viewport; detailScroll.content=detailContent;
+            var barRt=UiFactory.Place("DetailScrollbar",rt,new Vector2(1,1),new Vector2(-20,-182),new Vector2(12,DetailHeight-206));
+            UiFactory.AddImage(barRt,new Color(.05f,.04f,.06f,1f));
+            var handle=UiFactory.Stretch("Handle",barRt); var handleImage=UiFactory.AddImage(handle,Gold);
+            var bar=barRt.gameObject.AddComponent<Scrollbar>(); bar.targetGraphic=handleImage; bar.handleRect=handle;
+            bar.direction=Scrollbar.Direction.BottomToTop; detailScroll.verticalScrollbar=bar;
+            detailScroll.verticalScrollbarVisibility=ScrollRect.ScrollbarVisibility.AutoHide;
+            detailBody = UiFactory.AddText(UiFactory.Place("DetailBody", detailContent, new Vector2(.5f,1f), Vector2.zero, new Vector2(w-24,200)), "", 24, TextAnchor.UpperLeft, Color.white);
             detailBody.lineSpacing = 1.15f;
-            detailForecast = UiFactory.AddText(UiFactory.Place("DetailForecast", rt, new Vector2(.5f,1f), new Vector2(0,-398), new Vector2(w,270)), "", 22, TextAnchor.UpperLeft, Color.white);
+            detailForecast = UiFactory.AddText(UiFactory.Place("DetailForecast", detailContent, new Vector2(.5f,1f), new Vector2(0,-216), new Vector2(w-24,270)), "", 22, TextAnchor.UpperLeft, Color.white);
             detailForecast.lineSpacing = 1.15f;
+            detailBody.verticalOverflow=detailForecast.verticalOverflow=VerticalWrapMode.Truncate;
         }
 
         void BuildSlots()
@@ -270,6 +287,13 @@ namespace CCT
                 : $"전 무기   해금 {total}→{totalAfter} · 몹 등장 {Spawn(total)} → {Spawn(totalAfter)}");
             forecast.Add("적용 노드 1개당 몹 체력 +1%p · 피해 +0.4%p (최대 +40% · +18%)\n영구 해금 1개당 일반 몹 등장 +3% (무기 무관, 최대 +60% · 상한 160)");
             detailForecast.text=string.Join("\n",forecast);
+            float bodyHeight=detailBody.preferredHeight+8f;
+            float forecastHeight=detailForecast.preferredHeight+8f;
+            detailBody.rectTransform.sizeDelta=new Vector2(detailBody.rectTransform.sizeDelta.x,bodyHeight);
+            detailForecast.rectTransform.sizeDelta=new Vector2(detailForecast.rectTransform.sizeDelta.x,forecastHeight);
+            detailForecast.rectTransform.anchoredPosition=new Vector2(0,-bodyHeight-24f);
+            detailContent.sizeDelta=new Vector2(0,bodyHeight+24f+forecastHeight);
+            detailContent.anchoredPosition=Vector2.zero; detailScroll.velocity=Vector2.zero;
         }
 
         public void TryBuy(PermanentSkillData node)

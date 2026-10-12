@@ -76,6 +76,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File Tools/QA/Run-RcPipeline.ps1 
 
 최근 HUD 내부 여백과 긴 문구 배치, 히든 목록 드래그 및 휠 스크롤을 개선했습니다. [화면 검증 보고서](Delivery/Reports/hud-padding-scroll-2026-10-12.md)에서 확인할 수 있습니다.
 
+영구 강화창의 긴 조건과 몹 성장 예측도 패널 내부에서 스크롤하도록 개선했습니다. [상세 화면 검증](Delivery/Reports/permanent-detail-scroll-2026-10-12.md)을 참고하세요.
+
 ## 저장 데이터
 
 Windows 기본 저장 위치는 `%USERPROFILE%/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea/`입니다.
@@ -85,5 +87,6 @@ Windows 기본 저장 위치는 `%USERPROFILE%/AppData/LocalLow/DefaultCompany/C
 - `guest_session.json`: 상위 버전 저장을 보호하는 임시 플레이 데이터
 
 검증 실행 시 `CocktailCoffeeTea.exe -cct-data-dir "C:/QA/isolated-save"`로 저장 경로를 분리할 수 있습니다. 사용자 저장 데이터는 저장소에 포함하지 않습니다.
+
 
 

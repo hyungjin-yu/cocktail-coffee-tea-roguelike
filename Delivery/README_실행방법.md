@@ -1,6 +1,6 @@
 ﻿# 칵테일 · 커피 · 차 — 실행 방법 (Windows 64비트, 버전 1.0.0)
 
-최신 UI·직업·활 수정 실행본: `CocktailCoffeeTea_1.0.0_hud-padding-scroll-2026-10-12.zip` (2026-10-12). 아래 압축 해제 방법은 동일합니다.
+최신 UI·직업·활 수정 실행본: `CocktailCoffeeTea_1.0.0_ui-final-2026-10-12.zip` (2026-10-12). 아래 압축 해제 방법은 동일합니다.
 
 ## 실행
 1. `CocktailCoffeeTea_1.0.0_Windows64.zip`을 원하는 폴더에 압축 해제합니다(경로에 한글·공백이 있어도 됩니다).
@@ -40,5 +40,6 @@
 `THIRD_PARTY_NOTICES.md`, `LICENSE_NotoSansCJK.txt`, `Licenses/Packages/`의 원문 고지를 함께 배포합니다. 포함된 Unity 패키지와 버전은 `Licenses/Packages/package-inventory.csv`에 있습니다. 게임 코드·아트·음악·효과음은 이 프로젝트에서 제작한 것입니다.
 
 `SHA256SUMS.csv`는 배포 파일의 SHA-256 목록입니다. ZIP의 SHA-256은 별도 `.zip.sha256` 파일에서 확인할 수 있습니다.
+
 
 
