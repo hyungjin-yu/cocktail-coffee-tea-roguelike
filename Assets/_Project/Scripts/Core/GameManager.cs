@@ -66,7 +66,7 @@ namespace CCT
         public float MixingRushRemaining => mixingRushRemaining;
         public int DeepSteepLevel => Mathf.Clamp(Cards.HighestStacks(CardCategory.Tea)-1,0,6);
         public string JobTraitStatus => Job==Job.Bartender
-            ? mixingRushRemaining>0f ? $"혼합 러시 {mixingRushRemaining:0.0}초 · 피해 +20% · 공속 +15%"
+            ? mixingRushRemaining>0f ? $"혼합 러시 {mixingRushRemaining:0.0}초\n피해 +20% · 공속 +15%"
                 : $"혼합 러시 · 새 칵테일 {cocktailTypesSeen%3}/3종\n새 3종마다 12초 강화"
             : $"깊은 우림 {DeepSteepLevel}/6 · 피해 +{DeepSteepLevel*2}%\n초당 추가 회복 +{DeepSteepLevel*.1f:0.0}";
         void RefreshJobTrait(bool cardTaken=false)

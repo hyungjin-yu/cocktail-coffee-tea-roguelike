@@ -237,7 +237,7 @@ namespace CCT
                 jobTrait.text=JobPreset.For(game.Job).name+" · "+game.JobTraitStatus;
                 var runtime=game.Player.HiddenRuntime;
                 hiddenActivity.text=runtime.LastActivationRemaining>0f ? "효과 발동: "+runtime.LastActivation
-                    : game.Player.Hidden.Count>0 ? "해금한 효과는 조건에 따라 자동 적용됩니다.\n[H]에서 활성 상태·수치·재충전을 확인하세요."
+                    : game.Player.Hidden.Count>0 ? "해금 효과는 조건에 따라 자동 적용됩니다.\n[H] 현재 수치 · 활성 상태 · 재충전 확인"
                     : "카드·커피 조합으로 히든 스킬을 발견하세요.";
             }
             if (challengeLabel != null && game.Challenge != null)

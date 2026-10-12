@@ -1,4 +1,4 @@
-{
+﻿{
   "source": "Existing PixelLab tea_sommelier ranged01/02; native Aseprite authored leg poses; no new generator used",
   "tools": "Aseprite native CLI, reuse existing PixelLab source",
   "frames": [
@@ -79,5 +79,5 @@
   ],
   "originalsPreserved": true,
   "reviewedSource": true,
-  "unityVerified": false
+  "unityVerified": true
 }

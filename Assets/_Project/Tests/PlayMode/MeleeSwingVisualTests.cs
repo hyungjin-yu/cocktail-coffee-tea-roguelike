@@ -50,9 +50,13 @@ namespace CCT.Tests
             Vector3 weaponGrip=visual.Weapon.transform.TransformPoint(art.AnchorToLocal(grip));
             Vector3 hand=visual.transform.TransformPoint(visual.BodyArt.AnchorToLocal(new Vector2(198,153)));
             Assert.Less(Vector3.Distance(weaponGrip,hand),.001f);
-            visual.Tick(-1f,false,false); visual.SyncToCurrentFrame();
+            game.Player.SetFacing(game.Player.Position.x - 1f);
+            visual.Tick(game.Player.Facing,false,false); visual.SyncToCurrentFrame();
             Assert.Less(visual.transform.localScale.x,0f);
             Assert.IsFalse(visual.WeaponUsesProvisionalAnchor);
+            weaponGrip=visual.Weapon.transform.TransformPoint(art.AnchorToLocal(grip));
+            hand=visual.transform.TransformPoint(visual.BodyArt.AnchorToLocal(new Vector2(198,153)));
+            Assert.Less(Vector3.Distance(weaponGrip,hand),.001f);
         }
 
         IEnumerator HitOnce(GameManager game, System.Action<float> afterHit)
