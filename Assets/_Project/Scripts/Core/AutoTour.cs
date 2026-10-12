@@ -1,4 +1,4 @@
-#if CCT_QA_TOUR
+﻿#if CCT_QA_TOUR
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -440,6 +440,39 @@ namespace CCT
             yield return Key(UnityEngine.InputSystem.Key.Escape);
             if(game.Hud.HiddenDetailsOpen || game.IsPaused) Fail("hidden Escape did not resume");
             game.Player.TakeDamage(1f); yield return Wait(.1f); yield return Shot("review_hidden_block_activation");
+            yield return Wait(.9f);
+            game.Player.Hidden.ForceForTests(HiddenSkill.HotToddy);
+            game.Player.TakeDamage(10f);
+            game.Player.HiddenRuntime.OnEnemyKilled(EnemyDef.Brute);
+            yield return Wait(.2f); yield return Shot("review_hidden_long_text");
+            foreach(var def in HiddenSkillDatabase.All) game.Player.Hidden.ForceForTests(def.skill);
+            yield return Key(UnityEngine.InputSystem.Key.H); yield return Wait(.2f);
+            var list=game.Hud.GetComponentsInChildren<ScrollRect>().First(s=>s.gameObject.name=="Scroll");
+            var events=UnityEngine.EventSystems.EventSystem.current;
+            var pointer=new UnityEngine.EventSystems.PointerEventData(events);
+            pointer.position=RectTransformUtility.WorldToScreenPoint(null,list.viewport.TransformPoint(list.viewport.rect.center));
+            pointer.pressPosition=pointer.position;
+            var hits=new List<UnityEngine.EventSystems.RaycastResult>(); events.RaycastAll(pointer,hits);
+            var dragTarget=hits.Count>0 ? UnityEngine.EventSystems.ExecuteEvents.GetEventHandler<UnityEngine.EventSystems.IDragHandler>(hits[0].gameObject) : null;
+            if(dragTarget!=list.gameObject) Fail("hidden list viewport did not receive drag raycast");
+            else
+            {
+                UnityEngine.EventSystems.ExecuteEvents.Execute(dragTarget,pointer,UnityEngine.EventSystems.ExecuteEvents.initializePotentialDrag);
+                UnityEngine.EventSystems.ExecuteEvents.Execute(dragTarget,pointer,UnityEngine.EventSystems.ExecuteEvents.beginDragHandler);
+                pointer.position+=Vector2.up*180f;
+                UnityEngine.EventSystems.ExecuteEvents.Execute(dragTarget,pointer,UnityEngine.EventSystems.ExecuteEvents.dragHandler);
+                UnityEngine.EventSystems.ExecuteEvents.Execute(dragTarget,pointer,UnityEngine.EventSystems.ExecuteEvents.endDragHandler);
+                if(list.content.anchoredPosition.y<=0f) Fail("hidden list drag did not move content");
+                Line($"Hidden list injected pointer drag: y={list.content.anchoredPosition.y:0.0}");
+                yield return Shot("review_hidden_drag");
+                list.velocity=Vector2.zero; list.verticalNormalizedPosition=1f; yield return null;
+                pointer.scrollDelta=Vector2.down*3f;
+                UnityEngine.EventSystems.ExecuteEvents.Execute(dragTarget,pointer,UnityEngine.EventSystems.ExecuteEvents.scrollHandler);
+                if(list.content.anchoredPosition.y<=0f) Fail("hidden list wheel did not move content");
+                Line($"Hidden list injected wheel: y={list.content.anchoredPosition.y:0.0}");
+                yield return Shot("review_hidden_wheel");
+            }
+            yield return Key(UnityEngine.InputSystem.Key.Escape);
             game.GiveUp(); game.GoToTitle(); yield return Wait(.8f);
             FindFirstObjectByType<TitleView>().RequestStart(); yield return StartCombo(Combos[3],true);
             game=GameManager.Instance; FreezeWorld(game); yield return Wait(.3f);
@@ -1808,3 +1841,4 @@ namespace CCT
     }
 }
 #endif
+

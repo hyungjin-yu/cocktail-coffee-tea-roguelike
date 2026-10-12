@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace CCT
@@ -29,6 +29,16 @@ namespace CCT
         float hiddenRefresh;
         public bool HiddenDetailsOpen => hiddenDetails != null && hiddenDetails.activeSelf;
 
+        static Text PaddedLabel(RectTransform box, string content, int size, TextAnchor alignment, Color color)
+        {
+            var rect = UiFactory.Stretch("Label", box);
+            rect.offsetMin = new Vector2(16f, 10f);
+            rect.offsetMax = new Vector2(-16f, -10f);
+            var label = UiFactory.AddText(rect, content, size, alignment, color);
+            label.horizontalOverflow = HorizontalWrapMode.Wrap;
+            label.verticalOverflow = VerticalWrapMode.Truncate;
+            return label;
+        }
         public static HudView Create(Transform canvas, GameManager game)
         {
             var root = UiFactory.Stretch("Hud", canvas);
@@ -58,9 +68,9 @@ namespace CCT
                 new Vector2(420f, 40f));
             view.coffeePoints = UiFactory.AddText(pointsRt, CoffeePointsLabel(0), 26, TextAnchor.UpperRight,
                 new Color(0.9f, 0.7f, 0.45f));
-            var challengeRt = UiFactory.Place("Challenge", root, new Vector2(1f,1f), new Vector2(-30f,-164f), new Vector2(430f,140f));
+            var challengeRt = UiFactory.Place("Challenge", root, new Vector2(1f,1f), new Vector2(-30f,-164f), new Vector2(430f,160f));
             UiFactory.AddImage(challengeRt,new Color(.06f,.05f,.08f,.82f)).raycastTarget=false;
-            view.challengeLabel=UiFactory.AddText(UiFactory.Stretch("Label",challengeRt),"",24,TextAnchor.MiddleRight,Color.white);
+            view.challengeLabel=PaddedLabel(challengeRt,"",22,TextAnchor.MiddleRight,Color.white);
 
             // 08:75 상태아이콘(둔화/환불/봉인) — 04 §8 status_slow/status_suppressed, 09 seal_lock. 아이콘 오른쪽에 남은 초 문구.
             view.slowIcon = UiFactory.AddIcon(root, "status_slow", new Vector2(0f, 1f), new Vector2(48f, -70f), 40f);
@@ -115,14 +125,13 @@ namespace CCT
             view.bannerSub = UiFactory.AddText(subRt, "", 32, TextAnchor.MiddleCenter, Color.white);
 
             var schemeRt = UiFactory.Place("MovementScheme", root, new Vector2(0f, 0f), new Vector2(30f, 30f),
-                new Vector2(260f, 60f));
+                new Vector2(290f, 84f));
             var schemeBg = UiFactory.AddImage(schemeRt, new Color(0f, 0f, 0f, 0.55f));
             var schemeButton = schemeRt.gameObject.AddComponent<Button>();
             UiFactory.AddFocusSfx(schemeButton);
             schemeButton.targetGraphic = schemeBg;
             UiFactory.ApplyHoverColors(schemeButton);
-            var schemeLabelRt = UiFactory.Stretch("Label", schemeRt);
-            view.schemeLabel = UiFactory.AddText(schemeLabelRt, "", 24, TextAnchor.MiddleCenter, Color.white);
+            view.schemeLabel = PaddedLabel(schemeRt, "", 22, TextAnchor.MiddleCenter, Color.white);
             schemeButton.onClick.AddListener(() =>
             {
                 InputSettings.Toggle();
@@ -130,27 +139,37 @@ namespace CCT
             });
             view.RefreshSchemeLabel();
 
-            var hiddenRt = UiFactory.Place("HiddenSkillsButton", root, new Vector2(0f,1f), new Vector2(30f,-174f), new Vector2(500f,46f));
+            var hiddenRt = UiFactory.Place("HiddenSkillsButton", root, new Vector2(0f,1f), new Vector2(30f,-174f), new Vector2(500f,56f));
             var hiddenBg = UiFactory.AddImage(hiddenRt,new Color(.12f,.09f,.12f,.92f));
             UiFactory.SkinButton(hiddenBg);
             var hiddenButton = hiddenRt.gameObject.AddComponent<Button>();
             hiddenButton.targetGraphic=hiddenBg; UiFactory.ApplyHoverColors(hiddenButton);
-            view.hiddenSummary=UiFactory.AddText(UiFactory.Stretch("Label",hiddenRt),"히든 0 · 효과 보기 [H]",24,TextAnchor.MiddleLeft,new Color(1f,.85f,.4f));
+            view.hiddenSummary=PaddedLabel(hiddenRt,"히든 0 · 효과 보기 [H]",24,TextAnchor.MiddleLeft,new Color(1f,.85f,.4f));
             hiddenButton.onClick.AddListener(()=>view.game?.OpenHiddenDetails());
-            var activityRt=UiFactory.Place("HiddenActivity",root,new Vector2(0f,1f),new Vector2(30f,-224f),new Vector2(600f,84f));
+            var activityRt=UiFactory.Place("HiddenActivity",root,new Vector2(0f,1f),new Vector2(30f,-234f),new Vector2(600f,128f));
             UiFactory.AddImage(activityRt,new Color(.06f,.05f,.08f,.82f)).raycastTarget=false;
-            view.hiddenActivity=UiFactory.AddText(UiFactory.Stretch("Label",activityRt),"",24,TextAnchor.UpperLeft,Color.white);
-            var jobRt=UiFactory.Place("JobTrait",root,new Vector2(0,1),new Vector2(30f,-316f),new Vector2(580f,94f));
+            view.hiddenActivity=PaddedLabel(activityRt,"",24,TextAnchor.UpperLeft,Color.white);
+            var jobRt=UiFactory.Place("JobTrait",root,new Vector2(0,1),new Vector2(30f,-370f),new Vector2(580f,110f));
             UiFactory.AddImage(jobRt,new Color(.06f,.05f,.08f,.82f)).raycastTarget=false;
-            view.jobTrait=UiFactory.AddText(UiFactory.Stretch("Label",jobRt),"",24,TextAnchor.UpperLeft,new Color(.85f,1f,.8f));
+            view.jobTrait=PaddedLabel(jobRt,"",24,TextAnchor.UpperLeft,new Color(.85f,1f,.8f));
 
             var detailRt=UiFactory.Place("HiddenDetails",root,new Vector2(.5f,.5f),Vector2.zero,new Vector2(980f,780f));
             UiFactory.SkinPanel(UiFactory.AddImage(detailRt,new Color(.12f,.09f,.12f,1f)));
             view.hiddenDetails=detailRt.gameObject;
             UiFactory.AddText(UiFactory.Place("Title",detailRt,new Vector2(.5f,1f),new Vector2(0,-24f),new Vector2(900f,50f)),"이번 런 히든 스킬 · 현재 효과",34,TextAnchor.MiddleCenter,Color.white);
             var scrollRt=UiFactory.Place("Scroll",detailRt,new Vector2(.5f,1f),new Vector2(0,-88f),new Vector2(920f,590f));
+            UiFactory.AddImage(scrollRt,Color.clear).raycastTarget=true;
             scrollRt.gameObject.AddComponent<RectMask2D>();
             var scroll=scrollRt.gameObject.AddComponent<ScrollRect>(); scroll.horizontal=false;
+            scroll.movementType=ScrollRect.MovementType.Clamped; scroll.scrollSensitivity=40f;
+            var barRt=UiFactory.Place("Scrollbar",detailRt,new Vector2(1f,1f),new Vector2(-16f,-88f),new Vector2(12f,590f));
+            var barBg=UiFactory.AddImage(barRt,new Color(.05f,.04f,.06f,1f));
+            var handleRt=UiFactory.Stretch("Handle",barRt);
+            var handleBg=UiFactory.AddImage(handleRt,new Color(.8f,.64f,.36f,1f));
+            var bar=barRt.gameObject.AddComponent<Scrollbar>(); bar.targetGraphic=handleBg;
+            bar.handleRect=handleRt; bar.direction=Scrollbar.Direction.BottomToTop;
+            scroll.verticalScrollbar=bar;
+            scroll.verticalScrollbarVisibility=ScrollRect.ScrollbarVisibility.AutoHide;
             var content=new GameObject("Content",typeof(RectTransform)).GetComponent<RectTransform>();
             content.SetParent(scrollRt,false); content.anchorMin=new Vector2(0,1); content.anchorMax=new Vector2(1,1); content.pivot=new Vector2(.5f,1);
             view.hiddenContent=content; scroll.viewport=scrollRt; scroll.content=content;
@@ -295,3 +314,4 @@ namespace CCT
         }
     }
 }
+

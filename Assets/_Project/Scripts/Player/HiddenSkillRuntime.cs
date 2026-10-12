@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace CCT
@@ -58,7 +58,7 @@ namespace CCT
             // 많은 탄이 한 프레임에 맞아도 텍스트/VFX를 무한 생성하지 않는다.
             if (Time.time < feedbackReady) return;
             feedbackReady = Time.time + .35f;
-            LastActivation = HiddenSkillDatabase.Get(skill).name + " · " + StateLabel(skill);
+            LastActivation = HiddenSkillDatabase.Get(skill).name + "\n" + StateLabel(skill);
             LastActivationRemaining = 3f;
             ActivationSerial++;
             var fx = FadeVfx.Spawn(SpriteFactory.Crescent, position + Vector2.up*.4f,
@@ -248,3 +248,4 @@ namespace CCT
         }
     }
 }
+
