@@ -272,6 +272,9 @@ namespace CCT
                 if (mode == "jobmap") yield return JobMapRun();
                 if (mode == "review-fixes") yield return ReviewFixesRun();
                 if (mode == "tea-encounters") yield return TeaEncountersRun();
+                if (mode == "touch") yield return TouchRun();
+                if (mode == "ui-audit") yield return UiAuditRun();
+                if (mode == "skins") yield return SkinsRun();
             }
             var used = new List<string>(ArtLibrary.UsedIds);
             used.Sort();
@@ -850,6 +853,235 @@ namespace CCT
                     yield return Wait(0.6f);
                     yield return ClearOverlays(game, "tea-boss-kill");
                 }
+            }
+        }
+
+
+        // ── 2026-10-12 Android 터치 화면(touch 모드) ─────────────────────
+        // PC에서 -cct-touch-ui와 함께 실행: 터치 HUD·조이스틱·연구/히든 버튼·모바일 설정·뒤로 가기·안전 영역(가상 노치) 확인.
+        // 강제 경로(보고 표기): 조이스틱은 JoystickZone 포인터 이벤트 직접 호출(실제 EventSystem 핸들러), 안전 영역은 SafeAreaFitter.OverrideForTests,
+        // 뒤로 가기는 MobileBackRouter.HandleBack / GameManager.RequestEscape(안드로이드 뒤로 = Esc 경로), 플레이어 HP 크게.
+        IEnumerator UiAuditRun()
+        {
+            var title = FindFirstObjectByType<TitleView>();
+            if (title == null) { Fail("UI audit: title missing"); yield break; }
+            foreach (var button in new[] { "CardCodexButton", "SettingsButton", "PermanentShopButton", "CreditsButton", "SkinShopButton" })
+            {
+                if (!Click(title.transform, button)) { Fail("UI audit button missing: " + button); continue; }
+                yield return Wait(.4f);
+                yield return Shot("audit_" + button);
+                if (button == "PermanentShopButton")
+                    foreach (PermanentSkillGroup group in Enum.GetValues(typeof(PermanentSkillGroup)))
+                    {
+                        title.ShopView.SelectGroup(group);
+                        yield return Wait(.2f);
+                        yield return Shot("audit_permanent_" + group);
+                    }
+                if (button == "CardCodexButton")
+                {
+                    foreach (var tabButton in title.CodexView.GetComponentsInChildren<Button>().Where(b => b.name.StartsWith("Tab_")).ToArray())
+                    {
+                        tabButton.onClick.Invoke(); yield return Wait(.2f); yield return Shot("audit_codex_" + tabButton.name);
+                    }
+                    foreach (var id in new[] { "espresso_shot", "perfect_crema", "dry_gin" })
+                        if (title.CodexView.OpenDetailFor(id))
+                        {
+                            yield return Wait(.2f); yield return Shot("audit_codex_detail_" + id); title.CodexView.HideDetail();
+                        }
+                }
+                if (string.IsNullOrEmpty(MobileBackRouter.HandleBack()))
+                {
+                    var view = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).FirstOrDefault(v =>
+                        v.gameObject.activeInHierarchy && (v is CreditsView || v is SkinShopView || v is SettingsView || v is PermanentSkillView || v is CardCodexView));
+                    if (view == null || (!Click(view.transform, "BackButton") && !Click(view.transform, "CloseButton"))) Fail("UI audit: cannot close " + button);
+                }
+                yield return Wait(.3f);
+                if (!title.IsOpen) Fail("UI audit: title not restored after " + button);
+            }
+            if (MobilePlatform.IsTouchUI) yield return TouchRun();
+            var game = GameManager.Instance;
+            if (game != null)
+            {
+                game.GiveUp(); yield return Wait(.5f); yield return Shot("audit_tea_result");
+                game.GoToTitle(); yield return Wait(.8f);
+            }
+            foreach (var combo in Combos)
+            {
+                title = FindFirstObjectByType<TitleView>();
+                title.RequestStart(); yield return StartCombo(combo, false);
+                game = GameManager.Instance;
+                if (game == null) continue;
+                FreezeWorld(game); yield return Wait(.3f); yield return Shot("audit_hud_" + combo.label);
+                game.OpenCoffeeTree(); yield return Wait(.2f); yield return Shot("audit_study_" + combo.label);
+                game.RequestEscape(); yield return Wait(.2f);
+                game.OpenPause(); yield return Wait(.2f); yield return Shot("audit_pause_" + combo.label);
+                game.ClosePause(); yield return Wait(.4f);
+                game.GiveUp(); yield return Wait(.4f); yield return Shot("audit_result_" + combo.label);
+                game.GoToTitle(); yield return Wait(.7f);
+            }
+        }
+
+        IEnumerator TouchRun()
+        {
+            if (!MobilePlatform.IsTouchUI) { Fail("touch mode needs -cct-touch-ui"); yield break; }
+            string H = $"{Screen.width}x{Screen.height}";
+            TitleView title = null;
+            for (int i = 0; i < 100 && title == null; i++) { title = FindFirstObjectByType<TitleView>(); yield return Wait(0.1f); }
+            if (title == null) { Fail("no title"); yield break; }
+            yield return Shot($"touch_{H}_00_title");
+            Click(title.transform, "SettingsButton");
+            yield return Wait(0.4f);
+            yield return Shot($"touch_{H}_01_settings_mobile");
+            Line($"TOUCH back(settings) -> {MobileBackRouter.HandleBack()}");
+            yield return Wait(0.3f);
+            Click(title.transform, "CardCodexButton");
+            yield return Wait(0.4f);
+            Line($"TOUCH back(codex) -> {MobileBackRouter.HandleBack()}");
+            yield return Wait(0.3f);
+            if (!title.IsOpen) Fail("title not restored after back");
+
+            title.RequestStart();
+            CharacterSelectView select = null;
+            for (int i = 0; i < 50 && select == null; i++) { select = FindFirstObjectByType<CharacterSelectView>(); yield return Wait(0.1f); }
+            yield return Shot($"touch_{H}_02_select");
+            select.TeaSommelierButton.onClick.Invoke();
+            yield return Wait(0.3f);
+            yield return Shot($"touch_{H}_02b_weapon");
+            select.StartButton.onClick.Invoke();
+            yield return Wait(1f);
+            var tutorial = FindFirstObjectByType<FirstRunTutorialView>();
+            if (tutorial != null && tutorial.IsOpen) { yield return Shot($"touch_{H}_03_tutorial"); tutorial.Dismiss(); }
+            var game = GameManager.Instance;
+            if (game == null || game.Hud.TouchControls == null) { Fail("touch HUD missing"); yield break; }
+            game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
+            game.Player.Heal(1f);
+            yield return Wait(1.5f);
+            yield return Shot($"touch_{H}_04_hud_idle", game);
+            game.AddIngredient(IngredientType.Tea, 1000); // 카드 보상 창(조이스틱 숨김 확인)
+            yield return Wait(0.5f);
+            yield return Shot($"touch_{H}_04b_card_select");
+            Line($"TOUCH card: state={game.State} touchVisible={game.Hud.TouchControls.Visible}");
+            if (game.Hud.TouchControls.Visible) Fail("touch controls visible over reward modal");
+            for (int i = 0; i < 60 && game.State != GameState.Playing; i++) { ResolveRewardScreens(game, "touch"); yield return Wait(0.15f); }
+            yield return Wait(1.2f);
+
+            var touch = game.Hud.TouchControls;
+            var zone = touch.transform.Find("JoystickZone").GetComponent<JoystickZone>();
+            var zr = (RectTransform)zone.transform; var c = new Vector3[4]; zr.GetWorldCorners(c);
+            Vector2 press = Vector2.Lerp(c[0], c[2], 0.35f);
+            float scale = touch.GetComponentInParent<Canvas>().scaleFactor;
+            var es = UnityEngine.EventSystems.EventSystem.current;
+            zone.OnPointerDown(new UnityEngine.EventSystems.PointerEventData(es) { position = press, pointerId = 3 });
+            Vector2 start = game.Player.Position;
+            for (float t = 0f; t < 1.2f; t += Time.unscaledDeltaTime)
+            {
+                float a = t * 3f;
+                zone.OnDrag(new UnityEngine.EventSystems.PointerEventData(es)
+                    { position = press + new Vector2(Mathf.Cos(a), Mathf.Sin(a) * 0.4f) * TouchControlsView.JoystickRadius * scale, pointerId = 3 });
+                yield return null;
+            }
+            yield return Shot($"touch_{H}_05_joystick_held", game);
+            Line($"TOUCH joystick: held={TouchControlsView.Held} move={TouchControlsView.Move} moved={Vector2.Distance(start, game.Player.Position):0.00}");
+            if (Vector2.Distance(start, game.Player.Position) < 0.5f) Fail("joystick did not move player");
+            zone.OnPointerUp(new UnityEngine.EventSystems.PointerEventData(es) { position = press, pointerId = 3 });
+
+            touch.StudyButton.onClick.Invoke();
+            yield return Wait(0.5f);
+            yield return Shot($"touch_{H}_06_study_tree");
+            Line($"TOUCH study: state={game.State}");
+            if (game.State != GameState.SkillSelect) Fail("study button did not open tree");
+            game.RequestEscape(); // 뒤로
+            yield return Wait(0.5f);
+            touch.HiddenButton.onClick.Invoke();
+            yield return Wait(0.4f);
+            yield return Shot($"touch_{H}_07_hidden");
+            if (!game.Hud.HiddenDetailsOpen) Fail("hidden button did not open details");
+            game.RequestEscape();
+            yield return Wait(0.3f);
+            game.RequestEscape(); // 뒤로 = 일시정지
+            yield return Wait(0.4f);
+            yield return Shot($"touch_{H}_08_pause");
+            if (!game.IsPaused) Fail("back did not pause");
+            game.ClosePause();
+            yield return Wait(1.5f);
+
+            // 가상 노치(왼쪽 5%)·제스처 바(아래 4%) 안전 영역.
+            SafeAreaFitter.OverrideForTests = new Rect(Screen.width * 0.05f, Screen.height * 0.04f, Screen.width * 0.95f, Screen.height * 0.96f);
+            yield return Wait(0.3f);
+            yield return Shot($"touch_{H}_09_safearea_notch", game);
+            var hud = (RectTransform)game.Hud.transform;
+            Line($"TOUCH safearea anchors min={hud.anchorMin} max={hud.anchorMax}");
+            SafeAreaFitter.OverrideForTests = null;
+            game.HandleAppBackgrounded();
+            yield return Wait(0.3f);
+            Line($"TOUCH background: paused={game.IsPaused} state={game.State} activeRun={(PermanentProgress.Current.activeRun != null)}");
+            if (!game.IsPaused) Fail("background did not pause");
+        }
+
+
+        // ── 2026-10-12 스킨 상점·외형 화면(skins 모드) ─────────────────────
+        // 1) 타이틀 "스킨" → 상점(이 플랫폼은 구매 불가: 구매/복원 버튼 비활성) 촬영 후 뒤로.
+        // 2) QA 전용 강제 경로(보고 표기): 소유·결제 없이 SkinSpriteSwapper.Attach로 스킨을 직접 입혀
+        //    검·활·레이피어·총 동작 중 몸 스프라이트가 매 프레임 스킨판인지(원본으로 되돌아가지 않는지) 센다. 출시 빌드에는 이 코드가 없다.
+        IEnumerator SkinsRun()
+        {
+            string H = $"{Screen.width}x{Screen.height}";
+            TitleView title = null;
+            for (int i = 0; i < 100 && title == null; i++) { title = FindFirstObjectByType<TitleView>(); yield return Wait(0.1f); }
+            if (title == null) { Fail("no title"); yield break; }
+            yield return Shot($"skins_{H}_00_title");
+            if (!Click(title.transform, "SkinShopButton")) { Fail("no SkinShopButton"); yield break; }
+            yield return Wait(0.8f);
+            var shop = title.SkinShopView;
+            yield return Shot($"skins_{H}_01_shop");
+            var buys = shop.GetComponentsInChildren<Button>(true).Where(b => b.name == "BuyButton").ToList();
+            Line($"SKINS shop: open={shop.IsOpen} buyButtons={buys.Count} interactable={buys.Count(b => b.interactable)} " +
+                 $"purchasesEnabled={SkinCommerce.Shared.PurchasesEnabled} storefront={SkinCommerce.Shared.StorefrontId}");
+            if (buys.Any(b => b.interactable)) Fail("buy enabled without configured store");
+            if (!Click(shop.transform, "BackButton")) Fail("no shop BackButton");
+            yield return Wait(0.4f);
+            if (shop.IsOpen) Fail("shop did not close");
+
+            foreach (Transform t in title.transform.parent) if (t != null && t.GetComponent<TitleView>() != null) t.gameObject.SetActive(false);
+            var combos = new[] { (Job.TeaSommelier, WeaponKind.Sword, "skin_tea_jade"), (Job.TeaSommelier, WeaponKind.Bow, "skin_tea_jade"),
+                                 (Job.Bartender, WeaponKind.Rapier, "skin_bartender_midnight"), (Job.Bartender, WeaponKind.Gun, "skin_bartender_midnight") };
+            foreach (var (job, weapon, productId) in combos)
+            {
+                var game = GameBootstrap.Build(job, weapon);
+                yield return Wait(0.5f);
+                var tutorial = FindFirstObjectByType<FirstRunTutorialView>();
+                if (tutorial != null && tutorial.IsOpen) tutorial.Dismiss();
+                game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
+                game.Player.Heal(1f);
+                var def = SkinCatalog.Find(productId);
+                var skin = SkinArt.Sprites(def);
+                var body = game.Player.Visual.Body;
+                if (body.GetComponent<SkinSpriteSwapper>() == null) SkinSpriteSwapper.Attach(body, def); // QA 강제 장착
+                int frames = 0, skinShown = 0, reverted = 0, noSkinVersion = 0;
+                var seenNames = new HashSet<string>();
+                float end = Time.realtimeSinceStartup + 6f; int shotN = 0; float nextShot = Time.realtimeSinceStartup + 1.5f;
+                while (Time.realtimeSinceStartup < end)
+                {
+                    ResolveRewardScreens(game, "skins");
+                    game.Player.AutoInputOverride = new Vector2(Mathf.Sin(Time.realtimeSinceStartup * 1.3f), 0f);
+                    yield return new WaitForEndOfFrame(); // LateUpdate(스킨 교체) 뒤 렌더 결과 기준
+                    var s = body.sprite; if (s == null) continue;
+                    frames++; seenNames.Add(s.name);
+                    if (skin.TryGetValue(s.name, out var skinSprite)) { if (skinSprite == s) skinShown++; else reverted++; }
+                    else noSkinVersion++;
+                    if (Time.realtimeSinceStartup >= nextShot && shotN < 2)
+                    {
+                        yield return Shot($"skins_{H}_{job}_{weapon}_{shotN++}", game);
+                        nextShot = Time.realtimeSinceStartup + 2f;
+                    }
+                }
+                game.Player.AutoInputOverride = null;
+                Line($"SKINS {job}/{weapon} {productId}: frames={frames} skinShown={skinShown} revertedToOriginal={reverted} noSkinVersion={noSkinVersion} " +
+                     $"bodyFrames=[{string.Join(",", seenNames.OrderBy(n => n))}]");
+                if (reverted > 0) Fail($"skin reverted to original {job}/{weapon}");
+                if (skinShown == 0) Fail($"skin never shown {job}/{weapon}");
+                Destroy(game.gameObject);
+                yield return Wait(0.5f);
             }
         }
 

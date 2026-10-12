@@ -87,7 +87,7 @@ namespace CCT
             var backBg=UiFactory.AddImage(back,Color.white);
             v.backButton=back.gameObject.AddComponent<Button>(); v.backButton.targetGraphic=backBg;
             UiFactory.ApplyHoverColors(v.backButton);UiFactory.AddFocusSfx(v.backButton);v.backButton.onClick.AddListener(v.Close);
-            UiFactory.AddText(UiFactory.Stretch("Label",back),"뒤로 · Esc",28,TextAnchor.MiddleCenter,Color.white);
+            UiFactory.AddText(UiFactory.Stretch("Label",back),UiFactory.InputLabel("뒤로", "Esc"),28,TextAnchor.MiddleCenter,Color.white);
             v.noticeLabel=UiFactory.AddText(UiFactory.Place("Notice",rt,new Vector2(.5f,0),new Vector2(-520,48),new Vector2(680,72)),"",24,TextAnchor.MiddleCenter,new Color(1,.65f,.4f));
             v.root.SetActive(false); return v;
         }
@@ -261,32 +261,9 @@ namespace CCT
                 $"클리어   {n.minimumClears}회 필요 (현재 {save.clearedRuns}회{(tree.ClearsMet(n)?" ✓":"")})",
                 n.weaponSpecific?$"적용 무기   {WeaponLabel(n.targetWeapon)}로 시작한 런만":"적용 무기   모든 시작 무기",
             };
-            if(!owned&&reason==null)lines.Add("구매   Enter 또는 클릭");
+            if(!owned&&reason==null)lines.Add(MobilePlatform.IsTouchUI ? "해금하려면 카드를 누르세요" : "해금하려면 카드를 선택하세요");
             detailBody.text=string.Join("\n",lines);
-            string Pct(float v)=>$"{v*100f:0.#}%";
-            var forecast=new List<string>{owned?"다음 런 몹 성장 (현재 적용 중)":"다음 런 몹 성장 (구매 전 → 구매 시)"};
-            foreach(var w in new[]{WeaponKind.Rapier,WeaponKind.Sword,WeaponKind.Gun,WeaponKind.Bow})
-            {
-                int p=tree.AppliedCount(w);
-                int after=p;
-                if(!owned)
-                {
-                    if(tree.IsAvailable(n))
-                        after=new PermanentSkillTree(nodes,save.unlockedPermanentSkillIds.Concat(new[]{n.id}),save.clearedRuns).AppliedCount(w);
-                    else if(n.AppliesTo(w)) after=p+1;
-                }
-                forecast.Add(owned||after==p
-                    ? $"{WeaponLabel(w)}   체력 {Pct(RunChallenge.HpFor(p,0))} · 피해 {Pct(RunChallenge.DamageFor(p,0))}{(owned?"":" (변화 없음)")}"
-                    : $"{WeaponLabel(w)}   체력 {Pct(RunChallenge.HpFor(p,0))} → {Pct(RunChallenge.HpFor(after,0))} · 피해 {Pct(RunChallenge.DamageFor(p,0))} → {Pct(RunChallenge.DamageFor(after,0))}");
-            }
-            int total=tree.UnlockedCount, totalAfter=total;
-            if(!owned&&tree.IsAvailable(n))totalAfter=new PermanentSkillTree(nodes,save.unlockedPermanentSkillIds.Concat(new[]{n.id}),save.clearedRuns).UnlockedCount;
-            string Spawn(int t)=>$"+{RunChallenge.SpawnBonusPercentFor(t)}% · 동시 상한 {RunChallenge.RegularAliveCapFor(t)}";
-            forecast.Add(totalAfter==total
-                ? $"전 무기   해금 {total} · 몹 등장 {Spawn(total)}{(owned?"":" (변화 없음)")}"
-                : $"전 무기   해금 {total}→{totalAfter} · 몹 등장 {Spawn(total)} → {Spawn(totalAfter)}");
-            forecast.Add("적용 노드 1개당 몹 체력 +1%p · 피해 +0.4%p (최대 +40% · +18%)\n영구 해금 1개당 일반 몹 등장 +3% (무기 무관, 최대 +60% · 상한 160)");
-            detailForecast.text=string.Join("\n",forecast);
+            detailForecast.text="영구 강화는 다음 런부터 적용됩니다.\n해금이 늘수록 더 많은 적이 등장합니다.";
             float bodyHeight=detailBody.preferredHeight+8f;
             float forecastHeight=detailForecast.preferredHeight+8f;
             detailBody.rectTransform.sizeDelta=new Vector2(detailBody.rectTransform.sizeDelta.x,bodyHeight);

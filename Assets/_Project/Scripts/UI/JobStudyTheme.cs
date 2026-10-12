@@ -18,7 +18,7 @@ namespace CCT
             {"zero_waste","찻물 남김없이"}
         };
         static Dictionary<string,string> teaWords;
-        public static string TreeTitle(Job job) => job == Job.TeaSommelier ? "우림 연구" : "커피 트리";
+        public static string TreeTitle(Job job) => job == Job.TeaSommelier ? "우림 연구" : "커피 연구";
         public static string Name(SkillData node, Job job) => job == Job.TeaSommelier && teaNames.TryGetValue(node.id,out var name) ? name : node.displayName;
         public static string Text(string text, Job job)
         {
@@ -30,7 +30,7 @@ namespace CCT
                     if(teaNames.TryGetValue(node.id,out var name)) teaWords[node.displayName]=name;
             }
             foreach(var pair in teaWords) text=text.Replace(pair.Key,pair.Value);
-            return text.Replace("커피", "우림 연구").Replace("원두", "우림 지식");
+            return text.Replace("커피 포인트", "우림 포인트").Replace("커피", "우림 연구").Replace("원두", "우림 지식");
         }
         public static string HiddenName(HiddenSkillDef def, Job job) => job!=Job.TeaSommelier ? def.name : def.skill switch
         {

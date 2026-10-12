@@ -116,6 +116,23 @@ namespace CCT
         }
     }
 
+    /// <summary>2026-10-12 Android: 해상도·창 모드를 바꾸지 않는다(기기 전체 화면 그대로). 프레임은 60 고정
+    /// (안드로이드 기본 30fps 방지). 저장된 데스크톱 해상도 값은 파일에 남아도 무시된다.</summary>
+    public sealed class MobileDisplayAdapter : IDisplayAdapter
+    {
+        public int DisplayWidth => Screen.width;
+        public int DisplayHeight => Screen.height;
+        public int CurrentWidth => Screen.width;
+        public int CurrentHeight => Screen.height;
+        public bool CurrentWindowed => false;
+        public void Apply(int width, int height, bool windowed) { }
+        public void ApplyVSync(bool on)
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
+        }
+    }
+
     public sealed class MemoryDisplayAdapter : IDisplayAdapter
     {
         public int DisplayWidth { get; set; } = 2560;
@@ -235,7 +252,7 @@ namespace CCT
         public static string DefaultPath => Path.Combine(Application.persistentDataPath, "settings.json");
         public static string ActivePath => string.IsNullOrEmpty(overridePath) ? DefaultPath : overridePath;
         static ILegacySettingsStore Legacy => legacy ??= new PlayerPrefsLegacySettingsStore();
-        public static IDisplayAdapter Display => display ??= new UnityDisplayAdapter();
+        public static IDisplayAdapter Display => display ??= MobilePlatform.IsMobileOs ? new MobileDisplayAdapter() : new UnityDisplayAdapter();
 
         /// <summary>현재 확정 설정(미리보기 중인 해상도/표시모드는 포함하지 않음). 직접 수정하지 말고 Set* 사용.</summary>
         public static SettingsData Current

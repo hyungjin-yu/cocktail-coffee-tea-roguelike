@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
@@ -48,7 +48,7 @@ namespace CCT.Tests
         {
             var game=Build(); yield return null;
             game.OpenCoffeeTree(); yield return null;
-            StringAssert.Contains("우림 연구",game.SkillView.PointsLabel);
+            StringAssert.Contains("우림 포인트",game.SkillView.PointsLabel);
             StringAssert.DoesNotContain("커피",game.Hud.CoffeePointsText);
             foreach(var def in HiddenSkillDatabase.All.Where(d=>d.AvailableFor(Job.TeaSommelier)))
                 StringAssert.DoesNotContain("커피",def.ConditionFor(Job.TeaSommelier));

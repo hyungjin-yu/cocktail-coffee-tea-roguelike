@@ -77,6 +77,7 @@ namespace CCT
             root = UiFactory.Stretch("Root", canvas.transform);
             UiFactory.AddImage(root, new Color(0.06f, 0.05f, 0.08f, 1f));
             UiFactory.AddCafeBackdrop(root);
+            CenterBand.Attach(root); // 2026-10-12 폴드 펼침 등 세로가 긴 화면: 내용 세로 가운데
 
             var title = UiFactory.Place("Title", root, new Vector2(0.5f, 1f), new Vector2(0f, -110f),
                 new Vector2(1200f, 90f));
@@ -158,6 +159,7 @@ namespace CCT
             root = UiFactory.Stretch("Root", canvas.transform);
             UiFactory.AddImage(root, new Color(0.06f, 0.05f, 0.08f, 1f));
             UiFactory.AddCafeBackdrop(root);
+            CenterBand.Attach(root); // 2026-10-12 폴드 펼침 등 세로가 긴 화면: 내용 세로 가운데
 
             var title = UiFactory.Place("Title", root, new Vector2(0.5f, 1f), new Vector2(0f, -110f),
                 new Vector2(1200f, 90f));
@@ -238,7 +240,7 @@ namespace CCT
             UiFactory.SkinHeader(UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -170f),
                 new Vector2(460f, 70f)), preset.name, 46, TextAnchor.MiddleCenter, Color.white));
             UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -260f),
-                new Vector2(440f, 260f)), preset.description, 26, TextAnchor.UpperCenter,
+                new Vector2(440f, 260f)), preset.description, 26, MobilePlatform.IsTouchUI ? TextAnchor.MiddleCenter : TextAnchor.UpperCenter,
                 new Color(0.9f, 0.9f, 0.9f));
             // 47(2026-10-12): 직업 맵과 몬스터 출현 비중(숨은 편향이 아닌 공개 규칙). 특성 설명 아래 별도 줄.
             UiFactory.AddText(UiFactory.Place("Theme", rt, new Vector2(0.5f, 1f), new Vector2(0f, -545f),
@@ -278,7 +280,7 @@ namespace CCT
             UiFactory.SkinHeader(UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -190f),
                 new Vector2(460f, 70f)), weapon.name, 46, TextAnchor.MiddleCenter, Color.white));
             UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -280f),
-                new Vector2(440f, 260f)), weapon.description, 30, TextAnchor.UpperCenter,
+                new Vector2(440f, 260f)), weapon.description, 30, MobilePlatform.IsTouchUI ? TextAnchor.MiddleCenter : TextAnchor.UpperCenter,
                 new Color(0.9f, 0.9f, 0.9f));
 
             return button;

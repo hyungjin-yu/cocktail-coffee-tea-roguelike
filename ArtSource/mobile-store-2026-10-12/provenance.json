@@ -1,0 +1,17 @@
+{
+  "tools": [
+    "Aseprite native Lua",
+    "PixelLab original character source art"
+  ],
+  "sourceFrames": [
+    "Assets/_Project/Art/v1/bartender/frames/bartender_idle_right_00.png",
+    "Assets/_Project/Art/v1/tea_sommelier/frames/tea_sommelier_idle_right_00.png"
+  ],
+  "method": "Native Aseprite crop, nearest resize and composition. No new generated character art.",
+  "artifact": "app-icon-512.png",
+  "dimensions": [
+    512,
+    512
+  ],
+  "background": "opaque"
+}

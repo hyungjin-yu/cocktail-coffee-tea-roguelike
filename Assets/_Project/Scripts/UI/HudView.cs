@@ -19,7 +19,6 @@ namespace CCT
         Text bannerTitle;
         Text bannerSub;
         Text schemeLabel;
-        Text challengeLabel;
         GameObject saveFailedRoot;
         Image slowIcon, suppressedIcon, sealIcon, bossInvulnerableIcon;
         Button pauseButton;
@@ -88,9 +87,6 @@ namespace CCT
             view.coffeePoints.resizeTextForBestFit = true;
             view.coffeePoints.resizeTextMinSize = 16;
             view.coffeePoints.resizeTextMaxSize = 24;
-            var challengeRt = UiFactory.Place("Challenge", root, new Vector2(1f,1f), new Vector2(-30f,-164f), new Vector2(430f,160f));
-            UiFactory.AddImage(challengeRt,new Color(.06f,.05f,.08f,.82f)).raycastTarget=false;
-            view.challengeLabel=PaddedLabel(challengeRt,"",22,TextAnchor.MiddleRight,Color.white);
 
             // 08:75 상태아이콘(둔화/환불/봉인) — 04 §8 status_slow/status_suppressed, 09 seal_lock. 아이콘 오른쪽에 남은 초 문구.
             view.slowIcon = UiFactory.AddIcon(root, "status_slow", new Vector2(0f, 1f), new Vector2(48f, -70f), 40f);
@@ -170,13 +166,15 @@ namespace CCT
             UiFactory.SkinButton(hiddenBg);
             var hiddenButton = hiddenRt.gameObject.AddComponent<Button>();
             hiddenButton.targetGraphic=hiddenBg; UiFactory.ApplyHoverColors(hiddenButton);
-            view.hiddenSummary=PaddedLabel(hiddenRt,"히든 0 · 효과 보기 [H]",24,TextAnchor.MiddleLeft,new Color(1f,.85f,.4f));
+            view.hiddenSummary=PaddedLabel(hiddenRt,MobilePlatform.IsTouchUI ? "히든 0 · 효과 보기" : "히든 0 · 효과 보기 [H]",24,TextAnchor.MiddleLeft,new Color(1f,.85f,.4f));
             hiddenButton.onClick.AddListener(()=>view.game?.OpenHiddenDetails());
-            var activityRt=UiFactory.Place("HiddenActivity",root,new Vector2(0f,1f),new Vector2(30f,-234f),new Vector2(600f,128f));
-            UiFactory.AddImage(activityRt,new Color(.06f,.05f,.08f,.82f)).raycastTarget=false;
+            var activityRt=UiFactory.Place("HiddenActivity",root,new Vector2(0f,1f),new Vector2(30f,-352f),new Vector2(580f,128f));
+            var activityBg=UiFactory.AddImage(activityRt,new Color(.12f,.09f,.12f,.92f));
+            UiFactory.SkinPanel(activityBg); activityBg.raycastTarget=false;
             view.hiddenActivity=PaddedLabel(activityRt,"",24,TextAnchor.UpperLeft,Color.white);
-            var jobRt=UiFactory.Place("JobTrait",root,new Vector2(0,1),new Vector2(30f,-370f),new Vector2(580f,110f));
-            UiFactory.AddImage(jobRt,new Color(.06f,.05f,.08f,.82f)).raycastTarget=false;
+            var jobRt=UiFactory.Place("JobTrait",root,new Vector2(0,1),new Vector2(30f,-234f),new Vector2(580f,110f));
+            var jobBg=UiFactory.AddImage(jobRt,new Color(.12f,.09f,.12f,.92f));
+            UiFactory.SkinPanel(jobBg); jobBg.raycastTarget=false;
             view.jobTrait=PaddedLabel(jobRt,"",24,TextAnchor.UpperLeft,new Color(.85f,1f,.8f));
 
             var detailRt=UiFactory.Place("HiddenDetails",root,new Vector2(.5f,.5f),Vector2.zero,new Vector2(980f,780f));
@@ -203,8 +201,19 @@ namespace CCT
             var closeBg=UiFactory.AddImage(closeRt,new Color(.35f,.22f,.18f)); UiFactory.SkinButton(closeBg);
             var close=closeRt.gameObject.AddComponent<Button>(); close.targetGraphic=closeBg; UiFactory.ApplyHoverColors(close);
             close.onClick.AddListener(()=>view.game?.CloseHiddenDetails());
-            UiFactory.AddText(UiFactory.Stretch("Label",closeRt),"게임 재개 · Esc",26,TextAnchor.MiddleCenter,Color.white);
+            UiFactory.AddText(UiFactory.Stretch("Label",closeRt),MobilePlatform.IsTouchUI ? "게임 재개" : "게임 재개 · Esc",26,TextAnchor.MiddleCenter,Color.white);
             view.hiddenDetails.SetActive(false);
+
+            // 2026-10-12 Android 터치: 안전 영역(노치·제스처) 안에 HUD를 두고, 조이스틱·연구·히든 버튼을 붙인다.
+            // 조작 방식(키보드/마우스) 전환은 의미가 없어 숨기고, 일시정지 버튼은 손가락 크기로 키운다. 데스크톱은 그대로.
+            if (MobilePlatform.IsTouchUI)
+            {
+                root.gameObject.AddComponent<SafeAreaFitter>();
+                schemeRt.gameObject.SetActive(false);
+                pauseRt.anchoredPosition = new Vector2(-370f, -16f);
+                pauseRt.sizeDelta = new Vector2(100f, 100f);
+                if (game != null) view.TouchControls = TouchControlsView.Create(root, game);
+            }
 
             return view;
         }
@@ -236,7 +245,7 @@ namespace CCT
             bannerRemaining = seconds;
         }
 
-        public static string CoffeePointsLabel(int points) => $"커피 포인트 {points}  [K] 커피 트리";
+        public static string CoffeePointsLabel(int points) => $"커피 포인트 {points}  [K] 커피 연구";
 
         static void SetIcon(Image icon, bool visible)
         {
@@ -245,6 +254,8 @@ namespace CCT
 
         /// <summary>테스트용 — 상단 우측 일시정지 버튼(08:76).</summary>
         public Button PauseButton => pauseButton;
+        /// <summary>터치 UI일 때만 있는 가상 조이스틱·버튼(없으면 null).</summary>
+        public TouchControlsView TouchControls { get; private set; }
 
         /// <summary>테스트용 — 저장 실패 알림/재시도 버튼이 보이는지.</summary>
         public bool SaveFailedVisible => saveFailedRoot != null && saveFailedRoot.activeSelf;
@@ -280,18 +291,14 @@ namespace CCT
             if(hiddenSummary!=null && game!=null && game.Player!=null && Time.unscaledTime>=hiddenRefresh)
             {
                 hiddenRefresh=Time.unscaledTime+.1f;
-                hiddenSummary.text=$"히든 {game.Player.Hidden.Count} · 현재 효과 보기 [H]";
+                hiddenSummary.text=MobilePlatform.IsTouchUI ? $"히든 {game.Player.Hidden.Count} · 현재 효과 보기" : $"히든 {game.Player.Hidden.Count} · 현재 효과 보기 [H]";
                 jobTrait.text=JobPreset.For(game.Job).name+" · "+game.JobTraitStatus;
                 var runtime=game.Player.HiddenRuntime;
                 hiddenActivity.text=runtime.LastActivationRemaining>0f ? "효과 발동: "+runtime.LastActivation
-                    : game.Player.Hidden.Count>0 ? "해금 효과는 조건에 따라 자동 적용됩니다.\n[H] 현재 수치 · 활성 상태 · 재충전 확인"
-                    : game.Job==Job.TeaSommelier ? "차 조합과 우림 연구로 히든 스킬을 발견하세요." : "카드·커피 조합으로 히든 스킬을 발견하세요.";
+                    : "";
+                hiddenActivity.transform.parent.gameObject.SetActive(runtime.LastActivationRemaining>0f);
             }
-            if (challengeLabel != null && game.Challenge != null)
-                challengeLabel.text=$"도전 {game.Challenge.Stage} (영구 {game.Challenge.PermanentCount} + 커피 {game.Challenge.CoffeeCount})\n몹 체력 {game.Challenge.HpMultiplier*100f:0.#}% · 피해 {game.Challenge.DamageMultiplier*100f:0.#}%\n시간 스폰 ×{Balance.TimeSpawnMultiplier(game.RunTime):0.00} · 영구 +{RunChallenge.SpawnBonusPercentFor(game.Challenge.PermanentUnlockTotal)}%\n동시 상한 {Balance.TimeAliveCap(game.RunTime, game.Challenge.RegularAliveCap)}";
             bool saveFailed = PermanentProgress.LastSaveFailed;
-            if(game.Job==Job.TeaSommelier && challengeLabel!=null)
-                challengeLabel.text=JobStudyTheme.Text(challengeLabel.text,game.Job);
             if (saveFailedRoot.activeSelf != saveFailed) saveFailedRoot.SetActive(saveFailed);
 
             var player = game.Player;
@@ -309,7 +316,9 @@ namespace CCT
             var beans = game.BeanGauge;
             beanBar.Set(beans.Fill01);
             beanBar.Label.text = JobStudyTheme.Text($"Lv {beans.Level}   원두 {beans.Current} / {beans.Threshold}  (스킬 {game.Skills.UnlockedCount}/{game.Skills.Nodes.Count})",game.Job);
-            coffeePoints.text = JobStudyTheme.Text(CoffeePointsLabel(game.CoffeePoints),game.Job);
+            // 터치: 키 안내([K]) 없이 짧게(연구 트리는 오른쪽 아래 버튼).
+            coffeePoints.text = MobilePlatform.IsTouchUI ? JobStudyTheme.Text($"커피 포인트 {game.CoffeePoints}", game.Job)
+                : JobStudyTheme.Text(CoffeePointsLabel(game.CoffeePoints),game.Job);
 
             int seconds = Mathf.FloorToInt(game.RunTime);
             info.text = $"{seconds / 60:00}:{seconds % 60:00}\n처치 {game.Kills}";

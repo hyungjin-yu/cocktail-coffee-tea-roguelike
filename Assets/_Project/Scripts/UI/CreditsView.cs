@@ -31,10 +31,10 @@ namespace CCT
             string body =
                 $"칵테일 · 커피 · 차  ·  v{Application.version}\n\n" +
                 "아트\n" +
-                "캐릭터·몬스터 아트는 원본 스틸컷을 기반으로 AI 생성·보정을 거쳐 제작했습니다.\n\n" +
+                "PixelLab으로 제작한 픽셀 아트를 Aseprite에서 편집했습니다.\n\n" +
                 "폰트\n" +
                 "Noto Sans CJK KR (Regular) — SIL Open Font License 1.1.\n" +
-                "라이선스 전문은 게임 폴더의 Fonts/LICENSE_NotoSansCJK.txt에 동봉되어 있습니다.\n\n" +
+                (MobilePlatform.IsTouchUI ? "폰트는 SIL Open Font License 1.1에 따라 사용했습니다.\n\n" : "라이선스 전문은 Licenses/LICENSE_NotoSansCJK.txt에 동봉되어 있습니다.\n\n") +
                 "음악·효과음\n" +
                 "모든 배경음악과 효과음은 외부 음원 없이 절차적 합성으로 직접 생성했습니다.";
 

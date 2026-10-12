@@ -69,13 +69,14 @@ namespace CCT
             var rootRt = UiFactory.Stretch("SkillTree", canvas);
             UiFactory.AddImage(rootRt, new Color(0.19f, 0.13f, 0.11f, 0.9f));
             UiFactory.AddCafeBackdrop(rootRt);
+            CenterBand.Attach(rootRt); // 2026-10-12 세로가 긴 화면: 3열 트리 세로 가운데
 
             var view = rootRt.gameObject.AddComponent<SkillTreeView>();
             view.root = rootRt.gameObject;
 
             var title = UiFactory.Place("Title", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -48f),
                 new Vector2(1400f, 50f));
-            view.treeTitle = UiFactory.AddText(title, "커피 트리", 48, TextAnchor.MiddleCenter, Cream);
+            view.treeTitle = UiFactory.AddText(title, "커피 연구", 48, TextAnchor.MiddleCenter, Cream);
 
             var pointsRt = UiFactory.Place("Points", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -104f),
                 new Vector2(1740f, 36f));
@@ -97,7 +98,7 @@ namespace CCT
                 AudioService.PlaySfx("ui_cancel");
                 view.Continue();
             });
-            UiFactory.AddText(UiFactory.Stretch("Label", closeRt), "계속하기", 28, TextAnchor.MiddleCenter, Cream);
+            UiFactory.AddText(UiFactory.Stretch("Label", closeRt), UiFactory.InputLabel("게임 재개", "Esc"), 28, TextAnchor.MiddleCenter, Cream);
 
             view.root.SetActive(false);
             return view;
@@ -156,7 +157,7 @@ namespace CCT
                 if (i < HotKeys.Length)
                 {
                     slot.key = UiFactory.AddText(UiFactory.Place("Key", rt, new Vector2(0f, 1f),
-                        new Vector2(16f, -12f), new Vector2(48f, 36f)), $"[{i + 1}]", 24, TextAnchor.MiddleLeft, Cream);
+                        new Vector2(16f, -12f), new Vector2(48f, 36f)), MobilePlatform.IsTouchUI ? "" : $"[{i + 1}]", 24, TextAnchor.MiddleLeft, Cream);
                 }
                 // 이름 위 / 효과 가운데(최대 2줄) / 상태·비용 아래. 단축키 표시가 왼쪽 위 모서리라 이름 칸을
                 // 좌우로 줄여 겹치지 않게 한다.
@@ -219,14 +220,8 @@ namespace CCT
         void Refresh()
         {
             int points = Points;
-            pointsText.text = $"남은 커피 포인트 {points}   ·   원두 10개마다 1포인트, 런 종료 시 초기화";
-            var challenge = GetComponentInParent<GameManager>()?.Challenge;
             bool allUnlocked = slots.TrueForAll(s => tree.IsUnlocked(s.data));
-            // 2026-10-09 실제720: 15노드를 모두 해금한 뒤에도 존재하지 않는 "다음 해금" 수치를 보였다 — 현재 배율만 표시.
-            if (challenge != null && allUnlocked)
-                pointsText.text = $"남은 커피 포인트 {points} · 커피 노드 모두 해금: 몹 체력 {challenge.HpMultiplier*100f:0.#}% / 피해 {challenge.DamageMultiplier*100f:0.#}%";
-            else if (challenge != null)
-                pointsText.text = $"남은 커피 포인트 {points} · 다음 해금:몹 체력 +{(challenge.NextCoffeeHp-challenge.HpMultiplier)*100f:0.#}%p / 피해 +{(challenge.NextCoffeeDamage-challenge.DamageMultiplier)*100f:0.#}%p → 체력 {challenge.NextCoffeeHp*100f:0.#}% / 피해 {challenge.NextCoffeeDamage*100f:0.#}%";
+            pointsText.text = $"남은 커피 포인트 {points} · " + (allUnlocked ? "연구 모두 해금" : "카드를 선택해 연구를 해금하세요");
 
             treeTitle.text=JobStudyTheme.TreeTitle(CurrentJob);
             pointsText.text=JobStudyTheme.Text(pointsText.text,CurrentJob);

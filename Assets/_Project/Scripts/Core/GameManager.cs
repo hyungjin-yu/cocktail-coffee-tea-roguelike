@@ -235,6 +235,7 @@ namespace CCT
             go.transform.localPosition = new Vector3(0f, Balance.LaneCenterY, 0f);
             var player = go.AddComponent<PlayerController>();
             player.Init(Stats, preset.playerColor, preset.bodyArtId, Challenge);
+            SkinSpriteSwapper.AttachIfEquipped(player.Visual, preset.job); // 치장 스킨(외형만, 능력치 무관). 없으면 기본 아트
             // 04 §8 장착 무기(기존 무기 아이콘 재사용, 손잡이 기준 회전). 몸체 손 anchor가 없으면 1차 임시 위치.
             var weaponPreset = WeaponPreset.For(weapon);
             if (!player.Visual.AttachWeaponArt("weapon_" + weaponPreset.kind.ToString().ToLowerInvariant(), weaponPreset.heldLengthRatio))
@@ -793,6 +794,24 @@ namespace CCT
         {
             if (State != GameState.GameOver) CommitRun(RunOutcome.Abandoned);
             PermanentProgress.SaveIfDirty();
+        }
+
+        /// <summary>2026-10-12 Android: 홈/앱 전환·전화 등으로 백그라운드가 되면 OS가 예고 없이 프로세스를 끝낼 수 있다
+        /// (OnApplicationQuit 미호출). 그래서 진행 스냅샷과 설정을 즉시 저장하고, 전투 중이면 일시정지 화면을 열어
+        /// 돌아왔을 때 바로 피해를 받지 않게 한다. 런은 포기로 집계하지 않는다(강제 종료 뒤엔 기존 "중단된 런" 복구 경로).
+        /// 데스크톱(창 최소화 등)은 기존 동작 그대로 두기 위해 모바일 OS에서만.</summary>
+        void OnApplicationPause(bool paused)
+        {
+            if (paused && MobilePlatform.IsMobileOs) HandleAppBackgrounded();
+        }
+
+        /// <summary>시험·OnApplicationPause 공용.</summary>
+        public void HandleAppBackgrounded()
+        {
+            if (State == GameState.Playing && !IsPaused) OpenPause(); // OpenPause가 SaveIfDirty도 한다
+            if (State != GameState.GameOver) ReportRunProgress();
+            PermanentProgress.SaveIfDirty();
+            if (SettingsService.IsDirty) SettingsService.RetrySave();
         }
 
         public void Restart()

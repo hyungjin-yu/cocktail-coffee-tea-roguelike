@@ -776,7 +776,7 @@ namespace CCT.Tests
             codex.HideDetail();
             var coffee = SkillDatabase.LoadAll()[0];
             Assert.IsTrue(codex.OpenDetailFor(coffee.id), "커피 노드 행");
-            StringAssert.Contains("커피 노드", codex.DetailBodyText);
+            StringAssert.Contains("직업 연구", codex.DetailBodyText);
         }
 
         [Test]
@@ -1096,8 +1096,11 @@ namespace CCT.Tests
             Assert.Greater(T("SummaryPanel/TimeValue").fontSize, T("SummaryPanel/Identity").fontSize, "시간이 보조 줄보다 크다");
             Assert.Greater(T("SummaryPanel/Identity").fontSize, T("StatsPanel/Stats").fontSize, "통계는 가장 작은 정보");
             StringAssert.Contains("하이브리드 티니 보우", T("SummaryPanel/Identity").text);
-            foreach (var part in new[] { "처치  9999", "칵테일 Lv 12", "차 Lv 12", "커피 스킬 해금  15", "칵테일 9999", "찻잎 9999", "원두 9999" })
+            // 2026-10-12 찻집(티 소믈리에) 런은 커피 성장 문구를 우림 연구로 보여 준다(JobStudyTheme). 바텐더 문구는 아래에서 따로 확인.
+            foreach (var part in new[] { "처치  9999", "차 Lv 12", "우림 연구 스킬 해금  15", "찻잎 9999", "우림 지식 9999" })
                 StringAssert.Contains(part, T("StatsPanel/Stats").text);
+            StringAssert.DoesNotContain("커피", T("StatsPanel/Stats").text, "찻집 결과에 커피 문구 없음");
+            StringAssert.DoesNotContain("원두", T("StatsPanel/Stats").text);
             Assert.IsFalse(result.SeedVisible, "seed는 접힌 상세");
             root.Find("SeedToggle").GetComponent<Button>().onClick.Invoke();
             Assert.IsTrue(result.SeedVisible);
@@ -1122,6 +1125,15 @@ namespace CCT.Tests
             Assert.Greater(((RectTransform)root.Find("RestartButton")).sizeDelta.x, ((RectTransform)root.Find("TitleButton")).sizeDelta.x, "다시 영업 시작이 주 버튼");
             AssertFullyVisible(T("Title"), "결과 제목");
             AssertFullyVisible(T("Subtitle"), "클리어 문구");
+
+            result.Show(new ResultSummary
+            {
+                cleared = true, reason = "클리어", job = Job.Bartender, weapon = WeaponKind.Gun,
+                runSeconds = 600f, kills = 10, cocktailLevel = 3, teaLevel = 2, coffeeSkillsUnlocked = 4,
+                cocktailCollected = 5, teaCollected = 6, beansCollected = 7, specialtyEarned = 0, seed = 1,
+            });
+            foreach (var part in new[] { "커피 스킬 해금  4", "원두 7" })
+                StringAssert.Contains(part, T("StatsPanel/Stats").text, "바텐더 결과는 커피 문구 그대로");
         }
     }
 

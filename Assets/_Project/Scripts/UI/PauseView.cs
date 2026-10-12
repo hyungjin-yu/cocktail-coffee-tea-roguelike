@@ -74,7 +74,7 @@ namespace CCT
             var continueBg = UiFactory.AddImage(continueRt, new Color(0.24f, 0.4f, 0.5f));
             view.continueButton = MakeButton(continueRt, continueBg,
                 () => { AudioService.PlaySfx("ui_cancel"); view.game.ClosePause(); });
-            UiFactory.AddText(UiFactory.Stretch("Label", continueRt), "계속  [Esc]", 27,
+            UiFactory.AddText(UiFactory.Stretch("Label", continueRt), UiFactory.InputLabel("게임 재개", "Esc"), 27,
                 TextAnchor.MiddleCenter, Color.white);
 
             var skillTreeRt = UiFactory.Place("SkillTreeButton", rootRt, new Vector2(0.5f, 0.5f),

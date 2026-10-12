@@ -59,3 +59,20 @@ crashlytics-build.properties
 save.json
 settings.json
 guest_session.json
+commerce.json
+commerce.json.bak
+commerce.json.tmp
+
+# Android signing and server credentials stay outside source control
+*.keystore
+*.jks
+service-account*.json
+credentials*.json
+__pycache__/
+.venv/
+
+# Android signing (2026-10-12): never commit upload keys or their passwords
+*.p12
+keystore.properties
+*.apk
+*.aab

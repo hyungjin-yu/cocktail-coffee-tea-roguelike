@@ -3,6 +3,7 @@
     "rootNamespace": "CCT.Tests",
     "references": [
         "CCT.Runtime",
+        "CCT.Editor",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

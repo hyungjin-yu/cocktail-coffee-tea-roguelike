@@ -394,7 +394,7 @@ namespace CCT
             var ordered = skills.Where(s => s != null && !string.IsNullOrEmpty(s.id))
                 .OrderBy(s => s.branch).ThenBy(s => s.tier).ToList();
             float top = -startRow * RowStep;
-            BuildHeader(x, "커피 노드", top);
+            BuildHeader(x, "직업 연구", top);
 
             for (int i = 0; i < ordered.Count; i++)
             {
@@ -525,7 +525,7 @@ namespace CCT
                 if (has) coffeeFound++;
                 entry.nameText.text = $"{entry.skill.displayName}  ({SkillData.BranchLabel(entry.skill.branch)} {entry.skill.tier}단계)";
                 entry.nameText.color = has ? new Color(0.95f, 0.8f, 0.55f) : new Color(1f, 1f, 1f, 0.6f);
-                entry.descText.text = $"{entry.skill.description}  ·  {(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}";
+                entry.descText.text = $"티 소믈리에: {JobStudyTheme.Name(entry.skill, Job.TeaSommelier)}\n{entry.skill.description}  ·  {(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}";
                 entry.descText.color = has ? new Color(0.8f, 0.8f, 0.8f) : new Color(1f, 1f, 1f, 0.4f);
                 entry.prereqText.text = entry.skill.prerequisite != null
                     ? $"선행: {entry.skill.prerequisite.displayName}"
@@ -548,7 +548,7 @@ namespace CCT
                 entry.effectText.color = new Color(0.6f, 0.85f, 0.95f);
             }
 
-            countLabel.text = $"발견한 카드: {found} / {cardEntries.Count}   ·   커피 노드 최초 획득: {coffeeFound} / {coffeeEntries.Count}   ·   히든: {hiddenFound} / {hiddenEntries.Count}";
+            countLabel.text = $"발견한 카드: {found} / {cardEntries.Count}   ·   연구 최초 획득: {coffeeFound} / {coffeeEntries.Count}   ·   히든: {hiddenFound} / {hiddenEntries.Count}";
 
             // 영구 강화는 카드와 달리 비밀이 아님(강화 화면에서 항상 전체 정보가 보임) — "???" 대신
             // 이름/효과를 그대로 보여주고 해금 여부만 색과 상태 문구로 구분한다.
@@ -641,7 +641,7 @@ namespace CCT
                 new Vector2(DetailPanelWidth - 80f, 50f)), "", 34, TextAnchor.MiddleCenter, new Color(1f, 0.9f, 0.7f));
             detailBody = UiFactory.AddText(UiFactory.Place("Body", rt, new Vector2(0.5f, 1f), new Vector2(0f, -DetailBodyTop),
                 new Vector2(DetailPanelWidth - 80f, DetailPanelHeight - DetailBodyTop - DetailCloseReserved)), "",
-                MinBodyFontSize, TextAnchor.UpperCenter,
+                MinBodyFontSize, TextAnchor.MiddleCenter,
                 new Color(0.92f, 0.92f, 0.92f));
             detailBody.verticalOverflow = VerticalWrapMode.Truncate; // 08:49 본문 24 고정 — 줄이지 않고, 상자 밖으로도 그리지 않는다
             var closeRt = UiFactory.Place("Close", rt, new Vector2(0.5f, 0f), new Vector2(0f, 30f), new Vector2(260f, 70f));
@@ -700,15 +700,15 @@ namespace CCT
         {
             var tree = new PermanentSkillTree(skillEntries.Select(e => e.skill), PermanentProgress.Current.unlockedPermanentSkillIds);
             string state = tree.IsUnlocked(skill) ? "해금됨" : tree.IsInactiveLegacy(skill) ? "비활성(선행 확인 필요)" : "미해금";
-            ShowDetail(skill.displayName, $"영구 강화 · 비용 {skill.cost}\n{skill.description}\n{PermanentSkillView.Conditions(skill)}\n{PermanentSkillView.Target(skill)}\n다음 런: 적용 노드당 몹 체력 +1%p / 피해 +0.4%p\n{state}");
+            ShowDetail(skill.displayName, $"영구 강화 · 비용 {skill.cost}\n{skill.description}\n{PermanentSkillView.Conditions(skill)}\n{PermanentSkillView.Target(skill)}\n다음 런부터 적용 · 해금이 늘수록 더 많은 적이 등장합니다.\n{state}");
         }
 
         void ShowCoffeeDetail(SkillData skill)
         {
             bool has = (PermanentProgress.Current.discoveredSkillIds ?? new List<string>()).Contains(skill.id);
             string prereq = skill.prerequisite != null ? skill.prerequisite.displayName : "없음";
-            ShowDetail(skill.displayName,
-                $"커피 노드 · {SkillData.BranchLabel(skill.branch)} {skill.tier}단계 · 선행 {prereq}\n{skill.description}\n해금 성공마다 이번 런 몹 체력 +1.2%p / 피해 +0.4%p\n{(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}");
+            ShowDetail(skill.displayName + " / " + JobStudyTheme.Name(skill, Job.TeaSommelier),
+                $"직업 연구 · {SkillData.BranchLabel(skill.branch)} {skill.tier}단계 · 선행 {prereq}\n{skill.description}\n연구 효과는 이번 런 동안 적용됩니다.\n{(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}");
         }
     }
 }

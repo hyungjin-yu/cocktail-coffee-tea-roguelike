@@ -39,6 +39,7 @@ namespace CCT
         {
             var rootRt = UiFactory.Stretch("CardSelect", canvas);
             UiFactory.AddImage(rootRt, new Color(0f, 0f, 0f, 0.72f));
+            CenterBand.Attach(rootRt); // 2026-10-12 세로가 긴 화면: 카드 내용 세로 가운데
 
             var view = rootRt.gameObject.AddComponent<CardSelectView>();
             view.root = rootRt.gameObject;
@@ -72,14 +73,15 @@ namespace CCT
             button.onClick.AddListener(() => ChooseFromInput(captured));
 
             slot.key = UiFactory.AddText(UiFactory.Place("Key", rt, new Vector2(0f, 1f), new Vector2(18f, -12f),
-                new Vector2(80f, 40f)), $"[{index + 1}]", 30, TextAnchor.UpperLeft, new Color(1f, 1f, 1f, 0.5f));
+                new Vector2(80f, 40f)), MobilePlatform.IsTouchUI ? "" : $"[{index + 1}]", 30, TextAnchor.UpperLeft, new Color(1f, 1f, 1f, 0.5f));
             slot.rarity = UiFactory.AddText(UiFactory.Place("Rarity", rt, new Vector2(0.5f, 1f),
                 new Vector2(0f, -30f), new Vector2(380f, 44f)), "", 32, TextAnchor.MiddleCenter, Color.white);
             slot.title = UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f),
                 new Vector2(0f, -100f), new Vector2(390f, 110f)), "", 44, TextAnchor.MiddleCenter, Color.white);
             UiFactory.SkinHeader(slot.title);
             slot.description = UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 0.5f),
-                new Vector2(0f, -10f), new Vector2(390f, 220f)), "", 24, TextAnchor.UpperCenter,
+                new Vector2(0f, -10f), new Vector2(390f, 220f)), "", 24,
+                MobilePlatform.IsTouchUI ? TextAnchor.MiddleCenter : TextAnchor.UpperCenter, // 2026-10-12 모바일: 설명 세로 가운데
                 new Color(0.92f, 0.92f, 0.92f));
             // r13 검수 U2 / 09:54 — 카드별 일러스트 대신 기존 재료 아이콘을 카테고리 도안으로 쓴다(하이브리드만 전용 아이콘).
             // 설명(최대 2줄)과 중첩 문구 사이의 빈 영역에 둔다. 스프라이트는 Show에서 카테고리별로 고른다.
@@ -136,12 +138,15 @@ namespace CCT
                 var finalForm = AttackFinalForms.ForCard(card.id);
                 if (finalForm.HasValue)
                     slot.description.text += $"\n현재 {offer.currentStacks} → 다음 {Mathf.Min(card.maxStacks,offer.currentStacks+1)} / {card.maxStacks}\n최대 중첩: {AttackFinalForms.Description(finalForm.Value)}";
-                slot.categoryIcon.rectTransform.anchoredPosition = finalForm.HasValue ? new Vector2(170f,250f) : new Vector2(0f,-115f);
-                slot.categoryIcon.rectTransform.sizeDelta = finalForm.HasValue ? new Vector2(40f,40f) : new Vector2(80f,80f);
+                // 모바일은 설명을 가운데 정렬하므로 5줄 설명(아래 끝 -87)과 겹치지 않게 도안을 조금 아래(-145)·작게(50, 위 끝 -120, 중첩 문구 위 -180 위).
+                bool touch = MobilePlatform.IsTouchUI;
+                slot.categoryIcon.rectTransform.anchoredPosition = finalForm.HasValue ? new Vector2(170f,250f) : new Vector2(0f, touch ? -145f : -115f);
+                slot.categoryIcon.rectTransform.sizeDelta = finalForm.HasValue ? new Vector2(40f,40f) : touch ? new Vector2(50f,50f) : new Vector2(80f,80f);
                 slot.stacks.text = offer.currentStacks == 0
                     ? "신규"
                     : $"Lv {offer.currentStacks} → {offer.currentStacks + 1}  (최대 {card.maxStacks})";
                 slot.odds.text = offer.earlyRangedPriority ? "초반 원거리 우선 추첨 (60%)" : $"{RarityTable.Label(card.rarity)} 등급 확률 {offer.rarityPercent:0.#}%";
+                slot.odds.gameObject.SetActive(false);
                 UiFactory.SetChoice(slot.background, false,
                     Color.Lerp(new Color(0.16f, 0.13f, 0.2f), rarityColor, 0.18f));
                 var icon = CategoryIcon(card.category);

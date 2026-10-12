@@ -70,8 +70,8 @@ namespace CCT
         public const float MainThemeShare = 0.65f;
         /// <summary>직업 선택 카드에 붙는 맵·몬스터 비중 한 줄(숨은 편향이 아니라 공개 규칙).</summary>
         public string ThemeLine => job == Job.Bartender
-            ? $"{mapName} · 칵테일 몹 {MainThemeShare * 100f:0}% · 차 몹 {(1f - MainThemeShare) * 100f:0}%"
-            : $"{mapName} · 차 몹 중심 · 칵테일 몹·카드 없음"; // 2026-10-12 사용자 지시: 찻집에는 칵테일 몹 없음
+            ? $"{mapName} · 다양한 음료 재료가 어우러진 전장"
+            : $"{mapName} · 차 재료와 다구의 전장";
 
         public static readonly JobPreset Bartender = new JobPreset
         {

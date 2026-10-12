@@ -34,3 +34,9 @@ Game code, art, music and sound effects were made for this project (audio is pro
 
 - **Tea sommelier sword-swing animation** (`Assets/_Project/Resources/ArtExtra/tea_sommelier_sword_swing/`, 8 frames): generated for this project with the PixelLab Aseprite extension 0.4.127 ("Animate with Text (v3)", seed 3270830880) from this project's own character and sword sprites, in Aseprite 1.3.18.6. Source, prompt, raw frames and hashes: `ArtSource/melee-swing-2026-10-09/manifest.json`. No third-party character art is included.
 - The cafe UI kit (2026-10-08) used one PixelLab concept generation as reference only; production UI pixels were authored in Aseprite (`ArtSource/ui-polish-2026-10-08/generation-log.json`).
+
+## Android cosmetics and purchasing (2026-10-12)
+
+- The midnight bartender and jade tea sommelier skins are Aseprite palette edits of this project's existing PixelLab character art. They are not new PixelLab generations. Native sources and provenance are in `ArtSource/mobile-skins-2026-10-12/`.
+- The Android app icon is an Aseprite composition of those existing character assets; source and provenance are in `ArtSource/mobile-store-2026-10-12/`.
+- Unity Purchasing 5.4.4 and its resolved dependencies are recorded in `Packages/packages-lock.json`. Original package licenses and notices govern the bundled SDK. Android test builds use IL2CPP, not the Windows Mono runtime described above. Actual purchases are disabled until the Google Play products and verification endpoint are configured.

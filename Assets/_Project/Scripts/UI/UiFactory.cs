@@ -46,14 +46,18 @@ namespace CCT
 
         public static void AddCafeBackdrop(RectTransform parent)
         {
-            if (CafeSprite("ui_cafe_panel") == null) return;
+            if (CafeSprite("ui_cafe_panel") == null) { CenterBand.Attach(parent); return; }
             var rt = Stretch("CafeBackdrop", parent);
             rt.offsetMin = new Vector2(24f, 24f);
             rt.offsetMax = new Vector2(-24f, -24f);
             var img = AddImage(rt, new Color(1f, 1f, 1f, 0.97f));
             SkinPanel(img);
             img.raycastTarget = false;
+            CenterBand.Attach(parent);
         }
+
+        public static string InputLabel(string label, string key) =>
+            MobilePlatform.IsTouchUI ? label : label + " · " + key;
 
         public static void SkinHeader(Text label)
         {
@@ -256,6 +260,7 @@ namespace CCT
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920f, 1080f);
             scaler.matchWidthOrHeight = 0.5f;
+            go.AddComponent<AdaptiveCanvasScaler>(); // 2026-10-12 16:9보다 세로가 긴 화면(폴드 펼침)은 폭 맞춤
 
             go.AddComponent<GraphicRaycaster>();
             return canvas;

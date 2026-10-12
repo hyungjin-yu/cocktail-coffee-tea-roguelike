@@ -225,6 +225,104 @@ namespace CCT.Editor
         /// <summary>배치 인자 -cct-preview-out &lt;폴더&gt; — QA가 기존 프리뷰를 실행 중일 때 덮어쓰지 않도록 다른 폴더에 빌드한다.</summary>
         public const string PreviewOutArg = "-cct-preview-out";
 
+        // ── 2026-10-12 Android(구글 플레이) ─────────────────────────────────────────────
+        // 같은 strict 검사 뒤 IL2CPP·ARM64·targetSdk 36·가로 화면으로 빌드한다. 서명은 Unity 기본 디버그 키(사용자 키스토어 미설정)라
+        // 산출물 이름에 debugsigned를 넣는다 — APK는 사이드로드 시험용, AAB는 구조 확인용이며 Play 업로드용이 아니다(키스토어·계정은 나중에).
+        public const string AndroidPackageId = "com.hyungjinyu.cocktailcoffeetea"; // 잠정(사용자 지정)
+        public const int AndroidVersionCode = 1;
+        public const int AndroidMinSdk = 26;    // Android 8.0
+        public const int AndroidTargetSdk = 36; // Google Play 현행 목표 API(로컬 SDK platforms/android-36 확인)
+
+        public static void AndroidApkBatch() => AndroidBatch(false);
+        public static void AndroidAabBatch() => AndroidBatch(true);
+
+        static void AndroidBatch(bool appBundle)
+        {
+            try
+            {
+                var dir = PreviewOutputDir("Builds/Android");
+                var file = appBundle ? "CocktailCoffeeTea-1.0.0-debugsigned-NOT-FOR-PLAY-UPLOAD.aab"
+                                     : "CocktailCoffeeTea-1.0.0-debugsigned-sideload.apk";
+                BuildAndroid(Path.Combine(dir, file), appBundle);
+                EditorApplication.Exit(0);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[CCT] Android build failed: {e}");
+                EditorApplication.Exit(1);
+            }
+        }
+
+        /// <summary>Android 플레이어 설정(시험이 값을 확인한다). 데스크톱 설정은 건드리지 않는다.</summary>
+        public static void ApplyAndroidPlayerSettings()
+        {
+            PlayerSettings.bundleVersion = "1.0.0";
+            PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, AndroidPackageId);
+            PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
+            PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
+            PlayerSettings.Android.minSdkVersion = (AndroidSdkVersions)AndroidMinSdk;
+            PlayerSettings.Android.targetSdkVersion = (AndroidSdkVersions)AndroidTargetSdk;
+            PlayerSettings.Android.bundleVersionCode = AndroidVersionCode;
+            PlayerSettings.Android.useCustomKeystore = false; // 서명 키는 사용자가 나중에 제공
+            PlayerSettings.Android.splitApplicationBinary = false;
+            // 가로 전용(좌·우 가로 자동 회전), 세로 금지.
+            PlayerSettings.defaultInterfaceOrientation = UIOrientation.AutoRotation;
+            PlayerSettings.allowedAutorotateToLandscapeLeft = true;
+            PlayerSettings.allowedAutorotateToLandscapeRight = true;
+            PlayerSettings.allowedAutorotateToPortrait = false;
+            PlayerSettings.allowedAutorotateToPortraitUpsideDown = false;
+            ApplyAndroidIcon();
+        }
+
+        /// <summary>root가 만든 512 앱 아이콘(Aseprite, PixelLab 원화 기반)을 Android 런처 아이콘(Legacy·Round)에만 넣는다.
+        /// 적응형 아이콘(전경/배경 2층)은 별도 층 아트가 없어 비워 두고 Android가 Legacy를 쓰게 한다. 데스크톱 아이콘은 건드리지 않는다.</summary>
+        public const string AndroidIconPath = "Assets/_Project/Art/Mobile/app-icon-512.png";
+        public static int ApplyAndroidIcon()
+        {
+            var tex = AssetDatabase.LoadAssetAtPath<Texture2D>(AndroidIconPath);
+            if (tex == null) { Debug.LogWarning($"[CCT] Android 아이콘 없음: {AndroidIconPath}"); return 0; }
+            int set = 0;
+            foreach (var kind in PlayerSettings.GetSupportedIconKinds(NamedBuildTarget.Android))
+            {
+                var icons = PlayerSettings.GetPlatformIcons(NamedBuildTarget.Android, kind);
+                bool changed = false;
+                foreach (var icon in icons)
+                {
+                    if (icon.maxLayerCount > 1) continue; // 적응형 — 층 아트 없음
+                    icon.SetTexture(tex, 0);
+                    changed = true; set++;
+                }
+                if (changed) PlayerSettings.SetPlatformIcons(NamedBuildTarget.Android, kind, icons);
+            }
+            return set;
+        }
+
+        static void BuildAndroid(string output, bool appBundle)
+        {
+            var problems = Validate();
+            ValidateNoProvisionalArt(problems);
+            ValidateCafeUi(problems);
+            if (problems.Count > 0)
+                throw new BuildFailedException("빌드 전 필수 검사 실패:\n- " + string.Join("\n- ", problems));
+
+            ApplyAndroidPlayerSettings();
+            EditorUserBuildSettings.buildAppBundle = appBundle;
+            var dir = Path.GetDirectoryName(output);
+            if (!string.IsNullOrEmpty(dir)) Directory.CreateDirectory(dir);
+
+            var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
+            {
+                scenes = new[] { BootScenePath },
+                locationPathName = output,
+                target = BuildTarget.Android,
+                targetGroup = BuildTargetGroup.Android,
+                options = BuildOptions.None,
+            });
+            if (report.summary.result != BuildResult.Succeeded)
+                throw new BuildFailedException($"Unity Android 빌드 실패: {report.summary.result}, 에러 {report.summary.totalErrors}개");
+            Debug.Log($"[CCT] Android 빌드 완료 — {report.summary.outputPath}, {report.summary.totalSize / 1024 / 1024}MB, {report.summary.totalTime}");
+        }
+
         static string PreviewOutputDir(string defaultDir)
         {
             var args = Environment.GetCommandLineArgs();

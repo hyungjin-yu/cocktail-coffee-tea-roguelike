@@ -1,0 +1,16 @@
+{
+  "tools": [
+    "Aseprite native Lua batch",
+    "PixelLab original character sprites"
+  ],
+  "method": "Outfit palette variants of established PixelLab originals; original silhouette, feet pivot and frame order retained; not new PixelLab generation.",
+  "products": [
+    "skin_bartender_midnight",
+    "skin_tea_jade"
+  ],
+  "sourceMaps": "sources.json",
+  "authoringScripts": [
+    "author.lua",
+    "save-native.lua"
+  ]
+}

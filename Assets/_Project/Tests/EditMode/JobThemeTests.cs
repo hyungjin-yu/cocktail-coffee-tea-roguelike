@@ -69,10 +69,10 @@ namespace CCT.Tests
         public void JobCards_ShowMapAndShares()
         {
             StringAssert.Contains("칵테일 바", JobPreset.Bartender.ThemeLine);
-            StringAssert.Contains("칵테일 몹 65%", JobPreset.Bartender.ThemeLine);
-            StringAssert.Contains("차 몹 35%", JobPreset.Bartender.ThemeLine);
+            StringAssert.Contains("다양한 음료 재료", JobPreset.Bartender.ThemeLine);
+            StringAssert.Contains("전장", JobPreset.Bartender.ThemeLine);
             StringAssert.Contains("찻집", JobPreset.TeaSommelier.ThemeLine);
-            StringAssert.Contains("칵테일 몹·카드 없음", JobPreset.TeaSommelier.ThemeLine);
+            StringAssert.Contains("차 재료와 다구", JobPreset.TeaSommelier.ThemeLine);
         }
 
         sealed class State : IHiddenRunState

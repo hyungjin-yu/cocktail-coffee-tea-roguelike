@@ -226,7 +226,8 @@ namespace CCT.Tests
             Assert.AreEqual("perfect_crema", shop.DetailNode.id, "잠긴 카드도 상세를 연다");
             StringAssert.Contains("선행   다크 로스트 블렌드 (미구매)", shop.DetailText);
             StringAssert.Contains("클리어   0회 필요", shop.DetailText);
-            StringAssert.Contains("레이피어   체력 100% → 101% · 피해 100% → 100.4%", shop.DetailText);
+            StringAssert.Contains("영구 강화는 다음 런부터 적용", shop.DetailText);
+            StringAssert.DoesNotContain("동시 상한", shop.DetailText);
             StringAssert.Contains("보유 스페셜티 0", shop.HeaderText);
             StringAssert.Contains("해금 0 / 24", shop.HeaderText);
         }

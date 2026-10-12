@@ -16,8 +16,10 @@ namespace CCT
             // -cct-data-dir: save/settings를 실제 사용자 폴더 대신 지정 폴더로(빌드 검증용 격리). -cct-autotour: 자동 캡처.
             LaunchOptions.Apply();
             QuitGuard.Install(); // 08:178 OS 창 닫기도 미저장 확인
+            MobileBackRouter.Install(); // 2026-10-12 Android 뒤로 가기(메뉴 화면) — 터치 UI에서만
             // 08:22 Boot — UI를 열기 전에 settings.json(없으면 구형 PlayerPrefs 이전값)을 오디오/화면/VSync에 적용한다.
             SettingsService.ApplyAtBoot();
+            if (MobilePlatform.IsMobileOs) Screen.sleepTimeout = SleepTimeout.NeverSleep; // 조이스틱만 누르는 동안 화면이 꺼지지 않게
             ShowTitle();
         }
 
@@ -61,7 +63,7 @@ namespace CCT
                 FirstRunTutorial.MarkSeen();
                 Object.Destroy(canvas.gameObject);
                 Build(job, weapon);
-            });
+            }, job);
         }
 
         /// <summary>선택 화면 없이 바로 게임을 만든다. 테스트나 직업/무기가 이미 정해진 경우에 쓴다.</summary>

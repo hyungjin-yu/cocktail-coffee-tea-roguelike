@@ -90,12 +90,12 @@ namespace CCT
                 new Vector2(1160f, 48f)), "", 30, TextAnchor.MiddleCenter, Color.white);
 
             var small = UiFactory.Place("StatsPanel", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, -86f), new Vector2(1240f, 112f));
-            UiFactory.AddImage(small, new Color(0.08f, 0.065f, 0.08f, 1f));
+            UiFactory.SkinPanel(UiFactory.AddImage(small, new Color(0.08f, 0.065f, 0.08f, 1f)));
             view.statsSmall = UiFactory.AddText(UiFactory.Place("Stats", small, new Vector2(0.5f, 0.5f), Vector2.zero,
                 new Vector2(1200f, 100f)), "", 26, TextAnchor.MiddleCenter, Muted);
             view.statsSmall.lineSpacing = 1.1f;
 
-            view.restartButton = BuildButton(rootRt, "RestartButton", 0f, "다시 영업 시작  [R]", true, view.Restart);
+            view.restartButton = BuildButton(rootRt, "RestartButton", 0f, UiFactory.InputLabel("다시 시작", "R"), true, view.Restart);
             var shopButton = BuildButton(rootRt, "PermanentShopButton", -440f, "영구 강화", false, view.OpenShop);
             UiFactory.AddIcon(shopButton.transform, "specialty", new Vector2(0f, 0.5f), new Vector2(14f, 0f), 44f);
             BuildButton(rootRt, "TitleButton", 440f, "타이틀", false, () => view.game.GoToTitle());
@@ -113,6 +113,7 @@ namespace CCT
                 new Vector2(400f, 52f)), "", 24, TextAnchor.MiddleCenter, Muted);
             view.seedText.gameObject.SetActive(false);
             view.RefreshSeedToggle();
+            toggleRt.gameObject.SetActive(false); // Run seed remains available in diagnostic logs, not in player menus.
 
             view.shopView = PermanentSkillView.Create(canvas, view.ShowRoot);
 
@@ -203,6 +204,8 @@ namespace CCT
                               $"획득 재료  칵테일 {last.cocktailCollected}  ·  찻잎 {last.teaCollected}  ·  원두 {last.beansCollected}";
             seedText.text = $"seed  {last.seed}";
             statsSmall.text=JobStudyTheme.Text(statsSmall.text,last.job);
+            if (last.job == Job.TeaSommelier)
+                statsSmall.text = $"처치  {last.kills}  ·  차 Lv {last.teaLevel}  ·  우림 연구 스킬 해금  {last.coffeeSkillsUnlocked}\n획득 재료  찻잎 {last.teaCollected}  ·  우림 지식 {last.beansCollected}";
         }
 
         public void ToggleSeed()

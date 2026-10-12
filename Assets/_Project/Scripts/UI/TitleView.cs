@@ -33,12 +33,14 @@ namespace CCT
         CardCodexView codexView;
         SettingsView settingsView;
         CreditsView creditsView;
+        SkinShopView skinShopView;
 
         public bool IsOpen => root != null && root.activeSelf;
         public PermanentSkillView ShopView => shopView;
         public CardCodexView CodexView => codexView;
         public SettingsView SettingsView => settingsView;
         public CreditsView CreditsView => creditsView;
+        public SkinShopView SkinShopView => skinShopView;
         /// <summary>테스트용 — 08:172 미래 버전 "임시 플레이" 버튼 / 08:175 저장 재시도 버튼 표시 여부와 알림 문구.</summary>
         public bool GuestButtonVisible => guestButtonRoot != null && guestButtonRoot.activeSelf;
         public bool RetryButtonVisible => retryButtonRoot != null && retryButtonRoot.activeSelf;
@@ -54,6 +56,7 @@ namespace CCT
             view.codexView = CardCodexView.Create(canvasComp.transform, view.ShowRoot);
             view.settingsView = SettingsView.Create(canvasComp.transform, view.ShowRoot);
             view.creditsView = CreditsView.Create(canvasComp.transform, view.ShowRoot);
+            view.skinShopView = SkinShopView.Create(canvasComp.transform, view.ShowRoot);
 
             view.BuildRoot();
             return view;
@@ -104,6 +107,9 @@ namespace CCT
             });
             BuildMenuButton(rootRt, "QuitButton", "종료", ref y, new Color(0.5f, 0.24f, 0.24f), RequestQuit);
 
+            // 2026-10-12 치장 스킨 상점: 세로 메뉴는 저장 알림(SaveNotice)과 겹치지 않게 6개로 꽉 차 있어 오른쪽 위에 둔다.
+            BuildSkinShopButton(rootRt);
+
             BuildFooter(rootRt);
             BuildQuitConfirm(rootRt);
             RefreshFooter();
@@ -133,6 +139,18 @@ namespace CCT
 
             y -= 88f;
             return button;
+        }
+
+        void BuildSkinShopButton(RectTransform parent)
+        {
+            var rt = UiFactory.Place("SkinShopButton", parent, new Vector2(1f, 1f), new Vector2(-40f, -16f), new Vector2(300f, 120f)); // 제목 상자(위 140..250) 위쪽
+            var bg = UiFactory.AddImage(rt, new Color(0.55f, 0.4f, 0.2f));
+            MakeConfirmButton(rt, bg, () =>
+            {
+                root.SetActive(false);
+                skinShopView.Show();
+            });
+            UiFactory.AddText(UiFactory.Stretch("Label", rt), "스킨", 34, TextAnchor.MiddleCenter, Color.white);
         }
 
         void BuildFooter(RectTransform parent)

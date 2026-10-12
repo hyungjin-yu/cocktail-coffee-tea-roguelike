@@ -91,6 +91,17 @@ namespace CCT
             dmgBtn.onClick.AddListener(view.ToggleDamageNumbers);
             ColumnX = 0f;
 
+            // 2026-10-12 Android: 해상도·표시 모드·VSync·조작 방식(키보드/마우스)은 휴대폰에 의미가 없어 숨기고
+            // 남은 줄을 위로 당긴다(값·저장 형식은 그대로, 데스크톱은 변경 없음).
+            if (MobilePlatform.IsTouchUI)
+            {
+                foreach (var hidden in new[] { "Scheme", "Resolution", "Fullscreen", "VSync" })
+                    rootRt.Find(hidden).gameObject.SetActive(false);
+                rootRt.Find("TutorialReplay").GetComponent<RectTransform>().anchoredPosition += new Vector2(0f, 84f);
+                foreach (var moved in new[] { "Shake", "Effects", "DamageNumbers" })
+                    rootRt.Find(moved).GetComponent<RectTransform>().anchoredPosition += new Vector2(0f, 3 * 84f);
+            }
+
             // 08:175와 같은 짧은 오류/알림 한 줄(설정 전용 — 진행 저장 오류와 섞지 않는다).
             var noticeRt = UiFactory.Place("Notice", rootRt, new Vector2(0.5f, 0f), new Vector2(0f, 145f),
                 new Vector2(1200f, 32f)); // 마지막 행(아래 182) 과 버튼(위 140) 사이
@@ -106,7 +117,7 @@ namespace CCT
                 new Vector2(320f, 80f));
             var closeBg = UiFactory.AddImage(closeRt, new Color(0.24f, 0.4f, 0.5f));
             MakeButton(closeRt, closeBg, () => { AudioService.PlaySfx("ui_cancel"); view.Hide(); });
-            UiFactory.AddText(UiFactory.Stretch("Label", closeRt), "닫기  [Esc]", 30, TextAnchor.MiddleCenter, Color.white);
+            UiFactory.AddText(UiFactory.Stretch("Label", closeRt), UiFactory.InputLabel("닫기", "Esc"), 30, TextAnchor.MiddleCenter, Color.white);
 
             var retryRt = UiFactory.Place("RetrySettingsSave", rootRt, new Vector2(0.5f, 0f), new Vector2(360f, 60f),
                 new Vector2(320f, 80f));

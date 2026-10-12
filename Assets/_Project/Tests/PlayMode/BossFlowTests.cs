@@ -78,7 +78,7 @@ namespace CCT.Tests
             Assert.AreEqual(0f, Time.timeScale);
             Assert.IsTrue(game.SkillView.IsOpen);
             Assert.AreEqual(0,game.Challenge.CoffeeCount,"Opening/preview must not increase challenge.");
-            StringAssert.Contains("다음 해금",game.SkillView.PointsLabel);
+            StringAssert.Contains("연구를 해금",game.SkillView.PointsLabel);
 
             var locked = game.Skills.Nodes.First(n => n.id == "ristretto");
             game.SkillView.Choose(locked);
@@ -114,7 +114,8 @@ namespace CCT.Tests
             yield return null;
             StringAssert.Contains("모두 해금", game.SkillView.PointsLabel);
             StringAssert.DoesNotContain("다음 해금", game.SkillView.PointsLabel);
-            StringAssert.Contains($"{game.Challenge.HpMultiplier * 100f:0.#}%", game.SkillView.PointsLabel);
+            StringAssert.DoesNotContain("%", game.SkillView.PointsLabel);
+            Assert.Greater(game.Challenge.HpMultiplier, 1f);
         }
 
         [UnityTest]

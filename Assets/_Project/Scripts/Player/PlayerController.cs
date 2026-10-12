@@ -128,8 +128,13 @@ namespace CCT
 
         const float MouseDeadzone = 0.15f;
 
-        Vector2 ReadMoveInput() =>
-            InputSettings.Scheme == MovementScheme.Mouse ? ReadMouseInput() : ReadKeyboardInput();
+        Vector2 ReadMoveInput()
+        {
+            // 2026-10-12 Android: 터치 UI는 가상 조이스틱이 우선, 놓았을 때는 연결된 키보드/게임패드(마우스 추적 방식은 쓰지 않음).
+            if (MobilePlatform.IsTouchUI)
+                return TouchControlsView.Held ? TouchControlsView.Move : ReadKeyboardInput();
+            return InputSettings.Scheme == MovementScheme.Mouse ? ReadMouseInput() : ReadKeyboardInput();
+        }
 
         static Vector2 ReadKeyboardInput()
         {

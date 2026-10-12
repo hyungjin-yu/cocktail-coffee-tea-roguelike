@@ -602,7 +602,7 @@ namespace CCT.Tests
             StringAssert.DoesNotContain("???", n.name);
             StringAssert.DoesNotContain("미해금", n.desc, "영구 '미해금' 문구와 구분");
             StringAssert.StartsWith("선행:", n.prereq);
-            StringAssert.Contains("커피 노드 최초 획득: 1 / 15", codex.CountText, "unknown id는 집계 제외");
+            StringAssert.Contains("연구 최초 획득: 1 / 15", codex.CountText, "unknown id는 집계 제외");
 
             StringAssert.Contains("비활성", codex.GetPermanentText("perfect_crema"), "선행 빠진 옛 노드는 비활성");
             Assert.AreEqual("???", codex.GetCardText("dry_gin").name, "카드 미발견은 ???");
@@ -627,7 +627,7 @@ namespace CCT.Tests
                 return new Rect(origin, rt.sizeDelta);
             }
             var all = content.Cast<RectTransform>().ToList();
-            var coffee = all.Where(t => t.name.StartsWith("CoffeeRow_") || t.name == "Header_커피 노드").ToList();
+            var coffee = all.Where(t => t.name.StartsWith("CoffeeRow_") || t.name == "Header_직업 연구").ToList();
             Assert.AreEqual(16, coffee.Count);
             // 같은 열(하이브리드)과 이웃 열(차·영구 강화) 모두와 겹치지 않는지 — 열 폭 440 < 간격 452.
             foreach (var c in coffee)
