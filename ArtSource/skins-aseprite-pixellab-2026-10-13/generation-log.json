@@ -1,0 +1,58 @@
+{
+  "actualCalls": 2,
+  "designs": 5,
+  "retries": 0,
+  "otherGenerationTools": 0,
+  "bulkAnimationGeneration": 0,
+  "creditDebit": "unknown; UI stated 10–25 generations per call, no measured debit",
+  "calls": [
+    {
+      "name": "bartender",
+      "seed": 145336185.0,
+      "mode": "Edit image (Pro)",
+      "method": "Edit with text",
+      "input": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\evidence\\bartender-original-input.png",
+      "inputSHA256": "4bdf2350872c190113d769a5f85bc68678596fbcb4323d0eb118df3368ae582a",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\evidence\\bartender-pixellab-output.png",
+      "outputSHA256": "391b6bc71384fda427101de07cf18d7095f8d2e16b8436227cff7d574f6c7a2d",
+      "rawNative": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\bartender-pixellab-raw.aseprite",
+      "rawNativeSHA256": "cd27d608f6ea358b73abd568bf2f3f051e4e190f0b8a95c2cdf2726d7a55c844",
+      "inputNativeFrame": 1,
+      "generatedNativeFrame": 2,
+      "prompt": "Recolor only the vest and trousers to vivid deep navy blue with clear cobalt highlights, and the teal necktie to warm metallic gold. Preserve face, hair, skin, white shirt, shoes, pose, silhouette, pixel scale and transparent background exactly. Elegant midnight bartender uniform, no new accessories.",
+      "outputMethod": "New frame",
+      "removeBackground": true,
+      "outputCanvas": [
+        256,
+        256
+      ],
+      "outputNonzeroAlphaPixels": 10944,
+      "successEvidence": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\evidence\\bartender-finished.png"
+    },
+    {
+      "name": "weapons-four-designs",
+      "seed": 704154967.0,
+      "mode": "Edit image (Pro)",
+      "method": "Edit with text",
+      "input": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\evidence\\weapons-original-input.png",
+      "inputSHA256": "45956637e30bc787769600326063dd60d90b7a40883489bb099e92f9adb3f7d1",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\evidence\\weapons-pixellab-output.png",
+      "outputSHA256": "4a955e104be506dd5a8654e7e96a273d4ea99921bf5042ff894be1e67ecfdf34",
+      "rawNative": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons-pixellab-generated.aseprite",
+      "rawNativeSHA256": "427f869b8929a84618cc49ef88eb6704d1fc0745c1138c0c8219efa98e5bfb6f",
+      "inputNativeFrame": 1,
+      "generatedNativeFrame": 2,
+      "prompt": "Recolor these four separate pixel weapons, preserve every original shape and placement. Top left rapier: amethyst purple blade with gold rim and guard. Top right gun: copper barrel, brass metal and small violet details. Bottom left sword: blue steel blade with gold rim and guard. Bottom right bow: midnight blue limbs with moonlight blue highlights and gold tips, preserve ivory string. Transparent background, no characters, no extra objects, crisp pixel art.",
+      "outputMethod": "New frame",
+      "removeBackground": true,
+      "outputCanvas": [
+        256,
+        256
+      ],
+      "outputNonzeroAlphaPixels": 6075,
+      "successEvidence": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\evidence\\weapons-finished.png"
+    }
+  ],
+  "saveExportCorrection": "First weapon export came from unsaved reference native; GUI generated result was preserved, saved with verified filename and re-exported from frame2 without additional calls",
+  "accountSettingsReadOrChanged": false
+}

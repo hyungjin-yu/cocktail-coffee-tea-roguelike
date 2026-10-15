@@ -71,7 +71,7 @@ namespace CCT
 
             var title = UiFactory.Place("Title", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -140f),
                 new Vector2(1400f, 110f));
-            UiFactory.AddText(title, "칵테일 · 커피 · 차", 76, TextAnchor.MiddleCenter, Color.white);
+            UiFactory.AddText(title, GameInfo.Title, 76, TextAnchor.MiddleCenter, Color.white);
 
             var subtitle = UiFactory.Place("Subtitle", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -230f),
                 new Vector2(1200f, 60f));
@@ -143,7 +143,9 @@ namespace CCT
 
         void BuildSkinShopButton(RectTransform parent)
         {
-            var rt = UiFactory.Place("SkinShopButton", parent, new Vector2(1f, 1f), new Vector2(-40f, -16f), new Vector2(300f, 120f)); // 제목 상자(위 140..250) 위쪽
+            // 2026-10-15 사용자 피드백: 버튼이 메뉴 테두리(카페 배경 안쪽 여백 24)를 넘어 보였다 — 테두리 안(56)으로 넣고 크기를 줄인다.
+            // 아래 끝 128 < 제목 상자 위 140이라 제목과 겹치지 않는다.
+            var rt = UiFactory.Place("SkinShopButton", parent, new Vector2(1f, 1f), new Vector2(-56f, -56f), new Vector2(240f, 72f));
             var bg = UiFactory.AddImage(rt, new Color(0.55f, 0.4f, 0.2f));
             MakeConfirmButton(rt, bg, () =>
             {

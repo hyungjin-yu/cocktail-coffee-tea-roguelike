@@ -758,7 +758,10 @@ namespace CCT
             // 적 루트 y를 레인으로 제한한다 (06:14). 직전 스텝에서 벗어났으면 여기서 되돌린다 —
             // 돌진 같은 임의 방향 이동도 레인 밖으로 더 나아가지 못하게 막는다(06:117 그라인더 돌진).
             float clampedY = Mathf.Clamp(rb.position.y, Balance.DepthMin, Balance.DepthMax);
-            if (!Mathf.Approximately(clampedY, rb.position.y)) rb.position = new Vector2(rb.position.x, clampedY);
+            // 57 P0-1: X도 유한 전투 구역 안으로 — 돌진·순간이동·넉백이 벽을 넘지 못하고, 벽에 반쯤 박혀 끼지 않게 반지름만큼 안쪽.
+            float clampedArenaX = BattleArena.ClampX(rb.position.x, def.radius);
+            if (!Mathf.Approximately(clampedY, rb.position.y) || !Mathf.Approximately(clampedArenaX, rb.position.x))
+                rb.position = new Vector2(clampedArenaX, clampedY);
 
             Vector2 toPlayer = player.Position - rb.position;
             if (staggerRemaining > 0f) staggerRemaining -= Time.fixedDeltaTime;

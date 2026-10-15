@@ -1,0 +1,1221 @@
+{
+  "assets": [
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_idle_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_idle_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            87
+          ],
+          "offHand": [
+            105,
+            87
+          ],
+          "grip": [
+            164,
+            87
+          ],
+          "rightHand": [
+            164,
+            87
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        40,
+        143,
+        97
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_idle_right_01.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_idle_right_01",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            87
+          ],
+          "offHand": [
+            105,
+            87
+          ],
+          "grip": [
+            164,
+            87
+          ],
+          "rightHand": [
+            164,
+            87
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        38,
+        143,
+        95
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_idle_right_02.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_idle_right_02",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            89
+          ],
+          "offHand": [
+            105,
+            89
+          ],
+          "grip": [
+            164,
+            89
+          ],
+          "rightHand": [
+            164,
+            89
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        38,
+        143,
+        95
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_idle_right_03.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_idle_right_03",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            89
+          ],
+          "offHand": [
+            105,
+            89
+          ],
+          "grip": [
+            164,
+            89
+          ],
+          "rightHand": [
+            164,
+            89
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        40,
+        143,
+        97
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            160,
+            87
+          ],
+          "grip": [
+            160,
+            87
+          ],
+          "rightHand": [
+            160,
+            87
+          ],
+          "offHand": [
+            109,
+            87
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        40,
+        143,
+        97
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_01.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_01",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            162,
+            85
+          ],
+          "grip": [
+            162,
+            85
+          ],
+          "rightHand": [
+            162,
+            85
+          ],
+          "offHand": [
+            107,
+            85
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        42,
+        143,
+        99
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_02.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_02",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            89
+          ],
+          "grip": [
+            164,
+            89
+          ],
+          "rightHand": [
+            164,
+            89
+          ],
+          "offHand": [
+            105,
+            89
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        38,
+        143,
+        95
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_03.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_03",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            166,
+            87
+          ],
+          "grip": [
+            166,
+            87
+          ],
+          "rightHand": [
+            166,
+            87
+          ],
+          "offHand": [
+            101,
+            87
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        40,
+        143,
+        97
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_04.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_04.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_04.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_04",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            166,
+            85
+          ],
+          "grip": [
+            166,
+            85
+          ],
+          "rightHand": [
+            166,
+            85
+          ],
+          "offHand": [
+            103,
+            85
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        42,
+        143,
+        99
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_05.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_05.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_05.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_05",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            89
+          ],
+          "grip": [
+            164,
+            89
+          ],
+          "rightHand": [
+            164,
+            89
+          ],
+          "offHand": [
+            105,
+            89
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        38,
+        143,
+        95
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_melee_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_melee_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            171,
+            133
+          ],
+          "grip": [
+            171,
+            133
+          ],
+          "rightHand": [
+            171,
+            133
+          ],
+          "offHand": [
+            111,
+            131
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        92,
+        32,
+        167,
+        93
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_melee_right_01.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_melee_right_01",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            161,
+            148
+          ],
+          "grip": [
+            161,
+            148
+          ],
+          "rightHand": [
+            161,
+            148
+          ],
+          "offHand": [
+            79,
+            185
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        98,
+        32,
+        175,
+        93
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_melee_right_02.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_melee_right_02",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            200,
+            140
+          ],
+          "grip": [
+            200,
+            140
+          ],
+          "rightHand": [
+            200,
+            140
+          ],
+          "offHand": [
+            103,
+            123
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        90,
+        42,
+        167,
+        103
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_melee_right_03.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_melee_right_03",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            169,
+            134
+          ],
+          "grip": [
+            169,
+            134
+          ],
+          "rightHand": [
+            169,
+            134
+          ],
+          "offHand": [
+            108,
+            129
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        92,
+        32,
+        169,
+        93
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_defeat_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_defeat_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            145,
+            78
+          ],
+          "grip": [
+            145,
+            78
+          ],
+          "rightHand": [
+            145,
+            78
+          ],
+          "offHand": [
+            112,
+            69
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        114,
+        62,
+        165,
+        121
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_defeat_right_01.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_defeat_right_01",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            156,
+            39
+          ],
+          "grip": [
+            156,
+            39
+          ],
+          "rightHand": [
+            156,
+            39
+          ],
+          "offHand": [
+            123,
+            42
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        130,
+        96,
+        181,
+        157
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_defeat_right_02.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_defeat_right_02",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            176,
+            41
+          ],
+          "grip": [
+            176,
+            41
+          ],
+          "rightHand": [
+            176,
+            41
+          ],
+          "offHand": [
+            121,
+            42
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        150,
+        140,
+        197,
+        195
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_defeat_right_03.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_defeat_right_03",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            186,
+            49
+          ],
+          "grip": [
+            186,
+            49
+          ],
+          "rightHand": [
+            186,
+            49
+          ],
+          "offHand": [
+            169,
+            48
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        180,
+        156,
+        235,
+        235
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_hurt_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_hurt_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_hurt_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_hurt_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            161,
+            82
+          ],
+          "grip": [
+            161,
+            82
+          ],
+          "rightHand": [
+            161,
+            82
+          ],
+          "offHand": [
+            121,
+            111
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        102,
+        54,
+        151,
+        111
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_ranged_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_ranged_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            161,
+            133
+          ],
+          "grip": [
+            161,
+            133
+          ],
+          "rightHand": [
+            161,
+            133
+          ],
+          "offHand": [
+            112,
+            132
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        88,
+        32,
+        169,
+        97
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_ranged_right_01.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_ranged_right_01",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            180,
+            152
+          ],
+          "grip": [
+            180,
+            152
+          ],
+          "rightHand": [
+            180,
+            152
+          ],
+          "offHand": [
+            107,
+            141
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        62,
+        38,
+        113,
+        97
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_ranged_right_02.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_ranged_right_02",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            160,
+            121
+          ],
+          "grip": [
+            160,
+            121
+          ],
+          "rightHand": [
+            160,
+            121
+          ],
+          "offHand": [
+            90,
+            141
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        92,
+        38,
+        143,
+        97
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_ranged_right_03.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_ranged_right_03",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            165,
+            88
+          ],
+          "grip": [
+            165,
+            88
+          ],
+          "rightHand": [
+            165,
+            88
+          ],
+          "offHand": [
+            99,
+            89
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        92,
+        32,
+        141,
+        89
+      ]
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\weapon_rapier\\frames\\weapon_rapier_effect_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_rapier_01\\weaponskin_rapier_01_held.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\weapons\\weaponskin_rapier_01\\weaponskin_rapier_01_held.png",
+      "rim": null,
+      "kind": "weapon",
+      "skinID": "weaponskin_rapier_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_rapier_01/weaponskin_rapier_01_held",
+      "anchor": {
+        "grip": [
+          46,
+          128
+        ],
+        "muzzle": [
+          226,
+          128
+        ]
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\weapon_gun\\frames\\weapon_gun_effect_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_gun_01\\weaponskin_gun_01_held.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\weapons\\weaponskin_gun_01\\weaponskin_gun_01_held.png",
+      "rim": null,
+      "kind": "weapon",
+      "skinID": "weaponskin_gun_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_gun_01/weaponskin_gun_01_held",
+      "anchor": {
+        "grip": [
+          104,
+          144
+        ],
+        "muzzle": [
+          226,
+          128
+        ]
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\weapon_sword\\frames\\weapon_sword_effect_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_sword_01\\weaponskin_sword_01_held.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\weapons\\weaponskin_sword_01\\weaponskin_sword_01_held.png",
+      "rim": null,
+      "kind": "weapon",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/weaponskin_sword_01_held",
+      "anchor": {
+        "grip": [
+          46,
+          128
+        ],
+        "muzzle": [
+          226,
+          128
+        ]
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\weapon_bow_v2\\weapon_bow_v2_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_bow_01\\weaponskin_bow_01_held.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\weapons\\weaponskin_bow_01\\weaponskin_bow_01_held.png",
+      "rim": null,
+      "kind": "weapon",
+      "skinID": "weaponskin_bow_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_bow_01/weaponskin_bow_01_held",
+      "anchor": {
+        "grip": [
+          76,
+          128
+        ],
+        "muzzle": [
+          142,
+          128
+        ],
+        "coordinateSpace": "source manifest pixel coordinates; keep existing runtime convention"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_00.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_00.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_00",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_01.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_01.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_01",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_02.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_02.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_02",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_03.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_03.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_03",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_04.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_04.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_04.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_04.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_04",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_05.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_05.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_05.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_05.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_05",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_06.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_06.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_06.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_06.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_06",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_07.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_07.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_07.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_07.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_07",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_00.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_00.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_00",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_01.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_01.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_01",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_02.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_02.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_02",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_03.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_03.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_03",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_04.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_04.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_04.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_04.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_04",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_05.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_05.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_05.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_05.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_05",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_06.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_06.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_06.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_06.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_06",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_07.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_07.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_07.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_07.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_07",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null
+    }
+  ],
+  "clips": {
+    "idle": {
+      "fps": 3,
+      "loop": true,
+      "files": [
+        "frames/bartender_idle_right_00.png",
+        "frames/bartender_idle_right_01.png",
+        "frames/bartender_idle_right_02.png",
+        "frames/bartender_idle_right_03.png"
+      ]
+    },
+    "move": {
+      "fps": 10,
+      "loop": true,
+      "files": [
+        "frames/bartender_move_right_00.png",
+        "frames/bartender_move_right_01.png",
+        "frames/bartender_move_right_02.png",
+        "frames/bartender_move_right_03.png",
+        "frames/bartender_move_right_04.png",
+        "frames/bartender_move_right_05.png"
+      ]
+    },
+    "melee": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/bartender_melee_right_00.png",
+        "frames/bartender_melee_right_01.png",
+        "frames/bartender_melee_right_02.png",
+        "frames/bartender_melee_right_03.png"
+      ]
+    },
+    "defeat": {
+      "fps": 10,
+      "loop": false,
+      "files": [
+        "frames/bartender_defeat_right_00.png",
+        "frames/bartender_defeat_right_01.png",
+        "frames/bartender_defeat_right_02.png",
+        "frames/bartender_defeat_right_03.png"
+      ]
+    },
+    "hurt": {
+      "fps": 0,
+      "loop": false,
+      "files": [
+        "frames/bartender_hurt_right_00.png"
+      ],
+      "durationSeconds": 0.08
+    },
+    "ranged": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/bartender_ranged_right_00.png",
+        "frames/bartender_ranged_right_01.png",
+        "frames/bartender_ranged_right_02.png",
+        "frames/bartender_ranged_right_03.png"
+      ]
+    }
+  },
+  "displayMetadata": {
+    "skin_bartender_midnight": {
+      "name": "미드나잇 바텐더",
+      "description": "흰 셔츠에 선명한 미드나잇 남색 조끼·바지와 금빛 넥타이 포인트"
+    },
+    "weaponskin_rapier_01": {
+      "name": "자수정 레이피어",
+      "description": "분홍 날을 자수정 보라로, 초록 테두리를 금빛 금속으로"
+    },
+    "weaponskin_gun_01": {
+      "name": "구리빛 총",
+      "description": "은빛·청록 총신을 따뜻한 구리와 황동, 보라 장식으로"
+    },
+    "weaponskin_sword_01": {
+      "name": "푸른 강철 검",
+      "description": "분홍 날을 푸른 강철로, 초록 테두리와 손잡이를 금빛으로"
+    },
+    "weaponskin_bow_01": {
+      "name": "달빛 활",
+      "description": "붉은 활대를 남색·달빛 파랑으로, 양 끝을 금빛으로"
+    }
+  }
+}

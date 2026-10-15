@@ -1,0 +1,219 @@
+{
+  "status": "ready",
+  "assets": [
+    {
+      "id": "bg_bar_boundary",
+      "png": "bg_bar_boundary_00.png",
+      "editable": "bg_bar_boundary.aseprite",
+      "dimensions": [
+        64,
+        128
+      ],
+      "content_bounds_xywh": [
+        20,
+        10,
+        23,
+        116
+      ],
+      "pivot_normalized": [
+        0.5,
+        0
+      ],
+      "filter": "Point",
+      "wrap": "Clamp",
+      "alpha": "binary transparent RGBA",
+      "mirror_x_safe": true,
+      "usage": "Visual only; narrow boundary module, place at lane edge; collision remains code-owned",
+      "sha256": "a4105f10cd084351aaf46c592fc8e772374c80d30d17d5f15137dfae3a61142f",
+      "tool_provenance": [
+        "PixelLab generate-style, official extension protocol 0.4.130",
+        "Aseprite batch Lua: alpha cleanup, bounds crop, nearest resize, canvas placement, PNG and layered .aseprite export"
+      ]
+    },
+    {
+      "id": "bg_bar_fence",
+      "png": "bg_bar_fence_00.png",
+      "editable": "bg_bar_fence.aseprite",
+      "dimensions": [
+        64,
+        64
+      ],
+      "content_bounds_xywh": [
+        13,
+        18,
+        37,
+        44
+      ],
+      "pivot_normalized": [
+        0.5,
+        0
+      ],
+      "filter": "Point",
+      "wrap": "Clamp",
+      "alpha": "binary transparent RGBA",
+      "mirror_x_safe": true,
+      "usage": "Visual only; narrow boundary module, place at lane edge; collision remains code-owned",
+      "sha256": "ee089fa773074d85cfacf931562afbc83343a2ec1edf1e3461bbdd43f33874c3",
+      "tool_provenance": [
+        "PixelLab generate-style, official extension protocol 0.4.130",
+        "Aseprite batch Lua: alpha cleanup, bounds crop, nearest resize, canvas placement, PNG and layered .aseprite export"
+      ]
+    },
+    {
+      "id": "bg_tea_boundary",
+      "png": "bg_tea_boundary_00.png",
+      "editable": "bg_tea_boundary.aseprite",
+      "dimensions": [
+        64,
+        128
+      ],
+      "content_bounds_xywh": [
+        20,
+        10,
+        24,
+        116
+      ],
+      "pivot_normalized": [
+        0.5,
+        0
+      ],
+      "filter": "Point",
+      "wrap": "Clamp",
+      "alpha": "binary transparent RGBA",
+      "mirror_x_safe": true,
+      "usage": "Visual only; narrow boundary module, place at lane edge; collision remains code-owned",
+      "sha256": "3a6d7a2daf20b54a0faccbb1b2f4b75f585608e979f83c7568c70e86b58b8f89",
+      "tool_provenance": [
+        "PixelLab generate-style, official extension protocol 0.4.130",
+        "Aseprite batch Lua: alpha cleanup, bounds crop, nearest resize, canvas placement, PNG and layered .aseprite export"
+      ]
+    },
+    {
+      "id": "bg_tea_fence",
+      "png": "bg_tea_fence_00.png",
+      "editable": "bg_tea_fence.aseprite",
+      "dimensions": [
+        64,
+        64
+      ],
+      "content_bounds_xywh": [
+        2,
+        25,
+        60,
+        37
+      ],
+      "pivot_normalized": [
+        0.5,
+        0
+      ],
+      "filter": "Point",
+      "wrap": "Clamp",
+      "alpha": "binary transparent RGBA",
+      "mirror_x_safe": true,
+      "usage": "Visual only; narrow boundary module, place at lane edge; collision remains code-owned",
+      "sha256": "4a036566bd7aec8b67757d98161ebf0f10290ce23fc9331c8e6afba7b08924f9",
+      "tool_provenance": [
+        "PixelLab generate-style, official extension protocol 0.4.130",
+        "Aseprite batch Lua: alpha cleanup, bounds crop, nearest resize, canvas placement, PNG and layered .aseprite export"
+      ]
+    },
+    {
+      "id": "drop_cocktail",
+      "png": "drop_cocktail_00.png",
+      "editable": "drop_cocktail.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "content_bounds_xywh": [
+        5,
+        2,
+        22,
+        28
+      ],
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "filter": "Point",
+      "wrap": "Clamp",
+      "alpha": "binary transparent RGBA",
+      "mirror_x_safe": true,
+      "usage": "World pickup rendered about 24-32 screen pixels; no glow/backing circle",
+      "sha256": "00727fc16edb3a4051a89df5110fb59c9136d39cedf8eb185976406826cb87d5",
+      "tool_provenance": [
+        "PixelLab generate-style, official extension protocol 0.4.130",
+        "Aseprite batch Lua: alpha cleanup, bounds crop, nearest resize, canvas placement, PNG and layered .aseprite export"
+      ]
+    },
+    {
+      "id": "drop_coffee",
+      "png": "drop_coffee_00.png",
+      "editable": "drop_coffee.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "content_bounds_xywh": [
+        2,
+        9,
+        28,
+        21
+      ],
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "filter": "Point",
+      "wrap": "Clamp",
+      "alpha": "binary transparent RGBA",
+      "mirror_x_safe": true,
+      "usage": "World pickup rendered about 24-32 screen pixels; no glow/backing circle",
+      "sha256": "7e2484d4014b97903455e7432d11118c7a74851a5148ffde923fd764e5d7de82",
+      "tool_provenance": [
+        "PixelLab generate-style, official extension protocol 0.4.130",
+        "Aseprite batch Lua: alpha cleanup, bounds crop, nearest resize, canvas placement, PNG and layered .aseprite export"
+      ]
+    },
+    {
+      "id": "drop_tea",
+      "png": "drop_tea_00.png",
+      "editable": "drop_tea.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "content_bounds_xywh": [
+        2,
+        3,
+        28,
+        27
+      ],
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "filter": "Point",
+      "wrap": "Clamp",
+      "alpha": "binary transparent RGBA",
+      "mirror_x_safe": true,
+      "usage": "World pickup rendered about 24-32 screen pixels; no glow/backing circle",
+      "sha256": "32b5785f151ff7bf29af37e839796de1999d643d86799fc570cafd9715d8c0f2",
+      "tool_provenance": [
+        "PixelLab generate-style, official extension protocol 0.4.130",
+        "Aseprite batch Lua: alpha cleanup, bounds crop, nearest resize, canvas placement, PNG and layered .aseprite export"
+      ]
+    }
+  ],
+  "source": "PixelLab raw PNGs retained in ArtProduction/feedback-2026-10-15",
+  "constraints": "Original assets preserved. No Unity Assets, code, or meta edits. No imagegen or drawn Python substitutes.",
+  "preview_order_left_to_right": [
+    "drop_cocktail",
+    "drop_tea",
+    "drop_coffee",
+    "bg_bar_boundary",
+    "bg_bar_fence",
+    "bg_tea_boundary",
+    "bg_tea_fence"
+  ]
+}

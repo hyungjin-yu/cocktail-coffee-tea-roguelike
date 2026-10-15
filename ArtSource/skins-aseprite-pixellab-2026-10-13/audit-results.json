@@ -1,0 +1,15 @@
+{
+  "count": 43,
+  "failures": [],
+  "passed": true,
+  "checks": [
+    "RGBA alpha",
+    "silhouette",
+    "outside geometry mask",
+    "protected head",
+    "white shirt",
+    "native reopen/export pixel match",
+    "source/output/native SHA256",
+    "unchanged anchor/runtime paths"
+  ]
+}

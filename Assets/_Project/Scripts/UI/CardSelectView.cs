@@ -23,10 +23,17 @@ namespace CCT
             public Text stacks;
             public Text odds;
             public Image categoryIcon;
+            public Text advice;
+            public GameObject badge;
+            public GameObject influenceRoot;
+            public Text influence;
         }
+
+        Text reasonLine, targetLine;
 
         readonly Slot[] slots = new Slot[SlotCount];
         readonly List<CardOffer> offers = new List<CardOffer>();
+        readonly List<CardAdvice> advice = new List<CardAdvice>();
         GameObject root;
         Action<CardOffer> onChosen;
         /// <summary>08:39 — 보상이 같은 호출에서 연달아 열릴 때(07:46) 직전 화면을 닫은 키/클릭/Submit이
@@ -34,6 +41,10 @@ namespace CCT
         readonly InputReleaseGate inputGate = new InputReleaseGate();
 
         public bool IsOpen => root != null && root.activeSelf;
+        /// <summary>49 추천 결과(테스트·QA용, 표시 중인 제시 순서와 같다).</summary>
+        public IReadOnlyList<CardAdvice> Advice => advice;
+        public string AdviceText(int index) => index >= 0 && index < SlotCount ? slots[index].advice.text : "";
+        public bool BadgeVisible(int index) => index >= 0 && index < SlotCount && slots[index].badge.activeSelf;
 
         public static CardSelectView Create(Transform canvas)
         {
@@ -44,9 +55,29 @@ namespace CCT
             var view = rootRt.gameObject.AddComponent<CardSelectView>();
             view.root = rootRt.gameObject;
 
-            var title = UiFactory.Place("Title", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -110f),
+            // 57 P1: 제목을 올리고 그 아래에 "왜 열렸나·다음 카드 창 조건"과 목표 조합 진행 줄을 둔다(카드 위 추천 표식 위쪽).
+            var title = UiFactory.Place("Title", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -30f),
                 new Vector2(1200f, 80f));
             UiFactory.AddText(title, "레벨업!  카드를 선택하세요", 56, TextAnchor.MiddleCenter, Color.white);
+            view.reasonLine = UiFactory.AddText(UiFactory.Place("Reason", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -114f),
+                new Vector2(1600f, 40f)), "", 26, TextAnchor.MiddleCenter, new Color(0.9f, 0.92f, 1f));
+            view.targetLine = UiFactory.AddText(UiFactory.Place("TargetLine", rootRt, new Vector2(0.5f, 1f), new Vector2(-150f, -162f),
+                new Vector2(1220f, 44f)), "", 24, TextAnchor.MiddleCenter, new Color(0.75f, 0.92f, 1f));
+            view.targetLine.resizeTextForBestFit = true;
+            view.targetLine.resizeTextMinSize = 16;
+            view.targetLine.resizeTextMaxSize = 24;
+            view.targetLine.verticalOverflow = VerticalWrapMode.Truncate;
+            var changeRt = UiFactory.Place("ChangeTarget", rootRt, new Vector2(0.5f, 1f), new Vector2(620f, -160f), new Vector2(280f, 48f));
+            var changeBg = UiFactory.AddImage(changeRt, new Color(0.18f, 0.32f, 0.38f));
+            UiFactory.SkinButton(changeBg);
+            var change = changeRt.gameObject.AddComponent<Button>();
+            change.targetGraphic = changeBg;
+            UiFactory.ApplyHoverColors(change);
+            UiFactory.AddFocusSfx(change);
+            change.onClick.AddListener(() => { if (GameManager.Instance != null) GameManager.Instance.OpenComboTarget(); });
+            UiFactory.AddText(UiFactory.Stretch("Label", changeRt), MobilePlatform.IsTouchUI ? "목표 바꾸기" : "목표 바꾸기 [T]", 24,
+                TextAnchor.MiddleCenter, Color.white);
+            view.ChangeTargetButton = change;
 
             for (int i = 0; i < SlotCount; i++)
                 view.slots[i] = view.BuildSlot(rootRt, i);
@@ -93,6 +124,25 @@ namespace CCT
             slot.stacks = UiFactory.AddText(UiFactory.Place("Stacks", rt, new Vector2(0.5f, 0f),
                 new Vector2(0f, 110f), new Vector2(380f, 40f)), "", 28, TextAnchor.MiddleCenter,
                 new Color(0.75f, 0.85f, 1f));
+            // 49 추천: 근거 문구(기존 확률 문구 자리 — 확률 문구는 숨김 유지)와 카드 위 테두리의 "추천" 표식. 선택·포커스는 바꾸지 않는다.
+            slot.advice = UiFactory.AddText(UiFactory.Place("Advice", rt, new Vector2(0.5f, 0f),
+                new Vector2(0f, 34f), new Vector2(400f, 70f)), "", 22, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.55f));
+            slot.advice.raycastTarget = false;
+            var badgeRt = UiFactory.Place("RecommendBadge", rt, new Vector2(0.5f, 1f), new Vector2(0f, 26f), new Vector2(180f, 48f));
+            UiFactory.AddImage(badgeRt, new Color(0.95f, 0.72f, 0.25f, 1f)).raycastTarget = false;
+            UiFactory.AddText(UiFactory.Stretch("Label", badgeRt), "추천", 30, TextAnchor.MiddleCenter, new Color(0.18f, 0.1f, 0.04f))
+                .raycastTarget = false;
+            slot.badge = badgeRt.gameObject;
+            slot.badge.SetActive(false);
+            // 57 P1 목표 조합 진행: 이 카드가 목표 조건을 몇에서 몇으로 올리는지(카드 아래 띠, 해당 없으면 숨김).
+            var infRt = UiFactory.Place("TargetInfluence", rt, new Vector2(0.5f, 0f), new Vector2(0f, -72f), new Vector2(430f, 62f));
+            UiFactory.AddImage(infRt, new Color(0.08f, 0.24f, 0.3f, 0.95f)).raycastTarget = false;
+            slot.influence = UiFactory.AddText(UiFactory.Stretch("Label", infRt), "", 22, TextAnchor.MiddleCenter, new Color(0.8f, 0.96f, 1f));
+            slot.influence.resizeTextForBestFit = true;
+            slot.influence.resizeTextMinSize = 15;
+            slot.influence.resizeTextMaxSize = 22;
+            slot.influenceRoot = infRt.gameObject;
+            slot.influenceRoot.SetActive(false);
             slot.odds = UiFactory.AddText(UiFactory.Place("Odds", rt, new Vector2(0.5f, 0f),
                 new Vector2(0f, 40f), new Vector2(380f, 44f)), "", 28, TextAnchor.MiddleCenter,
                 new Color(1f, 1f, 1f, 0.6f));
@@ -110,11 +160,16 @@ namespace CCT
             }
         }
 
-        public void Show(List<CardOffer> newOffers, Action<CardOffer> callback)
+        /// <param name="adviceContext">49 추천 판정 상태. null이면 실행 중 게임의 실제 상태(없으면 추천 표시 없음).</param>
+        public void Show(List<CardOffer> newOffers, Action<CardOffer> callback, CardAdviceContext adviceContext = null)
         {
             offers.Clear();
             offers.AddRange(newOffers);
             onChosen = callback;
+            if (adviceContext == null && GameManager.Instance != null && GameManager.Instance.Player != null)
+                adviceContext = GameManager.Instance.BuildCardAdviceContext();
+            advice.Clear();
+            advice.AddRange(CardAdvisor.Evaluate(offers, adviceContext));
 
             for (int i = 0; i < SlotCount; i++)
             {
@@ -147,6 +202,10 @@ namespace CCT
                     : $"Lv {offer.currentStacks} → {offer.currentStacks + 1}  (최대 {card.maxStacks})";
                 slot.odds.text = offer.earlyRangedPriority ? "초반 원거리 우선 추첨 (60%)" : $"{RarityTable.Label(card.rarity)} 등급 확률 {offer.rarityPercent:0.#}%";
                 slot.odds.gameObject.SetActive(false);
+                var a = advice[i];
+                slot.advice.text = a.reason;
+                slot.advice.color = a.recommended ? new Color(1f, 0.86f, 0.55f) : new Color(0.85f, 0.85f, 0.9f, 0.85f);
+                slot.badge.SetActive(a.recommended);
                 UiFactory.SetChoice(slot.background, false,
                     Color.Lerp(new Color(0.16f, 0.13f, 0.2f), rarityColor, 0.18f));
                 var icon = CategoryIcon(card.category);
@@ -154,9 +213,55 @@ namespace CCT
                 slot.categoryIcon.gameObject.SetActive(icon != null);
             }
 
+            reasonLine.text = ReasonText(offers.Count > 0 ? offers[0].card.category : CardCategory.Cocktail, GameManager.Instance);
+            RefreshTargetInfo();
             inputGate.Arm(Time.frameCount);
             root.SetActive(true);
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(slots[0].root);
+        }
+
+        /// <summary>57 P1 "카드 창이 왜 열렸나 · 다음 카드 창 조건" — 실제 게이지 기준(RunGuide.NextCardStatus).</summary>
+        public static string ReasonText(CardCategory category, GameManager g)
+        {
+            if (g == null) return "";
+            var type = category == CardCategory.Tea ? IngredientType.Tea : IngredientType.Cocktail;
+            return $"{RunGuide.IngredientName(type, g.Job)} 게이지가 가득 차서 {RunGuide.CardKind(type)} 카드를 고릅니다 · 다음 카드 창: {RunGuide.NextCardStatus(g)}";
+        }
+
+        public Button ChangeTargetButton { get; private set; }
+        /// <summary>지금 제시 중인 카드(QA·테스트용, 읽기 전용).</summary>
+        public IReadOnlyList<CardOffer> Offers => offers;
+        public string ReasonLineText => reasonLine != null ? reasonLine.text : "";
+        public string TargetLineText => targetLine != null ? targetLine.text : "";
+        public string InfluenceText(int index) => index >= 0 && index < SlotCount && slots[index].influenceRoot.activeSelf ? slots[index].influence.text : "";
+
+        /// <summary>목표 조합 줄과 카드별 진행 띠를 실제 런 상태로 다시 그린다(목표를 바꾼 뒤에도 호출).</summary>
+        public void RefreshTargetInfo()
+        {
+            var g = GameManager.Instance;
+            bool hasGame = g != null && g.Player != null;
+            targetLine.gameObject.SetActive(hasGame);
+            ChangeTargetButton.gameObject.SetActive(hasGame);
+            for (int i = 0; i < SlotCount; i++) slots[i].influenceRoot.SetActive(false);
+            if (!hasGame) return;
+            string key = MobilePlatform.IsTouchUI ? "" : " [T]";
+            if (!g.ComboTarget.HasValue)
+            {
+                targetLine.text = $"목표 조합 미지정 · 목표 바꾸기{key}로 원하는 히든을 정하면 필요한 카드가 표시됩니다";
+                return;
+            }
+            var def = HiddenSkillDatabase.Get(g.ComboTarget.Value);
+            var state = g.HiddenState;
+            bool discovered = g.HiddenDiscovered(def.id);
+            string name = HiddenRequirements.DisplayName(def, g.Job, discovered);
+            targetLine.text = $"목표 {name}: {HiddenRequirements.ProgressLine(def, g.Job, state)}";
+            for (int i = 0; i < SlotCount && i < offers.Count; i++)
+            {
+                if (!HiddenRequirements.CardAdvances(def, g.Job, state, offers[i].card.id, out var before, out bool completes)) continue;
+                string step = $"{JobStudyTheme.Text(before.req.label, g.Job)} {before.current}→{before.current + 1}/{before.req.count}";
+                slots[i].influence.text = completes ? $"목표 '{name}' 조건 완성!" : $"목표 진행 · {step}";
+                slots[i].influenceRoot.SetActive(true);
+            }
         }
 
         void Update()

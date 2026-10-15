@@ -29,7 +29,7 @@ namespace CCT
             UiFactory.AddText(title, "제작 정보", 54, TextAnchor.MiddleCenter, Color.white);
 
             string body =
-                $"칵테일 · 커피 · 차  ·  v{Application.version}\n\n" +
+                $"{GameInfo.Title}  ·  v{Application.version}\n\n" +
                 "아트\n" +
                 "PixelLab으로 제작한 픽셀 아트를 Aseprite에서 편집했습니다.\n\n" +
                 "폰트\n" +
@@ -52,6 +52,17 @@ namespace CCT
             button.onClick.AddListener(() => { AudioService.PlaySfx("ui_cancel"); view.Hide(); });
             view.closeButton = button;
             UiFactory.AddText(UiFactory.Stretch("Label", closeRt), "닫기", 30, TextAnchor.MiddleCenter, Color.white);
+
+            // 2026-10-13 공개 개인정보처리방침(기획 52/53) — 외부 브라우저로 연다.
+            var privacyRt = UiFactory.Place("PrivacyPolicyButton", rootRt, new Vector2(0.5f, 0f), new Vector2(-380f, 70f),
+                new Vector2(380f, 80f));
+            var privacyBg = UiFactory.AddImage(privacyRt, new Color(0.32f, 0.3f, 0.34f));
+            var privacy = privacyRt.gameObject.AddComponent<Button>();
+            UiFactory.AddFocusSfx(privacy);
+            privacy.targetGraphic = privacyBg;
+            UiFactory.ApplyHoverColors(privacy);
+            privacy.onClick.AddListener(() => { AudioService.PlaySfx("ui_confirm"); GameInfo.OpenPrivacyPolicy(); });
+            UiFactory.AddText(UiFactory.Stretch("Label", privacyRt), GameInfo.PrivacyPolicyLabel, 28, TextAnchor.MiddleCenter, Color.white);
 
             view.root.SetActive(false);
             return view;

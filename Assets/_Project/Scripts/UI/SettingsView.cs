@@ -127,6 +127,13 @@ namespace CCT
             view.retryButtonRoot = retryRt.gameObject;
             view.retryButtonRoot.SetActive(false);
 
+            // 2026-10-13 공개 개인정보처리방침 링크(외부 브라우저). 다시 시도 버튼(+360)과 겹치지 않는 오른쪽.
+            var privacyRt = UiFactory.Place("PrivacyPolicyButton", rootRt, new Vector2(0.5f, 0f), new Vector2(720f, 60f),
+                new Vector2(320f, 80f));
+            var privacyBg = UiFactory.AddImage(privacyRt, new Color(0.32f, 0.3f, 0.34f));
+            MakeButton(privacyRt, privacyBg, () => { AudioService.PlaySfx("ui_confirm"); GameInfo.OpenPrivacyPolicy(); });
+            UiFactory.AddText(UiFactory.Stretch("Label", privacyRt), GameInfo.PrivacyPolicyLabel, 26, TextAnchor.MiddleCenter, Color.white);
+
             view.BuildResolutionConfirm(rootRt);
             view.tutorialView = FirstRunTutorialView.Create(canvas);
 

@@ -22,8 +22,8 @@ namespace CCT
         public static string BodyFor(MovementScheme scheme) =>
             (MobilePlatform.IsTouchUI ? "왼쪽 아래를 누르고 끌어 이동 · 공격은 자동\n"
                 : scheme == MovementScheme.Mouse ? "마우스 커서 쪽으로 이동 · 공격은 자동\n" : "WASD/방향키 이동 · 공격은 자동\n") +
-            "재료를 모아 카드를 선택\n" +
-            "원두로 커피 스킬 해금\n" +
+            "적이 떨어뜨린 재료를 주워 게이지를 채우면 카드 선택\n" + // 57: 처치만으로는 안 찬다(주워야 함)
+            (MobilePlatform.IsTouchUI ? "원두로 커피 스킬 해금 · 목표 조합 버튼\n" : "원두로 커피 스킬 해금 · [T] 목표 조합\n") +
             (MobilePlatform.IsTouchUI ? "오른쪽 위 II 버튼·뒤로 가기로 일시정지" : "Esc 일시정지");
 
         public static FirstRunTutorialView Create(Transform canvas)

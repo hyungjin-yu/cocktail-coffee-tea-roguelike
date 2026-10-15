@@ -1,4 +1,4 @@
-#if CCT_PLAY_VERIFIER
+﻿#if CCT_PLAY_VERIFIER
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -109,7 +109,7 @@ namespace CCT
             startedReal = Time.realtimeSinceStartup;
             eventLog = new StreamWriter(Path.Combine(outDir, "events.log"), false, new UTF8Encoding(false)) { AutoFlush = true };
             telemetry = new StreamWriter(Path.Combine(outDir, "telemetry.csv"), false, new UTF8Encoding(false)) { AutoFlush = false };
-            telemetry.WriteLine("run,real,playingReal,runTime,state,hp,maxHp,x,y,inX,inY,kills,enemies,enemyShots,zones,cocktailLv,teaLv,beans,coffeePts,coffeeNodes,hybrid,boss,bossHp,fps,permanentCount,challengeCoffeeCount,enemyHpMultiplier,enemyDamageMultiplier,unlockTotal,spawnMultiplier,regularCap,regularSpawns,waveSpawns");
+            telemetry.WriteLine("run,real,playingReal,runTime,state,hp,maxHp,x,y,inX,inY,kills,enemies,enemyShots,zones,cocktailLv,teaLv,beans,coffeePts,coffeeNodes,hybrid,boss,bossHp,fps,permanentCount,challengeCoffeeCount,enemyHpMultiplier,enemyDamageMultiplier,unlockTotal,spawnMultiplier,regularCap,regularSpawns,waveSpawns,camX,bossX,bossOnScreen,waveSides");
             Application.logMessageReceived += OnLog;
             Event($"playverify start version={Application.version} job={job} weapon={weapon} maxRuns={maxRuns} abandonCheck={doAbandonCheck} buy={buyNodeId ?? "-"} dieAfterEnhanced={dieAfterEnhanced} weakBuild={weakBuild} skipCoffee={skipCoffee} " +
                   $"data={LaunchOptions.DataDir} save={PermanentProgress.ActiveSavePath} unity={Application.unityVersion}");
@@ -537,14 +537,27 @@ namespace CCT
             }
         }
 
+        bool bossMetLogged;
+
         void TrackBoss(GameManager g)
         {
             var boss = g.ActiveBoss;
+            // 57 P0-1: 보스가 처음 화면 안에 들어온 시각(입력만으로 보스와 만나는지).
+            if (boss != null && boss == lastBoss && !bossMetLogged && Camera.main != null &&
+                !BossDirectionIndicator.IsOffscreen(Camera.main.transform.position.x, Camera.main.orthographicSize * Camera.main.aspect,
+                    boss.transform.position.x, boss.Def.radius, out _))
+            {
+                bossMetLogged = true;
+                string met = $"BOSS MET {boss.Def.name} runTime={g.RunTime:0.00} playerX={g.Player.Position.x:0.00} bossX={boss.transform.position.x:0.00}";
+                bossEvents.Add($"run{runIndex}: {met}");
+                Event(met);
+            }
             if (boss != null && boss != lastBoss)
             {
                 lastBoss = boss;
                 lastBossName = boss.Def.name;
                 lastBossKind = boss.Def.boss;
+                bossMetLogged = false;
                 string e = $"BOSS SPAWN {boss.Def.name} runTime={g.RunTime:0.00} playingReal={playingReal:0.00} hp={boss.Hp:0}/{boss.MaxHp:0} playerHp={g.Player.Hp:0}/{g.Player.MaxHp:0}";
                 bossEvents.Add($"run{runIndex}: {e}");
                 Event(e);
@@ -618,7 +631,13 @@ namespace CCT
                 g.Challenge.PermanentCount.ToString(Inv), g.Challenge.CoffeeCount.ToString(Inv),
                 g.Challenge.HpMultiplier.ToString("0.000", Inv), g.Challenge.DamageMultiplier.ToString("0.000", Inv),
                 g.Challenge.PermanentUnlockTotal.ToString(Inv), g.Challenge.SpawnMultiplier.ToString("0.00", Inv), g.Challenge.RegularAliveCap.ToString(Inv),
-                (spawner != null ? spawner.RegularSpawns : -1).ToString(Inv), (spawner != null ? spawner.WaveSpawns : -1).ToString(Inv)));
+                (spawner != null ? spawner.RegularSpawns : -1).ToString(Inv), (spawner != null ? spawner.WaveSpawns : -1).ToString(Inv),
+                // 57 P2/P0: 유한 구역 관찰(카메라·보스 X, 보스가 화면에 보이는지, 마지막 웨이브가 실제로 나온 쪽).
+                Camera.main != null ? Camera.main.transform.position.x.ToString("0.00", Inv) : "",
+                boss != null ? boss.transform.position.x.ToString("0.00", Inv) : "",
+                boss != null && Camera.main != null ? (BossDirectionIndicator.IsOffscreen(Camera.main.transform.position.x,
+                    Camera.main.orthographicSize * Camera.main.aspect, boss.transform.position.x, boss.Def.radius, out _) ? "0" : "1") : "",
+                spawner != null ? spawner.LastWaveSides ?? "" : ""));
             if ((int)Real % 15 == 0) telemetry.Flush();
         }
 
@@ -738,10 +757,12 @@ namespace CCT
                 {
                     Vector2 q = pos + dir * speed * horizon;
                     q.y = Mathf.Clamp(q.y, Balance.DepthMin, Balance.DepthMax);
+                    q.x = BattleArena.ClampX(q.x, PlayerController.Radius); // 57: 벽 너머로 "도망"치는 예측 금지(실제 이동과 같게)
                     cost += CostAt(q, pos, dir, speed, horizon, caution, !ranged) * (horizon < 0.3f ? 1.4f : 1f);
                 }
                 Vector2 qEnd = pos + dir * speed * 0.6f;
                 qEnd.y = Mathf.Clamp(qEnd.y, Balance.DepthMin, Balance.DepthMax);
+                qEnd.x = BattleArena.ClampX(qEnd.x, PlayerController.Radius);
 
                 // 공격 위치 보상
                 if (target != null)
@@ -765,6 +786,9 @@ namespace CCT
                 // 레인 가장자리에 몰리지 않기(넉백·포위 대비)
                 float edge = Mathf.Min(qEnd.y - Balance.DepthMin, Balance.DepthMax - qEnd.y);
                 if (edge < 1.0f) cost += (1.0f - edge) * 3f;
+                // 57: 양 끝 벽에 몰리지 않기(사람도 벽 앞에서는 방향을 바꾼다 — 벽에 갇혀 포위되는 것 방지)
+                float wallGap = BattleArena.HalfWidth - Mathf.Abs(qEnd.x);
+                if (wallGap < 3f) cost += (3f - wallGap) * 1.5f;
                 if (dir == Vector2.zero) cost += 0.6f;      // 정지보다 계속 움직이기 선호
                 if (dir == currentInput) cost -= 0.8f;       // 사람처럼 방향을 자주 바꾸지 않기
 
@@ -847,6 +871,7 @@ namespace CCT
                 {
                     Vector2 me = from + dir * speed * Mathf.Min(t, horizon);
                     me.y = Mathf.Clamp(me.y, Balance.DepthMin, Balance.DepthMax);
+                    me.x = BattleArena.ClampX(me.x, PlayerController.Radius);
                     Vector2 sp = s.p + s.v * t;
                     float d = Vector2.Distance(me, sp);
                     if (d < 0.22f + 0.4f + 0.2f) { cost += 45f * caution; break; }

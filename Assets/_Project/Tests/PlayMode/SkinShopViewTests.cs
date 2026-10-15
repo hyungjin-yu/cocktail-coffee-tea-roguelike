@@ -84,5 +84,23 @@ namespace CCT.Tests
             Assert.IsTrue(title.IsOpen);
             Assert.IsFalse(title.SkinShopView.IsOpen);
         }
+
+        /// <summary>2026-10-15 사용자 피드백: 스킨 버튼이 타이틀 메뉴 테두리(카페 배경 안쪽 여백 24) 밖으로 나가면 안 되고, 제목(위 140)과도 겹치지 않는다.</summary>
+        [UnityTest]
+        public IEnumerator TitleSkinButton_StaysInsideMenuFrame()
+        {
+            SkinCommerce.SetSharedForTests(DisabledCommerce());
+            var title = TitleView.Show();
+            yield return null;
+            RectTransform rt = null;
+            foreach (var b in title.GetComponentsInChildren<Button>(true))
+                if (b.name == "SkinShopButton") rt = (RectTransform)b.transform;
+            Assert.IsNotNull(rt);
+            Assert.AreEqual(new Vector2(1f, 1f), rt.anchorMin, "오른쪽 위 기준");
+            float right = -rt.anchoredPosition.x, top = -rt.anchoredPosition.y;
+            Assert.GreaterOrEqual(right, 24f + 16f, "오른쪽 테두리 안");
+            Assert.GreaterOrEqual(top, 24f + 16f, "위 테두리 안");
+            Assert.Less(top + rt.sizeDelta.y, 140f, "제목 상자(위 140)와 겹치지 않음");
+        }
     }
 }

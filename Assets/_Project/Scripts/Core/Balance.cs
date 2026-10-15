@@ -32,8 +32,12 @@ namespace CCT
         public const int WaveCountPerSide = 4;
 
         // 사용자 후반 스폰 피드백: 20분 동안 계속 증가(영구 해금 배율과 별개).
-        public static float TimeSpawnMultiplier(float seconds) => 1f + UnityEngine.Mathf.Clamp(seconds, 0f, RunTimeLimitSeconds) / 600f;
-        public static int TimeWaveCountPerSide(float seconds) => WaveCountPerSide + UnityEngine.Mathf.FloorToInt(UnityEngine.Mathf.Clamp(seconds, 0f, RunTimeLimitSeconds) / 180f);
+        public const float LateSpawnStartSeconds = 420f;
+        public static int LateSpawnMultiplier(float seconds) => seconds >= LateSpawnStartSeconds ? 2 : 1;
+        public static float TimeSpawnMultiplier(float seconds) =>
+            (1f + UnityEngine.Mathf.Clamp(seconds, 0f, RunTimeLimitSeconds) / 600f) * LateSpawnMultiplier(seconds);
+        public static int TimeWaveCountPerSide(float seconds) =>
+            (WaveCountPerSide + UnityEngine.Mathf.FloorToInt(UnityEngine.Mathf.Clamp(seconds, 0f, RunTimeLimitSeconds) / 180f)) * LateSpawnMultiplier(seconds);
         public static int TimeAliveCap(float seconds, int permanentCap) => UnityEngine.Mathf.Min(MaxAliveEnemiesAbsolute,
             permanentCap + UnityEngine.Mathf.FloorToInt(UnityEngine.Mathf.Clamp(seconds, 0f, RunTimeLimitSeconds) / 20f));
 
@@ -86,6 +90,8 @@ namespace CCT
 
         /// <summary>재료 픽업 아이콘도 캔버스 여백 때문에 작아 보여서 시각적으로만 키운다.</summary>
         public const float IngredientIconVisualScale = 1.6f;
+        /// <summary>57(2026-10-15) P0-2: "드롭을 몇 분 뒤에야 알아챘다" — 픽업 시각 크기만 추가로 키운다(판정·끌림 거리 무관).</summary>
+        public const float PickupReadabilityScale = 1.25f;
 
         /// <summary>몹 발사체 아이콘도 캔버스 여백 때문에 작아 보여서 시각적으로만 키운다 (히트 판정 반지름은 무관).</summary>
         public const float EnemyProjectileIconVisualScale = 1.8f;

@@ -1,0 +1,2041 @@
+{
+  "status": "source_ready",
+  "productionTools": [
+    "PixelLab Aseprite extension GUI Edit image (Pro)",
+    "Aseprite 1.3.18.6 GUI and Lua"
+  ],
+  "pixelLabCalls": 2,
+  "designs": 5,
+  "pythonUsage": "inspection and metadata only",
+  "geometryMasks": "Existing candidate masks used only as geometry contracts; candidate output colors never read by authoring",
+  "clips": {
+    "idle": {
+      "fps": 3,
+      "loop": true,
+      "files": [
+        "frames/bartender_idle_right_00.png",
+        "frames/bartender_idle_right_01.png",
+        "frames/bartender_idle_right_02.png",
+        "frames/bartender_idle_right_03.png"
+      ]
+    },
+    "move": {
+      "fps": 10,
+      "loop": true,
+      "files": [
+        "frames/bartender_move_right_00.png",
+        "frames/bartender_move_right_01.png",
+        "frames/bartender_move_right_02.png",
+        "frames/bartender_move_right_03.png",
+        "frames/bartender_move_right_04.png",
+        "frames/bartender_move_right_05.png"
+      ]
+    },
+    "melee": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/bartender_melee_right_00.png",
+        "frames/bartender_melee_right_01.png",
+        "frames/bartender_melee_right_02.png",
+        "frames/bartender_melee_right_03.png"
+      ]
+    },
+    "defeat": {
+      "fps": 10,
+      "loop": false,
+      "files": [
+        "frames/bartender_defeat_right_00.png",
+        "frames/bartender_defeat_right_01.png",
+        "frames/bartender_defeat_right_02.png",
+        "frames/bartender_defeat_right_03.png"
+      ]
+    },
+    "hurt": {
+      "fps": 0,
+      "loop": false,
+      "files": [
+        "frames/bartender_hurt_right_00.png"
+      ],
+      "durationSeconds": 0.08
+    },
+    "ranged": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/bartender_ranged_right_00.png",
+        "frames/bartender_ranged_right_01.png",
+        "frames/bartender_ranged_right_02.png",
+        "frames/bartender_ranged_right_03.png"
+      ]
+    }
+  },
+  "displayMetadata": {
+    "skin_bartender_midnight": {
+      "name": "미드나잇 바텐더",
+      "description": "흰 셔츠에 선명한 미드나잇 남색 조끼·바지와 금빛 넥타이 포인트"
+    },
+    "weaponskin_rapier_01": {
+      "name": "자수정 레이피어",
+      "description": "분홍 날을 자수정 보라로, 초록 테두리를 금빛 금속으로"
+    },
+    "weaponskin_gun_01": {
+      "name": "구리빛 총",
+      "description": "은빛·청록 총신을 따뜻한 구리와 황동, 보라 장식으로"
+    },
+    "weaponskin_sword_01": {
+      "name": "푸른 강철 검",
+      "description": "분홍 날을 푸른 강철로, 초록 테두리와 손잡이를 금빛으로"
+    },
+    "weaponskin_bow_01": {
+      "name": "달빛 활",
+      "description": "붉은 활대를 남색·달빛 파랑으로, 양 끝을 금빛으로"
+    }
+  },
+  "assets": [
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_idle_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_idle_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            87
+          ],
+          "offHand": [
+            105,
+            87
+          ],
+          "grip": [
+            164,
+            87
+          ],
+          "rightHand": [
+            164,
+            87
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        40,
+        143,
+        97
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 3276,
+      "sourceSHA256": "4bdf2350872c190113d769a5f85bc68678596fbcb4323d0eb118df3368ae582a",
+      "outputSHA256": "a4932b7f9a3cbba6243f65c9c43a65a4a7f39ade8828777cce28b3f2fa01159a",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_00.aseprite",
+      "nativeSHA256": "5ff97f84a77c96c4c0e5fcd4443753adbfc2db430e223555c707b4f21bc16ea4",
+      "nativeTag": "bartender_idle_right_00",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "dd60ead748c40775d6fb1006fa264c7903669d72ff3f28035d2fdf237707bde8",
+      "readbackSHA256": "a4932b7f9a3cbba6243f65c9c43a65a4a7f39ade8828777cce28b3f2fa01159a",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_idle_right_01.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_idle_right_01",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            87
+          ],
+          "offHand": [
+            105,
+            87
+          ],
+          "grip": [
+            164,
+            87
+          ],
+          "rightHand": [
+            164,
+            87
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        38,
+        143,
+        95
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 3304,
+      "sourceSHA256": "6525a94cd50dfefe58088e77ce6151c6fc7d77510886d6e671abe0c91765968d",
+      "outputSHA256": "5408b2eca697d76082ed3ecaf9d5719b302a1516808070c20dc08c1c12cafb3a",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_01.aseprite",
+      "nativeSHA256": "5b1a7f2222fcfdb5ea6310831eca12b5df1d1674a2c76d30c86014225bbf5591",
+      "nativeTag": "bartender_idle_right_01",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "fc80d521c94155afad3a0cb2bfbe153cfcc78ac4a2cfc3d115adf6598d00f55d",
+      "readbackSHA256": "5408b2eca697d76082ed3ecaf9d5719b302a1516808070c20dc08c1c12cafb3a",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_idle_right_02.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_idle_right_02",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            89
+          ],
+          "offHand": [
+            105,
+            89
+          ],
+          "grip": [
+            164,
+            89
+          ],
+          "rightHand": [
+            164,
+            89
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        38,
+        143,
+        95
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 3304,
+      "sourceSHA256": "7d24b0b9d538ecf4e54b5fd684d3d94012afc20837eeb4d9017d48b05f905dcc",
+      "outputSHA256": "003ee2c017dcfb4c12ab391b0a0b050851a9018b0a4dbd30653270162f57d15b",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_02.aseprite",
+      "nativeSHA256": "0bd877ae7dbeb4b6e82356fea487d0d9ffc9e91f4b33f4441525325ec3a1b4be",
+      "nativeTag": "bartender_idle_right_02",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "9b840615ae446d504a8849fd2e9e50b92ffebbbbec895de90d299785a84db7b5",
+      "readbackSHA256": "003ee2c017dcfb4c12ab391b0a0b050851a9018b0a4dbd30653270162f57d15b",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_idle_right_03.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_idle_right_03",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            89
+          ],
+          "offHand": [
+            105,
+            89
+          ],
+          "grip": [
+            164,
+            89
+          ],
+          "rightHand": [
+            164,
+            89
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        40,
+        143,
+        97
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 3276,
+      "sourceSHA256": "ca28bac9800022d2c3f6e16e8ac90a0060cc649374366befb8ec06a09f146de3",
+      "outputSHA256": "ef175475e24b2deffbc0f3ea377b079eb6321222f391a939f99e0df01037100b",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_idle_right_03.aseprite",
+      "nativeSHA256": "18de86027984d25a35ad6533eb1d0d8e2683c0b995e55e229fb72a7622594767",
+      "nativeTag": "bartender_idle_right_03",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "079a98eccaa9dbb8c965e5cef50d11884482c907be13ba5cb74642536e79d0ba",
+      "readbackSHA256": "ef175475e24b2deffbc0f3ea377b079eb6321222f391a939f99e0df01037100b",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            160,
+            87
+          ],
+          "grip": [
+            160,
+            87
+          ],
+          "rightHand": [
+            160,
+            87
+          ],
+          "offHand": [
+            109,
+            87
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        40,
+        143,
+        97
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2890,
+      "sourceSHA256": "d0a02353e4cac05e47ef20feec3695986f7857ee318378eb1178381a239478dd",
+      "outputSHA256": "2579aa97544a05e2093f7cec2d5f9149ce6d2bc5e1d993930ab708f05dbbafdf",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_00.aseprite",
+      "nativeSHA256": "f3e5326109f5e7715bd68341f79b9c87032b9415b53458c9b28402f528f82d67",
+      "nativeTag": "bartender_move_right_00",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "3d56fb8952811be1e3496cc1f6d3639089ed9595b55ea0966b76d22c66d8dcfc",
+      "readbackSHA256": "2579aa97544a05e2093f7cec2d5f9149ce6d2bc5e1d993930ab708f05dbbafdf",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_01.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_01",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            162,
+            85
+          ],
+          "grip": [
+            162,
+            85
+          ],
+          "rightHand": [
+            162,
+            85
+          ],
+          "offHand": [
+            107,
+            85
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        42,
+        143,
+        99
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2616,
+      "sourceSHA256": "40fac68528e5ff6372b085f9d5f3a27ec1987d4408d23c29d38a0389aade4e3a",
+      "outputSHA256": "71cf7b306b0f56ca39a5413e2c5b2613ad65c9a9d9ce703d639bc17c4433b4b1",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_01.aseprite",
+      "nativeSHA256": "4b58a50fb028702da5d2d8e8fcd6ba5737f4afbd86810de3db4101e3fadea04d",
+      "nativeTag": "bartender_move_right_01",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "f7a0a40cfd1ee88da2af9d6a4a8f93dad89fae2aaf0c3960b214069651df96f5",
+      "readbackSHA256": "71cf7b306b0f56ca39a5413e2c5b2613ad65c9a9d9ce703d639bc17c4433b4b1",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_02.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_02",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            89
+          ],
+          "grip": [
+            164,
+            89
+          ],
+          "rightHand": [
+            164,
+            89
+          ],
+          "offHand": [
+            105,
+            89
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        38,
+        143,
+        95
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2584,
+      "sourceSHA256": "624580fa4f40abf8fa8d70b772de3e5adf66270475db30aa1fbd00ffd084bd89",
+      "outputSHA256": "280580735c927f52b502be4a8099da53a5991ce1819f83447840030f96d57e6c",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_02.aseprite",
+      "nativeSHA256": "9e82c2e64bbb80a576b9180f2b79331666785de6edf8721410507fe4589fe7b9",
+      "nativeTag": "bartender_move_right_02",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "68d2769d1c5c9aef76418d74ca94a6600e679682d8274258389c58065231ee97",
+      "readbackSHA256": "280580735c927f52b502be4a8099da53a5991ce1819f83447840030f96d57e6c",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_03.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_03",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            166,
+            87
+          ],
+          "grip": [
+            166,
+            87
+          ],
+          "rightHand": [
+            166,
+            87
+          ],
+          "offHand": [
+            101,
+            87
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        40,
+        143,
+        97
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2860,
+      "sourceSHA256": "768de3c2e9511a02d67c1ff9062985185c304236aa933ec2e5839154dc9e7a41",
+      "outputSHA256": "f9867434792be4b6061363c3118da01bf0acea0ba37c90ebe5bf54791141334a",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_03.aseprite",
+      "nativeSHA256": "73acef17c178849f8b0752526e5f2c96505703923106526fa204a63c9fcd149d",
+      "nativeTag": "bartender_move_right_03",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "9eb4981abe8c4f650f7b8ed5e60f71840b114167fa2d416636290661f56419a5",
+      "readbackSHA256": "f9867434792be4b6061363c3118da01bf0acea0ba37c90ebe5bf54791141334a",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_04.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_04.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_04.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_04",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            166,
+            85
+          ],
+          "grip": [
+            166,
+            85
+          ],
+          "rightHand": [
+            166,
+            85
+          ],
+          "offHand": [
+            103,
+            85
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        42,
+        143,
+        99
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2552,
+      "sourceSHA256": "855ff3755fc9fad66b6ee05907fb1f0b6df7d47b157debf615fc8ae8d9916731",
+      "outputSHA256": "120bf7377ae764bf2921f7dbfe8d67801376faf72d7050dd2d74e327688e2a9d",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_04.aseprite",
+      "nativeSHA256": "2043869191f02ecca2cbfda5fe4634ec4269d25f2c9cee615d64f5d6cb6b2499",
+      "nativeTag": "bartender_move_right_04",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "05e8b0bf41e83b872df3e1515317e81e31ab2c0ed090f95cef41cc95ffe2dd38",
+      "readbackSHA256": "120bf7377ae764bf2921f7dbfe8d67801376faf72d7050dd2d74e327688e2a9d",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_05.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_05.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_move_right_05.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_move_right_05",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            164,
+            89
+          ],
+          "grip": [
+            164,
+            89
+          ],
+          "rightHand": [
+            164,
+            89
+          ],
+          "offHand": [
+            105,
+            89
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        94,
+        38,
+        143,
+        95
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2676,
+      "sourceSHA256": "7d214898e009c48491eba2ba79c8e68bdf3cb44d42b44e47161d050998fe6edf",
+      "outputSHA256": "b2aaefbcf5aece249d20d67fc1c01285913415ff5dc3c099f937c9aa9ceca17d",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_move_right_05.aseprite",
+      "nativeSHA256": "297c2f144d636084947fea28af105964a9e9aebc6d8dc797bb63397c12468051",
+      "nativeTag": "bartender_move_right_05",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "d1628e9d58c0c830aeef9cf6e45333e2e7e5958863e59fde0e00c781ba48d822",
+      "readbackSHA256": "b2aaefbcf5aece249d20d67fc1c01285913415ff5dc3c099f937c9aa9ceca17d",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_melee_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_melee_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            171,
+            133
+          ],
+          "grip": [
+            171,
+            133
+          ],
+          "rightHand": [
+            171,
+            133
+          ],
+          "offHand": [
+            111,
+            131
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        92,
+        32,
+        167,
+        93
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 3654,
+      "sourceSHA256": "ab407a1d17436c7849800c1a0129513693540eace21091b20334667582ad3ab9",
+      "outputSHA256": "a859415cb202640bbc54df234cb28987aab471a54c48442e8b608af9a96e25b3",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_00.aseprite",
+      "nativeSHA256": "1870a8257947129f372ad3bfe0a60dae14efcc67643bc3a892d86127939a13d4",
+      "nativeTag": "bartender_melee_right_00",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "ea8f23354814e5de9df71cdc45f756e2d918fe2721f464a918be1d1c8da2dafd",
+      "readbackSHA256": "a859415cb202640bbc54df234cb28987aab471a54c48442e8b608af9a96e25b3",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_melee_right_01.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_melee_right_01",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            161,
+            148
+          ],
+          "grip": [
+            161,
+            148
+          ],
+          "rightHand": [
+            161,
+            148
+          ],
+          "offHand": [
+            79,
+            185
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        98,
+        32,
+        175,
+        93
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 4590,
+      "sourceSHA256": "a4f2f3cc0eb24cc158ed2d08a51c4c642e4342509304c41dc3027617eb283473",
+      "outputSHA256": "165698e2003e1dfa88721bd48b9b36ac126379b60c4ba6be9869d6c9b50b57d7",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_01.aseprite",
+      "nativeSHA256": "fda0f1e4b8bca533abc84e11e15ccda0718cdaca2851dd706edec6d91d237e07",
+      "nativeTag": "bartender_melee_right_01",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "5b0e4ee4609277b69a3f3f1f901dc7b0afd36bca04645b2f6c99b93889ffbb6d",
+      "readbackSHA256": "165698e2003e1dfa88721bd48b9b36ac126379b60c4ba6be9869d6c9b50b57d7",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_melee_right_02.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_melee_right_02",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            200,
+            140
+          ],
+          "grip": [
+            200,
+            140
+          ],
+          "rightHand": [
+            200,
+            140
+          ],
+          "offHand": [
+            103,
+            123
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        90,
+        42,
+        167,
+        103
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 4480,
+      "sourceSHA256": "054b5fc324aa93191dbea418f5658500b44e3f4083d7c16920a178765764fbbe",
+      "outputSHA256": "aec3e23d57704189023d14739e662721536a68e0ee6cc2b085bc3074ddb9078f",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_02.aseprite",
+      "nativeSHA256": "2cef8ea32a18572c1e1090ba59820887d71f9938bf4111df39f720e8295ca76f",
+      "nativeTag": "bartender_melee_right_02",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "4fc4ab240e7d14bd39f01a4b408ae5af0e794842a0bf276174570f05674d5d0f",
+      "readbackSHA256": "aec3e23d57704189023d14739e662721536a68e0ee6cc2b085bc3074ddb9078f",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_melee_right_03.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_melee_right_03",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            169,
+            134
+          ],
+          "grip": [
+            169,
+            134
+          ],
+          "rightHand": [
+            169,
+            134
+          ],
+          "offHand": [
+            108,
+            129
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        92,
+        32,
+        169,
+        93
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 3968,
+      "sourceSHA256": "c63a485f69f088704c282fbe16ef6eb65830e2602befc0dc12a58c33d9ed4bef",
+      "outputSHA256": "e580a18c8b1dfd764e58179f3910dc7882e4a3cfbf13937c369f7c4c296964ea",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_melee_right_03.aseprite",
+      "nativeSHA256": "95ab67567f8f4ea079566fa2c7c2e6d1cd643fd3358eca26cb8bc7a6dbedaf77",
+      "nativeTag": "bartender_melee_right_03",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "a32aff7b691d08b8a9f539135cef9aab07bca95835703de8f3585bf553aad68c",
+      "readbackSHA256": "e580a18c8b1dfd764e58179f3910dc7882e4a3cfbf13937c369f7c4c296964ea",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_defeat_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_defeat_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            145,
+            78
+          ],
+          "grip": [
+            145,
+            78
+          ],
+          "rightHand": [
+            145,
+            78
+          ],
+          "offHand": [
+            112,
+            69
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        114,
+        62,
+        165,
+        121
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2412,
+      "sourceSHA256": "ed1e468cfd9afc0f3dbe76abb50ed2e8a88ea9c176feac54bcf9cbb64b60ed56",
+      "outputSHA256": "b6b07e67f23242595e5e43decbfc45e538d6f3137705dc60278a5884e4175a0c",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_00.aseprite",
+      "nativeSHA256": "e1daa52d12628470f1462876846ee312bd5707172801044fb2db4e5a75deedb9",
+      "nativeTag": "bartender_defeat_right_00",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "af03307685156395bc8569f6aac68ae8b5dbf469086a01d0b5fe3873fab5d8a3",
+      "readbackSHA256": "b6b07e67f23242595e5e43decbfc45e538d6f3137705dc60278a5884e4175a0c",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_defeat_right_01.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_defeat_right_01",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            156,
+            39
+          ],
+          "grip": [
+            156,
+            39
+          ],
+          "rightHand": [
+            156,
+            39
+          ],
+          "offHand": [
+            123,
+            42
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        130,
+        96,
+        181,
+        157
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 1960,
+      "sourceSHA256": "9614a6ba2d9cf3206bfdf50c51e7d796b956d76a04af5a32623d6f4dbde00377",
+      "outputSHA256": "1e8bfe999e65e44b1487a2d3df693d6e761c0e8a4ecee2294018d672a1c62edf",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_01.aseprite",
+      "nativeSHA256": "612dc65fcbc8113d42a10a8b140ad3259444eb970eef0217308e44d561c82366",
+      "nativeTag": "bartender_defeat_right_01",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "b006005b2255e8c7e8cb63c3cff1c4d4894c6cb296697be84022448434216d53",
+      "readbackSHA256": "1e8bfe999e65e44b1487a2d3df693d6e761c0e8a4ecee2294018d672a1c62edf",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_defeat_right_02.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_defeat_right_02",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            176,
+            41
+          ],
+          "grip": [
+            176,
+            41
+          ],
+          "rightHand": [
+            176,
+            41
+          ],
+          "offHand": [
+            121,
+            42
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        150,
+        140,
+        197,
+        195
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2002,
+      "sourceSHA256": "0901832fd04ef1836eeae4274feb32844e2bac8f4d008535c9dcd5ddddd670a3",
+      "outputSHA256": "abdff15734faaf24c8f8ae32ea36d23bdd5e5ff610d22078247922dfbcf099f0",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_02.aseprite",
+      "nativeSHA256": "2f5b6d1748192aa810217da587faa8301a59221e74e34f07fb9e014056dd3c9c",
+      "nativeTag": "bartender_defeat_right_02",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "8740055614f6723f29f4870e5ac0f918439d42192afbab96be0f88a9338d5053",
+      "readbackSHA256": "abdff15734faaf24c8f8ae32ea36d23bdd5e5ff610d22078247922dfbcf099f0",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_defeat_right_03.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_defeat_right_03",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            186,
+            49
+          ],
+          "grip": [
+            186,
+            49
+          ],
+          "rightHand": [
+            186,
+            49
+          ],
+          "offHand": [
+            169,
+            48
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        180,
+        156,
+        235,
+        235
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2584,
+      "sourceSHA256": "24ae167d4fa62215cba9fc822b1f7af8c7cc7317ddf46bdeb7c9490d4eef66e4",
+      "outputSHA256": "39568985b78c5e77d0c3d978b29207c1bacdb256feb3aa755c349062f7256888",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_defeat_right_03.aseprite",
+      "nativeSHA256": "8327f1e2828bed0aeafc909504f3d8f8d3cfc8911c123c47423e58abbe9e64ba",
+      "nativeTag": "bartender_defeat_right_03",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "32586213570c48ca229e7aba2143b925d1adb14e2f69ddfd7577ee15f49c8422",
+      "readbackSHA256": "39568985b78c5e77d0c3d978b29207c1bacdb256feb3aa755c349062f7256888",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_hurt_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_hurt_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_hurt_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_hurt_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            161,
+            82
+          ],
+          "grip": [
+            161,
+            82
+          ],
+          "rightHand": [
+            161,
+            82
+          ],
+          "offHand": [
+            121,
+            111
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        102,
+        54,
+        151,
+        111
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2550,
+      "sourceSHA256": "0f4034cee6f988aa4426e9a727d64a35c07278806e1df05266303529e97c8318",
+      "outputSHA256": "8101e73f0495f9cd38e4b32ddbbd3e797efd634b013c4584516ad867087ed600",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_hurt_right_00.aseprite",
+      "nativeSHA256": "7a289bb8b32eb5aa91244635b6b3115d70b972e1271f0cd899ac3bec363b2f5a",
+      "nativeTag": "bartender_hurt_right_00",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "f8dfdeb2bb06fc8a9327ad199ea9822cdf02808338c987c1261e4059849b778e",
+      "readbackSHA256": "8101e73f0495f9cd38e4b32ddbbd3e797efd634b013c4584516ad867087ed600",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_ranged_right_00.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_ranged_right_00",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            161,
+            133
+          ],
+          "grip": [
+            161,
+            133
+          ],
+          "rightHand": [
+            161,
+            133
+          ],
+          "offHand": [
+            112,
+            132
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        88,
+        32,
+        169,
+        97
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2988,
+      "sourceSHA256": "1835d7ccdb2c992c4868cde5f3e36e0200d68a7ed09cb3884a9667959de75abc",
+      "outputSHA256": "48508d353c8ea463b1c696bd153834ce469705f8bb9f89c3ff7b912fee3c788f",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_00.aseprite",
+      "nativeSHA256": "ab946de60e5a61f571d6d74ca1dd9f13b9f6fde774283468ef447480d3685e29",
+      "nativeTag": "bartender_ranged_right_00",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "1773e34d6fa72eba3542b88b95d66eb09764b54158c88b03c208ab62eee44f2a",
+      "readbackSHA256": "48508d353c8ea463b1c696bd153834ce469705f8bb9f89c3ff7b912fee3c788f",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_ranged_right_01.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_ranged_right_01",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            180,
+            152
+          ],
+          "grip": [
+            180,
+            152
+          ],
+          "rightHand": [
+            180,
+            152
+          ],
+          "offHand": [
+            107,
+            141
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        62,
+        38,
+        113,
+        97
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 2744,
+      "sourceSHA256": "a42420e54fa68134d8fc2d063005e8925dc1828aa7efc25edd6c684003a9a264",
+      "outputSHA256": "d6444024b7b93ebdb09272f5b6b8a833bdb66c7ac961af508e0d722408f2a0bd",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_01.aseprite",
+      "nativeSHA256": "01d5403dcb2dfa0ac9914e41ca7712951cd87f4f39b7afd87b299476e51cc9f3",
+      "nativeTag": "bartender_ranged_right_01",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "2b39c401ac7ed252226cc4cb72ba5e10759639273e5d312de4bf8bf9994379f5",
+      "readbackSHA256": "d6444024b7b93ebdb09272f5b6b8a833bdb66c7ac961af508e0d722408f2a0bd",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_ranged_right_02.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_ranged_right_02",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            160,
+            121
+          ],
+          "grip": [
+            160,
+            121
+          ],
+          "rightHand": [
+            160,
+            121
+          ],
+          "offHand": [
+            90,
+            141
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        92,
+        38,
+        143,
+        97
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 3356,
+      "sourceSHA256": "a70085f44208cd19b81c57abde19be354edd0df80e7bf75495cb793afe399d5f",
+      "outputSHA256": "e118153f88f267dd2bd89a0d650c2881b683382382fe0f81f96efaf7773f209a",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_02.aseprite",
+      "nativeSHA256": "0b39549aeb2b811918b3b7f60bcf282aa52b1a5bedddba75c8a4a2236a131a32",
+      "nativeTag": "bartender_ranged_right_02",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "b5c53033e0ea9b60950e2844a468563643b4c32b994a93c0539c697b6d00f383",
+      "readbackSHA256": "e118153f88f267dd2bd89a0d650c2881b683382382fe0f81f96efaf7773f209a",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\body\\skin_bartender_midnight\\bartender_ranged_right_03.png",
+      "rim": null,
+      "kind": "body",
+      "skinID": "skin_bartender_midnight",
+      "recommendedResourcesPath": "CosmeticSkins/skin_bartender_midnight/bartender_ranged_right_03",
+      "anchor": {
+        "frameAnchors": {
+          "hand": [
+            165,
+            88
+          ],
+          "grip": [
+            165,
+            88
+          ],
+          "rightHand": [
+            165,
+            88
+          ],
+          "offHand": [
+            99,
+            89
+          ]
+        },
+        "pivot": "copy existing .meta unchanged"
+      },
+      "head": [
+        92,
+        32,
+        141,
+        89
+      ],
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 3404,
+      "sourceSHA256": "91004c770e3716009555e46399e0a3247d4449d3617ae3e0ffdf8ddaab6087d7",
+      "outputSHA256": "ee800b054ea1663483c530fed869c2ac8b43ab5f5e4f9158531894d0dc525d01",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\body\\skin_bartender_midnight\\bartender_ranged_right_03.aseprite",
+      "nativeSHA256": "218bbc9838be8a9ad45695e7a79867cdc1f9dfad6fd8486caba0b72eb2424458",
+      "nativeTag": "bartender_ranged_right_03",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "71482ad7fd7d7053e65105a7898eab4bf61178c9dfbd7c6e388164678242ab58",
+      "readbackSHA256": "ee800b054ea1663483c530fed869c2ac8b43ab5f5e4f9158531894d0dc525d01",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\weapon_rapier\\frames\\weapon_rapier_effect_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_rapier_01\\weaponskin_rapier_01_held.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\weapons\\weaponskin_rapier_01\\weaponskin_rapier_01_held.png",
+      "rim": null,
+      "kind": "weapon",
+      "skinID": "weaponskin_rapier_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_rapier_01/weaponskin_rapier_01_held",
+      "anchor": {
+        "grip": [
+          46,
+          128
+        ],
+        "muzzle": [
+          226,
+          128
+        ]
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 4696,
+      "sourceSHA256": "76c5c509f38bf5b5f834df729d9d60dbc9b0966d9c51de1f453d027252d5c0e7",
+      "outputSHA256": "f43ec65c473a98826857c92e8b85efd2297dd94bd907e3e89720cd7d24709b05",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_rapier_01\\weaponskin_rapier_01_held.aseprite",
+      "nativeSHA256": "d49f5000bdda940d340f50c0375e200ec0bba73a9d0d558c437f9aecbb386f29",
+      "nativeTag": "weaponskin_rapier_01_held",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "a53623a39dbc537dec960452fc8cd71c3cb1b861522c026e9733c3c38fccefb7",
+      "readbackSHA256": "f43ec65c473a98826857c92e8b85efd2297dd94bd907e3e89720cd7d24709b05",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\weapon_gun\\frames\\weapon_gun_effect_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_gun_01\\weaponskin_gun_01_held.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\weapons\\weaponskin_gun_01\\weaponskin_gun_01_held.png",
+      "rim": null,
+      "kind": "weapon",
+      "skinID": "weaponskin_gun_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_gun_01/weaponskin_gun_01_held",
+      "anchor": {
+        "grip": [
+          104,
+          144
+        ],
+        "muzzle": [
+          226,
+          128
+        ]
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 5840,
+      "sourceSHA256": "d0d0f76720a3ba571da5ba7be00da81ca5715a5292c4f6a66ad124dc16c4fd63",
+      "outputSHA256": "57bfd01bcbab58c8993699556e56c8c1633faa2185046c65eb1aaf9707474017",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_gun_01\\weaponskin_gun_01_held.aseprite",
+      "nativeSHA256": "d8aa7b14d954a392f18e44369b9647d1ebc90f420477ffae5be1e69a5bafd77e",
+      "nativeTag": "weaponskin_gun_01_held",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "9b6cfc11d6b17d4d5128ad4f653ed862b990a0a58aa7429b4b55b317e6ab20e5",
+      "readbackSHA256": "57bfd01bcbab58c8993699556e56c8c1633faa2185046c65eb1aaf9707474017",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\weapon_sword\\frames\\weapon_sword_effect_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_sword_01\\weaponskin_sword_01_held.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\weapons\\weaponskin_sword_01\\weaponskin_sword_01_held.png",
+      "rim": null,
+      "kind": "weapon",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/weaponskin_sword_01_held",
+      "anchor": {
+        "grip": [
+          46,
+          128
+        ],
+        "muzzle": [
+          226,
+          128
+        ]
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 6880,
+      "sourceSHA256": "e6eb1510fe3ec4a1c70ddfa0ed7cd1e67243385fd801b55c8c17241250e2b617",
+      "outputSHA256": "164f3605d11006605dd24758c3103f943c17368513dd8b43157ddf596bc41458",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_sword_01\\weaponskin_sword_01_held.aseprite",
+      "nativeSHA256": "29743e0b238f93597edd32dc76448df1c9748de3f354fbb0fe439cd1576ce51b",
+      "nativeTag": "weaponskin_sword_01_held",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "be08a2ea907ccadce0823ded3535bb1d3335a0ccb53aafb4dcbd11204227132b",
+      "readbackSHA256": "164f3605d11006605dd24758c3103f943c17368513dd8b43157ddf596bc41458",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\weapon_bow_v2\\weapon_bow_v2_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_bow_01\\weaponskin_bow_01_held.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\masks\\weapons\\weaponskin_bow_01\\weaponskin_bow_01_held.png",
+      "rim": null,
+      "kind": "weapon",
+      "skinID": "weaponskin_bow_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_bow_01/weaponskin_bow_01_held",
+      "anchor": {
+        "grip": [
+          76,
+          128
+        ],
+        "muzzle": [
+          142,
+          128
+        ],
+        "coordinateSpace": "source manifest pixel coordinates; keep existing runtime convention"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "changedPixels": 5968,
+      "sourceSHA256": "71828a9d3fac453084ae23bc6b71dadaee17a62bbe69f29d5c77159bd1f281bb",
+      "outputSHA256": "b96968f9151ceee1d58e666fb026e93e4baf506ba9cb51879e073709b9816667",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\weapons\\weaponskin_bow_01\\weaponskin_bow_01_held.aseprite",
+      "nativeSHA256": "1a02feeb2e24bb060b0195f2df402bc5c0ca42c4e72a9fb1104a25530999da76",
+      "nativeTag": "weaponskin_bow_01_held",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "24037e81ee98c72c54fa5869d85bb429da35ebbd93c22277660d5e7b04f6a6a1",
+      "readbackSHA256": "b96968f9151ceee1d58e666fb026e93e4baf506ba9cb51879e073709b9816667",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations"
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_00.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_00.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_00",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1149,
+      "sourceSHA256": "bd67cf74b58d3e1a19c28836a003bd9fbce40df4ac64b9e1748ebc377a864667",
+      "outputSHA256": "59427acd4784a7997ef026f9bc6f6a2cf8fc0805f4913d4e57d90202bbe1d4bd",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_00.aseprite",
+      "nativeSHA256": "e1c4b45febaf953dfde26090495618087356a8bb189e21202924ab34d9fad5a8",
+      "nativeTag": "tea_sommelier_sword_swing_right_00",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "0c1c70aed5e672b516de3710bffb99eb471a950266268463a7d9d11cb46dbf0e",
+      "readbackSHA256": "59427acd4784a7997ef026f9bc6f6a2cf8fc0805f4913d4e57d90202bbe1d4bd",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_01.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_01.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_01",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1207,
+      "sourceSHA256": "5ff204006374bd4de810ac755adba5cbc0c489500933701a32238bc827ac56fc",
+      "outputSHA256": "c9fe232edd6d2e9b41a3a686e0f7c2ad22087aed31545f69083032d52917b191",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_01.aseprite",
+      "nativeSHA256": "5ce7e020903d7018dd4b7bd756567f755077e867845b75837e8246fa4d9c8ab5",
+      "nativeTag": "tea_sommelier_sword_swing_right_01",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "aa526590304ff7e86ce1594f72108d23afcb5da1cee314ed30181658f673cda7",
+      "readbackSHA256": "c9fe232edd6d2e9b41a3a686e0f7c2ad22087aed31545f69083032d52917b191",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_02.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_02.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_02",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1080,
+      "sourceSHA256": "ef3ffeea85cd2a86e002e0469058c2b4700f6d001e4226f69c800cf5ed6e8f88",
+      "outputSHA256": "97c6a784a3e30e595246708ac8253c814d3ce3319d383101294db78c8cf97068",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_02.aseprite",
+      "nativeSHA256": "0e99ef9502191b4c58d464775fd2905982c4a9281612e79f1bfa2f33100d150a",
+      "nativeTag": "tea_sommelier_sword_swing_right_02",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "9e62c3b3706c2f8b1be946eb851a5269a16bd57fbcf3c947c57e19fe87724dfe",
+      "readbackSHA256": "97c6a784a3e30e595246708ac8253c814d3ce3319d383101294db78c8cf97068",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_03.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_03.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_03",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 659,
+      "sourceSHA256": "76391117850bcb33f4cb367dcbf7104c0f3e32f3d74c8302f160cc39c6e7e054",
+      "outputSHA256": "8200327bc50dea7082877df31a9aed87f52711b61ebde3815356e3931c4d5216",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_03.aseprite",
+      "nativeSHA256": "24c172c5ce068559c8c7e0db47a146055cd50850479ce5e246754cadfc124b8f",
+      "nativeTag": "tea_sommelier_sword_swing_right_03",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "75ab0cd9f1b1bdd84a3a39b969b72c5c1ea720924b73be74758f61cca716f5a5",
+      "readbackSHA256": "8200327bc50dea7082877df31a9aed87f52711b61ebde3815356e3931c4d5216",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_04.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_04.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_04.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_04.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_04",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1008,
+      "sourceSHA256": "7d39983e5360f32b8960c5e49e5daf166ceca31332e4cf4d8da857f82f741487",
+      "outputSHA256": "8834c846de260b770c30dfe69e0c37ae6103f8fa2666e472328c2ed9baaa4f72",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_04.aseprite",
+      "nativeSHA256": "6ce40704a33298fb302bef05fda0a32aa14778ea3d64d89c6e64a1ba99d20f00",
+      "nativeTag": "tea_sommelier_sword_swing_right_04",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "ecc20d0d8b3ad8abf3dd02d0d939ac7b6490cab036b13753bebd3978b7463713",
+      "readbackSHA256": "8834c846de260b770c30dfe69e0c37ae6103f8fa2666e472328c2ed9baaa4f72",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_05.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_05.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_05.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_05.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_05",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1285,
+      "sourceSHA256": "e89818940b52fb59fcca6874f564b620632658adef3791450c02fdc6bf4070d4",
+      "outputSHA256": "5526bce34cf8d8a71288f6a13069c0c2f1abd93fe088d3e835e0ecc605fd6c2a",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_05.aseprite",
+      "nativeSHA256": "c66b7ee4f07e30504736d5a9db8c76f38b84b51a0fe073beed17acd08bc918e7",
+      "nativeTag": "tea_sommelier_sword_swing_right_05",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "6b2fe1bfdc3c090eda71ebe12c0d1a16fb97e50eabafa9eb91074f0b16ef010b",
+      "readbackSHA256": "5526bce34cf8d8a71288f6a13069c0c2f1abd93fe088d3e835e0ecc605fd6c2a",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_06.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_06.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_06.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_06.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_06",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1271,
+      "sourceSHA256": "b5716b343a6dede2609227a4f37afe44fb8dccc9bb9eaf9a70d7ad93bb85e1dc",
+      "outputSHA256": "75ee959965e14a43a818f8bb418046292e3a92a085d8a8408003bb245cbce241",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_06.aseprite",
+      "nativeSHA256": "f9d7981c81bac921e3390b79fefcff319738e5e9ecbf9add4eeb968c6c83f7c4",
+      "nativeTag": "tea_sommelier_sword_swing_right_06",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "d55d3b29e18d97473c97365b45c46ad431ac782dd34ca15a3515345aa1babad4",
+      "readbackSHA256": "75ee959965e14a43a818f8bb418046292e3a92a085d8a8408003bb245cbce241",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_07.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_07.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_07.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_07.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_07",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1280,
+      "sourceSHA256": "ed14c8f1ee998be2a1da9271df8e107a3ee5f40e512dc6470aa4e68c9e5294a7",
+      "outputSHA256": "5f9ea8e42203bff9cea6cc2f324f8df0aed6dcfb810758637fda0feaac901e79",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_07.aseprite",
+      "nativeSHA256": "28fbebe4cce5b93c6a0ee75378f2dfd64a4947a4b94b09668812824c4af94f51",
+      "nativeTag": "tea_sommelier_sword_swing_right_07",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "8369419f44ee866b49ed478a62898d0ca5865f5aa811a0688a68a22a0438f52a",
+      "readbackSHA256": "5f9ea8e42203bff9cea6cc2f324f8df0aed6dcfb810758637fda0feaac901e79",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_00.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_00.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_00.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_00.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_00",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1149,
+      "sourceSHA256": "ffb24b87d030aedaba382b30ba2c8f91488ce81f44172a12137398cb0b943046",
+      "outputSHA256": "004c4eab5cfb7f3ff1c378f3ee0b6c1207354a1687aa43cf5e211c196a4c7705",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_00.aseprite",
+      "nativeSHA256": "1c28ea56e6804b90969e0564810209f8919a465a8ccafb158fd7092eda571d3f",
+      "nativeTag": "tea_sommelier_sword_swing_right_00",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "52db3456584a3034b726b6f52e9f05b182868f4ed1d45853ee27e80ae10bc42a",
+      "readbackSHA256": "004c4eab5cfb7f3ff1c378f3ee0b6c1207354a1687aa43cf5e211c196a4c7705",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_01.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_01.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_01.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_01.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_01",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1207,
+      "sourceSHA256": "530671eb2d62380185e3a5ff47c0149e3728f33db378d849b912321e3e508466",
+      "outputSHA256": "faff010904db7c976694ead0a86f6d590c11607dde1b9d58c1718d9ce6591286",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_01.aseprite",
+      "nativeSHA256": "b91f527ecc987e4f9f4fb3feb087e3b28f1d50a5522f3fbf8a1aaa6c7c2205f1",
+      "nativeTag": "tea_sommelier_sword_swing_right_01",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "cd102c01b8df65ec6d96daa8eefc2c43e82a1969dbba0db01b63e7a16367d200",
+      "readbackSHA256": "faff010904db7c976694ead0a86f6d590c11607dde1b9d58c1718d9ce6591286",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_02.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_02.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_02.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_02.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_02",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1080,
+      "sourceSHA256": "08a990a8b6768e358c0bf8d6686073a78d21b3fc99e902457511955ad6d2785b",
+      "outputSHA256": "c98e82baa876cd781ac2d8d06c9db86ef35815e41045b58d1b940cf375d16924",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_02.aseprite",
+      "nativeSHA256": "c7d633fc5d06c5dab7415b24ed2c67602c81ee5e5ddddc2da3173dcb1f6a8f39",
+      "nativeTag": "tea_sommelier_sword_swing_right_02",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "72b2380abb8beecfd192217fda16e8bff2e9a9f8b301ec284897fa0f15cdf526",
+      "readbackSHA256": "c98e82baa876cd781ac2d8d06c9db86ef35815e41045b58d1b940cf375d16924",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_03.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_03.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_03.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_03.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_03",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 659,
+      "sourceSHA256": "fc1b1c4050c8bd715da74ce4e732a0d0a252de585cc501346b1bf80986c0069a",
+      "outputSHA256": "bd60e964938056754a46fea1697e85affbf20ab869869a7d28104a07f104baea",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_03.aseprite",
+      "nativeSHA256": "8ddfcd15bca75bec9adb412684c951ee8c3e5eb485418f3bcc6a3f64a6415ea8",
+      "nativeTag": "tea_sommelier_sword_swing_right_03",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "c1532b6de48beda8565c60392809cc38483f88030317220b92e1afa04c9dd134",
+      "readbackSHA256": "bd60e964938056754a46fea1697e85affbf20ab869869a7d28104a07f104baea",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_04.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_04.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_04.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_04.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_04",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1008,
+      "sourceSHA256": "a3ee8473f81fa522ef98fcbf078519abcc56afbc975acc8c1d3acca1bda14af9",
+      "outputSHA256": "0a0fa6e58810345e28a27e2cf4c7a564f6bc24e2175c459a30544fdb242254f5",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_04.aseprite",
+      "nativeSHA256": "959813c39c347a95a08840fcc7194ef801eb7db2c19bb84c91e49e0acc65251a",
+      "nativeTag": "tea_sommelier_sword_swing_right_04",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "670b38345f86dc4ed80a86869890ad38e97fd03b8c2bc7c223d07d0804e5f7a9",
+      "readbackSHA256": "0a0fa6e58810345e28a27e2cf4c7a564f6bc24e2175c459a30544fdb242254f5",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_05.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_05.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_05.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_05.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_05",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1285,
+      "sourceSHA256": "01089c9076afb51bced89e87ef8602afdb66f3f627d16eaa87feaab0fcf9a222",
+      "outputSHA256": "aad4e10de4b94c7394260792c10761ae45225c3d84aba89b0a0adf768924e417",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_05.aseprite",
+      "nativeSHA256": "4e2bda2e954264d4adddb8efccbb8e677640644ae3ae3c34771a1cd6069d0182",
+      "nativeTag": "tea_sommelier_sword_swing_right_05",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "0541698bf671c0187678b1ab7015b1bb99c246bb763bb113c41d141e6048b59f",
+      "readbackSHA256": "aad4e10de4b94c7394260792c10761ae45225c3d84aba89b0a0adf768924e417",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_06.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_06.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_06.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_06.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_06",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1271,
+      "sourceSHA256": "24fa982856f67621709c05afac785fa1d9809199c56d7ddbee229bb93af957ac",
+      "outputSHA256": "7782d321b36cc360ee07b2071f0c6b9c6a271f4bb91f0c299d0321a9568efb8e",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_06.aseprite",
+      "nativeSHA256": "64af99447af80e7fed9d4cc37c42d0e12c028cf53820235ca405afa1429f3f54",
+      "nativeTag": "tea_sommelier_sword_swing_right_06",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "c71277c30bef9b41c1c2a099d673c7116422600610763b3f28326e535246714d",
+      "readbackSHA256": "7782d321b36cc360ee07b2071f0c6b9c6a271f4bb91f0c299d0321a9568efb8e",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    },
+    {
+      "original": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_07.png",
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_07.png",
+      "mask": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_07.png",
+      "rim": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\rim_masks\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_07.png",
+      "kind": "embedded_sword",
+      "skinID": "weaponskin_sword_01",
+      "recommendedResourcesPath": "WeaponSkins/weaponskin_sword_01/swing_jade/tea_sommelier_sword_swing_right_07",
+      "anchor": {
+        "pivot": "copy source .meta unchanged",
+        "weapon": "embedded; no attachment transform change"
+      },
+      "head": null,
+      "sizeExact": true,
+      "alphaExact": true,
+      "silhouetteExact": true,
+      "outsideMaskExact": true,
+      "protectedHeadExact": true,
+      "whiteShirtExact": true,
+      "nativeReadbackExact": true,
+      "bodyPixelsExact": true,
+      "changedPixels": 1280,
+      "sourceSHA256": "e1fc24354e209f8d64dd9ea60d6efd42e7b44c9a51515b18db324998ecfde66d",
+      "outputSHA256": "c29ded57720479e7013f3ebe606e79d377057df89b3985bd22e02450dc3b3bd4",
+      "nativeFile": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-13\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_07.aseprite",
+      "nativeSHA256": "adbd10658983271a69f0ae08649b2a15177530adaf4e40f0dc256cd378c65912",
+      "nativeTag": "tea_sommelier_sword_swing_right_07",
+      "originalSourceSHAUnchanged": true,
+      "sourceMetaSHA256": "da33293f814371311ae02fe2caeedd35a024490da69e368aafd243f92e68f3f3",
+      "readbackSHA256": "c29ded57720479e7013f3ebe606e79d377057df89b3985bd22e02450dc3b3bd4",
+      "anchorPolicy": "Original pixel coordinates and source pivot/PPU/.meta retained; no geometry transformations",
+      "goldRimGuardPaletteExact": true
+    }
+  ],
+  "materials": {
+    "goldRimGuard": [
+      [
+        111,
+        80,
+        41
+      ],
+      [
+        167,
+        137,
+        70
+      ],
+      [
+        222,
+        192,
+        103
+      ],
+      [
+        234,
+        221,
+        179
+      ]
+    ],
+    "blueSteel": [
+      [
+        15,
+        25,
+        57
+      ],
+      [
+        34,
+        57,
+        92
+      ],
+      [
+        55,
+        87,
+        124
+      ],
+      [
+        74,
+        119,
+        176
+      ]
+    ],
+    "source": "Actual PixelLab output material colors used by Aseprite Lua; uniform ramp across held and swing"
+  },
+  "validationLimit": "Source verification only; Unity integration and runtime testing belong to Claude"
+}

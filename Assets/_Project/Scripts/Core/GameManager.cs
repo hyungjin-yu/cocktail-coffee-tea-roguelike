@@ -30,6 +30,7 @@ namespace CCT
         ResultView resultView;
         PauseView pauseView;
         HybridUnlockView hybridView;
+        ComboTargetView comboView;
         /// <summary>07 §2 보상 대기열(카드 FIFO·하이브리드 예약·미사용 커피 포인트). 다음에 열 화면은
         /// 여기서 정하고, 이 클래스는 화면 전환만 맡는다.</summary>
         RunRewards rewards;
@@ -71,8 +72,9 @@ namespace CCT
             : $"깊은 우림 {DeepSteepLevel}/6 · 피해 +{DeepSteepLevel*2}%\n초당 추가 회복 +{DeepSteepLevel*.1f:0.0}";
         void RefreshJobTrait(bool cardTaken=false)
         {
-            int count=Cards.CountOwned(CardCategory.Cocktail);
-            if(Job==Job.Bartender && cardTaken && count>cocktailTypesSeen && count%3==0)
+            // 46/49: 새 칵테일 '종류' 3/6/9번째에 발동 — 같은 카드의 추가 중첩은 세지 않는다(2026-10-13 총 중첩 기준 버그 수정).
+            int count=Cards.CountKinds(CardCategory.Cocktail);
+            if(Job==Job.Bartender && cardTaken && CardAdvisor.MixingRushTriggers(cocktailTypesSeen,count))
             {
                 mixingRushRemaining=12f;
                 var flash=FadeVfx.Spawn(SpriteFactory.Crescent,Player.Position+Vector2.up*.5f,20f,
@@ -193,6 +195,9 @@ namespace CCT
             resultView = ResultView.Create(canvas.transform, this);
             pauseView = PauseView.Create(canvas.transform, this);
             hybridView = HybridUnlockView.Create(canvas.transform);
+            comboView = ComboTargetView.Create(canvas.transform, this); // 57 P1 목표 조합
+            if (rememberedTargets.TryGetValue(job, out var remembered) && CanTarget(remembered)) ComboTarget = remembered;
+            Guide = new RunGuide(this);
 
             Player.Died += OnPlayerDied;
 
@@ -241,6 +246,7 @@ namespace CCT
             if (!player.Visual.AttachWeaponArt("weapon_" + weaponPreset.kind.ToString().ToLowerInvariant(), weaponPreset.heldLengthRatio))
                 player.Visual.AttachWeapon(Resources.Load<Sprite>(weaponPreset.iconResourcePath), weaponPreset.heldLengthRatio,
                     weapon == WeaponKind.Bow);
+            WeaponSkinApplier.Apply(player.Visual, weapon); // 49 무료 무기 외형(스프라이트만, 판정·발사 무관). 없으면 기본 외형
 
             // 레이피어/검(근접), 총/활(원거리)은 각 쌍끼리 메커닉이 같음 — 치장(아이콘·SFX)만 다르다.
             if (weapon == WeaponKind.Gun || weapon == WeaponKind.Bow)
@@ -265,9 +271,13 @@ namespace CCT
             if (IsPaused) return;
             if (resuming) return; // 08:102 — 1초 "계속" 카운트다운 동안은 이동·피해·보상 처리 모두 정지
 
+            // 57 P1: 카드 창 위에서도 T로 목표 조합을 바꿀 수 있다(이미 시간 정지).
+            if (State == GameState.LevelUp && kb != null && kb.tKey.wasPressedThisFrame) { OpenComboTarget(); return; }
             if (State != GameState.Playing) return;
 
             if (kb != null && kb.hKey.wasPressedThisFrame) { OpenHiddenDetails(); return; }
+            if (kb != null && kb.tKey.wasPressedThisFrame) { OpenComboTarget(); return; }
+            Guide?.Tick(Time.deltaTime);
 
             // 08:31 "K: 커피 트리(포인트0이어도 조회), 시간정지" — Pause/카운트다운/다른 보상창 중에는
             // 위에서 이미 걸러진다. 실제로 여는 건 프레임 끝(ResolveEndOfFrame).
@@ -289,6 +299,7 @@ namespace CCT
         {
             if (State == GameState.GameOver) return;
             if (Hud.HiddenDetailsOpen) { CloseHiddenDetails(); return; }
+            if (comboView != null && comboView.IsOpen) { comboView.Close(); return; }
                 // 설정/커피 트리/조작 안내가 Pause 위에 열려 있으면 Esc는 그것만 먼저 닫는다(Pause는 유지).
                 if (pauseView.IsSettingsOpen) pauseView.CloseSettings();
                 else if (pauseView.IsSkillTreeOpen)
@@ -305,6 +316,68 @@ namespace CCT
                 }
                 else if (pauseView.IsTutorialOpen) pauseView.CloseTutorial();
                 else if (IsPaused) ClosePause(); else OpenPause();
+        }
+
+        // ───── 57(2026-10-15) P1 목표 조합 ─────
+        /// <summary>같은 실행 세션 안에서 직업별 마지막 목표를 기억한다(저장 파일은 바꾸지 않음).</summary>
+        static readonly System.Collections.Generic.Dictionary<Job, HiddenSkill> rememberedTargets =
+            new System.Collections.Generic.Dictionary<Job, HiddenSkill>();
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetRememberedTargets() => rememberedTargets.Clear();
+
+        /// <summary>플레이어가 고른 목표 히든(없으면 null). 카드 창·HUD가 진행도를 보여 준다.</summary>
+        public HiddenSkill? ComboTarget { get; private set; }
+        public bool ComboTargetOpen => comboView != null && comboView.IsOpen;
+        public ComboTargetView ComboView => comboView;
+        public RunGuide Guide { get; private set; }
+        public IHiddenRunState HiddenState => new HiddenRunState(this);
+
+        public bool HiddenDiscovered(string id) => PermanentProgress.Current != null && PermanentProgress.Current.discoveredCardIds != null &&
+            PermanentProgress.Current.discoveredCardIds.Contains(id);
+
+        /// <summary>이 직업·무기로 카드 창에 나올 수 있는 카드인지 — 찻집은 칵테일 몹이 없어 칵테일 카드 창이 열리지 않는다(47).</summary>
+        public bool CardObtainable(string id)
+        {
+            var card = cards?.FindInPool(id);
+            if (card == null) return false;
+            if (Job == Job.TeaSommelier && card.category == CardCategory.Cocktail) return false;
+            return CardSystem.IsWeaponCompatible(card, Weapon.IsRanged());
+        }
+
+        public HiddenReachability Reachability(HiddenSkillDef def) => HiddenRequirements.Reachability(def, Job, Weapon, CardObtainable);
+
+        public bool CanTarget(HiddenSkill skill)
+        {
+            var def = HiddenSkillDatabase.Get(skill);
+            return (Player == null || !Player.Hidden.Has(skill)) && Reachability(def).reachable;
+        }
+
+        public void SetComboTarget(HiddenSkill? skill)
+        {
+            if (skill.HasValue && !CanTarget(skill.Value)) return;
+            ComboTarget = skill;
+            if (skill.HasValue) rememberedTargets[Job] = skill.Value; else rememberedTargets.Remove(Job);
+        }
+
+        /// <summary>T/HUD 버튼/카드 창 버튼. Playing이면 시간을 멈추고, 카드 창이면 그 위에 겹친다(카드 단축키는 잠금).</summary>
+        public void OpenComboTarget()
+        {
+            if (comboView == null || comboView.IsOpen || IsPaused || resuming) return;
+            if (State != GameState.Playing && State != GameState.LevelUp) return;
+            bool fromPlaying = State == GameState.Playing;
+            IsPaused = true;
+            Time.timeScale = 0f;
+            if (fromPlaying) EnterFrozenAudio();
+            var es = UnityEngine.EventSystems.EventSystem.current;
+            var focus = es != null ? es.currentSelectedGameObject : null;
+            comboView.Show(() =>
+            {
+                IsPaused = false;
+                Time.timeScale = State == GameState.Playing ? 1f : 0f;
+                if (fromPlaying) ExitFrozenAudioIfClear();
+                if (cardView != null && cardView.IsOpen) cardView.RefreshTargetInfo();
+                if (es != null && focus != null && focus.activeInHierarchy) es.SetSelectedGameObject(focus);
+            });
         }
 
         public void OpenHiddenDetails()
@@ -526,6 +599,7 @@ namespace CCT
                     break;
             }
 
+            Guide?.OnPickup(type); // 57 P1 첫 수집 안내
             // 첫 품종 발견은 즉시 저장 — 이 픽업의 재료량을 먼저 런 누적에 알려 같은 스냅샷에 포함한다.
             ReportRunProgress();
             if (varietyId != null) PermanentProgress.DiscoverMaterialVariety(varietyId);
@@ -605,6 +679,7 @@ namespace CCT
             EvaluateHidden();
             PermanentProgress.DiscoverCard(offer.card.id);
             Player.Heal(Balance.LevelUpHealFraction);
+            Guide?.OnCardChosen(); // 57 P1 다음 카드 창 안내
 
             // 07:115 — 이 선택으로 조건이 "새로" 충족됐는지 확인. 정비/커피 노드는 CardSystem에 안 쌓여서
             // CountOwned에 자동으로 안 잡힌다("정비/커피 노드는 세지 않는다"). 레이피어 시작 전용, 런당 1회.
@@ -624,7 +699,11 @@ namespace CCT
         public System.Collections.Generic.List<HiddenSkillDef> EvaluateHidden()
         {
             var unlocked = Player.Hidden.Evaluate(new HiddenRunState(this));
-            foreach (var def in unlocked) PermanentProgress.DiscoverCard(def.id);
+            foreach (var def in unlocked)
+            {
+                PermanentProgress.DiscoverCard(def.id);
+                if (ComboTarget.HasValue && ComboTarget.Value == def.skill) { ComboTarget = null; rememberedTargets.Remove(Job); } // 57 목표 달성
+            }
             if (unlocked.Count > 0)
             {
                 string names = string.Join(" · ", unlocked.ConvertAll(d => d.name));
@@ -641,6 +720,23 @@ namespace CCT
             RefreshJobTrait(true);
             Player.FinalForms.OnCardTaken(card, cards.GetStacks(card));
             EvaluateHidden();
+        }
+
+        /// <summary>49 카드 추천 — 이번 런의 실제 직업·무기·보유 카드·체력·히든 상태(읽기 전용).</summary>
+        public CardAdviceContext BuildCardAdviceContext()
+        {
+            return new CardAdviceContext
+            {
+                job = Job, weapon = Weapon, run = new HiddenRunState(this),
+                hiddenOwned = s => Player != null && Player.Hidden.Has(s),
+                hiddenDiscovered = id => PermanentProgress.Current != null && PermanentProgress.Current.discoveredCardIds != null &&
+                    PermanentProgress.Current.discoveredCardIds.Contains(id),
+                hp = Player != null ? Player.Hp : 0f, maxHp = Player != null ? Player.MaxHp : 0f,
+                cocktailKinds = cards.CountKinds(CardCategory.Cocktail),
+                cocktailStacks = cards.CountOwned(CardCategory.Cocktail), teaStacks = cards.CountOwned(CardCategory.Tea),
+                deepSteepLevel = DeepSteepLevel, hybridUnlocked = HybridUnlocked, hybridPending = rewards.HybridPending,
+                damageReduction = Stats.damageReduction, extraThrusts = Stats.extraThrusts, pierceCount = Stats.pierceCount,
+            };
         }
 
         sealed class HiddenRunState : IHiddenRunState

@@ -39,6 +39,23 @@ namespace CCT.Tests
         }
 
         [UnityTest]
+        public IEnumerator ActualWave_DoublesAtSevenMinutes_WithoutChangingAliveCap()
+        {
+            var game = Quiet();
+            yield return null;
+            var spawner = game.GetComponentInChildren<EnemySpawner>();
+            game.SetRunTimeForTests(419.99f);
+            int before = spawner.WaveSpawns;
+            spawner.SpawnWaveForTests();
+            Assert.AreEqual(12, spawner.WaveSpawns - before, "7분 직전: 한쪽 6, 총 12");
+            game.SetRunTimeForTests(420f);
+            before = spawner.WaveSpawns;
+            spawner.SpawnWaveForTests();
+            Assert.AreEqual(24, spawner.WaveSpawns - before, "7분부터: 한쪽 12, 총 24");
+            Assert.LessOrEqual(Enemy.Active.Count, Balance.MaxAliveEnemiesAbsolute);
+        }
+
+        [UnityTest]
         public IEnumerator ActualRegularSpawns_IncreaseAtTenAndFifteenMinutes_WithSameUnlocks()
         {
             var game = Quiet(true);

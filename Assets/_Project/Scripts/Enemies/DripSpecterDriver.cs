@@ -117,6 +117,7 @@ namespace CCT
                 Vector2 dir = Random.insideUnitCircle.normalized;
                 target = game.Player.Position + dir * TeleportDistance;
                 target.y = Mathf.Clamp(target.y, Balance.DepthMin, Balance.DepthMax);
+                target.x = BattleArena.ClampX(target.x, enemy.Def.radius); // 57 P0-1: 예고 위치=실제 재등장(벽 안)
                 if (ZoneTelegraphV2.Spawn(target, ReappearZoneRadius, InvisibleSeconds, new Color(.8f, .7f, 1f), enemy.transform.parent) == null)
                 {
                     FadeVfx.Spawn(SpriteFactory.Circle, target, 0f,

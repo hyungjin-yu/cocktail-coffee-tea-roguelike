@@ -275,6 +275,8 @@ namespace CCT
                 if (mode == "touch") yield return TouchRun();
                 if (mode == "ui-audit") yield return UiAuditRun();
                 if (mode == "skins") yield return SkinsRun();
+                if (mode == "feedback") yield return FeedbackRun();
+                if (mode == "water") yield return WaterRun();
             }
             var used = new List<string>(ArtLibrary.UsedIds);
             used.Sort();
@@ -1042,7 +1044,7 @@ namespace CCT
             yield return Wait(0.4f);
             if (shop.IsOpen) Fail("shop did not close");
 
-            foreach (Transform t in title.transform.parent) if (t != null && t.GetComponent<TitleView>() != null) t.gameObject.SetActive(false);
+            title.gameObject.SetActive(false); // 2026-10-15: 타이틀 부모가 없을 때 NRE(장면 루트) — 타이틀 자체만 숨긴다.
             var combos = new[] { (Job.TeaSommelier, WeaponKind.Sword, "skin_tea_jade"), (Job.TeaSommelier, WeaponKind.Bow, "skin_tea_jade"),
                                  (Job.Bartender, WeaponKind.Rapier, "skin_bartender_midnight"), (Job.Bartender, WeaponKind.Gun, "skin_bartender_midnight") };
             foreach (var (job, weapon, productId) in combos)
@@ -1083,6 +1085,175 @@ namespace CCT
                 Destroy(game.gameObject);
                 yield return Wait(0.5f);
             }
+        }
+
+        // ── 57(2026-10-15) 플레이 피드백 수정 검수(feedback 모드) ─────────────────────
+        // 강제 경로(보고 표기): GameBootstrap.Build로 직업·무기 직접 시작, 플레이어 HP 크게, AutoInputOverride 이동,
+        // 보스는 BossDirector.SpawnNow(직업 기본 일정 1·2번)로 즉시 등장 후 큰 피해로 처치, 픽업·느린 무피해 적 탄 몇 개를 플레이어 근처에 생성,
+        // 카드 창은 AddIngredient로 유도, 목표 조합은 SetComboTarget/OpenComboTarget 공개 API. 경계·카메라·스폰·표시·배경 렌더는 실제 경로.
+        IEnumerator FeedbackRun()
+        {
+            string H = $"{Screen.width}x{Screen.height}";
+            TitleView title = null;
+            for (int i = 0; i < 100 && title == null; i++) { title = FindFirstObjectByType<TitleView>(); yield return Wait(0.1f); }
+            if (title == null) { Fail("no title"); yield break; }
+            title.gameObject.SetActive(false);
+            var combos = new[] { (Job.Bartender, WeaponKind.Rapier), (Job.TeaSommelier, WeaponKind.Bow), (Job.Bartender, WeaponKind.Gun), (Job.TeaSommelier, WeaponKind.Sword) };
+            int n = 0;
+            foreach (var (job, weapon) in combos)
+            {
+                string tag = $"fb_{H}_{n++}_{job}_{weapon}";
+                var game = GameBootstrap.Build(job, weapon);
+                yield return Wait(0.6f);
+                var tutorial = FindFirstObjectByType<FirstRunTutorialView>();
+                if (tutorial != null && tutorial.IsOpen) tutorial.Dismiss();
+                game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
+                game.Player.Heal(1f);
+                var cam = Camera.main;
+                float halfView = cam.orthographicSize * cam.aspect;
+                Line($"FB {tag}: map={CafeBackground.ActiveMapPrefix} toneFloor={CafeBackground.ActiveTone.floor} veil={CafeBackground.ActiveTone.veil} guideActive={game.Guide.Active} halfView={F(halfView)} camLimit={F(BattleArena.CameraLimit(halfView))}");
+
+                float until = Time.realtimeSinceStartup + 3f;
+                while (Time.realtimeSinceStartup < until) { ResolveRewardScreens(game, tag); yield return null; }
+                // 가독성: 실제 픽업(칵테일/찻잎/원두)과 느린 무피해 적 탄을 플레이어 둘레에 두고 찍는다.
+                var p0 = game.Player.Position;
+                var drop = job == Job.TeaSommelier ? IngredientType.Tea : IngredientType.Cocktail;
+                IngredientPickup.Spawn(game, game.Player, p0 + new Vector2(3.2f, 1.4f), drop, 1, game.transform);
+                IngredientPickup.Spawn(game, game.Player, p0 + new Vector2(-3.6f, -1.6f), IngredientType.Tea, 1, game.transform);
+                IngredientPickup.Spawn(game, game.Player, p0 + new Vector2(4.5f, -2.2f), IngredientType.Coffee, 1, game.transform);
+                IngredientPickup.Spawn(game, game.Player, p0 + new Vector2(0.9f, 0.3f), drop, 1, game.transform); // 바로 주워져 첫 수집 안내
+                EnemyProjectile.Spawn(p0 + new Vector2(6f, 0.8f), Vector2.left, 0.6f, 0f, game.Player, game.transform, "art:glass_shard");
+                EnemyProjectile.Spawn(p0 + new Vector2(-6f, -0.6f), Vector2.right, 0.6f, 0f, game.Player, game.transform, "Icons/Enemies/ice_shard");
+                yield return Wait(1.2f);
+                Line($"FB {tag} guide visible={game.Hud.GuideVisible} text='{game.Hud.GuideText}' lastGuide='{game.Guide.LastText}'");
+                yield return Shot($"{tag}_01_readability_guide");
+
+                yield return HoldUntil(game, 1f, 16f, tag);
+                Line($"FB {tag} right wall: playerX={F(game.Player.Position.x)} camX={F(cam.transform.position.x)} outside={CountOutside()}");
+                yield return Shot($"{tag}_02_rightwall", game);
+
+                var schedule = BossDirector.DefaultSchedule(job);
+                var boss = game.Director.SpawnNow(schedule[0]);
+                yield return Wait(0.4f);
+                Line($"FB {tag} boss1 {boss.Def.name} spawnX={F(boss.transform.position.x)} indicator visible={game.Hud.BossIndicator.Visible} side={game.Hud.BossIndicator.Side} text='{game.Hud.BossIndicator.LabelText.Replace('\n', '/')}' banner='{game.Hud.BannerSubText}'");
+                yield return Shot($"{tag}_03_boss_offscreen", game);
+                float fleeStart = Time.realtimeSinceStartup, met = -1f;
+                game.Player.AutoInputOverride = Vector2.right; // 보스 반대쪽(벽)으로 계속 도망
+                while (Time.realtimeSinceStartup - fleeStart < 40f && boss != null && !boss.IsDead)
+                {
+                    ResolveRewardScreens(game, tag);
+                    if (!BossDirectionIndicator.IsOffscreen(cam.transform.position.x, halfView, boss.transform.position.x, boss.Def.radius, out _)) { met = Time.realtimeSinceStartup - fleeStart; break; }
+                    yield return null;
+                }
+                game.Player.AutoInputOverride = null;
+                Line($"FB {tag} boss1 met={(met >= 0f ? F(met) + "s" : "NO")} bossX={(boss != null ? F(boss.transform.position.x) : "-")} indicatorVisible={game.Hud.BossIndicator.Visible}");
+                if (met < 0f) Fail($"{tag} boss never reached view while fleeing");
+                yield return Shot($"{tag}_04_boss_met", game);
+                yield return Wait(Balance.BossArrivalGraceSeconds);
+                for (int i = 0; i < 20 && boss != null && !boss.IsDead; i++) { boss.TakeDamage(1e9f); yield return null; }
+                yield return Wait(0.6f);
+                ResolveRewardScreens(game, tag);
+                Line($"FB {tag} boss1 dead: activeBoss={(game.ActiveBoss != null)} indicatorVisible={game.Hud.BossIndicator.Visible}");
+                if (game.Hud.BossIndicator.Visible) Fail($"{tag} indicator visible after boss death");
+
+                yield return HoldUntil(game, -1f, 20f, tag);
+                Line($"FB {tag} left wall: playerX={F(game.Player.Position.x)} camX={F(cam.transform.position.x)} outside={CountOutside()}");
+                yield return Shot($"{tag}_05_leftwall", game);
+                var boss2 = game.Director.SpawnNow(schedule[1]);
+                yield return Wait(0.4f);
+                Line($"FB {tag} boss2 {boss2.Def.name} spawnX={F(boss2.transform.position.x)} indicator visible={game.Hud.BossIndicator.Visible} side={game.Hud.BossIndicator.Side} banner='{game.Hud.BannerSubText}'");
+                yield return Shot($"{tag}_06_boss_offscreen_right", game);
+                yield return Wait(Balance.BossArrivalGraceSeconds);
+                for (int i = 0; i < 20 && boss2 != null && !boss2.IsDead; i++) { boss2.TakeDamage(1e9f); yield return null; }
+                yield return Wait(0.6f);
+                yield return ClearOverlays(game, tag);
+
+                // 목표 조합 → 카드 창(추천과 다른 카드에도 목표 진행 띠) → 목표 바꾸기 창.
+                game.SetComboTarget(HiddenSkill.FirstSip);
+                var gauge = job == Job.TeaSommelier ? game.TeaGauge : game.CocktailGauge;
+                game.AddIngredient(drop, gauge.Threshold - gauge.Current);
+                yield return Wait(0.5f);
+                if (game.CardView.IsOpen)
+                {
+                    // 제시된 카드 중 하나가 실제로 올리는 히든을 목표로 다시 고른다(카드별 목표 진행 띠 화면 근거).
+                    foreach (var def in HiddenSkillDatabase.All)
+                    {
+                        if (!game.CanTarget(def.skill)) continue;
+                        if (!game.CardView.Offers.Any(o => HiddenRequirements.CardAdvances(def, game.Job, game.HiddenState, o.card.id, out _, out _))) continue;
+                        game.SetComboTarget(def.skill);
+                        game.CardView.RefreshTargetInfo();
+                        Line($"FB {tag} target switched to {def.id} (matches an offered card)");
+                        break;
+                    }
+                    Line($"FB {tag} card reason='{game.CardView.ReasonLineText}' target='{game.CardView.TargetLineText}' " +
+                         $"influence=[{game.CardView.InfluenceText(0)}|{game.CardView.InfluenceText(1)}|{game.CardView.InfluenceText(2)}] advice=[{game.CardView.AdviceText(0)}|{game.CardView.AdviceText(1)}|{game.CardView.AdviceText(2)}]");
+                    yield return Shot($"{tag}_07_card_target");
+                    game.OpenComboTarget();
+                    yield return Wait(0.3f);
+                    yield return Shot($"{tag}_08_combo_view");
+                    game.RequestEscape();
+                    yield return Wait(0.2f);
+                    game.CardView.Choose(0);
+                }
+                else Fail($"{tag} card window did not open");
+                yield return Wait(0.4f);
+                game.Player.AutoInputOverride = null;
+                Destroy(game.gameObject);
+                yield return Wait(0.6f);
+            }
+        }
+
+        // 57(2026-10-15) 물방울 탄 방향·크기 검수(water 모드). 강제(보고 표기): 찻집 런 직접 시작, 스폰·보스 정지와 적 제거(FreezeWorld),
+        // 플레이어 둘레 8방향에서 플레이어 쪽으로 느리게 오는 무피해 물방울 + 비교용 유리 조각 탄을 생성해 찍는다.
+        IEnumerator WaterRun()
+        {
+            string H = $"{Screen.width}x{Screen.height}";
+            TitleView title = null;
+            for (int i = 0; i < 100 && title == null; i++) { title = FindFirstObjectByType<TitleView>(); yield return Wait(0.1f); }
+            if (title != null) title.gameObject.SetActive(false);
+            var game = GameBootstrap.Build(Job.TeaSommelier, WeaponKind.Bow);
+            yield return Wait(0.6f);
+            var tutorial = FindFirstObjectByType<FirstRunTutorialView>();
+            if (tutorial != null && tutorial.IsOpen) tutorial.Dismiss();
+            game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
+            FreezeWorld(game);
+            SetPlayerWeapons(game.Player, false);
+            yield return Wait(0.3f);
+            var c = game.Player.Position;
+            for (int i = 0; i < 8; i++)
+            {
+                float a = i * 45f * Mathf.Deg2Rad;
+                var from = c + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * 3.2f;
+                EnemyProjectile.Spawn(from, c - from, 0.25f, 0f, game.Player, game.transform, EnemyProjectile.ArtPrefix + EnemyProjectile.WaterDropId);
+            }
+            EnemyProjectile.Spawn(c + new Vector2(5.5f, 1.5f), Vector2.left, 0.25f, 0f, game.Player, game.transform, EnemyProjectile.ArtPrefix + "glass_shard");
+            yield return Wait(0.4f);
+            foreach (var p in FindObjectsByType<EnemyProjectile>(FindObjectsSortMode.None))
+                Line($"WATER proj={p.name} pos={p.transform.position} rotZ={F(p.transform.eulerAngles.z)} scale={F(p.transform.localScale.x)} hitR={F(p.HitRadiusValue)} bulbDir={(Vector2)p.transform.TransformDirection(Vector3.down)}");
+            yield return Shot($"water_{H}_8dir");
+            SetPlayerWeapons(game.Player, true);
+            Destroy(game.gameObject);
+            yield return Wait(0.5f);
+        }
+
+        IEnumerator HoldUntil(GameManager game, float dir, float seconds, string tag)
+        {
+            game.Player.AutoInputOverride = new Vector2(dir, 0f);
+            float end = Time.realtimeSinceStartup + seconds;
+            while (Time.realtimeSinceStartup < end && Mathf.Abs(game.Player.Position.x - dir * BattleArena.HalfWidth) > 0.6f)
+            {
+                ResolveRewardScreens(game, tag);
+                yield return null;
+            }
+            yield return Wait(0.8f); // 카메라 수렴
+            game.Player.AutoInputOverride = null;
+        }
+
+        static int CountOutside()
+        {
+            int c = 0;
+            foreach (var e in Enemy.Active) if (e != null && !BattleArena.Contains(e.transform.position.x, 0f)) c++;
+            return c;
         }
 
         /// <summary>장착 무기 보이는 길이(월드)와 몸 높이 비율 — 총 2배 지시 검증용.</summary>

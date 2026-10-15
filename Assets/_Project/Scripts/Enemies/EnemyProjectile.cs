@@ -18,6 +18,15 @@ namespace CCT
         public const string ArtPrefix = "art:";
         const float Lifetime = 3f;
         const float HitRadius = 0.22f;
+        /// <summary>57(2026-10-15) 사용자 피드백: 물방울 탄은 지금 보이는 크기의 절반(추가 ×0.5)으로, 판정 반지름도 같은 비율(0.22→0.11).
+        /// 다른 탄은 그대로. 피해·속도·수명 불변.</summary>
+        public const string WaterDropId = "water_drop";
+        public const float WaterDropScale = 0.5f;
+        public const string IceShardId = "ice_shard";
+        public const float IceShardScale = 0.5f;
+        float hitRadius = HitRadius;
+        /// <summary>테스트용 — 이 탄의 판정 반지름.</summary>
+        public float HitRadiusValue => hitRadius;
 
         PlayerController player;
         Vector2 velocity;
@@ -34,6 +43,10 @@ namespace CCT
             go.transform.position = position;
 
             bool isArt = spriteResourcePath != null && spriteResourcePath.StartsWith(ArtPrefix);
+            // 물방울(새 아트·옛 아이콘 모두): 뾰족한 끝이 로컬 +Y, 둥근 몸통이 로컬 -Y — 둥근 쪽이 진행 방향을 향해야 한다.
+            bool waterDrop = spriteResourcePath != null && spriteResourcePath.EndsWith(WaterDropId);
+            bool iceShard = spriteResourcePath != null && spriteResourcePath.EndsWith(IceShardId);
+            float sizeMultiplier = waterDrop ? WaterDropScale : iceShard ? IceShardScale : 1f;
             var art = isArt ? ArtLibrary.Get(spriteResourcePath.Substring(ArtPrefix.Length)) : null;
             var icon = isArt ? art?.FirstSprite
                 : string.IsNullOrEmpty(spriteResourcePath) ? null : Resources.Load<Sprite>(spriteResourcePath);
@@ -44,7 +57,7 @@ namespace CCT
             // 04 §8 새 VFX는 알파 영역 기준으로 판정 지름의 약 2.2배 길이.
             float visualScale = art != null ? HitRadius * 2f * 2.2f / Mathf.Max(0.01f, art.ContentWorldSize.x)
                 : icon != null ? HitRadius * 2f * Balance.EnemyProjectileIconVisualScale : HitRadius * 2f;
-            go.transform.localScale = Vector3.one * (visualScale * 0.5f); // 모든 적/보스 탄의 시각 크기만 절반.
+            go.transform.localScale = Vector3.one * (visualScale * 0.5f * sizeMultiplier); // 물방울·얼음 탄만 현재 크기에서 추가 절반.
 
             var sr = go.AddComponent<SpriteRenderer>();
             sr.sprite = icon != null ? icon : SpriteFactory.Circle;
@@ -57,10 +70,27 @@ namespace CCT
                 anim.Play(art.Main);
             }
 
+            // 57 P0-2: 작은 적 탄이 바닥 무늬에 묻혔다 — 같은 그림의 얇은 어두운 실루엣 외곽만 뒤(z+)에 깐다(색 원 후광은 사용자 반려).
+            var outline = new GameObject("Outline");
+            outline.transform.SetParent(go.transform, false);
+            outline.transform.localPosition = new Vector3(0f, 0f, 0.01f / Mathf.Max(0.0001f, go.transform.localScale.x));
+            outline.transform.localScale = Vector3.one * 1.22f;
+            var osr = outline.AddComponent<SpriteRenderer>();
+            osr.sprite = sr.sprite;
+            osr.color = new Color(0.03f, 0.01f, 0.02f, 0.9f);
+            osr.sortingOrder = SortOrders.Projectile;
+            if (art != null && art.Main != null && art.Main.frames.Length > 1)
+            {
+                var oanim = outline.AddComponent<SpriteAnimator>();
+                oanim.Bind(osr);
+                oanim.Play(art.Main);
+            }
+
             var p = go.AddComponent<EnemyProjectile>();
             p.player = player;
             p.velocity = direction.sqrMagnitude > 0.0001f ? direction.normalized * speed : Vector2.zero;
             p.damage = damage;
+            p.hitRadius = HitRadius * sizeMultiplier;
             p.life = Lifetime;
             p.onHit = onHit;
 
@@ -69,7 +99,7 @@ namespace CCT
             if (p.velocity.sqrMagnitude > 0.0001f)
             {
                 // 04 §8 새 VFX 탄은 오른쪽(+X)이 진행 방향 — +90° 보정은 기존 아이콘(아래가 앞)에만.
-                float angle = Mathf.Atan2(p.velocity.y, p.velocity.x) * Mathf.Rad2Deg + (art != null ? 0f : 90f);
+                float angle = Mathf.Atan2(p.velocity.y, p.velocity.x) * Mathf.Rad2Deg + (art != null && !waterDrop ? 0f : 90f);
                 go.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             }
         }
@@ -87,7 +117,7 @@ namespace CCT
 
             if (player == null || player.IsDead) return;
 
-            float touch = HitRadius + PlayerController.Radius;
+            float touch = hitRadius + PlayerController.Radius;
             if (((Vector2)transform.position - player.Position).sqrMagnitude <= touch * touch)
             {
                 player.TakeDamage(damage);

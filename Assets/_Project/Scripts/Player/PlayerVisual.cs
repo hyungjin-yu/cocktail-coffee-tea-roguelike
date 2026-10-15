@@ -36,24 +36,9 @@ namespace CCT
 
         /// <summary>주무기 활의 표시 길이/플레이어 높이(04 §8 원래 0.7 → 2026-10-09 사용자 피드백으로 0.5).</summary>
         public const float HeldBowLengthRatio = 0.5f;
-        ArtClip bowIdle, bowMove, bowRanged;
-        bool UsesBowReady => bodyArtId == "tea_sommelier" && WeaponArtId == "weapon_bow";
-        static readonly int[] BowMoveBob = { 0, 2, -2, 0, 2, -2 };
-        ArtClip BowClip(string kind)
-        {
-            if(!UsesBowReady) return art?.Clip(kind);
-            var cached=kind=="idle" ? bowIdle : kind=="move" ? bowMove : bowRanged;
-            if(cached!=null) return cached;
-            var all=Resources.LoadAll<Sprite>("ArtExtra/tea_sommelier_bow_ready");
-            var selected=new System.Collections.Generic.List<Sprite>();
-            foreach(var frame in all) if(frame.name.StartsWith("bow_"+kind+"_right_",System.StringComparison.Ordinal)) selected.Add(frame);
-            selected.Sort((a,b)=>string.CompareOrdinal(a.name,b.name));
-            if(selected.Count==0) return art?.Clip(kind);
-            var original=art.Clip(kind);
-            cached=new ArtClip {name="bow_"+kind,frames=selected.ToArray(),fps=original!=null ? original.fps : 10f,loop=kind!="ranged"};
-            if(kind=="idle") bowIdle=cached; else if(kind=="move") bowMove=cached; else bowRanged=cached;
-            return cached;
-        }
+        // 2026-10-13 사용자 피드백("활 장착 시 대기·걷기가 바뀌고 상체·하체가 분리돼 이상함"): 2026-10-12(기획 45)의 합성 준비 자세
+        // 클립(ArtExtra/tea_sommelier_bow_ready — PixelLab ranged 상체 + native 다리)을 더 이상 재생하지 않는다. 활도 다른 무기처럼 원본 전신
+        // idle/move/ranged/hurt 클립과 manifest 프레임별 hand anchor를 쓴다(합성 원본·런타임 PNG는 이력으로 보존).
 
         SpriteRenderer body;
         SpriteAnimator animator;
@@ -143,7 +128,11 @@ namespace CCT
             Vector2 gripLocal = w.TryGetAnchor(w.Main.name, 0, "grip", out var gpx) ? w.AnchorToLocal(gpx) : Vector2.zero;
             spriteGo.transform.localPosition = -Vector2.Scale(gripLocal, (Vector2)weaponScale);
             WeaponArtId = weaponArtId;
-            if(UsesBowReady) animator.Play(BowClip("idle"),true);
+            weaponGripLocal = gripLocal;
+            weaponScaleAbs = s;
+            // 무기 기하 계약: 시위(string) anchor가 있으면 원본 그림에서 시위가 grip의 어느 쪽인지로 들기/겨냥 방향을 정한다.
+            // 같은 실루엣의 스킨은 같은 anchor를 공유하므로 자동으로 같은 배치가 된다(WeaponSkinArtImport가 실루엣 동일을 강제).
+            bowStringSide = w.TryGetAnchor(w.Main.name, 0, "string", out var spx) ? Mathf.Sign(w.AnchorToLocal(spx).x - gripLocal.x) : 0f;
             UpdateWeaponAnchor();
             return true;
         }
@@ -180,6 +169,35 @@ namespace CCT
         }
 
         public SpriteRenderer SecondaryWeapon { get; private set; }
+        Vector2 weaponGripLocal;
+        float weaponScaleAbs;
+        /// <summary>원본 무기 그림에서 시위가 grip의 오른쪽(+1)/왼쪽(-1). 0이면 시위 anchor 없음(기존 고정 반전 유지).</summary>
+        float bowStringSide;
+
+        /// <summary>2026-10-13 사용자 피드백("활이 여전히 몸통을 가로지름"): 활 PNG는 활대가 왼쪽으로 휘고 grip(76,128)이 활대 배 정점,
+        /// 시위는 x≈144~151이다. 반전(-x)해서 들면 시위가 손 뒤 약 36 몸체px에 와서, 엉덩이 앞에 내린 전신 idle/move의 손에서는 각도와 무관하게
+        /// 몸통 한가운데를 지난다(실제 PNG 합성 겹침 1432~2802px). 그래서 겨냥(ranged 00~02)일 때만 시위가 당기는 손 쪽을 향하도록 반전하고,
+        /// 대기·이동·발사 복귀(03)·피격·쓰러짐은 반전하지 않는다 — 손은 그대로 활대 배를 잡고 활 전체가 손 앞쪽에 서서 몸통 겹침 0.
+        /// 방향은 무기 manifest의 string·grip anchor로 정한다(들기 = 시위가 손 앞, 겨냥 = 시위가 손 뒤).</summary>
+        public static bool BowAimOrientation(string clip, int frame) => clip == "ranged" && frame <= 2;
+
+        /// <summary>무기 x 배율 부호(겨냥·비겨냥 동일). 위 비반전 들기 설명은 아래 사용자 지시로 대체됨. 시위 anchor가 없으면 기존처럼 반전.</summary>
+        // 2026-10-13 사용자 지시("좌우만 바꿔봐"): 비겨냥 자세도 겨냥과 같은 방향(좌우 반전)으로 든다 — 각도·위치·크기·클립은 그대로,
+        // grip 고정 이동만 ApplyBowOrientation이 반전 배율로 다시 계산한다.
+        // 2026-10-13 사용자 지시("거기서 활 좌우반전해봐"): 휴대 자세(비겨냥)만 화면 좌우로 거울 반전 — 회전된 그림의 화면 좌우 반전은
+        // 각도 부호 반전(+90 → -90) + 그림 x 배율 부호 반전과 같다(R_x·Rot(θ)·S(sx) = Rot(-θ)·S(-sx)). 겨냥은 그대로.
+        float BowScaleSign(bool aim) => bowStringSide == 0f ? -1f : (aim ? -bowStringSide : bowStringSide);
+
+        void ApplyBowOrientation(bool aim)
+        {
+            if (weapon == null || weaponScaleAbs <= 0f) return;
+            var t = weapon.transform;
+            var scale = new Vector3(BowScaleSign(aim) * weaponScaleAbs, weaponScaleAbs, weaponScaleAbs);
+            if (t.localScale == scale) return;
+            t.localScale = scale;
+            t.localPosition = -Vector2.Scale(weaponGripLocal, (Vector2)scale);
+        }
+
         static Vector3 HeldWeaponScale(string id, float scale) =>
             new Vector3(id == "weapon_bow" || id == "weapon_tea_bow" ? -scale : scale, scale, scale);
         public bool SecondaryUsesProvisionalAnchor { get; private set; }
@@ -260,6 +278,14 @@ namespace CCT
             var s = transform.localScale;
             s.x = Mathf.Abs(s.x) * (facing < 0f ? -1f : 1f);
             transform.localScale = s;
+            if (WeaponArtId == "weapon_bow" && weaponPivot != null && weaponScaleAbs > 0f)
+            {
+                // 화살은 항상 겨냥 방향(반전, 시위가 몸 쪽) 그림 기준 시위 위치에서 나간다 — 대기 중 비반전 표시와 무관하게 발사 위치 유지.
+                var aimScale = new Vector2(BowScaleSign(true) * weaponScaleAbs, weaponScaleAbs);
+                // 겨냥 각도(0°) 기준 — 대기 휴대 자세(90°)에서 발사가 시작돼도 화살 위치가 돌지 않는다.
+                world = transform.TransformPoint((Vector2)weaponPivot.localPosition + Vector2.Scale(w.AnchorToLocal(px) - weaponGripLocal, aimScale));
+                return true;
+            }
             world = weapon.transform.TransformPoint(w.AnchorToLocal(px));
             return true;
         }
@@ -313,16 +339,18 @@ namespace CCT
             int frame = animator != null ? animator.FrameIndex : 0;
             bool found = clip != null && (art.TryGetAnchor(clip.name, frame, "hand", out px) ||
                                           art.TryGetAnchor(clip.name, frame, "grip", out px));
-            if(UsesBowReady && clip!=null && clip.name.StartsWith("bow_",System.StringComparison.Ordinal))
-            {
-                px=clip.name=="bow_move" ? new Vector2(198f,153f-BowMoveBob[Mathf.Clamp(frame,0,5)])
-                    : clip.name=="bow_ranged" && frame==2 ? new Vector2(201f,154f) : new Vector2(198f,153f);
-                found=true;
-            }
             if (!found) px = ProvisionalHandPx;
             WeaponUsesProvisionalAnchor = !found;
             weaponPivot.localPosition = art.AnchorToLocal(px);
             weaponPivot.localRotation = Quaternion.Euler(0f, 0f, HeldWeaponAngle(WeaponArtId, clip != null ? clip.name : null, frame));
+            if (WeaponArtId == "weapon_bow")
+            {
+                bool aim = BowAimOrientation(clip != null ? clip.name : null, frame);
+                ApplyBowOrientation(aim);
+                // 2026-10-13 사용자 피드백("플레이어 손에 활이 들리게"): 비겨냥 자세는 활을 몸 뒤에 그려 몸체 그림의 앞 주먹이 손잡이를 덮게 한다
+                // (손가락이 손잡이를 쥔 모양). 겨냥 00~02는 기존처럼 몸 앞.
+                weapon.sortingOrder = aim ? 1 : -1;
+            }
         }
 
         /// <summary>2026-10-09 사용자 피드백(무기·캐릭터 연결이 부자연스러움): 예전에는 모든 무기가 모든 클립에서 수평 고정이라 대기/이동 중
@@ -339,8 +367,11 @@ namespace CCT
                 case "weapon_gun":
                     return clip == "ranged" ? Pick(frame, 0f, 0f, 0f, -12f) : clip == "hurt" ? -20f : clip == "defeat" ? -30f : -10f;
                 case "weapon_bow":
-                    if(clip!=null && clip.StartsWith("bow_",System.StringComparison.Ordinal)) return 0f;
-                    return clip == "ranged" ? Pick(frame, 0f, 0f, 0f, -15f) : clip == "hurt" ? -20f : clip == "defeat" ? -30f : -12f;
+                    // 2026-10-13 손에 든 활: 전신 idle/move의 앞 손은 엉덩이 높이 주먹이라, 바깥(겨냥과 같은) 방향의 세로 활은 어떤 기울기(-90~+90°)로도
+                    // 시위·활대가 몸통을 지난다(실제 PNG 합성 측정). 그래서 비겨냥 자세는 손잡이를 쥔 채 활대를 앞뒤 수평으로 낮게 드는 휴대 자세(90°,
+                    // 활대 배가 위·시위가 아래)로 든다 — 몸통은 비고 활은 주먹 아래에 매달린다. 겨냥 00~02는 시위 세로(0°), 쓰러짐은 -30°.
+                    if (clip == "defeat") return 30f; // 휴대 자세와 같은 x 배율(비반전)이라 기존 -30°의 화면 좌우 거울
+                    return BowAimOrientation(clip, frame) ? 0f : -90f; // 휴대 자세 좌우 거울(위 BowScaleSign 참고)
                 default:
                     return 0f;
             }
@@ -397,7 +428,7 @@ namespace CCT
         /// <summary>04 §6 A세트 melee/ranged/hurt 클립(1회). 무기 발사 이벤트가 부르며 판정 시간은 바꾸지 않는다. 클립이 없으면 false.</summary>
         public bool PlayAction(string clipName, float holdSeconds = 0f)
         {
-            var clip = UsesBowReady && clipName=="ranged" ? BowClip("ranged") : art?.Clip(clipName);
+            var clip = art?.Clip(clipName);
             if (clip == null || animator == null || defeated) return false;
             EndSwordSwing();
             EndHybridDraw();
@@ -457,7 +488,7 @@ namespace CCT
             if (animator != null && !defeated && actionTimer <= 0f)
             {
                 EndSwordSwing();
-                var next = moving ? BowClip("move") ?? BowClip("idle") : BowClip("idle");
+                var next = moving ? art.Clip("move") ?? art.Clip("idle") : art.Clip("idle");
                 animator.Play(next);
             }
             body.color = blinkHurt ? new Color(1f, 0.4f, 0.4f) : baseColor;

@@ -20,7 +20,7 @@ namespace CCT.Tests
 
         static void AssertUsesIcon(IngredientType type, string resourcePath, Transform parent)
         {
-            var expected = Resources.Load<Sprite>(resourcePath);
+            var expected = IngredientPickup.DropArt(type) ?? Resources.Load<Sprite>(resourcePath); // 57 새 드롭 아트 우선
             Assert.IsNotNull(expected, $"{resourcePath} 아이콘이 Resources 에 있어야 한다");
 
             IngredientPickup.Spawn(null, null, Vector2.zero, type, 1, parent);
@@ -28,7 +28,7 @@ namespace CCT.Tests
 
             Assert.AreEqual(expected, sr.sprite, $"{type} 는 {resourcePath} 아이콘을 써야 한다");
             Assert.AreEqual(Color.white, sr.color, "실제 아이콘은 색을 덧씌우면 안 된다");
-            Assert.AreEqual(0.26f * Balance.IngredientIconVisualScale, sr.transform.localScale.x, 0.001f,
+            Assert.AreEqual(0.26f * Balance.IngredientIconVisualScale * Balance.PickupReadabilityScale, sr.transform.localScale.x, 0.001f,
                 "실제 아이콘은 캔버스 여백 보정 배율이 적용돼야 한다");
 
             Object.DestroyImmediate(sr.gameObject);

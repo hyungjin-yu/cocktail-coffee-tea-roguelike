@@ -1,0 +1,162 @@
+[
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_00.png",
+    "sha256": "9b23a790c4e8447e8a15d8723b29c65d80cf604163126f4ce5afed6c31907e65",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 460
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_01.png",
+    "sha256": "bee4f9c4567a398341f03b4f6424d221776956d684d2d5014b510b73391217db",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 428
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_02.png",
+    "sha256": "03e678b67ab16478851d1864df5321967a07b59f74ed234657778a1ec00b169c",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 421
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_03.png",
+    "sha256": "8e91d39a24ed9b2fdb84f2194c5706c9d89106735d69aeaadb8b85e2b13e5408",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 320
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_04.png",
+    "sha256": "28419ebf2f26325c20a02a53d67fb4d2f34fa0779bedf258254861b5bb256b93",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 398
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_05.png",
+    "sha256": "adb86a2648f433b2dd36dc7ece42da114dc6c16130110bac745c6323079494e6",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 485
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_06.png",
+    "sha256": "03afc856e4841ed8ace661f2001150b5628c80e9a46318b097b0b1de4deb86da",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 442
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_base\\tea_sommelier_sword_swing_right_07.png",
+    "sha256": "db5742ef4dfa052b017213931f3bfc6a2a13e33e50106f8cf906ce1a0db83e43",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 440
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_00.png",
+    "sha256": "4dbb76453694c3a241a791893617dbd27bfe41ae38934369f07a513505ae7fee",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 460
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_01.png",
+    "sha256": "52f5d9bb097af0815987418a695a12f4fbbb88489c46c0397019ee03e12775e6",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 428
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_02.png",
+    "sha256": "01bcf73ad6a549d1873f35099e02251d238840d7bbe80a9e83e5a6c6b11f012e",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 421
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_03.png",
+    "sha256": "687b48b6c5d079102a39f06d4022c5e5054786a37742b89600846f5ec1c32c62",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 320
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_04.png",
+    "sha256": "77a30175d0c03fab555552dd85bab029852bafc30a57a4702b6889455213325d",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 398
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_05.png",
+    "sha256": "574cc9c5f6c1071dc94a986c5af101a43f4467548f55fbf85a870cf847a8f84b",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 485
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_06.png",
+    "sha256": "bbda1cdf56b107e236d37c8e3fcc5f5855c1a867eafdba021591dcf72cd9c132",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 442
+  },
+  {
+    "file": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-2026-10-13\\v2\\sword_swing\\swing_jade\\tea_sommelier_sword_swing_right_07.png",
+    "sha256": "7e053d2ee6ce3461c8064955aa50a8508e6121eb01e9c8eda9bfd4064ea3c992",
+    "alphaChanged": 0,
+    "outsideSwordMaskChanged": 0,
+    "outsideRimComparedV1Changed": 0,
+    "baseJadeIdenticalOriginalRim": true,
+    "remainingGreenRim": 0,
+    "rimPixels": 440
+  }
+]

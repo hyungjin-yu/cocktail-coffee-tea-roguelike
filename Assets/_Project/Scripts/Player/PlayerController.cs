@@ -6,7 +6,7 @@ namespace CCT
 {
     /// <summary>
     /// 이동(WASD/방향키/패드)과 체력. 공격은 무기 컴포넌트가 자동으로 처리한다.
-    /// 벨트스크롤(던파식) 시점: 좌우는 자유, 위아래는 Balance.DepthMin~DepthMax 레인 폭 안에서만 움직인다.
+    /// 벨트스크롤(던파식) 시점: 좌우는 BattleArena 구역(양 끝 벽) 안, 위아래는 Balance.DepthMin~DepthMax 레인 폭 안에서만 움직인다.
     /// </summary>
     // 04 §9: 시각(반전·확대·애니메이션)은 Visual 자식(PlayerVisual)만 담당하고 이 루트는 스케일 1·판정만 가진다.
     [RequireComponent(typeof(Rigidbody2D))]
@@ -123,6 +123,7 @@ namespace CCT
 
             Vector2 next = rb.position + velocity * Time.fixedDeltaTime;
             next.y = Mathf.Clamp(next.y, Balance.DepthMin, Balance.DepthMax);
+            next.x = BattleArena.ClampX(next.x, Radius); // 57 P0-1 유한 전투 구역(양 끝 벽)
             rb.MovePosition(next);
         }
 

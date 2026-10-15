@@ -40,6 +40,21 @@ namespace CCT.Editor
         public static void Windows64ReleaseLoadTestBatch() => StrictQaBatch("CCT_QA_LOAD", "Builds/ReleaseLoadTest");
         public static void Windows64ReleaseQaTourBatch() => StrictQaBatch("CCT_QA_TOUR", "Builds/ReleaseQaTour");
 
+        /// <summary>2026-10-13: 같은 strict 출시 빌드를 -cct-preview-out 폴더에 만든다(기존 Builds/Windows64·이전 실행본을 덮어쓰지 않음).</summary>
+        public static void Windows64ReleaseToBatch()
+        {
+            try
+            {
+                BuildStrict(Path.Combine(PreviewOutputDir("Builds/Release"), "CocktailCoffeeTea.exe"), null);
+                EditorApplication.Exit(0);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[CCT] strict release build failed: {e}");
+                EditorApplication.Exit(1);
+            }
+        }
+
         static void StrictQaBatch(string define, string defaultDir)
         {
             try
@@ -229,7 +244,7 @@ namespace CCT.Editor
         // 같은 strict 검사 뒤 IL2CPP·ARM64·targetSdk 36·가로 화면으로 빌드한다. 서명은 Unity 기본 디버그 키(사용자 키스토어 미설정)라
         // 산출물 이름에 debugsigned를 넣는다 — APK는 사이드로드 시험용, AAB는 구조 확인용이며 Play 업로드용이 아니다(키스토어·계정은 나중에).
         public const string AndroidPackageId = "com.hyungjinyu.cocktailcoffeetea"; // 잠정(사용자 지정)
-        public const int AndroidVersionCode = 1;
+        public const int AndroidVersionCode = 2;
         public const int AndroidMinSdk = 26;    // Android 8.0
         public const int AndroidTargetSdk = 36; // Google Play 현행 목표 API(로컬 SDK platforms/android-36 확인)
 
@@ -241,8 +256,10 @@ namespace CCT.Editor
             try
             {
                 var dir = PreviewOutputDir("Builds/Android");
-                var file = appBundle ? "CocktailCoffeeTea-1.0.0-debugsigned-NOT-FOR-PLAY-UPLOAD.aab"
-                                     : "CocktailCoffeeTea-1.0.0-debugsigned-sideload.apk";
+                bool signed = UploadKeyAvailable();
+                var file = appBundle
+                    ? (signed ? $"CocktailCoffeeTea-1.0.1-vc{AndroidVersionCode}-upload-signed.aab" : "CocktailCoffeeTea-1.0.1-debugsigned-NOT-FOR-PLAY-UPLOAD.aab")
+                    : (signed ? $"CocktailCoffeeTea-1.0.1-vc{AndroidVersionCode}-upload-signed.apk" : "CocktailCoffeeTea-1.0.1-debugsigned-sideload.apk");
                 BuildAndroid(Path.Combine(dir, file), appBundle);
                 EditorApplication.Exit(0);
             }
@@ -256,7 +273,7 @@ namespace CCT.Editor
         /// <summary>Android 플레이어 설정(시험이 값을 확인한다). 데스크톱 설정은 건드리지 않는다.</summary>
         public static void ApplyAndroidPlayerSettings()
         {
-            PlayerSettings.bundleVersion = "1.0.0";
+            PlayerSettings.bundleVersion = "1.0.1";
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, AndroidPackageId);
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
@@ -310,17 +327,61 @@ namespace CCT.Editor
             var dir = Path.GetDirectoryName(output);
             if (!string.IsNullOrEmpty(dir)) Directory.CreateDirectory(dir);
 
-            var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
+            // 2026-10-13 기획 52: Android 앱 이름 = "음료 마스터". productName은 Windows 세이브 경로(persistentDataPath)와 묶여 있어
+            // 이 빌드 동안만 바꾸고 되돌린다(Android 세이브 경로는 패키지 ID 기준이라 영향 없음).
+            var previousProductName = PlayerSettings.productName;
+            var previousKeystore = PlayerSettings.Android.keystoreName;
+            var previousAlias = PlayerSettings.Android.keyaliasName;
+            try
             {
-                scenes = new[] { BootScenePath },
-                locationPathName = output,
-                target = BuildTarget.Android,
-                targetGroup = BuildTargetGroup.Android,
-                options = BuildOptions.None,
-            });
-            if (report.summary.result != BuildResult.Succeeded)
-                throw new BuildFailedException($"Unity Android 빌드 실패: {report.summary.result}, 에러 {report.summary.totalErrors}개");
-            Debug.Log($"[CCT] Android 빌드 완료 — {report.summary.outputPath}, {report.summary.totalSize / 1024 / 1024}MB, {report.summary.totalTime}");
+                PlayerSettings.productName = GameInfo.Title;
+                bool uploadSigned = ApplyUploadKeyFromEnvironment();
+                Debug.Log($"[CCT] Android signing: {(uploadSigned ? "upload key from environment (values not logged)" : "Unity debug key — NOT for Play upload")}");
+                var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
+                {
+                    scenes = new[] { BootScenePath },
+                    locationPathName = output,
+                    target = BuildTarget.Android,
+                    targetGroup = BuildTargetGroup.Android,
+                    options = BuildOptions.None,
+                });
+                if (report.summary.result != BuildResult.Succeeded)
+                    throw new BuildFailedException($"Unity Android 빌드 실패: {report.summary.result}, 에러 {report.summary.totalErrors}개");
+                Debug.Log($"[CCT] Android 빌드 완료 — {report.summary.outputPath}, {report.summary.totalSize / 1024 / 1024}MB, {report.summary.totalTime}");
+            }
+            finally
+            {
+                // 비밀값·키 경로를 ProjectSettings에 남기지 않는다.
+                PlayerSettings.productName = previousProductName;
+                PlayerSettings.Android.useCustomKeystore = false;
+                PlayerSettings.Android.keystoreName = previousKeystore;
+                PlayerSettings.Android.keyaliasName = previousAlias;
+                PlayerSettings.Android.keystorePass = "";
+                PlayerSettings.Android.keyaliasPass = "";
+                AssetDatabase.SaveAssets();
+            }
+        }
+
+        /// <summary>Play 업로드 키(사용자 보관) 환경 변수: CCT_ANDROID_KEYSTORE(파일 경로), CCT_ANDROID_KEYSTORE_PASS, CCT_ANDROID_KEY_ALIAS,
+        /// CCT_ANDROID_KEY_PASS. 모두 있고 파일이 존재할 때만 적용한다. 값은 로그·파일에 남기지 않는다. 없으면 Unity 디버그 키(업로드 불가).</summary>
+        public static bool UploadKeyAvailable()
+        {
+            var path = Environment.GetEnvironmentVariable("CCT_ANDROID_KEYSTORE");
+            return !string.IsNullOrEmpty(path) && File.Exists(path) &&
+                   !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("CCT_ANDROID_KEYSTORE_PASS")) &&
+                   !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("CCT_ANDROID_KEY_ALIAS")) &&
+                   !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("CCT_ANDROID_KEY_PASS"));
+        }
+
+        static bool ApplyUploadKeyFromEnvironment()
+        {
+            if (!UploadKeyAvailable()) { PlayerSettings.Android.useCustomKeystore = false; return false; }
+            PlayerSettings.Android.useCustomKeystore = true;
+            PlayerSettings.Android.keystoreName = Environment.GetEnvironmentVariable("CCT_ANDROID_KEYSTORE");
+            PlayerSettings.Android.keystorePass = Environment.GetEnvironmentVariable("CCT_ANDROID_KEYSTORE_PASS");
+            PlayerSettings.Android.keyaliasName = Environment.GetEnvironmentVariable("CCT_ANDROID_KEY_ALIAS");
+            PlayerSettings.Android.keyaliasPass = Environment.GetEnvironmentVariable("CCT_ANDROID_KEY_PASS");
+            return true;
         }
 
         static string PreviewOutputDir(string defaultDir)

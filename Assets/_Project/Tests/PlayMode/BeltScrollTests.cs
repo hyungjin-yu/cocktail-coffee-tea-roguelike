@@ -47,11 +47,11 @@ namespace CCT.Tests
             var cam = Camera.main;
             float baselineCamY = cam.transform.position.y;
 
-            GameManager.Instance.Player.transform.position = new Vector3(20f, 1f, 0f);
+            GameManager.Instance.Player.transform.position = new Vector3(12f, 1f, 0f); // 57: 유한 구역 카메라 한계 안쪽
             yield return new WaitForSeconds(1f); // 좌우 추적 Lerp 가 충분히 수렴하도록
 
             Assert.AreEqual(baselineCamY, cam.transform.position.y, 0.001f, "카메라는 위아래로 따라가면 안 된다");
-            Assert.Less(Mathf.Abs(cam.transform.position.x - 20f), 0.2f, "카메라는 좌우로는 플레이어를 따라가야 한다");
+            Assert.Less(Mathf.Abs(cam.transform.position.x - 12f), 0.2f, "카메라는 좌우로는 플레이어를 따라가야 한다");
         }
 
         [UnityTest]

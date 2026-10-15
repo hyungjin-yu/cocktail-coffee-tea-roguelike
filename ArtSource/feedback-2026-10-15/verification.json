@@ -1,0 +1,13 @@
+{
+  "binary_alpha_and_bounds": "PASS all7",
+  "aseprite_native_roundtrip": "PASS all7 pixel-identical RGBA",
+  "files": [
+    "bg_bar_boundary_00.png",
+    "bg_bar_fence_00.png",
+    "bg_tea_boundary_00.png",
+    "bg_tea_fence_00.png",
+    "drop_cocktail_00.png",
+    "drop_coffee_00.png",
+    "drop_tea_00.png"
+  ]
+}

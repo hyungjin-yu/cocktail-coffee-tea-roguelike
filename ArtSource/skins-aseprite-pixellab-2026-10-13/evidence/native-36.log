@@ -1,0 +1,5 @@
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+NATIVE_EXPORT_READBACK_OK 36 C:/Users/user/Documents/Projects/CocktailCoffeeTea/ArtSource/skins-aseprite-pixellab-2026-10-13/sword_swing/swing_jade/tea_sommelier_sword_swing_right_00.png

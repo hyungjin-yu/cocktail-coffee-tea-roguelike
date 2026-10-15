@@ -11,6 +11,8 @@ namespace CCT
         public Job job;
         public string displayName;
         public string description;
+        /// <summary>49: 기본 외형과 실제로 달라지는 색·복장(현재 스킨 PNG 기준). 아트가 바뀌면 함께 갱신한다.</summary>
+        public string difference;
         /// <summary>Resources/CosmeticSkins/&lt;productId&gt;/ — 파일 이름이 원본 몸체 프레임 이름과 같다.</summary>
         public string ResourceFolder => SkinCatalog.ResourceRoot + productId;
     }
@@ -28,11 +30,13 @@ namespace CCT
             {
                 productId = BartenderMidnight, job = Job.Bartender, displayName = "미드나잇 바텐더",
                 description = "바텐더 전용 · 한밤의 바 색감 스킨\n외형만 바뀌며 능력치는 같습니다.",
+                difference = "검정 조끼·바지 → 선명한 미드나잇 남색, 청록 넥타이 → 연한 샴페인 금빛.\n흰 셔츠·머리·얼굴은 기본과 같습니다.",
             },
             new SkinDefinition
             {
                 productId = TeaJade, job = Job.TeaSommelier, displayName = "비취 티 소믈리에",
                 description = "티 소믈리에 전용 · 비취빛 찻잎 색감 스킨\n외형만 바뀌며 능력치는 같습니다.",
+                difference = "갈색 조끼·앞치마·바지·신발이 비취색(녹색)으로 바뀝니다.\n흰 셔츠·머리·얼굴은 기본과 같습니다.",
             },
         };
 

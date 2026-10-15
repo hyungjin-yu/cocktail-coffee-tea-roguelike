@@ -44,6 +44,7 @@ namespace CCT
             var offset = Random.insideUnitCircle.normalized * (def.radius + 1f);
             var pos = (Vector2)enemy.transform.position + offset;
             pos.y = Mathf.Clamp(pos.y, Balance.DepthMin, Balance.DepthMax); // 06:22 — y를 레인으로 제한
+            pos.x = BattleArena.ClampX(pos.x, def.summonDef.radius); // 57 P0-1 구역 안
             Enemy.SpawnAt(pos, def.summonDef, hpScale, player, enemy.transform.parent);
             // 04 §8 summon_ring — 칵테일 청색/차 녹색 tint(소환 몹의 재료 종류).
             string tint = def.dropType == IngredientType.Tea ? "tea" : "cocktail";

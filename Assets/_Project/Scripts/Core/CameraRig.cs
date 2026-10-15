@@ -4,12 +4,10 @@ namespace CCT
 {
     /// <summary>
     /// 벨트스크롤(던파식) 카메라: 플레이어를 좌우로만 따라가고 위아래는 고정.
-    /// 바닥 타일도 좌우로만 스냅 이동해 무한 스크롤처럼 보이게 한다.
+    /// 57(2026-10-15): 유한 전투 구역(BattleArena) 끝에서 멈추고, 배경은 월드에 고정한다.
     /// </summary>
     public class CameraRig : MonoBehaviour
     {
-        /// <summary>배경 스냅 단위 — 배경 반복 단위의 배수(CafeBackground.SnapStep).</summary>
-        float TileSize => CafeBackground.SnapStep;
 
         static CameraRig current;
         float shakeRemaining, shakeDuration, shakeAmplitude;
@@ -61,7 +59,7 @@ namespace CCT
             if (cam == null || target == null) return;
 
             float t = 1f - Mathf.Exp(-12f * Time.unscaledDeltaTime);
-            float baseX = Mathf.Lerp(cam.transform.position.x - lastShake.x, target.position.x, t);
+            float baseX = Mathf.Lerp(cam.transform.position.x - lastShake.x, TargetX, t);
             Vector2 shake = Vector2.zero;
             if (shakeRemaining > 0f)
             {
@@ -77,14 +75,18 @@ namespace CCT
         void Snap()
         {
             if (cam == null || target == null) return;
-            cam.transform.position = new Vector3(target.position.x, fixedCamY, -10f);
-            SnapBackground(target.position.x);
+            cam.transform.position = new Vector3(TargetX, fixedCamY, -10f);
+            SnapBackground(TargetX);
         }
+
+        /// <summary>57 P0-1: 플레이어를 따라가되 유한 전투 구역 끝에서 멈춘다(벽 너머는 OutsideReveal만 보임).</summary>
+        float TargetX => BattleArena.ClampCameraX(target.position.x, cam.orthographicSize * cam.aspect);
 
         void SnapBackground(float camX)
         {
             if (background == null) return;
-            background.position = new Vector3(Mathf.Round(camX / TileSize) * TileSize, fixedBackgroundY, 0f);
+            // 57 P0-1: 유한 구역 배경은 월드에 고정(벽·경계가 실제 위치에 보이도록). 무한 스크롤 스냅은 쓰지 않는다.
+            background.position = new Vector3(0f, fixedBackgroundY, 0f);
         }
     }
 }

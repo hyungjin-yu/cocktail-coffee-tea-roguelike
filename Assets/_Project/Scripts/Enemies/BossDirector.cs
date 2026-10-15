@@ -62,28 +62,30 @@ namespace CCT
             // 벨트스크롤 시점: 보스도 화면 좌/우 바깥에서 걸어들어온다. 06:98 — 보스 위치는 시드에서
             // 파생된 독립 스트림을 쓴다.
             float side = game.BossPositionRng.Value() < 0.5f ? -1f : 1f;
-            var pos = BeltScroll.EdgePosition(Camera.main, side, Balance.SpawnEdgeMargin);
+            // 57 P0-1: 유한 전투 구역 안 화면 밖. 벽 쪽이 막히면 반대쪽. 실제 쪽을 안내 문구에 쓴다.
+            var pos = BeltScroll.ArenaEdgePosition(Camera.main, side, Balance.SpawnEdgeMargin, spec.def.radius, out float usedSide);
             var boss = Enemy.SpawnAt(pos, spec.def, spec.hpScale, game.Player, game.transform);
+            string from = usedSide < 0f ? "◀ 왼쪽에서 접근 · " : "오른쪽에서 접근 ▶ · ";
 
             if (spec.def.boss == BossKind.Final)
             {
                 boss.gameObject.AddComponent<CustomerBossDriver>().Init(boss, game);
-                game.Hud.ShowBanner($"{spec.def.name} 등장!", "최종보스를 처치하면 클리어", 3f);
+                game.Hud.ShowBanner($"{spec.def.name} 등장!", from + "최종보스를 처치하면 클리어", 3f);
             }
             else if (spec.def == EnemyDef.EspressoLeviathan || spec.def == EnemyDef.TeaKilnDragon)
             {
                 boss.gameObject.AddComponent<EspressoLeviathanDriver>().Init(boss, game);
-                game.Hud.ShowBanner($"강화 보스 출현: {spec.def.name}", "처치하면 스페셜티(영구 재화) 획득!", 3f);
+                game.Hud.ShowBanner($"강화 보스 출현: {spec.def.name}", from + "처치하면 스페셜티(영구 재화) 획득!", 3f);
             }
             else if (spec.def == EnemyDef.DripServerSpecter || spec.def == EnemyDef.SteamKettleElder)
             {
                 boss.gameObject.AddComponent<DripSpecterDriver>().Init(boss, game);
-                game.Hud.ShowBanner($"중간보스 출현: {spec.def.name}", "장판을 피해 안전지대를 찾으세요", 3f);
+                game.Hud.ShowBanner($"중간보스 출현: {spec.def.name}", from + "장판을 피해 안전지대를 찾으세요", 3f);
             }
             else
             {
                 boss.gameObject.AddComponent<ChargerDriver>().Init(boss);
-                game.Hud.ShowBanner($"중간보스 출현: {spec.def.name}", "붉게 깜빡이면 돌진 직전! 옆으로 피하세요", 3f);
+                game.Hud.ShowBanner($"중간보스 출현: {spec.def.name}", from + "붉게 깜빡이면 돌진 직전! 옆으로 피하세요", 3f);
             }
 
             game.ActiveBoss = boss;

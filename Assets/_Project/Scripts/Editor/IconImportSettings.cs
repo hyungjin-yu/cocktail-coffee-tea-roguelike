@@ -55,7 +55,8 @@ namespace CCT.Editor
                 return;
             }
             if (assetPath.Contains("/Resources/ArtExtra/status_") || assetPath.Contains("/Resources/ArtExtra/zone_") ||
-                assetPath.Contains("/Resources/ArtExtra/bg_")) // 47 직업 맵(벽·바닥 반복은 FullRect 필요)
+                assetPath.Contains("/Resources/ArtExtra/bg_") || // 47 직업 맵(벽·바닥 반복은 FullRect 필요)
+                assetPath.Contains("/Resources/ArtExtra/drop_")) // 57 재료 드롭 32px(Aseprite+PixelLab, ArtSource/feedback-2026-10-15)
             {
                 // 2026-10-12 42/43: PixelLab(Aseprite 확장) 제작 상태 표식·몬스터 장판 v2 프레임(ArtSource/status-zone-vfx-2026-10-12).
                 // 가운데 pivot, 128 PPU(64px 표식 = 0.5 유닛, 판정 맞춤은 코드에서 배율), 점 필터·밉맵 없음·무압축.
@@ -64,9 +65,11 @@ namespace CCT.Editor
                 vfx.spriteImportMode = SpriteImportMode.Single;
                 var vs = new TextureImporterSettings();
                 vfx.ReadTextureSettings(vs);
-                vs.spriteAlignment = (int)SpriteAlignment.Center;
+                // 57 경계 기둥(ArtSource/feedback-2026-10-15/manifest.json pivot 0.5,0): 바닥 중앙 pivot.
+                vs.spriteAlignment = (int)(assetPath.Contains("_boundary") ? SpriteAlignment.BottomCenter : SpriteAlignment.Center);
                 // 47 직업 맵 bg_*: PixelLab 계정 최대 256px → 절반 해상도로 만들어 64 PPU(기존 카페 배경과 같은 월드 크기, 배경 픽셀 2배)
-                vs.spritePixelsPerUnit = assetPath.Contains("/Resources/ArtExtra/bg_") ? 64f : 128f;
+                vs.spritePixelsPerUnit = assetPath.Contains("/Resources/ArtExtra/bg_") ? 64f
+                    : assetPath.Contains("/Resources/ArtExtra/drop_") ? 32f : 128f; // 57 드롭 32px = 1유닛(기존 아이콘과 같은 기준)
                 vs.spriteMeshType = SpriteMeshType.FullRect;
                 vfx.SetTextureSettings(vs);
                 vfx.mipmapEnabled = false;

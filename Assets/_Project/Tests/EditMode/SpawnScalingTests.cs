@@ -71,12 +71,28 @@ namespace CCT.Tests
                 Assert.LessOrEqual(Balance.TimeAliveCap(t, 160), 160);
                 previousInterval = interval; previousCap = cap; previousWave = wave;
             }
-            Assert.AreEqual(2f, Balance.TimeSpawnMultiplier(600f));
-            Assert.AreEqual(3f, Balance.TimeSpawnMultiplier(1200f));
+            Assert.AreEqual(4f, Balance.TimeSpawnMultiplier(600f));
+            Assert.AreEqual(6f, Balance.TimeSpawnMultiplier(1200f));
             Assert.AreEqual(100, Balance.TimeAliveCap(0f, 100));
             Assert.AreEqual(160, Balance.TimeAliveCap(1200f, 100));
             Assert.AreEqual(1f, Balance.TimeSpawnMultiplier(-1f));
-            Assert.AreEqual(3f, Balance.TimeSpawnMultiplier(float.MaxValue));
+            Assert.AreEqual(6f, Balance.TimeSpawnMultiplier(float.MaxValue));
+        }
+
+        [TestCase(419.99f, 1)]
+        [TestCase(420f, 2)]
+        [TestCase(600f, 2)]
+        [TestCase(1200f, 2)]
+        public void SevenMinutes_DoublesRegularRateAndWaveCount(float seconds, int multiplier)
+        {
+            float previousRate = 1f + Mathf.Clamp(seconds, 0f, Balance.RunTimeLimitSeconds) / 600f;
+            int previousWave = Balance.WaveCountPerSide + Mathf.FloorToInt(Mathf.Clamp(seconds, 0f, Balance.RunTimeLimitSeconds) / 180f);
+            Assert.AreEqual(previousRate * multiplier, Balance.TimeSpawnMultiplier(seconds), 1e-5f);
+            Assert.AreEqual(previousWave * multiplier, Balance.TimeWaveCountPerSide(seconds));
+            float previousInterval = Mathf.Max(Balance.SpawnIntervalMin, Balance.SpawnIntervalStart - seconds * Balance.SpawnIntervalDecayPerSecond) / previousRate;
+            Assert.AreEqual(previousInterval / multiplier, EnemySpawner.RegularInterval(seconds, false, 1f), 1e-5f);
+            Assert.AreEqual(previousInterval * 2f / multiplier, EnemySpawner.RegularInterval(seconds, true, 1f), 1e-5f);
+            Assert.LessOrEqual(Balance.TimeAliveCap(seconds, 160), 160);
         }
 
         [Test]

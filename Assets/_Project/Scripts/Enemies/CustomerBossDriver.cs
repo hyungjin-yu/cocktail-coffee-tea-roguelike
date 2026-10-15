@@ -129,7 +129,7 @@ namespace CCT
             int count = enraged ? EnragedSummonCount : SummonCount;
             for (int side = -1; side <= 1; side += 2)
             {
-                float x = enemy.transform.position.x + side * (enemy.Def.radius + 2f + 1f);
+                float x = BattleArena.ClampX(enemy.transform.position.x + side * (enemy.Def.radius + 2f + 1f), 1.2f); // 57 구역 안 예고
                 FadeVfx.Spawn(SpriteFactory.Circle, new Vector2(x, Balance.LaneCenterY), 0f,
                     Vector2.one * 0.3f, Vector2.one * (Balance.DepthHalfWidth * 2f),
                     new Color(0.9f, 0.2f, 0.9f, 0.3f), SummonTelegraphSeconds, 4);
@@ -147,7 +147,7 @@ namespace CCT
 
                     float side = (i % 2 == 0) ? -1f : 1f;
                     float depth = Random.Range(Balance.DepthMin, Balance.DepthMax);
-                    float x = enemy.transform.position.x + side * (enemy.Def.radius + 2f + Random.Range(0f, 2f));
+                    float x = BattleArena.ClampX(enemy.transform.position.x + side * (enemy.Def.radius + 2f + Random.Range(0f, 2f)), 1.2f);
                     var summoned = Enemy.SpawnAt(new Vector2(x, depth), EnemyRoster.PickCommon(game.RunTime, game.SpawnRng, game.Job), hpScale,
                         game.Player, enemy.transform.parent);
                     EnemyRoster.AttachBehavior(summoned, game, game.Player);

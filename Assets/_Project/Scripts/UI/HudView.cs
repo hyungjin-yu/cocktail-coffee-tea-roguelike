@@ -23,7 +23,10 @@ namespace CCT
         Image slowIcon, suppressedIcon, sealIcon, bossInvulnerableIcon;
         Button pauseButton;
         float bannerRemaining;
-        Text hiddenSummary, hiddenActivity, jobTrait;
+        Text hiddenSummary, hiddenActivity, jobTrait, comboTarget, guide;
+        GameObject guideRoot;
+        float guideRemaining, pulseRemaining;
+        IngredientType pulseType;
         GameObject hiddenDetails;
         RectTransform hiddenContent;
         float hiddenRefresh;
@@ -66,6 +69,20 @@ namespace CCT
                 view.beanBar.Root.anchoredPosition = new Vector2(0f, -62f);
                 gaugeBackRt.sizeDelta = new Vector2(940f, 76f);
             }
+
+            // 57 P1 첫 수집 안내(게이지 바로 아래, 입력 안 막음). RunGuide가 처음 몇 판만 띄운다.
+            var guideRt = UiFactory.Place("Guide", root, new Vector2(0.5f, 1f), new Vector2(0f, game != null && game.Job == Job.TeaSommelier ? -102f : -138f),
+                new Vector2(860f, 50f));
+            UiFactory.AddImage(guideRt, new Color(0.1f, 0.2f, 0.24f, 0.92f)).raycastTarget = false;
+            view.guide = PaddedLabel(guideRt, "", 22, TextAnchor.MiddleCenter, new Color(0.85f, 0.97f, 1f));
+            var guideLabelRt = view.guide.rectTransform;
+            guideLabelRt.offsetMin = new Vector2(10f, 2f);
+            guideLabelRt.offsetMax = new Vector2(-10f, -2f);
+            view.guide.resizeTextForBestFit = true; // 긴 안내도 한 상자 안(잘려서 빈 상자가 되지 않게)
+            view.guide.resizeTextMinSize = 14;
+            view.guide.resizeTextMaxSize = 22;
+            view.guideRoot = guideRt.gameObject;
+            view.guideRoot.SetActive(false);
 
             var infoRt = UiFactory.Place("Info", root, new Vector2(1f, 1f), new Vector2(-30f, -24f),
                 new Vector2(320f, 90f));
@@ -124,6 +141,7 @@ namespace CCT
             view.bossBar = new FillBar(root, "BossBar", new Vector2(0.5f, 0f), new Vector2(0f, 50f),
                 new Vector2(1000f, 34f), new Color(0.8f, 0.15f, 0.2f), 24);
             view.bossBar.Root.gameObject.SetActive(false);
+            view.BossIndicator = BossDirectionIndicator.Create(root, game); // 57 P0-1 화면 밖 보스 방향
             // 04 §8 status_invulnerable — 보스가 무적(등장 안내·투명화)일 때 체력바 왼쪽에 표시.
             view.bossInvulnerableIcon = UiFactory.AddIcon(view.bossBar.Root, "status_invulnerable", new Vector2(0f, 0.5f),
                 new Vector2(-50f, 0f), 44f);
@@ -168,7 +186,16 @@ namespace CCT
             hiddenButton.targetGraphic=hiddenBg; UiFactory.ApplyHoverColors(hiddenButton);
             view.hiddenSummary=PaddedLabel(hiddenRt,MobilePlatform.IsTouchUI ? "히든 0 · 효과 보기" : "히든 0 · 효과 보기 [H]",24,TextAnchor.MiddleLeft,new Color(1f,.85f,.4f));
             hiddenButton.onClick.AddListener(()=>view.game?.OpenHiddenDetails());
-            var activityRt=UiFactory.Place("HiddenActivity",root,new Vector2(0f,1f),new Vector2(30f,-352f),new Vector2(580f,128f));
+            // 57 P1 목표 조합 버튼(직업 특성 아래). 히든 효과 발동 상자는 그 아래로 내린다.
+            var targetRt=UiFactory.Place("ComboTargetButton",root,new Vector2(0f,1f),new Vector2(30f,-350f),new Vector2(580f,56f));
+            var targetBg=UiFactory.AddImage(targetRt,new Color(.12f,.09f,.12f,.92f));
+            UiFactory.SkinButton(targetBg);
+            var targetButton=targetRt.gameObject.AddComponent<Button>();
+            targetButton.targetGraphic=targetBg; UiFactory.ApplyHoverColors(targetButton);
+            view.comboTarget=PaddedLabel(targetRt,"",22,TextAnchor.MiddleLeft,new Color(.75f,.92f,1f));
+            view.comboTarget.resizeTextForBestFit=true; view.comboTarget.resizeTextMinSize=16; view.comboTarget.resizeTextMaxSize=22;
+            targetButton.onClick.AddListener(()=>view.game?.OpenComboTarget());
+            var activityRt=UiFactory.Place("HiddenActivity",root,new Vector2(0f,1f),new Vector2(30f,-414f),new Vector2(580f,128f));
             var activityBg=UiFactory.AddImage(activityRt,new Color(.12f,.09f,.12f,.92f));
             UiFactory.SkinPanel(activityBg); activityBg.raycastTarget=false;
             view.hiddenActivity=PaddedLabel(activityRt,"",24,TextAnchor.UpperLeft,Color.white);
@@ -245,12 +272,49 @@ namespace CCT
             bannerRemaining = seconds;
         }
 
+        /// <summary>57 P1 첫 수집 안내 한 줄(seconds 동안).</summary>
+        public void ShowGuide(string text, float seconds)
+        {
+            guide.text = text;
+            guideRemaining = seconds;
+            guideRoot.SetActive(true);
+        }
+        public bool GuideVisible => guideRoot != null && guideRoot.activeSelf;
+        public string GuideText => guide != null ? guide.text : "";
+        public string ComboTargetText => comboTarget != null ? comboTarget.text : "";
+
+        /// <summary>57 P1: 처음 주운 재료의 게이지를 잠깐 맥동시켜 "어디가 찼는지" 보이게 한다.</summary>
+        public void PulseGauge(IngredientType type)
+        {
+            pulseType = type;
+            pulseRemaining = 1.6f;
+        }
+
+        FillBar BarFor(IngredientType type) => type == IngredientType.Tea ? teaBar : type == IngredientType.Coffee ? beanBar : gaugeBar;
+
+        /// <summary>테스트용 — 지금 떠 있는 배너 부제(안내 문구가 실제와 맞는지).</summary>
+        public string BannerSubText => bannerSub != null ? bannerSub.text : "";
+
+        /// <summary>57 P1 HUD 목표 조합 문구 — 실제 조건 진행도(HiddenRequirements).</summary>
+        public static string ComboTargetLabel(GameManager g)
+        {
+            string key = MobilePlatform.IsTouchUI ? "" : " [T]";
+            if (!g.ComboTarget.HasValue) return "목표 조합 정하기" + key + " · 필요한 카드 표시";
+            var def = HiddenSkillDatabase.Get(g.ComboTarget.Value);
+            var progress = HiddenRequirements.Progress(def.skill, g.Job, g.HiddenState);
+            string name = HiddenRequirements.DisplayName(def, g.Job, g.HiddenDiscovered(def.id));
+            return $"목표: {name} · 조건 {HiddenRequirements.MetCount(progress)}/{progress.Count}{key}";
+        }
+
         public static string CoffeePointsLabel(int points) => $"커피 포인트 {points}  [K] 커피 연구";
 
         static void SetIcon(Image icon, bool visible)
         {
             if (icon != null && icon.gameObject.activeSelf != visible) icon.gameObject.SetActive(visible);
         }
+
+        /// <summary>57 P0-1 화면 밖 보스 방향 표시.</summary>
+        public BossDirectionIndicator BossIndicator { get; private set; }
 
         /// <summary>테스트용 — 상단 우측 일시정지 버튼(08:76).</summary>
         public Button PauseButton => pauseButton;
@@ -293,10 +357,23 @@ namespace CCT
                 hiddenRefresh=Time.unscaledTime+.1f;
                 hiddenSummary.text=MobilePlatform.IsTouchUI ? $"히든 {game.Player.Hidden.Count} · 현재 효과 보기" : $"히든 {game.Player.Hidden.Count} · 현재 효과 보기 [H]";
                 jobTrait.text=JobPreset.For(game.Job).name+" · "+game.JobTraitStatus;
+                if(comboTarget!=null) comboTarget.text=ComboTargetLabel(game);
                 var runtime=game.Player.HiddenRuntime;
                 hiddenActivity.text=runtime.LastActivationRemaining>0f ? "효과 발동: "+runtime.LastActivation
                     : "";
                 hiddenActivity.transform.parent.gameObject.SetActive(runtime.LastActivationRemaining>0f);
+            }
+            if (guideRemaining > 0f)
+            {
+                guideRemaining -= Time.unscaledDeltaTime;
+                if (guideRemaining <= 0f) guideRoot.SetActive(false);
+            }
+            foreach (var bar in new[] { gaugeBar, teaBar, beanBar }) bar.Root.localScale = Vector3.one;
+            if (pulseRemaining > 0f)
+            {
+                pulseRemaining -= Time.unscaledDeltaTime;
+                float k = Mathf.Abs(Mathf.Sin(pulseRemaining * 9f));
+                BarFor(pulseType).Root.localScale = new Vector3(1f + 0.03f * k, 1f + 0.25f * k, 1f);
             }
             bool saveFailed = PermanentProgress.LastSaveFailed;
             if (saveFailedRoot.activeSelf != saveFailed) saveFailedRoot.SetActive(saveFailed);

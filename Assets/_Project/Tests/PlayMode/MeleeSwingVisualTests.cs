@@ -30,33 +30,94 @@ namespace CCT.Tests
             v.Renderer != null && v.Renderer.sprite != null &&
             (v.Renderer.sprite == SpriteFactory.Semicircle || v.Renderer.sprite.name.StartsWith("player_melee_area")));
 
+        /// <summary>2026-10-13 사용자 피드백: 활도 합성 준비 자세(bow_*)가 아니라 원본 전신 idle/move/ranged/hurt 프레임을 쓰고,
+        /// 활 grip이 매 프레임 manifest hand anchor(앞 손)에 붙는다 — 좌우, 기본/비취 몸체, 기본/달빛 활 조합 모두.</summary>
         [UnityTest]
-        public IEnumerator Bow_UsesTwoHandedReadyPose_IdleMoveAndRangedHaveRealFrontHandAnchors()
+        public IEnumerator Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos()
         {
-            var game=GameBootstrap.Build(Job.TeaSommelier,WeaponKind.Bow);
-            game.GetComponentInChildren<EnemySpawner>().enabled=false; game.Director.enabled=false;
-            var visual=game.Player.Visual;
-            yield return null;
-            visual.Tick(1f,false,false); visual.SyncToCurrentFrame();
-            StringAssert.StartsWith("bow_idle",visual.Body.sprite.name);
-            Assert.IsFalse(visual.WeaponUsesProvisionalAnchor);
-            visual.Tick(1f,true,false); visual.SyncToCurrentFrame();
-            StringAssert.StartsWith("bow_move",visual.Body.sprite.name);
-            Assert.IsFalse(visual.WeaponUsesProvisionalAnchor);
-            Assert.IsTrue(visual.PlayAction("ranged")); visual.SyncToCurrentFrame();
-            StringAssert.StartsWith("bow_ranged",visual.Body.sprite.name);
-            var art=ArtLibrary.Get("weapon_bow");
-            Assert.IsTrue(art.TryGetAnchor(art.Main.name,0,"grip",out var grip));
-            Vector3 weaponGrip=visual.Weapon.transform.TransformPoint(art.AnchorToLocal(grip));
-            Vector3 hand=visual.transform.TransformPoint(visual.BodyArt.AnchorToLocal(new Vector2(198,153)));
-            Assert.Less(Vector3.Distance(weaponGrip,hand),.001f);
-            game.Player.SetFacing(game.Player.Position.x - 1f);
-            visual.Tick(game.Player.Facing,false,false); visual.SyncToCurrentFrame();
-            Assert.Less(visual.transform.localScale.x,0f);
-            Assert.IsFalse(visual.WeaponUsesProvisionalAnchor);
-            weaponGrip=visual.Weapon.transform.TransformPoint(art.AnchorToLocal(grip));
-            hand=visual.transform.TransformPoint(visual.BodyArt.AnchorToLocal(new Vector2(198,153)));
-            Assert.Less(Vector3.Distance(weaponGrip,hand),.001f);
+            var bowArt = ArtLibrary.Get("weapon_bow");
+            Assert.IsTrue(bowArt.TryGetAnchor(bowArt.Main.name, 0, "grip", out var grip));
+            foreach (bool jade in new[] { false, true })
+            foreach (bool moonBow in new[] { false, true })
+            {
+                WeaponSkinStore.Equip(WeaponKind.Bow, moonBow ? "weaponskin_bow_01" : null);
+                var game = GameBootstrap.Build(Job.TeaSommelier, WeaponKind.Bow);
+                game.GetComponentInChildren<EnemySpawner>().enabled = false; game.Director.enabled = false;
+                foreach (var mb in game.Player.GetComponents<MonoBehaviour>()) if (mb is PlayerProjectileWeapon) mb.enabled = false;
+                var visual = game.Player.Visual;
+                if (jade) SkinSpriteSwapper.Attach(visual.Body, SkinCatalog.Find(SkinCatalog.TeaJade));
+                yield return null;
+                string label = $"jade={jade} moonBow={moonBow}";
+                var png = WeaponSkinGeometry.LoadPng(moonBow ? "Assets/_Project/Resources/WeaponSkins/weaponskin_bow_01/weaponskin_bow_01_held.png"
+                    : "Assets/_Project/Resources/ArtExtra/weapon_bow_v2/weapon_bow_v2_right_00.png");
+                var content = WeaponSkinGeometry.AlphaBounds(png);
+                Object.DestroyImmediate(png);
+                if (moonBow) Assert.AreSame(WeaponSkinCatalog.HeldSprite(WeaponSkinCatalog.ForWeapon(WeaponKind.Bow)), visual.Weapon.sprite, label);
+
+                void Check(string clip, float facing)
+                {
+                    var swap = visual.Body.GetComponent<SkinSpriteSwapper>();
+                    if (swap != null) swap.Apply();
+                    var name = visual.Body.sprite.name;
+                    StringAssert.StartsWith("tea_sommelier_" + clip + "_right_", name, label + " 원본 전신 클립");
+                    StringAssert.DoesNotStartWith("bow_", name);
+                    if (jade) Assert.IsTrue(SkinArt.Sprites(SkinCatalog.Find(SkinCatalog.TeaJade)).ContainsValue(visual.Body.sprite), label + " 비취 의상 프레임");
+                    int frame = int.Parse(name.Substring(name.Length - 2));
+                    Assert.IsTrue(visual.BodyArt.TryGetAnchor(clip, frame, "hand", out var handPx), name);
+                    Assert.IsFalse(visual.WeaponUsesProvisionalAnchor, name);
+                    Vector3 weaponGrip = visual.Weapon.transform.TransformPoint(bowArt.AnchorToLocal(grip));
+                    Vector3 hand = visual.transform.TransformPoint(visual.BodyArt.AnchorToLocal(handPx));
+                    Assert.Less(Vector3.Distance(weaponGrip, hand), .001f, $"{label} {name} 활 grip = 앞 손");
+                    // 2026-10-13 사용자 지시("좌우만 바꿔봐")로 몸통 관통 회귀는 제거(비겨냥도 겨냥과 같은 좌우 방향). 대신 방향을 확인한다.
+                    bool aimFrame = PlayerVisual.BowAimOrientation(clip, frame);
+                    // 겨냥은 반전(x<0, 0°), 휴대 자세는 그 화면 좌우 거울(x>0, -90°).
+                    Assert.AreEqual(aimFrame, visual.Weapon.transform.localScale.x < 0f, $"{label} {name} 활 x 배율 부호");
+                    // 2026-10-13 손에 든 활: 비겨냥 프레임은 몸 뒤(앞 주먹이 손잡이를 덮음)이고, 활 알파 영역이 손 높이(+6 몸체px) 위로
+                    // 올라가지 않아 몸통(엉덩이 위)을 지나지 않는다.
+                    if (!PlayerVisual.BowAimOrientation(clip, frame))
+                    {
+                        Assert.Less(visual.Weapon.sortingOrder, visual.Body.sortingOrder, $"{name} 주먹이 손잡이 위");
+                        Vector3 handLocal = visual.BodyArt.AnchorToLocal(handPx);
+                        float tol = 6f / visual.BodyArt.pixelsPerUnit;
+                        var c0 = new Vector2(content.xMin, content.yMin); var c1 = new Vector2(content.xMax, content.yMax);
+                        foreach (var c in new[] { c0, c1, new Vector2(c0.x, c1.y), new Vector2(c1.x, c0.y) })
+                        {
+                            Vector3 local = visual.transform.InverseTransformPoint(visual.Weapon.transform.TransformPoint(bowArt.AnchorToLocal(c)));
+                            Assert.LessOrEqual(local.y, handLocal.y + tol, $"{label} {name} 활이 손 위 몸통으로 올라감 corner={c}");
+                        }
+                    }
+                    else Assert.Greater(visual.Weapon.sortingOrder, visual.Body.sortingOrder, $"{name} 겨냥은 몸 앞");
+                    Assert.AreEqual(facing < 0f, visual.transform.localScale.x < 0f, "좌우 반전");
+                }
+
+                foreach (float facing in new[] { 1f, -1f })
+                {
+                    game.Player.SetFacing(game.Player.Position.x + facing);
+                    visual.Tick(game.Player.Facing, false, false); visual.SyncToCurrentFrame(); Check("idle", facing);
+                    game.Player.AutoInputOverride = new Vector2(facing, 0f); // 실제 이동 경로로 move 6프레임 전부
+                    var seenMove = new System.Collections.Generic.HashSet<string>();
+                    for (float end = Time.realtimeSinceStartup + 3f; Time.realtimeSinceStartup < end && seenMove.Count < 6;)
+                    {
+                        yield return null;
+                        visual.SyncToCurrentFrame(); Check("move", facing); seenMove.Add(visual.Body.sprite.name);
+                    }
+                    game.Player.AutoInputOverride = null;
+                    Assert.AreEqual(6, seenMove.Count, "move 6프레임 모두 확인");
+                    yield return null;
+                    Assert.IsTrue(visual.PlayAction("ranged"));
+                    for (int f = 0; f < 4; f++)
+                    {
+                        visual.SyncToCurrentFrame(); Check("ranged", facing);
+                        yield return new WaitForSeconds(1f / 12f);
+                    }
+                    visual.PlayHurt(); visual.SyncToCurrentFrame(); Check("hurt", facing);
+                    yield return new WaitForSeconds(0.5f);
+                    visual.Tick(game.Player.Facing, false, false); visual.SyncToCurrentFrame(); Check("idle", facing); // 복귀
+                }
+                Object.Destroy(game.gameObject);
+                yield return null;
+            }
+            WeaponSkinStore.Equip(WeaponKind.Bow, null);
         }
 
         IEnumerator HitOnce(GameManager game, System.Action<float> afterHit)

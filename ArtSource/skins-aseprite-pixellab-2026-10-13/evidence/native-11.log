@@ -1,0 +1,5 @@
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+NATIVE_EXPORT_READBACK_OK 11 C:/Users/user/Documents/Projects/CocktailCoffeeTea/ArtSource/skins-aseprite-pixellab-2026-10-13/body/skin_bartender_midnight/bartender_melee_right_00.png

@@ -493,7 +493,18 @@ namespace CCT.Tests
                 Vector2 gripWorld = renderer.transform.TransformPoint(asset.AnchorToLocal(grip));
                 Assert.Less(Vector2.Distance(gripWorld, renderer.transform.parent.position), 0.0001f,
                     "반전해도 손잡이는 손 피벗에 고정돼야 한다");
-                Assert.Less(renderer.transform.localScale.x, 0f, "활대가 전방, 시위가 몸 쪽을 향해야 한다");
+                // 2026-10-13: 주무기 활은 대기·겨냥 모두 반전(시위가 몸 쪽), 하이브리드 보조 활도 기존대로 반전.
+                if (secondary) Assert.Less(renderer.transform.localScale.x, 0f, "보조 활: 활대가 전방, 시위가 몸 쪽");
+                else
+                {
+                    // 2026-10-13 사용자 지시("좌우만 바꿔봐"): 대기도 겨냥과 같은 좌우 방향(반전).
+                    // 휴대 자세(-90°)는 겨냥 그림의 화면 좌우 거울 = 그림 x 배율 비반전.
+                    Assert.Greater(renderer.transform.localScale.x, 0f, "주무기 활 대기: 휴대 자세 좌우 거울(x 비반전, -90°)");
+                    Assert.IsTrue(visual.PlayAction("ranged")); visual.SyncToCurrentFrame();
+                    Assert.Less(renderer.transform.localScale.x, 0f, "주무기 활 겨냥: 반전(시위가 당기는 손 쪽)");
+                    gripWorld = renderer.transform.TransformPoint(asset.AnchorToLocal(grip));
+                    Assert.Less(Vector2.Distance(gripWorld, renderer.transform.parent.position), 0.0001f, "겨냥 반전에도 손잡이 고정");
+                }
                 Assert.AreEqual(Mathf.Abs(renderer.transform.localScale.x), renderer.transform.localScale.y, 0.0001f);
                 Assert.Less(renderer.transform.localScale.y, 10f, "왼쪽 장착 시 부모 음수 스케일로 거대해지면 안 된다");
                 if (!secondary)
@@ -506,7 +517,7 @@ namespace CCT.Tests
                 }
                 Vector2 launch;
                 Assert.IsTrue(secondary ? visual.TryGetSecondaryLaunchWorld(out launch) : visual.TryGetMuzzleWorld(facing, out launch));
-                Assert.Less((launch.x - gripWorld.x) * facing, 0f, "시위의 발사 앵커도 그림과 함께 반전돼야 한다");
+                Assert.Less((launch.x - gripWorld.x) * facing, 0f, "발사 앵커는 겨냥 그림 기준 시위(손 뒤) 위치");
             }
             finally { Object.DestroyImmediate(root); }
         }

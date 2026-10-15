@@ -1,4 +1,21 @@
-﻿# 칵테일 · 커피 · 차
+# 음료 마스터
+
+## 현재 배포 상태 — 2026-10-15
+
+- Windows 최신 실행본: `Builds/Playable-2026-10-15-feedback/CocktailCoffeeTea.exe`
+- Android: **1.0.1 (versionCode 2)**, 기존 내부 테스트 트랙에서 **내부 테스터에게 제공됨** 확인(2026-10-15 오전 9:12).
+- [Google Play 내부 테스트 참여 링크](https://play.google.com/apps/internaltest/4701303261501617472)
+- 재료 수집·조합 안내, 목표 조합 선택, 드롭과 배경 가독성, 맵 좌우 경계와 보스 방향 안내를 개선했습니다. 물방울 방향과 물방울·얼음 크기, 스킨 버튼 위치를 수정하고 7분 이후 일반 소환 빈도와 웨이브 수량을 2배로 늘렸습니다.
+- 스프라이트 제작·수정은 반드시 **Aseprite와 PixelLab**을 사용합니다. 승인된 활 장착·전신 모션 기준을 유지합니다.
+- Android 빌드·번들·기존 서명 인증서·16KB 호환성 검증 완료. 실제 Android 기기의 설치·업데이트·플레이 검증은 필요합니다.
+- 대한민국 GRAC 추가 검토, 비공개 테스트 참여 조건 및 프로덕션 액세스 절차는 남아 있습니다. 이번 업데이트는 내부 테스트에 배포했으며 결제는 비활성 상태입니다.
+
+[피드백 수정·검증 기록](Delivery/Reports/feedback-2026-10-15.md) · [Android 업데이트 기록](Delivery/Reports/android-update-2026-10-15.md)
+
+빌드 파일과 캐시, 개인 저장 데이터, 서명 키는 Git에 포함하지 않습니다. 아트 원본과 소스·테스트·보고서는 보존합니다.
+
+---
+
 
 음료 조합으로 성장하는 2D 픽셀 아트 액션 로그라이크입니다. 바텐더와 티 소믈리에가 적을 상대하고, 음료 카드와 직업 연구를 조합하며 영구 강화를 해금합니다.
 
@@ -36,7 +53,7 @@ Unity Hub에서 저장소 루트 폴더를 프로젝트로 추가하고 위 버�
 
 빌드 캐시와 실행 파일 ZIP은 Git에 포함하지 않습니다. 이 저장소에 GitHub Release 배포 파일을 별도로 등록한 것은 아닙니다.
 
-Android 테스트 빌드는 `CCT.Editor.BuildRelease.AndroidApkBatch`와 `AndroidAabBatch`로 생성합니다. 출력은 `Builds/Android/`이며, 현재 빌드 진입점은 디버그 서명을 사용합니다. `NOT-FOR-PLAY-UPLOAD.aab`는 Play 제출용이 아닙니다. 출시 준비와 각 1,000원 스킨 상품 정보는 [Google Play 준비 문서](Delivery/GOOGLE_PLAY_출시준비.md), 서버 설정은 [구매 검증 서버](Server/skin-verifier/README.md)를 참고하세요. Steam 준비는 Google Play 출시 이후로 미뤘습니다.
+Android AAB: 1.0.1 (versionCode 2) is released to internal testing. Local bundle: Delivery/Android-2026-10-15. See Delivery/Reports/android-update-2026-10-15.md. Signing keys stay outside source control.
 
 ## 조작
 

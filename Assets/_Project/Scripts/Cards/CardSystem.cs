@@ -27,6 +27,9 @@ namespace CCT
 
         public int GetStacks(CardData card) => owned.TryGetValue(card, out var n) ? n : 0;
 
+        /// <summary>57 목표 조합: 이번 런 카드 풀에서 id로 찾는다(없으면 null).</summary>
+        public CardData FindInPool(string id) => pool.Find(c => c != null && c.id == id);
+
         /// <summary>id로 이번 런 보유 중첩(41 히든 조건).</summary>
         public int StacksOf(string id)
         {
@@ -41,6 +44,15 @@ namespace CCT
             foreach (var kv in owned)
                 if (kv.Key.category == category) total += kv.Value;
             return total;
+        }
+
+        /// <summary>46 혼합 러시: 이번 런에 1장 이상 보유한 카테고리 카드의 고유 종류 수(추가 중첩은 세지 않음).</summary>
+        public int CountKinds(CardCategory category)
+        {
+            int kinds = 0;
+            foreach (var kv in owned)
+                if (kv.Key.category == category && kv.Value > 0) kinds++;
+            return kinds;
         }
 
         public List<CardOffer> Draw(CardCategory category, bool isRanged, int count = 3,
@@ -96,7 +108,7 @@ namespace CCT
             return offers;
         }
 
-        static bool IsWeaponCompatible(CardData card, bool isRanged)
+        public static bool IsWeaponCompatible(CardData card, bool isRanged)
         {
             return card.weaponRestriction switch
             {

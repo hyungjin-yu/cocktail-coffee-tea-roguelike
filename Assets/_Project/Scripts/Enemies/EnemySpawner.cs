@@ -3,7 +3,7 @@ using UnityEngine;
 namespace CCT
 {
     /// <summary>
-    /// 벨트스크롤(던파식) 스폰: 화면 좌우 바깥에서 몹이 걸어들어온다.
+    /// 벨트스크롤(던파식) 스폰: 화면 좌우 바깥(57: 유한 전투 구역 안)에서 몹이 걸어들어온다.
     /// 평소엔 트리클 스폰, 주기적으로 양쪽에서 동시에 웨이브가 몰려와 긴장감을 준다.
     /// </summary>
     public class EnemySpawner : MonoBehaviour
@@ -85,33 +85,40 @@ namespace CCT
             if (!UnderCap) return;
             var rng = game.SpawnRng; // 06:98 — 스폰은 시드에서 파생된 독립 스트림을 쓴다
             float side = rng.Value() < 0.5f ? -1f : 1f;
-            var pos = BeltScroll.EdgePosition(cam, side, Balance.SpawnEdgeMargin);
-            var enemy = Enemy.SpawnAt(pos, EnemyRoster.PickCommon(t, rng, game.Job), Balance.EnemyHpScale(t), player, transform); // 47 직업 테마
+            var def = EnemyRoster.PickCommon(t, rng, game.Job); // 47 직업 테마
+            var pos = BeltScroll.ArenaEdgePosition(cam, side, Balance.SpawnEdgeMargin, def.radius, out _); // 57 유한 구역 안 화면 밖
+            var enemy = Enemy.SpawnAt(pos, def, Balance.EnemyHpScale(t), player, transform);
             EnemyRoster.AttachBehavior(enemy, game, player);
             RegularSpawns++;
         }
 
-        /// <summary>14초마다 양쪽 웨이브. 한쪽 4마리에서 3분마다 한 마리씩 늘며 영구 해금 수는 웨이브 수에 중복 적용하지 않는다.</summary>
+        /// <summary>14초마다 양쪽 웨이브. 한쪽 4마리에서 3분마다 한 마리씩 늘며 영구 해금 수는 웨이브 수에 중복 적용하지 않는다.
+        /// 57 P0-1: 벽에 붙어 한쪽 화면 밖이 구역 밖이면 그쪽 몫은 반대쪽 화면 밖에서 나오고, 안내 문구도 실제 쪽(왼쪽/오른쪽/양쪽)으로 말한다.</summary>
         void SpawnWave(float t)
         {
-            game.Hud.ShowBanner("몹 웨이브!", "양쪽에서 몰려온다", 1.6f);
             float hpScale = Balance.EnemyHpScale(t);
             var rng = game.SpawnRng;
+            bool fromLeft = false, fromRight = false;
 
             for (int i = 0; i < Balance.TimeWaveCountPerSide(t); i++)
             {
+                for (int s = 0; s < 2; s++)
+                {
+                    if (!UnderCap) break;
+                    var def = EnemyRoster.PickCommon(t, rng, game.Job);
+                    var pos = BeltScroll.ArenaEdgePosition(cam, s == 0 ? -1f : 1f, Balance.SpawnEdgeMargin, def.radius, out float used);
+                    var enemy = Enemy.SpawnAt(pos, def, hpScale, player, transform);
+                    EnemyRoster.AttachBehavior(enemy, game, player);
+                    WaveSpawns++;
+                    if (used < 0f) fromLeft = true; else fromRight = true;
+                }
                 if (!UnderCap) break;
-                var left = Enemy.SpawnAt(BeltScroll.EdgePosition(cam, -1f, Balance.SpawnEdgeMargin),
-                    EnemyRoster.PickCommon(t, rng, game.Job), hpScale, player, transform);
-                EnemyRoster.AttachBehavior(left, game, player);
-                WaveSpawns++;
-
-                if (!UnderCap) break;
-                var right = Enemy.SpawnAt(BeltScroll.EdgePosition(cam, 1f, Balance.SpawnEdgeMargin),
-                    EnemyRoster.PickCommon(t, rng, game.Job), hpScale, player, transform);
-                EnemyRoster.AttachBehavior(right, game, player);
-                WaveSpawns++;
             }
+            LastWaveSides = BattleArena.SideLabel(fromLeft, fromRight);
+            if (fromLeft || fromRight) game.Hud.ShowBanner("몹 웨이브!", $"{LastWaveSides}에서 몰려온다", 1.6f);
         }
+
+        /// <summary>시험/보고용 — 마지막 웨이브가 실제로 나온 쪽(왼쪽/오른쪽/양쪽).</summary>
+        public string LastWaveSides { get; private set; }
     }
 }
