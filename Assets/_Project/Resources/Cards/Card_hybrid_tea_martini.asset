@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: Card_hybrid_tea_martini
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: hybrid_tea_martini
-  displayName: "\uD2F0\uB2C8 \uBCF4\uC6B0"
+  displayName: "티 마티니 · 티니 보우"
   description: "\uB808\uC774\uD53C\uC5B4\uC5D0 \uCC28\uC758 \uD65C\uC744 \uB354\uD569\uB2C8\uB2E4
     \u2014 \uBCF4\uC870 \uD654\uC0B4\uC774 \uC790\uB3D9 \uBC1C\uC0AC\uB429\uB2C8\uB2E4."
-  flavorText: 
+  flavorText: "차를 우린 베르무트 등으로 차 향을 더하는 마티니 변형이 있으며 레시피는 다양합니다. 티니 보우는 두 테마를 결합한 게임 속 창작 보조 활입니다."
   category: 2
   rarity: 3
   maxStacks: 1
   effects: []
   weaponRestriction: 0
+  realWorldFact: "차를 우린 베르무트 등으로 차 향을 더하는 마티니 변형이 있으며 레시피는 다양합니다. 티니 보우는 두 테마를 결합한 게임 속 창작 보조 활입니다."
+  gameplayConnection: "두 테마의 결합을 보조 활로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Marteani"
+  sourceUrl: "https://www.diageobaracademy.com/en-zz/home/explore-all-recipes/marteani"
+  educationArtId: ""
+  additionalSources: ""

@@ -90,7 +90,7 @@ namespace CCT
                 var hidden = player.HiddenRuntime;
                 enemy.TakeDamage(hidden != null ? hidden.ModifyDirectDamage(enemy, damage) : damage);
                 hidden?.AfterDirectHit(enemy);
-                if (isSword && !QaDisableSwordStagger && !enemy.IsDead) enemy.TryStagger(Balance.SwordStaggerSeconds, Balance.SwordStaggerCooldown);
+                if (isSword && !QaDisableSwordStagger && !enemy.IsDead) enemy.TryStagger(Balance.SwordStaggerSeconds, Balance.SwordStaggerCooldown * stats.CooldownScale);
             }
 
             float angle = facing > 0f ? 0f : 180f;

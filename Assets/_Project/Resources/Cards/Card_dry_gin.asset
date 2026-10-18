@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_dry_gin
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: dry_gin
-  displayName: "\uB4DC\uB77C\uC774 \uC9C4"
+  displayName: "드라이 진"
   description: "\uACF5\uACA9\uB825 +15%"
-  flavorText: "\uB2EC\uC9C0 \uC54A\uACE0 \uAE54\uB054\uD55C \uC815\uD1B5 \uC9C4.
-    \uB9C8\uD2F0\uB2C8\uC758 \uBCA0\uC774\uC2A4\uB85C \uD754\uD788 \uC4F0\uC778\uB2E4."
+  flavorText: "주니퍼 향이 특징인 증류주입니다. 드라이는 단맛에 관한 표현이며, 진은 칵테일의 베이스로 쓰입니다."
   category: 0
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 0
     value: 0.15
   weaponRestriction: 0
+  realWorldFact: "주니퍼 향이 특징인 증류주입니다. 드라이는 단맛에 관한 표현이며, 진은 칵테일의 베이스로 쓰입니다."
+  gameplayConnection: "베이스의 존재감을 공격력으로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Tanqueray London Dry Gin"
+  sourceUrl: "https://www.diageobaracademy.com/en-us/home/our-brands/tanqueray-london-dry-gin"
+  educationArtId: "card_gin"
+  additionalSources: ""

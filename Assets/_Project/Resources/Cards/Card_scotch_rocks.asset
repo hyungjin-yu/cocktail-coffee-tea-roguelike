@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_scotch_rocks
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: scotch_rocks
-  displayName: "\uC2A4\uCE74\uCE58 \uC628 \uB354 \uB77D"
+  displayName: "올드패션드"
   description: "\uACF5\uACA9\uB825 +50%"
-  flavorText: "\uC5BC\uC74C \uC704\uC5D0 \uBD80\uC740 \uC2A4\uCE74\uCE58 \uC704\uC2A4\uD0A4.
-    \uD5A5\uC744 \uC624\uB798 \uC990\uAE30\uB294 \uBC29\uC2DD."
+  flavorText: "위스키·설탕·비터스·물로 바탕 술의 풍미를 살립니다."
   category: 0
   rarity: 2
   maxStacks: 3
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 0
     value: 0.5
   weaponRestriction: 0
+  realWorldFact: "위스키·설탕·비터스·물로 바탕 술의 풍미를 살립니다."
+  gameplayConnection: "베이스 중심을 공격력으로 표현했습니다."
+  sourceName: "International Bartenders Association · old-fashioned"
+  sourceUrl: "https://iba-world.com/iba-cocktail/old-fashioned/"
+  educationArtId: "card_old_fashioned"
+  additionalSources: ""

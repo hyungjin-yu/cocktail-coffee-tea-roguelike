@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_dry_martini
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: dry_martini
-  displayName: "\uB4DC\uB77C\uC774 \uB9C8\uD2F0\uB2C8"
+  displayName: "드라이 마티니"
   description: "\uACF5\uACA9\uB825 +25%, \uACF5\uACA9 \uC18D\uB3C4 +20%"
-  flavorText: "\uBCA0\uB974\uBB34\uD2B8\uB97C \uCD5C\uC18C\uB85C, \uC9C4\uC758 \uC874\uC7AC\uAC10\uC744
-    \uADF9\uB300\uD654\uD55C \uD074\uB798\uC2DD."
+  flavorText: "국제바텐더협회(IBA) 레시피는 진과 드라이 베르무트를 얼음과 저어 만듭니다. 베르무트는 향을 입힌 강화 와인이며, 배합 비율은 마티니 스타일마다 달라집니다. 스티어는 저어 섞는 동작입니다."
   category: 0
   rarity: 2
   maxStacks: 3
@@ -26,3 +25,9 @@ MonoBehaviour:
   - type: 1
     value: 0.2
   weaponRestriction: 0
+  realWorldFact: "국제바텐더협회(IBA) 레시피는 진과 드라이 베르무트를 얼음과 저어 만듭니다. 베르무트는 향을 입힌 강화 와인이며, 배합 비율은 마티니 스타일마다 달라집니다. 스티어는 저어 섞는 동작입니다."
+  gameplayConnection: "존재감과 스티어을 공격·공속으로 표현했습니다."
+  sourceName: "International Bartenders Association · dry-martini"
+  sourceUrl: "https://iba-world.com/iba-cocktail/dry-martini/"
+  educationArtId: "card_martini"
+  additionalSources: "베르무트: Campari Academy · Understanding vermouth\nhttps://www.campariacademy.com/en-ch/training/products-category/vermouth/"

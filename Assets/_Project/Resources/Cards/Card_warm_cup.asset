@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_warm_cup
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: warm_cup
-  displayName: "\uB530\uB73B\uD55C \uCC3B\uC794"
+  displayName: "찻잔 예열"
   description: "\uCD5C\uB300 \uCCB4\uB825 +20"
-  flavorText: "\uC190\uC744 \uB370\uC6B0\uACE0 \uCC28\uC758 \uD5A5\uC744 \uC624\uB798
-    \uC9C0\uCF1C\uC8FC\uB294 \uC794."
+  flavorText: "차를 담기 전 잔을 데워 온도 손실을 줄입니다."
   category: 1
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 4
     value: 20
   weaponRestriction: 0
+  realWorldFact: "차를 담기 전 잔을 데워 온도 손실을 줄입니다."
+  gameplayConnection: "온도 완충을 최대 체력으로 표현했습니다."
+  sourceName: "Global Tea Hut · Gongfu brewing and preheating"
+  sourceUrl: "https://archive.globalteahut.org/docs/issues/2014-05.pdf"
+  educationArtId: ""
+  additionalSources: ""

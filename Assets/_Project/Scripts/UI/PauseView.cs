@@ -129,6 +129,11 @@ namespace CCT
             UiFactory.AddText(UiFactory.Stretch("Label", giveUpRt), "런 포기", 27,
                 TextAnchor.MiddleCenter, Color.white);
 
+            // 69 준비 음료 보존 안내(포기/타이틀로 종료 옆).
+            view.drinkHint = UiFactory.AddText(UiFactory.Place("DrinkHint", rootRt, new Vector2(0.5f, 0.5f), new Vector2(230f, -233f),
+                new Vector2(560f, 150f)), "", 22, TextAnchor.MiddleLeft, new Color(0.75f, 1f, 0.8f));
+            view.drinkHint.rectTransform.pivot = new Vector2(0f, 0.5f);
+
             var quitTitleRt = UiFactory.Place("QuitToTitleButton", rootRt, new Vector2(0.5f, 0.5f),
                 new Vector2(0f, -275f), new Vector2(400f, 78f));
             var quitTitleBg = UiFactory.AddImage(quitTitleRt, new Color(0.4f, 0.32f, 0.24f));
@@ -200,8 +205,21 @@ namespace CCT
             confirmRoot.SetActive(false);
         }
 
+        Text drinkHint;
+        public string DrinkHintText => drinkHint != null ? drinkHint.text : "";
+
+        void RefreshDrinkHint()
+        {
+            if (drinkHint == null || game == null) return;
+            var drink = DrinkLab.DrinkInRun(game.RunId);
+            drinkHint.text = drink == null || game.DrinkBuff == null ? ""
+                : drink.locked || game.Kills >= DrinkLab.PreserveKillLimit ? $"준비 음료 {drink.recipe.name}: 이번 판에 사용됨(5마리 이상 처치)"
+                : $"준비 음료 {drink.recipe.name}: 지금 \"런 포기\"·\"타이틀로 종료\"하면 보존\n(처치 {game.Kills}/{DrinkLab.PreserveKillLimit}, 이번 판 음료 재료 보상은 없음)";
+        }
+
         public void Show()
         {
+            RefreshDrinkHint();
             SetMenuVisible(true);
             HideConfirm();
             RefreshSkillTreeButton();

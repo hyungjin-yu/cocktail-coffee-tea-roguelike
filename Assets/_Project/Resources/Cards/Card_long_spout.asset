@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_long_spout
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: long_spout
-  displayName: "\uAE34 \uC8FC\uB465\uC774 \uC8FC\uC804\uC790"
+  displayName: "긴 주둥이 주전자"
   description: "\uC0AC\uAC70\uB9AC +15%"
-  flavorText: "\uBA40\uB9AC, \uAC00\uB298\uAC8C \uB530\uB97C \uC218 \uC788\uB294
-    \uB2E4\uB3C4\uC6A9 \uC8FC\uC804\uC790."
+  flavorText: "가늘고 긴 주둥이로 따르는 물줄기를 조절합니다."
   category: 1
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 2
     value: 0.15
   weaponRestriction: 0
+  realWorldFact: "가늘고 긴 주둥이로 따르는 물줄기를 조절합니다."
+  gameplayConnection: "물줄기의 길이을 사거리로 표현했습니다."
+  sourceName: "HARIO · Product catalogue 2019, p26"
+  sourceUrl: "https://global.hario.com/pdf2019/2019HARIO_GC_COFFEE_EN.pdf"
+  educationArtId: ""
+  additionalSources: ""

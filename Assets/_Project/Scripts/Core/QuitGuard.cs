@@ -28,7 +28,8 @@ namespace CCT
 
         /// <summary>진행 save 또는 설정 저장 중 하나라도 실패해 디스크에 못 쓴 변경이 남았는지.</summary>
         public static bool HasUnsaved =>
-            PermanentProgress.LastSaveFailed || SettingsService.LastSaveFailed || SettingsService.IsDirty;
+            PermanentProgress.LastSaveFailed || SettingsService.LastSaveFailed || SettingsService.IsDirty ||
+            RunHistory.IsDirty; // 67 최근 기록 저장 실패도 성공처럼 조용히 넘기지 않는다(미래 버전 보존은 실패가 아님)
 
         public static string UnsavedMessage
         {
@@ -37,6 +38,7 @@ namespace CCT
                 var parts = new System.Collections.Generic.List<string>();
                 if (PermanentProgress.LastSaveFailed) parts.Add("진행(save.json)");
                 if (SettingsService.LastSaveFailed || SettingsService.IsDirty) parts.Add("설정(settings.json)");
+                if (RunHistory.IsDirty) parts.Add("최근 기록(run-history.json)");
                 return $"저장하지 못한 {string.Join("·", parts)} 변경이 있습니다.\n다시 시도하거나, 저장 없이 종료할 수 있습니다.";
             }
         }
@@ -66,6 +68,7 @@ namespace CCT
             GameManager.Instance?.PrepareForQuit();
             PermanentProgress.SaveIfDirty();
             if (SettingsService.IsDirty || SettingsService.LastSaveFailed) SettingsService.RetrySave();
+            if (RunHistory.IsDirty) RunHistory.SaveNow();
             return !HasUnsaved;
         }
 

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Card_double_shot
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: double_shot
-  displayName: "\uB354\uBE14 \uC0F7"
+  displayName: "네그로니"
   description: "\uACF5\uACA9\uB825 +30%"
-  flavorText: "\uBCF4\uD1B5\uC758 \uB450 \uBC30 \u2014 \uB3C5\uD558\uAC8C, \uD654\uB048\uD558\uAC8C."
+  flavorText: "국제바텐더협회(IBA) 레시피는 진·캄파리·스위트 레드 베르무트를 동량으로 구성합니다. 캄파리는 쌉쌀한 식전주이며, 베르무트는 향을 입힌 강화 와인입니다."
   category: 0
   rarity: 1
   maxStacks: 4
@@ -23,3 +23,9 @@ MonoBehaviour:
   - type: 0
     value: 0.3
   weaponRestriction: 0
+  realWorldFact: "국제바텐더협회(IBA) 레시피는 진·캄파리·스위트 레드 베르무트를 동량으로 구성합니다. 캄파리는 쌉쌀한 식전주이며, 베르무트는 향을 입힌 강화 와인입니다."
+  gameplayConnection: "세 재료의 구성을 공격력으로 표현했습니다."
+  sourceName: "International Bartenders Association · negroni"
+  sourceUrl: "https://iba-world.com/iba-cocktail/negroni/"
+  educationArtId: "card_negroni"
+  additionalSources: "재료 용어: Diageo Bar Academy · Liqueurs, bitters and vermouth\nhttps://www.diageobaracademy.com/en-zz/home/explore-all-categories/liqueurs-bitters-and-vermouth\nCampari · Bitter aperitif\nhttps://www.campari.com/en-gb/our-products/campari/"

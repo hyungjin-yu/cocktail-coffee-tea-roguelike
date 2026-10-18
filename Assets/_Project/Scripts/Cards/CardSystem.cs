@@ -27,6 +27,15 @@ namespace CCT
 
         public int GetStacks(CardData card) => owned.TryGetValue(card, out var n) ? n : 0;
 
+        /// <summary>67 플레이 결과 기록 — 이번 런 보유 카드와 중첩의 복사본(이후 선택이 이 목록을 바꾸지 않는다).</summary>
+        public List<KeyValuePair<CardData, int>> OwnedSnapshot()
+        {
+            var list = new List<KeyValuePair<CardData, int>>();
+            foreach (var kv in owned)
+                if (kv.Key != null && kv.Value > 0) list.Add(kv);
+            return list;
+        }
+
         /// <summary>57 목표 조합: 이번 런 카드 풀에서 id로 찾는다(없으면 null).</summary>
         public CardData FindInPool(string id) => pool.Find(c => c != null && c.id == id);
 

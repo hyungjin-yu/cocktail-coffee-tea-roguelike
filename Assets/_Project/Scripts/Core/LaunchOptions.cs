@@ -22,6 +22,8 @@ namespace CCT
         public static void Apply(string[] args)
         {
             DataDir = Value(args, "-cct-data-dir");
+            // 69 테스트 재료 지급 버튼 — 격리 저장(-cct-data-dir)에서만 켠다(실제 사용자 저장에는 반복 지급 불가).
+            DrinkLab.DevToolsEnabled = !string.IsNullOrEmpty(DataDir) && Array.Exists(args, a => a == "-cct-drinklab-dev");
             AutoTourDir = Value(args, "-cct-autotour");
             if (!string.IsNullOrEmpty(DataDir))
             {

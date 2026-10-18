@@ -1,0 +1,21 @@
+{
+  "purpose": "Independent analytical acceptance examples for the reduced beverage model; synthetic liquids, not measured brand data.",
+  "units": {"volume": "mL", "density": "g/mL", "mass": "g"},
+  "assumptions": ["constant-area upright vessel", "no melting", "no liquid volume contraction", "cube can fit within available vessel geometry", "static equilibrium"],
+  "ice": {"cubeVolume": 10.0, "density": 0.917, "cubeMass": 9.17},
+  "cases": [
+    {"id": "uniform_no_ice", "capacity": 200.0, "liquidVolume": 100.0, "liquidDensity": 1.0, "iceCount": 0, "expectedDisplacedVolume": 0.0, "expectedOccupiedBelowSurface": 100.0, "expectedHeightFraction": 0.5},
+    {"id": "uniform_one_cube", "capacity": 200.0, "liquidVolume": 100.0, "liquidDensity": 1.0, "iceCount": 1, "expectedDisplacedVolume": 9.17, "expectedOccupiedBelowSurface": 109.17, "expectedHeightFraction": 0.54585, "expectedSubmergedFractionPerCube": 0.917},
+    {"id": "uniform_two_cubes", "capacity": 200.0, "liquidVolume": 100.0, "liquidDensity": 1.0, "iceCount": 2, "expectedDisplacedVolume": 18.34, "expectedOccupiedBelowSurface": 118.34, "expectedHeightFraction": 0.5917, "expectedSubmergedFractionPerCube": 0.917},
+    {"id": "dense_liquid_one_cube", "capacity": 200.0, "liquidVolume": 100.0, "liquidDensity": 1.2, "iceCount": 1, "expectedDisplacedVolume": 7.641666666666667, "expectedOccupiedBelowSurface": 107.64166666666667, "expectedHeightFraction": 0.5382083333333333, "expectedSubmergedFractionPerCube": 0.7641666666666667},
+    {"id": "light_liquid_cube_sinks", "capacity": 200.0, "liquidVolume": 100.0, "liquidDensity": 0.8, "iceCount": 1, "expectedDisplacedVolume": 10.0, "expectedOccupiedBelowSurface": 110.0, "expectedHeightFraction": 0.55, "expectedState": "fully submerged, sinks until supported"},
+    {"id": "layer_interface_buoyancy", "capacity": 200.0, "bottomLayer": {"liquidVolume": 50.0, "density": 1.2}, "topLayer": {"liquidVolume": 50.0, "density": 0.8}, "iceCount": 1, "expectedIceVolumeInBottomLayer": 2.925, "expectedIceVolumeInTopLayer": 7.075, "expectedBuoyantEquivalentMass": 9.17, "expectedTotalLiquidVolume": 100.0, "expectedOccupiedBelowSurface": 110.0, "expectedHeightFraction": 0.55, "expectedState": "cube is fully submerged and supported at the layer interface; enough layer depth is assumed"},
+    {"id": "empty_vessel_with_cube", "capacity": 200.0, "liquidVolume": 0.0, "liquidDensity": 1.0, "iceCount": 1, "expectedState": "cube on bottom; no visible liquid surface; do not invent liquid or floating"},
+    {"id": "pour_conservation", "initialSource": 45.0, "initialDestination": 30.0, "transferred": 12.3, "expectedSource": 32.7, "expectedDestination": 42.3, "expectedCombinedLiquid": 75.0, "note": "If nonzero in-flight stream volume is modelled, include it in the conserved total."}
+  ],
+  "sources": [
+    "https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure",
+    "https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy",
+    "https://openstax.org/books/university-physics-volume-1/pages/14-5-fluid-dynamics"
+  ]
+}

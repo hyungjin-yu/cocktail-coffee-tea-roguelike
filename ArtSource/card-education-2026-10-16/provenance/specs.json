@@ -1,0 +1,82 @@
+[
+  [
+    "card_gin",
+    "An unlabeled clear gin bottle with a small juniper branch bearing dark blue berries.",
+    "dry_gin"
+  ],
+  [
+    "card_jigger",
+    "Exactly ONE upright hourglass shaped stainless steel DOUBLE JIGGER measuring tool. Two conical cups fused together at their narrow waist, LARGE open cup on top and SMALL inverted cup below. Single connected symmetrical hourglass silhouette. No shaker, no lid, no stem, no other glasses, no extra objects.",
+    "shot_glass"
+  ],
+  [
+    "card_bar_spoon",
+    "One single long diagonal stainless steel BAR SPOON. The long handle has clearly visible corkscrew SPIRAL TWISTS, with a small oval spoon bowl at one end and plain pointed tail at other end. Entire tool visible. No second bowl.",
+    "long_stirrer"
+  ],
+  [
+    "card_shaker",
+    "A small compact stainless steel three-piece cocktail SHAKER on the LEFT and TWO separate chunky translucent pale blue ICE CUBES on the RIGHT. All three objects clearly visible with transparent gap separating each. No labels. Shaker occupies only two thirds of width.",
+    "mixing_tempo"
+  ],
+  [
+    "card_double_strain",
+    "TWO SEPARATE tools arranged diagonally SIDE BY SIDE with a transparent gap: on LEFT a flat round metal HAWTHORNE STRAINER with visible spiral coil spring around its edge and short handle; on RIGHT a separate smaller conical FINE MESH SIEVE with its own long handle. Both complete tools clearly visible. Silver metal, not bamboo, no cup, no basket, no stacked objects.",
+    "flambe,rifled_barrel"
+  ],
+  [
+    "card_negroni",
+    "One low rocks glass of deep ruby red Negroni, a large clear ice cube and curled orange peel.",
+    "double_shot"
+  ],
+  [
+    "card_old_fashioned",
+    "One low rocks glass of amber brown Old Fashioned, a large clear ice cube and curled orange peel.",
+    "scotch_rocks"
+  ],
+  [
+    "card_martini",
+    "One V shaped martini glass on a thin stem and round foot, clear pale liquid, one green olive on a short pick.",
+    "dry_martini"
+  ],
+  [
+    "card_blue_blazer",
+    "Two silver metal mugs with handles facing each other, connected by a SHORT blue flame arch pouring between the mugs. No glow.",
+    "blazer"
+  ],
+  [
+    "card_green_tea",
+    "One small cream ceramic teacup containing pale light green tea beside two fresh green tea leaves.",
+    "green_tea,nettle_tea"
+  ],
+  [
+    "card_tea_whisk",
+    "One bamboo matcha whisk with many split thin tines beside a low ceramic bowl containing vivid green matcha.",
+    "tea_whisk"
+  ],
+  [
+    "card_gaiwan",
+    "One cream ceramic gaiwan tilted with its lid slightly ajar, a short visible stream of golden tea pouring into a smaller cup beside it. No hands.",
+    "tea_sandals,brew_rhythm,second_infusion"
+  ],
+  [
+    "card_oolong",
+    "A small cluster of tightly rolled round dry dark olive oolong tea leaves beside one small cream cup of golden tea.",
+    "oolong"
+  ],
+  [
+    "card_puerh",
+    "A partial round compressed dark brown puerh tea cake with one broken wedge showing its texture, beside a small cup of brown tea.",
+    "aged_puerh"
+  ],
+  [
+    "card_chamomile",
+    "Two chamomile flowers with white petals and yellow centers beside a small cream cup containing pale golden tea.",
+    "chamomile"
+  ],
+  [
+    "card_rooibos",
+    "A small bunch of thin reddish brown needlelike rooibos leaves and stems beside a cream teacup containing reddish brown infusion. No broad green leaves.",
+    "ginseng_root"
+  ]
+]

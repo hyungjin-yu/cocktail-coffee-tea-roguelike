@@ -1,0 +1,31 @@
+{
+  "description": "Two silver metal mugs with handles facing each other, connected by a SHORT blue flame arch pouring between the mugs. No glow. Chunky pixel art cafe game teaching icon, warm consistent palette cream EAD4A5 sage 466B45 silver A7B1C2 dark outline 201D29, three shading tones per material, upper left lighting, ground level three quarter side view, centered complete object, 5 pixel transparent margin, transparent background.",
+  "negative_description": "background, glow, halo, aura, floor, text, label, logo, letters, numbers, smooth, antialiasing, blurry, top down, isometric, cropped object",
+  "text_guidance_scale": 8,
+  "color_image": "No",
+  "init_image": "No",
+  "init_image_strength": 300,
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "inpainting_image": "No",
+  "reference_image": "No",
+  "view": "side",
+  "direction": "none",
+  "no_background": true,
+  "seed": 0,
+  "use_inpainting": false,
+  "map_tile": false,
+  "force_colors": false,
+  "isometric": false,
+  "oblique_projection": false,
+  "coverage_percentage": 0.9,
+  "outline": "single color black outline",
+  "shading": "basic shading",
+  "detail": "medium detail",
+  "output_method": "New frame",
+  "model_name": "generate_style",
+  "style_guidance_scale": 3,
+  "style_strength": 0
+}

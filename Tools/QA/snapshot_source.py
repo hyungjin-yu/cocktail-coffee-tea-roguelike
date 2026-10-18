@@ -3,7 +3,7 @@ import sys, csv, hashlib, json
 from pathlib import Path
 root, out = map(Path, sys.argv[1:3])
 out.mkdir(parents=True, exist_ok=True)
-qa = {'AutoTour.cs', 'LoadScenario.cs', 'PlayVerifier.cs'}
+qa = {'AutoTour.cs', 'LoadScenario.cs', 'PlayVerifier.cs', 'CardEducationCapture.cs', 'RunHistoryCapture.cs'}
 rows = []
 for folder in ['Assets', 'Packages', 'ProjectSettings']:
     for p in (root / folder).rglob('*'):

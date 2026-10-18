@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_champagne_spray
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: champagne_spray
-  displayName: "\uC0F4\uD398\uC778 \uC2A4\uD504\uB808\uC774"
+  displayName: "스플릿 베이스"
   description: "\uB2E4\uC911 \uBC1C\uC0AC +1\uBC1C (\uBD80\uCC44\uAF34\uB85C \uD769\uBFCC\uB9BC)"
-  flavorText: "\uCF54\uB974\uD06C\uB97C \uD130\uB728\uB9AC\uBA70 \uC0AC\uBC29\uC73C\uB85C
-    \uD769\uBFCC\uB9AC\uB294 \uCD95\uD558\uC758 \uC138\uB9AC\uBA38\uB2C8."
+  flavorText: "베이스 역할을 두 가지 이상의 술로 나눠 구성합니다."
   category: 0
   rarity: 1
   maxStacks: 3
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 7
     value: 1
   weaponRestriction: 2
+  realWorldFact: "베이스 역할을 두 가지 이상의 술로 나눠 구성합니다."
+  gameplayConnection: "나눠진 기반을 다중 발사로 표현했습니다."
+  sourceName: "The Bar · Split-base cocktails"
+  sourceUrl: "https://www.thebar.com/en-gb/articles/split-base-cocktails"
+  educationArtId: ""
+  additionalSources: ""

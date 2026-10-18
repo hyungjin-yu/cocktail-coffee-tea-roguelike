@@ -36,6 +36,7 @@ namespace CCT
         public string effectsLevel = EffectsNormal;
         public bool damageNumbers = true;
         public bool tutorialSeen;
+        public int cardEducationGuideVersion;
 
         public bool IsWindowed => windowMode == WindowWindowed;
         public MovementScheme Scheme => movementScheme == SchemeMouse ? MovementScheme.Mouse : MovementScheme.Keyboard;
@@ -376,6 +377,13 @@ namespace CCT
             Persist();
         }
 
+        public static void CompleteCardEducationGuide(int version)
+        {
+            if(Current.cardEducationGuideVersion >= version)return;
+            current.cardEducationGuideVersion = Mathf.Max(0,version);
+            Persist();
+        }
+
         /// <summary>스키마·저장만(런타임 효과 미구현 — 설정 화면에 노출하지 않음).</summary>
         public static void SetShakePercent(int percent)
         {
@@ -648,6 +656,7 @@ namespace CCT
             d.effectsLevel = ReadEnum(m, "effectsLevel", d.effectsLevel, diag, SettingsData.EffectsNormal, SettingsData.EffectsLow);
             d.damageNumbers = ReadBool(m, "damageNumbers", d.damageNumbers, diag);
             d.tutorialSeen = ReadBool(m, "tutorialSeen", d.tutorialSeen, diag);
+            d.cardEducationGuideVersion = ReadInt(m, "cardEducationGuideVersion", 0, 0, int.MaxValue, true, diag);
             d.schemaVersion = CurrentVersion;
 
             return new ReadResult

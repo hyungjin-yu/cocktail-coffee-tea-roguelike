@@ -94,7 +94,8 @@ namespace CCT
 
             if (enemy == null || enemy.IsDead || game.Player == null) yield break;
             BurstZone.Spawn(pos, DripWaveZoneRadius, DripWaveDamagePerSecond, DripWaveZoneSeconds,
-                game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.SteamKettleElder ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt));
+                game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.SteamKettleElder ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt),
+                DamageSource.Zone(enemy.Def, "드립 웨이브"));
         }
 
         IEnumerator Invisibility()
@@ -140,7 +141,8 @@ namespace CCT
             enemy.transform.position = target;
             enemy.PlayAction("appear");
             BurstZone.Spawn(target, ReappearZoneRadius, ReappearDamagePerSecond, ReappearZoneSeconds,
-                game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.SteamKettleElder ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt));
+                game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.SteamKettleElder ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt),
+                DamageSource.Zone(enemy.Def, "재등장 장판"));
         }
     }
 }

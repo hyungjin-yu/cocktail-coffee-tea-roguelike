@@ -1,0 +1,26 @@
+{
+  "description": "One long silver bar spoon upright, small oval bowl at bottom, narrow twisted shaft, tiny rounded knob on top. Entire long spoon visible, no hands. Chunky crisp pixel art cafe game item, dark outline #201D29, cream #EAD4A5, sage #466B45, silver #A7B1C2, three tones per material, upper-left lighting, front three-quarter side view. Exactly one centered object filling canvas with 2 pixel margin. Transparent background. No floor, shadows, glow, lettering, logos or text.",
+  "image_size": {
+    "width": 16,
+    "height": 80
+  },
+  "seed": 0,
+  "no_background": true,
+  "model_name": "generate_image_pro_flash",
+  "output_format": "frames",
+  "style_options": {
+    "color_palette": true,
+    "outline": true,
+    "detail": true,
+    "shading": true
+  },
+  "style_image": {
+    "image": {
+      "base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAgL/bz1B/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvtTe/77U3v8EAgL/AAAAAAQCAv8AAAAAAAAAAIivL/80VDP/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGpsc/+aqcL/SUtI/wAAAADV/mv/1P5x/wAAAADO9Fz/2v9z/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC1ytr/5Pb4/36Ck/8EAgL/iK8v/5C9O/8AAAAAHzxN/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC1ytr/5Pb4/+T2+P/k9vj/NFQz/5C9O/86bTn/1P5x/zhlOv8EAgL/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAl6C8/8PY4P/D2OD/jsAw/wQCAv/D2OD/LlU7/w0KDf8uVTv/BAIC/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHCf+LsD3/w9jg/wQCAv8fPE3/lJW+/1ZYgP+OwDD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABqbHP/ksgx/wQCAv+Egqz/BAIC/1ZYgP9WWID/ZWx+/1ZYgP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKCvxv8EAgL/CQcJ/wQCAv+Wpr//TU17/wQCAv+aqcL/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADD2OD/w9jg/8PY4P/D2OD/w9jg/8PY4P+aqcL/lqa//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAw9jg/8PY4P/D2OD/w9jg/8PY4P++1N7/lqa//5amv/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMPY4P/D2OD/w9jg/8PY4P/D2OD/w9jg/5amv/+Wpr//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACFkar/r8PT/+T2+P/k9vj/5Pb4/4WRqv9wd4L/a3J+/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhIKs/7rQ2v+60Nr/utDa/7rQ2v++1N7/VlRc/wQCAv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+    },
+    "size": {
+      "width": 16,
+      "height": 16
+    }
+  }
+}

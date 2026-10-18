@@ -1,0 +1,352 @@
+[
+  {
+    "id": "dry_gin",
+    "name": "드라이 진",
+    "fact": "주니퍼 향이 특징인 증류주입니다. 드라이는 단맛에 관한 표현이며, 진은 칵테일의 베이스로 쓰입니다.",
+    "connection": "베이스의 존재감을 공격력으로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Tanqueray London Dry Gin",
+    "sourceUrl": "https://www.diageobaracademy.com/en-us/home/our-brands/tanqueray-london-dry-gin",
+    "art": "card_gin",
+    "additionalSources": ""
+  },
+  {
+    "id": "shot_glass",
+    "name": "지거",
+    "fact": "재료의 양을 재는 도구. 용량은 제품마다 다릅니다.",
+    "connection": "반복 계량의 리듬을 공격 속도로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Jigger",
+    "sourceUrl": "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/jigger",
+    "art": "card_jigger",
+    "additionalSources": ""
+  },
+  {
+    "id": "long_stirrer",
+    "name": "바 스푼",
+    "fact": "긴 손잡이로 얼음과 재료를 저어 섞는 바 도구입니다.",
+    "connection": "긴 도구을 사거리로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Cocktail stirring",
+    "sourceUrl": "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/the-subtle-art-of-cocktail-stirring",
+    "art": "card_bar_spoon",
+    "additionalSources": ""
+  },
+  {
+    "id": "bar_shoes",
+    "name": "빌드",
+    "fact": "제공할 잔에 재료를 직접 넣어 만드는 방식입니다.",
+    "connection": "간결한 동선을 이동 속도로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Building cocktails",
+    "sourceUrl": "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/the-art-of-building-cocktails-directly-in-the-glass",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "ice_cube",
+    "name": "얼음과 희석",
+    "fact": "얼음은 냉각하고 녹은 물은 맛과 농도에 관여합니다.",
+    "connection": "맛의 완충을 최대 체력으로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Quality serves",
+    "sourceUrl": "https://www.diageobaracademy.com/en-us/home/bartender-skills-and-techniques/quality-serves",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "liqueur",
+    "name": "리큐르",
+    "fact": "당과 과일·허브 등의 풍미로 베이스를 보완하는 술입니다.",
+    "connection": "소량의 풍미 보완을 게이지 절약으로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Liqueurs, bitters and vermouth",
+    "sourceUrl": "https://www.diageobaracademy.com/en-us/home/explore-all-categories/liqueurs-bitters-and-vermouth",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "syrup",
+    "name": "프리배치",
+    "fact": "서비스 전에 여러 잔 분량의 재료를 미리 준비합니다.",
+    "connection": "준비한 분량을 추가 재료로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Batch cocktails",
+    "sourceUrl": "https://www.diageobaracademy.com/en-us/home/masterclass-webinars/crafting-the-perfect-crowd-pleaser-the-method-behind-batch-cocktails",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "double_shot",
+    "name": "네그로니",
+    "fact": "국제바텐더협회(IBA) 레시피는 진·캄파리·스위트 레드 베르무트를 동량으로 구성합니다. 캄파리는 쌉쌀한 식전주이며, 베르무트는 향을 입힌 강화 와인입니다.",
+    "connection": "세 재료의 구성을 공격력으로 표현했습니다.",
+    "sourceName": "International Bartenders Association · negroni",
+    "sourceUrl": "https://iba-world.com/iba-cocktail/negroni/",
+    "art": "card_negroni",
+    "additionalSources": "재료 용어: Diageo Bar Academy · Liqueurs, bitters and vermouth\nhttps://www.diageobaracademy.com/en-zz/home/explore-all-categories/liqueurs-bitters-and-vermouth\nCampari · Bitter aperitif\nhttps://www.campari.com/en-gb/our-products/campari/"
+  },
+  {
+    "id": "mixing_tempo",
+    "name": "셰이킹",
+    "fact": "얼음과 흔들어 혼합·냉각·희석하고 질감도 바꿉니다. 빠르게 흔들수록 무조건 좋은 것은 아니며 재료와 목적에 맞게 조절합니다.",
+    "connection": "반복 동작을 공격 속도로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Cocktail shaking",
+    "sourceUrl": "https://www.diageobaracademy.com/en-us/home/customer-service/mastering-the-art-of-cocktail-shaking",
+    "art": "card_shaker",
+    "additionalSources": ""
+  },
+  {
+    "id": "flambe",
+    "name": "더블 스트레인",
+    "fact": "바 스트레이너와 고운 체로 작은 고형물을 거릅니다.",
+    "connection": "두 단계 통과을 연속 타격으로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Cocktail strainers",
+    "sourceUrl": "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/cocktail-strainers",
+    "art": "card_double_strain",
+    "additionalSources": ""
+  },
+  {
+    "id": "champagne_spray",
+    "name": "스플릿 베이스",
+    "fact": "베이스 역할을 두 가지 이상의 술로 나눠 구성합니다.",
+    "connection": "나눠진 기반을 다중 발사로 표현했습니다.",
+    "sourceName": "The Bar · Split-base cocktails",
+    "sourceUrl": "https://www.thebar.com/en-gb/articles/split-base-cocktails",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "molotov",
+    "name": "플레임드 제스트",
+    "fact": "감귤 껍질의 향유와 불꽃을 이용해 향과 시각적 인상을 더하는 전문 바 연출입니다.",
+    "connection": "순간 불꽃을 적중 화염으로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Copper Colours",
+    "sourceUrl": "https://www.diageobaracademy.com/en-zz/home/explore-all-recipes/copper-colours",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "scotch_rocks",
+    "name": "올드패션드",
+    "fact": "위스키·설탕·비터스·물로 바탕 술의 풍미를 살립니다.",
+    "connection": "베이스 중심을 공격력으로 표현했습니다.",
+    "sourceName": "International Bartenders Association · old-fashioned",
+    "sourceUrl": "https://iba-world.com/iba-cocktail/old-fashioned/",
+    "art": "card_old_fashioned",
+    "additionalSources": ""
+  },
+  {
+    "id": "dry_martini",
+    "name": "드라이 마티니",
+    "fact": "국제바텐더협회(IBA) 레시피는 진과 드라이 베르무트를 얼음과 저어 만듭니다. 베르무트는 향을 입힌 강화 와인이며, 배합 비율은 마티니 스타일마다 달라집니다. 스티어는 저어 섞는 동작입니다.",
+    "connection": "존재감과 스티어을 공격·공속으로 표현했습니다.",
+    "sourceName": "International Bartenders Association · dry-martini",
+    "sourceUrl": "https://iba-world.com/iba-cocktail/dry-martini/",
+    "art": "card_martini",
+    "additionalSources": "베르무트: Campari Academy · Understanding vermouth\nhttps://www.campariacademy.com/en-ch/training/products-category/vermouth/"
+  },
+  {
+    "id": "blazer",
+    "name": "블루 블레이저",
+    "fact": "위스키와 물을 사용하고 두 금속 머그 사이로 불꽃을 잇는 고전 전문 바 연출입니다.",
+    "connection": "이어지는 불꽃을 적중 화염으로 표현했습니다.",
+    "sourceName": "Oxford Companion to Spirits and Cocktails · Blue Blazer",
+    "sourceUrl": "https://www.spiritsanddistilling.com/dictionary/acref-9780199311132-e-260",
+    "art": "card_blue_blazer",
+    "additionalSources": ""
+  },
+  {
+    "id": "rifled_barrel",
+    "name": "스트레이너",
+    "fact": "따르는 액체에서 얼음·과육 같은 고형물을 거릅니다.",
+    "connection": "액체의 통과을 관통으로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Cocktail strainers",
+    "sourceUrl": "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/cocktail-strainers",
+    "art": "card_double_strain",
+    "additionalSources": ""
+  },
+  {
+    "id": "green_tea",
+    "name": "녹차",
+    "fact": "찻나무 잎을 가열해 효소적 산화를 억제한 차입니다.",
+    "connection": "산뜻한 풍미의 인상을 공격력으로 표현했습니다.",
+    "sourceName": "Oregon State University · Tea",
+    "sourceUrl": "https://lpi.oregonstate.edu/mic/food-beverages/tea",
+    "art": "card_green_tea",
+    "additionalSources": ""
+  },
+  {
+    "id": "tea_whisk",
+    "name": "차선",
+    "fact": "말차 가루를 물에 풀어 섞는 대나무 도구입니다.",
+    "connection": "여러 가닥의 움직임을 공속으로 표현했습니다.",
+    "sourceName": "Ippodo Tea · Bamboo whisk",
+    "sourceUrl": "https://global.ippodo-tea.co.jp/products/utensils901042",
+    "art": "card_tea_whisk",
+    "additionalSources": ""
+  },
+  {
+    "id": "long_spout",
+    "name": "긴 주둥이 주전자",
+    "fact": "가늘고 긴 주둥이로 따르는 물줄기를 조절합니다.",
+    "connection": "물줄기의 길이을 사거리로 표현했습니다.",
+    "sourceName": "HARIO · Product catalogue 2019, p26",
+    "sourceUrl": "https://global.hario.com/pdf2019/2019HARIO_GC_COFFEE_EN.pdf",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "tea_sandals",
+    "name": "출탕",
+    "fact": "우린 차를 따라 찻잎과 차탕을 분리하는 과정입니다.",
+    "connection": "제때 따라내는 동작을 이동으로 표현했습니다.",
+    "sourceName": "TeaVivre · Gongfu brewing",
+    "sourceUrl": "https://www.teavivre.com/info/common-gongfu-tea-brewing-mistakes-to-avoid.html",
+    "art": "card_gaiwan",
+    "additionalSources": ""
+  },
+  {
+    "id": "warm_cup",
+    "name": "찻잔 예열",
+    "fact": "차를 담기 전 잔을 데워 온도 손실을 줄입니다.",
+    "connection": "온도 완충을 최대 체력으로 표현했습니다.",
+    "sourceName": "Global Tea Hut · Gongfu brewing and preheating",
+    "sourceUrl": "https://archive.globalteahut.org/docs/issues/2014-05.pdf",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "honey",
+    "name": "티스푼 계량",
+    "fact": "잎 양을 가늠하지만 부피는 무게와 같지 않습니다.",
+    "connection": "분량 조절을 게이지 절약으로 표현했습니다.",
+    "sourceName": "UK Tea & Infusions Association · The perfect brew",
+    "sourceUrl": "https://www.tea.co.uk/make-a-perfect-brew",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "dried_leaf",
+    "name": "찻잎 건조",
+    "fact": "제조 중 수분을 줄입니다. 햇볕만 쓰지는 않습니다.",
+    "connection": "재료 확보을 추가 재료로 표현했습니다.",
+    "sourceName": "UK Tea & Infusions Association · Processing and blending",
+    "sourceUrl": "https://www.tea.co.uk/tea-processing-and-blending",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "oolong",
+    "name": "우롱차",
+    "fact": "부분 산화한 차. 산화와 로스팅의 폭이 다양합니다. 효소적 산화는 미생물 발효와 다르며 산화 정도가 정확히 절반으로 고정되지 않습니다.",
+    "connection": "겹치는 풍미을 공격력으로 표현했습니다.",
+    "sourceName": "Oregon State University · Tea",
+    "sourceUrl": "https://lpi.oregonstate.edu/mic/food-beverages/tea",
+    "art": "card_oolong",
+    "additionalSources": ""
+  },
+  {
+    "id": "brew_rhythm",
+    "name": "공부차 우림",
+    "fact": "비교적 작은 다구(차를 우리고 담는 도구)로 잎 양과 우림 시간을 조절하며 여러 번 우리는 접근입니다. 하나로 고정된 레시피가 아니라 차와 도구에 맞게 조절합니다.",
+    "connection": "짧은 우림 반복을 공속으로 표현했습니다.",
+    "sourceName": "TeaVivre · Gongfu brewing",
+    "sourceUrl": "https://www.teavivre.com/info/common-gongfu-tea-brewing-mistakes-to-avoid.html",
+    "art": "card_gaiwan",
+    "additionalSources": ""
+  },
+  {
+    "id": "second_infusion",
+    "name": "재우림",
+    "fact": "같은 잎을 다시 우려 풍미 변화를 살펴봅니다. 재우림 가능 횟수와 맛은 잎과 우림 조건에 따라 다릅니다.",
+    "connection": "한 번 더 이어짐을 연속 타격으로 표현했습니다.",
+    "sourceName": "Ippodo Tea · Rebrewing tea leaves",
+    "sourceUrl": "https://support.global.ippodo-tea.co.jp/hc/en-us/articles/4404037134991-Can-I-rebrew-my-tea-leaves",
+    "art": "card_gaiwan",
+    "additionalSources": ""
+  },
+  {
+    "id": "tea_leaf_scatter",
+    "name": "블렌딩",
+    "fact": "서로 다른 차 또는 다른 재료를 섞어 풍미를 만듭니다.",
+    "connection": "여러 갈래 재료을 다중 발사로 표현했습니다.",
+    "sourceName": "UK Tea & Infusions Association · Processing and blending",
+    "sourceUrl": "https://www.tea.co.uk/tea-processing-and-blending",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "chamomile",
+    "name": "카모마일 인퓨전",
+    "fact": "카모마일 꽃을 물에 우린 허브 인퓨전입니다. 인퓨전은 식물 재료를 물에 우린 음료를 뜻하며, 찻나무 잎으로 만든 차와 구별합니다.",
+    "connection": "쉬어 가는 인상을 게임 회복으로 표현했습니다.",
+    "sourceName": "Twinings · Whole camomile buds",
+    "sourceUrl": "https://twinings.co.uk/blogs/news/whole-camomile-buds",
+    "art": "card_chamomile",
+    "additionalSources": ""
+  },
+  {
+    "id": "nettle_tea",
+    "name": "녹차의 떫은 여운",
+    "fact": "녹차의 떫은맛은 입안이 조이거나 마르는 듯한 감각을 말합니다. 마신 뒤 남는 감각을 여운으로 표현하며 독성을 뜻하지 않습니다.",
+    "connection": "남는 감각을 게임 지속 피해로 표현했습니다.",
+    "sourceName": "Ippodo Tea · Tea bitterness and astringency",
+    "sourceUrl": "https://ippodotea.com/blogs/frequently-asked-questions/help-my-tea-is-bitter",
+    "art": "card_green_tea",
+    "additionalSources": ""
+  },
+  {
+    "id": "aged_puerh",
+    "name": "보이숙차",
+    "fact": "보이숙차는 수분과 열 조건에서 미생물 발효를 촉진하는 악퇴 가공을 거친 보이차입니다. 생차와 구별하며, 오래될수록 무조건 품질이 좋아지는 것은 아닙니다.",
+    "connection": "가공으로 형성된 풍미을 공격력으로 표현했습니다.",
+    "sourceName": "TeaVivre · Raw and ripe Pu-erh processing",
+    "sourceUrl": "https://www.teavivre.com/info/can-raw-pu-erh-tea-transform-into-ripe-pu-erh-through-aging.html",
+    "art": "card_puerh",
+    "additionalSources": ""
+  },
+  {
+    "id": "golden_ratio",
+    "name": "추출 균형",
+    "fact": "찻잎량·물·온도·시간이 맛에 영향을 줍니다. 모든 차에 통하는 하나의 황금비는 없습니다.",
+    "connection": "조절의 균형을 공격·공속으로 표현했습니다.",
+    "sourceName": "UK Tea & Infusions Association · The perfect brew",
+    "sourceUrl": "https://www.tea.co.uk/make-a-perfect-brew",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "ginseng_root",
+    "name": "루이보스 인퓨전",
+    "fact": "남아프리카의 Aspalathus linearis 잎과 줄기로 만드는 허브 인퓨전입니다. 찻나무 Camellia sinensis로 만든 차와 구별합니다.",
+    "connection": "쉬어 가는 인상을 게임 회복으로 표현했습니다.",
+    "sourceName": "SANBI · Aspalathus linearis",
+    "sourceUrl": "https://pza.sanbi.org/aspalathus-linearis",
+    "art": "card_rooibos",
+    "additionalSources": ""
+  },
+  {
+    "id": "nightshade_blend",
+    "name": "홍차의 떫은 여운",
+    "fact": "홍차는 찻나무 잎을 효소적으로 산화해 만드는 차입니다. 떫은맛과 잔향은 원료와 우림 조건에 따라 달라지며 홍차가 언제나 더 떫은 것은 아닙니다.",
+    "connection": "남는 감각을 게임 지속 피해로 표현했습니다.",
+    "sourceName": "Oregon State University · Tea; Ippodo · Astringency",
+    "sourceUrl": "https://lpi.oregonstate.edu/mic/food-beverages/tea",
+    "art": "",
+    "additionalSources": "떫은맛과 우림: Ippodo Tea\nhttps://ippodotea.com/blogs/frequently-asked-questions/help-my-tea-is-bitter"
+  },
+  {
+    "id": "piercing_arrowhead",
+    "name": "차 거름망",
+    "fact": "우린 액체와 찻잎을 분리하는 도구입니다.",
+    "connection": "차탕의 통과을 관통으로 표현했습니다.",
+    "sourceName": "Ippodo Tea · Serving tea with a strainer",
+    "sourceUrl": "https://global.ippodo-tea.co.jp/blogs/tea-recipe/preparing-different-teas-in-the-tea-bowl-with-serving-spout",
+    "art": "",
+    "additionalSources": ""
+  },
+  {
+    "id": "hybrid_tea_martini",
+    "name": "티 마티니 · 티니 보우",
+    "fact": "차를 우린 베르무트 등으로 차 향을 더하는 마티니 변형이 있으며 레시피는 다양합니다. 티니 보우는 두 테마를 결합한 게임 속 창작 보조 활입니다.",
+    "connection": "두 테마의 결합을 보조 활로 표현했습니다.",
+    "sourceName": "Diageo Bar Academy · Marteani",
+    "sourceUrl": "https://www.diageobaracademy.com/en-zz/home/explore-all-recipes/marteani",
+    "art": "",
+    "additionalSources": ""
+  }
+]

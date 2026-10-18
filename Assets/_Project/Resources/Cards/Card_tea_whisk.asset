@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_tea_whisk
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: tea_whisk
-  displayName: "\uCC28\uC120"
+  displayName: "차선"
   description: "\uACF5\uACA9 \uC18D\uB3C4 +12%"
-  flavorText: "\uB9D0\uCC28\uB97C \uACF1\uAC8C \uD480\uC5B4 \uAC70\uD488 \uB0B4\uB294
-    \uB300\uB098\uBB34 \uC194."
+  flavorText: "말차 가루를 물에 풀어 섞는 대나무 도구입니다."
   category: 1
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 1
     value: 0.12
   weaponRestriction: 0
+  realWorldFact: "말차 가루를 물에 풀어 섞는 대나무 도구입니다."
+  gameplayConnection: "여러 가닥의 움직임을 공속으로 표현했습니다."
+  sourceName: "Ippodo Tea · Bamboo whisk"
+  sourceUrl: "https://global.ippodo-tea.co.jp/products/utensils901042"
+  educationArtId: "card_tea_whisk"
+  additionalSources: ""

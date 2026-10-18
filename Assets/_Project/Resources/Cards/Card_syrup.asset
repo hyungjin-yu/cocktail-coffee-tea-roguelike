@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Card_syrup
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: syrup
-  displayName: "\uC2DC\uB7FD \uD55C \uBC29\uC6B8"
+  displayName: "프리배치"
   description: "\uC7AC\uB8CC \uCD94\uAC00 \uB4DC\uB78D \uD655\uB960 +10%"
-  flavorText: "\uC124\uD0D5\uC744 \uB179\uC5EC \uB9CC\uB4E0 \uB2E8\uB9DB\uC758 \uC6D0\uCC9C."
+  flavorText: "서비스 전에 여러 잔 분량의 재료를 미리 준비합니다."
   category: 0
   rarity: 0
   maxStacks: 5
@@ -23,3 +23,9 @@ MonoBehaviour:
   - type: 5
     value: 0.1
   weaponRestriction: 0
+  realWorldFact: "서비스 전에 여러 잔 분량의 재료를 미리 준비합니다."
+  gameplayConnection: "준비한 분량을 추가 재료로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Batch cocktails"
+  sourceUrl: "https://www.diageobaracademy.com/en-us/home/masterclass-webinars/crafting-the-perfect-crowd-pleaser-the-method-behind-batch-cocktails"
+  educationArtId: ""
+  additionalSources: ""

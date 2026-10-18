@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_ice_cube
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: ice_cube
-  displayName: "\uC5BC\uC74C \uD55C \uC870\uAC01"
+  displayName: "얼음과 희석"
   description: "\uCD5C\uB300 \uCCB4\uB825 +20"
-  flavorText: "\uCE75\uD14C\uC77C\uC744 \uCC28\uAC11\uAC8C, \uADF8\uB9AC\uACE0 \uCC9C\uCC9C\uD788
-    \uBB3D\uC5B4\uC9C0\uAC8C \uD55C\uB2E4."
+  flavorText: "얼음은 냉각하고 녹은 물은 맛과 농도에 관여합니다."
   category: 0
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 4
     value: 20
   weaponRestriction: 0
+  realWorldFact: "얼음은 냉각하고 녹은 물은 맛과 농도에 관여합니다."
+  gameplayConnection: "맛의 완충을 최대 체력으로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Quality serves"
+  sourceUrl: "https://www.diageobaracademy.com/en-us/home/bartender-skills-and-techniques/quality-serves"
+  educationArtId: ""
+  additionalSources: ""

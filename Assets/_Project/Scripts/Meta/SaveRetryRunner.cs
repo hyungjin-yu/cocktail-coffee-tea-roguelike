@@ -27,6 +27,8 @@ namespace CCT
         {
             PermanentProgress.Tick(Time.unscaledDeltaTime);
             SettingsService.Tick(Time.unscaledDeltaTime);
+            RunHistory.Tick(Time.unscaledDeltaTime); // 67 최근 기록(run-history.json)도 같은 간격으로 따로 재시도
+            DrinkLab.Tick(Time.unscaledDeltaTime); // 69 음료 창고(drinks.json)
         }
 
         void OnDestroy()

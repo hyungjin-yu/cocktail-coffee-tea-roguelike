@@ -31,7 +31,7 @@ namespace CCT
             AttackFinalForm.Spread => "교차 확산: 바깥 보조 2발, 피해 60% · 파열 없음",
             AttackFinalForm.Chain => "마무리 일격: 마지막 타격 범위 125% · 피해 150%",
             AttackFinalForm.Flame => "집중 연소: 직접 적중 화염 4초 · 초당 피해 150%",
-            _ => "전염: 사망 시 반경 2 최대 3적 · 독 50% · 재전염 없음"
+            _ => "여운 확산: 사망 시 반경 2 최대 3적 · 여운 피해 50% · 재확산 없음"
         };
     }
 }

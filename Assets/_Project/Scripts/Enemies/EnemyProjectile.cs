@@ -33,10 +33,12 @@ namespace CCT
         float damage;
         float life;
         System.Action onHit;
+        /// <summary>67: 이 탄을 쏜 적/공격(사망 원인 기록 전용, 생성 시점 값).</summary>
+        DamageSource source;
 
         public static void Spawn(Vector2 position, Vector2 direction, float speed, float damage,
             PlayerController player, Transform parent, string spriteResourcePath = null,
-            System.Action onHit = null)
+            System.Action onHit = null, DamageSource source = default)
         {
             var go = new GameObject("EnemyProjectile");
             go.transform.SetParent(parent, false);
@@ -93,6 +95,7 @@ namespace CCT
             p.hitRadius = HitRadius * sizeMultiplier;
             p.life = Lifetime;
             p.onHit = onHit;
+            p.source = source;
 
             // 물방울/얼음조각 아트는 위쪽이 뾰족하고 아래쪽(로컬 -Y)이 두꺼운 모양이라,
             // 두꺼운 쪽이 진행 방향(플레이어 쪽)을 향하도록 발사 방향으로 회전시킨다.
@@ -120,7 +123,7 @@ namespace CCT
             float touch = hitRadius + PlayerController.Radius;
             if (((Vector2)transform.position - player.Position).sqrMagnitude <= touch * touch)
             {
-                player.TakeDamage(damage);
+                player.TakeDamage(damage, source);
                 onHit?.Invoke();
                 Destroy(gameObject);
             }

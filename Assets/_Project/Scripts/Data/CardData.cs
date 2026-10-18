@@ -26,7 +26,7 @@ namespace CCT
         FlameLevel,
         /// <summary>차 스킬 — 초당 회복량 보너스.</summary>
         RegenBonus,
-        /// <summary>차 스킬 — 독 오라 레벨 (FlameLevel과 같은 방식, 다른 컬러/이름).</summary>
+        /// <summary>차 스킬 — 떫은 여운 레벨(저장 호환 enum) (FlameLevel과 같은 방식, 다른 컬러/이름).</summary>
         PoisonLevel,
         /// <summary>원거리 전용 — 발사체가 뚫고 지나갈 수 있는 추가 대상 수.</summary>
         PierceCount,
@@ -63,6 +63,12 @@ namespace CCT
         /// <summary>카드 제목(이름)이 실제로 뭘 가리키는지 설명하는 풍미 텍스트. 효과 설명(description)과
         /// 달리 게임플레이에 영향 없는 순수 플레이버 — 카드 도감에 표시된다.</summary>
         [TextArea] public string flavorText;
+        [TextArea] public string realWorldFact;
+        [TextArea] public string gameplayConnection;
+        public string sourceName;
+        public string sourceUrl;
+        [TextArea] public string additionalSources;
+        public string educationArtId;
         public CardCategory category;
         public CardRarity rarity;
         [Min(1)] public int maxStacks = 5;

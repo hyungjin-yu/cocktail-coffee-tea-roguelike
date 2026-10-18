@@ -25,6 +25,7 @@ namespace CCT.Tests
         {
             SessionPath = Path.Combine(Application.temporaryCachePath, $"cct_editmode_session_{Guid.NewGuid():N}.json");
             PermanentProgress.SetPathForTests(SessionPath);
+            CardEducationGuide.SuppressAutomaticForTests=true;
             SettingsSessionPath = Path.Combine(Application.temporaryCachePath, $"cct_editmode_settings_{Guid.NewGuid():N}.json");
             // EditMode는 실제 창/QualitySettings도 건드리지 않는 메모리 화면 어댑터
             SettingsService.SetForTests(SettingsSessionPath, new MemoryLegacySettingsStore(), new MemoryDisplayAdapter());
@@ -35,6 +36,16 @@ namespace CCT.Tests
         {
             PermanentProgress.SetPathForTests(null);
             if (File.Exists(SessionPath)) File.Delete(SessionPath);
+            // 67 최근 기록은 세이브 경로를 따라 같은 임시 폴더에 생긴다 — 함께 지운다.
+            RunHistory.SetPathForTests(null);
+            // 69 음료 창고(drinks.json)도 세이브 경로를 따라 같은 임시 폴더에 생긴다 — 함께 지운다.
+            DrinkLab.SetPathForTests(null);
+            var drinksPath = DrinkLab.PathForSave(SessionPath);
+            foreach (var suffix in new[] { "", ".bak", ".tmp" })
+                if (File.Exists(drinksPath + suffix)) File.Delete(drinksPath + suffix);
+            var historyPath = RunHistory.PathForSave(SessionPath);
+            foreach (var suffix in new[] { "", ".bak", ".tmp" })
+                if (File.Exists(historyPath + suffix)) File.Delete(historyPath + suffix);
             SettingsService.SetForTests(null, null, null);
             foreach (var suffix in new[] { "", ".bak", ".tmp" })
                 if (File.Exists(SettingsSessionPath + suffix)) File.Delete(SettingsSessionPath + suffix);

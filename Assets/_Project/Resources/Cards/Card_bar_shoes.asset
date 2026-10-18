@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_bar_shoes
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: bar_shoes
-  displayName: "\uBC14\uD150\uB354 \uC288\uC988"
+  displayName: "빌드"
   description: "\uC774\uB3D9 \uC18D\uB3C4 +10%"
-  flavorText: "\uAE34 \uADFC\uBB34 \uC2DC\uAC04\uC744 \uBC84\uD2F0\uAC8C \uD574\uC8FC\uB294
-    \uD3B8\uD55C \uC2E0\uBC1C."
+  flavorText: "제공할 잔에 재료를 직접 넣어 만드는 방식입니다."
   category: 0
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 3
     value: 0.1
   weaponRestriction: 0
+  realWorldFact: "제공할 잔에 재료를 직접 넣어 만드는 방식입니다."
+  gameplayConnection: "간결한 동선을 이동 속도로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Building cocktails"
+  sourceUrl: "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/the-art-of-building-cocktails-directly-in-the-glass"
+  educationArtId: ""
+  additionalSources: ""

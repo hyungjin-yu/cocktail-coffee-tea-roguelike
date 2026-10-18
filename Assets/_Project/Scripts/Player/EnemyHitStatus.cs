@@ -139,7 +139,7 @@ namespace CCT
             {
                 dot.tick += 1f;
                 tickingPoison = dot == poison;
-                // 41 독한 블렌딩: 화상·중독이 함께 걸린 동안 지속 피해 +25%(이 틱 피해만, 다른 효과 미발동).
+                // 41 겹치는 여운: 화상·중독이 함께 걸린 동안 지속 피해 +25%(이 틱 피해만, 다른 효과 미발동).
                 bool both = flame.remaining > 0f && poison.remaining > 0f && owner.Hidden.Has(HiddenSkill.BitterBlend);
                 enemy.TakeDamage(dot.dps * (both ? 1.25f : 1f));
                 tickingPoison = false;

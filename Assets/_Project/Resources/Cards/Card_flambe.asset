@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_flambe
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: flambe
-  displayName: "\uD50C\uB78C\uBCA0"
+  displayName: "더블 스트레인"
   description: "\uBCA0\uAE30 +1\uD68C (\uC5F0\uC18D \uACF5\uACA9)"
-  flavorText: "\uC220\uC5D0 \uBD88\uC744 \uBD99\uC5EC \uD5A5\uACFC \uC54C\uCF54\uC62C\uC744
-    \uB0A0\uB9AC\uB294 \uD654\uB824\uD55C \uAE30\uBC95."
+  flavorText: "바 스트레이너와 고운 체로 작은 고형물을 거릅니다."
   category: 0
   rarity: 1
   maxStacks: 3
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 7
     value: 1
   weaponRestriction: 1
+  realWorldFact: "바 스트레이너와 고운 체로 작은 고형물을 거릅니다."
+  gameplayConnection: "두 단계 통과을 연속 타격으로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Cocktail strainers"
+  sourceUrl: "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/cocktail-strainers"
+  educationArtId: "card_double_strain"
+  additionalSources: ""

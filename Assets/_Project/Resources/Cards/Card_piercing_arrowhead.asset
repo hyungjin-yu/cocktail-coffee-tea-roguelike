@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_piercing_arrowhead
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: piercing_arrowhead
-  displayName: "\uAD00\uD1B5 \uD654\uC0B4\uCD09"
+  displayName: "차 거름망"
   description: "\uBC1C\uC0AC\uCCB4 \uAD00\uD1B5 +1 (\uBAB9\uC744 \uB6AB\uACE0 \uC9C0\uB098\uAC10)"
-  flavorText: "\uB05D\uC744 \uB0A0\uCE74\uB86D\uAC8C \uBCBC\uB824 \uBB34\uC5C7\uC774\uB4E0
-    \uB6AB\uACE0 \uC9C0\uB098\uAC00\uAC8C \uD55C\uB2E4."
+  flavorText: "우린 액체와 찻잎을 분리하는 도구입니다."
   category: 1
   rarity: 2
   maxStacks: 3
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 11
     value: 1
   weaponRestriction: 2
+  realWorldFact: "우린 액체와 찻잎을 분리하는 도구입니다."
+  gameplayConnection: "차탕의 통과을 관통으로 표현했습니다."
+  sourceName: "Ippodo Tea · Serving tea with a strainer"
+  sourceUrl: "https://global.ippodo-tea.co.jp/blogs/tea-recipe/preparing-different-teas-in-the-tea-bowl-with-serving-spout"
+  educationArtId: ""
+  additionalSources: ""

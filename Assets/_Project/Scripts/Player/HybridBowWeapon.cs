@@ -43,7 +43,7 @@ namespace CCT
             var target = Enemy.FindNearest(player.Position, range);
             if (target == null) return;
 
-            cooldown = Mathf.Max(MinInterval, BaseInterval / (1f + stats.AttackSpeedBonus));
+            cooldown = Mathf.Max(MinInterval, BaseInterval * stats.CooldownScale / (1f + stats.AttackSpeedBonus)); // 69 음료 재사용 시간 감소
             Fire(target);
         }
 

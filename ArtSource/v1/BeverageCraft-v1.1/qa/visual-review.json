@@ -1,0 +1,150 @@
+{
+  "dl_jigger": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_shaker": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_mixing_glass": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_glass_cocktail": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_shaker_open": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_steam": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_pour_stream": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_bubbles": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_ice_cube": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_buff_gain": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_leaf_black_tea": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_leaf_heap_black_tea": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_leaf_green_tea": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_leaf_heap_green_tea": {
+    "pass": true,
+    "notes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable."
+  },
+  "dl_chaha": {
+    "pass": true,
+    "notes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate."
+  },
+  "dl_teapot": {
+    "pass": true,
+    "notes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate."
+  },
+  "dl_teacup": {
+    "pass": true,
+    "notes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate."
+  },
+  "dl_water_kettle": {
+    "pass": true,
+    "notes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate."
+  },
+  "dl_barspoon": {
+    "pass": true,
+    "notes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate."
+  },
+  "dl_bottle_gin": {
+    "pass": true,
+    "notes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate."
+  },
+  "dl_shaker_shake": {
+    "pass": true,
+    "notes": "Revised per latest user: inspected six tool-only shake frames; no hand, face or body. Stable silver shaker silhouette during translation/rotation."
+  },
+  "dl_icon_gin": {
+    "pass": true,
+    "notes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate."
+  },
+  "dl_bottle_rum": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_bottle_blue_curacao": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_bottle_grenadine": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_bottle_lemon_juice": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_bottle_honey": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_tin_black_tea": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_tin_green_tea": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_icon_rum": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_icon_blue_curacao": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_icon_grenadine": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_icon_lemon_juice": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_icon_honey": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_icon_black_tea": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_icon_green_tea": {
+    "pass": true,
+    "notes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins."
+  },
+  "dl_drink_reveal": {
+    "pass": true,
+    "notes": "Inspected six glass-only reveal frames and masks; no hand, face, sip or body. Dynamic final colour stays separate."
+  }
+}

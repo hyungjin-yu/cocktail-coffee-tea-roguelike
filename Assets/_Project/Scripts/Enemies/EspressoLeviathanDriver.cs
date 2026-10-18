@@ -165,7 +165,7 @@ namespace CCT
             float dist = Vector2.Distance(enemy.transform.position, game.Player.Position);
             if (dist > PressureExplosionRadius) return;
 
-            game.Player.TakeDamage(PressureExplosionDamage);
+            game.Player.TakeDamage(PressureExplosionDamage, DamageSource.BossSkill(enemy.Def, "압력 게이지 폭발"));
 
             Vector2 away = game.Player.Position - (Vector2)enemy.transform.position;
             Vector2 dir = away.sqrMagnitude > 0.0001f ? away.normalized : Vector2.right;
@@ -214,7 +214,7 @@ namespace CCT
             // 조준선은 텔레그래프가 시작될 때 고정한 방향으로 발사 (재조준 없음 — 옆으로 피하면 안전)
             Vector2 endPoint = origin + dir * SteamRange;
             if (DistancePointToSegment(game.Player.Position, origin, endPoint) <= SteamWidth * 0.5f)
-                game.Player.TakeDamage(SteamDamage);
+                game.Player.TakeDamage(SteamDamage, DamageSource.BossSkill(enemy.Def, "증기 분사"));
 
             // 04 §8 steam_jet "연결 타일" — 사거리를 따라 여러 조각을 이어 붙인다(판정은 선분 거리 그대로).
             if (ArtLibrary.Get("steam_jet") != null)
@@ -267,7 +267,8 @@ namespace CCT
             {
                 foreach (var pos in positions)
                     BurstZone.Spawn(pos, DripRainRadius, DripRainDamagePerSecond, DripRainZoneSeconds,
-                        game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.TeaKilnDragon ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt));
+                        game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.TeaKilnDragon ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt),
+                        DamageSource.Zone(enemy.Def, "드립 폭우"));
             }
 
             frozen = false; // 생성 시 패턴 종료 (장판 수명은 독립)

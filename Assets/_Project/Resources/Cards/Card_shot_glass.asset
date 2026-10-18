@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_shot_glass
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: shot_glass
-  displayName: "\uC0F7 \uAE00\uB798\uC2A4"
+  displayName: "지거"
   description: "\uACF5\uACA9 \uC18D\uB3C4 +12%"
-  flavorText: "\uD55C \uBC88\uC5D0 \uD138\uC5B4 \uB123\uB294 \uC791\uC740 \uC794.
-    \uBE60\uB978 \uB9AC\uB4EC\uC758 \uC0C1\uC9D5."
+  flavorText: "재료의 양을 재는 도구. 용량은 제품마다 다릅니다."
   category: 0
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 1
     value: 0.12
   weaponRestriction: 0
+  realWorldFact: "재료의 양을 재는 도구. 용량은 제품마다 다릅니다."
+  gameplayConnection: "반복 계량의 리듬을 공격 속도로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Jigger"
+  sourceUrl: "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/jigger"
+  educationArtId: "card_jigger"
+  additionalSources: ""

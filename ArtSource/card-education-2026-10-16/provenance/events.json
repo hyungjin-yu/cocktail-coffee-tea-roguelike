@@ -1,0 +1,13 @@
+[
+  {
+    "asset": "card_jigger",
+    "event": "rejected-01",
+    "reason": "Generated shaker plus stem glasses instead of one double jigger"
+  },
+  {
+    "asset": "card_blue_blazer",
+    "event": "generation_failure",
+    "error": "RuntimeError Connection timed out. The server took too long to respond. Please try again.",
+    "action": "Retry after socket closed"
+  }
+]

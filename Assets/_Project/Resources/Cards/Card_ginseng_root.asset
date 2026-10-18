@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_ginseng_root
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: ginseng_root
-  displayName: "\uC0B0\uC0BC \uBFCC\uB9AC"
+  displayName: "루이보스 인퓨전"
   description: "\uCD08\uB2F9 \uD68C\uBCF5\uB7C9 +3"
-  flavorText: "\uADC0\uD55C \uC57D\uC7AC \uBFCC\uB9AC \u2014 \uAC15\uD55C \uAE30\uC6B4\uC744
-    \uBD88\uC5B4\uB123\uB294\uB2E4."
+  flavorText: "남아프리카의 Aspalathus linearis 잎과 줄기로 만드는 허브 인퓨전입니다. 찻나무 Camellia sinensis로 만든 차와 구별합니다."
   category: 1
   rarity: 2
   maxStacks: 3
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 9
     value: 3
   weaponRestriction: 0
+  realWorldFact: "남아프리카의 Aspalathus linearis 잎과 줄기로 만드는 허브 인퓨전입니다. 찻나무 Camellia sinensis로 만든 차와 구별합니다."
+  gameplayConnection: "쉬어 가는 인상을 게임 회복으로 표현했습니다."
+  sourceName: "SANBI · Aspalathus linearis"
+  sourceUrl: "https://pza.sanbi.org/aspalathus-linearis"
+  educationArtId: "card_rooibos"
+  additionalSources: ""

@@ -101,7 +101,7 @@ namespace CCT.Tests
             s.stacks["green_tea"] = 2;
             string line = HiddenRequirements.ProgressLine(def, Job.Bartender, s);
             StringAssert.Contains("드라이 진 0/2", line);
-            StringAssert.Contains("녹차 잎 2/2 ✓", line);
+            StringAssert.Contains("녹차 2/2 ✓", line);
             Assert.AreEqual("???", HiddenRequirements.DisplayName(def, Job.Bartender, false), "미발견이면 이름만 숨김");
         }
 

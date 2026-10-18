@@ -20,6 +20,8 @@ namespace CCT
         float damagePerSecond;
         float remaining;
         float tickTimer;
+        /// <summary>67: 이 장판을 만든 적/공격(사망 원인 기록 전용).</summary>
+        DamageSource source;
 
         /// <summary>04 §8 장판 아트: 올리브 바머 화염은 olive_fire, 커피 보스 장판은 coffee_pool.</summary>
         public const string OliveFireArt = "olive_fire";
@@ -27,7 +29,7 @@ namespace CCT
         public const string TeaPoolArt = "tea_pool";
 
         public static void Spawn(Vector2 position, float radius, float damagePerSecond, float seconds,
-            PlayerController player, Transform parent, string artId = OliveFireArt)
+            PlayerController player, Transform parent, string artId = OliveFireArt, DamageSource source = default)
         {
             var go = new GameObject("BurstZone");
             go.transform.SetParent(parent, false);
@@ -41,6 +43,7 @@ namespace CCT
             zone.radius = radius;
             zone.damagePerSecond = damagePerSecond;
             zone.remaining = seconds;
+            zone.source = source;
             zone.tickTimer = Balance.ZoneTickInterval; // 첫 틱은 생성 0.4초 후 (06:23)
         }
 
@@ -95,7 +98,7 @@ namespace CCT
             tickTimer = Balance.ZoneTickInterval;
 
             if (Vector2.Distance(transform.position, player.Position) <= radius)
-                PlayerZoneDamage.RequestTick(damagePerSecond);
+                PlayerZoneDamage.RequestTick(damagePerSecond, source);
         }
     }
 }

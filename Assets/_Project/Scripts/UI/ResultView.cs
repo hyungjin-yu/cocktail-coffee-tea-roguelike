@@ -24,6 +24,8 @@ namespace CCT
         public int beansCollected;
         public int specialtyEarned;
         public int seed;
+        /// <summary>67 이번 판 기록(카드·조합·종료 사유). 기록 구성 실패 시 null — 결과 화면은 그대로 열린다.</summary>
+        public RunRecord record;
     }
 
     /// <summary>
@@ -49,6 +51,12 @@ namespace CCT
         Button restartButton;
         PermanentSkillView shopView;
         ResultSummary last;
+        // 67 이번 판 빌드 상세와 기록 저장 상태
+        Button buildButton;
+        Text historyStatus;
+        RunDetailView detail;
+        int detailClosedFrame = -1;
+        int shownHistoryState = -1;
 
         public bool IsOpen => root != null && root.activeSelf;
         /// <summary>테스트/QA용 — 제목과 전체 요약(로그에는 seed까지 포함한 6줄 요약).</summary>
@@ -56,6 +64,9 @@ namespace CCT
         public string StatsText => last != null ? BuildStats(last, SpecialtyBalance()) : null;
         public bool SeedVisible => seedText != null && seedText.gameObject.activeSelf;
         public bool HudHidden { get; private set; }
+        public RunDetailView Detail => detail;
+        public Button BuildDetailButton => buildButton;
+        public string HistoryStatusText => historyStatus != null ? historyStatus.text : "";
 
         public static ResultView Create(Transform canvas, GameManager game)
         {
@@ -95,10 +106,27 @@ namespace CCT
                 new Vector2(1200f, 100f)), "", 26, TextAnchor.MiddleCenter, Muted);
             view.statsSmall.lineSpacing = 1.1f;
 
+            // 69 음료: 보스 음료 재료 창고 반영 여부 + 준비 음료 보존/소모.
+            view.drinkStatus = UiFactory.AddText(UiFactory.Place("DrinkStatus", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, -184f),
+                new Vector2(1500f, 80f)), "", 22, TextAnchor.MiddleCenter, new Color(0.75f, 1f, 0.8f));
+            view.drinkStatus.lineSpacing = 1.05f;
+
             view.restartButton = BuildButton(rootRt, "RestartButton", 0f, UiFactory.InputLabel("다시 시작", "R"), true, view.Restart);
             var shopButton = BuildButton(rootRt, "PermanentShopButton", -440f, "영구 강화", false, view.OpenShop);
             UiFactory.AddIcon(shopButton.transform, "specialty", new Vector2(0f, 0.5f), new Vector2(14f, 0f), 44f);
             BuildButton(rootRt, "TitleButton", 440f, "타이틀", false, () => view.game.GoToTitle());
+
+            // 67 "이번 판 빌드" — 선택 카드·중첩·완성 조합·종료 사유는 별도 스크롤 창(큰 결과 화면에 압축하지 않는다).
+            var buildRt = UiFactory.Place("BuildDetailButton", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, -420f), new Vector2(420f, 76f));
+            var buildBg = UiFactory.AddImage(buildRt, new Color(0.24f, 0.4f, 0.5f));
+            view.buildButton = buildRt.gameObject.AddComponent<Button>();
+            UiFactory.AddFocusSfx(view.buildButton);
+            view.buildButton.targetGraphic = buildBg;
+            UiFactory.ApplyHoverColors(view.buildButton);
+            view.buildButton.onClick.AddListener(view.OpenDetail);
+            UiFactory.AddText(UiFactory.Stretch("Label", buildRt), "이번 판 빌드", 30, TextAnchor.MiddleCenter, Color.white);
+            view.historyStatus = UiFactory.AddText(UiFactory.Place("HistoryStatus", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, -488f),
+                new Vector2(1400f, 40f)), "", 24, TextAnchor.MiddleCenter, Muted);
 
             // 접힌 상세: seed(06:98)는 버튼으로 펼친다(키보드 Enter/마우스).
             var toggleRt = UiFactory.Place("SeedToggle", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, -420f), new Vector2(300f, 52f));
@@ -116,6 +144,8 @@ namespace CCT
             toggleRt.gameObject.SetActive(false); // Run seed remains available in diagnostic logs, not in player menus.
 
             view.shopView = PermanentSkillView.Create(canvas, view.ShowRoot);
+            // 상세는 결과 화면의 마지막 자식 — 그리기 순서와 MobileBackRouter 탐색에서 "타이틀"보다 위에 있다.
+            view.detail = RunDetailView.Create(rootRt, () => view.detailClosedFrame = Time.frameCount);
 
             view.root.SetActive(false);
             return view;
@@ -203,6 +233,9 @@ namespace CCT
             statsSmall.text = $"처치  {last.kills}  ·  칵테일 Lv {last.cocktailLevel}  ·  차 Lv {last.teaLevel}  ·  커피 스킬 해금  {last.coffeeSkillsUnlocked}\n" +
                               $"획득 재료  칵테일 {last.cocktailCollected}  ·  찻잎 {last.teaCollected}  ·  원두 {last.beansCollected}";
             seedText.text = $"seed  {last.seed}";
+            if (buildButton != null) buildButton.interactable = last.record != null;
+            RefreshHistoryStatus();
+            RefreshDrinkStatus();
             statsSmall.text=JobStudyTheme.Text(statsSmall.text,last.job);
             if (last.job == Job.TeaSommelier)
                 statsSmall.text = $"처치  {last.kills}  ·  차 Lv {last.teaLevel}  ·  우림 연구 스킬 해금  {last.coffeeSkillsUnlocked}\n획득 재료  찻잎 {last.teaCollected}  ·  우림 지식 {last.beansCollected}";
@@ -240,20 +273,72 @@ namespace CCT
 
         void OpenShop()
         {
+            if (detail != null && detail.IsOpen) return;
             root.SetActive(false);
             shopView.Show();
         }
 
+        /// <summary>67 "이번 판 빌드" 버튼(테스트도 같은 경로). 기록이 없으면 열지 않는다.</summary>
+        public void OpenDetail()
+        {
+            if (!IsOpen || last == null || last.record == null || detail.IsOpen) return;
+            detail.Show(last.record, buildButton.gameObject);
+        }
+
+        /// <summary>67 기록 저장 상태 — 저장 실패를 성공으로 보이지 않는다(재시도 성공 시 갱신).</summary>
+        Text drinkStatus;
+        int shownDrinkState = -1;
+        public string DrinkStatusText => drinkStatus != null ? drinkStatus.text : "";
+
+        public static string DrinkStatusLine(DrinkSettlement s)
+        {
+            if (s == null) return "";
+            string drink = s.drink == "Preserved" ? "준비 음료: 5마리 처치 전 포기라 보존했습니다(다음 출발 때 그대로 마심)"
+                : s.drink == "Consumed" ? "준비 음료: 이번 판에 사용되어 사라졌습니다" : "";
+            string mats = s.kind == "PreservedAbandon"
+                ? (s.discarded.Count > 0 ? $"음료 재료: 보존 포기라 이번 판 보상({DrinkLab.Describe(s.discarded)})은 정산하지 않았습니다" : "음료 재료: 보존 포기 — 이번 판 재료 보상 없음")
+                : s.granted.Count > 0 ? $"음료 재료 획득: {DrinkLab.Describe(s.granted)} — " + (DrinkLab.IsDirty ? "창고 저장 실패, 자동으로 다시 시도 중" : DrinkLab.WriteBlocked ? "새 버전 창고 보호 중(저장 안 됨)" : "창고에 저장했습니다")
+                : "음료 재료: 이번 판 보스 보상 없음";
+            return drink.Length > 0 ? mats + "\n" + drink : mats;
+        }
+
+        void RefreshDrinkStatus()
+        {
+            if (drinkStatus == null) return;
+            shownDrinkState = DrinkLab.IsDirty ? 1 : 0;
+            drinkStatus.text = DrinkStatusLine(game != null ? game.DrinkSettlement : null);
+        }
+
+        void RefreshHistoryStatus()
+        {
+            if (historyStatus == null) return;
+            shownHistoryState = HistoryState();
+            if (last == null || last.record == null) { historyStatus.text = "이번 판 기록을 만들지 못했습니다."; return; }
+            historyStatus.text = RunHistory.IsWriteBlocked ? "새 버전 기록 파일 보존 중 — 이번 판 기록은 이 화면에서만 볼 수 있습니다."
+                : RunHistory.IsDirty ? "기록 저장 실패 — 자동으로 다시 시도합니다. 이번 판 빌드는 지금 볼 수 있습니다."
+                : "최근 기록에 저장했습니다 · 타이틀 > 최근 기록";
+        }
+
+        static int HistoryState() => (RunHistory.IsDirty ? 1 : 0) | (RunHistory.LastSaveFailed ? 2 : 0);
+
         void Update()
         {
             if (!IsOpen) return;
+            if (shownHistoryState != HistoryState()) RefreshHistoryStatus();
+            if (shownDrinkState != (DrinkLab.IsDirty ? 1 : 0)) RefreshDrinkStatus();
             var kb = Keyboard.current;
+            // 상세가 열려 있거나 방금 닫힌 프레임이면 R·Esc가 결과 화면 버튼으로 관통하지 않는다.
+            if (detail != null && (detail.IsOpen || detailClosedFrame == Time.frameCount))
+            {
+                if (detail.IsOpen && !MobilePlatform.IsTouchUI && kb != null && kb.escapeKey.wasPressedThisFrame) detail.Close();
+                return;
+            }
             if (kb != null && kb.rKey.wasPressedThisFrame) Restart();
         }
 
         void Restart()
         {
-            if (!IsOpen) return;
+            if (!IsOpen || (detail != null && detail.IsOpen)) return;
             game.Restart();
         }
     }

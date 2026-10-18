@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: Card_molotov
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: molotov
-  displayName: "\uD654\uC5FC\uBCD1 \uCE75\uD14C\uC77C"
+  displayName: "플레임드 제스트"
   description: "\uC8FC\uBB34\uAE30 \uC801\uC911 \uD654\uC5FC (Lv +1): 1\uCD08\uB9C8\uB2E4
     3\uCD08 \uC9C0\uC18D"
-  flavorText: "\uC774\uB984 \uADF8\uB300\uB85C \uC704\uD5D8\uD558\uACE0 \uAC15\uB82C\uD55C
-    \uD55C \uC794."
+  flavorText: "감귤 껍질의 향유와 불꽃을 이용해 향과 시각적 인상을 더하는 전문 바 연출입니다."
   category: 0
   rarity: 1
   maxStacks: 5
@@ -25,3 +24,9 @@ MonoBehaviour:
   - type: 8
     value: 1
   weaponRestriction: 0
+  realWorldFact: "감귤 껍질의 향유와 불꽃을 이용해 향과 시각적 인상을 더하는 전문 바 연출입니다."
+  gameplayConnection: "순간 불꽃을 적중 화염으로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Copper Colours"
+  sourceUrl: "https://www.diageobaracademy.com/en-zz/home/explore-all-recipes/copper-colours"
+  educationArtId: ""
+  additionalSources: ""

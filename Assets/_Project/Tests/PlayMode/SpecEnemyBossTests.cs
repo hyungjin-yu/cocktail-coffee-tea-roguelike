@@ -91,18 +91,18 @@ namespace CCT.Tests
             yield return CountSpawns(6f, counts);
             Assert.That(counts[0], Is.InRange(4, 6), "시작 간격 1.2초");
 
-            // t=900: max(0.35, 1.2-0.9)=0.35초 → 3초 동안 약 8~9회
+            // t=900: 기본 0.35초 / 시간 2.5 / 승인된 7분 이후 ×2 → 3초 동안 약43회.
             game.SetRunTimeForTests(900f);
             yield return new WaitForSeconds(1.3f); // 이전 1.2초 주기의 남은 타이머를 소진
             yield return CountSpawns(3f, counts);
-            Assert.That(counts[1], Is.InRange(18, 28), "15분에는 시간 배율 2.5로 후반 스폰 증가");
+            Assert.That(counts[1], Is.InRange(38, 48), "15분에는 시간 배율2.5와 7분 이후 배율2로 스폰 증가");
 
-            // 보스 생존 중 간격 2배 → 같은 3초에 약 4회
+            // 보스 생존 중 간격 2배 → 같은 3초에 약21회.
             var boss = Enemy.SpawnAt(game.Player.Position + new Vector2(30f, 0f), EnemyDef.GrinderGolem, 1f, game.Player, game.transform);
             game.ActiveBoss = boss;
             yield return new WaitForSeconds(0.8f); // 진행 중 주기를 소진
             yield return CountSpawns(3f, counts);
-            Assert.That(counts[2], Is.InRange(8, 14), "후반에도 보스 중 간격 2배");
+            Assert.That(counts[2], Is.InRange(18, 26), "후반에도 보스 중 간격 2배");
             game.ActiveBoss = null;
             Object.Destroy(boss.gameObject);
 

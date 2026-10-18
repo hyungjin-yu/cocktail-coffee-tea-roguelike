@@ -1,0 +1,82 @@
+finish.aseprite.lua exit=0
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+card_gin 64x64 bounds 10,3,44,58
+card_jigger 64x64 bounds 15,3,33,58
+card_bar_spoon 64x64 bounds 24,3,16,58
+card_shaker 64x64 bounds 17,3,30,58
+card_double_strain 64x64 bounds 3,8,58,48
+card_negroni 64x64 bounds 16,3,32,58
+card_old_fashioned 64x64 bounds 10,3,44,58
+card_martini 64x64 bounds 13,3,38,58
+card_blue_blazer 64x64 bounds 3,11,58,41
+card_green_tea 64x64 bounds 3,3,58,57
+card_tea_whisk 64x64 bounds 3,4,58,55
+card_gaiwan 64x64 bounds 4,3,55,58
+card_chamomile 64x64 bounds 3,8,58,48
+card_rooibos 64x64 bounds 4,3,55,58
+
+verify-preview.aseprite.lua exit=0
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+
+finish.aseprite.lua exit=0
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+card_gin 64x64 bounds 10,3,44,58
+card_jigger 64x64 bounds 15,3,33,58
+card_bar_spoon 64x64 bounds 24,3,16,58
+card_shaker 64x64 bounds 17,3,30,58
+card_double_strain 64x64 bounds 3,8,58,48
+card_negroni 64x64 bounds 16,3,32,58
+card_old_fashioned 64x64 bounds 10,3,44,58
+card_martini 64x64 bounds 13,3,38,58
+card_blue_blazer 64x64 bounds 3,11,58,41
+card_green_tea 64x64 bounds 3,3,58,57
+card_tea_whisk 64x64 bounds 3,4,58,55
+card_gaiwan 64x64 bounds 4,3,55,58
+card_oolong 64x64 bounds 3,8,58,47
+card_puerh 64x64 bounds 3,10,58,44
+card_chamomile 64x64 bounds 3,8,58,48
+card_rooibos 64x64 bounds 4,3,55,58
+
+verify-preview.aseprite.lua exit=0
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+
+finish.aseprite.lua exit=0
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+card_gin 64x64 bounds 10,3,44,58
+card_jigger 64x64 bounds 15,3,33,58
+card_bar_spoon 64x64 bounds 24,3,16,58
+card_shaker 64x64 bounds 17,3,30,58
+card_double_strain 64x64 bounds 3,8,58,48
+card_negroni 64x64 bounds 16,3,32,58
+card_old_fashioned 64x64 bounds 10,3,44,58
+card_martini 64x64 bounds 13,3,38,58
+card_blue_blazer 64x64 bounds 3,11,58,41
+card_green_tea 64x64 bounds 3,3,58,57
+card_tea_whisk 64x64 bounds 3,4,58,55
+card_gaiwan 64x64 bounds 4,3,55,58
+card_oolong 64x64 bounds 3,8,58,47
+card_puerh 64x64 bounds 3,10,58,44
+card_chamomile 64x64 bounds 3,8,58,48
+card_rooibos 64x64 bounds 4,3,55,58
+
+verify-preview.aseprite.lua exit=0
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+

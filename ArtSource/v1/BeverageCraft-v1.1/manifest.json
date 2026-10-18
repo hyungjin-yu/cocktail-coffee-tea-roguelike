@@ -1,0 +1,3386 @@
+{
+  "specVersion": "69_2026-10-19",
+  "filterMode": "Point",
+  "colorMode": "RGBA",
+  "binaryAlpha": true,
+  "pixelsPerUnit": 128,
+  "pivotConvention": "Unity normalized from lower left; default canvas center; anchors are integer pixels from top left",
+  "assets": [
+    {
+      "assetId": "dl_jigger",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_jigger.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_jigger.aseprite",
+      "size": [
+        32,
+        48
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        27,
+        46
+      ],
+      "sha256": "143fc9f15c412848b75290b65826b314d5d98ffd6b17bf2c761bbf41e9016fdb",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "maskValid": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_jigger.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "mouth": [
+          15,
+          8
+        ],
+        "pourLip": [
+          21,
+          8
+        ],
+        "grip": [
+          16,
+          29
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_jigger.png",
+          "sha256": "143fc9f15c412848b75290b65826b314d5d98ffd6b17bf2c761bbf41e9016fdb",
+          "alphaBounds": [
+            4,
+            2,
+            27,
+            46
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "mask": {
+        "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_jigger_mask.png",
+        "sha256": "ffd57734e97ad4ae94cccd1bdf35cee003ccb8ab3dc27591d8c9e93dbb8ae68c",
+        "alphaBounds": [
+          9,
+          8,
+          22,
+          22
+        ],
+        "emptyRow": 21,
+        "fullRow": 8,
+        "maskConvention": "white RGB, binary alpha; liquid permitted where alpha=255; reveal from bottom upward"
+      },
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_jigger.png"
+      ]
+    },
+    {
+      "assetId": "dl_shaker",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker.aseprite",
+      "size": [
+        48,
+        80
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        43,
+        78
+      ],
+      "sha256": "9f286fb94a765f454b30b6efb3e9b4b59763ce7f86a72fd75af919c07d6ab062",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_shaker.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker.png",
+          "sha256": "9f286fb94a765f454b30b6efb3e9b4b59763ce7f86a72fd75af919c07d6ab062",
+          "alphaBounds": [
+            4,
+            2,
+            43,
+            78
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker.png"
+      ]
+    },
+    {
+      "assetId": "dl_mixing_glass",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_mixing_glass.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_mixing_glass.aseprite",
+      "size": [
+        48,
+        64
+      ],
+      "alphaBounds": [
+        2,
+        3,
+        46,
+        60
+      ],
+      "sha256": "d4e69a6c85f1874ae5f4922b6c4320aa7c40fe4a485d901a69d0646e91e5d77d",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "maskValid": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_mixing_glass.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "mouth": [
+          24,
+          13
+        ],
+        "pourLip": [
+          38,
+          13
+        ],
+        "grip": [
+          24,
+          39
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_mixing_glass.png",
+          "sha256": "d4e69a6c85f1874ae5f4922b6c4320aa7c40fe4a485d901a69d0646e91e5d77d",
+          "alphaBounds": [
+            2,
+            3,
+            46,
+            60
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "mask": {
+        "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_mixing_glass_mask.png",
+        "sha256": "294cf9dbbac8707e11c35bcf3d0df383b85d2dda38418ec14bcfd2b87b1a5395",
+        "alphaBounds": [
+          10,
+          13,
+          39,
+          53
+        ],
+        "emptyRow": 52,
+        "fullRow": 13,
+        "maskConvention": "white RGB, binary alpha; liquid permitted where alpha=255; reveal from bottom upward"
+      },
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_mixing_glass.png"
+      ]
+    },
+    {
+      "assetId": "dl_glass_cocktail",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_glass_cocktail.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_glass_cocktail.aseprite",
+      "size": [
+        48,
+        64
+      ],
+      "alphaBounds": [
+        2,
+        4,
+        46,
+        59
+      ],
+      "sha256": "76758cb0b2e00d21a4e24dc075b760e3a5bd857fde9ed41fc7cd5adb499b733a",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "maskValid": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_glass_cocktail.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "mouth": [
+          23,
+          15
+        ],
+        "pourLip": [
+          38,
+          15
+        ],
+        "grip": [
+          24,
+          39
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_glass_cocktail.png",
+          "sha256": "76758cb0b2e00d21a4e24dc075b760e3a5bd857fde9ed41fc7cd5adb499b733a",
+          "alphaBounds": [
+            2,
+            4,
+            46,
+            59
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "mask": {
+        "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_glass_cocktail_mask.png",
+        "sha256": "2169aa4fb5e93b6be9b9f6faff317b687b762f4cf0a76b5726d55df1e6f993d9",
+        "alphaBounds": [
+          8,
+          15,
+          39,
+          50
+        ],
+        "emptyRow": 49,
+        "fullRow": 15,
+        "maskConvention": "white RGB, binary alpha; liquid permitted where alpha=255; reveal from bottom upward"
+      },
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_glass_cocktail.png"
+      ]
+    },
+    {
+      "assetId": "dl_chaha",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_chaha.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_chaha.aseprite",
+      "size": [
+        48,
+        24
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        43,
+        22
+      ],
+      "sha256": "0b930523d1a9e7c2cccd4b0d9effa938f2437198a9016fcbf0d9045b4bf7f8a2",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "maskValid": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_chaha.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "mouth": [
+          23,
+          8
+        ],
+        "pourLip": [
+          42,
+          8
+        ],
+        "grip": [
+          15,
+          15
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_chaha.png",
+          "sha256": "0b930523d1a9e7c2cccd4b0d9effa938f2437198a9016fcbf0d9045b4bf7f8a2",
+          "alphaBounds": [
+            4,
+            2,
+            43,
+            22
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate.",
+      "integrated": false,
+      "unityVerified": false,
+      "mask": {
+        "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_chaha_mask.png",
+        "sha256": "c46a0bebdeff42f09dbfa169b2fc497e1a85fac950da96bde4f05afe74802787",
+        "alphaBounds": [
+          11,
+          8,
+          36,
+          17
+        ],
+        "emptyRow": 16,
+        "fullRow": 8,
+        "maskConvention": "white RGB, binary alpha; liquid permitted where alpha=255; reveal from bottom upward"
+      },
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_chaha.png"
+      ]
+    },
+    {
+      "assetId": "dl_teapot",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_teapot.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_teapot.aseprite",
+      "size": [
+        64,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        4,
+        62,
+        52
+      ],
+      "sha256": "c5bce8ad699627ca472bc6323c80962d4c4bdacfc245dbabef90166b84cd6f11",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "maskValid": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_teapot.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "mouth": [
+          30,
+          23
+        ],
+        "pourLip": [
+          61,
+          21
+        ],
+        "grip": [
+          12,
+          29
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_teapot.png",
+          "sha256": "c5bce8ad699627ca472bc6323c80962d4c4bdacfc245dbabef90166b84cd6f11",
+          "alphaBounds": [
+            2,
+            4,
+            62,
+            52
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate.",
+      "integrated": false,
+      "unityVerified": false,
+      "mask": {
+        "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_teapot_mask.png",
+        "sha256": "39f9ef4f01762116f7b5f1798c5e49a7ab8425b8ec3e97c8a4d9c000c17d2153",
+        "alphaBounds": [
+          16,
+          23,
+          45,
+          45
+        ],
+        "emptyRow": 44,
+        "fullRow": 23,
+        "maskConvention": "white RGB, binary alpha; liquid permitted where alpha=255; reveal from bottom upward"
+      },
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_teapot.png"
+      ]
+    },
+    {
+      "assetId": "dl_teacup",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_teacup.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_teacup.aseprite",
+      "size": [
+        40,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        35,
+        30
+      ],
+      "sha256": "94f75a80fc3abbc77d83e7fd09fbe2d4126a4512d1f0b181ce3aef1b4d558c3f",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "maskValid": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_teacup.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "mouth": [
+          19,
+          10
+        ],
+        "pourLip": [
+          29,
+          10
+        ],
+        "grip": [
+          20,
+          19
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_teacup.png",
+          "sha256": "94f75a80fc3abbc77d83e7fd09fbe2d4126a4512d1f0b181ce3aef1b4d558c3f",
+          "alphaBounds": [
+            4,
+            2,
+            35,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate.",
+      "integrated": false,
+      "unityVerified": false,
+      "mask": {
+        "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_teacup_mask.png",
+        "sha256": "383045861c3d75015063844e5f989463335f283a4a2c0d9f211e523279d0dd00",
+        "alphaBounds": [
+          9,
+          10,
+          30,
+          24
+        ],
+        "emptyRow": 23,
+        "fullRow": 10,
+        "maskConvention": "white RGB, binary alpha; liquid permitted where alpha=255; reveal from bottom upward"
+      },
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_teacup.png"
+      ]
+    },
+    {
+      "assetId": "dl_water_kettle",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_water_kettle.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_water_kettle.aseprite",
+      "size": [
+        48,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        6,
+        46,
+        49
+      ],
+      "sha256": "463cf5a6d5abcf27c7b18aa7990f1c9eda8d5eb3580cabeb8a3207c29e106094",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_water_kettle.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "pourLip": [
+          45,
+          14
+        ],
+        "mouth": [
+          23,
+          6
+        ],
+        "grip": [
+          8,
+          27
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_water_kettle.png",
+          "sha256": "463cf5a6d5abcf27c7b18aa7990f1c9eda8d5eb3580cabeb8a3207c29e106094",
+          "alphaBounds": [
+            2,
+            6,
+            46,
+            49
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_water_kettle.png"
+      ]
+    },
+    {
+      "assetId": "dl_barspoon",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_barspoon_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_barspoon.aseprite",
+      "size": [
+        16,
+        80
+      ],
+      "alphaBounds": [
+        3,
+        2,
+        13,
+        78
+      ],
+      "sha256": "cbc1ec34c0763d9fed9c3a578220d645a8ecc80d3a07b4daa2fccbc63c5d0941",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_barspoon.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "grip": [
+          8,
+          16
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_barspoon_00.png",
+          "sha256": "cbc1ec34c0763d9fed9c3a578220d645a8ecc80d3a07b4daa2fccbc63c5d0941",
+          "alphaBounds": [
+            3,
+            2,
+            13,
+            78
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_barspoon_01.png",
+          "sha256": "67b8121a6e452cef343e85beb4104faef37fb683e7882c848fb76f00e89e6e46",
+          "alphaBounds": [
+            5,
+            2,
+            11,
+            78
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_barspoon_02.png",
+          "sha256": "c403ced9df58f694f5f0cd395c7467ef0a116cfef4e397d714d26d1438b00930",
+          "alphaBounds": [
+            6,
+            2,
+            10,
+            78
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_barspoon_03.png",
+          "sha256": "67b8121a6e452cef343e85beb4104faef37fb683e7882c848fb76f00e89e6e46",
+          "alphaBounds": [
+            5,
+            2,
+            11,
+            78
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 10,
+      "loop": true,
+      "visualNotes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_barspoon_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_barspoon_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_barspoon_02.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_barspoon_03.png"
+      ]
+    },
+    {
+      "assetId": "dl_bottle_gin",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_gin.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_gin.aseprite",
+      "size": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        20,
+        54
+      ],
+      "sha256": "261f50d27d400c6492c5eae1c5467a137a7972bbe06b051c0b10fdcc1e2f3858",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_gin.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "pourLip": [
+          11,
+          2
+        ],
+        "mouth": [
+          11,
+          2
+        ],
+        "grip": [
+          12,
+          28
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_gin.png",
+          "sha256": "261f50d27d400c6492c5eae1c5467a137a7972bbe06b051c0b10fdcc1e2f3858",
+          "alphaBounds": [
+            4,
+            2,
+            20,
+            54
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_gin.png"
+      ]
+    },
+    {
+      "assetId": "dl_bottle_rum",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_rum.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_rum.aseprite",
+      "size": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        6,
+        22,
+        49
+      ],
+      "sha256": "849f60721102d911c41737dd020cef07d48443dca6dec4d8ea85aab181507bbe",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_rum.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "pourLip": [
+          11,
+          6
+        ],
+        "mouth": [
+          11,
+          6
+        ],
+        "grip": [
+          12,
+          27
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_rum.png",
+          "sha256": "849f60721102d911c41737dd020cef07d48443dca6dec4d8ea85aab181507bbe",
+          "alphaBounds": [
+            2,
+            6,
+            22,
+            49
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_rum.png"
+      ]
+    },
+    {
+      "assetId": "dl_bottle_blue_curacao",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_blue_curacao.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_blue_curacao.aseprite",
+      "size": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        3,
+        2,
+        21,
+        54
+      ],
+      "sha256": "5aa45f941791d7e6afd2f9002a3ac16d7e20c48ab68bebaf28645078abc94ec1",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_blue_curacao.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "pourLip": [
+          11,
+          2
+        ],
+        "mouth": [
+          11,
+          2
+        ],
+        "grip": [
+          12,
+          28
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_blue_curacao.png",
+          "sha256": "5aa45f941791d7e6afd2f9002a3ac16d7e20c48ab68bebaf28645078abc94ec1",
+          "alphaBounds": [
+            3,
+            2,
+            21,
+            54
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_blue_curacao.png"
+      ]
+    },
+    {
+      "assetId": "dl_bottle_grenadine",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_grenadine.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_grenadine.aseprite",
+      "size": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        21,
+        54
+      ],
+      "sha256": "bec3a0fbd59e86703612aca923a20e65c397ddd32439cb94a20010106350bd9c",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_grenadine.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "pourLip": [
+          11,
+          2
+        ],
+        "mouth": [
+          11,
+          2
+        ],
+        "grip": [
+          12,
+          28
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_grenadine.png",
+          "sha256": "bec3a0fbd59e86703612aca923a20e65c397ddd32439cb94a20010106350bd9c",
+          "alphaBounds": [
+            2,
+            2,
+            21,
+            54
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_grenadine.png"
+      ]
+    },
+    {
+      "assetId": "dl_bottle_lemon_juice",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_lemon_juice.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_lemon_juice.aseprite",
+      "size": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        4,
+        22,
+        51
+      ],
+      "sha256": "ae42356e5ea48abeefe9feefca36347db6fb05d3bb9fdc7c0119389e8690dcbc",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_lemon_juice.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "pourLip": [
+          11,
+          4
+        ],
+        "mouth": [
+          11,
+          4
+        ],
+        "grip": [
+          12,
+          27
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_lemon_juice.png",
+          "sha256": "ae42356e5ea48abeefe9feefca36347db6fb05d3bb9fdc7c0119389e8690dcbc",
+          "alphaBounds": [
+            2,
+            4,
+            22,
+            51
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_lemon_juice.png"
+      ]
+    },
+    {
+      "assetId": "dl_bottle_honey",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_honey.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_honey.aseprite",
+      "size": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        15,
+        22,
+        41
+      ],
+      "sha256": "6cf8950ef10d63ffca0e21a0d2ddbf9a3cce79869ca8c6dedac735b49309e4c2",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_honey.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "pourLip": [
+          11,
+          15
+        ],
+        "mouth": [
+          11,
+          15
+        ],
+        "grip": [
+          12,
+          28
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_honey.png",
+          "sha256": "6cf8950ef10d63ffca0e21a0d2ddbf9a3cce79869ca8c6dedac735b49309e4c2",
+          "alphaBounds": [
+            2,
+            15,
+            22,
+            41
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_honey.png"
+      ]
+    },
+    {
+      "assetId": "dl_tin_black_tea",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_tin_black_tea.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_tin_black_tea.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        28,
+        30
+      ],
+      "sha256": "c3030129020f9f22c6f753c9c9a93fe7360a426e24495ecefdcb486f8d357f48",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_tin_black_tea.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_tin_black_tea.png",
+          "sha256": "c3030129020f9f22c6f753c9c9a93fe7360a426e24495ecefdcb486f8d357f48",
+          "alphaBounds": [
+            4,
+            2,
+            28,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_tin_black_tea.png"
+      ]
+    },
+    {
+      "assetId": "dl_tin_green_tea",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_tin_green_tea.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_tin_green_tea.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        30,
+        30
+      ],
+      "sha256": "134af3e919e00c2f2cbd0e5cbab4afc3d7d6ce31d6072f63de0d2a76a98df155",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_tin_green_tea.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_tin_green_tea.png",
+          "sha256": "134af3e919e00c2f2cbd0e5cbab4afc3d7d6ce31d6072f63de0d2a76a98df155",
+          "alphaBounds": [
+            2,
+            2,
+            30,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_tin_green_tea.png"
+      ]
+    },
+    {
+      "assetId": "dl_shaker_open",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_open.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_open.aseprite",
+      "size": [
+        48,
+        80
+      ],
+      "alphaBounds": [
+        4,
+        24,
+        43,
+        78
+      ],
+      "sha256": "ffd5365b226898f6faeee17a9324cce18db7f6f05c2cc6306a2a3215d873b40d",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "maskValid": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_shaker.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "mouth": [
+          23,
+          27
+        ],
+        "pourLip": [
+          31,
+          27
+        ],
+        "grip": [
+          24,
+          49
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_open.png",
+          "sha256": "ffd5365b226898f6faeee17a9324cce18db7f6f05c2cc6306a2a3215d873b40d",
+          "alphaBounds": [
+            4,
+            24,
+            43,
+            78
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "mask": {
+        "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_open_mask.png",
+        "sha256": "01865dd0d16a6cf434cebb53faa4d7c77bbaa49afc39dff044f02072ecb8c7f7",
+        "alphaBounds": [
+          15,
+          27,
+          32,
+          71
+        ],
+        "emptyRow": 70,
+        "fullRow": 27,
+        "maskConvention": "white RGB, binary alpha; liquid permitted where alpha=255; reveal from bottom upward"
+      },
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_open.png"
+      ]
+    },
+    {
+      "assetId": "dl_shaker_shake",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake.aseprite",
+      "size": [
+        64,
+        80
+      ],
+      "alphaBounds": [
+        10,
+        8,
+        48,
+        69
+      ],
+      "sha256": "50ac45494f4b38fa44282a96fa4c50a730ec66b85d4a7f916d04231e3674f674",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_shaker.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_00.png",
+          "sha256": "50ac45494f4b38fa44282a96fa4c50a730ec66b85d4a7f916d04231e3674f674",
+          "alphaBounds": [
+            10,
+            8,
+            48,
+            69
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_01.png",
+          "sha256": "4328f362e2eed7b01acf4089e64a2248a79eb30b5ee6cbdb48fd1fdb7db0812a",
+          "alphaBounds": [
+            17,
+            9,
+            47,
+            68
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_02.png",
+          "sha256": "945df85f64f6dd3487a4689202c248403ed2c6cdcde6933618773464f2f92d79",
+          "alphaBounds": [
+            17,
+            8,
+            54,
+            69
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_03.png",
+          "sha256": "8006ec24e1a3cc4094cf9509e10d07aaaeef216138738246df978e107c9a0882",
+          "alphaBounds": [
+            20,
+            8,
+            52,
+            69
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_04.png",
+          "sha256": "4328f362e2eed7b01acf4089e64a2248a79eb30b5ee6cbdb48fd1fdb7db0812a",
+          "alphaBounds": [
+            17,
+            9,
+            47,
+            68
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_05.png",
+          "sha256": "8168ea85f71f4c3fa423a333d06d7b1b5854a33cee11869cdc313c76a1420a0d",
+          "alphaBounds": [
+            13,
+            8,
+            45,
+            69
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 12,
+      "loop": true,
+      "visualNotes": "Revised per latest user: inspected six tool-only shake frames; no hand, face or body. Stable silver shaker silhouette during translation/rotation.",
+      "integrated": false,
+      "unityVerified": false,
+      "animationEvents": {
+        "shakeLoopStart": 0,
+        "shakeLoopEnd": 5
+      },
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_02.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_03.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_04.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_shaker_shake_05.png"
+      ]
+    },
+    {
+      "assetId": "dl_drink_reveal",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        17,
+        17,
+        48,
+        57
+      ],
+      "sha256": "eeea9ffcecf2bbc17b578aa19402b7b841ebd2b8cd345cfbaea4722727d58f9f",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true,
+        "animatedMasks": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_glass_cocktail.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_00.png",
+          "sha256": "eeea9ffcecf2bbc17b578aa19402b7b841ebd2b8cd345cfbaea4722727d58f9f",
+          "alphaBounds": [
+            17,
+            17,
+            48,
+            57
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_01.png",
+          "sha256": "ba17c55d240ce21d7395880fe3c51e7e1e6a620cdec21066bbb95665a290840a",
+          "alphaBounds": [
+            15,
+            13,
+            50,
+            56
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_02.png",
+          "sha256": "5dcd401486afd424d7b9023376a9ca09a2b82af96d9676c16e6d9af10f4edfec",
+          "alphaBounds": [
+            14,
+            9,
+            51,
+            55
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_03.png",
+          "sha256": "a2dbb55c90c695c38a0ff9862cb4cfd7c833561ddf017f22ab944dbb9fb4530d",
+          "alphaBounds": [
+            14,
+            7,
+            51,
+            55
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_04.png",
+          "sha256": "21346db292f27cf03766294ac944665a96eee50d049506ae340113a2820c2390",
+          "alphaBounds": [
+            14,
+            9,
+            51,
+            55
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_05.png",
+          "sha256": "21346db292f27cf03766294ac944665a96eee50d049506ae340113a2820c2390",
+          "alphaBounds": [
+            14,
+            9,
+            51,
+            55
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 10,
+      "loop": false,
+      "visualNotes": "Inspected six glass-only reveal frames and masks; no hand, face, sip or body. Dynamic final colour stays separate.",
+      "integrated": false,
+      "unityVerified": false,
+      "animatedMasks": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_mask_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_mask_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_mask_02.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_mask_03.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_mask_04.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_mask_05.png"
+      ],
+      "contentsTransformByFrame": [
+        {
+          "center": [
+            32,
+            37
+          ],
+          "angleRadians": 0,
+          "scale": 0.72,
+          "sourceMask": "dl_glass_cocktail_mask.png"
+        },
+        {
+          "center": [
+            32,
+            34
+          ],
+          "angleRadians": 0,
+          "scale": 0.78,
+          "sourceMask": "dl_glass_cocktail_mask.png"
+        },
+        {
+          "center": [
+            32,
+            32
+          ],
+          "angleRadians": 0,
+          "scale": 0.83,
+          "sourceMask": "dl_glass_cocktail_mask.png"
+        },
+        {
+          "center": [
+            32,
+            31
+          ],
+          "angleRadians": 0,
+          "scale": 0.86,
+          "sourceMask": "dl_glass_cocktail_mask.png"
+        },
+        {
+          "center": [
+            32,
+            32
+          ],
+          "angleRadians": 0,
+          "scale": 0.84,
+          "sourceMask": "dl_glass_cocktail_mask.png"
+        },
+        {
+          "center": [
+            32,
+            32
+          ],
+          "angleRadians": 0,
+          "scale": 0.84,
+          "sourceMask": "dl_glass_cocktail_mask.png"
+        }
+      ],
+      "animationEvents": {
+        "revealStart": 0,
+        "settledFinishedDrink": 5,
+        "buffGainAfter": 5
+      },
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_02.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_03.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_04.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_drink_reveal_05.png"
+      ]
+    },
+    {
+      "assetId": "dl_steam",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_steam_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_steam.aseprite",
+      "size": [
+        16,
+        24
+      ],
+      "alphaBounds": [
+        3,
+        3,
+        14,
+        22
+      ],
+      "sha256": "af32b20b3a47e42ececb29a2fa4ce9f544cf59993cd019874cba46ea59df9631",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "Aseprite Lua pixel art (04 project palette)",
+      "sourceReceipt": null,
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "origin": [
+          8,
+          23
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_steam_00.png",
+          "sha256": "af32b20b3a47e42ececb29a2fa4ce9f544cf59993cd019874cba46ea59df9631",
+          "alphaBounds": [
+            3,
+            3,
+            14,
+            22
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_steam_01.png",
+          "sha256": "937a2d21ceee44a1db0a31ad864ff86d3b0cf7ae34ec9eb6e80672c69918c933",
+          "alphaBounds": [
+            3,
+            3,
+            14,
+            22
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_steam_02.png",
+          "sha256": "19accb6771fc19896f60a0edee886d8c643773f508b0ac48676d637354d10208",
+          "alphaBounds": [
+            3,
+            3,
+            14,
+            22
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_steam_03.png",
+          "sha256": "c96a94bd5080f31a851c1d795d336d0ed05a00ff78b59ba8b71387a250a6b1e4",
+          "alphaBounds": [
+            3,
+            3,
+            14,
+            22
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_steam_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_steam_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_steam_02.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_steam_03.png"
+      ]
+    },
+    {
+      "assetId": "dl_pour_stream",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_pour_stream_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_pour_stream.aseprite",
+      "size": [
+        12,
+        48
+      ],
+      "alphaBounds": [
+        4,
+        0,
+        8,
+        48
+      ],
+      "sha256": "5015eebecb26a22e7c8381380beed76f98151c111e646734d60b7575953e10bc",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "Aseprite Lua pixel art (04 project palette)",
+      "sourceReceipt": null,
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "origin": [
+          6,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_pour_stream_00.png",
+          "sha256": "5015eebecb26a22e7c8381380beed76f98151c111e646734d60b7575953e10bc",
+          "alphaBounds": [
+            4,
+            0,
+            8,
+            48
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_pour_stream_01.png",
+          "sha256": "1eabe3b267a1bb50b4e88abcdfd0a48feb39ae1a8aa03129d68183c52a5e0521",
+          "alphaBounds": [
+            4,
+            0,
+            7,
+            48
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_pour_stream_02.png",
+          "sha256": "11d59d8ac1065928d7bf1cccf1bb8468b2f359d05730db541b83180d756fb00a",
+          "alphaBounds": [
+            4,
+            0,
+            8,
+            48
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_pour_stream_03.png",
+          "sha256": "bb6b1b59259d333b638a68d9ee075f7973adde17163e2418afca1958d06003c2",
+          "alphaBounds": [
+            4,
+            0,
+            7,
+            48
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 12,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_pour_stream_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_pour_stream_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_pour_stream_02.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_pour_stream_03.png"
+      ]
+    },
+    {
+      "assetId": "dl_bubbles",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bubbles_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bubbles.aseprite",
+      "size": [
+        16,
+        24
+      ],
+      "alphaBounds": [
+        2,
+        8,
+        12,
+        23
+      ],
+      "sha256": "5c1d6bb99a12c764e8834e9f08ab67d7fc026f18bc9ac5300b0c2656783b7f06",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "Aseprite Lua pixel art (04 project palette)",
+      "sourceReceipt": null,
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bubbles_00.png",
+          "sha256": "5c1d6bb99a12c764e8834e9f08ab67d7fc026f18bc9ac5300b0c2656783b7f06",
+          "alphaBounds": [
+            2,
+            8,
+            12,
+            23
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bubbles_01.png",
+          "sha256": "a200fb33ea996a12868aebb90dfebc0664c0d71ee32ea48436310c6985a91b17",
+          "alphaBounds": [
+            2,
+            5,
+            12,
+            20
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bubbles_02.png",
+          "sha256": "e631e024078b94b03d4158cddfb184e3a41da65228b71b47bd3618a6a9584425",
+          "alphaBounds": [
+            2,
+            2,
+            12,
+            17
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bubbles_03.png",
+          "sha256": "76479479f14a0cd69d6bb89be1d3d565c1663eb835b633905313a01a980f659a",
+          "alphaBounds": [
+            2,
+            3,
+            12,
+            21
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 10,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bubbles_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bubbles_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bubbles_02.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bubbles_03.png"
+      ]
+    },
+    {
+      "assetId": "dl_ice_cube",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_ice_cube_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_ice_cube.aseprite",
+      "size": [
+        12,
+        12
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        11,
+        11
+      ],
+      "sha256": "2c309cfa111148d4807179e27512155b5a1a4c999e11c2402b40b5048bafd50a",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "Aseprite Lua pixel art (04 project palette)",
+      "sourceReceipt": null,
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_ice_cube_00.png",
+          "sha256": "2c309cfa111148d4807179e27512155b5a1a4c999e11c2402b40b5048bafd50a",
+          "alphaBounds": [
+            2,
+            2,
+            11,
+            11
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_ice_cube_01.png",
+          "sha256": "5b6640240ce621fbfdd4f9a17e7974c223dfe4e588687ab12f68b528bfeddebe",
+          "alphaBounds": [
+            2,
+            2,
+            11,
+            11
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 6,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_ice_cube_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_ice_cube_01.png"
+      ]
+    },
+    {
+      "assetId": "dl_buff_gain",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        10,
+        10,
+        22,
+        22
+      ],
+      "sha256": "4939f27c652554b6527bd547d7964e9072db73af110bb2d546149dcdd49fb614",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "Aseprite Lua pixel art (04 project palette)",
+      "sourceReceipt": null,
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_00.png",
+          "sha256": "4939f27c652554b6527bd547d7964e9072db73af110bb2d546149dcdd49fb614",
+          "alphaBounds": [
+            10,
+            10,
+            22,
+            22
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_01.png",
+          "sha256": "379ad2aa94db88f20b96153177d91b9650106d8b3cc12717135d377ed23501d7",
+          "alphaBounds": [
+            8,
+            8,
+            24,
+            24
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_02.png",
+          "sha256": "ab0eab2587bcd803a8a24660ee80f0324fc66ec554b0470f6e1f7993a27efc31",
+          "alphaBounds": [
+            6,
+            6,
+            26,
+            26
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_03.png",
+          "sha256": "9f1bdbd695c2cd48f0e66344ec6553fc2b8a909d202729c9de82040d23f44c01",
+          "alphaBounds": [
+            4,
+            4,
+            28,
+            28
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_04.png",
+          "sha256": "ab88bc5d51127f8a122fb297b277d1543cd03c9faeab767f531ed237fa93abe4",
+          "alphaBounds": [
+            3,
+            3,
+            29,
+            29
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_05.png",
+          "sha256": "b900885c10104fdf8a7bf25119f4f97029d06e618e55a1b5abb5571e5b2cb874",
+          "alphaBounds": [
+            2,
+            2,
+            30,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 12,
+      "loop": false,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_02.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_03.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_04.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_buff_gain_05.png"
+      ]
+    },
+    {
+      "assetId": "dl_leaf_black_tea",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_black_tea_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_black_tea.aseprite",
+      "size": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        6,
+        6
+      ],
+      "sha256": "87052a3fd02396f1acd45f71e423db6c963f485372eeac9277913a23d29e2999",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "Aseprite Lua pixel art (04 project palette)",
+      "sourceReceipt": null,
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_black_tea_00.png",
+          "sha256": "87052a3fd02396f1acd45f71e423db6c963f485372eeac9277913a23d29e2999",
+          "alphaBounds": [
+            2,
+            2,
+            6,
+            6
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_black_tea_01.png",
+          "sha256": "f1bf4920c5f0187e70054351a6ed10b12486cfa228a1dad03a0624808e737c21",
+          "alphaBounds": [
+            2,
+            2,
+            6,
+            5
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_black_tea_02.png",
+          "sha256": "87052a3fd02396f1acd45f71e423db6c963f485372eeac9277913a23d29e2999",
+          "alphaBounds": [
+            2,
+            2,
+            6,
+            6
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_black_tea_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_black_tea_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_black_tea_02.png"
+      ]
+    },
+    {
+      "assetId": "dl_leaf_heap_black_tea",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_black_tea_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_black_tea.aseprite",
+      "size": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        4,
+        10,
+        28,
+        13
+      ],
+      "sha256": "5c0c1ab8260c69275460fbcade317c2c255b8bbf4bdd7b6c521f2f2253075edd",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "Aseprite Lua pixel art (04 project palette)",
+      "sourceReceipt": null,
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_black_tea_00.png",
+          "sha256": "5c0c1ab8260c69275460fbcade317c2c255b8bbf4bdd7b6c521f2f2253075edd",
+          "alphaBounds": [
+            4,
+            10,
+            28,
+            13
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_black_tea_01.png",
+          "sha256": "4691c4b44d0a9d5b03e50c6b2de34512048dcb7396d7a974a0456b06980ed51c",
+          "alphaBounds": [
+            4,
+            9,
+            28,
+            13
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_black_tea_02.png",
+          "sha256": "5ee4fa475df128d338bfa85c2a959709b322b930f28f3d52ba5eed22750a0b6a",
+          "alphaBounds": [
+            4,
+            8,
+            29,
+            13
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_black_tea_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_black_tea_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_black_tea_02.png"
+      ]
+    },
+    {
+      "assetId": "dl_leaf_green_tea",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_green_tea_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_green_tea.aseprite",
+      "size": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        6,
+        6
+      ],
+      "sha256": "0481b0d4f3c403336257fa74bdba4dae400c3012aa4a1d625122a11e9103f9a3",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "Aseprite Lua pixel art (04 project palette)",
+      "sourceReceipt": null,
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_green_tea_00.png",
+          "sha256": "0481b0d4f3c403336257fa74bdba4dae400c3012aa4a1d625122a11e9103f9a3",
+          "alphaBounds": [
+            2,
+            2,
+            6,
+            6
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_green_tea_01.png",
+          "sha256": "76ae461615a2fb3128d50a5541c7596bc4cc847b4019dba0f27d3dd0dcabc569",
+          "alphaBounds": [
+            2,
+            2,
+            6,
+            5
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_green_tea_02.png",
+          "sha256": "0481b0d4f3c403336257fa74bdba4dae400c3012aa4a1d625122a11e9103f9a3",
+          "alphaBounds": [
+            2,
+            2,
+            6,
+            6
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_green_tea_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_green_tea_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_green_tea_02.png"
+      ]
+    },
+    {
+      "assetId": "dl_leaf_heap_green_tea",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_green_tea_00.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_green_tea.aseprite",
+      "size": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        4,
+        10,
+        28,
+        13
+      ],
+      "sha256": "60de4fd8d4079564460f57f6d4d38dc30699b334020ca946713b863413644c22",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "Aseprite Lua pixel art (04 project palette)",
+      "sourceReceipt": null,
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_green_tea_00.png",
+          "sha256": "60de4fd8d4079564460f57f6d4d38dc30699b334020ca946713b863413644c22",
+          "alphaBounds": [
+            4,
+            10,
+            28,
+            13
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_green_tea_01.png",
+          "sha256": "80c98cb3c5b30351b60005211a759dcec4f12e6ca9c5cf5582bd6992f8df8c52",
+          "alphaBounds": [
+            4,
+            9,
+            28,
+            13
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        },
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_green_tea_02.png",
+          "sha256": "4a4b5999b38cb41e9d77e872684b1ea3596b5bf96b20138c6c58ee5f844fe2c6",
+          "alphaBounds": [
+            4,
+            8,
+            29,
+            13
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected native-size art and nearest contact; tool silhouette, transparent interior, colour fill and ordered effect frames readable.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_green_tea_00.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_green_tea_01.png",
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_leaf_heap_green_tea_02.png"
+      ]
+    },
+    {
+      "assetId": "dl_icon_gin",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_gin.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_gin.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        11,
+        2,
+        20,
+        30
+      ],
+      "sha256": "b21dcfad3073e67c43cb8d6a3cc9b118c620af2ce7c16c95319ddeb245569a9a",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_gin.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_gin.png",
+          "sha256": "b21dcfad3073e67c43cb8d6a3cc9b118c620af2ce7c16c95319ddeb245569a9a",
+          "alphaBounds": [
+            11,
+            2,
+            20,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected contact, fill colours and ordered motion frames; readable tool silhouette and tea vessel cutaway, hand holds and raises glass to mouth profile. Continuous content remains separate.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_gin.png"
+      ]
+    },
+    {
+      "assetId": "dl_icon_rum",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_rum.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_rum.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        9,
+        2,
+        22,
+        30
+      ],
+      "sha256": "decf915aa3a159b192f1110a910ff9c3f40adc364e58cbefc9663d91ae935cd1",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_rum.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_rum.png",
+          "sha256": "decf915aa3a159b192f1110a910ff9c3f40adc364e58cbefc9663d91ae935cd1",
+          "alphaBounds": [
+            9,
+            2,
+            22,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_rum.png"
+      ]
+    },
+    {
+      "assetId": "dl_icon_blue_curacao",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_blue_curacao.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_blue_curacao.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        11,
+        2,
+        21,
+        30
+      ],
+      "sha256": "b370007e9fa2767675db16c20a88e5e3215034db436effeef936d21186c103c5",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_blue_curacao.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_blue_curacao.png",
+          "sha256": "b370007e9fa2767675db16c20a88e5e3215034db436effeef936d21186c103c5",
+          "alphaBounds": [
+            11,
+            2,
+            21,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_blue_curacao.png"
+      ]
+    },
+    {
+      "assetId": "dl_icon_grenadine",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_grenadine.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_grenadine.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        11,
+        2,
+        21,
+        30
+      ],
+      "sha256": "1272a6e3318bac5731160ab5e7165eeee434bb6e09ef22068f9162478444178c",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_grenadine.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_grenadine.png",
+          "sha256": "1272a6e3318bac5731160ab5e7165eeee434bb6e09ef22068f9162478444178c",
+          "alphaBounds": [
+            11,
+            2,
+            21,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_grenadine.png"
+      ]
+    },
+    {
+      "assetId": "dl_icon_lemon_juice",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_lemon_juice.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_lemon_juice.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        10,
+        2,
+        22,
+        30
+      ],
+      "sha256": "470df1ac7e3e2b68369eb94b5d86f2d36b14476ac56973c3556900150b7f0cd4",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_lemon_juice.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_lemon_juice.png",
+          "sha256": "470df1ac7e3e2b68369eb94b5d86f2d36b14476ac56973c3556900150b7f0cd4",
+          "alphaBounds": [
+            10,
+            2,
+            22,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_lemon_juice.png"
+      ]
+    },
+    {
+      "assetId": "dl_icon_honey",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_honey.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_honey.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        5,
+        2,
+        27,
+        30
+      ],
+      "sha256": "3f9d7e401dcb69ac8ebff20d9d5cdf328e8d403aed9400c92d87f3d33e15c0f1",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_bottle_honey.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_honey.png",
+          "sha256": "3f9d7e401dcb69ac8ebff20d9d5cdf328e8d403aed9400c92d87f3d33e15c0f1",
+          "alphaBounds": [
+            5,
+            2,
+            27,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_honey.png"
+      ]
+    },
+    {
+      "assetId": "dl_icon_black_tea",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_black_tea.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_black_tea.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        28,
+        30
+      ],
+      "sha256": "c3030129020f9f22c6f753c9c9a93fe7360a426e24495ecefdcb486f8d357f48",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_tin_black_tea.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_black_tea.png",
+          "sha256": "c3030129020f9f22c6f753c9c9a93fe7360a426e24495ecefdcb486f8d357f48",
+          "alphaBounds": [
+            4,
+            2,
+            28,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_black_tea.png"
+      ]
+    },
+    {
+      "assetId": "dl_icon_green_tea",
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_green_tea.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_green_tea.aseprite",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        30,
+        30
+      ],
+      "sha256": "134af3e919e00c2f2cbd0e5cbab4afc3d7d6ce31d6072f63de0d2a76a98df155",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "correctSize": true,
+        "nonempty": true,
+        "nativeRoundtrip": true,
+        "visual": true
+      },
+      "status": "ready",
+      "integrationAllowed": true,
+      "sourceModel": "generate_image_pro_flash + Aseprite",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\provenance\\dl_tin_green_tea.receipt.json",
+      "authoringScript": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\finish.lua",
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchors": {},
+      "frames": [
+        {
+          "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_green_tea.png",
+          "sha256": "134af3e919e00c2f2cbd0e5cbab4afc3d7d6ce31d6072f63de0d2a76a98df155",
+          "alphaBounds": [
+            2,
+            2,
+            30,
+            30
+          ],
+          "checks": {
+            "rgba": true,
+            "binaryAlpha": true,
+            "correctSize": true,
+            "nonempty": true,
+            "nativeRoundtrip": true
+          }
+        }
+      ],
+      "fps": 8,
+      "loop": true,
+      "visualNotes": "Inspected final contact at native and enlarged scale: eight ingredient containers/icons remain distinct by colour and silhouette, warm three-tone pixel palette, complete uncropped margins.",
+      "integrated": false,
+      "unityVerified": false,
+      "framePaths": [
+        "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_icon_green_tea.png"
+      ]
+    }
+  ],
+  "readyCount": 37,
+  "needsFixCount": 0,
+  "plannedCount": 0,
+  "quantityContract": "Integer tenths drive masks and transforms continuously; never one frame per tenth. White masks are clipped by continuous liquid height and tinted dynamically. Tint stream/effects using computed mixture colour; show leaf particle pile amount with masks/transforms.",
+  "ownership": "Art originals only; Claude owns import/integration/runtime verification",
+  "ingredientAppearance": {
+    "gin": {
+      "swatch": "#DFE8EB",
+      "form": "colourless clear liquid"
+    },
+    "rum": {
+      "swatch": "#D5A45F",
+      "form": "pale amber clear liquid"
+    },
+    "blue_curacao": {
+      "swatch": "#248EDB",
+      "form": "saturated blue clear liquid"
+    },
+    "grenadine": {
+      "swatch": "#BA284B",
+      "form": "strong ruby syrup"
+    },
+    "black_tea": {
+      "swatch": "#714732",
+      "brewed": "#BD7847",
+      "form": "curled dry brown leaves"
+    },
+    "green_tea": {
+      "swatch": "#466B45",
+      "brewed": "#B0B65C",
+      "form": "pointed dry green leaves"
+    },
+    "lemon_juice": {
+      "swatch": "#EAD889",
+      "form": "cloudy pale yellow liquid"
+    },
+    "honey": {
+      "swatch": "#D6A23C",
+      "form": "viscous golden liquid"
+    }
+  },
+  "userRevision": "2026-10-19: all hands, faces and sip gestures removed; tool-only shaking and finished-drink reveal replaces sipping.",
+  "excludedAssets": [
+    {
+      "assetId": "dl_hand",
+      "status": "superseded",
+      "integrationAllowed": false,
+      "archivePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\archive\\superseded-hand-motion",
+      "reason": "Latest user explicitly removed all hand/face/sip presentation"
+    },
+    {
+      "assetId": "dl_drink_sip",
+      "status": "superseded",
+      "integrationAllowed": false,
+      "archivePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\archive\\superseded-hand-motion",
+      "reason": "Latest user explicitly removed all hand/face/sip presentation"
+    },
+    {
+      "assetId": "dl_shaker_shake_hands_v1",
+      "status": "superseded",
+      "integrationAllowed": false,
+      "archivePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\archive\\superseded-hand-motion",
+      "reason": "Latest user explicitly removed all hand/face/sip presentation"
+    }
+  ]
+}

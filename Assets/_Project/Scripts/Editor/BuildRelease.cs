@@ -69,7 +69,33 @@ namespace CCT.Editor
             }
         }
 
-        static void BuildStrict(string outputExe, string[] defines)
+        // ───── 69 v1.1 MVP(음료 제조) 별도 Windows 실행본 ─────
+        /// <summary>별도 실행본 표시 버전. 빌드 동안만 bundleVersion에 넣고 끝나면 원래 값(스토어 1.0.x 설정)으로 되돌린다.
+        /// 안드로이드 versionCode·서명·업로드 설정은 건드리지 않는다.</summary>
+        public const string DrinkLabMvpVersion = "1.1.0-mvp";
+        public static void Windows64DrinkLabMvpBatch() => DrinkLabBatch(null, "Builds/Playable-2026-10-19-drinklab-v1.1");
+        public static void Windows64DrinkLabQaTourBatch() => DrinkLabBatch(new[] { "CCT_QA_TOUR" }, "Builds/QaTour-drinklab-v1.1");
+
+        static void DrinkLabBatch(string[] defines, string defaultDir)
+        {
+            string original = PlayerSettings.bundleVersion;
+            int code = 0;
+            try
+            {
+                BuildStrict(Path.Combine(PreviewOutputDir(defaultDir), "CocktailCoffeeTea.exe"), defines, DrinkLabMvpVersion);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[CCT] v1.1 MVP build failed: {e}");
+                code = 1;
+            }
+            PlayerSettings.bundleVersion = original;
+            AssetDatabase.SaveAssets();
+            Debug.Log($"[CCT] bundleVersion restored to {PlayerSettings.bundleVersion}");
+            EditorApplication.Exit(code);
+        }
+
+        static void BuildStrict(string outputExe, string[] defines, string version = "1.0.0")
         {
             var problems = Validate();
             ValidateNoProvisionalArt(problems);
@@ -82,7 +108,7 @@ namespace CCT.Editor
                 throw new BuildFailedException(message);
             }
 
-            PlayerSettings.bundleVersion = "1.0.0";
+            PlayerSettings.bundleVersion = version;
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone, ScriptingImplementation.Mono2x);
 
             var dir = Path.GetDirectoryName(outputExe);
@@ -143,6 +169,8 @@ namespace CCT.Editor
 
             ValidateArt(problems);
             try { TeaEncounterArtImport.Validate(); }
+            catch(Exception error) { problems.Add(error.Message); }
+            try { CardEducationImport.ValidateAll(); }
             catch(Exception error) { problems.Add(error.Message); }
 
             return problems;
@@ -244,7 +272,8 @@ namespace CCT.Editor
         // 같은 strict 검사 뒤 IL2CPP·ARM64·targetSdk 36·가로 화면으로 빌드한다. 서명은 Unity 기본 디버그 키(사용자 키스토어 미설정)라
         // 산출물 이름에 debugsigned를 넣는다 — APK는 사이드로드 시험용, AAB는 구조 확인용이며 Play 업로드용이 아니다(키스토어·계정은 나중에).
         public const string AndroidPackageId = "com.hyungjinyu.cocktailcoffeetea"; // 잠정(사용자 지정)
-        public const int AndroidVersionCode = 2;
+        public const string AndroidVersionName = "1.0.2";
+        public const int AndroidVersionCode = 3;
         public const int AndroidMinSdk = 26;    // Android 8.0
         public const int AndroidTargetSdk = 36; // Google Play 현행 목표 API(로컬 SDK platforms/android-36 확인)
 
@@ -258,8 +287,8 @@ namespace CCT.Editor
                 var dir = PreviewOutputDir("Builds/Android");
                 bool signed = UploadKeyAvailable();
                 var file = appBundle
-                    ? (signed ? $"CocktailCoffeeTea-1.0.1-vc{AndroidVersionCode}-upload-signed.aab" : "CocktailCoffeeTea-1.0.1-debugsigned-NOT-FOR-PLAY-UPLOAD.aab")
-                    : (signed ? $"CocktailCoffeeTea-1.0.1-vc{AndroidVersionCode}-upload-signed.apk" : "CocktailCoffeeTea-1.0.1-debugsigned-sideload.apk");
+                    ? (signed ? $"CocktailCoffeeTea-{AndroidVersionName}-vc{AndroidVersionCode}-upload-signed.aab" : $"CocktailCoffeeTea-{AndroidVersionName}-debugsigned-NOT-FOR-PLAY-UPLOAD.aab")
+                    : (signed ? $"CocktailCoffeeTea-{AndroidVersionName}-vc{AndroidVersionCode}-upload-signed.apk" : $"CocktailCoffeeTea-{AndroidVersionName}-debugsigned-sideload.apk");
                 BuildAndroid(Path.Combine(dir, file), appBundle);
                 EditorApplication.Exit(0);
             }
@@ -273,7 +302,7 @@ namespace CCT.Editor
         /// <summary>Android 플레이어 설정(시험이 값을 확인한다). 데스크톱 설정은 건드리지 않는다.</summary>
         public static void ApplyAndroidPlayerSettings()
         {
-            PlayerSettings.bundleVersion = "1.0.1";
+            PlayerSettings.bundleVersion = AndroidVersionName;
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, AndroidPackageId);
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;

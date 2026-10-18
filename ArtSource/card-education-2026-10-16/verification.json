@@ -1,0 +1,5 @@
+{
+  "verified": 16,
+  "expected": 16,
+  "checks": "64x64 RGBA; binary alpha; >=3px margins; Aseprite native reopen identical pixels"
+}

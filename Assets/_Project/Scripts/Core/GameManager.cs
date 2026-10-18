@@ -165,6 +165,9 @@ namespace CCT
             BeanGainMultiplier = 1f + Stats.beanGainPercent;
             // 08:142/154 런 시작: totalRuns+1, activeRun 기록, 즉시 저장.
             RunId = PermanentProgress.BeginRun(rng.Seed);
+            // 69 준비 음료: 입장 시 한 번만 적용(카드 선택·일시정지·화면 전환에서 다시 적용하지 않음). 최대 체력이 바뀌므로 플레이어 생성 전.
+            DrinkBuff = DrinkLab.BeginRun(RunId);
+            if (DrinkBuff != null) DrinkCalculator.ApplyTo(Stats, DrinkBuff);
 
             CocktailGauge = new IngredientGauge(IngredientType.Cocktail, Balance.CocktailGaugeStart,
                 Balance.CocktailGaugeGrowth, () => Stats.GaugeNeedMultiplier);
@@ -196,6 +199,7 @@ namespace CCT
             pauseView = PauseView.Create(canvas.transform, this);
             hybridView = HybridUnlockView.Create(canvas.transform);
             comboView = ComboTargetView.Create(canvas.transform, this); // 57 P1 목표 조합
+            DrinkHud = DrinkRunHud.Create(canvas.transform, this); // 69 준비 음료·보스 음료 재료 표시
             if (rememberedTargets.TryGetValue(job, out var remembered) && CanTarget(remembered)) ComboTarget = remembered;
             Guide = new RunGuide(this);
 
@@ -298,6 +302,7 @@ namespace CCT
         public void RequestEscape()
         {
             if (State == GameState.GameOver) return;
+            if (!IsPaused && CardView != null && CardView.IsLearningOpen) { CardView.CloseLearning(); return; }
             if (Hud.HiddenDetailsOpen) { CloseHiddenDetails(); return; }
             if (comboView != null && comboView.IsOpen) { comboView.Close(); return; }
                 // 설정/커피 트리/조작 안내가 Pause 위에 열려 있으면 Esc는 그것만 먼저 닫는다(Pause는 유지).
@@ -611,6 +616,7 @@ namespace CCT
         public void OnEnemyKilled(Vector2 position, EnemyDef def)
         {
             Kills++;
+            DrinkLab.OnKill(RunId, Kills); // 69 0~4킬 보존 / 5킬째 이 런에 귀속
             Player?.HiddenRuntime?.OnEnemyKilled(def); // 41 핫 토디/주말 러시
 
             for (int i = 0; i < def.dropCount; i++)
@@ -630,6 +636,7 @@ namespace CCT
             if (def.IsBoss)
             {
                 ActiveBoss = null;
+                GrantDrinkMaterials(position, def);
                 // 최종보스면 Clear()가 곧 결과 화면 음악 전환을 대신 처리하니 여기서 run으로 안 되돌린다.
                 if (def.boss != BossKind.Final) AudioService.SetMusicState(AudioService.MusicState.Run);
                 if (def.boss == BossKind.Mid || def.boss == BossKind.Enhanced)
@@ -637,6 +644,32 @@ namespace CCT
                 if (def.boss == BossKind.Enhanced) GrantSpecialty();
                 if (def.boss == BossKind.Final) Clear();
             }
+        }
+
+        // ───── 69 음료 제조 ─────
+        /// <summary>이번 런 입장 때 마신 준비 음료의 버프(없으면 null). 런 동안 한 번만 적용된 값.</summary>
+        public DrinkBuff DrinkBuff { get; private set; }
+        public DrinkRunHud DrinkHud { get; private set; }
+        /// <summary>종료 정산 결과(종료 전 null).</summary>
+        public DrinkSettlement DrinkSettlement { get; private set; }
+        int bossKillIndex;
+
+        /// <summary>보스 사망 즉시 음료 재료를 확정 기록(런 임시 보상, 저장). 픽업 연출은 표시만 — 이동 중 놓쳐도 지급은 이미 확정.</summary>
+        void GrantDrinkMaterials(Vector2 position, EnemyDef def)
+        {
+            bossKillIndex++;
+            var items = DrinkLab.BossAward(Job, def.boss, RunId);
+            if (items.Count == 0) return;
+            if (!DrinkLab.RecordBossAward(RunId, $"boss{bossKillIndex}_{def.boss}", def.name, items)) return;
+            DrinkHud?.OnBossAward(position, items);
+        }
+
+        /// <summary>69 종료 정산(같은 runId는 한 번만). explicitAbandon: Pause의 포기/타이틀로 종료만 true(정상 앱 종료·사망·시간 종료는 false).</summary>
+        void SettleDrinks(RunEndKind kind, bool explicitAbandon)
+        {
+            if (DrinkSettlement != null) return;
+            try { DrinkSettlement = DrinkLab.EndRun(RunId, kind, Kills, explicitAbandon); }
+            catch (System.Exception e) { Debug.LogWarning($"[Drinks] 정산 실패: {e.GetType().Name}: {e.Message}"); }
         }
 
         /// <summary>강화 보스 처치 시 즉시 영구 저장 — 이후 플레이어가 죽어도 이번에 얻은 스페셜티는 남는다.</summary>
@@ -830,6 +863,11 @@ namespace CCT
             State = GameState.GameOver;
             Time.timeScale = 0f;
             CommitRun(cleared ? RunOutcome.Cleared : reason == "포기" ? RunOutcome.Abandoned : RunOutcome.Failed);
+            SettleDrinks(cleared ? RunEndKind.Cleared : reason == "사망" ? RunEndKind.Died
+                : reason == "시간 초과" ? RunEndKind.TimeUp : RunEndKind.Abandoned, reason == "포기");
+            // 67 최근 기록: 결과 패널 지연(사망 동작)과 무관하게 종료 즉시 같은 runId로 한 번만 남긴다.
+            RecordRunHistory(cleared ? RunEndKind.Cleared : reason == "사망" ? RunEndKind.Died
+                : reason == "시간 초과" ? RunEndKind.TimeUp : RunEndKind.Abandoned);
             AudioService.SetMusicDucked(false); // 포기 등으로 Pause 중 끝났을 수 있음 — 덕킹 남기지 않는다
             // 결과 화면도 09:139가 말하는 "얼린 오버레이" 중 하나다 — GameOver 이후 남아있을 수 있는
             // 적/발사체 등의 지연 이벤트(예: 코루틴에 물린 폭발)가 결과 화면 위로 전투음을 내지 않도록
@@ -842,7 +880,7 @@ namespace CCT
                 runSeconds = RunTime, kills = Kills, cocktailLevel = CocktailGauge.Level, teaLevel = TeaGauge.Level,
                 coffeeSkillsUnlocked = Skills.UnlockedCount, cocktailCollected = cocktailCollectedThisRun,
                 teaCollected = teaCollectedThisRun, beansCollected = beansCollectedThisRun,
-                specialtyEarned = specialtyEarnedThisRun, seed = Seed,
+                specialtyEarned = specialtyEarnedThisRun, seed = Seed, record = RunRecord,
             };
             // 사망: 저장·집계는 위에서 즉시 1회 확정하고, 결과 패널만 쓰러지는 동작(defeat, 실시간 재생)이 보인 뒤에 연다
             // (2026-10-08 아트 검수: 결과 패널이 사망 동작을 가림). 이 런 오브젝트가 사라지면(재시작/타이틀) 예약도 함께 사라진다.
@@ -878,18 +916,115 @@ namespace CCT
             PermanentProgress.CommitRunEnd(RunId, outcome, RunTime);
         }
 
+        // ───── 67(2026-10-16) 플레이 결과 기록 ─────
+        /// <summary>이번 런을 기록한 값(종료 전에는 null). 저장 실패·보호 중이어도 메모리에서 읽을 수 있다.</summary>
+        public RunRecord RunRecord { get; private set; }
+        /// <summary>마지막 기록 저장 결과(종료 전에는 null).</summary>
+        public RunHistory.AddResult? RunHistoryResult { get; private set; }
+
+        /// <summary>종료 경로(결과·포기·타이틀로 종료·정상 앱 종료)가 여러 번 불러도 이 런은 한 번만 기록한다.</summary>
+        void RecordRunHistory(RunEndKind kind)
+        {
+            if (RunRecord != null) return;
+            try
+            {
+                RunRecord = BuildRunRecord(kind);
+            }
+            catch (System.Exception e)
+            {
+                // 기록 구성 실패가 종료·결과 화면을 막지 않게 한다(저장 실패를 성공으로 표시하지도 않는다).
+                Debug.LogWarning($"[RunHistory] 기록 구성 실패: {e.GetType().Name}: {e.Message}");
+                return;
+            }
+            RunHistoryResult = RunHistory.Add(RunRecord);
+        }
+
+        /// <summary>종료 시점의 값 복사 스냅샷. 카드 중첩은 CardSystem의 실제 보유분, 조합은 실제로 해금한 것만.</summary>
+        public RunRecord BuildRunRecord(RunEndKind kind)
+        {
+            var record = new RunRecord
+            {
+                runId = string.IsNullOrEmpty(RunId) ? System.Guid.NewGuid().ToString("N") : RunId,
+                endedUtc = System.DateTime.UtcNow.ToString("o"),
+                endKind = kind.ToString(),
+                job = Job.ToString(), jobName = JobPreset.For(Job).name,
+                weapon = Weapon.ToString(), weaponName = WeaponPreset.For(Weapon).name,
+                runSeconds = RunTime, kills = Kills,
+                cocktailLevel = CocktailGauge != null ? CocktailGauge.Level : 0,
+                teaLevel = TeaGauge != null ? TeaGauge.Level : 0,
+                researchUnlocked = Skills != null ? Skills.UnlockedCount : 0,
+                specialtyEarned = specialtyEarnedThisRun,
+                hybridUnlocked = HybridUnlocked,
+                appVersion = Application.version,
+            };
+            if (kind == RunEndKind.Died)
+            {
+                var source = Player != null ? Player.LethalDamageSource : null;
+                record.deathCause = source.HasValue ? source.Value.Label : DamageSource.UnknownLabel;
+                record.deathCauseKind = (source.HasValue ? source.Value.kind : DamageKind.Unknown).ToString();
+            }
+
+            if (cards != null)
+            {
+                var owned = cards.OwnedSnapshot();
+                owned.Sort((a, b) =>
+                {
+                    int c = a.Key.category.CompareTo(b.Key.category);
+                    if (c != 0) return c;
+                    c = b.Value.CompareTo(a.Value);
+                    return c != 0 ? c : string.CompareOrdinal(a.Key.displayName, b.Key.displayName);
+                });
+                foreach (var kv in owned)
+                    record.cards.Add(new RunCardEntry
+                    {
+                        id = kv.Key.id, name = kv.Key.displayName, category = kv.Key.category.ToString(),
+                        stacks = kv.Value, maxStacks = kv.Key.maxStacks,
+                    });
+            }
+
+            if (HybridUnlocked)
+            {
+                var hybrid = cards?.FindInPool("hybrid_tea_martini");
+                record.combos.Add(new RunNamedEntry
+                {
+                    kind = "hybrid", id = "hybrid_tea_martini",
+                    name = hybrid != null && !string.IsNullOrEmpty(hybrid.displayName) ? hybrid.displayName : "티니 보우",
+                });
+            }
+            if (Player != null)
+            {
+                foreach (var def in HiddenSkillDatabase.All)
+                    if (Player.Hidden.Has(def.skill))
+                        record.combos.Add(new RunNamedEntry { kind = "hidden", id = def.id, name = JobStudyTheme.HiddenName(def, Job) });
+                foreach (AttackFinalForm form in System.Enum.GetValues(typeof(AttackFinalForm)))
+                    if (Player.FinalForms.Has(form))
+                        record.combos.Add(new RunNamedEntry { kind = "finalForm", id = form.ToString(), name = RunRecordText.FinalFormName(form) });
+            }
+            if (Skills != null)
+                foreach (var node in Skills.Nodes)
+                    if (node != null && Skills.IsUnlocked(node))
+                        record.research.Add(new RunNamedEntry { kind = "research", id = node.id, name = JobStudyTheme.Name(node, Job) });
+            return record;
+        }
+
         /// <summary>08:155 정상 앱 종료 — 진행 중 런은 포기로 집계하고 즉시 저장(다음 실행에서 "중단된 런"으로 보이지 않게).</summary>
         /// <summary>08:178 종료 요청(QuitGuard) 직전: 진행 중 런을 포기로 1회 집계하고 저장을 시도한다(OnApplicationQuit과 같은 경로, 멱등).</summary>
         public void PrepareForQuit()
         {
+            if (State != GameState.GameOver) RecordRunHistory(RunEndKind.Abandoned); // 67 정상 앱 종료도 포기로 1회 기록
             if (State != GameState.GameOver) CommitRun(RunOutcome.Abandoned);
+            if (State != GameState.GameOver) SettleDrinks(RunEndKind.Abandoned, false); // 69 앱 종료는 명시적 포기가 아니다(음료 소모)
             PermanentProgress.SaveIfDirty();
+            DrinkLab.RetrySave();
         }
 
         void OnApplicationQuit()
         {
+            if (State != GameState.GameOver) RecordRunHistory(RunEndKind.Abandoned);
             if (State != GameState.GameOver) CommitRun(RunOutcome.Abandoned);
+            if (State != GameState.GameOver) SettleDrinks(RunEndKind.Abandoned, false);
             PermanentProgress.SaveIfDirty();
+            DrinkLab.RetrySave();
         }
 
         /// <summary>2026-10-12 Android: 홈/앱 전환·전화 등으로 백그라운드가 되면 OS가 예고 없이 프로세스를 끝낼 수 있다
@@ -913,7 +1048,9 @@ namespace CCT
         public void Restart()
         {
             CancelPendingResult();
+            if (State != GameState.GameOver) RecordRunHistory(RunEndKind.Abandoned); // 67 이미 기록한 런이면 무시
             CommitRun(RunOutcome.Abandoned); // 결과 화면에서만 호출 — 이미 집계된 런이면 무시
+            SettleDrinks(RunEndKind.Abandoned, false); // 69 결과 화면 뒤라 이미 정산됨 — 아니면 소모로 정산
             Time.timeScale = 1f;
             Instance = null;
             Destroy(gameObject);
@@ -924,7 +1061,9 @@ namespace CCT
         public void GoToTitle()
         {
             CancelPendingResult();
+            if (State != GameState.GameOver) RecordRunHistory(RunEndKind.Abandoned);
             CommitRun(RunOutcome.Abandoned); // 결과 화면에서만 호출 — 이미 집계된 런이면 무시
+            SettleDrinks(RunEndKind.Abandoned, false); // 69 결과 화면 뒤라 이미 정산됨 — 아니면 소모로 정산
             Time.timeScale = 1f;
             Instance = null;
             Destroy(gameObject);
@@ -936,7 +1075,9 @@ namespace CCT
         public void QuitToTitle()
         {
             CancelPendingResult();
+            if (State != GameState.GameOver) RecordRunHistory(RunEndKind.Abandoned); // 67 타이틀로 종료 = 포기로 1회 기록
             CommitRun(RunOutcome.Abandoned); // 08:100 "저장 후 Title" — 포기로 1회 집계(이미 종료된 런이면 무시)
+            SettleDrinks(RunEndKind.Abandoned, true); // 69 Pause의 타이틀로 종료 = 명시적 포기(이미 정산된 런이면 무시)
             Time.timeScale = 1f;
             Instance = null;
             Destroy(gameObject);

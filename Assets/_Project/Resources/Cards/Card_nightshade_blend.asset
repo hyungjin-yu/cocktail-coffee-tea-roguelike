@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_nightshade_blend
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: nightshade_blend
-  displayName: "\uAC00\uC9C0\uC18D \uBE14\uB80C\uB4DC"
-  description: "\uC8FC\uBB34\uAE30 \uC801\uC911 \uB3C5 Lv +2 \xB7 3\uCD08 \uC9C0\uC18D"
-  flavorText: "\uB3C5\uC131 \uC2DD\uBB3C\uC5D0\uC11C \uC870\uC2EC\uC2A4\uB808 \uCD94\uCD9C\uD55C
-    \uAC15\uD55C \uBE14\uB80C\uB4DC."
+  displayName: "홍차의 떫은 여운"
+  description: "\uC8FC\uBB34\uAE30 \uC801\uC911 여운 피해 Lv +2 \xB7 3\uCD08 \uC9C0\uC18D"
+  flavorText: "홍차는 찻나무 잎을 효소적으로 산화해 만드는 차입니다. 떫은맛과 잔향은 원료와 우림 조건에 따라 달라지며 홍차가 언제나 더 떫은 것은 아닙니다."
   category: 1
   rarity: 2
   maxStacks: 3
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 10
     value: 2
   weaponRestriction: 0
+  realWorldFact: "홍차는 찻나무 잎을 효소적으로 산화해 만드는 차입니다. 떫은맛과 잔향은 원료와 우림 조건에 따라 달라지며 홍차가 언제나 더 떫은 것은 아닙니다."
+  gameplayConnection: "남는 감각을 게임 지속 피해로 표현했습니다."
+  sourceName: "Oregon State University · Tea; Ippodo · Astringency"
+  sourceUrl: "https://lpi.oregonstate.edu/mic/food-beverages/tea"
+  educationArtId: ""
+  additionalSources: "떫은맛과 우림: Ippodo Tea\nhttps://ippodotea.com/blogs/frequently-asked-questions/help-my-tea-is-bitter"

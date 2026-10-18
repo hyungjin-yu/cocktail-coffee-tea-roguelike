@@ -800,7 +800,7 @@ namespace CCT
                 else
                 {
                     BurstZone.Spawn(transform.position, def.burstZoneRadius, def.burstZoneDamagePerSecond,
-                        def.burstZoneSeconds, player, transform.parent);
+                        def.burstZoneSeconds, player, transform.parent, BurstZone.OliveFireArt, DamageSource.Zone(def, "자폭 장판"));
                 }
             }
             Die();

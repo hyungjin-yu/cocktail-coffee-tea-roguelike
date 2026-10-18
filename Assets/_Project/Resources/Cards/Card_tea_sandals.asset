@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_tea_sandals
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: tea_sandals
-  displayName: "\uB2E4\uB3C4\uC6A9 \uC2E0\uBC1C"
+  displayName: "출탕"
   description: "\uC774\uB3D9 \uC18D\uB3C4 +10%"
-  flavorText: "\uC815\uAC08\uD55C \uAC78\uC74C\uC744 \uC704\uD55C \uC870\uC6A9\uD55C
-    \uC2E0\uBC1C."
+  flavorText: "우린 차를 따라 찻잎과 차탕을 분리하는 과정입니다."
   category: 1
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 3
     value: 0.1
   weaponRestriction: 0
+  realWorldFact: "우린 차를 따라 찻잎과 차탕을 분리하는 과정입니다."
+  gameplayConnection: "제때 따라내는 동작을 이동으로 표현했습니다."
+  sourceName: "TeaVivre · Gongfu brewing"
+  sourceUrl: "https://www.teavivre.com/info/common-gongfu-tea-brewing-mistakes-to-avoid.html"
+  educationArtId: "card_gaiwan"
+  additionalSources: ""

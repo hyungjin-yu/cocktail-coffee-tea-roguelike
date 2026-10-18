@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_golden_ratio
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: golden_ratio
-  displayName: "\uD669\uAE08 \uBE44\uC728 \uB2E4\uB3C4"
+  displayName: "추출 균형"
   description: "\uACF5\uACA9\uB825 +25%, \uACF5\uACA9 \uC18D\uB3C4 +20%"
-  flavorText: "\uBB3C \uC628\uB3C4\xB7\uCC3B\uC78E\uB7C9\xB7\uC2DC\uAC04\uC758 \uC644\uBCBD\uD55C
-    \uADE0\uD615."
+  flavorText: "찻잎량·물·온도·시간이 맛에 영향을 줍니다. 모든 차에 통하는 하나의 황금비는 없습니다."
   category: 1
   rarity: 2
   maxStacks: 3
@@ -26,3 +25,9 @@ MonoBehaviour:
   - type: 1
     value: 0.2
   weaponRestriction: 0
+  realWorldFact: "찻잎량·물·온도·시간이 맛에 영향을 줍니다. 모든 차에 통하는 하나의 황금비는 없습니다."
+  gameplayConnection: "조절의 균형을 공격·공속으로 표현했습니다."
+  sourceName: "UK Tea & Infusions Association · The perfect brew"
+  sourceUrl: "https://www.tea.co.uk/make-a-perfect-brew"
+  educationArtId: ""
+  additionalSources: ""

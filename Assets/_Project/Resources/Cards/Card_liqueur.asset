@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_liqueur
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: liqueur
-  displayName: "\uB9AC\uD050\uB974 \uBCD1"
+  displayName: "리큐르"
   description: "\uC7AC\uB8CC \uAC8C\uC774\uC9C0 \uD544\uC694\uB7C9 -8%"
-  flavorText: "\uACFC\uC77C\xB7\uD5C8\uBE0C \uD5A5\uC744 \uC785\uD78C \uB2EC\uCF64\uD55C
-    \uC220. \uC18C\uB7C9\uC73C\uB85C\uB3C4 \uD48D\uBBF8\uB97C \uBC14\uAFBC\uB2E4."
+  flavorText: "당과 과일·허브 등의 풍미로 베이스를 보완하는 술입니다."
   category: 0
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 6
     value: -0.08
   weaponRestriction: 0
+  realWorldFact: "당과 과일·허브 등의 풍미로 베이스를 보완하는 술입니다."
+  gameplayConnection: "소량의 풍미 보완을 게이지 절약으로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Liqueurs, bitters and vermouth"
+  sourceUrl: "https://www.diageobaracademy.com/en-us/home/explore-all-categories/liqueurs-bitters-and-vermouth"
+  educationArtId: ""
+  additionalSources: ""

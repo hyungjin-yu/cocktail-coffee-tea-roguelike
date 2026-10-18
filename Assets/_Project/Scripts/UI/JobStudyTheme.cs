@@ -36,7 +36,7 @@ namespace CCT
         {
             HiddenSkill.BeanCrate => "찻잎 꾸러미",
             HiddenSkill.TriRoast => "세 갈래 다도",
-            HiddenSkill.ShakeRhythm => "우림 리듬",
+            HiddenSkill.ShakeRhythm => "공부차 우림",
             _ => Text(def.name,job)
         };
     }

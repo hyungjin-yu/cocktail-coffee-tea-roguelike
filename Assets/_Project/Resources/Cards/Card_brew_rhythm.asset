@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_brew_rhythm
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: brew_rhythm
-  displayName: "\uC6B0\uB9BC \uB9AC\uB4EC"
+  displayName: "공부차 우림"
   description: "\uACF5\uACA9 \uC18D\uB3C4 +25%"
-  flavorText: "\uCC3B\uC78E\uC744 \uC6B0\uB9AC\uB294 \uC808\uBB18\uD55C \uD0C0\uC774\uBC0D\uC758
-    \uAC10\uAC01."
+  flavorText: "비교적 작은 다구(차를 우리고 담는 도구)로 잎 양과 우림 시간을 조절하며 여러 번 우리는 접근입니다. 하나로 고정된 레시피가 아니라 차와 도구에 맞게 조절합니다."
   category: 1
   rarity: 1
   maxStacks: 4
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 1
     value: 0.25
   weaponRestriction: 0
+  realWorldFact: "비교적 작은 다구(차를 우리고 담는 도구)로 잎 양과 우림 시간을 조절하며 여러 번 우리는 접근입니다. 하나로 고정된 레시피가 아니라 차와 도구에 맞게 조절합니다."
+  gameplayConnection: "짧은 우림 반복을 공속으로 표현했습니다."
+  sourceName: "TeaVivre · Gongfu brewing"
+  sourceUrl: "https://www.teavivre.com/info/common-gongfu-tea-brewing-mistakes-to-avoid.html"
+  educationArtId: "card_gaiwan"
+  additionalSources: ""

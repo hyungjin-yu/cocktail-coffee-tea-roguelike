@@ -34,6 +34,7 @@ namespace CCT
         SettingsView settingsView;
         CreditsView creditsView;
         SkinShopView skinShopView;
+        RunHistoryListView historyView;
 
         public bool IsOpen => root != null && root.activeSelf;
         public PermanentSkillView ShopView => shopView;
@@ -41,6 +42,7 @@ namespace CCT
         public SettingsView SettingsView => settingsView;
         public CreditsView CreditsView => creditsView;
         public SkinShopView SkinShopView => skinShopView;
+        public RunHistoryListView HistoryView => historyView;
         /// <summary>테스트용 — 08:172 미래 버전 "임시 플레이" 버튼 / 08:175 저장 재시도 버튼 표시 여부와 알림 문구.</summary>
         public bool GuestButtonVisible => guestButtonRoot != null && guestButtonRoot.activeSelf;
         public bool RetryButtonVisible => retryButtonRoot != null && retryButtonRoot.activeSelf;
@@ -57,6 +59,7 @@ namespace CCT
             view.settingsView = SettingsView.Create(canvasComp.transform, view.ShowRoot);
             view.creditsView = CreditsView.Create(canvasComp.transform, view.ShowRoot);
             view.skinShopView = SkinShopView.Create(canvasComp.transform, view.ShowRoot);
+            view.historyView = RunHistoryListView.Create(canvasComp.transform, view.ShowRoot); // 67 최근 기록
 
             view.BuildRoot();
             return view;
@@ -109,6 +112,7 @@ namespace CCT
 
             // 2026-10-12 치장 스킨 상점: 세로 메뉴는 저장 알림(SaveNotice)과 겹치지 않게 6개로 꽉 차 있어 오른쪽 위에 둔다.
             BuildSkinShopButton(rootRt);
+            BuildHistoryButton(rootRt);
 
             BuildFooter(rootRt);
             BuildQuitConfirm(rootRt);
@@ -155,10 +159,26 @@ namespace CCT
             UiFactory.AddText(UiFactory.Stretch("Label", rt), "스킨", 34, TextAnchor.MiddleCenter, Color.white);
         }
 
+        /// <summary>67 "최근 기록" — 세로 메뉴(6개)와 저장 알림은 그대로 두고, 스킨 버튼과 좌우 대칭인 왼쪽 위(테두리 안 56)에 둔다.</summary>
+        void BuildHistoryButton(RectTransform parent)
+        {
+            var rt = UiFactory.Place("RunHistoryButton", parent, new Vector2(0f, 1f), new Vector2(56f, -56f), new Vector2(240f, 72f));
+            var bg = UiFactory.AddImage(rt, new Color(0.24f, 0.4f, 0.5f));
+            MakeConfirmButton(rt, bg, OpenHistory);
+            UiFactory.AddText(UiFactory.Stretch("Label", rt), "최근 기록", 32, TextAnchor.MiddleCenter, Color.white);
+        }
+
+        /// <summary>테스트/버튼 공용 — 최근 기록 목록을 연다.</summary>
+        public void OpenHistory()
+        {
+            root.SetActive(false);
+            historyView.Show();
+        }
+
         void BuildFooter(RectTransform parent)
         {
             UiFactory.AddText(UiFactory.Place("Version", parent, new Vector2(0f, 0f), new Vector2(30f, 30f),
-                new Vector2(300f, 40f)), $"v{Application.version}", 22, TextAnchor.LowerLeft,
+                new Vector2(900f, 40f)), $"v{Application.version} · {DrinkLab.MvpLabel}", 22, TextAnchor.LowerLeft,
                 new Color(0.6f, 0.6f, 0.6f));
 
             saveStatusText = UiFactory.AddText(UiFactory.Place("SaveStatus", parent, new Vector2(1f, 0f),

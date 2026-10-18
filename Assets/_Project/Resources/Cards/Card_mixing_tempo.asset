@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_mixing_tempo
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: mixing_tempo
-  displayName: "\uBBF9\uC2F1 \uD15C\uD3EC"
+  displayName: "셰이킹"
   description: "\uACF5\uACA9 \uC18D\uB3C4 +25%"
-  flavorText: "\uC170\uC774\uCEE4\uB97C \uD754\uB4DC\uB294 \uB9AC\uB4EC. \uBE60\uB97C\uC218\uB85D
-    \uC798 \uC11E\uC774\uACE0 \uC798 \uD76C\uC11D\uB41C\uB2E4."
+  flavorText: "얼음과 흔들어 혼합·냉각·희석하고 질감도 바꿉니다. 빠르게 흔들수록 무조건 좋은 것은 아니며 재료와 목적에 맞게 조절합니다."
   category: 0
   rarity: 1
   maxStacks: 4
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 1
     value: 0.25
   weaponRestriction: 0
+  realWorldFact: "얼음과 흔들어 혼합·냉각·희석하고 질감도 바꿉니다. 빠르게 흔들수록 무조건 좋은 것은 아니며 재료와 목적에 맞게 조절합니다."
+  gameplayConnection: "반복 동작을 공격 속도로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Cocktail shaking"
+  sourceUrl: "https://www.diageobaracademy.com/en-us/home/customer-service/mastering-the-art-of-cocktail-shaking"
+  educationArtId: "card_shaker"
+  additionalSources: ""

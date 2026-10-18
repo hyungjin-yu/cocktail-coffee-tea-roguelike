@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_rifled_barrel
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: rifled_barrel
-  displayName: "\uAC15\uC120 \uAC1C\uC870"
+  displayName: "스트레이너"
   description: "\uBC1C\uC0AC\uCCB4 \uAD00\uD1B5 +1 (\uBAB9\uC744 \uB6AB\uACE0 \uC9C0\uB098\uAC10)"
-  flavorText: "\uCD1D\uC5F4\uC5D0 \uB098\uC120\uC744 \uC0C8\uACA8 \uD0C4\uC774 \uB6AB\uACE0
-    \uB098\uAC00\uB294 \uD798\uC744 \uB354\uD55C\uB2E4."
+  flavorText: "따르는 액체에서 얼음·과육 같은 고형물을 거릅니다."
   category: 0
   rarity: 2
   maxStacks: 3
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 11
     value: 1
   weaponRestriction: 2
+  realWorldFact: "따르는 액체에서 얼음·과육 같은 고형물을 거릅니다."
+  gameplayConnection: "액체의 통과을 관통으로 표현했습니다."
+  sourceName: "Diageo Bar Academy · Cocktail strainers"
+  sourceUrl: "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/cocktail-strainers"
+  educationArtId: "card_double_strain"
+  additionalSources: ""

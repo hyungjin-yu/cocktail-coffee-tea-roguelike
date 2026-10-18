@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_aged_puerh
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: aged_puerh
-  displayName: "\uC219\uC131 \uBCF4\uC774\uCC28"
+  displayName: "보이숙차"
   description: "\uACF5\uACA9\uB825 +50%"
-  flavorText: "\uC624\uB798 \uBB35\uD790\uC218\uB85D \uAE4A\uC5B4\uC9C0\uB294 \uBC1C\uD6A8\uCC28\uC758
-    \uC815\uC810."
+  flavorText: "보이숙차는 수분과 열 조건에서 미생물 발효를 촉진하는 악퇴 가공을 거친 보이차입니다. 생차와 구별하며, 오래될수록 무조건 품질이 좋아지는 것은 아닙니다."
   category: 1
   rarity: 2
   maxStacks: 3
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 0
     value: 0.5
   weaponRestriction: 0
+  realWorldFact: "보이숙차는 수분과 열 조건에서 미생물 발효를 촉진하는 악퇴 가공을 거친 보이차입니다. 생차와 구별하며, 오래될수록 무조건 품질이 좋아지는 것은 아닙니다."
+  gameplayConnection: "가공으로 형성된 풍미을 공격력으로 표현했습니다."
+  sourceName: "TeaVivre · Raw and ripe Pu-erh processing"
+  sourceUrl: "https://www.teavivre.com/info/can-raw-pu-erh-tea-transform-into-ripe-pu-erh-through-aging.html"
+  educationArtId: "card_puerh"
+  additionalSources: ""

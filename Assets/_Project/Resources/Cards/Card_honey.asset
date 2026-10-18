@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_honey
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: honey
-  displayName: "\uAFC0 \uD55C \uC2A4\uD47C"
+  displayName: "티스푼 계량"
   description: "\uC7AC\uB8CC \uAC8C\uC774\uC9C0 \uD544\uC694\uB7C9 -8%"
-  flavorText: "\uCC28\uC758 \uC4F4\uB9DB\uC744 \uBD80\uB4DC\uB7FD\uAC8C \uAC10\uC2F8\uB294
-    \uCC9C\uC5F0 \uB2E8\uB9DB."
+  flavorText: "잎 양을 가늠하지만 부피는 무게와 같지 않습니다."
   category: 1
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 6
     value: -0.08
   weaponRestriction: 0
+  realWorldFact: "잎 양을 가늠하지만 부피는 무게와 같지 않습니다."
+  gameplayConnection: "분량 조절을 게이지 절약으로 표현했습니다."
+  sourceName: "UK Tea & Infusions Association · The perfect brew"
+  sourceUrl: "https://www.tea.co.uk/make-a-perfect-brew"
+  educationArtId: ""
+  additionalSources: ""

@@ -83,10 +83,10 @@ namespace CCT.Tests
                 o => chosen = o);
             StringAssert.Contains("목표 ???", game.CardView.TargetLineText, "미발견 히든 이름은 숨김");
             StringAssert.Contains("드라이 진 0/2", game.CardView.TargetLineText, "목표 조건은 모두 공개");
-            StringAssert.Contains("녹차 잎 0/2", game.CardView.TargetLineText);
+            StringAssert.Contains("녹차 0/2", game.CardView.TargetLineText);
             Assert.AreEqual("", game.CardView.InfluenceText(0), "목표와 무관한 카드는 띠 없음");
             StringAssert.Contains("드라이 진 0→1/2", game.CardView.InfluenceText(1));
-            StringAssert.Contains("녹차 잎 0→1/2", game.CardView.InfluenceText(2), "추천과 무관하게 목표 카드는 표시");
+            StringAssert.Contains("녹차 0→1/2", game.CardView.InfluenceText(2), "추천과 무관하게 목표 카드는 표시");
             game.CardView.Choose(2);
             Assert.AreSame(green, chosen.card);
 
@@ -131,7 +131,7 @@ namespace CCT.Tests
             Assert.IsFalse(game.IsPaused);
             Assert.AreEqual(0f, Time.timeScale, "카드 창은 계속 정지");
             Assert.AreEqual(GameState.LevelUp, game.State);
-            StringAssert.Contains("샴페인 스프레이 0/1", game.CardView.TargetLineText);
+            StringAssert.Contains("스플릿 베이스 0/1", game.CardView.TargetLineText);
             game.CardView.Choose(0);
             yield return null;
         }

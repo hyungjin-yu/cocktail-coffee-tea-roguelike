@@ -192,7 +192,8 @@ namespace CCT
                     var dir = Quaternion.Euler(0f, 0f, startAngle + step * i) * baseDir;
                     EnemyProjectile.Spawn(shotOrigin, dir, StarProjectileSpeed, damage, game.Player,
                         enemy.transform.parent, EnemyProjectile.ArtPrefix + "review_star",
-                        () => game.Player.Stats.ApplySlow(StarSlowSeconds, StarSlowMultiplier));
+                        () => game.Player.Stats.ApplySlow(StarSlowSeconds, StarSlowMultiplier),
+                        DamageSource.BossSkill(enemy.Def, "별점 1점"));
                 }
             }
 
@@ -250,7 +251,8 @@ namespace CCT
 
             if (game.Player != null)
                 BurstZone.Spawn(pos, CoffeeZoneRadius, CoffeeZoneDamagePerSecond, CoffeeZoneSeconds,
-                    game.Player, enemy.transform.parent, tea ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt);
+                    game.Player, enemy.transform.parent, tea ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt,
+                    DamageSource.Zone(enemy != null ? enemy.Def : null, tea ? "뜨거운 찻물 장판" : "커피 장판"));
 
             frozen = false;
         }

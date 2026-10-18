@@ -1,0 +1,11 @@
+{
+  "type": "message_done",
+  "generation_id": "d5239b9d-5435-4f27-98ea-1eba6d252465",
+  "seed": 0,
+  "model": "generate_image_pro_flash",
+  "styleReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_gin.png",
+  "requestedSize": [
+    48,
+    56
+  ]
+}

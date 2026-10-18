@@ -50,6 +50,10 @@ namespace CCT
         /// <summary>받는 둔화 약화 비율(0.4면 둔화량의 40%를 덜 받음).</summary>
         public float slowResist;
         public float suppressDurationScale = 1f;
+        /// <summary>69 준비 음료(런 입장 시 1회 적용): 기존 치명타 규칙(직접 타격 ×2)의 발동 확률 가산, 재사용 시간 감소 비율.</summary>
+        public float drinkCritChance;
+        public float drinkCooldownReduction;
+        public float CooldownScale => 1f - Mathf.Clamp(drinkCooldownReduction, 0f, DrinkRules.Cap(DrinkStat.CooldownReduction));
 
         float suppressedRemaining;
         float slowRemaining;
@@ -115,7 +119,8 @@ namespace CCT
         public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed))) * (IsSlowed ? slowMultiplier : 1f);
         public float MaxHp => baseMaxHp + maxHpFlat;
         public float Damage => baseDamage * (1f + DamageBonus);
-        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent)));
+        /// <summary>기본 공격 재사용 간격. 69 음료 재사용 시간 감소는 간격에 곱하고(공격 속도와 별개), 기존 최소 간격 0.12초 상한은 그대로.</summary>
+        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval * CooldownScale / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent)));
         public float Range => baseRange * (1f + Live(rangePercent));
         public float PickupRadius => basePickupRadius + pickupRadiusFlat;
         public float ExtraDropChance => Mathf.Clamp01(dropChancePercent);

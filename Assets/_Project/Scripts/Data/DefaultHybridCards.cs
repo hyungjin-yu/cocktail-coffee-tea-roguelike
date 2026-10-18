@@ -13,7 +13,7 @@ namespace CCT
             var card = ScriptableObject.CreateInstance<CardData>();
             card.name = "hybrid_tea_martini";
             card.id = "hybrid_tea_martini";
-            card.displayName = "티니 보우";
+            card.displayName = "티 마티니 · 티니 보우";
             card.description = "레이피어에 차의 활을 더합니다 — 보조 화살이 자동 발사됩니다.";
             card.flavorText = "";
             card.category = CardCategory.Hybrid;
@@ -21,6 +21,7 @@ namespace CCT
             card.maxStacks = 1;
             card.effects = System.Array.Empty<CardEffect>(); // 실제 효과는 HybridBowWeapon 컴포넌트 자체
             card.weaponRestriction = WeaponRestriction.Any;
+            CardEducationData.Author(card);
             return new List<CardData> { card };
         }
     }

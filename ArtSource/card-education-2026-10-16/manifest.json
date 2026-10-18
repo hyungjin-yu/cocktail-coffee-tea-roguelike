@@ -1,0 +1,474 @@
+{
+  "specVersion": "64_2026-10-16",
+  "filterMode": "Point",
+  "assets": [
+    {
+      "assetId": "card_gin",
+      "cardIds": [
+        "dry_gin"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_gin.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_gin.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        10,
+        3,
+        54,
+        61
+      ],
+      "minMargin": 3,
+      "sha256": "7876b015e45fcce066132a6bd8d363600a10f0b9c5b20d660ef66d72f8b7ea9e",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_style",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_gin.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_jigger",
+      "cardIds": [
+        "shot_glass"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_jigger.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_jigger.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        15,
+        3,
+        48,
+        61
+      ],
+      "minMargin": 3,
+      "sha256": "69c65072317ff6d63ad9eda949aedb2d77526a84441086c8685c32efef4536af",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_image_pro_flash",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_jigger.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_bar_spoon",
+      "cardIds": [
+        "long_stirrer"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_bar_spoon.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_bar_spoon.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        24,
+        3,
+        40,
+        61
+      ],
+      "minMargin": 3,
+      "sha256": "e7233ed221f4de6d1e7455d90c0b876566a85994592e9a237149ee74e183d9e5",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_style",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_bar_spoon.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_shaker",
+      "cardIds": [
+        "mixing_tempo"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_shaker.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_shaker.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        17,
+        3,
+        47,
+        61
+      ],
+      "minMargin": 3,
+      "sha256": "dd4e390b05912233e1fbc80a5791b6c2cf8e81696ad4b325b5cb312fc514a3fe",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_style",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_shaker.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_double_strain",
+      "cardIds": [
+        "flambe",
+        "rifled_barrel"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_double_strain.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_double_strain.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        3,
+        8,
+        61,
+        56
+      ],
+      "minMargin": 3,
+      "sha256": "968f4e5d8e0b6ede0347c2504690f1d24c273a4c41592c0e72c440ffa072827f",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_image_pro_flash",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_double_strain.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_negroni",
+      "cardIds": [
+        "double_shot"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_negroni.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_negroni.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        16,
+        3,
+        48,
+        61
+      ],
+      "minMargin": 3,
+      "sha256": "bba114aa452667c26dac7bd5bd0555d6b9ef9dec20070679bf5d08272c33188e",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_style",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_negroni.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_old_fashioned",
+      "cardIds": [
+        "scotch_rocks"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_old_fashioned.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_old_fashioned.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        10,
+        3,
+        54,
+        61
+      ],
+      "minMargin": 3,
+      "sha256": "283387629cb0605a3d1605832ff128585344e661c314e97fcf588910bebb658d",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_style",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_old_fashioned.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_martini",
+      "cardIds": [
+        "dry_martini"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_martini.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_martini.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        13,
+        3,
+        51,
+        61
+      ],
+      "minMargin": 3,
+      "sha256": "66aec43405664203718304ca912687c3b7683474b7d73c9b10f366384e000fba",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_style",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_martini.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_blue_blazer",
+      "cardIds": [
+        "blazer"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_blue_blazer.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_blue_blazer.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        3,
+        11,
+        61,
+        52
+      ],
+      "minMargin": 3,
+      "sha256": "3ffeca6218efb8388b6d2294c9365e452341a61ede1e5549e8f511f68f41c748",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_style",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_blue_blazer.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_green_tea",
+      "cardIds": [
+        "green_tea",
+        "nettle_tea"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_green_tea.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_green_tea.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        3,
+        3,
+        61,
+        60
+      ],
+      "minMargin": 3,
+      "sha256": "760827caeccd5e9fca97daac6914c8f16c6e584c9b34b794e8bb6ab8a772f56b",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_style",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_green_tea.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_tea_whisk",
+      "cardIds": [
+        "tea_whisk"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_tea_whisk.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_tea_whisk.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        3,
+        4,
+        61,
+        59
+      ],
+      "minMargin": 3,
+      "sha256": "790ea84725e656b663371ff78bed35b4f5d41f2f90a23715f31df888d58a9a67",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_image_pro_flash",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_tea_whisk.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_gaiwan",
+      "cardIds": [
+        "tea_sandals",
+        "brew_rhythm",
+        "second_infusion"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_gaiwan.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_gaiwan.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        4,
+        3,
+        59,
+        61
+      ],
+      "minMargin": 3,
+      "sha256": "ea28520872d1505ba9debc865e096578b9fca411c1a9be4bb458005be10e48e6",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_image_pro_flash",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_gaiwan.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_oolong",
+      "cardIds": [
+        "oolong"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_oolong.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_oolong.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        3,
+        8,
+        61,
+        55
+      ],
+      "minMargin": 3,
+      "sha256": "03209d2d90395a9d1c950f9a5ee5f19b9c4bc22cf60233953bdcb4a5307191f9",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_image_pro_flash",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_oolong.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_puerh",
+      "cardIds": [
+        "aged_puerh"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_puerh.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_puerh.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        3,
+        10,
+        61,
+        54
+      ],
+      "minMargin": 3,
+      "sha256": "1f05006d057202d1a26983943be825ab926ab39bc7384b818a17a4d2c6493bbf",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_image_pro_flash",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_puerh.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_chamomile",
+      "cardIds": [
+        "chamomile"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_chamomile.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_chamomile.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        3,
+        8,
+        61,
+        56
+      ],
+      "minMargin": 3,
+      "sha256": "314df0a83700b8d255d8e78f0b732856033fecb50d0fa332791476c5bc9c0f74",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_style",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_chamomile.receipt.json",
+      "status": "ready"
+    },
+    {
+      "assetId": "card_rooibos",
+      "cardIds": [
+        "ginseng_root"
+      ],
+      "png": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_rooibos.png",
+      "aseprite": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_rooibos.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alphaBounds": [
+        4,
+        3,
+        59,
+        61
+      ],
+      "minMargin": 3,
+      "sha256": "457677b2f3c05bc4c4ef157c4b88d43371973281e225a0c49fa2565e553890a3",
+      "checks": {
+        "rgba": true,
+        "binaryAlpha": true,
+        "margin3": true,
+        "nativeRoundtrip": true
+      },
+      "sourceModel": "generate_style",
+      "sourceReceipt": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\provenance\\card_rooibos.receipt.json",
+      "status": "ready"
+    }
+  ]
+}

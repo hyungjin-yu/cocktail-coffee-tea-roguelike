@@ -3,7 +3,7 @@ import sys, json, hashlib
 from pathlib import Path
 import dnfile
 folder, output = map(Path, sys.argv[1:3])
-forbidden = {'CCT.AutoTour','CCT.PlayVerifier','CCT.LoadScenario','CCT.QaAudioTap'}
+forbidden = {'CCT.AutoTour','CCT.PlayVerifier','CCT.LoadScenario','CCT.QaAudioTap','CCT.CardEducationCapture','CCT.RunHistoryCapture'}
 found, inventory = [], []
 for dll in sorted(folder.glob('*.dll')):
     pe = dnfile.dnPE(str(dll))

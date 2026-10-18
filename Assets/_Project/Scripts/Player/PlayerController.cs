@@ -107,7 +107,7 @@ namespace CCT
         {
             if (IsDead) return;
             float dps = PlayerZoneDamage.ConsumeFrame();
-            if (dps > 0f) TakeZoneDamage(dps * Balance.ZoneTickInterval);
+            if (dps > 0f) TakeZoneDamage(dps * Balance.ZoneTickInterval, PlayerZoneDamage.LastConsumedSource);
         }
 
         void FixedUpdate()
@@ -188,13 +188,13 @@ namespace CCT
             if (!IsDead) invulnerable = Mathf.Max(invulnerable, seconds);
         }
 
-        /// <summary>적 몸 접촉 피해. 히든 독초 정원(중독 적 -15%)·쟁반 방패(반격)를 거친 뒤 일반 단발 피해와 같다.</summary>
+        /// <summary>적 몸 접촉 피해. 히든 여운 정원(중독 적 -15%)·쟁반 방패(반격)를 거친 뒤 일반 단발 피해와 같다.</summary>
         public void TakeContactDamage(Enemy source, float amount)
         {
             if (IsDead || invulnerable > 0f) return;
             if (HiddenRuntime != null) amount = HiddenRuntime.ModifyContactDamage(source, amount);
             float before = Hp;
-            TakeDamage(amount);
+            TakeDamage(amount, DamageSource.Contact(source != null ? source.Def : null));
             if (Hp < before) HiddenRuntime?.OnContactHit(source);
         }
 
@@ -213,7 +213,10 @@ namespace CCT
         }
 
         /// <summary>접촉·발사체·보스 단발 피해. 0.8초 무적을 걸고, 그 무적에 막힌다 (06:22).</summary>
-        public void TakeDamage(float amount)
+        public void TakeDamage(float amount) => TakeDamage(amount, default);
+
+        /// <summary>67: 출처를 함께 받는 단발 피해. 판정·피해량·무적은 출처 없는 호출과 같다.</summary>
+        public void TakeDamage(float amount, DamageSource source)
         {
             if (IsDead || invulnerable > 0f) return;
             if (HiddenRuntime != null && HiddenRuntime.TryBlockHit())
@@ -221,20 +224,28 @@ namespace CCT
                 invulnerable = Balance.PlayerInvulnerableSeconds; // 보호막도 일반 피격처럼 0.8초 무적
                 return;
             }
-            ApplyDamage(amount);
+            ApplyDamage(amount, source);
             if (!IsDead) invulnerable = Balance.PlayerInvulnerableSeconds;
         }
 
         /// <summary>장판(DOT) 틱 피해. 단발 무적을 걸지도, 그 무적에 막히지도 않는다 (06:22 — "단발 무적을
         /// 만들거나 그 무적에 막히지 않는다"). 피해 감소율은 단발과 동일하게 적용된다.</summary>
-        public void TakeZoneDamage(float amount)
+        public void TakeZoneDamage(float amount) => TakeZoneDamage(amount, default);
+
+        public void TakeZoneDamage(float amount, DamageSource source)
         {
             if (IsDead) return;
-            ApplyDamage(amount);
+            ApplyDamage(amount, source);
         }
 
-        void ApplyDamage(float amount)
+        /// <summary>67: 마지막으로 HP를 실제로 줄인 피해의 출처(무적·차단·0·음수·비유한 피해는 덮어쓰지 않는다).</summary>
+        public DamageSource? LastDamageSource { get; private set; }
+        /// <summary>67: HP를 0으로 만든 바로 그 피해의 출처. 사망 전에는 null.</summary>
+        public DamageSource? LethalDamageSource { get; private set; }
+
+        void ApplyDamage(float amount, DamageSource source)
         {
+            float hpBefore = Hp;
             amount *= Challenge?.DamageMultiplier ?? 1f;
             // 09:84 "플레이어가 무적이라 피해0이면 hit_player 재생하지 않는다" — 무적 중엔 애초에
             // TakeDamage에서 걸러져 여기까지 안 온다. amount>0 방어는 남겨둔다.
@@ -242,11 +253,17 @@ namespace CCT
             float taken = stats.DamageTakenMultiplier;
             if (HiddenRuntime != null) taken *= HiddenRuntime.ExtraTakenMultiplier(taken);
             Hp = Mathf.Max(0f, Hp - amount * taken);
+            // 67 원인 기록: 유한한 양수 피해가 실제로 HP를 줄였을 때만(무적·차단·0·음수·NaN·무한대는 이전 기록을 덮지 않는다).
+            float effective = amount * taken;
+            bool attributable = Hp < hpBefore && amount > 0f && !float.IsInfinity(amount) && effective > 0f && !float.IsInfinity(effective);
+            if (attributable) LastDamageSource = source;
             if (amount > 0f) HiddenRuntime?.OnDamaged();
             if (amount > 0f && Hp > 0f) visual?.PlayHurt(); // 04 §6 hurt 0.08초(있을 때만)
             if (amount > 0f) CameraRig.Shake(0.12f, 0.15f); // 08:122 피격 흔들림(설정 0이면 없음)
             if (Hp <= 0f)
             {
+                // 기록할 수 없는 피해로 쓰러지면 이전 공격자 대신 확인 불가(기본값 = "전투 피해")로 남긴다.
+                LethalDamageSource = attributable ? source : default(DamageSource);
                 IsDead = true;
                 visual?.PlayDefeat();
                 Died?.Invoke();

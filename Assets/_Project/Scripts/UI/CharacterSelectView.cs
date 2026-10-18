@@ -88,6 +88,7 @@ namespace CCT
             PermanentShopButton = BuildPermanentShopButton();
             CardCodexButton = BuildCardCodexButton();
             SettingsButton = BuildSettingsButton();
+            DrinkLabButton = BuildDrinkLabButton();
             BuildSaveIssueBanner();
             // 2026-10-12: 진입 즉시 선택하면 바텐더 카드가 파란 강조로 고정돼 보여 첫 키보드 입력 때 드러낸다.
             var focus = lastJob == Job.TeaSommelier ? TeaSommelierButton : BartenderButton;
@@ -121,6 +122,39 @@ namespace CCT
                 shopView.Show();
             });
             UiFactory.AddText(UiFactory.Stretch("Label", rt), $"영구 강화 (스페셜티 {specialty})", 26,
+                TextAnchor.MiddleCenter, Color.white);
+            return button;
+        }
+
+        // ───── 69 음료 제조(출발 전) ─────
+        /// <summary>직업/무기 선택 화면의 "음료 제조" 버튼(테스트용으로도 참조).</summary>
+        public Button DrinkLabButton { get; private set; }
+        public DrinkLabView DrinkLabScreen { get; private set; }
+
+        public static string PreparedDrinkLine()
+        {
+            var p = CCT.DrinkLab.Prepared;
+            return p != null
+                ? $"준비 음료: {p.recipe.name} — {DrinkCalculator.Buff(p.recipe).Describe()} (출발할 때 마심)"
+                : "준비 음료 없음 — 버프 없이 출발합니다 (음료 제조에서 만들 수 있음)";
+        }
+
+        Button BuildDrinkLabButton()
+        {
+            var rt = UiFactory.Place("DrinkLabButton", root, new Vector2(1f, 0f), new Vector2(-40f, 130f), new Vector2(420f, 84f));
+            var bg = UiFactory.AddImage(rt, new Color(0.5f, 0.28f, 0.16f));
+            var weaponStep = StartButton != null;
+            var button = MakeButton(rt, bg, () =>
+            {
+                root.gameObject.SetActive(false);
+                DrinkLabScreen = DrinkLabView.Show(() =>
+                {
+                    DrinkLabScreen = null;
+                    if (weaponStep && currentJob != null) ShowWeaponStep(currentJob); else ShowJobStep();
+                });
+            });
+            var p = CCT.DrinkLab.Prepared;
+            UiFactory.AddText(UiFactory.Stretch("Label", rt), p != null ? $"음료 제조 · 준비됨: {p.recipe.name}" : "음료 제조 (출발 전)", 26,
                 TextAnchor.MiddleCenter, Color.white);
             return button;
         }
@@ -173,6 +207,10 @@ namespace CCT
                 new Vector2(360f, 84f));
             StartButton = MakeButton(startRt, UiFactory.AddImage(startRt, new Color(0.55f, 0.32f, 0.14f)), ConfirmStart);
             UiFactory.AddText(UiFactory.Stretch("Label", startRt), "영업 시작", 34, TextAnchor.MiddleCenter, Color.white);
+
+            DrinkLabButton = BuildDrinkLabButton();
+            UiFactory.AddText(UiFactory.Place("PreparedDrink", root, new Vector2(0.5f, 0f), new Vector2(0f, 64f), new Vector2(1300f, 50f)),
+                PreparedDrinkLine(), 24, TextAnchor.MiddleCenter, new Color(0.75f, 1f, 0.8f));
 
             var backRt = UiFactory.Place("BackButton", root, new Vector2(0f, 0f), new Vector2(170f, 130f),
                 new Vector2(240f, 70f));

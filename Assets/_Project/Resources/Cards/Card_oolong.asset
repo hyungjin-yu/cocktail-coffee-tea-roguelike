@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_oolong
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: oolong
-  displayName: "\uC6B0\uB871\uCC28"
+  displayName: "우롱차"
   description: "\uACF5\uACA9\uB825 +30%"
-  flavorText: "\uB179\uCC28\uC640 \uD64D\uCC28 \uC0AC\uC774, \uBC18\uCBE4 \uBC1C\uD6A8\uC2DC\uD0A8
-    \uAE4A\uC740 \uD5A5\uC758 \uCC28."
+  flavorText: "부분 산화한 차. 산화와 로스팅의 폭이 다양합니다. 효소적 산화는 미생물 발효와 다르며 산화 정도가 정확히 절반으로 고정되지 않습니다."
   category: 1
   rarity: 1
   maxStacks: 4
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 0
     value: 0.3
   weaponRestriction: 0
+  realWorldFact: "부분 산화한 차. 산화와 로스팅의 폭이 다양합니다. 효소적 산화는 미생물 발효와 다르며 산화 정도가 정확히 절반으로 고정되지 않습니다."
+  gameplayConnection: "겹치는 풍미을 공격력으로 표현했습니다."
+  sourceName: "Oregon State University · Tea"
+  sourceUrl: "https://lpi.oregonstate.edu/mic/food-beverages/tea"
+  educationArtId: "card_oolong"
+  additionalSources: ""

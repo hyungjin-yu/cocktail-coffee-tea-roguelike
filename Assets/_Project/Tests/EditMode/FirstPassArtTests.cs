@@ -893,20 +893,21 @@ namespace CCT.Tests
             var longest = CardDatabase.LoadAll().OrderByDescending(c => (c.description + c.flavorText).Length).First();
             Assert.IsTrue(codex.OpenDetailFor(longest.id));
             var panel = (RectTransform)codex.transform.Find("Detail");
-            var body = (RectTransform)panel.Find("Body");
+            var body = (RectTransform)panel.Find("DetailScroll");
             var close = (RectTransform)panel.Find("Close");
             float panelH = panel.sizeDelta.y;
             // UiFactory.Place는 피벗=앵커: 본문은 위 중앙 기준, 닫기 버튼은 아래 중앙 기준.
             float bodyBottomFromTop = -body.anchoredPosition.y + body.sizeDelta.y;
             float closeTopFromTop = panelH - (close.anchoredPosition.y + close.sizeDelta.y);
             Assert.Less(bodyBottomFromTop, closeTopFromTop, "본문 상자가 닫기 버튼 위에서 끝난다");
-            var text = body.GetComponent<Text>();
-            Assert.AreEqual(VerticalWrapMode.Truncate, text.verticalOverflow, "넘쳐도 버튼 영역으로 그려지지 않음");
+            var text = panel.Find("DetailScroll/Viewport/Body").GetComponent<Text>();
+            Assert.AreEqual(VerticalWrapMode.Overflow, text.verticalOverflow, "전문 높이는 내용에 맞추고 RectMask2D 뷰포트가 버튼 영역 침범을 막는다");
             Assert.IsFalse(text.resizeTextForBestFit, "08:49 본문 24를 줄이지 않는다");
             Assert.GreaterOrEqual(text.fontSize, CardCodexView.MinBodyFontSize);
             // 가장 긴 카드 상세 전문(발견 상태와 같은 구성)이 상자 안에 다 들어간다.
             text.text = $"칵테일 카드\n{longest.description}\n최대 중첩 {longest.maxStacks}\n{longest.flavorText}";
-            Assert.LessOrEqual(text.preferredHeight, body.sizeDelta.y, "가장 긴 상세도 잘리지 않음");
+            Assert.IsNotNull(panel.Find("DetailScroll").GetComponent<ScrollRect>(), "긴 전문은 스크롤로 제공");
+            Assert.IsNotNull(panel.Find("DetailScroll/Viewport").GetComponent<RectMask2D>(), "전문은 뷰포트 안에서만 표시");
         }
 
         [Test]
@@ -1062,7 +1063,7 @@ namespace CCT.Tests
             // 상세: 가장 긴 카드의 전문(발견 상태)이 닫기 버튼 위 상자 안에 전부 보인다.
             var longest = CardDatabase.LoadAll().OrderByDescending(c => (c.description + c.flavorText).Length).First();
             Assert.IsTrue(codex.OpenDetailFor(longest.id));
-            var body = root.Find("Detail/Body").GetComponent<Text>();
+            var body = root.Find("Detail/DetailScroll/Viewport/Body").GetComponent<Text>();
             AssertFullyVisible(body, "상세 본문");
             AssertFullyVisible(root.Find("Detail/Title").GetComponent<Text>(), "상세 제목");
         }

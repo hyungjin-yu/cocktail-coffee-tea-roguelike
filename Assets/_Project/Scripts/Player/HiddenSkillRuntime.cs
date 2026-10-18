@@ -118,7 +118,14 @@ namespace CCT
         /// <summary>직접 타격 피해에 히든 보정을 곱한다. 조건부 증가는 더하고, 치명타는 마지막에 곱한다.</summary>
         public float ModifyDirectDamage(Enemy enemy, float damage)
         {
-            if (enemy == null || Hidden.Count == 0) return damage;
+            if (enemy == null) return damage;
+            float drinkCrit = player.Stats != null ? player.Stats.drinkCritChance : 0f;
+            if (Hidden.Count == 0)
+            {
+                // 69 준비 음료 치명타 확률: 기존 치명타 규칙(완벽한 한 잔과 같은 ×2)만 사용, 새 전투 시스템 없음.
+                if (drinkCrit > 0f && Random.value < drinkCrit) return damage * 2f;
+                return damage;
+            }
             float bonus = 0f;
             float dist = Vector2.Distance(player.Position, enemy.transform.position);
             if (Hidden.Has(HiddenSkill.FirstSip) && enemy.Hp >= enemy.MaxHp - 0.001f) bonus += 0.40f;
@@ -129,10 +136,11 @@ namespace CCT
             if (Hidden.Has(HiddenSkill.ShakeRhythm)) bonus += 0.02f * Combo;
             if (Hidden.Has(HiddenSkill.BarTempo) && !Standing && player.IsMovingInput) bonus += 0.10f;
             float result = damage * (1f + bonus);
-            if (Hidden.Has(HiddenSkill.PerfectCup) && Random.value < 0.10f)
+            float critChance = (Hidden.Has(HiddenSkill.PerfectCup) ? 0.10f : 0f) + drinkCrit;
+            if (critChance > 0f && Random.value < critChance)
             {
                 result *= 2f;
-                Notify(HiddenSkill.PerfectCup, enemy.transform.position, Color.yellow);
+                if (Hidden.Has(HiddenSkill.PerfectCup)) Notify(HiddenSkill.PerfectCup, enemy.transform.position, Color.yellow);
             }
             else if (bonus > 0f)
             {
@@ -227,7 +235,7 @@ namespace CCT
             return Mathf.Max(1f - MaxTotalDamageReduction, existing * extra) / Mathf.Max(0.0001f, existing);
         }
 
-        /// <summary>접촉 피해 보정(독초 정원) — 중독된 적의 접촉 -15%.</summary>
+        /// <summary>접촉 피해 보정(여운 정원) — 여운 피해를 받는 적의 접촉 -15%.</summary>
         public float ModifyContactDamage(Enemy source, float amount)
         {
             if (source == null || !Hidden.Has(HiddenSkill.PoisonGarden)) return amount;
@@ -241,7 +249,7 @@ namespace CCT
             if (source == null || source.IsDead || source.Invulnerable || !Hidden.Has(HiddenSkill.TrayGuard)) return;
             float now = Time.time;
             if (thornsReady.TryGetValue(source, out var ready) && now < ready) return;
-            thornsReady[source] = now + ThornsCooldown;
+            thornsReady[source] = now + ThornsCooldown * player.Stats.CooldownScale; // 69 음료 재사용 시간 감소
             if (thornsReady.Count > 64) thornsReady.Clear(); // 죽은 적 키 누적 방지(상한만 지키면 됨)
             source.TakeDamage(player.Stats.Damage);
             Notify(HiddenSkill.TrayGuard, source.transform.position, Color.yellow);

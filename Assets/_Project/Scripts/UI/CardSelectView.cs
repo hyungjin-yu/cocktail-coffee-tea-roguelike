@@ -21,6 +21,8 @@ namespace CCT
             public Text title;
             public Text description;
             public Text stacks;
+            public Text fact, connection;
+            public Button learn;
             public Text odds;
             public Image categoryIcon;
             public Text advice;
@@ -30,6 +32,14 @@ namespace CCT
         }
 
         Text reasonLine, targetLine;
+        CardEducationView learning;
+        CardEducationGuide tutorial;
+        public CardEducationGuide Tutorial => tutorial;
+        public bool IsTutorialOpen => tutorial != null && tutorial.IsOpen;
+        public bool IsLearningOpen => (learning != null && learning.IsOpen) || IsTutorialOpen;
+        public string LearningBodyText => learning != null ? learning.BodyText : "";
+        public string FactText(int index) => slots[index].fact.text;
+        public string ConnectionText(int index) => slots[index].connection.text;
 
         readonly Slot[] slots = new Slot[SlotCount];
         readonly List<CardOffer> offers = new List<CardOffer>();
@@ -49,7 +59,7 @@ namespace CCT
         public static CardSelectView Create(Transform canvas)
         {
             var rootRt = UiFactory.Stretch("CardSelect", canvas);
-            UiFactory.AddImage(rootRt, new Color(0f, 0f, 0f, 0.72f));
+            UiFactory.AddImage(rootRt, new Color(0f, 0f, 0f, 0.96f));
             CenterBand.Attach(rootRt); // 2026-10-12 세로가 긴 화면: 카드 내용 세로 가운데
 
             var view = rootRt.gameObject.AddComponent<CardSelectView>();
@@ -82,6 +92,13 @@ namespace CCT
             for (int i = 0; i < SlotCount; i++)
                 view.slots[i] = view.BuildSlot(rootRt, i);
 
+            view.learning = CardEducationView.Create(rootRt, () => view.inputGate.Arm(Time.frameCount));
+            view.tutorial = CardEducationGuide.Create(rootRt, () => view.inputGate.Arm(Time.frameCount), () => view.OpenLearning(0));
+            var helpRt=UiFactory.Place("LearningHelp",rootRt,new Vector2(.5f,1),new Vector2(790,-45),new Vector2(260,54));
+            var helpBg=UiFactory.AddImage(helpRt,new Color(.17f,.3f,.32f));
+            var help=helpRt.gameObject.AddComponent<Button>(); help.targetGraphic=helpBg;
+            help.onClick.AddListener(view.OpenTutorial);
+            UiFactory.AddText(UiFactory.Stretch("Label",helpRt),"학습 안내",26,TextAnchor.MiddleCenter,Color.white);
             view.root.SetActive(false);
             return view;
         }
@@ -106,14 +123,22 @@ namespace CCT
             slot.key = UiFactory.AddText(UiFactory.Place("Key", rt, new Vector2(0f, 1f), new Vector2(18f, -12f),
                 new Vector2(80f, 40f)), MobilePlatform.IsTouchUI ? "" : $"[{index + 1}]", 30, TextAnchor.UpperLeft, new Color(1f, 1f, 1f, 0.5f));
             slot.rarity = UiFactory.AddText(UiFactory.Place("Rarity", rt, new Vector2(0.5f, 1f),
-                new Vector2(0f, -30f), new Vector2(380f, 44f)), "", 32, TextAnchor.MiddleCenter, Color.white);
+                new Vector2(-15f, -30f), new Vector2(280f, 44f)), "", 32, TextAnchor.MiddleCenter, Color.white);
             slot.title = UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f),
-                new Vector2(0f, -100f), new Vector2(390f, 110f)), "", 44, TextAnchor.MiddleCenter, Color.white);
+                new Vector2(0f, -85f), new Vector2(390f, 100f)), "", 36, TextAnchor.MiddleCenter, Color.white);
             UiFactory.SkinHeader(slot.title);
             slot.description = UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 0.5f),
-                new Vector2(0f, -10f), new Vector2(390f, 220f)), "", 24,
+                new Vector2(0f, 80f), new Vector2(390f, 80f)), "", 24,
                 MobilePlatform.IsTouchUI ? TextAnchor.MiddleCenter : TextAnchor.UpperCenter, // 2026-10-12 모바일: 설명 세로 가운데
                 new Color(0.92f, 0.92f, 0.92f));
+            slot.fact = UiFactory.AddText(UiFactory.Place("RealWorldFact", rt, new Vector2(.5f,.5f), new Vector2(0,-15), new Vector2(380,110)), "", 24, TextAnchor.UpperLeft, new Color(.8f,.94f,.84f));
+            slot.connection = UiFactory.AddText(UiFactory.Place("GameConnection", rt, new Vector2(.5f,.5f), new Vector2(0,-105), new Vector2(380,70)), "", 24, TextAnchor.UpperLeft, new Color(.95f,.85f,.7f));
+            slot.fact.verticalOverflow = slot.connection.verticalOverflow = VerticalWrapMode.Truncate;
+            var learnRt = UiFactory.Place("Learn", rt, new Vector2(.5f,0), new Vector2(0,118), new Vector2(300,48));
+            var learnBg = UiFactory.AddImage(learnRt, new Color(.15f,.3f,.3f));
+            slot.learn = learnRt.gameObject.AddComponent<Button>(); slot.learn.targetGraphic = learnBg;
+            slot.learn.onClick.AddListener(() => OpenLearning(captured));
+            UiFactory.AddText(UiFactory.Stretch("Label",learnRt),"지식 상세 보기",24,TextAnchor.MiddleCenter,Color.white);
             // r13 검수 U2 / 09:54 — 카드별 일러스트 대신 기존 재료 아이콘을 카테고리 도안으로 쓴다(하이브리드만 전용 아이콘).
             // 설명(최대 2줄)과 중첩 문구 사이의 빈 영역에 둔다. 스프라이트는 Show에서 카테고리별로 고른다.
             var iconRt = UiFactory.Place("CategoryIcon", rt, new Vector2(0.5f, 0.5f), new Vector2(0f, -115f),
@@ -122,11 +147,16 @@ namespace CCT
             slot.categoryIcon.preserveAspect = true;
             slot.categoryIcon.raycastTarget = false;
             slot.stacks = UiFactory.AddText(UiFactory.Place("Stacks", rt, new Vector2(0.5f, 0f),
-                new Vector2(0f, 110f), new Vector2(380f, 40f)), "", 28, TextAnchor.MiddleCenter,
+                new Vector2(0f, 82f), new Vector2(380f, 32f)), "", 28, TextAnchor.MiddleCenter,
                 new Color(0.75f, 0.85f, 1f));
             // 49 추천: 근거 문구(기존 확률 문구 자리 — 확률 문구는 숨김 유지)와 카드 위 테두리의 "추천" 표식. 선택·포커스는 바꾸지 않는다.
             slot.advice = UiFactory.AddText(UiFactory.Place("Advice", rt, new Vector2(0.5f, 0f),
-                new Vector2(0f, 34f), new Vector2(400f, 70f)), "", 22, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.55f));
+                new Vector2(0f, 18f), new Vector2(380f, 60f)), "", 20, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.55f));
+            // Keep both recommendation reasons above the frame, including wrapped numeric suffixes.
+            slot.advice.resizeTextForBestFit = true;
+            slot.advice.resizeTextMinSize = 16;
+            slot.advice.resizeTextMaxSize = 20;
+            slot.advice.verticalOverflow = VerticalWrapMode.Truncate;
             slot.advice.raycastTarget = false;
             var badgeRt = UiFactory.Place("RecommendBadge", rt, new Vector2(0.5f, 1f), new Vector2(0f, 26f), new Vector2(180f, 48f));
             UiFactory.AddImage(badgeRt, new Color(0.95f, 0.72f, 0.25f, 1f)).raycastTarget = false;
@@ -189,16 +219,15 @@ namespace CCT
                     slot.rarity.text+=" · 직업 연계";
                 slot.rarity.color = rarityColor;
                 slot.title.text = card.displayName;
-                slot.description.text = card.description;
+                slot.description.text = CardEducationSummary.Effect(card);
                 var finalForm = AttackFinalForms.ForCard(card.id);
-                if (finalForm.HasValue)
-                    slot.description.text += $"\n현재 {offer.currentStacks} → 다음 {Mathf.Min(card.maxStacks,offer.currentStacks+1)} / {card.maxStacks}\n최대 중첩: {AttackFinalForms.Description(finalForm.Value)}";
-                // 모바일은 설명을 가운데 정렬하므로 5줄 설명(아래 끝 -87)과 겹치지 않게 도안을 조금 아래(-145)·작게(50, 위 끝 -120, 중첩 문구 위 -180 위).
-                bool touch = MobilePlatform.IsTouchUI;
-                slot.categoryIcon.rectTransform.anchoredPosition = finalForm.HasValue ? new Vector2(170f,250f) : new Vector2(0f, touch ? -145f : -115f);
-                slot.categoryIcon.rectTransform.sizeDelta = finalForm.HasValue ? new Vector2(40f,40f) : touch ? new Vector2(50f,50f) : new Vector2(80f,80f);
+                slot.learn.GetComponentInChildren<Text>().text = finalForm.HasValue ? "지식 · 최대 효과 보기" : "지식 상세 보기";
+                slot.fact.text = CardEducationSummary.Fact(card);
+                slot.connection.text = "해석 · " + CardEducationSummary.Connection(card);
+                slot.categoryIcon.rectTransform.anchoredPosition = new Vector2(170f,270f);
+                slot.categoryIcon.rectTransform.sizeDelta = new Vector2(64f,64f);
                 slot.stacks.text = offer.currentStacks == 0
-                    ? "신규"
+                    ? $"신규 · 최대 {card.maxStacks}"
                     : $"Lv {offer.currentStacks} → {offer.currentStacks + 1}  (최대 {card.maxStacks})";
                 slot.odds.text = offer.earlyRangedPriority ? "초반 원거리 우선 추첨 (60%)" : $"{RarityTable.Label(card.rarity)} 등급 확률 {offer.rarityPercent:0.#}%";
                 slot.odds.gameObject.SetActive(false);
@@ -208,7 +237,7 @@ namespace CCT
                 slot.badge.SetActive(a.recommended);
                 UiFactory.SetChoice(slot.background, false,
                     Color.Lerp(new Color(0.16f, 0.13f, 0.2f), rarityColor, 0.18f));
-                var icon = CategoryIcon(card.category);
+                var icon = CardEducationIcons.For(card);
                 slot.categoryIcon.sprite = icon;
                 slot.categoryIcon.gameObject.SetActive(icon != null);
             }
@@ -218,6 +247,9 @@ namespace CCT
             inputGate.Arm(Time.frameCount);
             root.SetActive(true);
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(slots[0].root);
+            var game=GameManager.Instance;
+            if (!CardEducationGuide.SuppressAutomaticForTests && CardEducationGuide.NeedsIntroduction && game!=null && game.State==GameState.LevelUp)
+                OpenTutorial();
         }
 
         /// <summary>57 P1 "카드 창이 왜 열렸나 · 다음 카드 창 조건" — 실제 게이지 기준(RunGuide.NextCardStatus).</summary>
@@ -268,7 +300,7 @@ namespace CCT
         {
             // 08:23 "키 관통 없음" — Pause가 이 화면 위에 겹쳐 열려 있으면(오버레이 스택) 밑에 깔린
             // 이 화면의 단축키(1/2/3)가 새어 들어오면 안 된다.
-            if (!IsOpen || (GameManager.Instance != null && GameManager.Instance.IsPaused)) return;
+            if (!IsOpen || IsLearningOpen || (GameManager.Instance != null && GameManager.Instance.IsPaused)) return;
 
             // 매 프레임 눌림 상태를 봐야 "뗐다가 다시 누름"을 구분한다(클릭/Submit 경로도 이 판정을 공유).
             inputGate.Poll(Time.frameCount, InputReleaseGate.AnyConfirmHeld());
@@ -278,6 +310,19 @@ namespace CCT
             else if (kb.digit2Key.wasPressedThisFrame || kb.numpad2Key.wasPressedThisFrame) Choose(1);
             else if (kb.digit3Key.wasPressedThisFrame || kb.numpad3Key.wasPressedThisFrame) Choose(2);
         }
+
+        public void OpenLearning(int index)
+        {
+            if (!IsOpen || IsLearningOpen || index < 0 || index >= offers.Count) return;
+            if (GameManager.Instance != null && GameManager.Instance.IsPaused) return;
+            learning.Show(offers[index].card);
+        }
+        public void OpenTutorial()
+        {
+            if(!IsOpen || IsLearningOpen || offers.Count==0 || (GameManager.Instance!=null && GameManager.Instance.IsPaused))return;
+            tutorial.Show(offers[0].card);
+        }
+        public void CloseLearning() { if(IsTutorialOpen)tutorial.Close();else learning.Close(); }
 
         /// <summary>버튼 클릭/Submit 경로 — 08:39 입력 잠금을 거친다(테스트는 Choose를 직접 호출).</summary>
         void ChooseFromInput(int index)
@@ -290,7 +335,7 @@ namespace CCT
         /// (08:23 "키 관통 없음" — 클릭도 마찬가지로 막는다, 방어적으로 Update 가드와 이중 확인).</summary>
         public void Choose(int index)
         {
-            if (!IsOpen || onChosen == null || index < 0 || index >= offers.Count) return;
+            if (!IsOpen || IsLearningOpen || onChosen == null || index < 0 || index >= offers.Count) return;
             if (GameManager.Instance != null && GameManager.Instance.IsPaused) return;
 
             var callback = onChosen;

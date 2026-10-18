@@ -31,6 +31,7 @@ namespace CCT.Tests
             if (!SceneManager.GetActiveScene().name.StartsWith("InitTestScene")) return;
             EnsureSessionPaths();
             PermanentProgress.SetPathForTests(SessionPath);
+            CardEducationGuide.SuppressAutomaticForTests=true;
             SettingsService.SetForTests(SettingsSessionPath, new MemoryLegacySettingsStore(), new MemoryDisplayAdapter());
             Debug.Log("[TestSaveIsolation] AutoStart 전에 세션 임시 경로로 리다이렉트: " + SessionPath);
         }
@@ -48,6 +49,7 @@ namespace CCT.Tests
         {
             EnsureSessionPaths();
             PermanentProgress.SetPathForTests(SessionPath);
+            CardEducationGuide.SuppressAutomaticForTests=true;
             // 2026-10-06: EditMode와 같이 메모리 화면 어댑터. 실제 어댑터는 에디터의 Screen/QualitySettings를 바꾸고,
             // 에디터 PlayMode에서는 창 모드 전환이 반영되지 않아 검증도 안 됐다(SettingsViewTests 참고).
             SettingsService.SetForTests(SettingsSessionPath, new MemoryLegacySettingsStore(), new MemoryDisplayAdapter());
@@ -59,6 +61,16 @@ namespace CCT.Tests
             PermanentProgress.SetPathForTests(null);
             foreach (var suffix in new[] { "", ".bak", ".tmp" })
                 if (File.Exists(SessionPath + suffix)) File.Delete(SessionPath + suffix);
+            // 67 최근 기록은 세이브 경로를 따라 같은 임시 폴더에 생긴다 — 함께 지운다.
+            RunHistory.SetPathForTests(null);
+            // 69 음료 창고(drinks.json)도 세이브 경로를 따라 같은 임시 폴더에 생긴다 — 함께 지운다.
+            DrinkLab.SetPathForTests(null);
+            var drinksPath = DrinkLab.PathForSave(SessionPath);
+            foreach (var suffix in new[] { "", ".bak", ".tmp" })
+                if (File.Exists(drinksPath + suffix)) File.Delete(drinksPath + suffix);
+            var historyPath = RunHistory.PathForSave(SessionPath);
+            foreach (var suffix in new[] { "", ".bak", ".tmp" })
+                if (File.Exists(historyPath + suffix)) File.Delete(historyPath + suffix);
             SettingsService.SetForTests(null, null, null);
             foreach (var suffix in new[] { "", ".bak", ".tmp" })
                 if (File.Exists(SettingsSessionPath + suffix)) File.Delete(SettingsSessionPath + suffix);

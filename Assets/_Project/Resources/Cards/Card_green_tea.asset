@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_green_tea
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: green_tea
-  displayName: "\uB179\uCC28 \uC78E"
+  displayName: "녹차"
   description: "\uACF5\uACA9\uB825 +15%"
-  flavorText: "\uB356\uAC70\uB098 \uCC0C\uAE30\uB9CC \uD55C \uBC1C\uD6A8 \uC548 \uB41C
-    \uCC3B\uC78E. \uC0B0\uB73B\uD55C \uCCAB \uB9DB."
+  flavorText: "찻나무 잎을 가열해 효소적 산화를 억제한 차입니다."
   category: 1
   rarity: 0
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 0
     value: 0.15
   weaponRestriction: 0
+  realWorldFact: "찻나무 잎을 가열해 효소적 산화를 억제한 차입니다."
+  gameplayConnection: "산뜻한 풍미의 인상을 공격력으로 표현했습니다."
+  sourceName: "Oregon State University · Tea"
+  sourceUrl: "https://lpi.oregonstate.edu/mic/food-beverages/tea"
+  educationArtId: "card_green_tea"
+  additionalSources: ""

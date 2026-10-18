@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Card_chamomile
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: chamomile
-  displayName: "\uCE74\uBAA8\uB9C8\uC77C"
+  displayName: "카모마일 인퓨전"
   description: "\uCD08\uB2F9 \uD68C\uBCF5\uB7C9 +1.2"
-  flavorText: "\uC740\uC740\uD55C \uC0AC\uACFC \uD5A5\uC758 \uD5C8\uBE0C\uCC28. \uB9C8\uC74C\uC744
-    \uAC00\uB77C\uC549\uD78C\uB2E4."
+  flavorText: "카모마일 꽃을 물에 우린 허브 인퓨전입니다. 인퓨전은 식물 재료를 물에 우린 음료를 뜻하며, 찻나무 잎으로 만든 차와 구별합니다."
   category: 1
   rarity: 1
   maxStacks: 5
@@ -24,3 +23,9 @@ MonoBehaviour:
   - type: 9
     value: 1.2
   weaponRestriction: 0
+  realWorldFact: "카모마일 꽃을 물에 우린 허브 인퓨전입니다. 인퓨전은 식물 재료를 물에 우린 음료를 뜻하며, 찻나무 잎으로 만든 차와 구별합니다."
+  gameplayConnection: "쉬어 가는 인상을 게임 회복으로 표현했습니다."
+  sourceName: "Twinings · Whole camomile buds"
+  sourceUrl: "https://twinings.co.uk/blogs/news/whole-camomile-buds"
+  educationArtId: "card_chamomile"
+  additionalSources: ""

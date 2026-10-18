@@ -25,6 +25,7 @@ namespace CCT
             public Text nameText;
             public Text descText;
             public Text flavorText;
+            public Image icon;
         }
 
         class SkillEntry
@@ -63,7 +64,7 @@ namespace CCT
         public const float ViewportWidth = 1824f;
         // r7: 상자 높이를 폰트 실제 줄 높이로 계산(r6의 고정 34/64/32는 Noto Sans KR 줄 높이보다 낮아 이름·???·2번째 줄이 사라짐).
         public const int RowNameFontSize = 26;
-        static float RowNameHeight => UiFactory.TruncatedBoxHeight(RowNameFontSize);
+        static float RowNameHeight => UiFactory.TruncatedBoxHeight(RowNameFontSize, 2);
         static float RowDescHeight => UiFactory.TruncatedBoxHeight(MinBodyFontSize, 2);
         static float RowFlavorHeight => UiFactory.TruncatedBoxHeight(MinBodyFontSize);
         static float RowStep => RowNameHeight + RowDescHeight + RowFlavorHeight + 6f;
@@ -101,9 +102,11 @@ namespace CCT
         Tab tab = Tab.All;
         ScrollRect scrollRect;
         GameObject detailRoot;
+        GameObject detailShield;
         Text detailTitle;
         Text detailBody;
         Button detailClose;
+        ScrollRect detailScroll;
         GameObject detailReturnFocus;
         readonly Dictionary<Tab, Button> tabButtons = new Dictionary<Tab, Button>();
 
@@ -333,9 +336,12 @@ namespace CCT
                 var rowRt = UiFactory.Place($"Row_{card.id}", content, new Vector2(0.5f, 1f),
                     new Vector2(x, -ContentTopPadding - i * RowStep), new Vector2(ColumnWidth, RowStep));
 
+                var iconRt = UiFactory.Place("EducationIcon", rowRt, new Vector2(1,1), new Vector2(-8,-5), new Vector2(38,38));
+                var cardIcon = iconRt.gameObject.AddComponent<Image>(); cardIcon.preserveAspect = true; cardIcon.raycastTarget = false;
+                cardIcon.sprite = CardEducationIcons.For(card);
                 var capturedCard = card;
                 MakeRowSelectable(rowRt, () => ShowCardDetail(capturedCard));
-                var nameText = RowText(rowRt, "Name", 0f, 0f, ColumnWidth, RowNameHeight, RowNameFontSize, TextAnchor.MiddleLeft);
+                var nameText = RowText(rowRt, "Name", -24f, 0f, ColumnWidth - 48f, RowNameHeight, RowNameFontSize, TextAnchor.MiddleLeft);
                 var descText = RowText(rowRt, "Desc", 0f, -RowNameHeight, ColumnWidth, RowDescHeight, MinBodyFontSize,
                     TextAnchor.UpperLeft);
                 var flavorText = RowText(rowRt, "Flavor", 0f, -RowNameHeight - RowDescHeight, ColumnWidth, RowFlavorHeight,
@@ -343,7 +349,7 @@ namespace CCT
 
                 cardEntries.Add(new CardEntry
                 {
-                    card = card, nameText = nameText, descText = descText, flavorText = flavorText,
+                    card = card, icon = cardIcon, nameText = nameText, descText = descText, flavorText = flavorText,
                 });
                 trackInto.Add(rowRt.gameObject);
             }
@@ -489,6 +495,7 @@ namespace CCT
             foreach (var entry in cardEntries)
             {
                 bool has = discovered.Contains(entry.card.id);
+                if (entry.icon != null) entry.icon.gameObject.SetActive(has);
                 if (has) found++;
 
                 if (entry.card.category == CardCategory.Hybrid)
@@ -630,6 +637,9 @@ namespace CCT
 
         void BuildDetailPanel(RectTransform rootRt)
         {
+            var shield = UiFactory.Stretch("DetailShield", rootRt);
+            UiFactory.AddImage(shield, new Color(0,0,0,.8f));
+            detailShield=shield.gameObject; detailShield.SetActive(false);
             // QA 2026-10-05(720p): 긴 설명의 마지막 줄이 닫기 버튼과 겹쳤다 — 패널을 키우고 본문 상자를 버튼 위에서 끝내며,
             // 본문 24(08:49)를 유지하려고 패널을 넓히고 빈 줄을 없앴다. 그래도 넘치면 잘라서 버튼 영역을 침범하지 않는다.
             var rt = UiFactory.Place("Detail", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, -60f),
@@ -643,7 +653,15 @@ namespace CCT
                 new Vector2(DetailPanelWidth - 80f, DetailPanelHeight - DetailBodyTop - DetailCloseReserved)), "",
                 MinBodyFontSize, TextAnchor.MiddleCenter,
                 new Color(0.92f, 0.92f, 0.92f));
-            detailBody.verticalOverflow = VerticalWrapMode.Truncate; // 08:49 본문 24 고정 — 줄이지 않고, 상자 밖으로도 그리지 않는다
+            var scrollArea = UiFactory.Place("DetailScroll", rt, new Vector2(.5f,1),new Vector2(0,-DetailBodyTop),new Vector2(DetailPanelWidth-80,DetailPanelHeight-DetailBodyTop-DetailCloseReserved));
+            UiFactory.AddImage(scrollArea,new Color(0,0,0,.1f));
+            var viewport = UiFactory.Stretch("Viewport",scrollArea); viewport.gameObject.AddComponent<RectMask2D>();
+            detailBody.rectTransform.SetParent(viewport,false);
+            detailBody.rectTransform.anchorMin = detailBody.rectTransform.anchorMax = detailBody.rectTransform.pivot = new Vector2(.5f,1);
+            detailBody.rectTransform.anchoredPosition = Vector2.zero;
+            detailBody.alignment = TextAnchor.UpperLeft; detailBody.supportRichText=false;
+            detailScroll = scrollArea.gameObject.AddComponent<ScrollRect>(); detailScroll.content=detailBody.rectTransform;detailScroll.viewport=viewport;detailScroll.horizontal=false;detailScroll.scrollSensitivity=40;detailScroll.movementType=ScrollRect.MovementType.Clamped;
+
             var closeRt = UiFactory.Place("Close", rt, new Vector2(0.5f, 0f), new Vector2(0f, 30f), new Vector2(260f, 70f));
             var closeBg = UiFactory.AddImage(closeRt, new Color(0.3f, 0.32f, 0.36f));
             detailClose = closeRt.gameObject.AddComponent<Button>();
@@ -654,8 +672,8 @@ namespace CCT
             detailRoot.SetActive(false);
         }
 
-        const float DetailPanelWidth = 1100f;
-        const float DetailPanelHeight = 520f;
+        const float DetailPanelWidth = 1500f;
+        const float DetailPanelHeight = 780f;
         /// <summary>본문 상자 위쪽 여백(제목 아래)과, 아래쪽에 닫기 버튼(30+70)과 간격 20을 위해 비워 두는 높이.</summary>
         const float DetailBodyTop = 80f;
         const float DetailCloseReserved = 120f;
@@ -665,7 +683,13 @@ namespace CCT
             detailTitle.text = title;
             detailBody.text = body;
             detailRoot.SetActive(true);
+            detailShield.SetActive(true);
+            detailShield.transform.SetAsLastSibling();
             detailRoot.transform.SetAsLastSibling();
+            Canvas.ForceUpdateCanvases();
+            detailBody.rectTransform.sizeDelta=new Vector2(DetailPanelWidth-80,Mathf.Max(580,detailBody.preferredHeight+24));
+            detailScroll.verticalNormalizedPosition=1;
+            detailClose.navigation=new Navigation {mode=Navigation.Mode.None};
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(detailClose.gameObject);
         }
 
@@ -673,6 +697,7 @@ namespace CCT
         {
             if (detailRoot == null || !detailRoot.activeSelf) return;
             detailRoot.SetActive(false);
+            detailShield.SetActive(false);
             if (EventSystem.current != null && detailReturnFocus != null)
                 EventSystem.current.SetSelectedGameObject(detailReturnFocus);
         }
@@ -693,7 +718,7 @@ namespace CCT
                 return;
             }
             ShowDetail($"{card.displayName}  ({RarityTable.Label(card.rarity)})",
-                $"{category} 카드\n{card.description}\n최대 중첩 {card.maxStacks}\n{(AttackFinalForms.ForCard(card.id).HasValue ? AttackFinalForms.Description(AttackFinalForms.ForCard(card.id).Value) : "")}\n{card.flavorText}");
+                CardEducationData.Detail(card));
         }
 
         void ShowPermanentDetail(PermanentSkillData skill)
@@ -709,6 +734,18 @@ namespace CCT
             string prereq = skill.prerequisite != null ? skill.prerequisite.displayName : "없음";
             ShowDetail(skill.displayName + " / " + JobStudyTheme.Name(skill, Job.TeaSommelier),
                 $"직업 연구 · {SkillData.BranchLabel(skill.branch)} {skill.tier}단계 · 선행 {prereq}\n{skill.description}\n연구 효과는 이번 런 동안 적용됩니다.\n{(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}");
+        }
+
+        void Update()
+        {
+            if (!IsDetailOpen) return;
+            var kb=UnityEngine.InputSystem.Keyboard.current;
+            var pad=UnityEngine.InputSystem.Gamepad.current;
+            float direction=kb!=null && (kb.downArrowKey.isPressed || kb.pageDownKey.isPressed)?-1:
+                kb!=null && (kb.upArrowKey.isPressed || kb.pageUpKey.isPressed)?1:0;
+            if(pad!=null)direction+=pad.rightStick.ReadValue().y;
+            float overflow=detailScroll.content.rect.height-detailScroll.viewport.rect.height;
+            if(overflow>0)detailScroll.verticalNormalizedPosition+=direction*600*Time.unscaledDeltaTime/overflow;
         }
     }
 }
