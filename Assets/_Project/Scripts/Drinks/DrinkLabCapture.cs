@@ -61,6 +61,9 @@ namespace CCT
                 var rect = t.rectTransform.rect;
                 if (t.preferredHeight > rect.height + 1.5f && t.verticalOverflow == VerticalWrapMode.Overflow)
                     overflow.Add($"{label}: {HierPath(t.transform)} pref={t.preferredHeight:0} box={rect.height:0} '{t.text.Replace("\n", "⏎").Substring(0, Math.Min(60, t.text.Length))}'");
+                // 잘림(Truncate) 상자가 한 줄보다 낮으면 글이 통째로 사라진다(보이지 않는 제목) — 따로 잡는다.
+                if (t.verticalOverflow == VerticalWrapMode.Truncate && !t.resizeTextForBestFit && rect.height < t.fontSize * 1.25f)
+                    overflow.Add($"{label}: HIDDEN {HierPath(t.transform)} box={rect.height:0} font={t.fontSize} '{t.text.Replace("\n", "⏎").Substring(0, Math.Min(40, t.text.Length))}'");
                 if (t.canvas != null) minFontPx = Mathf.Min(minFontPx, Mathf.RoundToInt(t.fontSize * t.canvas.scaleFactor));
             }
         }
@@ -295,6 +298,18 @@ namespace CCT
                 CheckOverlap(label, lab.transform);
                 CheckReach(label, lab.transform);
                 yield return Shot(label, lab.transform);
+                if (lab.Narrow && lab.CurrentTab == DrinkLabView.Tab.Craft)
+                {
+                    // 좁은 창: 같은 상태를 영수증 서랍을 펼쳐 한 번 더(영수증 글·버튼 검사)
+                    lab.SetReceiptOpen(true);
+                    yield return null;
+                    Canvas.ForceUpdateCanvases();
+                    CheckOverlap(label + "_receipt", lab.transform);
+                    CheckReach(label + "_receipt", lab.transform);
+                    yield return Shot(label + "_receipt", lab.transform);
+                    lab.SetReceiptOpen(false);
+                    yield return null;
+                }
             }
             // 레시피 탭: 비어 있음(첫 저장 전)
             lab.SetTab(DrinkLabView.Tab.Recipes); yield return Wait(0.4f);
@@ -402,9 +417,12 @@ namespace CCT
         {
             var screen = new Rect(0, 0, Screen.width, Screen.height);
             int bad = 0, checkedN = 0, small = 0;
+            var labView = root.GetComponentInParent<DrinkLabView>() ?? root.GetComponentInChildren<DrinkLabView>();
             foreach (var b in root.GetComponentsInChildren<Button>(false))
             {
                 if (!b.isActiveAndEnabled) continue;
+                // 좁은 창의 접힌 영수증 서랍(화면 밖)은 여닫기 버튼으로 도달 — 펼친 상태 캡처에서 따로 검사한다.
+                if (labView != null && labView.Narrow && !labView.ReceiptOpen && HierPath(b.transform).Contains("/MixPanel/")) continue;
                 var rt = (RectTransform)b.transform;
                 var c = new Vector3[4]; rt.GetWorldCorners(c);
                 var r = Rect.MinMaxRect(c[0].x, c[0].y, c[2].x, c[2].y);
@@ -594,7 +612,7 @@ namespace CCT
             var lab = select.DrinkLabScreen;
             var stage = lab.Stage;
             var inv = System.Globalization.CultureInfo.InvariantCulture;
-            var csv = new System.Text.StringBuilder("seq,frame,time,phase,current,bottleTilt,toolTilt,bottleMl,airToMeasureMl,measureMl,airToVesselMl,vesselMl,airToServeMl,serveMl,kettleMl,componentTotalMl,ledgerLiquidMl,tinG,chahaG,potLeafG,dissolvedG,solidsG,teaStrength,dtMs,stream,streamEmitting,dump,dumpEmitting,jiggerViewMl,vesselViewMl,serveViewMl,serveSurface01,serveHeadspaceMl,spoonOn,spoonTipX,spoonTipY,spoonAboveFloorPx,spoonOutside,spoonLeftClearPx,spoonRightClearPx,spoonMinX,spoonMaxX,toolLipX,toolLipY,serveLipX,serveLipY,jiggerColor,vesselTopColor,vesselBottomColor,vesselLayers,serveTopColor,streamColor,dumpColor\n");
+            var csv = new System.Text.StringBuilder("seq,frame,time,phase,current,bottleTilt,toolTilt,bottleMl,airToMeasureMl,measureMl,airToVesselMl,vesselMl,airToServeMl,serveMl,kettleMl,componentTotalMl,ledgerLiquidMl,tinG,chahaG,potLeafG,dissolvedG,solidsG,teaStrength,dtMs,stream,streamEmitting,dump,dumpEmitting,jiggerViewMl,vesselViewMl,serveViewMl,serveSurface01,serveHeadspaceMl,spoonOn,spoonTipX,spoonTipY,spoonAboveFloorPx,spoonOutside,spoonLeftClearPx,spoonRightClearPx,spoonMinX,spoonMaxX,toolLipX,toolLipY,serveLipX,serveLipY,jiggerColor,vesselTopColor,vesselBottomColor,vesselLayers,serveTopColor,streamColor,dumpColor,lidOpen,stageLabel,camX,camTarget,vesselX,serveX\n");
             var framesDir = System.IO.Path.Combine(output, "frames");
             Directory.CreateDirectory(framesDir);
             float start = Time.realtimeSinceStartup, nextShot = 0f;
@@ -622,7 +640,8 @@ namespace CCT
                     spoonOn, F(sp.tip.x), F(sp.tip.y), F(sp.tipAboveFloorPx), sp.outsidePixels, F(sp.leftClearPx), F(sp.rightClearPx), F(sp.minX), F(sp.maxX),
                     F(stage.TransferGeometry.lip.x), F(stage.TransferGeometry.lip.y), F(stage.ServeGeometry.lip.x), F(stage.ServeGeometry.lip.y),
                     Hex(stage.Jigger.TopColor), Hex(stage.MainVessel != null ? stage.MainVessel.TopColor : Color.clear), Hex(stage.MainVessel != null ? stage.MainVessel.BottomColor : Color.clear), stage.MainVessel != null ? stage.MainVessel.LayerCount : 0,
-                    Hex(serveV != null && serveV.gameObject.activeSelf ? serveV.TopColor : Color.clear), stage.StreamVisible ? Hex(stage.StreamColor) : "", stage.DumpStreamVisible ? Hex(stage.DumpStreamColor) : "") + "\n");
+                    Hex(serveV != null && serveV.gameObject.activeSelf ? serveV.TopColor : Color.clear), stage.StreamVisible ? Hex(stage.StreamColor) : "", stage.DumpStreamVisible ? Hex(stage.DumpStreamColor) : "", F(stage.LidOpen01), stage.FinishText.Replace(",", " "), F(stage.CameraX), F(stage.CameraTarget),
+                    F(stage.MainVessel != null ? stage.MainVessel.Rect.anchoredPosition.x : 0), F(serveV != null && serveV.gameObject.activeSelf ? serveV.Rect.anchoredPosition.x : 0)) + "\n");
             }
             IEnumerator Frame()
             {
@@ -737,6 +756,13 @@ namespace CCT
                 notes.Add($"ICE {tag}: ice={v.IceCount} liquidLedger={liquid:0.000} liquidView={v.VolumeMl:0.000} surface01={v.Level01:0.000} submerged={(s != null ? s.SubmergedIceVolume : 0):0.00} free={(s != null ? s.FreeVolumeMl : v.CapacityMl - v.VolumeMl):0.0} cap={v.CapacityMl} fillPct={(v.CapacityMl - (s != null ? s.FreeVolumeMl : v.CapacityMl - v.VolumeMl)) / v.CapacityMl * 100:0.0} cubes=" +
                           (s != null ? string.Join(";", s.Cubes.Select(c => $"{c.Support}@{c.Bottom01:0.000}-{c.Top01:0.000}")) : ""));
                 yield return Shot("I_" + tag, null);
+                if (gin > 0)
+                {
+                    // 같은 잔을 침강이 끝난 뒤(무거운 그레나딘이 바닥) 한 번 더: 수위·얼음 위치는 층 배치와 무관하게 같아야 한다.
+                    yield return Wait(5.5f);
+                    notes.Add($"ICE {tag}_settled: liquidLedger={stage.Ledger[DrinkStageView.LedgerVessel].LiquidMl:0.000} liquidView={v.VolumeMl:0.000} surface01={v.Level01:0.000} free={(v.IceSolution != null ? v.IceSolution.FreeVolumeMl : v.CapacityMl - v.VolumeMl):0.0} bottom={Hex(v.BottomColor)} top={Hex(v.TopColor)}");
+                    yield return Shot("I_" + tag + "_settled", null);
+                }
             }
 
             File.WriteAllText(System.IO.Path.Combine(output, "report.json"), JsonUtility.ToJson(new Report
@@ -778,7 +804,7 @@ namespace CCT
                     mLip.rectTransform.anchoredPosition = g.lip; mMouth.rectTransform.anchoredPosition = g.mouth; mEnd.rectTransform.anchoredPosition = g.streamEnd;
                     mEnd.gameObject.SetActive(stage.StreamVisible);
                     foreach (var m in new[] { mLip, mMouth, mEnd }) m.transform.SetAsLastSibling();
-                    var streamRt = stage.transform.Find("Stream") as RectTransform;
+                    var streamRt = stage.transform.Find("Scene/Stream") as RectTransform;
                     notes.Add($"REF {id} tilt={tilt:0} rot={g.rotation:0.0} pivot=({g.pivot.x:0.00},{g.pivot.y:0.00}) lip=({g.lip.x:0.0},{g.lip.y:0.0}) mouth=({g.mouth.x:0.0},{g.mouth.y:0.0}) " +
                               $"flow={stage.StreamVisible} streamTop=({streamRt.anchoredPosition.x:0.0},{streamRt.anchoredPosition.y:0.0}) streamLen={streamRt.sizeDelta.y:0.0} width={streamRt.sizeDelta.x:0.0} streamRot={streamRt.localEulerAngles.z:0.0} " +
                               $"color={Hex(stage.StreamColor)} jiggerMl={stage.Jigger.VolumeMl:0.0} jiggerColor={Hex(stage.Jigger.TopColor)}");
@@ -793,6 +819,360 @@ namespace CCT
             {
                 screen = $"{Screen.width}x{Screen.height}", touchUi = MobilePlatform.IsTouchUI, shots = shots, overflow = overflow, notes = notes,
                 minFontPx = minFontPx == int.MaxValue ? 0 : minFontPx, placeholderArtUsed = stage.Placeholders, version = Application.version,
+            }, true));
+            yield return Wait(0.5f);
+            Application.Quit();
+        }
+
+        /// <summary>
+        /// 72·73 단계3/4 실제 화면 증거(격리 저장 QA 전용 준비: 코인·RP를 직접 넣는다): 셰이킹·빌드·레이어링 제조 카메라 연속 프레임,
+        /// 주문·판매 탭(조건 미충족 → 기준 배합 제조 → 판매 → 외형 구매·장착), 연구 노트북 열기 프레임·숙련 트리·직원 채용·기존 강화·닫기.
+        /// </summary>
+        IEnumerator ProgressEvidence()
+        {
+            foreach (var tv in UnityEngine.Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None)) Destroy(tv.gameObject);
+            GameBootstrap.RestartToSelect();
+            yield return Wait(0.5f);
+            var select = Find<CharacterSelectView>();
+            yield return Shot("P00_select_laptop_button", select.transform);
+            select.DrinkLabButton.onClick.Invoke();
+            yield return Wait(0.6f);
+            var lab = select.DrinkLabScreen;
+            var stage = lab.Stage;
+            var framesDir = System.IO.Path.Combine(output, "frames");
+            Directory.CreateDirectory(framesDir);
+            var inv = System.Globalization.CultureInfo.InvariantCulture;
+            var csv = new System.Text.StringBuilder("seq,frame,time,camX,camTarget,finalX,label\n");
+            // ── 제조 카메라: 셰이킹·빌드·레이어링(모션 보기) ──
+            foreach (var (tech, tag) in new[] { (DrinkTechnique.Shake, "shake"), (DrinkTechnique.Build, "build"), (DrinkTechnique.Layer, "layer") })
+            {
+                var r = Mix(DrinkKind.Cocktail, tech, "카메라 " + tag, ("gin", 300), ("grenadine", 100), ("blue_curacao", 50));
+                r.ice = tech == DrinkTechnique.Shake ? 2 : 1;
+                Load(lab, r);
+                yield return Wait(0.8f);
+                bool done = false;
+                stage.PlayCraft(lab.Draft, false, () => done = true);
+                float s0 = Time.realtimeSinceStartup, next = 0f, doneAt = -1f;
+                int n = 0;
+                while (Time.realtimeSinceStartup - s0 < 25f)
+                {
+                    float now = Time.realtimeSinceStartup - s0;
+                    if (done && doneAt < 0f) doneAt = now;
+                    if (doneAt >= 0f && now - doneAt > 1.2f) break; // 완성 뒤 카메라가 완성 잔으로 자리 잡는 구간까지
+                    string file = "";
+                    if (now >= next) { next = now + 0.1f; file = $"{tag}_{n++:000}"; ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(framesDir, file + ".png")); }
+                    var fv = stage.FinalVessel;
+                    csv.Append(string.Join(",", tag, file, now.ToString("0.000", inv), stage.CameraX.ToString("0.0", inv), stage.CameraTarget.ToString("0.0", inv),
+                        (fv != null && done ? fv.Rect.anchoredPosition.x : 0f).ToString("0.0", inv), stage.FinishText.Replace(",", " "))).Append('\n');
+                    yield return null;
+                }
+                yield return Wait(0.3f);
+                notes.Add($"CAMERA {tag}: camX={stage.CameraX:0.0} final={stage.FinalVessel.Rect.anchoredPosition.x:0.0} vessel={stage.MainVessel.AssetId}");
+                yield return Shot($"P1_{tag}_final_centered", lab.transform);
+            }
+            File.WriteAllText(System.IO.Path.Combine(output, "camera.csv"), csv.ToString());
+
+            // ── 주문·판매 ──
+            lab.SetTab(DrinkLabView.Tab.Orders); yield return Wait(0.4f);
+            yield return Shot("P20_orders_no_prepared", lab.transform);
+            var order0 = DrinkLab.Orders[0];
+            var cr = DrinkLab.Craft(DrinkSales.Reference(order0));
+            notes.Add($"ORDERS craft reference of order0 ({DrinkSales.Describe(order0)}): {cr.Status} price={DrinkSales.Price(order0, DrinkLab.Prepared != null ? DrinkLab.Prepared.recipe : null)}");
+            lab.SetTab(DrinkLabView.Tab.Orders); yield return Wait(0.4f);
+            yield return Shot("P21_orders_prepared_matches_order1", lab.transform);
+            Btn("Sell")?.onClick.Invoke(); yield return Wait(0.4f);
+            notes.Add($"ORDERS after sell: coins={DrinkLab.Coins} prepared={(DrinkLab.Prepared != null)} order0={DrinkLab.Orders[0].id}");
+            yield return Shot("P22_orders_sold_coins", lab.transform);
+            DrinkLab.Data.coins = 2600; // QA 격리 저장 준비(구매 화면 상태 확인용)
+            lab.SetTab(DrinkLabView.Tab.Orders); yield return Wait(0.4f);
+            var ordersScroll = lab.transform.GetComponentsInChildren<ScrollRect>().FirstOrDefault(s => s.name == "OrdersList");
+            if (ordersScroll != null) { ordersScroll.verticalNormalizedPosition = 0f; yield return Wait(0.3f); }
+            yield return Shot("P23_shop_can_buy", lab.transform);
+            GameObject.Find("Cosmetic_" + DrinkSales.CafeMap + "/Buy")?.GetComponent<Button>().onClick.Invoke();
+            yield return Wait(0.4f);
+            GameObject.Find("Cosmetic_" + DrinkSales.CafeMap + "/EquipCosmetic")?.GetComponent<Button>().onClick.Invoke();
+            yield return Wait(0.4f);
+            ordersScroll = lab.transform.GetComponentsInChildren<ScrollRect>().FirstOrDefault(s => s.name == "OrdersList");
+            if (ordersScroll != null) { ordersScroll.verticalNormalizedPosition = 0f; yield return Wait(0.3f); }
+            notes.Add($"SHOP: coins={DrinkLab.Coins} coinOwned={string.Join("|", DrinkLab.Data.coinOwned)} map={DrinkLab.EquippedMap}");
+            CheckOverlap("P24", lab.transform); CheckReach("P24", lab.transform);
+            yield return Shot("P24_shop_map_bought_equipped", lab.transform);
+
+            // ── 레시피 서랍(실제 종이 서류) ──
+            for (int i = 0; i < 12; i++)
+            {
+                var rr = Mix(i % 3 == 2 ? DrinkKind.Tea : DrinkKind.Cocktail, i % 3 == 2 ? DrinkTechnique.Steep : (DrinkTechnique)(1 + i % 4), i == 3 ? "긴 이름 저녁 칵테일 시험용 한잔" : "서랍 레시피 " + (i + 1),
+                    i % 3 == 2 ? new[] { ("black_tea", 20 + i), ("honey", 50) } : new[] { ("gin", 200 + i * 10), ("blue_curacao", 30) });
+                if (i == 1)
+                {
+                    // 2번 종이 = 최대 배합(재료 6종 + 물·얼음)·긴 이름: 펼친 종이 본문이 잘리지 않고 스크롤되는지
+                    rr = Mix(DrinkKind.Cocktail, DrinkTechnique.Layer, "열여섯글자레시피이름입니다", ("gin", 300), ("rum", 200), ("blue_curacao", 150), ("grenadine", 150), ("lemon_juice", 200), ("honey", 150));
+                    rr.water = 50; rr.ice = 4;
+                }
+                bool saved = DrinkLab.SaveRecipe(rr, -1, out var saveErr);
+                if (!saved) notes.Add($"DRAWER seed {i} not saved: {saveErr}");
+            }
+            lab.SetTab(DrinkLabView.Tab.Recipes); yield return Wait(0.4f);
+            CheckOverlap("P40", lab.transform); CheckReach("P40", lab.transform);
+            yield return Shot("P40_drawer_closed", lab.transform);
+            var dv = lab.Drawer;
+            notes.Add("DRAWER click front: " + ClickAt(dv.FrontHitbox, new Vector2(0.5f, 0.5f)));
+            int df = 0;
+            while (dv.State == RecipeDrawerView.Phase.Opening && df < 60) { ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(framesDir, $"drawer_open_{df++:00}.png")); yield return null; }
+            yield return Wait(0.2f);
+            yield return Shot("P41_drawer_open_page1", lab.transform);
+            var p1rt = GameObject.Find("Paper_1")?.GetComponent<RectTransform>();
+            if (p1rt != null) notes.Add("DRAWER click paper1 strip: " + ClickAt(p1rt, new Vector2((110f - 103f) / 258f, 1f - (140f - 106f) / 112f)) + " selected=" + dv.Selected);
+            yield return Wait(0.2f);
+            yield return Shot("P42_drawer_paper_selected", lab.transform);
+            var selRt = GameObject.Find("Paper_1")?.GetComponent<RectTransform>();
+            if (selRt != null) notes.Add("DRAWER click selected paper again: " + ClickAt(selRt, new Vector2(0.5f, 0.85f)));
+            df = 0;
+            while (dv.State == RecipeDrawerView.Phase.Pulling && df < 80) { ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(framesDir, $"drawer_pull_{df++:00}.png")); yield return null; }
+            yield return Wait(0.2f);
+            CheckOverlap("P43", lab.transform); CheckReach("P43", lab.transform);
+            yield return Shot("P43_drawer_sheet_unfolded", lab.transform);
+            dv.ReturnSheet();
+            df = 0;
+            while (dv.State == RecipeDrawerView.Phase.Returning && df < 80) { ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(framesDir, $"drawer_return_{df++:00}.png")); yield return null; }
+            yield return Wait(0.2f);
+            GameObject.Find("Divider_2")?.GetComponent<Button>().onClick.Invoke(); yield return Wait(0.3f);
+            yield return Shot("P44_drawer_page3", lab.transform);
+            notes.Add($"DRAWER: recipes={DrinkLab.Recipes.Count} pages={dv.PageCount} scale={dv.Scale} state={dv.State}");
+            lab.Close();
+            yield return Wait(0.6f);
+
+            // ── 연구 노트북(손 없음) ──
+            DrinkLab.Data.research.researchPoints = 40; // QA 격리 저장 준비
+            select = Find<CharacterSelectView>();
+            if (select != null && select.LaptopButton != null) select.LaptopButton.onClick.Invoke(); else ResearchLaptopView.Show(() => { });
+            float l0 = Time.realtimeSinceStartup;
+            int lf = 0;
+            yield return null;
+            while (ResearchLaptopView.Current != null && ResearchLaptopView.Current.State == ResearchLaptopView.Phase.Opening && Time.realtimeSinceStartup - l0 < 3f)
+            {
+                ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(framesDir, $"laptop_open_{lf++:00}.png"));
+                yield return null;
+            }
+            notes.Add($"LAPTOP open took {Time.realtimeSinceStartup - l0:0.000}s frames={lf}");
+            var lap = ResearchLaptopView.Current;
+            yield return Wait(0.2f);
+            yield return Shot("P30_laptop_mastery_start", lap.transform);
+            Btn("Unlock")?.onClick.Invoke(); yield return Wait(0.2f);
+            Btn("Equip")?.onClick.Invoke(); yield return Wait(0.2f);
+            Btn("Node_service_2")?.onClick.Invoke(); yield return Wait(0.2f);
+            Btn("Unlock")?.onClick.Invoke(); yield return Wait(0.2f);
+            yield return Shot("P31_laptop_mastery_unlocked_equipped", lap.transform);
+            Btn("Branch_stability")?.onClick.Invoke(); yield return Wait(0.2f);
+            yield return Shot("P32_laptop_branch_stability", lap.transform);
+            lap.SetTab(ResearchLaptopView.Tab.Staff); yield return Wait(0.3f);
+            Btn("Staff_staff_tea_aroma")?.onClick.Invoke(); yield return Wait(0.2f);
+            yield return Shot("P33_laptop_staff_preview", lap.transform);
+            Btn("Hire")?.onClick.Invoke(); yield return Wait(0.2f);
+            Btn("Specialty")?.onClick.Invoke(); yield return Wait(0.2f);
+            yield return Shot("P34_laptop_staff_hired_active", lap.transform);
+            Btn("Staff_staff_cocktail_blend")?.onClick.Invoke(); yield return Wait(0.2f);
+            yield return Shot("P35_laptop_staff_locked_condition", lap.transform);
+            lap.SetTab(ResearchLaptopView.Tab.Upgrades); yield return Wait(0.3f);
+            CheckOverlap("P36", lap.transform); CheckReach("P36", lap.transform);
+            yield return Shot("P36_laptop_existing_upgrades", lap.transform);
+            lap.Close();
+            lf = 0;
+            while (ResearchLaptopView.Current != null && lf < 60)
+            {
+                ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(framesDir, $"laptop_close_{lf++:00}.png"));
+                yield return null;
+            }
+            yield return Wait(0.5f);
+            var r2 = DrinkLab.Research;
+            notes.Add($"RESEARCH: rp={r2.researchPoints} unlocked={string.Join("|", r2.unlockedTraits)} equipped={string.Join("|", r2.equippedTraits)} hired={string.Join("|", r2.hiredStaff)} active={r2.activeSpecialty}");
+            var sel = Find<CharacterSelectView>();
+            yield return Shot("P37_select_after_laptop", sel != null ? sel.transform : null);
+            File.WriteAllText(System.IO.Path.Combine(output, "report.json"), JsonUtility.ToJson(new Report
+            {
+                screen = $"{Screen.width}x{Screen.height}", touchUi = MobilePlatform.IsTouchUI, shots = shots, overflow = overflow, notes = notes,
+                minFontPx = minFontPx == int.MaxValue ? 0 : minFontPx, placeholderArtUsed = false, version = Application.version,
+            }, true));
+            yield return Wait(0.5f);
+            Application.Quit();
+        }
+
+        /// <summary>실제 EventSystem 레이캐스트 클릭(가림·히트 영역 검증). 맞은 맨 위 대상 이름을 돌려준다.</summary>
+        string ClickAt(RectTransform rt, Vector2 normalized)
+        {
+            var c = new Vector3[4];
+            rt.GetWorldCorners(c);
+            var w = Vector3.Lerp(Vector3.Lerp(c[0], c[3], normalized.x), Vector3.Lerp(c[1], c[2], normalized.x), normalized.y);
+            var screen = RectTransformUtility.WorldToScreenPoint(null, w);
+            var es = UnityEngine.EventSystems.EventSystem.current;
+            if (es == null) return "(no EventSystem)";
+            var ped = new UnityEngine.EventSystems.PointerEventData(es) { position = screen };
+            var hits = new List<UnityEngine.EventSystems.RaycastResult>();
+            es.RaycastAll(ped, hits);
+            if (hits.Count == 0) return "(no hit)";
+            ped.pointerCurrentRaycast = ped.pointerPressRaycast = hits[0];
+            var target = UnityEngine.EventSystems.ExecuteEvents.GetEventHandler<UnityEngine.EventSystems.IPointerClickHandler>(hits[0].gameObject);
+            if (target != null) UnityEngine.EventSystems.ExecuteEvents.Execute(target, ped, UnityEngine.EventSystems.ExecuteEvents.pointerClickHandler);
+            return hits[0].gameObject.name;
+        }
+
+        /// <summary>노트북 배경(직업별 바/찻집) 실제 화면: 바텐더·티 소믈리에 각각 직업 선택 → 무기 단계 → 연구 노트북 열기·닫기 프레임 → 복귀 화면.</summary>
+        IEnumerator LaptopRoomEvidence()
+        {
+            foreach (var tv in UnityEngine.Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None)) Destroy(tv.gameObject);
+            var framesDir = System.IO.Path.Combine(output, "frames");
+            Directory.CreateDirectory(framesDir);
+            foreach (var (pick, tag) in new[] { (0, "bar"), (1, "tea") })
+            {
+                // 캡처가 만든 이전 선택 화면을 치우고 새로 시작(RestartToSelect는 이전 화면을 지우지 않는다 — 낡은 화면을 잡지 않게)
+                foreach (var old in UnityEngine.Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None)) Destroy(old.gameObject);
+                yield return null;
+                GameBootstrap.RestartToSelect();
+                yield return Wait(0.5f);
+                var all = UnityEngine.Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None);
+                var select = all.Length > 0 ? all[0] : null;
+                notes.Add($"LAPTOP {tag}: select views={all.Length}");
+                if (select.WeaponBackButton != null) { select.WeaponBackButton.onClick.Invoke(); yield return Wait(0.3f); } // 직업 선택 단계로
+                string jobHit = ClickAt((RectTransform)(pick == 0 ? select.BartenderButton : select.TeaSommelierButton).transform, new Vector2(0.5f, 0.5f));
+                notes.Add($"LAPTOP {tag}: job click {jobHit}");
+                yield return Wait(0.5f);
+                yield return Shot($"L0_{tag}_weapon_step_before", select.transform);
+                string hit = ClickAt((RectTransform)select.LaptopButton.transform, new Vector2(0.5f, 0.5f));
+                notes.Add($"LAPTOP {tag}: clicked {hit}");
+                int f = 0;
+                yield return null;
+                while (ResearchLaptopView.Current != null && ResearchLaptopView.Current.State == ResearchLaptopView.Phase.Opening && f < 80)
+                {
+                    ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(framesDir, $"{tag}_open_{f++:00}.png"));
+                    yield return null;
+                }
+                yield return Wait(0.2f);
+                var lapNow = ResearchLaptopView.Current;
+                var wallImg = lapNow != null ? lapNow.transform.Find("Root/RoomWall")?.GetComponent<Image>() : null;
+                var title = select != null ? select.transform.Find("Root/Title")?.GetComponentInChildren<Text>() : null;
+                notes.Add($"LAPTOP {tag}: weaponTitle='{(title != null ? title.text : "?")}' roomWall={(wallImg != null && wallImg.sprite != null ? wallImg.sprite.name : "none")} expected={(pick == 0 ? "dl_craft_bar_wall" : "dl_craft_tea_wall")}");
+                yield return Shot($"L1_{tag}_laptop_open", lapNow != null ? lapNow.transform : null);
+                ResearchLaptopView.Current?.Close();
+                f = 0;
+                while (ResearchLaptopView.Current != null && f < 80)
+                {
+                    ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(framesDir, $"{tag}_close_{f++:00}.png"));
+                    yield return null;
+                }
+                // 닫힌 직후 몇 프레임(검은 번쩍임 없는지)
+                for (int i = 0; i < 4; i++) { ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(framesDir, $"{tag}_after_{i:00}.png")); yield return null; }
+                yield return Wait(0.3f);
+                var back = Find<CharacterSelectView>();
+                notes.Add($"LAPTOP {tag}: returned select={(back != null)} weaponStep={(back != null && back.StartButton != null)} laptopOpen={(ResearchLaptopView.Current != null)}");
+                yield return Shot($"L2_{tag}_returned", back != null ? back.transform : null);
+            }
+            File.WriteAllText(System.IO.Path.Combine(output, "report.json"), JsonUtility.ToJson(new Report
+            {
+                screen = $"{Screen.width}x{Screen.height}", touchUi = MobilePlatform.IsTouchUI, shots = shots, overflow = overflow, notes = notes,
+                minFontPx = minFontPx == int.MaxValue ? 0 : minFontPx, placeholderArtUsed = false, version = Application.version,
+            }, true));
+            yield return Wait(0.5f);
+            Application.Quit();
+        }
+
+        /// <summary>
+        /// 72 실제 런 통합 증거(격리 저장 QA 준비: RP·코인만 직접 넣고 해금·장착·채용·제조는 실제 API/거래): 직업·무기 선택 화면에서 실제 출발 →
+        /// 숙련 스냅샷·한 잔의 집중·제조 전문 버프 → 실제 처치 처리기(일반 25·정예·중간 보스) 재료 묶음·HUD 알림 → 직접 타격 보정 → 사망 결과 화면(재료·RP) → 노트북 잔액.
+        /// </summary>
+        IEnumerator Run72Evidence()
+        {
+            foreach (var tv in UnityEngine.Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None)) Destroy(tv.gameObject);
+            // ── 서랍 끝 상태: 빈 서랍 / 30장(6칸) / 31번째 저장 거부 ──
+            GameBootstrap.RestartToSelect();
+            yield return Wait(0.5f);
+            var sel0 = Find<CharacterSelectView>();
+            sel0.DrinkLabButton.onClick.Invoke();
+            yield return Wait(0.6f);
+            var lab0 = sel0.DrinkLabScreen;
+            lab0.SetTab(DrinkLabView.Tab.Recipes); yield return Wait(0.3f);
+            ClickAt(lab0.Drawer.FrontHitbox, new Vector2(0.5f, 0.5f));
+            yield return Wait(0.7f);
+            CheckOverlap("D0", lab0.transform);
+            yield return Shot("D0_drawer_empty_open", lab0.transform);
+            for (int i = 0; i < 30; i++)
+                DrinkLab.SaveRecipe(Mix(i % 2 == 0 ? DrinkKind.Cocktail : DrinkKind.Tea, i % 2 == 0 ? DrinkTechnique.Build : DrinkTechnique.Steep, $"서류 {i + 1:00}",
+                    i % 2 == 0 ? new[] { ("gin", 100 + i * 10) } : new[] { ("green_tea", 10 + i) }), -1, out _);
+            bool extra = DrinkLab.SaveRecipe(Mix(DrinkKind.Cocktail, DrinkTechnique.Build, "31번째", ("gin", 100)), -1, out var extraErr);
+            notes.Add($"DRAWER30: saved={DrinkLab.Recipes.Count} 31st={(extra ? "saved?!" : "rejected: " + extraErr)}");
+            lab0.SetTab(DrinkLabView.Tab.Recipes); yield return Wait(0.6f);
+            GameObject.Find("Divider_5")?.GetComponent<Button>().onClick.Invoke();
+            yield return Wait(0.3f);
+            notes.Add($"DRAWER30: pages={lab0.Drawer.PageCount} page={lab0.Drawer.Page + 1} state={lab0.Drawer.State}");
+            CheckOverlap("D1", lab0.transform); CheckReach("D1", lab0.transform);
+            yield return Shot("D1_drawer_30_page6", lab0.transform);
+            lab0.Close();
+            yield return Wait(0.5f);
+            var r = DrinkLab.Data.research;
+            r.researchPoints = 60; // QA 격리 저장 준비
+            foreach (var id in new[] { "service_1", "finesse_1", "finesse_2", "finesse_3", "finesse_4", "stability_1", "stability_2", "stability_3" })
+                if (!DrinkLab.UnlockTrait(id, out var e)) notes.Add($"RUN72 unlock {id} failed: {e}");
+            foreach (var id in new[] { "service_1", "finesse_4", "stability_3" })
+                if (!DrinkLab.EquipTrait(id, out var e)) notes.Add($"RUN72 equip {id} failed: {e}");
+            DrinkLab.HireStaff("staff_cocktail_aroma", out _);
+            DrinkLab.SetSpecialty("staff_cocktail_aroma", out _);
+            var drink = Mix(DrinkKind.Cocktail, DrinkTechnique.Stir, "출발 스터링", ("gin", 300), ("rum", 150));
+            var craft = DrinkLab.Craft(drink);
+            var preview = DrinkCalculator.Buff(drink, "staff_cocktail_aroma");
+            notes.Add($"RUN72 craft={craft.Status} specialty={DrinkLab.Prepared?.specialtyId} previewAttack={preview[DrinkStat.Attack]:0.0000} plainAttack={DrinkCalculator.Buff(drink)[DrinkStat.Attack]:0.0000} rp={r.researchPoints} equipped={string.Join("|", r.equippedTraits)}");
+            foreach (var old in UnityEngine.Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None)) Destroy(old.gameObject);
+            yield return null;
+            GameBootstrap.RestartToSelect();
+            yield return Wait(0.5f);
+            var select = Find<CharacterSelectView>();
+            ClickAt((RectTransform)select.BartenderButton.transform, new Vector2(0.5f, 0.5f));
+            yield return Wait(0.4f);
+            yield return Shot("R0_weapon_step_prepared_drink", select.transform);
+            notes.Add("RUN72 start click: " + ClickAt((RectTransform)select.StartButton.transform, new Vector2(0.5f, 0.5f)));
+            float w0 = Time.realtimeSinceStartup;
+            while ((GameManager.Instance == null || GameManager.Instance.Player == null) && Time.realtimeSinceStartup - w0 < 10f) yield return null;
+            var game = GameManager.Instance;
+            if (game == null) { notes.Add("RUN72: run did not start"); yield break; }
+            yield return Wait(1.5f);
+            var buff = game.DrinkBuff;
+            notes.Add($"RUN72 run={game.RunId} traits={string.Join("|", game.MasteryTraits)} mastery={(game.Player.Mastery != null)} drinkAttack={(buff != null ? buff[DrinkStat.Attack] : -1):0.0000} expected={Mathf.Min(DrinkRules.Cap(DrinkStat.Attack), preview[DrinkStat.Attack] * 1.05f):0.0000} prepared={DrinkLab.Prepared?.state}");
+            yield return Shot("R1_run_start_hud", null);
+            // 실제 처치 처리기
+            for (int i = 0; i < 25; i++) game.OnEnemyKilled(game.Player.Position + Vector2.right * 2f, EnemyDef.Brute);
+            yield return Wait(0.4f);
+            notes.Add($"RUN72 after 25 normal: pending={DrinkLab.PendingFor(game.RunId).Count} toast='{game.DrinkHud?.ToastText}'");
+            yield return Shot("R2_normal25_supply_toast", null);
+            game.OnEnemyKilled(game.Player.Position + Vector2.right * 2f, EnemyDef.MartiniSpirit);
+            yield return Wait(0.3f);
+            float hpBefore = game.Player.Hp;
+            game.Player.TakeDamage(game.Player.MaxHp * 0.2f);
+            float hpHurt = game.Player.Hp;
+            game.OnEnemyKilled(game.Player.Position + Vector2.right * 3f, EnemyDef.GrinderGolem);
+            yield return Wait(0.6f);
+            var pend = DrinkLab.PendingFor(game.RunId);
+            notes.Add($"RUN72 awards={string.Join(" / ", pend.ConvertAll(a => a.awardId + ":" + DrinkLab.Describe(a.items)))}");
+            notes.Add($"RUN72 boss heal: hp {hpHurt:0.0} -> {game.Player.Hp:0.0} (max {game.Player.MaxHp:0.0}, 3% + mid-boss heal) before={hpBefore:0.0}");
+            yield return Shot("R3_boss_supply_toast", null);
+            // 직접 타격(첫 30초 첫 잔의 기세 +8%)
+            var enemy = Enemy.SpawnAt(game.Player.Position + Vector2.right * 1.5f, EnemyDef.Imp, 1f, game.Player, game.transform);
+            if (enemy != null)
+            {
+                game.Stats.drinkCritChance = 0f;
+                float dmg = game.Player.HiddenRuntime.ModifyDirectDamage(enemy, 10f);
+                notes.Add($"RUN72 direct hit 10 -> {dmg:0.00} at runTime {game.Player.Mastery.RunTime:0.0}s (service_1 opening +8%)");
+                Destroy(enemy.gameObject);
+            }
+            notes.Add($"RUN72 kills={game.Kills} rpKills={game.ResearchKills} mid={game.MidBossKills}");
+            game.MarkPlayerDiedForTests();
+            game.ResolveEndOfFrame();
+            yield return Wait(1.5f);
+            var s = game.DrinkSettlement;
+            notes.Add($"RUN72 settlement kind={s?.kind} drink={s?.drink} granted={(s != null ? DrinkLab.Describe(s.granted) : "")} rp=+{s?.researchPoints} total={DrinkLab.Research.researchPoints}");
+            notes.Add("RUN72 result line: " + ResultView.DrinkStatusLine(s).Replace("\n", " | "));
+            yield return Shot("R4_result_materials_rp", null);
+            File.WriteAllText(System.IO.Path.Combine(output, "report.json"), JsonUtility.ToJson(new Report
+            {
+                screen = $"{Screen.width}x{Screen.height}", touchUi = MobilePlatform.IsTouchUI, shots = shots, overflow = overflow, notes = notes,
+                minFontPx = minFontPx == int.MaxValue ? 0 : minFontPx, placeholderArtUsed = false, version = Application.version,
             }, true));
             yield return Wait(0.5f);
             Application.Quit();
@@ -819,6 +1199,21 @@ namespace CCT
             if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "stage1")
             {
                 yield return Stage1Evidence();
+                yield break;
+            }
+            if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "run72")
+            {
+                yield return Run72Evidence();
+                yield break;
+            }
+            if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "laptop")
+            {
+                yield return LaptopRoomEvidence();
+                yield break;
+            }
+            if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "progress")
+            {
+                yield return ProgressEvidence();
                 yield break;
             }
             if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "uifull")

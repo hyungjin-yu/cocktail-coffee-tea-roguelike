@@ -22,6 +22,7 @@ namespace CCT.Tests
             foreach (var v in UnityEngine.Object.FindObjectsByType<DrinkLabView>(FindObjectsSortMode.None)) UnityEngine.Object.DestroyImmediate(v.gameObject);
             foreach (var v in UnityEngine.Object.FindObjectsByType<DrinkRevealOverlay>(FindObjectsSortMode.None)) UnityEngine.Object.DestroyImmediate(v.gameObject);
             foreach (var v in UnityEngine.Object.FindObjectsByType<DrinkDepartDialog>(FindObjectsSortMode.None)) UnityEngine.Object.DestroyImmediate(v.gameObject);
+            foreach (var v in UnityEngine.Object.FindObjectsByType<ResearchLaptopView>(FindObjectsSortMode.None)) UnityEngine.Object.DestroyImmediate(v.gameObject);
             foreach (var v in UnityEngine.Object.FindObjectsByType<FirstRunTutorialView>(FindObjectsSortMode.None)) UnityEngine.Object.DestroyImmediate(v.transform.root.gameObject);
         }
 
@@ -46,6 +47,30 @@ namespace CCT.Tests
             yield return null;
             DrinkLab.SetPathForTests(null);
             try { Directory.Delete(dir, true); } catch { }
+        }
+
+        /// <summary>실제 EventSystem 레이캐스트로 맨 위 대상에 클릭을 보낸다(onClick 직접 호출이 아니라 가림·히트 영역까지 검증).</summary>
+        static GameObject ClickAt(Vector2 screen)
+        {
+            var es = EventSystem.current;
+            Assert.IsNotNull(es, "EventSystem");
+            var ped = new PointerEventData(es) { position = screen, button = PointerEventData.InputButton.Left };
+            var hits = new System.Collections.Generic.List<RaycastResult>();
+            es.RaycastAll(ped, hits);
+            Assert.Greater(hits.Count, 0, "레이캐스트 대상 없음 " + screen);
+            ped.pointerCurrentRaycast = ped.pointerPressRaycast = hits[0];
+            var target = ExecuteEvents.GetEventHandler<IPointerClickHandler>(hits[0].gameObject);
+            Assert.IsNotNull(target, "클릭 받는 대상 없음: " + hits[0].gameObject.name);
+            ExecuteEvents.Execute(target, ped, ExecuteEvents.pointerClickHandler);
+            return hits[0].gameObject;
+        }
+
+        static Vector2 ScreenOf(RectTransform rt, Vector2 normalized)
+        {
+            var c = new Vector3[4];
+            rt.GetWorldCorners(c);
+            var w = Vector3.Lerp(Vector3.Lerp(c[0], c[3], normalized.x), Vector3.Lerp(c[1], c[2], normalized.x), normalized.y);
+            return RectTransformUtility.WorldToScreenPoint(null, w);
         }
 
         static IEnumerator Until(Func<bool> cond, float timeout = 12f)
@@ -217,7 +242,7 @@ namespace CCT.Tests
             stage.Select(DrinkIngredients.Get("gin"));
             yield return null;
             var jiggerRt = stage.Jigger.Rect;
-            var stream = stage.transform.Find("Stream").GetComponent<RectTransform>();
+            var stream = stage.transform.Find("Scene/Stream").GetComponent<RectTransform>();
             stage.BeginPour(Vector2.zero);
             // 접근 중(이 병 잔량의 액면이 입구에 닿기 전): 흐르지 않는다
             float onset = stage.BottleOnset;
@@ -631,6 +656,60 @@ namespace CCT.Tests
             Assert.AreEqual(0.0, pot.LiquidMl, 1e-6, "완성 뒤 다관이 배합에서 다시 채워지지 않음");
             Assert.AreEqual(3.0, pot.LeafG + cup.DissolvedG, 1e-6, "완성 뒤에도 잎이 다시 생기지 않음");
         }
+
+        [UnityTest]
+        public IEnumerator TeaLid_OpensForLeavesAndWater_ClosedWhileSteepingAndPouring()
+        {
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            GameObject.Find("KindTea").GetComponent<Button>().onClick.Invoke();
+            yield return null;
+            var stage = lab.Stage;
+            Assert.AreEqual(0f, stage.LidOpen01, "분리 뚜껑 아트로 닫힌 다관에서 시작");
+            // 찻잎: 통 → 다하 → 다관. 다하가 붓기 시작할 때는 뚜껑이 이미 다 열려 있다.
+            stage.Select(DrinkIngredients.Get("black_tea"));
+            stage.BeginPour(Vector2.zero);
+            stage.SetTilt(DrinkStageView.TiltMax);
+            yield return Until(() => stage.InMeasure >= 20, 5f);
+            stage.StopPour();
+            bool pourSeen = false;
+            float tPour = 0f;
+            while ((stage.Transferring || stage.Ledger.HasInFlight()) && tPour < 10f)
+            {
+                if (stage.Phase == DrinkStageView.CyclePhase.ToolPour) { pourSeen = true; Assert.AreEqual(1f, stage.LidOpen01, "뚜껑을 다 연 뒤에만 붓는다"); }
+                tPour += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            Assert.IsTrue(pourSeen);
+            yield return Until(() => stage.LidOpen01 <= 0f, 3f); // 투입이 끝나면 다시 덮는다
+            // 제조: 물 붓기 동안 열림, 우림·찻잔 따르기는 닫힘. 양은 그대로 보존.
+            lab.SkipMotion = false;
+            lab.ConfirmCraft();
+            Assert.IsNotNull(DrinkLab.Prepared, lab.LastMessage);
+            var led = stage.Ledger;
+            bool openWhileWater = false;
+            double lastDissolved = 0;
+            float t = 0f;
+            while (stage.SequencePlaying && t < 20f)
+            {
+                if (led[DrinkStageView.LedgerKettle].LiquidMl < 149.9 && led[DrinkStageView.LedgerKettle].LiquidMl > 0.1) { openWhileWater = true; Assert.AreEqual(1f, stage.LidOpen01, "물을 붓는 동안 열린 입구"); }
+                if (led[DrinkStageView.LedgerServe].LiquidMl > 0.01) Assert.AreEqual(0f, stage.LidOpen01, "찻잔에 따를 때는 덮인 다관");
+                double dis = led[DrinkStageView.LedgerVessel].DissolvedG;
+                if (dis > lastDissolved + 1e-9)
+                {
+                    Assert.AreEqual(0f, stage.LidOpen01, "추출(우림)은 뚜껑이 완전히 닫힌 뒤에만");
+                    StringAssert.Contains("우림", stage.FinishText);
+                }
+                if (stage.LidOpen01 > 0f) StringAssert.DoesNotContain("우림", stage.FinishText, "뚜껑이 움직이는 동안 '우림' 문구 없음");
+                lastDissolved = Math.Max(lastDissolved, dis);
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            Assert.IsTrue(openWhileWater, "물 붓기 구간");
+            Assert.AreEqual(0f, stage.LidOpen01, "완성 = 덮인 다관");
+            Assert.AreEqual(150.0, led[DrinkStageView.LedgerServe].WaterMl, 1e-4);
+            Assert.AreEqual(lab.Draft.AmountOf("black_tea") / 10.0, led[DrinkStageView.LedgerVessel].LeafG + led[DrinkStageView.LedgerServe].DissolvedG + led[DrinkStageView.LedgerVessel].DissolvedG, 1e-6, "잎 + 추출분 보존");
+        }
         [UnityTest]
         public IEnumerator SourceBottle_LevelDrops_FullerBottleFlowsEarlier()
         {
@@ -657,6 +736,166 @@ namespace CCT.Tests
             Assert.AreEqual(DrinkStageView.BottleCapacityMl("gin"), bottle.CapacityMl, "잔량이 줄어도 용량 그대로");
             Assert.Greater(stage.BottleOnset, onset60, "잔량이 적을수록 더 기울여야 입구에 닿는다");
         }
+        [UnityTest]
+        public IEnumerator Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport()
+        {
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            var stage = lab.Stage;
+            yield return new WaitForSecondsRealtime(0.8f);
+            Assert.AreEqual((DrinkStageView.BottleRest.x + -30f) * 0.5f, stage.CameraX, 3f, "편집: 병·지거 가운데 구도");
+            lab.Draft.SetAmount("gin", 300);
+            lab.Draft.technique = (int)DrinkTechnique.Stir;
+            lab.RefreshForTests();
+            yield return null;
+            lab.SkipMotion = false;
+            lab.ConfirmCraft();
+            float half = ((RectTransform)stage.transform).rect.width * 0.5f;
+            float lastCam = stage.CameraX, maxStep = 0f, t = 0f;
+            bool sawPour = false;
+            while (stage.SequencePlaying && t < 20f)
+            {
+                maxStep = Mathf.Max(maxStep, Mathf.Abs(stage.CameraX - lastCam));
+                lastCam = stage.CameraX;
+                var serve = stage.ServeVessel;
+                if (serve != null && serve.gameObject.activeSelf && stage.Ledger.InFlightMl(DrinkStageView.LedgerServe) > 0.01)
+                {
+                    sawPour = true;
+                    float sx = serve.Rect.anchoredPosition.x - stage.CameraX;
+                    Assert.Less(Mathf.Abs(sx), half - 40f, "따르는 동안 받는 잔이 화면 안");
+                }
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            Assert.IsTrue(sawPour);
+            Assert.Less(maxStep, 40f, "카메라는 프레임마다 조금씩(순간 이동 없음)");
+            yield return new WaitForSecondsRealtime(1.0f);
+            var fin = stage.FinalVessel;
+            Assert.AreEqual(fin.Rect.anchoredPosition.x, stage.CameraX, 2f, "완성 잔이 제조대 가운데");
+            Assert.Greater(fin.Rect.anchoredPosition.x, DrinkStageView.VesselRest.x, "완성 잔은 공정 진행 방향(오른쪽) 끝");
+            // 다음 편집으로 돌아오면 출발 구도
+            lab.Draft.SetAmount("gin", 200);
+            lab.RefreshForTests();
+            yield return new WaitForSecondsRealtime(1.0f);
+            Assert.AreEqual((DrinkStageView.BottleRest.x + -30f) * 0.5f, stage.CameraX, 3f);
+        }
+
+        [UnityTest]
+        public IEnumerator RecipeDrawer_OpenPickPullReturnDelete_PagesAndIgnoresRapidReselect()
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                var r = DrinkRecipe.NewDraft(DrinkKind.Cocktail);
+                r.technique = (int)DrinkTechnique.Stir;
+                r.SetAmount("gin", 100 + i * 10);
+                r.name = "서류 " + i;
+                Assert.IsTrue(DrinkLab.SaveRecipe(r, -1, out var e), e);
+            }
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            lab.SetTab(DrinkLabView.Tab.Recipes);
+            yield return null;
+            var d = lab.Drawer;
+            Assert.IsNotNull(d);
+            Assert.AreEqual(RecipeDrawerView.Phase.Closed, d.State, "처음엔 닫힌 서랍");
+            Assert.AreEqual(2f, d.Scale, "정수 2배");
+            Assert.AreEqual(2, d.PageCount, "7장 = 5장씩 2칸");
+            yield return null;
+            // 실제 포인터 레이캐스트: 닫힌 서랍의 앞판 사각형을 누른다(투명 전체 그림이 아닌 앞판 히트박스)
+            var hitFront = ClickAt(ScreenOf(d.FrontHitbox, new Vector2(0.5f, 0.5f)));
+            Assert.AreEqual("FrontHitbox", hitFront.name);
+            yield return Until(() => d.State == RecipeDrawerView.Phase.Open, 2f);
+            // 앞 종이(2번)에 가려지지 않은 1번 종이의 왼쪽 띠(아트 x110, y140)를 실제로 누른다 — 투명 앞판 그림이 가로채지 않아야 한다
+            var p1 = GameObject.Find("Paper_1").GetComponent<RectTransform>();
+            var hitPaper = ClickAt(ScreenOf(p1, new Vector2((110f - 103f) / 258f, 1f - (140f - 106f) / 112f)));
+            Assert.IsTrue(hitPaper.transform == p1 || hitPaper.transform.IsChildOf(p1), "누른 곳의 맨 위 대상 = 1번 종이: " + hitPaper.name);
+            Assert.AreEqual(1, d.Selected, "한 번 누르면 고르기(살짝 올라옴)");
+            GameObject.Find("Paper_1").GetComponent<Button>().onClick.Invoke();
+            yield return null;
+            Assert.AreEqual(RecipeDrawerView.Phase.Pulling, d.State);
+            var other = GameObject.Find("Paper_2");
+            if (other != null) other.GetComponent<Button>().onClick.Invoke(); // 모션 중 다른 종이 = 무시(건너뛰기)
+            yield return Until(() => d.State == RecipeDrawerView.Phase.Sheet, 2f);
+            Assert.AreEqual(1, d.Selected, "빠른 다른 선택 무시");
+            Assert.IsNotNull(d.PulledSheet.Find("SheetContent/Use"), "펼친 종이 위 실제 버튼");
+            StringAssert.Contains("서류 1", d.PulledSheet.Find("SheetContent/SheetTitle").GetComponent<Text>().text);
+            d.PulledSheet.Find("SheetContent/PutBack").GetComponent<Button>().onClick.Invoke();
+            yield return Until(() => d.State == RecipeDrawerView.Phase.Open, 2f);
+            Assert.AreEqual("Stack", GameObject.Find("Paper_1").transform.parent.name, "원래 칸으로 다시 꽂힘");
+            GameObject.Find("Paper_0").GetComponent<Button>().onClick.Invoke();
+            GameObject.Find("Paper_0").GetComponent<Button>().onClick.Invoke();
+            yield return Until(() => d.State == RecipeDrawerView.Phase.Sheet, 2f);
+            d.PulledSheet.Find("SheetContent/Delete").GetComponent<Button>().onClick.Invoke();
+            yield return null;
+            Assert.AreEqual(6, DrinkLab.Recipes.Count);
+            d = lab.Drawer;
+            Assert.AreEqual(RecipeDrawerView.Phase.Open, d.State, "삭제 뒤에도 서랍은 열린 채");
+            d.ToggleDrawer();
+            d.SkipMotion();
+            yield return Until(() => d.State == RecipeDrawerView.Phase.Closed, 1f);
+        }
+
+        // ───── 72 연구 노트북 ─────
+
+        [UnityTest]
+        public IEnumerator Laptop_OpensWithoutHands_InputBlockedDuringMotion_UnlockEquipHireOnce_Closes()
+        {
+            foreach (var v in UnityEngine.Object.FindObjectsByType<ResearchLaptopView>(FindObjectsSortMode.None)) UnityEngine.Object.DestroyImmediate(v.gameObject);
+            Assert.AreEqual(10, DrinkLab.Research.researchPoints, "첫 지급");
+            bool closed = false;
+            var lap = ResearchLaptopView.Show(() => closed = true);
+            yield return null;
+            Assert.AreEqual(ResearchLaptopView.Phase.Opening, lap.State);
+            Assert.IsFalse(lap.ScreenInteractable, "열리는 동안 화면 안 버튼 꺼짐(이중 거래 없음)");
+            float t0 = Time.realtimeSinceStartup;
+            yield return Until(() => lap.State == ResearchLaptopView.Phase.Open, 3f);
+            float took = Time.realtimeSinceStartup - t0;
+            Assert.Less(took, 1.2f, "등장 0.25 + 열기 0.35 + 점등 0.15 ≈ 0.75초");
+            Assert.Greater(took, 0.5f, "프레임을 건너뛰지 않음");
+            Assert.IsTrue(lap.ScreenInteractable);
+            Assert.AreEqual(ResearchLaptopView.Tab.Mastery, lap.CurrentTab);
+            var unlock = GameObject.Find("Unlock").GetComponent<Button>();
+            unlock.onClick.Invoke();
+            unlock.onClick.Invoke(); // 이중 클릭
+            Assert.AreEqual(6, DrinkLab.Research.researchPoints, "한 번만 차감");
+            CollectionAssert.Contains(DrinkLab.Research.unlockedTraits, "service_1");
+            Assert.AreEqual(0, DrinkLab.Research.equippedTraits.Count, "해금과 장착은 별개");
+            GameObject.Find("Equip").GetComponent<Button>().onClick.Invoke();
+            CollectionAssert.AreEqual(new[] { "service_1" }, DrinkLab.Research.equippedTraits);
+            StringAssert.Contains("장착 슬롯 1/3", GameObject.Find("Slots").GetComponent<Text>().text);
+            lap.SetTab(ResearchLaptopView.Tab.Staff);
+            yield return null;
+            GameObject.Find("Staff_staff_tea_aroma").GetComponent<Button>().onClick.Invoke();
+            GameObject.Find("Hire").GetComponent<Button>().onClick.Invoke();
+            Assert.AreEqual(0, DrinkLab.Research.researchPoints);
+            CollectionAssert.Contains(DrinkLab.Research.hiredStaff, "staff_tea_aroma");
+            GameObject.Find("Staff_staff_cocktail_blend").GetComponent<Button>().onClick.Invoke();
+            Assert.IsFalse(GameObject.Find("Hire").GetComponent<Button>().interactable, "조건 미달·포인트 부족은 채용 버튼 꺼짐");
+            foreach (var txt in lap.GetComponentsInChildren<Text>())
+                if (txt.isActiveAndEnabled && !string.IsNullOrEmpty(txt.text) && !txt.resizeTextForBestFit)
+                    Assert.GreaterOrEqual(txt.fontSize, DrinkPaperUi.Small, "노트북 글자 기준 24 이상: " + txt.name);
+            lap.Close();
+            yield return null;
+            Assert.AreEqual(ResearchLaptopView.Phase.Closing, lap.State);
+            Assert.IsFalse(lap.ScreenInteractable, "닫는 동안 입력 차단");
+            yield return Until(() => closed, 2f);
+            DrinkLab.ReloadForTests();
+            CollectionAssert.AreEqual(new[] { "service_1" }, DrinkLab.Research.equippedTraits, "저장됨");
+        }
+
+        [UnityTest]
+        public IEnumerator Laptop_SkipJumpsToOpen()
+        {
+            var lap = ResearchLaptopView.Show(() => { });
+            yield return null;
+            lap.SkipAnimation();
+            float t0 = Time.realtimeSinceStartup;
+            yield return Until(() => lap.State == ResearchLaptopView.Phase.Open, 1f);
+            Assert.Less(Time.realtimeSinceStartup - t0, 0.3f, "건너뛰면 남은 연출 없이 바로 끝 상태");
+            lap.Close(); lap.SkipAnimation();
+            yield return Until(() => lap == null, 2f);
+        }
+
         // ───── 73 단계2: 종이 UI ─────
 
         [UnityTest]
@@ -680,7 +919,7 @@ namespace CCT.Tests
             Assert.AreEqual(600, DrinkLab.Owned("gin"), "저장·모션은 재료를 쓰지 않음");
             Assert.IsNull(DrinkLab.Prepared, "음료를 만들지 않음");
             yield return Until(() => tear == null || tear.Finished, 3f);
-            Assert.IsTrue(tear == null || tear.FramesShown == 10, "마지막(보관함에 완전히 들어감) 프레임까지");
+            Assert.IsTrue(tear == null || tear.FramesShown == RecipeTearOverlay.TearFrames, "찢기 프레임 00~05 끝까지(그 뒤 종이가 레시피 서랍으로)");
             yield return Until(() => RecipeTearOverlay.Current == null, 3f);
             Assert.AreEqual(1, DrinkLab.Recipes.Count, "모션이 레시피를 더 만들지 않음");
         }

@@ -68,7 +68,7 @@ namespace CCT
             var id = state.EquippedFor(job);
             var def = Find(id);
             if (def == null || def.job != job) return null;
-            if (!state.IsOwned(storefront, def.productId)) return null;
+            if (!state.IsOwned(storefront, def.productId) && !DrinkLab.CoinOwns(def.productId)) return null; // 72 코인 소유도 게임 소유
             if (artExists != null && !artExists(def)) return null;
             return def;
         }

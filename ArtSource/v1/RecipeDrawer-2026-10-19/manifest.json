@@ -1,0 +1,536 @@
+{
+  "status": "ready_root_visual_accepted",
+  "ready": true,
+  "integrated": false,
+  "verified": false,
+  "coordinateOrigin": "top-left pixels; x,y,width,height; half-open rect",
+  "canvas": [
+    480,
+    320
+  ],
+  "pivotPixelsTopLeft": [
+    240,
+    160
+  ],
+  "pivotNormalizedUnity": [
+    0.5,
+    0.5
+  ],
+  "filter": "Point",
+  "mipmap": false,
+  "compression": "None",
+  "alpha": "binary; transparent RGB zero",
+  "textBaked": false,
+  "paperSource": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\ProgressionUI-2026-10-19\\assets\\torn_recipe\\torn_recipe.png",
+  "paperSourceSize": [
+    172,
+    128
+  ],
+  "paperTextSafeRect": [
+    10,
+    20,
+    152,
+    96
+  ],
+  "layerOrder": [
+    "body",
+    "paperstack runtime plus dividers",
+    "front",
+    "extracted paper runtime overlay"
+  ],
+  "paperCavityRect": [
+    96,
+    91,
+    288,
+    85
+  ],
+  "paperCavityPolygon": [
+    [
+      96,
+      91
+    ],
+    [
+      385,
+      91
+    ],
+    [
+      424,
+      176
+    ],
+    [
+      57,
+      176
+    ]
+  ],
+  "frontOcclusionRect": [
+    22,
+    176,
+    435,
+    86
+  ],
+  "frontOcclusion": "use actual dl_recipe_drawer_front alpha as SpriteMask/stencil; paper text shares identical mask and transform",
+  "paperSlots": [
+    {
+      "id": 0,
+      "position": [
+        82,
+        94
+      ],
+      "size": [
+        258,
+        112
+      ],
+      "rotation": 0,
+      "depth": 0
+    },
+    {
+      "id": 1,
+      "position": [
+        103,
+        106
+      ],
+      "size": [
+        258,
+        112
+      ],
+      "rotation": 0,
+      "depth": 1
+    },
+    {
+      "id": 2,
+      "position": [
+        124,
+        118
+      ],
+      "size": [
+        258,
+        112
+      ],
+      "rotation": 0,
+      "depth": 2
+    },
+    {
+      "id": 3,
+      "position": [
+        145,
+        130
+      ],
+      "size": [
+        258,
+        112
+      ],
+      "rotation": 0,
+      "depth": 3
+    },
+    {
+      "id": 4,
+      "position": [
+        166,
+        142
+      ],
+      "size": [
+        258,
+        112
+      ],
+      "rotation": 0,
+      "depth": 4
+    }
+  ],
+  "paperPath": [
+    {
+      "phase": "stored",
+      "position": [
+        124,
+        118
+      ],
+      "size": [
+        258,
+        112
+      ],
+      "layer": "paperstack",
+      "textVisible": false,
+      "scaleXY": [
+        1.5,
+        0.875
+      ],
+      "textSafeRect": [
+        139.0,
+        135.5,
+        228.0,
+        84.0
+      ]
+    },
+    {
+      "phase": "selected",
+      "position": [
+        124,
+        110
+      ],
+      "size": [
+        258,
+        112
+      ],
+      "layer": "paperstack",
+      "textVisible": true,
+      "scaleXY": [
+        1.5,
+        0.875
+      ],
+      "textSafeRect": [
+        139.0,
+        127.5,
+        228.0,
+        84.0
+      ]
+    },
+    {
+      "phase": "pull_mid",
+      "position": [
+        116,
+        63
+      ],
+      "size": [
+        275,
+        150
+      ],
+      "layer": "paperstack",
+      "textVisible": true,
+      "scaleXY": [
+        1.5988372093023255,
+        1.171875
+      ],
+      "textSafeRect": [
+        131.98837209302326,
+        86.4375,
+        243.02325581395348,
+        112.5
+      ]
+    },
+    {
+      "phase": "clear_rim",
+      "position": [
+        106,
+        8
+      ],
+      "size": [
+        275,
+        160
+      ],
+      "layer": "paperstack",
+      "textVisible": true,
+      "scaleXY": [
+        1.5988372093023255,
+        1.25
+      ],
+      "textSafeRect": [
+        121.98837209302326,
+        33.0,
+        243.02325581395348,
+        120.0
+      ]
+    },
+    {
+      "phase": "unfolded",
+      "position": [
+        68,
+        18
+      ],
+      "size": [
+        344,
+        256
+      ],
+      "layer": "overlay",
+      "textVisible": true,
+      "scaleXY": [
+        2.0,
+        2.0
+      ],
+      "textSafeRect": [
+        88.0,
+        58.0,
+        304.0,
+        192.0
+      ]
+    }
+  ],
+  "returnPath": "reverse paperPath to the same selected slot; switch from overlay to behind-front only after entire paper bottom <176",
+  "tearStoreConnection": {
+    "source": "recipe_tear_store frames00..05; replace old box destination after tear",
+    "start": [
+      68,
+      18
+    ],
+    "destinationSlot": 2,
+    "insertPath": "reverse paperPath; publish save only after successful persistence; failed save restores unfolded sheet"
+  },
+  "opening": {
+    "durationMs": 450,
+    "fixedRearPivot": [
+      240,
+      77
+    ],
+    "bodyScale": [
+      1,
+      1
+    ],
+    "frontScale": [
+      1,
+      1
+    ],
+    "frontTranslationClosed": [
+      0,
+      -51
+    ],
+    "frontTranslationOpen": [
+      0,
+      0
+    ],
+    "frames": [
+      {
+        "progress": 0,
+        "frontTranslation": [
+          0,
+          -51
+        ],
+        "bodyVisible": false
+      },
+      {
+        "progress": 0.2,
+        "frontTranslation": [
+          0,
+          -41
+        ],
+        "bodyVisible": true
+      },
+      {
+        "progress": 0.4,
+        "frontTranslation": [
+          0,
+          -31
+        ],
+        "bodyVisible": true
+      },
+      {
+        "progress": 0.6,
+        "frontTranslation": [
+          0,
+          -20
+        ],
+        "bodyVisible": true
+      },
+      {
+        "progress": 0.8,
+        "frontTranslation": [
+          0,
+          -10
+        ],
+        "bodyVisible": true
+      },
+      {
+        "progress": 1,
+        "frontTranslation": [
+          0,
+          0
+        ],
+        "bodyVisible": true
+      }
+    ],
+    "closedSprite": "dl_recipe_drawer_closed",
+    "endpointRule": "closed is closed top plus IDENTICAL open front translated -51; no front/handle scale or pivot jump",
+    "bodyReveal": "render rear/body at fixed coordinates behind front; paperstack clip yMax=176-51*(1-progress), hide stack at progress0; overlay paper unmasked only after clear-rim"
+  },
+  "touch": "runtime tap targets at least44 screen px; page slots in groups for30 sheets; no extra30 baked sheets",
+  "runtimeResponsibilities": [
+    "actual text and buttons",
+    "selection focus and scroll",
+    "empty state",
+    "30-sheet paging",
+    "long-name wrap",
+    "rapid reselect/cancel",
+    "save failure rollback",
+    "skip state convergence"
+  ],
+  "provenance": "provenance.json",
+  "assets": [
+    {
+      "id": "dl_recipe_drawer_body",
+      "png": "dl_recipe_drawer_body.png",
+      "native": "dl_recipe_drawer_body.aseprite",
+      "size": [
+        480,
+        320
+      ],
+      "alphaBounds": [
+        27,
+        77,
+        452,
+        176
+      ],
+      "pivotPixelsTopLeft": [
+        240.0,
+        160.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "sha256": {
+        "dl_recipe_drawer_body.png": "e7984d5a62202aeaf017c96ac23086a638f9269788f984d4ab487c316b992f01",
+        "dl_recipe_drawer_body.aseprite": "41e26b3efb9507a5bfe55c8e6d5256e4a26e7f7eb781a4eaec48a4d658a4857d"
+      }
+    },
+    {
+      "id": "dl_recipe_drawer_front",
+      "png": "dl_recipe_drawer_front.png",
+      "native": "dl_recipe_drawer_front.aseprite",
+      "size": [
+        480,
+        320
+      ],
+      "alphaBounds": [
+        22,
+        176,
+        457,
+        262
+      ],
+      "pivotPixelsTopLeft": [
+        240.0,
+        160.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "sha256": {
+        "dl_recipe_drawer_front.png": "ae58baed674836500fda6f153b2c3f4087b133677477948f45f7121dbd575cb3",
+        "dl_recipe_drawer_front.aseprite": "a3b4d35b8d444895079fd7b33b7fac12fde19c64f15cd2e4a2050b96a56b10a0"
+      }
+    },
+    {
+      "id": "dl_recipe_drawer_closed",
+      "png": "dl_recipe_drawer_closed.png",
+      "native": "dl_recipe_drawer_closed.aseprite",
+      "size": [
+        480,
+        320
+      ],
+      "alphaBounds": [
+        22,
+        76,
+        457,
+        211
+      ],
+      "pivotPixelsTopLeft": [
+        240.0,
+        160.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "sha256": {
+        "dl_recipe_drawer_closed.png": "472e2bcb28a4f48eaea7c1ddabca56f19451a0b2f19f8d6fc2777e16f8148f6d",
+        "dl_recipe_drawer_closed.aseprite": "e3abc137c7a758bbeed187348d3abff06ee3c8e7695860d48bb5cb6319e611b8"
+      }
+    },
+    {
+      "id": "dl_recipe_divider",
+      "png": "dl_recipe_divider.png",
+      "native": "dl_recipe_divider.aseprite",
+      "size": [
+        128,
+        64
+      ],
+      "alphaBounds": [
+        8,
+        8,
+        120,
+        58
+      ],
+      "pivotPixelsTopLeft": [
+        64.0,
+        32.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "sha256": {
+        "dl_recipe_divider.png": "2b211bf7b0084227a01a62ce208cec931ffbd65f7b0d3a4cd8b1b46db1ef7199",
+        "dl_recipe_divider.aseprite": "9f523805ba548cafe121b1457d3668c89f0d3bdaa37aa88ac39a34feaa0c5590"
+      }
+    }
+  ],
+  "divider": {
+    "size": [
+      128,
+      64
+    ],
+    "tabSafeRect": [
+      26,
+      12,
+      22,
+      6
+    ],
+    "tabNote": "blank tab for runtime label; runtime may enlarge physical touch target independently",
+    "anchors": [
+      {
+        "slot": 0,
+        "position": [
+          82,
+          70
+        ],
+        "renderSize": [
+          258,
+          112
+        ]
+      },
+      {
+        "slot": 1,
+        "position": [
+          103,
+          82
+        ],
+        "renderSize": [
+          258,
+          112
+        ]
+      },
+      {
+        "slot": 2,
+        "position": [
+          124,
+          94
+        ],
+        "renderSize": [
+          258,
+          112
+        ]
+      },
+      {
+        "slot": 3,
+        "position": [
+          145,
+          106
+        ],
+        "renderSize": [
+          258,
+          112
+        ]
+      },
+      {
+        "slot": 4,
+        "position": [
+          166,
+          118
+        ],
+        "renderSize": [
+          258,
+          112
+        ]
+      }
+    ]
+  },
+  "rootVisualReview": "accepted; actual contact states/opening and640x480/reinsert836x705 inspected by coordinator; independent8-file hashes0 failures",
+  "integrationAllowed": true
+}

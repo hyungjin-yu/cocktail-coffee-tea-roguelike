@@ -62,6 +62,50 @@ namespace CCT.Tests
         static readonly EnemyDef MidBoss = new EnemyDef { name = "테스트 중간 보스", dropCount = 0, hp = 10f, boss = BossKind.Mid };
 
         void Kill(int n) { for (int i = 0; i < n; i++) game.OnEnemyKilled(Vector2.zero, Mob); }
+        static readonly EnemyDef Elite = new EnemyDef { name = "테스트 정예", dropCount = 0, hp = 10f, archetype = EnemyArchetype.EliteBarrage };
+
+        [Test]
+        public void Supply_Every25NormalKills_EliteSeparate_ResearchKillsCountBoth()
+        {
+            StartGame(false);
+            Kill(24);
+            Assert.AreEqual(0, DrinkLab.PendingFor(game.RunId).Count);
+            Kill(1);
+            var p = DrinkLab.PendingFor(game.RunId);
+            Assert.AreEqual(1, p.Count);
+            Assert.AreEqual("normal1", p[0].awardId);
+            Assert.AreEqual(1, p[0].items.Count, "1묶음");
+            Assert.AreEqual(DrinkSupply.Get(p[0].items[0].id).bundle, p[0].items[0].amount, "고정 수량");
+            Assert.IsFalse(DrinkSupply.Get(p[0].items[0].id).rare, "일반 표에 희귀 없음");
+            StringAssert.Contains("음료 재료", game.DrinkHud.ToastText);
+            game.OnEnemyKilled(Vector2.zero, Elite);
+            Assert.IsTrue(DrinkLab.PendingFor(game.RunId).Exists(a => a.awardId == "elite1"), "정예 1묶음");
+            Kill(24);
+            Assert.AreEqual(2, DrinkLab.PendingFor(game.RunId).Count, "정예는 일반 25회 카운트에 넣지 않는다");
+            Kill(1);
+            Assert.AreEqual(3, DrinkLab.PendingFor(game.RunId).Count);
+            Assert.AreEqual(51, game.ResearchKills, "RP 처치 = 일반 + 정예");
+        }
+
+        [Test]
+        public void Mastery_SnapshotAtStart_Finesse4ScalesDrinkWithinCaps_RuntimeAttached()
+        {
+            var r = DrinkLab.Data.research;
+            r.researchPoints = 100;
+            foreach (var id in new[] { "finesse_1", "finesse_2", "finesse_3", "finesse_4" }) Assert.IsTrue(DrinkLab.UnlockTrait(id, out var e), e);
+            Assert.IsTrue(DrinkLab.EquipTrait("finesse_4", out var e2), e2);
+            Assert.IsTrue(DrinkLab.EquipTrait("finesse_1", out e2), e2);
+            var preview = DrinkCalculator.Buff(HpAtkDrink());
+            StartGame(true);
+            CollectionAssert.AreEquivalent(new[] { "finesse_4", "finesse_1" }, game.MasteryTraits);
+            foreach (DrinkStat s in Enum.GetValues(typeof(DrinkStat)))
+                Assert.AreEqual(preview[s] > 0f ? Mathf.Min(DrinkRules.Cap(s), preview[s] * 1.05f) : preview[s], game.DrinkBuff[s], 1e-6f, s.ToString());
+            Assert.IsNotNull(game.Player.Mastery);
+            Assert.IsTrue(game.Player.Mastery.Has("finesse_1"));
+            Assert.IsFalse(game.Player.Mastery.Has("finesse_2"), "해금만 하고 장착 안 한 특성은 효과 없음");
+            Assert.IsTrue(DrinkLab.UnequipTrait("finesse_1", out e2));
+            Assert.IsTrue(game.Player.Mastery.Has("finesse_1"), "런 중 교체는 이번 런에 영향 없음(스냅샷)");
+        }
 
         [Test]
         public void Buff_AppliedOnceAtEntry_MatchesPreview_NotReappliedByPauseOrCards()
@@ -128,14 +172,20 @@ namespace CCT.Tests
         public void MidBossThenDeath_MaterialsGrantedAndShownOnResult()
         {
             StartGame(false);
-            int gin = DrinkLab.Owned("gin");
             Kill(10);
             game.OnEnemyKilled(Vector2.zero, MidBoss);
             Assert.AreEqual(1, DrinkLab.PendingFor(game.RunId).Count, "보스 사망 즉시 확정 기록");
             StringAssert.Contains("보스 음료 재료", game.DrinkHud.ToastText);
+            // 72 §2 중간 보스 = 고정 묶음 3개(보유량 보정 추첨), 창고에는 정산 때 한 번
+            var award = DrinkLab.PendingFor(game.RunId)[0].items;
+            int bundles = 0;
+            var before = new System.Collections.Generic.Dictionary<string, int>();
+            foreach (var a in award) { bundles += a.amount / DrinkSupply.Get(a.id).bundle; before[a.id] = DrinkLab.Owned(a.id); }
+            Assert.AreEqual(3, bundles);
             game.MarkPlayerDiedForTests();
             game.ResolveEndOfFrame();
-            Assert.AreEqual(gin + 300, DrinkLab.Owned("gin"));
+            foreach (var a in award) Assert.AreEqual(before[a.id] + a.amount, DrinkLab.Owned(a.id), a.id);
+            Assert.AreEqual(2, game.DrinkSettlement.researchPoints, "중간 보스 RP 2(처치 10회는 100 미만)");
             StringAssert.Contains("창고에 저장했습니다", ResultView.DrinkStatusLine(game.DrinkSettlement));
         }
 
@@ -171,6 +221,36 @@ namespace CCT.Tests
                 Assert.AreEqual(20f, game.Player.HiddenRuntime.ModifyDirectDamage(enemy, 10f), 1e-5f);
             }
             finally { UnityEngine.Object.DestroyImmediate(enemy.gameObject); }
+        }
+
+        [Test]
+        public void Mastery_DirectHitBonuses_RegularThirdHit_FullHpAndOpening()
+        {
+            var r = DrinkLab.Data.research;
+            r.researchPoints = 100;
+            foreach (var id in new[] { "service_1", "service_2", "finesse_1" }) Assert.IsTrue(DrinkLab.UnlockTrait(id, out var e), e);
+            foreach (var id in new[] { "service_1", "service_2", "finesse_1" }) Assert.IsTrue(DrinkLab.EquipTrait(id, out var e), e);
+            StartGame(false);
+            game.Stats.drinkCritChance = 0f;
+            var m = game.Player.Mastery;
+            var a = Enemy.SpawnAt(new Vector2(0.5f, 0f), EnemyDef.Brute, 1f, null, null);
+            var b2 = Enemy.SpawnAt(new Vector2(0.5f, 0f), EnemyDef.Brute, 1f, null, null);
+            try
+            {
+                var hidden = game.Player.HiddenRuntime;
+                // 첫 30초 + 체력 가득 = +8% +8%, 단골 1타
+                Assert.AreEqual(10f * 1.16f, hidden.ModifyDirectDamage(a, 10f), 1e-4f);
+                a.TakeDamage(1f);
+                Assert.AreEqual(10f * 1.08f, hidden.ModifyDirectDamage(a, 10f), 1e-4f, "2타: 체력이 깎인 적");
+                Assert.AreEqual(10f * (1.08f + 0.15f), hidden.ModifyDirectDamage(a, 10f), 1e-4f, "같은 적 3타째 +15%");
+                Assert.AreEqual(10f * 1.08f, hidden.ModifyDirectDamage(a, 10f), 1e-4f, "3타 뒤 다시 1부터");
+                hidden.ModifyDirectDamage(a, 10f);
+                Assert.AreEqual(10f * 1.16f, hidden.ModifyDirectDamage(b2, 10f), 1e-4f, "대상 변경 = 단골 초기화");
+                m.ForceRunTimeForTests(31f);
+                b2.TakeDamage(1f);
+                Assert.AreEqual(10f, hidden.ModifyDirectDamage(b2, 10f), 1e-4f, "30초 뒤 첫 잔의 기세 끝");
+            }
+            finally { UnityEngine.Object.DestroyImmediate(a.gameObject); UnityEngine.Object.DestroyImmediate(b2.gameObject); }
         }
 
         [Test]

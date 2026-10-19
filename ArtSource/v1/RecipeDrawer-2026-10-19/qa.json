@@ -1,0 +1,136 @@
+{
+  "occlusionEvidence": [
+    {
+      "state": "selected",
+      "paper_pixels_behind_front": 11868,
+      "layer": "behind_front"
+    },
+    {
+      "state": "pull_mid",
+      "paper_pixels_behind_front": 10175,
+      "layer": "behind_front"
+    },
+    {
+      "state": "clear_rim",
+      "paper_pixels_behind_front": 0,
+      "layer": "behind_front"
+    },
+    {
+      "state": "unfolded",
+      "paper_pixels_behind_front": 29584,
+      "layer": "overlay"
+    },
+    {
+      "state": "reinsert_mid",
+      "paper_pixels_behind_front": 17802,
+      "layer": "behind_front"
+    }
+  ],
+  "rootVisualReview": "accepted",
+  "runtimeVerified": false,
+  "assetChecks": [
+    {
+      "id": "dl_recipe_drawer_body",
+      "rgba": true,
+      "size": [
+        480,
+        320
+      ],
+      "alphaBinary": true,
+      "alphaBounds": [
+        27,
+        77,
+        452,
+        176
+      ],
+      "nativeExit": 0,
+      "nativeRoundtripExit": 0,
+      "nativeRoundtripExact": true,
+      "transparentRGBZero": true
+    },
+    {
+      "id": "dl_recipe_drawer_front",
+      "rgba": true,
+      "size": [
+        480,
+        320
+      ],
+      "alphaBinary": true,
+      "alphaBounds": [
+        22,
+        176,
+        457,
+        262
+      ],
+      "nativeExit": 0,
+      "nativeRoundtripExit": 0,
+      "nativeRoundtripExact": true,
+      "transparentRGBZero": true
+    },
+    {
+      "id": "dl_recipe_drawer_closed",
+      "rgba": true,
+      "size": [
+        480,
+        320
+      ],
+      "alphaBinary": true,
+      "alphaBounds": [
+        22,
+        76,
+        457,
+        211
+      ],
+      "nativeExit": 0,
+      "nativeRoundtripExit": 0,
+      "nativeRoundtripExact": true,
+      "transparentRGBZero": true
+    },
+    {
+      "id": "dl_recipe_divider",
+      "rgba": true,
+      "size": [
+        128,
+        64
+      ],
+      "alphaBinary": true,
+      "alphaBounds": [
+        8,
+        8,
+        120,
+        58
+      ],
+      "nativeExit": 0,
+      "nativeRoundtripExit": 0,
+      "nativeRoundtripExact": true,
+      "transparentRGBZero": true
+    }
+  ],
+  "passed": true,
+  "closedFrontExactAfterTranslation": true,
+  "sha256MatchesManifest": true,
+  "visualWorkerReview": {
+    "status": "passed",
+    "states": [
+      "closed",
+      "open",
+      "selected",
+      "pull_mid",
+      "clear_rim",
+      "unfolded",
+      "reinsert_mid",
+      "returned"
+    ],
+    "sizes": [
+      "1280x720",
+      "836x705",
+      "640x480"
+    ],
+    "openingFrameCount": 6,
+    "notes": "real paper visible at small window; no paper exposed below drawer front; divider tabs and warm blank paper readable; game text absent by design"
+  },
+  "rootIndependentHashCheck": {
+    "files": 8,
+    "failures": 0
+  }
+}

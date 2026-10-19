@@ -120,14 +120,19 @@ namespace CCT
         {
             if (enemy == null) return damage;
             float drinkCrit = player.Stats != null ? player.Stats.drinkCritChance : 0f;
+            float dist = Vector2.Distance(player.Position, enemy.transform.position);
+            // 72 §4 장착 숙련: 같은 합산 보너스 자리·같은 ×2 치명타 판정(새 전투 시스템 없음)
+            var mastery = player.Mastery;
+            float masteryBonus = mastery != null ? mastery.DirectBonus(enemy, dist) : 0f;
+            drinkCrit += mastery != null ? mastery.CritBonus : 0f;
             if (Hidden.Count == 0)
             {
                 // 69 준비 음료 치명타 확률: 기존 치명타 규칙(완벽한 한 잔과 같은 ×2)만 사용, 새 전투 시스템 없음.
-                if (drinkCrit > 0f && Random.value < drinkCrit) return damage * 2f;
-                return damage;
+                float plain = damage * (1f + masteryBonus);
+                if (drinkCrit > 0f && Random.value < drinkCrit) return plain * 2f;
+                return plain;
             }
-            float bonus = 0f;
-            float dist = Vector2.Distance(player.Position, enemy.transform.position);
+            float bonus = masteryBonus;
             if (Hidden.Has(HiddenSkill.FirstSip) && enemy.Hp >= enemy.MaxHp - 0.001f) bonus += 0.40f;
             if (Hidden.Has(HiddenSkill.LongReach) && dist > player.Stats.Range * 0.7f) bonus += 0.20f;
             if (Hidden.Has(HiddenSkill.PointBlank) && dist <= 2.5f) bonus += 0.20f;

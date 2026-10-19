@@ -63,6 +63,21 @@ namespace CCT.Tests
         }
 
         [Test]
+        public void ColorOfParts_SameCompositionSplitIntoPieces_SameColour()
+        {
+            // 띠 = 셀 조각 묶음: 같은 조성이 1조각이든 8조각이든 같은 색(착색 상한이 조각마다 적용되어 진해지던 결함)
+            var whole = new[] { DrinkPhysicsSim.Part("blue_curacao", 8), DrinkPhysicsSim.Part("gin", 24) };
+            var pieces = new System.Collections.Generic.List<FluidPart>();
+            for (int i = 0; i < 8; i++) { pieces.Add(DrinkPhysicsSim.Part("blue_curacao", 1)); pieces.Add(DrinkPhysicsSim.Part("gin", 3)); }
+            var a = DrinkCalculator.ColorOfParts(whole, null, out float ta);
+            var b = DrinkCalculator.ColorOfParts(pieces, null, out float tb);
+            Assert.Less(Jump(a, b), 1e-5f);
+            Assert.AreEqual(ta, tb, 1e-6f);
+            var pure = DrinkCalculator.ColorOfParts(new[] { DrinkPhysicsSim.Part("blue_curacao", 0.5), DrinkPhysicsSim.Part("blue_curacao", 0.5), DrinkPhysicsSim.Part("blue_curacao", 0.5) }, null, out _);
+            Assert.Less(Jump(DrinkCalculator.IngredientLook(DrinkIngredients.Get("blue_curacao")), pure), 1e-5f, "순수 재료는 양·조각 수와 무관하게 같은 색");
+        }
+
+        [Test]
         public void UniformMix_IsOneBand()
         {
             var col = Settling();

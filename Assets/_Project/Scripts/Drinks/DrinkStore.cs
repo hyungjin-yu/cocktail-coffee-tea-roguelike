@@ -31,6 +31,8 @@ namespace CCT
         public bool locked;
         /// <summary>몇 번 보존 포기로 돌아왔는지(표시용).</summary>
         public int preservedCount;
+        /// <summary>72 §5 제조 확정 때 활성이던 제조 전문(직원 ID, 없으면 ""). 이후 전문을 바꿔도 이 음료의 버프는 그대로.</summary>
+        public string specialtyId = "";
 
         public bool Exists => state == Ready || state == InRun;
     }
@@ -57,9 +59,12 @@ namespace CCT
         public List<DrinkAmount> granted = new List<DrinkAmount>();
         public List<DrinkAmount> discarded = new List<DrinkAmount>();
         public string utc = "";
+        /// <summary>72 §3 이번 정산으로 받은 연구 포인트(보존 포기·복구는 0).</summary>
+        public int researchPoints;
     }
 
-    /// <summary>drinks.json 스키마 v1. save.json v2와 독립(기존 빌드·안드로이드 세이브 호환을 깨지 않는다).</summary>
+    /// <summary>drinks.json 스키마(v2 = v1 + 72 연구 상태). save.json v2와 독립(기존 빌드·안드로이드 세이브 호환을 깨지 않는다).
+    /// v1 파일은 그대로 읽어 새 필드 기본값으로 채운다. v2 파일을 v1 빌드가 읽으면 미래 버전 보호(쓰기 없음).</summary>
     [Serializable]
     public class DrinkSaveData
     {
@@ -77,6 +82,15 @@ namespace CCT
         public DrinkSettlement lastSettlement = new DrinkSettlement();
         /// <summary>격리 테스트 저장에서만 쓰는 개발용 지급 횟수.</summary>
         public int devGrants;
+        /// <summary>72 연구 포인트·숙련 해금/장착·직원·제조 누적(기존 24종 영구 강화·스페셜티와 별개).</summary>
+        public ResearchState research = new ResearchState();
+        /// <summary>72 §6 판매 코인(외형 구매 전용), 주문 3칸, 판매한 음료 ID(최근 200), 코인으로 산 외형, 장착 맵 외형("" = 직업 기본 맵).</summary>
+        public int coins;
+        public int orderSerial;
+        public List<DrinkOrder> orders = new List<DrinkOrder>();
+        public List<string> soldDrinkIds = new List<string>();
+        public List<string> coinOwned = new List<string>();
+        public string equippedMap = "";
 
         public int Owned(string id)
         {
@@ -107,7 +121,7 @@ namespace CCT
     /// 손상 파일은 .corrupt 사본 보존 후 정상 .bak을 쓴다. 미래 버전 파일은 쓰지 않는다.</summary>
     public static class DrinkStore
     {
-        public const int CurrentVersion = 1;
+        public const int CurrentVersion = 2;
         public enum FileState { Missing, Valid, Invalid, Future }
         public enum LoadSource { Fresh, Original, Backup, FreshAfterCorrupt, FutureProtected }
         public enum SaveStage { WriteTmp, AfterTmpWritten, BeforeReplace }
@@ -231,6 +245,23 @@ namespace CCT
             d.settledRunIds.RemoveAll(string.IsNullOrEmpty);
             d.lastSettlement.granted ??= new List<DrinkAmount>();
             d.lastSettlement.discarded ??= new List<DrinkAmount>();
+            d.prepared.specialtyId ??= "";
+            d.research ??= new ResearchState();
+            DrinkResearch.Sanitize(d.research);
+            d.orders ??= new List<DrinkOrder>();
+            d.orders.RemoveAll(o => o == null);
+            if (d.orders.Count > DrinkSales.Slots) d.orders.RemoveRange(DrinkSales.Slots, d.orders.Count - DrinkSales.Slots);
+            foreach (var o in d.orders)
+            {
+                // 손상·알 수 없는 재료 주문은 취소 칸(다음 정산 때 새 주문)으로 — 판매 판정에 쓰지 않는다.
+                if (DrinkIngredients.Get(o.ingA) == null || DrinkIngredients.Get(o.ingB) == null || o.ingA == o.ingB || o.minA <= 0 || o.minB <= 0) o.state = "Cancelled";
+                o.colorFamily ??= "";
+            }
+            d.soldDrinkIds ??= new List<string>();
+            d.coinOwned ??= new List<string>();
+            d.equippedMap ??= "";
+            if (d.coins < 0) d.coins = 0;
+            if (d.equippedMap != "" && !d.coinOwned.Contains(d.equippedMap)) d.equippedMap = "";
         }
 
         public static string Serialize(DrinkSaveData d) => JsonUtility.ToJson(d, true);

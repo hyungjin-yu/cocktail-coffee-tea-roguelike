@@ -298,7 +298,9 @@ namespace CCT
             string mats = s.kind == "PreservedAbandon"
                 ? (s.discarded.Count > 0 ? $"음료 재료: 보존 포기라 이번 판 보상({DrinkLab.Describe(s.discarded)})은 정산하지 않았습니다" : "음료 재료: 보존 포기 — 이번 판 재료 보상 없음")
                 : s.granted.Count > 0 ? $"음료 재료 획득: {DrinkLab.Describe(s.granted)} — " + (DrinkLab.IsDirty ? "창고 저장 실패, 자동으로 다시 시도 중" : DrinkLab.WriteBlocked ? "새 버전 창고 보호 중(저장 안 됨)" : "창고에 저장했습니다")
-                : "음료 재료: 이번 판 보스 보상 없음";
+                : "음료 재료: 이번 판 재료 보상 없음";
+            // 72 §3 연구 포인트(노트북 숙련·직원 채용용, 기존 스페셜티와 별개)
+            if (s.researchPoints > 0) mats += $"\n연구 포인트 +{s.researchPoints} (현재 {DrinkLab.Research.researchPoints}, 연구 노트북에서 사용)";
             return drink.Length > 0 ? mats + "\n" + drink : mats;
         }
 

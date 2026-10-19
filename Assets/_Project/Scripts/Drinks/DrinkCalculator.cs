@@ -116,6 +116,29 @@ namespace CCT
             return buff;
         }
 
+        /// <summary>72 §5 제조 전문 적용: 직원 전문의 종류·기법이 맞으면 그 항목만 ×배율(항목 상한 유지). 없던 효과는 만들지 않는다.</summary>
+        public static DrinkBuff Buff(DrinkRecipe r, string specialtyId)
+        {
+            var buff = Buff(r);
+            var st = DrinkResearch.StaffById(specialtyId);
+            if (st == null || !SpecialtyApplies(st, r) || !Enum.TryParse<DrinkStat>(st.stat, out var stat)) return buff;
+            if (buff[stat] > 0f) buff[stat] = Mathf.Min(DrinkRules.Cap(stat), buff[stat] * (float)st.multiplier);
+            return buff;
+        }
+
+        public static bool SpecialtyApplies(ResearchStaff st, DrinkRecipe r) =>
+            st != null && r != null && st.kind == r.Kind.ToString() && (st.technique == null || st.technique == r.Technique.ToString());
+
+        /// <summary>72 §4 기교4: 양수 버프만 ×k, 항목별 음료 상한 유지(새 사본).</summary>
+        public static DrinkBuff ScalePositive(DrinkBuff b, float k)
+        {
+            var r = new DrinkBuff();
+            if (b == null) return r;
+            foreach (DrinkStat s in Enum.GetValues(typeof(DrinkStat)))
+                r[s] = b[s] > 0f ? Mathf.Min(DrinkRules.Cap(s), b[s] * k) : b[s];
+            return r;
+        }
+
         // ───── 색 ─────
 
         static Vector3 Absorb(Color srgb, float strength)
@@ -258,10 +281,19 @@ namespace CCT
         /// <summary>물리 기둥 한 층의 실제 성분(재료 id·mL)으로 색 계산 — Look과 같은 유효 농도 Beer–Lambert. 물은 희석만, 우린 차는 teaColor.</summary>
         public static Color ColorOfParts(IEnumerable<FluidPart> parts, Color? teaColor, out float turbidity)
         {
-            var list = new List<Part>();
+            // 같은 성분이 여러 조각(띠로 묶은 셀마다 한 조각)으로 와도 먼저 합친다: 착색 농도는 상한(1)이 있어
+            // 조각별로 따로 더하면 같은 조성인데 조각 수만큼 진해진다. 색은 조성(성분별 부피)만으로 정해진다.
+            var merged = new List<FluidPart>();
+            var at = new Dictionary<string, int>();
             foreach (var fp in parts)
             {
                 if (fp.volumeMl <= 0) continue;
+                if (at.TryGetValue(fp.id, out int i)) { var m = merged[i]; m.volumeMl += fp.volumeMl; merged[i] = m; }
+                else { at[fp.id] = merged.Count; merged.Add(fp); }
+            }
+            var list = new List<Part>();
+            foreach (var fp in merged)
+            {
                 float v = (float)fp.volumeMl;
                 if (fp.id == DrinkPhysicsSim.WaterId) { list.Add(new Part { absorb = Vector3.zero, tint = 0f, volume = v, density = 1f }); continue; }
                 if (fp.id == DrinkPhysicsSim.TeaId)

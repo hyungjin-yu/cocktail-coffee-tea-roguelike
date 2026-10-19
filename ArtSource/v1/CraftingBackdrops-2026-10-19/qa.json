@@ -1,0 +1,45 @@
+{
+  "checks": [
+    {
+      "id": "dl_craft_bar_wall",
+      "size_ok": true,
+      "opaque": true,
+      "native_exists": true,
+      "native_roundtrip_exact": true,
+      "aseprite_exit": 0,
+      "roundtrip_exit": 0
+    },
+    {
+      "id": "dl_craft_tea_wall",
+      "size_ok": true,
+      "opaque": true,
+      "native_exists": true,
+      "native_roundtrip_exact": true,
+      "aseprite_exit": 0,
+      "roundtrip_exit": 0
+    },
+    {
+      "id": "dl_craft_bar_table",
+      "size_ok": true,
+      "opaque": true,
+      "native_exists": true,
+      "native_roundtrip_exact": true,
+      "aseprite_exit": 0,
+      "roundtrip_exit": 0
+    },
+    {
+      "id": "dl_craft_tea_table",
+      "size_ok": true,
+      "opaque": true,
+      "native_exists": true,
+      "native_roundtrip_exact": true,
+      "aseprite_exit": 0,
+      "roundtrip_exit": 0
+    }
+  ],
+  "passed": true,
+  "runtime_verified": false,
+  "root_visual_review": "accepted",
+  "preview_alpha_bottom_y": 574,
+  "preview_game_anchor_verified": false
+}

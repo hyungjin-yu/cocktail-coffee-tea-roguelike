@@ -60,6 +60,8 @@ namespace CCT
         void Update()
         {
             Refresh(false);
+            // 결과 화면에서는 재료 알림을 거둔다(획득 내역은 결과 화면 정산 줄이 같은 내용을 보여 준다) — 결과 버튼을 가리지 않게.
+            if (game != null && game.State == GameState.GameOver && toast.activeSelf) { toast.SetActive(false); toastRemaining = 0f; }
             if (toastRemaining > 0f)
             {
                 toastRemaining -= Time.unscaledDeltaTime;
@@ -95,6 +97,16 @@ namespace CCT
             toastRemaining = 4.5f;
             if (game != null && game.Player != null)
                 DrinkMaterialPickup.Spawn(game.transform, bossPosition, game.Player.transform, game.Job);
+        }
+
+        /// <summary>72 §2 일반 처치 25회·정예 처치 묶음: 짧은 픽업 연출 + 짧은 알림(찾아다닐 필요 없음, 지급은 이미 확정).</summary>
+        public void OnSupplyAward(Vector2 position, List<DrinkAmount> items)
+        {
+            toastText.text = $"음료 재료 — {DrinkLab.Describe(items)} (판이 끝나면 창고에 저장)";
+            toast.SetActive(true);
+            toastRemaining = 2.5f;
+            if (game != null && game.Player != null)
+                DrinkMaterialPickup.Spawn(game.transform, position, game.Player.transform, game.Job);
         }
     }
 

@@ -1,0 +1,144 @@
+{
+  "state": "ready",
+  "root_visual_review": "accepted; requested preview alpha-bottom alignment applied",
+  "integrated": false,
+  "verified": false,
+  "layout": {
+    "stage": [
+      800,
+      690
+    ],
+    "wall": [
+      0,
+      0,
+      800,
+      574
+    ],
+    "table": [
+      0,
+      574,
+      800,
+      24
+    ],
+    "hud_reserved": [
+      0,
+      598,
+      800,
+      92
+    ]
+  },
+  "assets": [
+    {
+      "id": "dl_craft_bar_wall",
+      "size": [
+        400,
+        287
+      ],
+      "png": "dl_craft_bar_wall.png",
+      "native": "dl_craft_bar_wall.aseprite",
+      "opaque": true,
+      "filterMode": "Point",
+      "textureCompression": "Uncompressed",
+      "mipmaps": false,
+      "wrapMode": "Clamp",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixelsPerUnit": 100,
+      "integerScale": 2,
+      "unityLogicalSize": [
+        800,
+        574
+      ],
+      "sha256": {
+        "dl_craft_bar_wall.png": "016a23087cecbee14478ee31a9ef9cffaa11270906764d1d406975b647b1ced8",
+        "dl_craft_bar_wall.aseprite": "8b5e023e772273c3eb91328bb1440b53568f50e9b819e081d87d6c48ee37c19d"
+      }
+    },
+    {
+      "id": "dl_craft_tea_wall",
+      "size": [
+        400,
+        287
+      ],
+      "png": "dl_craft_tea_wall.png",
+      "native": "dl_craft_tea_wall.aseprite",
+      "opaque": true,
+      "filterMode": "Point",
+      "textureCompression": "Uncompressed",
+      "mipmaps": false,
+      "wrapMode": "Clamp",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixelsPerUnit": 100,
+      "integerScale": 2,
+      "unityLogicalSize": [
+        800,
+        574
+      ],
+      "sha256": {
+        "dl_craft_tea_wall.png": "526840bd89cce6f4f3c8d3181091662905904daabf653f4f83161fc3bf77e36e",
+        "dl_craft_tea_wall.aseprite": "e0bea7b04e419c9012395b0873fef12f2b12a71db22a27caf10f05665a1a139e"
+      }
+    },
+    {
+      "id": "dl_craft_bar_table",
+      "size": [
+        400,
+        12
+      ],
+      "png": "dl_craft_bar_table.png",
+      "native": "dl_craft_bar_table.aseprite",
+      "opaque": true,
+      "filterMode": "Point",
+      "textureCompression": "Uncompressed",
+      "mipmaps": false,
+      "wrapMode": "Clamp",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixelsPerUnit": 100,
+      "integerScale": 2,
+      "unityLogicalSize": [
+        800,
+        24
+      ],
+      "sha256": {
+        "dl_craft_bar_table.png": "07e841a8a3517aeef0af725a67ae1c4b1fb44c2064ca3131e996b5d47da7c1f7",
+        "dl_craft_bar_table.aseprite": "178f606a84d908287aa1b9f511746e38e817e2a178f58043b931611dc018ba80"
+      }
+    },
+    {
+      "id": "dl_craft_tea_table",
+      "size": [
+        400,
+        12
+      ],
+      "png": "dl_craft_tea_table.png",
+      "native": "dl_craft_tea_table.aseprite",
+      "opaque": true,
+      "filterMode": "Point",
+      "textureCompression": "Uncompressed",
+      "mipmaps": false,
+      "wrapMode": "Clamp",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixelsPerUnit": 100,
+      "integerScale": 2,
+      "unityLogicalSize": [
+        800,
+        24
+      ],
+      "sha256": {
+        "dl_craft_tea_table.png": "0786fc8612b07ecaedb08e2bb7b965dd7a8b5421b2a212c51a9bb32702f8eebb",
+        "dl_craft_tea_table.aseprite": "2a15d19a023891e5d37232c532c61f3bf604e64eb3c24b28c8d4e77ac42e01cd"
+      }
+    }
+  ]
+}

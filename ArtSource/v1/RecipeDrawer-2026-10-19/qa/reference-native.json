@@ -1,0 +1,26 @@
+[
+  {
+    "name": "recipe_storage",
+    "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\ProgressionUI-2026-10-19\\assets\\recipe_storage\\recipe_storage.aseprite",
+    "native_sha256": "c09e1ea8c055918409fb1eaf0913f6de507eb067515cce2e076ee754a9254a73",
+    "native_read_exit": 0
+  },
+  {
+    "name": "torn_recipe",
+    "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\ProgressionUI-2026-10-19\\assets\\torn_recipe\\torn_recipe.aseprite",
+    "native_sha256": "f09c88adc4d105af8f5a34217775373ae1b0220bef664dcd4497ce92eee83818",
+    "native_read_exit": 0
+  },
+  {
+    "name": "spring_notebook",
+    "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\ProgressionUI-2026-10-19\\assets\\spring_notebook\\spring_notebook.aseprite",
+    "native_sha256": "8aefea0d0dadc9aa3510f075bdb33e1b63fee850b303371e712fba19a41173ed",
+    "native_read_exit": 0
+  },
+  {
+    "name": "recipe_tear_store",
+    "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\ProgressionUI-2026-10-19\\assets\\recipe_tear_store\\recipe_tear_store.aseprite",
+    "native_sha256": "d388cbab988a2ba7dc337c32a3395ce932f867353de065a55458cd01d7aff131",
+    "native_read_exit": 0
+  }
+]

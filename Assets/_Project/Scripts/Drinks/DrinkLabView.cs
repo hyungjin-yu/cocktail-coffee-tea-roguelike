@@ -17,7 +17,7 @@ namespace CCT
     /// </summary>
     public class DrinkLabView : MonoBehaviour
     {
-        public enum Tab { Craft, Codex, Recipes }
+        public enum Tab { Craft, Codex, Recipes, Orders }
 
         Canvas canvas;
         RectTransform root, body;
@@ -39,14 +39,23 @@ namespace CCT
         readonly Dictionary<Tab, Button> tabButtons = new Dictionary<Tab, Button>();
         bool skipMotion;
         DrinkRecipe importPreview;
-        string lastMessage = "";
+        string lastMessage = "", fullNotice = "";
+        // 좁은 창(가로/세로 1.18~1.7, 예: 836×705): 높이 맞춤으로 글자 크기를 16:9와 같게 두고, 영수증은 접는 서랍, 도감 2열, 레시피 가져오기는 목록 아래.
+        public const float NarrowAspect = 1.7f, MinNarrowAspect = 1.18f;
+        CanvasScaler scaler;
+        bool narrow, receiptOpen;
+        float layoutW = 1920f;
+        RectTransform mixPanel;
+        Button receiptToggle;
+        public bool Narrow => narrow;
+        public bool ReceiptOpen => receiptOpen;
 
         // ───── 테스트 훅 ─────
         public DrinkRecipe Draft => draft;
         public DrinkStageView Stage => stage;
         public Tab CurrentTab => tab;
         public DrinkKind Kind => kind;
-        public string NoticeText => notice != null ? notice.text : "";
+        public string NoticeText => fullNotice;
         public string BuffText => buffLine;
         public string CostText => costLine;
         public string MixText => mixLine;
@@ -69,6 +78,10 @@ namespace CCT
             view.canvas = canvas;
             view.onClose = onClose;
             view.draft = DrinkRecipe.NewDraft(DrinkKind.Cocktail);
+            var adaptive = canvas.GetComponent<AdaptiveCanvasScaler>();
+            if (adaptive != null) { adaptive.enabled = false; Destroy(adaptive); } // 이 화면은 좁은 창 배치를 직접 고른다
+            view.scaler = canvas.GetComponent<CanvasScaler>();
+            view.narrow = view.ApplyScale();
             view.Build();
             return view;
         }
@@ -86,26 +99,35 @@ namespace CCT
             root = UiFactory.Stretch("Root", canvas.transform);
             UiFactory.AddImage(root, new Color(0.06f, 0.05f, 0.08f, 1f));
             UiFactory.AddCafeBackdrop(root);
-            UiFactory.SkinHeader(UiFactory.AddText(UiFactory.Place("Title", root, new Vector2(0f, 1f), new Vector2(30f, -14f), new Vector2(420f, 70f)), "음료 제조", 44, TextAnchor.MiddleCenter, Color.white));
-            float x = 470f;
+            float titleW = narrow ? 300f : 420f, tabX = narrow ? 335f : 470f, tabW = narrow ? 170f : 210f, tabStep = narrow ? 178f : 220f;
+            UiFactory.SkinHeader(UiFactory.AddText(UiFactory.Place("Title", root, new Vector2(0f, 1f), new Vector2(narrow ? 20f : 30f, -14f), new Vector2(titleW, 70f)), "음료 제조", narrow ? 38 : 44, TextAnchor.MiddleCenter, Color.white));
+            float x = tabX;
             foreach (Tab t in Enum.GetValues(typeof(Tab)))
             {
                 var tt = t;
-                tabButtons[t] = MakeButton(root, "Tab" + t, new Vector2(0f, 1f), new Vector2(x, -16f), new Vector2(230f, 66f), TabName(t), DrinkPaperUi.Body, new Color(0.25f, 0.2f, 0.3f), () => SetTab(tt));
-                x += 245f;
+                tabButtons[t] = MakeButton(root, "Tab" + t, new Vector2(0f, 1f), new Vector2(x, -16f), new Vector2(tabW, 66f), TabName(t), DrinkPaperUi.Body, new Color(0.25f, 0.2f, 0.3f), () => SetTab(tt));
+                x += tabStep;
             }
-            MakeButton(root, "Close", new Vector2(1f, 1f), new Vector2(-30f, -16f), new Vector2(200f, 66f), MobilePlatform.IsTouchUI ? "닫기" : "닫기 (Esc)", DrinkPaperUi.Body, new Color(0.3f, 0.26f, 0.3f), Close);
-            UiFactory.AddText(UiFactory.Place("Mvp", root, new Vector2(0f, 0f), new Vector2(30f, 4f), new Vector2(420f, 34f)), DrinkLab.MvpLabel, DrinkPaperUi.Small, TextAnchor.LowerLeft, new Color(0.7f, 0.7f, 0.75f));
-            notice = UiFactory.AddText(UiFactory.Place("Notice", root, new Vector2(0.5f, 1f), new Vector2(150f, -86f), new Vector2(1480f, 30f)), "", DrinkPaperUi.Small, TextAnchor.MiddleLeft, new Color(1f, 0.8f, 0.55f));
-            notice.horizontalOverflow = HorizontalWrapMode.Wrap;
+            MakeButton(root, "Close", new Vector2(1f, 1f), new Vector2(narrow ? -20f : -30f, -16f), new Vector2(narrow ? 190f : 200f, 66f), MobilePlatform.IsTouchUI ? "닫기" : "닫기 (Esc)", DrinkPaperUi.Body, new Color(0.3f, 0.26f, 0.3f), Close);
+            // 버전 표시는 위 탭 줄의 빈 자리(탭과 닫기 사이): 아래쪽 목록·입력·영수증·도감 카드와 겹치지 않는다. 좁은 창은 자리가 없어 생략(타이틀 화면에 표시).
+            if (!narrow)
+                UiFactory.AddText(UiFactory.Place("Mvp", root, new Vector2(1f, 1f), new Vector2(-250f, -32f), new Vector2(310f, 34f)), DrinkLab.MvpLabel, DrinkPaperUi.Small - 4, TextAnchor.MiddleRight, new Color(0.7f, 0.7f, 0.75f));
+            // 안내 한 줄: 탭 줄(-16..-82) 아래, 본문(-118) 위, 화면 폭에 맞춤. 넘치면 말줄임(두 줄로 늘어 탭·본문을 덮지 않음).
+            var noticeRt = UiFactory.Place("Notice", root, new Vector2(0f, 1f), new Vector2(0f, -86f), new Vector2(0f, 32f));
+            noticeRt.anchorMin = new Vector2(0f, 1f); noticeRt.anchorMax = new Vector2(1f, 1f); noticeRt.pivot = new Vector2(0.5f, 1f);
+            noticeRt.offsetMin = new Vector2(30f, -118f); noticeRt.offsetMax = new Vector2(-30f, -86f);
+            notice = UiFactory.AddText(noticeRt, "", DrinkPaperUi.Small, TextAnchor.MiddleLeft, new Color(1f, 0.8f, 0.55f));
+            notice.horizontalOverflow = HorizontalWrapMode.Overflow;
             notice.verticalOverflow = VerticalWrapMode.Truncate;
-            SetTab(Tab.Craft);
+            SetTab(tab);
         }
 
-        static string TabName(Tab t) => t switch { Tab.Craft => "제조", Tab.Codex => "재료 도감", _ => "레시피" };
+        static string TabName(Tab t) => t switch { Tab.Craft => "제조", Tab.Codex => "재료 도감", Tab.Orders => "주문·판매", _ => "레시피" };
 
         public void SetTab(Tab t)
         {
+            if (drawer != null) drawerOpen = drawer.State != RecipeDrawerView.Phase.Closed && drawer.State != RecipeDrawerView.Phase.Closing;
+            drawer = null;
             stage?.StopPour();
             tab = t;
             foreach (var kv in tabButtons) kv.Value.GetComponent<Image>().color = kv.Key == t ? new Color(0.55f, 0.36f, 0.16f) : new Color(0.25f, 0.2f, 0.3f);
@@ -113,10 +135,12 @@ namespace CCT
             body = UiFactory.Stretch("Body", root);
             body.offsetMax = new Vector2(0f, -118f);
             stage = null;
+            mixPanel = null; receiptToggle = null;
             switch (t)
             {
                 case Tab.Craft: BuildCraft(); break;
                 case Tab.Codex: BuildCodex(null); break;
+                case Tab.Orders: BuildOrders(); break;
                 default: BuildRecipes(); break;
             }
             RefreshNotice();
@@ -125,13 +149,68 @@ namespace CCT
         void RefreshNotice()
         {
             var n = DrinkLab.Notice;
-            notice.text = string.IsNullOrEmpty(lastMessage) ? (n ?? "") : lastMessage + (n != null ? "  ·  " + n : "");
+            fullNotice = string.IsNullOrEmpty(lastMessage) ? (n ?? "") : lastMessage + (n != null ? "  ·  " + n : "");
+            notice.text = OneLine(notice, fullNotice);
         }
 
         void Message(string text)
         {
             lastMessage = text ?? "";
             RefreshNotice();
+        }
+
+        /// <summary>글 상자 폭을 넘으면 끝을 말줄임으로 자른 한 줄(전체 문장은 lastMessage·테스트 훅에 그대로).</summary>
+        static string OneLine(Text t, string text)
+        {
+            if (string.IsNullOrEmpty(text) || t == null) return text ?? "";
+            text = text.Replace('\n', ' ');
+            float w = t.rectTransform.rect.width;
+            if (w <= 0f) return text;
+            var gen = t.cachedTextGeneratorForLayout;
+            var settings = t.GetGenerationSettings(new Vector2(w, t.rectTransform.rect.height));
+            if (gen.GetPreferredWidth(text, settings) / t.pixelsPerUnit <= w) return text;
+            int lo = 0, hi = text.Length;
+            while (lo < hi)
+            {
+                int mid = (lo + hi + 1) / 2;
+                if (gen.GetPreferredWidth(text.Substring(0, mid) + "…", settings) / t.pixelsPerUnit <= w) lo = mid; else hi = mid - 1;
+            }
+            return text.Substring(0, lo) + "…";
+        }
+
+        /// <summary>창 비율 → 배치 방식. 좁은 창은 높이 맞춤(캔버스 높이 1080, 폭 1080×비율), 그 밖은 기존 적응 맞춤. 좁은 창이면 true.</summary>
+        bool ApplyScale()
+        {
+            float w = Screen.width, h = Mathf.Max(1f, Screen.height), aspect = w / h;
+            bool n = aspect < NarrowAspect && aspect >= MinNarrowAspect;
+            float m = n ? 1f : AdaptiveCanvasScaler.MatchFor(w, h);
+            if (scaler != null && !Mathf.Approximately(scaler.matchWidthOrHeight, m)) scaler.matchWidthOrHeight = m;
+            layoutW = n ? 1080f * aspect : 1920f;
+            return n;
+        }
+
+        /// <summary>좁은 창 영수증 서랍: 닫히면 오른쪽 화면 밖(버튼은 그대로 살아 있음), 열리면 제조대 오른쪽 위에 펼친다.</summary>
+        public void SetReceiptOpen(bool open)
+        {
+            receiptOpen = open;
+            if (mixPanel == null) return;
+            mixPanel.anchoredPosition = new Vector2(narrow && !open ? 660f : -24f, -6f);
+            if (receiptToggle != null)
+                receiptToggle.GetComponentInChildren<Text>().text = open ? "◂ 영수증 접기" : "영수증 · 제조 확정 ▸";
+        }
+
+        /// <summary>창 크기가 바뀌어 배치 방식이 달라지면 화면 전체를 다시 만든다(붓기·모션 중에는 끝난 뒤).</summary>
+        void RebuildIfLayoutChanged()
+        {
+            bool n = ApplyScale();
+            if (n == narrow) return;
+            if (stage != null && (stage.Pouring || stage.Transferring || stage.SequencePlaying)) return;
+            narrow = n;
+            receiptOpen = false;
+            tabButtons.Clear();
+            if (root != null) Destroy(root.gameObject);
+            body = null; stage = null; mixPanel = null; receiptToggle = null;
+            Build();
         }
 
         // ═════ 제조 탭 ═════
@@ -145,7 +224,7 @@ namespace CCT
                 kind == DrinkKind.Tea ? new Color(0.36f, 0.5f, 0.2f) : new Color(0.25f, 0.2f, 0.3f), () => SetKind(DrinkKind.Tea));
 
             // 왼쪽 재료 목록
-            var listRt = UiFactory.Place("IngredientList", body, new Vector2(0f, 1f), new Vector2(30f, -80f), new Vector2(410f, 836f));
+            var listRt = UiFactory.Place("IngredientList", body, new Vector2(0f, 1f), new Vector2(30f, -80f), new Vector2(410f, narrow ? 770f : 836f));
             listContent = MakeScroll(listRt);
             BuildIngredientRows();
 
@@ -177,6 +256,7 @@ namespace CCT
             // 오른쪽 영수증: 위 준비 음료 / 가운데 스크롤(배합 → 제조 방법 → 예상 효과 → 재료 소모) / 아래 고정 버튼(제조 확정은 항상 같은 자리).
             // 영수증 아트 3배(테두리 L/R 36·위/아래 60, 안쪽 글자 영역 = contentRect 왼쪽 16·위 20 아트 픽셀).
             var mix = UiFactory.Place("MixPanel", body, new Vector2(1f, 1f), new Vector2(-24f, -6f), new Vector2(630f, 950f));
+            mixPanel = mix;
             DrinkPaperUi.Sliced(mix, "receipt", 3f).raycastTarget = true;
             // 종이 안쪽 안전 여백: 좌우 48, 위 52, 아래 66(영수증 찢긴 끝에 버튼이 걸치지 않게). 스크롤 내용과 고정 아래쪽 사이 22 간격.
             const float padX = 48f, padTop = 52f, padBottom = 66f, gap = 14f, innerW = 630f - 2f * padX, panelH = 950f;
@@ -185,8 +265,8 @@ namespace CCT
             const float craftY = nameY + nameH + gap, craftH = 70f;
             const float statusY = craftY + craftH + 8f, statusH = 40f;
             const float ruleY = statusY + statusH + 10f;
-            float scrollTop = padTop + 70f, scrollH = panelH - scrollTop - (ruleY + 22f);
-            preparedText = UiFactory.AddText(UiFactory.Place("Prepared", mix, new Vector2(0f, 1f), new Vector2(padX, -padTop), new Vector2(innerW, 66f)), "", DrinkPaperUi.Small, TextAnchor.MiddleLeft, DrinkPaperUi.InkGood);
+            float scrollTop = padTop + 80f, scrollH = panelH - scrollTop - (ruleY + 22f);
+            preparedText = UiFactory.AddText(UiFactory.Place("Prepared", mix, new Vector2(0f, 1f), new Vector2(padX, -padTop), new Vector2(innerW, 76f)), "", DrinkPaperUi.Small, TextAnchor.MiddleLeft, DrinkPaperUi.InkGood);
             var scrollRt = UiFactory.Place("MixScroll", mix, new Vector2(0f, 1f), new Vector2(padX - 8f, -scrollTop), new Vector2(innerW + 16f, scrollH));
             mixContent = MakeScroll(scrollRt, transparent: true);
             lastTopology = null; leftTexts.Clear(); rightTexts.Clear(); // 새 패널 — 다음 갱신은 반드시 다시 만든다
@@ -203,6 +283,13 @@ namespace CCT
             if (DrinkLab.DevToolsEnabled && DrinkLab.IsIsolatedSave)
                 MakeButton(body, "DevGrant", new Vector2(0f, 0f), new Vector2(30f, 4f), new Vector2(260f, 44f), "테스트 재료 지급(격리 저장)", 16, new Color(0.4f, 0.15f, 0.4f), () => { DrinkLab.DevGrant(); BuildIngredientRows(); RefreshMix(); });
 
+            if (narrow)
+            {
+                // 좁은 창: 영수증은 오른쪽 서랍(제조대 위에 펼침). 여닫기 버튼은 재료 목록 아래 고정 자리.
+                receiptToggle = MakeButton(body, "ReceiptToggle", new Vector2(0f, 1f), new Vector2(30f, -862f), new Vector2(410f, 70f), "", DrinkPaperUi.Body, new Color(0.55f, 0.36f, 0.16f), () => SetReceiptOpen(!receiptOpen));
+                mix.SetAsLastSibling();
+                SetReceiptOpen(receiptOpen);
+            }
             stage.RefreshDraft();
             if (selected != null && !selected.UsableIn(kind)) selected = null;
             SelectIngredient(selected ?? FirstUsable());
@@ -240,7 +327,7 @@ namespace CCT
                 var iconImg = iconRt.gameObject.AddComponent<Image>(); iconImg.sprite = icon; iconImg.preserveAspect = true; iconImg.raycastTarget = false;
                 if (locked) iconImg.color = new Color(0.45f, 0.45f, 0.45f, 1f);
                 UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 1f), new Vector2(104f, -30f), new Vector2(250f, 38f)), def.name, DrinkPaperUi.Body, TextAnchor.MiddleLeft, locked ? DrinkPaperUi.InkMuted : DrinkPaperUi.Ink);
-                UiFactory.AddText(UiFactory.Place("Owned", row, new Vector2(0f, 1f), new Vector2(104f, -68f), new Vector2(250f, 54f)),
+                UiFactory.AddText(UiFactory.Place("Owned", row, new Vector2(0f, 1f), new Vector2(104f, -68f), new Vector2(260f, 70f)),
                     locked ? "보유 없음\n눌러서 획득처 보기" : $"보유 {DrinkRules.Format(owned, def.form)}\n{DrinkRules.StatName(def.effect)}", DrinkPaperUi.Small - 2, TextAnchor.UpperLeft, locked ? DrinkPaperUi.InkBad : DrinkPaperUi.InkMuted);
                 y += 156f;
             }
@@ -333,6 +420,7 @@ namespace CCT
 
         void Update()
         {
+            RebuildIfLayoutChanged();
             liveTimer -= Time.unscaledDeltaTime;
             // 영수증의 '옮기는 중 %' 줄은 옮기는 동안 갱신하고, 끝나는 순간 확정 줄(✓)로 바꾼다.
             bool transferring = stage != null && stage.Transferring;
@@ -433,8 +521,9 @@ namespace CCT
                 // 확정 줄: 배합에 들어간 양(✓). 지거에서 그릇으로 옮기는 중이면 그 표시(양은 이미 정확히 확정).
                 Add(new RowSpec
                 {
-                    kind = RowKind.Line, name = "Mix_" + id,
-                    left = $"{idx++}. {def.name}" + (inTransfer ? $" <color=#1f548f>(옮기는 중 {Mathf.RoundToInt(stage.TransferProgress * 100f)}%)</color>" : " ✓"),
+                    // 옮기는 중 표시는 둘째 줄(긴 재료 이름에서도 잘리지 않게). 이름이 달라 시작·끝에만 다시 배치한다.
+                    kind = RowKind.Line, name = "Mix_" + id + (inTransfer ? "_moving" : ""),
+                    left = $"{idx++}. {def.name}" + (inTransfer ? $"\n<color=#1f548f>옮기는 중 {Mathf.RoundToInt(stage.TransferProgress * 100f)}%</color>" : " ✓"),
                     right = DrinkRules.Format(s.amount, def.form),
                     remove = () => { if (Busy("빼기")) return; this.draft.Remove(id); OnDraftChanged(); },
                 });
@@ -493,7 +582,7 @@ namespace CCT
                 if (costExpanded || lack)
                     Add(new RowSpec { kind = RowKind.Line, name = "Cost_" + s.id + (lack ? "_short" : ""), h = 70f, size = DrinkPaperUi.Small,
                         left = (lack ? $"<color=#a8241a>{def.name} — {DrinkRules.Format(shortages[s.id], def.form)} 부족</color>" : def.name) + $"\n필요 {DrinkRules.Format(s.amount, def.form)} · 보유 {DrinkRules.Format(owned, def.form)}" });
-                if (lack && costExpanded) Add(new RowSpec { kind = RowKind.Line, name = "CostSrc_" + s.id, left = "획득처: " + def.source, color = Muted, h = 66f, size = DrinkPaperUi.Small - 2 });
+                if (lack && costExpanded) Add(new RowSpec { kind = RowKind.Line, name = "CostSrc_" + s.id, left = "획득처: " + DrinkLab.SourceText(def.id), color = Muted, h = 98f, size = DrinkPaperUi.Small - 2 });
             }
             costLine = costParts.Count == 0 ? "—" : string.Join("\n", costParts);
             mixLine = string.Join(", ", costParts);
@@ -514,16 +603,20 @@ namespace CCT
                 {
                     case RowKind.Header:
                         if (y > 10f) y += 10f;
-                        leftTexts[s.name] = UiFactory.AddText(UiFactory.Place(s.name, mixContent, new Vector2(0f, 1f), new Vector2(8f, -y), new Vector2(230f, 42f)), s.left, DrinkPaperUi.Heading, TextAnchor.MiddleLeft, Gold);
+                        leftTexts[s.name] = UiFactory.AddText(UiFactory.Place(s.name, mixContent, new Vector2(0f, 1f), new Vector2(8f, -y), new Vector2(230f, 48f)), s.left, DrinkPaperUi.Heading, TextAnchor.MiddleLeft, Gold);
                         if (s.right != null)
-                            rightTexts[s.name] = UiFactory.AddText(UiFactory.Place(s.name + "_Right", mixContent, new Vector2(0f, 1f), new Vector2(238f, -y), new Vector2(RowW - 230f, 42f)), s.right, DrinkPaperUi.Small, TextAnchor.MiddleRight, Muted);
+                            rightTexts[s.name] = UiFactory.AddText(UiFactory.Place(s.name + "_Right", mixContent, new Vector2(0f, 1f), new Vector2(238f, -y), new Vector2(RowW - 230f, 48f)), s.right, DrinkPaperUi.Small, TextAnchor.MiddleRight, Muted);
                         // 영수증 점선 구분
-                        UiFactory.AddImage(UiFactory.Place(s.name + "_Rule", mixContent, new Vector2(0f, 1f), new Vector2(8f, -y - 44f), new Vector2(RowW, 2f)), new Color(0.42f, 0.33f, 0.25f, 0.35f)).raycastTarget = false;
-                        y += 50f;
+                        UiFactory.AddImage(UiFactory.Place(s.name + "_Rule", mixContent, new Vector2(0f, 1f), new Vector2(8f, -y - 50f), new Vector2(RowW, 2f)), new Color(0.42f, 0.33f, 0.25f, 0.35f)).raycastTarget = false;
+                        y += 56f;
                         break;
                     case RowKind.Line:
                     {
                         if (s.remove != null || s.minus != null || s.plus != null) s.h = Mathf.Max(s.h, 66f); // 누르기 영역 720p 44px
+                        // 여러 줄 글자(소모·계량 중 줄)는 줄 수만큼 높이를 잡아 둘째 줄이 잘리지 않는다(한글 글꼴 줄 간격 ≈ 1.5배).
+                        int lines = 1;
+                        foreach (char ch in s.left ?? "") if (ch == '\n') lines++;
+                        s.h = Mathf.Max(s.h, lines * s.size * 1.5f + 12f);
                         var row = UiFactory.Place(s.name, mixContent, new Vector2(0f, 1f), new Vector2(8f, -y), new Vector2(RowW, s.h));
                         var l = UiFactory.AddText(UiFactory.Place("L", row, new Vector2(0f, 0.5f), new Vector2(8f, 0f), new Vector2(RowW * (s.right != null ? 0.62f : 0.98f), s.h)), s.left, s.size, TextAnchor.MiddleLeft, s.color);
                         l.supportRichText = true;
@@ -531,10 +624,10 @@ namespace CCT
                         l.horizontalOverflow = HorizontalWrapMode.Wrap;
                         leftTexts[s.name] = l;
                         // 값 칸은 행 끝 버튼(× 또는 −/+) 폭만큼 안쪽에서 끝난다(겹침 없음).
-                        float inset = s.remove != null ? 64f : s.minus != null || s.plus != null ? 128f : 0f;
+                        float inset = s.remove != null ? 70f : s.minus != null || s.plus != null ? 144f : 0f;
                         if (s.right != null) rightTexts[s.name] = UiFactory.AddText(UiFactory.Place("R", row, new Vector2(1f, 0.5f), new Vector2(-8f - inset, 0f), new Vector2(RowW * 0.36f - inset * 0.5f, s.h)), s.right, s.size, TextAnchor.MiddleRight, s.color == DrinkPaperUi.InkLive ? DrinkPaperUi.InkLive : DrinkPaperUi.Ink);
                         if (s.remove != null) SmallButton(row, "Remove", -2f, "×", s.remove);
-                        if (s.minus != null) SmallButton(row, s.name + "Minus", -66f, "−", s.minus);
+                        if (s.minus != null) SmallButton(row, s.name + "Minus", -74f, "−", s.minus);
                         if (s.plus != null) SmallButton(row, s.name + "Plus", -2f, "+", s.plus);
                         y += s.h + 2f;
                         break;
@@ -549,20 +642,20 @@ namespace CCT
                         {
                             var t = techs[i];
                             bool on = (int)t == draft.technique;
-                            techButtons[t] = DrinkPaperUi.Button(mixContent, "Tech" + t, new Vector2(0f, 1f), new Vector2(8f + (i % cols) * (bw + 8f), -y - (i / cols) * 64f), new Vector2(bw, 58f), DrinkRules.TechniqueName(t), DrinkPaperUi.Body,
+                            techButtons[t] = DrinkPaperUi.Button(mixContent, "Tech" + t, new Vector2(0f, 1f), new Vector2(8f + (i % cols) * (bw + 8f), -y - (i / cols) * 72f), new Vector2(bw, 66f), DrinkRules.TechniqueName(t), DrinkPaperUi.Body,
                                 () => SetTechnique(t), on ? "button_equipped" : "button", on ? new Color(1f, 0.85f, 0.6f) : (Color?)null);
                         }
-                        y += ((techs.Length + cols - 1) / cols) * 64f + 4f;
+                        y += ((techs.Length + cols - 1) / cols) * 72f + 4f;
                         break;
                     }
                     case RowKind.Toggle:
                     {
                         y += 10f;
-                        var b = DrinkPaperUi.Button(mixContent, s.name, new Vector2(0f, 1f), new Vector2(8f, -y), new Vector2(RowW, 54f), s.left, DrinkPaperUi.Small, () => { costExpanded = !costExpanded; RefreshMix(); });
+                        var b = DrinkPaperUi.Button(mixContent, s.name, new Vector2(0f, 1f), new Vector2(8f, -y), new Vector2(RowW, 66f), s.left, DrinkPaperUi.Small, () => { costExpanded = !costExpanded; RefreshMix(); });
                         var label = b.GetComponentInChildren<Text>();
                         label.alignment = TextAnchor.MiddleLeft;
                         leftTexts[s.name] = label;
-                        y += 60f;
+                        y += 72f;
                         break;
                     }
                 }
@@ -578,7 +671,7 @@ namespace CCT
         }
 
         Button SmallButton(Transform parent, string name, float x, string label, Action onClick) =>
-            DrinkPaperUi.Button(parent, name, new Vector2(1f, 0.5f), new Vector2(x, 0f), new Vector2(60f, 62f), label, DrinkPaperUi.Body, onClick);
+            DrinkPaperUi.Button(parent, name, new Vector2(1f, 0.5f), new Vector2(x, 0f), new Vector2(66f, 66f), label, DrinkPaperUi.Body, onClick); // 720p 44px
 
         void RefreshMix()
         {
@@ -664,11 +757,11 @@ namespace CCT
             r.name = nameField != null ? nameField.text : "";
             if (DrinkLab.SaveRecipe(r, editingRecipeIndex, out var error))
             {
-                Message(editingRecipeIndex >= 0 ? "레시피를 수정했습니다." : "레시피를 저장했습니다(재료 소모 없음).");
+                Message(editingRecipeIndex >= 0 ? "레시피를 수정했습니다." : "레시피를 저장해 레시피 서랍에 꽂았습니다(재료 소모 없음).");
                 // 저장 트랜잭션이 성공한 뒤에만: 노트에서 한 장 찢어 보관함에 넣는 장식 모션(데이터 변화 없음, 클릭하면 끝 상태로)
                 string shown = string.IsNullOrWhiteSpace(r.name) ? DrinkLab.Recipes[DrinkLab.Recipes.Count - 1].name : r.name;
                 if (editingRecipeIndex >= 0 && editingRecipeIndex < DrinkLab.Recipes.Count) shown = DrinkLab.Recipes[editingRecipeIndex].name;
-                RecipeTearOverlay.Play(root, shown);
+                RecipeTearOverlay.Play(root, shown, tabButtons.TryGetValue(Tab.Recipes, out var rb) ? (RectTransform)rb.transform : null); // 찢은 종이 → 레시피 서랍
             }
             else Message(error);
         }
@@ -685,9 +778,12 @@ namespace CCT
         {
             // 73 단계2: 재료 종이 카드 3열(본문 기준 27 = 720p 18px). 실제 색은 색 사각형 대신 작은 실제 잔(같은 액체 렌더러)과 글로 보인다.
             foreach (Transform c in body) Destroy(c.gameObject);
-            var listRt = UiFactory.Place("CodexList", body, new Vector2(0.5f, 1f), new Vector2(0f, -10f), new Vector2(1860f, 940f));
+            float listW = layoutW - 60f;
+            var listRt = UiFactory.Place("CodexList", body, new Vector2(0.5f, 1f), new Vector2(0f, -10f), new Vector2(listW, 940f));
             var content = MakeScroll(listRt);
-            const float cardW = 606f, cardH = 640f, gap = 12f;
+            int cols = listW >= 1800f ? 3 : 2; // 좁은 창은 2열(카드 폭을 줄여 글자를 줄이지 않는다)
+            const float cardH = 610f, gap = 12f; // 본문 7~8줄 + 머리(빈 종이 여백 줄임)
+            float cardW = (listW - 30f - (cols + 1) * gap) / cols;
             float y = 0f, focusY = -1f;
             int col = 0;
             foreach (var def in DrinkIngredients.All)
@@ -719,97 +815,254 @@ namespace CCT
                     $"사용: {def.UseLabel} · 단위 {def.Unit}\n" +
                     $"게임 효과: {DrinkRules.StatName(def.effect)} (상한 {DrinkBuff.Pct(def.effect, DrinkRules.Cap(def.effect))})\n" +
                     $"착색 {(def.tint > 2f ? "강함" : def.tint > 0.5f ? "보통" : "약함")} · 탁도 {(def.turbidity > 0.3f ? "높음" : def.turbidity > 0.05f ? "약간" : "맑음")} · 밀도 {def.density:0.00}\n" +
-                    $"획득처: {def.source}" + (seen ? "" : "\n아직 보유한 적이 없어 제조에 쓸 수 없습니다.");
+                    $"획득처: {DrinkLab.SourceText(def.id)}" + (seen ? "" : "\n아직 보유한 적이 없어 제조에 쓸 수 없습니다.");
                 var t = UiFactory.AddText(UiFactory.Place("Body", card, new Vector2(0f, 1f), new Vector2(40f, -164f), new Vector2(cardW - 80f, cardH - 210f)), text, DrinkPaperUi.Body, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
                 t.lineSpacing = 1.05f;
-                if (++col == 3) { col = 0; y += cardH + gap; }
+                if (++col == cols) { col = 0; y += cardH + gap; }
             }
             if (col != 0) y += cardH + gap;
-            var aux = UiFactory.Place("Aux", content, new Vector2(0f, 1f), new Vector2(gap, -y), new Vector2(1830f, 90f));
+            var aux = UiFactory.Place("Aux", content, new Vector2(0f, 1f), new Vector2(gap, -y), new Vector2(listW - 40f, 90f));
             UiFactory.AddText(aux, "물·기본 얼음은 무료 제조 보조 자원입니다(배합에 기록). 물은 색을 희석하고 버프 기여가 없습니다.", DrinkPaperUi.Small, TextAnchor.MiddleLeft, new Color(0.85f, 0.9f, 1f));
             content.sizeDelta = new Vector2(0f, y + 100f);
             if (focusY > 0f) content.anchoredPosition = new Vector2(0f, focusY); // 획득처 보기로 연 재료가 보이게
         }
 
+        // ═════ 72 §6 주문·판매 탭 ═════
+
+        void BuildOrders()
+        {
+            foreach (Transform c in body) Destroy(c.gameObject);
+            float listW = layoutW - 60f;
+            var listRt = UiFactory.Place("OrdersList", body, new Vector2(0f, 1f), new Vector2(30f, -10f), new Vector2(listW, 940f));
+            var content = MakeScroll(listRt);
+            bool twoCols = listW >= 1800f;
+            float colW = twoCols ? (listW - 60f) / 2f : listW - 30f;
+            float leftX = 10f, rightX = twoCols ? colW + 40f : 10f;
+            float y = 0f;
+            var prepared = DrinkLab.Prepared;
+            // 준비 음료(완성 음료 1잔): 출발용 사용 또는 주문 판매(중복 불가) 또는 명시 폐기
+            var pr = UiFactory.Place("PreparedCard", content, new Vector2(0f, 1f), new Vector2(leftX, -y), new Vector2(colW, 186f));
+            DrinkPaperUi.Sliced(pr, "torn_recipe", 3f);
+            string pl = prepared == null ? "준비 음료 없음 — 제조 탭에서 만든 음료를 팔 수 있습니다."
+                : prepared.state == PreparedDrink.InRun ? $"{prepared.recipe.name} — 이번 판에 사용 중(판매 불가)"
+                : $"{prepared.recipe.name} · {(prepared.recipe.Kind == DrinkKind.Tea ? "차" : "칵테일")} · {DrinkRules.TechniqueName(prepared.recipe.Technique)} · {DrinkSales.FamilyOf(prepared.recipe)}\n{RecipeLine(prepared.recipe)}";
+            var pt = UiFactory.AddText(UiFactory.Place("PreparedInfo", pr, new Vector2(0f, 1f), new Vector2(36f, -40f), new Vector2(colW - 330f, 120f)), pl, DrinkPaperUi.Small, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
+            pt.verticalOverflow = VerticalWrapMode.Truncate;
+            var discard = DrinkPaperUi.Button(pr, "DiscardPrepared", new Vector2(1f, 0.5f), new Vector2(-30f, -6f), new Vector2(260f, 66f), "준비 음료 버리기", DrinkPaperUi.Small,
+                () => { if (DrinkLab.DiscardPrepared(out var e)) Message("준비 음료를 버렸습니다(재료 환불 없음)."); else Message(e); SetTab(Tab.Orders); }, tint: new Color(1f, 0.8f, 0.75f));
+            discard.interactable = prepared != null && prepared.state == PreparedDrink.Ready;
+            y += 196f;
+            var orders = DrinkLab.Orders;
+            for (int i = 0; i < orders.Count; i++)
+            {
+                int index = i;
+                var o = orders[i];
+                var row = UiFactory.Place("Order_" + i, content, new Vector2(0f, 1f), new Vector2(leftX, -y), new Vector2(colW, 236f));
+                DrinkPaperUi.Sliced(row, "receipt", 2f);
+                string text;
+                int price = 0;
+                if (!o.IsOpen) text = $"주문 {i + 1} · 취소됨\n다음 판이 끝나면 새 주문이 들어옵니다.";
+                else
+                {
+                    var r = prepared != null && prepared.state == PreparedDrink.Ready ? prepared.recipe : null;
+                    price = DrinkSales.Price(o, r);
+                    string Mark(bool ok) => r == null ? "·" : ok ? "✓" : "✗";
+                    var a = DrinkIngredients.Get(o.ingA); var b = DrinkIngredients.Get(o.ingB);
+                    text = $"주문 {i + 1} · {((DrinkKind)o.kind == DrinkKind.Tea ? "차" : "칵테일")}\n" +
+                           $"{Mark(r != null && (int)r.Kind == o.kind && r.AmountOf(o.ingA) >= o.minA)} {a?.name} {DrinkRules.Format(o.minA, a != null ? a.form : IngredientForm.Liquid)} 이상   " +
+                           $"{Mark(r != null && (int)r.Kind == o.kind && r.AmountOf(o.ingB) >= o.minB)} {b?.name} {DrinkRules.Format(o.minB, b != null ? b.form : IngredientForm.Liquid)} 이상\n" +
+                           $"보너스: {Mark(DrinkSales.TechniqueMatches(o, r))} {DrinkRules.TechniqueName((DrinkTechnique)o.technique)} +{DrinkSales.TechniqueBonus} · {Mark(DrinkSales.ColorMatches(o, r))} {o.colorFamily} +{DrinkSales.ColorBonus}";
+                }
+                var t = UiFactory.AddText(UiFactory.Place("Info", row, new Vector2(0f, 1f), new Vector2(40f, -36f), new Vector2(colW - 340f, 170f)), text, DrinkPaperUi.Small, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
+                t.verticalOverflow = VerticalWrapMode.Truncate;
+                var sell = DrinkPaperUi.Button(row, "Sell", new Vector2(1f, 1f), new Vector2(-36f, -40f), new Vector2(260f, 66f), price > 0 ? $"판매 ({price}코인)" : "판매", DrinkPaperUi.Small,
+                    () => { if (DrinkLab.Sell(index, out var got, out var e)) Message($"판매했습니다: +{got}코인"); else Message(e); SetTab(Tab.Orders); }, price > 0 ? "button_available" : "button", price > 0 ? new Color(1f, 0.85f, 0.6f) : (Color?)null);
+                sell.interactable = price > 0;
+                var cancel = DrinkPaperUi.Button(row, "CancelOrder", new Vector2(1f, 1f), new Vector2(-36f, -116f), new Vector2(260f, 66f), "주문 취소", DrinkPaperUi.Small,
+                    () => { if (DrinkLab.CancelOrder(index, out var e)) Message("주문을 취소했습니다(다음 판 종료 후 새 주문)."); else Message(e); SetTab(Tab.Orders); });
+                cancel.interactable = o.IsOpen;
+                y += 246f;
+            }
+            float leftEnd = y;
+            // 외형 상점(판매 코인 전용, 기존 준비된 외형만)
+            float ry = twoCols ? 0f : y + 10f;
+            UiFactory.AddText(UiFactory.Place("CoinTitle", content, new Vector2(0f, 1f), new Vector2(rightX, -ry), new Vector2(colW, 50f)),
+                $"판매 코인 {DrinkLab.Coins} — 외형 구매 전용(연구 포인트·스페셜티·재료와 바꾸지 않음)", DrinkPaperUi.Body, TextAnchor.MiddleLeft, new Color(1f, 0.86f, 0.6f));
+            ry += 58f;
+            foreach (var c in DrinkSales.Catalog)
+            {
+                var cc = c;
+                bool cash = c.kind == "skin" && SafeCashOwned(c.id);
+                bool owned = cash || DrinkLab.CoinOwns(c.id);
+                bool equipped = c.kind == "map" ? DrinkLab.EquippedMap == c.id : SafeSkinEquipped(c.id);
+                var card = UiFactory.Place("Cosmetic_" + c.id, content, new Vector2(0f, 1f), new Vector2(rightX, -ry), new Vector2(colW, 196f));
+                DrinkPaperUi.Sliced(card, "ingredient_card", 2f, owned ? new Color(1f, 0.95f, 0.85f) : Color.white);
+                UiFactory.AddText(UiFactory.Place("Name", card, new Vector2(0f, 1f), new Vector2(36f, -30f), new Vector2(colW - 340f, 40f)), c.name, DrinkPaperUi.Body, TextAnchor.MiddleLeft, DrinkPaperUi.Ink);
+                var d = UiFactory.AddText(UiFactory.Place("Desc", card, new Vector2(0f, 1f), new Vector2(36f, -74f), new Vector2(colW - 340f, 100f)),
+                    $"{c.description}\n{(owned ? (cash ? "보유(결제 구매)" : "보유(코인 구매)") : $"{c.price}코인")}", DrinkPaperUi.Small, TextAnchor.UpperLeft, DrinkPaperUi.InkMuted);
+                d.verticalOverflow = VerticalWrapMode.Truncate;
+                if (!owned)
+                {
+                    var buy = DrinkPaperUi.Button(card, "Buy", new Vector2(1f, 0.5f), new Vector2(-30f, 0f), new Vector2(260f, 66f), $"구매 ({c.price}코인)", DrinkPaperUi.Small,
+                        () => { if (DrinkLab.BuyCosmetic(cc.id, SafeCashOwned, out var e)) Message($"{cc.name}을(를) 샀습니다."); else Message(e); SetTab(Tab.Orders); }, DrinkLab.Coins >= c.price ? "button_available" : "button_locked");
+                    buy.interactable = DrinkLab.Coins >= c.price;
+                }
+                else
+                {
+                    DrinkPaperUi.Button(card, "EquipCosmetic", new Vector2(1f, 0.5f), new Vector2(-30f, 0f), new Vector2(260f, 66f), equipped ? "장착 해제" : "장착", DrinkPaperUi.Small,
+                        () => { Message(ToggleCosmetic(cc, equipped)); SetTab(Tab.Orders); }, equipped ? "button_equipped" : "button_owned");
+                }
+                ry += 206f;
+            }
+            content.sizeDelta = new Vector2(0f, Mathf.Max(leftEnd, ry) + 20f);
+        }
+
+        static bool SafeCashOwned(string id) { try { return SkinCommerce.Shared.IsCashOwned(id); } catch (Exception) { return false; } }
+        static bool SafeSkinEquipped(string id) { try { return SkinCommerce.Shared.IsEquipped(id); } catch (Exception) { return false; } }
+
+        static string ToggleCosmetic(CoinCosmetic c, bool equipped)
+        {
+            if (c.kind == "map") return DrinkLab.EquipMap(equipped ? "" : c.id, out var e) ? (equipped ? "직업 기본 맵으로 되돌렸습니다." : $"{c.name} 배경을 장착했습니다(배경만 바뀜).") : e;
+            try
+            {
+                var def = SkinCatalog.Find(c.id);
+                bool ok = equipped ? SkinCommerce.Shared.Unequip(def.job) : SkinCommerce.Shared.Equip(c.id);
+                return ok ? (equipped ? "외형을 해제했습니다." : $"{c.name} 외형을 장착했습니다.") : "장착 정보를 저장하지 못했습니다.";
+            }
+            catch (Exception) { return "외형 장착을 처리하지 못했습니다."; }
+        }
+
         // ═════ 레시피 탭 ═════
+
+        bool drawerOpen, importOpen;
+        RecipeDrawerView drawer;
+        RectTransform importPanel;
+        public RecipeDrawerView Drawer => drawer;
 
         void BuildRecipes()
         {
             foreach (Transform c in body) Destroy(c.gameObject);
-            var listRt = UiFactory.Place("RecipeList", body, new Vector2(0f, 1f), new Vector2(30f, -10f), new Vector2(1100f, 930f));
-            var content = MakeScroll(listRt);
-            float y = 0f;
-            // 처음에도 고를 수 있게: 내장 예시 배합(저장 목록과 별개, 불러오기만 — 제조·소모 없음).
-            UiFactory.AddText(UiFactory.Place("ExamplesTitle", content, new Vector2(0.5f, 1f), new Vector2(0f, -y), new Vector2(1060f, 40f)),
-                "기본 예시 배합 (불러오기만으로는 재료를 쓰지 않습니다)", DrinkPaperUi.Small, TextAnchor.MiddleLeft, new Color(1f, 0.86f, 0.6f));
-            y += 46f;
+            // 넓은 창: 왼쪽 = 레시피 서랍(정수 2배), 오른쪽 = 기본 예시 2장 + 공유 코드 가져오기.
+            // 좁은 창: 위 = 예시 불러오기 2 + 가져오기 열기 버튼, 아래 = 서랍. 가져오기는 버튼으로 여는 판(서랍 위).
             var presets = DrinkLab.ExamplePresets;
-            for (int i = 0; i < presets.Count; i++)
+            float leftW = narrow ? layoutW - 60f : 1100f;
+            float top = 10f;
+            if (narrow)
             {
-                int index = i;
-                var r = presets[i];
-                var look = DrinkCalculator.Look(r);
-                var shortages = DrinkValidator.Shortages(r, DrinkLab.Owned);
-                var row = UiFactory.Place("Example_" + i, content, new Vector2(0.5f, 1f), new Vector2(0f, -y), new Vector2(1080f, 196f));
-                DrinkPaperUi.Sliced(row, "torn_recipe", 3f, new Color(0.9f, 0.96f, 0.86f));
-                var info = UiFactory.AddText(UiFactory.Place("Info", row, new Vector2(0f, 1f), new Vector2(36f, -44f), new Vector2(780f, 140f)),
-                    $"{r.name}  ·  {(r.Kind == DrinkKind.Tea ? "차" : "칵테일")} · {DrinkRules.TechniqueName(r.Technique)} · {LookWords(look)}\n{RecipeLine(r)}\n버프: {DrinkCalculator.Buff(r).Describe()}" +
-                    (shortages.Count > 0 ? $"\n<color=#a8241a>재료 부족: {ShortageLine(shortages)}</color>" : ""), DrinkPaperUi.Small, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
-                info.supportRichText = true;
-                DrinkPaperUi.Button(row, "UseExample", new Vector2(1f, 0.5f), new Vector2(-30f, -8f), new Vector2(200f, 60f), "불러오기", DrinkPaperUi.Small, () => LoadPreset(index));
-                y += 204f;
+                float bw = (leftW - 24f) / 3f;
+                for (int i = 0; i < presets.Count && i < 2; i++)
+                {
+                    int index = i;
+                    DrinkPaperUi.Button(body, "Example_" + i, new Vector2(0f, 1f), new Vector2(30f + i * (bw + 12f), -top), new Vector2(bw, 66f), $"{presets[i].name} 불러오기", DrinkPaperUi.Small, () => LoadPreset(index));
+                }
+                DrinkPaperUi.Button(body, "ImportToggle", new Vector2(0f, 1f), new Vector2(30f + 2f * (bw + 12f), -top), new Vector2(bw, 66f), importOpen ? "가져오기 닫기" : "공유 코드 가져오기", DrinkPaperUi.Small,
+                    () => { importOpen = !importOpen; SetTab(Tab.Recipes); });
+                top += 76f;
             }
-            y += 10f;
-            var recipes = DrinkLab.Recipes;
-            UiFactory.AddText(UiFactory.Place("Count", body, new Vector2(1f, 1f), new Vector2(-30f, -6f), new Vector2(700f, 40f)), $"저장한 레시피 {recipes.Count} / {DrinkRules.RecipeLimit}", DrinkPaperUi.Small, TextAnchor.MiddleLeft, new Color(1f, 0.86f, 0.6f));
-            for (int i = 0; i < recipes.Count; i++)
+            var area = UiFactory.Place("RecipeDrawer", body, new Vector2(0f, 1f), new Vector2(30f, -top), new Vector2(leftW, 930f - top));
+            drawer = RecipeDrawerView.Create(area, () => DrinkLab.Recipes, BuildRecipeSheet, drawerOpen, Message);
+            if (!narrow)
             {
-                int index = i;
-                var r = recipes[i];
-                var check = DrinkValidator.Check(r);
-                var buff = DrinkCalculator.Buff(r); // 저장값이 아니라 현재 밸런스로 재계산
-                var look = DrinkCalculator.Look(r);
-                var shortages = DrinkValidator.Shortages(r, DrinkLab.Owned);
-                // 보관한 레시피 = 찢긴 레시피 카드(9slice 3배). 색은 글로만(색상 사각형 없음).
-                var row = UiFactory.Place("Recipe_" + i, content, new Vector2(0.5f, 1f), new Vector2(0f, -y), new Vector2(1080f, 236f));
-                DrinkPaperUi.Sliced(row, "torn_recipe", 3f);
-                string info = $"{r.name}  ·  {(r.Kind == DrinkKind.Tea ? "차" : "칵테일")} · {DrinkRules.TechniqueName(r.Technique)} · {(look.totalVolume > 0 ? LookWords(look) : "")}\n{RecipeLine(r)}\n버프: {buff.Describe()}" +
-                              (!check.Ok ? $"\n<color=#a8241a>사용 불가: {check.First}</color>" : shortages.Count > 0 ? $"\n<color=#a8241a>재료 부족: {ShortageLine(shortages)}</color>" : "");
-                var t = UiFactory.AddText(UiFactory.Place("Info", row, new Vector2(0f, 1f), new Vector2(36f, -44f), new Vector2(600f, 180f)), info, DrinkPaperUi.Small, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
-                t.supportRichText = true;
-                t.verticalOverflow = VerticalWrapMode.Truncate;
-                DrinkPaperUi.Button(row, "Use", new Vector2(1f, 1f), new Vector2(-232f, -40f), new Vector2(200f, 56f), "불러와 제조", DrinkPaperUi.Small, () => LoadRecipe(index, false), tint: new Color(1f, 0.85f, 0.6f));
-                DrinkPaperUi.Button(row, "Edit", new Vector2(1f, 1f), new Vector2(-24f, -40f), new Vector2(200f, 56f), "수정", DrinkPaperUi.Small, () => LoadRecipe(index, true));
-                DrinkPaperUi.Button(row, "Copy", new Vector2(1f, 1f), new Vector2(-232f, -102f), new Vector2(200f, 56f), "공유 코드 복사", DrinkPaperUi.Small, () => CopyCode(index));
-                DrinkPaperUi.Button(row, "Dup", new Vector2(1f, 1f), new Vector2(-24f, -102f), new Vector2(200f, 56f), "복제", DrinkPaperUi.Small, () => { if (DrinkLab.DuplicateRecipe(index, out var e)) Message("복제했습니다."); else Message(e); SetTab(Tab.Recipes); });
-                DrinkPaperUi.Button(row, "Delete", new Vector2(1f, 1f), new Vector2(-24f, -164f), new Vector2(200f, 56f), "삭제", DrinkPaperUi.Small, () => { if (DrinkLab.DeleteRecipe(index, out var e)) Message("삭제했습니다."); else Message(e); SetTab(Tab.Recipes); }, tint: new Color(1f, 0.75f, 0.7f));
-                y += 244f;
+                float rx = 30f, ry = 6f;
+                UiFactory.AddText(UiFactory.Place("Count", body, new Vector2(1f, 1f), new Vector2(-rx, -ry), new Vector2(700f, 40f)), $"서랍 속 레시피 {DrinkLab.Recipes.Count} / {DrinkRules.RecipeLimit}  ·  기본 예시(불러오기만, 재료 소모 없음)", DrinkPaperUi.Small, TextAnchor.MiddleLeft, new Color(1f, 0.86f, 0.6f));
+                ry += 46f;
+                for (int i = 0; i < presets.Count; i++)
+                {
+                    int index = i;
+                    var r = presets[i];
+                    var shortages = DrinkValidator.Shortages(r, DrinkLab.Owned);
+                    var row = UiFactory.Place("Example_" + i, body, new Vector2(1f, 1f), new Vector2(-rx, -ry), new Vector2(700f, 116f));
+                    DrinkPaperUi.Sliced(row, "torn_recipe", 2f, new Color(0.9f, 0.96f, 0.86f));
+                    var info = UiFactory.AddText(UiFactory.Place("Info", row, new Vector2(0f, 1f), new Vector2(28f, -16f), new Vector2(430f, 88f)),
+                        $"{r.name}\n{RecipeLine(r)}" + (shortages.Count > 0 ? "  <color=#a8241a>재료 부족</color>" : ""), DrinkPaperUi.Small, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
+                    info.supportRichText = true;
+                    info.verticalOverflow = VerticalWrapMode.Truncate;
+                    DrinkPaperUi.Button(row, "UseExample", new Vector2(1f, 0.5f), new Vector2(-24f, 0f), new Vector2(200f, 66f), "불러오기", DrinkPaperUi.Small, () => LoadPreset(index));
+                    ry += 124f;
+                }
             }
-            if (recipes.Count == 0)
-                UiFactory.AddText(UiFactory.Place("Empty", content, new Vector2(0.5f, 1f), new Vector2(0f, -y), new Vector2(1000f, 100f)), "저장한 레시피가 없습니다. 제조 탭에서 배합 후 \"레시피 저장\"을 누르세요(재료 소모 없음).", DrinkPaperUi.Small, TextAnchor.MiddleCenter, new Color(0.85f, 0.85f, 0.9f));
-            content.sizeDelta = new Vector2(0f, Mathf.Max(y + (recipes.Count == 0 ? 110f : 0f), 120f));
 
             // 가져오기
-            var imp = UiFactory.Place("Import", body, new Vector2(1f, 1f), new Vector2(-30f, -50f), new Vector2(700f, 600f));
+            var imp = narrow ? UiFactory.Place("Import", body, new Vector2(0f, 0f), new Vector2(30f, 16f), new Vector2(layoutW - 60f, 410f))
+                             : UiFactory.Place("Import", body, new Vector2(1f, 1f), new Vector2(-30f, -306f), new Vector2(700f, 600f));
+            importPanel = imp;
             UiFactory.AddImage(imp, new Color(0.1f, 0.08f, 0.12f, 0.92f));
-            UiFactory.AddText(UiFactory.Place("Title", imp, new Vector2(0f, 1f), new Vector2(16f, -10f), new Vector2(660f, 40f)), "공유 코드 가져오기", DrinkPaperUi.Heading, TextAnchor.MiddleLeft, new Color(1f, 0.86f, 0.6f));
+            UiFactory.AddText(UiFactory.Place("Title", imp, new Vector2(0f, 1f), new Vector2(16f, -6f), new Vector2(660f, 48f)), "공유 코드 가져오기", DrinkPaperUi.Heading, TextAnchor.MiddleLeft, new Color(1f, 0.86f, 0.6f));
             UiFactory.AddText(UiFactory.Place("Help", imp, new Vector2(0f, 1f), new Vector2(16f, -54f), new Vector2(660f, 64f)), "코드(CCT1-…)를 붙여 넣고 확인 → 미리보기 후 저장. 창고·버프는 바뀌지 않고, 제조 때 내 재료를 씁니다.", DrinkPaperUi.Small - 2, TextAnchor.UpperLeft, new Color(0.85f, 0.85f, 0.9f));
             importField = MakeInput(imp, "Code", new Vector2(0f, 1f), new Vector2(16f, -124f), new Vector2(668f, 116f), "CCT1-…", DrinkPaperUi.Small - 2);
             importField.lineType = InputField.LineType.MultiLineNewline;
             importField.characterLimit = DrinkShareCode.MaxPasteLength;
-            DrinkPaperUi.Button(imp, "Paste", new Vector2(0f, 1f), new Vector2(16f, -250f), new Vector2(210f, 58f), "붙여넣기", DrinkPaperUi.Small, () => importField.text = GUIUtility.systemCopyBuffer ?? "");
-            DrinkPaperUi.Button(imp, "Check", new Vector2(0f, 1f), new Vector2(234f, -250f), new Vector2(210f, 58f), "코드 확인", DrinkPaperUi.Small, () => PreviewImport(importField.text));
-            DrinkPaperUi.Button(imp, "SaveImport", new Vector2(0f, 1f), new Vector2(452f, -250f), new Vector2(232f, 58f), "레시피로 저장", DrinkPaperUi.Small, () => SaveImport(), tint: new Color(1f, 0.85f, 0.6f));
-            var prev = UiFactory.AddText(UiFactory.Place("Preview", imp, new Vector2(0f, 1f), new Vector2(16f, -318f), new Vector2(668f, 270f)), "", DrinkPaperUi.Small - 2, TextAnchor.UpperLeft, Color.white);
+            DrinkPaperUi.Button(imp, "Paste", new Vector2(0f, 1f), new Vector2(16f, -250f), new Vector2(210f, 66f), "붙여넣기", DrinkPaperUi.Small, () => importField.text = GUIUtility.systemCopyBuffer ?? "");
+            DrinkPaperUi.Button(imp, "Check", new Vector2(0f, 1f), new Vector2(234f, -250f), new Vector2(210f, 66f), "코드 확인", DrinkPaperUi.Small, () => PreviewImport(importField.text));
+            DrinkPaperUi.Button(imp, "SaveImport", new Vector2(0f, 1f), new Vector2(452f, -250f), new Vector2(232f, 66f), "레시피로 저장", DrinkPaperUi.Small, () => SaveImport(), tint: new Color(1f, 0.85f, 0.6f));
+            var prev = UiFactory.AddText(narrow ? UiFactory.Place("Preview", imp, new Vector2(0f, 1f), new Vector2(716f, -54f), new Vector2(layoutW - 60f - 740f, 340f))
+                                                : UiFactory.Place("Preview", imp, new Vector2(0f, 1f), new Vector2(16f, -326f), new Vector2(668f, 262f)), "", DrinkPaperUi.Small - 2, TextAnchor.UpperLeft, Color.white);
             prev.supportRichText = true;
             prev.name = "ImportPreviewText";
             previewText = prev;
             RenderImportPreview(null);
-            // 레시피 보관함(장식, 균일 3배): 찢은 레시피가 들어가는 곳
-            var box = UiFactory.Place("RecipeStorage", body, new Vector2(1f, 0f), new Vector2(-140f, 30f), Vector2.zero);
-            box.pivot = new Vector2(1f, 0f);
-            DrinkPaperUi.Uniform(box, "recipe_storage", 3f);
+            if (narrow && !importOpen) imp.gameObject.SetActive(false); // 좁은 창: 버튼으로 여는 판(필드·미리보기는 그대로 살아 있음)
         }
+
+        /// <summary>서랍에서 꺼내 펼친 레시피 종이의 실제 UI(글·버튼은 종이와 함께 움직인다). 저장 실패는 종이를 그대로 두고 안내만.</summary>
+        bool BuildRecipeSheet(int index, RectTransform content)
+        {
+            var list = DrinkLab.Recipes;
+            if (index < 0 || index >= list.Count) return false;
+            var r = list[index];
+            var check = DrinkValidator.Check(r);
+            var buff = DrinkCalculator.Buff(r); // 저장값이 아니라 현재 밸런스로 재계산
+            var look = DrinkCalculator.Look(r);
+            var shortages = DrinkValidator.Shortages(r, DrinkLab.Owned);
+            var titleRt = UiFactory.Stretch("SheetTitle", content);
+            titleRt.anchorMin = new Vector2(0f, 1f); titleRt.offsetMin = new Vector2(0f, -54f); titleRt.offsetMax = Vector2.zero;
+            var title = UiFactory.AddText(titleRt, r.name, DrinkPaperUi.Heading, TextAnchor.MiddleLeft, DrinkPaperUi.Ink);
+            title.horizontalOverflow = HorizontalWrapMode.Wrap; title.verticalOverflow = VerticalWrapMode.Truncate;
+            // 본문은 종이 안전 영역 안의 세로 스크롤(긴 이름·재료 8종·긴 버프도 18px 그대로 끝까지 읽힘, 종이 밖으로 넘치지 않음)
+            var bodyArea = UiFactory.Stretch("SheetBody", content);
+            bodyArea.offsetMin = new Vector2(0f, 160f); bodyArea.offsetMax = new Vector2(0f, -58f);
+            var bodyRt = MakeScroll(bodyArea, transparent: true);
+            Canvas.ForceUpdateCanvases();
+            float infoW = Mathf.Max(100f, bodyArea.rect.width - 24f);
+            var irt = UiFactory.Place("Info", bodyRt, new Vector2(0f, 1f), Vector2.zero, new Vector2(infoW, 10f)); // 스크롤 내용 안의 글 상자(폭 고정)
+            irt.pivot = new Vector2(0f, 1f);
+            var info = UiFactory.AddText(irt,
+                $"{(r.Kind == DrinkKind.Tea ? "차" : "칵테일")} · {DrinkRules.TechniqueName(r.Technique)} · {(look.totalVolume > 0 ? LookWords(look) : "")}\n{RecipeLine(r)}\n버프(현재 밸런스): {buff.Describe()}" +
+                (!check.Ok ? $"\n<color=#a8241a>사용 불가: {check.First}</color>" : shortages.Count > 0 ? $"\n<color=#a8241a>재료 부족: {ShortageLine(shortages)}</color>" : ""),
+                DrinkPaperUi.Body, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
+            info.supportRichText = true; info.horizontalOverflow = HorizontalWrapMode.Wrap; info.verticalOverflow = VerticalWrapMode.Overflow;
+            float infoH = info.cachedTextGeneratorForLayout.GetPreferredHeight(info.text, info.GetGenerationSettings(new Vector2(infoW, 0f))) / info.pixelsPerUnit + 8f;
+            irt.sizeDelta = new Vector2(infoW, infoH);
+            bodyRt.sizeDelta = new Vector2(0f, infoH);
+            // 아래 두 줄 버튼(3 × 2): 제조·수정·공유 / 복제·삭제·다시 넣기
+            var row1 = new (string name, string label, Action act)[]
+            {
+                ("Use", "불러와 제조", () => LoadRecipe(index, false)),
+                ("Edit", "수정", () => LoadRecipe(index, true)),
+                ("Copy", "공유 코드 복사", () => CopyCode(index)),
+            };
+            var row2 = new (string name, string label, Action act)[]
+            {
+                ("Dup", "복제", () => { if (DrinkLab.DuplicateRecipe(index, out var e)) { Message("복제했습니다(서랍에 한 장 더 꽂음)."); SetTab(Tab.Recipes); } else Message(e); }),
+                ("Delete", "삭제", () => { if (DrinkLab.DeleteRecipe(index, out var e)) { Message("서랍에서 뺐습니다."); SetTab(Tab.Recipes); } else Message(e); }),
+                ("PutBack", "다시 넣기", () => drawer?.ReturnSheet()),
+            };
+            for (int rr = 0; rr < 2; rr++)
+            {
+                var rowDefs = rr == 0 ? row1 : row2;
+                for (int i = 0; i < rowDefs.Length; i++)
+                {
+                    var d = rowDefs[i];
+                    var b = DrinkPaperUi.Button(content, d.name, new Vector2(i / 3f, 0f), Vector2.zero, new Vector2(10f, 66f), d.label, DrinkPaperUi.Small, d.act,
+                        tint: d.name == "Use" ? new Color(1f, 0.85f, 0.6f) : d.name == "Delete" ? new Color(1f, 0.75f, 0.7f) : (Color?)null);
+                    var brt = (RectTransform)b.transform;
+                    brt.anchorMin = new Vector2(i / 3f, 0f); brt.anchorMax = new Vector2((i + 1) / 3f, 0f); brt.pivot = new Vector2(0.5f, 0f);
+                    brt.offsetMin = new Vector2(6f, rr == 0 ? 82f : 6f); brt.offsetMax = new Vector2(-6f, rr == 0 ? 148f : 72f);
+                }
+            }
+            return true;
+        }
+
 
         Text previewText;
         public string ImportPreviewText => previewText != null ? previewText.text : "";
@@ -829,7 +1082,7 @@ namespace CCT
         static string ShortageLine(Dictionary<string, int> s)
         {
             var parts = new List<string>();
-            foreach (var kv in s) { var d = DrinkIngredients.Get(kv.Key); if (d != null) parts.Add($"{d.name} {DrinkRules.Format(kv.Value, d.form)} (획득처: {d.source})"); }
+            foreach (var kv in s) { var d = DrinkIngredients.Get(kv.Key); if (d != null) parts.Add($"{d.name} {DrinkRules.Format(kv.Value, d.form)} (획득처: {DrinkLab.SourceText(d.id)})"); }
             return string.Join(", ", parts);
         }
 
@@ -870,7 +1123,7 @@ namespace CCT
             if (index < 0 || index >= list.Count) return null;
             var code = DrinkShareCode.Encode(list[index]);
             GUIUtility.systemCopyBuffer = code;
-            Message("공유 코드를 클립보드에 복사했습니다: " + code);
+            Message($"\"{list[index].name}\" 공유 코드를 클립보드에 복사했습니다(붙여넣기로 전달).");
             return code;
         }
 

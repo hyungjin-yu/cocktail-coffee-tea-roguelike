@@ -29,7 +29,9 @@ namespace CCT
         /// <summary>장부 그릇 이름.</summary>
         public const string LedgerBottle = "bottle", LedgerMeasure = "measure", LedgerVessel = "vessel", LedgerServe = "serve", LedgerKettle = "kettle";
 
-        RectTransform root;
+        RectTransform root, scene;
+        /// <summary>카메라가 움직이는 장면 층(도구가 여기 붙는다).</summary>
+        public RectTransform Scene => scene;
         Text readout, toolLabel, finishLabel, sourceLabel;
         Image bottle, stream, leafHeap, chaha, kettle, steam, spoon, chahaHeap;
         RectTransform bottleRt, leafRoot;
@@ -114,48 +116,56 @@ namespace CCT
             UiFactory.AddImage(root, new Color(0.11f, 0.08f, 0.07f, 0.95f));
             root.gameObject.AddComponent<RectMask2D>(); // 배경 아트를 제조대 안에서만
             backdropRoot = UiFactory.Stretch("Backdrop", root);
-            var counter = UiFactory.Place("Counter", root, new Vector2(0.5f, 0f), new Vector2(0f, 0f), new Vector2(root.rect.width > 0 ? root.rect.width : 780f, 120f));
-            counter.anchorMin = new Vector2(0f, 0f); counter.anchorMax = new Vector2(1f, 0f); counter.sizeDelta = new Vector2(0f, 120f);
-            counterImage = UiFactory.AddImage(counter, new Color(0.32f, 0.2f, 0.12f, 1f));
+            // 조용한 상판(도구가 놓이는 면, 높이 HudHeight..HudHeight+TableHeight)과 그 아래 완전 불투명 정보 띠(안내·수량, 배경과 겹치지 않음).
+            var counter = UiFactory.Place("Counter", root, new Vector2(0.5f, 0f), new Vector2(0f, HudHeight), new Vector2(780f, TableHeight));
+            counter.anchorMin = new Vector2(0f, 0f); counter.anchorMax = new Vector2(1f, 0f); counter.sizeDelta = new Vector2(0f, TableHeight);
+            counterImage = UiFactory.AddImage(counter, new Color(0.36f, 0.23f, 0.14f, 1f));
             counterImage.raycastTarget = false;
+            var hud = UiFactory.Place("InfoHud", root, new Vector2(0.5f, 0f), Vector2.zero, new Vector2(780f, HudHeight));
+            hud.anchorMin = new Vector2(0f, 0f); hud.anchorMax = new Vector2(1f, 0f); hud.sizeDelta = new Vector2(0f, HudHeight);
+            UiFactory.AddImage(hud, new Color(0.07f, 0.055f, 0.05f, 1f)).raycastTarget = false;
 
-            toolLabel = UiFactory.AddText(UiFactory.Place("ToolLabel", root, new Vector2(0.5f, 0f), new Vector2(0f, 80f), new Vector2(780f, 36f)), "", DrinkPaperUi.Small, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.6f));
-            readout = UiFactory.AddText(UiFactory.Place("Readout", root, new Vector2(0.5f, 0f), new Vector2(0f, 8f), new Vector2(780f, 70f)), "", DrinkPaperUi.Small, TextAnchor.MiddleCenter, Color.white);
+            // 카메라가 움직이는 장면(도구·줄기·내용물·잎). 벽·상판·정보띠·안내 글자는 고정. 손가락 드래그는 차이(델타)로만 읽어 팬과 무관.
+            scene = UiFactory.Stretch("Scene", root);
+            toolLabel = UiFactory.AddText(UiFactory.Place("ToolLabel", root, new Vector2(0.5f, 0f), new Vector2(0f, 52f), new Vector2(760f, 38f)), "", DrinkPaperUi.Small, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.6f));
+            readout = UiFactory.AddText(UiFactory.Place("Readout", root, new Vector2(0.5f, 0f), new Vector2(0f, 10f), new Vector2(760f, 38f)), "", DrinkPaperUi.Small, TextAnchor.MiddleCenter, Color.white);
             finishLabel = UiFactory.AddText(UiFactory.Place("Finish", root, new Vector2(0.5f, 1f), new Vector2(0f, -50f), new Vector2(760f, 44f)), "", 30, TextAnchor.MiddleCenter, new Color(1f, 0.92f, 0.5f));
 
-            leafRoot = UiFactory.Stretch("Leaves", root);
-            stream = AddImage("Stream", root, DrinkArt.Sprite("dl_pour_stream") ?? DrinkVesselView.White, new Vector2(16f, 100f));
+            leafRoot = UiFactory.Stretch("Leaves", scene);
+            stream = AddImage("Stream", scene, DrinkArt.Sprite("dl_pour_stream") ?? DrinkVesselView.White, new Vector2(16f, 100f));
             stream.rectTransform.pivot = new Vector2(0.5f, 1f);
             stream.gameObject.SetActive(false);
             bottleFall = new FallStream(stream);
             // 지거/다하 → 그릇 옮겨 붓기 줄기(재료 고유 색). 병 줄기와 따로 둔다.
-            dumpStream = AddImage("DumpStream", root, DrinkArt.Sprite("dl_pour_stream") ?? DrinkVesselView.White, new Vector2(12f, 100f));
+            dumpStream = AddImage("DumpStream", scene, DrinkArt.Sprite("dl_pour_stream") ?? DrinkVesselView.White, new Vector2(12f, 100f));
             dumpStream.rectTransform.pivot = new Vector2(0.5f, 1f);
             dumpStream.gameObject.SetActive(false);
             toolFall = new FallStream(dumpStream);
 
-            kettle = AddImage("Kettle", root, DrinkArt.SpriteOrPlaceholder("dl_water_kettle", out bool kp), Vector2.zero);
+            kettle = AddImage("Kettle", scene, DrinkArt.SpriteOrPlaceholder("dl_water_kettle", out bool kp), Vector2.zero);
             NativeSize(kettle, 3);
-            kettle.rectTransform.anchoredPosition = new Vector2(-230f, 120f); // 주둥이(오른쪽)가 다관 쪽을 향하도록 왼쪽 위
+            // 다관 오른쪽 위: 왼쪽의 재료 병/통·가운데 지거/다하·다관 오른쪽에 내려놓는 뚜껑과 겹치지 않는다. 물을 부을 때만 다관 입구 위로 옮긴다.
+            kettle.rectTransform.anchoredPosition = new Vector2(300f, 140f);
             DrinkVesselView.SetPivotKeepPosition(kettle.rectTransform, DrinkArt.Anchor("dl_water_kettle", "grip"));
             kettleRest = kettle.rectTransform.anchoredPosition;
             kettle.gameObject.SetActive(false);
             Placeholders |= kp;
 
-            steam = AddImage("Steam", root, DrinkArt.Sprite("dl_steam") ?? DrinkVesselView.White, new Vector2(64f, 96f));
+            steam = AddImage("Steam", scene, DrinkArt.Sprite("dl_steam") ?? DrinkVesselView.White, new Vector2(64f, 96f));
             steam.gameObject.SetActive(false);
 
-            bottle = AddImage("Bottle", root, DrinkVesselView.White, new Vector2(96f, 224f));
+            bottle = AddImage("Bottle", scene, DrinkVesselView.White, new Vector2(96f, 224f));
             bottleRt = bottle.rectTransform;
             bottle.raycastTarget = true;
             var handle = bottle.gameObject.AddComponent<DrinkPourHandle>();
             handle.Stage = this;
             AddGrabArea(bottleRt);
             // 원천(병·통) 남은 양: 불투명 병/통 내부를 억지로 비추지 않고 장부의 현재 남은 양을 글자로 보인다(창고 차감은 제조 확정 때).
-            sourceLabel = UiFactory.AddText(UiFactory.Place("SourceLeft", root, new Vector2(0.5f, 0.5f), BottleRest + new Vector2(0f, -132f), new Vector2(300f, 34f)), "", DrinkPaperUi.Small, TextAnchor.MiddleCenter, new Color(0.95f, 0.88f, 0.75f));
+            sourceLabel = UiFactory.AddText(UiFactory.Place("SourceLeft", scene, new Vector2(0.5f, 0.5f), BottleRest + new Vector2(0f, -134f), new Vector2(300f, 40f)), "", DrinkPaperUi.Small, TextAnchor.MiddleCenter, new Color(0.95f, 0.88f, 0.75f));
             sourceLabel.raycastTarget = false;
+            AddPlate(sourceLabel);
 
-            chaha = AddImage("Chaha", root, DrinkArt.SpriteOrPlaceholder("dl_chaha", out bool cp), Vector2.zero);
+            chaha = AddImage("Chaha", scene, DrinkArt.SpriteOrPlaceholder("dl_chaha", out bool cp), Vector2.zero);
             NativeSize(chaha, 4);
             chaha.rectTransform.anchoredPosition = new Vector2(-30f, 10f);
             DrinkVesselView.SetPivotKeepPosition(chaha.rectTransform, DrinkArt.Anchor("dl_chaha", "grip"));
@@ -165,19 +175,48 @@ namespace CCT
             chahaHeap.rectTransform.pivot = new Vector2(0.5f, 0f);
             Placeholders |= cp;
 
-            jigger = DrinkVesselView.Create(root, "dl_jigger", new Vector2(-30f, -20f), DrinkRules.JiggerCapacity / 10f);
+            jigger = DrinkVesselView.Create(scene, "dl_jigger", new Vector2(-30f, -20f), DrinkRules.JiggerCapacity / 10f);
             DrinkVesselView.SetPivotKeepPosition(jigger.Rect, DrinkArt.Anchor("dl_jigger", "grip"));
             jiggerRest = jigger.Rect.anchoredPosition;
             Placeholders |= jigger.Placeholder;
 
-            leafHeap = AddImage("LeafHeap", root, DrinkVesselView.White, new Vector2(128f, 64f));
+            leafHeap = AddImage("LeafHeap", scene, DrinkVesselView.White, new Vector2(128f, 64f));
             leafHeap.rectTransform.pivot = new Vector2(0.5f, 0f);
             leafHeap.gameObject.SetActive(false);
 
-            spoon = AddImage("Barspoon", root, DrinkArt.SpriteOrPlaceholder("dl_barspoon", out bool sp), Vector2.zero);
+            spoon = AddImage("Barspoon", scene, DrinkArt.SpriteOrPlaceholder("dl_barspoon", out bool sp), Vector2.zero);
             NativeSize(spoon, 4);
             spoon.gameObject.SetActive(false);
             Placeholders |= sp;
+        }
+
+        readonly List<(Text label, Image plate)> plates = new List<(Text, Image)>();
+
+        /// <summary>안내·수량 글자 뒤 단색 판: 배경 그림의 선반 세부와 겹쳐도 읽힌다. 크기는 글자에 맞춰 UpdatePlates가 맞춘다.</summary>
+        void AddPlate(Text label)
+        {
+            var lr = label.rectTransform;
+            var pr = UiFactory.Place(lr.name + "Plate", lr.parent, lr.anchorMin, Vector2.zero, lr.sizeDelta);
+            pr.pivot = new Vector2(0.5f, 0.5f);
+            pr.SetSiblingIndex(lr.GetSiblingIndex());
+            var img = pr.gameObject.AddComponent<Image>();
+            img.color = new Color(0.07f, 0.055f, 0.05f, 1f); // 완전 불투명(뒤 선반 세부가 글자와 섞이지 않음)
+            img.raycastTarget = false;
+            plates.Add((label, img));
+        }
+
+        void UpdatePlates()
+        {
+            foreach (var (label, img) in plates)
+            {
+                bool on = label.gameObject.activeInHierarchy && !string.IsNullOrEmpty(label.text);
+                if (img.enabled != on) img.enabled = on;
+                if (!on) continue;
+                var lr = label.rectTransform;
+                var pr = img.rectTransform;
+                pr.anchoredPosition = lr.anchoredPosition + new Vector2((0.5f - lr.pivot.x) * lr.sizeDelta.x, (0.5f - lr.pivot.y) * lr.sizeDelta.y);
+                pr.sizeDelta = new Vector2(Mathf.Min(lr.sizeDelta.x, label.preferredWidth + 28f), Mathf.Min(lr.sizeDelta.y, label.preferredHeight + 10f));
+            }
         }
 
         /// <summary>병 주위 투명 잡기 영역(터치에서도 잡기 쉽게). 누르기·끌기·놓기를 제조대로 넘긴다.</summary>
@@ -205,6 +244,8 @@ namespace CCT
 
         string BottleArt => srcBottle != null ? srcBottle.AssetId : current?.bottleId;
 
+        /// <summary>제조대 아래 정보 띠·상판 높이(1920×1080 기준). 도구는 상판 위(VesselRest 바닥 = 아래에서 약 115).</summary>
+        public const float HudHeight = 92f, TableHeight = 24f;
         RectTransform backdropRoot;
         Image counterImage;
         DrinkKind? backdropKind;
@@ -219,10 +260,27 @@ namespace CCT
             if (backdropKind == kind) return;
             backdropKind = kind;
             foreach (Transform c in backdropRoot) Destroy(c.gameObject);
+            var size = root.rect.size.x > 0 ? root.rect.size : new Vector2(800f, 690f);
+            // 73 제조 전용 배경(CraftingBackdrops ready): 저대비 벽 400×287·상판 400×12를 정수 2배로 그대로(막·반복 캐비닛 없음).
+            var craftWall = DrinkArt.Sprite(kind == DrinkKind.Tea ? "dl_craft_tea_wall" : "dl_craft_bar_wall");
+            var craftTable = DrinkArt.Sprite(kind == DrinkKind.Tea ? "dl_craft_tea_table" : "dl_craft_bar_table");
+            if (craftWall != null && craftTable != null)
+            {
+                var wr = UiFactory.Place("CraftWall", backdropRoot, new Vector2(0.5f, 1f), Vector2.zero, new Vector2(craftWall.rect.width * 2f, craftWall.rect.height * 2f));
+                wr.pivot = new Vector2(0.5f, 1f);
+                var wi = wr.gameObject.AddComponent<Image>();
+                wi.sprite = craftWall; wi.raycastTarget = false;
+                var cRt = counterImage.rectTransform;
+                foreach (Transform c in cRt) Destroy(c.gameObject);
+                counterImage.enabled = true;
+                counterImage.sprite = craftTable;
+                counterImage.type = Image.Type.Simple;
+                counterImage.color = Color.white;
+                return;
+            }
             string prefix = kind == DrinkKind.Tea ? "bg_tea" : "bg_bar";
             var wall = Resources.Load<Sprite>($"ArtExtra/{prefix}_wall/{prefix}_wall_00");
-            var counterArt = Resources.Load<Sprite>($"ArtExtra/{prefix}_counter/{prefix}_counter_00");
-            var size = root.rect.size.x > 0 ? root.rect.size : new Vector2(800f, 690f);
+            counterImage.sprite = null;
             if (wall != null)
             {
                 float k = Mathf.Max(size.x / wall.rect.width, (size.y - 110f) / wall.rect.height); // 덮기(가운데 위 정렬, 넘치는 부분은 잘림)
@@ -230,34 +288,23 @@ namespace CCT
                 wr.pivot = new Vector2(0.5f, 1f);
                 var wi = wr.gameObject.AddComponent<Image>();
                 wi.sprite = wall; wi.raycastTarget = false;
-                wi.color = kind == DrinkKind.Tea ? new Color(0.42f, 0.4f, 0.38f) : new Color(0.38f, 0.36f, 0.36f);
+                wi.color = kind == DrinkKind.Tea ? new Color(0.55f, 0.53f, 0.5f) : new Color(0.52f, 0.5f, 0.5f);
+                // 고른 어두운 막: 그림의 밝은 선반과 어두운 가운데 거울 판의 명암 차를 줄여 경계가 도드라지지 않고, 액체·줄기·안내가 먼저 읽힌다.
+                var veil = UiFactory.Stretch("Veil", backdropRoot).gameObject.AddComponent<Image>();
+                veil.color = kind == DrinkKind.Tea ? new Color(0.12f, 0.09f, 0.07f, 0.84f) : new Color(0.1f, 0.075f, 0.07f, 0.86f);
+                veil.raycastTarget = false;
             }
             var counterRt = counterImage != null ? counterImage.rectTransform : null;
+            if (counterRt != null) foreach (Transform c in counterRt) Destroy(c.gameObject);
+            // 임시 조용한 상판(제조 전용 상판 아트 도착 전): 기존 counter 아트의 상판 띠에는 잔·병 같은 소품이 섞여 있어 쓰지 않고
+            // 바=어두운 호두, 찻집=저채도 밝은 나무의 두 톤 판(윗면 밝은 선 4px)만 그린다. 아트가 오면 이 자리를 교체한다.
             if (counterRt != null)
             {
-                foreach (Transform c in counterRt) Destroy(c.gameObject);
-                counterImage.enabled = counterArt == null;
-            }
-            if (counterArt != null && counterRt != null)
-            {
-                // 카운터 상판 가장자리+앞면만: 위 물건 줄을 잘라 도구 뒤를 단순하게. 같은 배율로 가로 반복(텍스처 설정은 바꾸지 않음).
-                var tex = counterArt.texture;
-                var r = counterArt.textureRect;
-                // 위 물건 줄을 뺀 상판 가장자리부터 아래(아트에서 가로 전체가 채워지는 첫 행: 바 42행, 차 52행 / 128).
-                float front = kind == DrinkKind.Tea ? (128f - 52f) / 128f : (128f - 42f) / 128f;
-                float k = 120f / (r.height * front);
-                float w = r.width * k;
-                int copies = Mathf.CeilToInt(size.x / w) + 1;
-                for (int i = 0; i < copies; i++)
-                {
-                    var cr = UiFactory.Place("CounterFront" + i, counterRt, new Vector2(0f, 0f), new Vector2(i * w - (copies * w - size.x) * 0.5f, 0f), new Vector2(w, 120f));
-                    cr.pivot = Vector2.zero;
-                    var ri = cr.gameObject.AddComponent<RawImage>();
-                    ri.texture = tex;
-                    ri.uvRect = new Rect(r.x / tex.width, r.y / tex.height, r.width / tex.width, r.height * front / tex.height);
-                    ri.raycastTarget = false;
-                    ri.color = new Color(0.85f, 0.82f, 0.8f);
-                }
+                counterImage.enabled = true;
+                counterImage.color = kind == DrinkKind.Tea ? new Color(0.5f, 0.38f, 0.26f, 1f) : new Color(0.3f, 0.19f, 0.12f, 1f);
+                var top = UiFactory.Place("TableTop", counterRt, new Vector2(0.5f, 1f), Vector2.zero, new Vector2(0f, 4f));
+                top.anchorMin = new Vector2(0f, 1f); top.anchorMax = new Vector2(1f, 1f); top.pivot = new Vector2(0.5f, 1f); top.sizeDelta = new Vector2(0f, 4f);
+                UiFactory.AddImage(top, kind == DrinkKind.Tea ? new Color(0.68f, 0.55f, 0.4f, 1f) : new Color(0.46f, 0.31f, 0.2f, 1f)).raycastTarget = false;
             }
         }
 
@@ -309,7 +356,7 @@ namespace CCT
             EnsureVessel(draft);
             vessel.transform.localRotation = Quaternion.identity;
             DrinkVesselView.SetPivotKeepPosition(vessel.Rect, new Vector2(0.5f, 0f));
-            vessel.Rect.anchoredPosition = VesselRest;
+            vessel.Rect.anchoredPosition = StandOnTable(vessel, VesselRest.x);
             vessel.SetLiquidHidden(false);
             if (kettle != null) { kettle.rectTransform.localRotation = Quaternion.identity; kettle.rectTransform.anchoredPosition = kettleRest; }
             vessel.SetEffects(0f, 0f, Pouring ? 0.6f : 0.15f);
@@ -330,11 +377,124 @@ namespace CCT
             if (vessel != null && vesselId == want) return;
             if (vessel != null) Destroy(vessel.gameObject);
             vesselId = want;
-            vessel = DrinkVesselView.Create(root, want, VesselRest, CapacityFor(want), 4);
-            vessel.transform.SetSiblingIndex(counterImage != null ? counterImage.transform.GetSiblingIndex() + 1 : 1);
+            vessel = DrinkVesselView.Create(scene, want, VesselRest, CapacityFor(want), 4);
+            vessel.transform.SetSiblingIndex(0); // 장면 맨 뒤(잎·줄기·지거가 그 앞)
             Placeholders |= vessel.Placeholder;
+            vessel.Rect.anchoredPosition = StandOnTable(vessel, VesselRest.x);
+            SetupLid();
             Ledger.Flush(LedgerVessel);
             Ledger[LedgerVessel].Clear();
+        }
+
+        // ───── 제조대 카메라(73 사용자: 공정 진행 방향을 따라 작업 지점을 가운데, 완성 잔은 오른쪽으로 이동해 가운데) ─────
+        float camX, camVel, craftFocus = VesselRest.x;
+        bool camSnap = true;
+        /// <summary>팬 부드러움(SmoothDamp 시간 상수). 0.18이면 약 0.5~0.7초에 자리 잡는다.</summary>
+        public const float CameraSmooth = 0.18f;
+        public float CameraX => camX;
+        public float CameraTarget => FocusTarget();
+
+        /// <summary>
+        /// 지금 작업의 가운데(장면 좌표 x): 편집 중 병→지거/다하 = 둘의 가운데, 옮겨 붓기 = 지거/다하와 제조 그릇의 가운데,
+        /// 제조 모션 = 단계별(그릇 / 그릇→완성 잔 가운데), 완성 = 완성 잔. 장면만 움직이고 벽·상판·정보띠는 고정.
+        /// </summary>
+        float FocusTarget()
+        {
+            if (showingFinal) { var f = FinalVessel; return f != null ? f.Rect.anchoredPosition.x : VesselRest.x; }
+            if (sequence != null) return craftFocus;
+            if (phase != CyclePhase.None && phase != CyclePhase.BottleReturn) return (ToolRest.x + VesselRest.x) * 0.5f;
+            return (BottleRest.x + ToolRest.x) * 0.5f;
+        }
+
+        void UpdateCamera(float dt)
+        {
+            if (scene == null) return;
+            float target = FocusTarget();
+            if (camSnap || skipRequested) { camX = target; camVel = 0f; camSnap = false; }
+            else camX = Mathf.SmoothDamp(camX, target, ref camVel, CameraSmooth, Mathf.Infinity, Mathf.Max(0f, dt));
+            scene.anchoredPosition = new Vector2(-Mathf.Round(camX), 0f); // 화면 픽셀 정렬
+            // 병 잔량판은 병 아래가 기본이지만 카메라가 옮겨 가도 보이는 영역 안에서 잘리지 않게 붙든다.
+            if (sourceLabel != null)
+            {
+                var lr = sourceLabel.rectTransform;
+                float half = (root.rect.width > 0f ? root.rect.width : 800f) * 0.5f, w = lr.sizeDelta.x * 0.5f + 12f;
+                float x = Mathf.Clamp(BottleRest.x, camX - half + w, camX + half - w);
+                lr.anchoredPosition = new Vector2(x, lr.anchoredPosition.y);
+            }
+        }
+
+        /// <summary>시험·QA: 카메라를 지금 목표로 바로.</summary>
+        public void SnapCameraForTests() => camSnap = true;
+
+        // ───── 다관 뚜껑(73 사용자: 손 없이 열기 → 열린 입구로 재료·물 → 닫기 → 우리기) ─────
+        Image lid;
+        float lidT, lidLinger;
+        bool craftLidOpen;
+        public const float LidOpenSeconds = 0.45f, LidCloseSeconds = 0.4f;
+        /// <summary>뚜껑 위치(아트 px, 몸체 기준): 들어 올림 높이와 다관 오른쪽 탁자에 내려놓은 자리.</summary>
+        static readonly Vector2 LidLift = new Vector2(0f, 20f), LidAside = new Vector2(44f, -30f);
+        /// <summary>0 = 닫힘, 1 = 옆에 내려놓음(입구 열림).</summary>
+        public float LidOpen01 => lid != null ? lidT : -1f;
+        /// <summary>제조대 위 단계 문구(QA·시험).</summary>
+        public string FinishText => finishLabel != null ? finishLabel.text : "";
+        bool HasLid => lid != null;
+        bool LidReady => lid == null || lidT >= 1f;
+        bool LidClosed => lid == null || lidT <= 0f;
+
+        /// <summary>
+        /// 분리 아트가 있으면 다관 = 열린 몸체 + 같은 캔버스의 뚜껑(겹치면 원래 다관과 같은 픽셀). 물리 마스크·용량은 원래 dl_teapot 그대로.
+        /// 닫혀 있으면 뚜껑은 몸체의 자식이라 따르기 회전에도 함께 움직인다.
+        /// </summary>
+        void SetupLid()
+        {
+            lid = null; lidT = 0f; lidLinger = 0f; craftLidOpen = false;
+            if (vesselId != "dl_teapot") return;
+            var body = DrinkArt.Sprite("dl_teapot_open_body");
+            var lidArt = DrinkArt.Sprite("dl_teapot_lid");
+            if (body == null || lidArt == null) return;
+            vessel.Glass.sprite = body;
+            var rt = UiFactory.Stretch("Lid", vessel.transform);
+            lid = rt.gameObject.AddComponent<Image>();
+            lid.sprite = lidArt;
+            lid.raycastTarget = false;
+            PoseLid();
+        }
+
+        /// <summary>편집 중 붓기 주기(다하·지거 → 다관) 또는 제조 중 물 붓기 동안 열고, 끝나면 잠시 뒤 닫는다.</summary>
+        void UpdateLid(float dt)
+        {
+            if (lid == null) return;
+            bool want = craftLidOpen || (sequence == null && phase != CyclePhase.None);
+            if (want) lidLinger = 0.35f; else lidLinger -= dt; // 연달아 넣을 때 여닫기를 반복하지 않게
+            float goal = want || lidLinger > 0f ? 1f : 0f;
+            if (skipRequested && sequence != null) lidT = goal;
+            else lidT = Mathf.MoveTowards(lidT, goal, dt / (goal > lidT ? LidOpenSeconds : LidCloseSeconds));
+            PoseLid();
+        }
+
+        /// <summary>들기(앞 40%: 수직) → 옆으로 호를 그리며 내려놓기. 닫기는 같은 경로를 거꾸로.</summary>
+        void PoseLid()
+        {
+            if (lid == null) return;
+            Vector2 p;
+            if (lidT <= 0.4f) p = LidLift * Ease(lidT / 0.4f);
+            else
+            {
+                float u = Ease((lidT - 0.4f) / 0.6f);
+                p = Vector2.Lerp(LidLift, LidAside, u) + new Vector2(0f, 10f * Mathf.Sin(Mathf.PI * u));
+            }
+            float k = vessel.Rect.rect.width / (vessel.Glass.sprite != null ? vessel.Glass.sprite.rect.width : 64f);
+            lid.rectTransform.anchoredPosition = new Vector2(Mathf.Round(p.x) * k, Mathf.Round(p.y) * k); // 아트 픽셀 격자
+            lid.transform.SetAsLastSibling();
+        }
+
+        IEnumerator LidTo(bool open)
+        {
+            craftLidOpen = open;
+            if (open) lidLinger = 0f;
+            float s0 = Time.realtimeSinceStartup;
+            while (HasLid && !skipRequested && (open ? !LidReady : !LidClosed) && Time.realtimeSinceStartup - s0 < 2f) yield return null;
+            if (!open) lidLinger = 0f;
         }
 
         /// <summary>
@@ -452,7 +612,7 @@ namespace CCT
             if (vesselBottle)
             {
                 // 합성: 장부 잔량 액체 → 물리 내부 마스크(라벨 뒤 포함) → 열린 전경(라벨이 앞을 가림) → 뚜껑(세워 둔 동안만).
-                srcBottle = DrinkVesselView.Create(root, srcId, BottleRest, BottleCapacityMl(def.id));
+                srcBottle = DrinkVesselView.Create(scene, srcId, BottleRest, BottleCapacityMl(def.id));
                 srcBottle.transform.SetSiblingIndex(bottle.transform.GetSiblingIndex());
                 bottleRt = srcBottle.Rect;
                 DrinkVesselView.SetPivotKeepPosition(bottleRt, DrinkArt.Anchor(srcId, "grip"));
@@ -812,6 +972,8 @@ namespace CCT
             }
             if (Pouring) Step(dt);
             UpdateCycle(dt);
+            UpdateLid(dt);
+            UpdateCamera(dt);
             Ledger.Advance(dt);
             bottleFall.Tick(dt);
             toolFall.Tick(dt);
@@ -824,6 +986,7 @@ namespace CCT
                 if (phase == CyclePhase.None) SyncVesselFromDraft();
                 RenderLedger();
             }
+            UpdatePlates();
         }
 
         /// <summary>병/통에 남은 가상 재고(장부) — 붓는 동안 줄어든다.</summary>
@@ -866,6 +1029,17 @@ namespace CCT
         /// <summary>계량 도구의 제자리(손잡이 피벗 위치). Build에서 피벗을 grip으로 옮긴 뒤 기록한다.</summary>
         Vector2 jiggerRest, chahaRest, kettleRest;
         public static readonly Vector2 VesselRest = new Vector2(150f, -230f);
+
+        /// <summary>상판 윗면(제조대 가운데 기준 y): 아래 정보띠 + 상판 두께 위.</summary>
+        float TableTopY => -(root != null && root.rect.height > 0f ? root.rect.height : 690f) * 0.5f + HudHeight + TableHeight;
+
+        /// <summary>바닥 가운데 피벗 그릇을 x에 두되, 스프라이트의 실제 보이는 바닥(아래 투명 행 제외)이 상판 윗면에 닿게 한다(떠 보이지 않게).</summary>
+        Vector2 StandOnTable(DrinkVesselView v, float x)
+        {
+            float artH = v.Glass != null && v.Glass.sprite != null ? v.Glass.sprite.rect.height : 0f;
+            float scale = artH > 0f ? v.Rect.rect.height / artH : 4f;
+            return new Vector2(x, TableTopY - DrinkArt.AlphaBottom(v.AssetId) * scale);
+        }
         string transferId;
         int transferFrom, transferAdded;
         DrinkIngredientDef transferDef;
@@ -959,7 +1133,7 @@ namespace CCT
             tool.anchoredPosition = ToolRest + (target - lipAtRest) * move;
         }
 
-        Vector2 ReceiverMouth() => vessel.PointInParent(DrinkArt.Anchor(vessel.AssetId, "mouth"));
+        Vector2 ReceiverMouth() => vessel.PointInParent(DrinkArt.Anchor(HasLid ? "dl_teapot_open_body" : vessel.AssetId, "mouth"));
 
         float ReceiverSurfaceY(DrinkVesselView v) => v.PointInParent(new Vector2(0.5f, Mathf.Max(v.SurfaceY, DrinkArt.LiquidRect(v.AssetId).yMin))).y;
 
@@ -985,7 +1159,8 @@ namespace CCT
                     float move = Ease(Mathf.Clamp01(t * 1.25f));
                     float tilt = toolStartTilt * Ease(Mathf.Clamp01((t - 0.3f) / 0.7f));
                     PoseTool(move, tilt);
-                    if (t >= 1f) SetPhase(CyclePhase.ToolPour);
+                    if (t >= 1f && LidReady) SetPhase(CyclePhase.ToolPour); // 다관은 뚜껑을 다 열고서 붓는다
+
                     break;
                 }
                 case CyclePhase.ToolPour:
@@ -1105,12 +1280,13 @@ namespace CCT
             toolLabel.text = "";
             if (sequence != null) { StopCoroutine(sequence); sequence = null; }
             skipRequested = skipMotion;
+            craftFocus = VesselRest.x;
             // 확정 배합의 기법에 맞는 그릇과 장부인지 마지막으로 맞춘다(불러온 레시피를 바로 제조하는 경우 등).
             Ledger.Flush();
             EnsureVessel(r);
             vessel.transform.localRotation = Quaternion.identity;
             DrinkVesselView.SetPivotKeepPosition(vessel.Rect, new Vector2(0.5f, 0f));
-            vessel.Rect.anchoredPosition = VesselRest;
+            vessel.Rect.anchoredPosition = StandOnTable(vessel, VesselRest.x);
             vessel.SetIce(r.Kind == DrinkKind.Cocktail && (r.Technique == DrinkTechnique.Build || r.Technique == DrinkTechnique.Layer) ? r.ice : 0);
             SyncVesselFromDraftFor(r);
             sequence = StartCoroutine(CraftRoutine(r.Clone(), done));
@@ -1161,11 +1337,11 @@ namespace CCT
                             if (!v.Liquid.IsEmpty) v.Liquid.Mix(1.0, dt * 6.0 / dur);
                             if (shakeFrames.Length > 1) vessel.Glass.sprite = shakeFrames[Mathf.FloorToInt(t * 12f) % shakeFrames.Length];
                             vessel.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Sin(t * 50f) * 14f);
-                            vessel.Rect.anchoredPosition = new Vector2(150f, -230f + Mathf.Abs(Mathf.Sin(t * 25f)) * 24f);
+                            vessel.Rect.anchoredPosition = StandOnTable(vessel, VesselRest.x) + new Vector2(0f, Mathf.Abs(Mathf.Sin(t * 25f)) * 24f);
                             yield return null;
                         }
                         vessel.transform.localRotation = Quaternion.identity;
-                        vessel.Rect.anchoredPosition = new Vector2(150f, -230f);
+                        vessel.Rect.anchoredPosition = StandOnTable(vessel, VesselRest.x);
                         vessel.Glass.sprite = open;
                         vessel.SetLiquidHidden(false);
                         vessel.SetLayers(LayersOf(LedgerVessel, r));
@@ -1231,6 +1407,9 @@ namespace CCT
                         k.Clear();
                         k.Liquid.Pour(DrinkPhysicsSim.Part(DrinkPhysicsSim.WaterId, r.water / 10.0), 1.0);
                         var kettleRt = kettle.rectTransform;
+                        if (HasLid) finishLabel.text = "다관 뚜껑 여는 중…";
+                        yield return LidTo(true);
+                        finishLabel.text = "물 붓는 중…";
                         yield return PoseOver(kettleRt, "dl_water_kettle", kettleRest, ReceiverMouth(), 95f, 0.5f, false);
                         float t = 0f, pourDur = 1.3f;
                         double total = k.LiquidMl, sent = 0;
@@ -1252,6 +1431,11 @@ namespace CCT
                         }
                         toolFall.Stop();
                         yield return PoseOver(kettleRt, "dl_water_kettle", kettleRest, ReceiverMouth(), 95f, 0.45f, true);
+                        // 물이 다 닿으면 뚜껑을 덮고 우린다.
+                        while (Ledger.HasInFlight(LedgerVessel) && !skipRequested) yield return null;
+                        if (HasLid) finishLabel.text = "다관 뚜껑 닫는 중…";
+                        yield return LidTo(false);
+                        finishLabel.text = "차 우림…"; // 뚜껑이 완전히 닫힌 뒤에만 우림(추출)이 시작된다
                         // 우림: 찻잎 → 물로 추출(장부의 잎 g 감소 = 추출분 g 증가), 김. 첨가 액체와 천천히 섞인다.
                         t = 0f;
                         steam.gameObject.SetActive(true);
@@ -1269,6 +1453,7 @@ namespace CCT
                             yield return null;
                         }
                         // 거름망: 찻물만 찻잔으로, 우린 잎은 다관에 남는다(장부의 잎 g은 그대로).
+                        finishLabel.text = "찻잔에 따르는 중…";
                         yield return PourInto(vessel, serve, r, false);
                     }
                     break;
@@ -1433,7 +1618,8 @@ namespace CCT
             if (serve != null && serve.AssetId != id) { Destroy(serve.gameObject); serve = null; }
             if (serve == null)
             {
-                serve = DrinkVesselView.Create(root, id, new Vector2(-170f, -230f), CapacityFor(id));
+                serve = DrinkVesselView.Create(scene, id, new Vector2(-170f, -230f), CapacityFor(id));
+                serve.Rect.anchoredPosition = StandOnTable(serve, -170f);
                 Placeholders |= serve.Placeholder;
             }
             Ledger[LedgerServe].Clear();
@@ -1480,9 +1666,8 @@ namespace CCT
             float dir = lipN.x >= gripN.x ? 1f : -1f;
             DrinkVesselView.SetPivotKeepPosition(from.Rect, new Vector2(0.5f, 0f));
             var fromBase = from.Rect.anchoredPosition;
+            // 받는 잔은 공정 진행 방향(따르는 입구 쪽)으로 이어 놓는다 — 화면 밖이어도 카메라가 따라가 둘의 가운데를 보인다.
             float toX = fromBase.x + dir * 270f, shift = 0f;
-            if (toX > 300f) shift = 300f - toX;
-            if (toX < -300f) shift = -300f - toX;
             // 공간이 모자라면 붓는 그릇을 먼저 반대쪽으로 부드럽게 옮긴다.
             if (Mathf.Abs(shift) > 0.5f)
             {
@@ -1492,7 +1677,8 @@ namespace CCT
                 from.Rect.anchoredPosition = fromBase;
             }
             DrinkVesselView.SetPivotKeepPosition(to.Rect, new Vector2(0.5f, 0f));
-            to.Rect.anchoredPosition = new Vector2(toX + shift, VesselRest.y);
+            to.Rect.anchoredPosition = StandOnTable(to, toX + shift);
+            craftFocus = (fromBase.x + toX + shift) * 0.5f; // 따르는 동안 두 입구가 함께 보이는 구도
             to.transform.localRotation = Quaternion.identity;
             to.gameObject.SetActive(true);
             to.SetLayers(LayersOf(LedgerServe, r));
@@ -1586,6 +1772,7 @@ namespace CCT
         {
             bottleFall.Cut(); toolFall.Cut();
             spoon.gameObject.SetActive(false);
+            craftLidOpen = false; lidLinger = 0f; lidT = 0f; PoseLid(); // 완성(건너뛰기 포함)은 덮인 다관
             bool inVessel = r.Technique == DrinkTechnique.Build || r.Technique == DrinkTechnique.Layer;
             var target = inVessel ? vessel : serve;
             string targetName = inVessel ? LedgerVessel : LedgerServe;

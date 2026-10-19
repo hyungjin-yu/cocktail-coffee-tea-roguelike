@@ -444,7 +444,7 @@ namespace CCT.Tests
             Prepare();
             Assert.IsNotNull(Start("runA"));
             for (int k = 1; k <= kills; k++) DrinkLab.OnKill("runA", k);
-            DrinkLab.RecordBossAward("runA", "boss1_Mid", "테스트", DrinkLab.BossAward(Job.Bartender, BossKind.Mid, "runA"));
+            DrinkLab.RecordBossAward("runA", "boss1_Mid", "테스트", BossItems());
             int gin = DrinkLab.Owned("gin");
             var s = DrinkLab.EndRun("runA", RunEndKind.Abandoned, kills, explicitAbandon: true);
             Assert.AreEqual("Preserved", s.drink);
@@ -490,7 +490,7 @@ namespace CCT.Tests
         public void MidBossThenDeath_GrantsMaterialsOnce_EvenWithRepeatedEnds()
         {
             Start0("runA");
-            var items = DrinkLab.BossAward(Job.Bartender, BossKind.Mid, "runA");
+            var items = BossItems();
             Assert.IsTrue(DrinkLab.RecordBossAward("runA", "boss1_Mid", "골렘", items));
             Assert.IsFalse(DrinkLab.RecordBossAward("runA", "boss1_Mid", "골렘", items), "같은 보스 보상 중복 없음");
             DrinkLab.ReloadForTests(); // 보스 보상은 즉시 저장(런 임시 보상)
@@ -509,23 +509,95 @@ namespace CCT.Tests
 
         void Start0(string runId) => DrinkLab.BeginRun(runId); // 준비 음료 없이 시작
 
+        /// <summary>기록·정산 시험용 고정 보상(수급 표와 분리): 진 30 + 럼 30 + 레몬 15mL.</summary>
+        static List<DrinkAmount> BossItems() => new List<DrinkAmount> { new DrinkAmount("gin", 300), new DrinkAmount("rum", 300), new DrinkAmount("lemon_juice", 150) };
+
         [Test]
-        public void BossAwardTable_FinalGivesTwoBundlesAndOneRareColorant()
+        public void SupplyRoll_FixedBundles_RareGuarantee_Deterministic_HeldIncludesPending()
         {
-            var mid = DrinkLab.BossAward(Job.TeaSommelier, BossKind.Mid, "r");
-            Assert.AreEqual(3, mid.Count);
-            Assert.AreEqual(20, mid.Find(a => a.id == "black_tea").amount);
-            var fin = DrinkLab.BossAward(Job.Bartender, BossKind.Final, "r");
-            Assert.AreEqual(600, fin.Find(a => a.id == "gin").amount);
-            Assert.AreEqual(1, fin.FindAll(a => a.id == "blue_curacao" || a.id == "grenadine").Count);
-            Assert.AreEqual(DrinkLab.Describe(fin), DrinkLab.Describe(DrinkLab.BossAward(Job.Bartender, BossKind.Final, "r")), "같은 런 같은 희귀 재료");
+            Start0("runS");
+            var mid = DrinkLab.RollAward(DrinkSupply.Source.MidBoss, "runS", "boss1_Mid");
+            int bundles = 0;
+            foreach (var a in mid) { var row = DrinkSupply.Get(a.id); Assert.AreEqual(0, a.amount % row.bundle, "묶음 단위"); bundles += a.amount / row.bundle; }
+            Assert.AreEqual(3, bundles, "중간 보스 3묶음");
+            Assert.IsTrue(mid.Exists(a => DrinkSupply.Get(a.id).rare), "희귀 보장");
+            Assert.AreEqual(DrinkLab.Describe(mid), DrinkLab.Describe(DrinkLab.RollAward(DrinkSupply.Source.MidBoss, "runS", "boss1_Mid")), "같은 보상 ID = 같은 결과(재시도 재추첨 없음)");
+            int fin = 0;
+            foreach (var a in DrinkLab.RollAward(DrinkSupply.Source.FinalBoss, "runS", "boss4_Final")) fin += a.amount / DrinkSupply.Get(a.id).bundle;
+            Assert.AreEqual(6, fin);
+            int before = DrinkLab.HeldForSupply("runS", "gin");
+            Assert.IsTrue(DrinkLab.RecordBossAward("runS", "normal1", "처치 보상", new List<DrinkAmount> { new DrinkAmount("gin", 150) }));
+            Assert.AreEqual(before + 150, DrinkLab.HeldForSupply("runS", "gin"), "보유량 보정 = 창고 + 이번 런 미정산");
+            Assert.AreEqual(before, DrinkLab.HeldForSupply("otherRun", "gin"));
+            DrinkLab.EndRun("runS", RunEndKind.Died, 30, false);
+            Assert.AreEqual(0, DrinkLab.RollAward(DrinkSupply.Source.Normal, "runS", "normal2").Count, "정산 끝난 런은 추첨 없음");
+        }
+
+        [Test]
+        public void ResearchPoints_FirstGrantOnce_SettledWithRunOnce_NotOnPreservedAbandon()
+        {
+            Assert.AreEqual(10, DrinkLab.Research.researchPoints, "새 저장 첫 지급 10");
+            StringAssert.Contains("연구 포인트 10", DrinkLab.Notice);
+            DrinkLab.ReloadForTests();
+            Assert.AreEqual(10, DrinkLab.Research.researchPoints, "재실행으로 다시 받지 않음");
+            Start0("runR");
+            var s = DrinkLab.EndRun("runR", RunEndKind.Died, 260, false, 250, 1, 0);
+            Assert.AreEqual(2 + 2, s.researchPoints);
+            DrinkLab.EndRun("runR", RunEndKind.Died, 260, false, 250, 1, 0);
+            DrinkLab.ReloadForTests();
+            Assert.AreEqual(14, DrinkLab.Research.researchPoints, "같은 런 1회, 저장됨");
+            Prepare();
+            Start("runP");
+            var p = DrinkLab.EndRun("runP", RunEndKind.Abandoned, 3, true, 3, 0, 0);
+            Assert.AreEqual("PreservedAbandon", p.kind);
+            Assert.AreEqual(0, p.researchPoints, "보존 포기는 보상 없음");
+        }
+
+        [Test]
+        public void ResearchActions_AreTransactions_PersistOrRollback()
+        {
+            Assert.IsTrue(DrinkLab.UnlockTrait("finesse_1", out var e), e);
+            Assert.IsFalse(DrinkLab.UnlockTrait("finesse_1", out _), "이중 클릭 = 한 번만");
+            Assert.AreEqual(6, DrinkLab.Research.researchPoints);
+            FailSaves();
+            Assert.IsFalse(DrinkLab.EquipTrait("finesse_1", out e));
+            StringAssert.Contains("저장", e);
+            Assert.AreEqual(0, DrinkLab.Research.equippedTraits.Count, "저장 실패면 장착 안 됨");
+            DrinkStore.FaultHookForTests = null;
+            Assert.IsTrue(DrinkLab.EquipTrait("finesse_1", out e), e);
+            Assert.IsTrue(DrinkLab.HireStaff("staff_tea_aroma", out e), e);
+            Assert.IsTrue(DrinkLab.SetSpecialty("staff_tea_aroma", out e), e);
+            DrinkLab.ReloadForTests();
+            CollectionAssert.AreEqual(new[] { "finesse_1" }, DrinkLab.EquippedTraitsSnapshot());
+            Assert.AreEqual(0, DrinkLab.Research.researchPoints);
+            Assert.AreEqual("staff_tea_aroma", DrinkLab.Research.activeSpecialty);
+        }
+
+        [Test]
+        public void Craft_CountsForStaff_FreezesSpecialtyBuff()
+        {
+            DrinkLab.Data.research.researchPoints = 20;
+            Assert.IsTrue(DrinkLab.HireStaff("staff_cocktail_aroma", out var e), e);
+            Assert.IsTrue(DrinkLab.SetSpecialty("staff_cocktail_aroma", out e), e);
+            var stir = Cocktail(DrinkTechnique.Stir, ("gin", 300));
+            var plain = DrinkCalculator.Buff(stir)[DrinkStat.Attack];
+            var r = DrinkLab.Craft(stir);
+            Assert.AreEqual(DrinkLab.CraftStatus.Crafted, r.Status, r.Message);
+            Assert.AreEqual(Mathf.Min(DrinkRules.Cap(DrinkStat.Attack), plain * 1.08f), r.Buff[DrinkStat.Attack], 1e-6f, "스터링 전문: 공격력 ×1.08");
+            Assert.AreEqual("staff_cocktail_aroma", DrinkLab.Prepared.specialtyId);
+            Assert.AreEqual(1, DrinkLab.Research.cocktailCrafts);
+            Assert.IsTrue(DrinkLab.SetSpecialty("", out e));
+            Assert.AreEqual(r.Buff[DrinkStat.Attack], DrinkLab.BeginRun("runZ")[DrinkStat.Attack], 1e-6f, "이미 만든 음료는 전문 교체로 바뀌지 않음");
+            var shake = Cocktail(DrinkTechnique.Shake, ("gin", 300));
+            Assert.AreEqual(DrinkCalculator.Buff(shake)[DrinkStat.Attack], DrinkCalculator.Buff(shake, "staff_cocktail_aroma")[DrinkStat.Attack], 1e-6f, "기법이 다르면 효과 없음");
+            Assert.AreEqual(0f, DrinkCalculator.Buff(stir, "staff_cocktail_blend")[DrinkStat.MaxHp], "없던 효과를 만들지 않음");
         }
 
         [Test]
         public void SettlementSaveFailure_RetryDoesNotDuplicate()
         {
             Start0("runA");
-            DrinkLab.RecordBossAward("runA", "boss1_Mid", "골렘", DrinkLab.BossAward(Job.Bartender, BossKind.Mid, "runA"));
+            DrinkLab.RecordBossAward("runA", "boss1_Mid", "골렘", BossItems());
             int gin = DrinkLab.Owned("gin");
             FailSaves();
             var s = DrinkLab.EndRun("runA", RunEndKind.Died, 30, false);
@@ -548,7 +620,7 @@ namespace CCT.Tests
         {
             Prepare();
             Start("runA");
-            DrinkLab.RecordBossAward("runA", "boss1_Mid", "골렘", DrinkLab.BossAward(Job.Bartender, BossKind.Mid, "runA"));
+            DrinkLab.RecordBossAward("runA", "boss1_Mid", "골렘", BossItems());
             int gin = DrinkLab.Owned("gin");
             FailSaves();
             DrinkLab.EndRun("runA", RunEndKind.Abandoned, 3, true); // 보존 포기였지만 저장 실패

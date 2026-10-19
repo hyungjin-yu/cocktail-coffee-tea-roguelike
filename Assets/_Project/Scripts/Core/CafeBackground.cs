@@ -35,7 +35,9 @@ namespace CCT
             root.transform.SetParent(parent, false);
             root.transform.localPosition = new Vector3(0f, Balance.LaneCenterY, 0f);
             ActiveMapPrefix = null;
-            if (job != null && TryJobMap(root.transform, JobPreset.For(job.Value).mapArtPrefix)) return root.transform;
+            // 72 맵 외형(판매 코인): 공용 야간 카페를 장착하면 직업 맵 대신 기존 공용 카페 아트(4부속). 배경만 바뀌고 구역·충돌·스폰은 같다.
+            bool cafeSkin = job != null && DrinkLab.EquippedMap == DrinkSales.CafeMap;
+            if (job != null && !cafeSkin && TryJobMap(root.transform, JobPreset.For(job.Value).mapArtPrefix)) return root.transform;
 
             var floor = ArtLibrary.Get("cafe_floor");
             var wall = ArtLibrary.Get("cafe_wall");

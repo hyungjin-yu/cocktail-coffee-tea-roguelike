@@ -143,7 +143,9 @@ namespace CCT
 
         // ── 조회 ───────────────────────────────────────────────
 
-        public bool IsOwned(string productId) => State.IsOwned(StorefrontId, productId);
+        /// <summary>게임 소유 = 이 스토어프런트 현금 구매 기록 또는 72 판매 코인 구매(drinks.json, 영수증 기록과 분리 저장).</summary>
+        public bool IsOwned(string productId) => State.IsOwned(StorefrontId, productId) || DrinkLab.CoinOwns(productId);
+        public bool IsCashOwned(string productId) => State.IsOwned(StorefrontId, productId);
         public bool IsEquipped(string productId)
         {
             var def = SkinCatalog.Find(productId);

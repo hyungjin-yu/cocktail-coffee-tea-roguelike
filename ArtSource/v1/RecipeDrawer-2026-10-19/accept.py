@@ -1,0 +1,8 @@
+﻿from pathlib import Path
+import json,hashlib
+P=Path(__file__).parent
+m=json.load(open(P/'manifest.json'));m.update(status='ready_root_visual_accepted',ready=True,rootVisualReview='accepted; actual contact states/opening and640x480/reinsert836x705 inspected by coordinator; independent8-file hashes0 failures',integrated=False,verified=False,integrationAllowed=True);json.dump(m,open(P/'manifest.json','w'),indent=2)
+q=json.load(open(P/'qa.json'));q['rootVisualReview']='accepted';q['rootIndependentHashCheck']={'files':8,'failures':0};json.dump(q,open(P/'qa.json','w'),indent=2)
+r=(P/'REPORT.md').read_text(encoding='utf-8-sig');r=r.replace('Status: worker QA passed; root visual review pending.','Status: ready; worker QA passed and root visual review accepted.');r=r.replace('The visual handoff requires root review acceptance; actual game motion, text masks, touch input, skip/cancel behavior and integration are not verified here.','Root directly accepted contact_states/contact_opening and open640x480/reinsert836x705 previews, and independently checked eight PNG/native hashes with zero failures. Actual game motion, text masks, touch input,30-sheet/empty states, skip/cancel behavior, saving failure and integration are not verified here; these remain Claude runtime responsibilities. Art acceptance is not game verification.');(P/'REPORT.md').write_text(r,encoding='utf-8')
+lines=[hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.relative_to(P).as_posix() for p in sorted(P.rglob('*')) if p.is_file() and p.name!='SHA256SUMS.txt'];(P/'SHA256SUMS.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+print('ready; SHA256SUMS refreshed; '+str(len(lines))+' artifacts')

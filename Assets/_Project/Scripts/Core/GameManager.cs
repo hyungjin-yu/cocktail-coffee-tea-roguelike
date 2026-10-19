@@ -166,8 +166,12 @@ namespace CCT
             // 08:142/154 런 시작: totalRuns+1, activeRun 기록, 즉시 저장.
             RunId = PermanentProgress.BeginRun(rng.Seed);
             // 69 준비 음료: 입장 시 한 번만 적용(카드 선택·일시정지·화면 전환에서 다시 적용하지 않음). 최대 체력이 바뀌므로 플레이어 생성 전.
+            // 72 §4 숙련 특성: 출발 때 장착한 것만 런 시작 스냅샷(런 중 노트북 교체·저장 변경과 무관).
+            MasteryTraits = DrinkLab.EquippedTraitsSnapshot();
             DrinkBuff = DrinkLab.BeginRun(RunId);
+            if (DrinkBuff != null && MasteryTraits.Contains("finesse_4")) DrinkBuff = DrinkCalculator.ScalePositive(DrinkBuff, 1.05f); // 한 잔의 집중(항목 상한 유지)
             if (DrinkBuff != null) DrinkCalculator.ApplyTo(Stats, DrinkBuff);
+            normalKillsSinceBundle = 0; normalBundles = 0; eliteBundles = 0; rpKills = 0; midBossKills = 0; finalBossKills = 0;
 
             CocktailGauge = new IngredientGauge(IngredientType.Cocktail, Balance.CocktailGaugeStart,
                 Balance.CocktailGaugeGrowth, () => Stats.GaugeNeedMultiplier);
@@ -179,6 +183,7 @@ namespace CCT
             var camera = SetupCamera();
             var background = CreateBackground();
             Player = CreatePlayer(preset, weapon);
+            Player.Mastery = MasteryRuntime.Attach(Player, MasteryTraits);
             gameObject.AddComponent<CameraRig>().Init(camera, Player.transform, background);
 
             var spawner = new GameObject("Spawner");
@@ -617,6 +622,7 @@ namespace CCT
         {
             Kills++;
             DrinkLab.OnKill(RunId, Kills); // 69 0~4킬 보존 / 5킬째 이 런에 귀속
+            if (!def.IsBoss) { rpKills++; GrantSupplyForKill(position, def); } // 72 §2·§3
             Player?.HiddenRuntime?.OnEnemyKilled(def); // 41 핫 토디/주말 러시
 
             for (int i = 0; i < def.dropCount; i++)
@@ -658,17 +664,51 @@ namespace CCT
         void GrantDrinkMaterials(Vector2 position, EnemyDef def)
         {
             bossKillIndex++;
-            var items = DrinkLab.BossAward(Job, def.boss, RunId);
+            if (def.boss == BossKind.Final) finalBossKills++; else midBossKills++;
+            Player?.Mastery?.OnBossKilled(bossKillIndex); // 72 안정3 쉬는 시간
+            // 72 §2: 중간 보스(강화 포함) 3묶음(3번째 희귀 보장), 최종 보스 6묶음(5·6번째 희귀 보장). 보유량 보정, runId·보상 ID로 결정.
+            string awardId = $"boss{bossKillIndex}_{def.boss}";
+            var items = DrinkLab.RollAward(DrinkLab.SourceFor(def.boss), RunId, awardId);
             if (items.Count == 0) return;
-            if (!DrinkLab.RecordBossAward(RunId, $"boss{bossKillIndex}_{def.boss}", def.name, items)) return;
+            if (!DrinkLab.RecordBossAward(RunId, awardId, def.name, items)) return;
             DrinkHud?.OnBossAward(position, items);
+        }
+
+        // ───── 72 §2·§3 일반/정예 수급과 연구 포인트 집계 ─────
+        /// <summary>출발 때 장착한 숙련 특성(런 동안 고정).</summary>
+        public System.Collections.Generic.List<string> MasteryTraits { get; private set; } = new System.Collections.Generic.List<string>();
+        int normalKillsSinceBundle, normalBundles, eliteBundles, rpKills, midBossKills, finalBossKills;
+        public int ResearchKills => rpKills;
+        public int MidBossKills => midBossKills;
+        public int FinalBossKills => finalBossKills;
+
+        /// <summary>일반 처치 25회마다 1묶음(일반 표), 정예(탄막형)는 처치마다 1묶음(정예 표). 정예는 일반 카운트에 넣지 않는다. 보상 ID로 1회만.</summary>
+        void GrantSupplyForKill(Vector2 position, EnemyDef def)
+        {
+            if (def.archetype == EnemyArchetype.EliteBarrage)
+            {
+                eliteBundles++;
+                RecordSupply(position, DrinkSupply.Source.Elite, $"elite{eliteBundles}", def.name);
+                return;
+            }
+            if (++normalKillsSinceBundle < DrinkSupply.NormalKillsPerBundle) return;
+            normalKillsSinceBundle = 0;
+            normalBundles++;
+            RecordSupply(position, DrinkSupply.Source.Normal, $"normal{normalBundles}", "처치 보상");
+        }
+
+        void RecordSupply(Vector2 position, DrinkSupply.Source source, string awardId, string label)
+        {
+            var items = DrinkLab.RollAward(source, RunId, awardId);
+            if (items.Count == 0 || !DrinkLab.RecordBossAward(RunId, awardId, label, items)) return;
+            DrinkHud?.OnSupplyAward(position, items);
         }
 
         /// <summary>69 종료 정산(같은 runId는 한 번만). explicitAbandon: Pause의 포기/타이틀로 종료만 true(정상 앱 종료·사망·시간 종료는 false).</summary>
         void SettleDrinks(RunEndKind kind, bool explicitAbandon)
         {
             if (DrinkSettlement != null) return;
-            try { DrinkSettlement = DrinkLab.EndRun(RunId, kind, Kills, explicitAbandon); }
+            try { DrinkSettlement = DrinkLab.EndRun(RunId, kind, Kills, explicitAbandon, rpKills, midBossKills, finalBossKills); }
             catch (System.Exception e) { Debug.LogWarning($"[Drinks] 정산 실패: {e.GetType().Name}: {e.Message}"); }
         }
 
@@ -735,7 +775,11 @@ namespace CCT
             foreach (var def in unlocked)
             {
                 PermanentProgress.DiscoverCard(def.id);
-                if (ComboTarget.HasValue && ComboTarget.Value == def.skill) { ComboTarget = null; rememberedTargets.Remove(Job); } // 57 목표 달성
+                if (ComboTarget.HasValue && ComboTarget.Value == def.skill)
+                {
+                    Player?.Mastery?.OnSignatureCompleted(); // 72 서비스3 시그니처 준비
+                    ComboTarget = null; rememberedTargets.Remove(Job); // 57 목표 달성
+                }
             }
             if (unlocked.Count > 0)
             {

@@ -45,6 +45,8 @@ namespace CCT
         // 41 히든 스킬 런 중 보정(HiddenSkillRuntime이 매 프레임 설정). 공속/이동은 다른 % 보너스처럼 환불 봉인을 받는다.
         public float hiddenAttackSpeed;
         public float hiddenMoveSpeed;
+        /// <summary>72 §4 장착 숙련 특성(런 시작 스냅샷, MasteryRuntime이 매 프레임 갱신). 기존 이동·공격 속도·피해 감소 상한에 합산.</summary>
+        public float masteryMoveSpeed, masteryAttackSpeed, masteryDamageReduction;
         public float hiddenRegenMultiplier = 1f;
         public float jobDamagePercent, jobAttackSpeedPercent, jobRegenBonus;
         /// <summary>받는 둔화 약화 비율(0.4면 둔화량의 40%를 덜 받음).</summary>
@@ -115,17 +117,17 @@ namespace CCT
 
         public float DamageBonus => Live(damagePercent + jobDamagePercent);
         /// <summary>환불("환불해주세요!") 중엔 0 — 보조 활의 자체 간격 공식(07:118)도 이걸 통해 무효화를 받는다.</summary>
-        public float AttackSpeedBonus => Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent);
-        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed))) * (IsSlowed ? slowMultiplier : 1f);
+        public float AttackSpeedBonus => Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed);
+        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed + masteryMoveSpeed))) * (IsSlowed ? slowMultiplier : 1f);
         public float MaxHp => baseMaxHp + maxHpFlat;
         public float Damage => baseDamage * (1f + DamageBonus);
         /// <summary>기본 공격 재사용 간격. 69 음료 재사용 시간 감소는 간격에 곱하고(공격 속도와 별개), 기존 최소 간격 0.12초 상한은 그대로.</summary>
-        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval * CooldownScale / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent)));
+        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval * CooldownScale / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed)));
         public float Range => baseRange * (1f + Live(rangePercent));
         public float PickupRadius => basePickupRadius + pickupRadiusFlat;
         public float ExtraDropChance => Mathf.Clamp01(dropChancePercent);
         /// <summary>받은 피해에 곱할 배율 (1 - clamp(damageReduction, 0, 0.25)).</summary>
-        public float DamageTakenMultiplier => 1f - Mathf.Clamp(damageReduction, 0f, 0.25f);
+        public float DamageTakenMultiplier => 1f - Mathf.Clamp(damageReduction + masteryDamageReduction, 0f, 0.25f);
         /// <summary>실제 초당 회복량. 음수로 떨어지지 않게 하한 0.</summary>
         public float RegenPerSecond => Mathf.Max(0f, Balance.PlayerRegenPerSecond + regenBonus + jobRegenBonus) * Mathf.Max(1f, hiddenRegenMultiplier);
 

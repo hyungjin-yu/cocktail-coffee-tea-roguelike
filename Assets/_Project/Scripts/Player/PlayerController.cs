@@ -39,6 +39,8 @@ namespace CCT
         /// <summary>41 이번 런 히든 스킬(런마다 새 플레이어 = 재시작 초기화).</summary>
         public RunHiddenSkills Hidden { get; private set; } = new RunHiddenSkills();
         public HiddenSkillRuntime HiddenRuntime { get; private set; }
+        /// <summary>72 §4 장착 숙련 효과(런 시작 때 GameManager가 붙인다, 없으면 null).</summary>
+        public MasteryRuntime Mastery { get; set; }
         /// <summary>이번 프레임 이동 입력이 있는지(히든 정지/이동 조건).</summary>
         public bool IsMovingInput => input.sqrMagnitude > 0.0001f;
 
@@ -258,6 +260,7 @@ namespace CCT
             bool attributable = Hp < hpBefore && amount > 0f && !float.IsInfinity(amount) && effective > 0f && !float.IsInfinity(effective);
             if (attributable) LastDamageSource = source;
             if (amount > 0f) HiddenRuntime?.OnDamaged();
+            if (amount > 0f) Mastery?.OnDamaged();
             if (amount > 0f && Hp > 0f) visual?.PlayHurt(); // 04 §6 hurt 0.08초(있을 때만)
             if (amount > 0f) CameraRig.Shake(0.12f, 0.15f); // 08:122 피격 흔들림(설정 0이면 없음)
             if (Hp <= 0f)

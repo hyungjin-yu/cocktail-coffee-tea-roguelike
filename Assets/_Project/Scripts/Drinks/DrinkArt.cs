@@ -200,6 +200,28 @@ namespace CCT
         static int spoonW, spoonH;
 
         /// <summary>바스푼 프레임의 행별 불투명 x 구간(아트 픽셀, 아래→위). Resources/DrinkLab/dl_barspoon_extent.json(실제 PNG에서 생성).</summary>
+        static Dictionary<string, int> alphaBottom;
+
+        /// <summary>그 스프라이트 아래쪽 완전 투명 행 수(아트 px, dl_alpha_bottom.json). 잔·다관의 보이는 바닥을 상판 윗면에 맞출 때 쓴다. 모르면 0.</summary>
+        public static int AlphaBottom(string assetId)
+        {
+            if (alphaBottom == null)
+            {
+                alphaBottom = new Dictionary<string, int>();
+                var ta = Resources.Load<TextAsset>("DrinkLab/dl_alpha_bottom");
+                if (ta != null)
+                {
+                    // {"rows": {"id": n, ...}} — 평평한 정수 맵이라 간단히 읽는다(JsonUtility는 사전을 읽지 못함).
+                    var text = ta.text;
+                    int at = text.IndexOf("\"rows\"", StringComparison.Ordinal);
+                    if (at >= 0)
+                        foreach (System.Text.RegularExpressions.Match m in System.Text.RegularExpressions.Regex.Matches(text.Substring(at), "\"([A-Za-z0-9_]+)\"\\s*:\\s*(\\d+)"))
+                            alphaBottom[m.Groups[1].Value] = int.Parse(m.Groups[2].Value);
+                }
+            }
+            return assetId != null && alphaBottom.TryGetValue(assetId, out int n) ? n : 0;
+        }
+
         public static bool SpoonExtent(int frame, out int[] rows, out int width, out int height)
         {
             if (spoonRows == null)

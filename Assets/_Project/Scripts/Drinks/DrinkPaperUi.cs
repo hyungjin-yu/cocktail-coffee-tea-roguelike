@@ -123,7 +123,12 @@ namespace CCT
         public bool Finished { get; private set; }
         public string Label => label != null ? label.text : "";
 
-        public static RecipeTearOverlay Play(RectTransform parent, string recipeName)
+        /// <summary>찢기 프레임 00~05(RecipeDrawer manifest tearStoreConnection) 뒤, 찢은 종이가 실제 글자를 단 채 레시피 서랍(레시피 탭)으로 날아가 꽂힌다.</summary>
+        public const int TearFrames = 6;
+        public const float FlySeconds = 0.45f;
+        RectTransform flyTarget;
+
+        public static RecipeTearOverlay Play(RectTransform parent, string recipeName, RectTransform drawerTarget = null)
         {
             var m = DrinkPaperUi.Tear;
             if (m.frames.Count == 0 || DrinkPaperUi.Sprite("recipe_tear_store_00") == null) return null;
@@ -131,6 +136,7 @@ namespace CCT
             var rt = UiFactory.Place("RecipeTear", parent, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(m.width * PixelScale, m.height * PixelScale));
             var o = rt.gameObject.AddComponent<RecipeTearOverlay>();
             Current = o;
+            o.flyTarget = drawerTarget;
             o.Build(m, recipeName);
             o.StartCoroutine(o.Run(m));
             return o;
@@ -170,17 +176,39 @@ namespace CCT
 
         IEnumerator Run(DrinkPaperUi.TearMotion m)
         {
-            for (int i = 0; i < m.frames.Count; i++)
+            int n = Mathf.Min(TearFrames, m.frames.Count);
+            for (int i = 0; i < n; i++)
             {
-                Show(m, skip ? m.frames.Count - 1 : i);
+                Show(m, skip ? n - 1 : i);
                 if (skip) break;
                 float t = 0f;
                 while (t < m.frames[i].ms / 1000f && !skip) { t += Time.unscaledDeltaTime; yield return null; }
             }
-            Show(m, m.frames.Count - 1); // 끝 상태: 종이가 보관함에 완전히 들어가 가려짐
+            Show(m, n - 1); // 찢어 낸 종이(옛 보관함 구간 06~09는 쓰지 않는다)
+            // 찢은 종이 → 레시피 서랍(레시피 탭)으로: 실제 글자와 함께 작아지며 이동(손 없음)
+            frame.enabled = false;
+            var rt = (RectTransform)transform;
+            var paper = UiFactory.Place("TornSheet", rt, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(172f * PixelScale, 128f * PixelScale));
+            var pi = paper.gameObject.AddComponent<Image>();
+            pi.sprite = DrinkPaperUi.Sprite("torn_recipe"); pi.raycastTarget = false;
+            var tl = UiFactory.AddText(UiFactory.Stretch("Title", paper), label.text, DrinkPaperUi.Body, TextAnchor.MiddleCenter, DrinkPaperUi.Ink);
+            tl.raycastTarget = false; tl.horizontalOverflow = HorizontalWrapMode.Wrap;
+            clip.gameObject.SetActive(false);
+            Vector2 from = Vector2.zero, to = new Vector2(0f, -rt.rect.height);
+            if (flyTarget != null) to = rt.InverseTransformPoint(flyTarget.TransformPoint(flyTarget.rect.center));
+            float ft = 0f;
+            while (ft < FlySeconds && !skip)
+            {
+                ft += Time.unscaledDeltaTime;
+                float e = Mathf.Clamp01(ft / FlySeconds); e = e * e * (3f - 2f * e);
+                paper.anchoredPosition = Vector2.Lerp(from, to, e) + Vector2.up * Mathf.Sin(e * Mathf.PI) * 60f;
+                paper.localScale = Vector3.one * Mathf.Lerp(1f, 0.2f, e);
+                yield return null;
+            }
+            Destroy(paper.gameObject);
             Finished = true;
             float hold = 0f;
-            while (hold < 0.35f && !skip) { hold += Time.unscaledDeltaTime; yield return null; }
+            while (hold < 0.1f && !skip) { hold += Time.unscaledDeltaTime; yield return null; }
             if (Current == this) Current = null;
             Destroy(gameObject);
         }

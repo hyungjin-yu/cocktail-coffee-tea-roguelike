@@ -89,6 +89,7 @@ namespace CCT
             CardCodexButton = BuildCardCodexButton();
             SettingsButton = BuildSettingsButton();
             DrinkLabButton = BuildDrinkLabButton();
+            LaptopButton = BuildLaptopButton();
             BuildSaveIssueBanner();
             // 2026-10-12: 진입 즉시 선택하면 바텐더 카드가 파란 강조로 고정돼 보여 첫 키보드 입력 때 드러낸다.
             var focus = lastJob == Job.TeaSommelier ? TeaSommelierButton : BartenderButton;
@@ -135,7 +136,7 @@ namespace CCT
         {
             var p = CCT.DrinkLab.Prepared;
             return p != null
-                ? $"준비 음료: {p.recipe.name} — {DrinkCalculator.Buff(p.recipe).Describe()} (출발할 때 마심)"
+                ? $"준비 음료: {p.recipe.name} — {DrinkCalculator.Buff(p.recipe, p.specialtyId).Describe()} (출발할 때 마심)"
                 : "준비 음료 없음 — 버프 없이 출발합니다 (음료 제조에서 만들 수 있음)";
         }
 
@@ -155,6 +156,28 @@ namespace CCT
             });
             var p = CCT.DrinkLab.Prepared;
             UiFactory.AddText(UiFactory.Stretch("Label", rt), p != null ? $"음료 제조 · 준비됨: {p.recipe.name}" : "음료 제조 (출발 전)", 26,
+                TextAnchor.MiddleCenter, Color.white);
+            return button;
+        }
+
+        // ───── 72 연구 노트북(숙련 트리·직원 채용·기존 강화) ─────
+        public Button LaptopButton { get; private set; }
+        public ResearchLaptopView LaptopScreen { get; private set; }
+
+        Button BuildLaptopButton()
+        {
+            // 아래 줄의 빈 자리(왼쪽 "뒤로"와 가운데 "영업 시작" 사이): 직업·무기 카드와 겹치지 않는다.
+            var rt = UiFactory.Place("LaptopButton", root, new Vector2(0f, 0f), new Vector2(430f, 124f), new Vector2(330f, 92f));
+            var bg = UiFactory.AddImage(rt, new Color(0.22f, 0.32f, 0.42f));
+            var weaponStep = StartButton != null;
+            void Back() { LaptopScreen = null; if (weaponStep && currentJob != null) ShowWeaponStep(currentJob); else ShowJobStep(); }
+            var button = MakeButton(rt, bg, () =>
+            {
+                root.gameObject.SetActive(false);
+                LaptopScreen = ResearchLaptopView.Show(Back, () => { LaptopScreen = null; shopView.Show(); }, currentJob != null ? currentJob.job : lastJob);
+            });
+            var r = CCT.DrinkLab.Research;
+            UiFactory.AddText(UiFactory.Stretch("Label", rt), $"연구 노트북\nRP {r.researchPoints} · 장착 {r.equippedTraits.Count}/{DrinkResearch.Slots}", 24,
                 TextAnchor.MiddleCenter, Color.white);
             return button;
         }
@@ -209,6 +232,7 @@ namespace CCT
             UiFactory.AddText(UiFactory.Stretch("Label", startRt), "영업 시작", 34, TextAnchor.MiddleCenter, Color.white);
 
             DrinkLabButton = BuildDrinkLabButton();
+            LaptopButton = BuildLaptopButton();
             UiFactory.AddText(UiFactory.Place("PreparedDrink", root, new Vector2(0.5f, 0f), new Vector2(0f, 64f), new Vector2(1300f, 50f)),
                 PreparedDrinkLine(), 24, TextAnchor.MiddleCenter, new Color(0.75f, 1f, 0.8f));
 

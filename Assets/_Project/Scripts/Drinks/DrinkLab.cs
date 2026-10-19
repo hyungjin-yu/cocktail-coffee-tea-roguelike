@@ -24,6 +24,7 @@ namespace CCT
         public const string NoticeSaveFailed = "음료 창고를 저장하지 못했습니다. 자동으로 다시 시도합니다.";
         public const string NoticeRecovered = "지난 판이 비정상 종료되어 준비 음료를 사용한 것으로 처리했습니다.";
         public const string NoticeStarter = "첫 제조용 재료 세트를 창고에 넣었습니다.";
+        public const string NoticeFirstRp = "연구 포인트 10을 받았습니다(노트북 연구).";
 
         static string overridePath;
         static string loadedPath;
@@ -117,6 +118,14 @@ namespace CCT
                 dirty = true;
                 SaveNow();
             }
+            // 72 §3 연구 포인트 첫 지급(새 저장·기존 저장 모두 1회, 플래그로 반복·초기화 우회 차단).
+            if (!lastLoad.FutureProtected && DrinkResearch.GrantFirst(data.research))
+            {
+                notices.Add(NoticeFirstRp);
+                dirty = true;
+                SaveNow();
+            }
+            if (!lastLoad.FutureProtected && EnsureOrders(data)) { dirty = true; SaveNow(); }
             sessionNotice = notices.Count > 0 ? string.Join(" ", notices) : null;
         }
 
@@ -209,24 +218,27 @@ namespace CCT
             var check = DrinkValidator.Check(recipe);
             if (!check.Ok) return new CraftResult { Status = CraftStatus.Invalid, Message = check.First };
             if (data.prepared.Exists)
-                return new CraftResult { Status = CraftStatus.AlreadyPrepared, Message = "이미 준비된 음료가 있습니다. 그 음료를 마시고 출발하세요." };
+                return new CraftResult { Status = CraftStatus.AlreadyPrepared, Message = "이미 준비된 음료가 있습니다. 출발에 쓰거나 주문에 팔거나 버린 뒤 만드세요." };
             var shortages = DrinkValidator.Shortages(recipe, data.Owned);
             if (shortages.Count > 0)
                 return new CraftResult { Status = CraftStatus.Shortage, Message = "재료가 부족합니다.", Shortages = shortages };
             var copy = recipe.Clone();
             copy.name = DrinkValidator.SanitizeName(copy.name, DefaultName(copy));
+            string specialty = ActiveSpecialtyFor(copy);
             bool ok = Transact(d =>
             {
                 foreach (var s in copy.steps) d.Add(s.id, -s.amount);
                 d.prepared = new PreparedDrink
                 {
                     state = PreparedDrink.Ready, drinkId = Guid.NewGuid().ToString("N"), recipe = copy,
-                    preparedUtc = DateTime.UtcNow.ToString("o"),
+                    preparedUtc = DateTime.UtcNow.ToString("o"), specialtyId = specialty,
                 };
+                // 72 §5 직원 채용 조건(제조 누적)은 같은 거래로 센다.
+                if (copy.Kind == DrinkKind.Tea) d.research.teaCrafts++; else d.research.cocktailCrafts++;
                 return true;
             }, out var error);
             if (!ok) return new CraftResult { Status = CraftStatus.SaveFailed, Message = error };
-            return new CraftResult { Status = CraftStatus.Crafted, Message = "음료를 준비했습니다.", Buff = DrinkCalculator.Buff(copy) };
+            return new CraftResult { Status = CraftStatus.Crafted, Message = "음료를 준비했습니다.", Buff = DrinkCalculator.Buff(copy, specialty) };
         }
 
         public static string DefaultName(DrinkRecipe r)
@@ -313,12 +325,12 @@ namespace CCT
             RecoverAbandoned(ticket ?? runId);
             liveRunId = runId;
             var p = data.prepared;
-            if (p.state == PreparedDrink.InRun && p.runId == runId) return DrinkCalculator.Buff(p.recipe);
+            if (p.state == PreparedDrink.InRun && p.runId == runId) return DrinkCalculator.Buff(p.recipe, p.specialtyId);
             if (ticket != null && p.state == PreparedDrink.InRun && p.runId == ticket)
             {
                 // 출발 전에 디스크에 확정한 음용(출발 표) → 실제 runId로 바꾼다. 실패해도 디스크는 InRun(표)이라 강제 종료 시 소비로 복구된다.
                 CommitEvent(d => d.prepared.runId = runId);
-                return DrinkCalculator.Buff(data.prepared.recipe);
+                return DrinkCalculator.Buff(data.prepared.recipe, data.prepared.specialtyId);
             }
             if (skip) return null; // 사용자가 "음료 없이 출발"을 고름 — Ready 그대로 보존
             if (p.state != PreparedDrink.Ready) return null;
@@ -336,7 +348,7 @@ namespace CCT
                 Debug.LogWarning($"[Drinks] 입장 음용 기록 실패 — 버프 없이 시작: {error}");
                 return null;
             }
-            return DrinkCalculator.Buff(data.prepared.recipe);
+            return DrinkCalculator.Buff(data.prepared.recipe, data.prepared.specialtyId);
         }
 
         // ───── 출발(선택 화면 → 런) ─────
@@ -422,7 +434,11 @@ namespace CCT
         /// 명시적 포기(explicitAbandon) + 이번 런에 마신 음료 + 처치 0~4(미귀속)면 음료를 Ready로 되돌리고 이 런의 제조 재료 보상은 정산하지 않는다.
         /// 그 밖에는 마신 음료를 소모하고 pending 보상을 창고에 넣는다. 저장 실패해도 메모리 확정 + 재시도(중복 없음).
         /// </summary>
-        public static DrinkSettlement EndRun(string runId, RunEndKind kind, int kills, bool explicitAbandon)
+        public static DrinkSettlement EndRun(string runId, RunEndKind kind, int kills, bool explicitAbandon) =>
+            EndRun(runId, kind, kills, explicitAbandon, 0, 0, 0);
+
+        /// <summary>72 §3: 보존 포기가 아니면 같은 저장 사건으로 연구 포인트도 정산(runId 1회). rpKills = 유효 일반+정예 처치(보스 제외).</summary>
+        public static DrinkSettlement EndRun(string runId, RunEndKind kind, int kills, bool explicitAbandon, int rpKills, int midBossKills, int finalBossKills)
         {
             EnsureLoaded();
             if (string.IsNullOrEmpty(runId)) return null;
@@ -457,6 +473,8 @@ namespace CCT
                     }
                     d.pending.RemoveAt(i);
                 }
+                if (!preserve) settlement.researchPoints = DrinkResearch.SettleRun(d.research, runId, rpKills, midBossKills, finalBossKills);
+                if (!preserve) RefillCancelledOrders(d);
                 MarkSettled(d, runId);
                 d.lastSettlement = settlement;
             });
@@ -522,41 +540,45 @@ namespace CCT
             return true;
         }
 
-        // ───── 보스 보상 표 ─────
+        // ───── 72 §2 재료 수급(고정 묶음 + 보유량 보정) ─────
 
-        /// <summary>
-        /// 69 보스 보상 임시값: 중간 보스(강화 보스 포함)당 해당 테마 기본 묶음 1회, 최종 보스는 기본 묶음 2회 + 희귀 착색 재료 1회.
-        /// 테마는 직업 맵(바텐더=바, 티 소믈리에=찻집). 희귀 착색은 runId 해시로 블루 큐라소/그레나딘 중 하나(같은 런은 항상 같음).
-        /// </summary>
-        public static List<DrinkAmount> BossAward(Job job, BossKind boss, string runId)
+        /// <summary>추첨 보유량 = 창고 + 이번 런 미정산 획득(배합에 올려만 둔 재료는 창고에 그대로 있으므로 포함, 이미 만든 음료는 제외).</summary>
+        public static int HeldForSupply(string runId, string id)
         {
-            var bundle = job == Job.TeaSommelier ? TeaBundle : BarBundle;
-            int times = boss == BossKind.Final ? 2 : boss == BossKind.None ? 0 : 1;
+            long held = Owned(id);
+            foreach (var a in Data.pending)
+                if (a.runId == runId) foreach (var i in a.items) if (i.id == id) held += i.amount;
+            return (int)Math.Min(int.MaxValue, held);
+        }
+
+        /// <summary>한 보상의 묶음들(결정적: runId·awardId). 정산이 끝난 런이면 빈 목록.</summary>
+        public static List<DrinkAmount> RollAward(DrinkSupply.Source source, string runId, string awardId)
+        {
             var list = new List<DrinkAmount>();
-            foreach (var b in bundle) list.Add(new DrinkAmount(b.id, b.amount * times));
-            if (boss == BossKind.Final)
-                list.Add(new DrinkAmount(StableHash(runId) % 2 == 0 ? DrinkIngredients.BlueCuracao : DrinkIngredients.Grenadine, RareColorant));
+            if (string.IsNullOrEmpty(runId) || IsSettled(runId)) return list;
+            foreach (var (id, amount) in DrinkSupply.Roll(source, runId, awardId, x => HeldForSupply(runId, x)))
+            {
+                var same = list.Find(a => a.id == id);
+                if (same != null) same.amount += amount; else list.Add(new DrinkAmount(id, amount));
+            }
             return list;
         }
 
-        public static readonly DrinkAmount[] BarBundle =
-        {
-            new DrinkAmount(DrinkIngredients.Gin, 300), new DrinkAmount(DrinkIngredients.Rum, 300), new DrinkAmount(DrinkIngredients.LemonJuice, 150),
-        };
-        public static readonly DrinkAmount[] TeaBundle =
-        {
-            new DrinkAmount(DrinkIngredients.BlackTea, 20), new DrinkAmount(DrinkIngredients.GreenTea, 20), new DrinkAmount(DrinkIngredients.Honey, 100),
-        };
-        public const int RareColorant = 150;
+        public static DrinkSupply.Source SourceFor(BossKind boss) =>
+            boss == BossKind.Final ? DrinkSupply.Source.FinalBoss : DrinkSupply.Source.MidBoss;
 
-        static int StableHash(string s)
+        /// <summary>획득처 설명(도감): 72 표의 가중치가 있는 곳.</summary>
+        public static string SourceText(string id)
         {
-            unchecked
-            {
-                int h = 23;
-                if (s != null) foreach (char c in s) h = h * 31 + c;
-                return h & 0x7FFFFFFF;
-            }
+            var r = DrinkSupply.Get(id);
+            if (r == null) return "";
+            var at = new List<string>();
+            if (r.normal > 0) at.Add($"일반 처치 {DrinkSupply.NormalKillsPerBundle}회마다");
+            if (r.elite > 0) at.Add("정예");
+            if (r.midBoss > 0) at.Add("중간 보스");
+            if (r.finalBoss > 0) at.Add("최종 보스");
+            string unit = DrinkIngredients.Get(id)?.form == IngredientForm.Leaf ? "g" : "mL";
+            return $"{string.Join("·", at)} (1묶음 {DrinkRules.Format(r.bundle)}{unit}{(r.rare ? ", 보스 희귀 보장" : "")}) · 적게 가진 재료일수록 잘 나옴";
         }
 
         public static string Describe(IEnumerable<DrinkAmount> items)
@@ -570,6 +592,140 @@ namespace CCT
                 }
             return parts.Count == 0 ? "없음" : string.Join(", ", parts);
         }
+
+        // ───── 72 연구(노트북): 모두 플레이어 행동 트랜잭션 — 저장 성공 시에만 반영, 실패는 상태 그대로 ─────
+
+        public static ResearchState Research => Data.research;
+
+        public static bool UnlockTrait(string id, out string error) => ResearchAction(r => DrinkResearch.Unlock(r, id, out var e) ? null : e, out error);
+        public static bool EquipTrait(string id, out string error) => ResearchAction(r => DrinkResearch.Equip(r, id, out var e) ? null : e, out error);
+        public static bool UnequipTrait(string id, out string error) => ResearchAction(r => DrinkResearch.Unequip(r, id) ? null : "장착하지 않은 특성입니다.", out error);
+        public static bool HireStaff(string id, out string error) => ResearchAction(r => DrinkResearch.Hire(r, id, out var e) ? null : e, out error);
+        public static bool SetSpecialty(string id, out string error) => ResearchAction(r => DrinkResearch.SetSpecialty(r, id, out var e) ? null : e, out error);
+
+        static bool ResearchAction(Func<ResearchState, string> act, out string error)
+        {
+            string why = null;
+            bool ok = Transact(d => { why = act(d.research); return why == null; }, out error);
+            if (!ok && error == null) error = why;
+            return ok;
+        }
+
+        /// <summary>이 배합에 적용되는 활성 제조 전문(종류·기법이 맞을 때만), 아니면 "".</summary>
+        public static string ActiveSpecialtyFor(DrinkRecipe r)
+        {
+            var st = DrinkResearch.StaffById(Data.research.activeSpecialty);
+            return st != null && DrinkCalculator.SpecialtyApplies(st, r) ? st.id : "";
+        }
+
+        /// <summary>출발 때 장착된 숙련 특성(런 시작 스냅샷용 사본, 알려진 ID만).</summary>
+        public static List<string> EquippedTraitsSnapshot()
+        {
+            var list = new List<string>();
+            foreach (var id in Data.research.equippedTraits) if (DrinkResearch.Trait(id) != null) list.Add(id);
+            return list;
+        }
+
+        // ───── 72 §6 판매·주문·외형(모두 플레이어 행동 트랜잭션) ─────
+
+        public static int Coins => Data.coins;
+        public static IReadOnlyList<DrinkOrder> Orders => Data.orders;
+
+        static bool EnsureOrders(DrinkSaveData d)
+        {
+            bool changed = false;
+            while (d.orders.Count < DrinkSales.Slots)
+            {
+                int i = d.orders.Count;
+                d.orders.Add(DrinkSales.Generate(d.orderSerial++, x => d.seenIds.Contains(x) || d.Owned(x) > 0, basic: i < 2 && d.orderSerial <= 2));
+                changed = true;
+            }
+            return changed;
+        }
+
+        static void RefillCancelledOrders(DrinkSaveData d)
+        {
+            for (int i = 0; i < d.orders.Count; i++)
+                if (!d.orders[i].IsOpen) d.orders[i] = DrinkSales.Generate(d.orderSerial++, x => d.seenIds.Contains(x) || d.Owned(x) > 0);
+            EnsureOrders(d);
+        }
+
+        /// <summary>준비 음료(Ready, 아직 출발 전)를 주문에 판매: 음료 소비 + 코인을 한 거래로 저장, 그 칸은 바로 다음 주문. 출발용 사용과 중복 불가.</summary>
+        public static bool Sell(int orderIndex, out int coins, out string error)
+        {
+            coins = 0;
+            EnsureLoaded();
+            var p = data.prepared;
+            if (p.state != PreparedDrink.Ready) { error = p.state == PreparedDrink.InRun ? "이번 판에 사용 중인 음료는 팔 수 없습니다." : "팔 음료가 없습니다. 먼저 제조하세요."; return false; }
+            if (orderIndex < 0 || orderIndex >= data.orders.Count || !data.orders[orderIndex].IsOpen) { error = "열린 주문이 아닙니다."; return false; }
+            var order = data.orders[orderIndex];
+            int price = DrinkSales.Price(order, p.recipe);
+            if (price <= 0) { error = "주문 조건(음료 계열·지정 재료 최소량)을 채우지 못했습니다."; return false; }
+            string drinkId = p.drinkId;
+            bool ok = Transact(d =>
+            {
+                if (d.prepared.state != PreparedDrink.Ready || d.prepared.drinkId != drinkId || d.soldDrinkIds.Contains(drinkId)) return false;
+                d.prepared = new PreparedDrink();
+                d.coins = (int)Math.Min(int.MaxValue, (long)d.coins + price);
+                d.soldDrinkIds.Add(drinkId);
+                if (d.soldDrinkIds.Count > 200) d.soldDrinkIds.RemoveRange(0, d.soldDrinkIds.Count - 200);
+                d.orders[orderIndex] = DrinkSales.Generate(d.orderSerial++, x => d.seenIds.Contains(x) || d.Owned(x) > 0);
+                return true;
+            }, out error);
+            if (ok) coins = price;
+            else if (error == null) error = "이미 판매했거나 바뀐 음료입니다.";
+            return ok;
+        }
+
+        /// <summary>주문 취소(무료): 그 칸은 다음 런 종료 정산 때 새 주문(0~4킬 보존 포기로는 갱신 안 됨).</summary>
+        public static bool CancelOrder(int orderIndex, out string error)
+        {
+            EnsureLoaded();
+            if (orderIndex < 0 || orderIndex >= data.orders.Count || !data.orders[orderIndex].IsOpen) { error = "열린 주문이 아닙니다."; return false; }
+            return Transact(d => { d.orders[orderIndex].state = "Cancelled"; return true; }, out error);
+        }
+
+        /// <summary>준비 음료 명시 폐기(다음 제조 확정을 위해). 재료 환불 없음. 이번 판에 사용 중이면 불가.</summary>
+        public static bool DiscardPrepared(out string error)
+        {
+            EnsureLoaded();
+            if (data.prepared.state != PreparedDrink.Ready) { error = "버릴 준비 음료가 없습니다."; return false; }
+            return Transact(d => { d.prepared = new PreparedDrink(); return true; }, out error);
+        }
+
+        /// <summary>코인 소유(현금 구매 소유는 commerce.json — 게임 소유 판정에서 합친다).</summary>
+        public static bool CoinOwns(string id)
+        {
+            try { return !string.IsNullOrEmpty(id) && Data.coinOwned.Contains(id); }
+            catch (Exception) { return false; }
+        }
+
+        /// <summary>코인 외형 구매(이미 소유(현금/코인)면 거부, 코인 부족 거부). 판매 코인은 외형 전용.</summary>
+        public static bool BuyCosmetic(string id, Func<string, bool> cashOwned, out string error)
+        {
+            EnsureLoaded();
+            var c = DrinkSales.Cosmetic(id);
+            if (c == null) { error = "알 수 없는 외형입니다."; return false; }
+            if (data.coinOwned.Contains(id) || (cashOwned != null && cashOwned(id))) { error = "이미 보유한 외형입니다."; return false; }
+            if (data.coins < c.price) { error = $"코인이 {c.price - data.coins} 부족합니다."; return false; }
+            return Transact(d =>
+            {
+                if (d.coinOwned.Contains(id) || d.coins < c.price) return false;
+                d.coins -= c.price;
+                d.coinOwned.Add(id);
+                return true;
+            }, out error);
+        }
+
+        /// <summary>맵 외형 장착(코인 소유만, "" = 직업 기본 맵). 배경만 바뀐다.</summary>
+        public static bool EquipMap(string id, out string error)
+        {
+            EnsureLoaded();
+            if (!string.IsNullOrEmpty(id) && !data.coinOwned.Contains(id)) { error = "보유하지 않은 맵 외형입니다."; return false; }
+            return Transact(d => { d.equippedMap = id ?? ""; return true; }, out error);
+        }
+
+        public static string EquippedMap { get { try { return Data.equippedMap; } catch (Exception) { return ""; } } }
 
         // ───── 테스트 ─────
 
