@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -55,6 +56,8 @@ namespace CCT
         Button buildButton;
         Text historyStatus;
         RunDetailView detail;
+        DrinkAwardDetailView awardDetail;
+        Button awardButton;
         int detailClosedFrame = -1;
         int shownHistoryState = -1;
 
@@ -107,9 +110,20 @@ namespace CCT
             view.statsSmall.lineSpacing = 1.1f;
 
             // 69 음료: 보스 음료 재료 창고 반영 여부 + 준비 음료 보존/소모.
-            view.drinkStatus = UiFactory.AddText(UiFactory.Place("DrinkStatus", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, -184f),
-                new Vector2(1500f, 80f)), "", 22, TextAnchor.MiddleCenter, new Color(0.75f, 1f, 0.8f));
-            view.drinkStatus.lineSpacing = 1.05f;
+            // hudfix 2026-10-19: 긴 판(재료 묶음 수백 개)이 결과 화면 전체를 덮던 문제 — 통계 판 아래(-142)와 버튼 위(-226) 사이에는
+            // 한 줄 요약 + "획득 내역" 버튼만 둔다. 재료별 전체 합계·연구 포인트·준비 음료는 스크롤 창(DrinkAwardDetailView)에서 본다.
+            view.drinkStatus = UiFactory.AddText(UiFactory.Place("DrinkStatus", rootRt, new Vector2(0.5f, 0.5f), new Vector2(DrinkSummaryX, -184f),
+                new Vector2(DrinkSummaryWidth, 44f)), "", DrinkSummaryFont, TextAnchor.MiddleCenter, new Color(0.75f, 1f, 0.8f));
+            view.drinkStatus.horizontalOverflow = HorizontalWrapMode.Overflow; // 한 줄 — 넘치면 요약 단계를 줄인다(글자 크기는 그대로)
+            view.drinkStatus.verticalOverflow = VerticalWrapMode.Truncate;
+            var awardRt = UiFactory.Place("DrinkAwardButton", rootRt, new Vector2(0.5f, 0.5f), new Vector2(DrinkAwardButtonX, -184f), new Vector2(280f, 64f));
+            var awardBg = UiFactory.AddImage(awardRt, new Color(0.24f, 0.4f, 0.5f));
+            view.awardButton = awardRt.gameObject.AddComponent<Button>();
+            UiFactory.AddFocusSfx(view.awardButton);
+            view.awardButton.targetGraphic = awardBg;
+            UiFactory.ApplyHoverColors(view.awardButton);
+            view.awardButton.onClick.AddListener(view.OpenAwardDetail);
+            UiFactory.AddText(UiFactory.Stretch("Label", awardRt), "획득 내역", 30, TextAnchor.MiddleCenter, Color.white);
 
             view.restartButton = BuildButton(rootRt, "RestartButton", 0f, UiFactory.InputLabel("다시 시작", "R"), true, view.Restart);
             var shopButton = BuildButton(rootRt, "PermanentShopButton", -440f, "영구 강화", false, view.OpenShop);
@@ -145,6 +159,7 @@ namespace CCT
 
             view.shopView = PermanentSkillView.Create(canvas, view.ShowRoot);
             // 상세는 결과 화면의 마지막 자식 — 그리기 순서와 MobileBackRouter 탐색에서 "타이틀"보다 위에 있다.
+            view.awardDetail = DrinkAwardDetailView.Create(rootRt, () => view.detailClosedFrame = Time.frameCount);
             view.detail = RunDetailView.Create(rootRt, () => view.detailClosedFrame = Time.frameCount);
 
             view.root.SetActive(false);
@@ -273,7 +288,7 @@ namespace CCT
 
         void OpenShop()
         {
-            if (detail != null && detail.IsOpen) return;
+            if ((detail != null && detail.IsOpen) || (awardDetail != null && awardDetail.IsOpen)) return;
             root.SetActive(false);
             shopView.Show();
         }
@@ -281,7 +296,7 @@ namespace CCT
         /// <summary>67 "이번 판 빌드" 버튼(테스트도 같은 경로). 기록이 없으면 열지 않는다.</summary>
         public void OpenDetail()
         {
-            if (!IsOpen || last == null || last.record == null || detail.IsOpen) return;
+            if (!IsOpen || last == null || last.record == null || detail.IsOpen || (awardDetail != null && awardDetail.IsOpen)) return;
             detail.Show(last.record, buildButton.gameObject);
         }
 
@@ -290,25 +305,72 @@ namespace CCT
         int shownDrinkState = -1;
         public string DrinkStatusText => drinkStatus != null ? drinkStatus.text : "";
 
+        public const float DrinkSummaryWidth = 1300f, DrinkSummaryX = -170f, DrinkAwardButtonX = 660f;
+        public const int DrinkSummaryFont = 26;
+
+        /// <summary>정산 상태 머리말(재료 창고 반영·실패·보존 포기).</summary>
+        public static string DrinkStatusHead(DrinkSettlement s)
+        {
+            if (s == null) return "";
+            if (s.kind == "PreservedAbandon")
+                return s.discarded.Count > 0 ? "음료 재료: 보존 포기라 이번 판 보상은 정산하지 않았습니다" : "음료 재료: 보존 포기 — 이번 판 재료 보상 없음";
+            if (s.granted.Count == 0) return "음료 재료: 이번 판 재료 보상 없음";
+            return "음료 재료 획득 — " + (DrinkLab.IsDirty ? "창고 저장 실패, 자동으로 다시 시도 중" : DrinkLab.WriteBlocked ? "새 버전 창고 보호 중(저장 안 됨)" : "창고에 저장했습니다");
+        }
+
+        /// <summary>전체 정산 문구(로그·검증용, 여러 줄). 재료는 같은 재료끼리 합친 전체 합계 — 정산 기록(s.granted)은 그대로.</summary>
         public static string DrinkStatusLine(DrinkSettlement s)
         {
             if (s == null) return "";
-            string drink = s.drink == "Preserved" ? "준비 음료: 5마리 처치 전 포기라 보존했습니다(다음 출발 때 그대로 마심)"
-                : s.drink == "Consumed" ? "준비 음료: 이번 판에 사용되어 사라졌습니다" : "";
-            string mats = s.kind == "PreservedAbandon"
-                ? (s.discarded.Count > 0 ? $"음료 재료: 보존 포기라 이번 판 보상({DrinkLab.Describe(s.discarded)})은 정산하지 않았습니다" : "음료 재료: 보존 포기 — 이번 판 재료 보상 없음")
-                : s.granted.Count > 0 ? $"음료 재료 획득: {DrinkLab.Describe(s.granted)} — " + (DrinkLab.IsDirty ? "창고 저장 실패, 자동으로 다시 시도 중" : DrinkLab.WriteBlocked ? "새 버전 창고 보호 중(저장 안 됨)" : "창고에 저장했습니다")
-                : "음료 재료: 이번 판 재료 보상 없음";
+            var lines = new List<string> { DrinkStatusHead(s) };
+            if (s.kind == "PreservedAbandon") { if (s.discarded.Count > 0) lines.Add("정산 안 함: " + DrinkLab.Summarize(s.discarded)); }
+            else if (s.granted.Count > 0) lines.Add(DrinkLab.Summarize(s.granted));
             // 72 §3 연구 포인트(노트북 숙련·직원 채용용, 기존 스페셜티와 별개)
-            if (s.researchPoints > 0) mats += $"\n연구 포인트 +{s.researchPoints} (현재 {DrinkLab.Research.researchPoints}, 연구 노트북에서 사용)";
-            return drink.Length > 0 ? mats + "\n" + drink : mats;
+            if (s.researchPoints > 0) lines.Add($"연구 포인트 +{s.researchPoints} (현재 {DrinkLab.Research.researchPoints}, 연구 노트북에서 사용)");
+            if (s.drink == "Preserved") lines.Add("준비 음료: 5마리 처치 전 포기라 보존했습니다(다음 출발 때 그대로 마심)");
+            else if (s.drink == "Consumed") lines.Add("준비 음료: 이번 판에 사용되어 사라졌습니다");
+            return string.Join("\n", lines);
+        }
+
+        /// <summary>결과 화면 한 줄 요약. detail 0 = 가장 자세히, 2 = 가장 짧게(전체는 "획득 내역" 창에 항상 있음).</summary>
+        public static string DrinkSummaryLine(DrinkSettlement s, int detail = 0)
+        {
+            if (s == null) return "";
+            string head;
+            if (s.kind == "PreservedAbandon") head = s.discarded.Count > 0 ? "음료 재료: 보존 포기라 정산 안 함" : "음료 재료 보상 없음(보존 포기)";
+            else if (s.granted.Count == 0) head = "음료 재료 보상 없음";
+            else head = $"음료 재료 {DrinkLab.Totals(s.granted).Count}종 획득 · " + (DrinkLab.IsDirty ? "창고 저장 실패, 다시 시도 중" : DrinkLab.WriteBlocked ? "창고 보호 중(저장 안 됨)" : "창고에 저장했습니다");
+            var parts = new List<string> { head };
+            if (detail <= 1 && s.researchPoints > 0) parts.Add($"연구 포인트 +{s.researchPoints}");
+            if (detail <= 0 && s.drink == "Preserved") parts.Add("준비 음료 보존");
+            else if (detail <= 0 && s.drink == "Consumed") parts.Add("준비 음료 사용됨");
+            return string.Join(" · ", parts);
+        }
+
+        public Text DrinkStatus => drinkStatus;
+        public Button DrinkAwardButton => awardButton;
+        public DrinkAwardDetailView AwardDetail => awardDetail;
+
+        /// <summary>"획득 내역" 버튼(테스트도 같은 경로).</summary>
+        public void OpenAwardDetail()
+        {
+            var s = game != null ? game.DrinkSettlement : null;
+            if (!IsOpen || s == null || awardDetail.IsOpen || (detail != null && detail.IsOpen)) return;
+            awardDetail.Show(s, awardButton.gameObject);
         }
 
         void RefreshDrinkStatus()
         {
             if (drinkStatus == null) return;
             shownDrinkState = DrinkLab.IsDirty ? 1 : 0;
-            drinkStatus.text = DrinkStatusLine(game != null ? game.DrinkSettlement : null);
+            var settlement = game != null ? game.DrinkSettlement : null;
+            // 한 줄에 들어가는 가장 자세한 요약(글자 크기는 그대로). 전체 합계는 "획득 내역" 창.
+            for (int d = 0; d <= 2; d++)
+            {
+                drinkStatus.text = DrinkSummaryLine(settlement, d);
+                if (drinkStatus.preferredWidth <= drinkStatus.rectTransform.rect.width) break;
+            }
+            if (awardButton != null) awardButton.gameObject.SetActive(settlement != null);
         }
 
         void RefreshHistoryStatus()
@@ -330,6 +392,11 @@ namespace CCT
             if (shownDrinkState != (DrinkLab.IsDirty ? 1 : 0)) RefreshDrinkStatus();
             var kb = Keyboard.current;
             // 상세가 열려 있거나 방금 닫힌 프레임이면 R·Esc가 결과 화면 버튼으로 관통하지 않는다.
+            if (awardDetail != null && awardDetail.IsOpen)
+            {
+                if (!MobilePlatform.IsTouchUI && kb != null && kb.escapeKey.wasPressedThisFrame) awardDetail.Close();
+                return;
+            }
             if (detail != null && (detail.IsOpen || detailClosedFrame == Time.frameCount))
             {
                 if (detail.IsOpen && !MobilePlatform.IsTouchUI && kb != null && kb.escapeKey.wasPressedThisFrame) detail.Close();
@@ -340,7 +407,7 @@ namespace CCT
 
         void Restart()
         {
-            if (!IsOpen || (detail != null && detail.IsOpen)) return;
+            if (!IsOpen || (detail != null && detail.IsOpen) || (awardDetail != null && awardDetail.IsOpen)) return;
             game.Restart();
         }
     }

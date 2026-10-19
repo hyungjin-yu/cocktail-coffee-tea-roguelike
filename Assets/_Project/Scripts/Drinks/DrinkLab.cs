@@ -593,6 +593,32 @@ namespace CCT
             return parts.Count == 0 ? "없음" : string.Join(", ", parts);
         }
 
+        /// <summary>표시 전용 재료별 합계(0.1 단위, long으로 더함). 지급·창고·정산 기록은 바꾸지 않는다. 모르는 재료·0 이하는 뺀다.</summary>
+        public static Dictionary<string, long> Totals(IEnumerable<DrinkAmount> items)
+        {
+            var totals = new Dictionary<string, long>();
+            if (items == null) return totals;
+            foreach (var i in items)
+            {
+                if (i == null || i.amount <= 0 || DrinkIngredients.Get(i.id) == null) continue;
+                totals.TryGetValue(i.id, out var t);
+                totals[i.id] = checked(t + i.amount);
+            }
+            return totals;
+        }
+
+        /// <summary>hudfix 2026-10-19 표시용 요약: 같은 재료를 합쳐 재료표 순서로 모두(최대 재료 종류 수 8) — 빠지는 재료 없음.
+        /// 긴 판(묶음 수백 개)도 재료 종류 수만큼만 나온다.</summary>
+        public static string Summarize(IEnumerable<DrinkAmount> items, string separator = " · ")
+        {
+            var totals = Totals(items);
+            var parts = new List<string>();
+            foreach (var def in DrinkIngredients.All)
+                if (totals.TryGetValue(def.id, out var v))
+                    parts.Add($"{def.name} {DrinkRules.Format((int)Math.Min(v, int.MaxValue), def.form)}");
+            return parts.Count == 0 ? "없음" : string.Join(separator, parts);
+        }
+
         // ───── 72 연구(노트북): 모두 플레이어 행동 트랜잭션 — 저장 성공 시에만 반영, 실패는 상태 그대로 ─────
 
         public static ResearchState Research => Data.research;

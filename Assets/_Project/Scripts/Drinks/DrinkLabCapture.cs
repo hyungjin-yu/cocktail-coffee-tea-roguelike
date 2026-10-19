@@ -1178,6 +1178,210 @@ namespace CCT
             Application.Quit();
         }
 
+        // ── hudfix 2026-10-19: 준비 음료 칩이 카드 선택 음료 지식 안내 위에 올라오고 오른쪽이 잘리던 문제의 실제 화면 증거 ──
+        // 이름(DrinkHud/DrinkChip)으로만 찾으므로 고치기 전·후 빌드 모두 같은 코드로 잰다.
+        void HudGeometry(string label)
+        {
+            Canvas.ForceUpdateCanvases();
+            var game = GameManager.Instance;
+            var chip = game != null ? game.GetComponentsInChildren<RectTransform>(true).FirstOrDefault(t => t.name == "DrinkChip") : null;
+            if (chip == null) { notes.Add($"HUD {label}: no chip object"); return; }
+            var screen = new Rect(0, 0, Screen.width, Screen.height);
+            var c = new Vector3[4];
+            chip.GetWorldCorners(c);
+            var chipRect = Rect.MinMaxRect(c[0].x, c[0].y, c[2].x, c[2].y);
+            bool chipInside = chipRect.xMin >= -1 && chipRect.yMin >= -1 && chipRect.xMax <= screen.xMax + 1 && chipRect.yMax <= screen.yMax + 1;
+            var line = new System.Text.StringBuilder();
+            line.Append($"HUD {label}: state={game.State} paused={game.IsPaused} tutorial={game.CardView.IsTutorialOpen} learning={game.CardView.IsLearningOpen} cardOpen={game.CardView.IsOpen} " +
+                        $"chipShown={chip.gameObject.activeInHierarchy} chipAboveCardView={chip.parent.GetSiblingIndex() > game.CardView.transform.GetSiblingIndex()} " +
+                        $"chipPx=({chipRect.xMin:0},{chipRect.yMin:0})-({chipRect.xMax:0},{chipRect.yMax:0}) screen={Screen.width}x{Screen.height} chipInsideScreen={chipInside}");
+            bool allOk = chipInside;
+            foreach (var t in chip.GetComponentsInChildren<Text>(true))
+            {
+                var gen = t.cachedTextGenerator;
+                float upp = 1f / t.pixelsPerUnit;
+                float minX = float.MaxValue, minY = float.MaxValue, maxX = float.MinValue, maxY = float.MinValue;
+                foreach (var v in gen.verts)
+                {
+                    var w = t.rectTransform.TransformPoint(v.position * upp);
+                    minX = Mathf.Min(minX, w.x); maxX = Mathf.Max(maxX, w.x); minY = Mathf.Min(minY, w.y); maxY = Mathf.Max(maxY, w.y);
+                }
+                bool glyphsInChip = gen.vertexCount == 0 || (minX >= chipRect.xMin - 1.5f && maxX <= chipRect.xMax + 1.5f && minY >= chipRect.yMin - 1.5f && maxY <= chipRect.yMax + 1.5f);
+                bool glyphsOnScreen = gen.vertexCount == 0 || (minX >= -1.5f && maxX <= screen.xMax + 1.5f && minY >= -1.5f && maxY <= screen.yMax + 1.5f);
+                bool heightOk = t.preferredHeight <= t.rectTransform.rect.height + 0.5f;
+                allOk &= glyphsInChip && glyphsOnScreen && heightOk;
+                line.Append($" | {t.name}: font={t.fontSize}({t.fontSize * t.rectTransform.lossyScale.y:0.0}px) lines={gen.lineCount} pref={t.preferredHeight:0.0}/box={t.rectTransform.rect.height:0.0} glyphs=({minX:0},{minY:0})-({maxX:0},{maxY:0}) inChip={glyphsInChip} onScreen={glyphsOnScreen} '{t.text.Replace("\n", "⏎")}'");
+            }
+            line.Append($" | ALL_OK={allOk}");
+            notes.Add(line.ToString());
+        }
+
+        void ResultGeometry(string label, ResultView result)
+        {
+            Canvas.ForceUpdateCanvases();
+            var t = result.DrinkStatus;
+            var c = new Vector3[4];
+            Rect R(RectTransform rt) { rt.GetWorldCorners(c); return Rect.MinMaxRect(c[0].x, c[0].y, c[2].x, c[2].y); }
+            var box = R(t.rectTransform);
+            var gen = t.cachedTextGenerator;
+            float upp = 1f / t.pixelsPerUnit;
+            float minX = float.MaxValue, minY = float.MaxValue, maxX = float.MinValue, maxY = float.MinValue;
+            foreach (var v in gen.verts)
+            {
+                var w = t.rectTransform.TransformPoint(v.position * upp);
+                minX = Mathf.Min(minX, w.x); maxX = Mathf.Max(maxX, w.x); minY = Mathf.Min(minY, w.y); maxY = Mathf.Max(maxY, w.y);
+            }
+            var glyphs = Rect.MinMaxRect(minX, minY, maxX, maxY);
+            bool inBox = glyphs.xMin >= box.xMin - 3 && glyphs.xMax <= box.xMax + 3 && glyphs.yMin >= box.yMin - 3 && glyphs.yMax <= box.yMax + 3;
+            var all = result.GetComponentsInChildren<RectTransform>(true);
+            var sb = new System.Text.StringBuilder();
+            sb.Append($"RESULTGEOM {label}: screen={Screen.width}x{Screen.height} summary='{t.text}' font={t.fontSize}({t.fontSize * t.rectTransform.lossyScale.y:0.0}px) lines={gen.lineCount} prefW={t.preferredWidth:0}/boxW={t.rectTransform.rect.width:0} glyphs=({minX:0},{minY:0})-({maxX:0},{maxY:0}) inBox={inBox}");
+            bool ok = inBox && gen.lineCount == 1;
+            var award = R((RectTransform)result.DrinkAwardButton.transform);
+            foreach (var name in new[] { "StatsPanel", "RestartButton", "PermanentShopButton", "TitleButton", "BuildDetailButton", "DrinkAwardButton" })
+            {
+                var rt = all.FirstOrDefault(x => x.name == name);
+                if (rt == null) continue;
+                var r = R(rt);
+                bool overlap = name != "DrinkAwardButton" && (r.Overlaps(glyphs) || (name != "StatsPanel" && r.Overlaps(award)));
+                string hit = "-";
+                if (name != "StatsPanel")
+                {
+                    var es = UnityEngine.EventSystems.EventSystem.current;
+                    var hits = new List<UnityEngine.EventSystems.RaycastResult>();
+                    es.RaycastAll(new UnityEngine.EventSystems.PointerEventData(es) { position = r.center }, hits);
+                    hit = hits.Count > 0 && hits[0].gameObject.transform.IsChildOf(rt) ? "self" : hits.Count > 0 ? hits[0].gameObject.name : "none";
+                    ok &= hit == "self";
+                }
+                ok &= !overlap;
+                sb.Append($" | {name} px=({r.xMin:0},{r.yMin:0})-({r.xMax:0},{r.yMax:0}) overlap={overlap} hit={hit}");
+            }
+            sb.Append($" | ALL_OK={ok}");
+            notes.Add(sb.ToString());
+        }
+
+        IEnumerator HudFixEvidence()
+        {
+            foreach (var tv in UnityEngine.Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None)) Destroy(tv.gameObject);
+            CardEducationGuide.SuppressAutomaticForTests = false;
+            notes.Add($"HUDFIX guideNeedsIntro={CardEducationGuide.NeedsIntroduction} (격리 새 설정)");
+            // 칵테일 최대 효과 4종. 이름은 기본값 -cct-hudfix-name 없으면 자연스러운 띄어쓰기 이름(공백 없는 16자 이름은 별도 스트레스 증거 ha*/hr*).
+            int nameArg = Array.IndexOf(Environment.GetCommandLineArgs(), "-cct-hudfix-name");
+            string drinkName = nameArg >= 0 && nameArg + 1 < Environment.GetCommandLineArgs().Length ? Environment.GetCommandLineArgs()[nameArg + 1] : "블루 큐라소 진 스터링";
+            var drink = Mix(DrinkKind.Cocktail, DrinkTechnique.Stir, drinkName, ("gin", 200), ("rum", 150), ("blue_curacao", 100), ("grenadine", 100));
+            var craft = DrinkLab.Craft(drink);
+            notes.Add($"HUDFIX craft={craft.Status} {craft.Message} buff={DrinkCalculator.Buff(drink).Describe()}");
+            foreach (var old in UnityEngine.Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None)) Destroy(old.gameObject);
+            yield return null;
+            GameBootstrap.RestartToSelect();
+            yield return Wait(0.5f);
+            var select = Find<CharacterSelectView>();
+            ClickAt((RectTransform)select.BartenderButton.transform, new Vector2(0.5f, 0.5f));
+            yield return Wait(0.4f);
+            notes.Add("HUDFIX start click: " + ClickAt((RectTransform)select.StartButton.transform, new Vector2(0.5f, 0.5f)));
+            float w0 = Time.realtimeSinceStartup;
+            while ((GameManager.Instance == null || GameManager.Instance.Player == null) && Time.realtimeSinceStartup - w0 < 10f) yield return null;
+            var game = GameManager.Instance;
+            if (game == null) { notes.Add("HUDFIX: run did not start"); yield break; }
+            foreach (var sp in game.GetComponentsInChildren<EnemySpawner>()) sp.enabled = false; // 캡처 중 피격으로 런이 끝나지 않게
+            yield return Wait(1.5f);
+            HudGeometry("H1_combat");
+            yield return Shot("H1_combat_longname_multieffect", null);
+            // 실제 레벨업 → 첫 카드 제안에서 음료 지식 안내 1/4 자동 표시
+            game.AddIngredient(IngredientType.Cocktail, game.CocktailGauge.Threshold);
+            w0 = Time.realtimeSinceStartup;
+            while (!game.CardView.IsLearningOpen && Time.realtimeSinceStartup - w0 < 5f) yield return null;
+            yield return Wait(0.6f);
+            HudGeometry("H2_card_guide");
+            yield return Shot("H2_card_guide_1of4", null);
+            game.CardView.Tutorial.Next(); game.CardView.Tutorial.Next(); game.CardView.Tutorial.Next(); game.CardView.Tutorial.OpenDetail();
+            yield return Wait(0.4f);
+            HudGeometry("H3_card_detail");
+            yield return Shot("H3_card_detail_learning", null);
+            game.CardView.CloseLearning();
+            yield return Wait(0.4f);
+            HudGeometry("H4_card_select");
+            yield return Shot("H4_card_select", null);
+            game.CardView.Choose(0);
+            w0 = Time.realtimeSinceStartup;
+            while (game.State != GameState.Playing && Time.realtimeSinceStartup - w0 < 5f) yield return null;
+            yield return null; yield return null;
+            HudGeometry("H5_combat_resumed");
+            yield return Shot("H5_combat_resumed", null);
+            game.OpenPause();
+            yield return Wait(0.5f);
+            HudGeometry("H6_pause");
+            yield return Shot("H6_pause", null);
+            game.ClosePause();
+            yield return Wait(1.5f);
+            HudGeometry("H7_after_pause");
+            for (int i = 0; i < DrinkLab.PreserveKillLimit; i++) game.OnEnemyKilled(game.Player.Position + Vector2.right * 2f, EnemyDef.Imp);
+            yield return Wait(0.5f);
+            HudGeometry("H8_used_state");
+            yield return Shot("H8_combat_used_state", null);
+            notes.Add($"HUDFIX drink state={DrinkLab.Prepared?.state} run={DrinkLab.Prepared?.runId == game.RunId} kills={game.Kills}");
+            // ── 결과 화면: 긴 판(일반 5000·정예 20·중간 보스·최종 보스 → 묶음 200개 이상) 영업 완료 ──
+            for (int i = 0; i < 5000; i++) game.OnEnemyKilled(game.Player.Position + Vector2.right * 2f, EnemyDef.Imp);
+            var eliteDef = new EnemyDef { name = "QA 정예", dropCount = 0, hp = 10f, archetype = EnemyArchetype.EliteBarrage };
+            for (int i = 0; i < 20; i++) game.OnEnemyKilled(game.Player.Position + Vector2.right * 2f, eliteDef);
+            game.OnEnemyKilled(game.Player.Position + Vector2.right * 2f, EnemyDef.GrinderGolem);
+            var finalDef = new EnemyDef { name = "QA 최종 보스", dropCount = 0, hp = 10f, boss = BossKind.Final };
+            game.OnEnemyKilled(game.Player.Position + Vector2.right * 2f, finalDef);
+            var c4 = new Vector3[4];
+            var bySource = new SortedDictionary<string, int>();
+            int packets = 0;
+            foreach (var a in DrinkLab.PendingFor(game.RunId))
+            {
+                string src = a.awardId.TrimEnd('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                bySource.TryGetValue(src, out var n);
+                bySource[src] = n + a.items.Count;
+                packets += a.items.Count;
+            }
+            notes.Add($"RESULT packets by source: {string.Join(", ", bySource.Select(kv => kv.Key + "=" + kv.Value))} total={packets}");
+            var stockBefore = DrinkIngredients.All.ToDictionary(d => d.id, d => DrinkLab.Owned(d.id));
+            float w1 = Time.realtimeSinceStartup;
+            while ((game.ResultScreen == null || !game.ResultScreen.IsOpen) && Time.realtimeSinceStartup - w1 < 8f) yield return null;
+            yield return Wait(1.0f);
+            var result = game.ResultScreen;
+            var st = game.DrinkSettlement;
+            var totals = DrinkLab.Totals(st.granted);
+            notes.Add($"RESULT state={game.State} cleared={game.Cleared} kills={game.Kills} settlement kind={st.kind} drink={st.drink} grantedEntries={st.granted.Count} rp=+{st.researchPoints} total={DrinkLab.Research.researchPoints}");
+            foreach (var def in DrinkIngredients.All)
+            {
+                totals.TryGetValue(def.id, out var t);
+                var sup = DrinkSupply.Get(def.id);
+                notes.Add($"RESULT {def.id}: total={DrinkRules.Format((int)t, def.form)} bundles={(sup != null && sup.bundle > 0 ? (t / (double)sup.bundle).ToString("0.##") : "-")} stock {stockBefore[def.id]}->{DrinkLab.Owned(def.id)} (diff {DrinkLab.Owned(def.id) - stockBefore[def.id]}, expected {t})");
+            }
+            ResultGeometry("R1_result", result);
+            yield return Shot("R1_long_clear_result", null);
+            notes.Add("RESULT award click: " + ClickAt((RectTransform)result.DrinkAwardButton.transform, new Vector2(0.5f, 0.5f)));
+            yield return Wait(0.5f);
+            notes.Add($"RESULT detail open={result.AwardDetail.IsOpen} rows={result.AwardDetail.Content.GetComponentsInChildren<RectTransform>(true).Count(t => t.name.StartsWith("Material_"))} of {totals.Count}");
+            CheckOverlap("R2", result.AwardDetail.transform);
+            {
+                var pc = new Vector3[4];
+                result.AwardDetail.Panel.GetWorldCorners(pc);
+                var bodyPx = result.AwardDetail.Content.GetComponentsInChildren<Text>(false).Select(t => t.fontSize * t.rectTransform.lossyScale.y).DefaultIfEmpty(0f).Min();
+                ((RectTransform)result.AwardDetail.CloseButton.transform).GetWorldCorners(c4);
+                notes.Add($"RESULT detail panel px=({pc[0].x:0},{pc[0].y:0})-({pc[2].x:0},{pc[2].y:0}) screen={Screen.width}x{Screen.height} scale={result.AwardDetail.Panel.localScale.x:0.000} minBodyPx={bodyPx:0.0} close=({c4[0].x:0},{c4[0].y:0})-({c4[2].x:0},{c4[2].y:0})");
+            }
+            yield return Shot("R2_award_detail_top", result.AwardDetail.transform);
+            result.AwardDetail.Scroll.verticalNormalizedPosition = 0f;
+            yield return Wait(0.3f);
+            yield return Shot("R3_award_detail_bottom", result.AwardDetail.transform);
+            notes.Add("RESULT close click: " + ClickAt((RectTransform)result.AwardDetail.CloseButton.transform, new Vector2(0.5f, 0.5f)));
+            yield return Wait(0.4f);
+            notes.Add($"RESULT after close detail={result.AwardDetail.IsOpen} resultOpen={result.IsOpen}");
+            ResultGeometry("R4_after_close", result);
+            File.WriteAllText(System.IO.Path.Combine(output, "report.json"), JsonUtility.ToJson(new Report
+            {
+                screen = $"{Screen.width}x{Screen.height}", touchUi = MobilePlatform.IsTouchUI, shots = shots, overflow = overflow, notes = notes,
+                minFontPx = minFontPx == int.MaxValue ? 0 : minFontPx, placeholderArtUsed = false, version = Application.version,
+            }, true));
+            yield return Wait(0.5f);
+            Application.Quit();
+        }
+
         IEnumerator Run()
         {
             yield return Wait(4.0f); // 저장된 화면 설정 부트 확인(DisplayBootVerifier 2회)이 끝난 뒤 캡처 해상도로
@@ -1199,6 +1403,11 @@ namespace CCT
             if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "stage1")
             {
                 yield return Stage1Evidence();
+                yield break;
+            }
+            if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "hudfix")
+            {
+                yield return HudFixEvidence();
                 yield break;
             }
             if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "run72")

@@ -110,6 +110,7 @@ namespace CCT
         public SkillTreeView SkillView => skillView;
         public HybridUnlockView HybridView => hybridView;
         public PauseView PauseView => pauseView;
+        public ResultView ResultScreen => resultView;
         public float RunTime { get; private set; }
         /// <summary>08:144 이번 런의 activeRun id. 종료 집계(PermanentProgress.CommitRunEnd)는 이 id로 한 번만.</summary>
         public string RunId { get; private set; }
@@ -197,6 +198,8 @@ namespace CCT
 
             var canvas = UiFactory.CreateCanvas(transform, "UI", 0);
             Hud = HudView.Create(canvas.transform, this);
+            // 69 준비 음료·보스 음료 재료 표시. 카드 선택·안내·일시정지·결과 창보다 먼저(뒤에) 만들어 어떤 창도 덮지 않게 한다(hudfix).
+            DrinkHud = DrinkRunHud.Create(canvas.transform, this);
             Player.FinalForms.Unlocked += form => Hud.ShowBanner("최종 형태 해금", AttackFinalForms.Description(form), 2.5f);
             cardView = CardSelectView.Create(canvas.transform);
             skillView = SkillTreeView.Create(canvas.transform);
@@ -204,7 +207,6 @@ namespace CCT
             pauseView = PauseView.Create(canvas.transform, this);
             hybridView = HybridUnlockView.Create(canvas.transform);
             comboView = ComboTargetView.Create(canvas.transform, this); // 57 P1 목표 조합
-            DrinkHud = DrinkRunHud.Create(canvas.transform, this); // 69 준비 음료·보스 음료 재료 표시
             if (rememberedTargets.TryGetValue(job, out var remembered) && CanTarget(remembered)) ComboTarget = remembered;
             Guide = new RunGuide(this);
 

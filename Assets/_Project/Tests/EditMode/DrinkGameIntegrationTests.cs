@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -277,6 +278,167 @@ namespace CCT.Tests
             DrinkStore.FaultHookForTests = null;
             Assert.IsTrue(DrinkLab.RetrySave());
             StringAssert.Contains("창고에 저장했습니다", ResultView.DrinkStatusLine(game.DrinkSettlement));
+        }
+
+        // ── hudfix 2026-10-19: 긴 판 결과 화면 재료 목록(묶음 수백 개가 화면 전체를 덮음) — 표시만 합계, 정산·창고·RP는 그대로 ──
+        static readonly EnemyDef FinalBoss = new EnemyDef { name = "테스트 최종 보스", dropCount = 0, hp = 10f, boss = BossKind.Final };
+
+        [Test]
+        public void Summarize_RepeatedPackets_OneEntryPerIngredient_LongTotals_TableOrder()
+        {
+            var ids = new[] { DrinkIngredients.Honey, DrinkIngredients.Gin, DrinkIngredients.GreenTea, DrinkIngredients.Rum, DrinkIngredients.LemonJuice,
+                DrinkIngredients.BlackTea, DrinkIngredients.BlueCuracao, DrinkIngredients.Grenadine };
+            var packets = new System.Collections.Generic.List<DrinkAmount>();
+            var expected = new System.Collections.Generic.Dictionary<string, long>();
+            for (int i = 0; i < 240; i++)
+            {
+                string id = ids[i % ids.Length];
+                int amount = 10 + (i % 7) * 5;
+                packets.Add(new DrinkAmount(id, amount));
+                expected.TryGetValue(id, out var t);
+                expected[id] = t + amount;
+            }
+            packets.Add(new DrinkAmount("unknown_item", 99));
+            packets.Add(null);
+            var totals = DrinkLab.Totals(packets);
+            CollectionAssert.AreEquivalent(expected, totals);
+            string text = DrinkLab.Summarize(packets);
+            var parts = text.Split(new[] { " · " }, StringSplitOptions.None);
+            Assert.AreEqual(8, parts.Length, text);
+            int last = -1;
+            foreach (var def in DrinkIngredients.All)
+            {
+                int at = text.IndexOf(def.name + " ", StringComparison.Ordinal);
+                Assert.Greater(at, last, "재료표 순서: " + text);
+                last = at;
+                StringAssert.Contains($"{def.name} {DrinkRules.Format((int)expected[def.id], def.form)}", text);
+            }
+            // int 범위를 넘는 합계도 넘침 없이 long으로 더한다(표시는 int 최대로 묶음).
+            var huge = new[] { new DrinkAmount(DrinkIngredients.Gin, int.MaxValue), new DrinkAmount(DrinkIngredients.Gin, int.MaxValue) };
+            Assert.AreEqual(2L * int.MaxValue, DrinkLab.Totals(huge)[DrinkIngredients.Gin]);
+            Assert.AreEqual("없음", DrinkLab.Summarize(null));
+        }
+
+        [Test]
+        public void LongClear_200PlusPackets_StockAndRpUnchanged_ResultLineAggregated()
+        {
+            StartGame(true);
+            var before = new System.Collections.Generic.Dictionary<string, int>();
+            foreach (var def in DrinkIngredients.All) before[def.id] = DrinkLab.Owned(def.id);
+            int rpBefore = DrinkLab.Research.researchPoints;
+            Kill(5000);
+            for (int i = 0; i < 20; i++) game.OnEnemyKilled(Vector2.zero, Elite);
+            game.OnEnemyKilled(Vector2.zero, MidBoss);
+            game.OnEnemyKilled(Vector2.zero, FinalBoss);
+            // 출처별 묶음 수(경제 조정용 기록 — 수치 변경 없음)
+            int packets = 0;
+            var bySource = new System.Collections.Generic.SortedDictionary<string, int>();
+            foreach (var a in DrinkLab.PendingFor(game.RunId))
+            {
+                packets += a.items.Count;
+                string src = a.awardId.TrimEnd('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                bySource.TryGetValue(src, out var n);
+                bySource[src] = n + a.items.Count;
+            }
+            TestContext.WriteLine("packets by source: " + string.Join(", ", bySource) + $" total={packets}");
+            Assert.GreaterOrEqual(packets, 200, "긴 판 재료 묶음 수");
+            game.ResolveEndOfFrame();
+            Assert.AreEqual(GameState.GameOver, game.State);
+            Assert.IsTrue(game.Cleared);
+            var s = game.DrinkSettlement;
+            Assert.AreEqual("Consumed", s.drink, "5킬 넘음 = 사용");
+            Assert.AreEqual(packets, s.granted.Count, "정산 기록(출처 단위)은 합치지 않고 그대로");
+            var totals = DrinkLab.Totals(s.granted);
+            foreach (var def in DrinkIngredients.All)
+            {
+                totals.TryGetValue(def.id, out var t);
+                Assert.AreEqual(before[def.id] + t, DrinkLab.Owned(def.id), def.id + " 창고 = 이전 + 합계");
+            }
+            Assert.AreEqual(rpBefore + s.researchPoints, DrinkLab.Research.researchPoints);
+            Assert.Greater(s.researchPoints, 0);
+            // 다시 프레임 끝 처리를 해도 재정산·RP 중복 없음
+            game.ResolveEndOfFrame();
+            Assert.AreEqual(rpBefore + s.researchPoints, DrinkLab.Research.researchPoints);
+            foreach (var def in DrinkIngredients.All) { totals.TryGetValue(def.id, out var t); Assert.AreEqual(before[def.id] + t, DrinkLab.Owned(def.id)); }
+
+            string line = ResultView.DrinkStatusLine(s);
+            var lines = line.Split('\n');
+            Assert.AreEqual(4, lines.Length, line);
+            Assert.Less(line.Length, 400, "결과 문구 길이 상한");
+            StringAssert.Contains("창고에 저장했습니다", lines[0]);
+            StringAssert.Contains($"연구 포인트 +{s.researchPoints}", lines[2]);
+            // 결과 화면 한 줄 요약: 재료 종류 수 + 저장 상태 + RP + 음료(전체 합계는 획득 내역 창)
+            string summary = ResultView.DrinkSummaryLine(s);
+            Assert.IsFalse(summary.Contains("\n"));
+            StringAssert.Contains($"음료 재료 {totals.Count}종 획득", summary);
+            StringAssert.Contains($"연구 포인트 +{s.researchPoints}", summary);
+            StringAssert.Contains("준비 음료 사용됨", summary);
+            foreach (var def in DrinkIngredients.All)
+            {
+                if (!totals.ContainsKey(def.id)) continue;
+                int first = lines[1].IndexOf(def.name + " ", StringComparison.Ordinal);
+                Assert.GreaterOrEqual(first, 0, def.name);
+                Assert.AreEqual(-1, lines[1].IndexOf(def.name + " ", first + 1, StringComparison.Ordinal), def.name + " 한 번만");
+            }
+            StringAssert.Contains("사용되어", lines[lines.Length - 1]);
+        }
+
+        [Test]
+        public void ResultLine_DeathNoDrink_AbandonPreserved_NoRewards()
+        {
+            StartGame(false);
+            game.MarkPlayerDiedForTests();
+            game.ResolveEndOfFrame();
+            Assert.AreEqual("음료 재료: 이번 판 재료 보상 없음", ResultView.DrinkStatusLine(game.DrinkSettlement));
+            UnityEngine.Object.DestroyImmediate(root);
+
+            StartGame(true);
+            game.OnEnemyKilled(Vector2.zero, MidBoss);
+            game.OnEnemyKilled(Vector2.zero, MidBoss);
+            int owned = DrinkLab.Owned(DrinkIngredients.Gin);
+            game.OpenPause();
+            game.GiveUp();
+            var s = game.DrinkSettlement;
+            Assert.AreEqual("PreservedAbandon", s.kind);
+            Assert.AreEqual("Preserved", s.drink, "5킬 전 포기 = 보존");
+            Assert.AreEqual(owned, DrinkLab.Owned(DrinkIngredients.Gin), "보존 포기 재료는 창고에 안 들어감");
+            var lines = ResultView.DrinkStatusLine(s).Split('\n');
+            Assert.AreEqual(3, lines.Length);
+            StringAssert.Contains("정산하지 않았습니다", lines[0]);
+            StringAssert.StartsWith("정산 안 함: ", lines[1]);
+            StringAssert.Contains("보존", lines[2]);
+            Assert.AreEqual(0, s.researchPoints);
+        }
+
+        // hudfix 2026-10-19 사용자 확인: 완성 음료 이름 띄어쓰기 — 기본 이름(재료 + 기법)과 직접 입력한 이름 모두 저장·공유·HUD까지 띄어쓰기 그대로.
+        [Test]
+        public void DrinkNames_KeepSpaces_DefaultCustomSavedSharedAndHud()
+        {
+            var plain = DrinkRecipe.NewDraft(DrinkKind.Cocktail);
+            plain.technique = (int)DrinkTechnique.Stir;
+            plain.steps.Add(new DrinkStep(DrinkIngredients.BlueCuracao, 50));
+            plain.steps.Add(new DrinkStep(DrinkIngredients.Gin, 200));
+            Assert.AreEqual("블루 큐라소 스터링", DrinkLab.DefaultName(plain), "기본 이름 = 첫 재료 이름 + 공백 + 기법");
+            Assert.AreEqual("블루 큐라소 스터링", DrinkValidator.SanitizeName("  블루 큐라소 스터링 ", "x"), "가운데 공백 유지, 앞뒤만 정리");
+
+            plain.name = "";
+            Assert.AreEqual(DrinkLab.CraftStatus.Crafted, DrinkLab.Craft(plain).Status);
+            Assert.AreEqual("블루 큐라소 스터링", DrinkLab.Prepared.recipe.name, "이름 없이 만들면 띄어 쓴 기본 이름");
+            Assert.IsTrue(DrinkLab.DiscardPrepared(out var discardError), discardError);
+
+            var custom = plain.Clone();
+            custom.name = "진 레몬 셰이킹"; // 사용자가 띄어 쓴 이름은 그대로
+            Assert.IsTrue(DrinkLab.SaveRecipe(custom, -1, out var saveError), saveError);
+            DrinkLab.ReloadForTests();
+            Assert.IsTrue(DrinkLab.Recipes.Any(r => r.name == "진 레몬 셰이킹"), "저장 후 다시 읽어도 띄어쓰기 유지");
+            var decoded = DrinkShareCode.Decode(DrinkShareCode.Encode(custom), out var codeError);
+            Assert.IsNotNull(decoded, codeError);
+            Assert.AreEqual("진 레몬 셰이킹", decoded.name, "공유 코드 왕복");
+
+            StartGame(true, custom);
+            game.DrinkHud.RefreshForTests();
+            Assert.AreEqual("진 레몬 셰이킹", DrinkLab.Prepared.recipe.name);
+            Assert.AreEqual("준비 음료 · 진 레몬 셰이킹", game.DrinkHud.ChipTitle.text, "HUD 칩 제목도 띄어쓰기 그대로");
         }
     }
 }

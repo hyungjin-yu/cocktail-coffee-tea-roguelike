@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="38" result="Passed" total="38" passed="38" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 12:53:26Z" end-time="2026-10-19 12:53:40Z" duration="13.7946827">
+  <test-suite type="TestSuite" id="1361" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="291" result="Passed" start-time="2026-10-19 12:53:26Z" end-time="2026-10-19 12:53:40Z" duration="13.794683" total="38" passed="38" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1355" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/Documents/Projects/CocktailCoffeeTea/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="291" result="Passed" start-time="2026-10-19 12:53:26Z" end-time="2026-10-19 12:53:40Z" duration="13.785858" total="38" passed="38" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="38204" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1356" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="291" result="Passed" start-time="2026-10-19 12:53:26Z" end-time="2026-10-19 12:53:40Z" duration="13.783187" total="38" passed="38" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1349" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="291" result="Passed" start-time="2026-10-19 12:53:26Z" end-time="2026-10-19 12:53:40Z" duration="13.780741" total="38" passed="38" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1045" name="CardEducationGuideTests" fullname="CCT.Tests.CardEducationGuideTests" classname="CCT.Tests.CardEducationGuideTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 12:53:26Z" end-time="2026-10-19 12:53:27Z" duration="0.321518" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_8420f676863940429b6585e1e37867a4.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1047" name="EveryTutorialStepFits_UsesOnlyOfferedSprite_AndPauseCannotDismissIt" fullname="CCT.Tests.CardEducationGuideTests.EveryTutorialStepFits_UsesOnlyOfferedSprite_AndPauseCannotDismissIt" methodname="EveryTutorialStepFits_UsesOnlyOfferedSprite_AndPauseCannotDismissIt" classname="CCT.Tests.CardEducationGuideTests" runstate="Runnable" seed="1027174436" result="Passed" start-time="2026-10-19 12:53:26Z" end-time="2026-10-19 12:53:26Z" duration="0.245012" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:26.733 START CCT.Tests.CardEducationGuideTests.EveryTutorialStepFits_UsesOnlyOfferedSprite_AndPauseCannotDismissIt (t=0.1 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\education-guide-87b90e0f0ae245be83ef0f0a7a7600d0\save.json (source=Fresh, v2)
+[Commerce] 결제 비활성: commerce_config.enabled=false
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\education-guide-87b90e0f0ae245be83ef0f0a7a7600d0\settings.json (source=Defaults)
+[TestProgress] 21:53:26.982 END Passed 0.2s CCT.Tests.CardEducationGuideTests.EveryTutorialStepFits_UsesOnlyOfferedSprite_AndPauseCannotDismissIt (t=0.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1046" name="FirstActualOffer_UsesActualCardAndArt_BlocksChoice_PersistsThenReplays" fullname="CCT.Tests.CardEducationGuideTests.FirstActualOffer_UsesActualCardAndArt_BlocksChoice_PersistsThenReplays" methodname="FirstActualOffer_UsesActualCardAndArt_BlocksChoice_PersistsThenReplays" classname="CCT.Tests.CardEducationGuideTests" runstate="Runnable" seed="1006880472" result="Passed" start-time="2026-10-19 12:53:26Z" end-time="2026-10-19 12:53:27Z" duration="0.066245" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:26.983 START CCT.Tests.CardEducationGuideTests.FirstActualOffer_UsesActualCardAndArt_BlocksChoice_PersistsThenReplays (t=0.3 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\education-guide-e21b58375e214a58960efbb03563ca9b\save.json (source=Fresh, v2)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\education-guide-e21b58375e214a58960efbb03563ca9b\settings.json (source=Defaults)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\education-guide-e21b58375e214a58960efbb03563ca9b\settings.json (source=Original)
+[TestProgress] 21:53:27.050 END Passed 0.1s CCT.Tests.CardEducationGuideTests.FirstActualOffer_UsesActualCardAndArt_BlocksChoice_PersistsThenReplays (t=0.3 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1048" name="CardEducationPlayTests" fullname="CCT.Tests.CardEducationPlayTests" classname="CCT.Tests.CardEducationPlayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 12:53:27Z" end-time="2026-10-19 12:53:27Z" duration="0.137581" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_8420f676863940429b6585e1e37867a4.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1051" name="AllCardFactsFitTheirLayoutWithoutOverlappingDetailButton" fullname="CCT.Tests.CardEducationPlayTests.AllCardFactsFitTheirLayoutWithoutOverlappingDetailButton" methodname="AllCardFactsFitTheirLayoutWithoutOverlappingDetailButton" classname="CCT.Tests.CardEducationPlayTests" runstate="Runnable" seed="2083401905" result="Passed" start-time="2026-10-19 12:53:27Z" end-time="2026-10-19 12:53:27Z" duration="0.032280" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:27.053 START CCT.Tests.CardEducationPlayTests.AllCardFactsFitTheirLayoutWithoutOverlappingDetailButton (t=0.3 ts=1)
+[TestProgress] 21:53:27.085 END Passed 0.0s CCT.Tests.CardEducationPlayTests.AllCardFactsFitTheirLayoutWithoutOverlappingDetailButton (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1049" name="LearningDetailNeverChoosesOrChangesPauseAndMatchesCodex" fullname="CCT.Tests.CardEducationPlayTests.LearningDetailNeverChoosesOrChangesPauseAndMatchesCodex" methodname="LearningDetailNeverChoosesOrChangesPauseAndMatchesCodex" classname="CCT.Tests.CardEducationPlayTests" runstate="Runnable" seed="506655392" result="Passed" start-time="2026-10-19 12:53:27Z" end-time="2026-10-19 12:53:27Z" duration="0.091977" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:27.086 START CCT.Tests.CardEducationPlayTests.LearningDetailNeverChoosesOrChangesPauseAndMatchesCodex (t=0.4 ts=1)
+[TestProgress] 21:53:27.178 END Passed 0.1s CCT.Tests.CardEducationPlayTests.LearningDetailNeverChoosesOrChangesPauseAndMatchesCodex (t=0.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1050" name="RecommendedBlueBlazerFooterFitsInsideFrame" fullname="CCT.Tests.CardEducationPlayTests.RecommendedBlueBlazerFooterFitsInsideFrame" methodname="RecommendedBlueBlazerFooterFitsInsideFrame" classname="CCT.Tests.CardEducationPlayTests" runstate="Runnable" seed="1503134779" result="Passed" start-time="2026-10-19 12:53:27Z" end-time="2026-10-19 12:53:27Z" duration="0.009029" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:27.179 START CCT.Tests.CardEducationPlayTests.RecommendedBlueBlazerFooterFitsInsideFrame (t=0.5 ts=1)
+[TestProgress] 21:53:27.188 END Passed 0.0s CCT.Tests.CardEducationPlayTests.RecommendedBlueBlazerFooterFitsInsideFrame (t=0.5 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1112" name="DrinkRunHudTests" fullname="CCT.Tests.DrinkRunHudTests" classname="CCT.Tests.DrinkRunHudTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-19 12:53:27Z" end-time="2026-10-19 12:53:29Z" duration="2.343660" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1115" name="CardGuideLearningPauseResult_HideChipAndToast_CombatResumeRestoresImmediately" fullname="CCT.Tests.DrinkRunHudTests.CardGuideLearningPauseResult_HideChipAndToast_CombatResumeRestoresImmediately" methodname="CardGuideLearningPauseResult_HideChipAndToast_CombatResumeRestoresImmediately" classname="CCT.Tests.DrinkRunHudTests" runstate="Runnable" seed="1142089376" result="Passed" start-time="2026-10-19 12:53:27Z" end-time="2026-10-19 12:53:27Z" duration="0.144667" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:27.190 START CCT.Tests.DrinkRunHudTests.CardGuideLearningPauseResult_HideChipAndToast_CombatResumeRestoresImmediately (t=0.5 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drink-hud-fd22cf2277444bfb8823b9e4e007e35f\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drink-hud-fd22cf2277444bfb8823b9e4e007e35f\save.json (source=Fresh, v2)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\drink-hud-fd22cf2277444bfb8823b9e4e007e35f\run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:27.335 END Passed 0.1s CCT.Tests.DrinkRunHudTests.CardGuideLearningPauseResult_HideChipAndToast_CombatResumeRestoresImmediately (t=0.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1116" name="LongClearResult_MaterialSummaryStaysInReservedBox_ButtonsReadableAndClickable" fullname="CCT.Tests.DrinkRunHudTests.LongClearResult_MaterialSummaryStaysInReservedBox_ButtonsReadableAndClickable" methodname="LongClearResult_MaterialSummaryStaysInReservedBox_ButtonsReadableAndClickable" classname="CCT.Tests.DrinkRunHudTests" runstate="Runnable" seed="53452498" result="Passed" start-time="2026-10-19 12:53:27Z" end-time="2026-10-19 12:53:29Z" duration="2.092840" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:27.336 START CCT.Tests.DrinkRunHudTests.LongClearResult_MaterialSummaryStaysInReservedBox_ButtonsReadableAndClickable (t=0.5 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drink-hud-237e280fa8cd400fb44f058cba07dc96\save.json (source=Fresh, v2)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drink-hud-237e280fa8cd400fb44f058cba07dc96\settings.json (source=Defaults)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\drink-hud-237e280fa8cd400fb44f058cba07dc96\run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:29.430 END Passed 2.1s CCT.Tests.DrinkRunHudTests.LongClearResult_MaterialSummaryStaysInReservedBox_ButtonsReadableAndClickable (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1114" name="LongNameMultiEffect_AllGlyphsInsideChipAndScreen_EffectsNeverSplit" fullname="CCT.Tests.DrinkRunHudTests.LongNameMultiEffect_AllGlyphsInsideChipAndScreen_EffectsNeverSplit" methodname="LongNameMultiEffect_AllGlyphsInsideChipAndScreen_EffectsNeverSplit" classname="CCT.Tests.DrinkRunHudTests" runstate="Runnable" seed="218836999" result="Passed" start-time="2026-10-19 12:53:29Z" end-time="2026-10-19 12:53:29Z" duration="0.097996" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:29.430 START CCT.Tests.DrinkRunHudTests.LongNameMultiEffect_AllGlyphsInsideChipAndScreen_EffectsNeverSplit (t=0.6 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drink-hud-654dfff0bcb74a7e9f1363792834efc2\save.json (source=Fresh, v2)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drink-hud-654dfff0bcb74a7e9f1363792834efc2\settings.json (source=Defaults)
+[TestProgress] 21:53:29.528 END Passed 0.1s CCT.Tests.DrinkRunHudTests.LongNameMultiEffect_AllGlyphsInsideChipAndScreen_EffectsNeverSplit (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1113" name="ReadableScale_NarrowWindowGrowsChip_DesktopUnchanged" fullname="CCT.Tests.DrinkRunHudTests.ReadableScale_NarrowWindowGrowsChip_DesktopUnchanged" methodname="ReadableScale_NarrowWindowGrowsChip_DesktopUnchanged" classname="CCT.Tests.DrinkRunHudTests" runstate="Runnable" seed="1582603466" result="Passed" start-time="2026-10-19 12:53:29Z" end-time="2026-10-19 12:53:29Z" duration="0.002775" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:29.529 START CCT.Tests.DrinkRunHudTests.ReadableScale_NarrowWindowGrowsChip_DesktopUnchanged (t=0.7 ts=1)
+[TestProgress] 21:53:29.533 END Passed 0.0s CCT.Tests.DrinkRunHudTests.ReadableScale_NarrowWindowGrowsChip_DesktopUnchanged (t=0.7 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1192" name="KeyboardNavigationTests" fullname="CCT.Tests.KeyboardNavigationTests" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-19 12:53:29Z" end-time="2026-10-19 12:53:31Z" duration="1.762919" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1200" name="CardCodex_SelectsAllTab" fullname="CCT.Tests.KeyboardNavigationTests.CardCodex_SelectsAllTab" methodname="CardCodex_SelectsAllTab" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="737895899" result="Passed" start-time="2026-10-19 12:53:29Z" end-time="2026-10-19 12:53:29Z" duration="0.052057" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:29.534 START CCT.Tests.KeyboardNavigationTests.CardCodex_SelectsAllTab (t=0.7 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_bf7a637e96f74e9eb509f66f35d7756f.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_8420f676863940429b6585e1e37867a4.json (source=Fresh, v2)
+[TestProgress] 21:53:29.586 END Passed 0.1s CCT.Tests.KeyboardNavigationTests.CardCodex_SelectsAllTab (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1196" name="CharacterSelect_JobStepAndWeaponStep_SelectSomething" fullname="CCT.Tests.KeyboardNavigationTests.CharacterSelect_JobStepAndWeaponStep_SelectSomething" methodname="CharacterSelect_JobStepAndWeaponStep_SelectSomething" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="167480727" result="Passed" start-time="2026-10-19 12:53:29Z" end-time="2026-10-19 12:53:29Z" duration="0.015269" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:29.587 START CCT.Tests.KeyboardNavigationTests.CharacterSelect_JobStepAndWeaponStep_SelectSomething (t=0.8 ts=1)
+[TestProgress] 21:53:29.603 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.CharacterSelect_JobStepAndWeaponStep_SelectSomething (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1197" name="CharacterSelect_WeaponDefault_LogicalOnlyUntilExplicitChoice" fullname="CCT.Tests.KeyboardNavigationTests.CharacterSelect_WeaponDefault_LogicalOnlyUntilExplicitChoice" methodname="CharacterSelect_WeaponDefault_LogicalOnlyUntilExplicitChoice" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="2056409908" result="Passed" start-time="2026-10-19 12:53:29Z" end-time="2026-10-19 12:53:29Z" duration="0.013175" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:29.604 START CCT.Tests.KeyboardNavigationTests.CharacterSelect_WeaponDefault_LogicalOnlyUntilExplicitChoice (t=0.8 ts=1)
+[TestProgress] 21:53:29.618 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.CharacterSelect_WeaponDefault_LogicalOnlyUntilExplicitChoice (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1193" name="CoffeeTree_EscapeInput_ClosesOnlyTree_ResumesAndNextEscapePauses" fullname="CCT.Tests.KeyboardNavigationTests.CoffeeTree_EscapeInput_ClosesOnlyTree_ResumesAndNextEscapePauses" methodname="CoffeeTree_EscapeInput_ClosesOnlyTree_ResumesAndNextEscapePauses" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="315895357" result="Passed" start-time="2026-10-19 12:53:29Z" end-time="2026-10-19 12:53:29Z" duration="0.041943" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:29.619 START CCT.Tests.KeyboardNavigationTests.CoffeeTree_EscapeInput_ClosesOnlyTree_ResumesAndNextEscapePauses (t=0.8 ts=1)
+[TestProgress] 21:53:29.660 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.CoffeeTree_EscapeInput_ClosesOnlyTree_ResumesAndNextEscapePauses (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1198" name="Pause_SelectsContinueButton_AndEndRunConfirm_SelectsCancel" fullname="CCT.Tests.KeyboardNavigationTests.Pause_SelectsContinueButton_AndEndRunConfirm_SelectsCancel" methodname="Pause_SelectsContinueButton_AndEndRunConfirm_SelectsCancel" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1643026738" result="Passed" start-time="2026-10-19 12:53:29Z" end-time="2026-10-19 12:53:29Z" duration="0.028092" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:29.662 START CCT.Tests.KeyboardNavigationTests.Pause_SelectsContinueButton_AndEndRunConfirm_SelectsCancel (t=0.8 ts=1)
+[TestProgress] 21:53:29.691 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.Pause_SelectsContinueButton_AndEndRunConfirm_SelectsCancel (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1201" name="PermanentSkillView_SelectsSomething" fullname="CCT.Tests.KeyboardNavigationTests.PermanentSkillView_SelectsSomething" methodname="PermanentSkillView_SelectsSomething" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="649532900" result="Passed" start-time="2026-10-19 12:53:29Z" end-time="2026-10-19 12:53:29Z" duration="0.028244" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:29.691 START CCT.Tests.KeyboardNavigationTests.PermanentSkillView_SelectsSomething (t=0.9 ts=1)
+[TestProgress] 21:53:29.720 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.PermanentSkillView_SelectsSomething (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1203" name="ResultView_SelectsRestartButton" fullname="CCT.Tests.KeyboardNavigationTests.ResultView_SelectsRestartButton" methodname="ResultView_SelectsRestartButton" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1442045981" result="Passed" start-time="2026-10-19 12:53:29Z" end-time="2026-10-19 12:53:31Z" duration="1.455407" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:29.720 START CCT.Tests.KeyboardNavigationTests.ResultView_SelectsRestartButton (t=0.9 ts=1)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_playmode_session_8420f676863940429b6585e1e37867a4.run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:31.176 END Passed 1.5s CCT.Tests.KeyboardNavigationTests.ResultView_SelectsRestartButton (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1199" name="Settings_SelectsMasterVolumeSlider" fullname="CCT.Tests.KeyboardNavigationTests.Settings_SelectsMasterVolumeSlider" methodname="Settings_SelectsMasterVolumeSlider" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1317928062" result="Passed" start-time="2026-10-19 12:53:31Z" end-time="2026-10-19 12:53:31Z" duration="0.028065" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:31.177 START CCT.Tests.KeyboardNavigationTests.Settings_SelectsMasterVolumeSlider (t=0.9 ts=1)
+[TestProgress] 21:53:31.206 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.Settings_SelectsMasterVolumeSlider (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1202" name="SkillTreeReadOnly_SelectsCloseButton" fullname="CCT.Tests.KeyboardNavigationTests.SkillTreeReadOnly_SelectsCloseButton" methodname="SkillTreeReadOnly_SelectsCloseButton" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1746407088" result="Passed" start-time="2026-10-19 12:53:31Z" end-time="2026-10-19 12:53:31Z" duration="0.054307" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:31.207 START CCT.Tests.KeyboardNavigationTests.SkillTreeReadOnly_SelectsCloseButton (t=1.0 ts=1)
+[TestProgress] 21:53:31.261 END Passed 0.1s CCT.Tests.KeyboardNavigationTests.SkillTreeReadOnly_SelectsCloseButton (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1195" name="Title_KeyboardMode_SelectsStartButtonImmediately" fullname="CCT.Tests.KeyboardNavigationTests.Title_KeyboardMode_SelectsStartButtonImmediately" methodname="Title_KeyboardMode_SelectsStartButtonImmediately" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1734352161" result="Passed" start-time="2026-10-19 12:53:31Z" end-time="2026-10-19 12:53:31Z" duration="0.017297" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:31.261 START CCT.Tests.KeyboardNavigationTests.Title_KeyboardMode_SelectsStartButtonImmediately (t=1.0 ts=1)
+[TestProgress] 21:53:31.280 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.Title_KeyboardMode_SelectsStartButtonImmediately (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1194" name="Title_NoFocusOnEntry_FirstKeyRevealsStartButton" fullname="CCT.Tests.KeyboardNavigationTests.Title_NoFocusOnEntry_FirstKeyRevealsStartButton" methodname="Title_NoFocusOnEntry_FirstKeyRevealsStartButton" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="123874774" result="Passed" start-time="2026-10-19 12:53:31Z" end-time="2026-10-19 12:53:31Z" duration="0.014330" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:31.280 START CCT.Tests.KeyboardNavigationTests.Title_NoFocusOnEntry_FirstKeyRevealsStartButton (t=1.0 ts=1)
+[TestProgress] 21:53:31.296 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.Title_NoFocusOnEntry_FirstKeyRevealsStartButton (t=1.0 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1223" name="PauseTests" fullname="CCT.Tests.PauseTests" classname="CCT.Tests.PauseTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-19 12:53:31Z" end-time="2026-10-19 12:53:33Z" duration="2.486511" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1225" name="ClosePause_ReturningToCardSelect_SkipsCountdown" fullname="CCT.Tests.PauseTests.ClosePause_ReturningToCardSelect_SkipsCountdown" methodname="ClosePause_ReturningToCardSelect_SkipsCountdown" classname="CCT.Tests.PauseTests" runstate="Runnable" seed="1872969111" result="Passed" start-time="2026-10-19 12:53:31Z" end-time="2026-10-19 12:53:31Z" duration="0.037302" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:31.297 START CCT.Tests.PauseTests.ClosePause_ReturningToCardSelect_SkipsCountdown (t=1.0 ts=1)
+[TestProgress] 21:53:31.335 END Passed 0.0s CCT.Tests.PauseTests.ClosePause_ReturningToCardSelect_SkipsCountdown (t=1.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1229" name="GiveUp_EndsRunAsFailure_WithGiveUpReason" fullname="CCT.Tests.PauseTests.GiveUp_EndsRunAsFailure_WithGiveUpReason" methodname="GiveUp_EndsRunAsFailure_WithGiveUpReason" classname="CCT.Tests.PauseTests" runstate="Runnable" seed="163085461" result="Passed" start-time="2026-10-19 12:53:31Z" end-time="2026-10-19 12:53:31Z" duration="0.047118" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:31.335 START CCT.Tests.PauseTests.GiveUp_EndsRunAsFailure_WithGiveUpReason (t=1.1 ts=1)
+[TestProgress] 21:53:31.382 END Passed 0.0s CCT.Tests.PauseTests.GiveUp_EndsRunAsFailure_WithGiveUpReason (t=1.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1224" name="OpenPause_DuringPlaying_FreezesTime_AndClosePause_Resumes" fullname="CCT.Tests.PauseTests.OpenPause_DuringPlaying_FreezesTime_AndClosePause_Resumes" methodname="OpenPause_DuringPlaying_FreezesTime_AndClosePause_Resumes" classname="CCT.Tests.PauseTests" runstate="Runnable" seed="1431398888" result="Passed" start-time="2026-10-19 12:53:31Z" end-time="2026-10-19 12:53:32Z" duration="1.130764" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:31.384 START CCT.Tests.PauseTests.OpenPause_DuringPlaying_FreezesTime_AndClosePause_Resumes (t=1.1 ts=1)
+[TestProgress] 21:53:31.710 HB frame=13065 dt=0.0000 unscaledDt=0.0001 state=Playing enemies=1 (t=1.1 ts=0)
+[TestProgress] 21:53:32.515 END Passed 1.1s CCT.Tests.PauseTests.OpenPause_DuringPlaying_FreezesTime_AndClosePause_Resumes (t=1.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1227" name="OpenPause_OverCardSelect_KeepsCardScreenOpen_AndRestoresItOnClose" fullname="CCT.Tests.PauseTests.OpenPause_OverCardSelect_KeepsCardScreenOpen_AndRestoresItOnClose" methodname="OpenPause_OverCardSelect_KeepsCardScreenOpen_AndRestoresItOnClose" classname="CCT.Tests.PauseTests" runstate="Runnable" seed="1777675664" result="Passed" start-time="2026-10-19 12:53:32Z" end-time="2026-10-19 12:53:32Z" duration="0.040147" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:32.515 START CCT.Tests.PauseTests.OpenPause_OverCardSelect_KeepsCardScreenOpen_AndRestoresItOnClose (t=1.2 ts=1)
+[TestProgress] 21:53:32.556 END Passed 0.0s CCT.Tests.PauseTests.OpenPause_OverCardSelect_KeepsCardScreenOpen_AndRestoresItOnClose (t=1.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1231" name="OpenSkillTreeFromPause_KeepsPauseOpenUnderneath_AndClosesOnlyTheTree" fullname="CCT.Tests.PauseTests.OpenSkillTreeFromPause_KeepsPauseOpenUnderneath_AndClosesOnlyTheTree" methodname="OpenSkillTreeFromPause_KeepsPauseOpenUnderneath_AndClosesOnlyTheTree" classname="CCT.Tests.PauseTests" runstate="Runnable" seed="1385121017" result="Passed" start-time="2026-10-19 12:53:32Z" end-time="2026-10-19 12:53:32Z" duration="0.029104" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:32.557 START CCT.Tests.PauseTests.OpenSkillTreeFromPause_KeepsPauseOpenUnderneath_AndClosesOnlyTheTree (t=1.2 ts=1)
+[TestProgress] 21:53:32.587 END Passed 0.0s CCT.Tests.PauseTests.OpenSkillTreeFromPause_KeepsPauseOpenUnderneath_AndClosesOnlyTheTree (t=1.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1228" name="Paused_CardSelectHotkey_DoesNotLeakThrough" fullname="CCT.Tests.PauseTests.Paused_CardSelectHotkey_DoesNotLeakThrough" methodname="Paused_CardSelectHotkey_DoesNotLeakThrough" classname="CCT.Tests.PauseTests" runstate="Runnable" seed="1652672996" result="Passed" start-time="2026-10-19 12:53:32Z" end-time="2026-10-19 12:53:32Z" duration="0.038906" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:32.588 START CCT.Tests.PauseTests.Paused_CardSelectHotkey_DoesNotLeakThrough (t=1.3 ts=1)
+[TestProgress] 21:53:32.628 END Passed 0.0s CCT.Tests.PauseTests.Paused_CardSelectHotkey_DoesNotLeakThrough (t=1.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1233" name="QuitToTitle_SavesMaterials_DestroysGame_AndShowsTitle" fullname="CCT.Tests.PauseTests.QuitToTitle_SavesMaterials_DestroysGame_AndShowsTitle" methodname="QuitToTitle_SavesMaterials_DestroysGame_AndShowsTitle" classname="CCT.Tests.PauseTests" runstate="Runnable" seed="414886717" result="Passed" start-time="2026-10-19 12:53:32Z" end-time="2026-10-19 12:53:32Z" duration="0.060688" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:32.628 START CCT.Tests.PauseTests.QuitToTitle_SavesMaterials_DestroysGame_AndShowsTitle (t=1.3 ts=1)
+[TestProgress] 21:53:32.689 END Passed 0.1s CCT.Tests.PauseTests.QuitToTitle_SavesMaterials_DestroysGame_AndShowsTitle (t=1.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1226" name="ReopeningPauseDuringCountdown_CancelsCountdown_AndReopensPause" fullname="CCT.Tests.PauseTests.ReopeningPauseDuringCountdown_CancelsCountdown_AndReopensPause" methodname="ReopeningPauseDuringCountdown_CancelsCountdown_AndReopensPause" classname="CCT.Tests.PauseTests" runstate="Runnable" seed="1605402757" result="Passed" start-time="2026-10-19 12:53:32Z" end-time="2026-10-19 12:53:32Z" duration="0.026349" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:32.689 START CCT.Tests.PauseTests.ReopeningPauseDuringCountdown_CancelsCountdown_AndReopensPause (t=1.4 ts=1)
+[TestProgress] 21:53:32.717 END Passed 0.0s CCT.Tests.PauseTests.ReopeningPauseDuringCountdown_CancelsCountdown_AndReopensPause (t=1.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1230" name="SkillTreeButton_DisabledOverCardSelect_WithReason_AndEnabledWhilePlaying" fullname="CCT.Tests.PauseTests.SkillTreeButton_DisabledOverCardSelect_WithReason_AndEnabledWhilePlaying" methodname="SkillTreeButton_DisabledOverCardSelect_WithReason_AndEnabledWhilePlaying" classname="CCT.Tests.PauseTests" runstate="Runnable" seed="1797945068" result="Passed" start-time="2026-10-19 12:53:32Z" end-time="2026-10-19 12:53:33Z" duration="1.035764" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:32.718 START CCT.Tests.PauseTests.SkillTreeButton_DisabledOverCardSelect_WithReason_AndEnabledWhilePlaying (t=1.4 ts=1)
+[TestProgress] 21:53:33.752 END Passed 1.0s CCT.Tests.PauseTests.SkillTreeButton_DisabledOverCardSelect_WithReason_AndEnabledWhilePlaying (t=1.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1232" name="TutorialButton_OpensReplay_KeepsPauseOpen_AndEscClosesOnlyTheTutorial" fullname="CCT.Tests.PauseTests.TutorialButton_OpensReplay_KeepsPauseOpen_AndEscClosesOnlyTheTutorial" methodname="TutorialButton_OpensReplay_KeepsPauseOpen_AndEscClosesOnlyTheTutorial" classname="CCT.Tests.PauseTests" runstate="Runnable" seed="390158617" result="Passed" start-time="2026-10-19 12:53:33Z" end-time="2026-10-19 12:53:33Z" duration="0.027138" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:33.754 START CCT.Tests.PauseTests.TutorialButton_OpensReplay_KeepsPauseOpen_AndEscClosesOnlyTheTutorial (t=1.4 ts=1)
+[TestProgress] 21:53:33.782 END Passed 0.0s CCT.Tests.PauseTests.TutorialButton_OpensReplay_KeepsPauseOpen_AndEscClosesOnlyTheTutorial (t=1.4 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1260" name="ResultViewTests" fullname="CCT.Tests.ResultViewTests" classname="CCT.Tests.ResultViewTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 12:53:33Z" end-time="2026-10-19 12:53:36Z" duration="2.993599" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1262" name="Result_HidesCombatHud_KeepsSaveNotice_AndRestartRestoresHud" fullname="CCT.Tests.ResultViewTests.Result_HidesCombatHud_KeepsSaveNotice_AndRestartRestoresHud" methodname="Result_HidesCombatHud_KeepsSaveNotice_AndRestartRestoresHud" classname="CCT.Tests.ResultViewTests" runstate="Runnable" seed="2080219761" result="Passed" start-time="2026-10-19 12:53:33Z" end-time="2026-10-19 12:53:35Z" duration="1.519627" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:33.784 START CCT.Tests.ResultViewTests.Result_HidesCombatHud_KeepsSaveNotice_AndRestartRestoresHud (t=1.4 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_test_result_005e6e4b98d246b0aea1a0c5f60bba36.json (source=Fresh, v2)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_test_result_005e6e4b98d246b0aea1a0c5f60bba36.run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:35.304 END Passed 1.5s CCT.Tests.ResultViewTests.Result_HidesCombatHud_KeepsSaveNotice_AndRestartRestoresHud (t=1.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1261" name="ResultShop_OpensFromResult_AndReturnsToResultOnClose" fullname="CCT.Tests.ResultViewTests.ResultShop_OpensFromResult_AndReturnsToResultOnClose" methodname="ResultShop_OpensFromResult_AndReturnsToResultOnClose" classname="CCT.Tests.ResultViewTests" runstate="Runnable" seed="640177994" result="Passed" start-time="2026-10-19 12:53:35Z" end-time="2026-10-19 12:53:36Z" duration="1.470233" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:35.305 START CCT.Tests.ResultViewTests.ResultShop_OpensFromResult_AndReturnsToResultOnClose (t=1.5 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_test_result_730042964bcd443b968dbf9173a105a4.json (source=Fresh, v2)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_test_result_730042964bcd443b968dbf9173a105a4.run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:36.710 HB frame=47621 dt=0.0000 unscaledDt=0.0001 state=GameOver enemies=1 (t=1.6 ts=0)
+[TestProgress] 21:53:36.776 END Passed 1.5s CCT.Tests.ResultViewTests.ResultShop_OpensFromResult_AndReturnsToResultOnClose (t=1.6 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1267" name="RunHistoryPlayTests" fullname="CCT.Tests.RunHistoryPlayTests" classname="CCT.Tests.RunHistoryPlayTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-19 12:53:36Z" end-time="2026-10-19 12:53:40Z" duration="3.722599" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1270" name="ContactDeath_ByRealEnemy_NamesThatEnemy" fullname="CCT.Tests.RunHistoryPlayTests.ContactDeath_ByRealEnemy_NamesThatEnemy" methodname="ContactDeath_ByRealEnemy_NamesThatEnemy" classname="CCT.Tests.RunHistoryPlayTests" runstate="Runnable" seed="488668047" result="Passed" start-time="2026-10-19 12:53:36Z" end-time="2026-10-19 12:53:38Z" duration="1.443509" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:36.777 START CCT.Tests.RunHistoryPlayTests.ContactDeath_ByRealEnemy_NamesThatEnemy (t=1.6 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_rh_play_0ed98129d9114516ab20a206feb5eb34\save.json (source=Fresh, v2)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_rh_play_0ed98129d9114516ab20a206feb5eb34\run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:38.221 END Passed 1.4s CCT.Tests.RunHistoryPlayTests.ContactDeath_ByRealEnemy_NamesThatEnemy (t=2.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1269" name="MobileBack_ClosesDetailBeforeResultTitleButton" fullname="CCT.Tests.RunHistoryPlayTests.MobileBack_ClosesDetailBeforeResultTitleButton" methodname="MobileBack_ClosesDetailBeforeResultTitleButton" classname="CCT.Tests.RunHistoryPlayTests" runstate="Runnable" seed="649582489" result="Passed" start-time="2026-10-19 12:53:38Z" end-time="2026-10-19 12:53:38Z" duration="0.073926" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:38.222 START CCT.Tests.RunHistoryPlayTests.MobileBack_ClosesDetailBeforeResultTitleButton (t=2.4 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_rh_play_80bbb9967b844d0bb9aa746e02614360\save.json (source=Fresh, v2)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_rh_play_80bbb9967b844d0bb9aa746e02614360\run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:38.297 END Passed 0.1s CCT.Tests.RunHistoryPlayTests.MobileBack_ClosesDetailBeforeResultTitleButton (t=2.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1272" name="PauseQuitToTitle_RecordsAbandonedOnce_AndTitleHistoryListDetailBack" fullname="CCT.Tests.RunHistoryPlayTests.PauseQuitToTitle_RecordsAbandonedOnce_AndTitleHistoryListDetailBack" methodname="PauseQuitToTitle_RecordsAbandonedOnce_AndTitleHistoryListDetailBack" classname="CCT.Tests.RunHistoryPlayTests" runstate="Runnable" seed="901424823" result="Passed" start-time="2026-10-19 12:53:38Z" end-time="2026-10-19 12:53:38Z" duration="0.132947" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:38.298 START CCT.Tests.RunHistoryPlayTests.PauseQuitToTitle_RecordsAbandonedOnce_AndTitleHistoryListDetailBack (t=2.4 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_rh_play_788f692ec264481985450129961f0677\save.json (source=Fresh, v2)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_rh_play_788f692ec264481985450129961f0677\run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:38.431 END Passed 0.1s CCT.Tests.RunHistoryPlayTests.PauseQuitToTitle_RecordsAbandonedOnce_AndTitleHistoryListDetailBack (t=2.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1268" name="ProjectileDeath_ResultBuildDetail_EscClosesDetailFirst_RDoesNotPassThrough" fullname="CCT.Tests.RunHistoryPlayTests.ProjectileDeath_ResultBuildDetail_EscClosesDetailFirst_RDoesNotPassThrough" methodname="ProjectileDeath_ResultBuildDetail_EscClosesDetailFirst_RDoesNotPassThrough" classname="CCT.Tests.RunHistoryPlayTests" runstate="Runnable" seed="1287042362" result="Passed" start-time="2026-10-19 12:53:38Z" end-time="2026-10-19 12:53:39Z" duration="1.471867" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:38.431 START CCT.Tests.RunHistoryPlayTests.ProjectileDeath_ResultBuildDetail_EscClosesDetailFirst_RDoesNotPassThrough (t=2.5 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_rh_play_7565bd25533d4071959ae1e6e2727074\save.json (source=Fresh, v2)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_rh_play_7565bd25533d4071959ae1e6e2727074\run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:39.904 END Passed 1.5s CCT.Tests.RunHistoryPlayTests.ProjectileDeath_ResultBuildDetail_EscClosesDetailFirst_RDoesNotPassThrough (t=2.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1273" name="TitleHistory_Empty_ThenTwentyNewestFirst" fullname="CCT.Tests.RunHistoryPlayTests.TitleHistory_Empty_ThenTwentyNewestFirst" methodname="TitleHistory_Empty_ThenTwentyNewestFirst" classname="CCT.Tests.RunHistoryPlayTests" runstate="Runnable" seed="297655454" result="Passed" start-time="2026-10-19 12:53:39Z" end-time="2026-10-19 12:53:40Z" duration="0.165671" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:39.904 START CCT.Tests.RunHistoryPlayTests.TitleHistory_Empty_ThenTwentyNewestFirst (t=2.6 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_rh_play_50fcb147aa6247a4bdcdb32ca20fab2e\save.json (source=Fresh, v2)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_rh_play_50fcb147aa6247a4bdcdb32ca20fab2e\run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:40.071 END Passed 0.2s CCT.Tests.RunHistoryPlayTests.TitleHistory_Empty_ThenTwentyNewestFirst (t=2.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1271" name="ZoneDoTDeath_DuringInvulnerability_NamesZone_NotEarlierAttacker" fullname="CCT.Tests.RunHistoryPlayTests.ZoneDoTDeath_DuringInvulnerability_NamesZone_NotEarlierAttacker" methodname="ZoneDoTDeath_DuringInvulnerability_NamesZone_NotEarlierAttacker" classname="CCT.Tests.RunHistoryPlayTests" runstate="Runnable" seed="1422562918" result="Passed" start-time="2026-10-19 12:53:40Z" end-time="2026-10-19 12:53:40Z" duration="0.426377" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 21:53:40.071 START CCT.Tests.RunHistoryPlayTests.ZoneDoTDeath_DuringInvulnerability_NamesZone_NotEarlierAttacker (t=2.7 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_rh_play_c3e7d4e71f2a4db48fce1a69c69060dc\save.json (source=Fresh, v2)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_rh_play_c3e7d4e71f2a4db48fce1a69c69060dc\run-history.json (source=Fresh, 0판)
+[TestProgress] 21:53:40.498 END Passed 0.4s CCT.Tests.RunHistoryPlayTests.ZoneDoTDeath_DuringInvulnerability_NamesZone_NotEarlierAttacker (t=3.1 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
