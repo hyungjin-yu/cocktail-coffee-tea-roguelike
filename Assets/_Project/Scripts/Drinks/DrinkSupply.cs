@@ -5,7 +5,8 @@ namespace CCT
 {
     /// <summary>
     /// 72 §2 제조 재료 수급(최초 기본값, 플레이 검증으로 조정): 묶음 수량은 재료별 고정, 종류만 획득처별 가중치 표에서 뽑는다.
-    /// 보유량 보정 e = (창고 + 이번 런 미정산 획득) / 기준 사용량 d, 배율 = 1 + 0.5·clamp((3−e)/3, −1, 1) → 0회분 ×1.5, 3회분 ×1, 6회분 이상 ×0.5.
+    /// 77 상대 부족 보정(2026-10-20, 72의 절대 보정 대체): 이번 추첨의 실제 후보마다 e = max(0, 창고 + 이번 런 미정산) / 기준 사용량 d,
+    /// 후보 e의 중앙값 m(짝수면 가운데 두 값 평균), 배율 c = clamp((m+3)/(e+3), 0.5, 2.0). 후보 하나·모두 같은 회분이면 c=1 → 원래 가중치 비율.
     /// 여러 묶음은 앞 추첨 결과를 다음 추첨의 보유량에 더한다. 난수는 runId·보상 ID·추첨 순번의 해시(전투 난수와 독립, 저장 재시도로 재추첨 없음).
     /// 단위: 0.1mL / 0.1g 정수(DrinkRules와 같음). UnityEngine 비의존(순수 시험 가능).
     /// </summary>
@@ -37,7 +38,8 @@ namespace CCT
 
         public const int NormalKillsPerBundle = 25;
         public const int MidBossDraws = 3, FinalBossDraws = 6;
-        public const double CorrectionStrength = 0.5, CorrectionUses = 3.0;
+        /// <summary>77: 중앙값 완충(회분)과 배율 범위.</summary>
+        public const double CorrectionUses = 3.0, MinMultiplier = 0.5, MaxMultiplier = 2.0;
 
         public static Row Get(string id)
         {
@@ -51,29 +53,48 @@ namespace CCT
         public static bool RareOnly(Source s, int drawIndex) =>
             (s == Source.MidBoss && drawIndex == 2) || (s == Source.FinalBoss && drawIndex >= 4);
 
-        /// <summary>보유량 보정 배율(e = 기준 사용량 몇 회분).</summary>
-        public static double Multiplier(double usesHeld)
+        /// <summary>77 상대 보정 배율: 후보 중앙값 m회분 대비 이 재료 e회분. clamp((m+3)/(e+3), 0.5, 2.0).</summary>
+        public static double Multiplier(double usesHeld, double medianUses)
         {
-            double x = (CorrectionUses - usesHeld) / CorrectionUses;
-            if (x < -1) x = -1; else if (x > 1) x = 1;
-            return 1.0 + CorrectionStrength * x;
+            double c = (Math.Max(0, medianUses) + CorrectionUses) / (Math.Max(0, usesHeld) + CorrectionUses);
+            return c < MinMultiplier ? MinMultiplier : c > MaxMultiplier ? MaxMultiplier : c;
         }
 
-        /// <summary>이번 추첨의 후보별 최종 확률(합 1). held: 창고+미정산(0.1 단위).</summary>
+        /// <summary>중앙값(짝수 개면 가운데 두 값의 평균). 빈 목록은 0.</summary>
+        public static double Median(List<double> values)
+        {
+            if (values.Count == 0) return 0;
+            var v = new List<double>(values);
+            v.Sort();
+            int k = v.Count / 2;
+            return v.Count % 2 == 1 ? v[k] : (v[k - 1] + v[k]) / 2.0;
+        }
+
+        /// <summary>보유 회분 e(음수 보유는 0).</summary>
+        public static double Uses(Row r, int held) => Math.Max(0, held) / (double)r.baseUse;
+
+        /// <summary>이번 추첨의 후보별 최종 확률(합 1). held: 창고+미정산(0.1 단위).
+        /// 후보 = 이 획득처 가중치 &gt; 0 (희귀 보장 추첨이면 희귀만) — 중앙값도 이 후보들로만 구한다.</summary>
         public static Dictionary<string, double> Probabilities(Source s, bool rareOnly, Func<string, int> held)
         {
-            var w = new Dictionary<string, double>();
-            double sum = 0;
+            var rows = new List<Row>();
+            var uses = new List<double>();
             foreach (var r in Table)
             {
-                int baseW = r.Weight(s);
-                if (baseW <= 0 || (rareOnly && !r.rare)) continue;
-                double e = Math.Max(0, held(r.id)) / (double)r.baseUse;
-                double v = baseW * Multiplier(e);
-                w[r.id] = v; sum += v;
+                if (r.Weight(s) <= 0 || (rareOnly && !r.rare)) continue;
+                rows.Add(r);
+                uses.Add(Uses(r, held(r.id)));
+            }
+            double m = Median(uses);
+            var w = new double[rows.Count];
+            double sum = 0;
+            for (int i = 0; i < rows.Count; i++)
+            {
+                w[i] = rows[i].Weight(s) * (rows.Count == 1 ? 1.0 : Multiplier(uses[i], m));
+                sum += w[i];
             }
             var p = new Dictionary<string, double>();
-            foreach (var kv in w) p[kv.Key] = sum > 0 ? kv.Value / sum : 0;
+            for (int i = 0; i < rows.Count; i++) p[rows[i].id] = sum > 0 ? w[i] / sum : 0;
             return p;
         }
 

@@ -1,0 +1,1009 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="105" result="Passed" total="105" passed="105" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 21:56:41Z" end-time="2026-10-19 21:56:49Z" duration="8.6371805">
+  <test-suite type="TestSuite" id="1000" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="739" result="Passed" start-time="2026-10-19 21:56:41Z" end-time="2026-10-19 21:56:49Z" duration="8.637181" total="105" passed="105" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1858" name="CCT.Tests.EditMode.dll" fullname="C:/Users/user/Documents/Projects/CocktailCoffeeTea/Library/ScriptAssemblies/CCT.Tests.EditMode.dll" runstate="Runnable" testcasecount="677" result="Passed" start-time="2026-10-19 21:56:41Z" end-time="2026-10-19 21:56:49Z" duration="8.626561" total="105" passed="105" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="11592" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1859" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="677" result="Passed" start-time="2026-10-19 21:56:41Z" end-time="2026-10-19 21:56:49Z" duration="8.622425" total="105" passed="105" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1839" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="677" result="Passed" start-time="2026-10-19 21:56:41Z" end-time="2026-10-19 21:56:49Z" duration="8.618009" total="105" passed="105" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1257" name="DrinkGameIntegrationTests" fullname="CCT.Tests.DrinkGameIntegrationTests" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-10-19 21:56:41Z" end-time="2026-10-19 21:56:48Z" duration="7.062642" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1268" name="AppQuitDuringRun_IsNotExplicitAbandon" fullname="CCT.Tests.DrinkGameIntegrationTests.AppQuitDuringRun_IsNotExplicitAbandon" methodname="AppQuitDuringRun_IsNotExplicitAbandon" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="638946385" result="Passed" start-time="2026-10-19 21:56:41Z" end-time="2026-10-19 21:56:44Z" duration="2.946069" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:41.103 START CCT.Tests.DrinkGameIntegrationTests.AppQuitDuringRun_IsNotExplicitAbandon (t=0.3 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_editmode_session_70c56ebb03664dd9adf1b17a492e27d1.json (source=Fresh, v2)
+[Commerce] 결제 비활성: commerce_config.enabled=false
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_editmode_settings_f849192cfa3a4ae6b3e000711d9ed1ae.json (source=Defaults)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_editmode_session_70c56ebb03664dd9adf1b17a492e27d1.run-history.json (source=Fresh, 0판)
+[TestProgress] 06:56:44.053 END Passed 2.9s CCT.Tests.DrinkGameIntegrationTests.AppQuitDuringRun_IsNotExplicitAbandon (t=0.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1260" name="Buff_AppliedOnceAtEntry_MatchesPreview_NotReappliedByPauseOrCards" fullname="CCT.Tests.DrinkGameIntegrationTests.Buff_AppliedOnceAtEntry_MatchesPreview_NotReappliedByPauseOrCards" methodname="Buff_AppliedOnceAtEntry_MatchesPreview_NotReappliedByPauseOrCards" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="2032883636" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:44Z" duration="0.094109" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:44.053 START CCT.Tests.DrinkGameIntegrationTests.Buff_AppliedOnceAtEntry_MatchesPreview_NotReappliedByPauseOrCards (t=0.3 ts=1)
+[TestProgress] 06:56:44.149 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.Buff_AppliedOnceAtEntry_MatchesPreview_NotReappliedByPauseOrCards (t=0.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1272" name="CooldownReduction_ShortensAttackInterval" fullname="CCT.Tests.DrinkGameIntegrationTests.CooldownReduction_ShortensAttackInterval" methodname="CooldownReduction_ShortensAttackInterval" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="109094280" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:44Z" duration="0.096542" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:44.149 START CCT.Tests.DrinkGameIntegrationTests.CooldownReduction_ShortensAttackInterval (t=0.3 ts=1)
+[TestProgress] 06:56:44.245 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.CooldownReduction_ShortensAttackInterval (t=0.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1270" name="CritChance_UsesExistingDoubleDamageRule" fullname="CCT.Tests.DrinkGameIntegrationTests.CritChance_UsesExistingDoubleDamageRule" methodname="CritChance_UsesExistingDoubleDamageRule" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1061605915" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:44Z" duration="0.045193" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:44.247 START CCT.Tests.DrinkGameIntegrationTests.CritChance_UsesExistingDoubleDamageRule (t=0.3 ts=1)
+[TestProgress] 06:56:44.292 END Passed 0.0s CCT.Tests.DrinkGameIntegrationTests.CritChance_UsesExistingDoubleDamageRule (t=0.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1277" name="DrinkNames_KeepSpaces_DefaultCustomSavedSharedAndHud" fullname="CCT.Tests.DrinkGameIntegrationTests.DrinkNames_KeepSpaces_DefaultCustomSavedSharedAndHud" methodname="DrinkNames_KeepSpaces_DefaultCustomSavedSharedAndHud" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1097177240" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:44Z" duration="0.123338" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:44.293 START CCT.Tests.DrinkGameIntegrationTests.DrinkNames_KeepSpaces_DefaultCustomSavedSharedAndHud (t=0.3 ts=1)
+[TestProgress] 06:56:44.417 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.DrinkNames_KeepSpaces_DefaultCustomSavedSharedAndHud (t=0.3 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1265" name="GiveUp_KillBoundary" fullname="CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:44Z" duration="0.481990" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1261" name="GiveUp_KillBoundary(0,&quot;Preserved&quot;)" fullname="CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(0,&quot;Preserved&quot;)" methodname="GiveUp_KillBoundary" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1093244996" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:44Z" duration="0.106765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:44.420 START CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(0,"Preserved") (t=0.6 ts=1)
+[TestProgress] 06:56:44.528 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(0,"Preserved") (t=0.6 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1262" name="GiveUp_KillBoundary(4,&quot;Preserved&quot;)" fullname="CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(4,&quot;Preserved&quot;)" methodname="GiveUp_KillBoundary" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="417994226" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:44Z" duration="0.120000" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:44.528 START CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(4,"Preserved") (t=0.6 ts=1)
+[TestProgress] 06:56:44.648 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(4,"Preserved") (t=0.6 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1263" name="GiveUp_KillBoundary(5,&quot;Consumed&quot;)" fullname="CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(5,&quot;Consumed&quot;)" methodname="GiveUp_KillBoundary" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1975223821" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:44Z" duration="0.125585" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:44.649 START CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(5,"Consumed") (t=0.6 ts=1)
+[TestProgress] 06:56:44.775 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(5,"Consumed") (t=0.6 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1264" name="GiveUp_KillBoundary(9,&quot;Consumed&quot;)" fullname="CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(9,&quot;Consumed&quot;)" methodname="GiveUp_KillBoundary" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="12108722" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:44Z" duration="0.122743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:44.775 START CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(9,"Consumed") (t=0.6 ts=1)
+[TestProgress] 06:56:44.899 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.GiveUp_KillBoundary(9,"Consumed") (t=0.6 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1266" name="HudChipAndPauseHint_ShowPreserveCounter" fullname="CCT.Tests.DrinkGameIntegrationTests.HudChipAndPauseHint_ShowPreserveCounter" methodname="HudChipAndPauseHint_ShowPreserveCounter" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1708487029" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:44Z" duration="0.098628" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:44.901 START CCT.Tests.DrinkGameIntegrationTests.HudChipAndPauseHint_ShowPreserveCounter (t=0.6 ts=1)
+[TestProgress] 06:56:44.999 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.HudChipAndPauseHint_ShowPreserveCounter (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1275" name="LongClear_200PlusPackets_StockAndRpUnchanged_ResultLineAggregated" fullname="CCT.Tests.DrinkGameIntegrationTests.LongClear_200PlusPackets_StockAndRpUnchanged_ResultLineAggregated" methodname="LongClear_200PlusPackets_StockAndRpUnchanged_ResultLineAggregated" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1528880751" result="Passed" start-time="2026-10-19 21:56:44Z" end-time="2026-10-19 21:56:47Z" duration="2.507566" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:44.999 START CCT.Tests.DrinkGameIntegrationTests.LongClear_200PlusPackets_StockAndRpUnchanged_ResultLineAggregated (t=0.6 ts=1)
+packets by source: [boss1_Mid, 3], [boss2_Final, 4], [elite, 20], [normal, 200] total=227
+[TestProgress] 06:56:47.508 END Passed 2.5s CCT.Tests.DrinkGameIntegrationTests.LongClear_200PlusPackets_StockAndRpUnchanged_ResultLineAggregated (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1271" name="Mastery_DirectHitBonuses_RegularThirdHit_FullHpAndOpening" fullname="CCT.Tests.DrinkGameIntegrationTests.Mastery_DirectHitBonuses_RegularThirdHit_FullHpAndOpening" methodname="Mastery_DirectHitBonuses_RegularThirdHit_FullHpAndOpening" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1013257427" result="Passed" start-time="2026-10-19 21:56:47Z" end-time="2026-10-19 21:56:47Z" duration="0.097902" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:47.508 START CCT.Tests.DrinkGameIntegrationTests.Mastery_DirectHitBonuses_RegularThirdHit_FullHpAndOpening (t=0.6 ts=1)
+[TestProgress] 06:56:47.606 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.Mastery_DirectHitBonuses_RegularThirdHit_FullHpAndOpening (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1259" name="Mastery_SnapshotAtStart_Finesse4ScalesDrinkWithinCaps_RuntimeAttached" fullname="CCT.Tests.DrinkGameIntegrationTests.Mastery_SnapshotAtStart_Finesse4ScalesDrinkWithinCaps_RuntimeAttached" methodname="Mastery_SnapshotAtStart_Finesse4ScalesDrinkWithinCaps_RuntimeAttached" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="131746998" result="Passed" start-time="2026-10-19 21:56:47Z" end-time="2026-10-19 21:56:47Z" duration="0.124356" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:47.606 START CCT.Tests.DrinkGameIntegrationTests.Mastery_SnapshotAtStart_Finesse4ScalesDrinkWithinCaps_RuntimeAttached (t=0.6 ts=1)
+[TestProgress] 06:56:47.732 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.Mastery_SnapshotAtStart_Finesse4ScalesDrinkWithinCaps_RuntimeAttached (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1267" name="MidBossThenDeath_MaterialsGrantedAndShownOnResult" fullname="CCT.Tests.DrinkGameIntegrationTests.MidBossThenDeath_MaterialsGrantedAndShownOnResult" methodname="MidBossThenDeath_MaterialsGrantedAndShownOnResult" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="901014353" result="Passed" start-time="2026-10-19 21:56:47Z" end-time="2026-10-19 21:56:47Z" duration="0.072095" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:47.732 START CCT.Tests.DrinkGameIntegrationTests.MidBossThenDeath_MaterialsGrantedAndShownOnResult (t=0.6 ts=1)
+[TestProgress] 06:56:47.804 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.MidBossThenDeath_MaterialsGrantedAndShownOnResult (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1269" name="NoDrinkRun_UnaffectedStats" fullname="CCT.Tests.DrinkGameIntegrationTests.NoDrinkRun_UnaffectedStats" methodname="NoDrinkRun_UnaffectedStats" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="620085207" result="Passed" start-time="2026-10-19 21:56:47Z" end-time="2026-10-19 21:56:47Z" duration="0.037600" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:47.805 START CCT.Tests.DrinkGameIntegrationTests.NoDrinkRun_UnaffectedStats (t=0.6 ts=1)
+[TestProgress] 06:56:47.842 END Passed 0.0s CCT.Tests.DrinkGameIntegrationTests.NoDrinkRun_UnaffectedStats (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1276" name="ResultLine_DeathNoDrink_AbandonPreserved_NoRewards" fullname="CCT.Tests.DrinkGameIntegrationTests.ResultLine_DeathNoDrink_AbandonPreserved_NoRewards" methodname="ResultLine_DeathNoDrink_AbandonPreserved_NoRewards" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1362735730" result="Passed" start-time="2026-10-19 21:56:47Z" end-time="2026-10-19 21:56:48Z" duration="0.170006" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:47.844 START CCT.Tests.DrinkGameIntegrationTests.ResultLine_DeathNoDrink_AbandonPreserved_NoRewards (t=0.6 ts=1)
+[TestProgress] 06:56:48.015 END Passed 0.2s CCT.Tests.DrinkGameIntegrationTests.ResultLine_DeathNoDrink_AbandonPreserved_NoRewards (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1273" name="ResultLine_SaveFailureShowsRetrying" fullname="CCT.Tests.DrinkGameIntegrationTests.ResultLine_SaveFailureShowsRetrying" methodname="ResultLine_SaveFailureShowsRetrying" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1064378032" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.077297" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.016 START CCT.Tests.DrinkGameIntegrationTests.ResultLine_SaveFailureShowsRetrying (t=0.6 ts=1)
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinkgame_1346b57238714cafb4a6a519a949d23d\drinks.json: IOException: x
+[TestProgress] 06:56:48.093 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.ResultLine_SaveFailureShowsRetrying (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1274" name="Summarize_RepeatedPackets_OneEntryPerIngredient_LongTotals_TableOrder" fullname="CCT.Tests.DrinkGameIntegrationTests.Summarize_RepeatedPackets_OneEntryPerIngredient_LongTotals_TableOrder" methodname="Summarize_RepeatedPackets_OneEntryPerIngredient_LongTotals_TableOrder" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1077016427" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.003659" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.094 START CCT.Tests.DrinkGameIntegrationTests.Summarize_RepeatedPackets_OneEntryPerIngredient_LongTotals_TableOrder (t=0.6 ts=1)
+[TestProgress] 06:56:48.098 END Passed 0.0s CCT.Tests.DrinkGameIntegrationTests.Summarize_RepeatedPackets_OneEntryPerIngredient_LongTotals_TableOrder (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1258" name="Supply_Every25NormalKills_EliteSeparate_ResearchKillsCountBoth" fullname="CCT.Tests.DrinkGameIntegrationTests.Supply_Every25NormalKills_EliteSeparate_ResearchKillsCountBoth" methodname="Supply_Every25NormalKills_EliteSeparate_ResearchKillsCountBoth" classname="CCT.Tests.DrinkGameIntegrationTests" runstate="Runnable" seed="1328508587" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.061011" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.098 START CCT.Tests.DrinkGameIntegrationTests.Supply_Every25NormalKills_EliteSeparate_ResearchKillsCountBoth (t=0.6 ts=1)
+[TestProgress] 06:56:48.159 END Passed 0.1s CCT.Tests.DrinkGameIntegrationTests.Supply_Every25NormalKills_EliteSeparate_ResearchKillsCountBoth (t=0.6 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1278" name="DrinkLabTests" fullname="CCT.Tests.DrinkLabTests" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" testcasecount="68" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:49Z" duration="1.402799" total="68" passed="68" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1310" name="ApplyTo_RespectsExistingFinalClamps" fullname="CCT.Tests.DrinkLabTests.ApplyTo_RespectsExistingFinalClamps" methodname="ApplyTo_RespectsExistingFinalClamps" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="447492466" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.001245" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.167 START CCT.Tests.DrinkLabTests.ApplyTo_RespectsExistingFinalClamps (t=1.0 ts=1)
+[TestProgress] 06:56:48.169 END Passed 0.0s CCT.Tests.DrinkLabTests.ApplyTo_RespectsExistingFinalClamps (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1341" name="BeginRun_DirectPathSaveFailure_GivesNoBuffAndKeepsReady" fullname="CCT.Tests.DrinkLabTests.BeginRun_DirectPathSaveFailure_GivesNoBuffAndKeepsReady" methodname="BeginRun_DirectPathSaveFailure_GivesNoBuffAndKeepsReady" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1469408151" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.017972" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.169 START CCT.Tests.DrinkLabTests.BeginRun_DirectPathSaveFailure_GivesNoBuffAndKeepsReady (t=1.0 ts=1)
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinktest_d88a2e9c90c141539af652e245288e86\drinks.json: IOException: 주입된 디스크 실패
+[Drinks] 입장 음용 기록 실패 — 버프 없이 시작: 저장에 실패해 적용하지 않았습니다. 재료는 그대로입니다.
+[TestProgress] 06:56:48.187 END Passed 0.0s CCT.Tests.DrinkLabTests.BeginRun_DirectPathSaveFailure_GivesNoBuffAndKeepsReady (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1306" name="Buff_AmountChangeMonotonicAndTenthMatters" fullname="CCT.Tests.DrinkLabTests.Buff_AmountChangeMonotonicAndTenthMatters" methodname="Buff_AmountChangeMonotonicAndTenthMatters" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="455781461" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.000724" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.187 START CCT.Tests.DrinkLabTests.Buff_AmountChangeMonotonicAndTenthMatters (t=1.0 ts=1)
+[TestProgress] 06:56:48.188 END Passed 0.0s CCT.Tests.DrinkLabTests.Buff_AmountChangeMonotonicAndTenthMatters (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1308" name="Buff_CapsHoldAfterTechnique" fullname="CCT.Tests.DrinkLabTests.Buff_CapsHoldAfterTechnique" methodname="Buff_CapsHoldAfterTechnique" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1100438236" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.000817" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.188 START CCT.Tests.DrinkLabTests.Buff_CapsHoldAfterTechnique (t=1.0 ts=1)
+[TestProgress] 06:56:48.189 END Passed 0.0s CCT.Tests.DrinkLabTests.Buff_CapsHoldAfterTechnique (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1305" name="Buff_SingleIngredientNeverReachesCap_TwoSameEffectCan" fullname="CCT.Tests.DrinkLabTests.Buff_SingleIngredientNeverReachesCap_TwoSameEffectCan" methodname="Buff_SingleIngredientNeverReachesCap_TwoSameEffectCan" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="766418154" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.000654" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.190 START CCT.Tests.DrinkLabTests.Buff_SingleIngredientNeverReachesCap_TwoSameEffectCan (t=1.0 ts=1)
+[TestProgress] 06:56:48.190 END Passed 0.0s CCT.Tests.DrinkLabTests.Buff_SingleIngredientNeverReachesCap_TwoSameEffectCan (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1307" name="Buff_TechniqueMultipliers" fullname="CCT.Tests.DrinkLabTests.Buff_TechniqueMultipliers" methodname="Buff_TechniqueMultipliers" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="83124604" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.000726" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.190 START CCT.Tests.DrinkLabTests.Buff_TechniqueMultipliers (t=1.0 ts=1)
+[TestProgress] 06:56:48.192 END Passed 0.0s CCT.Tests.DrinkLabTests.Buff_TechniqueMultipliers (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1304" name="Buff_UsesNormalizedFormulaAndCoefficient" fullname="CCT.Tests.DrinkLabTests.Buff_UsesNormalizedFormulaAndCoefficient" methodname="Buff_UsesNormalizedFormulaAndCoefficient" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1445255920" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.000946" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.192 START CCT.Tests.DrinkLabTests.Buff_UsesNormalizedFormulaAndCoefficient (t=1.0 ts=1)
+[TestProgress] 06:56:48.194 END Passed 0.0s CCT.Tests.DrinkLabTests.Buff_UsesNormalizedFormulaAndCoefficient (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1309" name="Buff_WaterAndIceContributeNothing" fullname="CCT.Tests.DrinkLabTests.Buff_WaterAndIceContributeNothing" methodname="Buff_WaterAndIceContributeNothing" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="142079292" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.000544" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.194 START CCT.Tests.DrinkLabTests.Buff_WaterAndIceContributeNothing (t=1.0 ts=1)
+[TestProgress] 06:56:48.195 END Passed 0.0s CCT.Tests.DrinkLabTests.Buff_WaterAndIceContributeNothing (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1312" name="Color_ClearGinTransparent_StrongColorantsDominate_LemonCloudy" fullname="CCT.Tests.DrinkLabTests.Color_ClearGinTransparent_StrongColorantsDominate_LemonCloudy" methodname="Color_ClearGinTransparent_StrongColorantsDominate_LemonCloudy" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1412309150" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.000673" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.195 START CCT.Tests.DrinkLabTests.Color_ClearGinTransparent_StrongColorantsDominate_LemonCloudy (t=1.0 ts=1)
+[TestProgress] 06:56:48.196 END Passed 0.0s CCT.Tests.DrinkLabTests.Color_ClearGinTransparent_StrongColorantsDominate_LemonCloudy (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1311" name="Color_DeterministicSameMixSameColor" fullname="CCT.Tests.DrinkLabTests.Color_DeterministicSameMixSameColor" methodname="Color_DeterministicSameMixSameColor" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1162896249" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.000638" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.196 START CCT.Tests.DrinkLabTests.Color_DeterministicSameMixSameColor (t=1.0 ts=1)
+[TestProgress] 06:56:48.197 END Passed 0.0s CCT.Tests.DrinkLabTests.Color_DeterministicSameMixSameColor (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1313" name="Color_WaterDilutes_NotSrgbAverage" fullname="CCT.Tests.DrinkLabTests.Color_WaterDilutes_NotSrgbAverage" methodname="Color_WaterDilutes_NotSrgbAverage" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="601071603" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.000561" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.197 START CCT.Tests.DrinkLabTests.Color_WaterDilutes_NotSrgbAverage (t=1.0 ts=1)
+[TestProgress] 06:56:48.197 END Passed 0.0s CCT.Tests.DrinkLabTests.Color_WaterDilutes_NotSrgbAverage (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1344" name="CorruptBoth_FreshStartAndKeepsCopies" fullname="CCT.Tests.DrinkLabTests.CorruptBoth_FreshStartAndKeepsCopies" methodname="CorruptBoth_FreshStartAndKeepsCopies" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="944803339" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.039239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.199 START CCT.Tests.DrinkLabTests.CorruptBoth_FreshStartAndKeepsCopies (t=1.0 ts=1)
+[TestProgress] 06:56:48.238 END Passed 0.0s CCT.Tests.DrinkLabTests.CorruptBoth_FreshStartAndKeepsCopies (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1343" name="CorruptOriginal_RestoresBackup_PreservesCorruptCopy" fullname="CCT.Tests.DrinkLabTests.CorruptOriginal_RestoresBackup_PreservesCorruptCopy" methodname="CorruptOriginal_RestoresBackup_PreservesCorruptCopy" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="607370840" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.026423" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.238 START CCT.Tests.DrinkLabTests.CorruptOriginal_RestoresBackup_PreservesCorruptCopy (t=1.0 ts=1)
+[TestProgress] 06:56:48.266 END Passed 0.0s CCT.Tests.DrinkLabTests.CorruptOriginal_RestoresBackup_PreservesCorruptCopy (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1335" name="Craft_CountsForStaff_FreezesSpecialtyBuff" fullname="CCT.Tests.DrinkLabTests.Craft_CountsForStaff_FreezesSpecialtyBuff" methodname="Craft_CountsForStaff_FreezesSpecialtyBuff" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1392231617" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.055997" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.266 START CCT.Tests.DrinkLabTests.Craft_CountsForStaff_FreezesSpecialtyBuff (t=1.0 ts=1)
+[TestProgress] 06:56:48.322 END Passed 0.1s CCT.Tests.DrinkLabTests.Craft_CountsForStaff_FreezesSpecialtyBuff (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1321" name="Craft_DeductsExactlyAndRecordsPreparedInSameSave" fullname="CCT.Tests.DrinkLabTests.Craft_DeductsExactlyAndRecordsPreparedInSameSave" methodname="Craft_DeductsExactlyAndRecordsPreparedInSameSave" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="941580773" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.018043" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.322 START CCT.Tests.DrinkLabTests.Craft_DeductsExactlyAndRecordsPreparedInSameSave (t=1.0 ts=1)
+[TestProgress] 06:56:48.340 END Passed 0.0s CCT.Tests.DrinkLabTests.Craft_DeductsExactlyAndRecordsPreparedInSameSave (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1322" name="Craft_RejectsShortageAndUnownedAndInvalid_WithoutDeducting" fullname="CCT.Tests.DrinkLabTests.Craft_RejectsShortageAndUnownedAndInvalid_WithoutDeducting" methodname="Craft_RejectsShortageAndUnownedAndInvalid_WithoutDeducting" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1602833201" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.007601" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.341 START CCT.Tests.DrinkLabTests.Craft_RejectsShortageAndUnownedAndInvalid_WithoutDeducting (t=1.0 ts=1)
+[TestProgress] 06:56:48.349 END Passed 0.0s CCT.Tests.DrinkLabTests.Craft_RejectsShortageAndUnownedAndInvalid_WithoutDeducting (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1323" name="Craft_SaveFailure_RollsBackEverything" fullname="CCT.Tests.DrinkLabTests.Craft_SaveFailure_RollsBackEverything" methodname="Craft_SaveFailure_RollsBackEverything" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1793014035" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.017299" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.349 START CCT.Tests.DrinkLabTests.Craft_SaveFailure_RollsBackEverything (t=1.0 ts=1)
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinktest_46dd01bcd40f4fc7b53efb04c1fa34f4\drinks.json: IOException: 주입된 디스크 실패
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinktest_46dd01bcd40f4fc7b53efb04c1fa34f4\drinks.json: IOException: 주입된 디스크 실패
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinktest_46dd01bcd40f4fc7b53efb04c1fa34f4\drinks.json: IOException: 주입된 디스크 실패
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinktest_46dd01bcd40f4fc7b53efb04c1fa34f4\drinks.json: IOException: 주입된 디스크 실패
+[TestProgress] 06:56:48.367 END Passed 0.0s CCT.Tests.DrinkLabTests.Craft_SaveFailure_RollsBackEverything (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1339" name="CrashAfterDepartureReservation_BeforeRunStart_ConsumesOnRecovery" fullname="CCT.Tests.DrinkLabTests.CrashAfterDepartureReservation_BeforeRunStart_ConsumesOnRecovery" methodname="CrashAfterDepartureReservation_BeforeRunStart_ConsumesOnRecovery" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1128847847" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.032466" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.367 START CCT.Tests.DrinkLabTests.CrashAfterDepartureReservation_BeforeRunStart_ConsumesOnRecovery (t=1.0 ts=1)
+[TestProgress] 06:56:48.400 END Passed 0.0s CCT.Tests.DrinkLabTests.CrashAfterDepartureReservation_BeforeRunStart_ConsumesOnRecovery (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1337" name="CrashDuringSettlementSaveFailure_RecoveryConsumesAndGrantsOnce" fullname="CCT.Tests.DrinkLabTests.CrashDuringSettlementSaveFailure_RecoveryConsumesAndGrantsOnce" methodname="CrashDuringSettlementSaveFailure_RecoveryConsumesAndGrantsOnce" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="601196255" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.051331" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.401 START CCT.Tests.DrinkLabTests.CrashDuringSettlementSaveFailure_RecoveryConsumesAndGrantsOnce (t=1.0 ts=1)
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinktest_8a07e5292a814ae2bff94ba5c97561e5\drinks.json: IOException: 주입된 디스크 실패
+[TestProgress] 06:56:48.452 END Passed 0.1s CCT.Tests.DrinkLabTests.CrashDuringSettlementSaveFailure_RecoveryConsumesAndGrantsOnce (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1340" name="DepartureSaveFailure_BlocksStart_ThenRetryOrExplicitNoDrink" fullname="CCT.Tests.DrinkLabTests.DepartureSaveFailure_BlocksStart_ThenRetryOrExplicitNoDrink" methodname="DepartureSaveFailure_BlocksStart_ThenRetryOrExplicitNoDrink" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1755224735" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.078269" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.452 START CCT.Tests.DrinkLabTests.DepartureSaveFailure_BlocksStart_ThenRetryOrExplicitNoDrink (t=1.0 ts=1)
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinktest_eb45cb755f5d4c69be131442dcd9732f\drinks.json: IOException: 주입된 디스크 실패
+[TestProgress] 06:56:48.532 END Passed 0.1s CCT.Tests.DrinkLabTests.DepartureSaveFailure_BlocksStart_ThenRetryOrExplicitNoDrink (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1348" name="DevGrant_OnlyInIsolatedSave" fullname="CCT.Tests.DrinkLabTests.DevGrant_OnlyInIsolatedSave" methodname="DevGrant_OnlyInIsolatedSave" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="632900862" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.017153" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.532 START CCT.Tests.DrinkLabTests.DevGrant_OnlyInIsolatedSave (t=1.0 ts=1)
+[TestProgress] 06:56:48.550 END Passed 0.0s CCT.Tests.DrinkLabTests.DevGrant_OnlyInIsolatedSave (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1330" name="EarlyDeath_ConsumesDrink_AndAppQuitIsNotExplicit" fullname="CCT.Tests.DrinkLabTests.EarlyDeath_ConsumesDrink_AndAppQuitIsNotExplicit" methodname="EarlyDeath_ConsumesDrink_AndAppQuitIsNotExplicit" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1506250231" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.076763" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.550 START CCT.Tests.DrinkLabTests.EarlyDeath_ConsumesDrink_AndAppQuitIsNotExplicit (t=1.0 ts=1)
+[TestProgress] 06:56:48.627 END Passed 0.1s CCT.Tests.DrinkLabTests.EarlyDeath_ConsumesDrink_AndAppQuitIsNotExplicit (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1349" name="ExistingV2Save_Migration_DoesNotTouchSaveJson" fullname="CCT.Tests.DrinkLabTests.ExistingV2Save_Migration_DoesNotTouchSaveJson" methodname="ExistingV2Save_Migration_DoesNotTouchSaveJson" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="2006307149" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.007940" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.627 START CCT.Tests.DrinkLabTests.ExistingV2Save_Migration_DoesNotTouchSaveJson (t=1.0 ts=1)
+[TestProgress] 06:56:48.635 END Passed 0.0s CCT.Tests.DrinkLabTests.ExistingV2Save_Migration_DoesNotTouchSaveJson (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1328" name="ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials" fullname="CCT.Tests.DrinkLabTests.ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.144355" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1326" name="ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials(0)" fullname="CCT.Tests.DrinkLabTests.ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials(0)" methodname="ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="682953381" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.063180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:48.636 START CCT.Tests.DrinkLabTests.ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials(0) (t=1.0 ts=1)
+[TestProgress] 06:56:48.699 END Passed 0.1s CCT.Tests.DrinkLabTests.ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials(0) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1327" name="ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials(4)" fullname="CCT.Tests.DrinkLabTests.ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials(4)" methodname="ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1899980064" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.079057" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:48.701 START CCT.Tests.DrinkLabTests.ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials(4) (t=1.0 ts=1)
+[TestProgress] 06:56:48.780 END Passed 0.1s CCT.Tests.DrinkLabTests.ExplicitAbandon_0to4Kills_PreservesDrink_NoMaterials(4) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1329" name="ExplicitAbandon_5Kills_ConsumesDrink" fullname="CCT.Tests.DrinkLabTests.ExplicitAbandon_5Kills_ConsumesDrink" methodname="ExplicitAbandon_5Kills_ConsumesDrink" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="444752054" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.070575" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.781 START CCT.Tests.DrinkLabTests.ExplicitAbandon_5Kills_ConsumesDrink (t=1.0 ts=1)
+[TestProgress] 06:56:48.851 END Passed 0.1s CCT.Tests.DrinkLabTests.ExplicitAbandon_5Kills_ConsumesDrink (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1338" name="ForceKillDuringRun_DoesNotDuplicateDrink" fullname="CCT.Tests.DrinkLabTests.ForceKillDuringRun_DoesNotDuplicateDrink" methodname="ForceKillDuringRun_DoesNotDuplicateDrink" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1387894951" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.049229" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.852 START CCT.Tests.DrinkLabTests.ForceKillDuringRun_DoesNotDuplicateDrink (t=1.0 ts=1)
+[TestProgress] 06:56:48.901 END Passed 0.0s CCT.Tests.DrinkLabTests.ForceKillDuringRun_DoesNotDuplicateDrink (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1303" name="Format_IsExactWithoutFloat" fullname="CCT.Tests.DrinkLabTests.Format_IsExactWithoutFloat" methodname="Format_IsExactWithoutFloat" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="273873904" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.000651" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.902 START CCT.Tests.DrinkLabTests.Format_IsExactWithoutFloat (t=1.0 ts=1)
+[TestProgress] 06:56:48.903 END Passed 0.0s CCT.Tests.DrinkLabTests.Format_IsExactWithoutFloat (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1320" name="FreshSave_GrantsStarterOnce_AndPersists" fullname="CCT.Tests.DrinkLabTests.FreshSave_GrantsStarterOnce_AndPersists" methodname="FreshSave_GrantsStarterOnce_AndPersists" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1425441796" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.007895" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.903 START CCT.Tests.DrinkLabTests.FreshSave_GrantsStarterOnce_AndPersists (t=1.0 ts=1)
+[TestProgress] 06:56:48.912 END Passed 0.0s CCT.Tests.DrinkLabTests.FreshSave_GrantsStarterOnce_AndPersists (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1345" name="FutureVersion_IsNeverOverwritten_NoStarterNoCraft" fullname="CCT.Tests.DrinkLabTests.FutureVersion_IsNeverOverwritten_NoStarterNoCraft" methodname="FutureVersion_IsNeverOverwritten_NoStarterNoCraft" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1027079926" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.008422" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.912 START CCT.Tests.DrinkLabTests.FutureVersion_IsNeverOverwritten_NoStarterNoCraft (t=1.0 ts=1)
+[TestProgress] 06:56:48.920 END Passed 0.0s CCT.Tests.DrinkLabTests.FutureVersion_IsNeverOverwritten_NoStarterNoCraft (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1325" name="ImportIntoAnotherSave_ReproducesAndUsesOwnStock" fullname="CCT.Tests.DrinkLabTests.ImportIntoAnotherSave_ReproducesAndUsesOwnStock" methodname="ImportIntoAnotherSave_ReproducesAndUsesOwnStock" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1973790799" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.024764" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.921 START CCT.Tests.DrinkLabTests.ImportIntoAnotherSave_ReproducesAndUsesOwnStock (t=1.0 ts=1)
+[TestProgress] 06:56:48.946 END Passed 0.0s CCT.Tests.DrinkLabTests.ImportIntoAnotherSave_ReproducesAndUsesOwnStock (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1314" name="Layering_DensityOrderAndBoundaries" fullname="CCT.Tests.DrinkLabTests.Layering_DensityOrderAndBoundaries" methodname="Layering_DensityOrderAndBoundaries" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1108789554" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.001413" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.947 START CCT.Tests.DrinkLabTests.Layering_DensityOrderAndBoundaries (t=1.0 ts=1)
+[TestProgress] 06:56:48.949 END Passed 0.0s CCT.Tests.DrinkLabTests.Layering_DensityOrderAndBoundaries (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1331" name="MidBossThenDeath_GrantsMaterialsOnce_EvenWithRepeatedEnds" fullname="CCT.Tests.DrinkLabTests.MidBossThenDeath_GrantsMaterialsOnce_EvenWithRepeatedEnds" methodname="MidBossThenDeath_GrantsMaterialsOnce_EvenWithRepeatedEnds" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1210945397" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:48Z" duration="0.025653" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.949 START CCT.Tests.DrinkLabTests.MidBossThenDeath_GrantsMaterialsOnce_EvenWithRepeatedEnds (t=1.0 ts=1)
+[TestProgress] 06:56:48.974 END Passed 0.0s CCT.Tests.DrinkLabTests.MidBossThenDeath_GrantsMaterialsOnce_EvenWithRepeatedEnds (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1346" name="NestedCorruptData_IsRepairedWithoutThrowing" fullname="CCT.Tests.DrinkLabTests.NestedCorruptData_IsRepairedWithoutThrowing" methodname="NestedCorruptData_IsRepairedWithoutThrowing" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="818740347" result="Passed" start-time="2026-10-19 21:56:48Z" end-time="2026-10-19 21:56:49Z" duration="0.028841" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:48.976 START CCT.Tests.DrinkLabTests.NestedCorruptData_IsRepairedWithoutThrowing (t=1.0 ts=1)
+[TestProgress] 06:56:49.005 END Passed 0.0s CCT.Tests.DrinkLabTests.NestedCorruptData_IsRepairedWithoutThrowing (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1289" name="ParseAmount_AcceptsTenths" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.014046" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1279" name="ParseAmount_AcceptsTenths(&quot;12.3&quot;,123)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(&quot;12.3&quot;,123)" methodname="ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1702169967" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.002750" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.006 START CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("12.3",123) (t=1.0 ts=1)
+[TestProgress] 06:56:49.009 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("12.3",123) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1280" name="ParseAmount_AcceptsTenths(&quot;0.1&quot;,1)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(&quot;0.1&quot;,1)" methodname="ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="146204310" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000428" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.010 START CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("0.1",1) (t=1.0 ts=1)
+[TestProgress] 06:56:49.010 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("0.1",1) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1281" name="ParseAmount_AcceptsTenths(&quot;1.20&quot;,12)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(&quot;1.20&quot;,12)" methodname="ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1591234627" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.011 START CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("1.20",12) (t=1.0 ts=1)
+[TestProgress] 06:56:49.011 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("1.20",12) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1282" name="ParseAmount_AcceptsTenths(&quot; 5 &quot;,50)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(&quot; 5 &quot;,50)" methodname="ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1276221634" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.012 START CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(" 5 ",50) (t=1.0 ts=1)
+[TestProgress] 06:56:49.012 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(" 5 ",50) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1283" name="ParseAmount_AcceptsTenths(&quot;5ml&quot;,50)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(&quot;5ml&quot;,50)" methodname="ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1764324346" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.013 START CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("5ml",50) (t=1.0 ts=1)
+[TestProgress] 06:56:49.014 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("5ml",50) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1284" name="ParseAmount_AcceptsTenths(&quot;2.5g&quot;,25)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(&quot;2.5g&quot;,25)" methodname="ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="810638844" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000397" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.014 START CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("2.5g",25) (t=1.0 ts=1)
+[TestProgress] 06:56:49.014 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("2.5g",25) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1285" name="ParseAmount_AcceptsTenths(&quot;1,5&quot;,15)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(&quot;1,5&quot;,15)" methodname="ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="590543416" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.014 START CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("1,5",15) (t=1.0 ts=1)
+[TestProgress] 06:56:49.016 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("1,5",15) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1286" name="ParseAmount_AcceptsTenths(&quot;.5&quot;,5)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(&quot;.5&quot;,5)" methodname="ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="182542395" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.016 START CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(".5",5) (t=1.0 ts=1)
+[TestProgress] 06:56:49.017 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(".5",5) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1287" name="ParseAmount_AcceptsTenths(&quot;7.&quot;,70)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(&quot;7.&quot;,70)" methodname="ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1886923372" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000379" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.017 START CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("7.",70) (t=1.0 ts=1)
+[TestProgress] 06:56:49.017 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("7.",70) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1288" name="ParseAmount_AcceptsTenths(&quot;0&quot;,0)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths(&quot;0&quot;,0)" methodname="ParseAmount_AcceptsTenths" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1915628908" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000375" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.018 START CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("0",0) (t=1.0 ts=1)
+[TestProgress] 06:56:49.018 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_AcceptsTenths("0",0) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1302" name="ParseAmount_RejectsInvalid" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.013396" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1290" name="ParseAmount_RejectsInvalid(&quot;-1&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;-1&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="281393316" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000599" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.020 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("-1") (t=1.0 ts=1)
+[TestProgress] 06:56:49.020 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("-1") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1291" name="ParseAmount_RejectsInvalid(&quot;NaN&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;NaN&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1636167879" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000402" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.020 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("NaN") (t=1.0 ts=1)
+[TestProgress] 06:56:49.022 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("NaN") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1292" name="ParseAmount_RejectsInvalid(&quot;1e3&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;1e3&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="542431882" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000500" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.022 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("1e3") (t=1.0 ts=1)
+[TestProgress] 06:56:49.023 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("1e3") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1293" name="ParseAmount_RejectsInvalid(&quot;1.25&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;1.25&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="2111994967" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000466" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.023 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("1.25") (t=1.0 ts=1)
+[TestProgress] 06:56:49.024 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("1.25") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1294" name="ParseAmount_RejectsInvalid(&quot;&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1711121389" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000405" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.025 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("") (t=1.0 ts=1)
+[TestProgress] 06:56:49.025 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1295" name="ParseAmount_RejectsInvalid(&quot;abc&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;abc&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="131380478" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.025 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("abc") (t=1.0 ts=1)
+[TestProgress] 06:56:49.026 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("abc") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1296" name="ParseAmount_RejectsInvalid(&quot;1..2&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;1..2&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="2086423131" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000559" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.026 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("1..2") (t=1.0 ts=1)
+[TestProgress] 06:56:49.027 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("1..2") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1297" name="ParseAmount_RejectsInvalid(&quot;99999999&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;99999999&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="846097709" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.028 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("99999999") (t=1.0 ts=1)
+[TestProgress] 06:56:49.028 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("99999999") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1298" name="ParseAmount_RejectsInvalid(&quot;Infinity&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;Infinity&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="918124632" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.029 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("Infinity") (t=1.0 ts=1)
+[TestProgress] 06:56:49.029 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("Infinity") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1299" name="ParseAmount_RejectsInvalid(null)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(null)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="306583899" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000379" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.030 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(null) (t=1.0 ts=1)
+[TestProgress] 06:56:49.030 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(null) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1300" name="ParseAmount_RejectsInvalid(&quot;1.2.3&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;1.2.3&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1871066962" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000458" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.031 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("1.2.3") (t=1.0 ts=1)
+[TestProgress] 06:56:49.031 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("1.2.3") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1301" name="ParseAmount_RejectsInvalid(&quot;0.05&quot;)" fullname="CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid(&quot;0.05&quot;)" methodname="ParseAmount_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="542903607" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.031 START CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("0.05") (t=1.0 ts=1)
+[TestProgress] 06:56:49.032 END Passed 0.0s CCT.Tests.DrinkLabTests.ParseAmount_RejectsInvalid("0.05") (t=1.0 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1324" name="Recipes_SaveEditDuplicateDeleteLimit_FreeOfStock" fullname="CCT.Tests.DrinkLabTests.Recipes_SaveEditDuplicateDeleteLimit_FreeOfStock" methodname="Recipes_SaveEditDuplicateDeleteLimit_FreeOfStock" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="631381214" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.332526" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.032 START CCT.Tests.DrinkLabTests.Recipes_SaveEditDuplicateDeleteLimit_FreeOfStock (t=1.0 ts=1)
+[TestProgress] 06:56:49.366 END Passed 0.3s CCT.Tests.DrinkLabTests.Recipes_SaveEditDuplicateDeleteLimit_FreeOfStock (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1334" name="ResearchActions_AreTransactions_PersistOrRollback" fullname="CCT.Tests.DrinkLabTests.ResearchActions_AreTransactions_PersistOrRollback" methodname="ResearchActions_AreTransactions_PersistOrRollback" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1270846483" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.043937" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.366 START CCT.Tests.DrinkLabTests.ResearchActions_AreTransactions_PersistOrRollback (t=1.0 ts=1)
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinktest_e93d97b71ee2453ca2fa4ebd3c1e464f\drinks.json: IOException: 주입된 디스크 실패
+[TestProgress] 06:56:49.411 END Passed 0.0s CCT.Tests.DrinkLabTests.ResearchActions_AreTransactions_PersistOrRollback (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1333" name="ResearchPoints_FirstGrantOnce_SettledWithRunOnce_NotOnPreservedAbandon" fullname="CCT.Tests.DrinkLabTests.ResearchPoints_FirstGrantOnce_SettledWithRunOnce_NotOnPreservedAbandon" methodname="ResearchPoints_FirstGrantOnce_SettledWithRunOnce_NotOnPreservedAbandon" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="226827855" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.063244" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.411 START CCT.Tests.DrinkLabTests.ResearchPoints_FirstGrantOnce_SettledWithRunOnce_NotOnPreservedAbandon (t=1.0 ts=1)
+[TestProgress] 06:56:49.474 END Passed 0.1s CCT.Tests.DrinkLabTests.ResearchPoints_FirstGrantOnce_SettledWithRunOnce_NotOnPreservedAbandon (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1342" name="SameRunBeginTwice_DoesNotReapply" fullname="CCT.Tests.DrinkLabTests.SameRunBeginTwice_DoesNotReapply" methodname="SameRunBeginTwice_DoesNotReapply" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="42400107" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.029976" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.475 START CCT.Tests.DrinkLabTests.SameRunBeginTwice_DoesNotReapply (t=1.0 ts=1)
+[TestProgress] 06:56:49.505 END Passed 0.0s CCT.Tests.DrinkLabTests.SameRunBeginTwice_DoesNotReapply (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1336" name="SettlementSaveFailure_RetryDoesNotDuplicate" fullname="CCT.Tests.DrinkLabTests.SettlementSaveFailure_RetryDoesNotDuplicate" methodname="SettlementSaveFailure_RetryDoesNotDuplicate" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1726643254" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.018291" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.506 START CCT.Tests.DrinkLabTests.SettlementSaveFailure_RetryDoesNotDuplicate (t=1.0 ts=1)
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinktest_88242b8f33c24e9ba35f4b428bab173c\drinks.json: IOException: 주입된 디스크 실패
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinktest_88242b8f33c24e9ba35f4b428bab173c\drinks.json: IOException: 주입된 디스크 실패
+[TestProgress] 06:56:49.524 END Passed 0.0s CCT.Tests.DrinkLabTests.SettlementSaveFailure_RetryDoesNotDuplicate (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1318" name="ShareCode_MaxKoreanNameAndAllCocktailIngredients_RoundTripWithinLimit" fullname="CCT.Tests.DrinkLabTests.ShareCode_MaxKoreanNameAndAllCocktailIngredients_RoundTripWithinLimit" methodname="ShareCode_MaxKoreanNameAndAllCocktailIngredients_RoundTripWithinLimit" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1622382617" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.001393" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.524 START CCT.Tests.DrinkLabTests.ShareCode_MaxKoreanNameAndAllCocktailIngredients_RoundTripWithinLimit (t=1.0 ts=1)
+[TestProgress] 06:56:49.527 END Passed 0.0s CCT.Tests.DrinkLabTests.ShareCode_MaxKoreanNameAndAllCocktailIngredients_RoundTripWithinLimit (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1319" name="ShareCode_RejectsInvalid" fullname="CCT.Tests.DrinkLabTests.ShareCode_RejectsInvalid" methodname="ShareCode_RejectsInvalid" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1997908667" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.001166" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.527 START CCT.Tests.DrinkLabTests.ShareCode_RejectsInvalid (t=1.0 ts=1)
+[TestProgress] 06:56:49.528 END Passed 0.0s CCT.Tests.DrinkLabTests.ShareCode_RejectsInvalid (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1317" name="ShareCode_RoundTripReproducesMixColorAndBuff" fullname="CCT.Tests.DrinkLabTests.ShareCode_RoundTripReproducesMixColorAndBuff" methodname="ShareCode_RoundTripReproducesMixColorAndBuff" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="347626694" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000844" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.528 START CCT.Tests.DrinkLabTests.ShareCode_RoundTripReproducesMixColorAndBuff (t=1.0 ts=1)
+[TestProgress] 06:56:49.530 END Passed 0.0s CCT.Tests.DrinkLabTests.ShareCode_RoundTripReproducesMixColorAndBuff (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1347" name="StoreAddOverflow_Clamps" fullname="CCT.Tests.DrinkLabTests.StoreAddOverflow_Clamps" methodname="StoreAddOverflow_Clamps" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1837023691" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000531" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.530 START CCT.Tests.DrinkLabTests.StoreAddOverflow_Clamps (t=1.0 ts=1)
+[TestProgress] 06:56:49.530 END Passed 0.0s CCT.Tests.DrinkLabTests.StoreAddOverflow_Clamps (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1332" name="SupplyRoll_FixedBundles_RareGuarantee_Deterministic_HeldIncludesPending" fullname="CCT.Tests.DrinkLabTests.SupplyRoll_FixedBundles_RareGuarantee_Deterministic_HeldIncludesPending" methodname="SupplyRoll_FixedBundles_RareGuarantee_Deterministic_HeldIncludesPending" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1688013994" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.027600" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.531 START CCT.Tests.DrinkLabTests.SupplyRoll_FixedBundles_RareGuarantee_Deterministic_HeldIncludesPending (t=1.0 ts=1)
+[TestProgress] 06:56:49.559 END Passed 0.0s CCT.Tests.DrinkLabTests.SupplyRoll_FixedBundles_RareGuarantee_Deterministic_HeldIncludesPending (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1315" name="TeaColor_BrewDarkensWithLeaves" fullname="CCT.Tests.DrinkLabTests.TeaColor_BrewDarkensWithLeaves" methodname="TeaColor_BrewDarkensWithLeaves" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="203167613" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000758" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.560 START CCT.Tests.DrinkLabTests.TeaColor_BrewDarkensWithLeaves (t=1.0 ts=1)
+[TestProgress] 06:56:49.561 END Passed 0.0s CCT.Tests.DrinkLabTests.TeaColor_BrewDarkensWithLeaves (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1316" name="Validator_RulesAndHostileInput" fullname="CCT.Tests.DrinkLabTests.Validator_RulesAndHostileInput" methodname="Validator_RulesAndHostileInput" classname="CCT.Tests.DrinkLabTests" runstate="Runnable" seed="1748575467" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.001622" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.561 START CCT.Tests.DrinkLabTests.Validator_RulesAndHostileInput (t=1.0 ts=1)
+[TestProgress] 06:56:49.562 END Passed 0.0s CCT.Tests.DrinkLabTests.Validator_RulesAndHostileInput (t=1.0 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1370" name="DrinkSupplyTests" fullname="CCT.Tests.DrinkSupplyTests" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.130186" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1374" name="Correction_HeldIngredientLessLikely_LowStockMoreLikely" fullname="CCT.Tests.DrinkSupplyTests.Correction_HeldIngredientLessLikely_LowStockMoreLikely" methodname="Correction_HeldIngredientLessLikely_LowStockMoreLikely" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="1558244753" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000633" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.565 START CCT.Tests.DrinkSupplyTests.Correction_HeldIngredientLessLikely_LowStockMoreLikely (t=1.0 ts=1)
+[TestProgress] 06:56:49.566 END Passed 0.0s CCT.Tests.DrinkSupplyTests.Correction_HeldIngredientLessLikely_LowStockMoreLikely (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1387" name="Distribution_ManyRuns_MatchesTable" fullname="CCT.Tests.DrinkSupplyTests.Distribution_ManyRuns_MatchesTable" methodname="Distribution_ManyRuns_MatchesTable" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="689447580" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.107893" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.566 START CCT.Tests.DrinkSupplyTests.Distribution_ManyRuns_MatchesTable (t=1.0 ts=1)
+[TestProgress] 06:56:49.674 END Passed 0.1s CCT.Tests.DrinkSupplyTests.Distribution_ManyRuns_MatchesTable (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1380" name="EqualUses_KeepOriginalSourceProbabilities" fullname="CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.003804" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1376" name="EqualUses_KeepOriginalSourceProbabilities(0)" fullname="CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(0)" methodname="EqualUses_KeepOriginalSourceProbabilities" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="1932077323" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000764" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.676 START CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(0) (t=1.0 ts=1)
+[TestProgress] 06:56:49.677 END Passed 0.0s CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(0) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1377" name="EqualUses_KeepOriginalSourceProbabilities(6)" fullname="CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(6)" methodname="EqualUses_KeepOriginalSourceProbabilities" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="1837778781" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.677 START CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(6) (t=1.0 ts=1)
+[TestProgress] 06:56:49.678 END Passed 0.0s CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(6) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1378" name="EqualUses_KeepOriginalSourceProbabilities(24)" fullname="CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(24)" methodname="EqualUses_KeepOriginalSourceProbabilities" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="210036991" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.678 START CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(24) (t=1.0 ts=1)
+[TestProgress] 06:56:49.678 END Passed 0.0s CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(24) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1379" name="EqualUses_KeepOriginalSourceProbabilities(100000)" fullname="CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(100000)" methodname="EqualUses_KeepOriginalSourceProbabilities" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="691733997" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 06:56:49.678 START CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(100000) (t=1.0 ts=1)
+[TestProgress] 06:56:49.678 END Passed 0.0s CCT.Tests.DrinkSupplyTests.EqualUses_KeepOriginalSourceProbabilities(100000) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1381" name="ExtremeHoldings_FiniteAndSumOne" fullname="CCT.Tests.DrinkSupplyTests.ExtremeHoldings_FiniteAndSumOne" methodname="ExtremeHoldings_FiniteAndSumOne" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="2102704419" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.001148" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.679 START CCT.Tests.DrinkSupplyTests.ExtremeHoldings_FiniteAndSumOne (t=1.0 ts=1)
+[TestProgress] 06:56:49.680 END Passed 0.0s CCT.Tests.DrinkSupplyTests.ExtremeHoldings_FiniteAndSumOne (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1372" name="Median_OddEvenEmpty" fullname="CCT.Tests.DrinkSupplyTests.Median_OddEvenEmpty" methodname="Median_OddEvenEmpty" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="712826838" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000358" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.680 START CCT.Tests.DrinkSupplyTests.Median_OddEvenEmpty (t=1.0 ts=1)
+[TestProgress] 06:56:49.681 END Passed 0.0s CCT.Tests.DrinkSupplyTests.Median_OddEvenEmpty (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1371" name="Multiplier_RelativeToMedian_Clamped" fullname="CCT.Tests.DrinkSupplyTests.Multiplier_RelativeToMedian_Clamped" methodname="Multiplier_RelativeToMedian_Clamped" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="1531971199" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000158" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.681 START CCT.Tests.DrinkSupplyTests.Multiplier_RelativeToMedian_Clamped (t=1.0 ts=1)
+[TestProgress] 06:56:49.682 END Passed 0.0s CCT.Tests.DrinkSupplyTests.Multiplier_RelativeToMedian_Clamped (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1383" name="Normal_NonCandidateRaresExcludedFromMedian" fullname="CCT.Tests.DrinkSupplyTests.Normal_NonCandidateRaresExcludedFromMedian" methodname="Normal_NonCandidateRaresExcludedFromMedian" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="411855513" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000479" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.682 START CCT.Tests.DrinkSupplyTests.Normal_NonCandidateRaresExcludedFromMedian (t=1.0 ts=1)
+[TestProgress] 06:56:49.682 END Passed 0.0s CCT.Tests.DrinkSupplyTests.Normal_NonCandidateRaresExcludedFromMedian (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1382" name="RareGuarantee_ComparesOnlyTheTwoRares" fullname="CCT.Tests.DrinkSupplyTests.RareGuarantee_ComparesOnlyTheTwoRares" methodname="RareGuarantee_ComparesOnlyTheTwoRares" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="847600763" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000280" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.683 START CCT.Tests.DrinkSupplyTests.RareGuarantee_ComparesOnlyTheTwoRares (t=1.0 ts=1)
+[TestProgress] 06:56:49.684 END Passed 0.0s CCT.Tests.DrinkSupplyTests.RareGuarantee_ComparesOnlyTheTwoRares (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1375" name="Relative_SixUsesFavoredOverTwentyFour" fullname="CCT.Tests.DrinkSupplyTests.Relative_SixUsesFavoredOverTwentyFour" methodname="Relative_SixUsesFavoredOverTwentyFour" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="198913180" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000668" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.684 START CCT.Tests.DrinkSupplyTests.Relative_SixUsesFavoredOverTwentyFour (t=1.0 ts=1)
+[TestProgress] 06:56:49.685 END Passed 0.0s CCT.Tests.DrinkSupplyTests.Relative_SixUsesFavoredOverTwentyFour (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1389" name="ResearchPoints_PerRun" fullname="CCT.Tests.DrinkSupplyTests.ResearchPoints_PerRun" methodname="ResearchPoints_PerRun" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="645930944" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000163" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.685 START CCT.Tests.DrinkSupplyTests.ResearchPoints_PerRun (t=1.0 ts=1)
+[TestProgress] 06:56:49.685 END Passed 0.0s CCT.Tests.DrinkSupplyTests.ResearchPoints_PerRun (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1385" name="Roll_Deterministic_BundleAmountsFixed_RareGuarantee" fullname="CCT.Tests.DrinkSupplyTests.Roll_Deterministic_BundleAmountsFixed_RareGuarantee" methodname="Roll_Deterministic_BundleAmountsFixed_RareGuarantee" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="19871875" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.001416" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.686 START CCT.Tests.DrinkSupplyTests.Roll_Deterministic_BundleAmountsFixed_RareGuarantee (t=1.0 ts=1)
+[TestProgress] 06:56:49.687 END Passed 0.0s CCT.Tests.DrinkSupplyTests.Roll_Deterministic_BundleAmountsFixed_RareGuarantee (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1386" name="Roll_EarlierBundlesCountTowardHeld" fullname="CCT.Tests.DrinkSupplyTests.Roll_EarlierBundlesCountTowardHeld" methodname="Roll_EarlierBundlesCountTowardHeld" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="391523985" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000260" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.688 START CCT.Tests.DrinkSupplyTests.Roll_EarlierBundlesCountTowardHeld (t=1.0 ts=1)
+[TestProgress] 06:56:49.689 END Passed 0.0s CCT.Tests.DrinkSupplyTests.Roll_EarlierBundlesCountTowardHeld (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1373" name="Tables_SumTo100_RareOnlyFromElite" fullname="CCT.Tests.DrinkSupplyTests.Tables_SumTo100_RareOnlyFromElite" methodname="Tables_SumTo100_RareOnlyFromElite" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="809854625" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000354" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.689 START CCT.Tests.DrinkSupplyTests.Tables_SumTo100_RareOnlyFromElite (t=1.0 ts=1)
+[TestProgress] 06:56:49.689 END Passed 0.0s CCT.Tests.DrinkSupplyTests.Tables_SumTo100_RareOnlyFromElite (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1388" name="Unit_InRange_IndependentPerIndex" fullname="CCT.Tests.DrinkSupplyTests.Unit_InRange_IndependentPerIndex" methodname="Unit_InRange_IndependentPerIndex" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="2060634036" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.002640" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.689 START CCT.Tests.DrinkSupplyTests.Unit_InRange_IndependentPerIndex (t=1.0 ts=1)
+[TestProgress] 06:56:49.693 END Passed 0.0s CCT.Tests.DrinkSupplyTests.Unit_InRange_IndependentPerIndex (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1384" name="UserReportedBalance_LowestUsesFavoredAmongEqualWeights" fullname="CCT.Tests.DrinkSupplyTests.UserReportedBalance_LowestUsesFavoredAmongEqualWeights" methodname="UserReportedBalance_LowestUsesFavoredAmongEqualWeights" classname="CCT.Tests.DrinkSupplyTests" runstate="Runnable" seed="1258887500" result="Passed" start-time="2026-10-19 21:56:49Z" end-time="2026-10-19 21:56:49Z" duration="0.000385" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 06:56:49.693 START CCT.Tests.DrinkSupplyTests.UserReportedBalance_LowestUsesFavoredAmongEqualWeights (t=1.0 ts=1)
+[TestProgress] 06:56:49.693 END Passed 0.0s CCT.Tests.DrinkSupplyTests.UserReportedBalance_LowestUsesFavoredAmongEqualWeights (t=1.0 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
