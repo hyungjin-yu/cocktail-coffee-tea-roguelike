@@ -1,0 +1,149 @@
+{
+  "files": [
+    {
+      "path": "aseprite-batch.log",
+      "bytes": 724,
+      "sha256": "f8d3c92f2023adbc98ed0d1397b50ff8bb857c3a3aed56f49b185c484c2eb23c"
+    },
+    {
+      "path": "dl_teapot_lid.aseprite",
+      "bytes": 1502,
+      "sha256": "bd062ab5df8b2b8201db491e901aba986ebecb8828955563529ffa62cea8d701"
+    },
+    {
+      "path": "dl_teapot_lid.png",
+      "bytes": 452,
+      "sha256": "dc4416affc887051f422dcd24cac5aedd2f3ac685e1ca498b5624e7148686839"
+    },
+    {
+      "path": "dl_teapot_open_body.aseprite",
+      "bytes": 1826,
+      "sha256": "4d27c0e555bcff7b8f8eed8004768fc31c8c56b824e2c22dc0df586ee0631fc5"
+    },
+    {
+      "path": "dl_teapot_open_body.png",
+      "bytes": 1128,
+      "sha256": "063ecad83a0b48538601a867b0dd5356c42eeb38daccb4f73bd97c8d31fcec06"
+    },
+    {
+      "path": "inspect.py",
+      "bytes": 725,
+      "sha256": "f8f910d0eacf2cc69fae6664ccea7847ef07f1e366a4d375eeac60325923a99a"
+    },
+    {
+      "path": "inventory.py",
+      "bytes": 404,
+      "sha256": "dd46f96bb29beabb03f8a94a3a44af5e471319a813b4d0230729b25485d3ddfc"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 6583,
+      "sha256": "da66eac4e74048e2e0a05ff3294a6bfa79c9cd2b27fab2766dc8d5479fab1113"
+    },
+    {
+      "path": "preview.py",
+      "bytes": 920,
+      "sha256": "b962812054977493b22b4b91544e4f99f457337224499ec836b27be21da29e9d"
+    },
+    {
+      "path": "qa/closed-composite.png",
+      "bytes": 1281,
+      "sha256": "c5bce8ad699627ca472bc6323c80962d4c4bdacfc245dbabef90166b84cd6f11"
+    },
+    {
+      "path": "qa/dl_teapot_lid_mask_roundtrip.png",
+      "bytes": 229,
+      "sha256": "39f9ef4f01762116f7b5f1798c5e49a7ab8425b8ec3e97c8a4d9c000c17d2153"
+    },
+    {
+      "path": "qa/dl_teapot_lid_roundtrip.png",
+      "bytes": 452,
+      "sha256": "dc4416affc887051f422dcd24cac5aedd2f3ac685e1ca498b5624e7148686839"
+    },
+    {
+      "path": "qa/dl_teapot_open_body_mask_roundtrip.png",
+      "bytes": 229,
+      "sha256": "39f9ef4f01762116f7b5f1798c5e49a7ab8425b8ec3e97c8a4d9c000c17d2153"
+    },
+    {
+      "path": "qa/dl_teapot_open_body_roundtrip.png",
+      "bytes": 1128,
+      "sha256": "063ecad83a0b48538601a867b0dd5356c42eeb38daccb4f73bd97c8d31fcec06"
+    },
+    {
+      "path": "qa/lid-movement-contact.png",
+      "bytes": 5231,
+      "sha256": "e8e80deb6ad55c13fb1ce4a2c4f93519fc39b0203e1a4df6c4a4478271e837e3"
+    },
+    {
+      "path": "qa/lid-selection.png",
+      "bytes": 185,
+      "sha256": "3fff677a213d4d7973ec5d8af71ad9c21a7337b15a51eb49817b7584fbe67755"
+    },
+    {
+      "path": "qa/original-grid.png",
+      "bytes": 13497,
+      "sha256": "07d280b4568a7bf89ba90eba2781886557af53fb4eee58fd751cbb802e0e0938"
+    },
+    {
+      "path": "qa/original-native.png",
+      "bytes": 1281,
+      "sha256": "c5bce8ad699627ca472bc6323c80962d4c4bdacfc245dbabef90166b84cd6f11"
+    },
+    {
+      "path": "qa/preview_closed.png",
+      "bytes": 1503,
+      "sha256": "67f0632b2f8b1ca7b09e866e543d2f185adf375b1865de83da8bf237f9545cd0"
+    },
+    {
+      "path": "qa/preview_lifted.png",
+      "bytes": 1610,
+      "sha256": "762f2b5aecdbc7845bb46036cbeb59d372aca7a6e119fbc0c040d039420dfc47"
+    },
+    {
+      "path": "qa/preview_side_table.png",
+      "bytes": 1575,
+      "sha256": "70a1115a72c96910007c395e0a18abfe462bb455dcc52c1575595340616fc0f0"
+    },
+    {
+      "path": "qa/roundtrip.log",
+      "bytes": 498,
+      "sha256": "dc78719246324deb91a069437e057fb6386bc6d0041619bb339a817d9acf3a3c"
+    },
+    {
+      "path": "qa/separation-contact.png",
+      "bytes": 7217,
+      "sha256": "44f35e09cecf0ed86104a42d03ab8908399e6493cbcc0b6cdb6e376eb3b001c6"
+    },
+    {
+      "path": "qa/verification.json",
+      "bytes": 2503,
+      "sha256": "2af47b7cb98692ab403a725d39d1add0908aa9ba8636aa9f5ee73dfc86266213"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 5286,
+      "sha256": "c33df0bb1c94b89dd4535d2b4a18ad54c123a87f948b5239f56a6584a589d7de"
+    },
+    {
+      "path": "roundtrip.lua",
+      "bytes": 415,
+      "sha256": "139df61c1bd039255cd2a239e67db340c26b5c5b2cb643a9642b06d76aa18ec1"
+    },
+    {
+      "path": "separate.lua",
+      "bytes": 2716,
+      "sha256": "8b4b660b0a4598c6ec6fafd57a69f21812ed973f15bcbe9fb0304fe7f457f8bc"
+    },
+    {
+      "path": "source-sha.json",
+      "bytes": 365,
+      "sha256": "f2cb34d412f3d3f1fd587406917b0e474461e4d07bcaaa5e876b4c1b3c24f1b5"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 4564,
+      "sha256": "fa7cd9f69e007d1d3fec03b820098ee5fd806d794f01807f2db2f4399daa6703"
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "files": [
+    {
+      "path": "aseprite-batch.log",
+      "bytes": 588,
+      "sha256": "07eb30fbd56e58c550a0821ad7abb0a0726135744127a85837a1958600fee79e"
+    },
+    {
+      "path": "check-server-version.py",
+      "bytes": 892,
+      "sha256": "538566917c1e0fa12e73c4d19dc86b262a6631769541cc8dba5989f8d3719194"
+    },
+    {
+      "path": "finish.lua",
+      "bytes": 2201,
+      "sha256": "019c02532102356e3b070b7a5f587a89244c5c3584ffe3e0b25b331484435243"
+    },
+    {
+      "path": "inventory.py",
+      "bytes": 762,
+      "sha256": "dbdaf314ef93ad4da67677c1b886498471860c4086eca36f276065c5f572d6fa"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 10275,
+      "sha256": "5fb8affe121fa7a29e3f5c5115967ff876660b2559ed0bc7adb92dc359925d87"
+    },
+    {
+      "path": "prepare.py",
+      "bytes": 2878,
+      "sha256": "9bff24cb0690d3b401749ec0ff52478b81db3ffa5fbd33d8eff8c43891c4361b"
+    },
+    {
+      "path": "produce.py",
+      "bytes": 4624,
+      "sha256": "3dcf2ac912d013d878ba16e13a909125b658d7dba9f14b3738a80dc7617507f7"
+    },
+    {
+      "path": "provenance/cocktail_aroma.raw.png",
+      "bytes": 2647,
+      "sha256": "889d01c091fff12a57246db70fe517a11396387c6870fd5f4e2ea75dc06602b3"
+    },
+    {
+      "path": "provenance/cocktail_aroma.receipt.json",
+      "bytes": 383,
+      "sha256": "ef2c79bc8aa10818aaed23074c04ba617f0a08563b0bcefa54751e74f4515b66"
+    },
+    {
+      "path": "provenance/cocktail_aroma.request.json",
+      "bytes": 23355,
+      "sha256": "15f4aaab5a34a01209da11d23f2f541bf24359b649900665e8bd29487bf92d17"
+    },
+    {
+      "path": "provenance/cocktail_blend.raw.png",
+      "bytes": 2110,
+      "sha256": "727b9633e1c76bf821523a609eecbfa4b3e9f94b399cc7b65ce3b16141647015"
+    },
+    {
+      "path": "provenance/cocktail_blend.receipt.json",
+      "bytes": 383,
+      "sha256": "f81e4dcde001277bc47a6495bb49d0f8eb767e7d4afc61b0e35b2788f8942683"
+    },
+    {
+      "path": "provenance/cocktail_blend.request.json",
+      "bytes": 23351,
+      "sha256": "25653d104d1557ef68e70ef013950b6e97d80b62abddafd0e8518084bda8a7e6"
+    },
+    {
+      "path": "provenance/tea_aroma.raw.png",
+      "bytes": 1899,
+      "sha256": "34cb64537dc2f9ae09a7f1d5aab02dfd1ba5efe8a15ccde50b6357d76ca72405"
+    },
+    {
+      "path": "provenance/tea_aroma.receipt.json",
+      "bytes": 383,
+      "sha256": "17ca4eedf2fa4306a830c7296edb4e6a0d8b4efc07316623915b3e2e08c9fc4e"
+    },
+    {
+      "path": "provenance/tea_aroma.request.json",
+      "bytes": 23335,
+      "sha256": "5d9a394b1bab91af2b672cd083b45f4f24c2d5f2e8cd24a75b4e2171a1e3ca0f"
+    },
+    {
+      "path": "provenance/tea_blend.raw.png",
+      "bytes": 2529,
+      "sha256": "dfc7e62698ce02c160620211dcc400a6dea611f5837c2239c6c581eba1d7a3c0"
+    },
+    {
+      "path": "provenance/tea_blend.receipt.json",
+      "bytes": 383,
+      "sha256": "c2a0469427c95beae1e7b0f68d8583a64178d8ef92921e1f08de56c6294564d2"
+    },
+    {
+      "path": "provenance/tea_blend.request.json",
+      "bytes": 23327,
+      "sha256": "09743521d95c3fc7f63b08a150194e96bda0086e11c25aa4f3af217c27a33010"
+    },
+    {
+      "path": "qa/alpha-black.png",
+      "bytes": 5382,
+      "sha256": "3f2ba30ac324d8575a1a37fcc4d079df5374c2195149c98fc8fe57d1efb90b02"
+    },
+    {
+      "path": "qa/alpha-white.png",
+      "bytes": 5525,
+      "sha256": "11ce9934cda2b242a86a3d79bbdc7cc9a5015a029dd168cb3396517876568514"
+    },
+    {
+      "path": "qa/portraits-frame-contact.png",
+      "bytes": 17748,
+      "sha256": "be696584d26098f751af9d980227e1104a64d5d7ab8d4269a25fbe6f5448bacc"
+    },
+    {
+      "path": "qa/staff_cocktail_aroma_frame.png",
+      "bytes": 2579,
+      "sha256": "bdb627576fee15a1e56e71dddb0bb743815c9460270acb86a858b2018fbb1fb0"
+    },
+    {
+      "path": "qa/staff_cocktail_aroma_roundtrip.png",
+      "bytes": 1140,
+      "sha256": "4a836174e786dfec57166dd4aa4e4213b34bfad54597ec8a47782cf5abede378"
+    },
+    {
+      "path": "qa/staff_cocktail_blend_frame.png",
+      "bytes": 2221,
+      "sha256": "6b5a102e253ed2155a3ea88c52736c9df1581286d37dbb54f2c8e77e8aa4e65c"
+    },
+    {
+      "path": "qa/staff_cocktail_blend_roundtrip.png",
+      "bytes": 745,
+      "sha256": "5a110da9a3959ebbf9043e844625c369f38083b51679b0945c924d4efcb975cb"
+    },
+    {
+      "path": "qa/staff_tea_aroma_frame.png",
+      "bytes": 2357,
+      "sha256": "92efb664abe327572cd18f3f97ba079975ae22bfd2933157091d76275036683f"
+    },
+    {
+      "path": "qa/staff_tea_aroma_roundtrip.png",
+      "bytes": 910,
+      "sha256": "95d481ea47a9149e8d018c4b428fa496ef4730e6455415bcea597fdb05054df3"
+    },
+    {
+      "path": "qa/staff_tea_blend_frame.png",
+      "bytes": 2658,
+      "sha256": "a42384f97df91e5880108391b38ec75b9e4252b8091ccaf4616fb5eab3535667"
+    },
+    {
+      "path": "qa/staff_tea_blend_roundtrip.png",
+      "bytes": 1198,
+      "sha256": "9ae14624bb74a5f66703722d42397b412015c6be85f3e0ac2c753fa4221a1039"
+    },
+    {
+      "path": "qa/verification.json",
+      "bytes": 3383,
+      "sha256": "60d79763b51137a5defbba73751f3c9e184ba307d12edb2e96778d36096d98b7"
+    },
+    {
+      "path": "references/bartender-style.png",
+      "bytes": 9719,
+      "sha256": "4bdf2350872c190113d769a5f85bc68678596fbcb4323d0eb118df3368ae582a"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 5608,
+      "sha256": "0605ba0153996dfc102189268c774f68057fd1d4044144a8054da60069acb0c2"
+    },
+    {
+      "path": "server-version.json",
+      "bytes": 166,
+      "sha256": "141cc0c0d7adc80f991a07620f66b556387fb61050586bfa509b68769976d187"
+    },
+    {
+      "path": "staff_cocktail_aroma.aseprite",
+      "bytes": 1532,
+      "sha256": "ca3ec17dbbb9ab4620f488c17016105adc2d8434636b76a1b5d691b12aa8acf7"
+    },
+    {
+      "path": "staff_cocktail_aroma.png",
+      "bytes": 1140,
+      "sha256": "4a836174e786dfec57166dd4aa4e4213b34bfad54597ec8a47782cf5abede378"
+    },
+    {
+      "path": "staff_cocktail_blend.aseprite",
+      "bytes": 1378,
+      "sha256": "a02f9a2132902d47313babd82466c50313e1df3e3d00455d03c3d906dd8c1085"
+    },
+    {
+      "path": "staff_cocktail_blend.png",
+      "bytes": 745,
+      "sha256": "5a110da9a3959ebbf9043e844625c369f38083b51679b0945c924d4efcb975cb"
+    },
+    {
+      "path": "staff_tea_aroma.aseprite",
+      "bytes": 1454,
+      "sha256": "9d21c01c2575123600fe6ec982622b86c3df3cebe6bec55d046590262f739947"
+    },
+    {
+      "path": "staff_tea_aroma.png",
+      "bytes": 910,
+      "sha256": "95d481ea47a9149e8d018c4b428fa496ef4730e6455415bcea597fdb05054df3"
+    },
+    {
+      "path": "staff_tea_blend.aseprite",
+      "bytes": 1539,
+      "sha256": "93b006de04f5bcebfe4492fe88fb77217081b99ae135eab439684332d89c3428"
+    },
+    {
+      "path": "staff_tea_blend.png",
+      "bytes": 1198,
+      "sha256": "9ae14624bb74a5f66703722d42397b412015c6be85f3e0ac2c753fa4221a1039"
+    },
+    {
+      "path": "verify-preview.py",
+      "bytes": 5013,
+      "sha256": "eea2661f09a4bf9fc89a1c7b7e37d60cc05231210d19fd1fb18a894c7681205d"
+    }
+  ],
+  "credentialValuesInArtifacts": false
+}

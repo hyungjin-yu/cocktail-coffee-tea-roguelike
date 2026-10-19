@@ -175,6 +175,18 @@ namespace CCT
         /// <summary>정규화 기여 q/(q+k)의 k: 액체 15mL, 찻잎 2g.</summary>
         public const int LiquidK = 150, LeafK = 20;
 
+        /// <summary>73: 완성 잔 용량(mL, 고정). 허용 최대 액체 + 최대 얼음(칵테일 120+40, 차 150+30)에서도 약 80~82%만 찬다.</summary>
+        public const float ServeCocktailCapacityMl = 200f, ServeTeaCapacityMl = 220f;
+        /// <summary>완성 잔에서 액체 + 얼음이 차지할 수 있는 최대 비율. 넘으면 몰래 줄이지 않고 제조를 거부·안내한다.</summary>
+        public const float ServeFillMax = 0.82f;
+        /// <summary>얼음 한 조각 부피(mL). DrinkVesselView.CubeVolumeMl와 같다.</summary>
+        public const float IceCubeMl = 10f;
+
+        public static float ServeCapacityMl(DrinkKind kind) => kind == DrinkKind.Tea ? ServeTeaCapacityMl : ServeCocktailCapacityMl;
+
+        /// <summary>완성 잔에 들어갈 액체 + 얼음 부피(mL).</summary>
+        public static float ServeFillMl(DrinkRecipe r) => r == null ? 0f : (r.LiquidTotal() + Math.Max(0, r.water)) / 10f + Math.Max(0, r.ice) * IceCubeMl;
+
         public static bool AllowedTechnique(DrinkKind kind, DrinkTechnique t) =>
             kind == DrinkKind.Tea ? t == DrinkTechnique.Steep : t != DrinkTechnique.Steep && Enum.IsDefined(typeof(DrinkTechnique), t);
 

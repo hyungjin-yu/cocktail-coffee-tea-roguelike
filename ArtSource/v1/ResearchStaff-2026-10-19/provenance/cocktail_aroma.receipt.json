@@ -1,0 +1,12 @@
+{
+  "type": "message_done",
+  "generation_id": "8a2164ac-f92a-4f9c-b666-9be21f6d125c",
+  "seed": 0,
+  "model": "generate_image_pro_flash",
+  "styleReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_00.png",
+  "requestedSize": [
+    64,
+    80
+  ],
+  "actualProtocolVersion": "0.4.130"
+}

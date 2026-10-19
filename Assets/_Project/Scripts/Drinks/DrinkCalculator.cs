@@ -283,7 +283,8 @@ namespace CCT
         {
             if (def == null) return Color.clear;
             if (def.form == IngredientForm.Leaf) return def.color;
-            return Resolve(Absorb(def.color, 1f), 1f, def.turbidity, out _); // 순수 재료 = 고유 색
+            // 순수 재료 = 혼합 계산(ColorOfParts)에 그 재료만 넣은 색 — 지거·줄기·누적 혼합이 같은 색 모델을 쓴다(73).
+            return ColorOfParts(new[] { DrinkPhysicsSim.Part(def.id, 10.0) }, null, out _);
         }
 
         /// <summary>테스트/보고용: 색 → "#RRGGBB/aa".</summary>

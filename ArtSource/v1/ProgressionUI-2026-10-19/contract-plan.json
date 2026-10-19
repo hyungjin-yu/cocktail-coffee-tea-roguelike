@@ -1,0 +1,38 @@
+{
+  "specVersion": "1.1-2026-10-19",
+  "scope": "progression_ui_73",
+  "status": "in_progress",
+  "coordinateOrigin": "top_left",
+  "rectFormat": "x,y,width,height; half-open",
+  "unityBordersOrder": "left,bottom,right,top",
+  "pointFiltering": true,
+  "mipmaps": false,
+  "compression": "none",
+  "textBaked": false,
+  "handsArmsFacesBodies": false,
+  "states": [
+    "locked",
+    "available",
+    "owned",
+    "equipped"
+  ],
+  "integrationAllowed": false,
+  "runtimeIntegrationGate": "root ready-art review and manufacturing physics acceptance",
+  "motionTargetsMs": {
+    "recipe_tear": 500,
+    "laptop_arrive": 250,
+    "laptop_open": 350,
+    "laptop_light": 150,
+    "laptop_close": 350
+  },
+  "references": [
+    "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_gin.png",
+    "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\ui-polish-2026-10-08\\ui_panel\\ui_panel.png",
+    "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\Icons\\Enemies\\teabag_imp.png"
+  ],
+  "referenceActuallyTransmittedToPixelLab": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\card-education-2026-10-16\\card_gin.png",
+  "staffPortraits": "out of scope; frame only; no people",
+  "ready": false,
+  "integrated": false,
+  "verified": false
+}

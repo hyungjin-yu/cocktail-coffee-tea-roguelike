@@ -159,6 +159,9 @@ namespace CCT
                 if (leaf > DrinkRules.TeaLeafMax) res.Errors.Add($"찻잎은 최대 {DrinkRules.Format(DrinkRules.TeaLeafMax)}g입니다.");
                 if (requireComplete && (!hasLeaf || leaf < DrinkRules.TeaLeafMin)) res.Errors.Add("차는 찻잎이 1종 이상(0.1g 이상) 필요합니다.");
             }
+            float fill = DrinkRules.ServeFillMl(r), room = DrinkRules.ServeCapacityMl(kind) * DrinkRules.ServeFillMax;
+            if (fill > room + 0.001f)
+                res.Errors.Add($"잔에 다 들어가지 않습니다(액체+얼음 {fill:0.#}mL / 최대 {room:0.#}mL). 재료나 얼음을 줄여 주세요.");
             if (requireComplete && r.steps.Count == 0) res.Errors.Add("재료를 넣어 주세요.");
             if (r.name != null && r.name.Length > DrinkRules.RecipeNameMax) res.Errors.Add($"이름은 {DrinkRules.RecipeNameMax}자 이하입니다.");
             return res;

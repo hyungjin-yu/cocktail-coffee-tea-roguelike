@@ -7,6 +7,56 @@ using UnityEngine;
 
 namespace CCT.Editor
 {
+    /// <summary>
+    /// 73 단계2 종이·노트북 UI 아트: Resources/ProgressionUI 텍스처는 Point·무압축·밉맵 없음·PPU 100·가운데 피벗 스프라이트.
+    /// 9slice 테두리는 같은 폴더 borders.json(Tools/DrinkLab/import_progression_ui.py가 Codex manifest에서 생성)의 Unity L,B,R,T.
+    /// </summary>
+    public class ProgressionUiImportSettings : AssetPostprocessor
+    {
+        void OnPreprocessTexture()
+        {
+            if (!assetPath.Contains("/Resources/ProgressionUI/")) return;
+            var ti = (TextureImporter)assetImporter;
+            ti.textureType = TextureImporterType.Sprite;
+            ti.spriteImportMode = SpriteImportMode.Single;
+            var s = new TextureImporterSettings();
+            ti.ReadTextureSettings(s);
+            s.spriteAlignment = (int)SpriteAlignment.Center;
+            s.spritePixelsPerUnit = 100f;
+            s.spriteMeshType = SpriteMeshType.FullRect;
+            ti.SetTextureSettings(s);
+            ti.mipmapEnabled = false;
+            ti.filterMode = FilterMode.Point;
+            ti.wrapMode = TextureWrapMode.Clamp;
+            ti.alphaIsTransparency = true;
+            ti.isReadable = false;
+            ti.textureCompression = TextureImporterCompression.Uncompressed;
+            ti.spriteBorder = Border(Path.GetFileNameWithoutExtension(assetPath));
+        }
+
+        /// <summary>borders.json에서 이 자산의 9slice 테두리(정지 아트만; 프레임 _nn 은 균일 확대라 테두리 없음).</summary>
+        static Vector4 Border(string name)
+        {
+            try
+            {
+                var path = Path.Combine(Path.GetDirectoryName(Application.dataPath), "Assets/_Project/Resources/ProgressionUI/borders.json");
+                if (!File.Exists(path)) return Vector4.zero;
+                string text = File.ReadAllText(path);
+                int at = text.IndexOf("\"" + name + "\": {", StringComparison.Ordinal);
+                if (at < 0) return Vector4.zero;
+                int b = text.IndexOf("\"bordersLBRT\":", at, StringComparison.Ordinal);
+                if (b < 0) return Vector4.zero; // 모든 항목에 bordersLBRT가 있으므로 첫 번째가 이 항목의 것
+                int open = text.IndexOf('[', b), close = text.IndexOf(']', b), nul = text.IndexOf("null", b, StringComparison.Ordinal);
+                if (open < 0 || close < 0 || (nul >= 0 && nul < open)) return Vector4.zero;
+                var parts = text.Substring(open + 1, close - open - 1).Split(',');
+                if (parts.Length != 4) return Vector4.zero;
+                var inv = System.Globalization.CultureInfo.InvariantCulture;
+                return new Vector4(float.Parse(parts[0], inv), float.Parse(parts[1], inv), float.Parse(parts[2], inv), float.Parse(parts[3], inv));
+            }
+            catch (Exception e) { Debug.LogWarning($"[ProgressionUI] borders.json 읽기 실패 {name}: {e.Message}"); return Vector4.zero; }
+        }
+    }
+
     /// <summary>69 음료 제조 아트: Resources/DrinkLab 텍스처는 픽셀 스프라이트(Point, 무압축, 밉맵 없음, PPU 32, 아래 가운데 피벗).</summary>
     public class DrinkLabImportSettings : AssetPostprocessor
     {

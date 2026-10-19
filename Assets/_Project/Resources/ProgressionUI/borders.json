@@ -1,0 +1,1165 @@
+{
+  "source": "ArtSource/v1/ProgressionUI-2026-10-19/manifest.json",
+  "assets": {
+    "button": {
+      "size": [
+        96,
+        32
+      ],
+      "frames": [
+        "button"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "contentRect": [
+        24,
+        10,
+        48,
+        12
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "button_available": {
+      "size": [
+        96,
+        32
+      ],
+      "frames": [
+        "button_available"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "contentRect": [
+        24,
+        10,
+        48,
+        12
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "button_equipped": {
+      "size": [
+        96,
+        32
+      ],
+      "frames": [
+        "button_equipped"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "contentRect": [
+        24,
+        10,
+        48,
+        12
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "button_locked": {
+      "size": [
+        96,
+        32
+      ],
+      "frames": [
+        "button_locked"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "contentRect": [
+        24,
+        10,
+        48,
+        12
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "button_owned": {
+      "size": [
+        96,
+        32
+      ],
+      "frames": [
+        "button_owned"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "contentRect": [
+        24,
+        10,
+        48,
+        12
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "ingredient_card": {
+      "size": [
+        128,
+        80
+      ],
+      "frames": [
+        "ingredient_card"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "contentRect": [
+        16,
+        16,
+        96,
+        48
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "laptop_arrive": {
+      "size": [
+        384,
+        288
+      ],
+      "frames": [
+        "laptop_arrive_00",
+        "laptop_arrive_01",
+        "laptop_arrive_02",
+        "laptop_arrive_03",
+        "laptop_arrive_04"
+      ],
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "bordersLBRT": null,
+      "contentRect": null,
+      "durationsMs": [
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      }
+    },
+    "laptop_closed_matched": {
+      "size": [
+        384,
+        256
+      ],
+      "frames": [
+        "laptop_closed_matched"
+      ],
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "bordersLBRT": null,
+      "contentRect": null,
+      "durationsMs": [
+        null
+      ],
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      }
+    },
+    "laptop_closing": {
+      "size": [
+        384,
+        256
+      ],
+      "frames": [
+        "laptop_closing_00",
+        "laptop_closing_01",
+        "laptop_closing_02",
+        "laptop_closing_03",
+        "laptop_closing_04",
+        "laptop_closing_05",
+        "laptop_closing_06"
+      ],
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "bordersLBRT": null,
+      "contentRect": null,
+      "durationsMs": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      }
+    },
+    "laptop_light": {
+      "size": [
+        384,
+        256
+      ],
+      "frames": [
+        "laptop_light_00",
+        "laptop_light_01",
+        "laptop_light_02"
+      ],
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "bordersLBRT": null,
+      "contentRect": null,
+      "durationsMs": [
+        50,
+        50,
+        50
+      ],
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      }
+    },
+    "laptop_open": {
+      "size": [
+        384,
+        256
+      ],
+      "frames": [
+        "laptop_open"
+      ],
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "bordersLBRT": null,
+      "contentRect": [
+        64,
+        36,
+        256,
+        144
+      ],
+      "durationsMs": [
+        null
+      ],
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      }
+    },
+    "laptop_opening": {
+      "size": [
+        384,
+        256
+      ],
+      "frames": [
+        "laptop_opening_00",
+        "laptop_opening_01",
+        "laptop_opening_02",
+        "laptop_opening_03",
+        "laptop_opening_04",
+        "laptop_opening_05",
+        "laptop_opening_06"
+      ],
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "bordersLBRT": null,
+      "contentRect": null,
+      "durationsMs": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      }
+    },
+    "laptop_sequence": {
+      "size": [
+        384,
+        288
+      ],
+      "frames": [
+        "laptop_sequence_00",
+        "laptop_sequence_01",
+        "laptop_sequence_02",
+        "laptop_sequence_03",
+        "laptop_sequence_04",
+        "laptop_sequence_05",
+        "laptop_sequence_06",
+        "laptop_sequence_07",
+        "laptop_sequence_08",
+        "laptop_sequence_09",
+        "laptop_sequence_10",
+        "laptop_sequence_11",
+        "laptop_sequence_12",
+        "laptop_sequence_13",
+        "laptop_sequence_14"
+      ],
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "bordersLBRT": null,
+      "contentRect": null,
+      "durationsMs": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      }
+    },
+    "receipt": {
+      "size": [
+        128,
+        192
+      ],
+      "frames": [
+        "receipt"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        12,
+        20,
+        12,
+        20
+      ],
+      "contentRect": [
+        16,
+        20,
+        96,
+        152
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "recipe_storage": {
+      "size": [
+        160,
+        112
+      ],
+      "frames": [
+        "recipe_storage"
+      ],
+      "scaling": "uniform nearest; do not independently stretch width/height",
+      "bordersLBRT": null,
+      "contentRect": null,
+      "durationsMs": [
+        null
+      ],
+      "anchors": {
+        "slot": [
+          104,
+          46
+        ]
+      }
+    },
+    "recipe_tear_store": {
+      "size": [
+        512,
+        224
+      ],
+      "frames": [
+        "recipe_tear_store_00",
+        "recipe_tear_store_01",
+        "recipe_tear_store_02",
+        "recipe_tear_store_03",
+        "recipe_tear_store_04",
+        "recipe_tear_store_05",
+        "recipe_tear_store_06",
+        "recipe_tear_store_07",
+        "recipe_tear_store_08",
+        "recipe_tear_store_09"
+      ],
+      "scaling": "uniform nearest; do not independently stretch width/height",
+      "bordersLBRT": null,
+      "contentRect": null,
+      "durationsMs": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "paperTransforms": [
+        {
+          "index": 0,
+          "translationPixels": [
+            18,
+            64
+          ],
+          "scaleXY": [
+            1.0,
+            1.0
+          ],
+          "renderSize": [
+            172,
+            128
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            28.0,
+            84.0,
+            152.0,
+            96.0
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 1,
+          "translationPixels": [
+            30,
+            48
+          ],
+          "scaleXY": [
+            0.9767441860465116,
+            0.9765625
+          ],
+          "renderSize": [
+            168,
+            125
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            39.76744186046511,
+            67.53125,
+            148.46511627906978,
+            93.75
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 2,
+          "translationPixels": [
+            62,
+            34
+          ],
+          "scaleXY": [
+            0.9186046511627907,
+            0.921875
+          ],
+          "renderSize": [
+            158,
+            118
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            71.18604651162791,
+            52.4375,
+            139.62790697674419,
+            88.5
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 3,
+          "translationPixels": [
+            109,
+            25
+          ],
+          "scaleXY": [
+            0.8313953488372093,
+            0.8359375
+          ],
+          "renderSize": [
+            143,
+            107
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            117.31395348837209,
+            41.71875,
+            126.37209302325581,
+            80.25
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 4,
+          "translationPixels": [
+            164,
+            20
+          ],
+          "scaleXY": [
+            0.7325581395348837,
+            0.734375
+          ],
+          "renderSize": [
+            126,
+            94
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            171.32558139534885,
+            34.6875,
+            111.34883720930233,
+            70.5
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 5,
+          "translationPixels": [
+            223,
+            22
+          ],
+          "scaleXY": [
+            0.627906976744186,
+            0.625
+          ],
+          "renderSize": [
+            108,
+            80
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            229.27906976744185,
+            34.5,
+            95.44186046511628,
+            60.0
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 6,
+          "translationPixels": [
+            278,
+            31
+          ],
+          "scaleXY": [
+            0.5232558139534884,
+            0.5234375
+          ],
+          "renderSize": [
+            90,
+            67
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            283.2325581395349,
+            41.46875,
+            79.53488372093024,
+            50.25
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 7,
+          "translationPixels": [
+            370,
+            94
+          ],
+          "scaleXY": [
+            0.4418604651162791,
+            0.4375
+          ],
+          "renderSize": [
+            76,
+            56
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            374.4186046511628,
+            102.75,
+            67.16279069767442,
+            42.0
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            154
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 8,
+          "translationPixels": [
+            374,
+            130
+          ],
+          "scaleXY": [
+            0.38372093023255816,
+            0.3828125
+          ],
+          "renderSize": [
+            66,
+            49
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            377.83720930232556,
+            137.65625,
+            58.325581395348834,
+            36.75
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            154
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 9,
+          "translationPixels": [
+            376,
+            156
+          ],
+          "scaleXY": [
+            0.36046511627906974,
+            0.359375
+          ],
+          "renderSize": [
+            62,
+            46
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            379.6046511627907,
+            163.1875,
+            54.7906976744186,
+            34.5
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            154
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": false
+        }
+      ],
+      "paperSourceSize": [
+        172,
+        128
+      ],
+      "paperSourceContentRect": [
+        10,
+        20,
+        152,
+        96
+      ],
+      "notebookOrigin": [
+        8,
+        40
+      ],
+      "boxOrigin": [
+        336,
+        108
+      ]
+    },
+    "spring_notebook": {
+      "size": [
+        192,
+        160
+      ],
+      "frames": [
+        "spring_notebook"
+      ],
+      "scaling": "uniform nearest; preserve discrete spiral rings; borders describe paper safe insets only, do not stretch binding",
+      "bordersLBRT": [
+        20,
+        44,
+        20,
+        20
+      ],
+      "contentRect": [
+        20,
+        44,
+        152,
+        96
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "staff_card": {
+      "size": [
+        160,
+        112
+      ],
+      "frames": [
+        "staff_card"
+      ],
+      "scaling": "uniform nearest; left portrait and right text are separate actual UI regions",
+      "bordersLBRT": null,
+      "contentRect": [
+        62,
+        24,
+        72,
+        64
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "staff_card_available": {
+      "size": [
+        160,
+        112
+      ],
+      "frames": [
+        "staff_card_available"
+      ],
+      "scaling": "uniform nearest; left portrait and right text are separate actual UI regions",
+      "bordersLBRT": null,
+      "contentRect": [
+        62,
+        24,
+        72,
+        64
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "staff_card_equipped": {
+      "size": [
+        160,
+        112
+      ],
+      "frames": [
+        "staff_card_equipped"
+      ],
+      "scaling": "uniform nearest; left portrait and right text are separate actual UI regions",
+      "bordersLBRT": null,
+      "contentRect": [
+        62,
+        24,
+        72,
+        64
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "staff_card_locked": {
+      "size": [
+        160,
+        112
+      ],
+      "frames": [
+        "staff_card_locked"
+      ],
+      "scaling": "uniform nearest; left portrait and right text are separate actual UI regions",
+      "bordersLBRT": null,
+      "contentRect": [
+        62,
+        24,
+        72,
+        64
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "staff_card_owned": {
+      "size": [
+        160,
+        112
+      ],
+      "frames": [
+        "staff_card_owned"
+      ],
+      "scaling": "uniform nearest; left portrait and right text are separate actual UI regions",
+      "bordersLBRT": null,
+      "contentRect": [
+        62,
+        24,
+        72,
+        64
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "torn_recipe": {
+      "size": [
+        172,
+        128
+      ],
+      "frames": [
+        "torn_recipe"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        10,
+        16,
+        10,
+        12
+      ],
+      "contentRect": [
+        10,
+        20,
+        152,
+        96
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "tree_node": {
+      "size": [
+        64,
+        64
+      ],
+      "frames": [
+        "tree_node"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "contentRect": [
+        16,
+        22,
+        32,
+        26
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "tree_node_available": {
+      "size": [
+        64,
+        64
+      ],
+      "frames": [
+        "tree_node_available"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "contentRect": [
+        16,
+        22,
+        32,
+        26
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "tree_node_equipped": {
+      "size": [
+        64,
+        64
+      ],
+      "frames": [
+        "tree_node_equipped"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "contentRect": [
+        16,
+        22,
+        32,
+        26
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "tree_node_locked": {
+      "size": [
+        64,
+        64
+      ],
+      "frames": [
+        "tree_node_locked"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "contentRect": [
+        16,
+        22,
+        32,
+        26
+      ],
+      "durationsMs": [
+        null
+      ]
+    },
+    "tree_node_owned": {
+      "size": [
+        64,
+        64
+      ],
+      "frames": [
+        "tree_node_owned"
+      ],
+      "scaling": "9slice; fixed corners, stretch centre",
+      "bordersLBRT": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "contentRect": [
+        16,
+        22,
+        32,
+        26
+      ],
+      "durationsMs": [
+        null
+      ]
+    }
+  }
+}

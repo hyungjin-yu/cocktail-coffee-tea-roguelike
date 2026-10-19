@@ -1,0 +1,2176 @@
+{
+  "specVersion": "1.1-2026-10-19",
+  "scope": "progression_ui_73",
+  "status": "ready_pending_root_review",
+  "ready": true,
+  "integrated": false,
+  "verified": false,
+  "integrationAllowed": false,
+  "coordinateOrigin": "top_left; rects half-open x,y,width,height",
+  "pivotNote": "pivotNormalizedUnity is bottom-left convention; pivotPixelsTopLeft/anchors are top-left",
+  "filter": "Point",
+  "pixelsPerUnit": 128,
+  "mipmap": false,
+  "compression": "none",
+  "colorSpace": "sRGB RGBA",
+  "alpha": "binary 0/255; transparent RGB zero",
+  "text": "all glyphs and values actual UI; no text baked into sprites",
+  "prohibitedAnatomy": "no hand/arm/face/body in active art",
+  "referenceTransmitted": "references/card_gin.png RGBA, actual project original",
+  "toolAccess": "tool-access.json; server-version.json; provenance sanitized requests and receipts",
+  "productionTools": [
+    "PixelLab installed-extension protocol generate_image_pro_flash",
+    "Aseprite 1.3.18.6 batch Lua"
+  ],
+  "motionSequence": {
+    "opening": [
+      "laptop_arrive",
+      "laptop_opening",
+      "laptop_light"
+    ],
+    "openingTotalMs": 750,
+    "closing": "laptop_closing",
+    "closingTotalMs": 350,
+    "recipeSave": "recipe_tear_store",
+    "recipeSaveMs": 500,
+    "skip": "click/Enter jumps to exact final art; show actual internal controls only after laptop_light final frame"
+  },
+  "minimumRuntimeUi": {
+    "bodyTextAt720": 18,
+    "touchTargetPixels": 44,
+    "laptopCanvasAt720": [
+      960,
+      640
+    ],
+    "laptopContentAt720": [
+      640,
+      360
+    ],
+    "layout": "tabs/scroll/detail; do not shrink entire content",
+    "note": "art layout target only, Unity/UI runtime validation remains Claude responsibility"
+  },
+  "assets": [
+    {
+      "assetId": "button",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        96,
+        32
+      ],
+      "source": "assets/button/button.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/button/button.png",
+          "durationMs": null,
+          "sha256": "26efcbd3e0787de3b1d650c8fd39e5b7da9adf45af1afb9a5a0ae75791854a11"
+        }
+      ],
+      "framePaths": [
+        "assets/button/button.png"
+      ],
+      "contentRect": [
+        24,
+        10,
+        48,
+        12
+      ],
+      "bordersLTRB": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "bordersUnityLBRTop": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "pivotPixelsTopLeft": [
+        48.0,
+        16.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "neutral",
+      "stateGeometry": "unmarked"
+    },
+    {
+      "assetId": "button_available",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        96,
+        32
+      ],
+      "source": "assets/button_available/button_available.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/button_available/button_available.png",
+          "durationMs": null,
+          "sha256": "ac78c6f7e2c2be679dd4c78ea556e77a8a0e269b65081ad618181af546fc8c5c"
+        }
+      ],
+      "framePaths": [
+        "assets/button_available/button_available.png"
+      ],
+      "contentRect": [
+        24,
+        10,
+        48,
+        12
+      ],
+      "bordersLTRB": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "bordersUnityLBRTop": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "pivotPixelsTopLeft": [
+        48.0,
+        16.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "available",
+      "stateGeometry": "four corner ticks"
+    },
+    {
+      "assetId": "button_equipped",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        96,
+        32
+      ],
+      "source": "assets/button_equipped/button_equipped.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/button_equipped/button_equipped.png",
+          "durationMs": null,
+          "sha256": "fd5f28ddde55b885363b8e99c32ccc10ec557a3c0bb77fd46cbcc7d273adb253"
+        }
+      ],
+      "framePaths": [
+        "assets/button_equipped/button_equipped.png"
+      ],
+      "contentRect": [
+        24,
+        10,
+        48,
+        12
+      ],
+      "bordersLTRB": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "bordersUnityLBRTop": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "pivotPixelsTopLeft": [
+        48.0,
+        16.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "equipped",
+      "stateGeometry": "inset second outline and check"
+    },
+    {
+      "assetId": "button_locked",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        96,
+        32
+      ],
+      "source": "assets/button_locked/button_locked.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/button_locked/button_locked.png",
+          "durationMs": null,
+          "sha256": "0b8d0516b7f2d01ab5d8f555f1ec8ecbe82e1e074ff7317452174dcddc084949"
+        }
+      ],
+      "framePaths": [
+        "assets/button_locked/button_locked.png"
+      ],
+      "contentRect": [
+        24,
+        10,
+        48,
+        12
+      ],
+      "bordersLTRB": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "bordersUnityLBRTop": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "pivotPixelsTopLeft": [
+        48.0,
+        16.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "locked",
+      "stateGeometry": "padlock"
+    },
+    {
+      "assetId": "button_owned",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        96,
+        32
+      ],
+      "source": "assets/button_owned/button_owned.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/button_owned/button_owned.png",
+          "durationMs": null,
+          "sha256": "bbd170ab007c98a5070f76bc13ab9f1ec74fc52057deb10592842a36d5390e79"
+        }
+      ],
+      "framePaths": [
+        "assets/button_owned/button_owned.png"
+      ],
+      "contentRect": [
+        24,
+        10,
+        48,
+        12
+      ],
+      "bordersLTRB": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "bordersUnityLBRTop": [
+        24,
+        10,
+        24,
+        10
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "pivotPixelsTopLeft": [
+        48.0,
+        16.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "owned",
+      "stateGeometry": "check"
+    },
+    {
+      "assetId": "ingredient_card",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        128,
+        80
+      ],
+      "source": "assets/ingredient_card/ingredient_card.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/ingredient_card/ingredient_card.png",
+          "durationMs": null,
+          "sha256": "5c8d823d046b0ea28f3fcc14078bade32e451bf8ac92597959ae186630fc85f2"
+        }
+      ],
+      "framePaths": [
+        "assets/ingredient_card/ingredient_card.png"
+      ],
+      "contentRect": [
+        16,
+        16,
+        96,
+        48
+      ],
+      "bordersLTRB": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "bordersUnityLBRTop": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "pivotPixelsTopLeft": [
+        64.0,
+        40.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "assetId": "laptop_arrive",
+      "status": "ready",
+      "role": "motion_composite",
+      "nativeSize": [
+        384,
+        288
+      ],
+      "source": "assets/laptop_arrive/laptop_arrive.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/laptop_arrive/frames/laptop_arrive_00.png",
+          "durationMs": 50,
+          "sha256": "295bee2a9ba243b7ba9817fec63d1109f3e05740a49bce943d47fc427ab9b328"
+        },
+        {
+          "index": 1,
+          "path": "assets/laptop_arrive/frames/laptop_arrive_01.png",
+          "durationMs": 50,
+          "sha256": "4f7e22c64f7001c1809d0e0891cf8e1c6749d562341d7ea37cf7317592f2acfe"
+        },
+        {
+          "index": 2,
+          "path": "assets/laptop_arrive/frames/laptop_arrive_02.png",
+          "durationMs": 50,
+          "sha256": "a14833734f698305e6548c6495bc3b988cb1f3c8db2887d24a41f8a1e7d87640"
+        },
+        {
+          "index": 3,
+          "path": "assets/laptop_arrive/frames/laptop_arrive_03.png",
+          "durationMs": 50,
+          "sha256": "cd72dc2b51530146f70449c9f97707369af6f79a9f225f3b2a24b88d696127a6"
+        },
+        {
+          "index": 4,
+          "path": "assets/laptop_arrive/frames/laptop_arrive_04.png",
+          "durationMs": 50,
+          "sha256": "06582d4a57e919b13e5f45b0928b330247033484d9fb6b495a8aa85d29d0a3fa"
+        }
+      ],
+      "framePaths": [
+        "assets/laptop_arrive/frames/laptop_arrive_00.png",
+        "assets/laptop_arrive/frames/laptop_arrive_01.png",
+        "assets/laptop_arrive/frames/laptop_arrive_02.png",
+        "assets/laptop_arrive/frames/laptop_arrive_03.png",
+        "assets/laptop_arrive/frames/laptop_arrive_04.png"
+      ],
+      "contentRect": null,
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      },
+      "pivotPixelsTopLeft": [
+        192,
+        204
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.29166666666666663
+      ],
+      "totalDurationMs": 250,
+      "loop": false,
+      "holdFinal": true,
+      "previewGif": "preview/laptop_arrive.gif"
+    },
+    {
+      "assetId": "laptop_closed_matched",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        384,
+        256
+      ],
+      "source": "assets/laptop_closed_matched/laptop_closed_matched.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/laptop_closed_matched/laptop_closed_matched.png",
+          "durationMs": null,
+          "sha256": "0683043aa849ae48ed00d93214853596cbf50ef4ac2a62242afcefae97b11984"
+        }
+      ],
+      "framePaths": [
+        "assets/laptop_closed_matched/laptop_closed_matched.png"
+      ],
+      "contentRect": null,
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      },
+      "pivotPixelsTopLeft": [
+        192,
+        204
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.203125
+      ]
+    },
+    {
+      "assetId": "laptop_closing",
+      "status": "ready",
+      "role": "motion_composite",
+      "nativeSize": [
+        384,
+        256
+      ],
+      "source": "assets/laptop_closing/laptop_closing.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/laptop_closing/frames/laptop_closing_00.png",
+          "durationMs": 50,
+          "sha256": "b3de9d8e9b9143318e1a42075349610b26707ad3bad949bf002849e616aebc11"
+        },
+        {
+          "index": 1,
+          "path": "assets/laptop_closing/frames/laptop_closing_01.png",
+          "durationMs": 50,
+          "sha256": "619655bc43408b0158e62a50971e8afbb01073dbcaec9847849cabd98968c413"
+        },
+        {
+          "index": 2,
+          "path": "assets/laptop_closing/frames/laptop_closing_02.png",
+          "durationMs": 50,
+          "sha256": "6d3cfc831d477c8d9cf698ff169be6a8d361fc63e0a55286b302c3d1cbbdc2f3"
+        },
+        {
+          "index": 3,
+          "path": "assets/laptop_closing/frames/laptop_closing_03.png",
+          "durationMs": 50,
+          "sha256": "10225fbce0c17e852553290f8f0fffef548d03eaf452d2d4a246acffafe79cef"
+        },
+        {
+          "index": 4,
+          "path": "assets/laptop_closing/frames/laptop_closing_04.png",
+          "durationMs": 50,
+          "sha256": "3e849012db4dd6c10f1ae70d3c18979d433625724496847d1686c50e8eeb70a2"
+        },
+        {
+          "index": 5,
+          "path": "assets/laptop_closing/frames/laptop_closing_05.png",
+          "durationMs": 50,
+          "sha256": "dd41d07c6fc730a9e2e7aff2150a65d780387a4fc80bb134972a76fbacd1f5fe"
+        },
+        {
+          "index": 6,
+          "path": "assets/laptop_closing/frames/laptop_closing_06.png",
+          "durationMs": 50,
+          "sha256": "0683043aa849ae48ed00d93214853596cbf50ef4ac2a62242afcefae97b11984"
+        }
+      ],
+      "framePaths": [
+        "assets/laptop_closing/frames/laptop_closing_00.png",
+        "assets/laptop_closing/frames/laptop_closing_01.png",
+        "assets/laptop_closing/frames/laptop_closing_02.png",
+        "assets/laptop_closing/frames/laptop_closing_03.png",
+        "assets/laptop_closing/frames/laptop_closing_04.png",
+        "assets/laptop_closing/frames/laptop_closing_05.png",
+        "assets/laptop_closing/frames/laptop_closing_06.png"
+      ],
+      "contentRect": null,
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      },
+      "pivotPixelsTopLeft": [
+        192,
+        204
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.203125
+      ],
+      "totalDurationMs": 350,
+      "loop": false,
+      "holdFinal": true,
+      "previewGif": "preview/laptop_closing.gif"
+    },
+    {
+      "assetId": "laptop_light",
+      "status": "ready",
+      "role": "motion_composite",
+      "nativeSize": [
+        384,
+        256
+      ],
+      "source": "assets/laptop_light/laptop_light.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/laptop_light/frames/laptop_light_00.png",
+          "durationMs": 50,
+          "sha256": "e369a3fe90ac4184097c53693e2366c828c5399b4754e5185dec0933e397a1be"
+        },
+        {
+          "index": 1,
+          "path": "assets/laptop_light/frames/laptop_light_01.png",
+          "durationMs": 50,
+          "sha256": "9bd5ad2bcdd7af99448fe68d9a5a027efadd242018f5da1ca4f7f80340f9a186"
+        },
+        {
+          "index": 2,
+          "path": "assets/laptop_light/frames/laptop_light_02.png",
+          "durationMs": 50,
+          "sha256": "00ca137c083af7c8f474f479d861c9939f89155454e226a7f79e00cf31a0ede8"
+        }
+      ],
+      "framePaths": [
+        "assets/laptop_light/frames/laptop_light_00.png",
+        "assets/laptop_light/frames/laptop_light_01.png",
+        "assets/laptop_light/frames/laptop_light_02.png"
+      ],
+      "contentRect": null,
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      },
+      "pivotPixelsTopLeft": [
+        192,
+        204
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.203125
+      ],
+      "totalDurationMs": 150,
+      "loop": false,
+      "holdFinal": true,
+      "previewGif": "preview/laptop_light.gif"
+    },
+    {
+      "assetId": "laptop_open",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        384,
+        256
+      ],
+      "source": "assets/laptop_open/laptop_open.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/laptop_open/laptop_open.png",
+          "durationMs": null,
+          "sha256": "00ca137c083af7c8f474f479d861c9939f89155454e226a7f79e00cf31a0ede8"
+        }
+      ],
+      "framePaths": [
+        "assets/laptop_open/laptop_open.png"
+      ],
+      "contentRect": [
+        64,
+        36,
+        256,
+        144
+      ],
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      },
+      "pivotPixelsTopLeft": [
+        192,
+        204
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.203125
+      ]
+    },
+    {
+      "assetId": "laptop_opening",
+      "status": "ready",
+      "role": "motion_composite",
+      "nativeSize": [
+        384,
+        256
+      ],
+      "source": "assets/laptop_opening/laptop_opening.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/laptop_opening/frames/laptop_opening_00.png",
+          "durationMs": 50,
+          "sha256": "0683043aa849ae48ed00d93214853596cbf50ef4ac2a62242afcefae97b11984"
+        },
+        {
+          "index": 1,
+          "path": "assets/laptop_opening/frames/laptop_opening_01.png",
+          "durationMs": 50,
+          "sha256": "3e849012db4dd6c10f1ae70d3c18979d433625724496847d1686c50e8eeb70a2"
+        },
+        {
+          "index": 2,
+          "path": "assets/laptop_opening/frames/laptop_opening_02.png",
+          "durationMs": 50,
+          "sha256": "10225fbce0c17e852553290f8f0fffef548d03eaf452d2d4a246acffafe79cef"
+        },
+        {
+          "index": 3,
+          "path": "assets/laptop_opening/frames/laptop_opening_03.png",
+          "durationMs": 50,
+          "sha256": "6d3cfc831d477c8d9cf698ff169be6a8d361fc63e0a55286b302c3d1cbbdc2f3"
+        },
+        {
+          "index": 4,
+          "path": "assets/laptop_opening/frames/laptop_opening_04.png",
+          "durationMs": 50,
+          "sha256": "619655bc43408b0158e62a50971e8afbb01073dbcaec9847849cabd98968c413"
+        },
+        {
+          "index": 5,
+          "path": "assets/laptop_opening/frames/laptop_opening_05.png",
+          "durationMs": 50,
+          "sha256": "b3de9d8e9b9143318e1a42075349610b26707ad3bad949bf002849e616aebc11"
+        },
+        {
+          "index": 6,
+          "path": "assets/laptop_opening/frames/laptop_opening_06.png",
+          "durationMs": 50,
+          "sha256": "cdfba9dcb9289fe73e300cd1ca95fa4e8da23e1e83d76cef1d1842734daa320b"
+        }
+      ],
+      "framePaths": [
+        "assets/laptop_opening/frames/laptop_opening_00.png",
+        "assets/laptop_opening/frames/laptop_opening_01.png",
+        "assets/laptop_opening/frames/laptop_opening_02.png",
+        "assets/laptop_opening/frames/laptop_opening_03.png",
+        "assets/laptop_opening/frames/laptop_opening_04.png",
+        "assets/laptop_opening/frames/laptop_opening_05.png",
+        "assets/laptop_opening/frames/laptop_opening_06.png"
+      ],
+      "contentRect": null,
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      },
+      "pivotPixelsTopLeft": [
+        192,
+        204
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.203125
+      ],
+      "totalDurationMs": 350,
+      "loop": false,
+      "holdFinal": true,
+      "previewGif": "preview/laptop_opening.gif"
+    },
+    {
+      "assetId": "laptop_sequence",
+      "status": "ready",
+      "role": "motion_composite",
+      "nativeSize": [
+        384,
+        288
+      ],
+      "source": "assets/laptop_sequence/laptop_sequence.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_00.png",
+          "durationMs": 50,
+          "sha256": "295bee2a9ba243b7ba9817fec63d1109f3e05740a49bce943d47fc427ab9b328"
+        },
+        {
+          "index": 1,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_01.png",
+          "durationMs": 50,
+          "sha256": "4f7e22c64f7001c1809d0e0891cf8e1c6749d562341d7ea37cf7317592f2acfe"
+        },
+        {
+          "index": 2,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_02.png",
+          "durationMs": 50,
+          "sha256": "a14833734f698305e6548c6495bc3b988cb1f3c8db2887d24a41f8a1e7d87640"
+        },
+        {
+          "index": 3,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_03.png",
+          "durationMs": 50,
+          "sha256": "cd72dc2b51530146f70449c9f97707369af6f79a9f225f3b2a24b88d696127a6"
+        },
+        {
+          "index": 4,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_04.png",
+          "durationMs": 50,
+          "sha256": "06582d4a57e919b13e5f45b0928b330247033484d9fb6b495a8aa85d29d0a3fa"
+        },
+        {
+          "index": 5,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_05.png",
+          "durationMs": 50,
+          "sha256": "06582d4a57e919b13e5f45b0928b330247033484d9fb6b495a8aa85d29d0a3fa"
+        },
+        {
+          "index": 6,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_06.png",
+          "durationMs": 50,
+          "sha256": "ef645f57154b9b7842f11261c1667c327563881f28cfbf4f3f32e118100c9f58"
+        },
+        {
+          "index": 7,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_07.png",
+          "durationMs": 50,
+          "sha256": "eac4f52a5428279440882815e771a5e54c01935aa6c9d3199efedfed67613f78"
+        },
+        {
+          "index": 8,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_08.png",
+          "durationMs": 50,
+          "sha256": "f9656d789af288410f883ca0b7a5b865e7a33dd782b44a9abc8895548f8024bc"
+        },
+        {
+          "index": 9,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_09.png",
+          "durationMs": 50,
+          "sha256": "90e8d388aba8c62def0cb5f382586606d5160e250a282b02e39be4cec0e57e82"
+        },
+        {
+          "index": 10,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_10.png",
+          "durationMs": 50,
+          "sha256": "e9216ffbc9953356c88ad66cc097e8069189838a98961324a3a68521c25990ba"
+        },
+        {
+          "index": 11,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_11.png",
+          "durationMs": 50,
+          "sha256": "e678d963cd91b819add3a456dd5fd8adcd85a121cb1a5b92a12923cba73ab776"
+        },
+        {
+          "index": 12,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_12.png",
+          "durationMs": 50,
+          "sha256": "5012e727bf03ca49f60b5540e1fb77211736b73c3ca781d15d0a8ae6a1ff219b"
+        },
+        {
+          "index": 13,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_13.png",
+          "durationMs": 50,
+          "sha256": "e6e2f43cb3376d216b89eb8ba9fe844e3b75107ba580daa4c4167e5d996276a7"
+        },
+        {
+          "index": 14,
+          "path": "assets/laptop_sequence/frames/laptop_sequence_14.png",
+          "durationMs": 50,
+          "sha256": "1e19ecac3b10da7f0425833bbaade505502c213594c626471f09d8d610121e47"
+        }
+      ],
+      "framePaths": [
+        "assets/laptop_sequence/frames/laptop_sequence_00.png",
+        "assets/laptop_sequence/frames/laptop_sequence_01.png",
+        "assets/laptop_sequence/frames/laptop_sequence_02.png",
+        "assets/laptop_sequence/frames/laptop_sequence_03.png",
+        "assets/laptop_sequence/frames/laptop_sequence_04.png",
+        "assets/laptop_sequence/frames/laptop_sequence_05.png",
+        "assets/laptop_sequence/frames/laptop_sequence_06.png",
+        "assets/laptop_sequence/frames/laptop_sequence_07.png",
+        "assets/laptop_sequence/frames/laptop_sequence_08.png",
+        "assets/laptop_sequence/frames/laptop_sequence_09.png",
+        "assets/laptop_sequence/frames/laptop_sequence_10.png",
+        "assets/laptop_sequence/frames/laptop_sequence_11.png",
+        "assets/laptop_sequence/frames/laptop_sequence_12.png",
+        "assets/laptop_sequence/frames/laptop_sequence_13.png",
+        "assets/laptop_sequence/frames/laptop_sequence_14.png"
+      ],
+      "contentRect": null,
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "common pixels-per-unit and hinge pivot across clips; never stretch each canvas to same rect",
+      "anchors": {
+        "hinge": [
+          192,
+          204
+        ],
+        "tableContact": [
+          192,
+          252
+        ],
+        "screenRect": [
+          56,
+          28,
+          268,
+          160
+        ]
+      },
+      "pivotPixelsTopLeft": [
+        192,
+        204
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.29166666666666663
+      ],
+      "totalDurationMs": 750,
+      "loop": false,
+      "holdFinal": true,
+      "previewGif": "preview/laptop_sequence.gif"
+    },
+    {
+      "assetId": "receipt",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        128,
+        192
+      ],
+      "source": "assets/receipt/receipt.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/receipt/receipt.png",
+          "durationMs": null,
+          "sha256": "1388a1206dcb529851414ee5d267109c396d44224ff2991033f0a176c7e19edd"
+        }
+      ],
+      "framePaths": [
+        "assets/receipt/receipt.png"
+      ],
+      "contentRect": [
+        16,
+        20,
+        96,
+        152
+      ],
+      "bordersLTRB": [
+        12,
+        20,
+        12,
+        20
+      ],
+      "bordersUnityLBRTop": [
+        12,
+        20,
+        12,
+        20
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "pivotPixelsTopLeft": [
+        64.0,
+        96.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "assetId": "recipe_storage",
+      "status": "ready",
+      "role": "decorative_storage_box",
+      "nativeSize": [
+        160,
+        112
+      ],
+      "source": "assets/recipe_storage/recipe_storage.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/recipe_storage/recipe_storage.png",
+          "durationMs": null,
+          "sha256": "6e0382e4a344b8fa023ea3ae2bafd9e621cbecc471fb8a038ab2f275cc70e722"
+        }
+      ],
+      "framePaths": [
+        "assets/recipe_storage/recipe_storage.png"
+      ],
+      "contentRect": null,
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "uniform nearest; do not independently stretch width/height",
+      "pivotPixelsTopLeft": [
+        80.0,
+        56.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "slot": [
+          104,
+          46
+        ]
+      }
+    },
+    {
+      "assetId": "recipe_tear_store",
+      "status": "ready",
+      "role": "decorative_success_motion",
+      "nativeSize": [
+        512,
+        224
+      ],
+      "source": "assets/recipe_tear_store/recipe_tear_store.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/recipe_tear_store/frames/recipe_tear_store_00.png",
+          "durationMs": 50,
+          "sha256": "272c585766a11ec3c1458e2fc9900b3ab625ae1e6a5058069056b56159988677"
+        },
+        {
+          "index": 1,
+          "path": "assets/recipe_tear_store/frames/recipe_tear_store_01.png",
+          "durationMs": 50,
+          "sha256": "052d8ae9d0657533bf6e3af636b64c0aca3c9f63fa1ed1d9ffde655def653893"
+        },
+        {
+          "index": 2,
+          "path": "assets/recipe_tear_store/frames/recipe_tear_store_02.png",
+          "durationMs": 50,
+          "sha256": "718d40ad4c0b802d747414e0c56b2ed91aca2e3ddbd9dc4ea4191391eea2b466"
+        },
+        {
+          "index": 3,
+          "path": "assets/recipe_tear_store/frames/recipe_tear_store_03.png",
+          "durationMs": 50,
+          "sha256": "32260a12f1778fce4b36a68a640afd39d9441a08dc7cb19498a3a159d5c33fd7"
+        },
+        {
+          "index": 4,
+          "path": "assets/recipe_tear_store/frames/recipe_tear_store_04.png",
+          "durationMs": 50,
+          "sha256": "aed07d143e24e77b2d1d830e7e4f67c11f7f004e864eadd0e7ff96c118afbfc6"
+        },
+        {
+          "index": 5,
+          "path": "assets/recipe_tear_store/frames/recipe_tear_store_05.png",
+          "durationMs": 50,
+          "sha256": "1c7a72b26afb61d8447aa2d523eca80d55f97a92649be8456541b7d4e4451636"
+        },
+        {
+          "index": 6,
+          "path": "assets/recipe_tear_store/frames/recipe_tear_store_06.png",
+          "durationMs": 50,
+          "sha256": "85ed94f618983966b687b5aa959d90c66399d396eea79bf4a348d646f3394277"
+        },
+        {
+          "index": 7,
+          "path": "assets/recipe_tear_store/frames/recipe_tear_store_07.png",
+          "durationMs": 50,
+          "sha256": "3eb2c3761dc0846e536c7718416db5466d110c446d4daaf6a939951817ef4cbf"
+        },
+        {
+          "index": 8,
+          "path": "assets/recipe_tear_store/frames/recipe_tear_store_08.png",
+          "durationMs": 50,
+          "sha256": "dea3a514fa5d9713c5d288d20a2f4920a2da7e1a4cc30062c6dc3756f073e8cd"
+        },
+        {
+          "index": 9,
+          "path": "assets/recipe_tear_store/frames/recipe_tear_store_09.png",
+          "durationMs": 50,
+          "sha256": "dea3a514fa5d9713c5d288d20a2f4920a2da7e1a4cc30062c6dc3756f073e8cd"
+        }
+      ],
+      "framePaths": [
+        "assets/recipe_tear_store/frames/recipe_tear_store_00.png",
+        "assets/recipe_tear_store/frames/recipe_tear_store_01.png",
+        "assets/recipe_tear_store/frames/recipe_tear_store_02.png",
+        "assets/recipe_tear_store/frames/recipe_tear_store_03.png",
+        "assets/recipe_tear_store/frames/recipe_tear_store_04.png",
+        "assets/recipe_tear_store/frames/recipe_tear_store_05.png",
+        "assets/recipe_tear_store/frames/recipe_tear_store_06.png",
+        "assets/recipe_tear_store/frames/recipe_tear_store_07.png",
+        "assets/recipe_tear_store/frames/recipe_tear_store_08.png",
+        "assets/recipe_tear_store/frames/recipe_tear_store_09.png"
+      ],
+      "contentRect": null,
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "uniform nearest; do not independently stretch width/height",
+      "pivotPixelsTopLeft": [
+        256.0,
+        112.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "totalDurationMs": 500,
+      "loop": false,
+      "holdFinal": true,
+      "previewGif": "preview/recipe_tear_store.gif",
+      "transactionTrigger": "play only after successful recipe save; never creates or consumes items",
+      "notebookOrigin": [
+        8,
+        40
+      ],
+      "boxOrigin": [
+        336,
+        108
+      ],
+      "permanentRecipeAsset": "torn_recipe",
+      "paperSourceSize": [
+        172,
+        128
+      ],
+      "paperSourceContentRect": [
+        10,
+        20,
+        152,
+        96
+      ],
+      "paperTextOverlay": "optional actual UI; apply each frame transform and front occlusion; no baked glyphs",
+      "paperTransforms": [
+        {
+          "index": 0,
+          "translationPixels": [
+            18,
+            64
+          ],
+          "scaleXY": [
+            1.0,
+            1.0
+          ],
+          "renderSize": [
+            172,
+            128
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            28.0,
+            84.0,
+            152.0,
+            96.0
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 1,
+          "translationPixels": [
+            30,
+            48
+          ],
+          "scaleXY": [
+            0.9767441860465116,
+            0.9765625
+          ],
+          "renderSize": [
+            168,
+            125
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            39.76744186046511,
+            67.53125,
+            148.46511627906978,
+            93.75
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 2,
+          "translationPixels": [
+            62,
+            34
+          ],
+          "scaleXY": [
+            0.9186046511627907,
+            0.921875
+          ],
+          "renderSize": [
+            158,
+            118
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            71.18604651162791,
+            52.4375,
+            139.62790697674419,
+            88.5
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 3,
+          "translationPixels": [
+            109,
+            25
+          ],
+          "scaleXY": [
+            0.8313953488372093,
+            0.8359375
+          ],
+          "renderSize": [
+            143,
+            107
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            117.31395348837209,
+            41.71875,
+            126.37209302325581,
+            80.25
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 4,
+          "translationPixels": [
+            164,
+            20
+          ],
+          "scaleXY": [
+            0.7325581395348837,
+            0.734375
+          ],
+          "renderSize": [
+            126,
+            94
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            171.32558139534885,
+            34.6875,
+            111.34883720930233,
+            70.5
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 5,
+          "translationPixels": [
+            223,
+            22
+          ],
+          "scaleXY": [
+            0.627906976744186,
+            0.625
+          ],
+          "renderSize": [
+            108,
+            80
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            229.27906976744185,
+            34.5,
+            95.44186046511628,
+            60.0
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 6,
+          "translationPixels": [
+            278,
+            31
+          ],
+          "scaleXY": [
+            0.5232558139534884,
+            0.5234375
+          ],
+          "renderSize": [
+            90,
+            67
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            283.2325581395349,
+            41.46875,
+            79.53488372093024,
+            50.25
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            224
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 7,
+          "translationPixels": [
+            370,
+            94
+          ],
+          "scaleXY": [
+            0.4418604651162791,
+            0.4375
+          ],
+          "renderSize": [
+            76,
+            56
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            374.4186046511628,
+            102.75,
+            67.16279069767442,
+            42.0
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            154
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 8,
+          "translationPixels": [
+            374,
+            130
+          ],
+          "scaleXY": [
+            0.38372093023255816,
+            0.3828125
+          ],
+          "renderSize": [
+            66,
+            49
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            377.83720930232556,
+            137.65625,
+            58.325581395348834,
+            36.75
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            154
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": true
+        },
+        {
+          "index": 9,
+          "translationPixels": [
+            376,
+            156
+          ],
+          "scaleXY": [
+            0.36046511627906974,
+            0.359375
+          ],
+          "renderSize": [
+            62,
+            46
+          ],
+          "sourceContentRect": [
+            10,
+            20,
+            152,
+            96
+          ],
+          "contentRectOnFrame": [
+            379.6046511627907,
+            163.1875,
+            54.7906976744186,
+            34.5
+          ],
+          "preBoxClipRect": [
+            0,
+            0,
+            512,
+            154
+          ],
+          "occlusionForeground": "recipe_storage at (336,108); front threshold y154; final paper fully occluded",
+          "textVisible": false
+        }
+      ]
+    },
+    {
+      "assetId": "spring_notebook",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        192,
+        160
+      ],
+      "source": "assets/spring_notebook/spring_notebook.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/spring_notebook/spring_notebook.png",
+          "durationMs": null,
+          "sha256": "6a428cfd81ec22be00960e2f88aa8639e579134a5cdb7e836a8bcdb6e9298398"
+        }
+      ],
+      "framePaths": [
+        "assets/spring_notebook/spring_notebook.png"
+      ],
+      "contentRect": [
+        20,
+        44,
+        152,
+        96
+      ],
+      "bordersLTRB": [
+        20,
+        20,
+        20,
+        44
+      ],
+      "bordersUnityLBRTop": [
+        20,
+        44,
+        20,
+        20
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "uniform nearest; preserve discrete spiral rings; borders describe paper safe insets only, do not stretch binding",
+      "pivotPixelsTopLeft": [
+        96.0,
+        80.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "assetId": "staff_card",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        160,
+        112
+      ],
+      "source": "assets/staff_card/staff_card.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/staff_card/staff_card.png",
+          "durationMs": null,
+          "sha256": "7c9dac8996c78c233fe88e73f54e2e770fae68c4fadb193fc2c6609bbbdb1db3"
+        }
+      ],
+      "framePaths": [
+        "assets/staff_card/staff_card.png"
+      ],
+      "contentRect": [
+        62,
+        24,
+        72,
+        64
+      ],
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "uniform nearest; left portrait and right text are separate actual UI regions",
+      "portraitRect": [
+        18,
+        27,
+        28,
+        34
+      ],
+      "pivotPixelsTopLeft": [
+        80.0,
+        56.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "neutral",
+      "stateGeometry": "unmarked"
+    },
+    {
+      "assetId": "staff_card_available",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        160,
+        112
+      ],
+      "source": "assets/staff_card_available/staff_card_available.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/staff_card_available/staff_card_available.png",
+          "durationMs": null,
+          "sha256": "71ffaa5d9aeba36bbfd60b849ebbbd20eba77ca7e61b47d83f9554e048bbdbd9"
+        }
+      ],
+      "framePaths": [
+        "assets/staff_card_available/staff_card_available.png"
+      ],
+      "contentRect": [
+        62,
+        24,
+        72,
+        64
+      ],
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "uniform nearest; left portrait and right text are separate actual UI regions",
+      "portraitRect": [
+        18,
+        27,
+        28,
+        34
+      ],
+      "pivotPixelsTopLeft": [
+        80.0,
+        56.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "available",
+      "stateGeometry": "four corner ticks"
+    },
+    {
+      "assetId": "staff_card_equipped",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        160,
+        112
+      ],
+      "source": "assets/staff_card_equipped/staff_card_equipped.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/staff_card_equipped/staff_card_equipped.png",
+          "durationMs": null,
+          "sha256": "1a23f7107d94068ad8bbe569fa773b418a5f0b6af66418cf71b258dd0d5e4f42"
+        }
+      ],
+      "framePaths": [
+        "assets/staff_card_equipped/staff_card_equipped.png"
+      ],
+      "contentRect": [
+        62,
+        24,
+        72,
+        64
+      ],
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "uniform nearest; left portrait and right text are separate actual UI regions",
+      "portraitRect": [
+        18,
+        27,
+        28,
+        34
+      ],
+      "pivotPixelsTopLeft": [
+        80.0,
+        56.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "equipped",
+      "stateGeometry": "inset second outline and check"
+    },
+    {
+      "assetId": "staff_card_locked",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        160,
+        112
+      ],
+      "source": "assets/staff_card_locked/staff_card_locked.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/staff_card_locked/staff_card_locked.png",
+          "durationMs": null,
+          "sha256": "d34f015a2acbd27021078962e8f0df11ba245d6ef9956c3644a4fe87ea3879ab"
+        }
+      ],
+      "framePaths": [
+        "assets/staff_card_locked/staff_card_locked.png"
+      ],
+      "contentRect": [
+        62,
+        24,
+        72,
+        64
+      ],
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "uniform nearest; left portrait and right text are separate actual UI regions",
+      "portraitRect": [
+        18,
+        27,
+        28,
+        34
+      ],
+      "pivotPixelsTopLeft": [
+        80.0,
+        56.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "locked",
+      "stateGeometry": "padlock"
+    },
+    {
+      "assetId": "staff_card_owned",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        160,
+        112
+      ],
+      "source": "assets/staff_card_owned/staff_card_owned.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/staff_card_owned/staff_card_owned.png",
+          "durationMs": null,
+          "sha256": "b92c16717073b4f94c5a3551347eba766a1e33600c5a358386956f5a208ab008"
+        }
+      ],
+      "framePaths": [
+        "assets/staff_card_owned/staff_card_owned.png"
+      ],
+      "contentRect": [
+        62,
+        24,
+        72,
+        64
+      ],
+      "bordersLTRB": null,
+      "bordersUnityLBRTop": null,
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "uniform nearest; left portrait and right text are separate actual UI regions",
+      "portraitRect": [
+        18,
+        27,
+        28,
+        34
+      ],
+      "pivotPixelsTopLeft": [
+        80.0,
+        56.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "owned",
+      "stateGeometry": "check"
+    },
+    {
+      "assetId": "torn_recipe",
+      "status": "ready",
+      "role": "permanent_recipe_card",
+      "nativeSize": [
+        172,
+        128
+      ],
+      "source": "assets/torn_recipe/torn_recipe.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/torn_recipe/torn_recipe.png",
+          "durationMs": null,
+          "sha256": "99d9f3b232e2a66590d7081108e5892a9ea1d4f961b709cf48df9f8c75c5b6ac"
+        }
+      ],
+      "framePaths": [
+        "assets/torn_recipe/torn_recipe.png"
+      ],
+      "contentRect": [
+        10,
+        20,
+        152,
+        96
+      ],
+      "bordersLTRB": [
+        10,
+        12,
+        10,
+        16
+      ],
+      "bordersUnityLBRTop": [
+        10,
+        16,
+        10,
+        12
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "pivotPixelsTopLeft": [
+        86.0,
+        64.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "description": "Stored recipe list/reuse/edit/share card; independent of decorative success motion"
+    },
+    {
+      "assetId": "tree_node",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        64,
+        64
+      ],
+      "source": "assets/tree_node/tree_node.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/tree_node/tree_node.png",
+          "durationMs": null,
+          "sha256": "42e5115d459412c8a2acdf5413e9e93a3fd3e98782189f5248dbf23476214768"
+        }
+      ],
+      "framePaths": [
+        "assets/tree_node/tree_node.png"
+      ],
+      "contentRect": [
+        16,
+        22,
+        32,
+        26
+      ],
+      "bordersLTRB": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "bordersUnityLBRTop": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "labelPlacement": "actual UI outside the icon contentRect; full effects/cost in details panel",
+      "pivotPixelsTopLeft": [
+        32.0,
+        32.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "neutral",
+      "stateGeometry": "unmarked"
+    },
+    {
+      "assetId": "tree_node_available",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        64,
+        64
+      ],
+      "source": "assets/tree_node_available/tree_node_available.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/tree_node_available/tree_node_available.png",
+          "durationMs": null,
+          "sha256": "981b21c69c018fea2cf640e8c120b3f2a76e4cb45fbe549ed8da21a810808a69"
+        }
+      ],
+      "framePaths": [
+        "assets/tree_node_available/tree_node_available.png"
+      ],
+      "contentRect": [
+        16,
+        22,
+        32,
+        26
+      ],
+      "bordersLTRB": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "bordersUnityLBRTop": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "labelPlacement": "actual UI outside the icon contentRect; full effects/cost in details panel",
+      "pivotPixelsTopLeft": [
+        32.0,
+        32.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "available",
+      "stateGeometry": "four corner ticks"
+    },
+    {
+      "assetId": "tree_node_equipped",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        64,
+        64
+      ],
+      "source": "assets/tree_node_equipped/tree_node_equipped.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/tree_node_equipped/tree_node_equipped.png",
+          "durationMs": null,
+          "sha256": "7d1d22ddfbbbc0249b78e56d218b089515d3c5b78e9a802b3578fd442358f790"
+        }
+      ],
+      "framePaths": [
+        "assets/tree_node_equipped/tree_node_equipped.png"
+      ],
+      "contentRect": [
+        16,
+        22,
+        32,
+        26
+      ],
+      "bordersLTRB": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "bordersUnityLBRTop": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "labelPlacement": "actual UI outside the icon contentRect; full effects/cost in details panel",
+      "pivotPixelsTopLeft": [
+        32.0,
+        32.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "equipped",
+      "stateGeometry": "inset second outline and check"
+    },
+    {
+      "assetId": "tree_node_locked",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        64,
+        64
+      ],
+      "source": "assets/tree_node_locked/tree_node_locked.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/tree_node_locked/tree_node_locked.png",
+          "durationMs": null,
+          "sha256": "ac137881fa7672423f85dd62229f12e9afb5db74290274773af8cd9b89621a16"
+        }
+      ],
+      "framePaths": [
+        "assets/tree_node_locked/tree_node_locked.png"
+      ],
+      "contentRect": [
+        16,
+        22,
+        32,
+        26
+      ],
+      "bordersLTRB": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "bordersUnityLBRTop": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "labelPlacement": "actual UI outside the icon contentRect; full effects/cost in details panel",
+      "pivotPixelsTopLeft": [
+        32.0,
+        32.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "locked",
+      "stateGeometry": "padlock"
+    },
+    {
+      "assetId": "tree_node_owned",
+      "status": "ready",
+      "role": "ui_art",
+      "nativeSize": [
+        64,
+        64
+      ],
+      "source": "assets/tree_node_owned/tree_node_owned.aseprite",
+      "frames": [
+        {
+          "index": 0,
+          "path": "assets/tree_node_owned/tree_node_owned.png",
+          "durationMs": null,
+          "sha256": "8c448f00ebb8af07e9ee6a7c04ab463b64aca5a536721e74075cd3a36cbb85f3"
+        }
+      ],
+      "framePaths": [
+        "assets/tree_node_owned/tree_node_owned.png"
+      ],
+      "contentRect": [
+        16,
+        22,
+        32,
+        26
+      ],
+      "bordersLTRB": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "bordersUnityLBRTop": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "textBaked": false,
+      "integrationAllowed": false,
+      "awaiting": "root art acceptance and manufacturing physics gate",
+      "scaling": "9slice; fixed corners, stretch centre",
+      "labelPlacement": "actual UI outside the icon contentRect; full effects/cost in details panel",
+      "pivotPixelsTopLeft": [
+        32.0,
+        32.0
+      ],
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "state": "owned",
+      "stateGeometry": "check"
+    }
+  ],
+  "sourceOnlyExcluded": [
+    "source-candidates/laptop_closed",
+    "provenance/laptop_closed.raw.png",
+    "aseprite-access-probe.aseprite"
+  ],
+  "qa": "qa/verification.json"
+}

@@ -1,0 +1,3032 @@
+{
+  "specVersion": "source-vessels-2026-10-19",
+  "scope": "six_existing_source_bottle_separations",
+  "status": "ready",
+  "coordinateOrigin": "top_left pixels; bboxes left,top,right,bottom exclusive; rects x,y,width,height",
+  "pointFilter": true,
+  "pixelsPerUnit": 128,
+  "mipmaps": false,
+  "compression": "none",
+  "alpha": "binary RGBA for deliverables; preview boundary rows may use fractional alpha",
+  "assetCount": 6,
+  "runtimePngCount": 30,
+  "nativeCount": 6,
+  "assets": [
+    {
+      "assetId": "dl_bottle_gin",
+      "maskAssetId": "dl_bottle_gin_mask",
+      "status": "ready",
+      "size": [
+        24,
+        56
+      ],
+      "files": {
+        "empty": "dl_bottle_gin_empty.png",
+        "mask": "dl_bottle_gin_mask.png",
+        "visible_mask": "dl_bottle_gin_visible_mask.png",
+        "open_empty": "dl_bottle_gin_open_empty.png",
+        "cap": "dl_bottle_gin_cap.png",
+        "aseprite": "dl_bottle_gin.aseprite"
+      },
+      "sha256": {
+        "empty": "afe1625f33d8c29250673c57fed901aff52ba4a6df8cc375b8c6c78a9dae2c3e",
+        "mask": "e3459ac4da26982cae79ca0f1da20cbaa658ea062e32196a5bdda529499dc70c",
+        "visible_mask": "a3845e0d8a8eb877a018946e190ebbdb34956e3dc0973c36fa6fe186d0c06f98",
+        "open_empty": "9178827731f3e3e7d0d46aa51bcecd1372b40ba3992c0695431e991de94c45e6",
+        "cap": "8153b84d4112507833b9aef1ebacdf204b7601a88c71cdb4fbddea9a19fa86ae",
+        "aseprite": "dd66e47335450a4e540a164873572e12d923964c9374a39d770918312030ad8b"
+      },
+      "sourcePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_gin.png",
+      "sourceSHA256": "261f50d27d400c6492c5eae1c5467a137a7972bbe06b051c0b10fdcc1e2f3858",
+      "foregroundAlphaBounds": [
+        4,
+        2,
+        20,
+        54
+      ],
+      "interiorMaskBBox": [
+        6,
+        10,
+        18,
+        51
+      ],
+      "labelPreserveRect": [
+        7,
+        24,
+        12,
+        20
+      ],
+      "capYRange": [
+        2,
+        10
+      ],
+      "anchors": {
+        "mouth": [
+          12.5,
+          10
+        ],
+        "pourLip": [
+          15,
+          10
+        ],
+        "pourLipRight": [
+          15,
+          10
+        ],
+        "rotationAxis": [
+          12,
+          28
+        ],
+        "grip": [
+          12,
+          28
+        ],
+        "capTop": [
+          12.0,
+          2
+        ],
+        "mouthApertureEndpoints": [
+          [
+            10,
+            10
+          ],
+          [
+            15,
+            10
+          ]
+        ]
+      },
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "profile": {
+        "origin": "top_left",
+        "rows": [
+          {
+            "y": 10,
+            "left": 10,
+            "rightExclusive": 15,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 1.0
+          },
+          {
+            "y": 11,
+            "left": 10,
+            "rightExclusive": 15,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.994921795653057
+          },
+          {
+            "y": 12,
+            "left": 10,
+            "rightExclusive": 15,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.9898435913061142
+          },
+          {
+            "y": 13,
+            "left": 10,
+            "rightExclusive": 15,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.9847653869591713
+          },
+          {
+            "y": 14,
+            "left": 10,
+            "rightExclusive": 15,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.9796871826122283
+          },
+          {
+            "y": 15,
+            "left": 10,
+            "rightExclusive": 15,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.9746089782652854
+          },
+          {
+            "y": 16,
+            "left": 9,
+            "rightExclusive": 16,
+            "widthPixels": 7,
+            "axisymmetricAreaProxy": 49,
+            "cumulativeCapacityFromBottomNormalized": 0.9695307739183425
+          },
+          {
+            "y": 17,
+            "left": 8,
+            "rightExclusive": 17,
+            "widthPixels": 9,
+            "axisymmetricAreaProxy": 81,
+            "cumulativeCapacityFromBottomNormalized": 0.9595774933983343
+          },
+          {
+            "y": 18,
+            "left": 7,
+            "rightExclusive": 18,
+            "widthPixels": 11,
+            "axisymmetricAreaProxy": 121,
+            "cumulativeCapacityFromBottomNormalized": 0.9431241113142392
+          },
+          {
+            "y": 19,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.9185456022750356
+          },
+          {
+            "y": 20,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.8892951452366443
+          },
+          {
+            "y": 21,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.8600446881982531
+          },
+          {
+            "y": 22,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.8307942311598618
+          },
+          {
+            "y": 23,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.8015437741214706
+          },
+          {
+            "y": 24,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.7722933170830795
+          },
+          {
+            "y": 25,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.7430428600446882
+          },
+          {
+            "y": 26,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.713792403006297
+          },
+          {
+            "y": 27,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.6845419459679057
+          },
+          {
+            "y": 28,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.6552914889295145
+          },
+          {
+            "y": 29,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.6260410318911233
+          },
+          {
+            "y": 30,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.5967905748527321
+          },
+          {
+            "y": 31,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.5675401178143409
+          },
+          {
+            "y": 32,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.5382896607759496
+          },
+          {
+            "y": 33,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.5090392037375584
+          },
+          {
+            "y": 34,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.47978874669916716
+          },
+          {
+            "y": 35,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.45053828966077597
+          },
+          {
+            "y": 36,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.42128783262238473
+          },
+          {
+            "y": 37,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.3920373755839935
+          },
+          {
+            "y": 38,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.3627869185456023
+          },
+          {
+            "y": 39,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.33353646150721106
+          },
+          {
+            "y": 40,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.3042860044688198
+          },
+          {
+            "y": 41,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.2750355474304286
+          },
+          {
+            "y": 42,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.2457850903920374
+          },
+          {
+            "y": 43,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.21653463335364614
+          },
+          {
+            "y": 44,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.18728417631525493
+          },
+          {
+            "y": 45,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.1580337192768637
+          },
+          {
+            "y": 46,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.12878326223847247
+          },
+          {
+            "y": 47,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.09953280520008125
+          },
+          {
+            "y": 48,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.07028234816169003
+          },
+          {
+            "y": 49,
+            "left": 6,
+            "rightExclusive": 17,
+            "widthPixels": 11,
+            "axisymmetricAreaProxy": 121,
+            "cumulativeCapacityFromBottomNormalized": 0.0410318911232988
+          },
+          {
+            "y": 50,
+            "left": 7,
+            "rightExclusive": 16,
+            "widthPixels": 9,
+            "axisymmetricAreaProxy": 81,
+            "cumulativeCapacityFromBottomNormalized": 0.016453382084095063
+          }
+        ],
+        "geometry": "2D silhouette-derived axisymmetric width-squared proxy; no measured 3D calibration",
+        "capacityMl": null,
+        "physicalMaskIncludesUnderLabel": true,
+        "visibleMaskForVolume": false,
+        "runtimeInstruction": "cache profile; compute gravity-horizontal clipping after rotation and conserve actual volume; do not rotate a prefilled liquid texture"
+      },
+      "layers": "dynamic liquid clipped by physical mask, open_empty foreground, cap (hide while pouring)",
+      "integrated": false,
+      "gameVerified": false
+    },
+    {
+      "assetId": "dl_bottle_rum",
+      "maskAssetId": "dl_bottle_rum_mask",
+      "status": "ready",
+      "size": [
+        24,
+        56
+      ],
+      "files": {
+        "empty": "dl_bottle_rum_empty.png",
+        "mask": "dl_bottle_rum_mask.png",
+        "visible_mask": "dl_bottle_rum_visible_mask.png",
+        "open_empty": "dl_bottle_rum_open_empty.png",
+        "cap": "dl_bottle_rum_cap.png",
+        "aseprite": "dl_bottle_rum.aseprite"
+      },
+      "sha256": {
+        "empty": "45340cbbb4c873c38f6fcc65cebc247b458f91f321b6653b78d36db3a055a9b9",
+        "mask": "d4faa58dcb07d0c5eb96f74d27d32c15403be7e30396db985c1ffb812deef9d4",
+        "visible_mask": "847cc62b7936d5a2d2a43a3a49370741efca0e1b5f85bed5e01488dc6eefe183",
+        "open_empty": "3cef5a0bf4765e0ac71b914927b709d8aea1b70217e8373c7c17b30bf91e88bc",
+        "cap": "7e8670f10a33f0a3402abe9da6b8309f7856da545302134e1d02a308cbf8bd08",
+        "aseprite": "695fc7ddd8894343d74f8e6f43f995c172e03fdbc9178781172cf483d4200e79"
+      },
+      "sourcePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_rum.png",
+      "sourceSHA256": "849f60721102d911c41737dd020cef07d48443dca6dec4d8ea85aab181507bbe",
+      "foregroundAlphaBounds": [
+        2,
+        6,
+        22,
+        49
+      ],
+      "interiorMaskBBox": [
+        4,
+        15,
+        20,
+        46
+      ],
+      "labelPreserveRect": [
+        4,
+        26,
+        11,
+        17
+      ],
+      "capYRange": [
+        6,
+        15
+      ],
+      "anchors": {
+        "mouth": [
+          12.5,
+          15
+        ],
+        "pourLip": [
+          14,
+          15
+        ],
+        "pourLipRight": [
+          14,
+          15
+        ],
+        "rotationAxis": [
+          12,
+          28
+        ],
+        "grip": [
+          12,
+          28
+        ],
+        "capTop": [
+          12.0,
+          6
+        ],
+        "mouthApertureEndpoints": [
+          [
+            11,
+            15
+          ],
+          [
+            14,
+            15
+          ]
+        ]
+      },
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "profile": {
+        "origin": "top_left",
+        "rows": [
+          {
+            "y": 15,
+            "left": 11,
+            "rightExclusive": 14,
+            "widthPixels": 3,
+            "axisymmetricAreaProxy": 9,
+            "cumulativeCapacityFromBottomNormalized": 1.0
+          },
+          {
+            "y": 16,
+            "left": 11,
+            "rightExclusive": 14,
+            "widthPixels": 3,
+            "axisymmetricAreaProxy": 9,
+            "cumulativeCapacityFromBottomNormalized": 0.998472245798676
+          },
+          {
+            "y": 17,
+            "left": 11,
+            "rightExclusive": 14,
+            "widthPixels": 3,
+            "axisymmetricAreaProxy": 9,
+            "cumulativeCapacityFromBottomNormalized": 0.9969444915973519
+          },
+          {
+            "y": 18,
+            "left": 10,
+            "rightExclusive": 15,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.9954167373960279
+          },
+          {
+            "y": 19,
+            "left": 9,
+            "rightExclusive": 17,
+            "widthPixels": 8,
+            "axisymmetricAreaProxy": 64,
+            "cumulativeCapacityFromBottomNormalized": 0.9911729757256832
+          },
+          {
+            "y": 20,
+            "left": 8,
+            "rightExclusive": 18,
+            "widthPixels": 10,
+            "axisymmetricAreaProxy": 100,
+            "cumulativeCapacityFromBottomNormalized": 0.980308945849601
+          },
+          {
+            "y": 21,
+            "left": 6,
+            "rightExclusive": 19,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.9633338991682228
+          },
+          {
+            "y": 22,
+            "left": 5,
+            "rightExclusive": 20,
+            "widthPixels": 15,
+            "axisymmetricAreaProxy": 225,
+            "cumulativeCapacityFromBottomNormalized": 0.9346460702766932
+          },
+          {
+            "y": 23,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.8964522152435919
+          },
+          {
+            "y": 24,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.8529960957392633
+          },
+          {
+            "y": 25,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.8095399762349347
+          },
+          {
+            "y": 26,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.766083856730606
+          },
+          {
+            "y": 27,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.7226277372262774
+          },
+          {
+            "y": 28,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.6791716177219488
+          },
+          {
+            "y": 29,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.6357154982176201
+          },
+          {
+            "y": 30,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.5922593787132915
+          },
+          {
+            "y": 31,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.5488032592089628
+          },
+          {
+            "y": 32,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.5053471397046342
+          },
+          {
+            "y": 33,
+            "left": 4,
+            "rightExclusive": 20,
+            "widthPixels": 16,
+            "axisymmetricAreaProxy": 256,
+            "cumulativeCapacityFromBottomNormalized": 0.46189102020030554
+          },
+          {
+            "y": 34,
+            "left": 5,
+            "rightExclusive": 20,
+            "widthPixels": 15,
+            "axisymmetricAreaProxy": 225,
+            "cumulativeCapacityFromBottomNormalized": 0.41843490069597694
+          },
+          {
+            "y": 35,
+            "left": 5,
+            "rightExclusive": 20,
+            "widthPixels": 15,
+            "axisymmetricAreaProxy": 225,
+            "cumulativeCapacityFromBottomNormalized": 0.3802410456628756
+          },
+          {
+            "y": 36,
+            "left": 5,
+            "rightExclusive": 20,
+            "widthPixels": 15,
+            "axisymmetricAreaProxy": 225,
+            "cumulativeCapacityFromBottomNormalized": 0.34204719062977423
+          },
+          {
+            "y": 37,
+            "left": 5,
+            "rightExclusive": 20,
+            "widthPixels": 15,
+            "axisymmetricAreaProxy": 225,
+            "cumulativeCapacityFromBottomNormalized": 0.3038533355966729
+          },
+          {
+            "y": 38,
+            "left": 5,
+            "rightExclusive": 20,
+            "widthPixels": 15,
+            "axisymmetricAreaProxy": 225,
+            "cumulativeCapacityFromBottomNormalized": 0.2656594805635715
+          },
+          {
+            "y": 39,
+            "left": 5,
+            "rightExclusive": 20,
+            "widthPixels": 15,
+            "axisymmetricAreaProxy": 225,
+            "cumulativeCapacityFromBottomNormalized": 0.2274656255304702
+          },
+          {
+            "y": 40,
+            "left": 5,
+            "rightExclusive": 20,
+            "widthPixels": 15,
+            "axisymmetricAreaProxy": 225,
+            "cumulativeCapacityFromBottomNormalized": 0.18927177049736887
+          },
+          {
+            "y": 41,
+            "left": 5,
+            "rightExclusive": 20,
+            "widthPixels": 15,
+            "axisymmetricAreaProxy": 225,
+            "cumulativeCapacityFromBottomNormalized": 0.15107791546426752
+          },
+          {
+            "y": 42,
+            "left": 5,
+            "rightExclusive": 20,
+            "widthPixels": 15,
+            "axisymmetricAreaProxy": 225,
+            "cumulativeCapacityFromBottomNormalized": 0.11288406043116618
+          },
+          {
+            "y": 43,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.07469020539806484
+          },
+          {
+            "y": 44,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.04141911390256323
+          },
+          {
+            "y": 45,
+            "left": 7,
+            "rightExclusive": 17,
+            "widthPixels": 10,
+            "axisymmetricAreaProxy": 100,
+            "cumulativeCapacityFromBottomNormalized": 0.016975046681378374
+          }
+        ],
+        "geometry": "2D silhouette-derived axisymmetric width-squared proxy; no measured 3D calibration",
+        "capacityMl": null,
+        "physicalMaskIncludesUnderLabel": true,
+        "visibleMaskForVolume": false,
+        "runtimeInstruction": "cache profile; compute gravity-horizontal clipping after rotation and conserve actual volume; do not rotate a prefilled liquid texture"
+      },
+      "layers": "dynamic liquid clipped by physical mask, open_empty foreground, cap (hide while pouring)",
+      "integrated": false,
+      "gameVerified": false
+    },
+    {
+      "assetId": "dl_bottle_blue_curacao",
+      "maskAssetId": "dl_bottle_blue_curacao_mask",
+      "status": "ready",
+      "size": [
+        24,
+        56
+      ],
+      "files": {
+        "empty": "dl_bottle_blue_curacao_empty.png",
+        "mask": "dl_bottle_blue_curacao_mask.png",
+        "visible_mask": "dl_bottle_blue_curacao_visible_mask.png",
+        "open_empty": "dl_bottle_blue_curacao_open_empty.png",
+        "cap": "dl_bottle_blue_curacao_cap.png",
+        "aseprite": "dl_bottle_blue_curacao.aseprite"
+      },
+      "sha256": {
+        "empty": "9dadbe7e3cbfd173b3dcb94d4d5892574144fa1ffa65c634523ce205f35024fb",
+        "mask": "cd23829c4bb8a4aa6c4318323f7a73f966f213f50f3d43148e34f475780a7bca",
+        "visible_mask": "1a44b56cf6a60464a6cdba911b314275534f7b9cd4d627912b8abef2e50bd3e4",
+        "open_empty": "1b491edd88d2743d801a14d8cf518a86854ac9c9351dc6f45ae7dc81423f72da",
+        "cap": "b2276c87041b4b17c8e1a84d6398883bb4e4d5f03c5039b9e777217caad26969",
+        "aseprite": "eef622a76ff6225ece32b9788ff586455089966cc89181d1b268dbf119db3898"
+      },
+      "sourcePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_blue_curacao.png",
+      "sourceSHA256": "5aa45f941791d7e6afd2f9002a3ac16d7e20c48ab68bebaf28645078abc94ec1",
+      "foregroundAlphaBounds": [
+        3,
+        2,
+        21,
+        54
+      ],
+      "interiorMaskBBox": [
+        6,
+        13,
+        18,
+        51
+      ],
+      "labelPreserveRect": [
+        6,
+        24,
+        8,
+        24
+      ],
+      "capYRange": [
+        2,
+        13
+      ],
+      "anchors": {
+        "mouth": [
+          11.5,
+          13
+        ],
+        "pourLip": [
+          14,
+          13
+        ],
+        "pourLipRight": [
+          14,
+          13
+        ],
+        "rotationAxis": [
+          12,
+          28
+        ],
+        "grip": [
+          12,
+          28
+        ],
+        "capTop": [
+          12.0,
+          2
+        ],
+        "mouthApertureEndpoints": [
+          [
+            9,
+            13
+          ],
+          [
+            14,
+            13
+          ]
+        ]
+      },
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "profile": {
+        "origin": "top_left",
+        "rows": [
+          {
+            "y": 13,
+            "left": 9,
+            "rightExclusive": 14,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 1.0
+          },
+          {
+            "y": 14,
+            "left": 9,
+            "rightExclusive": 14,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.9945450578223871
+          },
+          {
+            "y": 15,
+            "left": 9,
+            "rightExclusive": 14,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.9890901156447741
+          },
+          {
+            "y": 16,
+            "left": 9,
+            "rightExclusive": 14,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.9836351734671612
+          },
+          {
+            "y": 17,
+            "left": 9,
+            "rightExclusive": 15,
+            "widthPixels": 6,
+            "axisymmetricAreaProxy": 36,
+            "cumulativeCapacityFromBottomNormalized": 0.9781802312895483
+          },
+          {
+            "y": 18,
+            "left": 9,
+            "rightExclusive": 16,
+            "widthPixels": 7,
+            "axisymmetricAreaProxy": 49,
+            "cumulativeCapacityFromBottomNormalized": 0.9703251145537858
+          },
+          {
+            "y": 19,
+            "left": 8,
+            "rightExclusive": 17,
+            "widthPixels": 9,
+            "axisymmetricAreaProxy": 81,
+            "cumulativeCapacityFromBottomNormalized": 0.9596334278856644
+          },
+          {
+            "y": 20,
+            "left": 7,
+            "rightExclusive": 18,
+            "widthPixels": 11,
+            "axisymmetricAreaProxy": 121,
+            "cumulativeCapacityFromBottomNormalized": 0.9419594152301985
+          },
+          {
+            "y": 21,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.9155574950905521
+          },
+          {
+            "y": 22,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.8841370281475016
+          },
+          {
+            "y": 23,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.8527165612044513
+          },
+          {
+            "y": 24,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.8212960942614008
+          },
+          {
+            "y": 25,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.7898756273183504
+          },
+          {
+            "y": 26,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.7584551603753
+          },
+          {
+            "y": 27,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.7270346934322496
+          },
+          {
+            "y": 28,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.6956142264891992
+          },
+          {
+            "y": 29,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.6641937595461488
+          },
+          {
+            "y": 30,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.6327732926030984
+          },
+          {
+            "y": 31,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.601352825660048
+          },
+          {
+            "y": 32,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.5699323587169975
+          },
+          {
+            "y": 33,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.5385118917739472
+          },
+          {
+            "y": 34,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.5070914248308968
+          },
+          {
+            "y": 35,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.4756709578878464
+          },
+          {
+            "y": 36,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.44425049094479596
+          },
+          {
+            "y": 37,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.41283002400174557
+          },
+          {
+            "y": 38,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.38140955705869517
+          },
+          {
+            "y": 39,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.3499890901156448
+          },
+          {
+            "y": 40,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.3185686231725944
+          },
+          {
+            "y": 41,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.287148156229544
+          },
+          {
+            "y": 42,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.2557276892864936
+          },
+          {
+            "y": 43,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.22430722234344316
+          },
+          {
+            "y": 44,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.19288675540039277
+          },
+          {
+            "y": 45,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.16146628845734234
+          },
+          {
+            "y": 46,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.13004582151429195
+          },
+          {
+            "y": 47,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.09862535457124154
+          },
+          {
+            "y": 48,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.06720488762819114
+          },
+          {
+            "y": 49,
+            "left": 7,
+            "rightExclusive": 17,
+            "widthPixels": 10,
+            "axisymmetricAreaProxy": 100,
+            "cumulativeCapacityFromBottomNormalized": 0.03578442068514074
+          },
+          {
+            "y": 50,
+            "left": 8,
+            "rightExclusive": 16,
+            "widthPixels": 8,
+            "axisymmetricAreaProxy": 64,
+            "cumulativeCapacityFromBottomNormalized": 0.013964651974689069
+          }
+        ],
+        "geometry": "2D silhouette-derived axisymmetric width-squared proxy; no measured 3D calibration",
+        "capacityMl": null,
+        "physicalMaskIncludesUnderLabel": true,
+        "visibleMaskForVolume": false,
+        "runtimeInstruction": "cache profile; compute gravity-horizontal clipping after rotation and conserve actual volume; do not rotate a prefilled liquid texture"
+      },
+      "layers": "dynamic liquid clipped by physical mask, open_empty foreground, cap (hide while pouring)",
+      "integrated": false,
+      "gameVerified": false
+    },
+    {
+      "assetId": "dl_bottle_grenadine",
+      "maskAssetId": "dl_bottle_grenadine_mask",
+      "status": "ready",
+      "size": [
+        24,
+        56
+      ],
+      "files": {
+        "empty": "dl_bottle_grenadine_empty.png",
+        "mask": "dl_bottle_grenadine_mask.png",
+        "visible_mask": "dl_bottle_grenadine_visible_mask.png",
+        "open_empty": "dl_bottle_grenadine_open_empty.png",
+        "cap": "dl_bottle_grenadine_cap.png",
+        "aseprite": "dl_bottle_grenadine.aseprite"
+      },
+      "sha256": {
+        "empty": "fda812d810698500df7b56dc20e388ba49ab945e20b4abccb446b2fe0c170d34",
+        "mask": "8ce14f6bfb88bc0bdaef4b0fe6bfde8e15eeff1e72fa08f6e8a9be890e598e86",
+        "visible_mask": "45e16b888efe3a23a6ecd4665511c18e07586587bd2936002736d0792bfb300f",
+        "open_empty": "f0e836355e48fab19050f2fe5fd46a2b920db518e4a2cc8d55120644aa7279a3",
+        "cap": "6b3616cbf5eeec0b93cd1fc36fb9aab05fc4cc4fdb7726428d7928e5c6212bf7",
+        "aseprite": "9f75a72f88a62ed47cc769b50635078b41789cabd87de57111f090d63aefd6af"
+      },
+      "sourcePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_grenadine.png",
+      "sourceSHA256": "bec3a0fbd59e86703612aca923a20e65c397ddd32439cb94a20010106350bd9c",
+      "foregroundAlphaBounds": [
+        2,
+        2,
+        21,
+        54
+      ],
+      "interiorMaskBBox": [
+        5,
+        9,
+        18,
+        51
+      ],
+      "labelPreserveRect": [
+        6,
+        25,
+        10,
+        20
+      ],
+      "capYRange": [
+        2,
+        9
+      ],
+      "anchors": {
+        "mouth": [
+          12.0,
+          9
+        ],
+        "pourLip": [
+          14,
+          9
+        ],
+        "pourLipRight": [
+          14,
+          9
+        ],
+        "rotationAxis": [
+          12,
+          28
+        ],
+        "grip": [
+          12,
+          28
+        ],
+        "capTop": [
+          11.5,
+          2
+        ],
+        "mouthApertureEndpoints": [
+          [
+            10,
+            9
+          ],
+          [
+            14,
+            9
+          ]
+        ]
+      },
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "profile": {
+        "origin": "top_left",
+        "rows": [
+          {
+            "y": 9,
+            "left": 10,
+            "rightExclusive": 14,
+            "widthPixels": 4,
+            "axisymmetricAreaProxy": 16,
+            "cumulativeCapacityFromBottomNormalized": 1.0
+          },
+          {
+            "y": 10,
+            "left": 10,
+            "rightExclusive": 14,
+            "widthPixels": 4,
+            "axisymmetricAreaProxy": 16,
+            "cumulativeCapacityFromBottomNormalized": 0.9970501474926253
+          },
+          {
+            "y": 11,
+            "left": 10,
+            "rightExclusive": 14,
+            "widthPixels": 4,
+            "axisymmetricAreaProxy": 16,
+            "cumulativeCapacityFromBottomNormalized": 0.9941002949852508
+          },
+          {
+            "y": 12,
+            "left": 10,
+            "rightExclusive": 14,
+            "widthPixels": 4,
+            "axisymmetricAreaProxy": 16,
+            "cumulativeCapacityFromBottomNormalized": 0.9911504424778761
+          },
+          {
+            "y": 13,
+            "left": 10,
+            "rightExclusive": 14,
+            "widthPixels": 4,
+            "axisymmetricAreaProxy": 16,
+            "cumulativeCapacityFromBottomNormalized": 0.9882005899705014
+          },
+          {
+            "y": 14,
+            "left": 10,
+            "rightExclusive": 14,
+            "widthPixels": 4,
+            "axisymmetricAreaProxy": 16,
+            "cumulativeCapacityFromBottomNormalized": 0.9852507374631269
+          },
+          {
+            "y": 15,
+            "left": 9,
+            "rightExclusive": 14,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.9823008849557522
+          },
+          {
+            "y": 16,
+            "left": 9,
+            "rightExclusive": 14,
+            "widthPixels": 5,
+            "axisymmetricAreaProxy": 25,
+            "cumulativeCapacityFromBottomNormalized": 0.9776917404129793
+          },
+          {
+            "y": 17,
+            "left": 9,
+            "rightExclusive": 15,
+            "widthPixels": 6,
+            "axisymmetricAreaProxy": 36,
+            "cumulativeCapacityFromBottomNormalized": 0.9730825958702065
+          },
+          {
+            "y": 18,
+            "left": 8,
+            "rightExclusive": 16,
+            "widthPixels": 8,
+            "axisymmetricAreaProxy": 64,
+            "cumulativeCapacityFromBottomNormalized": 0.9664454277286135
+          },
+          {
+            "y": 19,
+            "left": 7,
+            "rightExclusive": 17,
+            "widthPixels": 10,
+            "axisymmetricAreaProxy": 100,
+            "cumulativeCapacityFromBottomNormalized": 0.9546460176991151
+          },
+          {
+            "y": 20,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.9362094395280236
+          },
+          {
+            "y": 21,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.9096607669616519
+          },
+          {
+            "y": 22,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.8785029498525073
+          },
+          {
+            "y": 23,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.8473451327433629
+          },
+          {
+            "y": 24,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.8161873156342183
+          },
+          {
+            "y": 25,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.7850294985250738
+          },
+          {
+            "y": 26,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.7538716814159292
+          },
+          {
+            "y": 27,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.7227138643067846
+          },
+          {
+            "y": 28,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.6915560471976401
+          },
+          {
+            "y": 29,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.6603982300884956
+          },
+          {
+            "y": 30,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.6292404129793511
+          },
+          {
+            "y": 31,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.5980825958702065
+          },
+          {
+            "y": 32,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.566924778761062
+          },
+          {
+            "y": 33,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.5357669616519174
+          },
+          {
+            "y": 34,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.5046091445427728
+          },
+          {
+            "y": 35,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.47345132743362833
+          },
+          {
+            "y": 36,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.4422935103244838
+          },
+          {
+            "y": 37,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.4111356932153392
+          },
+          {
+            "y": 38,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.3799778761061947
+          },
+          {
+            "y": 39,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.34882005899705015
+          },
+          {
+            "y": 40,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.3176622418879056
+          },
+          {
+            "y": 41,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.28650442477876104
+          },
+          {
+            "y": 42,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.25534660766961653
+          },
+          {
+            "y": 43,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.22418879056047197
+          },
+          {
+            "y": 44,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.19303097345132744
+          },
+          {
+            "y": 45,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.16187315634218288
+          },
+          {
+            "y": 46,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.13071533923303835
+          },
+          {
+            "y": 47,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.09955752212389381
+          },
+          {
+            "y": 48,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.06839970501474926
+          },
+          {
+            "y": 49,
+            "left": 6,
+            "rightExclusive": 17,
+            "widthPixels": 11,
+            "axisymmetricAreaProxy": 121,
+            "cumulativeCapacityFromBottomNormalized": 0.03724188790560472
+          },
+          {
+            "y": 50,
+            "left": 7,
+            "rightExclusive": 16,
+            "widthPixels": 9,
+            "axisymmetricAreaProxy": 81,
+            "cumulativeCapacityFromBottomNormalized": 0.014933628318584071
+          }
+        ],
+        "geometry": "2D silhouette-derived axisymmetric width-squared proxy; no measured 3D calibration",
+        "capacityMl": null,
+        "physicalMaskIncludesUnderLabel": true,
+        "visibleMaskForVolume": false,
+        "runtimeInstruction": "cache profile; compute gravity-horizontal clipping after rotation and conserve actual volume; do not rotate a prefilled liquid texture"
+      },
+      "layers": "dynamic liquid clipped by physical mask, open_empty foreground, cap (hide while pouring)",
+      "integrated": false,
+      "gameVerified": false
+    },
+    {
+      "assetId": "dl_bottle_lemon_juice",
+      "maskAssetId": "dl_bottle_lemon_juice_mask",
+      "status": "ready",
+      "size": [
+        24,
+        56
+      ],
+      "files": {
+        "empty": "dl_bottle_lemon_juice_empty.png",
+        "mask": "dl_bottle_lemon_juice_mask.png",
+        "visible_mask": "dl_bottle_lemon_juice_visible_mask.png",
+        "open_empty": "dl_bottle_lemon_juice_open_empty.png",
+        "cap": "dl_bottle_lemon_juice_cap.png",
+        "aseprite": "dl_bottle_lemon_juice.aseprite"
+      },
+      "sha256": {
+        "empty": "a6bb149718daee36db2d61c319c73a03dae0ea3a426806aad6b9d2187f7b6993",
+        "mask": "c9e3b0844d51a75aa243c51f5c11b9ecad674a9a2d4512c6b9b09744308a6a5e",
+        "visible_mask": "2baf04f745bc1d88617e27b47f8c5106376cec2ff26cc81c99849b6f534733a0",
+        "open_empty": "15119119e256b20b4de3453685f9d427766ff2f10248d1e4d036bc0221aa8124",
+        "cap": "97e284c369277d84dec9af127c181171d737e9bcdeb49c8494d69b09626298ec",
+        "aseprite": "2b38ba939955ed504f5d82e6f0c4a7872dde6e44adcdeb5c9b3e405172594268"
+      },
+      "sourcePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_lemon_juice.png",
+      "sourceSHA256": "ae42356e5ea48abeefe9feefca36347db6fb05d3bb9fdc7c0119389e8690dcbc",
+      "foregroundAlphaBounds": [
+        2,
+        4,
+        22,
+        51
+      ],
+      "interiorMaskBBox": [
+        5,
+        12,
+        19,
+        48
+      ],
+      "labelPreserveRect": [
+        4,
+        26,
+        16,
+        17
+      ],
+      "capYRange": [
+        4,
+        12
+      ],
+      "anchors": {
+        "mouth": [
+          12.0,
+          12
+        ],
+        "pourLip": [
+          15,
+          12
+        ],
+        "pourLipRight": [
+          15,
+          12
+        ],
+        "rotationAxis": [
+          12,
+          28
+        ],
+        "grip": [
+          12,
+          28
+        ],
+        "capTop": [
+          12.0,
+          4
+        ],
+        "mouthApertureEndpoints": [
+          [
+            9,
+            12
+          ],
+          [
+            15,
+            12
+          ]
+        ]
+      },
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "profile": {
+        "origin": "top_left",
+        "rows": [
+          {
+            "y": 12,
+            "left": 9,
+            "rightExclusive": 15,
+            "widthPixels": 6,
+            "axisymmetricAreaProxy": 36,
+            "cumulativeCapacityFromBottomNormalized": 1.0
+          },
+          {
+            "y": 13,
+            "left": 9,
+            "rightExclusive": 15,
+            "widthPixels": 6,
+            "axisymmetricAreaProxy": 36,
+            "cumulativeCapacityFromBottomNormalized": 0.9939024390243902
+          },
+          {
+            "y": 14,
+            "left": 9,
+            "rightExclusive": 15,
+            "widthPixels": 6,
+            "axisymmetricAreaProxy": 36,
+            "cumulativeCapacityFromBottomNormalized": 0.9878048780487805
+          },
+          {
+            "y": 15,
+            "left": 9,
+            "rightExclusive": 15,
+            "widthPixels": 6,
+            "axisymmetricAreaProxy": 36,
+            "cumulativeCapacityFromBottomNormalized": 0.9817073170731707
+          },
+          {
+            "y": 16,
+            "left": 8,
+            "rightExclusive": 15,
+            "widthPixels": 7,
+            "axisymmetricAreaProxy": 49,
+            "cumulativeCapacityFromBottomNormalized": 0.975609756097561
+          },
+          {
+            "y": 17,
+            "left": 7,
+            "rightExclusive": 16,
+            "widthPixels": 9,
+            "axisymmetricAreaProxy": 81,
+            "cumulativeCapacityFromBottomNormalized": 0.9673102981029811
+          },
+          {
+            "y": 18,
+            "left": 6,
+            "rightExclusive": 17,
+            "widthPixels": 11,
+            "axisymmetricAreaProxy": 121,
+            "cumulativeCapacityFromBottomNormalized": 0.9535907859078591
+          },
+          {
+            "y": 19,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.9330962059620597
+          },
+          {
+            "y": 20,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.9044715447154471
+          },
+          {
+            "y": 21,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.8712737127371274
+          },
+          {
+            "y": 22,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.8380758807588076
+          },
+          {
+            "y": 23,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.8048780487804879
+          },
+          {
+            "y": 24,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.771680216802168
+          },
+          {
+            "y": 25,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.7384823848238482
+          },
+          {
+            "y": 26,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.7052845528455285
+          },
+          {
+            "y": 27,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.6720867208672087
+          },
+          {
+            "y": 28,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.6388888888888888
+          },
+          {
+            "y": 29,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.6056910569105691
+          },
+          {
+            "y": 30,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.5724932249322493
+          },
+          {
+            "y": 31,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.5392953929539296
+          },
+          {
+            "y": 32,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.5060975609756098
+          },
+          {
+            "y": 33,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.47289972899729
+          },
+          {
+            "y": 34,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.43970189701897017
+          },
+          {
+            "y": 35,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.4065040650406504
+          },
+          {
+            "y": 36,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.37330623306233063
+          },
+          {
+            "y": 37,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.34010840108401086
+          },
+          {
+            "y": 38,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.30691056910569103
+          },
+          {
+            "y": 39,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.27371273712737126
+          },
+          {
+            "y": 40,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.2405149051490515
+          },
+          {
+            "y": 41,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.2073170731707317
+          },
+          {
+            "y": 42,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.17411924119241193
+          },
+          {
+            "y": 43,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.14092140921409213
+          },
+          {
+            "y": 44,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.10772357723577236
+          },
+          {
+            "y": 45,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.07452574525745258
+          },
+          {
+            "y": 46,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.041327913279132794
+          },
+          {
+            "y": 47,
+            "left": 7,
+            "rightExclusive": 17,
+            "widthPixels": 10,
+            "axisymmetricAreaProxy": 100,
+            "cumulativeCapacityFromBottomNormalized": 0.016937669376693765
+          }
+        ],
+        "geometry": "2D silhouette-derived axisymmetric width-squared proxy; no measured 3D calibration",
+        "capacityMl": null,
+        "physicalMaskIncludesUnderLabel": true,
+        "visibleMaskForVolume": false,
+        "runtimeInstruction": "cache profile; compute gravity-horizontal clipping after rotation and conserve actual volume; do not rotate a prefilled liquid texture"
+      },
+      "layers": "dynamic liquid clipped by physical mask, open_empty foreground, cap (hide while pouring)",
+      "integrated": false,
+      "gameVerified": false
+    },
+    {
+      "assetId": "dl_bottle_honey",
+      "maskAssetId": "dl_bottle_honey_mask",
+      "status": "ready",
+      "size": [
+        24,
+        56
+      ],
+      "files": {
+        "empty": "dl_bottle_honey_empty.png",
+        "mask": "dl_bottle_honey_mask.png",
+        "visible_mask": "dl_bottle_honey_visible_mask.png",
+        "open_empty": "dl_bottle_honey_open_empty.png",
+        "cap": "dl_bottle_honey_cap.png",
+        "aseprite": "dl_bottle_honey.aseprite"
+      },
+      "sha256": {
+        "empty": "62893f43e96610b41a81a94dcec269db3a9fe6c2128c46938de6ce579e8dcd4e",
+        "mask": "23a3475ebf57ed8c77105d072125f5321d83a14a11c500d1d737e3d2c3f9c28d",
+        "visible_mask": "7639df36e0dee8d7268493440ada11f99b3e546eab105f060eead38388990c70",
+        "open_empty": "e800f750023fb6d815414af9420ba2943933dcdb8039c270803c7ab9984cf573",
+        "cap": "681c374ec3b7d82ed70fdabaed2d2254ed58a9940780f046c78e66ab56c1168a",
+        "aseprite": "3a13f5be2bbcb394362d39834a9d297c4c5b4104678314dbb24b5efcc143d81c"
+      },
+      "sourcePath": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\v1\\BeverageCraft-v1.1\\dl_bottle_honey.png",
+      "sourceSHA256": "6cf8950ef10d63ffca0e21a0d2ddbf9a3cce79869ca8c6dedac735b49309e4c2",
+      "foregroundAlphaBounds": [
+        2,
+        15,
+        22,
+        41
+      ],
+      "interiorMaskBBox": [
+        5,
+        22,
+        19,
+        38
+      ],
+      "labelPreserveRect": [
+        6,
+        28,
+        14,
+        10
+      ],
+      "capYRange": [
+        15,
+        22
+      ],
+      "anchors": {
+        "mouth": [
+          12.5,
+          22
+        ],
+        "pourLip": [
+          18,
+          22
+        ],
+        "pourLipRight": [
+          18,
+          22
+        ],
+        "rotationAxis": [
+          12,
+          28
+        ],
+        "grip": [
+          12,
+          28
+        ],
+        "capTop": [
+          12.0,
+          15
+        ],
+        "mouthApertureEndpoints": [
+          [
+            7,
+            22
+          ],
+          [
+            18,
+            22
+          ]
+        ]
+      },
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "profile": {
+        "origin": "top_left",
+        "rows": [
+          {
+            "y": 22,
+            "left": 7,
+            "rightExclusive": 18,
+            "widthPixels": 11,
+            "axisymmetricAreaProxy": 121,
+            "cumulativeCapacityFromBottomNormalized": 1.0
+          },
+          {
+            "y": 23,
+            "left": 6,
+            "rightExclusive": 18,
+            "widthPixels": 12,
+            "axisymmetricAreaProxy": 144,
+            "cumulativeCapacityFromBottomNormalized": 0.9583763329893361
+          },
+          {
+            "y": 24,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.9088407292741658
+          },
+          {
+            "y": 25,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.8414172686618507
+          },
+          {
+            "y": 26,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.7739938080495357
+          },
+          {
+            "y": 27,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.7065703474372205
+          },
+          {
+            "y": 28,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.6391468868249054
+          },
+          {
+            "y": 29,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.5717234262125903
+          },
+          {
+            "y": 30,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.5042999656002752
+          },
+          {
+            "y": 31,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.4368765049879601
+          },
+          {
+            "y": 32,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.36945304437564497
+          },
+          {
+            "y": 33,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.3020295837633299
+          },
+          {
+            "y": 34,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.23460612315101478
+          },
+          {
+            "y": 35,
+            "left": 5,
+            "rightExclusive": 19,
+            "widthPixels": 14,
+            "axisymmetricAreaProxy": 196,
+            "cumulativeCapacityFromBottomNormalized": 0.16718266253869968
+          },
+          {
+            "y": 36,
+            "left": 5,
+            "rightExclusive": 18,
+            "widthPixels": 13,
+            "axisymmetricAreaProxy": 169,
+            "cumulativeCapacityFromBottomNormalized": 0.09975920192638459
+          },
+          {
+            "y": 37,
+            "left": 6,
+            "rightExclusive": 17,
+            "widthPixels": 11,
+            "axisymmetricAreaProxy": 121,
+            "cumulativeCapacityFromBottomNormalized": 0.04162366701066392
+          }
+        ],
+        "geometry": "2D silhouette-derived axisymmetric width-squared proxy; no measured 3D calibration",
+        "capacityMl": null,
+        "physicalMaskIncludesUnderLabel": true,
+        "visibleMaskForVolume": false,
+        "runtimeInstruction": "cache profile; compute gravity-horizontal clipping after rotation and conserve actual volume; do not rotate a prefilled liquid texture"
+      },
+      "layers": "dynamic liquid clipped by physical mask, open_empty foreground, cap (hide while pouring)",
+      "integrated": false,
+      "gameVerified": false
+    }
+  ],
+  "qa": {
+    "checkCount": 186,
+    "passed": true,
+    "failed": [],
+    "checks": [
+      {
+        "name": "dl_bottle_gin:empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:visible_mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:visible_mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:visible_mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:visible_mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:open_empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:open_empty:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:open_empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:open_empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:cap:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:cap:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:cap:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:cap:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:aseprite:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:nativeRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:capOpenReconstruct",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:labelUnchanged",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:onlyInteriorCleared",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:visibleInteriorEmpty",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:maskWhiteInsideOriginal",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:bottleNotEntirelyTransparent",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:mouthTouchesMask",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:mouth:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:lip:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_gin:pivot:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:visible_mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:visible_mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:visible_mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:visible_mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:open_empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:open_empty:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:open_empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:open_empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:cap:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:cap:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:cap:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:cap:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:aseprite:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:nativeRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:capOpenReconstruct",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:labelUnchanged",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:onlyInteriorCleared",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:visibleInteriorEmpty",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:maskWhiteInsideOriginal",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:bottleNotEntirelyTransparent",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:mouthTouchesMask",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:mouth:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:lip:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_rum:pivot:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:visible_mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:visible_mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:visible_mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:visible_mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:open_empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:open_empty:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:open_empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:open_empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:cap:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:cap:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:cap:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:cap:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:aseprite:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:nativeRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:capOpenReconstruct",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:labelUnchanged",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:onlyInteriorCleared",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:visibleInteriorEmpty",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:maskWhiteInsideOriginal",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:bottleNotEntirelyTransparent",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:mouthTouchesMask",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:mouth:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:lip:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_blue_curacao:pivot:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:visible_mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:visible_mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:visible_mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:visible_mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:open_empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:open_empty:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:open_empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:open_empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:cap:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:cap:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:cap:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:cap:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:aseprite:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:nativeRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:capOpenReconstruct",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:labelUnchanged",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:onlyInteriorCleared",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:visibleInteriorEmpty",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:maskWhiteInsideOriginal",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:bottleNotEntirelyTransparent",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:mouthTouchesMask",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:mouth:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:lip:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_grenadine:pivot:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:visible_mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:visible_mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:visible_mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:visible_mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:open_empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:open_empty:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:open_empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:open_empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:cap:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:cap:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:cap:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:cap:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:aseprite:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:nativeRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:capOpenReconstruct",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:labelUnchanged",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:onlyInteriorCleared",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:visibleInteriorEmpty",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:maskWhiteInsideOriginal",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:bottleNotEntirelyTransparent",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:mouthTouchesMask",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:mouth:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:lip:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_lemon_juice:pivot:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:visible_mask:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:visible_mask:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:visible_mask:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:visible_mask:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:open_empty:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:open_empty:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:open_empty:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:open_empty:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:cap:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:cap:nativeLayerRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:cap:RGBA_size_alpha",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:cap:zeroTransparentRGB",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:aseprite:exists",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:nativeRoundtrip",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:capOpenReconstruct",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:labelUnchanged",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:onlyInteriorCleared",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:visibleInteriorEmpty",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:maskWhiteInsideOriginal",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:bottleNotEntirelyTransparent",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:mouthTouchesMask",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:mouth:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:lip:inCanvas",
+        "passed": true
+      },
+      {
+        "name": "dl_bottle_honey:pivot:inCanvas",
+        "passed": true
+      }
+    ],
+    "visualPreviewCount": 72,
+    "previewFractions": [
+      0,
+      0.25,
+      0.5,
+      0.75
+    ],
+    "previewClockwiseAngles": [
+      0,
+      30,
+      60
+    ],
+    "previewModel": "art composite only; fraction of rotated 2D mask area, horizontal clipping with fractional boundary row; NOT Unity simulation or 3D fluid validation"
+  },
+  "integrationAllowed": "after root review; runtime code and Assets owned by Claude",
+  "integrated": false,
+  "verified": false,
+  "tool": "Aseprite 1.3.18.6 existing PNG editing; no new image generation or style change",
+  "maskNames": "dl_bottle_{ingredient}_mask.png",
+  "labelOcclusion": "physical mask deliberately overlaps opaque label; render liquid behind foreground. visible_mask excludes label and is never a capacity/profile mask",
+  "capRule": "closed empty preserves cap; hide original cap and use open_empty before pouring; old cap-top source anchor is not the mouth",
+  "excluded": "all earlier ProgressionUI and BeverageCraft originals are read-only"
+}

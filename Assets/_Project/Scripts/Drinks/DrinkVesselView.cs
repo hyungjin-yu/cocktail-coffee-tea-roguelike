@@ -31,6 +31,8 @@ namespace CCT
         public float TiltDegrees { get; private set; }
         public FluidTiltSolution TiltSolution { get; private set; }
         public int IceCount => iceCount;
+        /// <summary>그릇 누적 용량 C(h)(캐시). 붓기 시작 각도·입구 유출량 계산에 쓴다.</summary>
+        public FluidVesselProfile Profile => profile;
         public IReadOnlyList<Image> IceImages => ice;
 
         RectTransform liquidArea, worldFill, surface, turbid, bubbleRoot;
@@ -167,11 +169,27 @@ namespace CCT
         /// <summary>아래부터 층(부피·밀도·색). 높이는 C(h)와 얼음 해로 정한다.</summary>
         public void SetLayers(IList<DrinkLayer> newLayers)
         {
+            if (SameLayers(newLayers)) return; // 매 프레임 같은 내용이면 얼음/기울기 해를 다시 풀지 않는다(프레임 끊김 방지)
             layers.Clear();
             float total = 0f;
             foreach (var l in newLayers) if (l.volume > 1e-4f) { layers.Add(l); total += l.volume; }
             VolumeMl = total;
             Solve(force: true);
+        }
+
+        bool SameLayers(IList<DrinkLayer> other)
+        {
+            int n = 0;
+            foreach (var l in other) if (l.volume > 1e-4f) n++;
+            if (n != layers.Count || profile == null) return false;
+            int i = 0;
+            foreach (var l in other)
+            {
+                if (l.volume <= 1e-4f) continue;
+                var o = layers[i++];
+                if (Mathf.Abs(o.volume - l.volume) > 1e-4f || o.color != l.color || !Mathf.Approximately(o.turbidity, l.turbidity) || !Mathf.Approximately(o.density, l.density)) return false;
+            }
+            return true;
         }
 
         public void SetEmpty() => SetLayers(new List<DrinkLayer>());
@@ -220,7 +238,12 @@ namespace CCT
             var levels = new List<float>();
             float baseLevel = 0f;
             bool upright = Mathf.Abs(angle) < 1f;
-            if (layers.Count == 0) { surface01 = 0f; IceSolution = null; }
+            if (layers.Count == 0)
+            {
+                surface01 = 0f;
+                // 빈 잔의 얼음은 바닥/다른 얼음 위에 놓인다(허공에 띄우지 않고 배제 부피로 수면을 만들지 않는다).
+                IceSolution = upright && iceCount > 0 ? DrinkFluidPhysics.SolveIce(profile, new FluidLayer[0], iceCount, CubeVolumeMl) : null;
+            }
             else if (upright)
             {
                 var fl = new FluidLayer[layers.Count];
@@ -362,10 +385,14 @@ namespace CCT
             if (hidden == value) return;
             hidden = value;
             if (liquidArea != null) liquidArea.gameObject.SetActive(!value);
+            Solve(force: true); // 숨긴 동안 그린 층(비활성)을 다시 그린다
         }
 
         /// <summary>맨 위 층 색(검증·캡처용). 비었으면 투명.</summary>
         public Color TopColor => layers.Count > 0 ? layers[layers.Count - 1].color : Color.clear;
+        /// <summary>맨 아래 층 색·층 수(색 연속성 검수용).</summary>
+        public Color BottomColor => layers.Count > 0 ? layers[0].color : Color.clear;
+        public int LayerCount => layers.Count;
 
         public Vector2 PointInParent(Vector2 normalized) => ToParentAnchored(Rect, normalized);
 

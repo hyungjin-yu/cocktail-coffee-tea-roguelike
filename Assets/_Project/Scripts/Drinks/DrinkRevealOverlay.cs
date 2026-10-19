@@ -21,6 +21,8 @@ namespace CCT
         public static bool SkipForTests;
         public static DrinkRevealOverlay Current { get; private set; }
         public int FramesShown { get; private set; }
+        /// <summary>공개 잔(검수·시험용).</summary>
+        public DrinkVesselView Vessel { get; private set; }
         public string BuffLine { get; private set; }
 
         public static void Play(PreparedDrink drink, Action done)
@@ -48,57 +50,30 @@ namespace CCT
             UiFactory.AddImage(root, new Color(0.04f, 0.03f, 0.05f, 0.92f)).raycastTarget = true;
             root.gameObject.AddComponent<ClickToSkip>().Owner = this;
             var r = drink.recipe;
-            var look = DrinkCalculator.Look(r);
             var buff = DrinkCalculator.Buff(r);
             UiFactory.AddText(UiFactory.Place("Title", root, new Vector2(0.5f, 1f), new Vector2(0f, -110f), new Vector2(1200f, 70f)), $"완성 — {r.name}", 48, TextAnchor.MiddleCenter, new Color(1f, 0.9f, 0.6f));
             UiFactory.AddText(UiFactory.Place("Hint", root, new Vector2(0.5f, 0f), new Vector2(0f, 60f), new Vector2(1200f, 40f)), "클릭·Enter로 건너뛰기", 22, TextAnchor.MiddleCenter, new Color(0.7f, 0.7f, 0.75f));
             var stage = UiFactory.Place("Stage", root, new Vector2(0.5f, 0.5f), new Vector2(0f, 60f), new Vector2(448f, 448f));
 
-            var frames = DrinkArt.Frames("dl_drink_reveal");
             bool tea = r.Kind == DrinkKind.Tea;
             float t = 0f;
-            if (frames.Length > 1 && !tea)
+            // 73: 완성 공개도 제조대와 같은 고정 잔 용량·최종 물리 상태(밀도 층·얼음 배제 부피·여유 공간)로 그린다(잔을 가득 채우지 않음).
+            // 이전 dl_drink_reveal 프레임 경로는 양과 무관하게 마스크를 채우고 얼음을 그릴 수 없어 쓰지 않는다. 손·음용 동작 없음.
+            string vesselId = tea ? "dl_teacup" : "dl_glass_cocktail";
+            var v = DrinkVesselView.Create(stage, vesselId, new Vector2(0f, -200f), DrinkStageView.CapacityFor(vesselId), 7);
+            v.SetLayers(DrinkPhysicsSim.Layers(DrinkPhysicsSim.Final(r), r));
+            v.SetIce(!tea ? r.ice : 0);
+            Vessel = v;
+            while (t < 1.0f && !skip)
             {
-                // 프레임별 마스크(잔 안쪽) → 완성 색 층을 그 안에 그린다. 마스크/프레임 크기 동일(64px × 7).
-                var size = new Vector2(frames[0].rect.width * 7, frames[0].rect.height * 7);
-                var liquidRt = UiFactory.Place("Liquid", stage, new Vector2(0.5f, 0.5f), Vector2.zero, size);
-                var maskImg = liquidRt.gameObject.AddComponent<Image>();
-                maskImg.raycastTarget = false;
-                liquidRt.gameObject.AddComponent<Mask>().showMaskGraphic = false;
-                BuildLayers(liquidRt, look.layers);
-                var frameImg = UiFactory.Place("Glass", stage, new Vector2(0.5f, 0.5f), Vector2.zero, size).gameObject.AddComponent<Image>();
-                frameImg.raycastTarget = false;
-                while (!skip)
-                {
-                    t += Time.unscaledDeltaTime;
-                    int i = Mathf.Min(frames.Length - 1, Mathf.FloorToInt(t * 10f));
-                    frameImg.sprite = frames[i];
-                    var m = DrinkArt.Sprite($"dl_drink_reveal_mask_{i:00}");
-                    maskImg.sprite = m;
-                    liquidRt.gameObject.SetActive(m != null);
-                    FramesShown = i + 1;
-                    if (i == frames.Length - 1 && t > frames.Length / 10f + 0.4f) break;
-                    yield return null;
-                }
+                t += Time.unscaledDeltaTime;
+                float k = Mathf.SmoothStep(0f, 1f, t / 0.9f);
+                v.Rect.anchoredPosition = new Vector2(0f, -260f + 60f * k);
+                v.SetEffects(0f, 0f, 0.4f * (1f - k));
+                FramesShown = 1;
+                yield return null;
             }
-            else
-            {
-                // 차(찻잔) 또는 프레임이 없을 때: 완성 그릇이 아래에서 떠오르며 채워진 채로 놓인다(마시는 동작 없음).
-                string vesselId = tea ? "dl_teacup" : "dl_glass_cocktail";
-                var v = DrinkVesselView.Create(stage, vesselId, new Vector2(0f, -200f), tea ? 190f : 150f, 7);
-                v.SetLayers(look.layers);
-                v.SetIce(!tea ? r.ice : 0);
-                while (t < 1.0f && !skip)
-                {
-                    t += Time.unscaledDeltaTime;
-                    float k = Mathf.SmoothStep(0f, 1f, t / 0.9f);
-                    v.Rect.anchoredPosition = new Vector2(0f, -260f + 60f * k);
-                    v.SetEffects(0f, 0f, 0.4f * (1f - k));
-                    FramesShown = 1;
-                    yield return null;
-                }
-                v.Rect.anchoredPosition = new Vector2(0f, -200f);
-            }
+            v.Rect.anchoredPosition = new Vector2(0f, -200f);
 
             var gain = DrinkArt.Frames("dl_buff_gain");
             var gainImg = UiFactory.Place("BuffGain", root, new Vector2(0.5f, 0.5f), new Vector2(260f, 180f), new Vector2(192f, 192f)).gameObject.AddComponent<Image>();
@@ -115,33 +90,6 @@ namespace CCT
                 yield return null;
             }
             Finish();
-        }
-
-        static void BuildLayers(RectTransform parent, IList<DrinkLayer> layers)
-        {
-            float total = 0f;
-            foreach (var l in layers) total += Mathf.Max(0f, l.volume);
-            if (total <= 0f) return;
-            // 마스크 안쪽 대략 높이(잔 내부: 캔버스 아래 25%~위 85%)에 부피 비례로 쌓는다.
-            float y = 0.25f;
-            foreach (var l in layers)
-            {
-                var rt = UiFactory.Stretch("Layer", parent);
-                float h = 0.6f * Mathf.Max(0f, l.volume) / total;
-                rt.anchorMin = new Vector2(0f, y);
-                rt.anchorMax = new Vector2(1f, y + h + (l.Equals(layers[layers.Count - 1]) ? 0.15f : 0f));
-                y += h;
-                var img = rt.gameObject.AddComponent<Image>();
-                img.sprite = DrinkVesselView.White;
-                img.color = l.color;
-                img.raycastTarget = false;
-            }
-            var below = UiFactory.Stretch("Bottom", parent);
-            below.anchorMax = new Vector2(1f, 0.25f);
-            var bimg = below.gameObject.AddComponent<Image>();
-            bimg.sprite = DrinkVesselView.White;
-            bimg.color = layers[0].color;
-            bimg.raycastTarget = false;
         }
 
         public void Finish()

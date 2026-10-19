@@ -1,0 +1,175 @@
+{
+  "passed": true,
+  "checkCount": 42,
+  "failed": [],
+  "checks": [
+    {
+      "check": "cocktail_aroma:size",
+      "passed": true
+    },
+    {
+      "check": "cocktail_aroma:rgba",
+      "passed": true
+    },
+    {
+      "check": "cocktail_aroma:binaryAlpha",
+      "passed": true
+    },
+    {
+      "check": "cocktail_aroma:transparentRGB",
+      "passed": true
+    },
+    {
+      "check": "cocktail_aroma:nonempty",
+      "passed": true
+    },
+    {
+      "check": "cocktail_aroma:margin",
+      "passed": true
+    },
+    {
+      "check": "cocktail_aroma:nativeRoundtrip",
+      "passed": true
+    },
+    {
+      "check": "cocktail_aroma:nativeExists",
+      "passed": true
+    },
+    {
+      "check": "cocktail_aroma:frameComposite",
+      "passed": true
+    },
+    {
+      "check": "cocktail_aroma:frameRect",
+      "passed": true
+    },
+    {
+      "check": "cocktail_blend:size",
+      "passed": true
+    },
+    {
+      "check": "cocktail_blend:rgba",
+      "passed": true
+    },
+    {
+      "check": "cocktail_blend:binaryAlpha",
+      "passed": true
+    },
+    {
+      "check": "cocktail_blend:transparentRGB",
+      "passed": true
+    },
+    {
+      "check": "cocktail_blend:nonempty",
+      "passed": true
+    },
+    {
+      "check": "cocktail_blend:margin",
+      "passed": true
+    },
+    {
+      "check": "cocktail_blend:nativeRoundtrip",
+      "passed": true
+    },
+    {
+      "check": "cocktail_blend:nativeExists",
+      "passed": true
+    },
+    {
+      "check": "cocktail_blend:frameComposite",
+      "passed": true
+    },
+    {
+      "check": "cocktail_blend:frameRect",
+      "passed": true
+    },
+    {
+      "check": "tea_aroma:size",
+      "passed": true
+    },
+    {
+      "check": "tea_aroma:rgba",
+      "passed": true
+    },
+    {
+      "check": "tea_aroma:binaryAlpha",
+      "passed": true
+    },
+    {
+      "check": "tea_aroma:transparentRGB",
+      "passed": true
+    },
+    {
+      "check": "tea_aroma:nonempty",
+      "passed": true
+    },
+    {
+      "check": "tea_aroma:margin",
+      "passed": true
+    },
+    {
+      "check": "tea_aroma:nativeRoundtrip",
+      "passed": true
+    },
+    {
+      "check": "tea_aroma:nativeExists",
+      "passed": true
+    },
+    {
+      "check": "tea_aroma:frameComposite",
+      "passed": true
+    },
+    {
+      "check": "tea_aroma:frameRect",
+      "passed": true
+    },
+    {
+      "check": "tea_blend:size",
+      "passed": true
+    },
+    {
+      "check": "tea_blend:rgba",
+      "passed": true
+    },
+    {
+      "check": "tea_blend:binaryAlpha",
+      "passed": true
+    },
+    {
+      "check": "tea_blend:transparentRGB",
+      "passed": true
+    },
+    {
+      "check": "tea_blend:nonempty",
+      "passed": true
+    },
+    {
+      "check": "tea_blend:margin",
+      "passed": true
+    },
+    {
+      "check": "tea_blend:nativeRoundtrip",
+      "passed": true
+    },
+    {
+      "check": "tea_blend:nativeExists",
+      "passed": true
+    },
+    {
+      "check": "tea_blend:frameComposite",
+      "passed": true
+    },
+    {
+      "check": "tea_blend:frameRect",
+      "passed": true
+    },
+    {
+      "check": "fourRoles",
+      "passed": true
+    },
+    {
+      "check": "uniqueImages",
+      "passed": true
+    }
+  ]
+}

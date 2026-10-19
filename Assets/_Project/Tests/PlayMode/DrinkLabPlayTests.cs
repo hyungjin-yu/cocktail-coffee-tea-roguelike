@@ -74,14 +74,20 @@ namespace CCT.Tests
             var gin = DrinkIngredients.Get("gin");
             var stage = lab.Stage;
             stage.Select(gin);
-            // 작은 기울기: 아주 느리게, 0.1 단위 정수만.
+            // 작은 기울기(이 병 잔량의 액면이 입구에 닿는 각도 + 5°): 아주 느리게, 0.1 단위 정수만.
+            Assert.IsNotNull(stage.SourceBottle, "액체 병은 분리 아트(내부 마스크) 그릇");
+            float onset = stage.BottleOnset;
             stage.BeginPour(Vector2.zero);
-            stage.SetTilt(DrinkStageView.TiltStart + 5f);
-            float rate = DrinkStageView.Rate(stage.Tilt, gin);
+            stage.SetTilt(onset - 6f);
+            stage.Step(1f);
+            Assert.AreEqual(0, stage.InMeasure, "액면이 입구에 닿기 전에는 흐르지 않음");
+            stage.SetTilt(onset + 5f);
+            float rate = DrinkStageView.Rate(stage.Tilt, gin, onset);
             Assert.Less(rate, 5f, "작은 움직임은 0.5mL/s 미만");
             stage.Step(1f);
-            int expected = Mathf.FloorToInt(rate);
-            Assert.AreEqual(expected, stage.InMeasure);
+            int expected = stage.InMeasure;
+            Assert.Greater(expected, 0);
+            Assert.LessOrEqual(expected, Mathf.FloorToInt(rate), "기울기 곡선 이하(입구 유출량으로도 제한)");
             stage.StopPour();
             Assert.AreEqual(expected, lab.Draft.AmountOf("gin"), "놓으면 지거 양만 배합에");
             Assert.AreEqual(DrinkRules.Format(expected), lab.AmountField.text, "표시 수치 = 실제 배합");
@@ -117,7 +123,6 @@ namespace CCT.Tests
             yield return OpenLab(v => lab = v);
             Assert.AreEqual(DrinkTechnique.Shake, lab.Draft.Technique);
             var stage = lab.Stage;
-            string prevVessel = null;
             foreach (var id in new[] { "gin", "blue_curacao", "grenadine" })
             {
                 var def = DrinkIngredients.Get(id);
@@ -128,16 +133,18 @@ namespace CCT.Tests
                 stage.Step(0.2f);
                 Assert.IsTrue(stage.StreamVisible);
                 AssertColor(DrinkStageView.StreamTint(pure), stage.StreamColor, id + " 병 줄기 = 재료색(무색 액체는 옅은 물빛)");
+                Assert.IsTrue(stage.Ledger.HasInFlight(DrinkStageView.LedgerMeasure), "나온 액체는 먼저 공중(줄기)에 있다 — 지거로 순간이동하지 않음");
+                yield return Until(() => stage.Ledger[DrinkStageView.LedgerMeasure].LiquidMl > 0, 1f);
+                yield return null;
                 AssertColor(pure, stage.Jigger.TopColor, id + " 지거 안 = 순수 재료");
-                var vesselBefore = DrinkCalculator.Hex(stage.MainVessel.TopColor);
-                if (prevVessel != null) Assert.AreEqual(prevVessel, vesselBefore, "붓는 중 셰이커는 아직 이 재료 영향 없음");
+                Assert.AreEqual(0.0, stage.Ledger[DrinkStageView.LedgerVessel].Liquid.ComponentVolume(id), 1e-9, "붓는 중(지거 단계) 셰이커에는 아직 이 재료가 없음");
                 float pouredMl = stage.InMeasure / 10f;
                 int before = lab.Draft.AmountOf(id);
                 stage.StopPour();
                 Assert.AreEqual(before + Mathf.RoundToInt(pouredMl * 10f), lab.Draft.AmountOf(id), "데이터는 즉시 정확히 반영(0.1 손실 없음)");
                 yield return null;
                 Assert.IsTrue(stage.Transferring, "지거 → 셰이커 옮겨 붓기 주기 시작");
-                Assert.IsFalse(stage.StreamVisible, "옮겨 붓는 동안 병 → 지거 흐름 없음");
+                Assert.IsFalse(stage.StreamEmitting, "옮겨 붓는 동안 병 → 지거 흐름 없음(이미 떨어지던 꼬리만 마저 떨어짐)");
                 float t0 = Time.realtimeSinceStartup;
                 while (stage.Phase != DrinkStageView.CyclePhase.ToolPour && Time.realtimeSinceStartup - t0 < 3f) yield return null;
                 Assert.AreEqual(DrinkStageView.CyclePhase.ToolPour, stage.Phase, "접근 후 흐름 단계");
@@ -156,9 +163,14 @@ namespace CCT.Tests
                 Assert.IsFalse(stage.Transferring);
                 Assert.Less(poured, stage.MainVessel.VolumeMl + 0.001f);
                 Assert.IsFalse(stage.DumpStreamVisible);
-                AssertColor(DrinkCalculator.Look(lab.Draft).color, stage.MainVessel.TopColor, id + " 셰이커 = 지금까지의 혼합");
+                // 셰이커 장부 = 지금까지 부은 재료만(아직 넣지 않은 재료 0). 무거운 재료는 위에 들어와 시간에 걸쳐 가라앉으므로(71 §4)
+                // 이 순간의 맨 위 색은 균일 혼합색이 아니라 장부 층 색이다 — 화면 = 장부 층을 검사하고, 균일 혼합색은 셰이킹 뒤 완성 잔에서 검사한다.
+                var shaker = stage.Ledger[DrinkStageView.LedgerVessel];
+                foreach (var other in new[] { "gin", "blue_curacao", "grenadine" })
+                    Assert.AreEqual(lab.Draft.AmountOf(other) / 10.0, shaker.Liquid.ComponentVolume(other), 1e-4, id + ": 셰이커 안 " + other + " = 지금까지 부은 양(미래 재료 0)");
+                // 화면 층은 1차원 침강의 셀 교대를 시간 평균한 표시(성분 합계는 장부와 정확히 같음) — 양으로 검사
+                Assert.AreEqual((float)shaker.LiquidMl, stage.MainVessel.VolumeMl, 0.01f, id + " 셰이커 화면 양 = 장부");
                 Assert.AreEqual(DrinkCalculator.Look(lab.Draft).totalVolume, stage.MainVessel.VolumeMl, 0.01f);
-                prevVessel = DrinkCalculator.Hex(stage.MainVessel.TopColor);
             }
             var finalMix = DrinkCalculator.Look(lab.Draft).color;
             lab.SkipMotion = false;
@@ -207,20 +219,26 @@ namespace CCT.Tests
             var jiggerRt = stage.Jigger.Rect;
             var stream = stage.transform.Find("Stream").GetComponent<RectTransform>();
             stage.BeginPour(Vector2.zero);
-            // 접근 중(흐름 시작 각도 미만): 흐르지 않는다
-            stage.SetTilt(60f); // 병목이 아직 수평 위
+            // 접근 중(이 병 잔량의 액면이 입구에 닿기 전): 흐르지 않는다
+            float onset = stage.BottleOnset;
+            Assert.Greater(onset, 60f, "60mL 남은 500mL 병은 많이 기울여야 입구에 닿는다");
+            stage.SetTilt(onset - 6f);
             stage.Step(0.5f);
             Assert.IsFalse(stage.StreamVisible, "흐름 각도 전에는 줄기 없음");
             Assert.AreEqual(0, stage.InMeasure);
-            foreach (float tilt in new[] { 95f, 115f, 135f })
+            foreach (float tilt in new[] { onset + 4f, onset + 15f, Mathf.Min(DrinkStageView.TiltMax, onset + 30f) })
             {
                 stage.SetTilt(tilt);
                 stage.Step(0.2f);
                 yield return null;
+                Assert.IsTrue(stage.StreamVisible, $"{tilt}°: 흐르기 시작하면 입구에서 줄기가 보인다");
+                // 줄기 머리는 중력으로 떨어져 내려간다(첫 프레임에 전체 길이로 순간 생성되지 않음)
+                yield return Until(() => stream.anchoredPosition.y - stream.sizeDelta.y < stage.Geometry.mouth.y - 2f, 1f);
                 var g = stage.Geometry;
                 Assert.AreEqual(g.mouth.x, g.lip.x, 2f, $"{tilt}°: 회전된 병 입구가 지거 입구 바로 위");
                 Assert.AreEqual(g.mouth.y + DrinkStageView.LipClearance, g.lip.y, 2f, $"{tilt}°: 입구 위 여유 높이");
                 Assert.AreEqual(-tilt, g.rotation, 0.01f);
+                Assert.IsFalse(stage.SourceBottle.transform.Find("Cap").GetComponent<UnityEngine.UI.Image>().enabled, "붓는 동안 뚜껑 없음");
                 Assert.IsTrue(stage.StreamVisible, $"{tilt}°: 흐름");
                 Assert.AreEqual(0f, stream.localEulerAngles.z, 0.01f, "줄기는 중력 방향(수직)");
                 Assert.AreEqual(new Vector2(0.5f, 1f), stream.pivot);
@@ -237,7 +255,9 @@ namespace CCT.Tests
             }
             stage.StopPour();
             yield return null;
-            Assert.IsFalse(stage.StreamVisible, "놓으면 즉시 멈춤");
+            Assert.IsFalse(stage.StreamEmitting, "놓으면 즉시 멈춤");
+            yield return Until(() => !stage.StreamVisible, 1f);
+            Assert.IsFalse(stage.StreamVisible, "떨어진 꼬리도 곧 사라짐");
             Assert.AreNotEqual(DrinkStageView.BottleRest, stage.BottleRect.anchoredPosition, "놓는 순간 순간이동하지 않음");
             yield return Until(() => !stage.Transferring && stage.Tilt == 0f, 6f);
             Assert.Less(Vector2.Distance(DrinkStageView.BottleRest, stage.BottleRect.anchoredPosition), 0.5f, "병은 부드럽게 제자리 복귀");
@@ -257,7 +277,9 @@ namespace CCT.Tests
             int inJigger = stage.InMeasure;
             Assert.Greater(inJigger, 0);
             Assert.AreEqual(0, lab.Draft.AmountOf("blue_curacao"), "확정 배합에는 아직 없음");
+            stage.SetTilt(0f); // 누른 채 세워 흐름만 멈춘다(계량분은 아직 지거 안) — 같은 계량분으로 표시를 비교
             yield return new WaitForSecondsRealtime(0.25f); // 갱신 주기
+            Assert.IsTrue(stage.Pouring, "아직 누르고 있음(배합 확정 전)");
             Assert.AreEqual(stage.InMeasure, lab.Projected().AmountOf("blue_curacao"), "예상 = 지거 안 양");
             var expected = DrinkCalculator.Buff(lab.Projected());
             StringAssert.Contains(DrinkRules.StatName(DrinkStat.CritChance), lab.BuffText, "붓는 중에도 예상 효과에 반영");
@@ -285,7 +307,7 @@ namespace CCT.Tests
             while (lab.Draft.AmountOf("gin") < 450 && Time.realtimeSinceStartup - t0 < 12f) yield return null;
             Assert.AreEqual(450, lab.Draft.AmountOf("gin"), "첫 번째 가득 찬 지거가 정확히 45.0mL로 확정");
             Assert.IsTrue(stage.Transferring);
-            Assert.IsFalse(stage.StreamVisible, "옮겨 붓는 동안 병 흐름 없음");
+            Assert.IsFalse(stage.StreamEmitting, "옮겨 붓는 동안 병 흐름 없음");
             int before = lab.Draft.AmountOf("gin");
             lab.ConfirmCraft();
             Assert.IsNull(DrinkLab.Prepared, "옮겨 붓는 중 제조 확정 거부");
@@ -315,7 +337,7 @@ namespace CCT.Tests
             var stage = lab.Stage;
             stage.Select(DrinkIngredients.Get("gin"));
             stage.BeginPour(Vector2.zero);
-            stage.SetTilt(DrinkStageView.TiltStart + 20f);
+            stage.SetTilt(stage.BottleOnset + 20f);
             yield return new WaitForSecondsRealtime(0.4f);
             int rebuilds = lab.PanelRebuilds;
             string first = lab.BuffText;
@@ -503,6 +525,197 @@ namespace CCT.Tests
             Assert.AreEqual(DrinkLabView.Tab.Craft, lab.CurrentTab);
             Assert.AreEqual(300, lab.Draft.AmountOf("gin"));
             Assert.IsTrue(lab.CraftInteractable);
+        }
+        // ───── 73 단계1: 전과정 보존 장부·내용물 표시·바스푼·차 거름 ─────
+
+        [UnityTest]
+        public IEnumerator Ledger_BottleJiggerShaker_ConservedEveryFrame_JiggerKeepsContentsUntilItFlows()
+        {
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            var stage = lab.Stage;
+            stage.Select(DrinkIngredients.Get("gin"));
+            yield return null;
+            double total = stage.Ledger.ComponentTotalMl("gin");
+            Assert.Greater(total, 20.0, "병(가상 재고)에 진이 있다");
+            stage.BeginPour(Vector2.zero);
+            stage.SetTilt(DrinkStageView.TiltMax);
+            yield return Until(() => stage.InMeasure >= 200, 5f);
+            stage.StopPour();
+            double moved = lab.Draft.AmountOf("gin") / 10.0;
+            bool sawApproach = false, sawPour = false;
+            float t0 = Time.realtimeSinceStartup;
+            while ((stage.Transferring || stage.Ledger.HasInFlight()) && Time.realtimeSinceStartup - t0 < 8f)
+            {
+                Assert.AreEqual(total, stage.Ledger.ComponentTotalMl("gin"), 1e-4, "병 + 공중 + 지거 + 셰이커 = 처음 양(매 프레임)");
+                var m = stage.Ledger[DrinkStageView.LedgerMeasure];
+                if (stage.Phase == DrinkStageView.CyclePhase.ToolApproach && !stage.Ledger.HasInFlight(DrinkStageView.LedgerMeasure))
+                {
+                    sawApproach = true;
+                    Assert.AreEqual(moved, m.LiquidMl, 1e-4, "접근·기울임 중 지거 내용물 그대로(흐르기 전에 비지 않음)");
+                    Assert.IsTrue(stage.Jigger.transform.Find("Liquid").gameObject.activeSelf, "기운 지거도 내용물을 숨기지 않음");
+                    Assert.Greater(stage.Jigger.VolumeMl, 0f);
+                }
+                if (stage.Phase == DrinkStageView.CyclePhase.ToolPour && !sawPour)
+                {
+                    sawPour = true;
+                    Assert.Greater(m.LiquidMl, moved * 0.8, "흐름 시작 프레임에 지거가 이미 비어 보이지 않음");
+                }
+                yield return null;
+            }
+            Assert.IsTrue(sawApproach && sawPour);
+            Assert.AreEqual(moved, stage.Ledger[DrinkStageView.LedgerVessel].Liquid.ComponentVolume("gin"), 1e-4, "셰이커 = 옮긴 양");
+            Assert.AreEqual(0, stage.Ledger[DrinkStageView.LedgerMeasure].LiquidMl, 1e-6);
+            Assert.AreEqual((float)moved, stage.MainVessel.VolumeMl, 0.01f);
+        }
+
+        [UnityTest]
+        public IEnumerator Stir_BarspoonTipStaysAboveFloorAndInsideWalls()
+        {
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            lab.ApplyTypedAmount("45.0");
+            lab.Draft.SetAmount("grenadine", 50);
+            lab.Draft.technique = (int)DrinkTechnique.Stir;
+            lab.SkipMotion = false;
+            lab.ConfirmCraft();
+            Assert.IsNotNull(DrinkLab.Prepared, lab.LastMessage);
+            float minX = float.MaxValue, maxX = float.MinValue, minTip = float.MaxValue, firstTip = -1f, lastTip = -1f; int frames = 0;
+            float t0 = Time.realtimeSinceStartup;
+            while (lab.Stage.SequencePlaying && Time.realtimeSinceStartup - t0 < 15f)
+            {
+                if (lab.Stage.SpoonRect.gameObject.activeSelf)
+                {
+                    var p = lab.Stage.Spoon;
+                    frames++;
+                    Assert.AreEqual(0, p.outsidePixels, $"스푼 픽셀이 그릇 안쪽 밖(바닥·벽 관통)에 없음 — frame={frames} t={Time.realtimeSinceStartup - t0:0.000} tip=({p.tip.x:0.00},{p.tip.y:0.00}) above={p.tipAboveFloorPx:0.00} amp={p.amplitude:0.000} lean={p.lean:0.00} sf={p.frame} clearL={p.leftClearPx:0.0} clearR={p.rightClearPx:0.0} lowestY={p.lowestY:0.00} floorY={p.floorY:0.00} vesselH={lab.Stage.MainVessel.Rect.rect.height:0.0} scale={lab.Stage.MainVessel.Rect.lossyScale.x:0.0000}");
+                    Assert.GreaterOrEqual(p.tipAboveFloorPx, 0f, "끝이 안쪽 바닥 위");
+                    if (p.tipAboveFloorPx < 100f) { Assert.GreaterOrEqual(p.leftClearPx, 2f, "왼쪽 벽 여유"); Assert.GreaterOrEqual(p.rightClearPx, 2f, "오른쪽 벽 여유"); }
+                    minX = Mathf.Min(minX, p.tip.x); maxX = Mathf.Max(maxX, p.tip.x); minTip = Mathf.Min(minTip, p.tipAboveFloorPx);
+                    if (firstTip < 0f) firstTip = p.tipAboveFloorPx;
+                    lastTip = p.tipAboveFloorPx;
+                }
+                yield return null;
+            }
+            Assert.Greater(frames, 10, "젓기 프레임");
+            Assert.Greater(maxX - minX, 20f, "실제로 좌우로 젓는다");
+            Assert.Less(minTip, 16f, "바닥 가까이까지 내려간다(공중에서 젓지 않음)");
+            float interior = (DrinkArt.LiquidRect("dl_mixing_glass").yMax - DrinkArt.LiquidRect("dl_mixing_glass").yMin) * lab.Stage.MainVessel.Rect.rect.height;
+            Assert.Greater(firstTip, interior * 0.8f, "처음엔 입구 위에서 넣기 시작(바닥으로 순간이동 없음)");
+            Assert.Greater(lastTip, interior * 0.8f, "끝에는 입구 위로 꺼낸다");
+        }
+
+        [UnityTest]
+        public IEnumerator TeaPour_StrainedLeavesStayInPot_ExtractMovesToCup()
+        {
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            GameObject.Find("KindTea").GetComponent<Button>().onClick.Invoke();
+            yield return null;
+            lab.Draft.SetAmount("black_tea", 30);
+            lab.SkipMotion = false;
+            lab.ConfirmCraft();
+            Assert.IsNotNull(DrinkLab.Prepared, lab.LastMessage);
+            var led = lab.Stage.Ledger;
+            yield return Until(() => !lab.Stage.SequencePlaying, 15f);
+            var pot = led[DrinkStageView.LedgerVessel];
+            var cup = led[DrinkStageView.LedgerServe];
+            Assert.AreEqual(150.0, cup.WaterMl, 1e-4, "물은 모두 찻잔으로");
+            Assert.AreEqual(0.0, pot.LiquidMl, 1e-6);
+            Assert.Greater(pot.LeafG, 1.5, "우린 잎은 다관에 남는다");
+            Assert.AreEqual(0.0, cup.LeafG, 1e-9, "찻잔에 잎 없음");
+            Assert.Greater(cup.DissolvedG, 0.5, "추출분은 찻물과 함께 찻잔으로");
+            Assert.AreEqual(3.0, pot.LeafG + cup.DissolvedG + pot.DissolvedG, 1e-6, "잎 + 추출분 = 처음 찻잎 3.0g");
+            Assert.Greater(cup.TeaStrength, 0.9, "충분히 우림");
+            yield return new WaitForSecondsRealtime(0.5f);
+            Assert.AreEqual(0.0, pot.LiquidMl, 1e-6, "완성 뒤 다관이 배합에서 다시 채워지지 않음");
+            Assert.AreEqual(3.0, pot.LeafG + cup.DissolvedG, 1e-6, "완성 뒤에도 잎이 다시 생기지 않음");
+        }
+        [UnityTest]
+        public IEnumerator SourceBottle_LevelDrops_FullerBottleFlowsEarlier()
+        {
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            var stage = lab.Stage;
+            stage.Select(DrinkIngredients.Get("gin"));
+            yield return null;
+            var bottle = stage.SourceBottle;
+            Assert.IsNotNull(bottle);
+            Assert.AreEqual(DrinkStageView.BottleCapacityMl("gin"), bottle.CapacityMl, "병 용량은 고정 게임값");
+            Assert.AreEqual(60.0, stage.Ledger[DrinkStageView.LedgerBottle].LiquidMl, 1e-6, "병 = 지금 더 넣을 수 있는 가상 재고");
+            Assert.AreEqual(60f, bottle.VolumeMl, 0.01f, "병 화면 = 장부 잔량");
+            Assert.IsTrue(bottle.transform.Find("Cap").GetComponent<UnityEngine.UI.Image>().enabled, "세워 둔 병은 뚜껑");
+            float onset60 = stage.BottleOnset;
+            stage.BeginPour(Vector2.zero);
+            stage.SetTilt(DrinkStageView.TiltMax);
+            yield return Until(() => stage.InMeasure >= 200, 5f);
+            stage.StopPour();
+            yield return Until(() => !stage.Transferring && !stage.Ledger.HasInFlight(), 8f);
+            yield return null;
+            Assert.AreEqual(60.0 - lab.Draft.AmountOf("gin") / 10.0, stage.Ledger[DrinkStageView.LedgerBottle].LiquidMl, 1e-4, "병 감소 = 배합에 들어간 양");
+            Assert.AreEqual((float)stage.Ledger[DrinkStageView.LedgerBottle].LiquidMl, bottle.VolumeMl, 0.01f);
+            Assert.AreEqual(DrinkStageView.BottleCapacityMl("gin"), bottle.CapacityMl, "잔량이 줄어도 용량 그대로");
+            Assert.Greater(stage.BottleOnset, onset60, "잔량이 적을수록 더 기울여야 입구에 닿는다");
+        }
+        // ───── 73 단계2: 종이 UI ─────
+
+        [UnityTest]
+        public IEnumerator PaperUi_TearMotionOnlyAfterSuccessfulSave_NoItemsCreated()
+        {
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            // 실패: 빈 배합은 저장되지 않고 찢기 모션도 없다
+            GameObject.Find("RecipeName").GetComponent<InputField>().text = "빈 잔";
+            GameObject.Find("SaveRecipe").GetComponent<Button>().onClick.Invoke();
+            Assert.AreEqual(0, DrinkLab.Recipes.Count);
+            Assert.IsNull(RecipeTearOverlay.Current, "저장 실패면 찢지 않음");
+            // 성공: 저장 → 그 뒤에만 모션, 재료·음료 변화 없음
+            lab.ApplyTypedAmount("30.0");
+            GameObject.Find("RecipeName").GetComponent<InputField>().text = "노트 한 장";
+            GameObject.Find("SaveRecipe").GetComponent<Button>().onClick.Invoke();
+            Assert.AreEqual(1, DrinkLab.Recipes.Count, lab.LastMessage);
+            var tear = RecipeTearOverlay.Current;
+            Assert.IsNotNull(tear, "저장 성공 뒤 찢기 모션");
+            Assert.AreEqual("노트 한 장", tear.Label, "종이 위 글자는 실제 UI(레시피 이름)");
+            Assert.AreEqual(600, DrinkLab.Owned("gin"), "저장·모션은 재료를 쓰지 않음");
+            Assert.IsNull(DrinkLab.Prepared, "음료를 만들지 않음");
+            yield return Until(() => tear == null || tear.Finished, 3f);
+            Assert.IsTrue(tear == null || tear.FramesShown == 10, "마지막(보관함에 완전히 들어감) 프레임까지");
+            yield return Until(() => RecipeTearOverlay.Current == null, 3f);
+            Assert.AreEqual(1, DrinkLab.Recipes.Count, "모션이 레시피를 더 만들지 않음");
+        }
+
+        [UnityTest]
+        public IEnumerator PaperUi_ReceiptShowsLiveMeasureThenConfirmedLine()
+        {
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            var stage = lab.Stage;
+            stage.Select(DrinkIngredients.Get("gin"));
+            stage.BeginPour(Vector2.zero);
+            stage.SetTilt(DrinkStageView.TiltMax);
+            yield return Until(() => stage.InMeasure >= 50, 5f);
+            stage.SetTilt(0f);
+            yield return new WaitForSecondsRealtime(0.3f);
+            var measure = GameObject.Find("Measure");
+            Assert.IsNotNull(measure, "계량 중 줄");
+            var text = measure.GetComponentInChildren<Text>().text;
+            StringAssert.Contains("계량 중", text);
+            StringAssert.Contains("지거", text);
+            Assert.IsNull(GameObject.Find("Mix_gin"), "아직 배합 확정 줄 없음");
+            stage.StopPour();
+            yield return Until(() => !stage.Transferring, 8f);
+            yield return new WaitForSecondsRealtime(0.3f);
+            Assert.IsNull(GameObject.Find("Measure"), "계량 끝");
+            var line = GameObject.Find("Mix_gin");
+            Assert.IsNotNull(line);
+            StringAssert.Contains("✓", line.GetComponentInChildren<Text>().text, "옮겨 부은 뒤 확정 줄");
+            var receipt = GameObject.Find("MixPanel").GetComponent<Image>();
+            Assert.AreEqual(Image.Type.Sliced, receipt.type, "영수증 9slice 아트");
+            Assert.IsNotNull(receipt.sprite);
+            foreach (var t in GameObject.Find("MixPanel").GetComponentsInChildren<Text>())
+                if (t.isActiveAndEnabled && !string.IsNullOrEmpty(t.text) && !t.resizeTextForBestFit)
+                    Assert.GreaterOrEqual(t.fontSize, DrinkPaperUi.Small - 2, "영수증 글자 기준 22 이상: " + t.name);
         }
     }
 }

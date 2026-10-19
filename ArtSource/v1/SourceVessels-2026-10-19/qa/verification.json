@@ -1,0 +1,764 @@
+{
+  "checkCount": 186,
+  "passed": true,
+  "failed": [],
+  "checks": [
+    {
+      "name": "dl_bottle_gin:empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:visible_mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:visible_mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:visible_mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:visible_mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:open_empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:open_empty:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:open_empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:open_empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:cap:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:cap:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:cap:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:cap:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:aseprite:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:nativeRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:capOpenReconstruct",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:labelUnchanged",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:onlyInteriorCleared",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:visibleInteriorEmpty",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:maskWhiteInsideOriginal",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:bottleNotEntirelyTransparent",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:mouthTouchesMask",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:mouth:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:lip:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_gin:pivot:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:visible_mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:visible_mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:visible_mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:visible_mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:open_empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:open_empty:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:open_empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:open_empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:cap:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:cap:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:cap:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:cap:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:aseprite:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:nativeRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:capOpenReconstruct",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:labelUnchanged",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:onlyInteriorCleared",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:visibleInteriorEmpty",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:maskWhiteInsideOriginal",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:bottleNotEntirelyTransparent",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:mouthTouchesMask",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:mouth:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:lip:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_rum:pivot:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:visible_mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:visible_mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:visible_mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:visible_mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:open_empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:open_empty:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:open_empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:open_empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:cap:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:cap:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:cap:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:cap:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:aseprite:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:nativeRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:capOpenReconstruct",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:labelUnchanged",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:onlyInteriorCleared",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:visibleInteriorEmpty",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:maskWhiteInsideOriginal",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:bottleNotEntirelyTransparent",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:mouthTouchesMask",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:mouth:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:lip:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_blue_curacao:pivot:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:visible_mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:visible_mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:visible_mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:visible_mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:open_empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:open_empty:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:open_empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:open_empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:cap:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:cap:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:cap:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:cap:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:aseprite:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:nativeRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:capOpenReconstruct",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:labelUnchanged",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:onlyInteriorCleared",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:visibleInteriorEmpty",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:maskWhiteInsideOriginal",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:bottleNotEntirelyTransparent",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:mouthTouchesMask",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:mouth:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:lip:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_grenadine:pivot:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:visible_mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:visible_mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:visible_mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:visible_mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:open_empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:open_empty:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:open_empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:open_empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:cap:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:cap:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:cap:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:cap:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:aseprite:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:nativeRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:capOpenReconstruct",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:labelUnchanged",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:onlyInteriorCleared",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:visibleInteriorEmpty",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:maskWhiteInsideOriginal",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:bottleNotEntirelyTransparent",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:mouthTouchesMask",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:mouth:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:lip:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_lemon_juice:pivot:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:visible_mask:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:visible_mask:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:visible_mask:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:visible_mask:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:open_empty:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:open_empty:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:open_empty:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:open_empty:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:cap:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:cap:nativeLayerRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:cap:RGBA_size_alpha",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:cap:zeroTransparentRGB",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:aseprite:exists",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:nativeRoundtrip",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:capOpenReconstruct",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:labelUnchanged",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:onlyInteriorCleared",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:visibleInteriorEmpty",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:maskWhiteInsideOriginal",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:bottleNotEntirelyTransparent",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:mouthTouchesMask",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:mouth:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:lip:inCanvas",
+      "passed": true
+    },
+    {
+      "name": "dl_bottle_honey:pivot:inCanvas",
+      "passed": true
+    }
+  ],
+  "visualPreviewCount": 72,
+  "previewFractions": [
+    0,
+    0.25,
+    0.5,
+    0.75
+  ],
+  "previewClockwiseAngles": [
+    0,
+    30,
+    60
+  ],
+  "previewModel": "art composite only; fraction of rotated 2D mask area, horizontal clipping with fractional boundary row; NOT Unity simulation or 3D fluid validation"
+}

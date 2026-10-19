@@ -195,6 +195,43 @@ namespace CCT
             select.DrinkLabButton.onClick.Invoke();
             yield return Wait(0.6f);
             var lab = select.DrinkLabScreen;
+            // 73 단계2: 영수증 실시간 계량 줄(지거 안 + 떨어지는 중) → 옮긴 뒤 확정 줄
+            var st = lab.Stage;
+            Btn("Row_gin")?.onClick.Invoke();
+            st.Select(DrinkIngredients.Get("gin"));
+            st.BeginPour(Vector2.zero);
+            st.SetTilt(DrinkStageView.TiltMax);
+            float lm = 0f;
+            while (st.InMeasure < 120 && lm < 6f) { lm += Time.unscaledDeltaTime; yield return null; }
+            st.SetTilt(0f);
+            yield return Wait(0.35f);
+            CheckOverlap("UI0a_receipt_live_measure", lab.transform);
+            yield return Shot("UI0a_receipt_live_measure", lab.transform);
+            st.StopPour();
+            lm = 0f;
+            while (st.Transferring && lm < 8f) { lm += Time.unscaledDeltaTime; yield return null; }
+            yield return Wait(0.4f);
+            CheckOverlap("UI0b_receipt_confirmed_line", lab.transform);
+            yield return Shot("UI0b_receipt_confirmed_line", lab.transform);
+            // 레시피 저장 성공 → 찢기·입고 모션(실제 저장 뒤에만)
+            Load(lab, Mix(DrinkKind.Cocktail, DrinkTechnique.Stir, "", ("gin", 300), ("blue_curacao", 50)));
+            yield return Wait(0.3f);
+            var nameIn = GameObject.Find("RecipeName")?.GetComponent<InputField>();
+            if (nameIn != null) nameIn.text = "푸른 밤 첫 장";
+            Btn("SaveRecipe")?.onClick.Invoke();
+            float savedAt = Time.realtimeSinceStartup;
+            notes.Add($"save recipe: recipes={DrinkLab.Recipes.Count} tear={(RecipeTearOverlay.Current != null)} msg={lab.LastMessage}");
+            // 0.5초 모션이라 Shot()의 대기 없이 바로 찍는다(프레임 번호를 기록)
+            foreach (var (at, tag) in new[] { (0.12f, "UI0c_recipe_tear_early"), (0.3f, "UI0d_recipe_tear_mid"), (0.47f, "UI0e_recipe_tear_into_box") })
+            {
+                var tearNow = RecipeTearOverlay.Current;
+                while (Time.realtimeSinceStartup - savedAt < at && tearNow != null && !tearNow.Finished) yield return null;
+                yield return new WaitForEndOfFrame();
+                ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(output, tag + ".png"));
+                shots.Add(tag);
+                notes.Add($"{tag}: frame={(RecipeTearOverlay.Current != null ? RecipeTearOverlay.Current.FramesShown : -1)}");
+            }
+            yield return Wait(1.0f);
             var max = Mix(DrinkKind.Cocktail, DrinkTechnique.Stir, "최대 배합", ("gin", 300), ("rum", 200), ("blue_curacao", 150), ("grenadine", 150), ("lemon_juice", 200), ("honey", 150));
             max.water = 50; max.ice = 3;
             Load(lab, max);
@@ -234,6 +271,176 @@ namespace CCT
             }, true));
             yield return Wait(0.5f);
             Application.Quit();
+        }
+
+        /// <summary>
+        /// 73 단계2 전체 UI 상태 검수(사용자 지시): 칵테일/차·종류 전환·재료 목록 맨 위/아래 선택·계량 전/중/옮기는 중/완료·부족·최대·소모 펼침/닫힘·
+        /// 영수증 끝까지 스크롤·제조 불가/가능/준비 음료·모션 생략·레시피 없음/여러 개/긴 이름·저장 성공(찢기)/실패·공유 코드 오류/확인·도감 위/끝.
+        /// 상태마다 글 겹침, 버튼 도달(고정 버튼은 화면 안, 스크롤 안 버튼은 보이는 영역 또는 스크롤로 도달), 터치 44px(터치 UI), 영수증 마지막 줄 노출을 검사한다.
+        /// </summary>
+        IEnumerator UiFull()
+        {
+            foreach (var tv in UnityEngine.Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None)) Destroy(tv.gameObject);
+            GameBootstrap.RestartToSelect();
+            yield return Wait(0.5f);
+            var select = Find<CharacterSelectView>();
+            select.DrinkLabButton.onClick.Invoke();
+            yield return Wait(0.6f);
+            var lab = select.DrinkLabScreen;
+            int n = 0;
+            IEnumerator Snap(string tag)
+            {
+                Canvas.ForceUpdateCanvases();
+                string label = $"F{++n:00}_{tag}";
+                CheckOverlap(label, lab.transform);
+                CheckReach(label, lab.transform);
+                yield return Shot(label, lab.transform);
+            }
+            // 레시피 탭: 비어 있음(첫 저장 전)
+            lab.SetTab(DrinkLabView.Tab.Recipes); yield return Wait(0.4f);
+            yield return Snap("recipes_empty");
+            Assert(!lab.PreviewImport("CCT1-ZZZZ-ZZZZ"), "잘못된 코드 거부");
+            yield return Wait(0.2f);
+            yield return Snap("import_error");
+            lab.SetTab(DrinkLabView.Tab.Craft); yield return Wait(0.4f);
+            yield return Snap("cocktail_start_empty_craft_disabled");
+            var st = lab.Stage;
+            // 재료 목록 맨 아래 선택(꿀) → 맨 위(진)
+            var list = lab.transform.GetComponentsInChildren<ScrollRect>().FirstOrDefault(s => s.name == "IngredientList");
+            if (list != null) { list.verticalNormalizedPosition = 0f; yield return Wait(0.2f); }
+            Btn("Row_honey")?.onClick.Invoke(); yield return Wait(0.3f);
+            yield return Snap("list_bottom_select_honey");
+            if (list != null) { list.verticalNormalizedPosition = 1f; yield return Wait(0.2f); }
+            Btn("Row_gin")?.onClick.Invoke(); yield return Wait(0.3f);
+            yield return Snap("list_top_select_gin_before_measure");
+            // 계량 중 → 옮기는 중 → 완료
+            st.BeginPour(Vector2.zero); st.SetTilt(DrinkStageView.TiltMax);
+            float g = 0f; while (st.InMeasure < 150 && g < 6f) { g += Time.unscaledDeltaTime; yield return null; }
+            st.SetTilt(0f); yield return Wait(0.35f);
+            yield return Snap("measuring_in_jigger");
+            st.StopPour();
+            g = 0f; while (st.Phase != DrinkStageView.CyclePhase.ToolPour && g < 4f) { g += Time.unscaledDeltaTime; yield return null; }
+            yield return Wait(0.25f);
+            yield return Snap("transferring_jigger_to_vessel");
+            g = 0f; while (st.Transferring && g < 8f) { g += Time.unscaledDeltaTime; yield return null; }
+            yield return Wait(0.4f);
+            yield return Snap("transfer_done_confirmed_line_craft_enabled");
+            // 부족 / 최대 / 소모 펼침 / 영수증 끝까지
+            Load(lab, Mix(DrinkKind.Cocktail, DrinkTechnique.Shake, "부족", ("gin", 600), ("blue_curacao", 160)));
+            yield return Wait(0.4f);
+            yield return Snap("shortage_craft_disabled");
+            var max = Mix(DrinkKind.Cocktail, DrinkTechnique.Layer, "아주 긴 이름의 레시피", ("gin", 300), ("rum", 200), ("blue_curacao", 150), ("grenadine", 150), ("lemon_juice", 200), ("honey", 150));
+            max.water = 50; max.ice = 4;
+            Load(lab, max); yield return Wait(0.4f);
+            yield return Snap("max_cocktail_cost_collapsed");
+            Btn("CostToggle")?.onClick.Invoke(); yield return Wait(0.4f);
+            yield return Snap("cost_expanded");
+            var mixScroll = lab.transform.GetComponentsInChildren<ScrollRect>().FirstOrDefault(s => s.name == "MixScroll");
+            if (mixScroll != null) { mixScroll.verticalNormalizedPosition = 0f; yield return Wait(0.3f); CheckLastLineVisible("receipt_bottom", mixScroll); }
+            yield return Snap("receipt_scrolled_to_end");
+            Btn("CostToggle")?.onClick.Invoke(); yield return Wait(0.3f);
+            // 저장 실패(빈 배합) / 성공(찢기) / 여러 개·긴 이름
+            Load(lab, Mix(DrinkKind.Cocktail, DrinkTechnique.Stir, "")); yield return Wait(0.3f);
+            var nameIn = GameObject.Find("RecipeName")?.GetComponent<InputField>();
+            if (nameIn != null) nameIn.text = "빈 잔";
+            Btn("SaveRecipe")?.onClick.Invoke(); yield return Wait(0.2f);
+            yield return Snap("save_failed_no_tear");
+            string[] names = { "푸른 밤", "레몬 진", "럼 하이볼", "꿀 한 방울", "열여섯글자레시피이름입니다" };
+            for (int i = 0; i < names.Length; i++)
+            {
+                Load(lab, Mix(DrinkKind.Cocktail, i % 2 == 0 ? DrinkTechnique.Stir : DrinkTechnique.Build, "", ("gin", 200 + i * 50), ("blue_curacao", 30 + i * 10)));
+                yield return Wait(0.2f);
+                if (nameIn != null) nameIn.text = names[i];
+                Btn("SaveRecipe")?.onClick.Invoke();
+                if (i == 0) { yield return Wait(0.2f); yield return Snap("save_success_tear_motion"); }
+                yield return Wait(0.8f);
+            }
+            notes.Add($"saved recipes={DrinkLab.Recipes.Count}");
+            lab.SetTab(DrinkLabView.Tab.Recipes); yield return Wait(0.4f);
+            yield return Snap("recipes_many_long_name");
+            var recipesScroll = lab.transform.GetComponentsInChildren<ScrollRect>().FirstOrDefault(s => s.name == "RecipeList");
+            if (recipesScroll != null) { recipesScroll.verticalNormalizedPosition = 0f; yield return Wait(0.3f); CheckLastLineVisible("recipes_bottom", recipesScroll); }
+            yield return Snap("recipes_scrolled_to_end");
+            var code = lab.CopyCode(0);
+            Assert(lab.PreviewImport(code), "공유 코드 확인");
+            yield return Wait(0.2f);
+            yield return Snap("import_preview_ok");
+            // 도감 위/끝
+            lab.SetTab(DrinkLabView.Tab.Codex); yield return Wait(0.4f);
+            yield return Snap("codex_top");
+            var codexScroll = lab.transform.GetComponentsInChildren<ScrollRect>().FirstOrDefault(s => s.name == "CodexList");
+            if (codexScroll != null) { codexScroll.verticalNormalizedPosition = 0f; yield return Wait(0.3f); CheckLastLineVisible("codex_bottom", codexScroll); }
+            yield return Snap("codex_scrolled_to_end");
+            // 차: 종류 전환·최대
+            lab.SetTab(DrinkLabView.Tab.Craft); yield return Wait(0.3f);
+            Btn("KindTea")?.onClick.Invoke(); yield return Wait(0.5f);
+            lab = select.DrinkLabScreen;
+            yield return Snap("tea_switched");
+            Load(lab, Mix(DrinkKind.Tea, DrinkTechnique.Steep, "차 최대", ("black_tea", 30), ("green_tea", 20), ("lemon_juice", 150), ("honey", 150)));
+            yield return Wait(0.4f);
+            yield return Snap("tea_max");
+            // 모션 생략 토글 → 제조 → 준비 음료(새 제조 불가)
+            Load(lab, Mix(DrinkKind.Tea, DrinkTechnique.Steep, "완성 차", ("black_tea", 20)));
+            yield return Wait(0.3f);
+            Btn("SkipMotion")?.onClick.Invoke(); yield return Wait(0.2f);
+            yield return Snap("skip_motion_on");
+            lab.ConfirmCraft(); yield return Wait(1.0f);
+            yield return Snap("prepared_drink_craft_blocked");
+            File.WriteAllText(System.IO.Path.Combine(output, "report.json"), JsonUtility.ToJson(new Report
+            {
+                screen = $"{Screen.width}x{Screen.height}", touchUi = MobilePlatform.IsTouchUI, shots = shots, overflow = overflow, notes = notes,
+                minFontPx = minFontPx == int.MaxValue ? 0 : minFontPx, placeholderArtUsed = lab.Stage != null && lab.Stage.Placeholders, version = Application.version,
+            }, true));
+            yield return Wait(0.5f);
+            Application.Quit();
+        }
+
+        void Assert(bool ok, string what) { if (!ok) overflow.Add("ASSERT FAILED: " + what); }
+
+        /// <summary>버튼 도달: 고정 버튼은 화면 안에 다 있어야 하고, 스크롤 안 버튼은 스크롤 영역과 화면 안(스크롤 영역 자체가 화면 안). 터치 UI면 높이·폭 44px 이상.</summary>
+        void CheckReach(string label, Transform root)
+        {
+            var screen = new Rect(0, 0, Screen.width, Screen.height);
+            int bad = 0, checkedN = 0, small = 0;
+            foreach (var b in root.GetComponentsInChildren<Button>(false))
+            {
+                if (!b.isActiveAndEnabled) continue;
+                var rt = (RectTransform)b.transform;
+                var c = new Vector3[4]; rt.GetWorldCorners(c);
+                var r = Rect.MinMaxRect(c[0].x, c[0].y, c[2].x, c[2].y);
+                checkedN++;
+                var scroll = b.GetComponentInParent<ScrollRect>();
+                Rect area = screen;
+                if (scroll != null)
+                {
+                    var vc = new Vector3[4]; ((RectTransform)scroll.transform).GetWorldCorners(vc);
+                    area = Rect.MinMaxRect(vc[0].x, vc[0].y, vc[2].x, vc[2].y);
+                    if (area.xMin < -1 || area.yMin < -1 || area.xMax > Screen.width + 1 || area.yMax > Screen.height + 1) { overflow.Add($"{label}: REACH scroll area off-screen {HierPath(scroll.transform)}"); bad++; }
+                    if (!area.Overlaps(r)) continue; // 지금 보이지 않는 줄: 스크롤로 도달
+                    // 보이는 영역 경계에 걸쳐 일부만 보이는 것은 스크롤로 마저 볼 수 있으므로 허용
+                }
+                else if (r.xMin < -1 || r.yMin < -1 || r.xMax > Screen.width + 1 || r.yMax > Screen.height + 1) { overflow.Add($"{label}: REACH off-screen {HierPath(b.transform)}"); bad++; }
+                if (MobilePlatform.IsTouchUI && (r.height < 43.5f || r.width < 43.5f)) { overflow.Add($"{label}: TOUCH small {HierPath(b.transform)} {r.width:0}x{r.height:0}px"); small++; }
+            }
+            notes.Add($"{label}: buttons={checkedN} reachIssues={bad} touchSmall={small}");
+        }
+
+        /// <summary>스크롤을 끝까지 내렸을 때 내용의 마지막 자식이 보이는 영역 안에 완전히 들어오는지.</summary>
+        void CheckLastLineVisible(string label, ScrollRect scroll)
+        {
+            Canvas.ForceUpdateCanvases();
+            var content = scroll.content;
+            RectTransform last = null; float lowest = float.MaxValue;
+            foreach (RectTransform ch in content)
+            {
+                if (!ch.gameObject.activeSelf) continue;
+                var c = new Vector3[4]; ch.GetWorldCorners(c);
+                if (c[0].y < lowest) { lowest = c[0].y; last = ch; }
+            }
+            var vc = new Vector3[4]; ((RectTransform)scroll.transform).GetWorldCorners(vc);
+            bool ok = last == null || lowest >= vc[0].y - 1f;
+            notes.Add($"{label}: last={(last != null ? last.name : "-")} bottom={lowest:0} viewportBottom={vc[0].y:0} visible={ok}");
+            if (!ok) overflow.Add($"{label}: LAST LINE HIDDEN {(last != null ? last.name : "")}");
         }
 
         /// <summary>렌더된 글자 실제 높이(preferredHeight)를 반영한 화면 사각형끼리 겹치는지, 글자가 자기 패널 밖으로 나가는지.</summary>
@@ -371,6 +578,176 @@ namespace CCT
             Application.Quit();
         }
 
+        /// <summary>
+        /// 73 단계1 검수 증거(QA 표식 없음): 실제 드래그 입력으로 기준 1회 전과정 —
+        /// 스터링(진·블루 큐라소·레몬: 병 → 지거 → 믹싱 글라스 → 바스푼 → 얼음 2개 잔)과 차(홍차 통 → 다하 → 다관, 꿀 지거 → 다관, 물 용기 → 다관, 우림, 찻잔).
+        /// 매 프레임 장부 CSV(원천/공중/대상 양, 성분 합, 잎·추출분, 스푼 끝·극점·관통 픽셀)와 연속 프레임 PNG. 이어서 빌드 잔 얼음 0/2/4/최대 비교.
+        /// </summary>
+        IEnumerator Stage1Evidence(bool noShots = false)
+        {
+            foreach (var tv in UnityEngine.Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None)) Destroy(tv.gameObject);
+            GameBootstrap.RestartToSelect();
+            yield return Wait(0.5f);
+            var select = Find<CharacterSelectView>();
+            select.DrinkLabButton.onClick.Invoke();
+            yield return Wait(0.6f);
+            var lab = select.DrinkLabScreen;
+            var stage = lab.Stage;
+            var inv = System.Globalization.CultureInfo.InvariantCulture;
+            var csv = new System.Text.StringBuilder("seq,frame,time,phase,current,bottleTilt,toolTilt,bottleMl,airToMeasureMl,measureMl,airToVesselMl,vesselMl,airToServeMl,serveMl,kettleMl,componentTotalMl,ledgerLiquidMl,tinG,chahaG,potLeafG,dissolvedG,solidsG,teaStrength,dtMs,stream,streamEmitting,dump,dumpEmitting,jiggerViewMl,vesselViewMl,serveViewMl,serveSurface01,serveHeadspaceMl,spoonOn,spoonTipX,spoonTipY,spoonAboveFloorPx,spoonOutside,spoonLeftClearPx,spoonRightClearPx,spoonMinX,spoonMaxX,toolLipX,toolLipY,serveLipX,serveLipY,jiggerColor,vesselTopColor,vesselBottomColor,vesselLayers,serveTopColor,streamColor,dumpColor\n");
+            var framesDir = System.IO.Path.Combine(output, "frames");
+            Directory.CreateDirectory(framesDir);
+            float start = Time.realtimeSinceStartup, nextShot = 0f;
+            int frameNo = 0;
+            string seq = "stir";
+            bool everyFrame = false;
+            string F(double v) => v.ToString("0.000", inv);
+            void Row(string file)
+            {
+                var L = stage.Ledger;
+                var sp = stage.Spoon;
+                bool spoonOn = stage.SpoonRect != null && stage.SpoonRect.gameObject.activeSelf;
+                string cur = stage.CurrentId ?? "";
+                double comp = cur != "" ? L.ComponentTotalMl(cur) : 0;
+                var serveV = stage.ServeVessel;
+                csv.Append(string.Join(",", seq, file, F(Time.realtimeSinceStartup - start), stage.Phase, cur, F(stage.Tilt), F(stage.ToolTilt),
+                    F(L[DrinkStageView.LedgerBottle].LiquidMl), F(L.InFlightMl(DrinkStageView.LedgerMeasure)), F(L[DrinkStageView.LedgerMeasure].LiquidMl),
+                    F(L.InFlightMl(DrinkStageView.LedgerVessel)), F(L[DrinkStageView.LedgerVessel].LiquidMl), F(L.InFlightMl(DrinkStageView.LedgerServe)), F(L[DrinkStageView.LedgerServe].LiquidMl),
+                    F(L[DrinkStageView.LedgerKettle].LiquidMl), F(comp), F(L.TotalLiquidMl()),
+                    F(L[DrinkStageView.LedgerBottle].LeafG), F(L[DrinkStageView.LedgerMeasure].LeafG), F(L[DrinkStageView.LedgerVessel].LeafG),
+                    F(L[DrinkStageView.LedgerVessel].DissolvedG + L[DrinkStageView.LedgerServe].DissolvedG), F(L.SolidsTotalG()), F(Math.Max(L[DrinkStageView.LedgerVessel].TeaStrength, L[DrinkStageView.LedgerServe].TeaStrength)), F(Time.unscaledDeltaTime * 1000.0),
+                    stage.StreamVisible, stage.StreamEmitting, stage.DumpStreamVisible, stage.DumpStreamEmitting,
+                    F(stage.Jigger.VolumeMl), F(stage.MainVessel != null ? stage.MainVessel.VolumeMl : 0), F(serveV != null && serveV.gameObject.activeSelf ? serveV.VolumeMl : 0),
+                    F(serveV != null ? serveV.Level01 : 0), F(serveV != null ? serveV.HeadspaceMl : 0),
+                    spoonOn, F(sp.tip.x), F(sp.tip.y), F(sp.tipAboveFloorPx), sp.outsidePixels, F(sp.leftClearPx), F(sp.rightClearPx), F(sp.minX), F(sp.maxX),
+                    F(stage.TransferGeometry.lip.x), F(stage.TransferGeometry.lip.y), F(stage.ServeGeometry.lip.x), F(stage.ServeGeometry.lip.y),
+                    Hex(stage.Jigger.TopColor), Hex(stage.MainVessel != null ? stage.MainVessel.TopColor : Color.clear), Hex(stage.MainVessel != null ? stage.MainVessel.BottomColor : Color.clear), stage.MainVessel != null ? stage.MainVessel.LayerCount : 0,
+                    Hex(serveV != null && serveV.gameObject.activeSelf ? serveV.TopColor : Color.clear), stage.StreamVisible ? Hex(stage.StreamColor) : "", stage.DumpStreamVisible ? Hex(stage.DumpStreamColor) : "") + "\n");
+            }
+            IEnumerator Frame()
+            {
+                float now = Time.realtimeSinceStartup - start;
+                string file = "";
+                if (!noShots && (everyFrame || now >= nextShot))
+                {
+                    nextShot = now + 1f / 20f;
+                    file = $"{seq}_{frameNo++:0000}";
+                    ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(framesDir, file + ".png"));
+                }
+                Row(file);
+                yield return null;
+            }
+            var canvas = stage.GetComponentInParent<Canvas>();
+            float scale = canvas != null ? canvas.scaleFactor : 1f;
+            IEnumerator Drag(string id, int tenths)
+            {
+                var row = Btn("Row_" + id);
+                if (row != null) row.onClick.Invoke();
+                stage.Select(DrinkIngredients.Get(id));
+                for (int i = 0; i < 8; i++) yield return Frame();
+                var sc = new Vector3[4]; ((RectTransform)stage.transform).GetWorldCorners(sc);
+                var press = (Vector2)((sc[0] + sc[2]) * 0.5f) + new Vector2(-200f * scale, 0f);
+                stage.BeginPour(press);
+                int before = lab.Draft.AmountOf(id);
+                float g0 = Time.realtimeSinceStartup;
+                // 누르고 오른쪽으로 끌어(실제 입력 경로) 원하는 양에서 놓는다
+                while (stage.Pouring && lab.Draft.AmountOf(id) + stage.InMeasure - before < tenths && Time.realtimeSinceStartup - g0 < 20f)
+                {
+                    float k = Mathf.Clamp01((Time.realtimeSinceStartup - g0) / 0.6f);
+                    stage.DragTo(Vector2.Lerp(press, press + new Vector2(230f * scale, 0f), k));
+                    yield return Frame();
+                }
+                stage.StopPour();
+                while ((stage.Transferring || stage.Ledger.HasInFlight()) && Time.realtimeSinceStartup - g0 < 30f) yield return Frame();
+                for (int i = 0; i < 10; i++) yield return Frame();
+                notes.Add($"{seq} drag {id}: draft={DrinkRules.Format(lab.Draft.AmountOf(id))} vesselLedger={stage.Ledger[DrinkStageView.LedgerVessel].Liquid.ComponentVolume(id):0.000}mL/{stage.Ledger[DrinkStageView.LedgerVessel].Leaf(id):0.000}g dumps={stage.MeasureDumps}");
+            }
+            IEnumerator Craft()
+            {
+                bool done = false;
+                lab.Stage.PlayCraft(lab.Draft, false, () => done = true);
+                float s0 = Time.realtimeSinceStartup;
+                while (!done && Time.realtimeSinceStartup - s0 < 20f)
+                {
+                    everyFrame = stage.SpoonRect != null && stage.SpoonRect.gameObject.activeSelf; // 바스푼 구간은 매 프레임(극점 검수)
+                    yield return Frame();
+                }
+                everyFrame = false;
+                // 완성 뒤 최소 1.5초: 안정 상태에서 제조 그릇이 다시 채워지거나 양이 바뀌지 않는지 CSV·프레임으로 남긴다.
+                float after = Time.realtimeSinceStartup;
+                while (Time.realtimeSinceStartup - after < 1.5f) yield return Frame();
+            }
+
+            // ── 기준 1회: 스터링 ──
+            var stirR = Mix(DrinkKind.Cocktail, DrinkTechnique.Stir, "기준 스터링");
+            stirR.ice = 2;
+            Load(lab, stirR);
+            yield return Wait(0.4f);
+            yield return Drag("gin", 300);
+            yield return Drag("blue_curacao", 100);
+            yield return Drag("lemon_juice", 150);
+            yield return Craft();
+            var sv = stage.FinalVessel;
+            notes.Add($"stir final: serveLedger={stage.Ledger[DrinkStageView.LedgerServe].LiquidMl:0.000}mL gin={stage.Ledger[DrinkStageView.LedgerServe].Liquid.ComponentVolume("gin"):0.000} blue={stage.Ledger[DrinkStageView.LedgerServe].Liquid.ComponentVolume("blue_curacao"):0.000} lemon={stage.Ledger[DrinkStageView.LedgerServe].Liquid.ComponentVolume("lemon_juice"):0.000} view={sv.VolumeMl:0.00} ice={sv.IceCount} headspace={sv.HeadspaceMl:0.0} free={(sv.IceSolution != null ? sv.IceSolution.FreeVolumeMl : 0):0.0} cap={sv.CapacityMl}");
+            yield return Shot("S1_stir_final_glass", null);
+            // 출발 완성 공개(같은 배합): 같은 고정 잔 용량·최종 물리 상태여야 한다
+            bool revealDone = false;
+            DrinkRevealOverlay.Play(new PreparedDrink { recipe = lab.Draft.Clone(), state = PreparedDrink.Ready }, () => revealDone = true);
+            yield return Wait(1.3f);
+            var rv = DrinkRevealOverlay.Current != null ? DrinkRevealOverlay.Current.Vessel : null;
+            if (rv != null)
+                notes.Add($"reveal: vessel={rv.AssetId} view={rv.VolumeMl:0.00}mL surface01={rv.Level01:0.000} ice={rv.IceCount} free={(rv.IceSolution != null ? rv.IceSolution.FreeVolumeMl : 0):0.0} cap={rv.CapacityMl} | stage final surface01={sv.Level01:0.000} free={(sv.IceSolution != null ? sv.IceSolution.FreeVolumeMl : 0):0.0}");
+            yield return Shot("S1b_reveal_same_drink", null);
+            if (DrinkRevealOverlay.Current != null) DrinkRevealOverlay.Current.Finish();
+            while (!revealDone) yield return null;
+            yield return Wait(0.3f);
+
+            // ── 기준 1회: 차 ──
+            seq = "tea"; frameNo = 0;
+            Btn("KindTea").onClick.Invoke();
+            yield return Wait(0.5f);
+            lab = select.DrinkLabScreen;
+            stage = lab.Stage;
+            Load(lab, Mix(DrinkKind.Tea, DrinkTechnique.Steep, "기준 홍차"));
+            yield return Wait(0.4f);
+            yield return Drag("black_tea", 25);
+            yield return Drag("honey", 100);
+            yield return Craft();
+            var cup = stage.Ledger[DrinkStageView.LedgerServe]; var pot = stage.Ledger[DrinkStageView.LedgerVessel];
+            notes.Add($"tea final: cupWater={cup.WaterMl:0.000} cupHoney={cup.Liquid.ComponentVolume("honey"):0.000} cupLeaf={cup.LeafG:0.000} cupDissolved={cup.DissolvedG:0.0000} potLeaf={pot.LeafG:0.0000} potLiquid={pot.LiquidMl:0.000} strength={cup.TeaStrength:0.000} solids={stage.Ledger.SolidsTotalG():0.0000} view={stage.FinalVessel.VolumeMl:0.00} cap={stage.FinalVessel.CapacityMl}");
+            yield return Shot("S2_tea_final_cup", null);
+            File.WriteAllText(System.IO.Path.Combine(output, noShots ? "stage1_perf.csv" : "stage1.csv"), csv.ToString());
+
+            // ── 얼음 0/2/4 및 최대 비교(빌드 잔, 같은 액체량) ──
+            Btn("KindCocktail")?.onClick.Invoke();
+            yield return Wait(0.5f);
+            lab = select.DrinkLabScreen;
+            stage = lab.Stage;
+            foreach (var (ice, gin, gren, tag) in new[] { (0, 400, 200, "ice0_60ml"), (2, 400, 200, "ice2_60ml"), (4, 400, 200, "ice4_60ml"), (4, 0, 0, "ice4_empty"), (4, 900, 300, "ice4_max120ml") })
+            {
+                var r = Mix(DrinkKind.Cocktail, DrinkTechnique.Build, "얼음 " + ice, ("gin", gin), ("grenadine", gren));
+                if (gin == 0) r.steps.Clear();
+                if (tag == "ice4_max120ml") r.water = 0;
+                r.ice = ice;
+                Load(lab, r);
+                yield return Wait(1.2f);
+                var v = stage.MainVessel;
+                var s = v.IceSolution;
+                double liquid = stage.Ledger[DrinkStageView.LedgerVessel].LiquidMl;
+                notes.Add($"ICE {tag}: ice={v.IceCount} liquidLedger={liquid:0.000} liquidView={v.VolumeMl:0.000} surface01={v.Level01:0.000} submerged={(s != null ? s.SubmergedIceVolume : 0):0.00} free={(s != null ? s.FreeVolumeMl : v.CapacityMl - v.VolumeMl):0.0} cap={v.CapacityMl} fillPct={(v.CapacityMl - (s != null ? s.FreeVolumeMl : v.CapacityMl - v.VolumeMl)) / v.CapacityMl * 100:0.0} cubes=" +
+                          (s != null ? string.Join(";", s.Cubes.Select(c => $"{c.Support}@{c.Bottom01:0.000}-{c.Top01:0.000}")) : ""));
+                yield return Shot("I_" + tag, null);
+            }
+
+            File.WriteAllText(System.IO.Path.Combine(output, "report.json"), JsonUtility.ToJson(new Report
+            {
+                screen = $"{Screen.width}x{Screen.height}", touchUi = MobilePlatform.IsTouchUI, shots = shots, overflow = overflow, notes = notes,
+                minFontPx = 0, placeholderArtUsed = stage.Placeholders, version = Application.version,
+            }, true));
+            yield return Wait(1.0f);
+            Application.Quit();
+        }
+
         IEnumerator ReferencePour()
         {
             foreach (var tv in UnityEngine.Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None)) Destroy(tv.gameObject);
@@ -437,6 +814,21 @@ namespace CCT
             if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "reference")
             {
                 yield return ReferencePour();
+                yield break;
+            }
+            if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "stage1")
+            {
+                yield return Stage1Evidence();
+                yield break;
+            }
+            if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "uifull")
+            {
+                yield return UiFull();
+                yield break;
+            }
+            if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "perf")
+            {
+                yield return Stage1Evidence(noShots: true); // 같은 과정, 프레임 파일 쓰기 없이 프레임 시간만(끊김 검수)
                 yield break;
             }
             if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "cycle")

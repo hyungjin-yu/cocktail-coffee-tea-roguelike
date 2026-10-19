@@ -1,0 +1,812 @@
+{
+  "unchangedOriginals": [
+    "dl_bottle_gin",
+    "dl_bottle_rum",
+    "dl_bottle_blue_curacao",
+    "dl_bottle_grenadine",
+    "dl_bottle_lemon_juice",
+    "dl_bottle_honey"
+  ],
+  "files": [
+    {
+      "path": "aseprite-batch.log",
+      "bytes": 673,
+      "sha256": "4b753526d15237ddbbbf972a7ca433bee2fd4884c06efda6a7f18e46f52d0aa0"
+    },
+    {
+      "path": "contact.py",
+      "bytes": 543,
+      "sha256": "0c22c2fc73542dd291daba4dd708133914d8f158b0253460b7fbd125d738976a"
+    },
+    {
+      "path": "dl_bottle_blue_curacao.aseprite",
+      "bytes": 2362,
+      "sha256": "eef622a76ff6225ece32b9788ff586455089966cc89181d1b268dbf119db3898"
+    },
+    {
+      "path": "dl_bottle_blue_curacao_cap.png",
+      "bytes": 289,
+      "sha256": "b2276c87041b4b17c8e1a84d6398883bb4e4d5f03c5039b9e777217caad26969"
+    },
+    {
+      "path": "dl_bottle_blue_curacao_empty.png",
+      "bytes": 634,
+      "sha256": "9dadbe7e3cbfd173b3dcb94d4d5892574144fa1ffa65c634523ce205f35024fb"
+    },
+    {
+      "path": "dl_bottle_blue_curacao_mask.png",
+      "bytes": 159,
+      "sha256": "cd23829c4bb8a4aa6c4318323f7a73f966f213f50f3d43148e34f475780a7bca"
+    },
+    {
+      "path": "dl_bottle_blue_curacao_open_empty.png",
+      "bytes": 481,
+      "sha256": "1b491edd88d2743d801a14d8cf518a86854ac9c9351dc6f45ae7dc81423f72da"
+    },
+    {
+      "path": "dl_bottle_blue_curacao_visible_mask.png",
+      "bytes": 174,
+      "sha256": "1a44b56cf6a60464a6cdba911b314275534f7b9cd4d627912b8abef2e50bd3e4"
+    },
+    {
+      "path": "dl_bottle_gin.aseprite",
+      "bytes": 2253,
+      "sha256": "dd66e47335450a4e540a164873572e12d923964c9374a39d770918312030ad8b"
+    },
+    {
+      "path": "dl_bottle_gin_cap.png",
+      "bytes": 231,
+      "sha256": "8153b84d4112507833b9aef1ebacdf204b7601a88c71cdb4fbddea9a19fa86ae"
+    },
+    {
+      "path": "dl_bottle_gin_empty.png",
+      "bytes": 613,
+      "sha256": "afe1625f33d8c29250673c57fed901aff52ba4a6df8cc375b8c6c78a9dae2c3e"
+    },
+    {
+      "path": "dl_bottle_gin_mask.png",
+      "bytes": 158,
+      "sha256": "e3459ac4da26982cae79ca0f1da20cbaa658ea062e32196a5bdda529499dc70c"
+    },
+    {
+      "path": "dl_bottle_gin_open_empty.png",
+      "bytes": 506,
+      "sha256": "9178827731f3e3e7d0d46aa51bcecd1372b40ba3992c0695431e991de94c45e6"
+    },
+    {
+      "path": "dl_bottle_gin_visible_mask.png",
+      "bytes": 171,
+      "sha256": "a3845e0d8a8eb877a018946e190ebbdb34956e3dc0973c36fa6fe186d0c06f98"
+    },
+    {
+      "path": "dl_bottle_grenadine.aseprite",
+      "bytes": 2759,
+      "sha256": "9f75a72f88a62ed47cc769b50635078b41789cabd87de57111f090d63aefd6af"
+    },
+    {
+      "path": "dl_bottle_grenadine_cap.png",
+      "bytes": 242,
+      "sha256": "6b3616cbf5eeec0b93cd1fc36fb9aab05fc4cc4fdb7726428d7928e5c6212bf7"
+    },
+    {
+      "path": "dl_bottle_grenadine_empty.png",
+      "bytes": 922,
+      "sha256": "fda812d810698500df7b56dc20e388ba49ab945e20b4abccb446b2fe0c170d34"
+    },
+    {
+      "path": "dl_bottle_grenadine_mask.png",
+      "bytes": 170,
+      "sha256": "8ce14f6bfb88bc0bdaef4b0fe6bfde8e15eeff1e72fa08f6e8a9be890e598e86"
+    },
+    {
+      "path": "dl_bottle_grenadine_open_empty.png",
+      "bytes": 798,
+      "sha256": "f0e836355e48fab19050f2fe5fd46a2b920db518e4a2cc8d55120644aa7279a3"
+    },
+    {
+      "path": "dl_bottle_grenadine_visible_mask.png",
+      "bytes": 189,
+      "sha256": "45e16b888efe3a23a6ecd4665511c18e07586587bd2936002736d0792bfb300f"
+    },
+    {
+      "path": "dl_bottle_honey.aseprite",
+      "bytes": 3903,
+      "sha256": "3a13f5be2bbcb394362d39834a9d297c4c5b4104678314dbb24b5efcc143d81c"
+    },
+    {
+      "path": "dl_bottle_honey_cap.png",
+      "bytes": 436,
+      "sha256": "681c374ec3b7d82ed70fdabaed2d2254ed58a9940780f046c78e66ab56c1168a"
+    },
+    {
+      "path": "dl_bottle_honey_empty.png",
+      "bytes": 1081,
+      "sha256": "62893f43e96610b41a81a94dcec269db3a9fe6c2128c46938de6ce579e8dcd4e"
+    },
+    {
+      "path": "dl_bottle_honey_mask.png",
+      "bytes": 129,
+      "sha256": "23a3475ebf57ed8c77105d072125f5321d83a14a11c500d1d737e3d2c3f9c28d"
+    },
+    {
+      "path": "dl_bottle_honey_open_empty.png",
+      "bytes": 777,
+      "sha256": "e800f750023fb6d815414af9420ba2943933dcdb8039c270803c7ab9984cf573"
+    },
+    {
+      "path": "dl_bottle_honey_visible_mask.png",
+      "bytes": 127,
+      "sha256": "7639df36e0dee8d7268493440ada11f99b3e546eab105f060eead38388990c70"
+    },
+    {
+      "path": "dl_bottle_lemon_juice.aseprite",
+      "bytes": 2361,
+      "sha256": "2b38ba939955ed504f5d82e6f0c4a7872dde6e44adcdeb5c9b3e405172594268"
+    },
+    {
+      "path": "dl_bottle_lemon_juice_cap.png",
+      "bytes": 226,
+      "sha256": "97e284c369277d84dec9af127c181171d737e9bcdeb49c8494d69b09626298ec"
+    },
+    {
+      "path": "dl_bottle_lemon_juice_empty.png",
+      "bytes": 768,
+      "sha256": "a6bb149718daee36db2d61c319c73a03dae0ea3a426806aad6b9d2187f7b6993"
+    },
+    {
+      "path": "dl_bottle_lemon_juice_mask.png",
+      "bytes": 159,
+      "sha256": "c9e3b0844d51a75aa243c51f5c11b9ecad674a9a2d4512c6b9b09744308a6a5e"
+    },
+    {
+      "path": "dl_bottle_lemon_juice_open_empty.png",
+      "bytes": 671,
+      "sha256": "15119119e256b20b4de3453685f9d427766ff2f10248d1e4d036bc0221aa8124"
+    },
+    {
+      "path": "dl_bottle_lemon_juice_visible_mask.png",
+      "bytes": 168,
+      "sha256": "2baf04f745bc1d88617e27b47f8c5106376cec2ff26cc81c99849b6f534733a0"
+    },
+    {
+      "path": "dl_bottle_rum.aseprite",
+      "bytes": 2546,
+      "sha256": "695fc7ddd8894343d74f8e6f43f995c172e03fdbc9178781172cf483d4200e79"
+    },
+    {
+      "path": "dl_bottle_rum_cap.png",
+      "bytes": 246,
+      "sha256": "7e8670f10a33f0a3402abe9da6b8309f7856da545302134e1d02a308cbf8bd08"
+    },
+    {
+      "path": "dl_bottle_rum_empty.png",
+      "bytes": 790,
+      "sha256": "45340cbbb4c873c38f6fcc65cebc247b458f91f321b6653b78d36db3a055a9b9"
+    },
+    {
+      "path": "dl_bottle_rum_mask.png",
+      "bytes": 180,
+      "sha256": "d4faa58dcb07d0c5eb96f74d27d32c15403be7e30396db985c1ffb812deef9d4"
+    },
+    {
+      "path": "dl_bottle_rum_open_empty.png",
+      "bytes": 672,
+      "sha256": "3cef5a0bf4765e0ac71b914927b709d8aea1b70217e8373c7c17b30bf91e88bc"
+    },
+    {
+      "path": "dl_bottle_rum_visible_mask.png",
+      "bytes": 178,
+      "sha256": "847cc62b7936d5a2d2a43a3a49370741efca0e1b5f85bed5e01488dc6eefe183"
+    },
+    {
+      "path": "fill-contact.py",
+      "bytes": 625,
+      "sha256": "8ac9b5310b33f4530610bebb79088562686ba10d0cfa2b97c4e7816f53a80a42"
+    },
+    {
+      "path": "fill-preview.lua",
+      "bytes": 1715,
+      "sha256": "d42a9f39db585a0d86f8ce07ac5630ea4757053fef7d11343efaa5ccdd952c2b"
+    },
+    {
+      "path": "inspect.py",
+      "bytes": 1085,
+      "sha256": "86e36334c7ec1aa45258d32b057ed99b04b1a5d82a1d5d0b5d76f9849fc4ee9d"
+    },
+    {
+      "path": "inventory.py",
+      "bytes": 714,
+      "sha256": "6dd7e19a303936ba8d01ef8669017efff0e2fb309f52c1511bc1a8c8563d00c8"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 90664,
+      "sha256": "ded95161b6695e7c72ed517ca5fcf2453425a7a3ac28f55759ba572995563c24"
+    },
+    {
+      "path": "qa/anchors-contact.png",
+      "bytes": 13927,
+      "sha256": "dcb32e00b790910fbc52b1053a59f56f22c3ca77063eef9d3648fc3d8f99fb28"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_0deg_0pct.png",
+      "bytes": 791,
+      "sha256": "fad162035c10d9a58a822ccad46f36164227eb0ca2a67e67fc1f71f98fc00333"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_0deg_25pct.png",
+      "bytes": 827,
+      "sha256": "ef68e31d48321fbdf1ff7d665b9498723092af0f9b6fe7f08fa08a40cf04efa1"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_0deg_50pct.png",
+      "bytes": 829,
+      "sha256": "f3df4d62164f1a543012d2796271e6a551c686d0c6437ad10ea5209172a64e65"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_0deg_75pct.png",
+      "bytes": 824,
+      "sha256": "5f5c120b92626e8573cfff5ec337d47fa63c5fe7a6b24daa4dc168abcdb76c0a"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_30deg_0pct.png",
+      "bytes": 931,
+      "sha256": "70450efd9f898e58be9416a7ea9bc8b8bbd3a9e68d8ee2cfdf93c0c812d33f72"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_30deg_25pct.png",
+      "bytes": 971,
+      "sha256": "6ea4fac881cdea6e936bb7aee0c50589ad52b1429ed13c3526def15f283af83d"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_30deg_50pct.png",
+      "bytes": 969,
+      "sha256": "f95d6396c608b16f7453b61b04774727ce56ac2953e3f73445cd6ff8cbbe6706"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_30deg_75pct.png",
+      "bytes": 968,
+      "sha256": "b8d10a4c37568a7780b2b7a7d7f89025620587ac6a2e319050846fc4f707d1c5"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_60deg_0pct.png",
+      "bytes": 868,
+      "sha256": "f8452a19a354b6c93e4695151119ae6253df0f4d320a442b5ed0ea20d0eb4666"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_60deg_25pct.png",
+      "bytes": 896,
+      "sha256": "3b090f97e5a280e9bc8a30694a2a900635f48b34749f1a743dadec7242dadd6b"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_60deg_50pct.png",
+      "bytes": 879,
+      "sha256": "0818bb88c96368b12e3a348b9140624b13482354a725276f9715320e63ec065f"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_60deg_75pct.png",
+      "bytes": 882,
+      "sha256": "e12896d7295016a2061dbe569f7acbcdc95ab3bb7edad94edda1c2867df0d996"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_cap_roundtrip.png",
+      "bytes": 289,
+      "sha256": "b2276c87041b4b17c8e1a84d6398883bb4e4d5f03c5039b9e777217caad26969"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_mask_roundtrip.png",
+      "bytes": 159,
+      "sha256": "cd23829c4bb8a4aa6c4318323f7a73f966f213f50f3d43148e34f475780a7bca"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_open_empty_roundtrip.png",
+      "bytes": 481,
+      "sha256": "1b491edd88d2743d801a14d8cf518a86854ac9c9351dc6f45ae7dc81423f72da"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_roundtrip.png",
+      "bytes": 634,
+      "sha256": "9dadbe7e3cbfd173b3dcb94d4d5892574144fa1ffa65c634523ce205f35024fb"
+    },
+    {
+      "path": "qa/dl_bottle_blue_curacao_visible_mask_roundtrip.png",
+      "bytes": 174,
+      "sha256": "1a44b56cf6a60464a6cdba911b314275534f7b9cd4d627912b8abef2e50bd3e4"
+    },
+    {
+      "path": "qa/dl_bottle_gin_0deg_0pct.png",
+      "bytes": 770,
+      "sha256": "72fb7340aaaab73ac542b9bdc313f89381ead3194963df45845b7d34f25b6dd3"
+    },
+    {
+      "path": "qa/dl_bottle_gin_0deg_25pct.png",
+      "bytes": 797,
+      "sha256": "d8a8b4ad17c86933da37c733ced1add10cdc21d6d8e04e33ba9756824fb160f6"
+    },
+    {
+      "path": "qa/dl_bottle_gin_0deg_50pct.png",
+      "bytes": 802,
+      "sha256": "d6e20e5de92c0101fc8bb484fad846f18cd063b354d0e5a386bc332a267b25b9"
+    },
+    {
+      "path": "qa/dl_bottle_gin_0deg_75pct.png",
+      "bytes": 797,
+      "sha256": "23a8e7e57b6d9778056880e313044d0eff805cc2c43824287f4cbf0d8619294d"
+    },
+    {
+      "path": "qa/dl_bottle_gin_30deg_0pct.png",
+      "bytes": 939,
+      "sha256": "def75314e4972616ba2de2a7300a7a84640ea0e55f180d605787eea74d1e08dc"
+    },
+    {
+      "path": "qa/dl_bottle_gin_30deg_25pct.png",
+      "bytes": 1015,
+      "sha256": "8296cf1b7974263acfd0aec247b634b235bb594b1514d67ee567a27ef3e9a50e"
+    },
+    {
+      "path": "qa/dl_bottle_gin_30deg_50pct.png",
+      "bytes": 1035,
+      "sha256": "20ca03f96dc846d30f120cf7446dcd9ecb9d86cc3b01b594689cc05161d38880"
+    },
+    {
+      "path": "qa/dl_bottle_gin_30deg_75pct.png",
+      "bytes": 1022,
+      "sha256": "c2aba5eecf46ee62a3f12448cbb83fb747b7ad233665b1c6f597034db66f4211"
+    },
+    {
+      "path": "qa/dl_bottle_gin_60deg_0pct.png",
+      "bytes": 885,
+      "sha256": "6bfa43120d2fede76f44da552fc7298571ac9c7417926b4f6f6d75fa18be3b01"
+    },
+    {
+      "path": "qa/dl_bottle_gin_60deg_25pct.png",
+      "bytes": 913,
+      "sha256": "aff73cbbeeef2b31afdd38c0236d77300faa9ab87180e49b6b1b8c84abbf527d"
+    },
+    {
+      "path": "qa/dl_bottle_gin_60deg_50pct.png",
+      "bytes": 920,
+      "sha256": "3c4174e5bedd72953db23c26e097c1e989434bec57f6717f0383e691245349cb"
+    },
+    {
+      "path": "qa/dl_bottle_gin_60deg_75pct.png",
+      "bytes": 907,
+      "sha256": "f61999fe227b62080ac5d7c193e8f255793e70c8f5de0982624b4cd7948d3c02"
+    },
+    {
+      "path": "qa/dl_bottle_gin_cap_roundtrip.png",
+      "bytes": 231,
+      "sha256": "8153b84d4112507833b9aef1ebacdf204b7601a88c71cdb4fbddea9a19fa86ae"
+    },
+    {
+      "path": "qa/dl_bottle_gin_mask_roundtrip.png",
+      "bytes": 158,
+      "sha256": "e3459ac4da26982cae79ca0f1da20cbaa658ea062e32196a5bdda529499dc70c"
+    },
+    {
+      "path": "qa/dl_bottle_gin_open_empty_roundtrip.png",
+      "bytes": 506,
+      "sha256": "9178827731f3e3e7d0d46aa51bcecd1372b40ba3992c0695431e991de94c45e6"
+    },
+    {
+      "path": "qa/dl_bottle_gin_roundtrip.png",
+      "bytes": 613,
+      "sha256": "afe1625f33d8c29250673c57fed901aff52ba4a6df8cc375b8c6c78a9dae2c3e"
+    },
+    {
+      "path": "qa/dl_bottle_gin_visible_mask_roundtrip.png",
+      "bytes": 171,
+      "sha256": "a3845e0d8a8eb877a018946e190ebbdb34956e3dc0973c36fa6fe186d0c06f98"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_0deg_0pct.png",
+      "bytes": 1089,
+      "sha256": "0af09e339bd88836dc0f11362d68a85f0af9067fdb011405b50221e154cdfbf1"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_0deg_25pct.png",
+      "bytes": 1104,
+      "sha256": "04aaa7403ff2fab395e478b3e8bb0fa66682e1dbd83bb91975d4b1ebdcdeff92"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_0deg_50pct.png",
+      "bytes": 1106,
+      "sha256": "8dacc715a3d62919a6fd775e0b3c09122eb3dfc9a57ddfb3da34994963144926"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_0deg_75pct.png",
+      "bytes": 1107,
+      "sha256": "4db5032079556227fff645638ada930d61f4a0dc8e670a1e5547e0b25fbdc9ff"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_30deg_0pct.png",
+      "bytes": 1350,
+      "sha256": "de8ebe29509fb1c183bfb77d8ef30dc96cceaee9587aabc2d471bdefab05fd9c"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_30deg_25pct.png",
+      "bytes": 1398,
+      "sha256": "f7bef9431812b1459c72238e80ddc5e5f082bdb5b1fb038e44c2db007c98b2b7"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_30deg_50pct.png",
+      "bytes": 1400,
+      "sha256": "02fa647522882c9df2592d0f87908c16924b3fb855ad43026df9ee03f3a0134b"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_30deg_75pct.png",
+      "bytes": 1371,
+      "sha256": "20d195840bc7e4599efe217d3546f52e2ec08f4cd110f46894cfca8cf7dede31"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_60deg_0pct.png",
+      "bytes": 1267,
+      "sha256": "e741f498bfae84b68a43d1ab53e0c127d52c64af491c51fdeb33612128a91304"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_60deg_25pct.png",
+      "bytes": 1301,
+      "sha256": "1020fdc2a50eef5c851f864675895c8489ab57091565bc7a77b2c6cbd67d332d"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_60deg_50pct.png",
+      "bytes": 1301,
+      "sha256": "48798c2177325b59a6d16fdfc328ca80332b4263221eef0e8bfadde343f79680"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_60deg_75pct.png",
+      "bytes": 1308,
+      "sha256": "2335b93d8f1c79225b285b69076b8f1cfbc37ec3c49ef11bf509d3d42463a4a4"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_cap_roundtrip.png",
+      "bytes": 242,
+      "sha256": "6b3616cbf5eeec0b93cd1fc36fb9aab05fc4cc4fdb7726428d7928e5c6212bf7"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_mask_roundtrip.png",
+      "bytes": 170,
+      "sha256": "8ce14f6bfb88bc0bdaef4b0fe6bfde8e15eeff1e72fa08f6e8a9be890e598e86"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_open_empty_roundtrip.png",
+      "bytes": 798,
+      "sha256": "f0e836355e48fab19050f2fe5fd46a2b920db518e4a2cc8d55120644aa7279a3"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_roundtrip.png",
+      "bytes": 922,
+      "sha256": "fda812d810698500df7b56dc20e388ba49ab945e20b4abccb446b2fe0c170d34"
+    },
+    {
+      "path": "qa/dl_bottle_grenadine_visible_mask_roundtrip.png",
+      "bytes": 189,
+      "sha256": "45e16b888efe3a23a6ecd4665511c18e07586587bd2936002736d0792bfb300f"
+    },
+    {
+      "path": "qa/dl_bottle_honey_0deg_0pct.png",
+      "bytes": 1215,
+      "sha256": "449a135bb05e2beaa1f6c9846d85a359f3f46bcb0e51c1cb7398938b0a9f0633"
+    },
+    {
+      "path": "qa/dl_bottle_honey_0deg_25pct.png",
+      "bytes": 1221,
+      "sha256": "5d5cb55564355b4fb5a08d4a6688dd28ee0dfa85bbb67c57286047dc8e8aa930"
+    },
+    {
+      "path": "qa/dl_bottle_honey_0deg_50pct.png",
+      "bytes": 1221,
+      "sha256": "09a9b4111a1c530f863634fa78e9cfa9814525ab81fedef192658bca5a6763ac"
+    },
+    {
+      "path": "qa/dl_bottle_honey_0deg_75pct.png",
+      "bytes": 1230,
+      "sha256": "f834d31ea434e8a6d731ce3eda4fda83b4208b663bedb97ad74e10ccf8d50ec8"
+    },
+    {
+      "path": "qa/dl_bottle_honey_30deg_0pct.png",
+      "bytes": 1138,
+      "sha256": "b6ee2eaca4999742ea3c98c27e8840badc6390db04e58c975988088975ddb929"
+    },
+    {
+      "path": "qa/dl_bottle_honey_30deg_25pct.png",
+      "bytes": 1138,
+      "sha256": "b6ee2eaca4999742ea3c98c27e8840badc6390db04e58c975988088975ddb929"
+    },
+    {
+      "path": "qa/dl_bottle_honey_30deg_50pct.png",
+      "bytes": 1147,
+      "sha256": "3937f0dfc260366bbbf3755d788ec8617111af6c7509db14782a2ed9aa3accac"
+    },
+    {
+      "path": "qa/dl_bottle_honey_30deg_75pct.png",
+      "bytes": 1149,
+      "sha256": "f3685f9180929c75a70e748cc40f220c9f77599d62420e8638d7760ba96f4077"
+    },
+    {
+      "path": "qa/dl_bottle_honey_60deg_0pct.png",
+      "bytes": 1144,
+      "sha256": "30b04446352d24dbf937e2a4f93174dca043e7fe5a6a91c5b959135aa0a6a89d"
+    },
+    {
+      "path": "qa/dl_bottle_honey_60deg_25pct.png",
+      "bytes": 1151,
+      "sha256": "26018d519e9a9eab1d8170ad564dba404fbb3e33c9be7fc63df16d7e8ef5694c"
+    },
+    {
+      "path": "qa/dl_bottle_honey_60deg_50pct.png",
+      "bytes": 1168,
+      "sha256": "e39518b9f2e04e2cd0260e9fd52b2604d24d368be465af628d69d659df983ed7"
+    },
+    {
+      "path": "qa/dl_bottle_honey_60deg_75pct.png",
+      "bytes": 1174,
+      "sha256": "f891ac93da43c34958db9e096609fe1baaced3356e4e5f42bf84d10f9d6e841c"
+    },
+    {
+      "path": "qa/dl_bottle_honey_cap_roundtrip.png",
+      "bytes": 436,
+      "sha256": "681c374ec3b7d82ed70fdabaed2d2254ed58a9940780f046c78e66ab56c1168a"
+    },
+    {
+      "path": "qa/dl_bottle_honey_mask_roundtrip.png",
+      "bytes": 129,
+      "sha256": "23a3475ebf57ed8c77105d072125f5321d83a14a11c500d1d737e3d2c3f9c28d"
+    },
+    {
+      "path": "qa/dl_bottle_honey_open_empty_roundtrip.png",
+      "bytes": 777,
+      "sha256": "e800f750023fb6d815414af9420ba2943933dcdb8039c270803c7ab9984cf573"
+    },
+    {
+      "path": "qa/dl_bottle_honey_roundtrip.png",
+      "bytes": 1081,
+      "sha256": "62893f43e96610b41a81a94dcec269db3a9fe6c2128c46938de6ce579e8dcd4e"
+    },
+    {
+      "path": "qa/dl_bottle_honey_visible_mask_roundtrip.png",
+      "bytes": 127,
+      "sha256": "7639df36e0dee8d7268493440ada11f99b3e546eab105f060eead38388990c70"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_0deg_0pct.png",
+      "bytes": 924,
+      "sha256": "18b0c0bb735e74e4c53e29961ef05bde199fa88dc3524c3ab72ab6583fe2628b"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_0deg_25pct.png",
+      "bytes": 925,
+      "sha256": "d79fe7d62ae73ba43c562c1ce888f71047dc1eec58d06c59c07ea00d16634936"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_0deg_50pct.png",
+      "bytes": 925,
+      "sha256": "d79fe7d62ae73ba43c562c1ce888f71047dc1eec58d06c59c07ea00d16634936"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_0deg_75pct.png",
+      "bytes": 941,
+      "sha256": "00bf964d0019a338b05056db1a3d720231b3593f07278f8873dfd388c9f24953"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_30deg_0pct.png",
+      "bytes": 1116,
+      "sha256": "e7a58d6c0cb9425a72697f872cd500fb9c868faa090474546e6624935b0100d5"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_30deg_25pct.png",
+      "bytes": 1140,
+      "sha256": "040419a1e7648a7a9d388573d9ed0af2fc44b14171ccc14e3dccc960b800b63e"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_30deg_50pct.png",
+      "bytes": 1140,
+      "sha256": "040419a1e7648a7a9d388573d9ed0af2fc44b14171ccc14e3dccc960b800b63e"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_30deg_75pct.png",
+      "bytes": 1142,
+      "sha256": "2bfa9fb8a6db5a97829f06268a747d4f27435c506c14a4ed294d854cf37ba7d3"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_60deg_0pct.png",
+      "bytes": 1106,
+      "sha256": "7ae567bd5ea8b9315ecf4a7cab10e2d10d10bd460be99b1041f7d868569513ef"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_60deg_25pct.png",
+      "bytes": 1105,
+      "sha256": "fb1d777bd4d94865e9ccd80faa60cb89ca2dc6f6495ddbd3abd15b16b06bdffc"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_60deg_50pct.png",
+      "bytes": 1093,
+      "sha256": "5380adebca7faf04c7d799b9c55fe860ebc7ae5b431586359c5fe1eddd3dddf7"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_60deg_75pct.png",
+      "bytes": 1078,
+      "sha256": "5ed056519750593b94961cb27c7a38d05345532458c4791aeaa1185fd1330914"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_cap_roundtrip.png",
+      "bytes": 226,
+      "sha256": "97e284c369277d84dec9af127c181171d737e9bcdeb49c8494d69b09626298ec"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_mask_roundtrip.png",
+      "bytes": 159,
+      "sha256": "c9e3b0844d51a75aa243c51f5c11b9ecad674a9a2d4512c6b9b09744308a6a5e"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_open_empty_roundtrip.png",
+      "bytes": 671,
+      "sha256": "15119119e256b20b4de3453685f9d427766ff2f10248d1e4d036bc0221aa8124"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_roundtrip.png",
+      "bytes": 768,
+      "sha256": "a6bb149718daee36db2d61c319c73a03dae0ea3a426806aad6b9d2187f7b6993"
+    },
+    {
+      "path": "qa/dl_bottle_lemon_juice_visible_mask_roundtrip.png",
+      "bytes": 168,
+      "sha256": "2baf04f745bc1d88617e27b47f8c5106376cec2ff26cc81c99849b6f534733a0"
+    },
+    {
+      "path": "qa/dl_bottle_rum_0deg_0pct.png",
+      "bytes": 937,
+      "sha256": "76ded6a6f762fdd46e4712012f45b15de1650a71e515af222ad8f8f88cabfd67"
+    },
+    {
+      "path": "qa/dl_bottle_rum_0deg_25pct.png",
+      "bytes": 983,
+      "sha256": "4eeca703e47acb325166e66bc7adefc25c5fcf4c9ebf3f7a82ab761bb3c0f953"
+    },
+    {
+      "path": "qa/dl_bottle_rum_0deg_50pct.png",
+      "bytes": 977,
+      "sha256": "8ea3039b0729ce433a928f4aa9bce5d056554f28a87070412a091a2ac504816c"
+    },
+    {
+      "path": "qa/dl_bottle_rum_0deg_75pct.png",
+      "bytes": 985,
+      "sha256": "177fa355ce34b33b52e3f0a3ca597b69e457b84300c648e629505c7427f9ee54"
+    },
+    {
+      "path": "qa/dl_bottle_rum_30deg_0pct.png",
+      "bytes": 1036,
+      "sha256": "39221b5d1eae61c1dff67f99418fe65b263b21d2b5d317fda86d3b5bca75f139"
+    },
+    {
+      "path": "qa/dl_bottle_rum_30deg_25pct.png",
+      "bytes": 1119,
+      "sha256": "eade18016d1fd42a9a92d85baa5e7e560e23840b5d8a4200e6b5e735d12cf8d8"
+    },
+    {
+      "path": "qa/dl_bottle_rum_30deg_50pct.png",
+      "bytes": 1096,
+      "sha256": "9b726cb5b607c1a45676935f7ff37eebcd4e17e6361194433b485f72b706b257"
+    },
+    {
+      "path": "qa/dl_bottle_rum_30deg_75pct.png",
+      "bytes": 1101,
+      "sha256": "7a3f8c375d36db70b0066893c4e69ec6f2a4b0cde2d9e85127928e99c0950a40"
+    },
+    {
+      "path": "qa/dl_bottle_rum_60deg_0pct.png",
+      "bytes": 1072,
+      "sha256": "42a78e03f59a25f77773ec06c0052df3e02f6b8a57e69bbf4bd8625a6335bcff"
+    },
+    {
+      "path": "qa/dl_bottle_rum_60deg_25pct.png",
+      "bytes": 1109,
+      "sha256": "189272981cffc891f990655338ac69e210a2e61cc180f011d7f845eb5cca0334"
+    },
+    {
+      "path": "qa/dl_bottle_rum_60deg_50pct.png",
+      "bytes": 1098,
+      "sha256": "d6fa58115e343850d0fc83ef126a82e275e84478916b4d35a401665fa79313dd"
+    },
+    {
+      "path": "qa/dl_bottle_rum_60deg_75pct.png",
+      "bytes": 1089,
+      "sha256": "74c16045fd4e68bae0bce789fecd2ebe8aae75d830d253e63b243fb1243c2dd7"
+    },
+    {
+      "path": "qa/dl_bottle_rum_cap_roundtrip.png",
+      "bytes": 246,
+      "sha256": "7e8670f10a33f0a3402abe9da6b8309f7856da545302134e1d02a308cbf8bd08"
+    },
+    {
+      "path": "qa/dl_bottle_rum_mask_roundtrip.png",
+      "bytes": 180,
+      "sha256": "d4faa58dcb07d0c5eb96f74d27d32c15403be7e30396db985c1ffb812deef9d4"
+    },
+    {
+      "path": "qa/dl_bottle_rum_open_empty_roundtrip.png",
+      "bytes": 672,
+      "sha256": "3cef5a0bf4765e0ac71b914927b709d8aea1b70217e8373c7c17b30bf91e88bc"
+    },
+    {
+      "path": "qa/dl_bottle_rum_roundtrip.png",
+      "bytes": 790,
+      "sha256": "45340cbbb4c873c38f6fcc65cebc247b458f91f321b6653b78d36db3a055a9b9"
+    },
+    {
+      "path": "qa/dl_bottle_rum_visible_mask_roundtrip.png",
+      "bytes": 178,
+      "sha256": "847cc62b7936d5a2d2a43a3a49370741efca0e1b5f85bed5e01488dc6eefe183"
+    },
+    {
+      "path": "qa/fill-0deg-contact.png",
+      "bytes": 24242,
+      "sha256": "c3fb5f2ef8f3f0e80f35758c646b8240f3a67dcfab1662b4900219f65a0ef6fc"
+    },
+    {
+      "path": "qa/fill-30deg-contact.png",
+      "bytes": 27721,
+      "sha256": "1b9c36f9e3d28cb280f3f0348acfae54ded85c7d5cd3d0c288e25cd9e5bb9c83"
+    },
+    {
+      "path": "qa/fill-60deg-contact.png",
+      "bytes": 26873,
+      "sha256": "f813451c7f0f22dbd2c14243a70c261b629d627903a349512ff4474eb189c360"
+    },
+    {
+      "path": "qa/fill-preview.log",
+      "bytes": 544,
+      "sha256": "26b38c282c402ac5f62e67650b1a1535ff9fe55b0f9f093c1321139a3a1a015b"
+    },
+    {
+      "path": "qa/roundtrip.log",
+      "bytes": 544,
+      "sha256": "8c8f9a1c4cb6d72ef4971a8e4fb3460ff5569ba308cb017b6968715a88f7ca9e"
+    },
+    {
+      "path": "qa/separation-contact.png",
+      "bytes": 22549,
+      "sha256": "edfa92cf8cbfdf7df857db34c0fd720a483af2147e634b0af27cf9ef0089ee9b"
+    },
+    {
+      "path": "qa/source-pixel-grid.png",
+      "bytes": 24974,
+      "sha256": "5e46ab70358243549f9d7693fa7f9515d2b1f633271557b1da38545ec57ca7ff"
+    },
+    {
+      "path": "qa/verification.json",
+      "bytes": 18005,
+      "sha256": "74e4532197c8ccf78faeba1300311895b6bb685f0b4cd2466792321b4979a97b"
+    },
+    {
+      "path": "refine-manifest.py",
+      "bytes": 594,
+      "sha256": "697d97d993e83c5ae51b2a38bad85cb3ece29e4b20a6e43f464eb4a7a972aca0"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 6542,
+      "sha256": "f78a9cfe5f81e307c1dc8144ed0a88cb33eca3db7ac3731e6ecb9799209e1001"
+    },
+    {
+      "path": "roundtrip.lua",
+      "bytes": 816,
+      "sha256": "50257332e29c3e3fc30c796fc264d57d76035ed68ed9d8d71aadd39d0c758f07"
+    },
+    {
+      "path": "separate.lua",
+      "bytes": 2996,
+      "sha256": "37a4b97335f0eb5a02d1f85a240c6fccdeb66aa60e67a58129165c0be315939f"
+    },
+    {
+      "path": "source-comparison.json",
+      "bytes": 1444,
+      "sha256": "85659f9e00e2dc99778db8f1f0f01b405d93c6d6fe3abc61a03aa908217f35be"
+    },
+    {
+      "path": "verify-manifest.py",
+      "bytes": 6616,
+      "sha256": "37e0a32ed4749b18226e9791e706f29b3c70500a5f9981029e8eea545dd82551"
+    }
+  ]
+}

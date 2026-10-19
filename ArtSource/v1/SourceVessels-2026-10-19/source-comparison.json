@@ -1,0 +1,38 @@
+[
+  {
+    "id": "dl_bottle_gin",
+    "sourceSHA256": "261f50d27d400c6492c5eae1c5467a137a7972bbe06b051c0b10fdcc1e2f3858",
+    "runtimeSHA256": "261f50d27d400c6492c5eae1c5467a137a7972bbe06b051c0b10fdcc1e2f3858",
+    "same": true
+  },
+  {
+    "id": "dl_bottle_rum",
+    "sourceSHA256": "849f60721102d911c41737dd020cef07d48443dca6dec4d8ea85aab181507bbe",
+    "runtimeSHA256": "849f60721102d911c41737dd020cef07d48443dca6dec4d8ea85aab181507bbe",
+    "same": true
+  },
+  {
+    "id": "dl_bottle_blue_curacao",
+    "sourceSHA256": "5aa45f941791d7e6afd2f9002a3ac16d7e20c48ab68bebaf28645078abc94ec1",
+    "runtimeSHA256": "5aa45f941791d7e6afd2f9002a3ac16d7e20c48ab68bebaf28645078abc94ec1",
+    "same": true
+  },
+  {
+    "id": "dl_bottle_grenadine",
+    "sourceSHA256": "bec3a0fbd59e86703612aca923a20e65c397ddd32439cb94a20010106350bd9c",
+    "runtimeSHA256": "bec3a0fbd59e86703612aca923a20e65c397ddd32439cb94a20010106350bd9c",
+    "same": true
+  },
+  {
+    "id": "dl_bottle_lemon_juice",
+    "sourceSHA256": "ae42356e5ea48abeefe9feefca36347db6fb05d3bb9fdc7c0119389e8690dcbc",
+    "runtimeSHA256": "ae42356e5ea48abeefe9feefca36347db6fb05d3bb9fdc7c0119389e8690dcbc",
+    "same": true
+  },
+  {
+    "id": "dl_bottle_honey",
+    "sourceSHA256": "6cf8950ef10d63ffca0e21a0d2ddbf9a3cce79869ca8c6dedac735b49309e4c2",
+    "runtimeSHA256": "6cf8950ef10d63ffca0e21a0d2ddbf9a3cce79869ca8c6dedac735b49309e4c2",
+    "same": true
+  }
+]

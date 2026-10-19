@@ -1,0 +1,8 @@
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+C:\Users\user\AppData\Roaming\Aseprite\extensions\pixellab\./handle-pose.lua:58: attempt to index a nil value (local 'dlg')
+original layer: Finished PixelLab sprite visible=true
+original layer: Liquid mask - white interior visible=false
+original layer: PixelLab source - preserved visible=false
+teapot body/lid separated without editing original

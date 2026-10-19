@@ -24,6 +24,8 @@ namespace CCT
             cache.Clear();
             frameCache.Clear();
             profiles.Clear();
+            maskPixels.Clear();
+            spoonRows = null;
             placeholders.Clear();
             anchors = null;
         }
@@ -154,6 +156,80 @@ namespace CCT
             }
             profiles[key] = result;
             return result;
+        }
+
+        sealed class MaskPixels { public Color32[] px; public int x0, y0, w, h, texW; }
+        static readonly Dictionary<string, MaskPixels> maskPixels = new Dictionary<string, MaskPixels>();
+
+        /// <summary>그릇 안쪽(마스크 불투명) 여부. 정규화 좌표(왼쪽 아래 0,0). 마스크를 읽을 수 없으면 액체 사각형으로 판정.</summary>
+        public static bool InsideMask(string assetId, Vector2 n)
+        {
+            if (!maskPixels.TryGetValue(assetId, out var m))
+            {
+                m = null;
+                var mask = Mask(assetId);
+                if (mask != null && mask.texture != null && mask.texture.isReadable)
+                {
+                    var r = mask.rect;
+                    m = new MaskPixels { px = mask.texture.GetPixels32(), x0 = (int)r.x, y0 = (int)r.y, w = (int)r.width, h = (int)r.height, texW = mask.texture.width };
+                }
+                maskPixels[assetId] = m;
+            }
+            if (m == null) return LiquidRect(assetId).Contains(n);
+            int x = Mathf.FloorToInt(n.x * m.w), y = Mathf.FloorToInt(n.y * m.h);
+            if (x < 0 || y < 0 || x >= m.w || y >= m.h) return false;
+            return m.px[(m.y0 + y) * m.texW + m.x0 + x].a > 127;
+        }
+
+        /// <summary>그 높이(정규화 y)에서 그릇 안쪽 마스크의 가로 구간(정규화 x). 마스크를 읽을 수 없으면 액체 사각형 폭.</summary>
+        public static void MaskSpan(string assetId, float y01, out float xMin, out float xMax)
+        {
+            var lr = LiquidRect(assetId);
+            xMin = lr.xMax; xMax = lr.xMin;
+            const int steps = 192;
+            for (int i = 0; i < steps; i++)
+            {
+                float x = (i + 0.5f) / steps;
+                if (!InsideMask(assetId, new Vector2(x, y01))) continue;
+                xMin = Mathf.Min(xMin, x); xMax = Mathf.Max(xMax, x);
+            }
+            if (xMax < xMin) { xMin = lr.xMin; xMax = lr.xMax; }
+        }
+
+        static int[][] spoonRows; // [frame][row*2] (아래→위), -1 = 빈 행
+        static int spoonW, spoonH;
+
+        /// <summary>바스푼 프레임의 행별 불투명 x 구간(아트 픽셀, 아래→위). Resources/DrinkLab/dl_barspoon_extent.json(실제 PNG에서 생성).</summary>
+        public static bool SpoonExtent(int frame, out int[] rows, out int width, out int height)
+        {
+            if (spoonRows == null)
+            {
+                spoonRows = new int[0][];
+                var text = Resources.Load<TextAsset>(ResourceFolder + "dl_barspoon_extent");
+                if (text != null)
+                {
+                    // [[min,max],…] 중첩 배열은 JsonUtility가 읽지 못하므로 숫자만 순서대로 뽑는다.
+                    var frames = new List<int[]>();
+                    var chunks = text.text.Split(new[] { "\"rows\"" }, StringSplitOptions.None);
+                    for (int c = 1; c < chunks.Length; c++) // 첫 조각은 머리말
+                    {
+                        int end = chunks[c].IndexOf("]]", StringComparison.Ordinal);
+                        if (end < 0) continue;
+                        var nums = new List<int>();
+                        foreach (var tok in chunks[c].Substring(0, end).Split(new[] { '[', ']', ',', ':', ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                            if (int.TryParse(tok, out int v)) nums.Add(v);
+                        frames.Add(nums.ToArray());
+                    }
+                    spoonRows = frames.ToArray();
+                    var spr = Sprite("dl_barspoon");
+                    spoonW = spr != null ? (int)spr.rect.width : 16;
+                    spoonH = spoonRows.Length > 0 ? spoonRows[0].Length / 2 : 0;
+                }
+            }
+            width = spoonW; height = spoonH;
+            if (spoonRows.Length == 0) { rows = null; return false; }
+            rows = spoonRows[((frame % spoonRows.Length) + spoonRows.Length) % spoonRows.Length];
+            return true;
         }
 
         static Rect DefaultLiquid(string assetId) => assetId switch

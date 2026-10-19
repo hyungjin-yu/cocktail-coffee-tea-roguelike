@@ -1,0 +1,1030 @@
+{
+  "files": [
+    {
+      "path": "aseprite-access-probe.aseprite",
+      "bytes": 1013,
+      "sha256": "f7a1021c03bc38011fdbccac0ed0d7d2fae1fc47228ac9ef32c0734aa1988b20"
+    },
+    {
+      "path": "assets/button/button.aseprite",
+      "bytes": 1531,
+      "sha256": "1c5704f66463de66a8fcc52ae2bc3361795e7b620dc05fdbbf4a6861ac53d7e7"
+    },
+    {
+      "path": "assets/button/button.png",
+      "bytes": 377,
+      "sha256": "26efcbd3e0787de3b1d650c8fd39e5b7da9adf45af1afb9a5a0ae75791854a11"
+    },
+    {
+      "path": "assets/button_available/button_available.aseprite",
+      "bytes": 1571,
+      "sha256": "9978c74ab659b9182662418f2b2f21a249a6f5826e86191e77ed4e45454b26f8"
+    },
+    {
+      "path": "assets/button_available/button_available.png",
+      "bytes": 480,
+      "sha256": "ac78c6f7e2c2be679dd4c78ea556e77a8a0e269b65081ad618181af546fc8c5c"
+    },
+    {
+      "path": "assets/button_equipped/button_equipped.aseprite",
+      "bytes": 1579,
+      "sha256": "e82c4d665dc47b5192a7d1a8fbc7fa043c10afbe5b383770e29b5a03869f0bd1"
+    },
+    {
+      "path": "assets/button_equipped/button_equipped.png",
+      "bytes": 428,
+      "sha256": "fd5f28ddde55b885363b8e99c32ccc10ec557a3c0bb77fd46cbcc7d273adb253"
+    },
+    {
+      "path": "assets/button_locked/button_locked.aseprite",
+      "bytes": 1555,
+      "sha256": "25ba39339b41c039fcb8aa6b634b651835f6f5ccab35e32e68b06cf896b84af6"
+    },
+    {
+      "path": "assets/button_locked/button_locked.png",
+      "bytes": 453,
+      "sha256": "0b8d0516b7f2d01ab5d8f555f1ec8ecbe82e1e074ff7317452174dcddc084949"
+    },
+    {
+      "path": "assets/button_owned/button_owned.aseprite",
+      "bytes": 1566,
+      "sha256": "bb507ad2767052549a7df120a600190d949d8423bea105c7f19b847f7f87bea7"
+    },
+    {
+      "path": "assets/button_owned/button_owned.png",
+      "bytes": 436,
+      "sha256": "bbd170ab007c98a5070f76bc13ab9f1ec74fc52057deb10592842a36d5390e79"
+    },
+    {
+      "path": "assets/ingredient_card/ingredient_card.aseprite",
+      "bytes": 1833,
+      "sha256": "c9fc7e0bb8a29a2521b42b72505dadcafb62a680495b8a58ce62bb38faa90107"
+    },
+    {
+      "path": "assets/ingredient_card/ingredient_card.png",
+      "bytes": 536,
+      "sha256": "5c8d823d046b0ea28f3fcc14078bade32e451bf8ac92597959ae186630fc85f2"
+    },
+    {
+      "path": "assets/laptop_arrive/frames/laptop_arrive_00.png",
+      "bytes": 1425,
+      "sha256": "295bee2a9ba243b7ba9817fec63d1109f3e05740a49bce943d47fc427ab9b328"
+    },
+    {
+      "path": "assets/laptop_arrive/frames/laptop_arrive_01.png",
+      "bytes": 1426,
+      "sha256": "4f7e22c64f7001c1809d0e0891cf8e1c6749d562341d7ea37cf7317592f2acfe"
+    },
+    {
+      "path": "assets/laptop_arrive/frames/laptop_arrive_02.png",
+      "bytes": 1425,
+      "sha256": "a14833734f698305e6548c6495bc3b988cb1f3c8db2887d24a41f8a1e7d87640"
+    },
+    {
+      "path": "assets/laptop_arrive/frames/laptop_arrive_03.png",
+      "bytes": 1426,
+      "sha256": "cd72dc2b51530146f70449c9f97707369af6f79a9f225f3b2a24b88d696127a6"
+    },
+    {
+      "path": "assets/laptop_arrive/frames/laptop_arrive_04.png",
+      "bytes": 1426,
+      "sha256": "06582d4a57e919b13e5f45b0928b330247033484d9fb6b495a8aa85d29d0a3fa"
+    },
+    {
+      "path": "assets/laptop_arrive/laptop_arrive.aseprite",
+      "bytes": 6536,
+      "sha256": "c498a738a3ef30cf46399c71275a6053e07754f7d19e605d6b3b4e438065f8e1"
+    },
+    {
+      "path": "assets/laptop_closed_matched/laptop_closed_matched.aseprite",
+      "bytes": 2049,
+      "sha256": "3e0a1f953c576991d1d3a64783752d5886676bcfad656860cd9a778d5aecb78d"
+    },
+    {
+      "path": "assets/laptop_closed_matched/laptop_closed_matched.png",
+      "bytes": 1377,
+      "sha256": "0683043aa849ae48ed00d93214853596cbf50ef4ac2a62242afcefae97b11984"
+    },
+    {
+      "path": "assets/laptop_closing/frames/laptop_closing_00.png",
+      "bytes": 2787,
+      "sha256": "b3de9d8e9b9143318e1a42075349610b26707ad3bad949bf002849e616aebc11"
+    },
+    {
+      "path": "assets/laptop_closing/frames/laptop_closing_01.png",
+      "bytes": 2847,
+      "sha256": "619655bc43408b0158e62a50971e8afbb01073dbcaec9847849cabd98968c413"
+    },
+    {
+      "path": "assets/laptop_closing/frames/laptop_closing_02.png",
+      "bytes": 2890,
+      "sha256": "6d3cfc831d477c8d9cf698ff169be6a8d361fc63e0a55286b302c3d1cbbdc2f3"
+    },
+    {
+      "path": "assets/laptop_closing/frames/laptop_closing_03.png",
+      "bytes": 2655,
+      "sha256": "10225fbce0c17e852553290f8f0fffef548d03eaf452d2d4a246acffafe79cef"
+    },
+    {
+      "path": "assets/laptop_closing/frames/laptop_closing_04.png",
+      "bytes": 1874,
+      "sha256": "3e849012db4dd6c10f1ae70d3c18979d433625724496847d1686c50e8eeb70a2"
+    },
+    {
+      "path": "assets/laptop_closing/frames/laptop_closing_05.png",
+      "bytes": 1171,
+      "sha256": "dd41d07c6fc730a9e2e7aff2150a65d780387a4fc80bb134972a76fbacd1f5fe"
+    },
+    {
+      "path": "assets/laptop_closing/frames/laptop_closing_06.png",
+      "bytes": 1377,
+      "sha256": "0683043aa849ae48ed00d93214853596cbf50ef4ac2a62242afcefae97b11984"
+    },
+    {
+      "path": "assets/laptop_closing/laptop_closing.aseprite",
+      "bytes": 16772,
+      "sha256": "4fd2ee09f94a97ca6600196d3e007bc2908b5af5c194aef60b0be2e958619db4"
+    },
+    {
+      "path": "assets/laptop_light/frames/laptop_light_00.png",
+      "bytes": 2869,
+      "sha256": "e369a3fe90ac4184097c53693e2366c828c5399b4754e5185dec0933e397a1be"
+    },
+    {
+      "path": "assets/laptop_light/frames/laptop_light_01.png",
+      "bytes": 2872,
+      "sha256": "9bd5ad2bcdd7af99448fe68d9a5a027efadd242018f5da1ca4f7f80340f9a186"
+    },
+    {
+      "path": "assets/laptop_light/frames/laptop_light_02.png",
+      "bytes": 2888,
+      "sha256": "00ca137c083af7c8f474f479d861c9939f89155454e226a7f79e00cf31a0ede8"
+    },
+    {
+      "path": "assets/laptop_light/laptop_light.aseprite",
+      "bytes": 10198,
+      "sha256": "b3117ea2428d28aa7d2c4c0e1c49dece8c57ec1310dc96d2b177bb7c0842d75f"
+    },
+    {
+      "path": "assets/laptop_open/laptop_open.aseprite",
+      "bytes": 6737,
+      "sha256": "e1e70f4099f7057ed17e0e6de539dd59d18595fb663c1c6270fc6fc4f5b8a971"
+    },
+    {
+      "path": "assets/laptop_open/laptop_open.png",
+      "bytes": 2888,
+      "sha256": "00ca137c083af7c8f474f479d861c9939f89155454e226a7f79e00cf31a0ede8"
+    },
+    {
+      "path": "assets/laptop_opening/frames/laptop_opening_00.png",
+      "bytes": 1377,
+      "sha256": "0683043aa849ae48ed00d93214853596cbf50ef4ac2a62242afcefae97b11984"
+    },
+    {
+      "path": "assets/laptop_opening/frames/laptop_opening_01.png",
+      "bytes": 1874,
+      "sha256": "3e849012db4dd6c10f1ae70d3c18979d433625724496847d1686c50e8eeb70a2"
+    },
+    {
+      "path": "assets/laptop_opening/frames/laptop_opening_02.png",
+      "bytes": 2655,
+      "sha256": "10225fbce0c17e852553290f8f0fffef548d03eaf452d2d4a246acffafe79cef"
+    },
+    {
+      "path": "assets/laptop_opening/frames/laptop_opening_03.png",
+      "bytes": 2890,
+      "sha256": "6d3cfc831d477c8d9cf698ff169be6a8d361fc63e0a55286b302c3d1cbbdc2f3"
+    },
+    {
+      "path": "assets/laptop_opening/frames/laptop_opening_04.png",
+      "bytes": 2847,
+      "sha256": "619655bc43408b0158e62a50971e8afbb01073dbcaec9847849cabd98968c413"
+    },
+    {
+      "path": "assets/laptop_opening/frames/laptop_opening_05.png",
+      "bytes": 2787,
+      "sha256": "b3de9d8e9b9143318e1a42075349610b26707ad3bad949bf002849e616aebc11"
+    },
+    {
+      "path": "assets/laptop_opening/frames/laptop_opening_06.png",
+      "bytes": 2873,
+      "sha256": "cdfba9dcb9289fe73e300cd1ca95fa4e8da23e1e83d76cef1d1842734daa320b"
+    },
+    {
+      "path": "assets/laptop_opening/laptop_opening.aseprite",
+      "bytes": 19383,
+      "sha256": "3a5a865a501206610de0d6d8f8cc178209d71cadf725a5fd8702a5c2e896fce6"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_00.png",
+      "bytes": 1425,
+      "sha256": "295bee2a9ba243b7ba9817fec63d1109f3e05740a49bce943d47fc427ab9b328"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_01.png",
+      "bytes": 1426,
+      "sha256": "4f7e22c64f7001c1809d0e0891cf8e1c6749d562341d7ea37cf7317592f2acfe"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_02.png",
+      "bytes": 1425,
+      "sha256": "a14833734f698305e6548c6495bc3b988cb1f3c8db2887d24a41f8a1e7d87640"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_03.png",
+      "bytes": 1426,
+      "sha256": "cd72dc2b51530146f70449c9f97707369af6f79a9f225f3b2a24b88d696127a6"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_04.png",
+      "bytes": 1426,
+      "sha256": "06582d4a57e919b13e5f45b0928b330247033484d9fb6b495a8aa85d29d0a3fa"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_05.png",
+      "bytes": 1426,
+      "sha256": "06582d4a57e919b13e5f45b0928b330247033484d9fb6b495a8aa85d29d0a3fa"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_06.png",
+      "bytes": 1922,
+      "sha256": "ef645f57154b9b7842f11261c1667c327563881f28cfbf4f3f32e118100c9f58"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_07.png",
+      "bytes": 2703,
+      "sha256": "eac4f52a5428279440882815e771a5e54c01935aa6c9d3199efedfed67613f78"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_08.png",
+      "bytes": 2937,
+      "sha256": "f9656d789af288410f883ca0b7a5b865e7a33dd782b44a9abc8895548f8024bc"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_09.png",
+      "bytes": 2894,
+      "sha256": "90e8d388aba8c62def0cb5f382586606d5160e250a282b02e39be4cec0e57e82"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_10.png",
+      "bytes": 2834,
+      "sha256": "e9216ffbc9953356c88ad66cc097e8069189838a98961324a3a68521c25990ba"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_11.png",
+      "bytes": 2921,
+      "sha256": "e678d963cd91b819add3a456dd5fd8adcd85a121cb1a5b92a12923cba73ab776"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_12.png",
+      "bytes": 2917,
+      "sha256": "5012e727bf03ca49f60b5540e1fb77211736b73c3ca781d15d0a8ae6a1ff219b"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_13.png",
+      "bytes": 2920,
+      "sha256": "e6e2f43cb3376d216b89eb8ba9fe844e3b75107ba580daa4c4167e5d996276a7"
+    },
+    {
+      "path": "assets/laptop_sequence/frames/laptop_sequence_14.png",
+      "bytes": 2936,
+      "sha256": "1e19ecac3b10da7f0425833bbaade505502c213594c626471f09d8d610121e47"
+    },
+    {
+      "path": "assets/laptop_sequence/laptop_sequence.aseprite",
+      "bytes": 34891,
+      "sha256": "725c24b98203b63590816a91d51c8e19e0664f6692b7352f9d10ab0babc35429"
+    },
+    {
+      "path": "assets/receipt/receipt.aseprite",
+      "bytes": 2741,
+      "sha256": "94174b96f026f051e02e243fd2137f0ee9cffe3aa5f2ad0d7d20e4f107260cfb"
+    },
+    {
+      "path": "assets/receipt/receipt.png",
+      "bytes": 1161,
+      "sha256": "1388a1206dcb529851414ee5d267109c396d44224ff2991033f0a176c7e19edd"
+    },
+    {
+      "path": "assets/recipe_storage/recipe_storage.aseprite",
+      "bytes": 3477,
+      "sha256": "c09e1ea8c055918409fb1eaf0913f6de507eb067515cce2e076ee754a9254a73"
+    },
+    {
+      "path": "assets/recipe_storage/recipe_storage.png",
+      "bytes": 2031,
+      "sha256": "6e0382e4a344b8fa023ea3ae2bafd9e621cbecc471fb8a038ab2f275cc70e722"
+    },
+    {
+      "path": "assets/recipe_tear_store/frames/recipe_tear_store_00.png",
+      "bytes": 4910,
+      "sha256": "272c585766a11ec3c1458e2fc9900b3ab625ae1e6a5058069056b56159988677"
+    },
+    {
+      "path": "assets/recipe_tear_store/frames/recipe_tear_store_01.png",
+      "bytes": 4953,
+      "sha256": "052d8ae9d0657533bf6e3af636b64c0aca3c9f63fa1ed1d9ffde655def653893"
+    },
+    {
+      "path": "assets/recipe_tear_store/frames/recipe_tear_store_02.png",
+      "bytes": 4949,
+      "sha256": "718d40ad4c0b802d747414e0c56b2ed91aca2e3ddbd9dc4ea4191391eea2b466"
+    },
+    {
+      "path": "assets/recipe_tear_store/frames/recipe_tear_store_03.png",
+      "bytes": 5028,
+      "sha256": "32260a12f1778fce4b36a68a640afd39d9441a08dc7cb19498a3a159d5c33fd7"
+    },
+    {
+      "path": "assets/recipe_tear_store/frames/recipe_tear_store_04.png",
+      "bytes": 5114,
+      "sha256": "aed07d143e24e77b2d1d830e7e4f67c11f7f004e864eadd0e7ff96c118afbfc6"
+    },
+    {
+      "path": "assets/recipe_tear_store/frames/recipe_tear_store_05.png",
+      "bytes": 5376,
+      "sha256": "1c7a72b26afb61d8447aa2d523eca80d55f97a92649be8456541b7d4e4451636"
+    },
+    {
+      "path": "assets/recipe_tear_store/frames/recipe_tear_store_06.png",
+      "bytes": 5267,
+      "sha256": "85ed94f618983966b687b5aa959d90c66399d396eea79bf4a348d646f3394277"
+    },
+    {
+      "path": "assets/recipe_tear_store/frames/recipe_tear_store_07.png",
+      "bytes": 5017,
+      "sha256": "3eb2c3761dc0846e536c7718416db5466d110c446d4daaf6a939951817ef4cbf"
+    },
+    {
+      "path": "assets/recipe_tear_store/frames/recipe_tear_store_08.png",
+      "bytes": 4710,
+      "sha256": "dea3a514fa5d9713c5d288d20a2f4920a2da7e1a4cc30062c6dc3756f073e8cd"
+    },
+    {
+      "path": "assets/recipe_tear_store/frames/recipe_tear_store_09.png",
+      "bytes": 4710,
+      "sha256": "dea3a514fa5d9713c5d288d20a2f4920a2da7e1a4cc30062c6dc3756f073e8cd"
+    },
+    {
+      "path": "assets/recipe_tear_store/recipe_tear_store.aseprite",
+      "bytes": 41921,
+      "sha256": "d388cbab988a2ba7dc337c32a3395ce932f867353de065a55458cd01d7aff131"
+    },
+    {
+      "path": "assets/spring_notebook/spring_notebook.aseprite",
+      "bytes": 4579,
+      "sha256": "8aefea0d0dadc9aa3510f075bdb33e1b63fee850b303371e712fba19a41173ed"
+    },
+    {
+      "path": "assets/spring_notebook/spring_notebook.png",
+      "bytes": 2311,
+      "sha256": "6a428cfd81ec22be00960e2f88aa8639e579134a5cdb7e836a8bcdb6e9298398"
+    },
+    {
+      "path": "assets/staff_card/staff_card.aseprite",
+      "bytes": 2873,
+      "sha256": "6fa09d4fb53c1da85de1d98f37da69dbe82f47acf8138eb6b8e305cd3fd1652f"
+    },
+    {
+      "path": "assets/staff_card/staff_card.png",
+      "bytes": 1516,
+      "sha256": "7c9dac8996c78c233fe88e73f54e2e770fae68c4fadb193fc2c6609bbbdb1db3"
+    },
+    {
+      "path": "assets/staff_card_available/staff_card_available.aseprite",
+      "bytes": 3006,
+      "sha256": "5a04d4046b884e8fd30374c5347fc5be46e72cebc2c3e1f03ecaae6d140edf63"
+    },
+    {
+      "path": "assets/staff_card_available/staff_card_available.png",
+      "bytes": 1626,
+      "sha256": "71ffaa5d9aeba36bbfd60b849ebbbd20eba77ca7e61b47d83f9554e048bbdbd9"
+    },
+    {
+      "path": "assets/staff_card_equipped/staff_card_equipped.aseprite",
+      "bytes": 3032,
+      "sha256": "6130b761e2a646c82ef82bda88c9666700aad364f4a31b25b1f57e0378d79996"
+    },
+    {
+      "path": "assets/staff_card_equipped/staff_card_equipped.png",
+      "bytes": 1610,
+      "sha256": "1a23f7107d94068ad8bbe569fa773b418a5f0b6af66418cf71b258dd0d5e4f42"
+    },
+    {
+      "path": "assets/staff_card_locked/staff_card_locked.aseprite",
+      "bytes": 2992,
+      "sha256": "22cb71995b07dc6456d0e300eb6174e90ca6569221e27c329a15864ec4456d90"
+    },
+    {
+      "path": "assets/staff_card_locked/staff_card_locked.png",
+      "bytes": 1517,
+      "sha256": "d34f015a2acbd27021078962e8f0df11ba245d6ef9956c3644a4fe87ea3879ab"
+    },
+    {
+      "path": "assets/staff_card_owned/staff_card_owned.aseprite",
+      "bytes": 3006,
+      "sha256": "0ca9437997d2c381155a14ce2929079eda326ee45c4ed7adc64dbfb717da1fd9"
+    },
+    {
+      "path": "assets/staff_card_owned/staff_card_owned.png",
+      "bytes": 1570,
+      "sha256": "b92c16717073b4f94c5a3551347eba766a1e33600c5a358386956f5a208ab008"
+    },
+    {
+      "path": "assets/torn_recipe/torn_recipe.aseprite",
+      "bytes": 2024,
+      "sha256": "f09c88adc4d105af8f5a34217775373ae1b0220bef664dcd4497ce92eee83818"
+    },
+    {
+      "path": "assets/torn_recipe/torn_recipe.png",
+      "bytes": 1240,
+      "sha256": "99d9f3b232e2a66590d7081108e5892a9ea1d4f961b709cf48df9f8c75c5b6ac"
+    },
+    {
+      "path": "assets/tree_node/tree_node.aseprite",
+      "bytes": 1723,
+      "sha256": "1a3514cd665eb9677ab3c7fab4036885c833be6f9988302e5f6970c4e280c189"
+    },
+    {
+      "path": "assets/tree_node/tree_node.png",
+      "bytes": 672,
+      "sha256": "42e5115d459412c8a2acdf5413e9e93a3fd3e98782189f5248dbf23476214768"
+    },
+    {
+      "path": "assets/tree_node_available/tree_node_available.aseprite",
+      "bytes": 1747,
+      "sha256": "33acab0044e6b0666d6a2ef4ead755ed8705f3da30da0b33e82ab56f272351cb"
+    },
+    {
+      "path": "assets/tree_node_available/tree_node_available.png",
+      "bytes": 736,
+      "sha256": "981b21c69c018fea2cf640e8c120b3f2a76e4cb45fbe549ed8da21a810808a69"
+    },
+    {
+      "path": "assets/tree_node_equipped/tree_node_equipped.aseprite",
+      "bytes": 1773,
+      "sha256": "6b560b0c471eabc6ed8777b21b4d9d2ba0ac2312838627b27f0960120fc73ca4"
+    },
+    {
+      "path": "assets/tree_node_equipped/tree_node_equipped.png",
+      "bytes": 748,
+      "sha256": "7d1d22ddfbbbc0249b78e56d218b089515d3c5b78e9a802b3578fd442358f790"
+    },
+    {
+      "path": "assets/tree_node_locked/tree_node_locked.aseprite",
+      "bytes": 1775,
+      "sha256": "21f10b72802529e2a66bcf7f8b954b8674dd994a7b95d79b93118600ab417de5"
+    },
+    {
+      "path": "assets/tree_node_locked/tree_node_locked.png",
+      "bytes": 706,
+      "sha256": "ac137881fa7672423f85dd62229f12e9afb5db74290274773af8cd9b89621a16"
+    },
+    {
+      "path": "assets/tree_node_owned/tree_node_owned.aseprite",
+      "bytes": 1766,
+      "sha256": "3c97c095f9c49c25c3f302786eae7cc9639ea59c5ccf7cc992e00151f6e1aad8"
+    },
+    {
+      "path": "assets/tree_node_owned/tree_node_owned.png",
+      "bytes": 728,
+      "sha256": "8c448f00ebb8af07e9ee6a7c04ab463b64aca5a536721e74075cd3a36cbb85f3"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 59490,
+      "sha256": "58f4ceff2bedb7c074dd37acec69d6e1ddbe6cf8ebc172d0e6d346e092bb3ecb"
+    },
+    {
+      "path": "preview/laptop_arrive.gif",
+      "bytes": 6366,
+      "sha256": "47eaaeaf9f95730668e0d17e37338dc96402e0b282b96f7c339ef5b174947eab"
+    },
+    {
+      "path": "preview/laptop_closing.gif",
+      "bytes": 17240,
+      "sha256": "150d86bbc0818cec11195cec70fedb8b801c5d19b0c1b23557ea03b4529642c1"
+    },
+    {
+      "path": "preview/laptop_light.gif",
+      "bytes": 5359,
+      "sha256": "52b7ba9b1ea93c0958080ae96f85be24358acc11e950dae6802c3c870e1fde42"
+    },
+    {
+      "path": "preview/laptop_opening.gif",
+      "bytes": 19545,
+      "sha256": "91caddf3ad1e910928e0b16bcf71ce3ec48e1c8f2e33e94b43fd22f4c68306cd"
+    },
+    {
+      "path": "preview/laptop_sequence.gif",
+      "bytes": 28864,
+      "sha256": "354bf3e44ea16351292f1bb29e56349047957d7a6e1a049152349922c15ca078"
+    },
+    {
+      "path": "preview/recipe_tear_store.gif",
+      "bytes": 42017,
+      "sha256": "55267cfec95ca8aab30aac0b8c45f1235c0b5f477e528dd96e838709c193dcd7"
+    },
+    {
+      "path": "preview.html",
+      "bytes": 25625,
+      "sha256": "1ef17a89f2ee0004c0d9afc4faf8d481921d970967935c351908c7d0b3311fd1"
+    },
+    {
+      "path": "provenance/button.raw.png",
+      "bytes": 1165,
+      "sha256": "eb8d151429a8e060c1a0edd7988cfc3c0453ff7f2345a48e4a36f7fb0cbbcba6"
+    },
+    {
+      "path": "provenance/ingredient_card.raw.png",
+      "bytes": 6664,
+      "sha256": "f7dfde9659ce9d41d3b96667a28477e5e9c24ce795907100bdc2e23926573956"
+    },
+    {
+      "path": "provenance/laptop_closed.raw.png",
+      "bytes": 7148,
+      "sha256": "fba411645f2e0ca851de13082f13461ef91d6691d8399ba4aa9c42da82985e01"
+    },
+    {
+      "path": "provenance/laptop_open.raw.png",
+      "bytes": 13278,
+      "sha256": "658c49f55d30c3bea7c324159d758a6d1f615f47e626ce2500b894cf7d3cc8ba"
+    },
+    {
+      "path": "provenance/receipt.raw.png",
+      "bytes": 2242,
+      "sha256": "967f1da1a382276d74e552a5c92f25c2b576daae972935ecd75f630b83a7aab3"
+    },
+    {
+      "path": "provenance/recipe_storage.raw.png",
+      "bytes": 3167,
+      "sha256": "f2f7589f0b5d229b98d8167eef48a93706febb2fe9f4ec1162e077921768efb3"
+    },
+    {
+      "path": "provenance/spring_notebook.raw.png",
+      "bytes": 6344,
+      "sha256": "06d51d80131846606fb78941715b5868061a704a77cc213802c2924818241ce2"
+    },
+    {
+      "path": "provenance/staff_card.raw.png",
+      "bytes": 2346,
+      "sha256": "f98e027343ed53252eaaace2dd12aeb2c52565c11f3ecc1cc8b24bc0de9a794f"
+    },
+    {
+      "path": "provenance/tree_node.raw.png",
+      "bytes": 1349,
+      "sha256": "c5edfd0710e0df341a9b3bacb490c7b4cef80bba1ec39c823835ac4e4d098785"
+    },
+    {
+      "path": "qa/9slice-button.png",
+      "bytes": 513,
+      "sha256": "b94bdec7f9cbf02f01d58538241b96db99dcd0a07d82a83f2bad7d9afb0ffe11"
+    },
+    {
+      "path": "qa/9slice-ingredient_card.png",
+      "bytes": 716,
+      "sha256": "2cdc242c295e0b6e6fc87f57799c5b251bc486f00e2f42f10a2f5d1447cf61d3"
+    },
+    {
+      "path": "qa/9slice-receipt.png",
+      "bytes": 1910,
+      "sha256": "a23273517bd6ad0655f2ae9bf1f31a7121ffd333d0fe091d14db8f950f05da8d"
+    },
+    {
+      "path": "qa/alpha-black.png",
+      "bytes": 32812,
+      "sha256": "3d627dd7a86876eeb3ae5faac2c66498216e958465521e0aab898822a08c3be8"
+    },
+    {
+      "path": "qa/alpha-cafe.png",
+      "bytes": 36113,
+      "sha256": "043cfb63aac1f1c647b90ffbe3fa295a4d944228ca6fbb80d496e8584ad81b0a"
+    },
+    {
+      "path": "qa/alpha-white.png",
+      "bytes": 35225,
+      "sha256": "a1ec400ea67e399970fb506fd0f6c398290c70f751e45d852b8acc77f4191daf"
+    },
+    {
+      "path": "qa/laptop_closing-contact.png",
+      "bytes": 9359,
+      "sha256": "9b372be05fcd4aed953634ef2dba0cbc5c5878e5efb41ff1ea28b33e4473838c"
+    },
+    {
+      "path": "qa/laptop_opening-contact.png",
+      "bytes": 9619,
+      "sha256": "3272b394a08741ed6f195c7426cf38f9f05d03be80058fd5256b7a814ce5f7fa"
+    },
+    {
+      "path": "qa/laptop_sequence-contact.png",
+      "bytes": 16023,
+      "sha256": "52beef33f75f8a7415da9357dcf304ba28e7bc4d3810579d3b75412df5390ce3"
+    },
+    {
+      "path": "qa/native-roundtrip/button/00.png",
+      "bytes": 377,
+      "sha256": "26efcbd3e0787de3b1d650c8fd39e5b7da9adf45af1afb9a5a0ae75791854a11"
+    },
+    {
+      "path": "qa/native-roundtrip/button_available/00.png",
+      "bytes": 480,
+      "sha256": "ac78c6f7e2c2be679dd4c78ea556e77a8a0e269b65081ad618181af546fc8c5c"
+    },
+    {
+      "path": "qa/native-roundtrip/button_equipped/00.png",
+      "bytes": 428,
+      "sha256": "fd5f28ddde55b885363b8e99c32ccc10ec557a3c0bb77fd46cbcc7d273adb253"
+    },
+    {
+      "path": "qa/native-roundtrip/button_locked/00.png",
+      "bytes": 453,
+      "sha256": "0b8d0516b7f2d01ab5d8f555f1ec8ecbe82e1e074ff7317452174dcddc084949"
+    },
+    {
+      "path": "qa/native-roundtrip/button_owned/00.png",
+      "bytes": 436,
+      "sha256": "bbd170ab007c98a5070f76bc13ab9f1ec74fc52057deb10592842a36d5390e79"
+    },
+    {
+      "path": "qa/native-roundtrip/ingredient_card/00.png",
+      "bytes": 536,
+      "sha256": "5c8d823d046b0ea28f3fcc14078bade32e451bf8ac92597959ae186630fc85f2"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_arrive/00.png",
+      "bytes": 1425,
+      "sha256": "295bee2a9ba243b7ba9817fec63d1109f3e05740a49bce943d47fc427ab9b328"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_arrive/01.png",
+      "bytes": 1426,
+      "sha256": "4f7e22c64f7001c1809d0e0891cf8e1c6749d562341d7ea37cf7317592f2acfe"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_arrive/02.png",
+      "bytes": 1425,
+      "sha256": "a14833734f698305e6548c6495bc3b988cb1f3c8db2887d24a41f8a1e7d87640"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_arrive/03.png",
+      "bytes": 1426,
+      "sha256": "cd72dc2b51530146f70449c9f97707369af6f79a9f225f3b2a24b88d696127a6"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_arrive/04.png",
+      "bytes": 1426,
+      "sha256": "06582d4a57e919b13e5f45b0928b330247033484d9fb6b495a8aa85d29d0a3fa"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_closed_matched/00.png",
+      "bytes": 1377,
+      "sha256": "0683043aa849ae48ed00d93214853596cbf50ef4ac2a62242afcefae97b11984"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_closing/00.png",
+      "bytes": 2787,
+      "sha256": "b3de9d8e9b9143318e1a42075349610b26707ad3bad949bf002849e616aebc11"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_closing/01.png",
+      "bytes": 2847,
+      "sha256": "619655bc43408b0158e62a50971e8afbb01073dbcaec9847849cabd98968c413"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_closing/02.png",
+      "bytes": 2890,
+      "sha256": "6d3cfc831d477c8d9cf698ff169be6a8d361fc63e0a55286b302c3d1cbbdc2f3"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_closing/03.png",
+      "bytes": 2655,
+      "sha256": "10225fbce0c17e852553290f8f0fffef548d03eaf452d2d4a246acffafe79cef"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_closing/04.png",
+      "bytes": 1874,
+      "sha256": "3e849012db4dd6c10f1ae70d3c18979d433625724496847d1686c50e8eeb70a2"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_closing/05.png",
+      "bytes": 1171,
+      "sha256": "dd41d07c6fc730a9e2e7aff2150a65d780387a4fc80bb134972a76fbacd1f5fe"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_closing/06.png",
+      "bytes": 1377,
+      "sha256": "0683043aa849ae48ed00d93214853596cbf50ef4ac2a62242afcefae97b11984"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_light/00.png",
+      "bytes": 2869,
+      "sha256": "e369a3fe90ac4184097c53693e2366c828c5399b4754e5185dec0933e397a1be"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_light/01.png",
+      "bytes": 2872,
+      "sha256": "9bd5ad2bcdd7af99448fe68d9a5a027efadd242018f5da1ca4f7f80340f9a186"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_light/02.png",
+      "bytes": 2888,
+      "sha256": "00ca137c083af7c8f474f479d861c9939f89155454e226a7f79e00cf31a0ede8"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_open/00.png",
+      "bytes": 2888,
+      "sha256": "00ca137c083af7c8f474f479d861c9939f89155454e226a7f79e00cf31a0ede8"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_opening/00.png",
+      "bytes": 1377,
+      "sha256": "0683043aa849ae48ed00d93214853596cbf50ef4ac2a62242afcefae97b11984"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_opening/01.png",
+      "bytes": 1874,
+      "sha256": "3e849012db4dd6c10f1ae70d3c18979d433625724496847d1686c50e8eeb70a2"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_opening/02.png",
+      "bytes": 2655,
+      "sha256": "10225fbce0c17e852553290f8f0fffef548d03eaf452d2d4a246acffafe79cef"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_opening/03.png",
+      "bytes": 2890,
+      "sha256": "6d3cfc831d477c8d9cf698ff169be6a8d361fc63e0a55286b302c3d1cbbdc2f3"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_opening/04.png",
+      "bytes": 2847,
+      "sha256": "619655bc43408b0158e62a50971e8afbb01073dbcaec9847849cabd98968c413"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_opening/05.png",
+      "bytes": 2787,
+      "sha256": "b3de9d8e9b9143318e1a42075349610b26707ad3bad949bf002849e616aebc11"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_opening/06.png",
+      "bytes": 2873,
+      "sha256": "cdfba9dcb9289fe73e300cd1ca95fa4e8da23e1e83d76cef1d1842734daa320b"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/00.png",
+      "bytes": 1425,
+      "sha256": "295bee2a9ba243b7ba9817fec63d1109f3e05740a49bce943d47fc427ab9b328"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/01.png",
+      "bytes": 1426,
+      "sha256": "4f7e22c64f7001c1809d0e0891cf8e1c6749d562341d7ea37cf7317592f2acfe"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/02.png",
+      "bytes": 1425,
+      "sha256": "a14833734f698305e6548c6495bc3b988cb1f3c8db2887d24a41f8a1e7d87640"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/03.png",
+      "bytes": 1426,
+      "sha256": "cd72dc2b51530146f70449c9f97707369af6f79a9f225f3b2a24b88d696127a6"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/04.png",
+      "bytes": 1426,
+      "sha256": "06582d4a57e919b13e5f45b0928b330247033484d9fb6b495a8aa85d29d0a3fa"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/05.png",
+      "bytes": 1426,
+      "sha256": "06582d4a57e919b13e5f45b0928b330247033484d9fb6b495a8aa85d29d0a3fa"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/06.png",
+      "bytes": 1922,
+      "sha256": "ef645f57154b9b7842f11261c1667c327563881f28cfbf4f3f32e118100c9f58"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/07.png",
+      "bytes": 2703,
+      "sha256": "eac4f52a5428279440882815e771a5e54c01935aa6c9d3199efedfed67613f78"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/08.png",
+      "bytes": 2937,
+      "sha256": "f9656d789af288410f883ca0b7a5b865e7a33dd782b44a9abc8895548f8024bc"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/09.png",
+      "bytes": 2894,
+      "sha256": "90e8d388aba8c62def0cb5f382586606d5160e250a282b02e39be4cec0e57e82"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/10.png",
+      "bytes": 2834,
+      "sha256": "e9216ffbc9953356c88ad66cc097e8069189838a98961324a3a68521c25990ba"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/11.png",
+      "bytes": 2921,
+      "sha256": "e678d963cd91b819add3a456dd5fd8adcd85a121cb1a5b92a12923cba73ab776"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/12.png",
+      "bytes": 2917,
+      "sha256": "5012e727bf03ca49f60b5540e1fb77211736b73c3ca781d15d0a8ae6a1ff219b"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/13.png",
+      "bytes": 2920,
+      "sha256": "e6e2f43cb3376d216b89eb8ba9fe844e3b75107ba580daa4c4167e5d996276a7"
+    },
+    {
+      "path": "qa/native-roundtrip/laptop_sequence/14.png",
+      "bytes": 2936,
+      "sha256": "1e19ecac3b10da7f0425833bbaade505502c213594c626471f09d8d610121e47"
+    },
+    {
+      "path": "qa/native-roundtrip/receipt/00.png",
+      "bytes": 1161,
+      "sha256": "1388a1206dcb529851414ee5d267109c396d44224ff2991033f0a176c7e19edd"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_storage/00.png",
+      "bytes": 2031,
+      "sha256": "6e0382e4a344b8fa023ea3ae2bafd9e621cbecc471fb8a038ab2f275cc70e722"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_tear_store/00.png",
+      "bytes": 4910,
+      "sha256": "272c585766a11ec3c1458e2fc9900b3ab625ae1e6a5058069056b56159988677"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_tear_store/01.png",
+      "bytes": 4953,
+      "sha256": "052d8ae9d0657533bf6e3af636b64c0aca3c9f63fa1ed1d9ffde655def653893"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_tear_store/02.png",
+      "bytes": 4949,
+      "sha256": "718d40ad4c0b802d747414e0c56b2ed91aca2e3ddbd9dc4ea4191391eea2b466"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_tear_store/03.png",
+      "bytes": 5028,
+      "sha256": "32260a12f1778fce4b36a68a640afd39d9441a08dc7cb19498a3a159d5c33fd7"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_tear_store/04.png",
+      "bytes": 5114,
+      "sha256": "aed07d143e24e77b2d1d830e7e4f67c11f7f004e864eadd0e7ff96c118afbfc6"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_tear_store/05.png",
+      "bytes": 5376,
+      "sha256": "1c7a72b26afb61d8447aa2d523eca80d55f97a92649be8456541b7d4e4451636"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_tear_store/06.png",
+      "bytes": 5267,
+      "sha256": "85ed94f618983966b687b5aa959d90c66399d396eea79bf4a348d646f3394277"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_tear_store/07.png",
+      "bytes": 5017,
+      "sha256": "3eb2c3761dc0846e536c7718416db5466d110c446d4daaf6a939951817ef4cbf"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_tear_store/08.png",
+      "bytes": 4710,
+      "sha256": "dea3a514fa5d9713c5d288d20a2f4920a2da7e1a4cc30062c6dc3756f073e8cd"
+    },
+    {
+      "path": "qa/native-roundtrip/recipe_tear_store/09.png",
+      "bytes": 4710,
+      "sha256": "dea3a514fa5d9713c5d288d20a2f4920a2da7e1a4cc30062c6dc3756f073e8cd"
+    },
+    {
+      "path": "qa/native-roundtrip/spring_notebook/00.png",
+      "bytes": 2311,
+      "sha256": "6a428cfd81ec22be00960e2f88aa8639e579134a5cdb7e836a8bcdb6e9298398"
+    },
+    {
+      "path": "qa/native-roundtrip/staff_card/00.png",
+      "bytes": 1516,
+      "sha256": "7c9dac8996c78c233fe88e73f54e2e770fae68c4fadb193fc2c6609bbbdb1db3"
+    },
+    {
+      "path": "qa/native-roundtrip/staff_card_available/00.png",
+      "bytes": 1626,
+      "sha256": "71ffaa5d9aeba36bbfd60b849ebbbd20eba77ca7e61b47d83f9554e048bbdbd9"
+    },
+    {
+      "path": "qa/native-roundtrip/staff_card_equipped/00.png",
+      "bytes": 1610,
+      "sha256": "1a23f7107d94068ad8bbe569fa773b418a5f0b6af66418cf71b258dd0d5e4f42"
+    },
+    {
+      "path": "qa/native-roundtrip/staff_card_locked/00.png",
+      "bytes": 1517,
+      "sha256": "d34f015a2acbd27021078962e8f0df11ba245d6ef9956c3644a4fe87ea3879ab"
+    },
+    {
+      "path": "qa/native-roundtrip/staff_card_owned/00.png",
+      "bytes": 1570,
+      "sha256": "b92c16717073b4f94c5a3551347eba766a1e33600c5a358386956f5a208ab008"
+    },
+    {
+      "path": "qa/native-roundtrip/torn_recipe/00.png",
+      "bytes": 1240,
+      "sha256": "99d9f3b232e2a66590d7081108e5892a9ea1d4f961b709cf48df9f8c75c5b6ac"
+    },
+    {
+      "path": "qa/native-roundtrip/tree_node/00.png",
+      "bytes": 672,
+      "sha256": "42e5115d459412c8a2acdf5413e9e93a3fd3e98782189f5248dbf23476214768"
+    },
+    {
+      "path": "qa/native-roundtrip/tree_node_available/00.png",
+      "bytes": 736,
+      "sha256": "981b21c69c018fea2cf640e8c120b3f2a76e4cb45fbe549ed8da21a810808a69"
+    },
+    {
+      "path": "qa/native-roundtrip/tree_node_equipped/00.png",
+      "bytes": 748,
+      "sha256": "7d1d22ddfbbbc0249b78e56d218b089515d3c5b78e9a802b3578fd442358f790"
+    },
+    {
+      "path": "qa/native-roundtrip/tree_node_locked/00.png",
+      "bytes": 706,
+      "sha256": "ac137881fa7672423f85dd62229f12e9afb5db74290274773af8cd9b89621a16"
+    },
+    {
+      "path": "qa/native-roundtrip/tree_node_owned/00.png",
+      "bytes": 728,
+      "sha256": "8c448f00ebb8af07e9ee6a7c04ab463b64aca5a536721e74075cd3a36cbb85f3"
+    },
+    {
+      "path": "qa/receipt-height-192.png",
+      "bytes": 1161,
+      "sha256": "1388a1206dcb529851414ee5d267109c396d44224ff2991033f0a176c7e19edd"
+    },
+    {
+      "path": "qa/receipt-height-288.png",
+      "bytes": 1401,
+      "sha256": "884abc730137cb222a19c14ce982e0655bc003f0425d360c2791d34c43f74a7a"
+    },
+    {
+      "path": "qa/receipt-height-384.png",
+      "bytes": 1641,
+      "sha256": "ab4e3b8045c3a20cda8e02f2e40a18e7e269076926300d75bc706cd8f6244eab"
+    },
+    {
+      "path": "qa/recipe_tear_store-contact.png",
+      "bytes": 16170,
+      "sha256": "e2ed60548ab69066671ac267e1d079323ddb8833b19ce62024a552948e1eac5b"
+    },
+    {
+      "path": "qa/static-contact.png",
+      "bytes": 28608,
+      "sha256": "86345d55aff47a7ac19f93e8950f34cad460535768e58831187d0a006c90f2d3"
+    },
+    {
+      "path": "references/card_gin.png",
+      "bytes": 3219,
+      "sha256": "7876b015e45fcce066132a6bd8d363600a10f0b9c5b20d660ef66d72f8b7ea9e"
+    },
+    {
+      "path": "references/teabag_imp.png",
+      "bytes": 1363975,
+      "sha256": "a1304683d72ba3db55d5d6d5d2ceac4e4e16f1bc616792b9054be0d2107d2af3"
+    },
+    {
+      "path": "references/ui_panel.png",
+      "bytes": 557,
+      "sha256": "abc1798b83308883286a94856480222d4cda55803093a1a11f1e9d40273ec748"
+    },
+    {
+      "path": "server-version.json",
+      "bytes": 166,
+      "sha256": "141cc0c0d7adc80f991a07620f66b556387fb61050586bfa509b68769976d187"
+    },
+    {
+      "path": "source-candidates/laptop_closed/laptop_closed.aseprite",
+      "bytes": 4827,
+      "sha256": "447f82e648b346807878841116199763876c98da33630545cacebd9043e71fd7"
+    },
+    {
+      "path": "source-candidates/laptop_closed/laptop_closed.png",
+      "bytes": 1711,
+      "sha256": "9a2a78f91fcdf00a27867f9385b04d163c04648e76631d39722fcc53b3b27a74"
+    },
+    {
+      "path": "tool-access.json",
+      "bytes": 139,
+      "sha256": "7ad45e2b14cf7a006cfa5db2a594ef0f87804eec22d25bb6a74160efd09a547d"
+    }
+  ],
+  "credentialContentScan": "no credential value present in owned outputs"
+}

@@ -1,0 +1,119 @@
+{
+  "passed": true,
+  "checkCount": 28,
+  "failed": [],
+  "checks": [
+    {
+      "check": "originalNativeMatchesPNG",
+      "passed": true
+    },
+    {
+      "check": "closedCompositeOriginalPixelExact",
+      "passed": true
+    },
+    {
+      "check": "closedPreviewOriginalPixelExact",
+      "passed": true
+    },
+    {
+      "check": "bodyOriginalPixelsOutsideLidUntouched",
+      "passed": true
+    },
+    {
+      "check": "lidOriginalPixelsOriginalCoordinates",
+      "passed": true
+    },
+    {
+      "check": "noForegroundPhysicalMaskOverlap",
+      "passed": true
+    },
+    {
+      "check": "mouthInsideDarkOpening",
+      "passed": true
+    },
+    {
+      "check": "lidSeatInCanvas",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_open_body:RGBA",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_open_body:sameCanvas",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_open_body:nonempty",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_open_body:binaryAlpha",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_open_body:transparentRGBzero",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_open_body:sourcePalette",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_open_body:nativePixelsMatch",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_open_body:nativeMaskUnchanged",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_lid:RGBA",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_lid:sameCanvas",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_lid:nonempty",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_lid:binaryAlpha",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_lid:transparentRGBzero",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_lid:sourcePalette",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_lid:nativePixelsMatch",
+      "passed": true
+    },
+    {
+      "check": "dl_teapot_lid:nativeMaskUnchanged",
+      "passed": true
+    },
+    {
+      "check": "sourceUnchanged:dl_teapot.png",
+      "passed": true
+    },
+    {
+      "check": "sourceUnchanged:dl_teapot.aseprite",
+      "passed": true
+    },
+    {
+      "check": "sourceUnchanged:dl_teapot_mask.png",
+      "passed": true
+    },
+    {
+      "check": "sourceUnchanged:manifest.json",
+      "passed": true
+    }
+  ]
+}

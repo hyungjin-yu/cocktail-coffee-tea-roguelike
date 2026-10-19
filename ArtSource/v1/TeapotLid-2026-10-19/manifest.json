@@ -1,0 +1,299 @@
+{
+  "specVersion": "teapot-lid-2026-10-19",
+  "scope": "existing_teapot_body_lid_separation",
+  "status": "ready",
+  "coordinateOrigin": "top_left pixel coordinates; alphaBounds left,top,right,bottom exclusive",
+  "assets": [
+    {
+      "assetId": "dl_teapot_open_body",
+      "status": "ready",
+      "png": "dl_teapot_open_body.png",
+      "aseprite": "dl_teapot_open_body.aseprite",
+      "size": [
+        64,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        16,
+        62,
+        52
+      ],
+      "sha256": "063ecad83a0b48538601a867b0dd5356c42eeb38daccb4f73bd97c8d31fcec06",
+      "nativeSHA256": "4d27c0e555bcff7b8f8eed8004768fc31c8c56b824e2c22dc0df586ee0631fc5",
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "mouth": [
+          32,
+          20
+        ],
+        "lidSeat": [
+          32,
+          22
+        ],
+        "pourLip": [
+          61,
+          21
+        ],
+        "grip": [
+          12,
+          29
+        ]
+      },
+      "integrated": false,
+      "verified": false
+    },
+    {
+      "assetId": "dl_teapot_lid",
+      "status": "ready",
+      "png": "dl_teapot_lid.png",
+      "aseprite": "dl_teapot_lid.aseprite",
+      "size": [
+        64,
+        56
+      ],
+      "alphaBounds": [
+        20,
+        4,
+        44,
+        22
+      ],
+      "sha256": "dc4416affc887051f422dcd24cac5aedd2f3ac685e1ca498b5624e7148686839",
+      "nativeSHA256": "bd062ab5df8b2b8201db491e901aba986ebecb8828955563529ffa62cea8d701",
+      "pivotNormalizedUnity": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "mouth": [
+          32,
+          20
+        ],
+        "lidSeat": [
+          32,
+          22
+        ],
+        "pourLip": [
+          61,
+          21
+        ],
+        "grip": [
+          12,
+          29
+        ]
+      },
+      "integrated": false,
+      "verified": false
+    }
+  ],
+  "source": {
+    "png": "../BeverageCraft-v1.1/dl_teapot.png",
+    "aseprite": "../BeverageCraft-v1.1/dl_teapot.aseprite",
+    "originalAnchors": {
+      "mouth": [
+        30,
+        23
+      ],
+      "pourLip": [
+        61,
+        21
+      ],
+      "grip": [
+        12,
+        29
+      ]
+    }
+  },
+  "physicalMask": {
+    "path": "../BeverageCraft-v1.1/dl_teapot_mask.png",
+    "sha256": "39f9ef4f01762116f7b5f1798c5e49a7ab8425b8ec3e97c8a4d9c000c17d2153",
+    "alphaBounds": [
+      16,
+      23,
+      45,
+      45
+    ],
+    "unchanged": true
+  },
+  "opening": {
+    "apertureRect": [
+      24,
+      18,
+      16,
+      5
+    ],
+    "mouth": [
+      32,
+      20
+    ],
+    "lidSeat": [
+      32,
+      22
+    ],
+    "frontLipRow": 22,
+    "innerFace": "opaque original outline palette; physical liquid interior mask below remains unchanged"
+  },
+  "placement": {
+    "bodyOriginForPreview": [
+      32,
+      40
+    ],
+    "lidOriginClosed": [
+      32,
+      40
+    ],
+    "lidOriginLifted": [
+      32,
+      20
+    ],
+    "lidOriginOnSideTable": [
+      112,
+      68
+    ],
+    "closedRelativeLidOffset": [
+      0,
+      0
+    ],
+    "lidLocalSeat": [
+      32,
+      22
+    ],
+    "note": "keep 64x56 canvas and common scale/pivot; translate lid independently; no angle frames needed; exact original closed pixels on overlay"
+  },
+  "renderOrder": [
+    "dynamic liquid through unchanged mask",
+    "dl_teapot_open_body",
+    "dl_teapot_lid when seated or moving"
+  ],
+  "filter": "Point",
+  "pixelsPerUnit": 128,
+  "mipmap": false,
+  "compression": "none",
+  "hands": false,
+  "integrated": false,
+  "verified": false,
+  "integrationAllowed": false,
+  "integrationGate": "root review then Claude owns Assets/code/movement integration",
+  "qa": {
+    "passed": true,
+    "checkCount": 28,
+    "failed": [],
+    "checks": [
+      {
+        "check": "originalNativeMatchesPNG",
+        "passed": true
+      },
+      {
+        "check": "closedCompositeOriginalPixelExact",
+        "passed": true
+      },
+      {
+        "check": "closedPreviewOriginalPixelExact",
+        "passed": true
+      },
+      {
+        "check": "bodyOriginalPixelsOutsideLidUntouched",
+        "passed": true
+      },
+      {
+        "check": "lidOriginalPixelsOriginalCoordinates",
+        "passed": true
+      },
+      {
+        "check": "noForegroundPhysicalMaskOverlap",
+        "passed": true
+      },
+      {
+        "check": "mouthInsideDarkOpening",
+        "passed": true
+      },
+      {
+        "check": "lidSeatInCanvas",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_open_body:RGBA",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_open_body:sameCanvas",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_open_body:nonempty",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_open_body:binaryAlpha",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_open_body:transparentRGBzero",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_open_body:sourcePalette",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_open_body:nativePixelsMatch",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_open_body:nativeMaskUnchanged",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_lid:RGBA",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_lid:sameCanvas",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_lid:nonempty",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_lid:binaryAlpha",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_lid:transparentRGBzero",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_lid:sourcePalette",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_lid:nativePixelsMatch",
+        "passed": true
+      },
+      {
+        "check": "dl_teapot_lid:nativeMaskUnchanged",
+        "passed": true
+      },
+      {
+        "check": "sourceUnchanged:dl_teapot.png",
+        "passed": true
+      },
+      {
+        "check": "sourceUnchanged:dl_teapot.aseprite",
+        "passed": true
+      },
+      {
+        "check": "sourceUnchanged:dl_teapot_mask.png",
+        "passed": true
+      },
+      {
+        "check": "sourceUnchanged:manifest.json",
+        "passed": true
+      }
+    ]
+  }
+}

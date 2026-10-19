@@ -1,0 +1,3 @@
+{
+  "detail": "1 validation error for RequestGenerateImageProFlash\n  Value error, Style image must fit the native canvas. Crop the reference or choose a larger supported canvas. [type=value_error, input_value={'description': 'One blan...1, 'version': '0.4.130'}, input_type=dict]\n    For further information visit [url]"
+}
