@@ -1320,7 +1320,7 @@ namespace CCT
             HudGeometry("H8_used_state");
             yield return Shot("H8_combat_used_state", null);
             notes.Add($"HUDFIX drink state={DrinkLab.Prepared?.state} run={DrinkLab.Prepared?.runId == game.RunId} kills={game.Kills}");
-            // ── 결과 화면: 긴 판(일반 5000·정예 20·중간 보스·최종 보스 → 묶음 200개 이상) 영업 완료 ──
+            // ── 결과 화면: 긴 판(일반 5000·정예 20·중간 보스·최종 보스 → 78 상한 뒤 일반 60 + 정예 20 + 보스 묶음) 영업 완료 ──
             for (int i = 0; i < 5000; i++) game.OnEnemyKilled(game.Player.Position + Vector2.right * 2f, EnemyDef.Imp);
             var eliteDef = new EnemyDef { name = "QA 정예", dropCount = 0, hp = 10f, archetype = EnemyArchetype.EliteBarrage };
             for (int i = 0; i < 20; i++) game.OnEnemyKilled(game.Player.Position + Vector2.right * 2f, eliteDef);

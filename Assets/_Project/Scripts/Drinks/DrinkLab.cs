@@ -567,19 +567,25 @@ namespace CCT
         public static DrinkSupply.Source SourceFor(BossKind boss) =>
             boss == BossKind.Final ? DrinkSupply.Source.FinalBoss : DrinkSupply.Source.MidBoss;
 
-        /// <summary>획득처 설명(도감): 72 표의 가중치가 있는 곳.</summary>
+        /// <summary>획득처 설명(도감): 72/78 표의 가중치가 있는 곳. 일반은 판당 상한(78)까지 함께 적는다.</summary>
         public static string SourceText(string id)
         {
             var r = DrinkSupply.Get(id);
             if (r == null) return "";
             var at = new List<string>();
-            if (r.normal > 0) at.Add($"일반 처치 {DrinkSupply.NormalKillsPerBundle}회마다");
+            if (r.normal > 0) at.Add($"일반 {DrinkSupply.NormalKillsPerBundle}킬마다(판당 {DrinkSupply.NormalBundleCap}묶음까지)");
             if (r.elite > 0) at.Add("정예");
             if (r.midBoss > 0) at.Add("중간 보스");
             if (r.finalBoss > 0) at.Add("최종 보스");
             string unit = DrinkIngredients.Get(id)?.form == IngredientForm.Leaf ? "g" : "mL";
-            return $"{string.Join("·", at)} (1묶음 {DrinkRules.Format(r.bundle)}{unit}{(r.rare ? ", 보스 희귀 보장" : "")}) · 적게 가진 재료일수록 잘 나옴";
+            return $"{string.Join("·", at)} (1묶음 {DrinkRules.Format(r.bundle)}{unit}{(r.rare ? ", 보스 희귀 보상 후보(두 종 중 추첨)·일반/정예는 가끔" : "")}) · 적게 가진 재료일수록 잘 나옴";
         }
+
+        /// <summary>78 공급 규칙 한 줄 도움말(도감 하단 기존 안내 칸).</summary>
+        public static string SupplyRuleText() =>
+            $"재료 보상: 일반 처치 {DrinkSupply.NormalKillsPerBundle}회마다 1묶음, 판당 최대 {DrinkSupply.NormalBundleCap}묶음({DrinkSupply.NormalKillsPerBundle * DrinkSupply.NormalBundleCap}킬). " +
+            $"정예는 처치마다 1묶음, 중간 보스 {DrinkSupply.MidBossDraws}묶음·최종 보스 {DrinkSupply.FinalBossDraws}묶음(상한과 별도). 중간 보스 3번째·최종 보스 5·6번째 묶음은 희귀 두 종 중 하나입니다. " +
+            "희귀(블루 큐라소·그레나딘)는 일반·정예에서도 가끔 나오고, 적게 가진 재료일수록 잘 나옵니다.";
 
         public static string Describe(IEnumerable<DrinkAmount> items)
         {

@@ -683,8 +683,12 @@ namespace CCT
         public int ResearchKills => rpKills;
         public int MidBossKills => midBossKills;
         public int FinalBossKills => finalBossKills;
+        /// <summary>이번 런 일반 보상 묶음 수(78 상한 60)와 다음 묶음까지 센 일반 처치 수(상한 도달 후 0에서 멈춤).</summary>
+        public int NormalSupplyBundles => normalBundles;
+        public int NormalKillsTowardBundle => normalKillsSinceBundle;
 
-        /// <summary>일반 처치 25회마다 1묶음(일반 표), 정예(탄막형)는 처치마다 1묶음(정예 표). 정예는 일반 카운트에 넣지 않는다. 보상 ID로 1회만.</summary>
+        /// <summary>일반 처치 25회마다 1묶음(일반 표), 정예(탄막형)는 처치마다 1묶음(정예 표). 정예는 일반 카운트에 넣지 않는다. 보상 ID로 1회만.
+        /// 78: 일반 묶음은 판당 최대 60(1500일반킬). 상한 뒤에는 일반 카운터를 더 세지 않는다 — 처치 수·RP·정예/보스 보상은 계속.</summary>
         void GrantSupplyForKill(Vector2 position, EnemyDef def)
         {
             if (def.archetype == EnemyArchetype.EliteBarrage)
@@ -693,6 +697,7 @@ namespace CCT
                 RecordSupply(position, DrinkSupply.Source.Elite, $"elite{eliteBundles}", def.name);
                 return;
             }
+            if (normalBundles >= DrinkSupply.NormalBundleCap) return;
             if (++normalKillsSinceBundle < DrinkSupply.NormalKillsPerBundle) return;
             normalKillsSinceBundle = 0;
             normalBundles++;

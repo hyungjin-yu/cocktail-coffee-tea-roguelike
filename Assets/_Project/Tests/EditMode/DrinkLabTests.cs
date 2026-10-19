@@ -534,6 +534,27 @@ namespace CCT.Tests
         }
 
         [Test]
+        public void SupplyDescriptions_Match78Rules_NoBossOnlyRareWording()
+        {
+            // 78: 희귀도 일반·정예 후보(보장은 보스), 일반은 판당 60묶음 상한 — 도감 획득처·도움말·재료 데이터 문구가 실제 표와 같아야 한다.
+            foreach (var r in DrinkSupply.Table)
+            {
+                string text = DrinkLab.SourceText(r.id);
+                StringAssert.Contains($"일반 {DrinkSupply.NormalKillsPerBundle}킬마다(판당 {DrinkSupply.NormalBundleCap}묶음까지)", text, r.id);
+                StringAssert.Contains("정예", text, r.id);
+                StringAssert.DoesNotContain("에서만", text, r.id);
+                if (r.rare) StringAssert.Contains("일반/정예는 가끔", text, r.id);
+                var def = DrinkIngredients.Get(r.id);
+                StringAssert.Contains("일반·정예", def.source, r.id);
+                StringAssert.DoesNotContain("최종 보스 희귀", def.source, r.id);
+            }
+            string rule = DrinkLab.SupplyRuleText();
+            StringAssert.Contains("판당 최대 60묶음(1500킬)", rule);
+            StringAssert.Contains("상한과 별도", rule);
+            StringAssert.Contains("일반·정예에서도 가끔", rule);
+        }
+
+        [Test]
         public void ResearchPoints_FirstGrantOnce_SettledWithRunOnce_NotOnPreservedAbandon()
         {
             Assert.AreEqual(10, DrinkLab.Research.researchPoints, "새 저장 첫 지급 10");

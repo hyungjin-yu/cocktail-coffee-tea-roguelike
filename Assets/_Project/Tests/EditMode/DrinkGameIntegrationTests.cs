@@ -77,7 +77,7 @@ namespace CCT.Tests
             Assert.AreEqual("normal1", p[0].awardId);
             Assert.AreEqual(1, p[0].items.Count, "1묶음");
             Assert.AreEqual(DrinkSupply.Get(p[0].items[0].id).bundle, p[0].items[0].amount, "고정 수량");
-            Assert.IsFalse(DrinkSupply.Get(p[0].items[0].id).rare, "일반 표에 희귀 없음");
+            Assert.Greater(DrinkSupply.Get(p[0].items[0].id).normal, 0, "일반 표 후보(78: 희귀 포함)");
             StringAssert.Contains("음료 재료", game.DrinkHud.ToastText);
             game.OnEnemyKilled(Vector2.zero, Elite);
             Assert.IsTrue(DrinkLab.PendingFor(game.RunId).Exists(a => a.awardId == "elite1"), "정예 1묶음");
@@ -86,6 +86,99 @@ namespace CCT.Tests
             Kill(1);
             Assert.AreEqual(3, DrinkLab.PendingFor(game.RunId).Count);
             Assert.AreEqual(51, game.ResearchKills, "RP 처치 = 일반 + 정예");
+        }
+
+        // ── 78 일반 보상 판당 60묶음 상한: 실제 GameManager.OnEnemyKilled 경로 ──
+        static int NormalAwards(string runId) => DrinkLab.PendingFor(runId).Count(a => a.awardId.StartsWith("normal", StringComparison.Ordinal));
+
+        [Test]
+        public void Supply_NormalCap60_RealKillPath_Boundaries_EliteBossRpContinue()
+        {
+            StartGame(false);
+            Kill(1499);
+            Assert.AreEqual(59, NormalAwards(game.RunId), "1499킬 = 59묶음");
+            Assert.AreEqual(59, game.NormalSupplyBundles);
+            Assert.AreEqual(24, game.NormalKillsTowardBundle);
+            Kill(1);
+            Assert.AreEqual(60, NormalAwards(game.RunId), "1500킬 = 60묶음");
+            Assert.IsTrue(DrinkLab.PendingFor(game.RunId).Exists(a => a.awardId == "normal60"));
+            Assert.AreEqual(0, game.NormalKillsTowardBundle);
+            Kill(25);
+            Assert.AreEqual(60, NormalAwards(game.RunId), "1525킬도 60묶음(상한)");
+            Assert.IsFalse(DrinkLab.PendingFor(game.RunId).Exists(a => a.awardId == "normal61"));
+            Assert.AreEqual(0, game.NormalKillsTowardBundle, "상한 뒤 일반 카운터는 더 세지 않는다");
+            Kill(1000);
+            Assert.AreEqual(60, game.NormalSupplyBundles);
+            Assert.AreEqual(0, game.NormalKillsTowardBundle);
+            // 정예·보스 보상은 상한과 별도로 계속
+            game.OnEnemyKilled(Vector2.zero, Elite);
+            Assert.IsTrue(DrinkLab.PendingFor(game.RunId).Exists(a => a.awardId == "elite1"), "상한 뒤 정예 보상");
+            game.OnEnemyKilled(Vector2.zero, MidBoss);
+            Assert.IsTrue(DrinkLab.PendingFor(game.RunId).Exists(a => a.awardId.StartsWith("boss", StringComparison.Ordinal)), "상한 뒤 보스 보상");
+            Assert.AreEqual(60, NormalAwards(game.RunId), "정예·보스는 일반 상한에 포함되지 않음");
+            Assert.AreEqual(2526, game.ResearchKills, "RP 처치는 상한 뒤에도 계속(일반 2525 + 정예 1)");
+            Assert.AreEqual(2527, game.Kills);
+            // 정산: 창고 = 이전 + 보상 합계, RP = min(5, 2526/100) + 중간 보스 2
+            var totals = DrinkLab.Totals(DrinkLab.PendingFor(game.RunId).SelectMany(a => a.items).ToList());
+            var before = DrinkIngredients.All.ToDictionary(d => d.id, d => DrinkLab.Owned(d.id));
+            int rpBefore = DrinkLab.Research.researchPoints;
+            game.MarkPlayerDiedForTests();
+            game.ResolveEndOfFrame();
+            Assert.AreEqual(DrinkSupply.KillRpCap + DrinkSupply.MidBossRp, game.DrinkSettlement.researchPoints);
+            Assert.AreEqual(rpBefore + game.DrinkSettlement.researchPoints, DrinkLab.Research.researchPoints);
+            foreach (var d in DrinkIngredients.All) { totals.TryGetValue(d.id, out var t); Assert.AreEqual(before[d.id] + t, DrinkLab.Owned(d.id), d.id); }
+            // 정산 뒤 처치·프레임 끝 처리를 반복해도 새 보상·재정산 없음
+            Kill(25);
+            game.ResolveEndOfFrame();
+            foreach (var d in DrinkIngredients.All) { totals.TryGetValue(d.id, out var t); Assert.AreEqual(before[d.id] + t, DrinkLab.Owned(d.id), d.id + " 중복 정산"); }
+            Assert.AreEqual(rpBefore + game.DrinkSettlement.researchPoints, DrinkLab.Research.researchPoints, "RP 중복 없음");
+        }
+
+        [Test]
+        public void Supply_NormalCap_ResetsOnNewRun()
+        {
+            StartGame(false);
+            Kill(1525);
+            Assert.AreEqual(60, NormalAwards(game.RunId));
+            string firstRun = game.RunId;
+            game.MarkPlayerDiedForTests();
+            game.ResolveEndOfFrame();
+            UnityEngine.Object.DestroyImmediate(root);
+            root = new GameObject("Game");
+            game = root.AddComponent<GameManager>();
+            game.Initialize(Job.Bartender, WeaponKind.Rapier);
+            Assert.AreNotEqual(firstRun, game.RunId);
+            Assert.AreEqual(0, game.NormalSupplyBundles, "새 런 초기화");
+            Assert.AreEqual(0, game.NormalKillsTowardBundle);
+            Kill(24);
+            Assert.AreEqual(0, NormalAwards(game.RunId));
+            Kill(1);
+            Assert.IsTrue(DrinkLab.PendingFor(game.RunId).Exists(a => a.awardId == "normal1"), "새 런 첫 25킬 보상");
+            Kill(1475);
+            Assert.AreEqual(60, NormalAwards(game.RunId), "새 런도 60까지 다시 지급");
+        }
+
+        [Test]
+        public void Supply_CapBundleSaveFailure_KeptOnceAndRetried_NoExtraBundle()
+        {
+            StartGame(false);
+            Kill(1475);
+            Assert.AreEqual(59, NormalAwards(game.RunId));
+            DrinkStore.FaultHookForTests = s => { if (s == DrinkStore.SaveStage.WriteTmp) throw new IOException("x"); };
+            Kill(25);
+            Assert.AreEqual(1, DrinkLab.PendingFor(game.RunId).Count(a => a.awardId == "normal60"), "저장 실패해도 메모리에 한 번 기록");
+            Kill(50);
+            Assert.AreEqual(60, NormalAwards(game.RunId), "실패·재시도 동안 추가 묶음 없음");
+            DrinkStore.FaultHookForTests = null;
+            Assert.IsTrue(DrinkLab.RetrySave());
+            var totals = DrinkLab.Totals(DrinkLab.PendingFor(game.RunId).SelectMany(a => a.items).ToList());
+            var before = DrinkIngredients.All.ToDictionary(d => d.id, d => DrinkLab.Owned(d.id));
+            game.MarkPlayerDiedForTests();
+            game.ResolveEndOfFrame();
+            foreach (var d in DrinkIngredients.All) { totals.TryGetValue(d.id, out var t); Assert.AreEqual(before[d.id] + t, DrinkLab.Owned(d.id), d.id); }
+            int bundles = 0;
+            foreach (var kv in totals) bundles += (int)(kv.Value / DrinkSupply.Get(kv.Key).bundle);
+            Assert.AreEqual(60, bundles, "일반 60묶음이 정확히 한 번 정산");
         }
 
         [Test]
@@ -341,7 +434,10 @@ namespace CCT.Tests
                 bySource[src] = n + a.items.Count;
             }
             TestContext.WriteLine("packets by source: " + string.Join(", ", bySource) + $" total={packets}");
-            Assert.GreaterOrEqual(packets, 200, "긴 판 재료 묶음 수");
+            // 78: 일반 5000킬이어도 일반 묶음은 판당 60(정예 20·보스는 별도). 보상 하나 = 같은 재료 합친 기록 줄.
+            Assert.AreEqual(DrinkSupply.NormalBundleCap, bySource["normal"], "일반 상한 60");
+            Assert.AreEqual(20, bySource["elite"], "정예는 상한과 별도");
+            Assert.GreaterOrEqual(packets, DrinkSupply.NormalBundleCap + 20 + 2, "긴 판 재료 기록 수");
             game.ResolveEndOfFrame();
             Assert.AreEqual(GameState.GameOver, game.State);
             Assert.IsTrue(game.Cleared);

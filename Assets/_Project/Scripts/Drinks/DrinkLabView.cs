@@ -623,6 +623,13 @@ namespace CCT
                         l.verticalOverflow = VerticalWrapMode.Truncate;
                         l.horizontalOverflow = HorizontalWrapMode.Wrap;
                         leftTexts[s.name] = l;
+                        // 78 획득처 줄(상한·희귀 후보 문구로 길어짐): 잘리지(Truncate) 않게 글 높이만큼 행을 늘린다.
+                        if (s.name.StartsWith("CostSrc_", System.StringComparison.Ordinal) && l.preferredHeight + 8f > s.h)
+                        {
+                            s.h = Mathf.Ceil(l.preferredHeight + 8f);
+                            row.sizeDelta = new Vector2(RowW, s.h);
+                            l.rectTransform.sizeDelta = new Vector2(l.rectTransform.sizeDelta.x, s.h);
+                        }
                         // 값 칸은 행 끝 버튼(× 또는 −/+) 폭만큼 안쪽에서 끝난다(겹침 없음).
                         float inset = s.remove != null ? 70f : s.minus != null || s.plus != null ? 144f : 0f;
                         if (s.right != null) rightTexts[s.name] = UiFactory.AddText(UiFactory.Place("R", row, new Vector2(1f, 0.5f), new Vector2(-8f - inset, 0f), new Vector2(RowW * 0.36f - inset * 0.5f, s.h)), s.right, s.size, TextAnchor.MiddleRight, s.color == DrinkPaperUi.InkLive ? DrinkPaperUi.InkLive : DrinkPaperUi.Ink);
@@ -782,7 +789,7 @@ namespace CCT
             var listRt = UiFactory.Place("CodexList", body, new Vector2(0.5f, 1f), new Vector2(0f, -10f), new Vector2(listW, 940f));
             var content = MakeScroll(listRt);
             int cols = listW >= 1800f ? 3 : 2; // 좁은 창은 2열(카드 폭을 줄여 글자를 줄이지 않는다)
-            const float cardH = 610f, gap = 12f; // 본문 7~8줄 + 머리(빈 종이 여백 줄임)
+            const float cardH = 660f, gap = 12f; // 본문 최대 11줄 + 머리(78: 획득처에 판당 상한·희귀 후보 문구가 늘어 610→660)
             float cardW = (listW - 30f - (cols + 1) * gap) / cols;
             float y = 0f, focusY = -1f;
             int col = 0;
@@ -823,6 +830,11 @@ namespace CCT
             if (col != 0) y += cardH + gap;
             var aux = UiFactory.Place("Aux", content, new Vector2(0f, 1f), new Vector2(gap, -y), new Vector2(listW - 40f, 90f));
             UiFactory.AddText(aux, "물·기본 얼음은 무료 제조 보조 자원입니다(배합에 기록). 물은 색을 희석하고 버프 기여가 없습니다.", DrinkPaperUi.Small, TextAnchor.MiddleLeft, new Color(0.85f, 0.9f, 1f));
+            y += 100f;
+            // 78 공급 규칙(일반 상한·출처 구분·희귀): 같은 안내 칸 형식으로 한 줄 더(새 화면 없음). 좁은 폭에서도 잘리지 않게 높이 여유.
+            var supply = UiFactory.Place("SupplyRule", content, new Vector2(0f, 1f), new Vector2(gap, -y), new Vector2(listW - 40f, 150f));
+            UiFactory.AddText(supply, DrinkLab.SupplyRuleText(), DrinkPaperUi.Small, TextAnchor.UpperLeft, new Color(0.85f, 0.9f, 1f));
+            y += 60f;
             content.sizeDelta = new Vector2(0f, y + 100f);
             if (focusY > 0f) content.anchoredPosition = new Vector2(0f, focusY); // 획득처 보기로 연 재료가 보이게
         }

@@ -213,6 +213,89 @@ namespace CCT.Tests
             AssertColor(finalMix, stage.FinalVessel.TopColor, "완성 잔");
         }
 
+        /// <summary>글 상자 폭 width에서 줄바꿈한 실제 높이(논리 단위). Text.preferredHeight와 같은 생성기, 폭만 바꿔 좁은 배치도 잰다.</summary>
+        static float HeightAt(Text t, float width) =>
+            t.cachedTextGeneratorForLayout.GetPreferredHeight(t.text, t.GetGenerationSettings(new Vector2(width, 0f))) / t.pixelsPerUnit;
+
+        [UnityTest]
+        public IEnumerator Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest()
+        {
+            // 78: 도감 획득처 문구가 길어지고(판당 60묶음·희귀 후보) 하단 안내 칸에 공급 규칙 한 줄이 늘었다. 넘침(Overflow) 없이 칸 안에 있어야 한다.
+            // 가장 좁은 배치: 화면비 1.18 → layoutW 1274, 2열 카드 본문 폭 494 / 안내 칸 폭 1174. 넓은 배치: 3열 본문 폭 514 / 안내 칸 1820.
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            lab.SetTab(DrinkLabView.Tab.Codex);
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+            var texts = lab.GetComponentsInChildren<Text>(true);
+            var rule = Array.Find(texts, t => t.name == "SupplyRule");
+            Assert.IsNotNull(rule, "도감 하단 공급 규칙 안내");
+            Assert.AreEqual(DrinkLab.SupplyRuleText(), rule.text);
+            var aux = Array.Find(texts, t => t.name == "Aux");
+            Assert.IsNotNull(aux);
+            var a = new Vector3[4]; var r = new Vector3[4];
+            aux.rectTransform.GetWorldCorners(a); rule.rectTransform.GetWorldCorners(r);
+            Assert.Less(r[1].y, a[0].y + 0.01f, "공급 규칙 칸은 기존 안내 칸 아래(겹치지 않음)");
+            foreach (float w in new[] { rule.rectTransform.rect.width, 1174f, 1820f })
+                Assert.LessOrEqual(HeightAt(rule, w), rule.rectTransform.rect.height + 0.5f, $"공급 규칙 폭 {w}");
+            int bodies = 0;
+            var over = new System.Collections.Generic.List<string>();
+            foreach (var t in texts)
+            {
+                if (t.name != "Body" || t.transform.parent == null || !t.transform.parent.name.StartsWith("Codex_", StringComparison.Ordinal)) continue;
+                bodies++;
+                StringAssert.Contains("판당 60묶음까지", t.text, t.transform.parent.name);
+                string id = t.transform.parent.name.Substring("Codex_".Length);
+                var row = DrinkSupply.Get(id);
+                string unit = DrinkIngredients.Get(id).form == IngredientForm.Leaf ? "g" : "mL";
+                string oldSrc = (row.rare ? "정예·중간 보스·최종 보스" : "일반 처치 25회마다·정예·중간 보스·최종 보스") + $" (1묶음 {DrinkRules.Format(row.bundle)}{unit}{(row.rare ? ", 보스 희귀 보장" : "")}) · 적게 가진 재료일수록 잘 나옴";
+                string saved = t.text;
+                t.text = saved.Replace(DrinkLab.SourceText(id), oldSrc);
+                float oldH = HeightAt(t, 494f);
+                t.text = saved;
+                TestContext.WriteLine($"{id} h494 new={HeightAt(t, 494f):0.##} old14765b3={oldH:0.##} h514={HeightAt(t, 514f):0.##} box={t.rectTransform.rect.height}");
+                foreach (float w in new[] { t.rectTransform.rect.width, 494f, 514f })
+                    if (HeightAt(t, w) > t.rectTransform.rect.height + 0.5f) over.Add($"{t.transform.parent.name} 본문 폭 {w}: {HeightAt(t, w):0.##} > {t.rectTransform.rect.height}");
+            }
+            Assert.AreEqual(DrinkIngredients.All.Count, bodies, "재료 카드 전부 검사");
+            Assert.IsEmpty(over, string.Join(" / ", over));
+            var content = (RectTransform)rule.transform.parent;
+            rule.rectTransform.GetWorldCorners(r);
+            var c = new Vector3[4]; content.GetWorldCorners(c);
+            Assert.GreaterOrEqual(r[0].y, c[0].y - 0.01f, "스크롤 내용 높이 안에 공급 규칙 칸");
+            TestContext.WriteLine($"narrow={lab.Narrow} ruleW={rule.rectTransform.rect.width} ruleH={HeightAt(rule, 1174f):0}/{rule.rectTransform.rect.height}");
+        }
+
+        [UnityTest]
+        public IEnumerator CraftShortage_78SourceLine_GrowsToFitText_NotTruncated()
+        {
+            // 부족 재료 + "재료 소모와 보유량" 펼침 → 획득처 줄(Truncate). 78 문구가 길어져도 행이 글 높이만큼 늘어 잘리지 않아야 한다.
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            if (lab.Kind != DrinkKind.Cocktail) lab.LoadPreset(0);
+            yield return null;
+            Assert.AreEqual(DrinkKind.Cocktail, lab.Kind);
+            lab.Draft.SetAmount("grenadine", DrinkLab.Owned("grenadine") + 10);
+            lab.Draft.SetAmount("gin", DrinkLab.Owned("gin") + 10);
+            lab.RefreshForTests();
+            yield return null;
+            var toggle = GameObject.Find("CostToggle");
+            Assert.IsNotNull(toggle, "재료 소모 펼침 버튼");
+            if (GameObject.Find("CostSrc_grenadine") == null) toggle.GetComponent<Button>().onClick.Invoke();
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+            foreach (var id in new[] { "grenadine", "gin" })
+            {
+                var row = GameObject.Find("CostSrc_" + id);
+                Assert.IsNotNull(row, "획득처 줄 " + id);
+                var l = row.transform.Find("L").GetComponent<Text>();
+                StringAssert.Contains(DrinkLab.SourceText(id), l.text);
+                Assert.LessOrEqual(l.preferredHeight, l.rectTransform.rect.height + 0.5f, id + " 획득처 글이 잘림");
+                Assert.AreEqual(((RectTransform)row.transform).rect.height, l.rectTransform.rect.height, 0.5f);
+                TestContext.WriteLine($"CostSrc_{id} need={l.preferredHeight:0.#} row={((RectTransform)row.transform).rect.height}");
+            }
+        }
+
         [UnityTest]
         public IEnumerator FreshSave_ExamplePresetsSelectable_NoConsumption()
         {

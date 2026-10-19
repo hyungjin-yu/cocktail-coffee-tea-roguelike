@@ -8,6 +8,7 @@ namespace CCT
     /// 77 상대 부족 보정(2026-10-20, 72의 절대 보정 대체): 이번 추첨의 실제 후보마다 e = max(0, 창고 + 이번 런 미정산) / 기준 사용량 d,
     /// 후보 e의 중앙값 m(짝수면 가운데 두 값 평균), 배율 c = clamp((m+3)/(e+3), 0.5, 2.0). 후보 하나·모두 같은 회분이면 c=1 → 원래 가중치 비율.
     /// 여러 묶음은 앞 추첨 결과를 다음 추첨의 보유량에 더한다. 난수는 runId·보상 ID·추첨 순번의 해시(전투 난수와 독립, 저장 재시도로 재추첨 없음).
+    /// 78 총량·희귀 조정(2026-10-20): 일반 25킬당 1묶음은 판당 최대 60묶음, 일반·정예 표에도 희귀 후보(보장은 보스만). 중간/최종 표·추첨 수·77 보정 유지.
     /// 단위: 0.1mL / 0.1g 정수(DrinkRules와 같음). UnityEngine 비의존(순수 시험 가능).
     /// </summary>
     public static class DrinkSupply
@@ -26,17 +27,19 @@ namespace CCT
         /// <summary>표 순서 = 추첨 누적 순서(결정적).</summary>
         public static readonly Row[] Table =
         {
-            new Row { id = "gin", bundle = 150, baseUse = 300, normal = 18, elite = 15, midBoss = 12, finalBoss = 10 },
-            new Row { id = "rum", bundle = 150, baseUse = 300, normal = 18, elite = 15, midBoss = 12, finalBoss = 10 },
-            new Row { id = "black_tea", bundle = 10, baseUse = 20, normal = 18, elite = 15, midBoss = 12, finalBoss = 10 },
-            new Row { id = "green_tea", bundle = 10, baseUse = 20, normal = 18, elite = 15, midBoss = 12, finalBoss = 10 },
-            new Row { id = "lemon_juice", bundle = 100, baseUse = 150, normal = 14, elite = 15, midBoss = 16, finalBoss = 15 },
-            new Row { id = "honey", bundle = 50, baseUse = 100, normal = 14, elite = 15, midBoss = 16, finalBoss = 15 },
-            new Row { id = "blue_curacao", bundle = 50, baseUse = 100, normal = 0, elite = 5, midBoss = 10, finalBoss = 15, rare = true },
-            new Row { id = "grenadine", bundle = 50, baseUse = 100, normal = 0, elite = 5, midBoss = 10, finalBoss = 15, rare = true },
+            new Row { id = "gin", bundle = 150, baseUse = 300, normal = 16, elite = 14, midBoss = 12, finalBoss = 10 },
+            new Row { id = "rum", bundle = 150, baseUse = 300, normal = 16, elite = 14, midBoss = 12, finalBoss = 10 },
+            new Row { id = "black_tea", bundle = 10, baseUse = 20, normal = 16, elite = 14, midBoss = 12, finalBoss = 10 },
+            new Row { id = "green_tea", bundle = 10, baseUse = 20, normal = 16, elite = 14, midBoss = 12, finalBoss = 10 },
+            new Row { id = "lemon_juice", bundle = 100, baseUse = 150, normal = 13, elite = 12, midBoss = 16, finalBoss = 15 },
+            new Row { id = "honey", bundle = 50, baseUse = 100, normal = 13, elite = 12, midBoss = 16, finalBoss = 15 },
+            new Row { id = "blue_curacao", bundle = 50, baseUse = 100, normal = 5, elite = 10, midBoss = 10, finalBoss = 15, rare = true },
+            new Row { id = "grenadine", bundle = 50, baseUse = 100, normal = 5, elite = 10, midBoss = 10, finalBoss = 15, rare = true },
         };
 
         public const int NormalKillsPerBundle = 25;
+        /// <summary>78: 판당 일반 보상 최대 묶음(1500일반킬). 정예·보스는 별도이며 포함하지 않는다. 다음 런 초기화.</summary>
+        public const int NormalBundleCap = 60;
         public const int MidBossDraws = 3, FinalBossDraws = 6;
         /// <summary>77: 중앙값 완충(회분)과 배율 범위.</summary>
         public const double CorrectionUses = 3.0, MinMultiplier = 0.5, MaxMultiplier = 2.0;

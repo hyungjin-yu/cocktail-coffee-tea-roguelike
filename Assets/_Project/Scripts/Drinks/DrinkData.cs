@@ -72,7 +72,7 @@ namespace CCT
                 color = C(246, 249, 252), tint = 0.02f, turbidity = 0f, viscosity = 0.1f, density = 0.95f,
                 effect = DrinkStat.Attack, coefficient = 0.75f,
                 taste = "주니퍼 베리의 송진 향과 시트러스 껍질 향. 무색 투명해 다른 색을 흐리게 만든다.",
-                source = "바 테마 중간 보스·최종 보스 보상", iconId = "dl_icon_gin", bottleId = "dl_bottle_gin",
+                source = "일반·정예 처치, 중간·최종 보스 보상", iconId = "dl_icon_gin", bottleId = "dl_bottle_gin",
             },
             new DrinkIngredientDef
             {
@@ -80,7 +80,7 @@ namespace CCT
                 color = C(214, 160, 82), tint = 0.35f, turbidity = 0f, viscosity = 0.15f, density = 0.95f,
                 effect = DrinkStat.AttackSpeed, coefficient = 0.8f,
                 taste = "사탕수수로 만든 술. 바닐라·캐러멜 향의 옅은 호박색.",
-                source = "바 테마 중간 보스·최종 보스 보상", iconId = "dl_icon_rum", bottleId = "dl_bottle_rum",
+                source = "일반·정예 처치, 중간·최종 보스 보상", iconId = "dl_icon_rum", bottleId = "dl_bottle_rum",
             },
             new DrinkIngredientDef
             {
@@ -88,7 +88,7 @@ namespace CCT
                 color = C(22, 120, 236), tint = 3.2f, turbidity = 0f, viscosity = 0.35f, density = 1.08f,
                 effect = DrinkStat.CritChance, coefficient = 0.8f,
                 taste = "오렌지 껍질 향의 달콤한 리큐어. 착색력이 높아 조금만 넣어도 푸르게 물든다.",
-                source = "최종 보스 희귀 착색 재료 보상", iconId = "dl_icon_blue_curacao", bottleId = "dl_bottle_blue_curacao",
+                source = "희귀 착색 재료: 보스 희귀 보상 후보(두 종 중 추첨) · 일반·정예에서도 가끔", iconId = "dl_icon_blue_curacao", bottleId = "dl_bottle_blue_curacao",
             },
             new DrinkIngredientDef
             {
@@ -96,7 +96,7 @@ namespace CCT
                 color = C(206, 18, 52), tint = 3.6f, turbidity = 0.05f, viscosity = 0.7f, density = 1.30f,
                 effect = DrinkStat.MaxHp, coefficient = 0.8f,
                 taste = "석류 풍미의 진한 붉은 시럽. 무거워서 잔 바닥으로 가라앉는다.",
-                source = "최종 보스 희귀 착색 재료 보상", iconId = "dl_icon_grenadine", bottleId = "dl_bottle_grenadine",
+                source = "희귀 착색 재료: 보스 희귀 보상 후보(두 종 중 추첨) · 일반·정예에서도 가끔", iconId = "dl_icon_grenadine", bottleId = "dl_bottle_grenadine",
             },
             new DrinkIngredientDef
             {
@@ -104,7 +104,7 @@ namespace CCT
                 color = C(92, 58, 34), brewColor = C(170, 64, 30), tint = 1.6f, turbidity = 0.02f, viscosity = 0f, density = 1.0f,
                 effect = DrinkStat.CooldownReduction, coefficient = 0.8f,
                 taste = "완전 발효한 갈색 잎. 우리면 적갈색이 되고 몰트·꿀 향이 난다.",
-                source = "찻집 테마 중간 보스·최종 보스 보상", iconId = "dl_icon_black_tea", bottleId = "dl_tin_black_tea",
+                source = "일반·정예 처치, 중간·최종 보스 보상", iconId = "dl_icon_black_tea", bottleId = "dl_tin_black_tea",
             },
             new DrinkIngredientDef
             {
@@ -112,7 +112,7 @@ namespace CCT
                 color = C(70, 128, 52), brewColor = C(196, 204, 92), tint = 0.9f, turbidity = 0.04f, viscosity = 0f, density = 1.0f,
                 effect = DrinkStat.MoveSpeed, coefficient = 0.8f,
                 taste = "덖거나 쪄서 발효를 멈춘 녹색 잎. 우리면 맑은 황록색, 풋풋한 향.",
-                source = "찻집 테마 중간 보스·최종 보스 보상", iconId = "dl_icon_green_tea", bottleId = "dl_tin_green_tea",
+                source = "일반·정예 처치, 중간·최종 보스 보상", iconId = "dl_icon_green_tea", bottleId = "dl_tin_green_tea",
             },
             new DrinkIngredientDef
             {
@@ -120,7 +120,7 @@ namespace CCT
                 color = C(246, 236, 150), tint = 0.25f, turbidity = 0.55f, viscosity = 0.1f, density = 1.03f,
                 effect = DrinkStat.Attack, coefficient = 0.5f,
                 taste = "갓 짠 레몬즙. 신맛이 강하고 과육 때문에 살짝 뿌옇다.",
-                source = "바 테마 중간 보스 보상", iconId = "dl_icon_lemon_juice", bottleId = "dl_bottle_lemon_juice",
+                source = "일반·정예 처치, 중간·최종 보스 보상", iconId = "dl_icon_lemon_juice", bottleId = "dl_bottle_lemon_juice",
             },
             new DrinkIngredientDef
             {
@@ -128,7 +128,7 @@ namespace CCT
                 color = C(232, 162, 32), tint = 1.1f, turbidity = 0.12f, viscosity = 1f, density = 1.40f,
                 effect = DrinkStat.MaxHp, coefficient = 0.5f,
                 taste = "금빛의 걸쭉한 꿀. 천천히 흘러내리고 단맛과 꽃 향이 난다.",
-                source = "찻집 테마 중간 보스 보상", iconId = "dl_icon_honey", bottleId = "dl_bottle_honey",
+                source = "일반·정예 처치, 중간·최종 보스 보상", iconId = "dl_icon_honey", bottleId = "dl_bottle_honey",
             },
         };
 

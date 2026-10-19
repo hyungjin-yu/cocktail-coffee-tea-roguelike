@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 22:18:18Z" end-time="2026-10-19 22:18:19Z" duration="0.616976">
+  <test-suite type="TestSuite" id="1362" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="292" result="Failed" site="Child" start-time="2026-10-19 22:18:18Z" end-time="2026-10-19 22:18:19Z" duration="0.616976" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1356" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/Documents/Projects/CocktailCoffeeTea/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="292" result="Failed" site="Child" start-time="2026-10-19 22:18:18Z" end-time="2026-10-19 22:18:19Z" duration="0.606543" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="7652" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1357" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="292" result="Failed" site="Child" start-time="2026-10-19 22:18:18Z" end-time="2026-10-19 22:18:19Z" duration="0.603648" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="SetUpFixture" id="1350" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="292" result="Failed" site="Child" start-time="2026-10-19 22:18:18Z" end-time="2026-10-19 22:18:19Z" duration="0.599847" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1080" name="DrinkLabPlayTests" fullname="CCT.Tests.DrinkLabPlayTests" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" testcasecount="31" result="Failed" site="Child" start-time="2026-10-19 22:18:18Z" end-time="2026-10-19 22:18:19Z" duration="0.590389" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_75979a6a614f452aabc408039abc67f4.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1083" name="Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest" fullname="CCT.Tests.DrinkLabPlayTests.Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest" methodname="Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="2062090996" result="Failed" start-time="2026-10-19 22:18:18Z" end-time="2026-10-19 22:18:19Z" duration="0.578097" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Codex_gin 본문 폭 494: 402.75 > 400 / Codex_gin 본문 폭 514: 402.75 > 400 / Codex_rum 본문 폭 494: 402.75 > 400 / Codex_rum 본문 폭 514: 402.75 > 400 / Codex_blue_curacao 본문 폭 577: 443.25 > 400 / Codex_blue_curacao 본문 폭 494: 443.25 > 400 / Codex_blue_curacao 본문 폭 514: 443.25 > 400 / Codex_grenadine 본문 폭 577: 443.25 > 400 / Codex_grenadine 본문 폭 494: 443.25 > 400 / Codex_grenadine 본문 폭 514: 443.25 > 400 / Codex_black_tea 본문 폭 494: 402.75 > 400 / Codex_green_tea 본문 폭 494: 402.75 > 400 / Codex_lemon_juice 본문 폭 494: 402.75 > 400 / Codex_lemon_juice 본문 폭 514: 402.75 > 400 / Codex_honey 본문 폭 494: 402.75 > 400 / Codex_honey 본문 폭 514: 402.75 > 400
+  Expected: <empty>
+  But was:  < "Codex_gin 본문 폭 494: 402.75 > 400", "Codex_gin 본문 폭 514: 402.75 > 400", "Codex_rum 본문 폭 494: 402.75 > 400", "Codex_rum 본문 폭 514: 402.75 > 400", "Codex_blue_curacao 본문 폭 577: 443.25 > 400", "Codex_blue_curacao 본문 폭 494: 443.25 > 400", "Codex_blue_curacao 본문 폭 514: 443.25 > 400", "Codex_grenadine 본문 폭 577: 443.25 > 400", "Codex_grenadine 본문 폭 494: 443.25 > 400", "Codex_grenadine 본문 폭 514: 443.25 > 400"... >
+]]></message>
+                <stack-trace><![CDATA[at CCT.Tests.DrinkLabPlayTests+<Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest>d__12.MoveNext () [0x004ea] in C:\Users\user\Documents\Projects\CocktailCoffeeTea\Assets\_Project\Tests\PlayMode\DrinkLabPlayTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[TestProgress] 07:18:18.797 START CCT.Tests.DrinkLabPlayTests.Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest (t=0.1 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_5f763131942b4ffdae9329ae5550bdd2.json (source=Defaults)
+gin h494 new=402.75 old14765b3=362.25 h514=402.75 box=400
+rum h494 new=402.75 old14765b3=362.25 h514=402.75 box=400
+blue_curacao h494 new=443.25 old14765b3=362.25 h514=443.25 box=400
+grenadine h494 new=443.25 old14765b3=362.25 h514=443.25 box=400
+black_tea h494 new=402.75 old14765b3=362.25 h514=362.25 box=400
+green_tea h494 new=402.75 old14765b3=362.25 h514=362.25 box=400
+lemon_juice h494 new=402.75 old14765b3=362.25 h514=402.75 box=400
+honey h494 new=402.75 old14765b3=362.25 h514=402.75 box=400
+[TestProgress] 07:18:19.380 END Failed 0.6s CCT.Tests.DrinkLabPlayTests.Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest (t=0.5 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

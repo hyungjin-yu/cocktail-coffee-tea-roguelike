@@ -249,7 +249,7 @@ namespace CCT.Tests
             for (int i = 0; i < 20; i++) game.OnEnemyKilled(Vector2.zero, Elite);
             int packets = 0;
             foreach (var a in DrinkLab.PendingFor(game.RunId)) packets += a.items.Count;
-            Assert.GreaterOrEqual(packets, 200);
+            Assert.AreEqual(DrinkSupply.NormalBundleCap + 20, packets, "78: 일반 상한 60묶음 + 정예 20(별도)");
             game.OnEnemyKilled(Vector2.zero, FinalBoss);
             var result = game.ResultScreen;
             for (int i = 0; i < 300 && !result.IsOpen; i++) yield return null;
