@@ -1,0 +1,16 @@
+﻿RESULT build_skins10 exit=0 exe=True
+ZIP C:\Users\user\Documents\Projects\CocktailCoffeeTea\Builds\CocktailCoffeeTea-DrinkLab-v1.1-skins10-2026-10-20-win64.zip 0D26AAA8060A82CFF7E6EC84A80963CC25BFED7B7E4900A1F978C7367ABA35C6 108704648
+EXE 3070E580E019576B9AFCDEB4FEC18D03CEBC119F6AE84D597412905C749AD653
+SOURCE skin folders: skin_bartender_alchemist=23, skin_bartender_midnight=23, skin_bartender_noir=23, skin_bartender_rail=23, skin_bartender_stage=23, skin_bartender_tropic=23, skin_tea_apiary=28, skin_tea_astronomer=28, skin_tea_ceremony=28, skin_tea_greenhouse=28, skin_tea_jade=42, skin_tea_mountain=28
+FRESH pid=44868 aliveAfter30s=True
+exceptions=0
+commerce lines: [Commerce] 결제 비활성: commerce_config.enabled=false
+
+FullName                                               Length
+--------                                               ------
+C:\UnityScratch\r79\fresh-skins10-data\drinks.json       2838
+C:\UnityScratch\r79\fresh-skins10-data\drinks.json.bak   2000
+
+
+
+PRESERVE changed=0

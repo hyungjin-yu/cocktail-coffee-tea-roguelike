@@ -1,0 +1,10 @@
+1 skin_bartender_rail; triplet=original,previous,new; mirror pair=right,left
+2 skin_bartender_tropic; triplet=original,previous,new; mirror pair=right,left
+3 skin_bartender_noir; triplet=original,previous,new; mirror pair=right,left
+4 skin_bartender_alchemist; triplet=original,previous,new; mirror pair=right,left
+5 skin_bartender_stage; triplet=original,previous,new; mirror pair=right,left
+6 skin_tea_mountain; triplet=original,previous,new; mirror pair=right,left
+7 skin_tea_ceremony; triplet=original,previous,new; mirror pair=right,left
+8 skin_tea_apiary; triplet=original,previous,new; mirror pair=right,left
+9 skin_tea_greenhouse; triplet=original,previous,new; mirror pair=right,left
+10 skin_tea_astronomer; triplet=original,previous,new; mirror pair=right,left

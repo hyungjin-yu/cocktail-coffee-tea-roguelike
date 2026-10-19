@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Passed" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 23:11:46Z" end-time="2026-10-19 23:14:02Z" duration="136.458264">
+  <test-suite type="TestSuite" id="1372" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="299" result="Passed" start-time="2026-10-19 23:11:46Z" end-time="2026-10-19 23:14:02Z" duration="136.458264" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1366" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/Documents/Projects/CocktailCoffeeTea/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="299" result="Passed" start-time="2026-10-19 23:11:46Z" end-time="2026-10-19 23:14:02Z" duration="136.445215" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="47720" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1367" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="299" result="Passed" start-time="2026-10-19 23:11:46Z" end-time="2026-10-19 23:14:02Z" duration="136.440101" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1360" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="299" result="Passed" start-time="2026-10-19 23:11:46Z" end-time="2026-10-19 23:14:02Z" duration="136.432927" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1033" name="CardAdviceAndWeaponSkinPlayTests" fullname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests" classname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 23:11:46Z" end-time="2026-10-19 23:11:47Z" duration="1.416949" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_a723da8a67ac480ab41df81ec1071d56.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1035" name="Bartender_SameCocktailThreeTimes_NoRush_ThreeKindsRush" fullname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests.Bartender_SameCocktailThreeTimes_NoRush_ThreeKindsRush" methodname="Bartender_SameCocktailThreeTimes_NoRush_ThreeKindsRush" classname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests" runstate="Runnable" seed="575794130" result="Passed" start-time="2026-10-19 23:11:46Z" end-time="2026-10-19 23:11:46Z" duration="0.227462" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:11:46.074 START CCT.Tests.CardAdviceAndWeaponSkinPlayTests.Bartender_SameCocktailThreeTimes_NoRush_ThreeKindsRush (t=0.1 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_3c7391048eff4242bb61b5d91716f31f.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_advice_6ad513f4cc3141bc9fe4f7b76123cf28\save.json (source=Fresh, v2)
+[Commerce] 결제 비활성: commerce_config.enabled=false
+[TestProgress] 08:11:46.307 END Passed 0.2s CCT.Tests.CardAdviceAndWeaponSkinPlayTests.Bartender_SameCocktailThreeTimes_NoRush_ThreeKindsRush (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1034" name="CardView_ShowsRealRunAdvice_DoesNotAutoChoose" fullname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests.CardView_ShowsRealRunAdvice_DoesNotAutoChoose" methodname="CardView_ShowsRealRunAdvice_DoesNotAutoChoose" classname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests" runstate="Runnable" seed="1295002482" result="Passed" start-time="2026-10-19 23:11:46Z" end-time="2026-10-19 23:11:46Z" duration="0.095076" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:11:46.308 START CCT.Tests.CardAdviceAndWeaponSkinPlayTests.CardView_ShowsRealRunAdvice_DoesNotAutoChoose (t=0.4 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_advice_f1d47535635d4126a73bf0b707d0deee\save.json (source=Fresh, v2)
+[TestProgress] 08:11:46.404 END Passed 0.1s CCT.Tests.CardAdviceAndWeaponSkinPlayTests.CardView_ShowsRealRunAdvice_DoesNotAutoChoose (t=0.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1036" name="WeaponSkin_AppliesToRealHeldWeapon_StatsAndPlacementUnchanged" fullname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests.WeaponSkin_AppliesToRealHeldWeapon_StatsAndPlacementUnchanged" methodname="WeaponSkin_AppliesToRealHeldWeapon_StatsAndPlacementUnchanged" classname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests" runstate="Runnable" seed="810664457" result="Passed" start-time="2026-10-19 23:11:46Z" end-time="2026-10-19 23:11:47Z" duration="1.077387" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:11:46.405 START CCT.Tests.CardAdviceAndWeaponSkinPlayTests.WeaponSkin_AppliesToRealHeldWeapon_StatsAndPlacementUnchanged (t=0.5 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_advice_5badf9e20bd44f8a84b4d61d5bf25cb2\save.json (source=Fresh, v2)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_a723da8a67ac480ab41df81ec1071d56.json (source=Fresh, v2)
+[TestProgress] 08:11:47.483 END Passed 1.1s CCT.Tests.CardAdviceAndWeaponSkinPlayTests.WeaponSkin_AppliesToRealHeldWeapon_StatsAndPlacementUnchanged (t=1.6 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1213" name="MeleeSwingVisualTests" fullname="CCT.Tests.MeleeSwingVisualTests" classname="CCT.Tests.MeleeSwingVisualTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-19 23:11:47Z" end-time="2026-10-19 23:11:59Z" duration="12.255971" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1214" name="Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos" fullname="CCT.Tests.MeleeSwingVisualTests.Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos" methodname="Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos" classname="CCT.Tests.MeleeSwingVisualTests" runstate="Runnable" seed="1566701091" result="Passed" start-time="2026-10-19 23:11:47Z" end-time="2026-10-19 23:11:58Z" duration="10.951067" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:11:47.488 START CCT.Tests.MeleeSwingVisualTests.Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos (t=1.6 ts=1)
+[TestProgress] 08:11:51.022 HB frame=14885 dt=0.0004 unscaledDt=0.0004 state=Playing enemies=0 (t=5.1 ts=1)
+[TestProgress] 08:11:56.022 HB frame=32350 dt=0.0004 unscaledDt=0.0004 state=Playing enemies=0 (t=10.1 ts=1)
+[TestProgress] 08:11:58.440 END Passed 11.0s CCT.Tests.MeleeSwingVisualTests.Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos (t=12.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1216" name="Rapier_KeepsThrustClip_WithCrescent_NoRangeFill" fullname="CCT.Tests.MeleeSwingVisualTests.Rapier_KeepsThrustClip_WithCrescent_NoRangeFill" methodname="Rapier_KeepsThrustClip_WithCrescent_NoRangeFill" classname="CCT.Tests.MeleeSwingVisualTests" runstate="Runnable" seed="396841455" result="Passed" start-time="2026-10-19 23:11:58Z" end-time="2026-10-19 23:11:58Z" duration="0.393856" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:11:58.441 START CCT.Tests.MeleeSwingVisualTests.Rapier_KeepsThrustClip_WithCrescent_NoRangeFill (t=12.5 ts=1)
+[TestProgress] 08:11:58.835 END Passed 0.4s CCT.Tests.MeleeSwingVisualTests.Rapier_KeepsThrustClip_WithCrescent_NoRangeFill (t=12.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1215" name="Sword_PlaysSwingClip_HidesHeldSword_ThenRestores_NoRangeFill" fullname="CCT.Tests.MeleeSwingVisualTests.Sword_PlaysSwingClip_HidesHeldSword_ThenRestores_NoRangeFill" methodname="Sword_PlaysSwingClip_HidesHeldSword_ThenRestores_NoRangeFill" classname="CCT.Tests.MeleeSwingVisualTests" runstate="Runnable" seed="808289747" result="Passed" start-time="2026-10-19 23:11:58Z" end-time="2026-10-19 23:11:59Z" duration="0.554731" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:11:58.835 START CCT.Tests.MeleeSwingVisualTests.Sword_PlaysSwingClip_HidesHeldSword_ThenRestores_NoRangeFill (t=12.9 ts=1)
+[TestProgress] 08:11:59.391 END Passed 0.6s CCT.Tests.MeleeSwingVisualTests.Sword_PlaysSwingClip_HidesHeldSword_ThenRestores_NoRangeFill (t=13.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1217" name="SwordSwing_PauseFreezes_AndRestartLeavesNoSlashVfx" fullname="CCT.Tests.MeleeSwingVisualTests.SwordSwing_PauseFreezes_AndRestartLeavesNoSlashVfx" methodname="SwordSwing_PauseFreezes_AndRestartLeavesNoSlashVfx" classname="CCT.Tests.MeleeSwingVisualTests" runstate="Runnable" seed="1056760916" result="Passed" start-time="2026-10-19 23:11:59Z" end-time="2026-10-19 23:11:59Z" duration="0.346463" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:11:59.393 START CCT.Tests.MeleeSwingVisualTests.SwordSwing_PauseFreezes_AndRestartLeavesNoSlashVfx (t=13.5 ts=1)
+[TestProgress] 08:11:59.740 END Passed 0.3s CCT.Tests.MeleeSwingVisualTests.SwordSwing_PauseFreezes_AndRestartLeavesNoSlashVfx (t=13.5 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1302" name="Skins10EvidenceCapture" fullname="CCT.Tests.Skins10EvidenceCapture" classname="CCT.Tests.Skins10EvidenceCapture" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 23:11:59Z" end-time="2026-10-19 23:14:00Z" duration="120.826494" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1303" name="Capture_Shop_TenSkins_AllSizes" fullname="CCT.Tests.Skins10EvidenceCapture.Capture_Shop_TenSkins_AllSizes" methodname="Capture_Shop_TenSkins_AllSizes" classname="CCT.Tests.Skins10EvidenceCapture" runstate="Runnable" seed="2098901053" result="Passed" start-time="2026-10-19 23:11:59Z" end-time="2026-10-19 23:12:02Z" duration="2.434217" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:11:59.743 START CCT.Tests.Skins10EvidenceCapture.Capture_Shop_TenSkins_AllSizes (t=13.5 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_skins10_e560ff99570d4d3697d80ccdc602d199\save.json (source=Fresh, v2)
+[Skins10] shot shop_skin_bartender_rail_1920x1080.png 1920x1080
+[Skins10] shop 1920x1080 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=0
+[TestProgress] 08:12:01.115 HB frame=46112 dt=0.3333 unscaledDt=0.4528 state=noGM enemies=0 (t=14.2 ts=1)
+[Skins10] shot shop_skin_tea_astronomer_1920x1080.png 1920x1080
+[Skins10] shop 1920x1080 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+[Skins10] shot shop_skin_bartender_rail_1280x720.png 1280x720
+[Skins10] shop 1280x720 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+[Skins10] shot shop_skin_tea_astronomer_1280x720.png 1280x720
+[Skins10] shop 1280x720 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+[Skins10] shot shop_skin_bartender_rail_960x720.png 960x720
+[Skins10] shop 960x720 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+[Skins10] shot shop_skin_tea_astronomer_960x720.png 960x720
+[Skins10] shop 960x720 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+[Skins10] shot shop_skin_bartender_rail_836x705.png 836x705
+[Skins10] shop 836x705 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+[Skins10] shot shop_skin_tea_astronomer_836x705.png 836x705
+[Skins10] shop 836x705 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+[Skins10] shot shop_detail_skin_bartender_rail_1920x1080.png 1920x1080
+[Skins10] detail skin_bartender_rail: preview=bartender_idle_right_00 diff='각진 차장모·짧은 더블브레스트 재킷·시계 사슬·황동 단추, 짙은 적갈색 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_bartender_tropic_1920x1080.png 1920x1080
+[Skins10] detail skin_bartender_tropic: preview=bartender_idle_right_00 diff='짧은 밀짚모·넓게 열린 꽃무늬 셔츠·무릎바지·샌들, 코랄/청록 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_bartender_noir_1920x1080.png 1920x1080
+[Skins10] detail skin_bartender_noir: preview=bartender_idle_right_00 diff='낮은 중절모·무릎 위 트렌치코트·넓은 옷깃·부츠, 회갈색/버건디 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_bartender_alchemist_1920x1080.png 1920x1080
+[Skins10] detail skin_bartender_alchemist: preview=bartender_idle_right_00 diff='이마 고글·비대칭 가죽 앞가리개·닫힌 작은 허리병·보호 소매, 구리/보라 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_bartender_stage_1920x1080.png 1920x1080
+[Skins10] detail skin_bartender_stage: preview=bartender_idle_right_00 diff='짧은 실크햇·뒤로 갈라진 연미복·넓은 보타이·흰 장갑, 흑백/선명한 빨강 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_tea_mountain_1920x1080.png 1920x1080
+[Skins10] detail skin_tea_mountain: preview=tea_sommelier_idle_right_00 diff='천 두건·작은 등짐 바구니·조끼·각반, 흙빛/풀빛 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_tea_ceremony_1920x1080.png 1920x1080
+[Skins10] detail skin_tea_ceremony: preview=tea_sommelier_idle_right_00 diff='낮은 머리 묶음·넓은 소매의 랩 로브·긴 허리띠, 상아/먹색/작은 청화 무늬 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_tea_apiary_1920x1080.png 1920x1080
+[Skins10] detail skin_tea_apiary: preview=tea_sommelier_idle_right_00 diff='짧고 둥근 망사 양봉모·하나로 연결된 작업복·손목 장갑, 크림/호박 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_tea_greenhouse_1920x1080.png 1920x1080
+[Skins10] detail skin_tea_greenhouse: preview=tea_sommelier_idle_right_00 diff='머리 스카프·포켓 달린 원예 앞치마·걷은 소매·큰 고무장화, 테라코타/연두 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_tea_astronomer_1920x1080.png 1920x1080
+[Skins10] detail skin_tea_astronomer: preview=tea_sommelier_idle_right_00 diff='높은 뾰족 모자·짧은 별무늬 어깨망토·겹친 튜닉·사각 안경, 남보라/은빛 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_bought_equipped_tea_greenhouse_1280x720.png 1280x720
+[Skins10] buy+dup+equip greenhouse: coins=1500 owned=True equipped=True state='장착 중 · 이미 보유한 외형입니다.'
+[Skins10] shot drinklab_coin_cosmetics_1920x1080.png 1920x1080
+[Skins10] drinklab coin list cards=13
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_a723da8a67ac480ab41df81ec1071d56.json (source=Original, v2)
+[TestProgress] 08:12:02.179 END Passed 2.4s CCT.Tests.Skins10EvidenceCapture.Capture_Shop_TenSkins_AllSizes (t=15.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1304" name="Combat_TenSkins_RealEquip_NoBaseFrames_FacingOverlayStats" fullname="CCT.Tests.Skins10EvidenceCapture.Combat_TenSkins_RealEquip_NoBaseFrames_FacingOverlayStats" methodname="Combat_TenSkins_RealEquip_NoBaseFrames_FacingOverlayStats" classname="CCT.Tests.Skins10EvidenceCapture" runstate="Runnable" seed="1591799390" result="Passed" start-time="2026-10-19 23:12:02Z" end-time="2026-10-19 23:14:00Z" duration="118.387705" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:12:02.179 START CCT.Tests.Skins10EvidenceCapture.Combat_TenSkins_RealEquip_NoBaseFrames_FacingOverlayStats (t=15.2 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_skins10_7fc696431310404182023757915d7d9c\save.json (source=Fresh, v2)
+[Skins10] shot combat_skin_bartender_rail_Rapier_right_1280x720.png 1280x720
+[TestProgress] 08:12:06.115 HB frame=61310 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=3 (t=19.2 ts=1)
+[Skins10] shot combat_skin_bartender_rail_Rapier_left_836x705.png 836x705
+[Skins10] shot combat_skin_bartender_rail_Rapier_defeat_1280x720.png 1280x720
+[Skins10] combat skin_bartender_rail Bartender/Rapier: frames=23581 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+[Skins10] shot combat_skin_bartender_rail_Gun_right_1280x720.png 1280x720
+[TestProgress] 08:12:11.115 HB frame=79531 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=2 (t=24.2 ts=1)
+[Skins10] combat skin_bartender_rail Bartender/Gun: frames=22316 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+[Skins10] coverage skin_bartender_rail: seen 20/23 groups=[bartender_defeat,bartender_hurt,bartender_idle,bartender_melee,bartender_move,bartender_ranged] missing=[bartender_idle_right_01,bartender_idle_right_02,bartender_idle_right_03]
+[Skins10] shot combat_skin_bartender_tropic_Rapier_right_1280x720.png 1280x720
+[TestProgress] 08:12:16.115 HB frame=100011 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=2 (t=29.2 ts=1)
+[Skins10] shot combat_skin_bartender_tropic_Rapier_left_836x705.png 836x705
+[Skins10] combat skin_bartender_tropic Bartender/Rapier: frames=24402 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=1 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+[TestProgress] 08:12:21.116 HB frame=119618 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=1 (t=34.2 ts=1)
+[Skins10] shot combat_skin_bartender_tropic_Gun_right_1280x720.png 1280x720
+[Skins10] combat skin_bartender_tropic Bartender/Gun: frames=22277 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+[Skins10] coverage skin_bartender_tropic: seen 20/23 groups=[bartender_defeat,bartender_hurt,bartender_idle,bartender_melee,bartender_move,bartender_ranged] missing=[bartender_idle_right_01,bartender_idle_right_02,bartender_idle_right_03]
+[TestProgress] 08:12:26.116 HB frame=138745 dt=0.0005 unscaledDt=0.0005 state=Playing enemies=1 (t=39.2 ts=1)
+[Skins10] shot combat_skin_bartender_noir_Rapier_right_1280x720.png 1280x720
+[Skins10] shot combat_skin_bartender_noir_Rapier_left_836x705.png 836x705
+[TestProgress] 08:12:31.115 HB frame=158683 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=3 (t=44.2 ts=1)
+[Skins10] combat skin_bartender_noir Bartender/Rapier: frames=22509 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+[Skins10] shot combat_skin_bartender_noir_Gun_right_1280x720.png 1280x720
+[TestProgress] 08:12:36.116 HB frame=175105 dt=0.0005 unscaledDt=0.0005 state=Playing enemies=2 (t=49.2 ts=1)
+[Skins10] combat skin_bartender_noir Bartender/Gun: frames=20821 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+[Skins10] coverage skin_bartender_noir: seen 20/23 groups=[bartender_defeat,bartender_hurt,bartender_idle,bartender_melee,bartender_move,bartender_ranged] missing=[bartender_idle_right_01,bartender_idle_right_02,bartender_idle_right_03]
+[Skins10] shot combat_skin_bartender_alchemist_Rapier_right_1280x720.png 1280x720
+[TestProgress] 08:12:41.117 HB frame=194081 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=2 (t=54.2 ts=1)
+[Skins10] shot combat_skin_bartender_alchemist_Rapier_left_836x705.png 836x705
+[Skins10] combat skin_bartender_alchemist Bartender/Rapier: frames=22235 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+[Skins10] shot combat_skin_bartender_alchemist_Gun_right_1280x720.png 1280x720
+[TestProgress] 08:12:46.117 HB frame=213716 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=2 (t=59.2 ts=1)
+[Skins10] combat skin_bartender_alchemist Bartender/Gun: frames=22661 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+[Skins10] coverage skin_bartender_alchemist: seen 20/23 groups=[bartender_defeat,bartender_hurt,bartender_idle,bartender_melee,bartender_move,bartender_ranged] missing=[bartender_idle_right_01,bartender_idle_right_02,bartender_idle_right_03]
+[TestProgress] 08:12:51.117 HB frame=233671 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=2 (t=64.2 ts=1)
+[Skins10] shot combat_skin_bartender_stage_Rapier_right_1280x720.png 1280x720
+[Skins10] shot combat_skin_bartender_stage_Rapier_left_836x705.png 836x705
+[Skins10] combat skin_bartender_stage Bartender/Rapier: frames=24670 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+[TestProgress] 08:12:56.117 HB frame=253673 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=1 (t=69.2 ts=1)
+[Skins10] shot combat_skin_bartender_stage_Gun_right_1280x720.png 1280x720
+[TestProgress] 08:13:01.117 HB frame=276175 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=3 (t=74.2 ts=1)
+[Skins10] combat skin_bartender_stage Bartender/Gun: frames=26372 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+[Skins10] coverage skin_bartender_stage: seen 20/23 groups=[bartender_defeat,bartender_hurt,bartender_idle,bartender_melee,bartender_move,bartender_ranged] missing=[bartender_idle_right_01,bartender_idle_right_02,bartender_idle_right_03]
+[Skins10] shot combat_skin_tea_mountain_Sword_swing_1280x720.png 1280x720
+[Skins10] shot combat_skin_tea_mountain_Sword_right_1280x720.png 1280x720
+[Skins10] shot combat_skin_tea_mountain_Sword_left_836x705.png 836x705
+[TestProgress] 08:13:06.117 HB frame=297442 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=3 (t=79.2 ts=1)
+[Skins10] shot combat_skin_tea_mountain_Sword_defeat_1280x720.png 1280x720
+[Skins10] combat skin_tea_mountain TeaSommelier/Sword: frames=23916 baseCostumeFrames=0 [] facing=-1/1 swingFrames=14269 overlayOn=14269 overlayOutsideSwing=0 overlayNameMismatch=0 kills=1 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+[Skins10] shot combat_skin_tea_mountain_Bow_right_1280x720.png 1280x720
+[TestProgress] 08:13:11.117 HB frame=318173 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=3 (t=84.2 ts=1)
+[Skins10] combat skin_tea_mountain TeaSommelier/Bow: frames=25122 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+[Skins10] coverage skin_tea_mountain: seen 21/28 groups=[tea_sommelier_defeat,tea_sommelier_hurt,tea_sommelier_idle,tea_sommelier_move,tea_sommelier_ranged,tea_sommelier_sword_swing] missing=[tea_sommelier_idle_right_01,tea_sommelier_idle_right_02,tea_sommelier_idle_right_03,tea_sommelier_melee_right_00,tea_sommelier_melee_right_01,tea_sommelier_melee_right_02,tea_sommelier_melee_right_03]
+[Skins10] shot combat_skin_tea_ceremony_Sword_swing_1280x720.png 1280x720
+[Skins10] shot combat_skin_tea_ceremony_Sword_right_1280x720.png 1280x720
+[TestProgress] 08:13:16.117 HB frame=339903 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=3 (t=89.2 ts=1)
+[Skins10] shot combat_skin_tea_ceremony_Sword_left_836x705.png 836x705
+[Skins10] combat skin_tea_ceremony TeaSommelier/Sword: frames=25871 baseCostumeFrames=0 [] facing=-1/1 swingFrames=13201 overlayOn=13201 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+[Skins10] shot combat_skin_tea_ceremony_Bow_right_1280x720.png 1280x720
+[TestProgress] 08:13:21.117 HB frame=359907 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=1 (t=94.2 ts=1)
+[Skins10] combat skin_tea_ceremony TeaSommelier/Bow: frames=24312 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+[Skins10] coverage skin_tea_ceremony: seen 21/28 groups=[tea_sommelier_defeat,tea_sommelier_hurt,tea_sommelier_idle,tea_sommelier_move,tea_sommelier_ranged,tea_sommelier_sword_swing] missing=[tea_sommelier_idle_right_01,tea_sommelier_idle_right_02,tea_sommelier_idle_right_03,tea_sommelier_melee_right_00,tea_sommelier_melee_right_01,tea_sommelier_melee_right_02,tea_sommelier_melee_right_03]
+[Skins10] shot combat_skin_tea_apiary_Sword_swing_1280x720.png 1280x720
+[TestProgress] 08:13:26.117 HB frame=381877 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=1 (t=99.2 ts=1)
+[Skins10] shot combat_skin_tea_apiary_Sword_right_1280x720.png 1280x720
+[Skins10] shot combat_skin_tea_apiary_Sword_left_836x705.png 836x705
+[Skins10] combat skin_tea_apiary TeaSommelier/Sword: frames=25291 baseCostumeFrames=0 [] facing=-1/1 swingFrames=12937 overlayOn=12937 overlayOutsideSwing=0 overlayNameMismatch=0 kills=1 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+[TestProgress] 08:13:31.117 HB frame=402692 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=1 (t=104.2 ts=1)
+[Skins10] shot combat_skin_tea_apiary_Bow_right_1280x720.png 1280x720
+[TestProgress] 08:13:36.118 HB frame=422819 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=3 (t=109.2 ts=1)
+[Skins10] combat skin_tea_apiary TeaSommelier/Bow: frames=24030 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+[Skins10] coverage skin_tea_apiary: seen 21/28 groups=[tea_sommelier_defeat,tea_sommelier_hurt,tea_sommelier_idle,tea_sommelier_move,tea_sommelier_ranged,tea_sommelier_sword_swing] missing=[tea_sommelier_idle_right_01,tea_sommelier_idle_right_02,tea_sommelier_idle_right_03,tea_sommelier_melee_right_00,tea_sommelier_melee_right_01,tea_sommelier_melee_right_02,tea_sommelier_melee_right_03]
+[Skins10] shot combat_skin_tea_greenhouse_Sword_swing_1280x720.png 1280x720
+[Skins10] shot combat_skin_tea_greenhouse_Sword_right_1280x720.png 1280x720
+[TestProgress] 08:13:41.118 HB frame=444726 dt=0.0004 unscaledDt=0.0004 state=Playing enemies=3 (t=114.2 ts=1)
+[Skins10] shot combat_skin_tea_greenhouse_Sword_left_836x705.png 836x705
+[Skins10] combat skin_tea_greenhouse TeaSommelier/Sword: frames=25645 baseCostumeFrames=0 [] facing=-1/1 swingFrames=15747 overlayOn=15747 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+[Skins10] shot combat_skin_tea_greenhouse_Bow_right_1280x720.png 1280x720
+[TestProgress] 08:13:46.118 HB frame=466189 dt=0.0004 unscaledDt=0.0004 state=Playing enemies=2 (t=119.2 ts=1)
+[Skins10] combat skin_tea_greenhouse TeaSommelier/Bow: frames=24654 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+[Skins10] coverage skin_tea_greenhouse: seen 21/28 groups=[tea_sommelier_defeat,tea_sommelier_hurt,tea_sommelier_idle,tea_sommelier_move,tea_sommelier_ranged,tea_sommelier_sword_swing] missing=[tea_sommelier_idle_right_01,tea_sommelier_idle_right_02,tea_sommelier_idle_right_03,tea_sommelier_melee_right_00,tea_sommelier_melee_right_01,tea_sommelier_melee_right_02,tea_sommelier_melee_right_03]
+[Skins10] shot combat_skin_tea_astronomer_Sword_swing_1280x720.png 1280x720
+[Skins10] shot combat_skin_tea_astronomer_Sword_right_1280x720.png 1280x720
+[TestProgress] 08:13:51.118 HB frame=486589 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=1 (t=124.2 ts=1)
+[Skins10] shot combat_skin_tea_astronomer_Sword_left_836x705.png 836x705
+[Skins10] combat skin_tea_astronomer TeaSommelier/Sword: frames=23102 baseCostumeFrames=0 [] facing=-1/1 swingFrames=13827 overlayOn=13827 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+[TestProgress] 08:13:56.118 HB frame=505780 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=2 (t=129.2 ts=1)
+[Skins10] shot combat_skin_tea_astronomer_Bow_right_1280x720.png 1280x720
+[Skins10] combat skin_tea_astronomer TeaSommelier/Bow: frames=23991 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=1 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+[Skins10] coverage skin_tea_astronomer: seen 21/28 groups=[tea_sommelier_defeat,tea_sommelier_hurt,tea_sommelier_idle,tea_sommelier_move,tea_sommelier_ranged,tea_sommelier_sword_swing] missing=[tea_sommelier_idle_right_01,tea_sommelier_idle_right_02,tea_sommelier_idle_right_03,tea_sommelier_melee_right_00,tea_sommelier_melee_right_01,tea_sommelier_melee_right_02,tea_sommelier_melee_right_03]
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_a723da8a67ac480ab41df81ec1071d56.json (source=Original, v2)
+[TestProgress] 08:14:00.567 END Passed 118.4s CCT.Tests.Skins10EvidenceCapture.Combat_TenSkins_RealEquip_NoBaseFrames_FacingOverlayStats (t=133.6 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1295" name="SkinShopListTests" fullname="CCT.Tests.SkinShopListTests" classname="CCT.Tests.SkinShopListTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 23:14:00Z" end-time="2026-10-19 23:14:00Z" duration="0.065230" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1297" name="CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected" fullname="CCT.Tests.SkinShopListTests.CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected" methodname="CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected" classname="CCT.Tests.SkinShopListTests" runstate="Runnable" seed="1040815191" result="Passed" start-time="2026-10-19 23:14:00Z" end-time="2026-10-19 23:14:00Z" duration="0.034438" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:14:00.569 START CCT.Tests.SkinShopListTests.CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected (t=133.6 ts=1)
+[TestProgress] 08:14:00.604 END Passed 0.0s CCT.Tests.SkinShopListTests.CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected (t=133.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1296" name="TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail" fullname="CCT.Tests.SkinShopListTests.TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail" methodname="TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail" classname="CCT.Tests.SkinShopListTests" runstate="Runnable" seed="1892066905" result="Passed" start-time="2026-10-19 23:14:00Z" end-time="2026-10-19 23:14:00Z" duration="0.027215" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:14:00.605 START CCT.Tests.SkinShopListTests.TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail (t=133.7 ts=1)
+[TestProgress] 08:14:00.632 END Passed 0.0s CCT.Tests.SkinShopListTests.TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail (t=133.7 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1298" name="SkinShopViewTests" fullname="CCT.Tests.SkinShopViewTests" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 23:14:00Z" end-time="2026-10-19 23:14:00Z" duration="0.076272" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1299" name="PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses" fullname="CCT.Tests.SkinShopViewTests.PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses" methodname="PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" seed="2007035154" result="Passed" start-time="2026-10-19 23:14:00Z" end-time="2026-10-19 23:14:00Z" duration="0.024041" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:14:00.634 START CCT.Tests.SkinShopViewTests.PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses (t=133.7 ts=1)
+[TestProgress] 08:14:00.659 END Passed 0.0s CCT.Tests.SkinShopViewTests.PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses (t=133.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1300" name="TitleSkinButton_OpensShop_AndBackReturnsToTitle" fullname="CCT.Tests.SkinShopViewTests.TitleSkinButton_OpensShop_AndBackReturnsToTitle" methodname="TitleSkinButton_OpensShop_AndBackReturnsToTitle" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" seed="1929857485" result="Passed" start-time="2026-10-19 23:14:00Z" end-time="2026-10-19 23:14:00Z" duration="0.026043" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:14:00.659 START CCT.Tests.SkinShopViewTests.TitleSkinButton_OpensShop_AndBackReturnsToTitle (t=133.7 ts=1)
+[TestProgress] 08:14:00.687 END Passed 0.0s CCT.Tests.SkinShopViewTests.TitleSkinButton_OpensShop_AndBackReturnsToTitle (t=133.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1301" name="TitleSkinButton_StaysInsideMenuFrame" fullname="CCT.Tests.SkinShopViewTests.TitleSkinButton_StaysInsideMenuFrame" methodname="TitleSkinButton_StaysInsideMenuFrame" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" seed="1861312287" result="Passed" start-time="2026-10-19 23:14:00Z" end-time="2026-10-19 23:14:00Z" duration="0.020663" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:14:00.688 START CCT.Tests.SkinShopViewTests.TitleSkinButton_StaysInsideMenuFrame (t=133.8 ts=1)
+[TestProgress] 08:14:00.709 END Passed 0.0s CCT.Tests.SkinShopViewTests.TitleSkinButton_StaysInsideMenuFrame (t=133.8 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1344" name="SwordOverlayPlayTests" fullname="CCT.Tests.SwordOverlayPlayTests" classname="CCT.Tests.SwordOverlayPlayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 23:14:00Z" end-time="2026-10-19 23:14:02Z" duration="1.760717" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1346" name="JadeOrNoBodySkin_NoOverlay_ExistingSwingPathKept" fullname="CCT.Tests.SwordOverlayPlayTests.JadeOrNoBodySkin_NoOverlay_ExistingSwingPathKept" methodname="JadeOrNoBodySkin_NoOverlay_ExistingSwingPathKept" classname="CCT.Tests.SwordOverlayPlayTests" runstate="Runnable" seed="895910233" result="Passed" start-time="2026-10-19 23:14:00Z" end-time="2026-10-19 23:14:01Z" duration="0.653615" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:14:00.710 START CCT.Tests.SwordOverlayPlayTests.JadeOrNoBodySkin_NoOverlay_ExistingSwingPathKept (t=133.8 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_overlay_2f785314baf44fbdbd2645a2b9ac633b\save.json (source=Fresh, v2)
+[Commerce] 결제 비활성: commerce_config.enabled=false
+[TestProgress] 08:14:01.118 HB frame=525912 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=0 (t=134.2 ts=1)
+[TestProgress] 08:14:01.364 END Passed 0.7s CCT.Tests.SwordOverlayPlayTests.JadeOrNoBodySkin_NoOverlay_ExistingSwingPathKept (t=134.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1345" name="NonJadeBodySkin_SwordSkin_OverlayOnlyDuringSwing_BodyNotReplaced" fullname="CCT.Tests.SwordOverlayPlayTests.NonJadeBodySkin_SwordSkin_OverlayOnlyDuringSwing_BodyNotReplaced" methodname="NonJadeBodySkin_SwordSkin_OverlayOnlyDuringSwing_BodyNotReplaced" classname="CCT.Tests.SwordOverlayPlayTests" runstate="Runnable" seed="744258770" result="Passed" start-time="2026-10-19 23:14:01Z" end-time="2026-10-19 23:14:02Z" duration="1.103830" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:14:01.366 START CCT.Tests.SwordOverlayPlayTests.NonJadeBodySkin_SwordSkin_OverlayOnlyDuringSwing_BodyNotReplaced (t=134.4 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_overlay_deefe54aaf014c34a41fc8c891474d61\save.json (source=Fresh, v2)
+[TestProgress] 08:14:02.470 END Passed 1.1s CCT.Tests.SwordOverlayPlayTests.NonJadeBodySkin_SwordSkin_OverlayOnlyDuringSwing_BodyNotReplaced (t=135.5 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

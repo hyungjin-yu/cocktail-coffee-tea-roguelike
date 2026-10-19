@@ -901,23 +901,39 @@ namespace CCT
             UiFactory.AddText(UiFactory.Place("CoinTitle", content, new Vector2(0f, 1f), new Vector2(rightX, -ry), new Vector2(colW, 50f)),
                 $"판매 코인 {DrinkLab.Coins} — 외형 구매 전용(연구 포인트·스페셜티·재료와 바꾸지 않음)", DrinkPaperUi.Body, TextAnchor.MiddleLeft, new Color(1f, 0.86f, 0.6f));
             ry += 58f;
-            foreach (var c in DrinkSales.Catalog)
+            foreach (var c in DrinkSales.All)
             {
                 var cc = c;
                 bool cash = c.kind == "skin" && SafeCashOwned(c.id);
                 bool owned = cash || DrinkLab.CoinOwns(c.id);
                 bool equipped = c.kind == "map" ? DrinkLab.EquippedMap == c.id : SafeSkinEquipped(c.id);
+                bool onSale = DrinkSales.OnSale(c);
                 var card = UiFactory.Place("Cosmetic_" + c.id, content, new Vector2(0f, 1f), new Vector2(rightX, -ry), new Vector2(colW, 196f));
                 DrinkPaperUi.Sliced(card, "ingredient_card", 2f, owned ? new Color(1f, 0.95f, 0.85f) : Color.white);
-                UiFactory.AddText(UiFactory.Place("Name", card, new Vector2(0f, 1f), new Vector2(36f, -30f), new Vector2(colW - 340f, 40f)), c.name, DrinkPaperUi.Body, TextAnchor.MiddleLeft, DrinkPaperUi.Ink);
-                var d = UiFactory.AddText(UiFactory.Place("Desc", card, new Vector2(0f, 1f), new Vector2(36f, -74f), new Vector2(colW - 340f, 100f)),
-                    $"{c.description}\n{(owned ? (cash ? "보유(결제 구매)" : "보유(코인 구매)") : $"{c.price}코인")}", DrinkPaperUi.Small, TextAnchor.UpperLeft, DrinkPaperUi.InkMuted);
+                // 79: 스킨은 몸체 미리보기(아트 준비 전이면 비움). 12종+맵이 이어져도 같은 스크롤 목록 안에서 읽힌다.
+                float tx = 36f;
+                if (c.kind == "skin")
+                {
+                    var def = SkinCatalog.Find(c.id);
+                    var img = UiFactory.AddImage(UiFactory.Place("Preview", card, new Vector2(0f, 0.5f), new Vector2(24f, 0f), new Vector2(120f, 170f)), Color.white);
+                    img.preserveAspect = true;
+                    img.raycastTarget = false;
+                    Sprite sp = null;
+                    try { sp = def != null && onSale ? SkinShopView.BodyPreview(SkinArt.PreviewSprite(def)) : null; } catch (Exception) { }
+                    img.sprite = sp;
+                    img.enabled = sp != null;
+                    tx = 156f;
+                }
+                UiFactory.AddText(UiFactory.Place("Name", card, new Vector2(0f, 1f), new Vector2(tx, -30f), new Vector2(colW - 304f - tx, 40f)), c.name, DrinkPaperUi.Body, TextAnchor.MiddleLeft, DrinkPaperUi.Ink);
+                string status = owned ? (cash ? "보유(결제 구매)" : "보유(코인 구매)") : !onSale ? "아트 준비 중 · 아직 판매 안 함" : $"{c.price}코인";
+                var d = UiFactory.AddText(UiFactory.Place("Desc", card, new Vector2(0f, 1f), new Vector2(tx, -74f), new Vector2(colW - 304f - tx, 100f)),
+                    $"{c.description}\n{status}", DrinkPaperUi.Small, TextAnchor.UpperLeft, DrinkPaperUi.InkMuted);
                 d.verticalOverflow = VerticalWrapMode.Truncate;
                 if (!owned)
                 {
-                    var buy = DrinkPaperUi.Button(card, "Buy", new Vector2(1f, 0.5f), new Vector2(-30f, 0f), new Vector2(260f, 66f), $"구매 ({c.price}코인)", DrinkPaperUi.Small,
-                        () => { if (DrinkLab.BuyCosmetic(cc.id, SafeCashOwned, out var e)) Message($"{cc.name}을(를) 샀습니다."); else Message(e); SetTab(Tab.Orders); }, DrinkLab.Coins >= c.price ? "button_available" : "button_locked");
-                    buy.interactable = DrinkLab.Coins >= c.price;
+                    var buy = DrinkPaperUi.Button(card, "Buy", new Vector2(1f, 0.5f), new Vector2(-30f, 0f), new Vector2(260f, 66f), onSale ? $"구매 ({c.price}코인)" : "준비 중", DrinkPaperUi.Small,
+                        () => { if (DrinkLab.BuyCosmetic(cc.id, SafeCashOwned, out var e)) Message($"{cc.name}을(를) 샀습니다."); else Message(e); SetTab(Tab.Orders); }, onSale && DrinkLab.Coins >= c.price ? "button_available" : "button_locked");
+                    buy.interactable = onSale && DrinkLab.Coins >= c.price;
                 }
                 else
                 {

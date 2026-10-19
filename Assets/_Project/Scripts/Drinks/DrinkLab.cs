@@ -738,6 +738,7 @@ namespace CCT
             EnsureLoaded();
             var c = DrinkSales.Cosmetic(id);
             if (c == null) { error = "알 수 없는 외형입니다."; return false; }
+            if (!DrinkSales.OnSale(c)) { error = "아트 준비 중인 외형이라 아직 판매하지 않습니다."; return false; }
             if (data.coinOwned.Contains(id) || (cashOwned != null && cashOwned(id))) { error = "이미 보유한 외형입니다."; return false; }
             if (data.coins < c.price) { error = $"코인이 {c.price - data.coins} 부족합니다."; return false; }
             return Transact(d =>

@@ -1040,15 +1040,34 @@ namespace CCT
             Line($"SKINS shop: open={shop.IsOpen} buyButtons={buys.Count} interactable={buys.Count(b => b.interactable)} " +
                  $"purchasesEnabled={SkinCommerce.Shared.PurchasesEnabled} storefront={SkinCommerce.Shared.StorefrontId}");
             if (buys.Any(b => b.interactable)) Fail("buy enabled without configured store");
+            // 79: 12종 목록 — 신규 스킨 하나씩 선택해 상세를 찍고, 마지막 행으로 키보드 포커스를 옮겨 스크롤을 확인한다.
+            foreach (var id in new[] { SkinCatalog.BartenderRail, SkinCatalog.TeaAstronomer })
+            {
+                var es = UnityEngine.EventSystems.EventSystem.current;
+                if (es != null && shop.RowButton(id) != null) es.SetSelectedGameObject(shop.RowButton(id).gameObject);
+                yield return Wait(0.4f);
+                Line($"SKINS shop row {id}: selected={shop.SelectedId} state='{shop.StateText(id)}' buy={shop.BuyButton(id)?.interactable} " +
+                     $"preview={(shop.PreviewSprite(id) != null)} scrollY={F(shop.ListContent.anchoredPosition.y)}");
+                yield return Shot($"skins_{H}_01_shop_{id}");
+            }
             if (!Click(shop.transform, "BackButton")) Fail("no shop BackButton");
             yield return Wait(0.4f);
             if (shop.IsOpen) Fail("shop did not close");
 
             title.gameObject.SetActive(false); // 2026-10-15: 타이틀 부모가 없을 때 NRE(장면 루트) — 타이틀 자체만 숨긴다.
-            var combos = new[] { (Job.TeaSommelier, WeaponKind.Sword, "skin_tea_jade"), (Job.TeaSommelier, WeaponKind.Bow, "skin_tea_jade"),
-                                 (Job.Bartender, WeaponKind.Rapier, "skin_bartender_midnight"), (Job.Bartender, WeaponKind.Gun, "skin_bartender_midnight") };
+            // 79: 아트가 완성된(실사용 프레임 전부) 모든 스킨 × 직업 무기 2종. 신규 스킨은 정지 표적(무피해) 4개로 실제 공격·검 휘두르기를
+            // 일으키고, 끝에 피격·쓰러짐을 강제 재생(보고 표기)해 모든 몸체 동작에서 기본 복장 프레임(noSkinVersion)이 0인지 센다.
+            var combos = new List<(Job, WeaponKind, string)>();
+            foreach (var d in SkinCatalog.All)
+            {
+                if (!SkinArt.Exists(d)) { Line($"SKINS skip {d.productId}: art incomplete missing={SkinArt.MissingFrames(d).Count}"); continue; }
+                if (d.job == Job.TeaSommelier) { combos.Add((d.job, WeaponKind.Sword, d.productId)); combos.Add((d.job, WeaponKind.Bow, d.productId)); }
+                else { combos.Add((d.job, WeaponKind.Rapier, d.productId)); combos.Add((d.job, WeaponKind.Gun, d.productId)); }
+            }
+            var coverage = new Dictionary<string, HashSet<string>>();
             foreach (var (job, weapon, productId) in combos)
             {
+                bool isNew = !SkinCatalog.IsPaid(productId);
                 var game = GameBootstrap.Build(job, weapon);
                 yield return Wait(0.5f);
                 var tutorial = FindFirstObjectByType<FirstRunTutorialView>();
@@ -1059,31 +1078,57 @@ namespace CCT
                 var skin = SkinArt.Sprites(def);
                 var body = game.Player.Visual.Body;
                 if (body.GetComponent<SkinSpriteSwapper>() == null) SkinSpriteSwapper.Attach(body, def); // QA 강제 장착
+                if (isNew && weapon == WeaponKind.Sword && WeaponSkinCatalog.ForWeapon(weapon) != null)
+                    WeaponSkinApplier.Apply(game.Player.Visual, weapon, WeaponSkinCatalog.ForWeapon(weapon)); // 무료 검 외형과 함께(QA 강제)
+                if (isNew) for (int n = 0; n < 4; n++) Still(game, new Vector2(1.6f + n * 0.5f, (n - 1.5f) * 0.25f), DummyDef()); // 무피해 정지 표적(QA)
                 int frames = 0, skinShown = 0, reverted = 0, noSkinVersion = 0;
                 var seenNames = new HashSet<string>();
+                var baseLeaks = new HashSet<string>();
+                int swingFrames = 0, overlayOnSwing = 0, overlayOffSwing = 0;
+                var applier = game.Player.Visual.GetComponent<WeaponSkinApplier>();
                 float end = Time.realtimeSinceStartup + 6f; int shotN = 0; float nextShot = Time.realtimeSinceStartup + 1.5f;
+                bool hurtDone = false, defeatDone = false;
+                float hurtAt = end - 2.2f, defeatAt = end - 1.2f;
                 while (Time.realtimeSinceStartup < end)
                 {
                     ResolveRewardScreens(game, "skins");
-                    game.Player.AutoInputOverride = new Vector2(Mathf.Sin(Time.realtimeSinceStartup * 1.3f), 0f);
+                    game.Player.AutoInputOverride = defeatDone ? Vector2.zero : new Vector2(Mathf.Sin(Time.realtimeSinceStartup * 1.3f), 0f);
+                    if (isNew && !hurtDone && Time.realtimeSinceStartup >= hurtAt) { hurtDone = true; game.Player.Visual.PlayHurt(); } // QA 강제 피격 동작
+                    if (isNew && !defeatDone && Time.realtimeSinceStartup >= defeatAt) { defeatDone = true; game.Player.Visual.PlayDefeat(); } // QA 강제 쓰러짐 동작
                     yield return new WaitForEndOfFrame(); // LateUpdate(스킨 교체) 뒤 렌더 결과 기준
                     var s = body.sprite; if (s == null) continue;
                     frames++; seenNames.Add(s.name);
+                    bool swing = s.name.StartsWith(WeaponSkinApplier.SwingPrefix);
+                    bool ov = applier != null && applier.SwingOverlay != null && applier.SwingOverlay.enabled;
+                    if (swing) { swingFrames++; if (ov) overlayOnSwing++; } else if (ov) overlayOffSwing++;
                     if (skin.TryGetValue(s.name, out var skinSprite)) { if (skinSprite == s) skinShown++; else reverted++; }
-                    else noSkinVersion++;
-                    if (Time.realtimeSinceStartup >= nextShot && shotN < 2)
+                    else if (!skin.ContainsValue(s)) { noSkinVersion++; baseLeaks.Add(s.name); }
+                    else skinShown++; // 다른 이름으로 등록된 같은 스킨 스프라이트(없어야 정상)
+                    if (Time.realtimeSinceStartup >= nextShot && shotN < (isNew ? 1 : 2))
                     {
-                        yield return Shot($"skins_{H}_{job}_{weapon}_{shotN++}", game);
+                        yield return Shot($"skins_{H}_{productId}_{weapon}_{shotN++}", game);
                         nextShot = Time.realtimeSinceStartup + 2f;
                     }
                 }
                 game.Player.AutoInputOverride = null;
+                if (!coverage.TryGetValue(productId, out var cov)) coverage[productId] = cov = new HashSet<string>();
+                foreach (var n in seenNames) cov.Add(n);
                 Line($"SKINS {job}/{weapon} {productId}: frames={frames} skinShown={skinShown} revertedToOriginal={reverted} noSkinVersion={noSkinVersion} " +
-                     $"bodyFrames=[{string.Join(",", seenNames.OrderBy(n => n))}]");
+                     $"swingFrames={swingFrames} overlayOnSwing={overlayOnSwing} overlayOffSwing={overlayOffSwing} " +
+                     $"baseLeaks=[{string.Join(",", baseLeaks.OrderBy(n => n))}] bodyFrames=[{string.Join(",", seenNames.OrderBy(n => n))}]");
                 if (reverted > 0) Fail($"skin reverted to original {job}/{weapon}");
                 if (skinShown == 0) Fail($"skin never shown {job}/{weapon}");
+                if (overlayOffSwing > 0) Fail($"sword overlay visible outside swing {productId}");
+                if (isNew && noSkinVersion > 0) Fail($"base-costume frames shown with {productId} {job}/{weapon}: {string.Join(",", baseLeaks)}");
                 Destroy(game.gameObject);
                 yield return Wait(0.5f);
+            }
+            // 79: 신규 스킨별 실제 표시된 동작 묶음(두 무기 합산) — idle/move/melee 또는 ranged/hurt/defeat(+티 검 휘두르기).
+            foreach (var kv in coverage.Where(k => !SkinCatalog.IsPaid(k.Key)))
+            {
+                var groups = kv.Value.Select(n => System.Text.RegularExpressions.Regex.Replace(n, @"_right_\d+$", "")).Distinct().OrderBy(n => n).ToList();
+                var required = SkinArt.RequiredFrameNames(SkinCatalog.Find(kv.Key).job);
+                Line($"SKINS coverage {kv.Key}: groups=[{string.Join(",", groups)}] framesSeen={kv.Value.Count(required.Contains)}/{required.Count}");
             }
         }
 

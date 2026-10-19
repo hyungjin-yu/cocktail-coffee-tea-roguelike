@@ -1,0 +1,1896 @@
+{
+  "skinId": "skin_tea_mountain",
+  "job": "tea_sommelier",
+  "status": "ready_for_coordinator_visual_review",
+  "requiredRuntimeFrameCount": 28,
+  "observedSourceFrameCount": 42,
+  "unusedObservedFrames": "Recorded only in source-frame-contract.json; coordinator msg_bf0f6c514b74 accepts actual runtime scope",
+  "authorship": "Direct Aseprite Lua drawing of exact79 outfit; no independent PixelLab call; authorized msg_aa49f7cc7084",
+  "clips": {
+    "defeat": {
+      "files": [
+        "frames/tea_sommelier_defeat_right_00.png",
+        "frames/tea_sommelier_defeat_right_01.png",
+        "frames/tea_sommelier_defeat_right_02.png",
+        "frames/tea_sommelier_defeat_right_03.png"
+      ],
+      "fps": 10,
+      "loop": false
+    },
+    "hurt": {
+      "files": [
+        "frames/tea_sommelier_hurt_right_00.png"
+      ],
+      "fps": 0,
+      "loop": false,
+      "durationSeconds": 0.08
+    },
+    "idle": {
+      "fps": 3,
+      "loop": true,
+      "files": [
+        "frames/tea_sommelier_idle_right_00.png",
+        "frames/tea_sommelier_idle_right_01.png",
+        "frames/tea_sommelier_idle_right_02.png",
+        "frames/tea_sommelier_idle_right_03.png"
+      ]
+    },
+    "melee": {
+      "files": [
+        "frames/tea_sommelier_melee_right_00.png",
+        "frames/tea_sommelier_melee_right_01.png",
+        "frames/tea_sommelier_melee_right_02.png",
+        "frames/tea_sommelier_melee_right_03.png"
+      ],
+      "fps": 12,
+      "loop": false
+    },
+    "move": {
+      "fps": 10,
+      "loop": true,
+      "files": [
+        "frames/tea_sommelier_move_right_00.png",
+        "frames/tea_sommelier_move_right_01.png",
+        "frames/tea_sommelier_move_right_02.png",
+        "frames/tea_sommelier_move_right_03.png",
+        "frames/tea_sommelier_move_right_04.png",
+        "frames/tea_sommelier_move_right_05.png"
+      ]
+    },
+    "ranged": {
+      "files": [
+        "frames/tea_sommelier_ranged_right_00.png",
+        "frames/tea_sommelier_ranged_right_01.png",
+        "frames/tea_sommelier_ranged_right_02.png",
+        "frames/tea_sommelier_ranged_right_03.png"
+      ],
+      "fps": 12,
+      "loop": false
+    }
+  },
+  "swordSwingRuntime": {
+    "frames": "03..07",
+    "fps": 30,
+    "loop": false
+  },
+  "anchorPolicy": "Exact source per-frame anchors and pivots/PPU retained; visual and hand anchors mirror together; no hitbox/stat/weapon transform change",
+  "handColorException": null,
+  "comparison": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\evidence\\mountain-all-frames.png",
+  "representativeComparison": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\evidence\\mountain-representative-comparison.png",
+  "frames": [
+    {
+      "filename": "tea_sommelier_defeat_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_defeat_right_00.png",
+      "sourceSHA256": "3007d852d15dbe6ff90372b87ba4e6301c14dc77ad3ead48de66a5d2f311656b",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_defeat_right_00.png.meta",
+      "sourceMetaSHA256": "a80e4d1ed3e92f3d84478e0d7e0cc1f434cc0d8020c8e36c2191376743ea00be",
+      "sourceGUID": "e4496cc3ea976fb47a9b940b0b1afae7",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_defeat_right_00.png",
+      "existingSkinSHA256": "e2844237902c83c8a8b66171beb2fb41efa13fd92d3c522c31c04e9fe9ed3c27",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          152,
+          61
+        ],
+        "grip": [
+          152,
+          61
+        ],
+        "rightHand": [
+          152,
+          61
+        ],
+        "offHand": [
+          115,
+          47
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_defeat_right_00.png",
+      "outputSHA256": "c83268c59141fcedb05e98a4d6d56fd18dbab6090070e374397ed12f1e8a89b5",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_defeat_right_00.aseprite",
+      "nativeSHA256": "c8df3c1d943226b4319ff8017f2d0c8a2178a34bf2d03189ed2c3b6f1a827c98",
+      "nativeTag": "tea_sommelier_defeat_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 4555,
+      "silhouetteChangedPixels": 994,
+      "bbox": [
+        62,
+        84,
+        194,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_defeat_right_01.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_defeat_right_01.png",
+      "sourceSHA256": "39d3a2cfd53b874dbeac088daac39ce799e7ad8208f443efeadf0276fa56a7b6",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_defeat_right_01.png.meta",
+      "sourceMetaSHA256": "d369598661bd561fb7018936e8dda2d490bd7b8f847afcc0197f4b1e37e51c44",
+      "sourceGUID": "f886557966c81504eab1d893bc70a824",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_defeat_right_01.png",
+      "existingSkinSHA256": "8685f1aff674017c9f94307fc3265c48a9cbbb5fab72ebe6bb90cce4fcc00400",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          139,
+          70
+        ],
+        "grip": [
+          139,
+          70
+        ],
+        "rightHand": [
+          139,
+          70
+        ],
+        "offHand": [
+          64,
+          40
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_defeat_right_01.png",
+      "outputSHA256": "cb84bce3d5f02b8222fbd69295af7a86c1a3383204714774d963c9ce57e97206",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_defeat_right_01.aseprite",
+      "nativeSHA256": "7412330cf09c43d59747d676c8fa628370d5986c8b14c4a851ae01f105e1c6b6",
+      "nativeTag": "tea_sommelier_defeat_right_01",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 4202,
+      "silhouetteChangedPixels": 1214,
+      "bbox": [
+        32,
+        98,
+        222,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_defeat_right_02.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_defeat_right_02.png",
+      "sourceSHA256": "448a5fac8766f46fafd8f255fe12e3bb61e68011450ba34de60eec690fa91a56",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_defeat_right_02.png.meta",
+      "sourceMetaSHA256": "1fb04e0b503019f2f2b87bdf1f2a95862cc472f5a43c33c3e67ba09ba1e35f5b",
+      "sourceGUID": "95b76c1bec524244492852856e800d56",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_defeat_right_02.png",
+      "existingSkinSHA256": "cabc7a687e3fb1d93afa752dc6e91757d45b7fedfec5af99ebea5214ba0873cb",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          86,
+          47
+        ],
+        "grip": [
+          86,
+          47
+        ],
+        "rightHand": [
+          86,
+          47
+        ],
+        "offHand": [
+          65,
+          42
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_defeat_right_02.png",
+      "outputSHA256": "cc4ff8da2cddafeeee3e2ea2abe736b35ad96ddf47e80dc30da92826272b6ad1",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_defeat_right_02.aseprite",
+      "nativeSHA256": "35e32a1a823d77969c09694c46b550c5d209ba3497e8629ab47cbfe114e4ee5d",
+      "nativeTag": "tea_sommelier_defeat_right_02",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 3364,
+      "silhouetteChangedPixels": 220,
+      "bbox": [
+        28,
+        152,
+        226,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_defeat_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_defeat_right_03.png",
+      "sourceSHA256": "d851318a88099cd36bddc31875e5c9e86642bc6ac8a4dbaf497cb7e63361517d",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_defeat_right_03.png.meta",
+      "sourceMetaSHA256": "82d805da5e8cae207cc141b111eaa3b888635da15725a4779f2646c2c947245e",
+      "sourceGUID": "688d09e78dc5c9d48bd1264fc082fe43",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_defeat_right_03.png",
+      "existingSkinSHA256": "c16021b967f6b13c98d835a7abb827565e7f0473e8fb3bc9ba495922a8e8e512",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          76,
+          45
+        ],
+        "grip": [
+          76,
+          45
+        ],
+        "rightHand": [
+          76,
+          45
+        ],
+        "offHand": [
+          50,
+          42
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_defeat_right_03.png",
+      "outputSHA256": "17e882bceb157813931bb552a5a8a14ce3c9d24ecde4a708545c6c9ec2448e0b",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_defeat_right_03.aseprite",
+      "nativeSHA256": "3e5d8f939000c9d040705424bb8f7624043b8a46a75714ec8e3b7500d6ac8699",
+      "nativeTag": "tea_sommelier_defeat_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 3993,
+      "silhouetteChangedPixels": 896,
+      "bbox": [
+        20,
+        151,
+        234,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_hurt_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_hurt_right_00.png",
+      "sourceSHA256": "f6c10fbe6a03958f626ed0e9b89a6e8fb0506ccc8a250d7afe9ca56fd604c4e1",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_hurt_right_00.png.meta",
+      "sourceMetaSHA256": "25ca0e704be1d06e975f6dca2bf53b31d76ce7ca700f1d1ec11bc1c3f6afb509",
+      "sourceGUID": "ebd59bd5e50d16b45ae8e9d360491158",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_hurt_right_00.png",
+      "existingSkinSHA256": "fc7a58a53e52c332a2407c4b53ea19bce47f2c4ea49d4723ce65593eebd67830",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          138,
+          81
+        ],
+        "grip": [
+          138,
+          81
+        ],
+        "rightHand": [
+          138,
+          81
+        ],
+        "offHand": [
+          100,
+          94
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_hurt_right_00.png",
+      "outputSHA256": "1ca7ecaee23bc1006ba3370a64a11bdf2a7f9ce3bace6a476169a20425627b02",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_hurt_right_00.aseprite",
+      "nativeSHA256": "8b061b210125d6f5348bc72d45134051949430aa80cde547d90e5882ed450c5d",
+      "nativeTag": "tea_sommelier_hurt_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 3070,
+      "silhouetteChangedPixels": 215,
+      "bbox": [
+        68,
+        68,
+        186,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_idle_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_idle_right_00.png",
+      "sourceSHA256": "6bfcfb71c27afb3722e7042db7295877e7a7e8672dcfb740c9a4461f2a9235a4",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_idle_right_00.png.meta",
+      "sourceMetaSHA256": "c3e715a3ee56ffd809885c28005a0c39692f7194184e1fd15a69721f24f1408d",
+      "sourceGUID": "c7a5fde7b5c125d4cac10e6b8d3aa14a",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_idle_right_00.png",
+      "existingSkinSHA256": "cce11ed01dc4a2553bcc87214e553230774084048d8b4c5a26cc94fd98b0408c",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          162,
+          88
+        ],
+        "offHand": [
+          98,
+          90
+        ],
+        "grip": [
+          162,
+          88
+        ],
+        "rightHand": [
+          162,
+          88
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_idle_right_00.png",
+      "outputSHA256": "c56620cc0bd853f84c0b4132a66a832e2640460c33879232d4193f10bf75c907",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_idle_right_00.aseprite",
+      "nativeSHA256": "69e0401815950e6d2a61f17ee1d519cb5f0ac82b17453ca69676aef052516148",
+      "nativeTag": "tea_sommelier_idle_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 5144,
+      "silhouetteChangedPixels": 1009,
+      "bbox": [
+        67,
+        32,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_idle_right_01.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_idle_right_01.png",
+      "sourceSHA256": "48754209d0337535d27b5728660d24cc5b34cf6b419ec6e3318e882c9ad40bcf",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_idle_right_01.png.meta",
+      "sourceMetaSHA256": "adbf13b7304d39be57f751a5baaa05887d9c47fd96ab40c628923ecaf5eb4927",
+      "sourceGUID": "8f4b33f46c426454d8ed46a20b8668b0",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_idle_right_01.png",
+      "existingSkinSHA256": "aa8971f6f0272e94f5b0ce80752791f1783a680f6decccba1ad8138c4affc3ab",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          162,
+          88
+        ],
+        "offHand": [
+          98,
+          90
+        ],
+        "grip": [
+          162,
+          88
+        ],
+        "rightHand": [
+          162,
+          88
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_idle_right_01.png",
+      "outputSHA256": "dc9cd12385569342d27c99c632beced43cf6871da1974c0cc96200a0271858f9",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_idle_right_01.aseprite",
+      "nativeSHA256": "19dae8b1db632d4978dfacc770137cba4193768b1cc3ee1bd0b20b0ebde2ce89",
+      "nativeTag": "tea_sommelier_idle_right_01",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 5160,
+      "silhouetteChangedPixels": 1025,
+      "bbox": [
+        67,
+        30,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_idle_right_02.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_idle_right_02.png",
+      "sourceSHA256": "99ce455b27dd4eec325566f465698a440b8b7ea9aa3cf9ef630433a3b28c6a43",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_idle_right_02.png.meta",
+      "sourceMetaSHA256": "52820e44b4d14c2db26906f3b21f6774e0ea69432233235c96f7b9f60b0b492a",
+      "sourceGUID": "90d059537636ca04bbfd52261120a58f",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_idle_right_02.png",
+      "existingSkinSHA256": "9d992c74093de3430a43965c1d7c55730d04e5653e92876e0e97dd63ae0770da",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          162,
+          90
+        ],
+        "offHand": [
+          98,
+          92
+        ],
+        "grip": [
+          162,
+          90
+        ],
+        "rightHand": [
+          162,
+          90
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_idle_right_02.png",
+      "outputSHA256": "eb43d3dd5b1d9163ac84312145eb607cd030b0a83ce31dd27ebe21efe78adef0",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_idle_right_02.aseprite",
+      "nativeSHA256": "86f7057084c82aeda1c7b12c345f982808dec5d2dc60acd59bfcef8f9583c28d",
+      "nativeTag": "tea_sommelier_idle_right_02",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 5148,
+      "silhouetteChangedPixels": 1013,
+      "bbox": [
+        67,
+        30,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_idle_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_idle_right_03.png",
+      "sourceSHA256": "ca420c7bcc6c632ec48101f90c2bec9b08ee6b0941d8a960c9f045aac7bbfabc",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_idle_right_03.png.meta",
+      "sourceMetaSHA256": "f91168dc6f4180ccec9d44f29e6d4b8aa808bf5a39b818c961c1c92b98585d8a",
+      "sourceGUID": "12d6d8b0102eb5842830e569b85083ec",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_idle_right_03.png",
+      "existingSkinSHA256": "74c55636c4c93343a3bcefbfad575826afd31f39000a523cf03b27a465b07e07",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          162,
+          90
+        ],
+        "offHand": [
+          98,
+          92
+        ],
+        "grip": [
+          162,
+          90
+        ],
+        "rightHand": [
+          162,
+          90
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_idle_right_03.png",
+      "outputSHA256": "ed93e2754611247c3e87d24a094f1e5c8632cb0c518b4440e0c38e6a2132e190",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_idle_right_03.aseprite",
+      "nativeSHA256": "38312aa55809b64560dfcab6371993b70a8e8dba938ef459745146515c2d26be",
+      "nativeTag": "tea_sommelier_idle_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 5122,
+      "silhouetteChangedPixels": 997,
+      "bbox": [
+        67,
+        32,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_melee_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_melee_right_00.png",
+      "sourceSHA256": "123eec2f06641476bd2599a01f5c825ab3964402b15828cd87a05e8868ef29ab",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_melee_right_00.png.meta",
+      "sourceMetaSHA256": "7108f937f7b42f9818c17dab2336252a1ab8d538cb9f2f7c31c76e60598fbc72",
+      "sourceGUID": "5894d1cab3f2aa5408b51f3d675593b3",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_melee_right_00.png",
+      "existingSkinSHA256": "72b041aa6deefb0441a16d18c6d31d85e713b503205846bd48f5ecbe5d0d6dc6",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          167,
+          125
+        ],
+        "grip": [
+          167,
+          125
+        ],
+        "rightHand": [
+          167,
+          125
+        ],
+        "offHand": [
+          101,
+          124
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_melee_right_00.png",
+      "outputSHA256": "d37ad1da3b635ee98e5c96910942815297c3f1c3ed74843463be459b52aa7841",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_melee_right_00.aseprite",
+      "nativeSHA256": "dd44cf3af78ebc71c7a7a281dc950f79ac53164d9dd734e8b1be88253ee0a69a",
+      "nativeTag": "tea_sommelier_melee_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 4602,
+      "silhouetteChangedPixels": 1376,
+      "bbox": [
+        60,
+        44,
+        196,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_melee_right_01.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_melee_right_01.png",
+      "sourceSHA256": "041e3fc2a92b43d0b7117e7f7b362f1bc051b65ce22c5c5e9a99b0296e5870c4",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_melee_right_01.png.meta",
+      "sourceMetaSHA256": "252256535f87f03281e701da18647197510652ab1564c8ccc464147e51b7e83d",
+      "sourceGUID": "13ef2ee9e852daf48bd1f459f34aced9",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_melee_right_01.png",
+      "existingSkinSHA256": "652d3109bfb19452742b3220fa97f0a40db234b7586746d96503d75c0ea36d22",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          191,
+          163
+        ],
+        "grip": [
+          191,
+          163
+        ],
+        "rightHand": [
+          191,
+          163
+        ],
+        "offHand": [
+          91,
+          136
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_melee_right_01.png",
+      "outputSHA256": "50753db4ba302c3ef3ea05d9bcbb0e7f35775f4745040899ec07d53112abb6ba",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_melee_right_01.aseprite",
+      "nativeSHA256": "26d2a0122d7bcf12f1bc1cc79ec2bcd4e5b8da9f58eecc85a5c4e8dea09d9915",
+      "nativeTag": "tea_sommelier_melee_right_01",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 3584,
+      "silhouetteChangedPixels": 611,
+      "bbox": [
+        50,
+        38,
+        204,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_melee_right_02.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_melee_right_02.png",
+      "sourceSHA256": "0c8cc40aa09759b76b786a9835160abc183009ad42467082a0f29b7cb9ec3e7f",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_melee_right_02.png.meta",
+      "sourceMetaSHA256": "8ec0e0028e22c74f5f3eeb6c6e7ccac17f3d23206d3b67da770a21f71a197d9b",
+      "sourceGUID": "7fa12aa5e5c171146a75ff9280055ab7",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_melee_right_02.png",
+      "existingSkinSHA256": "0e77f3792073b133d6dd274260c48b6df377175e2956da7f1bf9bbe4948455f4",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          208,
+          148
+        ],
+        "grip": [
+          208,
+          148
+        ],
+        "rightHand": [
+          208,
+          148
+        ],
+        "offHand": [
+          76,
+          124
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_melee_right_02.png",
+      "outputSHA256": "520636ac9051013199c88866c2687b844b9be0cb0cd0b8f54ed364fd4d44add0",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_melee_right_02.aseprite",
+      "nativeSHA256": "0e9fbfb24e677e96294269d5d140792bc90ea70e58f89a41daca3dce80272f5a",
+      "nativeTag": "tea_sommelier_melee_right_02",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 4737,
+      "silhouetteChangedPixels": 781,
+      "bbox": [
+        34,
+        40,
+        220,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_melee_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_melee_right_03.png",
+      "sourceSHA256": "d3a5de78e51c91f3261c864c7329a10d6d445aecdd3c6e5c23002950bb2ca820",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_melee_right_03.png.meta",
+      "sourceMetaSHA256": "b29da15e4520f1ae1d68f8ab6122c1c3eea6646ca1a41e63293937fe9703678a",
+      "sourceGUID": "524d4163970e57e4388f8d92ab6b6185",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_melee_right_03.png",
+      "existingSkinSHA256": "8a8d6e8b125df1b7e897f060e03524dab5c4f17b2bdb714a614fd20a6c8b9d9e",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          160,
+          119
+        ],
+        "grip": [
+          160,
+          119
+        ],
+        "rightHand": [
+          160,
+          119
+        ],
+        "offHand": [
+          104,
+          117
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_melee_right_03.png",
+      "outputSHA256": "070b8186f0c12e20e2854866e93cec6493ccb73b7787b39159b786a5b0941680",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_melee_right_03.aseprite",
+      "nativeSHA256": "5536433b26aa4d15f3efb6e1b859f457001e330af549593e80b8c1f5b62511b5",
+      "nativeTag": "tea_sommelier_melee_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 4725,
+      "silhouetteChangedPixels": 1146,
+      "bbox": [
+        62,
+        38,
+        192,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_move_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_00.png",
+      "sourceSHA256": "be5190837c7504fdec4a415576bfc87f02f843d6ad110566fe584475a1411b97",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_00.png.meta",
+      "sourceMetaSHA256": "67b3d4deb3e4d14402b89b2eb9bde3815b4b8e473306b01fad2b4e5811910032",
+      "sourceGUID": "69650fcad75de1046811dfc2c03293a5",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_move_right_00.png",
+      "existingSkinSHA256": "dc70e849a1b3c42ec57017443dd716cdf6c148c6bbc450b40b9239990f2f58f4",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          166,
+          88
+        ],
+        "grip": [
+          166,
+          88
+        ],
+        "rightHand": [
+          166,
+          88
+        ],
+        "offHand": [
+          94,
+          90
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_00.png",
+      "outputSHA256": "31393233382a3122732bec32b416ea78a47d2a27dd572ca763ffe110755dccc8",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_00.aseprite",
+      "nativeSHA256": "4d40c3e55d9a0d10fcaf01896f2b40ae284e1b2f89463e570cfff215bff76cb8",
+      "nativeTag": "tea_sommelier_move_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 5061,
+      "silhouetteChangedPixels": 931,
+      "bbox": [
+        67,
+        32,
+        180,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_move_right_01.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_01.png",
+      "sourceSHA256": "df079126029ed1d4c4c5af7440e7f2a5ebc88772ea5d043e0c657d536b582060",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_01.png.meta",
+      "sourceMetaSHA256": "98e33319868e4045431e7de6bdb41cc392efdce6bff165b4822683093d28e021",
+      "sourceGUID": "d8897dcae404a7a449039f7318045dc8",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_move_right_01.png",
+      "existingSkinSHA256": "82a1394e91c5c3b6fa1c2d6f493f37a9e3f3d843382de6373dcfc498f3a9141c",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          164,
+          86
+        ],
+        "grip": [
+          164,
+          86
+        ],
+        "rightHand": [
+          164,
+          86
+        ],
+        "offHand": [
+          96,
+          88
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_01.png",
+      "outputSHA256": "bd9b9d2933b3fc644ab748cf8159b7d9eea561ba44fee720f3302d315c3d0505",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_01.aseprite",
+      "nativeSHA256": "0852336e369829ec0517db93e0f3f259648e8225de4572c2424c107864b1b767",
+      "nativeTag": "tea_sommelier_move_right_01",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 5079,
+      "silhouetteChangedPixels": 983,
+      "bbox": [
+        67,
+        34,
+        178,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_move_right_02.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_02.png",
+      "sourceSHA256": "ae16a63903b95412813949d1d99ae43e327b0fd6be0d3daf8be1df74981a7e9a",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_02.png.meta",
+      "sourceMetaSHA256": "457c72501ef721e721e6419ece83ac65aae1fbdecc595bee166182b619304607",
+      "sourceGUID": "d16e851bfbca3eb49b0b1a81afc00483",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_move_right_02.png",
+      "existingSkinSHA256": "9608fd06d241ecb1a01d05c8f6af70ba44ad8fd9f46b68425ebd4ca11392407f",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          160,
+          90
+        ],
+        "grip": [
+          160,
+          90
+        ],
+        "rightHand": [
+          160,
+          90
+        ],
+        "offHand": [
+          100,
+          92
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_02.png",
+      "outputSHA256": "141dae25818dc0fe0e138cbfb1bf7faf2d7af7e5f9d6cf4113bca5c9959e4387",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_02.aseprite",
+      "nativeSHA256": "9bbea549caedf9f766a0674a855452089f63f616487ae4971456597c6f50013d",
+      "nativeTag": "tea_sommelier_move_right_02",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 5101,
+      "silhouetteChangedPixels": 1039,
+      "bbox": [
+        67,
+        30,
+        174,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_move_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_03.png",
+      "sourceSHA256": "b21f59ae473b95cfaeb29858d1f15d8e2d631add5d6d4fa71cdce98d6aaa15e5",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_03.png.meta",
+      "sourceMetaSHA256": "d25c5b7c3c05f33783d568e0061ae058a874cbe23ba95112e6ac61722111a787",
+      "sourceGUID": "f16ed8798ce0c724cb4a93d6928975bd",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_move_right_03.png",
+      "existingSkinSHA256": "0b5b2d29765d781e85c109d3b609f8fb9775137fbf7760fea6b40215b8a6e75b",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          158,
+          88
+        ],
+        "grip": [
+          158,
+          88
+        ],
+        "rightHand": [
+          158,
+          88
+        ],
+        "offHand": [
+          102,
+          90
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_03.png",
+      "outputSHA256": "c751cc8e436d771525bd5f3f997c2f11240d0b786c02c58f36e6e256093992f1",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_03.aseprite",
+      "nativeSHA256": "f7ce3da0a8fdc2260d950d804c2b68b379888687f5eaccb0d69c01c451d168a5",
+      "nativeTag": "tea_sommelier_move_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 5152,
+      "silhouetteChangedPixels": 1089,
+      "bbox": [
+        67,
+        32,
+        174,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_move_right_04.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_04.png",
+      "sourceSHA256": "e77a787ba33db249640f472033b44930faece08239f01cc7404676023863fb78",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_04.png.meta",
+      "sourceMetaSHA256": "0b49400fff0345be9173863fe2ccce2181fe7c7fe187bbc00232a2bb5b33fb09",
+      "sourceGUID": "2158c29ba13a85448bc72ac10e5be29f",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_move_right_04.png",
+      "existingSkinSHA256": "fa504cfceaabc730643b258c5ed59364cced6a62847668765423ebf2d6a6dbb6",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          160,
+          86
+        ],
+        "grip": [
+          160,
+          86
+        ],
+        "rightHand": [
+          160,
+          86
+        ],
+        "offHand": [
+          100,
+          88
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_04.png",
+      "outputSHA256": "402d4836ce1b9deb24250745df30f6157eb7630076a11c61ab4f17cb8f099b56",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_04.aseprite",
+      "nativeSHA256": "4a93835ecec21d4a90ddfbf4b5b27acad6b5126b2c1ae06415f5e64bae634e3d",
+      "nativeTag": "tea_sommelier_move_right_04",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 5019,
+      "silhouetteChangedPixels": 1039,
+      "bbox": [
+        67,
+        34,
+        174,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_move_right_05.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_05.png",
+      "sourceSHA256": "ef50249b3dc27453a64a3cf8be6f5049dff5c247f531d559c44243d2be5ec2d3",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_move_right_05.png.meta",
+      "sourceMetaSHA256": "36bbda124cb339a7b9e74164ca2c770fb23dbe7d5f90fe8c58b3d4769f664fba",
+      "sourceGUID": "dc840b68553f5e54ba0792e693354aef",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_move_right_05.png",
+      "existingSkinSHA256": "007f7077e288694654c63f4e55ed315f25cb2641b4f6ae98eff2394e6463a2de",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          164,
+          90
+        ],
+        "grip": [
+          164,
+          90
+        ],
+        "rightHand": [
+          164,
+          90
+        ],
+        "offHand": [
+          96,
+          92
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_05.png",
+      "outputSHA256": "adaebe9ae40dd9eca4404778735882058d4bd356776ece19ca0cda1b524f1e37",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_move_right_05.aseprite",
+      "nativeSHA256": "89958591ad0b781b5282f37a22a6553a32e00bc5fb720661a69c2cd1fbb6e94a",
+      "nativeTag": "tea_sommelier_move_right_05",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 5033,
+      "silhouetteChangedPixels": 983,
+      "bbox": [
+        67,
+        30,
+        178,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_ranged_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_ranged_right_00.png",
+      "sourceSHA256": "5c97e685c16c5234ddd5a23ef31c245240bd757cf9b25732469162cfda6da4c0",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_ranged_right_00.png.meta",
+      "sourceMetaSHA256": "5a02715b16f164300b1535ccd790c0189865471ea4f703c153c0f70e8a1bbf32",
+      "sourceGUID": "5946d01f4bf701e489189e3f60449586",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_ranged_right_00.png",
+      "existingSkinSHA256": "f35ca35ed54e5c0e0553b8f6cecb75632feb938fc3c85f6b7e05956f5e8349a9",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          181,
+          148
+        ],
+        "grip": [
+          181,
+          148
+        ],
+        "rightHand": [
+          181,
+          148
+        ],
+        "offHand": [
+          88,
+          142
+        ],
+        "bowString": [
+          88,
+          142
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_ranged_right_00.png",
+      "outputSHA256": "da6c18bd32808ba51855233a894e837b874e50825eae56c3091e215b12aee416",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_ranged_right_00.aseprite",
+      "nativeSHA256": "5c890ade01fd94f9de92cb1a955bd8becae74c15e2b775c83e1832b8585e3387",
+      "nativeTag": "tea_sommelier_ranged_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 4849,
+      "silhouetteChangedPixels": 728,
+      "bbox": [
+        60,
+        34,
+        194,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_ranged_right_01.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_ranged_right_01.png",
+      "sourceSHA256": "deae03e82369060ea3d82fb169601dbad6ec6d5d27f1036d2cda981b463c3aa3",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_ranged_right_01.png.meta",
+      "sourceMetaSHA256": "feaea7a308714a84d7b11bb2ca10504017a34f999a57788dd7aa1dd6d0dcc7b7",
+      "sourceGUID": "7145aa9eb181a7a4dad62f815ac3ab47",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_ranged_right_01.png",
+      "existingSkinSHA256": "6b8cfa3262924bfbfddc5c09ea5ef1b9247b9c8fd33316b604dd249ce2ba9c4c",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          198,
+          153
+        ],
+        "grip": [
+          198,
+          153
+        ],
+        "rightHand": [
+          198,
+          153
+        ],
+        "offHand": [
+          83,
+          159
+        ],
+        "bowString": [
+          83,
+          159
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_ranged_right_01.png",
+      "outputSHA256": "833922ca214476eba75dbeb7e7df421eb60d609a7f6b70866ca14f489942239f",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_ranged_right_01.aseprite",
+      "nativeSHA256": "d9b7b962437bd608362b968637ba78bbd7e37fa4446754ac42e02aa48579d9b1",
+      "nativeTag": "tea_sommelier_ranged_right_01",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 4354,
+      "silhouetteChangedPixels": 791,
+      "bbox": [
+        46,
+        36,
+        210,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_ranged_right_02.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_ranged_right_02.png",
+      "sourceSHA256": "4aa71abfa8333d7b26780bb28fc33cab38ff0b68ebad0468cd7f8844fd05f520",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_ranged_right_02.png.meta",
+      "sourceMetaSHA256": "bf9f440a420e032eab3b10c3e3b4d0994e9b2c4e04faf14eee7808b4a2fe2430",
+      "sourceGUID": "bd5404ec4a4bb814aa9f02052054f414",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_ranged_right_02.png",
+      "existingSkinSHA256": "6c2cbd46d9648509287ed9c9dccd3f3b8fcf427b17089da99723307dd3420f47",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          201,
+          154
+        ],
+        "grip": [
+          201,
+          154
+        ],
+        "rightHand": [
+          201,
+          154
+        ],
+        "offHand": [
+          53,
+          144
+        ],
+        "bowString": [
+          53,
+          144
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_ranged_right_02.png",
+      "outputSHA256": "193d7f16cb1e51b1913c3ad278c927b4154fdade945391160a4a4c45094b4875",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_ranged_right_02.aseprite",
+      "nativeSHA256": "e302964930a07a9f152265d5662de0182ce49b4bea6745ecd541e7493d148f59",
+      "nativeTag": "tea_sommelier_ranged_right_02",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 4013,
+      "silhouetteChangedPixels": 759,
+      "bbox": [
+        34,
+        38,
+        220,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_ranged_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_ranged_right_03.png",
+      "sourceSHA256": "64accda30d757801b19cb23452f8833dcd07c7b0e5354f8cfec9cc50dd2061e0",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_ranged_right_03.png.meta",
+      "sourceMetaSHA256": "6f16cc74716397416768aee51427f07c030486761c33ac8163a000893e4f526e",
+      "sourceGUID": "249f861b869228c43baa958a8dd3a64d",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_ranged_right_03.png",
+      "existingSkinSHA256": "61181aae41a4ea1399c7505db1d324fe2e30ca9260608a16bcf30a399ffbfb32",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          173,
+          101
+        ],
+        "grip": [
+          173,
+          101
+        ],
+        "rightHand": [
+          173,
+          101
+        ],
+        "offHand": [
+          82,
+          100
+        ],
+        "bowString": [
+          82,
+          100
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_ranged_right_03.png",
+      "outputSHA256": "01b521430b311fa69d0c1a1efacd42f2d7ad4ab85cd47665b0c1bdfe0ca142cd",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_ranged_right_03.aseprite",
+      "nativeSHA256": "a859ab3930f3e9786d45934b79059513a4c86b27d38aded7c5075fbac2d80559",
+      "nativeTag": "tea_sommelier_ranged_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true,
+        "handSkinPixelsExact": true
+      },
+      "changedPixels": 4613,
+      "silhouetteChangedPixels": 434,
+      "bbox": [
+        67,
+        36,
+        184,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_03.png",
+      "sourceSHA256": "76391117850bcb33f4cb367dcbf7104c0f3e32f3d74c8302f160cc39c6e7e054",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_03.png.meta",
+      "sourceMetaSHA256": "75ab0cd9f1b1bdd84a3a39b969b72c5c1ea720924b73be74758f61cca716f5a5",
+      "sourceGUID": "7998b1e996ef7ee49b5bc4999bb1949c",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_03.png",
+      "existingSkinSHA256": "fc1b1c4050c8bd715da74ce4e732a0d0a252de585cc501346b1bf80986c0069a",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.328125,
+        0.1875
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "policy": "Embedded original sword unchanged; separate held weapon hidden; preserve source pivot"
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_sword_swing_right_03.png",
+      "outputSHA256": "d454a68a594c4c358153f2631c0d80f7478b03d1bd90e8432ef25aa1434ac551",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_sword_swing_right_03.aseprite",
+      "nativeSHA256": "dfe92bedf0e2e9ed1c3a59c0cf922ab1cf3d716514c247848d6c6f140fb9e39c",
+      "nativeTag": "tea_sommelier_sword_swing_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "embeddedWeaponExact": true
+      },
+      "changedPixels": 4621,
+      "silhouetteChangedPixels": 518,
+      "bbox": [
+        24,
+        26,
+        162,
+        240
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_04.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_04.png",
+      "sourceSHA256": "7d39983e5360f32b8960c5e49e5daf166ceca31332e4cf4d8da857f82f741487",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_04.png.meta",
+      "sourceMetaSHA256": "ecc20d0d8b3ad8abf3dd02d0d939ac7b6490cab036b13753bebd3978b7463713",
+      "sourceGUID": "501b15eb648283942a70916cbf0f1196",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_04.png",
+      "existingSkinSHA256": "a3ee8473f81fa522ef98fcbf078519abcc56afbc975acc8c1d3acca1bda14af9",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.328125,
+        0.1875
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "policy": "Embedded original sword unchanged; separate held weapon hidden; preserve source pivot"
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_sword_swing_right_04.png",
+      "outputSHA256": "9f05e848a1b9640e4e55030969fc5578d4ca964e62840af81e8bb0ce990c3aae",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_sword_swing_right_04.aseprite",
+      "nativeSHA256": "85d438133b92f94b4ab3eecaafae90e0c95b62eea732a70e2b00569f8fdea254",
+      "nativeTag": "tea_sommelier_sword_swing_right_04",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "embeddedWeaponExact": true
+      },
+      "changedPixels": 4557,
+      "silhouetteChangedPixels": 536,
+      "bbox": [
+        28,
+        18,
+        166,
+        240
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_05.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_05.png",
+      "sourceSHA256": "e89818940b52fb59fcca6874f564b620632658adef3791450c02fdc6bf4070d4",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_05.png.meta",
+      "sourceMetaSHA256": "6b2fe1bfdc3c090eda71ebe12c0d1a16fb97e50eabafa9eb91074f0b16ef010b",
+      "sourceGUID": "875da54b933e40e42917b78533acd7e8",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_05.png",
+      "existingSkinSHA256": "01089c9076afb51bced89e87ef8602afdb66f3f627d16eaa87feaab0fcf9a222",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.328125,
+        0.1875
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "policy": "Embedded original sword unchanged; separate held weapon hidden; preserve source pivot"
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_sword_swing_right_05.png",
+      "outputSHA256": "d9feab040b1162e3076951335c052aff4e4f3e173deadfdf2593c3683fe59482",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_sword_swing_right_05.aseprite",
+      "nativeSHA256": "ab0bb55c4bf58628d98ee28748f0bacf2dbe918424c01ea2232289e12dfa5d02",
+      "nativeTag": "tea_sommelier_sword_swing_right_05",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "embeddedWeaponExact": true
+      },
+      "changedPixels": 4539,
+      "silhouetteChangedPixels": 534,
+      "bbox": [
+        30,
+        50,
+        222,
+        240
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_06.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_06.png",
+      "sourceSHA256": "b5716b343a6dede2609227a4f37afe44fb8dccc9bb9eaf9a70d7ad93bb85e1dc",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_06.png.meta",
+      "sourceMetaSHA256": "d55d3b29e18d97473c97365b45c46ad431ac782dd34ca15a3515345aa1babad4",
+      "sourceGUID": "322c40ee569cf3a4aa16e00bdb106ad9",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_06.png",
+      "existingSkinSHA256": "24fa982856f67621709c05afac785fa1d9809199c56d7ddbee229bb93af957ac",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.328125,
+        0.1875
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "policy": "Embedded original sword unchanged; separate held weapon hidden; preserve source pivot"
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_sword_swing_right_06.png",
+      "outputSHA256": "4618846303500141560f5efa920b3537037a3e60e1a32831e30432877a795fd7",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_sword_swing_right_06.aseprite",
+      "nativeSHA256": "2ad635857a53d42bb27b126ebfc1f66797d028f54308bddbf650653f61cf7016",
+      "nativeTag": "tea_sommelier_sword_swing_right_06",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "embeddedWeaponExact": true
+      },
+      "changedPixels": 4802,
+      "silhouetteChangedPixels": 683,
+      "bbox": [
+        28,
+        48,
+        232,
+        240
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_07.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_07.png",
+      "sourceSHA256": "ed14c8f1ee998be2a1da9271df8e107a3ee5f40e512dc6470aa4e68c9e5294a7",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\ArtExtra\\tea_sommelier_sword_swing\\tea_sommelier_sword_swing_right_07.png.meta",
+      "sourceMetaSHA256": "8369419f44ee866b49ed478a62898d0ca5865f5aa811a0688a68a22a0438f52a",
+      "sourceGUID": "b30e2691abc2a1d47b5133362f271efd",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_tea_jade\\tea_sommelier_sword_swing_right_07.png",
+      "existingSkinSHA256": "e1fc24354e209f8d64dd9ea60d6efd42e7b44c9a51515b18db324998ecfde66d",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.328125,
+        0.1875
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "policy": "Embedded original sword unchanged; separate held weapon hidden; preserve source pivot"
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_sword_swing_right_07.png",
+      "outputSHA256": "efd98359c80d55a930fb7d22fb39c72f3e2c639faff5e039d2d71ac7a787b062",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_tea_mountain\\tea_sommelier_sword_swing_right_07.aseprite",
+      "nativeSHA256": "1f8d71223741d782fe658f645a8d8e603edf3fbe27a38cdeb81e8cb1c9ea6465",
+      "nativeTag": "tea_sommelier_sword_swing_right_07",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "embeddedWeaponExact": true
+      },
+      "changedPixels": 5023,
+      "silhouetteChangedPixels": 913,
+      "bbox": [
+        26,
+        48,
+        227,
+        240
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    }
+  ],
+  "failures": [],
+  "unityIntegrationVerified": false
+}

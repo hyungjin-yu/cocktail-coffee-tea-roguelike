@@ -1,0 +1,69 @@
+{
+  "status": "source_checks_only_pending_coordinator_visual_review",
+  "frameCount": 255,
+  "floorPlaneChecks": 255,
+  "floorPlaneFailures": [],
+  "failures": [],
+  "skins": [
+    {
+      "skinId": "skin_bartender_rail",
+      "manifest": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\skin_bartender_rail-manifest.json",
+      "frameCount": 23,
+      "failures": []
+    },
+    {
+      "skinId": "skin_bartender_tropic",
+      "manifest": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\skin_bartender_tropic-manifest.json",
+      "frameCount": 23,
+      "failures": []
+    },
+    {
+      "skinId": "skin_bartender_noir",
+      "manifest": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\skin_bartender_noir-manifest.json",
+      "frameCount": 23,
+      "failures": []
+    },
+    {
+      "skinId": "skin_bartender_alchemist",
+      "manifest": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\skin_bartender_alchemist-manifest.json",
+      "frameCount": 23,
+      "failures": []
+    },
+    {
+      "skinId": "skin_bartender_stage",
+      "manifest": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\skin_bartender_stage-manifest.json",
+      "frameCount": 23,
+      "failures": []
+    },
+    {
+      "skinId": "skin_tea_mountain",
+      "manifest": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\skin_tea_mountain-manifest.json",
+      "frameCount": 28,
+      "failures": []
+    },
+    {
+      "skinId": "skin_tea_ceremony",
+      "manifest": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\skin_tea_ceremony-manifest.json",
+      "frameCount": 28,
+      "failures": []
+    },
+    {
+      "skinId": "skin_tea_apiary",
+      "manifest": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\skin_tea_apiary-manifest.json",
+      "frameCount": 28,
+      "failures": []
+    },
+    {
+      "skinId": "skin_tea_greenhouse",
+      "manifest": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\skin_tea_greenhouse-manifest.json",
+      "frameCount": 28,
+      "failures": []
+    },
+    {
+      "skinId": "skin_tea_astronomer",
+      "manifest": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\skin_tea_astronomer-manifest.json",
+      "frameCount": 28,
+      "failures": []
+    }
+  ]
+}

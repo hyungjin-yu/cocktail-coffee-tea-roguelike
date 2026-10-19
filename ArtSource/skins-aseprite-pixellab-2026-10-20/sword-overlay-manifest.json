@@ -1,0 +1,114 @@
+﻿{
+    "assetId":  "existing_weaponskin_sword_01_overlay",
+    "newSkinCount":  0,
+    "comparison":  "evidence/sword-overlay-comparison.png",
+    "method":  "Aseprite Lua extracts exact source pixels inside approved mask; no transformation",
+    "status":  "ready_for_coordinator_visual_review",
+    "frames":  [
+                   {
+                       "outputSHA256":  "6f1f02a2076f1d5c30a84324c85022254841bb805f7e714773dfc5544fd05c62",
+                       "pixelsPerUnit":  128,
+                       "sourceSHA256":  "8200327bc50dea7082877df31a9aed87f52711b61ebde3815356e3931c4d5216",
+                       "nativeSHA256":  "2b681b860272ee46c64f3d4f7b1ee2e74c6e2c3e4df6d502328fae1aa7c496dd",
+                       "filename":  "tea_sommelier_sword_swing_right_03.png",
+                       "source":  "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_03.png",
+                       "native":  "sword_overlay/tea_sommelier_sword_swing_right_03.aseprite",
+                       "nativeReopenExact":  true,
+                       "sizePx":  [
+                                      256,
+                                      256
+                                  ],
+                       "output":  "sword_overlay/tea_sommelier_sword_swing_right_03.png",
+                       "maskSHA256":  "8a32c5d4a137e47b9b58b4524fe3bf6ee9c55464da22a0e0ebe940df7760f4c7",
+                       "pivotNormalized":  [
+                                               0.328125,
+                                               0.1875
+                                           ],
+                       "mask":  "C:/Users/user/Documents/Projects/CocktailCoffeeTea/ArtSource/skins-2026-10-13/v2/masks/sword_swing/swing_base/tea_sommelier_sword_swing_right_03.png"
+                   },
+                   {
+                       "outputSHA256":  "2abf985fd768b0e2d9df92213d29d41bcad550bae273ffef535b62873a37812f",
+                       "pixelsPerUnit":  128,
+                       "sourceSHA256":  "8834c846de260b770c30dfe69e0c37ae6103f8fa2666e472328c2ed9baaa4f72",
+                       "nativeSHA256":  "af906b51521842501a736d4ee15b745e313d779440f5dc25d6a4b7560027c79b",
+                       "filename":  "tea_sommelier_sword_swing_right_04.png",
+                       "source":  "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_04.png",
+                       "native":  "sword_overlay/tea_sommelier_sword_swing_right_04.aseprite",
+                       "nativeReopenExact":  true,
+                       "sizePx":  [
+                                      256,
+                                      256
+                                  ],
+                       "output":  "sword_overlay/tea_sommelier_sword_swing_right_04.png",
+                       "maskSHA256":  "56fe9d9709dfb55695d97ea2dc83625ae89652ff9793e9df230e97059169389d",
+                       "pivotNormalized":  [
+                                               0.328125,
+                                               0.1875
+                                           ],
+                       "mask":  "C:/Users/user/Documents/Projects/CocktailCoffeeTea/ArtSource/skins-2026-10-13/v2/masks/sword_swing/swing_base/tea_sommelier_sword_swing_right_04.png"
+                   },
+                   {
+                       "outputSHA256":  "3cee37b03e314280e905ca8f323b7b5ee4f811664fae30c5f0fec2e241dbd346",
+                       "pixelsPerUnit":  128,
+                       "sourceSHA256":  "5526bce34cf8d8a71288f6a13069c0c2f1abd93fe088d3e835e0ecc605fd6c2a",
+                       "nativeSHA256":  "7c2eb51e8ff834deab89024a9f84872380246ddc371c2389b8afd91b32a852d1",
+                       "filename":  "tea_sommelier_sword_swing_right_05.png",
+                       "source":  "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_05.png",
+                       "native":  "sword_overlay/tea_sommelier_sword_swing_right_05.aseprite",
+                       "nativeReopenExact":  true,
+                       "sizePx":  [
+                                      256,
+                                      256
+                                  ],
+                       "output":  "sword_overlay/tea_sommelier_sword_swing_right_05.png",
+                       "maskSHA256":  "121e1e039080c29392f0f315dde5cc9e288be8b7081e3da073eabaa3a41d49e4",
+                       "pivotNormalized":  [
+                                               0.328125,
+                                               0.1875
+                                           ],
+                       "mask":  "C:/Users/user/Documents/Projects/CocktailCoffeeTea/ArtSource/skins-2026-10-13/v2/masks/sword_swing/swing_base/tea_sommelier_sword_swing_right_05.png"
+                   },
+                   {
+                       "outputSHA256":  "a0f557d42fb71d1547efb424ff830cc0093b8f6c617cd7ba4b81fb2fecdb4949",
+                       "pixelsPerUnit":  128,
+                       "sourceSHA256":  "75ee959965e14a43a818f8bb418046292e3a92a085d8a8408003bb245cbce241",
+                       "nativeSHA256":  "0818d5e8033a2d27c6fa86bf5d385f36cf6c4633d7e06c5e416bd2f3851eb196",
+                       "filename":  "tea_sommelier_sword_swing_right_06.png",
+                       "source":  "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_06.png",
+                       "native":  "sword_overlay/tea_sommelier_sword_swing_right_06.aseprite",
+                       "nativeReopenExact":  true,
+                       "sizePx":  [
+                                      256,
+                                      256
+                                  ],
+                       "output":  "sword_overlay/tea_sommelier_sword_swing_right_06.png",
+                       "maskSHA256":  "006ef50bf8a0c3748303fd6120f9b7ab947d0709a047ac24831c2011caf56cad",
+                       "pivotNormalized":  [
+                                               0.328125,
+                                               0.1875
+                                           ],
+                       "mask":  "C:/Users/user/Documents/Projects/CocktailCoffeeTea/ArtSource/skins-2026-10-13/v2/masks/sword_swing/swing_base/tea_sommelier_sword_swing_right_06.png"
+                   },
+                   {
+                       "outputSHA256":  "cd9d48830f7f28731665a37f5304ff5ea2edead7cd33d6c87d1a517244ccae65",
+                       "pixelsPerUnit":  128,
+                       "sourceSHA256":  "5f9ea8e42203bff9cea6cc2f324f8df0aed6dcfb810758637fda0feaac901e79",
+                       "nativeSHA256":  "e7aedbbb3418857cc447b91d5db4f4013284a52ddb3c0a7a333d31ab05e71720",
+                       "filename":  "tea_sommelier_sword_swing_right_07.png",
+                       "source":  "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Resources/WeaponSkins/weaponskin_sword_01/swing_base/tea_sommelier_sword_swing_right_07.png",
+                       "native":  "sword_overlay/tea_sommelier_sword_swing_right_07.aseprite",
+                       "nativeReopenExact":  true,
+                       "sizePx":  [
+                                      256,
+                                      256
+                                  ],
+                       "output":  "sword_overlay/tea_sommelier_sword_swing_right_07.png",
+                       "maskSHA256":  "413fee91c181892d30ee3ac71d2aab94603d57e868635f1da72a22ae6324a7ac",
+                       "pivotNormalized":  [
+                                               0.328125,
+                                               0.1875
+                                           ],
+                       "mask":  "C:/Users/user/Documents/Projects/CocktailCoffeeTea/ArtSource/skins-2026-10-13/v2/masks/sword_swing/swing_base/tea_sommelier_sword_swing_right_07.png"
+                   }
+               ]
+}

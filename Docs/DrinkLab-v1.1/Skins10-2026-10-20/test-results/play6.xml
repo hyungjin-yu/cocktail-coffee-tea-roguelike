@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 23:17:14Z" end-time="2026-10-19 23:17:16Z" duration="2.5798415">
+  <test-suite type="TestSuite" id="1372" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="299" result="Passed" start-time="2026-10-19 23:17:14Z" end-time="2026-10-19 23:17:16Z" duration="2.579842" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1366" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/Documents/Projects/CocktailCoffeeTea/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="299" result="Passed" start-time="2026-10-19 23:17:14Z" end-time="2026-10-19 23:17:16Z" duration="2.568275" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35192" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1367" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="299" result="Passed" start-time="2026-10-19 23:17:14Z" end-time="2026-10-19 23:17:16Z" duration="2.564429" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1360" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="299" result="Passed" start-time="2026-10-19 23:17:14Z" end-time="2026-10-19 23:17:16Z" duration="2.560971" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1302" name="Skins10EvidenceCapture" fullname="CCT.Tests.Skins10EvidenceCapture" classname="CCT.Tests.Skins10EvidenceCapture" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 23:17:14Z" end-time="2026-10-19 23:17:16Z" duration="2.366033" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_a69133e71c1a48e1875e4db5fd6831ef.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1303" name="Capture_Shop_TenSkins_AllSizes" fullname="CCT.Tests.Skins10EvidenceCapture.Capture_Shop_TenSkins_AllSizes" methodname="Capture_Shop_TenSkins_AllSizes" classname="CCT.Tests.Skins10EvidenceCapture" runstate="Runnable" seed="1324389983" result="Passed" start-time="2026-10-19 23:17:14Z" end-time="2026-10-19 23:17:16Z" duration="2.354841" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:17:14.074 START CCT.Tests.Skins10EvidenceCapture.Capture_Shop_TenSkins_AllSizes (t=0.1 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_b46e2c0dc24d451bad1930807b64279e.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_skins10_0ad2c650847c4d24972003e4db46ce54\save.json (source=Fresh, v2)
+[Skins10] shot shop_skin_bartender_rail_1920x1080.png 1920x1080
+[Skins10] layout 1920x1080 skin_bartender_rail: overlaps=[]
+[Skins10] shop 1920x1080 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=0
+[Skins10] shot shop_skin_tea_astronomer_1920x1080.png 1920x1080
+[Skins10] layout 1920x1080 skin_tea_astronomer: overlaps=[]
+[Skins10] shop 1920x1080 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+[Skins10] shot shop_skin_bartender_rail_1280x720.png 1280x720
+[Skins10] layout 1280x720 skin_bartender_rail: overlaps=[]
+[Skins10] shop 1280x720 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+[Skins10] shot shop_skin_tea_astronomer_1280x720.png 1280x720
+[Skins10] layout 1280x720 skin_tea_astronomer: overlaps=[]
+[Skins10] shop 1280x720 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+[Skins10] shot shop_skin_bartender_rail_960x720.png 960x720
+[Skins10] layout 960x720 skin_bartender_rail: overlaps=[]
+[Skins10] shop 960x720 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+[Skins10] shot shop_skin_tea_astronomer_960x720.png 960x720
+[Skins10] layout 960x720 skin_tea_astronomer: overlaps=[]
+[Skins10] shop 960x720 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+[Skins10] shot shop_skin_bartender_rail_836x705.png 836x705
+[Skins10] layout 836x705 skin_bartender_rail: overlaps=[]
+[Skins10] shop 836x705 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+[Skins10] shot shop_skin_tea_astronomer_836x705.png 836x705
+[Skins10] layout 836x705 skin_tea_astronomer: overlaps=[]
+[Skins10] shop 836x705 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+[Skins10] shot shop_detail_skin_bartender_rail_1920x1080.png 1920x1080
+[Skins10] detail skin_bartender_rail: preview=bartender_idle_right_00 diff='각진 차장모·짧은 더블브레스트 재킷·시계 사슬·황동 단추, 짙은 적갈색 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_bartender_tropic_1920x1080.png 1920x1080
+[Skins10] detail skin_bartender_tropic: preview=bartender_idle_right_00 diff='짧은 밀짚모·넓게 열린 꽃무늬 셔츠·무릎바지·샌들, 코랄/청록 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_bartender_noir_1920x1080.png 1920x1080
+[Skins10] detail skin_bartender_noir: preview=bartender_idle_right_00 diff='낮은 중절모·무릎 위 트렌치코트·넓은 옷깃·부츠, 회갈색/버건디 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_bartender_alchemist_1920x1080.png 1920x1080
+[Skins10] detail skin_bartender_alchemist: preview=bartender_idle_right_00 diff='이마 고글·비대칭 가죽 앞가리개·닫힌 작은 허리병·보호 소매, 구리/보라 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_bartender_stage_1920x1080.png 1920x1080
+[Skins10] detail skin_bartender_stage: preview=bartender_idle_right_00 diff='짧은 실크햇·뒤로 갈라진 연미복·넓은 보타이·흰 장갑, 흑백/선명한 빨강 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_tea_mountain_1920x1080.png 1920x1080
+[Skins10] detail skin_tea_mountain: preview=tea_sommelier_idle_right_00 diff='천 두건·작은 등짐 바구니·조끼·각반, 흙빛/풀빛 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_tea_ceremony_1920x1080.png 1920x1080
+[Skins10] detail skin_tea_ceremony: preview=tea_sommelier_idle_right_00 diff='낮은 머리 묶음·넓은 소매의 랩 로브·긴 허리띠, 상아/먹색/작은 청화 무늬 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_tea_apiary_1920x1080.png 1920x1080
+[Skins10] detail skin_tea_apiary: preview=tea_sommelier_idle_right_00 diff='짧고 둥근 망사 양봉모·하나로 연결된 작업복·손목 장갑, 크림/호박 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_tea_greenhouse_1920x1080.png 1920x1080
+[Skins10] detail skin_tea_greenhouse: preview=tea_sommelier_idle_right_00 diff='머리 스카프·포켓 달린 원예 앞치마·걷은 소매·큰 고무장화, 테라코타/연두 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_detail_skin_tea_astronomer_1920x1080.png 1920x1080
+[Skins10] detail skin_tea_astronomer: preview=tea_sommelier_idle_right_00 diff='높은 뾰족 모자·짧은 별무늬 어깨망토·겹친 튜닉·사각 안경, 남보라/은빛 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+[Skins10] shot shop_bought_equipped_tea_greenhouse_1280x720.png 1280x720
+[Skins10] buy+dup+equip greenhouse: coins=1500 owned=True equipped=True state='장착 중 · 이미 보유한 외형입니다.'
+[Skins10] shot drinklab_coin_cosmetics_1920x1080.png 1920x1080
+[Skins10] drinklab coin list cards=13
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_a69133e71c1a48e1875e4db5fd6831ef.json (source=Fresh, v2)
+[TestProgress] 08:17:16.434 END Passed 2.4s CCT.Tests.Skins10EvidenceCapture.Capture_Shop_TenSkins_AllSizes (t=2.0 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1295" name="SkinShopListTests" fullname="CCT.Tests.SkinShopListTests" classname="CCT.Tests.SkinShopListTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 23:17:16Z" end-time="2026-10-19 23:17:16Z" duration="0.070393" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1297" name="CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected" fullname="CCT.Tests.SkinShopListTests.CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected" methodname="CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected" classname="CCT.Tests.SkinShopListTests" runstate="Runnable" seed="1303343887" result="Passed" start-time="2026-10-19 23:17:16Z" end-time="2026-10-19 23:17:16Z" duration="0.034107" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:17:16.437 START CCT.Tests.SkinShopListTests.CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected (t=2.0 ts=1)
+[TestProgress] 08:17:16.472 END Passed 0.0s CCT.Tests.SkinShopListTests.CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected (t=2.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1296" name="TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail" fullname="CCT.Tests.SkinShopListTests.TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail" methodname="TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail" classname="CCT.Tests.SkinShopListTests" runstate="Runnable" seed="921630108" result="Passed" start-time="2026-10-19 23:17:16Z" end-time="2026-10-19 23:17:16Z" duration="0.032446" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:17:16.473 START CCT.Tests.SkinShopListTests.TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail (t=2.0 ts=1)
+[TestProgress] 08:17:16.506 END Passed 0.0s CCT.Tests.SkinShopListTests.TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail (t=2.1 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1298" name="SkinShopViewTests" fullname="CCT.Tests.SkinShopViewTests" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 23:17:16Z" end-time="2026-10-19 23:17:16Z" duration="0.108118" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1299" name="PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses" fullname="CCT.Tests.SkinShopViewTests.PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses" methodname="PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" seed="2137215615" result="Passed" start-time="2026-10-19 23:17:16Z" end-time="2026-10-19 23:17:16Z" duration="0.026307" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:17:16.507 START CCT.Tests.SkinShopViewTests.PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses (t=2.1 ts=1)
+[TestProgress] 08:17:16.534 END Passed 0.0s CCT.Tests.SkinShopViewTests.PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses (t=2.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1300" name="TitleSkinButton_OpensShop_AndBackReturnsToTitle" fullname="CCT.Tests.SkinShopViewTests.TitleSkinButton_OpensShop_AndBackReturnsToTitle" methodname="TitleSkinButton_OpensShop_AndBackReturnsToTitle" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" seed="738279871" result="Passed" start-time="2026-10-19 23:17:16Z" end-time="2026-10-19 23:17:16Z" duration="0.036778" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:17:16.535 START CCT.Tests.SkinShopViewTests.TitleSkinButton_OpensShop_AndBackReturnsToTitle (t=2.1 ts=1)
+[TestProgress] 08:17:16.573 END Passed 0.0s CCT.Tests.SkinShopViewTests.TitleSkinButton_OpensShop_AndBackReturnsToTitle (t=2.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1301" name="TitleSkinButton_StaysInsideMenuFrame" fullname="CCT.Tests.SkinShopViewTests.TitleSkinButton_StaysInsideMenuFrame" methodname="TitleSkinButton_StaysInsideMenuFrame" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" seed="1874671225" result="Passed" start-time="2026-10-19 23:17:16Z" end-time="2026-10-19 23:17:16Z" duration="0.038905" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 08:17:16.573 START CCT.Tests.SkinShopViewTests.TitleSkinButton_StaysInsideMenuFrame (t=2.1 ts=1)
+[TestProgress] 08:17:16.613 END Passed 0.0s CCT.Tests.SkinShopViewTests.TitleSkinButton_StaysInsideMenuFrame (t=2.2 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

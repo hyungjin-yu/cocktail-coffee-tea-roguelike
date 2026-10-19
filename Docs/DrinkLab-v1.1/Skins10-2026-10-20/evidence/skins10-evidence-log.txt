@@ -1,0 +1,177 @@
+shot shop_skin_bartender_rail_1920x1080.png 1920x1080
+shop 1920x1080 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=0
+shot shop_skin_tea_astronomer_1920x1080.png 1920x1080
+shop 1920x1080 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_skin_bartender_rail_1280x720.png 1280x720
+shop 1280x720 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+shot shop_skin_tea_astronomer_1280x720.png 1280x720
+shop 1280x720 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_skin_bartender_rail_960x720.png 960x720
+shop 960x720 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+shot shop_skin_tea_astronomer_960x720.png 960x720
+shop 960x720 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_skin_bartender_rail_836x705.png 836x705
+shop 836x705 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+shot shop_skin_tea_astronomer_836x705.png 836x705
+shop 836x705 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_detail_skin_bartender_rail_1920x1080.png 1920x1080
+detail skin_bartender_rail: preview=bartender_idle_right_00 diff='각진 차장모·짧은 더블브레스트 재킷·시계 사슬·황동 단추, 짙은 적갈색 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_bartender_tropic_1920x1080.png 1920x1080
+detail skin_bartender_tropic: preview=bartender_idle_right_00 diff='짧은 밀짚모·넓게 열린 꽃무늬 셔츠·무릎바지·샌들, 코랄/청록 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_bartender_noir_1920x1080.png 1920x1080
+detail skin_bartender_noir: preview=bartender_idle_right_00 diff='낮은 중절모·무릎 위 트렌치코트·넓은 옷깃·부츠, 회갈색/버건디 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_bartender_alchemist_1920x1080.png 1920x1080
+detail skin_bartender_alchemist: preview=bartender_idle_right_00 diff='이마 고글·비대칭 가죽 앞가리개·닫힌 작은 허리병·보호 소매, 구리/보라 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_bartender_stage_1920x1080.png 1920x1080
+detail skin_bartender_stage: preview=bartender_idle_right_00 diff='짧은 실크햇·뒤로 갈라진 연미복·넓은 보타이·흰 장갑, 흑백/선명한 빨강 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_tea_mountain_1920x1080.png 1920x1080
+detail skin_tea_mountain: preview=tea_sommelier_idle_right_00 diff='천 두건·작은 등짐 바구니·조끼·각반, 흙빛/풀빛 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_tea_ceremony_1920x1080.png 1920x1080
+detail skin_tea_ceremony: preview=tea_sommelier_idle_right_00 diff='낮은 머리 묶음·넓은 소매의 랩 로브·긴 허리띠, 상아/먹색/작은 청화 무늬 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_tea_apiary_1920x1080.png 1920x1080
+detail skin_tea_apiary: preview=tea_sommelier_idle_right_00 diff='짧고 둥근 망사 양봉모·하나로 연결된 작업복·손목 장갑, 크림/호박 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_tea_greenhouse_1920x1080.png 1920x1080
+detail skin_tea_greenhouse: preview=tea_sommelier_idle_right_00 diff='머리 스카프·포켓 달린 원예 앞치마·걷은 소매·큰 고무장화, 테라코타/연두 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_tea_astronomer_1920x1080.png 1920x1080
+detail skin_tea_astronomer: preview=tea_sommelier_idle_right_00 diff='높은 뾰족 모자·짧은 별무늬 어깨망토·겹친 튜닉·사각 안경, 남보라/은빛 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_bought_equipped_tea_greenhouse_1280x720.png 1280x720
+buy+dup+equip greenhouse: coins=1500 owned=True equipped=True state='장착 중 · 이미 보유한 외형입니다.'
+shot drinklab_coin_cosmetics_1920x1080.png 1920x1080
+drinklab coin list cards=13
+shot combat_skin_bartender_rail_Rapier_right_1280x720.png 1280x720
+shot combat_skin_bartender_rail_Rapier_left_836x705.png 836x705
+shot combat_skin_bartender_rail_Rapier_defeat_1280x720.png 1280x720
+combat skin_bartender_rail Bartender/Rapier: frames=23581 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+shot combat_skin_bartender_rail_Gun_right_1280x720.png 1280x720
+combat skin_bartender_rail Bartender/Gun: frames=22316 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+coverage skin_bartender_rail: seen 20/23 groups=[bartender_defeat,bartender_hurt,bartender_idle,bartender_melee,bartender_move,bartender_ranged] missing=[bartender_idle_right_01,bartender_idle_right_02,bartender_idle_right_03]
+shot combat_skin_bartender_tropic_Rapier_right_1280x720.png 1280x720
+shot combat_skin_bartender_tropic_Rapier_left_836x705.png 836x705
+combat skin_bartender_tropic Bartender/Rapier: frames=24402 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=1 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+shot combat_skin_bartender_tropic_Gun_right_1280x720.png 1280x720
+combat skin_bartender_tropic Bartender/Gun: frames=22277 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+coverage skin_bartender_tropic: seen 20/23 groups=[bartender_defeat,bartender_hurt,bartender_idle,bartender_melee,bartender_move,bartender_ranged] missing=[bartender_idle_right_01,bartender_idle_right_02,bartender_idle_right_03]
+shot combat_skin_bartender_noir_Rapier_right_1280x720.png 1280x720
+shot combat_skin_bartender_noir_Rapier_left_836x705.png 836x705
+combat skin_bartender_noir Bartender/Rapier: frames=22509 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+shot combat_skin_bartender_noir_Gun_right_1280x720.png 1280x720
+combat skin_bartender_noir Bartender/Gun: frames=20821 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+coverage skin_bartender_noir: seen 20/23 groups=[bartender_defeat,bartender_hurt,bartender_idle,bartender_melee,bartender_move,bartender_ranged] missing=[bartender_idle_right_01,bartender_idle_right_02,bartender_idle_right_03]
+shot combat_skin_bartender_alchemist_Rapier_right_1280x720.png 1280x720
+shot combat_skin_bartender_alchemist_Rapier_left_836x705.png 836x705
+combat skin_bartender_alchemist Bartender/Rapier: frames=22235 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+shot combat_skin_bartender_alchemist_Gun_right_1280x720.png 1280x720
+combat skin_bartender_alchemist Bartender/Gun: frames=22661 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+coverage skin_bartender_alchemist: seen 20/23 groups=[bartender_defeat,bartender_hurt,bartender_idle,bartender_melee,bartender_move,bartender_ranged] missing=[bartender_idle_right_01,bartender_idle_right_02,bartender_idle_right_03]
+shot combat_skin_bartender_stage_Rapier_right_1280x720.png 1280x720
+shot combat_skin_bartender_stage_Rapier_left_836x705.png 836x705
+combat skin_bartender_stage Bartender/Rapier: frames=24670 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+shot combat_skin_bartender_stage_Gun_right_1280x720.png 1280x720
+combat skin_bartender_stage Bartender/Gun: frames=26372 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.101
+coverage skin_bartender_stage: seen 20/23 groups=[bartender_defeat,bartender_hurt,bartender_idle,bartender_melee,bartender_move,bartender_ranged] missing=[bartender_idle_right_01,bartender_idle_right_02,bartender_idle_right_03]
+shot combat_skin_tea_mountain_Sword_swing_1280x720.png 1280x720
+shot combat_skin_tea_mountain_Sword_right_1280x720.png 1280x720
+shot combat_skin_tea_mountain_Sword_left_836x705.png 836x705
+shot combat_skin_tea_mountain_Sword_defeat_1280x720.png 1280x720
+combat skin_tea_mountain TeaSommelier/Sword: frames=23916 baseCostumeFrames=0 [] facing=-1/1 swingFrames=14269 overlayOn=14269 overlayOutsideSwing=0 overlayNameMismatch=0 kills=1 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+shot combat_skin_tea_mountain_Bow_right_1280x720.png 1280x720
+combat skin_tea_mountain TeaSommelier/Bow: frames=25122 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+coverage skin_tea_mountain: seen 21/28 groups=[tea_sommelier_defeat,tea_sommelier_hurt,tea_sommelier_idle,tea_sommelier_move,tea_sommelier_ranged,tea_sommelier_sword_swing] missing=[tea_sommelier_idle_right_01,tea_sommelier_idle_right_02,tea_sommelier_idle_right_03,tea_sommelier_melee_right_00,tea_sommelier_melee_right_01,tea_sommelier_melee_right_02,tea_sommelier_melee_right_03]
+shot combat_skin_tea_ceremony_Sword_swing_1280x720.png 1280x720
+shot combat_skin_tea_ceremony_Sword_right_1280x720.png 1280x720
+shot combat_skin_tea_ceremony_Sword_left_836x705.png 836x705
+combat skin_tea_ceremony TeaSommelier/Sword: frames=25871 baseCostumeFrames=0 [] facing=-1/1 swingFrames=13201 overlayOn=13201 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+shot combat_skin_tea_ceremony_Bow_right_1280x720.png 1280x720
+combat skin_tea_ceremony TeaSommelier/Bow: frames=24312 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+coverage skin_tea_ceremony: seen 21/28 groups=[tea_sommelier_defeat,tea_sommelier_hurt,tea_sommelier_idle,tea_sommelier_move,tea_sommelier_ranged,tea_sommelier_sword_swing] missing=[tea_sommelier_idle_right_01,tea_sommelier_idle_right_02,tea_sommelier_idle_right_03,tea_sommelier_melee_right_00,tea_sommelier_melee_right_01,tea_sommelier_melee_right_02,tea_sommelier_melee_right_03]
+shot combat_skin_tea_apiary_Sword_swing_1280x720.png 1280x720
+shot combat_skin_tea_apiary_Sword_right_1280x720.png 1280x720
+shot combat_skin_tea_apiary_Sword_left_836x705.png 836x705
+combat skin_tea_apiary TeaSommelier/Sword: frames=25291 baseCostumeFrames=0 [] facing=-1/1 swingFrames=12937 overlayOn=12937 overlayOutsideSwing=0 overlayNameMismatch=0 kills=1 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+shot combat_skin_tea_apiary_Bow_right_1280x720.png 1280x720
+combat skin_tea_apiary TeaSommelier/Bow: frames=24030 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+coverage skin_tea_apiary: seen 21/28 groups=[tea_sommelier_defeat,tea_sommelier_hurt,tea_sommelier_idle,tea_sommelier_move,tea_sommelier_ranged,tea_sommelier_sword_swing] missing=[tea_sommelier_idle_right_01,tea_sommelier_idle_right_02,tea_sommelier_idle_right_03,tea_sommelier_melee_right_00,tea_sommelier_melee_right_01,tea_sommelier_melee_right_02,tea_sommelier_melee_right_03]
+shot combat_skin_tea_greenhouse_Sword_swing_1280x720.png 1280x720
+shot combat_skin_tea_greenhouse_Sword_right_1280x720.png 1280x720
+shot combat_skin_tea_greenhouse_Sword_left_836x705.png 836x705
+combat skin_tea_greenhouse TeaSommelier/Sword: frames=25645 baseCostumeFrames=0 [] facing=-1/1 swingFrames=15747 overlayOn=15747 overlayOutsideSwing=0 overlayNameMismatch=0 kills=2 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+shot combat_skin_tea_greenhouse_Bow_right_1280x720.png 1280x720
+combat skin_tea_greenhouse TeaSommelier/Bow: frames=24654 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+coverage skin_tea_greenhouse: seen 21/28 groups=[tea_sommelier_defeat,tea_sommelier_hurt,tea_sommelier_idle,tea_sommelier_move,tea_sommelier_ranged,tea_sommelier_sword_swing] missing=[tea_sommelier_idle_right_01,tea_sommelier_idle_right_02,tea_sommelier_idle_right_03,tea_sommelier_melee_right_00,tea_sommelier_melee_right_01,tea_sommelier_melee_right_02,tea_sommelier_melee_right_03]
+shot combat_skin_tea_astronomer_Sword_swing_1280x720.png 1280x720
+shot combat_skin_tea_astronomer_Sword_right_1280x720.png 1280x720
+shot combat_skin_tea_astronomer_Sword_left_836x705.png 836x705
+combat skin_tea_astronomer TeaSommelier/Sword: frames=23102 baseCostumeFrames=0 [] facing=-1/1 swingFrames=13827 overlayOn=13827 overlayOutsideSwing=0 overlayNameMismatch=0 kills=3 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+shot combat_skin_tea_astronomer_Bow_right_1280x720.png 1280x720
+combat skin_tea_astronomer TeaSommelier/Bow: frames=23991 baseCostumeFrames=0 [] facing=-1/1 swingFrames=0 overlayOn=0 overlayOutsideSwing=0 overlayNameMismatch=0 kills=1 stats=dmg=12 range=2.2 interval=0.7 hp=100 radius=0.4 scale=1.067
+coverage skin_tea_astronomer: seen 21/28 groups=[tea_sommelier_defeat,tea_sommelier_hurt,tea_sommelier_idle,tea_sommelier_move,tea_sommelier_ranged,tea_sommelier_sword_swing] missing=[tea_sommelier_idle_right_01,tea_sommelier_idle_right_02,tea_sommelier_idle_right_03,tea_sommelier_melee_right_00,tea_sommelier_melee_right_01,tea_sommelier_melee_right_02,tea_sommelier_melee_right_03]
+shot shop_skin_bartender_rail_1920x1080.png 1920x1080
+layout 1920x1080 skin_bartender_rail: overlaps=[Name/Job]
+shot shop_skin_bartender_rail_1920x1080.png 1920x1080
+layout 1920x1080 skin_bartender_rail: overlaps=[]
+shop 1920x1080 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=0
+shot shop_skin_tea_astronomer_1920x1080.png 1920x1080
+layout 1920x1080 skin_tea_astronomer: overlaps=[]
+shop 1920x1080 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_skin_bartender_rail_1280x720.png 1280x720
+layout 1280x720 skin_bartender_rail: overlaps=[]
+shop 1280x720 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+shot shop_skin_tea_astronomer_1280x720.png 1280x720
+layout 1280x720 skin_tea_astronomer: overlaps=[]
+shop 1280x720 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_skin_bartender_rail_960x720.png 960x720
+layout 960x720 skin_bartender_rail: overlaps=[]
+shop 960x720 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+shot shop_skin_tea_astronomer_960x720.png 960x720
+layout 960x720 skin_tea_astronomer: overlaps=[]
+shop 960x720 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_skin_bartender_rail_836x705.png 836x705
+layout 836x705 skin_bartender_rail: overlaps=[StatsSame/State]
+shot shop_skin_bartender_rail_1920x1080.png 1920x1080
+layout 1920x1080 skin_bartender_rail: overlaps=[]
+shop 1920x1080 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=0
+shot shop_skin_tea_astronomer_1920x1080.png 1920x1080
+layout 1920x1080 skin_tea_astronomer: overlaps=[]
+shop 1920x1080 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_skin_bartender_rail_1280x720.png 1280x720
+layout 1280x720 skin_bartender_rail: overlaps=[]
+shop 1280x720 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+shot shop_skin_tea_astronomer_1280x720.png 1280x720
+layout 1280x720 skin_tea_astronomer: overlaps=[]
+shop 1280x720 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_skin_bartender_rail_960x720.png 960x720
+layout 960x720 skin_bartender_rail: overlaps=[]
+shop 960x720 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+shot shop_skin_tea_astronomer_960x720.png 960x720
+layout 960x720 skin_tea_astronomer: overlaps=[]
+shop 960x720 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_skin_bartender_rail_836x705.png 836x705
+layout 836x705 skin_bartender_rail: overlaps=[]
+shop 836x705 skin_bartender_rail: selected=skin_bartender_rail preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='바텐더 전용 · 판매 코인 1000' scrollY=354
+shot shop_skin_tea_astronomer_836x705.png 836x705
+layout 836x705 skin_tea_astronomer: overlaps=[]
+shop 836x705 skin_tea_astronomer: selected=skin_tea_astronomer preview=True artNote=False buy=True label='구매  1000코인' state='판매 코인 1000 · 보유 2500' row='티 소믈리에 전용 · 판매 코인 1000' scrollY=812
+shot shop_detail_skin_bartender_rail_1920x1080.png 1920x1080
+detail skin_bartender_rail: preview=bartender_idle_right_00 diff='각진 차장모·짧은 더블브레스트 재킷·시계 사슬·황동 단추, 짙은 적갈색 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_bartender_tropic_1920x1080.png 1920x1080
+detail skin_bartender_tropic: preview=bartender_idle_right_00 diff='짧은 밀짚모·넓게 열린 꽃무늬 셔츠·무릎바지·샌들, 코랄/청록 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_bartender_noir_1920x1080.png 1920x1080
+detail skin_bartender_noir: preview=bartender_idle_right_00 diff='낮은 중절모·무릎 위 트렌치코트·넓은 옷깃·부츠, 회갈색/버건디 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_bartender_alchemist_1920x1080.png 1920x1080
+detail skin_bartender_alchemist: preview=bartender_idle_right_00 diff='이마 고글·비대칭 가죽 앞가리개·닫힌 작은 허리병·보호 소매, 구리/보라 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_bartender_stage_1920x1080.png 1920x1080
+detail skin_bartender_stage: preview=bartender_idle_right_00 diff='짧은 실크햇·뒤로 갈라진 연미복·넓은 보타이·흰 장갑, 흑백/선명한 빨강 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_tea_mountain_1920x1080.png 1920x1080
+detail skin_tea_mountain: preview=tea_sommelier_idle_right_00 diff='천 두건·작은 등짐 바구니·조끼·각반, 흙빛/풀빛 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_tea_ceremony_1920x1080.png 1920x1080
+detail skin_tea_ceremony: preview=tea_sommelier_idle_right_00 diff='낮은 머리 묶음·넓은 소매의 랩 로브·긴 허리띠, 상아/먹색/작은 청화 무늬 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_tea_apiary_1920x1080.png 1920x1080
+detail skin_tea_apiary: preview=tea_sommelier_idle_right_00 diff='짧고 둥근 망사 양봉모·하나로 연결된 작업복·손목 장갑, 크림/호박 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_tea_greenhouse_1920x1080.png 1920x1080
+detail skin_tea_greenhouse: preview=tea_sommelier_idle_right_00 diff='머리 스카프·포켓 달린 원예 앞치마·걷은 소매·큰 고무장화, 테라코타/연두 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_detail_skin_tea_astronomer_1920x1080.png 1920x1080
+detail skin_tea_astronomer: preview=tea_sommelier_idle_right_00 diff='높은 뾰족 모자·짧은 별무늬 어깨망토·겹친 튜닉·사각 안경, 남보라/은빛 / 모자·복장·실루엣이 바뀌고 능력치·판정은 같습니다.'
+shot shop_bought_equipped_tea_greenhouse_1280x720.png 1280x720
+buy+dup+equip greenhouse: coins=1500 owned=True equipped=True state='장착 중 · 이미 보유한 외형입니다.'
+shot drinklab_coin_cosmetics_1920x1080.png 1920x1080
+drinklab coin list cards=13

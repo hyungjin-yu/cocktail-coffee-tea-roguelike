@@ -19,6 +19,8 @@ namespace CCT
         public string HeldResource => Folder + id + "_held";
         /// <summary>검 전용: 휘두르기 몸체 프레임(검이 그림에 포함). jade=비취 티 소믈리에 몸체 스킨용.</summary>
         public string SwingFolder(bool jade) => Folder + (jade ? "swing_jade" : "swing_base");
+        /// <summary>79 검 전용: 무기-only 휘두르기 프레임(03~07, Aseprite에서 승인 마스크로 export). 신규 몸체 스킨 위에 겹친다.</summary>
+        public string SwingOverlayFolder => Folder + "swing_overlay";
     }
 
     public static class WeaponSkinCatalog
@@ -257,7 +259,10 @@ namespace CCT
     {
         public const string SwingPrefix = "tea_sommelier_sword_swing_";
         SpriteRenderer body;
-        Dictionary<string, Sprite> baseSwing, jadeSwing;
+        Dictionary<string, Sprite> baseSwing, jadeSwing, overlaySwing;
+        /// <summary>79: 신규 몸체 스킨 + 검 외형일 때 휘두르기 동안만 몸 위에 그리는 무기-only 렌더러(몸체 프레임은 스킨 그대로).</summary>
+        SpriteRenderer overlay;
+        public SpriteRenderer SwingOverlay => overlay;
         HashSet<Sprite> own;
         SkinSpriteSwapper bodySkin;
 
@@ -290,6 +295,7 @@ namespace CCT
                 applier.jadeSwing = Load(def.SwingFolder(true));
                 applier.own = new HashSet<Sprite>(applier.baseSwing.Values);
                 applier.own.UnionWith(applier.jadeSwing.Values);
+                applier.overlaySwing = Load(def.SwingOverlayFolder);
             }
             return applier;
         }
@@ -302,7 +308,43 @@ namespace CCT
             return map;
         }
 
-        void LateUpdate() => ApplySwing();
+        void LateUpdate()
+        {
+            ApplySwing();
+            UpdateOverlay();
+        }
+
+        /// <summary>79: 신규 몸체 스킨(비취 아님)일 때 현재 몸체가 검 휘두르기 프레임이면 같은 이름의 무기-only 프레임을 몸 위에 표시,
+        /// 아니면(대기·이동·피격·쓰러짐·다른 무기) 숨긴다. 몸체와 같은 Transform 자식 → 좌우 반전·위치·스케일을 그대로 따른다.
+        /// 오버레이 아트가 없으면 아무것도 그리지 않는다(신규 스킨 자체 프레임의 기본 검이 보임 — 보고된 한계).</summary>
+        public bool UpdateOverlay()
+        {
+            if (body == null) return false;
+            if (bodySkin == null) bodySkin = body.GetComponent<SkinSpriteSwapper>();
+            var s = body.sprite;
+            bool newBodySkin = bodySkin != null && bodySkin.ProductId != SkinCatalog.TeaJade;
+            Sprite frame = null;
+            if (newBodySkin && body.enabled && overlaySwing != null && s != null && s.name.StartsWith(SwingPrefix, StringComparison.Ordinal))
+                overlaySwing.TryGetValue(s.name, out frame);
+            if (frame != null && (frame.rect.size != s.rect.size || (frame.pivot - s.pivot).sqrMagnitude > 0.01f)) frame = null; // 기하 불일치면 그리지 않음
+            if (frame == null)
+            {
+                if (overlay != null) overlay.enabled = false;
+                return false;
+            }
+            if (overlay == null)
+            {
+                var go = new GameObject("SwordSwingWeaponOverlay");
+                go.transform.SetParent(body.transform, false);
+                overlay = go.AddComponent<SpriteRenderer>();
+                overlay.sortingOrder = body.sortingOrder + 2; // 같은 SortingGroup 안에서 몸·손 무기(1) 앞
+            }
+            overlay.sprite = frame;
+            overlay.color = body.color; // 피격 깜빡임·투명도 동일
+            overlay.flipX = body.flipX;
+            overlay.enabled = true;
+            return true;
+        }
 
         /// <summary>현재 몸체가 검 휘두르기 프레임이면 스킨 프레임으로. 바꿨으면 true.</summary>
         public bool ApplySwing()
@@ -311,6 +353,8 @@ namespace CCT
             var s = body.sprite;
             if (s == null || own.Contains(s) || !s.name.StartsWith(SwingPrefix, StringComparison.Ordinal)) return false;
             if (bodySkin == null) bodySkin = body.GetComponent<SkinSpriteSwapper>(); // 몸체 스킨이 나중에 붙은 경우(QA 강제 장착 등)
+            // 79: 신규 몸체 스킨은 자기 휘두르기 프레임(몸체+검 그림)을 가진다 — 기본색 검 휘두르기로 덮으면 기본 복장이 번쩍인다.
+            if (bodySkin != null && bodySkin.ProductId != SkinCatalog.TeaJade) return false;
             bool jade = bodySkin != null && bodySkin.ProductId == SkinCatalog.TeaJade;
             var map = jade ? jadeSwing : baseSwing;
             if (map == null || !map.TryGetValue(s.name, out var skin) || skin == null) return false;

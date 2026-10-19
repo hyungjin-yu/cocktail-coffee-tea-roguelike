@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Passed" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 22:58:43Z" end-time="2026-10-19 22:59:22Z" duration="39.0335429">
+  <test-suite type="TestSuite" id="1369" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="297" result="Passed" start-time="2026-10-19 22:58:43Z" end-time="2026-10-19 22:59:22Z" duration="39.033543" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1363" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/Documents/Projects/CocktailCoffeeTea/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="297" result="Passed" start-time="2026-10-19 22:58:43Z" end-time="2026-10-19 22:59:22Z" duration="39.021801" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="47820" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1364" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="297" result="Passed" start-time="2026-10-19 22:58:43Z" end-time="2026-10-19 22:59:22Z" duration="39.016913" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1357" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="297" result="Passed" start-time="2026-10-19 22:58:43Z" end-time="2026-10-19 22:59:22Z" duration="39.012815" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1033" name="CardAdviceAndWeaponSkinPlayTests" fullname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests" classname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 22:58:43Z" end-time="2026-10-19 22:58:44Z" duration="1.357664" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_b4f840adf2e54f3bb62544b8784dabf7.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1035" name="Bartender_SameCocktailThreeTimes_NoRush_ThreeKindsRush" fullname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests.Bartender_SameCocktailThreeTimes_NoRush_ThreeKindsRush" methodname="Bartender_SameCocktailThreeTimes_NoRush_ThreeKindsRush" classname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests" runstate="Runnable" seed="1556628283" result="Passed" start-time="2026-10-19 22:58:43Z" end-time="2026-10-19 22:58:43Z" duration="0.179377" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:43.515 START CCT.Tests.CardAdviceAndWeaponSkinPlayTests.Bartender_SameCocktailThreeTimes_NoRush_ThreeKindsRush (t=0.1 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_83e30a34483f41bd8c159b2055cac712.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_advice_5791dacbe6564b58aecd639644892d8c\save.json (source=Fresh, v2)
+[Commerce] 결제 비활성: commerce_config.enabled=false
+[TestProgress] 07:58:43.700 END Passed 0.2s CCT.Tests.CardAdviceAndWeaponSkinPlayTests.Bartender_SameCocktailThreeTimes_NoRush_ThreeKindsRush (t=0.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1034" name="CardView_ShowsRealRunAdvice_DoesNotAutoChoose" fullname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests.CardView_ShowsRealRunAdvice_DoesNotAutoChoose" methodname="CardView_ShowsRealRunAdvice_DoesNotAutoChoose" classname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests" runstate="Runnable" seed="1119700238" result="Passed" start-time="2026-10-19 22:58:43Z" end-time="2026-10-19 22:58:43Z" duration="0.068639" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:43.701 START CCT.Tests.CardAdviceAndWeaponSkinPlayTests.CardView_ShowsRealRunAdvice_DoesNotAutoChoose (t=0.3 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_advice_dfc1ce57c4454a7a83973a8d5d7c8d4a\save.json (source=Fresh, v2)
+[TestProgress] 07:58:43.771 END Passed 0.1s CCT.Tests.CardAdviceAndWeaponSkinPlayTests.CardView_ShowsRealRunAdvice_DoesNotAutoChoose (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1036" name="WeaponSkin_AppliesToRealHeldWeapon_StatsAndPlacementUnchanged" fullname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests.WeaponSkin_AppliesToRealHeldWeapon_StatsAndPlacementUnchanged" methodname="WeaponSkin_AppliesToRealHeldWeapon_StatsAndPlacementUnchanged" classname="CCT.Tests.CardAdviceAndWeaponSkinPlayTests" runstate="Runnable" seed="1470189869" result="Passed" start-time="2026-10-19 22:58:43Z" end-time="2026-10-19 22:58:44Z" duration="1.092758" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:43.771 START CCT.Tests.CardAdviceAndWeaponSkinPlayTests.WeaponSkin_AppliesToRealHeldWeapon_StatsAndPlacementUnchanged (t=0.4 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_advice_0c89f6165a7b4aa39460bd41ec59fa81\save.json (source=Fresh, v2)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_b4f840adf2e54f3bb62544b8784dabf7.json (source=Fresh, v2)
+[TestProgress] 07:58:44.865 END Passed 1.1s CCT.Tests.CardAdviceAndWeaponSkinPlayTests.WeaponSkin_AppliesToRealHeldWeapon_StatsAndPlacementUnchanged (t=1.5 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1080" name="DrinkLabPlayTests" fullname="CCT.Tests.DrinkLabPlayTests" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-10-19 22:58:44Z" end-time="2026-10-19 22:58:52Z" duration="7.690723" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1108" name="Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport" fullname="CCT.Tests.DrinkLabPlayTests.Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport" methodname="Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="686304368" result="Passed" start-time="2026-10-19 22:58:44Z" end-time="2026-10-19 22:58:52Z" duration="7.677423" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:44.880 START CCT.Tests.DrinkLabPlayTests.Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport (t=1.5 ts=1)
+[TestProgress] 07:58:48.479 HB frame=3619 dt=0.0139 unscaledDt=0.0139 state=noGM enemies=0 (t=5.0 ts=1)
+[TestProgress] 07:58:52.558 END Passed 7.7s CCT.Tests.DrinkLabPlayTests.Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport (t=9.1 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1213" name="MeleeSwingVisualTests" fullname="CCT.Tests.MeleeSwingVisualTests" classname="CCT.Tests.MeleeSwingVisualTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-19 22:58:52Z" end-time="2026-10-19 22:59:04Z" duration="11.775802" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1214" name="Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos" fullname="CCT.Tests.MeleeSwingVisualTests.Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos" methodname="Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos" classname="CCT.Tests.MeleeSwingVisualTests" runstate="Runnable" seed="367468929" result="Passed" start-time="2026-10-19 22:58:52Z" end-time="2026-10-19 22:59:03Z" duration="10.829971" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:52.561 START CCT.Tests.MeleeSwingVisualTests.Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos (t=9.1 ts=1)
+[TestProgress] 07:58:53.479 HB frame=11702 dt=0.0002 unscaledDt=0.0002 state=Playing enemies=0 (t=10.0 ts=1)
+[TestProgress] 07:58:58.479 HB frame=36510 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=0 (t=15.0 ts=1)
+[TestProgress] 07:59:03.392 END Passed 10.8s CCT.Tests.MeleeSwingVisualTests.Bow_UsesOriginalFullBodyClips_GripFollowsFrameHandAnchor_AllSkinCombos (t=19.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1216" name="Rapier_KeepsThrustClip_WithCrescent_NoRangeFill" fullname="CCT.Tests.MeleeSwingVisualTests.Rapier_KeepsThrustClip_WithCrescent_NoRangeFill" methodname="Rapier_KeepsThrustClip_WithCrescent_NoRangeFill" classname="CCT.Tests.MeleeSwingVisualTests" runstate="Runnable" seed="153777502" result="Passed" start-time="2026-10-19 22:59:03Z" end-time="2026-10-19 22:59:03Z" duration="0.062740" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:03.393 START CCT.Tests.MeleeSwingVisualTests.Rapier_KeepsThrustClip_WithCrescent_NoRangeFill (t=19.9 ts=1)
+[TestProgress] 07:59:03.457 END Passed 0.1s CCT.Tests.MeleeSwingVisualTests.Rapier_KeepsThrustClip_WithCrescent_NoRangeFill (t=20.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1215" name="Sword_PlaysSwingClip_HidesHeldSword_ThenRestores_NoRangeFill" fullname="CCT.Tests.MeleeSwingVisualTests.Sword_PlaysSwingClip_HidesHeldSword_ThenRestores_NoRangeFill" methodname="Sword_PlaysSwingClip_HidesHeldSword_ThenRestores_NoRangeFill" classname="CCT.Tests.MeleeSwingVisualTests" runstate="Runnable" seed="83686345" result="Passed" start-time="2026-10-19 22:59:03Z" end-time="2026-10-19 22:59:03Z" duration="0.536345" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:03.458 START CCT.Tests.MeleeSwingVisualTests.Sword_PlaysSwingClip_HidesHeldSword_ThenRestores_NoRangeFill (t=20.0 ts=1)
+[TestProgress] 07:59:03.486 HB frame=61615 dt=0.0257 unscaledDt=0.0257 state=Playing enemies=0 (t=20.0 ts=1)
+[TestProgress] 07:59:03.995 END Passed 0.5s CCT.Tests.MeleeSwingVisualTests.Sword_PlaysSwingClip_HidesHeldSword_ThenRestores_NoRangeFill (t=20.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1217" name="SwordSwing_PauseFreezes_AndRestartLeavesNoSlashVfx" fullname="CCT.Tests.MeleeSwingVisualTests.SwordSwing_PauseFreezes_AndRestartLeavesNoSlashVfx" methodname="SwordSwing_PauseFreezes_AndRestartLeavesNoSlashVfx" classname="CCT.Tests.MeleeSwingVisualTests" runstate="Runnable" seed="677707220" result="Passed" start-time="2026-10-19 22:59:03Z" end-time="2026-10-19 22:59:04Z" duration="0.337648" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:03.995 START CCT.Tests.MeleeSwingVisualTests.SwordSwing_PauseFreezes_AndRestartLeavesNoSlashVfx (t=20.5 ts=1)
+[TestProgress] 07:59:04.334 END Passed 0.3s CCT.Tests.MeleeSwingVisualTests.SwordSwing_PauseFreezes_AndRestartLeavesNoSlashVfx (t=20.6 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1295" name="SkinShopListTests" fullname="CCT.Tests.SkinShopListTests" classname="CCT.Tests.SkinShopListTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 22:59:04Z" end-time="2026-10-19 22:59:04Z" duration="0.130027" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1297" name="CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected" fullname="CCT.Tests.SkinShopListTests.CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected" methodname="CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected" classname="CCT.Tests.SkinShopListTests" runstate="Runnable" seed="202225633" result="Passed" start-time="2026-10-19 22:59:04Z" end-time="2026-10-19 22:59:04Z" duration="0.088893" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:04.336 START CCT.Tests.SkinShopListTests.CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected (t=20.6 ts=1)
+[TestProgress] 07:59:04.425 END Passed 0.1s CCT.Tests.SkinShopListTests.CoinSkin_BuyOnce_DuplicateClick_Equip_JobScoped_PaidUnaffected (t=20.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1296" name="TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail" fullname="CCT.Tests.SkinShopListTests.TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail" methodname="TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail" classname="CCT.Tests.SkinShopListTests" runstate="Runnable" seed="1905229649" result="Passed" start-time="2026-10-19 22:59:04Z" end-time="2026-10-19 22:59:04Z" duration="0.036858" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:04.426 START CCT.Tests.SkinShopListTests.TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail (t=20.6 ts=1)
+[TestProgress] 07:59:04.463 END Passed 0.0s CCT.Tests.SkinShopListTests.TwelveRows_ScrollFollowsKeyboard_SelectionUpdatesDetail (t=20.7 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1298" name="SkinShopViewTests" fullname="CCT.Tests.SkinShopViewTests" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 22:59:04Z" end-time="2026-10-19 22:59:04Z" duration="0.095461" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1299" name="PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses" fullname="CCT.Tests.SkinShopViewTests.PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses" methodname="PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" seed="2096977291" result="Passed" start-time="2026-10-19 22:59:04Z" end-time="2026-10-19 22:59:04Z" duration="0.025913" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:04.467 START CCT.Tests.SkinShopViewTests.PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses (t=20.7 ts=1)
+[TestProgress] 07:59:04.494 END Passed 0.0s CCT.Tests.SkinShopViewTests.PlatformUnavailable_PreviewShown_BuyAndRestoreDisabled_BackCloses (t=20.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1300" name="TitleSkinButton_OpensShop_AndBackReturnsToTitle" fullname="CCT.Tests.SkinShopViewTests.TitleSkinButton_OpensShop_AndBackReturnsToTitle" methodname="TitleSkinButton_OpensShop_AndBackReturnsToTitle" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" seed="1292718274" result="Passed" start-time="2026-10-19 22:59:04Z" end-time="2026-10-19 22:59:04Z" duration="0.027130" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:04.495 START CCT.Tests.SkinShopViewTests.TitleSkinButton_OpensShop_AndBackReturnsToTitle (t=20.7 ts=1)
+[TestProgress] 07:59:04.523 END Passed 0.0s CCT.Tests.SkinShopViewTests.TitleSkinButton_OpensShop_AndBackReturnsToTitle (t=20.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1301" name="TitleSkinButton_StaysInsideMenuFrame" fullname="CCT.Tests.SkinShopViewTests.TitleSkinButton_StaysInsideMenuFrame" methodname="TitleSkinButton_StaysInsideMenuFrame" classname="CCT.Tests.SkinShopViewTests" runstate="Runnable" seed="927425647" result="Passed" start-time="2026-10-19 22:59:04Z" end-time="2026-10-19 22:59:04Z" duration="0.033794" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:04.524 START CCT.Tests.SkinShopViewTests.TitleSkinButton_StaysInsideMenuFrame (t=20.7 ts=1)
+[TestProgress] 07:59:04.559 END Passed 0.0s CCT.Tests.SkinShopViewTests.TitleSkinButton_StaysInsideMenuFrame (t=20.8 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1317" name="SpecSpawnAndEnemyTests" fullname="CCT.Tests.SpecSpawnAndEnemyTests" classname="CCT.Tests.SpecSpawnAndEnemyTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 22:59:04Z" end-time="2026-10-19 22:59:20Z" duration="16.167316" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1321" name="Spawner_FirstAttemptAtZero_IntervalShrinks_DoublesWithBoss_AndStopsAt100" fullname="CCT.Tests.SpecSpawnAndEnemyTests.Spawner_FirstAttemptAtZero_IntervalShrinks_DoublesWithBoss_AndStopsAt100" methodname="Spawner_FirstAttemptAtZero_IntervalShrinks_DoublesWithBoss_AndStopsAt100" classname="CCT.Tests.SpecSpawnAndEnemyTests" runstate="Runnable" seed="437164935" result="Passed" start-time="2026-10-19 22:59:04Z" end-time="2026-10-19 22:59:20Z" duration="16.156923" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:04.569 START CCT.Tests.SpecSpawnAndEnemyTests.Spawner_FirstAttemptAtZero_IntervalShrinks_DoublesWithBoss_AndStopsAt100 (t=20.8 ts=1)
+[Commerce] 결제 비활성: commerce_config.enabled=false
+[TestProgress] 07:59:08.486 HB frame=86955 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=4 (t=24.7 ts=1)
+[TestProgress] 07:59:13.487 HB frame=109911 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=31 (t=29.7 ts=1)
+[TestProgress] 07:59:18.487 HB frame=124558 dt=0.0003 unscaledDt=0.0003 state=Playing enemies=79 (t=34.7 ts=1)
+[TestProgress] 07:59:20.728 END Passed 16.2s CCT.Tests.SpecSpawnAndEnemyTests.Spawner_FirstAttemptAtZero_IntervalShrinks_DoublesWithBoss_AndStopsAt100 (t=36.9 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1341" name="SwordOverlayPlayTests" fullname="CCT.Tests.SwordOverlayPlayTests" classname="CCT.Tests.SwordOverlayPlayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 22:59:20Z" end-time="2026-10-19 22:59:22Z" duration="1.766651" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1343" name="JadeOrNoBodySkin_NoOverlay_ExistingSwingPathKept" fullname="CCT.Tests.SwordOverlayPlayTests.JadeOrNoBodySkin_NoOverlay_ExistingSwingPathKept" methodname="JadeOrNoBodySkin_NoOverlay_ExistingSwingPathKept" classname="CCT.Tests.SwordOverlayPlayTests" runstate="Runnable" seed="424699484" result="Passed" start-time="2026-10-19 22:59:20Z" end-time="2026-10-19 22:59:21Z" duration="0.656442" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:20.729 START CCT.Tests.SwordOverlayPlayTests.JadeOrNoBodySkin_NoOverlay_ExistingSwingPathKept (t=36.9 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_overlay_18244f3feb5a4ec3a641f55a682c33c9\save.json (source=Fresh, v2)
+[TestProgress] 07:59:21.386 END Passed 0.7s CCT.Tests.SwordOverlayPlayTests.JadeOrNoBodySkin_NoOverlay_ExistingSwingPathKept (t=37.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1342" name="NonJadeBodySkin_SwordSkin_OverlayOnlyDuringSwing_BodyNotReplaced" fullname="CCT.Tests.SwordOverlayPlayTests.NonJadeBodySkin_SwordSkin_OverlayOnlyDuringSwing_BodyNotReplaced" methodname="NonJadeBodySkin_SwordSkin_OverlayOnlyDuringSwing_BodyNotReplaced" classname="CCT.Tests.SwordOverlayPlayTests" runstate="Runnable" seed="709432249" result="Passed" start-time="2026-10-19 22:59:21Z" end-time="2026-10-19 22:59:22Z" duration="1.106441" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:59:21.387 START CCT.Tests.SwordOverlayPlayTests.NonJadeBodySkin_SwordSkin_OverlayOnlyDuringSwing_BodyNotReplaced (t=37.6 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_overlay_4e3024dd9229402eb93ac4317622cf3c\save.json (source=Fresh, v2)
+[TestProgress] 07:59:22.495 END Passed 1.1s CCT.Tests.SwordOverlayPlayTests.NonJadeBodySkin_SwordSkin_OverlayOnlyDuringSwing_BodyNotReplaced (t=38.7 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

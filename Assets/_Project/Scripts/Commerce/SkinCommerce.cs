@@ -37,6 +37,7 @@ namespace CCT
         public const string MsgFailed = "구매하지 못했습니다.";
         public const string MsgRestoring = "구매 내역을 확인하는 중…";
         public const string MsgEquipSaveFailed = "장착 정보를 저장하지 못했습니다.";
+        public const string MsgCoinOnly = "판매 코인으로만 얻는 스킨입니다(현금 결제 상품 아님).";
 
         public const double RetryBaseSeconds = 5d;
         public const double RetryMaxSeconds = 600d;
@@ -111,7 +112,7 @@ namespace CCT
             Status = SkinStoreStatus.Connecting;
             StoreMessage = null;
             Notify();
-            store.Initialize(SkinCatalog.ProductIds, this);
+            store.Initialize(SkinCatalog.PaidProductIds, this); // 79: 현금 상품만 등록 — 코인 전용 스킨은 스토어에 조회·등록하지 않는다
         }
 
         /// <summary>실제 시간 경과마다(CommerceRunner) — 백오프 시각이 된 보류 구매를 다시 검증.</summary>
@@ -166,7 +167,7 @@ namespace CCT
         }
 
         public bool CanBuy(string productId) =>
-            PurchasesEnabled && Status == SkinStoreStatus.Ready && SkinCatalog.IsKnown(productId) && !IsOwned(productId) &&
+            PurchasesEnabled && Status == SkinStoreStatus.Ready && SkinCatalog.IsPaid(productId) && !IsOwned(productId) &&
             !IsProcessing(productId) && !IsDeferred(productId) &&
             products.TryGetValue(productId, out var p) && p.AvailableToPurchase && !string.IsNullOrEmpty(p.LocalizedPrice);
 
@@ -175,6 +176,8 @@ namespace CCT
         /// <summary>구매 버튼 아래 상태 문구.</summary>
         public string BuyStateText(string productId)
         {
+            if (SkinCatalog.IsKnown(productId) && !SkinCatalog.IsPaid(productId))
+                return IsOwned(productId) ? "보유 중" : $"판매 코인 {SkinCatalog.CoinSkinPrice}";
             if (!store.SupportsPurchasing) return store.UnsupportedMessage;
             if (!config.PurchasesEnabled) return MsgDisabled;
             if (IsOwned(productId)) return "보유 중";
@@ -189,8 +192,10 @@ namespace CCT
 
         public bool Buy(string productId)
         {
-            string block = !PurchasesEnabled ? (store.SupportsPurchasing ? MsgDisabled : store.UnsupportedMessage)
+            string block = SkinCatalog.IsKnown(productId) && !SkinCatalog.IsPaid(productId) ? MsgCoinOnly
+                : !PurchasesEnabled ? (store.SupportsPurchasing ? MsgDisabled : store.UnsupportedMessage)
                 : !SkinCatalog.IsKnown(productId) ? MsgProductUnavailable
+                : !SkinCatalog.IsPaid(productId) ? MsgCoinOnly
                 : IsOwned(productId) ? MsgAlreadyOwned
                 : Status != SkinStoreStatus.Ready ? MsgStoreUnavailable
                 : IsProcessing(productId) ? MsgPendingInProgress
@@ -244,7 +249,7 @@ namespace CCT
             products.Clear();
             if (list != null)
                 foreach (var p in list)
-                    if (p != null && !string.IsNullOrEmpty(p.ProductId)) products[p.ProductId] = p;
+                    if (p != null && SkinCatalog.IsPaid(p.ProductId)) products[p.ProductId] = p; // 현금 상품만
             Status = SkinStoreStatus.Ready;
             StoreMessage = null;
             Notify();
@@ -265,7 +270,7 @@ namespace CCT
         {
             // 이미 승인된 구매(승인 호출 없음). 미보유면 검증 후 지급(복원). 보유 중이어도 세션마다 1회 + "구매 복원" 때
             // 서버에 다시 확인한다 — verified=false(환불 등)면 소유 해제·장착 해제·저장, 네트워크 오류면 캐시 유지.
-            if (p == null || !SkinCatalog.IsKnown(p.ProductId) || string.IsNullOrEmpty(p.PurchaseToken))
+            if (p == null || !SkinCatalog.IsPaid(p.ProductId) || string.IsNullOrEmpty(p.PurchaseToken))
             {
                 Enqueue(p, false); // 토큰 없음/알 수 없는 상품 — Enqueue가 경고만 남기고 무시
                 return;
@@ -325,7 +330,7 @@ namespace CCT
                 Debug.Log($"[Commerce] 결제 비활성 — 보류 구매 {p.ProductId} 처리 보류");
                 return;
             }
-            if (string.IsNullOrEmpty(p.PurchaseToken) || !SkinCatalog.IsKnown(p.ProductId))
+            if (string.IsNullOrEmpty(p.PurchaseToken) || !SkinCatalog.IsPaid(p.ProductId))
             {
                 Debug.LogWarning($"[Commerce] 알 수 없는 구매(상품 {p.ProductId}, 토큰 {(string.IsNullOrEmpty(p.PurchaseToken) ? "없음" : "있음")}) — 지급·승인 안 함");
                 return;

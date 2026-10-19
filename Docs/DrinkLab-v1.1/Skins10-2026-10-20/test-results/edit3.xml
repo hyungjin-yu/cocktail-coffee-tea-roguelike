@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="62" result="Passed" total="62" passed="62" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 22:58:17Z" end-time="2026-10-19 22:58:19Z" duration="1.6880804">
+  <test-suite type="TestSuite" id="1000" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="753" result="Passed" start-time="2026-10-19 22:58:17Z" end-time="2026-10-19 22:58:19Z" duration="1.688080" total="62" passed="62" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1873" name="CCT.Tests.EditMode.dll" fullname="C:/Users/user/Documents/Projects/CocktailCoffeeTea/Library/ScriptAssemblies/CCT.Tests.EditMode.dll" runstate="Runnable" testcasecount="691" result="Passed" start-time="2026-10-19 22:58:17Z" end-time="2026-10-19 22:58:19Z" duration="1.670572" total="62" passed="62" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28168" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1874" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="691" result="Passed" start-time="2026-10-19 22:58:17Z" end-time="2026-10-19 22:58:19Z" duration="1.665384" total="62" passed="62" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1854" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="691" result="Passed" start-time="2026-10-19 22:58:17Z" end-time="2026-10-19 22:58:19Z" duration="1.659995" total="62" passed="62" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1171" name="CoinSkinTests" fullname="CCT.Tests.CoinSkinTests" classname="CCT.Tests.CoinSkinTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-19 22:58:17Z" end-time="2026-10-19 22:58:18Z" duration="0.774164" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1172" name="Catalog_ExactlyTenNewCoinSkins_FivePerJob_ExistingTwoPaidKept" fullname="CCT.Tests.CoinSkinTests.Catalog_ExactlyTenNewCoinSkins_FivePerJob_ExistingTwoPaidKept" methodname="Catalog_ExactlyTenNewCoinSkins_FivePerJob_ExistingTwoPaidKept" classname="CCT.Tests.CoinSkinTests" runstate="Runnable" seed="451163889" result="Passed" start-time="2026-10-19 22:58:17Z" end-time="2026-10-19 22:58:17Z" duration="0.032414" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:17.903 START CCT.Tests.CoinSkinTests.Catalog_ExactlyTenNewCoinSkins_FivePerJob_ExistingTwoPaidKept (t=0.4 ts=1)
+[TestProgress] 07:58:17.939 END Passed 0.0s CCT.Tests.CoinSkinTests.Catalog_ExactlyTenNewCoinSkins_FivePerJob_ExistingTwoPaidKept (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1177" name="CoinSkin_Buy1000_DuplicateClick_Reload_EquipPerJob" fullname="CCT.Tests.CoinSkinTests.CoinSkin_Buy1000_DuplicateClick_Reload_EquipPerJob" methodname="CoinSkin_Buy1000_DuplicateClick_Reload_EquipPerJob" classname="CCT.Tests.CoinSkinTests" runstate="Runnable" seed="597214989" result="Passed" start-time="2026-10-19 22:58:17Z" end-time="2026-10-19 22:58:18Z" duration="0.061787" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:17.941 START CCT.Tests.CoinSkinTests.CoinSkin_Buy1000_DuplicateClick_Reload_EquipPerJob (t=0.4 ts=1)
+[TestProgress] 07:58:18.003 END Passed 0.1s CCT.Tests.CoinSkinTests.CoinSkin_Buy1000_DuplicateClick_Reload_EquipPerJob (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1174" name="CoinSkin_CashBuyVerifyRestorePaths_AllRejected" fullname="CCT.Tests.CoinSkinTests.CoinSkin_CashBuyVerifyRestorePaths_AllRejected" methodname="CoinSkin_CashBuyVerifyRestorePaths_AllRejected" classname="CCT.Tests.CoinSkinTests" runstate="Runnable" seed="1404069184" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.038712" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.004 START CCT.Tests.CoinSkinTests.CoinSkin_CashBuyVerifyRestorePaths_AllRejected (t=0.4 ts=1)
+[Commerce] 알 수 없는 구매(상품 skin_bartender_rail, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_rail, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_tropic, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_tropic, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_noir, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_noir, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_alchemist, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_alchemist, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_stage, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_stage, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_tea_mountain, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_tea_mountain, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_tea_ceremony, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_tea_ceremony, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_tea_apiary, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_tea_apiary, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_tea_greenhouse, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_tea_greenhouse, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_tea_astronomer, 토큰 있음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_tea_astronomer, 토큰 있음) — 지급·승인 안 함
+[TestProgress] 07:58:18.043 END Passed 0.0s CCT.Tests.CoinSkinTests.CoinSkin_CashBuyVerifyRestorePaths_AllRejected (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1176" name="CoinSkin_NotSoldUntilArtComplete" fullname="CCT.Tests.CoinSkinTests.CoinSkin_NotSoldUntilArtComplete" methodname="CoinSkin_NotSoldUntilArtComplete" classname="CCT.Tests.CoinSkinTests" runstate="Runnable" seed="1500363892" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.016153" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.044 START CCT.Tests.CoinSkinTests.CoinSkin_NotSoldUntilArtComplete (t=0.4 ts=1)
+[TestProgress] 07:58:18.059 END Passed 0.0s CCT.Tests.CoinSkinTests.CoinSkin_NotSoldUntilArtComplete (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1179" name="CoinSkinArt_EitherAbsentOrCompleteAndAligned" fullname="CCT.Tests.CoinSkinTests.CoinSkinArt_EitherAbsentOrCompleteAndAligned" methodname="CoinSkinArt_EitherAbsentOrCompleteAndAligned" classname="CCT.Tests.CoinSkinTests" runstate="Runnable" seed="1406581360" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.418117" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.060 START CCT.Tests.CoinSkinTests.CoinSkinArt_EitherAbsentOrCompleteAndAligned (t=0.4 ts=1)
+79 coin skins with art: 0/10
+[TestProgress] 07:58:18.479 END Passed 0.4s CCT.Tests.CoinSkinTests.CoinSkinArt_EitherAbsentOrCompleteAndAligned (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1175" name="ForgedCashRecordForCoinSkin_DroppedOnNormalize_PaidRecordKept" fullname="CCT.Tests.CoinSkinTests.ForgedCashRecordForCoinSkin_DroppedOnNormalize_PaidRecordKept" methodname="ForgedCashRecordForCoinSkin_DroppedOnNormalize_PaidRecordKept" classname="CCT.Tests.CoinSkinTests" runstate="Runnable" seed="1432772200" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000906" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.480 START CCT.Tests.CoinSkinTests.ForgedCashRecordForCoinSkin_DroppedOnNormalize_PaidRecordKept (t=0.4 ts=1)
+[TestProgress] 07:58:18.481 END Passed 0.0s CCT.Tests.CoinSkinTests.ForgedCashRecordForCoinSkin_DroppedOnNormalize_PaidRecordKept (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1178" name="RequiredFrames_MatchRuntimeContract_ExistingPaidSkinsComplete" fullname="CCT.Tests.CoinSkinTests.RequiredFrames_MatchRuntimeContract_ExistingPaidSkinsComplete" methodname="RequiredFrames_MatchRuntimeContract_ExistingPaidSkinsComplete" classname="CCT.Tests.CoinSkinTests" runstate="Runnable" seed="1521274343" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.173422" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.481 START CCT.Tests.CoinSkinTests.RequiredFrames_MatchRuntimeContract_ExistingPaidSkinsComplete (t=0.4 ts=1)
+[TestProgress] 07:58:18.654 END Passed 0.2s CCT.Tests.CoinSkinTests.RequiredFrames_MatchRuntimeContract_ExistingPaidSkinsComplete (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1173" name="Store_RegistersOnlyPaidProducts_NotCoinSkins" fullname="CCT.Tests.CoinSkinTests.Store_RegistersOnlyPaidProducts_NotCoinSkins" methodname="Store_RegistersOnlyPaidProducts_NotCoinSkins" classname="CCT.Tests.CoinSkinTests" runstate="Runnable" seed="1650957553" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.001471" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.655 START CCT.Tests.CoinSkinTests.Store_RegistersOnlyPaidProducts_NotCoinSkins (t=0.4 ts=1)
+[TestProgress] 07:58:18.657 END Passed 0.0s CCT.Tests.CoinSkinTests.Store_RegistersOnlyPaidProducts_NotCoinSkins (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1180" name="SwordOverlay_EitherAbsentOrExactPlayedFramesAligned" fullname="CCT.Tests.CoinSkinTests.SwordOverlay_EitherAbsentOrExactPlayedFramesAligned" methodname="SwordOverlay_EitherAbsentOrExactPlayedFramesAligned" classname="CCT.Tests.CoinSkinTests" runstate="Runnable" seed="106641284" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.011805" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.658 START CCT.Tests.CoinSkinTests.SwordOverlay_EitherAbsentOrExactPlayedFramesAligned (t=0.4 ts=1)
+[TestProgress] 07:58:18.670 END Passed 0.0s CCT.Tests.CoinSkinTests.SwordOverlay_EitherAbsentOrExactPlayedFramesAligned (t=0.4 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1181" name="CommerceTests" fullname="CCT.Tests.CommerceTests" classname="CCT.Tests.CommerceTests" runstate="Runnable" testcasecount="40" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.259203" total="40" passed="40" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1204" name="AlreadyPersistedToken_RedeliveredPending_ReverifiesThenConfirmsAgain" fullname="CCT.Tests.CommerceTests.AlreadyPersistedToken_RedeliveredPending_ReverifiesThenConfirmsAgain" methodname="AlreadyPersistedToken_RedeliveredPending_ReverifiesThenConfirmsAgain" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1606487022" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.013568" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.677 START CCT.Tests.CommerceTests.AlreadyPersistedToken_RedeliveredPending_ReverifiesThenConfirmsAgain (t=0.7 ts=1)
+[TestProgress] 07:58:18.690 END Passed 0.0s CCT.Tests.CommerceTests.AlreadyPersistedToken_RedeliveredPending_ReverifiesThenConfirmsAgain (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1182" name="Config_EnabledWithHttps_EnablesPurchases" fullname="CCT.Tests.CommerceTests.Config_EnabledWithHttps_EnablesPurchases" methodname="Config_EnabledWithHttps_EnablesPurchases" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1725384123" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000557" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.691 START CCT.Tests.CommerceTests.Config_EnabledWithHttps_EnablesPurchases (t=0.7 ts=1)
+[TestProgress] 07:58:18.691 END Passed 0.0s CCT.Tests.CommerceTests.Config_EnabledWithHttps_EnablesPurchases (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1191" name="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases" fullname="CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases" classname="CCT.Tests.CommerceTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.014643" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1183" name="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{\&quot;enabled\&quot;:false,\&quot;verifierEndpoint\&quot;:\&quot;https://a.example.com\&quot;}&quot;)" fullname="CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{\&quot;enabled\&quot;:false,\&quot;verifierEndpoint\&quot;:\&quot;https://a.example.com\&quot;}&quot;)" methodname="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1668553532" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 07:58:18.694 START CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{\"enabled\":false,\"verifierEndpoint\":\"https://a.example.com\"}") (t=0.7 ts=1)
+[TestProgress] 07:58:18.694 END Passed 0.0s CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{\"enabled\":false,\"verifierEndpoint\":\"https://a.example.com\"}") (t=0.7 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1184" name="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{\&quot;enabled\&quot;:true,\&quot;verifierEndpoint\&quot;:\&quot;\&quot;}&quot;)" fullname="CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{\&quot;enabled\&quot;:true,\&quot;verifierEndpoint\&quot;:\&quot;\&quot;}&quot;)" methodname="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="588427588" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000067" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 07:58:18.694 START CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{\"enabled\":true,\"verifierEndpoint\":\"\"}") (t=0.7 ts=1)
+[TestProgress] 07:58:18.695 END Passed 0.0s CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{\"enabled\":true,\"verifierEndpoint\":\"\"}") (t=0.7 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1185" name="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{\&quot;enabled\&quot;:true,\&quot;verifierEndpoint\&quot;:\&quot;http://a.example.com/verify\&quot;}&quot;)" fullname="CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{\&quot;enabled\&quot;:true,\&quot;verifierEndpoint\&quot;:\&quot;http://a.example.com/verify\&quot;}&quot;)" methodname="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="645558043" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000077" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 07:58:18.695 START CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{\"enabled\":true,\"verifierEndpoint\":\"http://a.example.com/verify\"}") (t=0.7 ts=1)
+[TestProgress] 07:58:18.695 END Passed 0.0s CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{\"enabled\":true,\"verifierEndpoint\":\"http://a.example.com/verify\"}") (t=0.7 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1186" name="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{\&quot;enabled\&quot;:true,\&quot;verifierEndpoint\&quot;:\&quot;not a url\&quot;}&quot;)" fullname="CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{\&quot;enabled\&quot;:true,\&quot;verifierEndpoint\&quot;:\&quot;not a url\&quot;}&quot;)" methodname="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1666650307" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000091" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 07:58:18.697 START CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{\"enabled\":true,\"verifierEndpoint\":\"not a url\"}") (t=0.7 ts=1)
+[TestProgress] 07:58:18.697 END Passed 0.0s CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{\"enabled\":true,\"verifierEndpoint\":\"not a url\"}") (t=0.7 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1187" name="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{\&quot;enabled\&quot;:true}&quot;)" fullname="CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{\&quot;enabled\&quot;:true}&quot;)" methodname="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1073840050" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 07:58:18.697 START CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{\"enabled\":true}") (t=0.7 ts=1)
+[TestProgress] 07:58:18.698 END Passed 0.0s CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{\"enabled\":true}") (t=0.7 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1188" name="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{broken&quot;)" fullname="CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;{broken&quot;)" methodname="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="2092812698" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.006574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 07:58:18.698 START CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{broken") (t=0.7 ts=1)
+[Commerce] commerce_config 파싱 실패 — 결제 비활성: ArgumentException
+[TestProgress] 07:58:18.704 END Passed 0.0s CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("{broken") (t=0.7 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1189" name="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;&quot;)" fullname="CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(&quot;&quot;)" methodname="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="274786878" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 07:58:18.706 START CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("") (t=0.7 ts=1)
+[TestProgress] 07:58:18.706 END Passed 0.0s CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases("") (t=0.7 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1190" name="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(null)" fullname="CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(null)" methodname="Config_MissingOrNonHttpsOrDisabled_DisablesPurchases" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="230401864" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000085" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 07:58:18.707 START CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(null) (t=0.7 ts=1)
+[TestProgress] 07:58:18.707 END Passed 0.0s CCT.Tests.CommerceTests.Config_MissingOrNonHttpsOrDisabled_DisablesPurchases(null) (t=0.7 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1218" name="DefaultPath_FollowsSaveDirectory" fullname="CCT.Tests.CommerceTests.DefaultPath_FollowsSaveDirectory" methodname="DefaultPath_FollowsSaveDirectory" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="250229426" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000654" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.707 START CCT.Tests.CommerceTests.DefaultPath_FollowsSaveDirectory (t=0.7 ts=1)
+[TestProgress] 07:58:18.708 END Passed 0.0s CCT.Tests.CommerceTests.DefaultPath_FollowsSaveDirectory (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1211" name="Deferred_ShowsWaiting_GrantsOnlyWhenPurchasedArrives" fullname="CCT.Tests.CommerceTests.Deferred_ShowsWaiting_GrantsOnlyWhenPurchasedArrives" methodname="Deferred_ShowsWaiting_GrantsOnlyWhenPurchasedArrives" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="2006726687" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000625" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.709 START CCT.Tests.CommerceTests.Deferred_ShowsWaiting_GrantsOnlyWhenPurchasedArrives (t=0.7 ts=1)
+[TestProgress] 07:58:18.709 END Passed 0.0s CCT.Tests.CommerceTests.Deferred_ShowsWaiting_GrantsOnlyWhenPurchasedArrives (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1193" name="DisabledConfig_DoesNotConnectStore_BuyBlocked_PendingNotConfirmed" fullname="CCT.Tests.CommerceTests.DisabledConfig_DoesNotConnectStore_BuyBlocked_PendingNotConfirmed" methodname="DisabledConfig_DoesNotConnectStore_BuyBlocked_PendingNotConfirmed" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="483169019" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000565" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.710 START CCT.Tests.CommerceTests.DisabledConfig_DoesNotConnectStore_BuyBlocked_PendingNotConfirmed (t=0.7 ts=1)
+[Commerce] 결제 비활성 — 보류 구매 skin_bartender_midnight 처리 보류
+[TestProgress] 07:58:18.711 END Passed 0.0s CCT.Tests.CommerceTests.DisabledConfig_DoesNotConnectStore_BuyBlocked_PendingNotConfirmed (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1215" name="Equip_RequiresOwnership_AndPersists" fullname="CCT.Tests.CommerceTests.Equip_RequiresOwnership_AndPersists" methodname="Equip_RequiresOwnership_AndPersists" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1450579800" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000333" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.711 START CCT.Tests.CommerceTests.Equip_RequiresOwnership_AndPersists (t=0.7 ts=1)
+[TestProgress] 07:58:18.711 END Passed 0.0s CCT.Tests.CommerceTests.Equip_RequiresOwnership_AndPersists (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1213" name="FailureMessages_CancelledAlreadyOwnedUnavailableOffline_NoGrant" fullname="CCT.Tests.CommerceTests.FailureMessages_CancelledAlreadyOwnedUnavailableOffline_NoGrant" methodname="FailureMessages_CancelledAlreadyOwnedUnavailableOffline_NoGrant" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1968006497" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.001340" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.712 START CCT.Tests.CommerceTests.FailureMessages_CancelledAlreadyOwnedUnavailableOffline_NoGrant (t=0.7 ts=1)
+[Commerce] 구매 실패 skin_bartender_midnight: Cancelled
+[Commerce] 구매 실패 skin_bartender_midnight: ProductUnavailable
+[Commerce] 구매 실패 skin_bartender_midnight: AlreadyOwned
+[TestProgress] 07:58:18.713 END Passed 0.0s CCT.Tests.CommerceTests.FailureMessages_CancelledAlreadyOwnedUnavailableOffline_NoGrant (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1217" name="FilePersister_AtomicRoundTrip_KeepsInstallationId" fullname="CCT.Tests.CommerceTests.FilePersister_AtomicRoundTrip_KeepsInstallationId" methodname="FilePersister_AtomicRoundTrip_KeepsInstallationId" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1255105337" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.027406" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.713 START CCT.Tests.CommerceTests.FilePersister_AtomicRoundTrip_KeepsInstallationId (t=0.7 ts=1)
+[TestProgress] 07:58:18.741 END Passed 0.0s CCT.Tests.CommerceTests.FilePersister_AtomicRoundTrip_KeepsInstallationId (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1198" name="FromHttp_ServerAndNetworkErrors_AreRetryable" fullname="CCT.Tests.CommerceTests.FromHttp_ServerAndNetworkErrors_AreRetryable" methodname="FromHttp_ServerAndNetworkErrors_AreRetryable" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="289055014" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000448" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.742 START CCT.Tests.CommerceTests.FromHttp_ServerAndNetworkErrors_AreRetryable (t=0.7 ts=1)
+[TestProgress] 07:58:18.742 END Passed 0.0s CCT.Tests.CommerceTests.FromHttp_ServerAndNetworkErrors_AreRetryable (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1207" name="MissingPurchaseToken_NoVerify_NoGrant_NoConfirm" fullname="CCT.Tests.CommerceTests.MissingPurchaseToken_NoVerify_NoGrant_NoConfirm" classname="CCT.Tests.CommerceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.003289" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1205" name="MissingPurchaseToken_NoVerify_NoGrant_NoConfirm(null)" fullname="CCT.Tests.CommerceTests.MissingPurchaseToken_NoVerify_NoGrant_NoConfirm(null)" methodname="MissingPurchaseToken_NoVerify_NoGrant_NoConfirm" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1603202358" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000832" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 07:58:18.743 START CCT.Tests.CommerceTests.MissingPurchaseToken_NoVerify_NoGrant_NoConfirm(null) (t=0.7 ts=1)
+[Commerce] 알 수 없는 구매(상품 skin_bartender_midnight, 토큰 없음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_midnight, 토큰 없음) — 지급·승인 안 함
+[TestProgress] 07:58:18.744 END Passed 0.0s CCT.Tests.CommerceTests.MissingPurchaseToken_NoVerify_NoGrant_NoConfirm(null) (t=0.7 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1206" name="MissingPurchaseToken_NoVerify_NoGrant_NoConfirm(&quot;&quot;)" fullname="CCT.Tests.CommerceTests.MissingPurchaseToken_NoVerify_NoGrant_NoConfirm(&quot;&quot;)" methodname="MissingPurchaseToken_NoVerify_NoGrant_NoConfirm" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1520127071" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000949" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 07:58:18.745 START CCT.Tests.CommerceTests.MissingPurchaseToken_NoVerify_NoGrant_NoConfirm("") (t=0.7 ts=1)
+[Commerce] 알 수 없는 구매(상품 skin_bartender_midnight, 토큰 없음) — 지급·승인 안 함
+[Commerce] 알 수 없는 구매(상품 skin_bartender_midnight, 토큰 없음) — 지급·승인 안 함
+[TestProgress] 07:58:18.746 END Passed 0.0s CCT.Tests.CommerceTests.MissingPurchaseToken_NoVerify_NoGrant_NoConfirm("") (t=0.7 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1203" name="NetworkError_NoGrant_BackoffGrows_RetryNowSucceeds" fullname="CCT.Tests.CommerceTests.NetworkError_NoGrant_BackoffGrows_RetryNowSucceeds" methodname="NetworkError_NoGrant_BackoffGrows_RetryNowSucceeds" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="357107204" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.001535" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.746 START CCT.Tests.CommerceTests.NetworkError_NoGrant_BackoffGrows_RetryNowSucceeds (t=0.7 ts=1)
+[Commerce] 검증 오류 skin_bartender_midnight: fake network — 재시도 예정
+[Commerce] 검증 오류 skin_bartender_midnight: fake network — 재시도 예정
+[TestProgress] 07:58:18.748 END Passed 0.0s CCT.Tests.CommerceTests.NetworkError_NoGrant_BackoffGrows_RetryNowSucceeds (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1210" name="NewSession_RevalidatesOwnedConfirmedOrderOnce_RestoreAgain" fullname="CCT.Tests.CommerceTests.NewSession_RevalidatesOwnedConfirmedOrderOnce_RestoreAgain" methodname="NewSession_RevalidatesOwnedConfirmedOrderOnce_RestoreAgain" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1971589916" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.001146" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.748 START CCT.Tests.CommerceTests.NewSession_RevalidatesOwnedConfirmedOrderOnce_RestoreAgain (t=0.7 ts=1)
+[TestProgress] 07:58:18.750 END Passed 0.0s CCT.Tests.CommerceTests.NewSession_RevalidatesOwnedConfirmedOrderOnce_RestoreAgain (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1209" name="OwnedRestore_NetworkError_KeepsCachedOwnership" fullname="CCT.Tests.CommerceTests.OwnedRestore_NetworkError_KeepsCachedOwnership" methodname="OwnedRestore_NetworkError_KeepsCachedOwnership" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="546233053" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000827" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.750 START CCT.Tests.CommerceTests.OwnedRestore_NetworkError_KeepsCachedOwnership (t=0.7 ts=1)
+[Commerce] 보유 재확인 실패 skin_bartender_midnight: fake network — 기존 소유 유지
+[TestProgress] 07:58:18.752 END Passed 0.0s CCT.Tests.CommerceTests.OwnedRestore_NetworkError_KeepsCachedOwnership (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1208" name="OwnedRestore_ServerRejects_RevokesPersistsAndUnequips" fullname="CCT.Tests.CommerceTests.OwnedRestore_ServerRejects_RevokesPersistsAndUnequips" methodname="OwnedRestore_ServerRejects_RevokesPersistsAndUnequips" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1629175834" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.001377" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.752 START CCT.Tests.CommerceTests.OwnedRestore_ServerRejects_RevokesPersistsAndUnequips (t=0.7 ts=1)
+[Commerce] 검증 거부 skin_bartender_midnight: verified=false — 지급·승인 안 함
+[Commerce] 서버 거부로 소유 해제 skin_bartender_midnight
+[TestProgress] 07:58:18.753 END Passed 0.0s CCT.Tests.CommerceTests.OwnedRestore_ServerRejects_RevokesPersistsAndUnequips (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1197" name="ParseResponse_MalformedOrMissingField_IsErrorForRetry" fullname="CCT.Tests.CommerceTests.ParseResponse_MalformedOrMissingField_IsErrorForRetry" methodname="ParseResponse_MalformedOrMissingField_IsErrorForRetry" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="899771703" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000191" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.754 START CCT.Tests.CommerceTests.ParseResponse_MalformedOrMissingField_IsErrorForRetry (t=0.7 ts=1)
+[TestProgress] 07:58:18.754 END Passed 0.0s CCT.Tests.CommerceTests.ParseResponse_MalformedOrMissingField_IsErrorForRetry (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1196" name="ParseResponse_RejectedOrMismatch_IsRejected" fullname="CCT.Tests.CommerceTests.ParseResponse_RejectedOrMismatch_IsRejected" methodname="ParseResponse_RejectedOrMismatch_IsRejected" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="944647360" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000183" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.754 START CCT.Tests.CommerceTests.ParseResponse_RejectedOrMismatch_IsRejected (t=0.7 ts=1)
+[TestProgress] 07:58:18.755 END Passed 0.0s CCT.Tests.CommerceTests.ParseResponse_RejectedOrMismatch_IsRejected (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1195" name="ParseResponse_VerifiedAndMatching_IsVerified" fullname="CCT.Tests.CommerceTests.ParseResponse_VerifiedAndMatching_IsVerified" methodname="ParseResponse_VerifiedAndMatching_IsVerified" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1988180114" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000207" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.755 START CCT.Tests.CommerceTests.ParseResponse_VerifiedAndMatching_IsVerified (t=0.7 ts=1)
+[TestProgress] 07:58:18.755 END Passed 0.0s CCT.Tests.CommerceTests.ParseResponse_VerifiedAndMatching_IsVerified (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1202" name="PersistFailure_NoConfirm_StaysPending_RetryLaterSucceeds" fullname="CCT.Tests.CommerceTests.PersistFailure_NoConfirm_StaysPending_RetryLaterSucceeds" methodname="PersistFailure_NoConfirm_StaysPending_RetryLaterSucceeds" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="709664191" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.001060" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.756 START CCT.Tests.CommerceTests.PersistFailure_NoConfirm_StaysPending_RetryLaterSucceeds (t=0.7 ts=1)
+[Commerce] 소유 기록 저장 실패 skin_bartender_midnight — 승인하지 않고 재시도 예정
+[TestProgress] 07:58:18.757 END Passed 0.0s CCT.Tests.CommerceTests.PersistFailure_NoConfirm_StaysPending_RetryLaterSucceeds (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1214" name="Price_ComesOnlyFromStore" fullname="CCT.Tests.CommerceTests.Price_ComesOnlyFromStore" methodname="Price_ComesOnlyFromStore" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1640528845" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000282" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.758 START CCT.Tests.CommerceTests.Price_ComesOnlyFromStore (t=0.7 ts=1)
+[TestProgress] 07:58:18.758 END Passed 0.0s CCT.Tests.CommerceTests.Price_ComesOnlyFromStore (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1201" name="ProductIdMismatch_NoGrant_NoConfirm" fullname="CCT.Tests.CommerceTests.ProductIdMismatch_NoGrant_NoConfirm" methodname="ProductIdMismatch_NoGrant_NoConfirm" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="882136419" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000527" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.759 START CCT.Tests.CommerceTests.ProductIdMismatch_NoGrant_NoConfirm (t=0.7 ts=1)
+[Commerce] 검증 거부 skin_bartender_midnight: productId 불일치 — 지급·승인 안 함
+[TestProgress] 07:58:18.759 END Passed 0.0s CCT.Tests.CommerceTests.ProductIdMismatch_NoGrant_NoConfirm (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1216" name="Resolver_DefaultUnlessOwnedEquippedSameJobAndArtExists" fullname="CCT.Tests.CommerceTests.Resolver_DefaultUnlessOwnedEquippedSameJobAndArtExists" methodname="Resolver_DefaultUnlessOwnedEquippedSameJobAndArtExists" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1448013269" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000350" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.759 START CCT.Tests.CommerceTests.Resolver_DefaultUnlessOwnedEquippedSameJobAndArtExists (t=0.7 ts=1)
+[TestProgress] 07:58:18.760 END Passed 0.0s CCT.Tests.CommerceTests.Resolver_DefaultUnlessOwnedEquippedSameJobAndArtExists (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1212" name="Restore_AlreadyConfirmedOrder_VerifiesAndGrants_WithoutConfirm" fullname="CCT.Tests.CommerceTests.Restore_AlreadyConfirmedOrder_VerifiesAndGrants_WithoutConfirm" methodname="Restore_AlreadyConfirmedOrder_VerifiesAndGrants_WithoutConfirm" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1465410657" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000232" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.760 START CCT.Tests.CommerceTests.Restore_AlreadyConfirmedOrder_VerifiesAndGrants_WithoutConfirm (t=0.7 ts=1)
+[TestProgress] 07:58:18.761 END Passed 0.0s CCT.Tests.CommerceTests.Restore_AlreadyConfirmedOrder_VerifiesAndGrants_WithoutConfirm (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1219" name="RuntimeAssembly_HasNoFakeStore_AndEditorUsesUnavailableStore" fullname="CCT.Tests.CommerceTests.RuntimeAssembly_HasNoFakeStore_AndEditorUsesUnavailableStore" methodname="RuntimeAssembly_HasNoFakeStore_AndEditorUsesUnavailableStore" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1971631945" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.002205" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.761 START CCT.Tests.CommerceTests.RuntimeAssembly_HasNoFakeStore_AndEditorUsesUnavailableStore (t=0.7 ts=1)
+[TestProgress] 07:58:18.764 END Passed 0.0s CCT.Tests.CommerceTests.RuntimeAssembly_HasNoFakeStore_AndEditorUsesUnavailableStore (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1200" name="ServerRejected_NoGrant_NoConfirm_NotRetried" fullname="CCT.Tests.CommerceTests.ServerRejected_NoGrant_NoConfirm_NotRetried" methodname="ServerRejected_NoGrant_NoConfirm_NotRetried" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1408544794" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000817" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.764 START CCT.Tests.CommerceTests.ServerRejected_NoGrant_NoConfirm_NotRetried (t=0.7 ts=1)
+[Commerce] 검증 거부 skin_bartender_midnight: verified=false — 지급·승인 안 함
+[TestProgress] 07:58:18.765 END Passed 0.0s CCT.Tests.CommerceTests.ServerRejected_NoGrant_NoConfirm_NotRetried (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1192" name="ShippedConfig_IsDisabledUntilConfigured" fullname="CCT.Tests.CommerceTests.ShippedConfig_IsDisabledUntilConfigured" methodname="ShippedConfig_IsDisabledUntilConfigured" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1167544425" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.009773" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.765 START CCT.Tests.CommerceTests.ShippedConfig_IsDisabledUntilConfigured (t=0.7 ts=1)
+[TestProgress] 07:58:18.775 END Passed 0.0s CCT.Tests.CommerceTests.ShippedConfig_IsDisabledUntilConfigured (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1223" name="SkinArt_PreviewMatchesBaseIdleFrameName" fullname="CCT.Tests.CommerceTests.SkinArt_PreviewMatchesBaseIdleFrameName" methodname="SkinArt_PreviewMatchesBaseIdleFrameName" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="829338947" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000659" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.777 START CCT.Tests.CommerceTests.SkinArt_PreviewMatchesBaseIdleFrameName (t=0.7 ts=1)
+[TestProgress] 07:58:18.778 END Passed 0.0s CCT.Tests.CommerceTests.SkinArt_PreviewMatchesBaseIdleFrameName (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1221" name="SkinFolders_CoverOriginalBodyFrames" fullname="CCT.Tests.CommerceTests.SkinFolders_CoverOriginalBodyFrames" methodname="SkinFolders_CoverOriginalBodyFrames" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1111269355" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.022945" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.779 START CCT.Tests.CommerceTests.SkinFolders_CoverOriginalBodyFrames (t=0.7 ts=1)
+[TestProgress] 07:58:18.801 END Passed 0.0s CCT.Tests.CommerceTests.SkinFolders_CoverOriginalBodyFrames (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1220" name="SkinSwap_ChangesOnlySprite_NotStatsOrRadius" fullname="CCT.Tests.CommerceTests.SkinSwap_ChangesOnlySprite_NotStatsOrRadius" methodname="SkinSwap_ChangesOnlySprite_NotStatsOrRadius" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1345388486" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.121105" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.802 START CCT.Tests.CommerceTests.SkinSwap_ChangesOnlySprite_NotStatsOrRadius (t=0.7 ts=1)
+[TestProgress] 07:58:18.924 END Passed 0.1s CCT.Tests.CommerceTests.SkinSwap_ChangesOnlySprite_NotStatsOrRadius (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1222" name="Swapper_KeepsSkinSprite_AndReswapsNewOriginalFrame" fullname="CCT.Tests.CommerceTests.Swapper_KeepsSkinSprite_AndReswapsNewOriginalFrame" methodname="Swapper_KeepsSkinSprite_AndReswapsNewOriginalFrame" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1584295193" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.002222" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.925 START CCT.Tests.CommerceTests.Swapper_KeepsSkinSprite_AndReswapsNewOriginalFrame (t=0.7 ts=1)
+[TestProgress] 07:58:18.928 END Passed 0.0s CCT.Tests.CommerceTests.Swapper_KeepsSkinSprite_AndReswapsNewOriginalFrame (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1194" name="UnsupportedPlatformStore_ShowsPlatformMessage_AndBlocksPurchase" fullname="CCT.Tests.CommerceTests.UnsupportedPlatformStore_ShowsPlatformMessage_AndBlocksPurchase" methodname="UnsupportedPlatformStore_ShowsPlatformMessage_AndBlocksPurchase" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="243162372" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.000465" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.929 START CCT.Tests.CommerceTests.UnsupportedPlatformStore_ShowsPlatformMessage_AndBlocksPurchase (t=0.7 ts=1)
+[TestProgress] 07:58:18.929 END Passed 0.0s CCT.Tests.CommerceTests.UnsupportedPlatformStore_ShowsPlatformMessage_AndBlocksPurchase (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1199" name="VerifiedPurchase_PersistsBeforeConfirm" fullname="CCT.Tests.CommerceTests.VerifiedPurchase_PersistsBeforeConfirm" methodname="VerifiedPurchase_PersistsBeforeConfirm" classname="CCT.Tests.CommerceTests" runstate="Runnable" seed="1343053877" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:18Z" duration="0.001095" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.930 START CCT.Tests.CommerceTests.VerifiedPurchase_PersistsBeforeConfirm (t=0.7 ts=1)
+[TestProgress] 07:58:18.931 END Passed 0.0s CCT.Tests.CommerceTests.VerifiedPurchase_PersistsBeforeConfirm (t=0.7 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1371" name="DrinkSalesTests" fullname="CCT.Tests.DrinkSalesTests" classname="CCT.Tests.DrinkSalesTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:19Z" duration="0.486713" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1376" name="Cancel_RefreshedOnlyAtNormalRunEnd" fullname="CCT.Tests.DrinkSalesTests.Cancel_RefreshedOnlyAtNormalRunEnd" methodname="Cancel_RefreshedOnlyAtNormalRunEnd" classname="CCT.Tests.DrinkSalesTests" runstate="Runnable" seed="1004248656" result="Passed" start-time="2026-10-19 22:58:18Z" end-time="2026-10-19 22:58:19Z" duration="0.270394" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:18.933 START CCT.Tests.DrinkSalesTests.Cancel_RefreshedOnlyAtNormalRunEnd (t=0.9 ts=1)
+[TestProgress] 07:58:19.204 END Passed 0.3s CCT.Tests.DrinkSalesTests.Cancel_RefreshedOnlyAtNormalRunEnd (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1378" name="Cosmetics_CoinOnly_NoDuplicateWithCash_MapEquipPersists" fullname="CCT.Tests.DrinkSalesTests.Cosmetics_CoinOnly_NoDuplicateWithCash_MapEquipPersists" methodname="Cosmetics_CoinOnly_NoDuplicateWithCash_MapEquipPersists" classname="CCT.Tests.DrinkSalesTests" runstate="Runnable" seed="1936374495" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.032849" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.205 START CCT.Tests.DrinkSalesTests.Cosmetics_CoinOnly_NoDuplicateWithCash_MapEquipPersists (t=0.9 ts=1)
+[TestProgress] 07:58:19.238 END Passed 0.0s CCT.Tests.DrinkSalesTests.Cosmetics_CoinOnly_NoDuplicateWithCash_MapEquipPersists (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1377" name="Discard_ExplicitOnly_AllowsNextCraft" fullname="CCT.Tests.DrinkSalesTests.Discard_ExplicitOnly_AllowsNextCraft" methodname="Discard_ExplicitOnly_AllowsNextCraft" classname="CCT.Tests.DrinkSalesTests" runstate="Runnable" seed="217052713" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.061711" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.238 START CCT.Tests.DrinkSalesTests.Discard_ExplicitOnly_AllowsNextCraft (t=0.9 ts=1)
+[TestProgress] 07:58:19.300 END Passed 0.1s CCT.Tests.DrinkSalesTests.Discard_ExplicitOnly_AllowsNextCraft (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1372" name="FreshSave_ThreeOpenOrders_FirstTwoBasic_EachSatisfiableAtFullPrice" fullname="CCT.Tests.DrinkSalesTests.FreshSave_ThreeOpenOrders_FirstTwoBasic_EachSatisfiableAtFullPrice" methodname="FreshSave_ThreeOpenOrders_FirstTwoBasic_EachSatisfiableAtFullPrice" classname="CCT.Tests.DrinkSalesTests" runstate="Runnable" seed="748763565" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.015583" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.302 START CCT.Tests.DrinkSalesTests.FreshSave_ThreeOpenOrders_FirstTwoBasic_EachSatisfiableAtFullPrice (t=0.9 ts=1)
+[TestProgress] 07:58:19.317 END Passed 0.0s CCT.Tests.DrinkSalesTests.FreshSave_ThreeOpenOrders_FirstTwoBasic_EachSatisfiableAtFullPrice (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1374" name="Price_NoExtraForMoreIngredients_ZeroWhenCoreMissing_InRunCannotSell" fullname="CCT.Tests.DrinkSalesTests.Price_NoExtraForMoreIngredients_ZeroWhenCoreMissing_InRunCannotSell" methodname="Price_NoExtraForMoreIngredients_ZeroWhenCoreMissing_InRunCannotSell" classname="CCT.Tests.DrinkSalesTests" runstate="Runnable" seed="921168098" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.030452" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.318 START CCT.Tests.DrinkSalesTests.Price_NoExtraForMoreIngredients_ZeroWhenCoreMissing_InRunCannotSell (t=0.9 ts=1)
+[TestProgress] 07:58:19.349 END Passed 0.0s CCT.Tests.DrinkSalesTests.Price_NoExtraForMoreIngredients_ZeroWhenCoreMissing_InRunCannotSell (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1375" name="SaveFailure_SellChangesNothing" fullname="CCT.Tests.DrinkSalesTests.SaveFailure_SellChangesNothing" methodname="SaveFailure_SellChangesNothing" classname="CCT.Tests.DrinkSalesTests" runstate="Runnable" seed="899813556" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.019485" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.349 START CCT.Tests.DrinkSalesTests.SaveFailure_SellChangesNothing (t=0.9 ts=1)
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinksales_2ea0e0e5372b45bcb1a5d3a4f782e8e4\drinks.json: IOException: 주입된 디스크 실패
+[TestProgress] 07:58:19.369 END Passed 0.0s CCT.Tests.DrinkSalesTests.SaveFailure_SellChangesNothing (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1373" name="Sell_ConsumesPreparedOnce_CoinsSameTransaction_SlotRefreshed_NoDoubleUse" fullname="CCT.Tests.DrinkSalesTests.Sell_ConsumesPreparedOnce_CoinsSameTransaction_SlotRefreshed_NoDoubleUse" methodname="Sell_ConsumesPreparedOnce_CoinsSameTransaction_SlotRefreshed_NoDoubleUse" classname="CCT.Tests.DrinkSalesTests" runstate="Runnable" seed="155848243" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.048185" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.370 START CCT.Tests.DrinkSalesTests.Sell_ConsumesPreparedOnce_CoinsSameTransaction_SlotRefreshed_NoDoubleUse (t=0.9 ts=1)
+[TestProgress] 07:58:19.418 END Passed 0.0s CCT.Tests.DrinkSalesTests.Sell_ConsumesPreparedOnce_CoinsSameTransaction_SlotRefreshed_NoDoubleUse (t=0.9 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1866" name="WeaponSkinTests" fullname="CCT.Tests.WeaponSkinTests" classname="CCT.Tests.WeaponSkinTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.097695" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1871" name="AllWeaponSkinPngs_ShareOriginalSilhouette" fullname="CCT.Tests.WeaponSkinTests.AllWeaponSkinPngs_ShareOriginalSilhouette" methodname="AllWeaponSkinPngs_ShareOriginalSilhouette" classname="CCT.Tests.WeaponSkinTests" runstate="Runnable" seed="1415467919" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.054457" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.419 START CCT.Tests.WeaponSkinTests.AllWeaponSkinPngs_ShareOriginalSilhouette (t=0.9 ts=1)
+[TestProgress] 07:58:19.474 END Passed 0.1s CCT.Tests.WeaponSkinTests.AllWeaponSkinPngs_ShareOriginalSilhouette (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1867" name="Catalog_OneSkinPerWeapon_NotACommerceProduct" fullname="CCT.Tests.WeaponSkinTests.Catalog_OneSkinPerWeapon_NotACommerceProduct" methodname="Catalog_OneSkinPerWeapon_NotACommerceProduct" classname="CCT.Tests.WeaponSkinTests" runstate="Runnable" seed="828344995" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.001456" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.475 START CCT.Tests.WeaponSkinTests.Catalog_OneSkinPerWeapon_NotACommerceProduct (t=0.9 ts=1)
+[TestProgress] 07:58:19.477 END Passed 0.0s CCT.Tests.WeaponSkinTests.Catalog_OneSkinPerWeapon_NotACommerceProduct (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1872" name="HeldSprite_NullUnlessArtMatchesBaseGeometry" fullname="CCT.Tests.WeaponSkinTests.HeldSprite_NullUnlessArtMatchesBaseGeometry" methodname="HeldSprite_NullUnlessArtMatchesBaseGeometry" classname="CCT.Tests.WeaponSkinTests" runstate="Runnable" seed="1197487168" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.006440" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.477 START CCT.Tests.WeaponSkinTests.HeldSprite_NullUnlessArtMatchesBaseGeometry (t=0.9 ts=1)
+[TestProgress] 07:58:19.484 END Passed 0.0s CCT.Tests.WeaponSkinTests.HeldSprite_NullUnlessArtMatchesBaseGeometry (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1868" name="State_PerWeaponIndependent_UnknownOrMismatchedIdsFallBackToBase" fullname="CCT.Tests.WeaponSkinTests.State_PerWeaponIndependent_UnknownOrMismatchedIdsFallBackToBase" methodname="State_PerWeaponIndependent_UnknownOrMismatchedIdsFallBackToBase" classname="CCT.Tests.WeaponSkinTests" runstate="Runnable" seed="1088356926" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.001756" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.485 START CCT.Tests.WeaponSkinTests.State_PerWeaponIndependent_UnknownOrMismatchedIdsFallBackToBase (t=0.9 ts=1)
+[TestProgress] 07:58:19.487 END Passed 0.0s CCT.Tests.WeaponSkinTests.State_PerWeaponIndependent_UnknownOrMismatchedIdsFallBackToBase (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1870" name="Store_DoesNotTouchCommerceFile" fullname="CCT.Tests.WeaponSkinTests.Store_DoesNotTouchCommerceFile" methodname="Store_DoesNotTouchCommerceFile" classname="CCT.Tests.WeaponSkinTests" runstate="Runnable" seed="612058290" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.014369" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.487 START CCT.Tests.WeaponSkinTests.Store_DoesNotTouchCommerceFile (t=0.9 ts=1)
+[TestProgress] 07:58:19.501 END Passed 0.0s CCT.Tests.WeaponSkinTests.Store_DoesNotTouchCommerceFile (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1869" name="Store_RoundTrip_CorruptFileIsBase_MissingFileIsBase" fullname="CCT.Tests.WeaponSkinTests.Store_RoundTrip_CorruptFileIsBase_MissingFileIsBase" methodname="Store_RoundTrip_CorruptFileIsBase_MissingFileIsBase" classname="CCT.Tests.WeaponSkinTests" runstate="Runnable" seed="1474013866" result="Passed" start-time="2026-10-19 22:58:19Z" end-time="2026-10-19 22:58:19Z" duration="0.013370" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 07:58:19.502 START CCT.Tests.WeaponSkinTests.Store_RoundTrip_CorruptFileIsBase_MissingFileIsBase (t=0.9 ts=1)
+[TestProgress] 07:58:19.515 END Passed 0.0s CCT.Tests.WeaponSkinTests.Store_RoundTrip_CorruptFileIsBase_MissingFileIsBase (t=0.9 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

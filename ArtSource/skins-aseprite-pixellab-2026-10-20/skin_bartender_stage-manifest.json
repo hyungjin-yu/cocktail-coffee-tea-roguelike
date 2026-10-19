@@ -1,0 +1,1598 @@
+{
+  "skinId": "skin_bartender_stage",
+  "job": "bartender",
+  "status": "ready_for_coordinator_visual_review",
+  "requiredRuntimeFrameCount": 23,
+  "observedSourceFrameCount": 23,
+  "unusedObservedFrames": "Recorded only in source-frame-contract.json; coordinator msg_bf0f6c514b74 accepts actual runtime scope",
+  "authorship": "Direct Aseprite Lua drawing of exact79 outfit; no independent PixelLab call; authorized msg_aa49f7cc7084",
+  "clips": {
+    "idle": {
+      "fps": 3,
+      "loop": true,
+      "files": [
+        "frames/bartender_idle_right_00.png",
+        "frames/bartender_idle_right_01.png",
+        "frames/bartender_idle_right_02.png",
+        "frames/bartender_idle_right_03.png"
+      ]
+    },
+    "move": {
+      "fps": 10,
+      "loop": true,
+      "files": [
+        "frames/bartender_move_right_00.png",
+        "frames/bartender_move_right_01.png",
+        "frames/bartender_move_right_02.png",
+        "frames/bartender_move_right_03.png",
+        "frames/bartender_move_right_04.png",
+        "frames/bartender_move_right_05.png"
+      ]
+    },
+    "melee": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/bartender_melee_right_00.png",
+        "frames/bartender_melee_right_01.png",
+        "frames/bartender_melee_right_02.png",
+        "frames/bartender_melee_right_03.png"
+      ]
+    },
+    "defeat": {
+      "fps": 10,
+      "loop": false,
+      "files": [
+        "frames/bartender_defeat_right_00.png",
+        "frames/bartender_defeat_right_01.png",
+        "frames/bartender_defeat_right_02.png",
+        "frames/bartender_defeat_right_03.png"
+      ]
+    },
+    "hurt": {
+      "fps": 0,
+      "loop": false,
+      "files": [
+        "frames/bartender_hurt_right_00.png"
+      ],
+      "durationSeconds": 0.08
+    },
+    "ranged": {
+      "fps": 12,
+      "loop": false,
+      "files": [
+        "frames/bartender_ranged_right_00.png",
+        "frames/bartender_ranged_right_01.png",
+        "frames/bartender_ranged_right_02.png",
+        "frames/bartender_ranged_right_03.png"
+      ]
+    }
+  },
+  "swordSwingRuntime": null,
+  "anchorPolicy": "Exact source per-frame anchors and pivots/PPU retained; visual and hand anchors mirror together; no hitbox/stat/weapon transform change",
+  "handColorException": "White/cream gloves retain exact original alpha and anchor",
+  "comparison": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\evidence\\stage-all-frames.png",
+  "representativeComparison": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\evidence\\stage-representative-comparison.png",
+  "frames": [
+    {
+      "filename": "bartender_defeat_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_00.png",
+      "sourceSHA256": "ed1e468cfd9afc0f3dbe76abb50ed2e8a88ea9c176feac54bcf9cbb64b60ed56",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_00.png.meta",
+      "sourceMetaSHA256": "af03307685156395bc8569f6aac68ae8b5dbf469086a01d0b5fe3873fab5d8a3",
+      "sourceGUID": "fb6049e3927dc7a44a919177c0f53f13",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_defeat_right_00.png",
+      "existingSkinSHA256": "b6b07e67f23242595e5e43decbfc45e538d6f3137705dc60278a5884e4175a0c",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          145,
+          78
+        ],
+        "grip": [
+          145,
+          78
+        ],
+        "rightHand": [
+          145,
+          78
+        ],
+        "offHand": [
+          112,
+          69
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_defeat_right_00.png",
+      "outputSHA256": "916b1af9253dca1da5fcd8060eeaa9906bd1519e4a54b828f1dd65862e82ade5",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_defeat_right_00.aseprite",
+      "nativeSHA256": "41e7d2fcd7a7b464d6d3b5c52f7d6de6ecb9c9b0122836a03e4650ecd7d7c4f7",
+      "nativeTag": "bartender_defeat_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 5800,
+      "silhouetteChangedPixels": 640,
+      "bbox": [
+        48,
+        62,
+        184,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_defeat_right_01.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_01.png",
+      "sourceSHA256": "9614a6ba2d9cf3206bfdf50c51e7d796b956d76a04af5a32623d6f4dbde00377",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_01.png.meta",
+      "sourceMetaSHA256": "b006005b2255e8c7e8cb63c3cff1c4d4894c6cb296697be84022448434216d53",
+      "sourceGUID": "2d85fb23bcb2db54b93ed6f388e1045c",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_defeat_right_01.png",
+      "existingSkinSHA256": "1e8bfe999e65e44b1487a2d3df693d6e761c0e8a4ecee2294018d672a1c62edf",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          156,
+          39
+        ],
+        "grip": [
+          156,
+          39
+        ],
+        "rightHand": [
+          156,
+          39
+        ],
+        "offHand": [
+          123,
+          42
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_defeat_right_01.png",
+      "outputSHA256": "f298b51ce70431a886e0dfa05c2a88589b7e8cc3916a57b655396720c1d8bd72",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_defeat_right_01.aseprite",
+      "nativeSHA256": "0bfa43827f0063b98dc91d857adfec32797c8efd7e872117a3c704acdcf6285f",
+      "nativeTag": "bartender_defeat_right_01",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 5514,
+      "silhouetteChangedPixels": 454,
+      "bbox": [
+        51,
+        93,
+        200,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_defeat_right_02.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_02.png",
+      "sourceSHA256": "0901832fd04ef1836eeae4274feb32844e2bac8f4d008535c9dcd5ddddd670a3",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_02.png.meta",
+      "sourceMetaSHA256": "8740055614f6723f29f4870e5ac0f918439d42192afbab96be0f88a9338d5053",
+      "sourceGUID": "c13db62b909a8ba488bd25f0fe2c9340",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_defeat_right_02.png",
+      "existingSkinSHA256": "abdff15734faaf24c8f8ae32ea36d23bdd5e5ff610d22078247922dfbcf099f0",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          176,
+          41
+        ],
+        "grip": [
+          176,
+          41
+        ],
+        "rightHand": [
+          176,
+          41
+        ],
+        "offHand": [
+          121,
+          42
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_defeat_right_02.png",
+      "outputSHA256": "48ae7f12fdd1d608a1a043cce260f597654db03ea41fab548860a100729e58e1",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_defeat_right_02.aseprite",
+      "nativeSHA256": "ce996a65d6dd12eaf3a190234fb643a3f05e670da36a7754ed4e8edf6d2013a2",
+      "nativeTag": "bartender_defeat_right_02",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 4777,
+      "silhouetteChangedPixels": 651,
+      "bbox": [
+        38,
+        131,
+        218,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_defeat_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_03.png",
+      "sourceSHA256": "24ae167d4fa62215cba9fc822b1f7af8c7cc7317ddf46bdeb7c9490d4eef66e4",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_03.png.meta",
+      "sourceMetaSHA256": "32586213570c48ca229e7aba2143b925d1adb14e2f69ddfd7577ee15f49c8422",
+      "sourceGUID": "002cf9a863f3c2f44a8b10372946fc62",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_defeat_right_03.png",
+      "existingSkinSHA256": "39568985b78c5e77d0c3d978b29207c1bacdb256feb3aa755c349062f7256888",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          186,
+          49
+        ],
+        "grip": [
+          186,
+          49
+        ],
+        "rightHand": [
+          186,
+          49
+        ],
+        "offHand": [
+          169,
+          48
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_defeat_right_03.png",
+      "outputSHA256": "295e3f842d5bfa749b7bf83623e4c189d446082889916e63cbcb696e14349258",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_defeat_right_03.aseprite",
+      "nativeSHA256": "57bcc001fc750b5ea2fd55388debd941096fe6ce0361ef3cf0b34012a4fa7c36",
+      "nativeTag": "bartender_defeat_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 5457,
+      "silhouetteChangedPixels": 1146,
+      "bbox": [
+        26,
+        146,
+        237,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_hurt_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_hurt_right_00.png",
+      "sourceSHA256": "0f4034cee6f988aa4426e9a727d64a35c07278806e1df05266303529e97c8318",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_hurt_right_00.png.meta",
+      "sourceMetaSHA256": "f8dfdeb2bb06fc8a9327ad199ea9822cdf02808338c987c1261e4059849b778e",
+      "sourceGUID": "7e1cc0ecf4418be4287418e2b0c6a9d7",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_hurt_right_00.png",
+      "existingSkinSHA256": "8101e73f0495f9cd38e4b32ddbbd3e797efd634b013c4584516ad867087ed600",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          161,
+          82
+        ],
+        "grip": [
+          161,
+          82
+        ],
+        "rightHand": [
+          161,
+          82
+        ],
+        "offHand": [
+          121,
+          111
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_hurt_right_00.png",
+      "outputSHA256": "5b21abc11f1f2a23b78ed8dad3a89b7a5679e1489c41270a8f3a2661f870299c",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_hurt_right_00.aseprite",
+      "nativeSHA256": "99ae60661a7bc12269b52bbd38e4a770c6abfebf8e4fd8782edef35bfcd53024",
+      "nativeTag": "bartender_hurt_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 5903,
+      "silhouetteChangedPixels": 606,
+      "bbox": [
+        73,
+        54,
+        178,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_idle_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_00.png",
+      "sourceSHA256": "4bdf2350872c190113d769a5f85bc68678596fbcb4323d0eb118df3368ae582a",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_00.png.meta",
+      "sourceMetaSHA256": "dd60ead748c40775d6fb1006fa264c7903669d72ff3f28035d2fdf237707bde8",
+      "sourceGUID": "6f465bcad5bdb904dbe2ef2a8a567ec6",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_idle_right_00.png",
+      "existingSkinSHA256": "a4932b7f9a3cbba6243f65c9c43a65a4a7f39ade8828777cce28b3f2fa01159a",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          164,
+          87
+        ],
+        "offHand": [
+          105,
+          87
+        ],
+        "grip": [
+          164,
+          87
+        ],
+        "rightHand": [
+          164,
+          87
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_idle_right_00.png",
+      "outputSHA256": "ffae33226bbb32d343545e289475c8023dcf90b953763c81ae8620491c847311",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_idle_right_00.aseprite",
+      "nativeSHA256": "b4d831b1ed443d408de6d75aa8e413347b0eb37f1455cb3f6cf900b11a2e24c5",
+      "nativeTag": "bartender_idle_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6002,
+      "silhouetteChangedPixels": 624,
+      "bbox": [
+        80,
+        37,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_idle_right_01.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_01.png",
+      "sourceSHA256": "6525a94cd50dfefe58088e77ce6151c6fc7d77510886d6e671abe0c91765968d",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_01.png.meta",
+      "sourceMetaSHA256": "fc80d521c94155afad3a0cb2bfbe153cfcc78ac4a2cfc3d115adf6598d00f55d",
+      "sourceGUID": "39d9a7cbd0f4d924090d773277f115d2",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_idle_right_01.png",
+      "existingSkinSHA256": "5408b2eca697d76082ed3ecaf9d5719b302a1516808070c20dc08c1c12cafb3a",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          164,
+          87
+        ],
+        "offHand": [
+          105,
+          87
+        ],
+        "grip": [
+          164,
+          87
+        ],
+        "rightHand": [
+          164,
+          87
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_idle_right_01.png",
+      "outputSHA256": "6fdb10ba664b57a4bf6beecd79fad334ef720522db1288a143a2536a5abd2fd8",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_idle_right_01.aseprite",
+      "nativeSHA256": "4bb21d239bade355a63ded521f0a43633e8a0f756ec13fcdb80d691b52d041cb",
+      "nativeTag": "bartender_idle_right_01",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6073,
+      "silhouetteChangedPixels": 624,
+      "bbox": [
+        80,
+        35,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_idle_right_02.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_02.png",
+      "sourceSHA256": "7d24b0b9d538ecf4e54b5fd684d3d94012afc20837eeb4d9017d48b05f905dcc",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_02.png.meta",
+      "sourceMetaSHA256": "9b840615ae446d504a8849fd2e9e50b92ffebbbbec895de90d299785a84db7b5",
+      "sourceGUID": "2a50a5ae6e70eb244bcaaf5310f85247",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_idle_right_02.png",
+      "existingSkinSHA256": "003ee2c017dcfb4c12ab391b0a0b050851a9018b0a4dbd30653270162f57d15b",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          164,
+          89
+        ],
+        "offHand": [
+          105,
+          89
+        ],
+        "grip": [
+          164,
+          89
+        ],
+        "rightHand": [
+          164,
+          89
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_idle_right_02.png",
+      "outputSHA256": "07cb5f35ca65fb30d4b1f29313541bbce2bb4f8a83c9519eb7c422bb4e61220c",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_idle_right_02.aseprite",
+      "nativeSHA256": "12efd9ff62057230a2d777010c96026825581fb47263cd2ae77315d59a42f7dd",
+      "nativeTag": "bartender_idle_right_02",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6016,
+      "silhouetteChangedPixels": 626,
+      "bbox": [
+        80,
+        35,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_idle_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_03.png",
+      "sourceSHA256": "ca28bac9800022d2c3f6e16e8ac90a0060cc649374366befb8ec06a09f146de3",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_idle_right_03.png.meta",
+      "sourceMetaSHA256": "079a98eccaa9dbb8c965e5cef50d11884482c907be13ba5cb74642536e79d0ba",
+      "sourceGUID": "09556b18747a35149a91e0866a55dffd",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_idle_right_03.png",
+      "existingSkinSHA256": "ef175475e24b2deffbc0f3ea377b079eb6321222f391a939f99e0df01037100b",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          164,
+          89
+        ],
+        "offHand": [
+          105,
+          89
+        ],
+        "grip": [
+          164,
+          89
+        ],
+        "rightHand": [
+          164,
+          89
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_idle_right_03.png",
+      "outputSHA256": "5e846ff45cac91b2135af1040230964fde9c104addbd164425d2130fb0568ec7",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_idle_right_03.aseprite",
+      "nativeSHA256": "c13be02a27d088b2c947d4bd984b5a8135601d5ba5a344fa472f92afe1121702",
+      "nativeTag": "bartender_idle_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 5937,
+      "silhouetteChangedPixels": 626,
+      "bbox": [
+        80,
+        37,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_melee_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_00.png",
+      "sourceSHA256": "ab407a1d17436c7849800c1a0129513693540eace21091b20334667582ad3ab9",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_00.png.meta",
+      "sourceMetaSHA256": "ea8f23354814e5de9df71cdc45f756e2d918fe2721f464a918be1d1c8da2dafd",
+      "sourceGUID": "7330c26c8092c1d44b06459ed799a096",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_melee_right_00.png",
+      "existingSkinSHA256": "a859415cb202640bbc54df234cb28987aab471a54c48442e8b608af9a96e25b3",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          171,
+          133
+        ],
+        "grip": [
+          171,
+          133
+        ],
+        "rightHand": [
+          171,
+          133
+        ],
+        "offHand": [
+          111,
+          131
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_melee_right_00.png",
+      "outputSHA256": "a43deb6ebb17a1b75e52ec7cd30da02ee453ba0713e880952b18cc6691550949",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_melee_right_00.aseprite",
+      "nativeSHA256": "b6b5da19a32370113e2396507abf71ef815c917c72b3cca541792e778b33ae52",
+      "nativeTag": "bartender_melee_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6350,
+      "silhouetteChangedPixels": 739,
+      "bbox": [
+        72,
+        33,
+        182,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_melee_right_01.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_01.png",
+      "sourceSHA256": "a4f2f3cc0eb24cc158ed2d08a51c4c642e4342509304c41dc3027617eb283473",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_01.png.meta",
+      "sourceMetaSHA256": "5b0e4ee4609277b69a3f3f1f901dc7b0afd36bca04645b2f6c99b93889ffbb6d",
+      "sourceGUID": "ed12b930d37c80f4a96c6076b93c2821",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_melee_right_01.png",
+      "existingSkinSHA256": "165698e2003e1dfa88721bd48b9b36ac126379b60c4ba6be9869d6c9b50b57d7",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          161,
+          148
+        ],
+        "grip": [
+          161,
+          148
+        ],
+        "rightHand": [
+          161,
+          148
+        ],
+        "offHand": [
+          79,
+          185
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_melee_right_01.png",
+      "outputSHA256": "370a331bb2939f50cb49eb3f2486aff26252c51178e9691038917396a006c01d",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_melee_right_01.aseprite",
+      "nativeSHA256": "1014d29a216ef604c07c4c0cc97b18f9d0a35852b9938f4d25f9d3c6976a32f4",
+      "nativeTag": "bartender_melee_right_01",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6928,
+      "silhouetteChangedPixels": 1052,
+      "bbox": [
+        62,
+        32,
+        192,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_melee_right_02.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_02.png",
+      "sourceSHA256": "054b5fc324aa93191dbea418f5658500b44e3f4083d7c16920a178765764fbbe",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_02.png.meta",
+      "sourceMetaSHA256": "4fc4ab240e7d14bd39f01a4b408ae5af0e794842a0bf276174570f05674d5d0f",
+      "sourceGUID": "bb83154eb4ec3594ea65785ea55de143",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_melee_right_02.png",
+      "existingSkinSHA256": "aec3e23d57704189023d14739e662721536a68e0ee6cc2b085bc3074ddb9078f",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          200,
+          140
+        ],
+        "grip": [
+          200,
+          140
+        ],
+        "rightHand": [
+          200,
+          140
+        ],
+        "offHand": [
+          103,
+          123
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_melee_right_02.png",
+      "outputSHA256": "2c311ec78f60bbe92a686df732beea972026272b97e2cab6920953848a2a96dd",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_melee_right_02.aseprite",
+      "nativeSHA256": "48d46ff631ad1f5b5b943a20ce3e9fcd01695bf3877ff7633e67225a50b46d89",
+      "nativeTag": "bartender_melee_right_02",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6664,
+      "silhouetteChangedPixels": 998,
+      "bbox": [
+        28,
+        42,
+        226,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_melee_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_03.png",
+      "sourceSHA256": "c63a485f69f088704c282fbe16ef6eb65830e2602befc0dc12a58c33d9ed4bef",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_melee_right_03.png.meta",
+      "sourceMetaSHA256": "a32aff7b691d08b8a9f539135cef9aab07bca95835703de8f3585bf553aad68c",
+      "sourceGUID": "25b13c4e106f8db4faafa431ef7e0a68",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_melee_right_03.png",
+      "existingSkinSHA256": "e580a18c8b1dfd764e58179f3910dc7882e4a3cfbf13937c369f7c4c296964ea",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          169,
+          134
+        ],
+        "grip": [
+          169,
+          134
+        ],
+        "rightHand": [
+          169,
+          134
+        ],
+        "offHand": [
+          108,
+          129
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_melee_right_03.png",
+      "outputSHA256": "65dea40e687ee3903f0987bcb8cea9040b4418e38913cc2825b55f59344ee952",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_melee_right_03.aseprite",
+      "nativeSHA256": "9c9ce145622a7a6b2ec3e5dee6673e6dfcafdda228d1ad301e21d775cc3ed64a",
+      "nativeTag": "bartender_melee_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6437,
+      "silhouetteChangedPixels": 617,
+      "bbox": [
+        74,
+        33,
+        180,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_move_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_00.png",
+      "sourceSHA256": "d0a02353e4cac05e47ef20feec3695986f7857ee318378eb1178381a239478dd",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_00.png.meta",
+      "sourceMetaSHA256": "3d56fb8952811be1e3496cc1f6d3639089ed9595b55ea0966b76d22c66d8dcfc",
+      "sourceGUID": "8457ef58ecf06de439349266fae263b5",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_move_right_00.png",
+      "existingSkinSHA256": "2579aa97544a05e2093f7cec2d5f9149ce6d2bc5e1d993930ab708f05dbbafdf",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          160,
+          87
+        ],
+        "grip": [
+          160,
+          87
+        ],
+        "rightHand": [
+          160,
+          87
+        ],
+        "offHand": [
+          109,
+          87
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_00.png",
+      "outputSHA256": "bef6e648e3022488bf5cbb1df571c2aef799b09d97bb3421386317c69c097cff",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_00.aseprite",
+      "nativeSHA256": "2ee5e8b105a70cc885d5e93bbb8636bd96e845db35697b0513395af02407aa68",
+      "nativeTag": "bartender_move_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 5877,
+      "silhouetteChangedPixels": 701,
+      "bbox": [
+        80,
+        37,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_move_right_01.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_01.png",
+      "sourceSHA256": "40fac68528e5ff6372b085f9d5f3a27ec1987d4408d23c29d38a0389aade4e3a",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_01.png.meta",
+      "sourceMetaSHA256": "f7a0a40cfd1ee88da2af9d6a4a8f93dad89fae2aaf0c3960b214069651df96f5",
+      "sourceGUID": "0e0fb67d7f3d7ac4da3ed1a46d24e803",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_move_right_01.png",
+      "existingSkinSHA256": "71cf7b306b0f56ca39a5413e2c5b2613ad65c9a9d9ce703d639bc17c4433b4b1",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          162,
+          85
+        ],
+        "grip": [
+          162,
+          85
+        ],
+        "rightHand": [
+          162,
+          85
+        ],
+        "offHand": [
+          107,
+          85
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_01.png",
+      "outputSHA256": "b737ff94a569ed6f1aad7c8b08c3ca33a1c01b06c9629866223bc30c3b700400",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_01.aseprite",
+      "nativeSHA256": "1cf8e04b04e4eabb50fd1c9386db1a1802fd15068d2e1330860cb7a5a922afe9",
+      "nativeTag": "bartender_move_right_01",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 5933,
+      "silhouetteChangedPixels": 661,
+      "bbox": [
+        80,
+        39,
+        174,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_move_right_02.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_02.png",
+      "sourceSHA256": "624580fa4f40abf8fa8d70b772de3e5adf66270475db30aa1fbd00ffd084bd89",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_02.png.meta",
+      "sourceMetaSHA256": "68d2769d1c5c9aef76418d74ca94a6600e679682d8274258389c58065231ee97",
+      "sourceGUID": "38d384835a92b834f9a914cc72cfa405",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_move_right_02.png",
+      "existingSkinSHA256": "280580735c927f52b502be4a8099da53a5991ce1819f83447840030f96d57e6c",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          164,
+          89
+        ],
+        "grip": [
+          164,
+          89
+        ],
+        "rightHand": [
+          164,
+          89
+        ],
+        "offHand": [
+          105,
+          89
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_02.png",
+      "outputSHA256": "9eb9e5162492b8ec9684e2f1dcedb6d152579d527c4d46c3f01af46e82811763",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_02.aseprite",
+      "nativeSHA256": "c8930b3b913f7837a9d27abdbfd54a10c958b95cbfd64cc66f5aa7b9d87d58bd",
+      "nativeTag": "bartender_move_right_02",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6002,
+      "silhouetteChangedPixels": 648,
+      "bbox": [
+        80,
+        35,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_move_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_03.png",
+      "sourceSHA256": "768de3c2e9511a02d67c1ff9062985185c304236aa933ec2e5839154dc9e7a41",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_03.png.meta",
+      "sourceMetaSHA256": "9eb4981abe8c4f650f7b8ed5e60f71840b114167fa2d416636290661f56419a5",
+      "sourceGUID": "b53fd7d11887e0047a87544285d215a0",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_move_right_03.png",
+      "existingSkinSHA256": "f9867434792be4b6061363c3118da01bf0acea0ba37c90ebe5bf54791141334a",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          166,
+          87
+        ],
+        "grip": [
+          166,
+          87
+        ],
+        "rightHand": [
+          166,
+          87
+        ],
+        "offHand": [
+          101,
+          87
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_03.png",
+      "outputSHA256": "ce1518684c65e06afbf72d4fdc1a153b8baab9adf1a061e7419e0a49c6fb0902",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_03.aseprite",
+      "nativeSHA256": "589c25a7eee410b8baf569fef6e9ae9e820d2e8d6482f96d928b4d4186ee51d8",
+      "nativeTag": "bartender_move_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6106,
+      "silhouetteChangedPixels": 726,
+      "bbox": [
+        80,
+        37,
+        178,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_move_right_04.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_04.png",
+      "sourceSHA256": "855ff3755fc9fad66b6ee05907fb1f0b6df7d47b157debf615fc8ae8d9916731",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_04.png.meta",
+      "sourceMetaSHA256": "05e8b0bf41e83b872df3e1515317e81e31ab2c0ed090f95cef41cc95ffe2dd38",
+      "sourceGUID": "ea846cf1c2aa8b143951594bd277d238",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_move_right_04.png",
+      "existingSkinSHA256": "120bf7377ae764bf2921f7dbfe8d67801376faf72d7050dd2d74e327688e2a9d",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          166,
+          85
+        ],
+        "grip": [
+          166,
+          85
+        ],
+        "rightHand": [
+          166,
+          85
+        ],
+        "offHand": [
+          103,
+          85
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_04.png",
+      "outputSHA256": "fd5e8927faee72729ef2d2df432dc8e73009e9a826a8d3dbec1a190db653b0c7",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_04.aseprite",
+      "nativeSHA256": "898c7d421ea2eec69e4499f826ece737ceb67ce7ec39ae7ed49ee4113b2d986d",
+      "nativeTag": "bartender_move_right_04",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6081,
+      "silhouetteChangedPixels": 668,
+      "bbox": [
+        80,
+        39,
+        178,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_move_right_05.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_05.png",
+      "sourceSHA256": "7d214898e009c48491eba2ba79c8e68bdf3cb44d42b44e47161d050998fe6edf",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_05.png.meta",
+      "sourceMetaSHA256": "d1628e9d58c0c830aeef9cf6e45333e2e7e5958863e59fde0e00c781ba48d822",
+      "sourceGUID": "5fd87727a28f0bc42a0fa1a60fb5c144",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_move_right_05.png",
+      "existingSkinSHA256": "b2aaefbcf5aece249d20d67fc1c01285913415ff5dc3c099f937c9aa9ceca17d",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          164,
+          89
+        ],
+        "grip": [
+          164,
+          89
+        ],
+        "rightHand": [
+          164,
+          89
+        ],
+        "offHand": [
+          105,
+          89
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_05.png",
+      "outputSHA256": "d19c69235a93ff385f5d58481cb9ca78180361224eb2ce65847a137648f641b1",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_move_right_05.aseprite",
+      "nativeSHA256": "3c6865702a7912f11d521e74e9b120933f40fb502850423127e7534953817d8b",
+      "nativeTag": "bartender_move_right_05",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6002,
+      "silhouetteChangedPixels": 634,
+      "bbox": [
+        80,
+        35,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_ranged_right_00.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_00.png",
+      "sourceSHA256": "1835d7ccdb2c992c4868cde5f3e36e0200d68a7ed09cb3884a9667959de75abc",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_00.png.meta",
+      "sourceMetaSHA256": "1773e34d6fa72eba3542b88b95d66eb09764b54158c88b03c208ab62eee44f2a",
+      "sourceGUID": "1dd17f87f65abfd4a93b8de440c480bd",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_ranged_right_00.png",
+      "existingSkinSHA256": "48508d353c8ea463b1c696bd153834ce469705f8bb9f89c3ff7b912fee3c788f",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          161,
+          133
+        ],
+        "grip": [
+          161,
+          133
+        ],
+        "rightHand": [
+          161,
+          133
+        ],
+        "offHand": [
+          112,
+          132
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_ranged_right_00.png",
+      "outputSHA256": "c50ed822fe679e4744083a25f8e0299be9f3bfbf51d86998afc05f75a0557c96",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_ranged_right_00.aseprite",
+      "nativeSHA256": "108ee7bb29df8eb3b6df130016b812aa9175ad80da37c8bbedd248e6eb5e579f",
+      "nativeTag": "bartender_ranged_right_00",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6570,
+      "silhouetteChangedPixels": 628,
+      "bbox": [
+        76,
+        35,
+        176,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_ranged_right_01.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_01.png",
+      "sourceSHA256": "a42420e54fa68134d8fc2d063005e8925dc1828aa7efc25edd6c684003a9a264",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_01.png.meta",
+      "sourceMetaSHA256": "2b39c401ac7ed252226cc4cb72ba5e10759639273e5d312de4bf8bf9994379f5",
+      "sourceGUID": "18a5faeee2f5287449c1a658acf13543",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_ranged_right_01.png",
+      "existingSkinSHA256": "d6444024b7b93ebdb09272f5b6b8a833bdb66c7ac961af508e0d722408f2a0bd",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          180,
+          152
+        ],
+        "grip": [
+          180,
+          152
+        ],
+        "rightHand": [
+          180,
+          152
+        ],
+        "offHand": [
+          107,
+          141
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_ranged_right_01.png",
+      "outputSHA256": "fecb85ac6bb6069e6c56d0058d8ff6223dede6bdd5cd9d7ce74244b7044684d9",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_ranged_right_01.aseprite",
+      "nativeSHA256": "d646fc0866c96794e5655c8d2498941f40dc2f160576f9d07bd357d692d3aebc",
+      "nativeTag": "bartender_ranged_right_01",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 7084,
+      "silhouetteChangedPixels": 2100,
+      "bbox": [
+        58,
+        35,
+        198,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_ranged_right_02.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_02.png",
+      "sourceSHA256": "a70085f44208cd19b81c57abde19be354edd0df80e7bf75495cb793afe399d5f",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_02.png.meta",
+      "sourceMetaSHA256": "b5c53033e0ea9b60950e2844a468563643b4c32b994a93c0539c697b6d00f383",
+      "sourceGUID": "68b112a4e167ea141b188a09e3f59ec9",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_ranged_right_02.png",
+      "existingSkinSHA256": "e118153f88f267dd2bd89a0d650c2881b683382382fe0f81f96efaf7773f209a",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          160,
+          121
+        ],
+        "grip": [
+          160,
+          121
+        ],
+        "rightHand": [
+          160,
+          121
+        ],
+        "offHand": [
+          90,
+          141
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_ranged_right_02.png",
+      "outputSHA256": "d37d35bfab673f9d6e8858137fac487ec77cf331ea902e3068deb68f84b5c772",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_ranged_right_02.aseprite",
+      "nativeSHA256": "3c506505f004319ab1c6cc6c09c63d0476b36bdec26599f9824d1738de272b1d",
+      "nativeTag": "bartender_ranged_right_02",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6653,
+      "silhouetteChangedPixels": 890,
+      "bbox": [
+        64,
+        37,
+        190,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "filename": "bartender_ranged_right_03.png",
+      "source": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_03.png",
+      "sourceSHA256": "91004c770e3716009555e46399e0a3247d4449d3617ae3e0ffdf8ddaab6087d7",
+      "sourceMeta": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_ranged_right_03.png.meta",
+      "sourceMetaSHA256": "71482ad7fd7d7053e65105a7898eab4bf61178c9dfbd7c6e388164678242ab58",
+      "sourceGUID": "dd3ad26f5c278db44a8a389171e3f7ee",
+      "existingSkinReference": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\Assets\\_Project\\Resources\\CosmeticSkins\\skin_bartender_midnight\\bartender_ranged_right_03.png",
+      "existingSkinSHA256": "ee800b054ea1663483c530fed869c2ac8b43ab5f5e4f9158531894d0dc525d01",
+      "sizePx": [
+        256,
+        256
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.125
+      ],
+      "pixelsPerUnit": 128.0,
+      "runtimeUse": "runtime",
+      "anchors": {
+        "hand": [
+          165,
+          88
+        ],
+        "grip": [
+          165,
+          88
+        ],
+        "rightHand": [
+          165,
+          88
+        ],
+        "offHand": [
+          99,
+          89
+        ]
+      },
+      "output": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_ranged_right_03.png",
+      "outputSHA256": "904dc51f4045cffcee5e089886f0a53e04ec900214273843f973069b7a23869f",
+      "native": "C:\\Users\\user\\Documents\\Projects\\CocktailCoffeeTea\\ArtSource\\skins-aseprite-pixellab-2026-10-20\\body\\skin_bartender_stage\\bartender_ranged_right_03.aseprite",
+      "nativeSHA256": "6202429da5f2d4e6678594660f28ac24633ed17d419e01ad36b05a7e674f05f8",
+      "nativeTag": "bartender_ranged_right_03",
+      "checks": {
+        "sizeExact": true,
+        "sourceUnchanged": true,
+        "sourceMetaUnchanged": true,
+        "nativeReopenExact": true,
+        "transparentNonblank": true,
+        "noCanvasEdgePixels": true,
+        "substantivePixelChanges": true,
+        "originalFloorPlaneExact": true,
+        "handPatchAlphaExact": true
+      },
+      "changedPixels": 6488,
+      "silhouetteChangedPixels": 545,
+      "bbox": [
+        78,
+        29,
+        178,
+        224
+      ],
+      "alphaValues": [
+        0,
+        255
+      ]
+    }
+  ],
+  "failures": [],
+  "unityIntegrationVerified": false
+}

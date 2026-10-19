@@ -54,7 +54,10 @@ namespace CCT.Tests
         void Line(string s) { log.AppendLine(s); Debug.Log("[Evidence] " + s); }
 
         /// <summary>카메라(없으면 임시)와 캔버스들을 w×h RenderTexture에 렌더해 PNG 저장. 캔버스는 화면 크기 1920×1080 기준과 같은 배율.</summary>
-        IEnumerator Capture(Camera cam, IList<Canvas> canvases, int w, int h, string name)
+        IEnumerator Capture(Camera cam, IList<Canvas> canvases, int w, int h, string name) => CaptureTo(dir, Line, cam, canvases, w, h, name);
+
+        /// <summary>79 증거(Skins10EvidenceCapture)도 같은 창 없는 렌더 경로를 쓴다.</summary>
+        internal static IEnumerator CaptureTo(string dir, Action<string> Line, Camera cam, IList<Canvas> canvases, int w, int h, string name)
         {
             yield return null;
             // 배치 모드는 WaitForEndOfFrame이 없다 — 렌더 직전에 LateUpdate의 스킨 교체를 같은 순서로 한 번 더 적용한다.

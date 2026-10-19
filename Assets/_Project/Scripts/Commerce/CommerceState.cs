@@ -80,7 +80,7 @@ namespace CCT
         {
             if (owned == null) owned = new List<OwnedSkin>();
             if (equipped == null) equipped = new List<string>();
-            owned.RemoveAll(o => o == null || string.IsNullOrEmpty(o.storefront) || !SkinCatalog.IsKnown(o.productId));
+            owned.RemoveAll(o => o == null || string.IsNullOrEmpty(o.storefront) || !SkinCatalog.IsPaid(o.productId)); // 현금 소유 기록은 현금 상품만(79)
             equipped.RemoveAll(id => !SkinCatalog.IsKnown(id));
             if (string.IsNullOrEmpty(installationId)) installationId = Guid.NewGuid().ToString("N");
         }

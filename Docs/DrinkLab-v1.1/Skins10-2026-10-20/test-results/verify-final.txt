@@ -1,0 +1,12 @@
+csv bundles {'skin_bartender_rail': 23, 'skin_bartender_tropic': 23, 'skin_bartender_noir': 23, 'skin_bartender_alchemist': 23, 'skin_bartender_stage': 23, 'skin_tea_mountain': 28, 'skin_tea_ceremony': 28, 'skin_tea_apiary': 28, 'skin_tea_greenhouse': 28, 'skin_tea_astronomer': 28, 'existing_sword_overlay': 5}
+skin_bartender_alchemist 23 setdiff - idle bbox (80, 38, 176, 224) fits
+skin_bartender_noir 23 setdiff - idle bbox (80, 38, 176, 224) fits
+skin_bartender_rail 23 setdiff - idle bbox (80, 38, 176, 224) fits
+skin_bartender_stage 23 setdiff - idle bbox (80, 37, 176, 224) fits
+skin_bartender_tropic 23 setdiff - idle bbox (80, 38, 176, 224) fits
+skin_tea_apiary 28 setdiff - idle bbox (80, 30, 176, 224) fits
+skin_tea_astronomer 28 setdiff - idle bbox (80, 10, 176, 224) OUTSIDE
+skin_tea_ceremony 28 setdiff - idle bbox (80, 32, 176, 224) fits
+skin_tea_greenhouse 28 setdiff - idle bbox (80, 32, 176, 224) fits
+skin_tea_mountain 28 setdiff - idle bbox (67, 32, 176, 224) OUTSIDE
+total 255 bad 0

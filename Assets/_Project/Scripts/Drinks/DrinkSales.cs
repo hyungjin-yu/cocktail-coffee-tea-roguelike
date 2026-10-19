@@ -40,7 +40,41 @@ namespace CCT
             new CoinCosmetic { id = CafeMap, name = "공용 야간 카페", kind = "map", price = 1500, description = "전투 배경만 바뀝니다(충돌·스폰·드랍·난도 그대로)" },
         };
 
-        public static CoinCosmetic Cosmetic(string id) { foreach (var c in Catalog) if (c.id == id) return c; return null; }
+        /// <summary>79: 판매 코인 전용 신규 캐릭터 스킨 10종(SkinCatalog의 paid=false, 각 1000코인). 기존 3종 뒤에 이어 붙인다.</summary>
+        static CoinCosmetic[] WithCoinSkins(CoinCosmetic[] baseList)
+        {
+            var list = new List<CoinCosmetic>();
+            foreach (var c in baseList) if (c.kind == "skin") list.Add(c);
+            foreach (var def in SkinCatalog.All)
+                if (!def.paid)
+                    list.Add(new CoinCosmetic
+                    {
+                        id = def.productId, name = def.displayName, kind = "skin", price = SkinCatalog.CoinSkinPrice,
+                        description = (def.job == Job.Bartender ? "바텐더" : "티 소믈리에") + " 캐릭터 외형(능력치 같음)",
+                    });
+            foreach (var c in baseList) if (c.kind != "skin") list.Add(c);
+            return list.ToArray();
+        }
+
+        static CoinCosmetic[] all;
+        /// <summary>판매 상점 전체(기존 2 스킨 + 신규 코인 스킨 10 + 맵 1).</summary>
+        public static CoinCosmetic[] All => all ?? (all = WithCoinSkins(Catalog));
+
+        public static CoinCosmetic Cosmetic(string id) { foreach (var c in All) if (c.id == id) return c; return null; }
+
+        /// <summary>79: 아트 완성 판정(테스트에서 교체). 기존 2종·맵은 항상 판매, 신규 코인 스킨은 모든 실제 몸체 프레임 아트가 있을 때만.</summary>
+        public static Func<string, bool> SkinArtReady = DefaultSkinArtReady;
+
+        static bool DefaultSkinArtReady(string id)
+        {
+            var def = SkinCatalog.Find(id);
+            if (def == null || def.paid) return true;
+            try { return SkinArt.IsComplete(def); }
+            catch (Exception) { return false; }
+        }
+
+        /// <summary>지금 판매 가능한 외형인지(아트 없는 스킨 판매 금지).</summary>
+        public static bool OnSale(CoinCosmetic c) => c != null && (c.kind != "skin" || SkinArtReady(c.id));
 
         /// <summary>색 계열 이름(사용자 표시·주문 판정 공용, 색 코드 노출 없음).</summary>
         public static string ColorFamily(Color c)

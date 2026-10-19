@@ -1,0 +1,13 @@
+﻿496E3FA9FFFBCEE215EAECFB2D2E23ADB520DB3556C61AB9AF2593F87AD38A63  C:\Users\user\AppData\LocalLow\DefaultCompany\CocktailCoffeeTea\save.json
+A2BC5426578FE0F651310E78B166D55713BF5297704D70C48EBDEA48DD27DD01  C:\Users\user\AppData\LocalLow\DefaultCompany\CocktailCoffeeTea\save.json.bak
+6E0BFCD8D7814D2F0634EEA72A143171F70C52D564758851604C754E3653B45B  C:\Users\user\AppData\LocalLow\DefaultCompany\CocktailCoffeeTea\settings.json
+7E0B8D020B426BF46DDCBCCB0B977D433CAFD3246AF3AB3036232BAC2A193273  C:\Users\user\AppData\LocalLow\DefaultCompany\CocktailCoffeeTea\TestResults.xml
+9C4FEA99624B42A637B7135F677B752F8FBE060A2EA1EF8D1417B9FAB5C0657B  C:\Users\user\Documents\Projects\CocktailCoffeeTea\Delivery\DrinkLab-v1.1\TestData\drinklab-v1.1\drinks.json
+43B333FA7487746999F6BE43D2B4941191AD7BB24353D65EF322ED75DC0A9C9F  C:\Users\user\Documents\Projects\CocktailCoffeeTea\Delivery\DrinkLab-v1.1\TestData\drinklab-v1.1\drinks.json.bak
+A8B066CA9B3AD095395397A5836C64335B88210CC9EA78D210C134F05855C0F0  C:\Users\user\Documents\Projects\CocktailCoffeeTea\Delivery\DrinkLab-v1.1\TestData\drinklab-v1.1\run-history.json
+75BCB83F9EAF4C502B4C825F79A173C29728168D9434EBC7458BFFE2F6D0C849  C:\Users\user\Documents\Projects\CocktailCoffeeTea\Delivery\DrinkLab-v1.1\TestData\drinklab-v1.1\save.json
+172F472D65DA8055150EC9405D3CC2F3BFC8A0DA063E65B261EE2364A53FB43A  C:\Users\user\Documents\Projects\CocktailCoffeeTea\Delivery\DrinkLab-v1.1\TestData\drinklab-v1.1\save.json.bak
+8DE2A36C8A0982425A610EC52063E8A4528661FFF3A280077AC8E1D15AEE9380  C:\Users\user\Documents\Projects\CocktailCoffeeTea\Delivery\DrinkLab-v1.1\TestData\drinklab-v1.1\settings.json
+227A495B9773FEDF023188808B0F44E66945638F40307CB8AF0ABA58DB810572  C:\Users\user\Documents\Projects\CocktailCoffeeTea\Delivery\DrinkLab-v1.1\TestData\drinklab-v1.1\settings.json.bak
+3070E580E019576B9AFCDEB4FEC18D03CEBC119F6AE84D597412905C749AD653  C:\Users\user\Documents\Projects\CocktailCoffeeTea\Builds\Playable-2026-10-20-drinklab-v1.1-supply2\CocktailCoffeeTea.exe
+08351D85D181A32FE4CF3A86C48825C8A0B0E02D3A464D16A964552D510E1B16  C:\Users\user\Documents\Projects\CocktailCoffeeTea\Builds\CocktailCoffeeTea-DrinkLab-v1.1-supply2-2026-10-20-win64.zip

@@ -404,6 +404,9 @@ namespace CCT
             return swordSwingClip;
         }
 
+        /// <summary>검 휘두르기에서 실제 재생하는 몸체 프레임(03~07). 아트가 없으면 빈 배열 — 스킨 완성도 검사용.</summary>
+        public static Sprite[] SwordSwingFrames() => SwordSwingClip()?.frames ?? new Sprite[0];
+
         /// <summary>티 소믈리에 검 전용 휘두르기 몸체 클립(검 포함 그림). 다른 몸체/무기나 아트가 없으면 false — 호출부가 기존 melee로.
         /// 판정·공속은 바꾸지 않는다(시각 전용). 재생 동안 별도 손 무기 렌더러를 숨긴다.</summary>
         public bool PlaySwordSwing()

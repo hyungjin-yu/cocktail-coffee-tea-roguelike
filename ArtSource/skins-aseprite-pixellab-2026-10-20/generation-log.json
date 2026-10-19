@@ -1,0 +1,116 @@
+{
+  "tool": "Installed PixelLab Aseprite extension GUI 0.4.130, Aseprite 1.3.18.6",
+  "calls": [
+    {
+      "skinId": "skin_bartender_rail",
+      "input": "C:/Users/user/Documents/Projects/CocktailCoffeeTea/Assets/_Project/Art/v1/bartender/frames/bartender_idle_right_00.png",
+      "inputFrame": 1,
+      "outputMethod": "New frame",
+      "modelLabel": "Pro",
+      "methodLabel": "Edit with text",
+      "removeBackground": true,
+      "prompt": "Redesign this same bartender as a brass night train conductor: angular peaked conductor cap, short burgundy double-breasted jacket with broad structured lapels, two rows of brass buttons and a small curved pocket-watch chain, tailored dark trousers and black shoes. Change the actual clothing shapes, not just colors. Keep the same face, three-head-tall proportions, exact right-facing three-quarter side pose, empty hands at exactly the same positions, same feet and canvas placement, crisp pixel art and upper-left lighting. No weapon, no drink, no text, no background.",
+      "promptEvidence": "evidence/rail-prompt.png",
+      "status": "success_reference_used_in_approved_rail_native",
+      "seed": "1927687208.0",
+      "output": "evidence/rail-pixellab-output.png",
+      "costLabel": "10-25 generations",
+      "creditsActuallyDebited": "not inspected",
+      "inputSHA256": "4bdf2350872c190113d769a5f85bc68678596fbcb4323d0eb118df3368ae582a",
+      "native": "rail-pixellab-raw.aseprite",
+      "outputSHA256": "28cb97440c551fda4b35927670cb7d9e03697b83632d97a5b01ebb678240da8b",
+      "deviations": "Raw added an unrequested sword. Production native retains the actual generated cap and authors the jacket/lapels/chain; original empty hands and feet are preserved.",
+      "nativeSHA256": "730064f0a8179bd53e9066c6cab1d8adf4560b837fbfa6910ebb3de8b8f8a124",
+      "finishedEvidence": "evidence/rail-finished.png",
+      "rawNativeReadback": "evidence/rail-raw-readback.log",
+      "rawNativeFrames": 2,
+      "outputNonzeroAlpha": 11112,
+      "inputPixelsExact": true,
+      "outputPixelsExact": true
+    }
+  ],
+  "directNativeAuthorship": [
+    {
+      "skinId": "skin_bartender_tropic",
+      "method": "Direct native Aseprite Lua drawing of the79 design",
+      "PixelLabCalls": 0,
+      "seed": null,
+      "script": "author-outfits.lua",
+      "authorization": "coordinator msg_aa49f7cc7084",
+      "status": "coordinator_approved"
+    },
+    {
+      "skinId": "skin_bartender_noir",
+      "method": "Direct native Aseprite Lua drawing of the79 design",
+      "PixelLabCalls": 0,
+      "seed": null,
+      "script": "author-outfits.lua",
+      "authorization": "coordinator msg_aa49f7cc7084",
+      "status": "coordinator_approved"
+    },
+    {
+      "skinId": "skin_bartender_alchemist",
+      "method": "Direct native Aseprite Lua drawing of the79 design",
+      "PixelLabCalls": 0,
+      "seed": null,
+      "script": "author-outfits.lua",
+      "authorization": "coordinator msg_aa49f7cc7084",
+      "status": "coordinator_approved"
+    },
+    {
+      "skinId": "skin_bartender_stage",
+      "method": "Direct native Aseprite Lua drawing of the79 design",
+      "PixelLabCalls": 0,
+      "seed": null,
+      "script": "author-outfits.lua",
+      "authorization": "coordinator msg_aa49f7cc7084",
+      "status": "coordinator_approved"
+    },
+    {
+      "skinId": "skin_tea_mountain",
+      "method": "Direct native Aseprite Lua drawing of the79 design",
+      "PixelLabCalls": 0,
+      "seed": null,
+      "script": "author-outfits.lua",
+      "authorization": "coordinator msg_aa49f7cc7084",
+      "status": "coordinator_approved"
+    },
+    {
+      "skinId": "skin_tea_ceremony",
+      "method": "Direct native Aseprite Lua drawing of the79 design",
+      "PixelLabCalls": 0,
+      "seed": null,
+      "script": "author-outfits.lua",
+      "authorization": "coordinator msg_aa49f7cc7084",
+      "status": "coordinator_approved"
+    },
+    {
+      "skinId": "skin_tea_apiary",
+      "method": "Direct native Aseprite Lua drawing of the79 design",
+      "PixelLabCalls": 0,
+      "seed": null,
+      "script": "author-outfits.lua",
+      "authorization": "coordinator msg_aa49f7cc7084",
+      "status": "coordinator_approved"
+    },
+    {
+      "skinId": "skin_tea_greenhouse",
+      "method": "Direct native Aseprite Lua drawing of the79 design",
+      "PixelLabCalls": 0,
+      "seed": null,
+      "script": "author-outfits.lua",
+      "authorization": "coordinator msg_aa49f7cc7084",
+      "status": "coordinator_approved"
+    },
+    {
+      "skinId": "skin_tea_astronomer",
+      "method": "Direct native Aseprite Lua drawing of the79 design",
+      "PixelLabCalls": 0,
+      "seed": null,
+      "script": "author-outfits.lua",
+      "authorization": "coordinator msg_aa49f7cc7084",
+      "status": "coordinator_approved"
+    }
+  ],
+  "truthfulScope": "One actual PixelLab GUI edit call supplies rail reference; nine other designs were directly drawn in native Aseprite, not generated by PixelLab."
+}

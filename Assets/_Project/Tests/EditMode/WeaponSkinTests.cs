@@ -33,7 +33,7 @@ namespace CCT.Tests
                 Assert.IsFalse(string.IsNullOrEmpty(def.displayName));
                 Assert.IsFalse(string.IsNullOrEmpty(def.difference));
                 Assert.IsFalse(SkinCatalog.IsKnown(def.id), "무기 외형은 유료 상품 목록에 없다");
-                CollectionAssert.DoesNotContain(SkinCatalog.ProductIds, def.id);
+                CollectionAssert.DoesNotContain(SkinCatalog.AllProductIds, def.id);
             }
             Assert.AreEqual(4, WeaponSkinCatalog.All.Length);
         }

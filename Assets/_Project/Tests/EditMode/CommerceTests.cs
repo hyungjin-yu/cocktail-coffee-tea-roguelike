@@ -28,12 +28,13 @@ namespace CCT.Tests
         public string StorefrontId => Storefronts.GooglePlay;
         public bool SupportsPurchasing => true;
         public string UnsupportedMessage => null;
-        public void Initialize(IReadOnlyList<string> productIds, ISkinStoreListener listener) { InitializeCalls++; Listener = listener; }
+        public readonly List<string> RegisteredIds = new List<string>();
+        public void Initialize(IReadOnlyList<string> productIds, ISkinStoreListener listener) { InitializeCalls++; Listener = listener; RegisteredIds.AddRange(productIds); }
         public void Purchase(string productId) => Purchases.Add(productId);
         public void Confirm(StorePurchase purchase) { Confirms.Add(purchase); log.Events.Add("confirm:" + purchase.ProductId); }
         public void FetchPurchases() => FetchCalls++;
 
-        public void Ready(string price = "₩1,000") => Listener.OnStoreReady(SkinCatalog.All.Select(s =>
+        public void Ready(string price = "₩1,000") => Listener.OnStoreReady(SkinCatalog.All.Where(s => s.paid).Select(s =>
             new SkinProductInfo { ProductId = s.productId, LocalizedPrice = price, AvailableToPurchase = true }).ToList());
     }
 
@@ -612,7 +613,7 @@ namespace CCT.Tests
         [Test]
         public void SkinFolders_CoverOriginalBodyFrames()
         {
-            foreach (var def in SkinCatalog.All)
+            foreach (var def in SkinCatalog.All.Where(d => d.paid)) // 79 코인 스킨 10종은 CoinSkinTests(실사용 프레임 계약)에서 따로 본다
             {
                 var map = SkinArt.Sprites(def);
                 Assert.IsTrue(map.Count > 0, $"{def.productId}: Resources/{def.ResourceFolder} 스프라이트 없음(SkinArtImport 실행 필요)");

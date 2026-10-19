@@ -1,0 +1,396 @@
+{
+  "observedUniqueSourceFrames": 65,
+  "failures": 0,
+  "frames": [
+    {
+      "filename": "bartender_defeat_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_defeat_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_defeat_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_defeat_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_hurt_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_idle_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_idle_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_idle_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_idle_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_melee_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_melee_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_melee_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_melee_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_move_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_move_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_move_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_move_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_move_right_04.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_move_right_05.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_ranged_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_ranged_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_ranged_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bartender_ranged_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_idle_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_move_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_move_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_move_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_move_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_move_right_04.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_move_right_05.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_ranged_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_ranged_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_ranged_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "bow_ranged_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_defeat_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_defeat_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_defeat_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_defeat_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_hurt_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_idle_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_idle_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_idle_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_idle_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_melee_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_melee_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_melee_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_melee_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_move_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_move_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_move_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_move_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_move_right_04.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_move_right_05.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_ranged_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_ranged_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_ranged_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_ranged_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_00.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_01.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_02.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_03.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_04.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_05.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_06.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    },
+    {
+      "filename": "tea_sommelier_sword_swing_right_07.png",
+      "sourceUnchanged": true,
+      "metaUnchanged": true,
+      "previousSkinUnchanged": true
+    }
+  ]
+}

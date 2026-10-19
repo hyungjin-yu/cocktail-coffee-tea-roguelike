@@ -47,12 +47,14 @@ namespace CCT.Tests
             foreach (var def in SkinCatalog.All)
             {
                 var buy = view.BuyButton(def.productId);
-                Assert.IsFalse(buy.interactable, "결제 미지원 플랫폼에서는 구매 불가");
+                if (def.paid) Assert.IsFalse(buy.interactable, "결제 미지원 플랫폼에서는 구매 불가");
+                else Assert.AreEqual(SkinArt.Exists(def) && DrinkLab.Coins >= 1000, buy.interactable, "코인 스킨: 아트 완성 + 코인 1000일 때만");
                 Assert.IsFalse(view.EquipButton(def.productId).interactable, "미보유 장착 불가");
                 Assert.GreaterOrEqual(((RectTransform)buy.transform).sizeDelta.y, 120f, "터치 크기");
-                Assert.AreEqual("미보유", view.StateText(def.productId));
-                StringAssert.Contains(UnavailableSkinStore.Message, view.GlobalText);
-                bool hasSkinArt = SkinArt.PreviewSprite(def) != null;
+                if (def.paid) Assert.AreEqual("미보유", view.StateText(def.productId));
+                else StringAssert.Contains(SkinArt.Exists(def) ? "판매 코인 1000" : "아트 준비 중", view.StateText(def.productId), "코인 스킨: 결제 플랫폼과 무관한 코인 상태");
+                StringAssert.Contains(def.paid ? UnavailableSkinStore.Message : "판매 코인 스킨은", view.GlobalText, "선택한 스킨 종류에 맞는 안내");
+                bool hasSkinArt = SkinArt.Exists(def) && SkinArt.PreviewSprite(def) != null;
                 Assert.AreEqual(!hasSkinArt, view.ArtNoteVisible(def.productId), "아트 없을 때만 '아트 준비 중'");
                 if (hasSkinArt) Assert.AreSame(SkinArt.PreviewSprite(def), view.PreviewSprite(def.productId), "소유 전에도 스킨 미리보기");
             }
