@@ -13,6 +13,8 @@ namespace CCT
         public string ingA = "", ingB = "";
         public int minA, minB;
         public int technique;
+        /// <summary>커피 주문의 필수 추출 도구. 다른 음료는 0.</summary>
+        public int method;
         public string colorFamily = "";
         /// <summary>"Open" / "Cancelled"(다음 런 종료 정산 때 새 주문).</summary>
         public string state = "";
@@ -29,7 +31,7 @@ namespace CCT
     /// <summary>72 §6 판매·주문·코인 외형(최초 기본값). 판매 코인은 외형 구매 전용이며 RP·스페셜티·재료와 바꾸지 않는다.</summary>
     public static class DrinkSales
     {
-        public const int Slots = 3, BasePrice = 100, TechniqueBonus = 25, ColorBonus = 25;
+        public const int Slots = 3, BasePrice = 100, TechniqueBonus = 25, ColorBonus = 25, CoffeeMethodBonus = 25;
         public const string CafeMap = "map_cafe_common";
 
         /// <summary>판매 상점(기존 준비된 외형만: 캐릭터 외형 2종, 공용 카페 맵 외형 1종). 새 스킨 제작 수량 규칙과 별개.</summary>
@@ -89,18 +91,21 @@ namespace CCT
         public static string FamilyOf(DrinkRecipe r) => ColorFamily(DrinkCalculator.Look(r).color);
 
         /// <summary>주문의 최소량(0.1 단위) = 기준 사용량 d의 50%.</summary>
-        public static int MinFor(string id) { var row = DrinkSupply.Get(id); return row != null ? row.baseUse / 2 : 0; }
+        public static int MinFor(string id) { var row = DrinkSupply.Get(id); return id == DrinkIngredients.CoffeeBean ? CoffeeBrewing.DoseMinTenths(CoffeeBrewMethod.PourOver) : row != null ? row.baseUse / 2 : 0; }
+
+        public static int MinFor(string id, CoffeeBrewMethod method) => id == DrinkIngredients.CoffeeBean ? CoffeeBrewing.DoseMinTenths(method) : MinFor(id);
 
         /// <summary>판매 가능 = 계열이 같고 지정 재료 둘 다 최소량 이상.</summary>
         public static bool Matches(DrinkOrder o, DrinkRecipe r) =>
-            o != null && o.IsOpen && r != null && (int)r.Kind == o.kind && r.AmountOf(o.ingA) >= o.minA && r.AmountOf(o.ingB) >= o.minB;
+            o != null && o.IsOpen && r != null && (int)r.Kind == o.kind && r.AmountOf(o.ingA) >= o.minA && (r.Kind == DrinkKind.Coffee ? r.coffeeMethod == (CoffeeBrewMethod)o.method : r.AmountOf(o.ingB) >= o.minB);
 
         public static bool TechniqueMatches(DrinkOrder o, DrinkRecipe r) => o != null && r != null && (int)r.Technique == o.technique;
+        public static bool CoffeeMethodMatches(DrinkOrder o, DrinkRecipe r) => o != null && r != null && r.Kind == DrinkKind.Coffee && r.coffeeMethod == (CoffeeBrewMethod)o.method;
         public static bool ColorMatches(DrinkOrder o, DrinkRecipe r) => o != null && r != null && FamilyOf(r) == o.colorFamily;
 
         /// <summary>가격(재료를 더 넣거나 버프가 커도 오르지 않는다): 100 + 기법 25 + 색 25, 최대 150. 조건 미달이면 0.</summary>
         public static int Price(DrinkOrder o, DrinkRecipe r) =>
-            !Matches(o, r) ? 0 : BasePrice + (TechniqueMatches(o, r) ? TechniqueBonus : 0) + (ColorMatches(o, r) ? ColorBonus : 0);
+            !Matches(o, r) ? 0 : BasePrice + (r.Kind == DrinkKind.Coffee ? CoffeeMethodBonus : TechniqueMatches(o, r) ? TechniqueBonus : 0) + (ColorMatches(o, r) ? ColorBonus : 0);
 
         /// <summary>
         /// 새 주문(결정적: serial). 보유/발견한 재료(seen)와 그 계열에서 쓸 수 있는 기법만. 두 재료는 서로 다르고 같은 계열에서 쓸 수 있으며,
@@ -109,18 +114,38 @@ namespace CCT
         /// </summary>
         public static DrinkOrder Generate(int serial, Func<string, bool> seen, bool basic = false)
         {
-            var kind = basic ? (serial % 2 == 0 ? DrinkKind.Cocktail : DrinkKind.Tea) : (Hash(serial, 7) % 2 == 0 ? DrinkKind.Cocktail : DrinkKind.Tea);
+            DrinkKind kind;
+            if (basic) kind = KindFromSlot(serial);
+            else kind = KindFromSlot(Hash(serial, 7));
+            bool IsSeen(string id) => seen == null || seen(id);
+            if (kind == DrinkKind.Coffee && !IsSeen(DrinkIngredients.CoffeeBean)) kind = (DrinkKind)(Hash(serial, 7) % 2 == 0 ? 1 : 2);
+
+            if (kind == DrinkKind.Coffee)
+            {
+                var method = (CoffeeBrewMethod)(Hash(serial, 17) % 3 + 1);
+                if (basic) method = (CoffeeBrewMethod)(serial % 3 + 1);
+                int dose = CoffeeBrewing.DoseMinTenths(method);
+                var coffee = new DrinkOrder
+                {
+                    id = "order" + serial, kind = (int)kind, ingA = DrinkIngredients.CoffeeBean, ingB = "",
+                    minA = dose, minB = 0, technique = (int)DrinkTechnique.Brew, method = (int)method, state = "Open",
+                };
+                coffee.colorFamily = FamilyOf(Reference(coffee));
+                return coffee;
+            }
+
             var pool = new List<string>();
             foreach (var row in DrinkSupply.Table)
             {
                 var def = DrinkIngredients.Get(row.id);
-                if (def != null && def.UsableIn(kind) && (seen == null || seen(row.id))) pool.Add(row.id);
+                if (def != null && def.UsableIn(kind) && IsSeen(row.id)) pool.Add(row.id);
             }
-            if (pool.Count < 2)
+            if (pool.Count < 2) kind = kind == DrinkKind.Tea ? DrinkKind.Cocktail : DrinkKind.Tea;
+            pool.Clear();
+            foreach (var row in DrinkSupply.Table)
             {
-                kind = kind == DrinkKind.Tea ? DrinkKind.Cocktail : DrinkKind.Tea;
-                pool.Clear();
-                foreach (var row in DrinkSupply.Table) { var def = DrinkIngredients.Get(row.id); if (def != null && def.UsableIn(kind) && (seen == null || seen(row.id))) pool.Add(row.id); }
+                var def = DrinkIngredients.Get(row.id);
+                if (def != null && def.UsableIn(kind) && IsSeen(row.id)) pool.Add(row.id);
             }
             string a, b;
             if (basic || pool.Count < 2)
@@ -141,14 +166,14 @@ namespace CCT
             o.colorFamily = FamilyOf(Reference(o));
             return o;
         }
-
         /// <summary>주문을 그대로 만족하는 최소 배합(색 계열 기준·시험용). 차에 찻잎이 없으면 홍차 1g, 칵테일에 베이스 술이 없으면 진 15mL를 더한다.</summary>
         public static DrinkRecipe Reference(DrinkOrder o)
         {
-            var r = DrinkRecipe.NewDraft((DrinkKind)o.kind);
+            var kind = (DrinkKind)o.kind;
+            var r = kind == DrinkKind.Coffee ? DrinkRecipe.NewDraft(kind, (CoffeeBrewMethod)o.method) : DrinkRecipe.NewDraft(kind);
             r.technique = o.technique;
             r.SetAmount(o.ingA, o.minA);
-            r.SetAmount(o.ingB, o.minB);
+            if (!string.IsNullOrEmpty(o.ingB)) r.SetAmount(o.ingB, o.minB);
             if (!DrinkValidator.Check(r).Ok)
             {
                 if (r.Kind == DrinkKind.Tea && r.AmountOf(DrinkIngredients.BlackTea) == 0) r.SetAmount(DrinkIngredients.BlackTea, 10);
@@ -167,11 +192,20 @@ namespace CCT
             }
         }
 
+        static DrinkKind KindFromSlot(int slot) => ((((slot - 1) % 3) + 3) % 3) switch
+        {
+            0 => DrinkKind.Cocktail,
+            1 => DrinkKind.Tea,
+            _ => DrinkKind.Coffee,
+        };
+
         public static string Describe(DrinkOrder o)
         {
             if (o == null || !o.IsOpen) return "주문 없음";
             var a = DrinkIngredients.Get(o.ingA); var b = DrinkIngredients.Get(o.ingB);
-            return $"{((DrinkKind)o.kind == DrinkKind.Tea ? "차" : "칵테일")} · {a?.name} {DrinkRules.Format(o.minA, a != null ? a.form : IngredientForm.Liquid)} 이상 + {b?.name} {DrinkRules.Format(o.minB, b != null ? b.form : IngredientForm.Liquid)} 이상";
+            return (DrinkKind)o.kind == DrinkKind.Coffee
+                ? $"커피 · {CoffeeBrewing.DisplayName((CoffeeBrewMethod)o.method)} · 원두 {DrinkRules.Format(o.minA, IngredientForm.Leaf)} 이상"
+                : $"{((DrinkKind)o.kind == DrinkKind.Tea ? "차" : "칵테일")} · {a?.name} {DrinkRules.Format(o.minA, a != null ? a.form : IngredientForm.Liquid)} 이상 + {b?.name} {DrinkRules.Format(o.minB, b != null ? b.form : IngredientForm.Liquid)} 이상";
         }
     }
 }

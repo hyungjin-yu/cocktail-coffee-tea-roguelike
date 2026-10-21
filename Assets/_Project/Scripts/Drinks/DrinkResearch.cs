@@ -34,7 +34,7 @@ namespace CCT
         public List<string> equippedTraits = new List<string>();
         public List<string> hiredStaff = new List<string>();
         public string activeSpecialty = "";
-        public int cocktailCrafts, teaCrafts;
+        public int cocktailCrafts, teaCrafts, coffeeCrafts;
         public List<string> settledRpRunIds = new List<string>();
     }
 
@@ -124,7 +124,7 @@ namespace CCT
 
         public static bool Unequip(ResearchState s, string id) => s.equippedTraits.Remove(id);
 
-        public static int CraftsOf(ResearchState s, string area) => area == "tea" ? s.teaCrafts : s.cocktailCrafts;
+        public static int CraftsOf(ResearchState s, string area) => area == "tea" ? s.teaCrafts : area == "coffee" ? s.coffeeCrafts : s.cocktailCrafts;
 
         public static bool CanHire(ResearchState s, string id, out string why)
         {
@@ -192,6 +192,7 @@ namespace CCT
             if (s.researchPoints < 0) s.researchPoints = 0;
             if (s.cocktailCrafts < 0) s.cocktailCrafts = 0;
             if (s.teaCrafts < 0) s.teaCrafts = 0;
+            if (s.coffeeCrafts < 0) s.coffeeCrafts = 0;
         }
 
         static List<string> Distinct(List<string> list)

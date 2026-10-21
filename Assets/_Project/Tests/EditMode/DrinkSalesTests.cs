@@ -35,16 +35,36 @@ namespace CCT.Tests
             Assert.AreEqual(3, orders.Count);
             Assert.AreEqual("gin", orders[0].ingA); Assert.AreEqual("lemon_juice", orders[0].ingB);
             Assert.AreEqual("black_tea", orders[1].ingA); Assert.AreEqual("honey", orders[1].ingB);
+            Assert.AreEqual(DrinkKind.Coffee, (DrinkKind)orders[2].kind);
+            Assert.AreEqual(DrinkIngredients.CoffeeBean, orders[2].ingA);
+            Assert.AreEqual("", orders[2].ingB);
             for (int i = 0; i < 300; i++)
             {
                 var o = i < 3 ? orders[i] : DrinkSales.Generate(i, null);
                 Assert.IsTrue(o.IsOpen);
                 Assert.AreNotEqual(o.ingA, o.ingB, "지정 재료 중복 없음");
-                Assert.AreEqual(DrinkSales.MinFor(o.ingA), o.minA, "최소량 = 기준 사용량 50%");
+                Assert.AreEqual(o.kind == (int)DrinkKind.Coffee ? DrinkSales.MinFor(o.ingA, (CoffeeBrewMethod)o.method) : DrinkSales.MinFor(o.ingA), o.minA, "주문 최소량에 맞는 재료");
                 var r = DrinkSales.Reference(o);
                 Assert.IsTrue(DrinkValidator.Check(r).Ok, $"주문 {i}: 모순·용량 초과 없음 — {DrinkValidator.Check(r).First}");
                 Assert.AreEqual(150, DrinkSales.Price(o, r), $"주문 {i}: 기법·색까지 맞추면 150");
             }
+        }
+
+        [Test]
+        public void CoffeeOrder_RequiresCorrectBrewMethodAndSellsForSameCap()
+        {
+            var o = DrinkLab.Orders[2];
+            var r = DrinkSales.Reference(o);
+            Assert.IsTrue(DrinkValidator.Check(r).Ok, DrinkValidator.Check(r).First);
+            Assert.IsTrue(DrinkSales.CoffeeMethodMatches(o, r));
+            Assert.AreEqual(150, DrinkSales.Price(o, r), "추출 방식 보너스와 색 보너스, 기존 최대가 유지");
+            var wrongMethod = r.Clone();
+            wrongMethod.SetCoffeeMethod((CoffeeBrewMethod)(o.method % 3 + 1));
+            Assert.AreEqual(0, DrinkSales.Price(o, wrongMethod), "주문과 다른 추출 도구는 충족되지 않음");
+            Assert.AreEqual(DrinkLab.CraftStatus.Crafted, DrinkLab.Craft(r).Status);
+            Assert.IsTrue(DrinkLab.Sell(2, out int got, out var error), error);
+            Assert.AreEqual(150, got);
+            Assert.AreEqual(150, DrinkLab.Coins);
         }
 
         [Test]

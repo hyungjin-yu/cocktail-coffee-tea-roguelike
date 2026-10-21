@@ -337,6 +337,8 @@ namespace CCT.Tests
             Assert.IsTrue(File.Exists(path));
             DrinkLab.ReloadForTests();
             Assert.AreEqual(600, DrinkLab.Owned("gin"), "재시작해도 다시 지급하지 않는다");
+            Assert.AreEqual(300, DrinkLab.Owned(DrinkIngredients.CoffeeBean), "커피 원두 중복 지급 없음");
+            Assert.AreEqual(150, DrinkLab.Owned(DrinkIngredients.SteamedMilk), "우유 중복 지급 없음");
             Assert.IsNull(DrinkLab.Notice);
         }
 
@@ -811,6 +813,8 @@ namespace CCT.Tests
             Assert.AreEqual(Path.GetFullPath(Path.Combine(dir, "drinks.json")), Path.GetFullPath(DrinkLab.PathForSave(save)));
             DrinkLab.SetPathForTests(DrinkLab.PathForSave(save));
             Assert.AreEqual(600, DrinkLab.Owned("gin"), "기존 저장에도 첫 세트 1회");
+            Assert.AreEqual(300, DrinkLab.Owned(DrinkIngredients.CoffeeBean), "기존 창고에 커피 원두 30g을 한 번 마이그레이션");
+            Assert.AreEqual(150, DrinkLab.Owned(DrinkIngredients.SteamedMilk), "기존 창고에 스팀 우유 15mL를 한 번 마이그레이션");
             Assert.AreEqual("{\"schemaVersion\":2,\"specialtyPoints\":7}", File.ReadAllText(save), "save.json v2는 그대로");
         }
     }

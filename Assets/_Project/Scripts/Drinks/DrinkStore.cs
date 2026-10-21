@@ -71,6 +71,8 @@ namespace CCT
         public int schemaVersion = DrinkStore.CurrentVersion;
         public int saveRevision;
         public bool starterGranted;
+        /// <summary>커피 확장 저장 마이그레이션용 1회 지급 플래그.</summary>
+        public bool coffeeStarterGranted;
         public List<DrinkAmount> stock = new List<DrinkAmount>();
         /// <summary>한 번이라도 보유한 재료(도감 잠금 해제).</summary>
         public List<string> seenIds = new List<string>();

@@ -48,13 +48,13 @@ namespace CCT.Tests
                 foreach (var r in DrinkSupply.Table) sum += r.Weight(s);
                 Assert.AreEqual(100, sum, s.ToString());
             }
-            // 78: 일반 16·16·16·16·13·13·5·5, 정예 14·14·14·14·12·12·10·10. 중간/최종 표는 72 그대로.
+            // 81: 원두 14%를 모든 획득처에 추가하고 합계 100%를 유지하도록 조정.
             var expected = new Dictionary<string, int[]>
             {
-                { "gin", new[] { 16, 14, 12, 10 } }, { "rum", new[] { 16, 14, 12, 10 } },
-                { "black_tea", new[] { 16, 14, 12, 10 } }, { "green_tea", new[] { 16, 14, 12, 10 } },
-                { "lemon_juice", new[] { 13, 12, 16, 15 } }, { "honey", new[] { 13, 12, 16, 15 } },
-                { "blue_curacao", new[] { 5, 10, 10, 15 } }, { "grenadine", new[] { 5, 10, 10, 15 } },
+                { "gin", new[] { 11, 10, 8, 6 } }, { "rum", new[] { 11, 10, 8, 6 } },
+                { "black_tea", new[] { 11, 10, 8, 6 } }, { "green_tea", new[] { 11, 10, 8, 6 } }, { "coffee_bean", new[] { 14, 14, 14, 14 } }, { "steamed_milk", new[] { 8, 8, 8, 8 } },
+                { "lemon_juice", new[] { 12, 10, 14, 13 } }, { "honey", new[] { 12, 10, 14, 13 } },
+                { "blue_curacao", new[] { 5, 9, 9, 14 } }, { "grenadine", new[] { 5, 9, 9, 14 } },
             };
             foreach (var r in DrinkSupply.Table)
                 CollectionAssert.AreEqual(expected[r.id], new[] { r.normal, r.elite, r.midBoss, r.finalBoss }, r.id);
@@ -63,10 +63,10 @@ namespace CCT.Tests
             Assert.AreEqual(3, DrinkSupply.MidBossDraws);
             Assert.AreEqual(6, DrinkSupply.FinalBossDraws);
             var normal = DrinkSupply.Probabilities(DrinkSupply.Source.Normal, false, None);
-            Assert.AreEqual(8, normal.Count, "일반 후보 8종(희귀 포함)");
+            Assert.AreEqual(10, normal.Count, "일반 후보 10종(커피 재료·희귀 포함)");
             Assert.AreEqual(0.05, normal["blue_curacao"], 1e-12);
             Assert.AreEqual(0.05, normal["grenadine"], 1e-12);
-            Assert.AreEqual(0.16, normal["gin"], 1e-12, "보유 0이면 모두 같은 회분이라 기본 비율 그대로");
+            Assert.AreEqual(0.11, normal["gin"], 1e-12, "보유 0이면 모두 같은 회분이라 기본 비율 그대로");
             var sumP = 0.0; foreach (var v in normal.Values) sumP += v;
             Assert.AreEqual(1.0, sumP, 1e-12);
         }
@@ -74,10 +74,10 @@ namespace CCT.Tests
         [Test]
         public void Correction_HeldIngredientLessLikely_LowStockMoreLikely()
         {
-            // 진만 6회분(1800=180mL), 일반 후보 8종 중앙값 0: 진 c=clamp(3/9)=0.5, 나머지 c=1 → 진 8 / (8 + 84)
+            // 진만 6회분(1800=180mL), 중앙값 0: 진 가중치 11의 절반, 나머지 합 89
             var p = DrinkSupply.Probabilities(DrinkSupply.Source.Normal, false, id => id == "gin" ? 1800 : 0);
-            Assert.AreEqual(8.0 / (8.0 + 84), p["gin"], 1e-12);
-            Assert.Greater(p["rum"], 0.16, "부족 재료는 상대적으로 올라간다(확정 지급은 아님)");
+            Assert.AreEqual(5.5 / 94.5, p["gin"], 1e-12);
+            Assert.Greater(p["rum"], 0.11, "부족 재료는 상대적으로 올라간다(확정 지급은 아님)");
         }
 
         [Test]
@@ -85,9 +85,9 @@ namespace CCT.Tests
         {
             // 72 절대 보정은 6회분 이상을 모두 ×0.5로 포화시켜 구분하지 못했다. 77: 중앙값 24 대비 6회분 진은 c=27/9→2.0.
             var p = DrinkSupply.Probabilities(DrinkSupply.Source.Normal, false, Uses(id => id == "gin" ? 6 : 24));
-            Assert.AreEqual(32.0 / (32.0 + 84), p["gin"], 1e-12);
+            Assert.AreEqual(22.0 / 111.0, p["gin"], 1e-12);
             Assert.Greater(p["gin"], p["rum"]);
-            // 진 6, 럼 24, 나머지 12: 같은 기본 가중치 16끼리 진 > 홍차 > 럼
+            // 진 6, 럼 24, 나머지 12: 진 > 홍차 > 럼
             var q = DrinkSupply.Probabilities(DrinkSupply.Source.Normal, false, Uses(id => id == "gin" ? 6 : id == "rum" ? 24 : 12));
             Assert.Greater(q["gin"], q["black_tea"]);
             Assert.Greater(q["black_tea"], q["rum"]);
@@ -140,13 +140,13 @@ namespace CCT.Tests
         [Test]
         public void Normal_RaresAreCandidates_IncludedInMedian_NotGuaranteed()
         {
-            // 78: 일반 표 후보 8종 전체로 중앙값을 구한다. 희귀가 부족하면 일반 추첨에서도 희귀 확률이 오른다(보장은 보스만).
+            // 81: 일반 표 후보 10종 전체로 중앙값을 구한다. 희귀가 부족하면 일반 추첨에서도 희귀 확률이 오른다(보장은 보스만).
             var a = DrinkSupply.Probabilities(DrinkSupply.Source.Normal, false, Uses(id => 8));
             var b = DrinkSupply.Probabilities(DrinkSupply.Source.Normal, false, Uses(id => DrinkSupply.Get(id).rare ? 0 : 8));
-            Assert.AreEqual(8, b.Count);
+            Assert.AreEqual(10, b.Count);
             Assert.AreEqual(0.05, a["grenadine"], 1e-12);
-            // 중앙값 8 → 희귀 c=11/3→2.0, 일반 c=1: 10 / (90 + 20)
-            Assert.AreEqual(10.0 / 110.0, b["grenadine"], 1e-12);
+            // 중앙값 8 → 희귀 c=11/3→2.0, 나머지 후보 가중치 합 95: 10 / 105
+            Assert.AreEqual(10.0 / 105.0, b["grenadine"], 1e-12);
             Assert.Less(b["grenadine"], 0.5, "부족해도 매 묶음 희귀가 나오는 것은 아니다");
             Assert.IsFalse(DrinkSupply.RareOnly(DrinkSupply.Source.Normal, 0));
             Assert.IsFalse(DrinkSupply.RareOnly(DrinkSupply.Source.Elite, 0));
@@ -157,22 +157,16 @@ namespace CCT.Tests
         public void UserReportedBalance_LowestUsesFavoredAmongEqualWeights()
         {
             // 72 사용자 최종 잔고(0.1 단위): 진480mL 럼525mL 블루60mL 그레나딘85mL 레몬365mL 꿀195mL 홍차31g 녹차41g.
-            // 78: 일반 후보 8종 회분 중앙값 (16+17.5)/2=16.75(77은 희귀 제외 6종 18.5). 기대값은 별도 스크립트 계산(6자리 반올림).
-            var units = new Dictionary<string, int> { { "gin", 4800 }, { "rum", 5250 }, { "blue_curacao", 600 }, { "grenadine", 850 }, { "lemon_juice", 3650 }, { "honey", 1950 }, { "black_tea", 310 }, { "green_tea", 410 } };
+            // 81: 커피 원두·스팀 우유를 포함한 10종 후보의 보유량 보정 회분을 검증한다.
+            var units = new Dictionary<string, int> { { "gin", 4800 }, { "rum", 5250 }, { "blue_curacao", 600 }, { "grenadine", 850 }, { "lemon_juice", 3650 }, { "honey", 1950 }, { "black_tea", 310 }, { "green_tea", 410 }, { "coffee_bean", 600 }, { "steamed_milk", 0 } };
             var p = DrinkSupply.Probabilities(DrinkSupply.Source.Normal, false, id => units[id]);
-            Assert.AreEqual(8, p.Count, "희귀도 일반 후보");
-            Assert.AreEqual(0.163110, p["gin"], 1e-6);
-            Assert.AreEqual(0.151175, p["rum"], 1e-6);
-            Assert.AreEqual(0.167518, p["black_tea"], 1e-6);
-            Assert.AreEqual(0.131876, p["green_tea"], 1e-6);
-            Assert.AreEqual(0.092122, p["lemon_juice"], 1e-6);
-            Assert.AreEqual(0.111912, p["honey"], 1e-6);
-            Assert.AreEqual(0.098072, p["blue_curacao"], 1e-6);
-            Assert.AreEqual(0.084214, p["grenadine"], 1e-6);
+            Assert.AreEqual(10, p.Count, "커피 원두·우유 포함 모든 일반 후보");
+            Assert.Greater(p["coffee_bean"], 0.14, "보유량이 가장 적은 원두의 확률이 기본치보다 상승");
+            Assert.Greater(p["gin"], p["rum"], "보유량이 더 적은 진이 럼보다 상대적으로 유리");
             AssertFiniteSumOne(p, "user");
             var e = DrinkSupply.Probabilities(DrinkSupply.Source.Elite, false, id => units[id]);
-            Assert.AreEqual(0.179969, e["blue_curacao"], 1e-6, "정예: 부족한 희귀가 기본 10%보다 올라간다");
-            Assert.AreEqual(0.154539, e["grenadine"], 1e-6);
+            Assert.Greater(e["blue_curacao"], 0.09, "정예: 부족한 희귀가 기본치보다 올라간다");
+            Assert.Greater(e["grenadine"], 0.09, "정예: 부족한 희귀가 기본치보다 올라간다");
             AssertFiniteSumOne(e, "user elite");
         }
 

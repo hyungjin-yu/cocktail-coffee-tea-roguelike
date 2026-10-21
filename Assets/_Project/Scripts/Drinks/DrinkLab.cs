@@ -114,7 +114,18 @@ namespace CCT
             {
                 foreach (var item in StarterKit) data.Add(item.id, item.amount);
                 data.starterGranted = true;
+                data.coffeeStarterGranted = true;
                 notices.Add(NoticeStarter);
+                dirty = true;
+                SaveNow();
+            }
+            // 커피 확장 마이그레이션: 기존 창고에도 원두 30g을 한 번 지급한다. 신규 저장은 첫 세트 플래그로 중복 방지.
+            if (!lastLoad.FutureProtected && !data.coffeeStarterGranted)
+            {
+                data.Add(DrinkIngredients.CoffeeBean, 300);
+                data.Add(DrinkIngredients.SteamedMilk, 150);
+                data.coffeeStarterGranted = true;
+                notices.Add("커피 제조용 원두를 창고에 넣었습니다.");
                 dirty = true;
                 SaveNow();
             }
@@ -136,6 +147,7 @@ namespace CCT
             new DrinkAmount(DrinkIngredients.BlueCuracao, 150), new DrinkAmount(DrinkIngredients.Grenadine, 150),
             new DrinkAmount(DrinkIngredients.LemonJuice, 300), new DrinkAmount(DrinkIngredients.Honey, 200),
             new DrinkAmount(DrinkIngredients.BlackTea, 60), new DrinkAmount(DrinkIngredients.GreenTea, 60),
+            new DrinkAmount(DrinkIngredients.CoffeeBean, 300), new DrinkAmount(DrinkIngredients.SteamedMilk, 150),
         };
 
         public static int Owned(string id) => Data.Owned(id);
@@ -234,7 +246,7 @@ namespace CCT
                     preparedUtc = DateTime.UtcNow.ToString("o"), specialtyId = specialty,
                 };
                 // 72 §5 직원 채용 조건(제조 누적)은 같은 거래로 센다.
-                if (copy.Kind == DrinkKind.Tea) d.research.teaCrafts++; else d.research.cocktailCrafts++;
+                if (copy.Kind == DrinkKind.Tea) d.research.teaCrafts++; else if (copy.Kind == DrinkKind.Coffee) d.research.coffeeCrafts++; else d.research.cocktailCrafts++;
                 return true;
             }, out var error);
             if (!ok) return new CraftResult { Status = CraftStatus.SaveFailed, Message = error };
@@ -669,7 +681,8 @@ namespace CCT
             while (d.orders.Count < DrinkSales.Slots)
             {
                 int i = d.orders.Count;
-                d.orders.Add(DrinkSales.Generate(d.orderSerial++, x => d.seenIds.Contains(x) || d.Owned(x) > 0, basic: i < 2 && d.orderSerial <= 2));
+                int serial = d.orderSerial++;
+                d.orders.Add(DrinkSales.Generate(serial, x => d.seenIds.Contains(x) || d.Owned(x) > 0, basic: i < 3 && serial <= 3));
                 changed = true;
             }
             return changed;

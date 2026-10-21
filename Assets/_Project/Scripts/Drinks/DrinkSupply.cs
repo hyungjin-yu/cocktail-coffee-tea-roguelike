@@ -27,14 +27,16 @@ namespace CCT
         /// <summary>표 순서 = 추첨 누적 순서(결정적).</summary>
         public static readonly Row[] Table =
         {
-            new Row { id = "gin", bundle = 150, baseUse = 300, normal = 16, elite = 14, midBoss = 12, finalBoss = 10 },
-            new Row { id = "rum", bundle = 150, baseUse = 300, normal = 16, elite = 14, midBoss = 12, finalBoss = 10 },
-            new Row { id = "black_tea", bundle = 10, baseUse = 20, normal = 16, elite = 14, midBoss = 12, finalBoss = 10 },
-            new Row { id = "green_tea", bundle = 10, baseUse = 20, normal = 16, elite = 14, midBoss = 12, finalBoss = 10 },
-            new Row { id = "lemon_juice", bundle = 100, baseUse = 150, normal = 13, elite = 12, midBoss = 16, finalBoss = 15 },
-            new Row { id = "honey", bundle = 50, baseUse = 100, normal = 13, elite = 12, midBoss = 16, finalBoss = 15 },
-            new Row { id = "blue_curacao", bundle = 50, baseUse = 100, normal = 5, elite = 10, midBoss = 10, finalBoss = 15, rare = true },
-            new Row { id = "grenadine", bundle = 50, baseUse = 100, normal = 5, elite = 10, midBoss = 10, finalBoss = 15, rare = true },
+            new Row { id = "gin", bundle = 150, baseUse = 300, normal = 11, elite = 10, midBoss = 8, finalBoss = 6 },
+            new Row { id = "rum", bundle = 150, baseUse = 300, normal = 11, elite = 10, midBoss = 8, finalBoss = 6 },
+            new Row { id = "black_tea", bundle = 10, baseUse = 20, normal = 11, elite = 10, midBoss = 8, finalBoss = 6 },
+            new Row { id = "green_tea", bundle = 10, baseUse = 20, normal = 11, elite = 10, midBoss = 8, finalBoss = 6 },
+            new Row { id = "coffee_bean", bundle = 100, baseUse = 160, normal = 14, elite = 14, midBoss = 14, finalBoss = 14 },
+            new Row { id = "steamed_milk", bundle = 150, baseUse = 150, normal = 8, elite = 8, midBoss = 8, finalBoss = 8 },
+            new Row { id = "lemon_juice", bundle = 100, baseUse = 150, normal = 12, elite = 10, midBoss = 14, finalBoss = 13 },
+            new Row { id = "honey", bundle = 50, baseUse = 100, normal = 12, elite = 10, midBoss = 14, finalBoss = 13 },
+            new Row { id = "blue_curacao", bundle = 50, baseUse = 100, normal = 5, elite = 9, midBoss = 9, finalBoss = 14, rare = true },
+            new Row { id = "grenadine", bundle = 50, baseUse = 100, normal = 5, elite = 9, midBoss = 9, finalBoss = 14, rare = true },
         };
 
         public const int NormalKillsPerBundle = 25;

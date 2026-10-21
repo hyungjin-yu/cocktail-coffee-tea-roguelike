@@ -7,7 +7,7 @@ namespace CCT
     /// <summary>계산된 음료 버프(비율). 치명타는 확률 증가량(0.05 = +5%p).</summary>
     public sealed class DrinkBuff
     {
-        readonly float[] values = new float[6];
+        readonly float[] values = new float[Enum.GetValues(typeof(DrinkStat)).Length];
 
         public float this[DrinkStat s]
         {
@@ -82,6 +82,18 @@ namespace CCT
             }
         }
 
+        /// <summary>재료의 기본 효과를 음료 종류별로 분리한다. 공유 재료도 차에서는 차 전용 효과에만 기여한다.</summary>
+        static DrinkStat EffectFor(DrinkKind kind, DrinkIngredientDef def)
+        {
+            if (kind == DrinkKind.Coffee) return DrinkStat.Range;
+            if (kind == DrinkKind.Tea)
+            {
+                if (def.id == DrinkIngredients.Honey) return DrinkStat.CooldownReduction;
+                if (def.id == DrinkIngredients.LemonJuice) return DrinkStat.MoveSpeed;
+            }
+            return def.effect;
+        }
+
         public static float Normalized(DrinkIngredientDef def, int tenths)
         {
             if (tenths <= 0) return 0f;
@@ -95,23 +107,25 @@ namespace CCT
             var buff = new DrinkBuff();
             if (r?.steps == null) return buff;
             var kind = r.Kind;
-            if (kind != DrinkKind.Cocktail && kind != DrinkKind.Tea) return buff;
-            var raw = new float[6];
+            if (kind != DrinkKind.Cocktail && kind != DrinkKind.Tea && kind != DrinkKind.Coffee) return buff;
+            var raw = new float[Enum.GetValues(typeof(DrinkStat)).Length];
             var seen = new HashSet<string>();
             foreach (var s in r.steps)
             {
                 var def = s == null ? null : DrinkIngredients.Get(s.id);
                 if (def == null || s.amount <= 0 || !def.UsableIn(kind) || !seen.Add(def.id)) continue;
-                raw[(int)def.effect] += Normalized(def, s.amount) * def.coefficient * DrinkRules.Cap(def.effect);
+                var effect = EffectFor(kind, def);
+                raw[(int)effect] += Normalized(def, s.amount) * def.coefficient * DrinkRules.Cap(effect);
             }
             int distinct = 0;
             foreach (var v in raw) if (v > 0f) distinct++;
             var tech = DrinkRules.AllowedTechnique(kind, r.Technique) ? r.Technique : DrinkRules.DefaultTechnique(kind);
+            float extraction = kind == DrinkKind.Coffee ? CoffeeBrewing.Strength01(r.coffeeMethod, r.AmountOf(DrinkIngredients.CoffeeBean), r.water) : 1f;
             for (int i = 0; i < raw.Length; i++)
             {
                 if (raw[i] <= 0f) continue;
                 var stat = (DrinkStat)i;
-                buff[stat] = Mathf.Min(DrinkRules.Cap(stat), raw[i] * Multiplier(tech, stat, distinct));
+                buff[stat] = Mathf.Min(DrinkRules.Cap(stat), raw[i] * Multiplier(tech, stat, distinct) * extraction);
             }
             return buff;
         }
@@ -163,6 +177,24 @@ namespace CCT
             var parts = new List<Part>();
             if (r?.steps == null) return parts;
             var kind = r.Kind;
+            if (kind == DrinkKind.Coffee)
+            {
+                // 추출수는 원두/물 비율에 따른 커피 액체다. 도구 시뮬레이션·완성 잔·판매 색 분류가 같은 색을 보도록 한다.
+                float coffeeMl = Mathf.Max(0f, r.water / 10f);
+                if (coffeeMl > 0f)
+                {
+                    var coffee = CoffeeBrewing.BrewColor(r);
+                    parts.Add(new Part { absorb = Absorb(coffee, 1f), tint = 1f, volume = coffeeMl, turbidity = 0.06f * coffeeMl, density = 1.0f, label = "추출 커피" });
+                }
+                foreach (var s in r.steps)
+                {
+                    var def = DrinkIngredients.Get(s?.id);
+                    if (def == null || s.amount <= 0 || def.form != IngredientForm.Liquid || !def.UsableIn(kind)) continue;
+                    float v = s.amount / 10f;
+                    parts.Add(new Part { absorb = Absorb(def.color, 1f), tint = def.tint, volume = v, turbidity = def.turbidity * v, density = def.density, label = def.name });
+                }
+                return parts;
+            }
             if (kind == DrinkKind.Tea)
             {
                 // 차: 물에 찻잎이 우러난 한 액체. 우림 농도 = 찻잎 g / 물 100mL 기준 3g.
@@ -333,6 +365,7 @@ namespace CCT
             stats.maxHpFlat += stats.baseMaxHp * buff[DrinkStat.MaxHp];
             stats.drinkCritChance = buff[DrinkStat.CritChance];
             stats.drinkCooldownReduction = buff[DrinkStat.CooldownReduction];
+            stats.rangePercent += buff[DrinkStat.Range];
         }
     }
 }
