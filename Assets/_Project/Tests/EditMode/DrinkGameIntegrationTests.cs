@@ -401,6 +401,7 @@ namespace CCT.Tests
             int last = -1;
             foreach (var def in DrinkIngredients.All)
             {
+                if (!expected.ContainsKey(def.id)) continue; // 이 묶음에 없는 재료(예: 원두)는 요약에도 없다
                 int at = text.IndexOf(def.name + " ", StringComparison.Ordinal);
                 Assert.Greater(at, last, "재료표 순서: " + text);
                 last = at;

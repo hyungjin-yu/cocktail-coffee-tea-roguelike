@@ -46,6 +46,68 @@ namespace CCT
 
         public static bool IsDefined(CoffeeBrewMethod method) => Enum.IsDefined(typeof(CoffeeBrewMethod), method);
 
+        /// <summary>제조 화면의 도구 선택 순서.</summary>
+        public static readonly CoffeeBrewMethod[] All = { CoffeeBrewMethod.EspressoMachine, CoffeeBrewMethod.PourOver, CoffeeBrewMethod.MokaPot };
+
+        /// <summary>도구를 고를 때 채우는 기본 물(추출량, 0.1mL). 목표 비율 근처의 표준 한 잔.</summary>
+        public static int DefaultWaterTenths(CoffeeBrewMethod method) => method switch
+        {
+            CoffeeBrewMethod.EspressoMachine => 360,
+            CoffeeBrewMethod.PourOver => 2400,
+            CoffeeBrewMethod.MokaPot => 1600,
+            _ => 0,
+        };
+
+        /// <summary>물 조절 한 번의 단계(0.1mL).</summary>
+        public static int WaterStepTenths(CoffeeBrewMethod method) => method == CoffeeBrewMethod.EspressoMachine ? 20 : 100;
+
+        /// <summary>완성 잔 용량(mL, 고정). 최대 추출량에서도 잔의 약 64~79%만 찬다(DrinkRules.ServeFillMax 0.82 이내).</summary>
+        public static float CupCapacityMl(CoffeeBrewMethod method) => method switch
+        {
+            CoffeeBrewMethod.EspressoMachine => 70f,
+            CoffeeBrewMethod.MokaPot => 280f,
+            _ => 380f,
+        };
+
+        /// <summary>도구 본체 아트(제조대 가운데). 핸드 드립은 서버(유리 주전자) 위에 드리퍼(DripperArt)를 얹는다.</summary>
+        public static string ApparatusArt(CoffeeBrewMethod method) => method switch
+        {
+            CoffeeBrewMethod.EspressoMachine => "dl_coffee_espresso",
+            CoffeeBrewMethod.MokaPot => "dl_coffee_moka",
+            _ => "dl_coffee_carafe",
+        };
+
+        public const string DripperArt = "dl_coffee_dripper", ScoopArt = "dl_coffee_scoop", FlameArt = "dl_coffee_flame";
+
+        /// <summary>완성 잔 아트.</summary>
+        public static string CupArt(CoffeeBrewMethod method) => method == CoffeeBrewMethod.EspressoMachine ? "dl_coffee_demitasse" : method == CoffeeBrewMethod.MokaPot ? "dl_coffee_cup" : "dl_coffee_mug";
+
+        /// <summary>제조대 안내용 짧은 설명.</summary>
+        public static string ShortDescription(CoffeeBrewMethod method) => method switch
+        {
+            CoffeeBrewMethod.EspressoMachine => "고압으로 짧게 — 원두 12~24g, 25~45mL",
+            CoffeeBrewMethod.PourOver => "드리퍼에 천천히 물 붓기 — 원두 8~18g, 180~300mL",
+            CoffeeBrewMethod.MokaPot => "불 위에서 증기압으로 — 원두 8~18g, 120~220mL",
+            _ => "",
+        };
+
+        /// <summary>
+        /// 추출 커피 색(sRGB). 농도 = 원두 g / 추출 mL가 진할수록 어둡고(에스프레소 ≈ 0.5) 묽을수록 맑은 갈색(핸드 드립 ≈ 0.06).
+        /// 화면 표시 전용(장부의 커피 성분 색) — 버프·저장에는 쓰지 않는다.
+        /// </summary>
+        public static Color BrewColor(CoffeeBrewMethod method, int doseTenths, int waterTenths)
+        {
+            float conc = waterTenths <= 0 ? 0.5f : Mathf.Max(0, doseTenths) / (float)waterTenths;
+            float t = Mathf.Sqrt(Mathf.Clamp01((conc - 0.03f) / 0.47f));
+            var light = new Color(0.64f, 0.38f, 0.18f, 1f);
+            var dark = new Color(0.17f, 0.09f, 0.045f, 1f);
+            var c = Color.Lerp(light, dark, t);
+            if (method == CoffeeBrewMethod.MokaPot) c = Color.Lerp(c, dark, 0.15f); // 모카포트는 같은 농도에서도 더 묵직하다
+            return c;
+        }
+
+        public static Color BrewColor(DrinkRecipe r) => r == null ? Color.clear : BrewColor(r.coffeeMethod, r.LeafTotal(), r.water);
+
         public static float Strength01(CoffeeBrewMethod method, int doseTenths, int waterTenths)
         {
             float ratio = waterTenths <= 0 ? float.PositiveInfinity : (float)waterTenths / Mathf.Max(1, doseTenths);

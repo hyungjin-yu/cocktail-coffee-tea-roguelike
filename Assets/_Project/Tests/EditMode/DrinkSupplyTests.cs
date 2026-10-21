@@ -145,8 +145,8 @@ namespace CCT.Tests
             var b = DrinkSupply.Probabilities(DrinkSupply.Source.Normal, false, Uses(id => DrinkSupply.Get(id).rare ? 0 : 8));
             Assert.AreEqual(10, b.Count);
             Assert.AreEqual(0.05, a["grenadine"], 1e-12);
-            // 중앙값 8 → 희귀 c=11/3→2.0, 나머지 후보 가중치 합 95: 10 / 105
-            Assert.AreEqual(10.0 / 105.0, b["grenadine"], 1e-12);
+            // 희귀 두 재료가 모두 0회분이라 가중치가 각각 2배. 그레나딘은 나머지 9종보다 낮은 10/110.
+            Assert.AreEqual(10.0 / 110.0, b["grenadine"], 1e-12);
             Assert.Less(b["grenadine"], 0.5, "부족해도 매 묶음 희귀가 나오는 것은 아니다");
             Assert.IsFalse(DrinkSupply.RareOnly(DrinkSupply.Source.Normal, 0));
             Assert.IsFalse(DrinkSupply.RareOnly(DrinkSupply.Source.Elite, 0));

@@ -19,6 +19,7 @@ namespace CCT
             DrinkTechnique.Layer => 0.95,
             DrinkTechnique.Build => 0.6,
             DrinkTechnique.Steep => 0.5,
+            DrinkTechnique.Brew => 0.5,
             _ => 0.4,
         };
 
@@ -35,6 +36,7 @@ namespace CCT
             var col = new FluidColumn();
             if (r?.steps == null) return col;
             double g = Gentleness(r.Technique);
+            if (r.Kind == DrinkKind.Coffee) return col; // 커피 도구에는 액체를 미리 넣지 않는다(첨가 액체는 잔에 — CupAdditions, 물은 추출 때)
             if (r.Kind == DrinkKind.Tea)
             {
                 foreach (var s in r.steps)
@@ -66,6 +68,15 @@ namespace CCT
                     if (!col.IsEmpty) col.Mix(r.Technique == DrinkTechnique.Shake ? 1.0 : 0.6, 6);
                     return Poured(col);
                 }
+                case DrinkTechnique.Brew:
+                {
+                    // 커피: 잔에 먼저 담은 첨가 액체(스팀 우유) 위로 추출량(물) 전부가 커피 성분(색은 Layers에서 CoffeeBrewing.BrewColor)으로 내려온다.
+                    // 원두 찌꺼기는 도구에 남는다. 우유가 조금 더 무거워 아래에 남는 층은 침강 3초로 정리.
+                    var col = CupAdditions(r);
+                    if (r.water > 0) col.Pour(Part(TeaId, r.water / 10.0), 0.5);
+                    if (!col.IsEmpty) col.Step(3.0);
+                    return col;
+                }
                 case DrinkTechnique.Steep:
                 {
                     var col = new FluidColumn();
@@ -85,6 +96,19 @@ namespace CCT
                     return col;
                 }
             }
+        }
+
+        /// <summary>커피 잔에 먼저 담는 첨가 액체(투입 순서대로). 추출 전 완성 잔의 내용.</summary>
+        public static FluidColumn CupAdditions(DrinkRecipe r)
+        {
+            var col = new FluidColumn();
+            if (r?.steps == null || r.Kind != DrinkKind.Coffee) return col;
+            foreach (var s in r.steps)
+            {
+                var def = DrinkIngredients.Get(s?.id);
+                if (def != null && def.form == IngredientForm.Liquid && s.amount > 0) col.Pour(Part(def.id, s.amount / 10.0), 0.6);
+            }
+            return col;
         }
 
         /// <summary>다른 그릇으로 전부 따른 결과(균일 혼합은 그대로 균일).</summary>
@@ -123,7 +147,8 @@ namespace CCT
         {
             var list = new List<DrinkLayer>();
             if (col == null || col.IsEmpty) return list;
-            Color? tea = r != null && r.Kind == DrinkKind.Tea ? TeaColor(r) : (Color?)null;
+            // 커피는 차와 같은 "우린 액체" 성분(TeaId)을 쓰고 색만 추출 커피 색으로 칠한다.
+            Color? tea = r == null ? (Color?)null : r.Kind == DrinkKind.Tea ? TeaColor(r) : r.Kind == DrinkKind.Coffee ? CoffeeBrewing.BrewColor(r) : (Color?)null;
             double s = Math.Max(0, Math.Min(1, teaStrength));
             foreach (var layer in DisplayBands(col, tea, s))
             {

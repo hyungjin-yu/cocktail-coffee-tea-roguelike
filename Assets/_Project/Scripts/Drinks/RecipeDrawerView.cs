@@ -179,7 +179,7 @@ namespace CCT
             var t = UiFactory.Stretch("Title", rt);
             t.anchorMin = new Vector2(10f / 172f, 1f - 116f / 128f); t.anchorMax = new Vector2(162f / 172f, 1f - 20f / 128f);
             t.offsetMin = t.offsetMax = Vector2.zero;
-            var txt = UiFactory.AddText(t, $"{r.name}\n<size={DrinkPaperUi.Small}>{(r.Kind == DrinkKind.Tea ? "차" : "칵테일")} · {DrinkRules.TechniqueName(r.Technique)}</size>", DrinkPaperUi.Body, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
+            var txt = UiFactory.AddText(t, $"{r.name}\n<size={DrinkPaperUi.Small}>{DrinkRules.KindName(r.Kind)} · {DrinkRules.TechniqueName(r.Technique)}</size>", DrinkPaperUi.Body, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
             txt.supportRichText = true; txt.raycastTarget = false;
             txt.horizontalOverflow = HorizontalWrapMode.Wrap; txt.verticalOverflow = VerticalWrapMode.Truncate;
             t.gameObject.SetActive(false);

@@ -217,11 +217,13 @@ namespace CCT
 
         void BuildCraft()
         {
-            // 종류 전환(칵테일/차). 전환 시 현재 배합은 비운다 — 부적합 재료를 자동 소비/혼합하지 않는다.
-            MakeButton(body, "KindCocktail", new Vector2(0f, 1f), new Vector2(30f, -6f), new Vector2(200f, 66f), "칵테일", DrinkPaperUi.Body,
+            // 종류 전환(칵테일/차/커피, 재료 목록 폭 410 안에 3칸). 전환 시 현재 배합은 비운다 — 부적합 재료를 자동 소비/혼합하지 않는다.
+            MakeButton(body, "KindCocktail", new Vector2(0f, 1f), new Vector2(30f, -6f), new Vector2(130f, 66f), "칵테일", DrinkPaperUi.Body,
                 kind == DrinkKind.Cocktail ? new Color(0.55f, 0.36f, 0.16f) : new Color(0.25f, 0.2f, 0.3f), () => SetKind(DrinkKind.Cocktail));
-            MakeButton(body, "KindTea", new Vector2(0f, 1f), new Vector2(240f, -6f), new Vector2(200f, 66f), "차", DrinkPaperUi.Body,
+            MakeButton(body, "KindTea", new Vector2(0f, 1f), new Vector2(170f, -6f), new Vector2(130f, 66f), "차", DrinkPaperUi.Body,
                 kind == DrinkKind.Tea ? new Color(0.36f, 0.5f, 0.2f) : new Color(0.25f, 0.2f, 0.3f), () => SetKind(DrinkKind.Tea));
+            MakeButton(body, "KindCoffee", new Vector2(0f, 1f), new Vector2(310f, -6f), new Vector2(130f, 66f), "커피", DrinkPaperUi.Body,
+                kind == DrinkKind.Coffee ? new Color(0.42f, 0.26f, 0.14f) : new Color(0.25f, 0.2f, 0.3f), () => SetKind(DrinkKind.Coffee));
 
             // 왼쪽 재료 목록
             var listRt = UiFactory.Place("IngredientList", body, new Vector2(0f, 1f), new Vector2(30f, -80f), new Vector2(410f, narrow ? 770f : 836f));
@@ -278,7 +280,7 @@ namespace CCT
             nameField.characterLimit = DrinkRules.RecipeNameMax;
             float bw = (innerW - 2f * gap) / 3f;
             saveButton = DrinkPaperUi.Button(mix, "SaveRecipe", new Vector2(0f, 0f), new Vector2(padX, buttonsY), new Vector2(bw, buttonsH), "레시피 저장", DrinkPaperUi.Small, SaveDraftAsRecipe);
-            DrinkPaperUi.Button(mix, "Clear", new Vector2(0f, 0f), new Vector2(padX + bw + gap, buttonsY), new Vector2(bw, buttonsH), "비우기", DrinkPaperUi.Small, () => { if (Busy("비우기")) return; draft = DrinkRecipe.NewDraft(kind); editingRecipeIndex = -1; Rebind(); });
+            DrinkPaperUi.Button(mix, "Clear", new Vector2(0f, 0f), new Vector2(padX + bw + gap, buttonsY), new Vector2(bw, buttonsH), "비우기", DrinkPaperUi.Small, () => { if (Busy("비우기")) return; draft = DrinkRecipe.NewDraft(kind, CoffeeMethodOrDefault()); editingRecipeIndex = -1; Rebind(); });
             DrinkPaperUi.Button(mix, "SkipMotion", new Vector2(0f, 0f), new Vector2(padX + 2f * (bw + gap), buttonsY), new Vector2(bw, buttonsH), "", DrinkPaperUi.Small, () => { skipMotion = !skipMotion; RefreshMix(); });
             if (DrinkLab.DevToolsEnabled && DrinkLab.IsIsolatedSave)
                 MakeButton(body, "DevGrant", new Vector2(0f, 0f), new Vector2(30f, 4f), new Vector2(260f, 44f), "테스트 재료 지급(격리 저장)", 16, new Color(0.4f, 0.15f, 0.4f), () => { DrinkLab.DevGrant(); BuildIngredientRows(); RefreshMix(); });
@@ -327,8 +329,9 @@ namespace CCT
                 var iconImg = iconRt.gameObject.AddComponent<Image>(); iconImg.sprite = icon; iconImg.preserveAspect = true; iconImg.raycastTarget = false;
                 if (locked) iconImg.color = new Color(0.45f, 0.45f, 0.45f, 1f);
                 UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 1f), new Vector2(104f, -30f), new Vector2(250f, 38f)), def.name, DrinkPaperUi.Body, TextAnchor.MiddleLeft, locked ? DrinkPaperUi.InkMuted : DrinkPaperUi.Ink);
+                var ingredientEffect = DrinkCalculator.EffectFor(kind, def);
                 UiFactory.AddText(UiFactory.Place("Owned", row, new Vector2(0f, 1f), new Vector2(104f, -68f), new Vector2(260f, 70f)),
-                    locked ? "보유 없음\n눌러서 획득처 보기" : $"보유 {DrinkRules.Format(owned, def.form)}\n{DrinkRules.StatName(def.effect)}", DrinkPaperUi.Small - 2, TextAnchor.UpperLeft, locked ? DrinkPaperUi.InkBad : DrinkPaperUi.InkMuted);
+                    locked ? "보유 없음\n눌러서 획득처 보기" : $"보유 {DrinkRules.Format(owned, def.form)}\n{DrinkRules.StatName(ingredientEffect)}", DrinkPaperUi.Small - 2, TextAnchor.UpperLeft, locked ? DrinkPaperUi.InkBad : DrinkPaperUi.InkMuted);
                 y += 156f;
             }
             listContent.sizeDelta = new Vector2(0f, y);
@@ -360,8 +363,14 @@ namespace CCT
             int inDraft = draft.AmountOf(def.id);
             int stock = DrinkLab.Owned(def.id) - inDraft;
             int limit;
-            if (def.form == IngredientForm.Leaf) limit = DrinkRules.TeaLeafMax - draft.LeafTotal();
+            if (def.form == IngredientForm.Leaf) limit = (kind == DrinkKind.Coffee ? CoffeeBrewing.DoseMaxTenths(draft.coffeeMethod) : DrinkRules.TeaLeafMax) - draft.LeafTotal();
             else if (kind == DrinkKind.Tea) limit = DrinkRules.TeaAdditiveMax - draft.LiquidTotal();
+            else if (kind == DrinkKind.Coffee)
+            {
+                // 스팀 우유: 첨가 상한과 잔 여유(추출량 + 첨가 ≤ 잔의 82%) 중 작은 쪽.
+                int cupRoom = Mathf.FloorToInt(DrinkRules.ServeCapacityMl(draft) * DrinkRules.ServeFillMax * 10f);
+                limit = Math.Min(DrinkRules.CoffeeAdditiveMax - draft.LiquidTotal(), cupRoom - draft.water - draft.LiquidTotal());
+            }
             else limit = DrinkRules.CocktailLiquidMax - draft.LiquidTotal() - draft.water;
             return Math.Max(0, Math.Min(stock, limit));
         }
@@ -456,8 +465,24 @@ namespace CCT
             draft = DrinkRecipe.NewDraft(k); // 부적합 재료를 옮기거나 섞지 않는다
             editingRecipeIndex = -1;
             selected = null;
-            Message(k == DrinkKind.Tea ? "차 배합으로 바꿨습니다(칵테일 배합은 비웠습니다)." : "칵테일 배합으로 바꿨습니다(차 배합은 비웠습니다).");
+            Message(k == DrinkKind.Coffee ? $"커피 배합으로 바꿨습니다(이전 배합은 비웠습니다) — 추출 도구: {CoffeeBrewing.DisplayName(draft.coffeeMethod)}."
+                : k == DrinkKind.Tea ? "차 배합으로 바꿨습니다(칵테일 배합은 비웠습니다)." : "칵테일 배합으로 바꿨습니다(차 배합은 비웠습니다).");
             SetTab(Tab.Craft);
+        }
+
+        /// <summary>지금 커피 배합의 추출 도구(커피가 아니거나 알 수 없으면 에스프레소 머신).</summary>
+        CoffeeBrewMethod CoffeeMethodOrDefault() =>
+            draft != null && draft.Kind == DrinkKind.Coffee && CoffeeBrewing.IsDefined(draft.coffeeMethod) ? draft.coffeeMethod : CoffeeBrewMethod.EspressoMachine;
+
+        /// <summary>커피 추출 도구 고르기: 물(추출량)은 그 도구의 기본값으로, 원두는 그대로. 제조대 가운데 도구가 바뀐다.</summary>
+        public void SetCoffeeMethod(CoffeeBrewMethod m)
+        {
+            if (kind != DrinkKind.Coffee || !CoffeeBrewing.IsDefined(m) || Busy("추출 도구 변경")) return;
+            if (draft.coffeeMethod == m) return;
+            draft.SetCoffeeMethod(m);
+            stage?.Select(selected); // 도구 안내 문구·스쿱 위치를 새 도구 기준으로
+            OnDraftChanged();
+            Message($"추출 도구: {CoffeeBrewing.DisplayName(m)} — {CoffeeBrewing.ShortDescription(m)}");
         }
 
         void SetTechnique(DrinkTechnique t)
@@ -508,6 +533,8 @@ namespace CCT
             void Add(RowSpec s) { specs.Add(s); topo.Append(s.kind).Append(':').Append(s.name).Append('|'); }
             string total = kind == DrinkKind.Cocktail
                 ? $"합계 {DrinkRules.Format(shown.LiquidTotal() + shown.water)} / {DrinkRules.Format(DrinkRules.CocktailLiquidMax)}mL"
+                : kind == DrinkKind.Coffee
+                ? $"원두 {DrinkRules.Format(shown.LeafTotal())} / {DrinkRules.Format(CoffeeBrewing.DoseMaxTenths(shown.coffeeMethod))}g"
                 : $"찻잎 {DrinkRules.Format(shown.LeafTotal())} / {DrinkRules.Format(DrinkRules.TeaLeafMax)}g";
             Add(new RowSpec { kind = RowKind.Header, name = "H_mix", left = "배합", right = total });
             int idx = 1;
@@ -542,7 +569,7 @@ namespace CCT
                     left = $"계량 중 {def.name} +{DrinkRules.Format(pending, def.form)}\n{(leaf ? "다하" : "지거")} 안 {DrinkRules.Format(Mathf.RoundToInt((float)(inTool * 10.0)), def.form)} · 떨어지는 중 {DrinkRules.Format(Mathf.RoundToInt((float)(air * 10.0)), def.form)}",
                 });
             }
-            if (shown.steps.Count == 0) Add(new RowSpec { kind = RowKind.Line, name = "MixEmpty", left = "재료를 골라 병을 끌어 부으세요", color = Muted });
+            if (shown.steps.Count == 0) Add(new RowSpec { kind = RowKind.Line, name = "MixEmpty", left = kind == DrinkKind.Coffee ? "원두를 골라 통을 끌어 스쿱에 덜으세요" : "재료를 골라 병을 끌어 부으세요", color = Muted });
             if (kind == DrinkKind.Cocktail)
             {
                 Add(new RowSpec { kind = RowKind.Line, name = "Water", left = "물 (무료)", right = DrinkRules.Format(shown.water) + "mL", color = Muted,
@@ -552,10 +579,23 @@ namespace CCT
                     minus = () => { this.draft.ice = Mathf.Max(0, this.draft.ice - 1); OnDraftChanged(); },
                     plus = () => { this.draft.ice = Mathf.Min(DrinkRules.IceMax, this.draft.ice + 1); OnDraftChanged(); } });
             }
+            else if (kind == DrinkKind.Coffee)
+            {
+                var m = shown.coffeeMethod;
+                int step = CoffeeBrewing.WaterStepTenths(m);
+                Add(new RowSpec { kind = RowKind.Line, name = "Water", left = "추출량 (물, 무료)", right = DrinkRules.Format(shown.water) + "mL", color = Muted,
+                    minus = () => { if (Busy("추출량 변경")) return; this.draft.water = Mathf.Max(CoffeeBrewing.WaterMinTenths(this.draft.coffeeMethod), this.draft.water - step); OnDraftChanged(); },
+                    plus = () => { if (Busy("추출량 변경")) return; this.draft.water = Mathf.Min(CoffeeBrewing.WaterMaxTenths(this.draft.coffeeMethod), this.draft.water + step); OnDraftChanged(); } });
+                int dose = shown.LeafTotal();
+                string balance = dose > 0 && shown.water > 0
+                    ? $"{Mathf.RoundToInt(CoffeeBrewing.Strength01(m, dose, shown.water) * 100f)}% · 1:{shown.water / (float)dose:0.#} (목표 1:{CoffeeBrewing.ExtractionRatio(m):0.#})"
+                    : $"목표 1:{CoffeeBrewing.ExtractionRatio(m):0.#}";
+                Add(new RowSpec { kind = RowKind.Line, name = "CoffeeBalance", left = "추출 균형", right = balance, color = Muted, size = DrinkPaperUi.Small, h = 48f });
+            }
             else Add(new RowSpec { kind = RowKind.Line, name = "Water", left = "물 (무료, 고정)", right = "150.0mL", color = Muted });
-            Add(new RowSpec { kind = RowKind.Header, name = "H_tech", left = "제조 방법" });
-            Add(new RowSpec { kind = RowKind.Techs, name = "Techs_" + kind + "_" + shown.technique });
-            Add(new RowSpec { kind = RowKind.Line, name = "TechDesc", left = DrinkRules.TechniqueShort(shown.Technique), color = Muted, h = 66f, size = DrinkPaperUi.Small });
+            Add(new RowSpec { kind = RowKind.Header, name = "H_tech", left = kind == DrinkKind.Coffee ? "추출 도구" : "제조 방법" });
+            Add(new RowSpec { kind = RowKind.Techs, name = "Techs_" + kind + "_" + shown.technique + "_" + (int)shown.coffeeMethod });
+            Add(new RowSpec { kind = RowKind.Line, name = "TechDesc", left = kind == DrinkKind.Coffee ? CoffeeBrewing.ShortDescription(shown.coffeeMethod) : DrinkRules.TechniqueShort(shown.Technique), color = Muted, h = 66f, size = DrinkPaperUi.Small });
             Add(new RowSpec { kind = RowKind.Header, name = "H_buff", left = "예상 효과", right = "이번 판 동안" });
             var buff = DrinkCalculator.Buff(shown);
             var buffParts = new List<string>();
@@ -566,8 +606,15 @@ namespace CCT
             }
             if (buffParts.Count == 0) Add(new RowSpec { kind = RowKind.Line, name = "BuffNone", left = "효과 없음", color = Muted });
             buffLine = buffParts.Count == 0 ? "효과 없음" : string.Join("\n", buffParts);
-            var look = DrinkCalculator.Look(shown);
-            if (look.totalVolume > 0f) Add(new RowSpec { kind = RowKind.Line, name = "LookDesc", left = "완성 모습: " + LookWords(look), color = Muted, h = 40f, size = DrinkPaperUi.Small });
+            if (kind == DrinkKind.Coffee)
+            {
+                if (shown.LeafTotal() > 0 && shown.water > 0) Add(new RowSpec { kind = RowKind.Line, name = "LookDesc", left = "완성 모습: " + CoffeeLookWords(shown), color = Muted, h = 40f, size = DrinkPaperUi.Small });
+            }
+            else
+            {
+                var look = DrinkCalculator.Look(shown);
+                if (look.totalVolume > 0f) Add(new RowSpec { kind = RowKind.Line, name = "LookDesc", left = "완성 모습: " + LookWords(look), color = Muted, h = 40f, size = DrinkPaperUi.Small });
+            }
             Add(new RowSpec { kind = RowKind.Toggle, name = "CostToggle", left = (costExpanded ? "▾ " : "▸ ") + "재료 소모와 보유량" });
             var shortages = DrinkValidator.Shortages(shown, DrinkLab.Owned);
             var costParts = new List<string>();
@@ -641,6 +688,21 @@ namespace CCT
                     }
                     case RowKind.Techs:
                     {
+                        if (kind == DrinkKind.Coffee)
+                        {
+                            // 추출 도구 3종(한 줄 3칸). 고른 도구 = 선택 표식 아트. 버튼 이름 "Method" + 도구.
+                            var methods = CoffeeBrewing.All;
+                            float mw = (RowW - (methods.Length - 1) * 8f) / methods.Length;
+                            for (int i = 0; i < methods.Length; i++)
+                            {
+                                var mm = methods[i];
+                                bool on = mm == draft.coffeeMethod;
+                                DrinkPaperUi.Button(mixContent, "Method" + mm, new Vector2(0f, 1f), new Vector2(8f + i * (mw + 8f), -y), new Vector2(mw, 66f), CoffeeBrewing.DisplayName(mm), DrinkPaperUi.Small,
+                                    () => SetCoffeeMethod(mm), on ? "button_equipped" : "button", on ? new Color(1f, 0.85f, 0.6f) : (Color?)null);
+                            }
+                            y += 76f;
+                            break;
+                        }
                         var techs = kind == DrinkKind.Tea ? new[] { DrinkTechnique.Steep } : new[] { DrinkTechnique.Shake, DrinkTechnique.Stir, DrinkTechnique.Build, DrinkTechnique.Layer };
                         // 2열 버튼(720p에서 글자 18px 이상·누르기 44px 이상). 고른 기법 = 선택 표식 아트.
                         int cols = Mathf.Min(2, techs.Length);
@@ -733,6 +795,20 @@ namespace CCT
             return look.boundaries > 0 ? $"{hue} · {look.layers.Count}개 층" : $"{hue} · {clarity}";
         }
 
+        /// <summary>커피 완성 모습(농도·도구).</summary>
+        static string CoffeeLookWords(DrinkRecipe r)
+        {
+            float conc = r.water > 0 ? r.LeafTotal() / (float)r.water : 0f;
+            string tone = conc >= 0.3f ? "짙은 흑갈색" : conc >= 0.1f ? "진한 갈색" : conc >= 0.05f ? "맑은 호박빛 갈색" : "연한 갈색";
+            string top = r.coffeeMethod switch
+            {
+                CoffeeBrewMethod.EspressoMachine => "크레마",
+                CoffeeBrewMethod.MokaPot => "묵직한 바디",
+                _ => "깨끗한 뒷맛",
+            };
+            return $"{tone} · {top}";
+        }
+
         public void ConfirmCraft()
         {
             if (Busy("제조")) return;
@@ -808,19 +884,25 @@ namespace CCT
                 UiFactory.AddText(UiFactory.Place("Status", card, new Vector2(0f, 1f), new Vector2(150f, -88f), new Vector2(300f, 40f)),
                     owned > 0 ? $"보유 {DrinkRules.Format(owned, def.form)}" : seen ? "보유 0" : "아직 없음(잠김)", DrinkPaperUi.Small, TextAnchor.MiddleLeft, owned > 0 ? DrinkPaperUi.InkGood : DrinkPaperUi.InkBad);
                 // 실제 색: 액체는 작은 잔에 그 재료만, 찻잎은 우린 차를 찻잔에(같은 물리·색 렌더러, 색 사각형 없음)
-                var probe = DrinkRecipe.NewDraft(leaf ? DrinkKind.Tea : DrinkKind.Cocktail);
-                probe.SetAmount(def.id, leaf ? 20 : 300);
+                bool bean = def.id == DrinkIngredients.CoffeeBean;
+                bool coffeeOnly = def.use == DrinkUse.Coffee;
+                var probe = bean ? DrinkRecipe.NewDraft(DrinkKind.Coffee, CoffeeBrewMethod.PourOver)
+                    : DrinkRecipe.NewDraft(coffeeOnly ? DrinkKind.Coffee : leaf ? DrinkKind.Tea : DrinkKind.Cocktail);
+                if (coffeeOnly && !bean) probe.water = 0; // 재료 자체의 색(커피 없이)
+                probe.SetAmount(def.id, bean ? 150 : leaf ? 20 : 300);
                 var glassRoot = UiFactory.Place("ColorGlass", card, new Vector2(1f, 1f), new Vector2(-44f, -36f), new Vector2(110f, 120f));
                 glassRoot.pivot = new Vector2(1f, 1f);
                 var glass = DrinkVesselView.Create(glassRoot, leaf ? "dl_teacup" : "dl_glass_cocktail", new Vector2(0f, -60f), 60f, 2);
-                if (leaf) glass.SetLiquid(DrinkPhysicsSim.TeaColor(probe), 40f, def.turbidity);
+                if (bean) glass.SetLiquid(CoffeeBrewing.BrewColor(probe), 40f, def.turbidity);
+                else if (leaf) glass.SetLiquid(DrinkPhysicsSim.TeaColor(probe), 40f, def.turbidity);
                 else glass.SetLiquid(DrinkCalculator.IngredientLook(def), 40f, def.turbidity, def.density);
-                string colorWords = (leaf ? "우린 차: " : "실제 색: ") + LookWords(DrinkCalculator.Look(probe));
+                string colorWords = bean ? "핸드 드립: " + CoffeeLookWords(probe) : (leaf ? "우린 차: " : "실제 색: ") + LookWords(DrinkCalculator.Look(probe));
+                var ingredientEffect = DrinkCalculator.EffectFor(probe.Kind, def);
                 string text =
                     $"{def.taste}\n" +
                     $"{colorWords}\n" +
                     $"사용: {def.UseLabel} · 단위 {def.Unit}\n" +
-                    $"게임 효과: {DrinkRules.StatName(def.effect)} (상한 {DrinkBuff.Pct(def.effect, DrinkRules.Cap(def.effect))})\n" +
+                    $"게임 효과: {DrinkRules.StatName(ingredientEffect)} (상한 {DrinkBuff.Pct(ingredientEffect, DrinkRules.Cap(ingredientEffect))})\n" +
                     $"착색 {(def.tint > 2f ? "강함" : def.tint > 0.5f ? "보통" : "약함")} · 탁도 {(def.turbidity > 0.3f ? "높음" : def.turbidity > 0.05f ? "약간" : "맑음")} · 밀도 {def.density:0.00}\n" +
                     $"획득처: {DrinkLab.SourceText(def.id)}" + (seen ? "" : "\n아직 보유한 적이 없어 제조에 쓸 수 없습니다.");
                 var t = UiFactory.AddText(UiFactory.Place("Body", card, new Vector2(0f, 1f), new Vector2(40f, -164f), new Vector2(cardW - 80f, cardH - 210f)), text, DrinkPaperUi.Body, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
@@ -857,7 +939,7 @@ namespace CCT
             DrinkPaperUi.Sliced(pr, "torn_recipe", 3f);
             string pl = prepared == null ? "준비 음료 없음 — 제조 탭에서 만든 음료를 팔 수 있습니다."
                 : prepared.state == PreparedDrink.InRun ? $"{prepared.recipe.name} — 이번 판에 사용 중(판매 불가)"
-                : $"{prepared.recipe.name} · {(prepared.recipe.Kind == DrinkKind.Tea ? "차" : "칵테일")} · {DrinkRules.TechniqueName(prepared.recipe.Technique)} · {DrinkSales.FamilyOf(prepared.recipe)}\n{RecipeLine(prepared.recipe)}";
+                : $"{prepared.recipe.name} · {DrinkRules.KindName(prepared.recipe.Kind)} · {DrinkRules.TechniqueName(prepared.recipe.Technique)} · {DrinkSales.FamilyOf(prepared.recipe)}\n{RecipeLine(prepared.recipe)}";
             var pt = UiFactory.AddText(UiFactory.Place("PreparedInfo", pr, new Vector2(0f, 1f), new Vector2(36f, -40f), new Vector2(colW - 330f, 120f)), pl, DrinkPaperUi.Small, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
             pt.verticalOverflow = VerticalWrapMode.Truncate;
             var discard = DrinkPaperUi.Button(pr, "DiscardPrepared", new Vector2(1f, 0.5f), new Vector2(-30f, -6f), new Vector2(260f, 66f), "준비 음료 버리기", DrinkPaperUi.Small,
@@ -880,7 +962,7 @@ namespace CCT
                     price = DrinkSales.Price(o, r);
                     string Mark(bool ok) => r == null ? "·" : ok ? "✓" : "✗";
                     var a = DrinkIngredients.Get(o.ingA); var b = DrinkIngredients.Get(o.ingB);
-                    text = $"주문 {i + 1} · {((DrinkKind)o.kind == DrinkKind.Tea ? "차" : "칵테일")}\n" +
+                    text = $"주문 {i + 1} · {DrinkRules.KindName((DrinkKind)o.kind)}\n" +
                            $"{Mark(r != null && (int)r.Kind == o.kind && r.AmountOf(o.ingA) >= o.minA)} {a?.name} {DrinkRules.Format(o.minA, a != null ? a.form : IngredientForm.Liquid)} 이상   " +
                            $"{Mark(r != null && (int)r.Kind == o.kind && r.AmountOf(o.ingB) >= o.minB)} {b?.name} {DrinkRules.Format(o.minB, b != null ? b.form : IngredientForm.Liquid)} 이상\n" +
                            $"보너스: {Mark(DrinkSales.TechniqueMatches(o, r))} {DrinkRules.TechniqueName((DrinkTechnique)o.technique)} +{DrinkSales.TechniqueBonus} · {Mark(DrinkSales.ColorMatches(o, r))} {o.colorFamily} +{DrinkSales.ColorBonus}";
@@ -1055,7 +1137,7 @@ namespace CCT
             var irt = UiFactory.Place("Info", bodyRt, new Vector2(0f, 1f), Vector2.zero, new Vector2(infoW, 10f)); // 스크롤 내용 안의 글 상자(폭 고정)
             irt.pivot = new Vector2(0f, 1f);
             var info = UiFactory.AddText(irt,
-                $"{(r.Kind == DrinkKind.Tea ? "차" : "칵테일")} · {DrinkRules.TechniqueName(r.Technique)} · {(look.totalVolume > 0 ? LookWords(look) : "")}\n{RecipeLine(r)}\n버프(현재 밸런스): {buff.Describe()}" +
+                $"{DrinkRules.KindName(r.Kind)} · {DrinkRules.TechniqueName(r.Technique)} · {(look.totalVolume > 0 ? LookWords(look) : "")}\n{RecipeLine(r)}\n버프(현재 밸런스): {buff.Describe()}" +
                 (!check.Ok ? $"\n<color=#a8241a>사용 불가: {check.First}</color>" : shortages.Count > 0 ? $"\n<color=#a8241a>재료 부족: {ShortageLine(shortages)}</color>" : ""),
                 DrinkPaperUi.Body, TextAnchor.UpperLeft, DrinkPaperUi.Ink);
             info.supportRichText = true; info.horizontalOverflow = HorizontalWrapMode.Wrap; info.verticalOverflow = VerticalWrapMode.Overflow;
@@ -1104,6 +1186,7 @@ namespace CCT
                 parts.Add(d != null ? $"{d.name} {DrinkRules.Format(s.amount, d.form)}" : "알 수 없는 재료");
             }
             if (r.Kind == DrinkKind.Cocktail) { if (r.water > 0) parts.Add($"물 {DrinkRules.Format(r.water)}mL"); if (r.ice > 0) parts.Add($"얼음 {r.ice}"); }
+            if (r.Kind == DrinkKind.Coffee) parts.Add($"{CoffeeBrewing.DisplayName(r.coffeeMethod)} {DrinkRules.Format(r.water)}mL 추출");
             return string.Join(" → ", parts);
         }
 
@@ -1135,7 +1218,7 @@ namespace CCT
             var list = DrinkLab.Recipes;
             if (index < 0 || index >= list.Count) return;
             var r = list[index].Clone();
-            kind = r.Kind == DrinkKind.Tea ? DrinkKind.Tea : DrinkKind.Cocktail;
+            kind = r.Kind == DrinkKind.Tea || r.Kind == DrinkKind.Coffee ? r.Kind : DrinkKind.Cocktail;
             draft = r;
             editingRecipeIndex = edit ? index : -1;
             selected = null;
@@ -1169,7 +1252,7 @@ namespace CCT
             var r = importPreview;
             var look = DrinkCalculator.Look(r);
             var shortages = DrinkValidator.Shortages(r, DrinkLab.Owned);
-            previewText.text = $"{r.name} · {(r.Kind == DrinkKind.Tea ? "차" : "칵테일")} · {DrinkRules.TechniqueName(r.Technique)}\n{RecipeLine(r)}\n" +
+            previewText.text = $"{r.name} · {DrinkRules.KindName(r.Kind)} · {DrinkRules.TechniqueName(r.Technique)}\n{RecipeLine(r)}\n" +
                                $"완성 모습: {LookWords(look)}\n" +
                                $"버프(현재 밸런스로 계산): {DrinkCalculator.Buff(r).Describe()}\n" +
                                (shortages.Count > 0 ? $"<color=#ff8a80>내 재료 부족: {ShortageLine(shortages)}</color>" : "내 재료로 바로 제조할 수 있습니다.");

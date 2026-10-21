@@ -6,14 +6,15 @@ namespace CCT
 {
     /// <summary>
     /// 69 레시피 공유 코드(서버·계정 없음, 복사/붙여넣기). 형식: "CCT1-" + Crockford Base32(바이트) (5자마다 '-').
-    /// 바이트: [버전 1][종류][기법][얼음][물 u16][재료 수 n][(재료 색인 u8, 양 u16)×n][이름 길이 u8][이름 UTF-8][CRC32 4바이트].
+    /// 바이트: [버전 1][종류][기법][(커피만) 추출 도구][얼음][물 u16][재료 수 n][(재료 색인 u8, 양 u16)×n][이름 길이 u8][이름 UTF-8][CRC32 4바이트].
+    /// 추출 도구 바이트는 종류가 커피(3)일 때만 있다 — 기존 칵테일·차 코드는 그대로 읽힌다.
     /// 버프·색은 넣지 않는다(가져온 쪽의 현재 밸런스로 재계산). 코드는 데이터로만 해석하며 명령·경로·실행 코드로 쓰지 않는다.
     /// </summary>
     public static class DrinkShareCode
     {
         public const string Prefix = "CCT1-";
         public const int Version = 1;
-        /// <summary>최대 코드 길이(접두어·구분자 포함). 최대 바이트 = 헤더 7 + 재료 8×3 + 이름 1+48 + CRC 4 = 84 → Base32 135자 + '-' 26 + "CCT1-" 5 = 166.</summary>
+        /// <summary>최대 코드 길이(접두어·구분자 포함). 최대 바이트 = 헤더 8(커피) + 재료 8×3 + 이름 1+48 + CRC 4 = 85 → Base32 136자 + '-' 27 + "CCT1-" 5 = 168.</summary>
         public const int MaxCodeLength = 170;
         /// <summary>붙여넣기 입력 허용 길이(공백·줄바꿈 포함). 넘으면 해석 전에 거부.</summary>
         public const int MaxPasteLength = 400;
@@ -23,7 +24,9 @@ namespace CCT
 
         public static string Encode(DrinkRecipe r)
         {
-            var bytes = new List<byte> { Version, (byte)r.kind, (byte)r.technique, (byte)Math.Max(0, Math.Min(255, r.ice)) };
+            var bytes = new List<byte> { Version, (byte)r.kind, (byte)r.technique };
+            if (r.kind == (int)DrinkKind.Coffee) bytes.Add((byte)Math.Max(0, Math.Min(255, (int)r.coffeeMethod)));
+            bytes.Add((byte)Math.Max(0, Math.Min(255, r.ice)));
             U16(bytes, r.water);
             bytes.Add((byte)r.steps.Count);
             foreach (var s in r.steps)
@@ -83,7 +86,9 @@ namespace CCT
             int p = 0;
             int version = bytes[p++];
             if (version != Version) { error = "지원하지 않는 코드 버전입니다."; return null; }
-            var r = new DrinkRecipe { kind = bytes[p++], technique = bytes[p++], ice = bytes[p++] };
+            var r = new DrinkRecipe { kind = bytes[p++], technique = bytes[p++] };
+            if (r.kind == (int)DrinkKind.Coffee) r.coffeeMethod = (CoffeeBrewMethod)bytes[p++];
+            r.ice = bytes[p++];
             r.water = bytes[p] << 8 | bytes[p + 1]; p += 2;
             int n = bytes[p++];
             if (n > MaxSteps) { error = "재료 수가 너무 많습니다."; return null; }
@@ -101,7 +106,7 @@ namespace CCT
             try { name = new UTF8Encoding(false, true).GetString(bytes.GetRange(p, nameLen).ToArray()); }
             catch (Exception) { error = "레시피 이름이 손상되었습니다."; return null; }
             r.name = DrinkValidator.SanitizeName(name, "가져온 레시피");
-            if (r.kind != (int)DrinkKind.Cocktail && r.kind != (int)DrinkKind.Tea) { error = "알 수 없는 음료 종류입니다."; return null; }
+            if (r.kind != (int)DrinkKind.Cocktail && r.kind != (int)DrinkKind.Tea && r.kind != (int)DrinkKind.Coffee) { error = "알 수 없는 음료 종류입니다."; return null; }
             if (!Enum.IsDefined(typeof(DrinkTechnique), r.technique) || !DrinkRules.AllowedTechnique(r.Kind, r.Technique))
             { error = "허용되지 않는 제조 기법입니다."; return null; }
             var check = DrinkValidator.Check(r);

@@ -83,7 +83,7 @@ namespace CCT
         }
 
         /// <summary>재료의 기본 효과를 음료 종류별로 분리한다. 공유 재료도 차에서는 차 전용 효과에만 기여한다.</summary>
-        static DrinkStat EffectFor(DrinkKind kind, DrinkIngredientDef def)
+        public static DrinkStat EffectFor(DrinkKind kind, DrinkIngredientDef def)
         {
             if (kind == DrinkKind.Coffee) return DrinkStat.Range;
             if (kind == DrinkKind.Tea)

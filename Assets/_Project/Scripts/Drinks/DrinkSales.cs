@@ -192,7 +192,7 @@ namespace CCT
             }
         }
 
-        static DrinkKind KindFromSlot(int slot) => ((((slot - 1) % 3) + 3) % 3) switch
+        static DrinkKind KindFromSlot(int slot) => (((slot % 3) + 3) % 3) switch
         {
             0 => DrinkKind.Cocktail,
             1 => DrinkKind.Tea,
