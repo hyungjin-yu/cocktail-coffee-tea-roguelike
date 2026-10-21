@@ -59,7 +59,7 @@ namespace CCT
             float t = 0f;
             // 73: 완성 공개도 제조대와 같은 고정 잔 용량·최종 물리 상태(밀도 층·얼음 배제 부피·여유 공간)로 그린다(잔을 가득 채우지 않음).
             // 이전 dl_drink_reveal 프레임 경로는 양과 무관하게 마스크를 채우고 얼음을 그릴 수 없어 쓰지 않는다. 손·음용 동작 없음.
-            string vesselId = tea ? "dl_teacup" : "dl_glass_cocktail";
+            string vesselId = DrinkStageView.ServeFor(r);
             var v = DrinkVesselView.Create(stage, vesselId, new Vector2(0f, -200f), DrinkStageView.CapacityFor(vesselId), 7);
             v.SetLayers(DrinkPhysicsSim.Layers(DrinkPhysicsSim.Final(r), r));
             v.SetIce(!tea ? r.ice : 0);

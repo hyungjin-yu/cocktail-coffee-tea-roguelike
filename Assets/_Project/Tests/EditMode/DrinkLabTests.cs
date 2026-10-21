@@ -288,7 +288,7 @@ namespace CCT.Tests
             Assert.IsTrue(r.SameMix(back));
             // 형식상 최대(재료 8줄)도 선언한 최대 길이 안
             var eight = Cocktail(DrinkTechnique.Shake);
-            foreach (var id in DrinkIngredients.ShareIndex) eight.steps.Add(new DrinkStep(id, 65535));
+            for (int i = 0; i < 8; i++) eight.steps.Add(new DrinkStep(DrinkIngredients.ShareIndex[i], 65535)); // 형식 최대 8줄(색인은 9종 이상)
             eight.name = new string('힣', DrinkRules.RecipeNameMax);
             Assert.LessOrEqual(DrinkShareCode.Encode(eight).Length, DrinkShareCode.MaxCodeLength);
             var emoji = Cocktail(DrinkTechnique.Shake, ("gin", 100)); emoji.name = "🍸🍸🍸🍸🍸🍸🍸🍸";

@@ -4,20 +4,20 @@ using UnityEngine;
 
 namespace CCT
 {
-    /// <summary>69(2026-10-19) 음료 종류. 커피 제조는 후속(기존 커피 성장 유지).</summary>
-    public enum DrinkKind { Cocktail = 1, Tea = 2 }
+    /// <summary>69(2026-10-19) 음료 종류. 커피(4)는 추출 도구(CoffeeBrewMethod)를 고르는 세 번째 종류 — 값이 DrinkUse 비트와 같다(저장·공유 코드 값).</summary>
+    public enum DrinkKind { Cocktail = 1, Tea = 2, Coffee = 4 }
 
-    /// <summary>재료를 쓸 수 있는 음료 종류(비트 합). 공용 = Cocktail|Tea.</summary>
+    /// <summary>재료를 쓸 수 있는 음료 종류(비트 합). 공용 = Cocktail|Tea. 커피 = 4.</summary>
     [Flags]
-    public enum DrinkUse { Cocktail = 1, Tea = 2, Both = 3 }
+    public enum DrinkUse { Cocktail = 1, Tea = 2, Both = 3, Coffee = 4 }
 
-    /// <summary>69 제조 기법. 저장·공유 코드에는 이 정수 값을 쓴다(순서를 바꾸지 않는다).</summary>
-    public enum DrinkTechnique { Shake = 1, Stir = 2, Build = 3, Layer = 4, Steep = 5 }
+    /// <summary>69 제조 기법. 저장·공유 코드에는 이 정수 값을 쓴다(순서를 바꾸지 않는다). Brew = 커피 추출(도구는 레시피의 method).</summary>
+    public enum DrinkTechnique { Shake = 1, Stir = 2, Build = 3, Layer = 4, Steep = 5, Brew = 6 }
 
-    /// <summary>69 음료 버프 효과. 저장/공유 데이터에는 쓰지 않는다(항상 현재 밸런스로 재계산).</summary>
-    public enum DrinkStat { Attack, AttackSpeed, CritChance, MaxHp, CooldownReduction, MoveSpeed }
+    /// <summary>69 음료 버프 효과. 저장/공유 데이터에는 쓰지 않는다(항상 현재 밸런스로 재계산). Range = 커피 전용 집중(조준) 사거리.</summary>
+    public enum DrinkStat { Attack, AttackSpeed, CritChance, MaxHp, CooldownReduction, MoveSpeed, Range }
 
-    /// <summary>재료 형태. 액체는 mL, 찻잎은 g. 내부 저장은 둘 다 정수 1 = 0.1단위.</summary>
+    /// <summary>재료 형태. 액체는 mL, 찻잎·원두(마른 고형 재료)는 g. 내부 저장은 둘 다 정수 1 = 0.1단위.</summary>
     public enum IngredientForm { Liquid, Leaf }
 
     /// <summary>69 실제 재료 정의(도감·계량·색·버프 데이터). 수치는 임시 기본값이며 구현 보고서에 표로 남긴다.</summary>
@@ -51,16 +51,35 @@ namespace CCT
         public string iconId;
         public string bottleId;
 
-        public bool UsableIn(DrinkKind kind) => (use & (DrinkUse)(int)kind) != 0;
+        public bool UsableIn(DrinkKind kind) => (use & UseBit(kind)) != 0;
         public string Unit => form == IngredientForm.Leaf ? "g" : "mL";
-        public string UseLabel => use == DrinkUse.Both ? "칵테일 · 차" : use == DrinkUse.Cocktail ? "칵테일" : "차";
+        public string UseLabel
+        {
+            get
+            {
+                var parts = new List<string>();
+                if ((use & DrinkUse.Cocktail) != 0) parts.Add("칵테일");
+                if ((use & DrinkUse.Tea) != 0) parts.Add("차");
+                if ((use & DrinkUse.Coffee) != 0) parts.Add("커피");
+                return string.Join(" · ", parts);
+            }
+        }
+
+        /// <summary>음료 종류 → 사용 비트. 알 수 없는 종류는 0(어떤 재료도 쓸 수 없음).</summary>
+        public static DrinkUse UseBit(DrinkKind kind) => kind switch
+        {
+            DrinkKind.Cocktail => DrinkUse.Cocktail,
+            DrinkKind.Tea => DrinkUse.Tea,
+            DrinkKind.Coffee => DrinkUse.Coffee,
+            _ => 0,
+        };
     }
 
     /// <summary>69 재료 표. ID는 저장·공유 코드에 쓰이므로 바꾸지 않는다. 공유 코드 색인은 ShareIndex 순서.</summary>
     public static class DrinkIngredients
     {
         public const string Gin = "gin", Rum = "rum", BlueCuracao = "blue_curacao", Grenadine = "grenadine",
-            BlackTea = "black_tea", GreenTea = "green_tea", LemonJuice = "lemon_juice", Honey = "honey";
+            BlackTea = "black_tea", GreenTea = "green_tea", LemonJuice = "lemon_juice", Honey = "honey", CoffeeBean = "coffee_bean", SteamedMilk = "steamed_milk";
 
         static Color C(int r, int g, int b) => new Color(r / 255f, g / 255f, b / 255f, 1f);
 
@@ -130,10 +149,28 @@ namespace CCT
                 taste = "금빛의 걸쭉한 꿀. 천천히 흘러내리고 단맛과 꽃 향이 난다.",
                 source = "일반·정예 처치, 중간·최종 보스 보상", iconId = "dl_icon_honey", bottleId = "dl_bottle_honey",
             },
+            new DrinkIngredientDef
+            {
+                // 커피 필수 재료. 원두 g(다하 대신 원두 스쿱으로 계량). 추출 색은 CoffeeBrewing.BrewColor(도구·원두·물)로 계산한다.
+                id = CoffeeBean, name = "원두", use = DrinkUse.Coffee, form = IngredientForm.Leaf,
+                color = C(84, 50, 30), brewColor = C(62, 34, 18), tint = 2.4f, turbidity = 0.08f, viscosity = 0f, density = 1.0f,
+                effect = DrinkStat.Range, coefficient = 0.8f,
+                taste = "볶은 커피콩. 추출 도구에 따라 진한 에스프레소, 맑은 핸드 드립, 묵직한 모카포트 커피가 된다.",
+                source = "일반·정예 처치, 중간·최종 보스 보상", iconId = "dl_icon_coffee_bean", bottleId = "dl_tin_coffee_bean",
+            },
+            new DrinkIngredientDef
+            {
+                // 커피 선택 재료. 완성 잔에 먼저 담고 커피를 그 위로 내린다(도구 안에는 넣지 않는다). 뿌옇고 커피보다 무거워 아래에 깔린다.
+                id = SteamedMilk, name = "스팀 우유", use = DrinkUse.Coffee, form = IngredientForm.Liquid,
+                color = C(246, 240, 226), tint = 0.6f, turbidity = 0.9f, viscosity = 0.15f, density = 1.03f,
+                effect = DrinkStat.Range, coefficient = 0.4f,
+                taste = "스팀으로 데운 우유. 고운 거품이 올라오고 커피를 부드럽고 밝은 갈색으로 만든다.",
+                source = "일반·정예 처치, 중간·최종 보스 보상", iconId = "dl_icon_steamed_milk", bottleId = "dl_bottle_steamed_milk",
+            },
         };
 
         /// <summary>공유 코드 v1 재료 색인(0부터). 새 재료는 끝에만 추가한다.</summary>
-        public static readonly string[] ShareIndex = { Gin, Rum, BlueCuracao, Grenadine, BlackTea, GreenTea, LemonJuice, Honey };
+        public static readonly string[] ShareIndex = { Gin, Rum, BlueCuracao, Grenadine, BlackTea, GreenTea, LemonJuice, Honey, CoffeeBean, SteamedMilk };
 
         static Dictionary<string, DrinkIngredientDef> byId;
 
@@ -164,6 +201,8 @@ namespace CCT
         public const int IceMax = 4;
         public const int JiggerCapacity = 450;        // 45.0 mL 더블 지거
         public const int ChahaCapacity = 30;          // 3.0 g 다하
+        public const int CoffeeScoopCapacity = 100;   // 10.0 g 원두 스쿱
+        public const int CoffeeAdditiveMax = 1000;    // 커피 첨가 액체(스팀 우유) 100.0 mL — 실제로는 잔 여유(ServeFillMax)가 먼저 막는다
         public const int RecipeLimit = 30;
         public const int RecipeNameMax = 16;
         /// <summary>한 배합 재료 종류 상한(초기 재료 8종).</summary>
@@ -182,15 +221,42 @@ namespace CCT
         /// <summary>얼음 한 조각 부피(mL). DrinkVesselView.CubeVolumeMl와 같다.</summary>
         public const float IceCubeMl = 10f;
 
-        public static float ServeCapacityMl(DrinkKind kind) => kind == DrinkKind.Tea ? ServeTeaCapacityMl : ServeCocktailCapacityMl;
+        public static float ServeCapacityMl(DrinkKind kind) => kind switch
+        {
+            DrinkKind.Tea => ServeTeaCapacityMl,
+            DrinkKind.Coffee => CoffeeBrewing.CupCapacityMl(CoffeeBrewMethod.PourOver),
+            _ => ServeCocktailCapacityMl,
+        };
+
+        /// <summary>완성 잔 용량(mL). 커피는 추출 도구마다 잔이 다르다(에스프레소 잔·머그).</summary>
+        public static float ServeCapacityMl(DrinkRecipe r) =>
+            r != null && r.Kind == DrinkKind.Coffee ? CoffeeBrewing.CupCapacityMl(r.coffeeMethod) : ServeCapacityMl(r != null ? r.Kind : DrinkKind.Cocktail);
 
         /// <summary>완성 잔에 들어갈 액체 + 얼음 부피(mL).</summary>
         public static float ServeFillMl(DrinkRecipe r) => r == null ? 0f : (r.LiquidTotal() + Math.Max(0, r.water)) / 10f + Math.Max(0, r.ice) * IceCubeMl;
 
-        public static bool AllowedTechnique(DrinkKind kind, DrinkTechnique t) =>
-            kind == DrinkKind.Tea ? t == DrinkTechnique.Steep : t != DrinkTechnique.Steep && Enum.IsDefined(typeof(DrinkTechnique), t);
+        public static bool AllowedTechnique(DrinkKind kind, DrinkTechnique t) => kind switch
+        {
+            DrinkKind.Tea => t == DrinkTechnique.Steep,
+            DrinkKind.Coffee => t == DrinkTechnique.Brew,
+            _ => t != DrinkTechnique.Steep && t != DrinkTechnique.Brew && Enum.IsDefined(typeof(DrinkTechnique), t),
+        };
 
-        public static DrinkTechnique DefaultTechnique(DrinkKind kind) => kind == DrinkKind.Tea ? DrinkTechnique.Steep : DrinkTechnique.Shake;
+        public static DrinkTechnique DefaultTechnique(DrinkKind kind) => kind switch
+        {
+            DrinkKind.Tea => DrinkTechnique.Steep,
+            DrinkKind.Coffee => DrinkTechnique.Brew,
+            _ => DrinkTechnique.Shake,
+        };
+
+        /// <summary>화면용 음료 종류 이름.</summary>
+        public static string KindName(DrinkKind kind) => kind switch
+        {
+            DrinkKind.Cocktail => "칵테일",
+            DrinkKind.Tea => "차",
+            DrinkKind.Coffee => "커피",
+            _ => "알 수 없음",
+        };
 
         public static string TechniqueName(DrinkTechnique t) => t switch
         {
@@ -199,6 +265,7 @@ namespace CCT
             DrinkTechnique.Build => "빌드",
             DrinkTechnique.Layer => "레이어링",
             DrinkTechnique.Steep => "차 우림",
+            DrinkTechnique.Brew => "커피 추출",
             _ => "알 수 없음",
         };
 
@@ -209,6 +276,7 @@ namespace CCT
             DrinkTechnique.Build => "마실 잔에 순서대로 붓기 — 전체 ×1.00",
             DrinkTechnique.Layer => "천천히 층 쌓기 — 서로 다른 효과 2종 이상이면 전체 ×1.05, 1종이면 ×0.90",
             DrinkTechnique.Steep => "다관에 우리기 — 전체 ×1.00",
+            DrinkTechnique.Brew => "고른 추출 도구로 내리기 — 전체 ×1.00",
             _ => "",
         };
 
@@ -220,6 +288,7 @@ namespace CCT
             DrinkTechnique.Build => "마실 잔에 그대로 붓기 · 기본 효과",
             DrinkTechnique.Layer => "천천히 층을 쌓기 · 효과가 2종 이상이면 강화",
             DrinkTechnique.Steep => "다관에 물을 부어 우리기",
+            DrinkTechnique.Brew => "고른 추출 도구로 원두를 내리기",
             _ => "",
         };
 
@@ -231,6 +300,7 @@ namespace CCT
             DrinkStat.MaxHp => "최대 체력",
             DrinkStat.CooldownReduction => "재사용 시간 감소",
             DrinkStat.MoveSpeed => "이동 속도",
+            DrinkStat.Range => "사거리",
             _ => "",
         };
 
@@ -243,6 +313,7 @@ namespace CCT
             DrinkStat.MaxHp => 0.10f,
             DrinkStat.CooldownReduction => 0.05f,
             DrinkStat.MoveSpeed => 0.05f,
+            DrinkStat.Range => 0.08f,
             _ => 0f,
         };
 

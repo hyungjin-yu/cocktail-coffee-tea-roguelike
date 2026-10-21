@@ -16,7 +16,7 @@ namespace CCT
     }
 
     /// <summary>
-    /// 69 레시피/배합. 저장 필드: 사용자 이름, 음료 종류, 재료 ID·정수량(단위는 재료 정의), 투입 순서, 기법, 물/얼음, 스키마 버전.
+    /// 69 레시피/배합. 저장 필드: 사용자 이름, 음료 종류, 재료 ID·정수량(단위는 재료 정의), 투입 순서, 기법, 물/얼음, 커피 추출 도구, 스키마 버전.
     /// 버프·색은 저장하지 않는다 — 항상 현재 밸런스로 DrinkCalculator가 재계산한다.
     /// </summary>
     [Serializable]
@@ -34,6 +34,8 @@ namespace CCT
         /// <summary>물(0.1mL). 차는 항상 TeaWaterFixed, 칵테일은 희석수.</summary>
         public int water;
         public int ice;
+        /// <summary>커피 추출 도구. 칵테일·차는 0(정의되지 않은 값). 이전 저장에 없던 필드라 기존 레시피는 0으로 읽힌다(JsonUtility는 정수로 저장).</summary>
+        public CoffeeBrewMethod coffeeMethod;
 
         public DrinkKind Kind => (DrinkKind)kind;
         public DrinkTechnique Technique => (DrinkTechnique)technique;
@@ -46,13 +48,29 @@ namespace CCT
             return copy;
         }
 
-        public static DrinkRecipe NewDraft(DrinkKind kind) => new DrinkRecipe
+        public static DrinkRecipe NewDraft(DrinkKind kind) => NewDraft(kind, CoffeeBrewMethod.EspressoMachine);
+
+        /// <summary>새 배합. 커피는 고른 추출 도구의 기본 추출량으로 시작한다(원두는 비어 있음).</summary>
+        public static DrinkRecipe NewDraft(DrinkKind kind, CoffeeBrewMethod method)
         {
-            kind = (int)kind,
-            technique = (int)DrinkRules.DefaultTechnique(kind),
-            water = kind == DrinkKind.Tea ? DrinkRules.TeaWaterFixed : 0,
-            ice = kind == DrinkKind.Cocktail ? 2 : 0,
-        };
+            bool coffee = kind == DrinkKind.Coffee;
+            return new DrinkRecipe
+            {
+                kind = (int)kind,
+                technique = (int)DrinkRules.DefaultTechnique(kind),
+                water = kind == DrinkKind.Tea ? DrinkRules.TeaWaterFixed : coffee ? CoffeeBrewing.DefaultWaterTenths(method) : 0,
+                ice = kind == DrinkKind.Cocktail ? 2 : 0,
+                coffeeMethod = coffee ? method : 0,
+            };
+        }
+
+        /// <summary>커피 추출 도구 변경: 물(추출량)은 새 도구의 기본값, 원두 양은 그대로(범위 밖이면 검증이 알린다).</summary>
+        public void SetCoffeeMethod(CoffeeBrewMethod m)
+        {
+            if (Kind != DrinkKind.Coffee || !CoffeeBrewing.IsDefined(m)) return;
+            coffeeMethod = m;
+            water = CoffeeBrewing.DefaultWaterTenths(m);
+        }
 
         public int AmountOf(string id)
         {
@@ -96,7 +114,7 @@ namespace CCT
         /// <summary>같은 레시피 판정(이름 제외, 순서 포함).</summary>
         public bool SameMix(DrinkRecipe other)
         {
-            if (other == null || other.kind != kind || other.technique != technique || other.water != water || other.ice != ice) return false;
+            if (other == null || other.kind != kind || other.technique != technique || other.water != water || other.ice != ice || other.coffeeMethod != coffeeMethod) return false;
             if (other.steps == null || steps == null || other.steps.Count != steps.Count) return false;
             for (int i = 0; i < steps.Count; i++)
                 if (steps[i] == null || other.steps[i] == null || steps[i].id != other.steps[i].id || steps[i].amount != other.steps[i].amount) return false;
@@ -120,15 +138,16 @@ namespace CCT
             var res = new Result();
             if (r == null) { res.Errors.Add("배합이 없습니다."); return res; }
             if (r.schemaVersion < 1 || r.schemaVersion > DrinkRecipe.CurrentSchema) res.Errors.Add("지원하지 않는 레시피 버전입니다.");
-            if (r.kind != (int)DrinkKind.Cocktail && r.kind != (int)DrinkKind.Tea) { res.Errors.Add("알 수 없는 음료 종류입니다."); return res; }
+            if (r.kind != (int)DrinkKind.Cocktail && r.kind != (int)DrinkKind.Tea && r.kind != (int)DrinkKind.Coffee) { res.Errors.Add("알 수 없는 음료 종류입니다."); return res; }
             var kind = r.Kind;
             if (!Enum.IsDefined(typeof(DrinkTechnique), r.technique) || !DrinkRules.AllowedTechnique(kind, r.Technique))
-                res.Errors.Add(kind == DrinkKind.Tea ? "차는 우림 기법만 쓸 수 있습니다." : "칵테일에 쓸 수 없는 기법입니다.");
+                res.Errors.Add(kind == DrinkKind.Tea ? "차는 우림 기법만 쓸 수 있습니다." : kind == DrinkKind.Coffee ? "커피는 추출 기법만 쓸 수 있습니다." : "칵테일에 쓸 수 없는 기법입니다.");
+            if (kind == DrinkKind.Coffee && !CoffeeBrewing.IsDefined(r.coffeeMethod)) { res.Errors.Add("알 수 없는 추출 도구입니다."); return res; }
             if (r.steps == null) { res.Errors.Add("재료 목록이 없습니다."); return res; }
             if (r.steps.Count > DrinkRules.MaxSteps) { res.Errors.Add($"재료는 최대 {DrinkRules.MaxSteps}종입니다."); return res; }
 
             var seen = new HashSet<string>();
-            bool hasBase = false, hasLeaf = false;
+            bool hasBase = false, hasLeaf = false, hasBean = false;
             foreach (var s in r.steps)
             {
                 if (s == null) { res.Errors.Add("비어 있는 재료 줄이 있습니다."); continue; }
@@ -137,8 +156,9 @@ namespace CCT
                 if (!seen.Add(def.id)) res.Errors.Add($"{def.name}이(가) 중복되어 있습니다.");
                 if (s.amount <= 0) res.Errors.Add($"{def.name}의 양이 0 이하입니다.");
                 else if (s.amount > DrinkRules.StepMax) res.Errors.Add($"{def.name}의 양이 너무 많습니다.");
-                if (!def.UsableIn(kind)) res.Errors.Add($"{def.name}은(는) {(kind == DrinkKind.Tea ? "차" : "칵테일")}에 쓸 수 없습니다.");
+                if (!def.UsableIn(kind)) res.Errors.Add($"{def.name}은(는) {DrinkRules.KindName(kind)}에 쓸 수 없습니다.");
                 if (def.baseSpirit) hasBase = true;
+                if (def.id == DrinkIngredients.CoffeeBean) hasBean = true;
                 if (def.form == IngredientForm.Leaf) hasLeaf = true;
             }
             if (r.ice < 0 || r.ice > DrinkRules.IceMax) res.Errors.Add($"얼음은 0~{DrinkRules.IceMax}개입니다.");
@@ -152,6 +172,17 @@ namespace CCT
                 if (r.ice > 0 && r.Technique == DrinkTechnique.Layer) { /* 허용: 층 위에 얼음 없음은 표시만 */ }
                 if (requireComplete && !hasBase) res.Errors.Add("칵테일은 베이스 술(진·럼)이 1종 이상 필요합니다.");
             }
+            else if (kind == DrinkKind.Coffee)
+            {
+                var m = r.coffeeMethod;
+                int wMin = CoffeeBrewing.WaterMinTenths(m), wMax = CoffeeBrewing.WaterMaxTenths(m);
+                if (r.water < wMin || r.water > wMax) res.Errors.Add($"{CoffeeBrewing.DisplayName(m)} 추출량은 {DrinkRules.Format(wMin)}~{DrinkRules.Format(wMax)}mL입니다.");
+                if (r.ice != 0) res.Errors.Add("커피에는 얼음을 넣지 않습니다.");
+                if (liquid > DrinkRules.CoffeeAdditiveMax) res.Errors.Add($"커피 첨가 액체는 최대 {DrinkRules.Format(DrinkRules.CoffeeAdditiveMax)}mL입니다.");
+                int dMin = CoffeeBrewing.DoseMinTenths(m), dMax = CoffeeBrewing.DoseMaxTenths(m);
+                if (leaf > dMax) res.Errors.Add($"{CoffeeBrewing.DisplayName(m)} 원두는 최대 {DrinkRules.Format(dMax)}g입니다.");
+                if (requireComplete && (!hasBean || leaf < dMin)) res.Errors.Add($"{CoffeeBrewing.DisplayName(m)}에는 원두가 {DrinkRules.Format(dMin)}g 이상 필요합니다.");
+            }
             else
             {
                 if (r.water != DrinkRules.TeaWaterFixed) res.Errors.Add($"차의 물은 {DrinkRules.Format(DrinkRules.TeaWaterFixed)}mL로 고정입니다.");
@@ -159,7 +190,7 @@ namespace CCT
                 if (leaf > DrinkRules.TeaLeafMax) res.Errors.Add($"찻잎은 최대 {DrinkRules.Format(DrinkRules.TeaLeafMax)}g입니다.");
                 if (requireComplete && (!hasLeaf || leaf < DrinkRules.TeaLeafMin)) res.Errors.Add("차는 찻잎이 1종 이상(0.1g 이상) 필요합니다.");
             }
-            float fill = DrinkRules.ServeFillMl(r), room = DrinkRules.ServeCapacityMl(kind) * DrinkRules.ServeFillMax;
+            float fill = DrinkRules.ServeFillMl(r), room = DrinkRules.ServeCapacityMl(r) * DrinkRules.ServeFillMax;
             if (fill > room + 0.001f)
                 res.Errors.Add($"잔에 다 들어가지 않습니다(액체+얼음 {fill:0.#}mL / 최대 {room:0.#}mL). 재료나 얼음을 줄여 주세요.");
             if (requireComplete && r.steps.Count == 0) res.Errors.Add("재료를 넣어 주세요.");
