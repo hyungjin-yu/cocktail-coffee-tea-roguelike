@@ -99,6 +99,16 @@ namespace CCT
         public int LiquidTotal() => Total(IngredientForm.Liquid);
         public int LeafTotal() => Total(IngredientForm.Leaf);
 
+        /// <summary>커피 원두 총량(기본 원두 + 산지 원두, 물 제외, 0.1g). 두 산지를 섞어도 한 원두 분량으로 본다 — 추출 농도·색·주문·효과가 같은 값을 쓴다.</summary>
+        public int CoffeeDose()
+        {
+            if (steps == null) return 0;
+            long sum = 0;
+            foreach (var s in steps)
+                if (s != null && DrinkIngredients.IsCoffeeBean(s.id)) sum += Math.Max(0, s.amount);
+            return (int)Math.Min(int.MaxValue, sum);
+        }
+
         int Total(IngredientForm form)
         {
             if (steps == null) return 0;
@@ -158,7 +168,7 @@ namespace CCT
                 else if (s.amount > DrinkRules.StepMax) res.Errors.Add($"{def.name}의 양이 너무 많습니다.");
                 if (!def.UsableIn(kind)) res.Errors.Add($"{def.name}은(는) {DrinkRules.KindName(kind)}에 쓸 수 없습니다.");
                 if (def.baseSpirit) hasBase = true;
-                if (def.id == DrinkIngredients.CoffeeBean) hasBean = true;
+                if (def.IsCoffeeBean) hasBean = true;
                 if (def.form == IngredientForm.Leaf) hasLeaf = true;
             }
             if (r.ice < 0 || r.ice > DrinkRules.IceMax) res.Errors.Add($"얼음은 0~{DrinkRules.IceMax}개입니다.");
@@ -170,7 +180,7 @@ namespace CCT
                 if ((long)liquid + Math.Max(0, r.water) > DrinkRules.CocktailLiquidMax)
                     res.Errors.Add($"칵테일 액체 합이 {DrinkRules.Format(DrinkRules.CocktailLiquidMax)}mL를 넘습니다.");
                 if (r.ice > 0 && r.Technique == DrinkTechnique.Layer) { /* 허용: 층 위에 얼음 없음은 표시만 */ }
-                if (requireComplete && !hasBase) res.Errors.Add("칵테일은 베이스 술(진·럼)이 1종 이상 필요합니다.");
+                if (requireComplete && !hasBase) res.Errors.Add("칵테일은 베이스 술(진·럼·압생트)이 1종 이상 필요합니다.");
             }
             else if (kind == DrinkKind.Coffee)
             {
@@ -180,8 +190,9 @@ namespace CCT
                 if (r.ice != 0) res.Errors.Add("커피에는 얼음을 넣지 않습니다.");
                 if (liquid > DrinkRules.CoffeeAdditiveMax) res.Errors.Add($"커피 첨가 액체는 최대 {DrinkRules.Format(DrinkRules.CoffeeAdditiveMax)}mL입니다.");
                 int dMin = CoffeeBrewing.DoseMinTenths(m), dMax = CoffeeBrewing.DoseMaxTenths(m);
-                if (leaf > dMax) res.Errors.Add($"{CoffeeBrewing.DisplayName(m)} 원두는 최대 {DrinkRules.Format(dMax)}g입니다.");
-                if (requireComplete && (!hasBean || leaf < dMin)) res.Errors.Add($"{CoffeeBrewing.DisplayName(m)}에는 원두가 {DrinkRules.Format(dMin)}g 이상 필요합니다.");
+                int dose = r.CoffeeDose(); // 기본·산지 원두 합(두 산지를 섞어도 한 분량)
+                if (dose > dMax) res.Errors.Add($"{CoffeeBrewing.DisplayName(m)} 원두는 최대 {DrinkRules.Format(dMax)}g입니다.");
+                if (requireComplete && (!hasBean || dose < dMin)) res.Errors.Add($"{CoffeeBrewing.DisplayName(m)}에는 원두가 {DrinkRules.Format(dMin)}g 이상 필요합니다.");
             }
             else
             {

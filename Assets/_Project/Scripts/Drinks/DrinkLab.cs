@@ -147,6 +147,7 @@ namespace CCT
             new DrinkAmount(DrinkIngredients.BlueCuracao, 150), new DrinkAmount(DrinkIngredients.Grenadine, 150),
             new DrinkAmount(DrinkIngredients.LemonJuice, 300), new DrinkAmount(DrinkIngredients.Honey, 200),
             new DrinkAmount(DrinkIngredients.BlackTea, 60), new DrinkAmount(DrinkIngredients.GreenTea, 60),
+            new DrinkAmount(DrinkIngredients.SenchaTea, 20), new DrinkAmount(DrinkIngredients.HojichaTea, 20),
             new DrinkAmount(DrinkIngredients.CoffeeBean, 300), new DrinkAmount(DrinkIngredients.SteamedMilk, 150),
         };
 
@@ -267,17 +268,23 @@ namespace CCT
 
         static List<DrinkRecipe> BuildExamples()
         {
-            var a = DrinkRecipe.NewDraft(DrinkKind.Cocktail);
-            a.name = "예시: 진 레몬 셰이킹";
-            a.technique = (int)DrinkTechnique.Shake;
-            a.ice = 2;
-            a.steps.Add(new DrinkStep(DrinkIngredients.Gin, 450));
-            a.steps.Add(new DrinkStep(DrinkIngredients.LemonJuice, 150));
-            var b = DrinkRecipe.NewDraft(DrinkKind.Tea);
-            b.name = "예시: 꿀 홍차";
-            b.steps.Add(new DrinkStep(DrinkIngredients.BlackTea, 25));
-            b.steps.Add(new DrinkStep(DrinkIngredients.Honey, 100));
-            return new List<DrinkRecipe> { a, b };
+            var list = new List<DrinkRecipe>();
+            // Actual named recipes and preparation ratios; source URLs and game scaling are documented in Docs/DrinkLab-v1.1.
+            var negroni = DrinkRecipe.NewDraft(DrinkKind.Cocktail); negroni.name = "IBA 네그로니"; negroni.technique = (int)DrinkTechnique.Build; negroni.ice = 2;
+            negroni.steps.Add(new DrinkStep(DrinkIngredients.Gin, 300)); negroni.steps.Add(new DrinkStep(DrinkIngredients.Campari, 300)); negroni.steps.Add(new DrinkStep(DrinkIngredients.SweetVermouth, 300)); list.Add(negroni);
+            var sencha = DrinkRecipe.NewDraft(DrinkKind.Tea); sencha.name = "센차 1인용 티백";
+            sencha.steps.Add(new DrinkStep(DrinkIngredients.SenchaTea, 20)); list.Add(sencha);
+            var martini = DrinkRecipe.NewDraft(DrinkKind.Cocktail); martini.name = "IBA 드라이 마티니"; martini.technique = (int)DrinkTechnique.Stir; martini.ice = 2;
+            martini.steps.Add(new DrinkStep(DrinkIngredients.Gin, 600)); martini.steps.Add(new DrinkStep(DrinkIngredients.DryVermouth, 100)); list.Add(martini);
+            var hojicha = DrinkRecipe.NewDraft(DrinkKind.Tea); hojicha.name = "호지차 1인용 티백";
+            hojicha.steps.Add(new DrinkStep(DrinkIngredients.HojichaTea, 20)); list.Add(hojicha);
+            var pourOver = DrinkRecipe.NewDraft(DrinkKind.Coffee, CoffeeBrewMethod.PourOver); pourOver.name = "SCA 비율 핸드 드립"; pourOver.water = 3000;
+            pourOver.SetAmount(DrinkIngredients.CoffeeBean, 165); list.Add(pourOver);
+            var espresso = DrinkRecipe.NewDraft(DrinkKind.Coffee, CoffeeBrewMethod.EspressoMachine); espresso.name = "더블 에스프레소 1:2";
+            espresso.SetAmount(DrinkIngredients.CoffeeBean, 180); list.Add(espresso);
+            var moka = DrinkRecipe.NewDraft(DrinkKind.Coffee, CoffeeBrewMethod.MokaPot); moka.name = "모카포트 3컵"; moka.water = 1300;
+            moka.SetAmount(DrinkIngredients.CoffeeBean, 160); list.Add(moka);
+            return list;
         }
 
         // ───── 레시피 ─────
@@ -608,7 +615,10 @@ namespace CCT
                     var def = DrinkIngredients.Get(i.id);
                     if (def != null) parts.Add($"{def.name} {DrinkRules.Format(i.amount, def.form)}");
                 }
-            return parts.Count == 0 ? "없음" : string.Join(", ", parts);
+            if (parts.Count == 0) return "없음";
+            string text = string.Join(", ", parts);
+            // 늘어난 재료 보상도 결과 요약 패널 밖으로 밀어내지 않도록 표시 문자열만 짧게 제한한다.
+            return text.Length > 380 ? text.Substring(0, 377) + "…" : text;
         }
 
         /// <summary>표시 전용 재료별 합계(0.1 단위, long으로 더함). 지급·창고·정산 기록은 바꾸지 않는다. 모르는 재료·0 이하는 뺀다.</summary>
@@ -730,6 +740,20 @@ namespace CCT
             return Transact(d => { d.orders[orderIndex].state = "Cancelled"; return true; }, out error);
         }
 
+        /// <summary>준비 음료 취소 시 사용된 재료를 모두 창고로 돌려보낸다. 이번 판에 사용 중인 음료는 취소할 수 없다.</summary>
+        public static bool CancelPreparedAndRefund(out string error)
+        {
+            EnsureLoaded();
+            if (data.prepared.state != PreparedDrink.Ready) { error = data.prepared.state == PreparedDrink.InRun ? "이번 판에 사용 중인 음료는 취소할 수 없습니다." : "회수할 준비 음료가 없습니다."; return false; }
+            var recipe = data.prepared.recipe != null ? data.prepared.recipe.Clone() : null;
+            if (recipe == null) { error = "준비 음료 정보를 읽을 수 없습니다."; return false; }
+            return Transact(d =>
+            {
+                if (recipe.steps != null) foreach (var step in recipe.steps) if (step != null && step.amount > 0) d.Add(step.id, step.amount);
+                d.prepared = new PreparedDrink();
+                return true;
+            }, out error);
+        }
         /// <summary>준비 음료 명시 폐기(다음 제조 확정을 위해). 재료 환불 없음. 이번 판에 사용 중이면 불가.</summary>
         public static bool DiscardPrepared(out string error)
         {

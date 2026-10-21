@@ -878,6 +878,55 @@
             "liquid": [],
             "width": 28,
             "height": 40
+        },
+        {
+            "assetId": "dl_coffee_extraction_grouphead",
+            "pourLip": [
+                0.4765625,
+                0.05
+            ],
+            "mouth": [],
+            "grip": [
+                0.8203125,
+                0.3375
+            ],
+            "liquid": [],
+            "width": 128,
+            "height": 80
+        },
+        {
+            "assetId": "dl_coffee_extraction_cup_rim",
+            "pourLip": [],
+            "mouth": [
+                0.5,
+                0.5416666666666666
+            ],
+            "grip": [],
+            "liquid": [
+                0.171875,
+                0.3541666666666667,
+                0.828125,
+                0.7291666666666666
+            ],
+            "width": 64,
+            "height": 48
+        },
+        {
+            "assetId": "dl_coffee_extraction_liquid",
+            "pourLip": [],
+            "mouth": [
+                0.5,
+                0.5
+            ],
+            "grip": [],
+            "liquid": [
+                0.020833333333333332,
+                0.041666666666666664,
+                0.9791666666666666,
+                0.9583333333333334
+            ],
+            "width": 48,
+            "height": 24
         }
     ]
 }

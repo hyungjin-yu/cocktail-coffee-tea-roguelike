@@ -1,0 +1,161 @@
+{
+  "specVersion": "1.0",
+  "assetId": "espresso-extraction-prototype",
+  "status": "ready",
+  "workflow": "Aseprite batch Lua integer pixels; PixelLab not exposed in connected tools",
+  "sourceReferences": [
+    "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brew-ui\\Assets\\_Project\\Resources\\DrinkLab\\dl_coffee_espresso.png",
+    "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brew-ui\\Assets\\_Project\\Resources\\DrinkLab\\dl_coffee_demitasse.png"
+  ],
+  "storyboard": "Not attached in dispatched worker context; requested close-up elevated composition used. Coordinator notified.",
+  "coordinateSystem": "anchors use bottom-left canvas edge origin, x right, y up; pixel centers are n+0.5",
+  "filter": "nearest/point",
+  "alpha": "binary 0 or 255",
+  "assets": [
+    {
+      "file": "dl_coffee_extraction_grouphead.png",
+      "source": "dl_coffee_extraction_grouphead.aseprite",
+      "frameSizePx": [
+        128,
+        80
+      ],
+      "anchorsPx": {
+        "mount_center": [
+          64,
+          48
+        ],
+        "portafilter_lock": [
+          61,
+          27
+        ],
+        "stream_left": [
+          52,
+          4
+        ],
+        "stream_right": [
+          70,
+          4
+        ],
+        "stream_center": [
+          61,
+          4
+        ],
+        "handle_grip": [
+          105,
+          27
+        ]
+      },
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "opaqueBoundsTopLeft": [
+        5,
+        2,
+        123,
+        76
+      ],
+      "colorCountOpaque": 8,
+      "checks": {
+        "dimensions": true,
+        "binaryAlpha": true,
+        "transparentCanvasCorners": true
+      }
+    },
+    {
+      "file": "dl_coffee_extraction_cup_rim.png",
+      "source": "dl_coffee_extraction_cup_rim.aseprite",
+      "frameSizePx": [
+        64,
+        48
+      ],
+      "anchorsPx": {
+        "liquid_center": [
+          32,
+          26
+        ],
+        "rim_front": [
+          32,
+          5
+        ],
+        "rim_back": [
+          32,
+          43
+        ],
+        "opening_left": [
+          11,
+          26
+        ],
+        "opening_right": [
+          52,
+          26
+        ]
+      },
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "opaqueBoundsTopLeft": [
+        2,
+        5,
+        62,
+        43
+      ],
+      "colorCountOpaque": 4,
+      "checks": {
+        "dimensions": true,
+        "binaryAlpha": true,
+        "transparentCanvasCorners": true
+      }
+    },
+    {
+      "file": "dl_coffee_extraction_liquid.png",
+      "source": "dl_coffee_extraction_liquid.aseprite",
+      "frameSizePx": [
+        48,
+        24
+      ],
+      "anchorsPx": {
+        "surface_center": [
+          24,
+          12
+        ],
+        "stream_impact": [
+          24,
+          12
+        ],
+        "scale_origin": [
+          24,
+          12
+        ]
+      },
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "opaqueBoundsTopLeft": [
+        1,
+        1,
+        47,
+        23
+      ],
+      "colorCountOpaque": 2,
+      "checks": {
+        "dimensions": true,
+        "binaryAlpha": true,
+        "transparentCanvasCorners": true
+      }
+    }
+  ],
+  "integration": {
+    "order": [
+      "cup body supplied by integrator",
+      "liquid",
+      "cup rim foreground"
+    ],
+    "liquid": "neutral grayscale RGBA for multiplication tint; scale about surface_center; clip against cup opening if raised or enlarged",
+    "stream": "two runtime streams originate at stream_left and stream_right; no static coffee stream baked in",
+    "suggestedLiquidTint": "#DCAE72",
+    "note": "Rim is only an open ring, not a complete cup body. No Unity changes made."
+  }
+}

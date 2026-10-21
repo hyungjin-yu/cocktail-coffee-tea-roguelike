@@ -470,12 +470,14 @@ namespace CCT.Tests
             StringAssert.Contains($"음료 재료 {totals.Count}종 획득", summary);
             StringAssert.Contains($"연구 포인트 +{s.researchPoints}", summary);
             StringAssert.Contains("준비 음료 사용됨", summary);
+            StringAssert.Contains($"재료 {totals.Count}종 획득", lines[1], "결과 요약은 종류 수만 표시해 길이를 제한");
+            string allMaterials = DrinkLab.Summarize(s.granted);
             foreach (var def in DrinkIngredients.All)
             {
                 if (!totals.ContainsKey(def.id)) continue;
-                int first = lines[1].IndexOf(def.name + " ", StringComparison.Ordinal);
+                int first = allMaterials.IndexOf(def.name + " ", StringComparison.Ordinal);
                 Assert.GreaterOrEqual(first, 0, def.name);
-                Assert.AreEqual(-1, lines[1].IndexOf(def.name + " ", first + 1, StringComparison.Ordinal), def.name + " 한 번만");
+                Assert.AreEqual(-1, allMaterials.IndexOf(def.name + " ", first + 1, StringComparison.Ordinal), def.name + " 한 번만");
             }
             StringAssert.Contains("사용되어", lines[lines.Length - 1]);
         }

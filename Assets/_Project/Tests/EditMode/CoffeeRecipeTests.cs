@@ -16,6 +16,15 @@ namespace CCT.Tests
         }
 
         [Test]
+        public void MeasureTools_CoffeeScoopHolds20g_TeaAndCocktailUnchanged()
+        {
+            Assert.AreEqual(200, DrinkRules.CoffeeScoopCapacity, "기본 원두 스쿱 한 번 = 20.0g");
+            Assert.AreEqual(30, DrinkRules.ChahaCapacity, "차 다하 3.0g 그대로");
+            Assert.AreEqual(450, DrinkRules.JiggerCapacity, "칵테일 지거 45.0mL 그대로");
+            Assert.LessOrEqual(CoffeeBrewing.DoseMinTenths(CoffeeBrewMethod.EspressoMachine), DrinkRules.CoffeeScoopCapacity, "에스프레소 최소 원두량은 한 스쿱 안");
+        }
+
+        [Test]
         public void NewDraft_Coffee_UsesBrewTechniqueMethodDefaultsAndNoIce()
         {
             var r = DrinkRecipe.NewDraft(DrinkKind.Coffee);
@@ -71,7 +80,7 @@ namespace CCT.Tests
             Assert.AreEqual("커피", bean.UseLabel);
             Assert.AreEqual("칵테일 · 차", DrinkIngredients.Get(DrinkIngredients.Honey).UseLabel);
             foreach (var d in DrinkIngredients.All)
-                if (d.id != DrinkIngredients.CoffeeBean && d.id != DrinkIngredients.SteamedMilk) Assert.IsFalse(d.UsableIn(DrinkKind.Coffee), d.id + ": 칵테일·차 재료는 커피에 쓰지 않는다");
+                if (!d.IsCoffeeBean && d.id != DrinkIngredients.SteamedMilk) Assert.IsFalse(d.UsableIn(DrinkKind.Coffee), d.id + ": 칵테일·차 재료는 커피에 쓰지 않는다(재료 확장: 산지 원두는 원두)");
             var milk = DrinkIngredients.Get(DrinkIngredients.SteamedMilk);
             Assert.AreEqual(IngredientForm.Liquid, milk.form);
             Assert.AreEqual(DrinkUse.Coffee, milk.use, "스팀 우유는 커피 전용 선택 재료");
@@ -225,6 +234,30 @@ namespace CCT.Tests
             Assert.Greater(DrinkArt.Anchor("dl_coffee_carafe", "pourLip").x, DrinkArt.Anchor("dl_coffee_carafe", "grip").x, "서버 주둥이는 잔 쪽(오른쪽)");
             Assert.Greater(DrinkArt.Anchor("dl_coffee_moka", "pourLip").x, DrinkArt.Anchor("dl_coffee_moka", "grip").x);
             Assert.IsTrue(DrinkArt.Has("dl_bottle_steamed_milk") && DrinkArt.Has("dl_icon_steamed_milk"), "스팀 우유 피처·아이콘");
+        }
+        [Test]
+        public void EspressoFlowColor_DarkFirstDrops_RestrainedLateLightening_VolumeMeanIsBrewColor()
+        {
+            var brew = CoffeeBrewing.BrewColor(CoffeeBrewMethod.EspressoMachine, 180, 360);
+            static float Lum(Color c) => 0.2126f * c.r + 0.7152f * c.g + 0.0722f * c.b;
+            var first = DrinkStageView.EspressoFlowColor(brew, 0f);
+            var mid = DrinkStageView.EspressoFlowColor(brew, 0.5f);
+            var late = DrinkStageView.EspressoFlowColor(brew, 1f);
+            Assert.Less(Lum(first), Lum(mid), "첫 방울이 가장 어둡다");
+            Assert.Less(Lum(mid), Lum(late), "끝물은 약간 밝아질 수 있다");
+            Assert.Less(Lum(late) / Lum(brew), 1.2f, "끝물 밝아짐은 절제(기본색의 20% 미만)");
+            Assert.Greater(Lum(first) / Lum(brew), 0.8f);
+            // 색상(채널 비)은 유지, 명도만 바뀐다.
+            Assert.AreEqual(brew.r / brew.g, late.r / late.g, 1e-3f);
+            Assert.AreEqual(brew.g / brew.b, first.g / first.b, 1e-3f);
+            // 진행도는 나온 부피 비율이므로 진행도 평균 = 부피 평균 = 완성 잔의 기본 추출색.
+            float r = 0f, g = 0f, b = 0f;
+            const int n = 1000;
+            for (int i = 0; i < n; i++) { var c = DrinkStageView.EspressoFlowColor(brew, (i + 0.5f) / n); r += c.r; g += c.g; b += c.b; }
+            Assert.AreEqual(brew.r, r / n, 2e-3f); Assert.AreEqual(brew.g, g / n, 2e-3f); Assert.AreEqual(brew.b, b / n, 2e-3f);
+            // 진행도는 시간이 아니라 양: 같은 진행도는 같은 색, 범위 밖은 끝값.
+            Assert.AreEqual(late, DrinkStageView.EspressoFlowColor(brew, 3f));
+            Assert.AreEqual(first, DrinkStageView.EspressoFlowColor(brew, -1f));
         }
     }
 }

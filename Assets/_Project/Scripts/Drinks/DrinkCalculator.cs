@@ -88,8 +88,14 @@ namespace CCT
             if (kind == DrinkKind.Coffee) return DrinkStat.Range;
             if (kind == DrinkKind.Tea)
             {
-                if (def.id == DrinkIngredients.Honey) return DrinkStat.CooldownReduction;
-                if (def.id == DrinkIngredients.LemonJuice) return DrinkStat.MoveSpeed;
+                if (def.id == DrinkIngredients.Honey || def.id == DrinkIngredients.BlackTea ||
+                    def.id == DrinkIngredients.WhiteTea || def.id == DrinkIngredients.JasmineTea)
+                    return DrinkStat.CooldownReduction;
+                if (def.id == DrinkIngredients.LemonJuice || def.id == DrinkIngredients.GreenTea ||
+                    def.id == DrinkIngredients.LimeJuice || def.id == DrinkIngredients.OolongTea || def.id == DrinkIngredients.ChamomileFlower ||
+                    def.id == DrinkIngredients.AnxiTieguanyin || def.id == DrinkIngredients.PuErTea)
+                    return DrinkStat.MoveSpeed;
+                if (def.id == DrinkIngredients.DarjeelingTea) return DrinkStat.CooldownReduction;
             }
             return def.effect;
         }
@@ -110,17 +116,34 @@ namespace CCT
             if (kind != DrinkKind.Cocktail && kind != DrinkKind.Tea && kind != DrinkKind.Coffee) return buff;
             var raw = new float[Enum.GetValues(typeof(DrinkStat)).Length];
             var seen = new HashSet<string>();
+            // 커피 원두(기본·산지)는 한 원두로 합쳐 정규화한다: 두 산지를 섞어도 같은 총량의 한 원두보다 효과가 커지지 않는다.
+            int beanTenths = 0, beanKinds = 0;
+            float beanCoef = 0f;
+            DrinkIngredientDef beanDef = null;
             foreach (var s in r.steps)
             {
                 var def = s == null ? null : DrinkIngredients.Get(s.id);
                 if (def == null || s.amount <= 0 || !def.UsableIn(kind) || !seen.Add(def.id)) continue;
+                if (def.IsCoffeeBean)
+                {
+                    beanTenths = (int)Math.Min(int.MaxValue, (long)beanTenths + s.amount); // 손상 값 넘침 방지
+                    beanCoef += def.coefficient * s.amount;
+                    beanDef ??= def;
+                    beanKinds++;
+                    continue;
+                }
                 var effect = EffectFor(kind, def);
                 raw[(int)effect] += Normalized(def, s.amount) * def.coefficient * DrinkRules.Cap(effect);
+            }
+            if (beanTenths > 0)
+            {
+                var effect = EffectFor(kind, beanDef);
+                raw[(int)effect] += Normalized(beanDef, beanTenths) * (beanKinds == 1 ? beanDef.coefficient : beanCoef / beanTenths) * DrinkRules.Cap(effect);
             }
             int distinct = 0;
             foreach (var v in raw) if (v > 0f) distinct++;
             var tech = DrinkRules.AllowedTechnique(kind, r.Technique) ? r.Technique : DrinkRules.DefaultTechnique(kind);
-            float extraction = kind == DrinkKind.Coffee ? CoffeeBrewing.Strength01(r.coffeeMethod, r.AmountOf(DrinkIngredients.CoffeeBean), r.water) : 1f;
+            float extraction = kind == DrinkKind.Coffee ? CoffeeBrewing.Strength01(r.coffeeMethod, r.CoffeeDose(), r.water) : 1f;
             for (int i = 0; i < raw.Length; i++)
             {
                 if (raw[i] <= 0f) continue;

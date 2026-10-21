@@ -324,7 +324,9 @@ namespace CCT
             if (s == null) return "";
             var lines = new List<string> { DrinkStatusHead(s) };
             if (s.kind == "PreservedAbandon") { if (s.discarded.Count > 0) lines.Add("정산 안 함: " + DrinkLab.Summarize(s.discarded)); }
-            else if (s.granted.Count > 0) lines.Add(DrinkLab.Summarize(s.granted));
+            else if (s.granted.Count > 0)
+                // 재료가 늘어도 결과 패널을 넘치지 않게 종류 수만 표시한다. 각 재료와 수량은 획득 내역 상세에서 확인.
+                lines.Add($"재료 {DrinkLab.Totals(s.granted).Count}종 획득 (전체 수량은 획득 내역)");
             // 72 §3 연구 포인트(노트북 숙련·직원 채용용, 기존 스페셜티와 별개)
             if (s.researchPoints > 0) lines.Add($"연구 포인트 +{s.researchPoints} (현재 {DrinkLab.Research.researchPoints}, 연구 노트북에서 사용)");
             if (s.drink == "Preserved") lines.Add("준비 음료: 5마리 처치 전 포기라 보존했습니다(다음 출발 때 그대로 마심)");

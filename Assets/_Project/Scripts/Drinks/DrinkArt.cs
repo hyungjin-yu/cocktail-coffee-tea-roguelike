@@ -353,6 +353,17 @@ namespace CCT
             return new Color32(150, 150, 160, 255);
         }
 
+        /// <summary>재료 확장 10종: 재료 하나에 대해 화면 코드가 실제로 찾는 아트 ID(아트 작업 인계용). 없는 그림은 임시 그림(placeholder)으로 그린다.
+        /// 액체 = 아이콘·병(dl_bottle)·원천 병(dl_srcbottle, 있으면 물리 병), 찻잎 = 아이콘·통(dl_tin)·낙하(dl_leaf)·더미(dl_leaf_heap),
+        /// 원두(기본·산지) = 아이콘·통 + 공용 원두 낙하·스쿱 더미(dl_leaf_coffee_bean).</summary>
+        public static string[] ExpectedIngredientArt(DrinkIngredientDef def)
+        {
+            if (def == null) return new string[0];
+            if (def.IsCoffeeBean) return new[] { def.iconId, def.bottleId, "dl_leaf_" + def.LeafArtKey };
+            if (def.form == IngredientForm.Leaf) return new[] { def.iconId, def.bottleId, "dl_leaf_" + def.LeafArtKey, "dl_leaf_heap_" + def.LeafArtKey };
+            return new[] { def.iconId, def.bottleId, "dl_srcbottle_" + def.id };
+        }
+
         /// <summary>보고서용: 연결된 아트 ID와 임시 그림 ID.</summary>
         public static readonly string[] ContractIds =
         {

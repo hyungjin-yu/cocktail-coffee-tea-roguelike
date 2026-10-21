@@ -1,0 +1,2392 @@
+{
+  "package": "ingredients-cultural-expansion-2026-10-21",
+  "authoring": "Aseprite native Lua pixel drawing, 2px grid in 128px masters; nearest-neighbour native Aseprite derivatives. Pillow used only for contact sheet and QA.",
+  "pixelLab": "Unavailable: no PixelLab tool exposed in this session.",
+  "specsRead": [
+    "04 art standard",
+    "69 DrinkLab manufacturing and recipes",
+    "72 growth/research/sales UI",
+    "78 ingredient supply adjustment"
+  ],
+  "assets": [
+    {
+      "assetId": "absinthe",
+      "role": "master artwork",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\absinthe.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\absinthe.aseprite",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alphaBounds": [
+        36,
+        16,
+        92,
+        114
+      ],
+      "sha256": "0beece9d27b5c825d2a1c2f142c6e32e3da9e7c0da69d18bb0d7b90986374dbb",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "brazil_mantiqueira_alves_lima",
+      "role": "master artwork",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\brazil_mantiqueira_alves_lima.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\brazil_mantiqueira_alves_lima.aseprite",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alphaBounds": [
+        28,
+        24,
+        114,
+        122
+      ],
+      "sha256": "69c369eed0ced213f01aaa1b0d4caeae6e797cb8da163d2e23363f3a166b6537",
+      "layerCount": 4,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "chamomile_flower",
+      "role": "master artwork",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\chamomile_flower.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\chamomile_flower.aseprite",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alphaBounds": [
+        26,
+        30,
+        114,
+        108
+      ],
+      "sha256": "10277f7e8d3f9507208896d671163a19827b64805e45a65778596b23e7c8d98c",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "colombia_huila_vergel",
+      "role": "master artwork",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\colombia_huila_vergel.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\colombia_huila_vergel.aseprite",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alphaBounds": [
+        28,
+        24,
+        114,
+        122
+      ],
+      "sha256": "6a789c52a220d70bbbee6bb82360e1577a885101646dbe83976923eb2f76d66d",
+      "layerCount": 4,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "creme_cassis",
+      "role": "master artwork",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\creme_cassis.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\creme_cassis.aseprite",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alphaBounds": [
+        36,
+        16,
+        92,
+        114
+      ],
+      "sha256": "4bacb1bd7c4e79439e97f29cb0951d4bd120178e815cb5b5a70b746c4787e0c3",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_bottle_absinthe",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_bottle_absinthe.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_bottle_absinthe.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        4,
+        24,
+        53
+      ],
+      "sha256": "79c663fb2c4f0589be6d3eca2c09d2063f38c2d74934d73e88b4382446a5010a",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_bottle_creme_cassis",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_bottle_creme_cassis.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_bottle_creme_cassis.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        4,
+        24,
+        53
+      ],
+      "sha256": "8c05a06d214591f34f9594ec6afa4e852f0c1c62aeadb66743ace8fa8e062e6e",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_bottle_limoncello",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_bottle_limoncello.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_bottle_limoncello.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        4,
+        24,
+        53
+      ],
+      "sha256": "2e3a7a58a7fd559395f3129b982f19f5860b6a0daa009122080800f273fad895",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_icon_absinthe",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_absinthe.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_absinthe.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        9,
+        4,
+        23,
+        29
+      ],
+      "sha256": "3bf2bf6c0a20baf6b9f8e17581c19e2627cefffd817abbcb6190d52ad595c7c9",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_icon_brazil_mantiqueira_alves_lima",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_brazil_mantiqueira_alves_lima.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_brazil_mantiqueira_alves_lima.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        7,
+        29,
+        31
+      ],
+      "sha256": "800189f0f12d365663bc887bfd098adc4fc2953518e90c4bf859b2bc9714d0e3",
+      "layerCount": 4,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_icon_chamomile_flower",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_chamomile_flower.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_chamomile_flower.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        8,
+        29,
+        27
+      ],
+      "sha256": "b2dc15868f522ae15c4a6d1fc92459af7636808745d7a1b091bfc6868f40595a",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_icon_colombia_huila_vergel",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_colombia_huila_vergel.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_colombia_huila_vergel.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        7,
+        29,
+        31
+      ],
+      "sha256": "f6148922d491e6594d7ccea7d2eefa2fd3c9d4a359f1ef31b9cd356b8b138489",
+      "layerCount": 4,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_icon_creme_cassis",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_creme_cassis.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_creme_cassis.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        9,
+        4,
+        23,
+        29
+      ],
+      "sha256": "f557744bc957ca3049414b4761b49c7c6dadd1cde6cc0718e5985b7b1fdd5622",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_icon_ethiopia_yirgacheffe_kochere",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_ethiopia_yirgacheffe_kochere.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_ethiopia_yirgacheffe_kochere.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        7,
+        29,
+        31
+      ],
+      "sha256": "6fbc4c2a94303386e45daf1241a1c0d2e27db60b849dd9309b25bea9bd8b372c",
+      "layerCount": 4,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_icon_jasmine_tea",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_jasmine_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_jasmine_tea.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        8,
+        29,
+        27
+      ],
+      "sha256": "14a977382b0e630c76e002cad63ea154af66d70960bc503cb329b651b3e33bd8",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_icon_limoncello",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_limoncello.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_limoncello.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        9,
+        4,
+        23,
+        29
+      ],
+      "sha256": "e429dfd42681c72af7031f17eb48be3e09700e789ce0eb9d06bc7374cd5b0f21",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_icon_oolong_tea",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_oolong_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_oolong_tea.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        8,
+        14,
+        27,
+        28
+      ],
+      "sha256": "f5a6f37e9a681088c032a6f3c49a94711c42bcbc7094dd862fb68b629a14f3c0",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_icon_white_tea",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_white_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_icon_white_tea.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        5,
+        9,
+        29,
+        28
+      ],
+      "sha256": "f5ea0fd5788f443b324ce5c7906ec852a464f3f21a380b3e97e5ed13be57a47a",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_chamomile_flower_00",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_chamomile_flower_00.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_chamomile_flower_00.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        4,
+        3,
+        7,
+        6
+      ],
+      "sha256": "ccf492da6a32fbd168fec6396e312202fe335dba713a4d40b10a764d22d6079c",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_chamomile_flower_01",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_chamomile_flower_01.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_chamomile_flower_01.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        4,
+        3,
+        7,
+        6
+      ],
+      "sha256": "ccf492da6a32fbd168fec6396e312202fe335dba713a4d40b10a764d22d6079c",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_chamomile_flower_02",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_chamomile_flower_02.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_chamomile_flower_02.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        4,
+        3,
+        7,
+        6
+      ],
+      "sha256": "ccf492da6a32fbd168fec6396e312202fe335dba713a4d40b10a764d22d6079c",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_chamomile_flower_00",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_chamomile_flower_00.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_chamomile_flower_00.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        5,
+        1,
+        32,
+        15
+      ],
+      "sha256": "95dc06278ecb65ea7b05245c510334bdae10f1f91ea093b7d6e455d47e458a45",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_chamomile_flower_01",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_chamomile_flower_01.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_chamomile_flower_01.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        5,
+        1,
+        32,
+        15
+      ],
+      "sha256": "995b8777d773a640e78a6f2621468fe4f75794f01c069ce2bc5972740bd38b9b",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_chamomile_flower_02",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_chamomile_flower_02.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_chamomile_flower_02.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        5,
+        0,
+        32,
+        15
+      ],
+      "sha256": "38cd4dbcb40dd0cd28e707d710778b4b93b32e4fe844d4f06721962db40eb022",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_jasmine_tea_00",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_jasmine_tea_00.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_jasmine_tea_00.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        5,
+        1,
+        32,
+        15
+      ],
+      "sha256": "e1c60551406b101f036c1bd4eb25ca4cb08cfbe3b0df3a4e07ed6f486f9f3112",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_jasmine_tea_01",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_jasmine_tea_01.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_jasmine_tea_01.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        5,
+        1,
+        32,
+        15
+      ],
+      "sha256": "7c359cb87a5577e9f0901f2445f6be4e17da74dc7143643bae448c6c95dcbc10",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_jasmine_tea_02",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_jasmine_tea_02.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_jasmine_tea_02.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        5,
+        0,
+        32,
+        15
+      ],
+      "sha256": "2ac63d30bff45f117cc7543ee01528d0dbbb0654d768b3dd0ca696cbc827b223",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_oolong_tea_00",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_oolong_tea_00.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_oolong_tea_00.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        30,
+        16
+      ],
+      "sha256": "74b3018e7374a1d68f188bea9a44b0e73cab20063aaa136c2bd9c0a16747e74e",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_oolong_tea_01",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_oolong_tea_01.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_oolong_tea_01.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        30,
+        16
+      ],
+      "sha256": "d1099bd61630f1ebcc75de6dda251c9f35e62c3a7114306f4cf77cebaa7a0ed6",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_oolong_tea_02",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_oolong_tea_02.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_oolong_tea_02.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        5,
+        5,
+        31,
+        15
+      ],
+      "sha256": "cb878da33e84cf85d441955daa7c4e607c560d7f9e81ee108ff79fed78ec851a",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_white_tea_00",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_white_tea_00.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_white_tea_00.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        5,
+        1,
+        32,
+        16
+      ],
+      "sha256": "a7cc581aeaf67f5a842e22a6338c51d53520f308bf4c6ac26a1561df9276c47e",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_white_tea_01",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_white_tea_01.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_white_tea_01.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        32,
+        16
+      ],
+      "sha256": "e23a9ae462bbb66becc3b8fbe0f37fe5522663a00157b373403f13cdf42e25aa",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_heap_white_tea_02",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_white_tea_02.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_heap_white_tea_02.aseprite",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        2,
+        1,
+        32,
+        15
+      ],
+      "sha256": "ab6b284c7e7ca926f99291969f9e61916c09dcaa525f403e8df0b747f0631b63",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_jasmine_tea_00",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_jasmine_tea_00.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_jasmine_tea_00.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        4,
+        3,
+        7,
+        6
+      ],
+      "sha256": "57e427f0d5094e2fd8937504ea31d0753691112d2fa45bdf799b3e7394a945a2",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_jasmine_tea_01",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_jasmine_tea_01.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_jasmine_tea_01.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        4,
+        3,
+        7,
+        6
+      ],
+      "sha256": "57e427f0d5094e2fd8937504ea31d0753691112d2fa45bdf799b3e7394a945a2",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_jasmine_tea_02",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_jasmine_tea_02.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_jasmine_tea_02.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        4,
+        3,
+        7,
+        6
+      ],
+      "sha256": "57e427f0d5094e2fd8937504ea31d0753691112d2fa45bdf799b3e7394a945a2",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_oolong_tea_00",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_oolong_tea_00.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_oolong_tea_00.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        7,
+        7
+      ],
+      "sha256": "2a6f5241aadf14df042efb6c21838eaa227f8b1eb6228aa0bb326f50ddf0a6ce",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_oolong_tea_01",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_oolong_tea_01.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_oolong_tea_01.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        7,
+        7
+      ],
+      "sha256": "9dcb8c7cb01c759849bfa8e6f12477000eed69a8ca12081081dd6c79998be533",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_oolong_tea_02",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_oolong_tea_02.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_oolong_tea_02.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        4,
+        3,
+        7,
+        7
+      ],
+      "sha256": "e95cd46ce60739092c77ff21db1e7128c4d2b000a907a2bb18d4471a3c9211f1",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_white_tea_00",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_white_tea_00.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_white_tea_00.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        3,
+        1,
+        7,
+        8
+      ],
+      "sha256": "48ba5f2b952c58c94c18e432e0c2694aab279c17b508841c1031f69ad471b4bb",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_white_tea_01",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_white_tea_01.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_white_tea_01.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        3,
+        2,
+        7,
+        8
+      ],
+      "sha256": "2d6fae5f3681fbc93a47dd68f01e9cacbf76b4b28b020b9990df5757b6bfe4cd",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_leaf_white_tea_02",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_white_tea_02.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_leaf_white_tea_02.aseprite",
+      "dimensions": [
+        8,
+        8
+      ],
+      "alphaBounds": [
+        3,
+        2,
+        8,
+        8
+      ],
+      "sha256": "74b8314632895871a109c2b89d8ab5565568b6fb1f6cfd1f1678fc7d7a045e3d",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_srcbottle_absinthe",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_absinthe.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_absinthe.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        11,
+        24,
+        53
+      ],
+      "sha256": "eccb477018ad965313fd6b6d7892ddb85ae1b567aaa6a967b5e2d1c4655fd57d",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_srcbottle_absinthe_cap",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_absinthe_cap.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_absinthe_cap.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        7,
+        4,
+        19,
+        11
+      ],
+      "sha256": "f61015272eed5a5a629b16fec97d405a0ed4da85b6f56ff47b8a59fbbac83bb0",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_srcbottle_absinthe_mask",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_absinthe_mask.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_absinthe_mask.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        4,
+        13,
+        22,
+        50
+      ],
+      "sha256": "16b253bf70d4c3281171a89ef1ae97fa5e48f450e4178e585168bf26a682e054",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_srcbottle_creme_cassis",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_creme_cassis.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_creme_cassis.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        11,
+        24,
+        53
+      ],
+      "sha256": "20db1a57d84ed4b638345801bc550b80a1da8f6a8c304a8a4b394dc2aedddde5",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_srcbottle_creme_cassis_cap",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_creme_cassis_cap.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_creme_cassis_cap.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        7,
+        4,
+        19,
+        11
+      ],
+      "sha256": "f61015272eed5a5a629b16fec97d405a0ed4da85b6f56ff47b8a59fbbac83bb0",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_srcbottle_creme_cassis_mask",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_creme_cassis_mask.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_creme_cassis_mask.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        4,
+        13,
+        22,
+        50
+      ],
+      "sha256": "16b253bf70d4c3281171a89ef1ae97fa5e48f450e4178e585168bf26a682e054",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_srcbottle_limoncello",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_limoncello.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_limoncello.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        2,
+        11,
+        24,
+        53
+      ],
+      "sha256": "568a7307c2e64d77204b637339c741c51ac039a62e3cc30feda121a0f434a60f",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_srcbottle_limoncello_cap",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_limoncello_cap.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_limoncello_cap.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        7,
+        4,
+        19,
+        11
+      ],
+      "sha256": "f61015272eed5a5a629b16fec97d405a0ed4da85b6f56ff47b8a59fbbac83bb0",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_srcbottle_limoncello_mask",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_limoncello_mask.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_srcbottle_limoncello_mask.aseprite",
+      "dimensions": [
+        24,
+        56
+      ],
+      "alphaBounds": [
+        4,
+        13,
+        22,
+        50
+      ],
+      "sha256": "16b253bf70d4c3281171a89ef1ae97fa5e48f450e4178e585168bf26a682e054",
+      "layerCount": 1,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_tin_brazil_mantiqueira_alves_lima",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_brazil_mantiqueira_alves_lima.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_brazil_mantiqueira_alves_lima.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        7,
+        29,
+        31
+      ],
+      "sha256": "800189f0f12d365663bc887bfd098adc4fc2953518e90c4bf859b2bc9714d0e3",
+      "layerCount": 4,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_tin_chamomile_flower",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_chamomile_flower.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_chamomile_flower.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        28,
+        27
+      ],
+      "sha256": "61a0f1c69c376e5389673c2624b550bb45ef81b8ed20a40544ff2abf51da04c2",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_tin_colombia_huila_vergel",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_colombia_huila_vergel.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_colombia_huila_vergel.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        7,
+        29,
+        31
+      ],
+      "sha256": "f6148922d491e6594d7ccea7d2eefa2fd3c9d4a359f1ef31b9cd356b8b138489",
+      "layerCount": 4,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_tin_ethiopia_yirgacheffe_kochere",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_ethiopia_yirgacheffe_kochere.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_ethiopia_yirgacheffe_kochere.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        7,
+        29,
+        31
+      ],
+      "sha256": "6fbc4c2a94303386e45daf1241a1c0d2e27db60b849dd9309b25bea9bd8b372c",
+      "layerCount": 4,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_tin_jasmine_tea",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_jasmine_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_jasmine_tea.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        28,
+        27
+      ],
+      "sha256": "689001ce9a6aee53897ad12516856248dcefbd776e7635b40b6cf6f6fd4a67b1",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_tin_oolong_tea",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_oolong_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_oolong_tea.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        27,
+        28
+      ],
+      "sha256": "bbb12b4852f60b2a8fe9fdf550eb5b689ea8eb0e5d23af9d78ff6aaae5f5a916",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "dl_tin_white_tea",
+      "role": "runtime candidate",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_white_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\dl_tin_white_tea.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        5,
+        5,
+        29,
+        28
+      ],
+      "sha256": "5631253ef6e35055088bd43529b998801762139c1a9ad20e3418d2af46811d3b",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "ethiopia_yirgacheffe_kochere",
+      "role": "master artwork",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\ethiopia_yirgacheffe_kochere.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\ethiopia_yirgacheffe_kochere.aseprite",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alphaBounds": [
+        28,
+        24,
+        114,
+        122
+      ],
+      "sha256": "334a931e31c36c72e08279a84e5161fd824af9ba924881e995e3b6625c532df3",
+      "layerCount": 4,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "jasmine_tea",
+      "role": "master artwork",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\jasmine_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\jasmine_tea.aseprite",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alphaBounds": [
+        26,
+        30,
+        114,
+        108
+      ],
+      "sha256": "c187196e2e9f50b1557a40c8db38de38916e5f92129cb13d08e7e900c24e5771",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "limoncello",
+      "role": "master artwork",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\limoncello.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\limoncello.aseprite",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alphaBounds": [
+        36,
+        16,
+        92,
+        114
+      ],
+      "sha256": "6853216bf050fa7b7de49ed0c20778f958dae54d1e3197d38a27aa2f4ec684c1",
+      "layerCount": 3,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "oolong_tea",
+      "role": "master artwork",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\oolong_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\oolong_tea.aseprite",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alphaBounds": [
+        28,
+        54,
+        108,
+        112
+      ],
+      "sha256": "4ef98dfee1d98a7ba9a66441379a38a8ec41a8985fef8db0b09894e768d7083f",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "assetId": "white_tea",
+      "role": "master artwork",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\white_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ingredients-cultural-expansion-2026-10-21\\white_tea.aseprite",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alphaBounds": [
+        20,
+        32,
+        114,
+        112
+      ],
+      "sha256": "24c29e9aeea6b4f768ab150181f2a08298420ab00ba7cb264b07bcdf048cd8fa",
+      "layerCount": 2,
+      "checks": {
+        "nativeAsepriteRoundtrip": true,
+        "binaryAlpha": true,
+        "nonempty": true
+      },
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filter": "Point",
+        "compression": "None",
+        "mipmaps": false,
+        "sRGB": true,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "url": "https://www.tea.co.uk/types-of-tea",
+      "supports": "White tea buds and leaves; oolong processing category. Shape differentiation is an art interpretation, not a universal cultivar description."
+    },
+    {
+      "url": "https://www.tea.co.uk/about/infusions",
+      "supports": "Jasmine scented tea versus chamomile floral infusion. The former uses five-petal pale stars; chamomile uses many white rays and raised yellow centers."
+    },
+    {
+      "url": "https://www.aboutswitzerland.eda.admin.ch/en/absinthe-swiss-local-product-leaves-behind-its-shady-past",
+      "supports": "Val-de-Travers provenance and wormwood-based spirit. Green selected for this game variant; not all absinthe is green."
+    },
+    {
+      "url": "https://www.inao.gouv.fr/produit/cassis-de-dijon-24568",
+      "supports": "Blackcurrant maceration and intense garnet to violet colour. Generic creme_cassis ID does not claim protected Dijon certification."
+    },
+    {
+      "url": "https://www.limoncello.com/en/our-roots/",
+      "supports": "Oval Sorrento lemons; lemon emblem and yellow liqueur. No producer branding reproduced."
+    },
+    {
+      "url": "https://egtethiopia.com/yirgacheffe-coffee/",
+      "supports": "Indexed EGT excerpt identifies Kochere in Yirgacheffe region; direct page returned 404 during this run. Mountain and pale floral badge are illustrative cues, not farm or tasting certification.",
+      "access": "Search index excerpt only; direct 404"
+    },
+    {
+      "url": "https://www.kundecoffee.com/es/farm/fincaelvergel/",
+      "supports": "Finca El Vergel in Pitalito, Huila, Colombia, with Bourbon Rosado Natural and Bourbon Rayado Lavado listings. Pink/red coffee cherry motif references crop identity; not added fruit ingredients."
+    },
+    {
+      "url": "https://cafealveslima.com/pages/nossa-fazenda",
+      "supports": "Alves Lima family coffee farm provenance. Mountain/row motif is an illustrative agriculture cue, not a surveyed farm view."
+    },
+    {
+      "url": "https://sca.coffee/what-is-specialty-coffee",
+      "supports": "Specialty concerns distinctive attributes and value, not bean silhouette or a guaranteed taste. Shared bean shape deliberately retained across all origins; no grade, score or certification implied."
+    }
+  ],
+  "integration": "Not imported into Unity; only ArtSource package written. All paths are exact existing files. 128px masters are review/source art; dl_* assets are import candidates. Existing coffee bean falling/scoop animation should be reused.",
+  "animation": "Tea leaf and heap _00..02 are measured portion variants, not a looping character animation.",
+  "sourceBottle": "dl_srcbottle body, white liquid mask and removable cap share a 24x56 canvas. Mask omits the opaque label.",
+  "validation": {
+    "nativeRoundtrips": 63,
+    "passed": true,
+    "contactSheetScale": "1x native masters and 1x runtime icons",
+    "UnityRuntimeTested": false
+  }
+}

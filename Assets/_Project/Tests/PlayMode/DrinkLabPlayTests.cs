@@ -309,8 +309,8 @@ namespace CCT.Tests
             lab.LoadPreset(1);
             yield return null;
             Assert.AreEqual(DrinkKind.Tea, lab.Kind);
-            Assert.AreEqual(25, lab.Draft.AmountOf("black_tea"));
-            Assert.AreEqual(60, DrinkLab.Owned("black_tea"), "선택만으로 소모 없음");
+            Assert.AreEqual(20, lab.Draft.AmountOf(DrinkIngredients.SenchaTea));
+            Assert.AreEqual(20, DrinkLab.Owned(DrinkIngredients.SenchaTea), "선택만으로 소모 없음");
             Assert.IsNull(DrinkLab.Prepared);
             Assert.IsTrue(lab.CraftInteractable, "첫 세트로 바로 제조 가능");
             Assert.AreEqual(0, DrinkLab.Recipes.Count, "예시는 저장 목록과 별개");
@@ -505,13 +505,13 @@ namespace CCT.Tests
         {
             DrinkLabView lab = null;
             yield return OpenLab(v => lab = v);
-            Assert.AreEqual(6, lab.ListRowCount, "칵테일: 진·럼·큐라소·그레나딘·레몬·꿀");
+            Assert.AreEqual(30, lab.ListRowCount, "칵테일: 확장된 재료 30종");
             lab.ApplyTypedAmount("10.0");
             var teaBtn = GameObject.Find("KindTea").GetComponent<Button>();
             teaBtn.onClick.Invoke();
             yield return null;
             Assert.AreEqual(DrinkKind.Tea, lab.Kind);
-            Assert.AreEqual(4, lab.ListRowCount, "차: 홍차·녹차·레몬·꿀");
+            Assert.AreEqual(30, lab.ListRowCount, "차: 확장된 재료 30종");
             Assert.AreEqual(0, lab.Draft.steps.Count, "부적합 재료를 옮기거나 섞지 않음");
             Assert.AreEqual(DrinkRules.TeaWaterFixed, lab.Draft.water);
         }

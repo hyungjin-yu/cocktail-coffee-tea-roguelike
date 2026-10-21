@@ -281,6 +281,103 @@ namespace CCT
         /// 영수증 끝까지 스크롤·제조 불가/가능/준비 음료·모션 생략·레시피 없음/여러 개/긴 이름·저장 성공(찢기)/실패·공유 코드 오류/확인·도감 위/끝.
         /// 상태마다 글 겹침, 버튼 도달(고정 버튼은 화면 안, 스크롤 안 버튼은 보이는 영역 또는 스크롤로 도달), 터치 44px(터치 UI), 영수증 마지막 줄 노출을 검사한다.
         /// </summary>
+        /// <summary>화면 밖으로 나간 글자·버튼(클라이언트 영역 기준 px). 오버레이 캔버스라 월드 모서리 = 화면 px.</summary>
+        void CheckOnScreen(string label, Transform root)
+        {
+            Canvas.ForceUpdateCanvases();
+            var c4 = new Vector3[4];
+            int bad = 0;
+            foreach (var g in root.GetComponentsInChildren<Graphic>(false))
+            {
+                if (!g.isActiveAndEnabled || g.color.a <= 0.01f) continue;
+                if (!(g is Text t && !string.IsNullOrEmpty(t.text)) && g.GetComponent<Selectable>() == null) continue;
+                g.rectTransform.GetWorldCorners(c4);
+                float x0 = c4[0].x, y0 = c4[0].y, x1 = c4[2].x, y1 = c4[2].y;
+                if (x0 < -0.5f || y0 < -0.5f || x1 > Screen.width + 0.5f || y1 > Screen.height + 0.5f)
+                {
+                    bad++;
+                    notes.Add($"{label} OFFSCREEN {HierPath(g.transform)} px=({x0:0},{y0:0})-({x1:0},{y1:0}) screen={Screen.width}x{Screen.height}");
+                }
+            }
+            notes.Add($"{label} offscreen={bad} screen={Screen.width}x{Screen.height}");
+        }
+
+        /// <summary>커피 제조 화면 증거: 개요(제조법 버튼) · 원두 통→스쿱 간격 · 스쿱 최대량 · 에스프레소 추출 클로즈업 배경.</summary>
+        IEnumerator CoffeeEvidence()
+        {
+            foreach (var tv in UnityEngine.Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None)) Destroy(tv.gameObject);
+            DrinkLab.Data.Add(DrinkIngredients.CoffeeBean, 1000);
+            DrinkLab.Data.Add(DrinkIngredients.SteamedMilk, 3000);
+            GameBootstrap.RestartToSelect();
+            yield return Wait(0.5f);
+            var select = Find<CharacterSelectView>();
+            select.DrinkLabButton.onClick.Invoke();
+            yield return Wait(0.6f);
+            var lab = select.DrinkLabScreen;
+            GameObject.Find("KindCoffee").GetComponent<Button>().onClick.Invoke();
+            yield return Wait(0.6f);
+            lab.SetCoffeeMethod(CoffeeBrewMethod.EspressoMachine);
+            yield return Wait(0.4f);
+            var stage = lab.Stage;
+            stage.Select(DrinkIngredients.Get(DrinkIngredients.CoffeeBean));
+            yield return Wait(0.4f);
+            CheckOnScreen("C1_overview", lab.transform);
+            var label = GameObject.Find("MethodEspressoMachine")?.GetComponentInChildren<Text>();
+            if (label != null) notes.Add($"C1 espresso label '{label.text}' pref={label.preferredWidth:0} box={label.rectTransform.rect.width:0}");
+            yield return Shot("C1_coffee_overview_1280", lab.transform);
+
+            stage.BeginPour(Vector2.zero);
+            int peak = 0;
+            float minGap = float.MaxValue;
+            for (float a = 0f; a < DrinkStageView.TiltMax; a += 3f) { stage.SetTilt(a); yield return null; }
+            stage.SetTilt(DrinkStageView.TiltMax);
+            float t0 = Time.realtimeSinceStartup;
+            bool shot = false;
+            while (stage.MeasureDumps < 1 && Time.realtimeSinceStartup - t0 < 12f)
+            {
+                peak = Mathf.Max(peak, stage.InMeasure);
+                minGap = Mathf.Min(minGap, stage.CoffeeTinScoopGap);
+                if (!shot && stage.InMeasure >= 60) { shot = true; notes.Add($"C2 tin scoop scoopFlipped={stage.ScoopFlipped}"); yield return Shot("C2_bean_tin_scoop_gap", null); }
+                yield return null;
+            }
+            notes.Add($"C2 scoop peak={DrinkRules.Format(peak)}g capacity={DrinkRules.Format(DrinkRules.CoffeeScoopCapacity)}g dumps={stage.MeasureDumps} minTinScoopGap={minGap:0.0}px");
+            stage.StopPour();
+            t0 = Time.realtimeSinceStartup;
+            bool transferShot = false;
+            while ((stage.Transferring || stage.Ledger.HasInFlight()) && Time.realtimeSinceStartup - t0 < 10f)
+            {
+                if (!transferShot && stage.Transferring && stage.ToolTilt >= 70f)
+                {
+                    transferShot = true;
+                    var g = stage.TransferGeometry;
+                    notes.Add($"C2b espresso transfer scoopFlipped={stage.ScoopFlipped} tilt={stage.ToolTilt:0} lip=({g.lip.x:0},{g.lip.y:0}) mouth=({g.mouth.x:0},{g.mouth.y:0})");
+                    yield return Shot("C2b_scoop_transfer_to_espresso", null);
+                }
+                yield return null;
+            }
+            notes.Add($"C2c after transfer scoopFlipped={stage.ScoopFlipped}");
+
+            lab.Draft.SetAmount(DrinkIngredients.CoffeeBean, 180);
+            lab.Draft.name = "에스프레소 클로즈업";
+            lab.RefreshForTests();
+            lab.SkipMotion = false;
+            lab.ConfirmCraft();
+            t0 = Time.realtimeSinceStartup;
+            while (stage.CloseUpPhase != "stream" && Time.realtimeSinceStartup - t0 < 15f) yield return null;
+            yield return Wait(0.5f);
+            notes.Add($"C3 closeUp active={stage.CloseUpActive} phase={stage.CloseUpPhase} backdropArt={stage.CloseUpUsesBackdropArt}");
+            CheckOnScreen("C3_closeup", lab.transform);
+            yield return Shot("C3_espresso_closeup_background", null);
+            t0 = Time.realtimeSinceStartup;
+            while (stage.SequencePlaying && Time.realtimeSinceStartup - t0 < 20f) yield return null;
+            yield return Wait(0.5f);
+            CheckOnScreen("C4_after_craft", lab.transform);
+            yield return Shot("C4_after_craft", lab.transform);
+            File.WriteAllText(Path.Combine(output, "coffee_notes.txt"), string.Join("\n", notes));
+            yield return Wait(0.5f);
+            Application.Quit();
+        }
+
         IEnumerator UiFull()
         {
             foreach (var tv in UnityEngine.Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None)) Destroy(tv.gameObject);
@@ -1438,6 +1535,11 @@ namespace CCT
             if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "cycle")
             {
                 yield return CycleEvidence();
+                yield break;
+            }
+            if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "coffee")
+            {
+                yield return CoffeeEvidence();
                 yield break;
             }
             if (modeIdx >= 0 && modeIdx + 1 < args.Length && args[modeIdx + 1] == "ui")

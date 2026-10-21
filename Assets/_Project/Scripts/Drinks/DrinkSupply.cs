@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CCT
 {
     /// <summary>
     /// 72 §2 제조 재료 수급(최초 기본값, 플레이 검증으로 조정): 묶음 수량은 재료별 고정, 종류만 획득처별 가중치 표에서 뽑는다.
-    /// 77 상대 부족 보정(2026-10-20, 72의 절대 보정 대체): 이번 추첨의 실제 후보마다 e = max(0, 창고 + 이번 런 미정산) / 기준 사용량 d,
-    /// 후보 e의 중앙값 m(짝수면 가운데 두 값 평균), 배율 c = clamp((m+3)/(e+3), 0.5, 2.0). 후보 하나·모두 같은 회분이면 c=1 → 원래 가중치 비율.
+    /// 77 상대 부족 보정: 실제 후보의 보유 회분 중 양수인 값의 중앙값 m을 기준으로 c = clamp((m+3)/(e+3), 0.5, 2.0).
+    /// 30종 목표 확장(2026-10-21): 신규 재료가 절반 이상 0개여도 기준값이 0으로 무너지지 않도록 양수 보유량만 기준 중앙값에 포함한다.
     /// 여러 묶음은 앞 추첨 결과를 다음 추첨의 보유량에 더한다. 난수는 runId·보상 ID·추첨 순번의 해시(전투 난수와 독립, 저장 재시도로 재추첨 없음).
     /// 78 총량·희귀 조정(2026-10-20): 일반 25킬당 1묶음은 판당 최대 60묶음, 일반·정예 표에도 희귀 후보(보장은 보스만). 중간/최종 표·추첨 수·77 보정 유지.
     /// 단위: 0.1mL / 0.1g 정수(DrinkRules와 같음). UnityEngine 비의존(순수 시험 가능).
@@ -24,20 +25,58 @@ namespace CCT
             public int Weight(Source s) => s switch { Source.Normal => normal, Source.Elite => elite, Source.MidBoss => midBoss, _ => finalBoss };
         }
 
-        /// <summary>표 순서 = 추첨 누적 순서(결정적).</summary>
-        public static readonly Row[] Table =
+        /// <summary>표 순서 = 추첨 누적 순서(결정적). 재료 확장 10종(2026-10-21): 신규 10종을 끝에 붙이고 획득처별 합 100을 다시 나눴다.
+        /// 계열 몫(일반): 칵테일 전용 32 · 차 29 · 커피 23 · 공용 16. 희귀(보스 보장 후보)는 여전히 블루 큐라소·그레나딘 두 종뿐.
+        /// 신규 재료는 보유 0회분에서 시작하므로 77 상대 보정(최대 ×2)이 따라잡을 때까지 자동으로 우대한다. 근거·수치는 재료 확장 10종 문서.</summary>
+        public static Row[] Table =
         {
-            new Row { id = "gin", bundle = 150, baseUse = 300, normal = 11, elite = 10, midBoss = 8, finalBoss = 6 },
-            new Row { id = "rum", bundle = 150, baseUse = 300, normal = 11, elite = 10, midBoss = 8, finalBoss = 6 },
-            new Row { id = "black_tea", bundle = 10, baseUse = 20, normal = 11, elite = 10, midBoss = 8, finalBoss = 6 },
-            new Row { id = "green_tea", bundle = 10, baseUse = 20, normal = 11, elite = 10, midBoss = 8, finalBoss = 6 },
-            new Row { id = "coffee_bean", bundle = 100, baseUse = 160, normal = 14, elite = 14, midBoss = 14, finalBoss = 14 },
-            new Row { id = "steamed_milk", bundle = 150, baseUse = 150, normal = 8, elite = 8, midBoss = 8, finalBoss = 8 },
-            new Row { id = "lemon_juice", bundle = 100, baseUse = 150, normal = 12, elite = 10, midBoss = 14, finalBoss = 13 },
-            new Row { id = "honey", bundle = 50, baseUse = 100, normal = 12, elite = 10, midBoss = 14, finalBoss = 13 },
-            new Row { id = "blue_curacao", bundle = 50, baseUse = 100, normal = 5, elite = 9, midBoss = 9, finalBoss = 14, rare = true },
-            new Row { id = "grenadine", bundle = 50, baseUse = 100, normal = 5, elite = 9, midBoss = 9, finalBoss = 14, rare = true },
+            new Row { id = "gin", bundle = 150, baseUse = 300, normal = 6, elite = 5, midBoss = 4, finalBoss = 3 },
+            new Row { id = "rum", bundle = 150, baseUse = 300, normal = 6, elite = 5, midBoss = 4, finalBoss = 3 },
+            new Row { id = "black_tea", bundle = 10, baseUse = 20, normal = 6, elite = 5, midBoss = 4, finalBoss = 3 },
+            new Row { id = "green_tea", bundle = 10, baseUse = 20, normal = 6, elite = 5, midBoss = 4, finalBoss = 3 },
+            new Row { id = "coffee_bean", bundle = 100, baseUse = 160, normal = 5, elite = 5, midBoss = 5, finalBoss = 4 },
+            new Row { id = "steamed_milk", bundle = 150, baseUse = 150, normal = 6, elite = 5, midBoss = 4, finalBoss = 4 },
+            new Row { id = "lemon_juice", bundle = 100, baseUse = 150, normal = 7, elite = 6, midBoss = 7, finalBoss = 6 },
+            new Row { id = "honey", bundle = 50, baseUse = 100, normal = 7, elite = 6, midBoss = 7, finalBoss = 6 },
+            new Row { id = "blue_curacao", bundle = 50, baseUse = 100, normal = 4, elite = 8, midBoss = 8, finalBoss = 12, rare = true },
+            new Row { id = "grenadine", bundle = 50, baseUse = 100, normal = 4, elite = 8, midBoss = 8, finalBoss = 12, rare = true },
+            // 재료 확장 신규(희귀 아님 — 보스 희귀 보장 후보를 바꾸지 않는다). 묶음은 기준 사용량의 1/2(찻잎 일부 2/5~2/3).
+            new Row { id = "absinthe", bundle = 50, baseUse = 100, normal = 2, elite = 3, midBoss = 3, finalBoss = 3 },
+            new Row { id = "creme_cassis", bundle = 50, baseUse = 100, normal = 3, elite = 4, midBoss = 4, finalBoss = 4 },
+            new Row { id = "limoncello", bundle = 100, baseUse = 200, normal = 4, elite = 3, midBoss = 4, finalBoss = 3 },
+            new Row { id = "white_tea", bundle = 10, baseUse = 25, normal = 3, elite = 4, midBoss = 4, finalBoss = 4 },
+            new Row { id = "oolong_tea", bundle = 10, baseUse = 20, normal = 4, elite = 3, midBoss = 3, finalBoss = 3 },
+            new Row { id = "jasmine_tea", bundle = 10, baseUse = 20, normal = 4, elite = 3, midBoss = 3, finalBoss = 3 },
+            new Row { id = "chamomile_flower", bundle = 10, baseUse = 15, normal = 4, elite = 3, midBoss = 3, finalBoss = 3 },
+            new Row { id = "ethiopia_yirgacheffe_kochere", bundle = 80, baseUse = 160, normal = 3, elite = 4, midBoss = 4, finalBoss = 4 },
+            new Row { id = "colombia_huila_vergel", bundle = 80, baseUse = 160, normal = 3, elite = 3, midBoss = 4, finalBoss = 4 },
+            new Row { id = "brazil_mantiqueira_alves_lima", bundle = 80, baseUse = 160, normal = 4, elite = 3, midBoss = 4, finalBoss = 4 },
+            new Row { id = "lime_juice", bundle = 100, baseUse = 150, normal = 1, elite = 1, midBoss = 1, finalBoss = 1 },
+            new Row { id = "simple_syrup", bundle = 100, baseUse = 150, normal = 1, elite = 1, midBoss = 1, finalBoss = 1 },
+            new Row { id = "dry_vermouth", bundle = 100, baseUse = 100, normal = 1, elite = 1, midBoss = 1, finalBoss = 1 },
+            new Row { id = "darjeeling_tea", bundle = 10, baseUse = 20, normal = 1, elite = 1, midBoss = 1, finalBoss = 1 },
+            new Row { id = "anxi_tieguanyin", bundle = 10, baseUse = 20, normal = 1, elite = 1, midBoss = 1, finalBoss = 1 },
+            new Row { id = "pu_er_tea", bundle = 10, baseUse = 20, normal = 1, elite = 1, midBoss = 1, finalBoss = 1 },
+            new Row { id = "panama_esmeralda_geisha", bundle = 80, baseUse = 160, normal = 1, elite = 1, midBoss = 1, finalBoss = 1 },
+            new Row { id = "colombia_huila_san_pedro_geisha", bundle = 80, baseUse = 160, normal = 1, elite = 1, midBoss = 1, finalBoss = 1 },
+            new Row { id = "colombia_la_esperanza_bourbon", bundle = 80, baseUse = 160, normal = 1, elite = 1, midBoss = 1, finalBoss = 1 },
         };
+
+        static DrinkSupply()
+        {
+            // 새 카탈로그 항목은 최소 1점씩 모든 획득원에 분배한다. 낮은 재고 보정은 품목 수가 절반을 넘어도 작동한다.
+            var added = new List<Row>();
+            foreach (var def in DrinkIngredients.All)
+            {
+                if (Array.Exists(Table, r => r.id == def.id)) continue;
+                bool coffee = def.IsCoffeeBean;
+                bool leaf = def.form == IngredientForm.Leaf;
+                int baseUse = coffee ? 160 : leaf ? 20 : 100;
+                added.Add(new Row { id = def.id, bundle = coffee ? 80 : leaf ? 10 : 50, baseUse = baseUse,
+                    normal = 1, elite = 1, midBoss = 1, finalBoss = 1 });
+            }
+            if (added.Count > 0) Table = Array.ConvertAll(Table, r => r).Concat(added).ToArray();
+        }
 
         public const int NormalKillsPerBundle = 25;
         /// <summary>78: 판당 일반 보상 최대 묶음(1500일반킬). 정예·보스는 별도이며 포함하지 않는다. 다음 런 초기화.</summary>
@@ -90,7 +129,8 @@ namespace CCT
                 rows.Add(r);
                 uses.Add(Uses(r, held(r.id)));
             }
-            double m = Median(uses);
+            var stockedUses = uses.FindAll(x => x > 0.0);
+            double m = Median(stockedUses);
             var w = new double[rows.Count];
             double sum = 0;
             for (int i = 0; i < rows.Count; i++)

@@ -38,6 +38,7 @@ namespace CCT
         public RectTransform Scene => scene;
         Text readout, toolLabel, finishLabel, sourceLabel;
         Image bottle, stream, leafHeap, chaha, kettle, steam, spoon, chahaHeap;
+        readonly Image[] coffeeBeanHeap = new Image[8];
         RectTransform bottleRt, leafRoot;
         DrinkVesselView jigger, vessel, serve;
         DrinkRecipe draft;
@@ -79,8 +80,8 @@ namespace CCT
         /// 창고 가상 재고가 병 용량보다 많으면 나머지는 창고에 남고 병을 다시 고르면 채운다.</summary>
         public static float BottleCapacityMl(string id) => id switch
         {
-            "gin" or "rum" => 500f,
-            "blue_curacao" or "grenadine" => 350f,
+            "gin" or "rum" or "absinthe" => 500f,
+            "blue_curacao" or "grenadine" or "creme_cassis" or "limoncello" => 350f,
             _ => 250f, // lemon_juice, honey
         };
         public DrinkVesselView MainVessel => vessel;
@@ -181,6 +182,13 @@ namespace CCT
             chahaHeap = AddImage("ChahaHeap", chaha.rectTransform, DrinkVesselView.White, new Vector2(120f, 30f));
             chahaHeap.rectTransform.anchorMin = chahaHeap.rectTransform.anchorMax = new Vector2(0.5f, 0.45f);
             chahaHeap.rectTransform.pivot = new Vector2(0.5f, 0f);
+            for (int i = 0; i < coffeeBeanHeap.Length; i++)
+            {
+                var bean = AddImage("CoffeeBeanInScoop" + i, chaha.rectTransform, DrinkVesselView.White, new Vector2(15f, 12f));
+                bean.raycastTarget = false;
+                bean.gameObject.SetActive(false);
+                coffeeBeanHeap[i] = bean;
+            }
             Placeholders |= cp;
 
             jigger = DrinkVesselView.Create(scene, "dl_jigger", new Vector2(-30f, -20f), DrinkRules.JiggerCapacity / 10f);
@@ -204,7 +212,7 @@ namespace CCT
         /// <summary>건조 재료 계량 도구 교체(찻잎 = 다하, 원두 = 원두 스쿱). 같은 자리·손잡이 피벗, 원두 스쿱 아트가 없으면 다하.</summary>
         void SetLeafTool(DrinkIngredientDef def)
         {
-            string want = def != null && def.id == DrinkIngredients.CoffeeBean && DrinkArt.Has(CoffeeBrewing.ScoopArt) ? CoffeeBrewing.ScoopArt : "dl_chaha";
+            string want = def != null && def.IsCoffeeBean && DrinkArt.Has(CoffeeBrewing.ScoopArt) ? CoffeeBrewing.ScoopArt : "dl_chaha";
             if (want == leafToolArt) return;
             leafToolArt = want;
             var rt = chaha.rectTransform;
@@ -212,6 +220,7 @@ namespace CCT
             Placeholders |= ph;
             NativeSize(chaha, 4);
             rt.localRotation = Quaternion.identity;
+            rt.localScale = Vector3.one;
             rt.pivot = new Vector2(0.5f, 0.5f);
             rt.anchoredPosition = ChahaCenter;
             DrinkVesselView.SetPivotKeepPosition(rt, DrinkArt.Anchor(want, "grip"));
@@ -278,6 +287,9 @@ namespace CCT
         Image counterImage;
         DrinkKind? backdropKind;
 
+        /// <summary>제조 배경 아트 묶음 이름(커피 전용 아트가 없으면 바 배경).</summary>
+        static string CraftSet(DrinkKind kind) => kind == DrinkKind.Tea ? "tea" : kind == DrinkKind.Coffee && DrinkArt.Has("dl_craft_coffee_wall") && DrinkArt.Has("dl_craft_coffee_table") ? "coffee" : "bar";
+
         /// <summary>
         /// 종류별 제조 배경(기존 ArtExtra 재사용): 칵테일 = 바 벽(bg_bar_wall)·바 카운터 앞면(bg_bar_counter), 차 = 차 벽·차 탁자 앞면.
         /// 벽은 균일 확대 후 어둡게(투명 액체·줄기 판독 우선), 카운터는 위 물건 줄을 잘라 앞면 나무판만 도구가 놓이는 바닥으로 쓴다.
@@ -291,7 +303,7 @@ namespace CCT
             var size = root.rect.size.x > 0 ? root.rect.size : new Vector2(800f, 690f);
             // 73 제조 전용 배경(CraftingBackdrops ready): 저대비 벽 400×287·상판 400×12를 정수 2배로 그대로(막·반복 캐비닛 없음).
             // 커피 전용 배경 아트가 없으면 바 배경을 쓴다.
-            string set = kind == DrinkKind.Tea ? "tea" : kind == DrinkKind.Coffee && DrinkArt.Has("dl_craft_coffee_wall") && DrinkArt.Has("dl_craft_coffee_table") ? "coffee" : "bar";
+            string set = CraftSet(kind);
             var craftWall = DrinkArt.Sprite($"dl_craft_{set}_wall");
             var craftTable = DrinkArt.Sprite($"dl_craft_{set}_table");
             if (craftWall != null && craftTable != null)
@@ -402,6 +414,7 @@ namespace CCT
             steam.gameObject.SetActive(false);
             spoon.gameObject.SetActive(false);
             if (flame != null) flame.gameObject.SetActive(false);
+            HideCloseUp();
             PoseDripper(0f);
             PlaceCoffeeCup(draft, true);
             vessel.SetIce(draft.Kind == DrinkKind.Cocktail && (draft.Technique == DrinkTechnique.Build || draft.Technique == DrinkTechnique.Layer) ? draft.ice : 0);
@@ -478,6 +491,8 @@ namespace CCT
         public float LidOpen01 => lid != null ? lidT : -1f;
         /// <summary>제조대 위 단계 문구(QA·시험).</summary>
         public string FinishText => finishLabel != null ? finishLabel.text : "";
+        /// <summary>단계 문구가 화면에 보이는지(에스프레소 클로즈업 동안 숨김).</summary>
+        public bool FinishLabelVisible => finishLabel != null && finishLabel.isActiveAndEnabled;
         bool HasLid => lid != null;
         bool LidReady => lid == null || lidT >= 1f;
         bool LidClosed => lid == null || lidT <= 0f;
@@ -699,7 +714,7 @@ namespace CCT
                 bottleRt.anchoredPosition = BottleRest;
             }
             bottleRt.localRotation = Quaternion.identity;
-            toolLabel.text = def.id == DrinkIngredients.CoffeeBean ? $"{def.name} — 통을 끌어 스쿱에 덜기({DrinkRules.Format(DrinkRules.CoffeeScoopCapacity)}g씩 {CoffeeBrewing.DisplayName(draft.coffeeMethod)}에)"
+            toolLabel.text = def.IsCoffeeBean ? $"{def.name} — 통을 끌어 스쿱에 덜기({DrinkRules.Format(DrinkRules.CoffeeScoopCapacity)}g씩 {CoffeeBrewing.DisplayName(draft.coffeeMethod)}에)"
                 : leaf ? $"{def.name} — 통을 끌어 다하에 덜기(3.0g씩 다관으로)"
                 : CupReceives(def) ? $"{def.name} — 피처를 끌어 지거에 붓기(잔에 먼저 담고 커피를 그 위로)" : $"{def.name} — 병을 끌어 지거에 붓기(45.0mL씩 나눠 붓기)";
             jigger.SetEmpty();
@@ -745,7 +760,11 @@ namespace CCT
         Vector2 MeasureMouth()
         {
             if (current != null && current.form == IngredientForm.Leaf)
+            {
+                if (current.IsCoffeeBean)
+                    return DrinkVesselView.ToParentAnchored(chaha.rectTransform, new Vector2(0.27f, 0.28f));
                 return DrinkVesselView.ToParentAnchored(chaha.rectTransform, DrinkArt.Anchor(leafToolArt, "mouth"));
+            }
             return jigger.PointInParent(DrinkArt.Anchor("dl_jigger", "mouth"));
         }
 
@@ -776,8 +795,31 @@ namespace CCT
             float reach = srcBottle != null ? Mathf.Clamp(bottleOnset - 8f, 40f, TiltMax) : TiltStart;
             float approach = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(Tilt / reach));
             bottleRt.anchoredPosition = BottleRest + (target - lipAtRest) * approach;
+            // 원두 통은 스쿱보다 크다: 입구만 맞추면 기울어진 통 몸체가 스쿱 그릇을 덮는다. 다가갈수록 통 전체를 들어 올려 스쿱 위 빈틈을 남긴다.
+            if (current.IsCoffeeBean && chaha.gameObject.activeSelf)
+                bottleRt.anchoredPosition += new Vector2(0f, approach * Mathf.Max(0f, CoffeeTinMinGap - CoffeeTinScoopGap));
             var lip = DrinkVesselView.ToParentAnchored(bottleRt, lipN);
             Geometry = new PourGeometry { lip = lip, mouth = mouth, pivot = bottleRt.pivot, rotation = -Tilt, streamEnd = lip, flowing = false };
+        }
+
+        /// <summary>원두를 덜 때 통(회전 포함 사각형) 가장 낮은 점과 스쿱 사각형 가장 높은 점 사이 최소 세로 간격(px, 1920×1080 기준).</summary>
+        public const float CoffeeTinMinGap = 16f;
+
+        /// <summary>원두 통 사각형 바닥(회전 적용) − 원두 스쿱 사각형 위(제조대 px). 음수면 겹침.</summary>
+        public float CoffeeTinScoopGap
+        {
+            get
+            {
+                if (bottleRt == null || chaha == null) return float.MaxValue;
+                float tinBottom = float.MaxValue, scoopTop = float.MinValue;
+                for (int i = 0; i < 4; i++)
+                {
+                    var n = new Vector2(i & 1, i >> 1);
+                    tinBottom = Mathf.Min(tinBottom, DrinkVesselView.ToParentAnchored(bottleRt, n).y);
+                    scoopTop = Mathf.Max(scoopTop, DrinkVesselView.ToParentAnchored(chaha.rectTransform, n).y);
+                }
+                return tinBottom - scoopTop;
+            }
         }
 
         /// <summary>회전된 입구가 받는 입구 위(가로 오차 안·위쪽)에 있을 때만 흐른다.</summary>
@@ -812,13 +854,13 @@ namespace CCT
         {
             if (def == null || tilt <= onset) return 0f;
             float t = Mathf.Clamp01((tilt - onset) / 50f);
-            float max = def.form == IngredientForm.Leaf ? (def.id == DrinkIngredients.CoffeeBean ? BeanMaxRate : LeafMaxRate) : LiquidMaxRate;
+            float max = def.form == IngredientForm.Leaf ? (def.IsCoffeeBean ? BeanMaxRate : LeafMaxRate) : LiquidMaxRate;
             return t * t * max * (1f - 0.6f * def.viscosity);
         }
 
         int MeasureCapacity => current != null && current.form == IngredientForm.Leaf ? LeafToolCapacity(current) : DrinkRules.JiggerCapacity;
 
-        static int LeafToolCapacity(DrinkIngredientDef def) => def != null && def.id == DrinkIngredients.CoffeeBean ? DrinkRules.CoffeeScoopCapacity : DrinkRules.ChahaCapacity;
+        static int LeafToolCapacity(DrinkIngredientDef def) => def != null && def.IsCoffeeBean ? DrinkRules.CoffeeScoopCapacity : DrinkRules.ChahaCapacity;
 
         /// <summary>계량 도구 안 받는 면(액면 또는 바닥)의 높이(제조대 좌표).</summary>
         float MeasureSurfaceY()
@@ -912,10 +954,37 @@ namespace CCT
                 double g = m.LeafG;
                 float t = (float)(g * 10.0 / LeafToolCapacity(def));
                 chahaHeap.gameObject.SetActive(g > 0.0005);
-                var frames = DrinkArt.Frames("dl_leaf_heap_" + def.id);
-                if (frames.Length > 0) { chahaHeap.sprite = frames[Mathf.Min(frames.Length - 1, Mathf.FloorToInt(Mathf.Clamp01(t) * frames.Length))]; chahaHeap.color = Color.white; }
-                else chahaHeap.color = def.color;
-                chahaHeap.rectTransform.localScale = new Vector3(0.4f + 0.6f * t, 0.3f + 0.7f * t, 1f);
+                if (def.IsCoffeeBean)
+                {
+                    // Show actual bean sprites collecting in the scoop bowl instead of stretching one icon into a fake mound.
+                    var beanFrames = DrinkArt.Frames("dl_leaf_coffee_bean");
+                    chahaHeap.gameObject.SetActive(false);
+                    int count = Mathf.Clamp(Mathf.CeilToInt(t * coffeeBeanHeap.Length), 0, coffeeBeanHeap.Length);
+                    Vector2[] pile = { new Vector2(.19f,.30f), new Vector2(.31f,.28f), new Vector2(.25f,.39f), new Vector2(.38f,.34f), new Vector2(.16f,.42f), new Vector2(.32f,.47f), new Vector2(.23f,.53f), new Vector2(.41f,.45f) };
+                    for (int i = 0; i < coffeeBeanHeap.Length; i++)
+                    {
+                        var img = coffeeBeanHeap[i];
+                        img.gameObject.SetActive(i < count && beanFrames.Length > 0);
+                        if (i >= count || beanFrames.Length == 0) continue;
+                        img.sprite = beanFrames[(i + Mathf.FloorToInt(Time.unscaledTime * 3f)) % beanFrames.Length];
+                        img.color = Color.white;
+                        img.rectTransform.anchorMin = img.rectTransform.anchorMax = pile[i];
+                        img.rectTransform.anchoredPosition = Vector2.zero;
+                        img.rectTransform.sizeDelta = new Vector2(15f, 12f);
+                    }
+                }
+                else
+                {
+                    chahaHeap.gameObject.SetActive(g > 0.0005);
+                    foreach (var bean in coffeeBeanHeap) bean.gameObject.SetActive(false);
+                    var frames = DrinkArt.Frames("dl_leaf_heap_" + def.LeafArtKey);
+                    if (frames.Length > 0) { chahaHeap.sprite = frames[Mathf.Min(frames.Length - 1, Mathf.FloorToInt(Mathf.Clamp01(t) * frames.Length))]; chahaHeap.color = Color.white; }
+                    else { chahaHeap.sprite = DrinkVesselView.White; chahaHeap.color = def.color; }
+                    chahaHeap.rectTransform.sizeDelta = new Vector2(120f, 30f);
+                }
+                chahaHeap.rectTransform.localScale = def.IsCoffeeBean
+                    ? new Vector3(0.55f + 0.45f * t, 0.55f + 0.45f * t, 1f)
+                    : new Vector3(0.4f + 0.6f * t, 0.3f + 0.7f * t, 1f);
             }
             else
             {
@@ -1003,7 +1072,14 @@ namespace CCT
             {
                 // 찻잎은 액체 줄기가 아니라 잎 입자가 떨어진다.
                 bottleFall.Stop();
-                SpawnFallingLeaf(g.lip, new Vector2(g.lip.x, MeasureSurfaceY()), current);
+                Vector2 target = MeasureMouth();
+                if (current.IsCoffeeBean)
+                {
+                    // Scatter the beans within the bowl, not along the handle.
+                    target += new Vector2(UnityEngine.Random.Range(-7f, 8f), UnityEngine.Random.Range(-3f, 5f));
+                }
+                else target = new Vector2(g.lip.x, MeasureSurfaceY());
+                SpawnFallingLeaf(g.lip, target, current);
                 return;
             }
             float surfaceY = MeasureSurfaceY();
@@ -1020,11 +1096,12 @@ namespace CCT
         {
             leafTimer -= Time.unscaledDeltaTime;
             if (leafTimer > 0f) return;
-            leafTimer = 0.06f;
-            var frames = DrinkArt.Frames("dl_leaf_" + def.id);
-            var img = AddImage("Leaf", leafRoot, frames.Length > 0 ? frames[UnityEngine.Random.Range(0, frames.Length)] : DrinkVesselView.White, new Vector2(24f, 24f));
+            leafTimer = def.IsCoffeeBean ? 0.045f : 0.06f;
+            var frames = DrinkArt.Frames("dl_leaf_" + def.LeafArtKey);
+            bool bean = def.IsCoffeeBean;
+            var img = AddImage("Leaf", leafRoot, frames.Length > 0 ? frames[UnityEngine.Random.Range(0, frames.Length)] : DrinkVesselView.White, bean ? new Vector2(22f, 18f) : new Vector2(24f, 24f));
             if (frames.Length == 0) img.color = def.color;
-            img.gameObject.AddComponent<DrinkFallingBit>().Init(from, to, (float)DrinkTransferLedger.FallSeconds(from.y - to.y, GravityPx));
+            img.gameObject.AddComponent<DrinkFallingBit>().Init(from, to, (float)DrinkTransferLedger.FallSeconds(from.y - to.y, GravityPx), bean ? UnityEngine.Random.Range(5f, 9f) : 4f, bean ? UnityEngine.Random.Range(300f, 520f) : 220f);
         }
 
         void Update()
@@ -1135,6 +1212,15 @@ namespace CCT
         Vector2 ToolRest => transferDef != null && transferDef.form == IngredientForm.Leaf ? chahaRest : jiggerRest;
         string ToolArt => transferDef != null && transferDef.form == IngredientForm.Leaf ? leafToolArt : "dl_jigger";
 
+        /// <summary>원두 스쿱의 그릇을 현재 추출 도구 쪽으로 향하게 한다(에스프레소·핸드 드립·모카포트 공통).</summary>
+        bool ScoopFacesReceiver => transferDef != null && transferDef.IsCoffeeBean && leafToolArt == CoffeeBrewing.ScoopArt
+            && draft != null && draft.Kind == DrinkKind.Coffee;
+        /// <summary>뒤집힌 스쿱의 쏟는 입구 = 그릇 바깥 테두리(좌우 반전 뒤 받는 도구 쪽).</summary>
+        static readonly Vector2 ScoopBowlLip = new Vector2(0.06f, 0.62f);
+        Vector2 ToolLip => ScoopFlipped && Tool == chaha.rectTransform ? ScoopBowlLip : DrinkArt.Anchor(ToolArt, "pourLip");
+        /// <summary>스쿱이 좌우로 뒤집혀 있는가(QA·시험).</summary>
+        public bool ScoopFlipped => chaha != null && chaha.rectTransform.localScale.x < 0f;
+
         void StartCycle()
         {
             transferId = current.id;
@@ -1195,8 +1281,9 @@ namespace CCT
             var tool = Tool;
             toolMove = move; toolTilt = tilt;
             tool.localRotation = Quaternion.Euler(0f, 0f, -tilt);
+            if (tool == chaha.rectTransform) tool.localScale = new Vector3(ScoopFacesReceiver ? -1f : 1f, 1f, 1f);
             tool.anchoredPosition = ToolRest;
-            var lipN = DrinkArt.Anchor(ToolArt, "pourLip");
+            var lipN = ToolLip;
             var lipAtRest = DrinkVesselView.ToParentAnchored(tool, lipN);
             var target = ReceiverMouth() + new Vector2(0f, ToolLipClearance);
             tool.anchoredPosition = ToolRest + (target - lipAtRest) * move;
@@ -1256,7 +1343,7 @@ namespace CCT
                     float endTilt = transferDef.form == IngredientForm.Liquid ? ToolPourTiltMax : 110f;
                     float tilt = Mathf.Lerp(toolStartTilt, endTilt, Ease(t));
                     PoseTool(1f, tilt);
-                    var lip = DrinkVesselView.ToParentAnchored(Tool, DrinkArt.Anchor(ToolArt, "pourLip"));
+                    var lip = DrinkVesselView.ToParentAnchored(Tool, ToolLip);
                     var receiver = Receiver;
                     float surface = ReceiverSurfaceY(receiver);
                     float fall = (float)DrinkTransferLedger.FallSeconds(lip.y - surface, GravityPx);
@@ -1312,6 +1399,7 @@ namespace CCT
             toolFall.Stop();
             var tool = Tool;
             tool.localRotation = Quaternion.identity;
+            tool.localScale = Vector3.one;
             tool.anchoredPosition = ToolRest;
             toolTilt = 0f; toolMove = 0f;
             transferEmitted = transferTotal;
@@ -1339,7 +1427,7 @@ namespace CCT
             EndCycle();
         }
 
-        void OnDisable() => StopPour();
+        void OnDisable() { StopPour(); HideCloseUp(); }
         /// <summary>QA 캡처(최소화 창, 포커스 없음)에서만 true — 실제 플레이에서는 창 포커스를 잃으면 즉시 멈춘다.</summary>
         public static bool IgnoreFocusLossForCapture;
         void OnApplicationFocus(bool focus) { if (!focus && !IgnoreFocusLossForCapture) StopPour(); }
@@ -1371,6 +1459,7 @@ namespace CCT
             if (sequence != null) { StopCoroutine(sequence); sequence = null; }
             skipRequested = skipMotion;
             craftFocus = VesselRest.x;
+            HideCloseUp();
             // 확정 배합의 기법에 맞는 그릇과 장부인지 마지막으로 맞춘다(불러온 레시피를 바로 제조하는 경우 등).
             Ledger.Flush();
             EnsureVessel(r);
@@ -1701,6 +1790,9 @@ namespace CCT
 
         // ───── 커피 추출 도구(손 없음): 에스프레소 머신 / 드리퍼 + 서버 / 모카포트 + 버너 ─────
         Image dripper, dripperGrounds, flame;
+        Image grinderBody, grinderHopper, grinderCup, grinderCrank, grinderHandle;
+        Image[] grinderGrounds = new Image[5];
+        Vector2 grinderDoseTarget;
         float dripperAside;
         /// <summary>드리퍼를 서버 위에서 들어 옆(오른쪽 탁자)에 내려놓는 거리(장면 px)와 들어 올리는 높이.</summary>
         static readonly Vector2 DripperAside = new Vector2(150f, 0f);
@@ -1709,6 +1801,12 @@ namespace CCT
         public string CoffeeStage { get; private set; }
         /// <summary>드리퍼 내려놓기 진행 0(서버 위)~1(옆 탁자).</summary>
         public float DripperAside01 => dripperAside;
+        /// <summary>핸드 드립 물줄기가 드리퍼 중심에서 좌우로 이동한 최대 거리(px, QA).</summary>
+        public float KettleSweepMaxOffset { get; private set; }
+        public bool MokaGrinderVisible => grinderBody != null && grinderBody.transform.parent.gameObject.activeSelf;
+        public bool MokaGroundsTransferVisible => grinderGrounds != null && Array.Exists(grinderGrounds, p => p != null && p.gameObject.activeSelf);
+        public bool DripperGroundsVisible => dripperGrounds != null && dripperGrounds.gameObject.activeSelf;
+        public float DripperGroundsAnchorY => dripperGrounds != null ? dripperGrounds.rectTransform.anchorMin.y : -1f;
 
         static bool NeedsKettle(DrinkRecipe r) => r.Kind == DrinkKind.Tea || (r.Kind == DrinkKind.Coffee && r.coffeeMethod == CoffeeBrewMethod.PourOver);
 
@@ -1717,7 +1815,14 @@ namespace CCT
         {
             if (dripper != null) { Destroy(dripper.gameObject); dripper = null; dripperGrounds = null; }
             if (flame != null) { Destroy(flame.gameObject); flame = null; }
+            if (grinderBody != null) { Destroy(grinderBody.transform.parent.gameObject); grinderBody = grinderHopper = grinderCup = grinderCrank = grinderHandle = null; grinderGrounds = new Image[5]; }
             dripperAside = 0f;
+            if (vesselId == CoffeeBrewing.ApparatusArt(CoffeeBrewMethod.EspressoMachine) && DrinkArt.Has(CoffeeBrewing.PortafilterArt))
+            {
+                // Use a pixel-perfect composite sprite: the portafilter is already seated under the group head.
+                // Keep the base machine asset ID for its liquid anchors and masks; only swap the rendered sprite.
+                vessel.Glass.sprite = DrinkArt.Sprite("dl_coffee_espresso_portafilter") ?? DrinkArt.Sprite(vesselId);
+            }
             if (vesselId == CoffeeBrewing.ApparatusArt(CoffeeBrewMethod.PourOver))
             {
                 dripper = AddImage("Dripper", scene, DrinkArt.SpriteOrPlaceholder(CoffeeBrewing.DripperArt, out bool ph), Vector2.zero);
@@ -1725,15 +1830,16 @@ namespace CCT
                 NativeSize(dripper, 4);
                 dripper.rectTransform.pivot = new Vector2(0.5f, 0f);
                 // 드리퍼 가루 더미: 드리퍼 원뿔 안(입구 아래) 원두 양만큼 커진다.
-                dripperGrounds = AddImage("DripperGrounds", dripper.rectTransform, DrinkVesselView.White, new Vector2(56f, 16f));
-                dripperGrounds.rectTransform.anchorMin = dripperGrounds.rectTransform.anchorMax = new Vector2(0.5f, DrinkArt.Anchor(CoffeeBrewing.DripperArt, "mouth").y - 0.12f);
+                dripperGrounds = AddImage("DripperGrounds", dripper.rectTransform, DrinkVesselView.White, new Vector2(30f, 8f));
+                dripperGrounds.rectTransform.anchorMin = dripperGrounds.rectTransform.anchorMax = new Vector2(0.5f, 0.28f);
                 dripperGrounds.rectTransform.pivot = new Vector2(0.5f, 0f);
                 dripperGrounds.color = DrinkIngredients.Get(DrinkIngredients.CoffeeBean).color;
-                dripperGrounds.gameObject.SetActive(false); // 원뿔 입구 위로 살짝 솟은 가루 더미(드리퍼 앞)
+                dripperGrounds.gameObject.SetActive(false); // 분쇄 원두가 드리퍼 바닥에 얇게 깔린다.
                 PoseDripper(0f);
             }
             else if (vesselId == CoffeeBrewing.ApparatusArt(CoffeeBrewMethod.MokaPot))
             {
+                SetupMokaGrinder();
                 var frames = DrinkArt.Frames(CoffeeBrewing.FlameArt);
                 flame = AddImage("Flame", scene, frames.Length > 0 ? frames[0] : DrinkVesselView.White, new Vector2(64f, 32f));
                 if (frames.Length > 0) NativeSize(flame, 4); else flame.color = new Color(1f, 0.55f, 0.15f, 0.9f);
@@ -1741,6 +1847,83 @@ namespace CCT
                 flame.rectTransform.anchoredPosition = new Vector2(VesselRest.x, TableTopY - 2f);
                 flame.transform.SetSiblingIndex(0); // 모카포트 뒤(바닥 아래쪽에서 핥아 오른다)
                 flame.gameObject.SetActive(false);
+            }
+        }
+
+        /// <summary>작은 수동 버 그라인더. 독립된 픽셀 블록으로 구성해 분쇄와 바스켓 투입을 보여준다.</summary>
+        void SetupMokaGrinder()
+        {
+            var group = new GameObject("MokaHandGrinder", typeof(RectTransform));
+            var rt = (RectTransform)group.transform;
+            rt.SetParent(scene, false);
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.sizeDelta = Vector2.zero;
+            rt.anchoredPosition = new Vector2(VesselRest.x - 145f, TableTopY - 76f);
+            grinderDoseTarget = vessel.PointInParent(DrinkArt.Anchor(vesselId, "mouth")) - rt.anchoredPosition;
+            var caseOutline = AddImage("GrinderCaseOutline", rt, DrinkVesselView.White, new Vector2(56f, 62f));
+            caseOutline.color = new Color(0.16f, 0.095f, 0.075f);
+            caseOutline.rectTransform.anchoredPosition = new Vector2(0f, -3f);
+            grinderBody = AddImage("GrinderBody", rt, DrinkVesselView.White, new Vector2(48f, 54f));
+            grinderBody.color = new Color(0.42f, 0.24f, 0.14f);
+            grinderBody.rectTransform.anchoredPosition = new Vector2(0f, -4f);
+            var bodyPanel = AddImage("GrinderFrontPanel", rt, DrinkVesselView.White, new Vector2(30f, 30f));
+            bodyPanel.color = new Color(0.56f, 0.34f, 0.19f);
+            bodyPanel.rectTransform.anchoredPosition = new Vector2(0f, -5f);
+            var panelInset = AddImage("GrinderPanelInset", rt, DrinkVesselView.White, new Vector2(20f, 18f));
+            panelInset.color = new Color(0.3f, 0.17f, 0.11f);
+            panelInset.rectTransform.anchoredPosition = new Vector2(0f, -5f);
+            var hopperOutline = AddImage("GrinderHopperOutline", rt, DrinkVesselView.White, new Vector2(40f, 21f));
+            hopperOutline.color = new Color(0.17f, 0.11f, 0.075f);
+            hopperOutline.rectTransform.anchoredPosition = new Vector2(0f, 27f);
+            grinderHopper = AddImage("GrinderHopper", rt, DrinkVesselView.White, new Vector2(34f, 16f));
+            grinderHopper.color = new Color(0.72f, 0.49f, 0.24f);
+            grinderHopper.rectTransform.anchoredPosition = new Vector2(0f, 27f);
+            var cupOutline = AddImage("GrinderCupOutline", rt, DrinkVesselView.White, new Vector2(44f, 24f));
+            cupOutline.color = new Color(0.16f, 0.095f, 0.075f);
+            cupOutline.rectTransform.anchoredPosition = new Vector2(0f, -32f);
+            grinderCup = AddImage("GrinderCatchCup", rt, DrinkVesselView.White, new Vector2(38f, 20f));
+            grinderCup.color = new Color(0.76f, 0.62f, 0.43f);
+            grinderCup.rectTransform.anchoredPosition = new Vector2(0f, -32f);
+            var cupGrounds = AddImage("GroundCoffeeInCup", rt, DrinkVesselView.White, new Vector2(24f, 5f));
+            cupGrounds.color = new Color(0.19f, 0.09f, 0.035f);
+            cupGrounds.rectTransform.anchoredPosition = new Vector2(0f, -24f);
+            var gear = AddImage("GrinderGear", rt, DrinkVesselView.White, new Vector2(12f, 12f));
+            gear.color = new Color(0.83f, 0.68f, 0.35f);
+            gear.rectTransform.anchoredPosition = new Vector2(21f, 18f);
+            grinderCrank = AddImage("GrinderCrank", rt, DrinkVesselView.White, new Vector2(5f, 30f));
+            grinderCrank.color = new Color(0.72f, 0.72f, 0.67f);
+            grinderCrank.rectTransform.pivot = new Vector2(0.5f, 0f);
+            grinderCrank.rectTransform.anchoredPosition = new Vector2(21f, 18f);
+            grinderHandle = AddImage("GrinderCrankHandle", grinderCrank.transform, DrinkVesselView.White, new Vector2(12f, 9f));
+            grinderHandle.color = new Color(0.22f, 0.19f, 0.17f);
+            grinderHandle.rectTransform.anchoredPosition = new Vector2(0f, 30f);
+            for (int i = 0; i < grinderGrounds.Length; i++)
+            {
+                grinderGrounds[i] = AddImage("GroundParticle" + i, rt, DrinkVesselView.White, new Vector2(5f, 5f));
+                grinderGrounds[i].color = new Color(0.19f, 0.09f, 0.035f);
+                grinderGrounds[i].gameObject.SetActive(false);
+            }
+            group.SetActive(false);
+        }
+
+        void AnimateMokaGrinding(float t, bool dosing)
+        {
+            if (grinderBody == null) return;
+            var group = grinderBody.transform.parent;
+            if (!group.gameObject.activeSelf) group.gameObject.SetActive(true);
+            grinderCrank.rectTransform.localRotation = Quaternion.Euler(0f, 0f, dosing ? 0f : Mathf.Sin(t * 18f) * 58f);
+            for (int i = 0; i < grinderGrounds.Length; i++)
+            {
+                var particle = grinderGrounds[i];
+                bool active = dosing && t > i * 0.11f;
+                particle.gameObject.SetActive(active);
+                if (!active) continue;
+                float p = Mathf.Clamp01((t - i * 0.11f) / 0.42f);
+                var start = new Vector2((i - 2) * 5f, -21f);
+                var end = grinderDoseTarget + new Vector2((i - 2) * 3f, 8f);
+                particle.rectTransform.anchoredPosition = Vector2.Lerp(start, end, p) + Vector2.up * (Mathf.Sin(p * Mathf.PI) * 26f);
+                particle.color = new Color(0.19f, 0.09f, 0.035f, 1f - 0.5f * p);
             }
         }
 
@@ -1791,6 +1974,349 @@ namespace CCT
         /// <summary>핸드 드립·모카포트 잔의 도구 기준 가로 거리(PourInto의 받는 잔 거리와 같다).</summary>
         const float CupOffsetX = 270f;
 
+        // ───── 에스프레소 추출 클로즈업(에스프레소 머신의 추출 단계에만): 살짝 위에서 비스듬히 본 추출구 → 잔 ─────
+        /// <summary>클로즈업 아트 id(ArtSource에서 만들어 Resources/DrinkLab에 들어온다). 없으면 단색 도형으로 대신한다.</summary>
+        public const string CloseUpGroupheadArt = "dl_coffee_extraction_grouphead", CloseUpCupRimArt = "dl_coffee_extraction_cup_rim", CloseUpLiquidArt = "dl_coffee_extraction_liquid";
+        /// <summary>추출 흐름 시간(앞 0.4초 예비 적심 포함)과 클로즈업이 걷히는 시간.</summary>
+        public const float EspressoExtractSeconds = 3.0f, CloseUpFadeSeconds = 0.3f;
+        /// <summary>목표 추출량 중 이 비율까지는 끊긴 첫 방울, 그 뒤 이어진 줄기(시간이 아니라 실제 나온 양 기준).</summary>
+        public const float FirstDropsFraction = 0.08f;
+        const int CloseUpDropPool = 8;
+
+        RectTransform closeUp, cuFrame;
+        CanvasGroup cuGroup;
+        Image cuGrouphead, cuRim, cuInside, cuLiquid;
+        /// <summary>쌍둥이 추출구의 두 줄기(같은 양·색으로 나눠 흐른다).</summary>
+        readonly Image[] cuStreams = new Image[2];
+        Image cuStream => cuStreams[0];
+        float cuOutletDx;
+        int cuNextOutlet;
+        readonly Image[] cuDrops = new Image[CloseUpDropPool];
+        readonly float[] cuDropX = new float[CloseUpDropPool], cuDropY = new float[CloseUpDropPool], cuDropV = new float[CloseUpDropPool];
+        Vector2 cuSpout, cuCupCenter, cuInner;
+        double cuYield, cuMilkMl, cuEmitted, cuSinceDrop, cuShadeSum;
+        Color cuMilkColor, cuBrew;
+        float cuCapacity, cuAge, cuFlow, cuStreamTop, cuStreamV;
+        bool cuFadingOut;
+        static Sprite ellipseSprite, ringSprite;
+
+        /// <summary>클로즈업이 보이는 중(QA·시험).</summary>
+        public bool CloseUpActive => closeUp != null && closeUp.gameObject.activeSelf;
+        /// <summary>prewet → drops → stream → tail → settle. 클로즈업이 없으면 null.</summary>
+        public string CloseUpPhase { get; private set; }
+        /// <summary>추출구에서 나온 양 / 목표 추출량(장부 Emit 합).</summary>
+        public float CloseUpExtracted01 { get; private set; }
+        /// <summary>잔에 실제로 닿은 추출 커피 / 목표 추출량(잔 장부 − 먼저 담은 첨가 액체).</summary>
+        public float CloseUpLanded01 { get; private set; }
+        /// <summary>잔 장부 액체량 / 잔 용량(첨가 액체 포함) — 클로즈업 수면 높이.</summary>
+        public float CloseUpLevel01 { get; private set; }
+        public Color CloseUpLiquidColor => cuLiquid != null ? cuLiquid.color : Color.clear;
+        public Color CloseUpStreamColor => cuStream != null ? cuStream.color : Color.clear;
+        /// <summary>지금 추출구에서 나오는 흐름 색(첫 방울·줄기).</summary>
+        public Color CloseUpFlowColor { get; private set; }
+        public bool CloseUpStreamVisible => cuStream != null && cuStream.gameObject.activeSelf;
+        public int CloseUpDropsVisible { get { int n = 0; foreach (var d in cuDrops) if (d != null && d.gameObject.activeSelf) n++; return n; } }
+        /// <summary>지금 클로즈업이 실제 아트 세 장으로 그려졌는지(아니면 도형 대체).</summary>
+        public bool CloseUpUsesArt => cuGrouphead != null && cuGrouphead.sprite == DrinkArt.Sprite(CloseUpGroupheadArt) && cuRim.sprite == DrinkArt.Sprite(CloseUpCupRimArt) && cuLiquid.sprite == DrinkArt.Sprite(CloseUpLiquidArt) && cuGrouphead.sprite != null;
+        /// <summary>클로즈업 세 아트가 모두 들어왔는지(아니면 도형 대체).</summary>
+        public static bool CloseUpArtReady => DrinkArt.Has(CloseUpGroupheadArt) && DrinkArt.Has(CloseUpCupRimArt) && DrinkArt.Has(CloseUpLiquidArt);
+
+        /// <summary>
+        /// 추출 진행(나온 양 비율 0~1)에 따른 줄기 색. 첫 방울은 어둡고, 가운데는 진한 갈색, 끝물은 약간만 밝아질 수 있다.
+        /// 보편적인 색·멈춤 색은 없으므로 기본 추출색(BrewColor)의 명도만 절제해서 바꾸고(색상 유지),
+        /// 전체 추출량의 부피 평균이 기본 추출색과 같게 정규화한다(완성 잔 색과 어긋나지 않음). 화면 표시 전용.
+        /// </summary>
+        public static Color EspressoFlowColor(Color brew, float extracted01)
+        {
+            float k = FlowShade(Mathf.Clamp01(extracted01)) / FlowShadeMean;
+            return new Color(Mathf.Clamp01(brew.r * k), Mathf.Clamp01(brew.g * k), Mathf.Clamp01(brew.b * k), brew.a);
+        }
+
+        static float FlowShade(float p) =>
+            Mathf.Lerp(0.84f, 1f, Mathf.SmoothStep(0f, 1f, p / 0.4f)) + 0.12f * Mathf.SmoothStep(0f, 1f, (p - 0.7f) / 0.3f);
+
+        static float flowShadeMean = -1f;
+        static float FlowShadeMean
+        {
+            get
+            {
+                if (flowShadeMean > 0f) return flowShadeMean;
+                const int n = 400;
+                double s = 0;
+                for (int i = 0; i < n; i++) s += FlowShade((i + 0.5f) / n);
+                return flowShadeMean = (float)(s / n);
+            }
+        }
+
+        static Sprite ShapeSprite(bool ring)
+        {
+            const int w = 96, h = 48;
+            var tex = new Texture2D(w, h, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
+            var px = new Color32[w * h];
+            for (int y = 0; y < h; y++)
+                for (int x = 0; x < w; x++)
+                {
+                    float dx = (x + 0.5f - w * 0.5f) / (w * 0.5f), dy = (y + 0.5f - h * 0.5f) / (h * 0.5f);
+                    float d = dx * dx + dy * dy;
+                    bool on = ring ? d <= 1f && d >= 0.62f : d <= 1f;
+                    px[y * w + x] = on ? new Color32(255, 255, 255, 255) : new Color32(0, 0, 0, 0);
+                }
+            tex.SetPixels32(px);
+            tex.Apply();
+            return Sprite.Create(tex, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), 100f);
+        }
+
+        /// <summary>클로즈업 아트 배율(정수, 세 아트 공통 — 픽셀 크기가 같다). 추출구~림이 정보 띠 위 영역에 들어간다.</summary>
+        const int CloseUpArtScale = 3;
+        /// <summary>그룹헤드 아트의 쌍둥이 추출구 간격(아트 px, 가운데 pourLip에서 좌우 — manifest stream_left/right 52·70, 가운데 61).</summary>
+        const float TwinOutletArtPx = 9f;
+
+        /// <summary>아트가 있으면 공통 정수 배율 원래 크기, 없으면 단색 도형.</summary>
+        Image CloseUpPart(string name, string art, Sprite fallback, Vector2 fallbackSize, Color fallbackColor)
+        {
+            var sp = DrinkArt.Sprite(art);
+            var img = AddImage(name, cuFrame, sp ?? fallback, fallbackSize);
+            if (sp != null) NativeSize(img, CloseUpArtScale);
+            else img.color = fallbackColor;
+            return img;
+        }
+
+        void BuildCloseUp()
+        {
+            if (ellipseSprite == null) ellipseSprite = ShapeSprite(false);
+            if (ringSprite == null) ringSprite = ShapeSprite(true);
+            closeUp = UiFactory.Stretch("EspressoCloseUp", root);
+            closeUp.SetSiblingIndex(scene.GetSiblingIndex() + 1); // 장면 위, 안내 글자 아래
+            cuGroup = closeUp.gameObject.AddComponent<CanvasGroup>();
+            cuGroup.blocksRaycasts = false; cuGroup.interactable = false;
+            UiFactory.AddImage(closeUp, new Color(0.07f, 0.055f, 0.05f, 1f)).raycastTarget = false; // 완전히 덮는 컷(뒤 장면이 비치지 않음)
+            AddCloseUpBackdrop();
+            // 정보 띠·상판 위 영역의 가운데.
+            cuFrame = UiFactory.Place("Frame", closeUp, new Vector2(0.5f, 0.5f), new Vector2(0f, (HudHeight + TableHeight) * 0.5f), new Vector2(560f, 560f));
+            bool headArt = DrinkArt.Has(CloseUpGroupheadArt), rimArt = DrinkArt.Has(CloseUpCupRimArt);
+            // 그릴 순서: 그룹헤드 / 잔 안쪽(통합 쪽에서 그림) → 액체 → 림 고리 → 줄기·방울(림 안쪽 수면에서 끝나므로 맨 앞).
+            cuGrouphead = CloseUpPart("Grouphead", CloseUpGroupheadArt, DrinkVesselView.White, new Vector2(300f, 120f), new Color(0.55f, 0.56f, 0.58f));
+            var gh = cuGrouphead.rectTransform;
+            gh.anchoredPosition = new Vector2(0f, 280f - gh.sizeDelta.y * 0.5f);
+            Vector2 lipN = headArt ? DrinkArt.Anchor(CloseUpGroupheadArt, "pourLip") : new Vector2(0.5f, 0f);
+            if (lipN.y > 0.999f) lipN = new Vector2(0.5f, 0f); // 앵커가 없으면 아래 가운데(추출구)
+            if (!headArt)
+            {
+                var spout = AddImage("Spout", gh, DrinkVesselView.White, new Vector2(48f, 26f));
+                spout.color = new Color(0.32f, 0.32f, 0.34f);
+                spout.rectTransform.anchorMin = spout.rectTransform.anchorMax = new Vector2(0.5f, 0f);
+                spout.rectTransform.pivot = new Vector2(0.5f, 1f);
+                spout.rectTransform.anchoredPosition = Vector2.zero;
+                lipN = new Vector2(0.5f, -26f / gh.sizeDelta.y);
+            }
+            cuSpout = gh.anchoredPosition + Vector2.Scale(lipN - new Vector2(0.5f, 0.5f), gh.sizeDelta);
+            cuOutletDx = headArt ? TwinOutletArtPx * CloseUpArtScale : 16f;
+            // 잔: 살짝 위에서 본 타원 림(가운데가 뚫린 고리). 잔 안쪽 그늘이 액체 뒤를 채운다.
+            var rimSp = DrinkArt.Sprite(CloseUpCupRimArt);
+            Vector2 rimSize = rimSp != null ? rimSp.rect.size * CloseUpArtScale : new Vector2(300f, 116f);
+            Vector2 rimCenter = new Vector2(0f, -280f + rimSize.y * (0.25f + 0.62f) + 20f); // 아래 몸통(0.62)·바닥 타원(0.25) 자리를 남긴다
+            Rect open = rimArt ? DrinkArt.LiquidRect(CloseUpCupRimArt) : new Rect(0.19f, 0.19f, 0.62f, 0.62f);
+            Vector2 mouthN = rimArt ? DrinkArt.Anchor(CloseUpCupRimArt, "mouth") : new Vector2(0.5f, 0.5f);
+            cuCupCenter = rimCenter + Vector2.Scale(mouthN - new Vector2(0.5f, 0.5f), rimSize);
+            // 잔 몸통(림 아트는 고리만): 림 아래로 좁아지는 도자기 몸통 + 오른쪽 손잡이. 림과 같은 크림색의 그늘 톤.
+            var bodyColor = new Color(0.86f, 0.8f, 0.69f);
+            float bw = Mathf.Round(rimSize.x * 0.84f / CloseUpArtScale) * CloseUpArtScale, bh = Mathf.Round(rimSize.y * 0.62f / CloseUpArtScale) * CloseUpArtScale;
+            var handle = AddImage("CupHandle", cuFrame, ringSprite, new Vector2(bh * 0.7f, bh * 0.8f));
+            handle.color = bodyColor;
+            handle.rectTransform.anchoredPosition = rimCenter + new Vector2(bw * 0.5f, -bh * 0.55f);
+            var body = AddImage("CupBody", cuFrame, DrinkVesselView.White, new Vector2(bw, bh));
+            body.color = bodyColor;
+            body.rectTransform.pivot = new Vector2(0.5f, 1f);
+            body.rectTransform.anchoredPosition = rimCenter;
+            var bottom = AddImage("CupBottom", cuFrame, ellipseSprite, new Vector2(bw, Mathf.Round(rimSize.y * 0.5f / CloseUpArtScale) * CloseUpArtScale));
+            bottom.color = bodyColor;
+            bottom.rectTransform.anchoredPosition = rimCenter + new Vector2(0f, -bh);
+            var shade = AddImage("CupShade", body.rectTransform, DrinkVesselView.White, new Vector2(Mathf.Round(bw * 0.22f / CloseUpArtScale) * CloseUpArtScale, bh));
+            shade.color = new Color(0.72f, 0.65f, 0.55f);
+            shade.rectTransform.anchorMin = shade.rectTransform.anchorMax = shade.rectTransform.pivot = new Vector2(1f, 1f);
+            cuInside = AddImage("CupInside", cuFrame, ellipseSprite, Vector2.Scale(open.size, rimSize) * 1.08f);
+            cuInside.color = new Color(0.6f, 0.52f, 0.43f);
+            cuInside.rectTransform.anchoredPosition = rimCenter + Vector2.Scale(open.center - new Vector2(0.5f, 0.5f), rimSize);
+            cuLiquid = CloseUpPart("Liquid", CloseUpLiquidArt, ellipseSprite, Vector2.Scale(open.size, rimSize) * 1.1f, Color.white);
+            cuRim = CloseUpPart("CupRim", CloseUpCupRimArt, ringSprite, rimSize, new Color(0.95f, 0.93f, 0.88f));
+            cuRim.rectTransform.anchoredPosition = rimCenter;
+            cuInner = cuLiquid.rectTransform.sizeDelta;
+            for (int k = 0; k < 2; k++)
+            {
+                cuStreams[k] = AddImage("Stream" + k, cuFrame, DrinkVesselView.White, new Vector2(6f, 10f));
+                cuStreams[k].rectTransform.pivot = new Vector2(0.5f, 1f);
+                cuStreams[k].gameObject.SetActive(false);
+            }
+            for (int i = 0; i < CloseUpDropPool; i++)
+            {
+                cuDrops[i] = AddImage("Drop" + i, cuFrame, ellipseSprite, new Vector2(2f, 3f) * CloseUpArtScale);
+                cuDrops[i].gameObject.SetActive(false);
+            }
+            closeUp.gameObject.SetActive(false);
+        }
+
+        /// <summary>추출 클로즈업 배경 = 커피 제조대와 같은 제조 벽·상판 아트(정수 2배) 위에 따뜻한 어두운 막(줄기·방울 판독 우선). 아트가 없으면 단색 컷 그대로.</summary>
+        void AddCloseUpBackdrop()
+        {
+            string set = CraftSet(DrinkKind.Coffee);
+            var wall = DrinkArt.Sprite($"dl_craft_{set}_wall");
+            var table = DrinkArt.Sprite($"dl_craft_{set}_table");
+            if (wall == null || table == null) return;
+            var wr = UiFactory.Place("CloseUpWall", closeUp, new Vector2(0.5f, 1f), Vector2.zero, new Vector2(wall.rect.width * 2f, wall.rect.height * 2f));
+            wr.pivot = new Vector2(0.5f, 1f);
+            var wi = wr.gameObject.AddComponent<Image>();
+            wi.sprite = wall; wi.raycastTarget = false;
+            var tr = UiFactory.Place("CloseUpTable", closeUp, new Vector2(0.5f, 0f), new Vector2(0f, HudHeight), new Vector2(0f, TableHeight));
+            tr.anchorMin = new Vector2(0f, 0f); tr.anchorMax = new Vector2(1f, 0f); tr.pivot = new Vector2(0.5f, 0f); tr.sizeDelta = new Vector2(0f, TableHeight);
+            var ti = tr.gameObject.AddComponent<Image>();
+            ti.sprite = table; ti.raycastTarget = false;
+            var veil = UiFactory.Stretch("CloseUpVeil", closeUp).gameObject.AddComponent<Image>();
+            veil.color = new Color(0.12f, 0.07f, 0.035f, 0.35f);
+            veil.raycastTarget = false;
+            cuBackdrop = wi;
+        }
+
+        Image cuBackdrop;
+        /// <summary>클로즈업 뒤가 단색이 아니라 커피 제조 벽 아트인지(QA·시험).</summary>
+        public bool CloseUpUsesBackdropArt => cuBackdrop != null && cuBackdrop.sprite != null && cuBackdrop.sprite == DrinkArt.Sprite($"dl_craft_{CraftSet(DrinkKind.Coffee)}_wall");
+
+        void ShowCloseUp(DrinkRecipe r, double yieldMl)
+        {
+            if (closeUp == null) BuildCloseUp();
+            cuYield = Math.Max(1e-6, yieldMl);
+            cuMilkMl = Ledger[LedgerServe].LiquidMl; // 먼저 담아 둔 첨가 액체(스팀 우유)
+            cuMilkColor = DrinkIngredients.Get(DrinkIngredients.SteamedMilk)?.color ?? Color.white;
+            cuBrew = CoffeeBrewing.BrewColor(r);
+            cuCapacity = Mathf.Max(1f, CoffeeBrewing.CupCapacityMl(CoffeeBrewMethod.EspressoMachine));
+            cuEmitted = cuSinceDrop = cuShadeSum = 0;
+            cuAge = 0f; cuFlow = 0f; cuFadingOut = false;
+            cuStreamTop = cuSpout.y; cuStreamV = 0f;
+            foreach (var d in cuDrops) d.gameObject.SetActive(false);
+            foreach (var st in cuStreams) st.gameObject.SetActive(false);
+            cuNextOutlet = 0;
+            closeUp.gameObject.SetActive(true);
+            finishLabel.enabled = false; // 단계 문구가 그룹헤드(머신 앞판) 위에 겹치지 않게 클로즈업 동안 숨긴다(문구 내용은 유지)
+            closeUp.SetSiblingIndex(scene.GetSiblingIndex() + 1);
+            cuGroup.alpha = 0f;
+            CloseUpPhase = "prewet";
+            CloseUpExtracted01 = CloseUpLanded01 = 0f;
+            UpdateCloseUp(0, 0f);
+        }
+
+        void SetCloseUpAlpha(float a)
+        {
+            if (cuGroup == null) return;
+            cuFadingOut = true;
+            cuGroup.alpha = Mathf.Clamp01(a);
+        }
+
+        void HideCloseUp()
+        {
+            if (finishLabel != null) finishLabel.enabled = true; // 클로즈업이 닫히면 단계 문구 복원
+            if (closeUp == null) return;
+            closeUp.gameObject.SetActive(false);
+            CloseUpPhase = null;
+            cuFadingOut = false;
+        }
+
+        /// <summary>
+        /// 클로즈업 한 프레임. emitted = 이번 프레임 추출구에서 나온 양(장부 Emit 결과). 줄기 색 = 지금까지 나온 양 비율의 흐름 색,
+        /// 수면 높이 = 잔 장부의 실제 액체량, 수면 색 = 먼저 담은 우유 + 잔에 닿은 추출분(나온 순서대로의 흐름 색 평균).
+        /// </summary>
+        void UpdateCloseUp(double emitted, float dt)
+        {
+            if (!CloseUpActive) return;
+            cuAge += dt;
+            if (!cuFadingOut) cuGroup.alpha = Mathf.Clamp01(cuAge / CloseUpFadeSeconds);
+            if (emitted > 0)
+            {
+                // 이번 덩어리의 가운데 진행도에서의 흐름 색(부피 가중 합 — 명도 비율만 쌓는다).
+                double mid = (cuEmitted + emitted * 0.5) / cuYield;
+                cuShadeSum += FlowShade(Mathf.Clamp01((float)mid)) / FlowShadeMean * emitted;
+                cuEmitted += emitted;
+                cuSinceDrop += emitted;
+            }
+            float p = Mathf.Clamp01((float)(cuEmitted / cuYield));
+            CloseUpExtracted01 = p;
+            double serveMl = Ledger[LedgerServe].LiquidMl;
+            double landed = Math.Max(0, serveMl - cuMilkMl);
+            CloseUpLanded01 = Mathf.Clamp01((float)(landed / cuYield));
+            CloseUpLevel01 = Mathf.Clamp01((float)(serveMl / cuCapacity));
+            // 순간 유량(부드럽게) → 줄기 굵기. 최고 유량 ≈ 목표량 / 흐름 시간 × 1.5(Ease 가운데).
+            float rate = dt > 0f ? (float)(emitted / dt) : 0f;
+            float peak = (float)(cuYield / (EspressoExtractSeconds - 0.4f) * 1.5);
+            cuFlow = Mathf.Lerp(cuFlow, Mathf.Clamp01(rate / Mathf.Max(1e-3f, peak)), dt > 0f ? 1f - Mathf.Exp(-dt * 10f) : 0f);
+
+            // 수면: 차오를수록 림 쪽으로 커지고 올라온다(위에서 비스듬히 본 잔).
+            var lr = cuLiquid.rectTransform;
+            float lv = CloseUpLevel01;
+            bool any = serveMl > 1e-4;
+            cuLiquid.gameObject.SetActive(any);
+            float sc = Mathf.Lerp(0.5f, 1f, lv);
+            float px = CloseUpArtScale; // 아트 픽셀 격자에 맞춘다
+            lr.sizeDelta = new Vector2(Mathf.Round(cuInner.x * sc / px) * px, Mathf.Round(cuInner.y * sc / px) * px);
+            lr.anchoredPosition = cuCupCenter + new Vector2(0f, Mathf.Round(-cuInner.y * 0.9f * (1f - sc) / px) * px);
+            double coffeeMl = Math.Min(landed, cuEmitted);
+            Color coffee = cuEmitted > 1e-9 ? Scale(cuBrew, (float)(cuShadeSum / cuEmitted)) : cuBrew;
+            double tot = cuMilkMl + coffeeMl;
+            Color surf = tot > 1e-9 ? Color.Lerp(cuMilkColor, coffee, (float)(coffeeMl / tot)) : coffee;
+            surf.a = 1f;
+            cuLiquid.color = surf;
+            float surfY = any ? lr.anchoredPosition.y : cuCupCenter.y - cuInner.y * 0.25f;
+
+            bool flowing = !Ledger[LedgerBrew].Liquid.IsEmpty && cuEmitted > 0;
+            var flowColor = EspressoFlowColor(cuBrew, p);
+            CloseUpFlowColor = flowColor;
+            if (cuEmitted <= 0) CloseUpPhase = "prewet";
+            else if (flowing) CloseUpPhase = p < FirstDropsFraction ? "drops" : "stream";
+            else CloseUpPhase = Ledger.HasInFlight(LedgerServe) || cuStream.gameObject.activeSelf || CloseUpDropsVisible > 0 ? "tail" : "settle";
+
+            // 첫 방울: 나온 양이 한 방울 몫만큼 쌓일 때마다 하나(시간 간격이 아니라 실제 양).
+            double dropMl = cuYield * FirstDropsFraction / 6.0;
+            if (CloseUpPhase == "drops")
+                while (cuSinceDrop >= dropMl) { cuSinceDrop -= dropMl; SpawnDrop(flowColor); }
+            for (int i = 0; i < CloseUpDropPool; i++)
+            {
+                var d = cuDrops[i];
+                if (!d.gameObject.activeSelf) continue;
+                cuDropV[i] += GravityPx * dt;
+                cuDropY[i] -= cuDropV[i] * dt;
+                if (cuDropY[i] <= surfY) { d.gameObject.SetActive(false); continue; }
+                d.rectTransform.anchoredPosition = new Vector2(cuDropX[i], cuDropY[i]);
+            }
+            // 이어진 줄기: 나오는 동안 위는 추출구에 붙고, 멈추면 위끝이 중력으로 떨어져 수면에서 끝난다.
+            if (CloseUpPhase == "stream") { cuStreamTop = cuSpout.y; cuStreamV = 0f; }
+            else if (cuStream.gameObject.activeSelf) { cuStreamV += GravityPx * dt; cuStreamTop -= cuStreamV * dt; }
+            bool streamOn = (CloseUpPhase == "stream" || CloseUpPhase == "tail") && cuStreamTop > surfY + 1f && (CloseUpPhase == "stream" || cuStream.gameObject.activeSelf);
+            for (int k = 0; k < 2; k++)
+            {
+                var st = cuStreams[k];
+                st.gameObject.SetActive(streamOn);
+                if (!streamOn) continue;
+                // 두 추출구에서 곧게 아래로(가로 속도 없음) — 수면 가운데 양옆에 닿는다. 굵기 = 유량(아트 1~2px).
+                var sr = st.rectTransform;
+                sr.anchoredPosition = new Vector2(cuSpout.x + (k == 0 ? -cuOutletDx : cuOutletDx), cuStreamTop);
+                sr.sizeDelta = new Vector2(Mathf.Round(Mathf.Lerp(1f, 2f, cuFlow) * CloseUpArtScale), cuStreamTop - surfY);
+                st.color = flowColor;
+            }
+        }
+
+        static Color Scale(Color c, float k) => new Color(Mathf.Clamp01(c.r * k), Mathf.Clamp01(c.g * k), Mathf.Clamp01(c.b * k), c.a);
+
+        void SpawnDrop(Color c)
+        {
+            for (int i = 0; i < CloseUpDropPool; i++)
+            {
+                if (cuDrops[i].gameObject.activeSelf) continue;
+                cuDropY[i] = cuSpout.y; cuDropV[i] = 0f;
+                cuDrops[i].color = c;
+                cuDropX[i] = cuSpout.x + (cuNextOutlet++ % 2 == 0 ? -cuOutletDx : cuOutletDx); // 두 추출구에서 번갈아
+                cuDrops[i].rectTransform.anchoredPosition = new Vector2(cuDropX[i], cuSpout.y);
+                cuDrops[i].gameObject.SetActive(true);
+                return;
+            }
+        }
+
         /// <summary>
         /// 커피 추출 모션(손 없음, 도구가 화면 가운데). 장부: 원두는 이미 도구 안(LedgerVessel 잎 g),
         /// 추출된 커피는 커피 성분(TeaId, 색 = CoffeeBrewing.BrewColor)으로 만들어져 잔/서버로 흐른다. 추출량 = 레시피 물.
@@ -1803,6 +2329,7 @@ namespace CCT
             brew.Clear();
             brew.Liquid.Pour(DrinkPhysicsSim.Part(DrinkPhysicsSim.TeaId, yieldMl), 1.0);
             var coffeeStream = StreamTint(CoffeeBrewing.BrewColor(r));
+            HideCloseUp();
             craftFocus = vessel.Rect.anchoredPosition.x; // 도구가 가운데
             // 잔: 스팀 우유(있으면)를 먼저 담아 둔 채 제자리에(EnsureServe가 비운 장부를 배합으로 다시 채움).
             PlaceCoffeeCup(r, false);
@@ -1812,43 +2339,40 @@ namespace CCT
             {
                 case CoffeeBrewMethod.EspressoMachine:
                 {
-                    var frames = DrinkArt.Frames(vessel.AssetId + "_brew");
-                    var idle = vessel.Glass.sprite;
-                    CoffeeStage = "tamp";
-                    finishLabel.text = "포타필터 다지고 장착…";
-                    float t = 0f;
-                    while (t < 0.6f && !skipRequested)
-                    {
-                        t += Time.unscaledDeltaTime;
-                        vessel.Rect.anchoredPosition = StandOnTable(vessel, VesselRest.x) + new Vector2(0f, t < 0.3f ? 0f : -2f * Mathf.Sin((t - 0.3f) * 30f));
-                        yield return null;
-                    }
-                    vessel.Rect.anchoredPosition = StandOnTable(vessel, VesselRest.x);
+                    CoffeeStage = "prepare";
+                    finishLabel.text = "원두를 담은 포터필터가 그룹헤드에 장착되어 있습니다…";
+                    float prep = 0f;
+                    while (prep < 0.55f && !skipRequested) { prep += Time.unscaledDeltaTime; yield return null; }
                     CoffeeStage = "extract";
-                    finishLabel.text = "에스프레소 추출…";
-                    const float dur = 2.4f;
+                    finishLabel.text = "에스프레소 추출 시작…";
+                    // 추출 동안만 추출구·잔 클로즈업(고정 층, 장면 카메라는 그대로). 양·색은 장부의 실제 추출량에서.
+                    ShowCloseUp(r, yieldMl);
+                    const float dur = EspressoExtractSeconds;
                     double sent = 0;
-                    t = 0f;
+                    float t = 0f;
                     while ((t < dur || !brew.Liquid.IsEmpty) && !skipRequested && t < dur + 2f)
                     {
                         float dt = Time.unscaledDeltaTime;
                         t += dt;
-                        if (frames.Length > 1) vessel.Glass.sprite = frames[1 + Mathf.FloorToInt(t * 8f) % (frames.Length - 1)];
                         var lip = vessel.PointInParent(DrinkArt.Anchor(vessel.AssetId, "pourLip"));
                         float surf = ReceiverSurfaceY(serve);
-                        // 처음 0.4초는 예비 적심(흐름 없음), 그 뒤 꿀처럼 가는 줄기로 일정하게.
+                        // 처음 0.4초는 예비 적심(흐름 없음), 그 뒤 첫 방울 → 가는 줄기로.
                         double want = yieldMl * Ease(Mathf.Clamp01((t - 0.4f) / (dur - 0.4f))) - sent;
                         if (t >= dur) want = brew.LiquidMl;
                         double s = Ledger.Emit(LedgerBrew, LedgerServe, Math.Max(0, want), DrinkTransferLedger.FallSeconds(lip.y - surf, GravityPx), 0.5);
                         sent += s;
-                        if (!brew.Liquid.IsEmpty && t > 0.4f) toolFall.Emit(lip, surf, 5f, coffeeStream, serve.transform); else toolFall.Stop();
+                        if (!brew.Liquid.IsEmpty && t > 0.4f) toolFall.Emit(lip, surf, 5f, StreamTint(EspressoFlowColor(CoffeeBrewing.BrewColor(r), (float)(sent / Math.Max(1e-6, yieldMl)))), serve.transform); else toolFall.Stop();
                         serve.SetLayers(LayersOf(LedgerServe, r));
                         serve.SetEffects(0f, 0f, 0.6f);
+                        UpdateCloseUp(s, dt);
                         yield return null;
                     }
                     toolFall.Stop();
-                    while (Ledger.HasInFlight(LedgerServe) && !skipRequested) { serve.SetLayers(LayersOf(LedgerServe, r)); yield return null; }
-                    if (frames.Length > 0) vessel.Glass.sprite = frames[0]; else vessel.Glass.sprite = idle;
+                    while (Ledger.HasInFlight(LedgerServe) && !skipRequested) { serve.SetLayers(LayersOf(LedgerServe, r)); UpdateCloseUp(0, Time.unscaledDeltaTime); yield return null; }
+                    // 클로즈업이 걷히며 기존 장면(받침 위 잔)으로 돌아간 뒤 완성 잔으로 카메라가 옮겨 간다.
+                    t = 0f;
+                    while (t < CloseUpFadeSeconds && !skipRequested) { t += Time.unscaledDeltaTime; UpdateCloseUp(0, 0f); SetCloseUpAlpha(1f - t / CloseUpFadeSeconds); yield return null; }
+                    HideCloseUp();
                     craftFocus = serve.Rect.anchoredPosition.x;
                     break;
                 }
@@ -1865,6 +2389,8 @@ namespace CCT
                     yield return PoseOver(kettleRt, "dl_water_kettle", kettleRest, ReceiverMouth(), 95f, 0.5f, false);
                     // 뜸(물 10%) → 잠시 멈춤 → 나머지를 천천히 원을 그리듯. 드리퍼가 받은 물만큼(조금 늦게) 커피가 서버로 떨어진다.
                     double total = k.LiquidMl, poured = 0, dripped = 0;
+                    var kettlePourRest = kettleRt.anchoredPosition;
+                    KettleSweepMaxOffset = 0f;
                     float t = 0f;
                     const float bloomPour = 0.5f, bloomWait = 0.8f, mainPour = 1.8f, end = bloomPour + bloomWait + mainPour;
                     while ((t < end || !brew.Liquid.IsEmpty) && !skipRequested && t < end + 4f)
@@ -1878,8 +2404,12 @@ namespace CCT
                         var mouth = ReceiverMouth();
                         if (!k.Liquid.IsEmpty)
                         {
-                            // 주둥이를 드리퍼 위에서 작게 원을 그리며 옮긴다(손 없이 주전자만).
-                            kettleRt.anchoredPosition += new Vector2(Mathf.Sin(t * 5f) * 0.6f, 0f);
+                            // 누적 이동 대신 고정 중심 기준으로 넓게 왕복해 드리퍼 전체에 물을 고르게 붓는다.
+                            float sweep01 = Mathf.Clamp01((t - bloomPour - bloomWait) / mainPour);
+                            float sweepX = Mathf.Sin(sweep01 * Mathf.PI * 4f) * 28f;
+                            float sweepY = Mathf.Sin(sweep01 * Mathf.PI * 2f) * 4f;
+                            kettleRt.anchoredPosition = kettlePourRest + new Vector2(sweepX, sweepY);
+                            KettleSweepMaxOffset = Mathf.Max(KettleSweepMaxOffset, Mathf.Abs(sweepX));
                             double want = Math.Max(0, Math.Min(goal - poured, k.LiquidMl));
                             poured += Ledger.Emit(LedgerKettle, LedgerDripper, want, DrinkTransferLedger.FallSeconds(lip.y - mouth.y, GravityPx), 0.5);
                             if (want > 1e-6 || Ledger.HasInFlight(LedgerDripper)) toolFall.Emit(lip, mouth.y - 10f, 4f, StreamTint(DrinkIngredients.WaterColor), dripper.transform);
@@ -1923,6 +2453,26 @@ namespace CCT
                     var v = Ledger[LedgerVessel];
                     var frames = DrinkArt.Frames(CoffeeBrewing.FlameArt);
                     var steamFrames = DrinkArt.Frames("dl_steam");
+                    // 모카포트는 추출 전에 원두를 갈고, 분쇄 원두를 바스켓에 담는 순서를 보여준다.
+                    CoffeeStage = "grind";
+                    finishLabel.text = "원두를 모카포트용으로 가는 중…";
+                    float grindT = 0f;
+                    while (grindT < 1.35f && !skipRequested)
+                    {
+                        grindT += Time.unscaledDeltaTime;
+                        AnimateMokaGrinding(grindT, false);
+                        yield return null;
+                    }
+                    CoffeeStage = "dose";
+                    finishLabel.text = "곱게 간 원두를 모카포트 바스켓에 담는 중…";
+                    grindT = 0f;
+                    while (grindT < 1.0f && !skipRequested)
+                    {
+                        grindT += Time.unscaledDeltaTime;
+                        AnimateMokaGrinding(grindT, true);
+                        yield return null;
+                    }
+                    if (grinderBody != null) grinderBody.transform.parent.gameObject.SetActive(false);
                     CoffeeStage = "heat";
                     finishLabel.text = "모카포트 가열…";
                     if (flame != null) flame.gameObject.SetActive(true);
@@ -2127,6 +2677,7 @@ namespace CCT
         void ShowFinal(DrinkRecipe r, bool played)
         {
             bottleFall.Cut(); toolFall.Cut();
+            HideCloseUp();
             spoon.gameObject.SetActive(false);
             craftLidOpen = false; lidLinger = 0f; lidT = 0f; PoseLid(); // 완성(건너뛰기 포함)은 덮인 다관
             if (flame != null) flame.gameObject.SetActive(false);
@@ -2209,14 +2760,15 @@ namespace CCT
     {
         Vector2 from, to;
         float t, dur;
-        public void Init(Vector2 from, Vector2 to, float dur) { this.from = from; this.to = to; this.dur = Mathf.Max(0.05f, dur); }
+        float lateral = 4f, rotation = 220f, phase;
+        public void Init(Vector2 from, Vector2 to, float dur, float lateral = 4f, float rotation = 220f) { this.from = from; this.to = to; this.dur = Mathf.Max(0.05f, dur); this.lateral = lateral; this.rotation = rotation; phase = UnityEngine.Random.Range(0f, 6.28f); }
         void Update()
         {
             t += Time.unscaledDeltaTime;
             float k = Mathf.Clamp01(t / dur);
             // 중력 낙하: 높이는 k² 곡선(처음 느리고 점점 빠르게)
-            ((RectTransform)transform).anchoredPosition = new Vector2(Mathf.Lerp(from.x, to.x, k) + Mathf.Sin(k * 9f) * 4f, Mathf.Lerp(from.y, to.y, k * k));
-            transform.localRotation = Quaternion.Euler(0, 0, k * 220f);
+            ((RectTransform)transform).anchoredPosition = new Vector2(Mathf.Lerp(from.x, to.x, k) + Mathf.Sin(k * 9f + phase) * lateral, Mathf.Lerp(from.y, to.y, k * k));
+            transform.localRotation = Quaternion.Euler(0, 0, k * rotation);
             if (k >= 1f) Destroy(gameObject);
         }
     }

@@ -91,13 +91,23 @@ namespace CCT
         public static string FamilyOf(DrinkRecipe r) => ColorFamily(DrinkCalculator.Look(r).color);
 
         /// <summary>주문의 최소량(0.1 단위) = 기준 사용량 d의 50%.</summary>
-        public static int MinFor(string id) { var row = DrinkSupply.Get(id); return id == DrinkIngredients.CoffeeBean ? CoffeeBrewing.DoseMinTenths(CoffeeBrewMethod.PourOver) : row != null ? row.baseUse / 2 : 0; }
+        public static int MinFor(string id) { var row = DrinkSupply.Get(id); return DrinkIngredients.IsCoffeeBean(id) ? CoffeeBrewing.DoseMinTenths(CoffeeBrewMethod.PourOver) : row != null ? row.baseUse / 2 : 0; }
 
-        public static int MinFor(string id, CoffeeBrewMethod method) => id == DrinkIngredients.CoffeeBean ? CoffeeBrewing.DoseMinTenths(method) : MinFor(id);
+        public static int MinFor(string id, CoffeeBrewMethod method) => DrinkIngredients.IsCoffeeBean(id) ? CoffeeBrewing.DoseMinTenths(method) : MinFor(id);
+
+        /// <summary>주문 지정 재료의 배합 양. 원두 주문(저장된 ingA = coffee_bean)은 어떤 산지든 원두 총량으로 센다.</summary>
+        public static int AmountFor(DrinkRecipe r, string id) => r == null ? 0 : DrinkIngredients.IsCoffeeBean(id) ? r.CoffeeDose() : r.AmountOf(id);
+
+        /// <summary>원두를 하나라도 발견했는가(기본·산지 원두 공통).</summary>
+        static bool AnyBeanSeen(Func<string, bool> seen)
+        {
+            foreach (var def in DrinkIngredients.All) if (def.IsCoffeeBean && (seen == null || seen(def.id))) return true;
+            return false;
+        }
 
         /// <summary>판매 가능 = 계열이 같고 지정 재료 둘 다 최소량 이상.</summary>
         public static bool Matches(DrinkOrder o, DrinkRecipe r) =>
-            o != null && o.IsOpen && r != null && (int)r.Kind == o.kind && r.AmountOf(o.ingA) >= o.minA && (r.Kind == DrinkKind.Coffee ? r.coffeeMethod == (CoffeeBrewMethod)o.method : r.AmountOf(o.ingB) >= o.minB);
+            o != null && o.IsOpen && r != null && (int)r.Kind == o.kind && AmountFor(r, o.ingA) >= o.minA && (r.Kind == DrinkKind.Coffee ? r.coffeeMethod == (CoffeeBrewMethod)o.method : AmountFor(r, o.ingB) >= o.minB);
 
         public static bool TechniqueMatches(DrinkOrder o, DrinkRecipe r) => o != null && r != null && (int)r.Technique == o.technique;
         public static bool CoffeeMethodMatches(DrinkOrder o, DrinkRecipe r) => o != null && r != null && r.Kind == DrinkKind.Coffee && r.coffeeMethod == (CoffeeBrewMethod)o.method;
@@ -118,7 +128,7 @@ namespace CCT
             if (basic) kind = KindFromSlot(serial);
             else kind = KindFromSlot(Hash(serial, 7));
             bool IsSeen(string id) => seen == null || seen(id);
-            if (kind == DrinkKind.Coffee && !IsSeen(DrinkIngredients.CoffeeBean)) kind = (DrinkKind)(Hash(serial, 7) % 2 == 0 ? 1 : 2);
+            if (kind == DrinkKind.Coffee && !AnyBeanSeen(seen)) kind = (DrinkKind)(Hash(serial, 7) % 2 == 0 ? 1 : 2);
 
             if (kind == DrinkKind.Coffee)
             {

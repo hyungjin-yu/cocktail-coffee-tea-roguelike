@@ -44,6 +44,9 @@ namespace CCT
             _ => "알 수 없는 추출법",
         };
 
+        /// <summary>좁은 제조법 선택 버튼에 쓰는 한 줄 이름. 상세 명칭은 DisplayName을 사용한다.</summary>
+        public static string ButtonName(CoffeeBrewMethod method) => method == CoffeeBrewMethod.EspressoMachine ? "에스프레소" : DisplayName(method);
+
         public static bool IsDefined(CoffeeBrewMethod method) => Enum.IsDefined(typeof(CoffeeBrewMethod), method);
 
         /// <summary>제조 화면의 도구 선택 순서.</summary>
@@ -77,7 +80,7 @@ namespace CCT
             _ => "dl_coffee_carafe",
         };
 
-        public const string DripperArt = "dl_coffee_dripper", ScoopArt = "dl_coffee_scoop", FlameArt = "dl_coffee_flame";
+        public const string DripperArt = "dl_coffee_dripper", ScoopArt = "dl_coffee_scoop", FlameArt = "dl_coffee_flame", PortafilterArt = "dl_coffee_portafilter";
 
         /// <summary>완성 잔 아트.</summary>
         public static string CupArt(CoffeeBrewMethod method) => method == CoffeeBrewMethod.EspressoMachine ? "dl_coffee_demitasse" : method == CoffeeBrewMethod.MokaPot ? "dl_coffee_cup" : "dl_coffee_mug";
@@ -106,7 +109,7 @@ namespace CCT
             return c;
         }
 
-        public static Color BrewColor(DrinkRecipe r) => r == null ? Color.clear : BrewColor(r.coffeeMethod, r.LeafTotal(), r.water);
+        public static Color BrewColor(DrinkRecipe r) => r == null ? Color.clear : BrewColor(r.coffeeMethod, r.CoffeeDose(), r.water); // 기본·산지 원두 합
 
         public static float Strength01(CoffeeBrewMethod method, int doseTenths, int waterTenths)
         {

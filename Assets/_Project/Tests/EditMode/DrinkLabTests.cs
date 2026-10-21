@@ -360,6 +360,20 @@ namespace CCT.Tests
         }
 
         [Test]
+        public void CancelPreparedAndRefund_ReturnsAllIngredientsAndClearsPreparedDrink()
+        {
+            var recipe = Tea((DrinkIngredients.BlackTea, 30), (DrinkIngredients.Honey, 50));
+            Assert.AreEqual(DrinkLab.CraftStatus.Crafted, DrinkLab.Craft(recipe).Status);
+            Assert.AreEqual(30, DrinkLab.Owned(DrinkIngredients.BlackTea));
+            Assert.AreEqual(150, DrinkLab.Owned(DrinkIngredients.Honey));
+            Assert.IsTrue(DrinkLab.CancelPreparedAndRefund(out var error), error);
+            Assert.AreEqual(60, DrinkLab.Owned(DrinkIngredients.BlackTea));
+            Assert.AreEqual(200, DrinkLab.Owned(DrinkIngredients.Honey));
+            Assert.IsNull(DrinkLab.Prepared);
+            Assert.IsFalse(DrinkLab.CancelPreparedAndRefund(out _));
+        }
+
+        [Test]
         public void Craft_RejectsShortageAndUnownedAndInvalid_WithoutDeducting()
         {
             Assert.AreEqual(DrinkLab.CraftStatus.Shortage, DrinkLab.Craft(Cocktail(DrinkTechnique.Shake, ("gin", 601))).Status);
