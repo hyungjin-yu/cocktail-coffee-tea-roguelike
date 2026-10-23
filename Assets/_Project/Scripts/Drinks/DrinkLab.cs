@@ -270,13 +270,15 @@ namespace CCT
         {
             var list = new List<DrinkRecipe>();
             // Actual named recipes and preparation ratios; source URLs and game scaling are documented in Docs/DrinkLab-v1.1.
+            // Game simplifications: hojicha 2g is a light game dose (Ippodo standard is 10g/240mL), and the coffee water slot holds
+            // the reference volume (espresso 36 = beverage out, moka 130mL = Bialetti 3-cup figure), not measured input water.
             var negroni = DrinkRecipe.NewDraft(DrinkKind.Cocktail); negroni.name = "IBA 네그로니"; negroni.technique = (int)DrinkTechnique.Build; negroni.ice = 2;
             negroni.steps.Add(new DrinkStep(DrinkIngredients.Gin, 300)); negroni.steps.Add(new DrinkStep(DrinkIngredients.Campari, 300)); negroni.steps.Add(new DrinkStep(DrinkIngredients.SweetVermouth, 300)); list.Add(negroni);
             var sencha = DrinkRecipe.NewDraft(DrinkKind.Tea); sencha.name = "센차 1인용 티백";
             sencha.steps.Add(new DrinkStep(DrinkIngredients.SenchaTea, 20)); list.Add(sencha);
             var martini = DrinkRecipe.NewDraft(DrinkKind.Cocktail); martini.name = "IBA 드라이 마티니"; martini.technique = (int)DrinkTechnique.Stir; martini.ice = 2;
             martini.steps.Add(new DrinkStep(DrinkIngredients.Gin, 600)); martini.steps.Add(new DrinkStep(DrinkIngredients.DryVermouth, 100)); list.Add(martini);
-            var hojicha = DrinkRecipe.NewDraft(DrinkKind.Tea); hojicha.name = "호지차 1인용 티백";
+            var hojicha = DrinkRecipe.NewDraft(DrinkKind.Tea); hojicha.name = "호지차 가벼운 우림";
             hojicha.steps.Add(new DrinkStep(DrinkIngredients.HojichaTea, 20)); list.Add(hojicha);
             var pourOver = DrinkRecipe.NewDraft(DrinkKind.Coffee, CoffeeBrewMethod.PourOver); pourOver.name = "SCA 비율 핸드 드립"; pourOver.water = 3000;
             pourOver.SetAmount(DrinkIngredients.CoffeeBean, 165); list.Add(pourOver);

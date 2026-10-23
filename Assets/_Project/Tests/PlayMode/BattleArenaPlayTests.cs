@@ -32,7 +32,10 @@ namespace CCT.Tests
 
         static void DismissPopups(GameManager game)
         {
-            if (game.State == GameState.LevelUp) game.CardView.Choose(0);
+            if (game.State != GameState.LevelUp || game.CardView == null) return;
+            // First-run card education is intentionally modal; close it before auto-selecting in movement tests.
+            if (game.CardView.IsLearningOpen) game.CardView.CloseLearning();
+            if (!game.CardView.IsLearningOpen) game.CardView.Choose(0);
         }
 
         [UnityTest]
