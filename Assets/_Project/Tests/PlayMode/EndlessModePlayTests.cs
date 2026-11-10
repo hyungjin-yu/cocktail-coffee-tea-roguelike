@@ -49,7 +49,7 @@ namespace CCT.Tests
             game.OpenPause();
             yield return null;
             float t = game.RunTime;
-            int spawned = game.Spawner.EndlessSpawned;
+            long spawned = game.Spawner.EndlessSpawned;
             for (int i = 0; i < 20; i++) yield return null;
             Assert.AreEqual(t, game.RunTime, "일시정지 중 웨이브 시간 정지");
             Assert.AreEqual(spawned, game.Spawner.EndlessSpawned, "일시정지 중 생성 없음");

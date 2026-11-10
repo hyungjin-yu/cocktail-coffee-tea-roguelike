@@ -526,6 +526,9 @@ namespace CCT
         public float AttackScale { get; private set; } = 1f;
         /// <summary>생성 때 받은 체력 배율(소환체 상속용).</summary>
         public float HpScale { get; private set; } = 1f;
+        /// <summary>2026-11-10 처치 보상 출처 정의(null = 자기 정의). 진상 보스 영업의 "세 계열 고르게" 표에서 바뀐 몬스터도
+        /// 드롭·보급·히든 처치 효과는 원래 직업 테마 추첨 결과를 따르게 한다(보상 보존).</summary>
+        public EnemyDef RewardDef { get; set; }
         /// <summary>명시 계열 표(MonsterFamilies)의 계열.</summary>
         public MonsterFamily Family => MonsterFamilies.Of(def);
 
@@ -972,7 +975,7 @@ namespace CCT
                 DefeatVisual.Spawn(defeat, animator.transform.position, animator.transform.localScale, transform.parent);
             // 09:20 "enemy_defeat: 일반 적 사망" — 보스는 대상 밖(보스 처치는 clear/보상 흐름이 대신함).
             if (!def.IsBoss) AudioService.PlaySfx("enemy_defeat", transform.position);
-            player?.GetComponentInParent<GameManager>()?.OnEnemyKilled(transform.position, def);
+            player?.GetComponentInParent<GameManager>()?.OnEnemyKilled(transform.position, RewardDef ?? def);
             Destroy(gameObject);
         }
 

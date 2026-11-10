@@ -73,6 +73,8 @@ namespace CCT
             var pos = BeltScroll.ArenaEdgePosition(Camera.main, side, Balance.SpawnEdgeMargin, spec.def.radius, out float usedSide);
             var boss = Enemy.SpawnAt(pos, spec.def, spec.hpScale, game.Player, game.transform);
             string from = usedSide < 0f ? "◀ 왼쪽에서 접근 · " : "오른쪽에서 접근 ▶ · ";
+            // 2026-11-10 계열 표식: 배너 부제 맨 앞에 [커]/[차]/[중] 계열(색만으로 구분하지 않음). 판정·일정 불변.
+            from = MonsterFamilies.Mark(MonsterFamilies.Of(spec.def)) + " " + MonsterFamilies.Name(MonsterFamilies.Of(spec.def)) + " 계열 · " + from;
 
             if (spec.def.boss == BossKind.Final)
             {

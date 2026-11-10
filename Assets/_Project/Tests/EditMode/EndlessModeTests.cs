@@ -10,37 +10,68 @@ namespace CCT.Tests
     public class EndlessRulesTests
     {
         [Test]
-        public void Wave1_Defaults_AndMonotonicGrowth_CappedAtMaxScaledWave()
+        public void Wave1_Defaults_AndMonotonicGrowth_NoWaveCap()
         {
-            Assert.AreEqual(8, EndlessRules.WaveCount(1));
-            Assert.AreEqual(100, EndlessRules.HpPercent(1));
-            Assert.AreEqual(100, EndlessRules.AttackPercent(1));
-            Assert.AreEqual(10, EndlessRules.WaveCount(2));
-            Assert.AreEqual(115, EndlessRules.HpPercent(2));
-            Assert.AreEqual(108, EndlessRules.AttackPercent(2));
-            for (int w = 2; w <= EndlessRules.MaxScaledWave; w++)
+            Assert.AreEqual(8L, EndlessRules.WaveCount(1));
+            Assert.AreEqual(100d, EndlessRules.HpPercent(1));
+            Assert.AreEqual(100d, EndlessRules.AttackPercent(1));
+            Assert.AreEqual(10L, EndlessRules.WaveCount(2));
+            Assert.AreEqual(115d, EndlessRules.HpPercent(2));
+            Assert.AreEqual(108d, EndlessRules.AttackPercent(2));
+            for (long w = 2; w <= 5000; w++)
             {
                 Assert.Greater(EndlessRules.WaveCount(w), EndlessRules.WaveCount(w - 1));
                 Assert.Greater(EndlessRules.HpPercent(w), EndlessRules.HpPercent(w - 1));
                 Assert.Greater(EndlessRules.AttackPercent(w), EndlessRules.AttackPercent(w - 1));
             }
-            Assert.AreEqual(EndlessRules.HpPercent(EndlessRules.MaxScaledWave), EndlessRules.HpPercent(int.MaxValue), "상한 이후 고정(오버플로 없음)");
-            Assert.AreEqual(EndlessRules.WaveCount(EndlessRules.MaxScaledWave), EndlessRules.WaveCount(int.MaxValue));
+            // 예전 999 상한 이후에도 계속 증가(죽을 때까지 매 웨이브 증가)
+            foreach (long w in new long[] { 999, 1000, 100_000, 10_000_000, 1_000_000_000L, 1_000_000_000_000L })
+            {
+                Assert.Greater(EndlessRules.WaveCount(w + 1), EndlessRules.WaveCount(w), $"등장 수 w={w}");
+                Assert.Greater(EndlessRules.HpPercent(w + 1), EndlessRules.HpPercent(w), $"체력 w={w}");
+                Assert.Greater(EndlessRules.AttackPercent(w + 1), EndlessRules.AttackPercent(w), $"공격 w={w}");
+            }
+            Assert.AreEqual(8L + 2L * 999_999L, EndlessRules.WaveCount(1_000_000));
+            Assert.AreEqual(EndlessRules.SaturatedLong, EndlessRules.WaveCount(long.MaxValue), "long 한계는 명시 포화");
         }
 
         [Test]
-        public void WaveAt_And_SecondsToNext_AreIntegers_NoNaNAtLongTimes()
+        public void WaveAt_SecondsToNext_DoubleTime_NoNaN_AndExplicitSaturation()
         {
-            Assert.AreEqual(1, EndlessRules.WaveAt(0f));
-            Assert.AreEqual(1, EndlessRules.WaveAt(29.99f));
-            Assert.AreEqual(2, EndlessRules.WaveAt(30f));
-            Assert.AreEqual(1, EndlessRules.WaveAt(float.NaN));
-            Assert.AreEqual(30, EndlessRules.SecondsToNextWave(0f));
-            Assert.AreEqual(1, EndlessRules.SecondsToNextWave(29.5f));
-            Assert.AreEqual(int.MaxValue, EndlessRules.WaveAt(float.MaxValue));
-            int w = EndlessRules.WaveAt(1e7f);
-            Assert.Greater(w, 300000);
+            Assert.AreEqual(1L, EndlessRules.WaveAt(0d));
+            Assert.AreEqual(1L, EndlessRules.WaveAt(29.99d));
+            Assert.AreEqual(2L, EndlessRules.WaveAt(30d));
+            Assert.AreEqual(1L, EndlessRules.WaveAt(double.NaN));
+            Assert.AreEqual(30, EndlessRules.SecondsToNextWave(0d));
+            Assert.AreEqual(1, EndlessRules.SecondsToNextWave(29.5d));
+            Assert.AreEqual(EndlessRules.SaturatedLong, EndlessRules.WaveAt(double.MaxValue));
+            Assert.AreEqual(3_333_334L, EndlessRules.WaveAt(1e8d), "1억 초(약 3.2년) = 웨이브 333만 — float였다면 정밀도 손실");
+            long w = EndlessRules.WaveAt(1e12d);
             Assert.IsFalse(float.IsNaN(EndlessRules.HpScale(w)) || float.IsInfinity(EndlessRules.HpScale(w)));
+            Assert.AreEqual("최대(포화)", EndlessRules.Show(EndlessRules.SaturatedLong));
+        }
+
+        [Test]
+        public void SumWaveCounts_ClosedForm_MatchesLoop_AndSaturates()
+        {
+            for (long a = 1; a <= 30; a++)
+                for (long b = a - 1; b <= 60; b++)
+                {
+                    long loop = 0;
+                    for (long k = a; k <= b; k++) loop += EndlessRules.WaveCount(k);
+                    Assert.AreEqual(loop, EndlessRules.SumWaveCounts(a, b), $"{a}..{b}");
+                }
+            Assert.AreEqual(EndlessRules.SaturatedLong, EndlessRules.SumWaveCounts(1, 5_000_000_000L), "합이 long을 넘으면 명시 포화");
+        }
+
+        [Test]
+        public void HpSaturation_IsExplicit_AtIntBoundary_AfterNinetyMillionWaves()
+        {
+            long sat = EndlessRules.HpSaturationWave(150d);
+            Assert.Greater(sat, 90_000_000L, "기본 체력 150 정예 기준 포화 웨이브(약 9,500만 = 30초 × 약 90년)");
+            Assert.Less(sat, 100_000_000L);
+            Assert.AreEqual(int.MaxValue, IntNum.Round(150d * EndlessRules.HpScale(sat + 10)), "그 이후 체력은 int 경계에서 포화(정수 전투 규칙)");
+            Assert.Less(IntNum.Round(150d * EndlessRules.HpScale(sat - 10)), int.MaxValue);
         }
 
         [Test]
@@ -263,13 +294,31 @@ namespace CCT.Tests
             Assert.IsTrue(newer.All(e => Mathf.Approximately(e.HpScale, 1.15f) && Mathf.Approximately(e.AttackScale, 1.08f)), "신규 적만 웨이브 2 수치");
             Assert.IsTrue(first.All(e => e.HpScale == 1f), "살아 있는 적은 그대로");
 
-            // 장시간 경계: 큰 시간 점프에도 예외·무제한 대기 없음, 동시 상한 유지
-            sp.TickEndlessForTests(30f * 5000f);
-            for (int i = 0; i < 200; i++) sp.TickEndlessForTests(30f * 5000f + 29f);
-            Assert.LessOrEqual(sp.EndlessPending, EndlessRules.MaxPending);
+            // 장시간 경계: 큰 시간 점프에도 예외 없음, 건너뛴 웨이브의 등장 수 전부가 부채 장부로(조용한 소실 없음), 동시 상한 유지
+            sp.EndlessBannersEnabled = false;
+            sp.TickEndlessForTests(30d * 5000d);
+            for (int i = 0; i < 200; i++) sp.TickEndlessForTests(30d * 5000d + 29d);
+            Assert.AreEqual(5001L, sp.EndlessWave);
+            Assert.AreEqual(sp.EndlessScheduledTotal, sp.EndlessSpawned + sp.EndlessPending, "예정 = 생성 + 대기(소실 0)");
+            Assert.AreEqual(EndlessRules.SumWaveCounts(1, 5000) + sp.EndlessReleased, sp.EndlessScheduledTotal, "지난 웨이브 전부 + 이번 웨이브 진행분");
+            Assert.Greater(sp.EndlessPending, 5000L, "예전 5000 상한을 넘어도 버리지 않음");
+            Assert.IsFalse(sp.EndlessPendingSaturated);
             Assert.LessOrEqual(Enemy.Active.Count, Balance.MaxAliveEnemiesAbsolute);
             Assert.LessOrEqual(Enemy.Active.Count, sp.RegularCap);
-            Assert.Greater(sp.EndlessPending, 0, "상한에 막힌 적은 사라지지 않고 대기");
+
+            // 초장시간(약 951년): 웨이브 10억, long 장부, 포화 아님
+            sp.TickEndlessForTests(30d * 1_000_000_000d);
+            Assert.AreEqual(1_000_000_001L, sp.EndlessWave);
+            Assert.AreEqual(sp.EndlessScheduledTotal, sp.EndlessSpawned + sp.EndlessPending);
+            Assert.IsFalse(sp.EndlessPendingSaturated, "10억 웨이브 합(약 10^18)도 long 안");
+            var info = RunPhaseBadge.ComputeEndless(game);
+            StringAssert.Contains("웨이브 1000000001", info.text);
+
+            // long 한계: 명시 포화(조용한 소실 대신 포화 표시)
+            sp.TickEndlessForTests(30d * 9e17d);
+            Assert.IsTrue(sp.EndlessPendingSaturated);
+            Assert.AreEqual(EndlessRules.SaturatedLong, sp.EndlessPending);
+            StringAssert.Contains("생성 대기 최대(포화)", RunPhaseBadge.ComputeEndless(game).text);
         }
 
         [Test]

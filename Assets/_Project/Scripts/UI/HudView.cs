@@ -35,6 +35,7 @@ namespace CCT
         public ActiveEffectsStrip EffectsStrip { get; private set; }
         /// <summary>2026-11-09 런 구간·위험도·실제 보스 예고 배지.</summary>
         public RunPhaseBadge PhaseBadge { get; private set; }
+        public FamilyLegend Legend { get; private set; }
 
         static Text PaddedLabel(RectTransform box, string content, int size, TextAnchor alignment, Color color)
         {
@@ -242,6 +243,8 @@ namespace CCT
                 view.EffectsStrip.transform.SetSiblingIndex(view.hiddenDetails.transform.GetSiblingIndex());
                 view.PhaseBadge = RunPhaseBadge.Create(root, game);
                 view.PhaseBadge.transform.SetSiblingIndex(view.hiddenDetails.transform.GetSiblingIndex());
+                view.Legend = FamilyLegend.Create(root, game); // 2026-11-10 몬스터 계열 범례(글자 표식 + 상성 대상)
+                view.Legend.transform.SetSiblingIndex(view.hiddenDetails.transform.GetSiblingIndex());
             }
 
             // 2026-10-12 Android 터치: 안전 영역(노치·제스처) 안에 HUD를 두고, 조이스틱·연구·히든 버튼을 붙인다.
@@ -447,7 +450,7 @@ namespace CCT
             if (showBoss)
             {
                 bossBar.Set(boss.Hp / boss.MaxHp);
-                bossBar.Label.text = $"{boss.Def.name}  {Mathf.CeilToInt(boss.Hp)} / {Mathf.CeilToInt(boss.MaxHp)}";
+                bossBar.Label.text = $"{MonsterFamilies.Mark(boss.Family)} {boss.Def.name}  {Mathf.CeilToInt(boss.Hp)} / {Mathf.CeilToInt(boss.MaxHp)}"; // 2026-11-10 계열 글자 표식
             }
 
             if (bannerRemaining > 0f)

@@ -29,7 +29,7 @@ namespace CCT
         public RunRecord record;
         /// <summary>2026-11-10 런 모드와 끝없는 모드 도달 웨이브(정규 0).</summary>
         public RunMode mode;
-        public int endlessWave;
+        public long endlessWave;
     }
 
     /// <summary>
@@ -217,8 +217,8 @@ namespace CCT
         }
 
         /// <summary>2026-11-10 끝없는 모드 결과 문구: 모드·도달 웨이브 + 스킨 재화 제외 이유(획득하지 않은 보상은 표시하지 않음).</summary>
-        public static string EndlessSubtitle(int wave) =>
-            $"{RunModeSelection.Name(RunMode.Endless)} · 도달 웨이브 {Mathf.Max(1, wave)}\n스킨 재화 없음 — 이번 판 재료로 만든 음료는 마실 수 있지만 판매 불가";
+        public static string EndlessSubtitle(long wave) =>
+            $"{RunModeSelection.Name(RunMode.Endless)} · 도달 웨이브 {EndlessRules.Show(System.Math.Max(1L, wave))}\n스킨 재화 없음 — 이번 판 재료로 만든 음료는 마실 수 있지만 판매 불가";
 
         /// <summary>08:106 요약: 직업/시작무기/하이브리드, 생존시간, 처치, 칵테일·차 레벨, 커피 해금 수, 획득재료3종,
         /// 이번 스페셜티, 잔액(누적 획득 − 영구 강화 사용, 07:151), seed(06:98). 38 이후 화면은 이 정보를 위계별로 나눠 보이고

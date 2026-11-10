@@ -115,7 +115,10 @@ namespace CCT
         /// <summary>08:144 이번 런의 activeRun id. 종료 집계(PermanentProgress.CommitRunEnd)는 이 id로 한 번만.</summary>
         public string RunId { get; private set; }
         /// <summary>테스트 전용 — 1200초 제한시간(06:148)까지 실제로 기다리지 않고 근접시켜 검증한다.</summary>
-        public void SetRunTimeForTests(float t) => RunTime = t;
+        public void SetRunTimeForTests(float t) { RunTime = t; RunTimePrecise = t; }
+        public void SetRunTimeForTests(double t) { RunTime = (float)System.Math.Min(t, float.MaxValue); RunTimePrecise = t; }
+        /// <summary>2026-11-10 끝없는 모드용 double 생존 시간(RunTime과 같은 게이트로 증가 — float 정밀도 손실 없이 장시간 웨이브 계산).</summary>
+        public double RunTimePrecise { get; private set; }
         public int Kills { get; private set; }
         public bool Cleared { get; private set; }
         public string EndReason { get; private set; }
@@ -148,8 +151,16 @@ namespace CCT
         public RunMode Mode { get; private set; }
         public bool IsEndless => Mode == RunMode.Endless;
         public EnemySpawner Spawner { get; private set; }
+        /// <summary>2026-11-10 진상 보스 영업 계열 표(출전 화면 선택, 런 동안 고정). 끝없는 모드는 자체 순환 표라 JobTheme로 둔다.</summary>
+        public SpawnTable SpawnTable { get; private set; }
+        /// <summary>계열 표 바꾸기 전용 시드 파생 스트림 — 기존 스폰 스트림의 소비 순서를 바꾸지 않는다(같은 시드 = 같은 직업 테마 결과).</summary>
+        IRandomSource familyRemapRng;
+
+        /// <summary>정규 일반 몹 1마리(일반·웨이브·진상 손님 소환 공용). rewardDef는 처치 보상 출처(직업 테마 결과).</summary>
+        public EnemyDef PickStandardEnemy(float runTime, out EnemyDef rewardDef) =>
+            EnemyRoster.PickStandard(runTime, SpawnRng, familyRemapRng, Job, SpawnTable, out rewardDef);
         /// <summary>끝없는 모드의 현재 웨이브(정규 모드 0).</summary>
-        public int EndlessWave => IsEndless && Spawner != null ? Mathf.Max(1, Spawner.EndlessWave) : 0;
+        public long EndlessWave => IsEndless && Spawner != null ? System.Math.Max(1L, Spawner.EndlessWave) : 0L;
 
         public void Initialize(Job job, WeaponKind weapon) => Initialize(job, weapon, RunModeSelection.Current);
 
@@ -162,6 +173,8 @@ namespace CCT
             var preset = JobPreset.For(job);
 
             rng = new RunRandom(RunRandom.QaSeedOverride ?? RunRandom.GenerateSeed());
+            SpawnTable = mode == RunMode.Standard ? RunModeSelection.StandardTable : SpawnTable.JobTheme;
+            familyRemapRng = new SeededRandomSource(unchecked(rng.Seed * 397 ^ 7));
             Stats = new PlayerStats();
             // 활 초반 군중 처리: 기본 한 발이 두 대상까지 명중. 카드 관통은 기존 상한까지 누적.
             if (weapon == WeaponKind.Bow) Stats.pierceCount = 1;
@@ -317,6 +330,7 @@ namespace CCT
             if (kb != null && kb.kKey.wasPressedThisFrame) RequestCoffeeTree();
 
             RunTime += Time.deltaTime;
+            RunTimePrecise += Time.deltaTime;
             mixingRushRemaining=Mathf.Max(0f,mixingRushRemaining-Time.deltaTime);
             RefreshJobTrait();
             Stats.Tick(Time.deltaTime);
@@ -1035,7 +1049,7 @@ namespace CCT
                 specialtyEarned = specialtyEarnedThisRun,
                 hybridUnlocked = HybridUnlocked,
                 appVersion = Application.version,
-                mode = Mode.ToString(), endlessWave = EndlessWave,
+                mode = Mode.ToString(), endlessWave = EndlessWave, spawnTable = SpawnTable.ToString(),
             };
             if (kind == RunEndKind.Died)
             {

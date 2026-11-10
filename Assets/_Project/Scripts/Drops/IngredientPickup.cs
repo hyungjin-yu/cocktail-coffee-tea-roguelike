@@ -19,6 +19,8 @@ namespace CCT
         GameManager game;
         PlayerController player;
         IngredientType type;
+        /// <summary>2026-11-10 시험·검수용 읽기 전용: 이 픽업의 재료 종류.</summary>
+        public IngredientType Type => type;
         int amount;
         float pullSpeed = 6f;
         bool pulling;

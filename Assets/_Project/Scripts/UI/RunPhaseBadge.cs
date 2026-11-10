@@ -80,16 +80,18 @@ namespace CCT
         public static RunPhaseInfo ComputeEndless(GameManager game)
         {
             var info = new RunPhaseInfo { state = RunPhaseState.Endless };
-            int wave = Mathf.Max(1, game.EndlessWave);
-            int pending = game.Spawner != null ? game.Spawner.EndlessPending : 0;
-            info.segment = wave;
-            info.secondsToBoss = EndlessRules.SecondsToNextWave(game.RunTime);
-            int hp = EndlessRules.HpPercent(wave), atk = EndlessRules.AttackPercent(wave);
-            info.danger = Mathf.Clamp(1 + Mathf.FloorToInt(Mathf.Log(Mathf.Max(1f, hp / 100f * EndlessRules.WaveCount(wave) / EndlessRules.FirstWaveCount), 2f)), 1, 5);
+            long wave = System.Math.Max(1L, game.EndlessWave);
+            long pending = game.Spawner != null ? game.Spawner.EndlessPending : 0;
+            bool saturated = game.Spawner != null && game.Spawner.EndlessPendingSaturated;
+            info.segment = (int)System.Math.Min(int.MaxValue, wave);
+            info.secondsToBoss = EndlessRules.SecondsToNextWave(game.RunTimePrecise);
+            double grow = EndlessRules.HpPercent(wave) / 100d * EndlessRules.WaveCount(wave) / EndlessRules.FirstWaveCount;
+            info.danger = Mathf.Clamp(1 + (int)System.Math.Floor(System.Math.Log(System.Math.Max(1d, grow), 2d)), 1, 5);
             var focus = EndlessRules.FocusFor(wave);
-            string next = EndlessRules.IsFocusPreviewWave(wave) ? $" · 다음 웨이브 집중 {MonsterFamilies.Name(EndlessRules.FocusFor(wave + 1))}" : "";
-            info.text = $"{RunModeSelection.Name(RunMode.Endless)} · 웨이브 {wave} · 다음 웨이브 {info.secondsToBoss}초{next}" + "\n" +
-                        $"집중 {MonsterFamilies.Name(focus)} {EndlessRules.FocusWeightPercent}% · 체력 {hp}% · 공격 {atk}% · 생성 대기 {pending}";
+            string next = EndlessRules.IsFocusPreviewWave(wave)
+                ? $" · 다음 웨이브 집중 {MonsterFamilies.Mark(EndlessRules.FocusFor(wave + 1))} {MonsterFamilies.Name(EndlessRules.FocusFor(wave + 1))}" : "";
+            info.text = $"{RunModeSelection.Name(RunMode.Endless)} · 웨이브 {EndlessRules.Show(wave)} · 다음 웨이브 {info.secondsToBoss}초{next}" + "\n" +
+                        $"집중 {MonsterFamilies.Mark(focus)} {MonsterFamilies.Name(focus)} {EndlessRules.FocusWeightPercent}% · 체력 {EndlessRules.Show(EndlessRules.HpPercentInt(wave))}% · 공격 {EndlessRules.Show(EndlessRules.AttackPercentInt(wave))}% · 생성 대기 {(saturated ? "최대(포화)" : pending.ToString())}";
             return info;
         }
 

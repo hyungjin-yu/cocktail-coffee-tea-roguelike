@@ -47,7 +47,9 @@ namespace CCT
             var pos = (Vector2)enemy.transform.position + offset;
             pos.y = Mathf.Clamp(pos.y, Balance.DepthMin, Balance.DepthMax); // 06:22 — y를 레인으로 제한
             pos.x = BattleArena.ClampX(pos.x, def.summonDef.radius); // 57 P0-1 구역 안
-            Enemy.SpawnAt(pos, def.summonDef, hpScale, player, enemy.transform.parent, endless ? enemy.AttackScale : 1f);
+            var summoned = Enemy.SpawnAt(pos, def.summonDef, hpScale, player, enemy.transform.parent, endless ? enemy.AttackScale : 1f);
+            // 2026-11-10 보상 보존: 계열 표로 바뀐 소환자는 원래(직업 테마) 소환자의 소환 몹 보상을 따른다.
+            if (enemy.RewardDef != null && enemy.RewardDef.summonDef != null && enemy.RewardDef.summonDef != def.summonDef) summoned.RewardDef = enemy.RewardDef.summonDef;
             // 04 §8 summon_ring — 칵테일 청색/차 녹색 tint(소환 몹의 재료 종류).
             string tint = def.dropType == IngredientType.Tea ? "tea" : "cocktail";
             ArtVfx.GroundRing("summon_ring", pos, 0.6f, 0.5f, Color.white, true, SortOrders.GroundZone, tint);

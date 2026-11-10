@@ -58,7 +58,9 @@ namespace CCT
         /// <summary>2026-11-10 런 모드 이름("Standard"/"Endless"). 이전 기록은 빈 값 → 정규 모드로 호환(RunModeSelection.Parse).</summary>
         public string mode = "";
         /// <summary>끝없는 모드 도달 웨이브(정규 0).</summary>
-        public int endlessWave;
+        public long endlessWave;
+        /// <summary>2026-11-10 진상 보스 영업 계열 표("JobTheme"/"AllFamilies"). 이전 기록은 빈 값 → 직업 테마.</summary>
+        public string spawnTable = "";
         public RunMode Mode => RunModeSelection.Parse(mode);
         public List<RunCardEntry> cards = new List<RunCardEntry>();
         public List<RunNamedEntry> combos = new List<RunNamedEntry>();
@@ -573,7 +575,7 @@ namespace CCT
 
         /// <summary>2026-11-10 끝없는 모드 기록만 "· 끝없는 재료 모으기 웨이브 N"을 붙인다(정규·이전 기록은 기존 문구 그대로).</summary>
         public static string ModeSuffix(RunRecord r) =>
-            r != null && r.Mode == RunMode.Endless ? $"  ·  {RunModeSelection.Name(RunMode.Endless)} 웨이브 {System.Math.Max(1, r.endlessWave)}" : "";
+            r != null && r.Mode == RunMode.Endless ? $"  ·  {RunModeSelection.Name(RunMode.Endless)} 웨이브 {EndlessRules.Show(System.Math.Max(1L, r.endlessWave))}" : "";
 
         public static string EndedLocal(RunRecord r)
         {

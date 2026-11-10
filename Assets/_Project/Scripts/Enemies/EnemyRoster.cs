@@ -165,8 +165,63 @@ namespace CCT
                 if (d != null && !list.Contains(d)) list.Add(d);
         }
 
+        /// <summary>2026-11-10 진상 보스 영업 계열 표 선택. JobTheme이면 기존 PickCommon 그대로(rewardDef = 같은 정의).
+        /// AllFamilies면: ① 기존 PickCommon을 같은 스폰 난수로 그대로 추첨(난수 소비·시간 조건·보상 출처 불변) →
+        /// ② 그 아키타입 자리(돌진·원거리·대형·제2원거리·자폭·소환·정예)를 가진 계열 후보 중 하나를 별도 난수(remapRng)로 균등 선택해
+        /// 같은 자리의 실제 기존 몬스터로 바꾼다. 커피 계열은 돌진(에스프레소 벅)·원거리(밀크 포머) 자리만 있어 다른 자리는 칵테일·차 중에서 고른다.
+        /// rewardDef(드롭 종류·수량·보급·히든 처치 효과)는 ①의 직업 테마 정의 — 보상·재료 경제는 기존 표와 같다. 능력치는 바뀐 몬스터의 기존 값.</summary>
+        public static EnemyDef PickStandard(float runTime, IRandomSource rng, IRandomSource remapRng, Job? job, SpawnTable table, out EnemyDef rewardDef)
+        {
+            var theme = PickCommon(runTime, rng, job);
+            rewardDef = theme;
+            if (table != SpawnTable.AllFamilies) return theme;
+            var options = SlotCandidates(SlotOf(theme, job), job);
+            if (options.Count == 0) return theme;
+            remapRng ??= UnityRandomSource.Instance;
+            int i = Mathf.Clamp(Mathf.FloorToInt(remapRng.Value() * options.Count), 0, options.Count - 1);
+            return options[i];
+        }
+
+        public enum Slot { Rush, Ranged, Extra, SecondRanged, Suicide, Summoner, Elite, Unknown }
+
+        public static Slot SlotOf(EnemyDef d, Job? job)
+        {
+            if (d == null) return Slot.Unknown;
+            if (d == EnemyDef.EspressoBug || d == EnemyDef.TeaLeafScholar) return Slot.Rush;
+            if (d == EnemyDef.MilkFoamer) return Slot.Ranged;
+            foreach (var t in new[] { CocktailTrack, TeaTrack, TeaHouseTrack })
+            {
+                if (d == t.rush) return Slot.Rush;
+                if (d == t.ranged) return Slot.Ranged;
+                if (d == t.extra) return Slot.Extra;
+                if (d == t.secondRanged) return Slot.SecondRanged;
+                if (d == t.suicide) return Slot.Suicide;
+                if (d == t.summoner) return Slot.Summoner;
+                if (d == t.elite) return Slot.Elite;
+            }
+            return Slot.Unknown;
+        }
+
+        /// <summary>자리별 세 계열 후보(칵테일 트랙 · 직업에 맞는 차 트랙 · 커피). 없는 자리는 빠진다. 대형·제2원거리 자리는 같은 역할의 원래 자리로 묶는다.</summary>
+        public static List<EnemyDef> SlotCandidates(Slot slot, Job? job)
+        {
+            var tea = job == Job.TeaSommelier ? TeaHouseTrack : TeaTrack;
+            var list = new List<EnemyDef>();
+            void Add(EnemyDef d) { if (d != null && !list.Contains(d)) list.Add(d); }
+            switch (slot)
+            {
+                case Slot.Rush: Add(CocktailTrack.rush); Add(tea.rush); Add(EnemyDef.EspressoBug); break;
+                case Slot.Ranged: case Slot.SecondRanged: Add(CocktailTrack.ranged); Add(tea.ranged); Add(EnemyDef.MilkFoamer); break;
+                case Slot.Extra: Add(CocktailTrack.extra); Add(tea.extra ?? tea.rush); Add(EnemyDef.EspressoBug); break;
+                case Slot.Suicide: Add(CocktailTrack.suicide); Add(tea.suicide); break;
+                case Slot.Summoner: Add(CocktailTrack.summoner); Add(tea.summoner); break;
+                case Slot.Elite: Add(CocktailTrack.elite); Add(tea.elite); break;
+            }
+            return list;
+        }
+
         /// <summary>표 검증: 계열 가중치 합 100, 각 계열 후보가 있고, 후보가 전부 그 계열로 명시 분류됐는지. 문제 목록(빈 목록 = 정상).</summary>
-        public static List<string> ValidateEndlessTable(Job? job, int wave)
+        public static List<string> ValidateEndlessTable(Job? job, long wave)
         {
             var errors = new List<string>();
             int sum = 0;
@@ -186,7 +241,7 @@ namespace CCT
 
         /// <summary>끝없는 모드 1마리 추첨: 계열 1회(정수 % 가중치) + 계열 안 아키타입 1회. 시드 스트림만 사용(재현 가능).
         /// 후보가 없는 계열은 조용히 다른 테마로 바꾸지 않고 예외로 알린다(표 검증이 막아야 하는 상태).</summary>
-        public static EnemyDef PickEndless(int wave, float runTime, IRandomSource rng, Job? job, out MonsterFamily family)
+        public static EnemyDef PickEndless(long wave, float runTime, IRandomSource rng, Job? job, out MonsterFamily family)
         {
             rng ??= UnityRandomSource.Instance;
             int roll = Mathf.Clamp(Mathf.FloorToInt(rng.Value() * 100f), 0, 99);

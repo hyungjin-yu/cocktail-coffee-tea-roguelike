@@ -148,8 +148,9 @@ namespace CCT
                     float side = (i % 2 == 0) ? -1f : 1f;
                     float depth = Random.Range(Balance.DepthMin, Balance.DepthMax);
                     float x = BattleArena.ClampX(enemy.transform.position.x + side * (enemy.Def.radius + 2f + Random.Range(0f, 2f)), 1.2f);
-                    var summoned = Enemy.SpawnAt(new Vector2(x, depth), EnemyRoster.PickCommon(game.RunTime, game.SpawnRng, game.Job), hpScale,
-                        game.Player, enemy.transform.parent);
+                    var pick = game.PickStandardEnemy(game.RunTime, out var reward); // 2026-11-10 계열 표 선택(기본 = 기존 PickCommon 그대로)
+                    var summoned = Enemy.SpawnAt(new Vector2(x, depth), pick, hpScale, game.Player, enemy.transform.parent);
+                    if (reward != pick) summoned.RewardDef = reward;
                     EnemyRoster.AttachBehavior(summoned, game, game.Player);
                 }
             }

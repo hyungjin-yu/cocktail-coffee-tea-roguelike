@@ -67,7 +67,7 @@ namespace CCT
             if (root != null) Destroy(root.gameObject);
             WeaponButtonA = null;
             WeaponButtonB = null;
-            StandardModeButton = null; EndlessModeButton = null;
+            StandardModeButton = null; EndlessModeButton = null; SpawnTableButton = null; tableLabel = null; affinityLine = null;
             standardModeBg = null; endlessModeBg = null; modeHint = null; standardModeLabel = null; endlessModeLabel = null;
             StartButton = null;
             WeaponBackButton = null;
@@ -148,15 +148,22 @@ namespace CCT
         public Button StandardModeButton { get; private set; }
         public Button EndlessModeButton { get; private set; }
         Image standardModeBg, endlessModeBg;
-        Text modeHint, standardModeLabel, endlessModeLabel;
+        Text modeHint, standardModeLabel, endlessModeLabel, tableLabel, affinityLine;
+        public Button SpawnTableButton { get; private set; }
+        Job currentJobForLine;
         static readonly Color ModeColor = new Color(0.16f, 0.13f, 0.2f, 1f);
         static readonly Color ModeSelectedColor = new Color(0.36f, 0.26f, 0.16f, 1f);
 
         /// <summary>모드 줄: 무기 카드 아래·영업 시작 위의 빈 띠(카드 하단 y=280, 영업 시작 상단 y=172 사이)에 두 버튼과 보상 안내 한 줄.</summary>
         void BuildModeRow()
         {
-            StandardModeButton = BuildModeOption(RunMode.Standard, -230f, out standardModeBg, out standardModeLabel);
-            EndlessModeButton = BuildModeOption(RunMode.Endless, 230f, out endlessModeBg, out endlessModeLabel);
+            StandardModeButton = BuildModeOption(RunMode.Standard, -410f, out standardModeBg, out standardModeLabel);
+            EndlessModeButton = BuildModeOption(RunMode.Endless, 0f, out endlessModeBg, out endlessModeLabel);
+            // 2026-11-10 진상 보스 영업 계열 표 선택(기본 = 기존 직업 테마). 끝없는 모드에서는 자체 순환 표라 비활성.
+            var tableRt = UiFactory.Place("SpawnTable", root, new Vector2(0.5f, 0f), new Vector2(410f, 246f), new Vector2(380f, 52f));
+            SpawnTableButton = MakeButton(tableRt, UiFactory.AddImage(tableRt, ModeColor), ToggleSpawnTable);
+            tableLabel = UiFactory.AddText(UiFactory.Stretch("Label", tableRt), "", 24, TextAnchor.MiddleCenter, Color.white);
+            tableLabel.resizeTextForBestFit = true; tableLabel.resizeTextMinSize = 16; tableLabel.resizeTextMaxSize = 24;
             modeHint = UiFactory.AddText(UiFactory.Place("ModeHint", root, new Vector2(0.5f, 0f), new Vector2(0f, 192f), new Vector2(1300f, 30f)),
                 "", 22, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.6f));
             SetMode(RunModeSelection.Current);
@@ -164,10 +171,11 @@ namespace CCT
 
         Button BuildModeOption(RunMode mode, float x, out Image bg, out Text label)
         {
-            var rt = UiFactory.Place("Mode_" + mode, root, new Vector2(0.5f, 0f), new Vector2(x, 246f), new Vector2(440f, 52f));
+            var rt = UiFactory.Place("Mode_" + mode, root, new Vector2(0.5f, 0f), new Vector2(x, 246f), new Vector2(380f, 52f));
             bg = UiFactory.AddImage(rt, ModeColor);
             var button = MakeButton(rt, bg, () => SetMode(mode));
             label = UiFactory.AddText(UiFactory.Stretch("Label", rt), RunModeSelection.Name(mode), 26, TextAnchor.MiddleCenter, Color.white);
+            label.resizeTextForBestFit = true; label.resizeTextMinSize = 18; label.resizeTextMaxSize = 26;
             return button;
         }
 
@@ -182,6 +190,7 @@ namespace CCT
             // 선택 표시는 글자(●/○)로도 — 색만으로 판별하지 않게.
             if (standardModeLabel != null) standardModeLabel.text = (endless ? "○ " : "● ") + RunModeSelection.Name(RunMode.Standard);
             if (endlessModeLabel != null) endlessModeLabel.text = (endless ? "● " : "○ ") + RunModeSelection.Name(RunMode.Endless);
+            RefreshTableAndLines();
             if (modeHint != null)
                 modeHint.text = endless
                     ? $"{RunModeSelection.Name(mode)} · 사망·포기까지 30초마다 웨이브 · {RunModeSelection.EndlessRewardLine}"
@@ -189,6 +198,30 @@ namespace CCT
         }
 
         public string ModeHintText => modeHint != null ? modeHint.text : "";
+        public string TableLabelText => tableLabel != null ? tableLabel.text : "";
+        public string AffinityLineText => affinityLine != null ? affinityLine.text : "";
+
+        /// <summary>테스트·버튼 공용: 진상 보스 영업 계열 표 전환(끝없는 모드에서는 무시).</summary>
+        public void ToggleSpawnTable()
+        {
+            if (RunModeSelection.Current == RunMode.Endless) return;
+            RunModeSelection.StandardTable = RunModeSelection.StandardTable == SpawnTable.JobTheme ? SpawnTable.AllFamilies : SpawnTable.JobTheme;
+            RefreshTableAndLines();
+        }
+
+        void RefreshTableAndLines()
+        {
+            bool endless = RunModeSelection.Current == RunMode.Endless;
+            if (SpawnTableButton != null) SpawnTableButton.interactable = !endless;
+            if (tableLabel != null)
+                tableLabel.text = endless ? "계열 표: 끝없는 순환" : "계열 표: " + RunModeSelection.TableName(RunModeSelection.StandardTable) + " ▸";
+            if (affinityLine != null)
+                affinityLine.text = DrinkAffinity.CycleLine + " · " + (endless ? EndlessFamilyLine() : StandardFamilyLine(currentJobForLine, RunModeSelection.StandardTable))
+                                    + "\n" + RunModeSelection.NoSwapLine;
+        }
+
+        public static string EndlessFamilyLine() =>
+            $"끝없는 모드: 세 계열 모두 등장, 집중 계열 {EndlessRules.FocusWeightPercent}%(커피→차→칵테일, 3웨이브마다)";
 
         Button BuildDrinkLabButton()
         {
@@ -276,8 +309,10 @@ namespace CCT
                 new Vector2(1200f, 90f));
             UiFactory.AddText(title, $"{job.name} — 무기를 선택하세요", 56, TextAnchor.MiddleCenter, Color.white);
             // 2026-11-10 순환 상성과 기본 스테이지 주요 등장 계열(정규 표). 제목과 카드 사이 빈 띠.
-            UiFactory.AddText(UiFactory.Place("AffinityCycle", root, new Vector2(0.5f, 1f), new Vector2(0f, -182f), new Vector2(1500f, 34f)),
-                DrinkAffinity.CycleLine + " · " + StandardFamilyLine(job.job), 22, TextAnchor.MiddleCenter, new Color(0.8f, 0.9f, 1f));
+            currentJobForLine = job.job;
+            affinityLine = UiFactory.AddText(UiFactory.Place("AffinityCycle", root, new Vector2(0.5f, 1f), new Vector2(0f, -190f), new Vector2(1600f, 52f)),
+                "", 20, TextAnchor.MiddleCenter, new Color(0.8f, 0.9f, 1f));
+            affinityLine.resizeTextForBestFit = true; affinityLine.resizeTextMinSize = 14; affinityLine.resizeTextMaxSize = 20;
 
             currentJob = job;
             WeaponButtonA = BuildWeaponOption(-1, job.weapons[0], out weaponBgA);
@@ -307,6 +342,13 @@ namespace CCT
         }
 
         /// <summary>기본 스테이지 주요 등장 계열(기존 정규 표 그대로, 보스 포함 요약).</summary>
+        public static string StandardFamilyLine(Job job, SpawnTable table)
+        {
+            if (table == SpawnTable.AllFamilies)
+                return "기본 영업(세 계열 고르게): 같은 자리의 칵테일·차·커피 몬스터가 고르게 등장 · 보상·보스는 직업 테마와 같음";
+            return StandardFamilyLine(job);
+        }
+
         public static string StandardFamilyLine(Job job)
         {
             EnemyRoster.StandardFamilyPercents(job, EnemyRoster.CoffeeTrackUnlockTime, out int c, out int t, out int k);
