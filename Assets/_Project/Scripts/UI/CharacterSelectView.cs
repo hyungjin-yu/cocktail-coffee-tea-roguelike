@@ -67,6 +67,8 @@ namespace CCT
             if (root != null) Destroy(root.gameObject);
             WeaponButtonA = null;
             WeaponButtonB = null;
+            StandardModeButton = null; EndlessModeButton = null;
+            standardModeBg = null; endlessModeBg = null; modeHint = null; standardModeLabel = null; endlessModeLabel = null;
             StartButton = null;
             WeaponBackButton = null;
         }
@@ -135,10 +137,58 @@ namespace CCT
         public static string PreparedDrinkLine()
         {
             var p = CCT.DrinkLab.Prepared;
-            return p != null
-                ? $"준비 음료: {p.recipe.name} — {DrinkCalculator.Buff(p.recipe, p.specialtyId).Describe()} (출발할 때 마심)"
-                : "준비 음료 없음 — 버프 없이 출발합니다 (음료 제조에서 만들 수 있음)";
+            if (p == null) return "준비 음료 없음 — 버프 없이 출발합니다 (음료 제조에서 만들 수 있음)";
+            // 2026-11-10 상성 대상과 정수 수치(예: 커피 계열 추가 피해 +20%)를 출전 전에 보여 준다.
+            string aff = DrinkAffinity.Describe(p.recipe.Kind);
+            return $"준비 음료: {p.recipe.name} — {DrinkCalculator.Buff(p.recipe, p.specialtyId).Describe()}" +
+                   (aff != null ? " · " + aff : "") + " (출발할 때 마심)";
         }
+
+        // ───── 2026-11-10 모드 선택(출전 전 기존 무기 선택 화면, 기본 = 기존 모드) ─────
+        public Button StandardModeButton { get; private set; }
+        public Button EndlessModeButton { get; private set; }
+        Image standardModeBg, endlessModeBg;
+        Text modeHint, standardModeLabel, endlessModeLabel;
+        static readonly Color ModeColor = new Color(0.16f, 0.13f, 0.2f, 1f);
+        static readonly Color ModeSelectedColor = new Color(0.36f, 0.26f, 0.16f, 1f);
+
+        /// <summary>모드 줄: 무기 카드 아래·영업 시작 위의 빈 띠(카드 하단 y=280, 영업 시작 상단 y=172 사이)에 두 버튼과 보상 안내 한 줄.</summary>
+        void BuildModeRow()
+        {
+            StandardModeButton = BuildModeOption(RunMode.Standard, -230f, out standardModeBg, out standardModeLabel);
+            EndlessModeButton = BuildModeOption(RunMode.Endless, 230f, out endlessModeBg, out endlessModeLabel);
+            modeHint = UiFactory.AddText(UiFactory.Place("ModeHint", root, new Vector2(0.5f, 0f), new Vector2(0f, 192f), new Vector2(1300f, 30f)),
+                "", 22, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.6f));
+            SetMode(RunModeSelection.Current);
+        }
+
+        Button BuildModeOption(RunMode mode, float x, out Image bg, out Text label)
+        {
+            var rt = UiFactory.Place("Mode_" + mode, root, new Vector2(0.5f, 0f), new Vector2(x, 246f), new Vector2(440f, 52f));
+            bg = UiFactory.AddImage(rt, ModeColor);
+            var button = MakeButton(rt, bg, () => SetMode(mode));
+            label = UiFactory.AddText(UiFactory.Stretch("Label", rt), RunModeSelection.Name(mode), 26, TextAnchor.MiddleCenter, Color.white);
+            return button;
+        }
+
+        /// <summary>테스트·버튼 공용.</summary>
+        public void SetMode(RunMode mode)
+        {
+            RunModeSelection.Current = mode;
+            bool endless = mode == RunMode.Endless;
+            // 색만으로 구분하지 않게 선택 버튼은 테두리 장식(SetChoice)도 함께 켠다.
+            if (standardModeBg != null) UiFactory.SetChoice(standardModeBg, !endless, !endless ? ModeSelectedColor : ModeColor);
+            if (endlessModeBg != null) UiFactory.SetChoice(endlessModeBg, endless, endless ? ModeSelectedColor : ModeColor);
+            // 선택 표시는 글자(●/○)로도 — 색만으로 판별하지 않게.
+            if (standardModeLabel != null) standardModeLabel.text = (endless ? "○ " : "● ") + RunModeSelection.Name(RunMode.Standard);
+            if (endlessModeLabel != null) endlessModeLabel.text = (endless ? "● " : "○ ") + RunModeSelection.Name(RunMode.Endless);
+            if (modeHint != null)
+                modeHint.text = endless
+                    ? $"{RunModeSelection.Name(mode)} · 사망·포기까지 30초마다 웨이브 · {RunModeSelection.EndlessRewardLine}"
+                    : $"{RunModeSelection.Name(mode)} · {RunModeSelection.StandardRewardLine}";
+        }
+
+        public string ModeHintText => modeHint != null ? modeHint.text : "";
 
         Button BuildDrinkLabButton()
         {
@@ -155,8 +205,12 @@ namespace CCT
                 });
             });
             var p = CCT.DrinkLab.Prepared;
-            UiFactory.AddText(UiFactory.Stretch("Label", rt), p != null ? $"음료 제조 · 준비됨: {p.recipe.name}" : "음료 제조 (출발 전)", 26,
+            UiFactory.AddText(UiFactory.Place("Label", rt, new Vector2(0.5f, 1f), new Vector2(0f, -8f),
+                    new Vector2(396f, 34f)), p != null ? "음료 제조 · 준비됨" : "음료 제조 (출발 전)", 25,
                 TextAnchor.MiddleCenter, Color.white);
+            UiFactory.AddText(UiFactory.Place("Hint", rt, new Vector2(0.5f, 0f), new Vector2(0f, 8f),
+                    new Vector2(396f, 26f)), p != null ? "출발 시 마시고 이번 판 동안 효과 적용" : "한 잔 준비하면 이번 판 버프 적용", 20,
+                TextAnchor.MiddleCenter, new Color(1f, 0.91f, 0.76f));
             return button;
         }
 
@@ -221,6 +275,9 @@ namespace CCT
             var title = UiFactory.Place("Title", root, new Vector2(0.5f, 1f), new Vector2(0f, -110f),
                 new Vector2(1200f, 90f));
             UiFactory.AddText(title, $"{job.name} — 무기를 선택하세요", 56, TextAnchor.MiddleCenter, Color.white);
+            // 2026-11-10 순환 상성과 기본 스테이지 주요 등장 계열(정규 표). 제목과 카드 사이 빈 띠.
+            UiFactory.AddText(UiFactory.Place("AffinityCycle", root, new Vector2(0.5f, 1f), new Vector2(0f, -182f), new Vector2(1500f, 34f)),
+                DrinkAffinity.CycleLine + " · " + StandardFamilyLine(job.job), 22, TextAnchor.MiddleCenter, new Color(0.8f, 0.9f, 1f));
 
             currentJob = job;
             WeaponButtonA = BuildWeaponOption(-1, job.weapons[0], out weaponBgA);
@@ -233,6 +290,7 @@ namespace CCT
 
             DrinkLabButton = BuildDrinkLabButton();
             LaptopButton = BuildLaptopButton();
+            BuildModeRow();
             UiFactory.AddText(UiFactory.Place("PreparedDrink", root, new Vector2(0.5f, 0f), new Vector2(0f, 64f), new Vector2(1300f, 50f)),
                 PreparedDrinkLine(), 24, TextAnchor.MiddleCenter, new Color(0.75f, 1f, 0.8f));
 
@@ -246,6 +304,15 @@ namespace CCT
             SelectWeapon(job.weapons[1].kind == lastWeapon ? job.weapons[1] : job.weapons[0], false);
             var focus = SelectedWeapon == job.weapons[1].kind ? WeaponButtonB : WeaponButtonA;
             UiInitialFocus.Offer(focus.gameObject);
+        }
+
+        /// <summary>기본 스테이지 주요 등장 계열(기존 정규 표 그대로, 보스 포함 요약).</summary>
+        public static string StandardFamilyLine(Job job)
+        {
+            EnemyRoster.StandardFamilyPercents(job, EnemyRoster.CoffeeTrackUnlockTime, out int c, out int t, out int k);
+            return job == Job.TeaSommelier
+                ? $"기본 영업 주요 등장: 차 {t}% (보스 차 계열, 진상 손님 중립)"
+                : $"기본 영업 주요 등장: 칵테일 {c}% · 차 {t}% · 커피 {k}%(2:30부터) · 중간보스 커피 계열";
         }
 
         void SelectWeapon(WeaponPreset weapon, bool showChoice)

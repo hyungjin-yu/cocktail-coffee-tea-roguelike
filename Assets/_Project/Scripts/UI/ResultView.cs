@@ -27,6 +27,9 @@ namespace CCT
         public int seed;
         /// <summary>67 이번 판 기록(카드·조합·종료 사유). 기록 구성 실패 시 null — 결과 화면은 그대로 열린다.</summary>
         public RunRecord record;
+        /// <summary>2026-11-10 런 모드와 끝없는 모드 도달 웨이브(정규 0).</summary>
+        public RunMode mode;
+        public int endlessWave;
     }
 
     /// <summary>
@@ -84,7 +87,11 @@ namespace CCT
             view.title = UiFactory.AddText(UiFactory.Place("Title", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, 400f),
                 new Vector2(1200f, 120f)), "", 88, TextAnchor.MiddleCenter, new Color(1f, 0.5f, 0.6f));
             view.subtitle = UiFactory.AddText(UiFactory.Place("Subtitle", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, 322f),
-                new Vector2(1200f, 50f)), "", 32, TextAnchor.MiddleCenter, new Color(1f, 0.9f, 0.7f));
+                new Vector2(1200f, 64f)), "", 32, TextAnchor.MiddleCenter, new Color(1f, 0.9f, 0.7f));
+            // 2026-11-10 끝없는 모드는 모드·도달 웨이브와 스킨 재화 제외 이유 두 줄 — 한 칸 안에서 글자만 줄인다(정규 모드 한 줄은 그대로).
+            view.subtitle.resizeTextForBestFit = true;
+            view.subtitle.resizeTextMinSize = 20;
+            view.subtitle.resizeTextMaxSize = 32;
 
             var hero = UiFactory.Place("SummaryPanel", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, 130f), new Vector2(1240f, 300f));
             UiFactory.AddImage(hero, new Color(0.1f, 0.08f, 0.1f, 1f));
@@ -209,6 +216,10 @@ namespace CCT
             }
         }
 
+        /// <summary>2026-11-10 끝없는 모드 결과 문구: 모드·도달 웨이브 + 스킨 재화 제외 이유(획득하지 않은 보상은 표시하지 않음).</summary>
+        public static string EndlessSubtitle(int wave) =>
+            $"{RunModeSelection.Name(RunMode.Endless)} · 도달 웨이브 {Mathf.Max(1, wave)}\n스킨 재화 없음 — 이번 판 재료로 만든 음료는 마실 수 있지만 판매 불가";
+
         /// <summary>08:106 요약: 직업/시작무기/하이브리드, 생존시간, 처치, 칵테일·차 레벨, 커피 해금 수, 획득재료3종,
         /// 이번 스페셜티, 잔액(누적 획득 − 영구 강화 사용, 07:151), seed(06:98). 38 이후 화면은 이 정보를 위계별로 나눠 보이고
         /// 이 6줄 요약은 로그·검증용으로 유지한다.</summary>
@@ -237,7 +248,7 @@ namespace CCT
             if (last == null) return;
             title.text = TitleFor(last.cleared, last.reason);
             title.color = last.cleared ? new Color(1f, 0.85f, 0.4f) : new Color(1f, 0.5f, 0.6f);
-            subtitle.text = last.cleared ? ClearLine : "";
+            subtitle.text = last.mode == RunMode.Endless ? EndlessSubtitle(last.endlessWave) : last.cleared ? ClearLine : "";
             int seconds = Mathf.FloorToInt(last.runSeconds);
             timeLabel.text = last.cleared ? "클리어 시간" : "생존 시간";
             timeValue.text = $"{seconds / 60:00}:{seconds % 60:00}";

@@ -106,7 +106,13 @@ namespace CCT
 
                 if (original) EnemyHitStatus.AttachDirect(enemy, owner);
                 var hidden = original && owner != null ? owner.HiddenRuntime : null; // 41 히든: 원래 탄의 직접 타격만
-                enemy.TakeDamage(hidden != null ? hidden.ModifyDirectDamage(enemy, damage) : damage);
+                float dealt = hidden != null ? hidden.ModifyDirectDamage(enemy, damage) : damage;
+                // 2026-11-09 피격 연출: 치명타/일반 구분, 불꽃은 실제 접촉 지점. 파편(비원본)은 보조 효과로 가볍게.
+                float reach = enemy.Def.radius + 0.6f; // 시작부터 겹친 캐스트 등 접점이 몸에서 멀면 몸 중앙 위로 대체
+                Vector2? at = ((Vector2)hit.point - (Vector2)enemy.transform.position).sqrMagnitude <= reach * reach ? hit.point : (Vector2?)null;
+                // 2026-11-10 원래 탄의 직접 타격만 상성(단일 피해 결과). 파편(비원본)은 추가 효과라 상성 재귀 없음.
+                if (original) enemy.TakeDirectHit(dealt, HiddenSkillRuntime.DirectKind(hidden, false), at);
+                else enemy.TakeDamage(dealt, HitKind.Effect, at);
                 hidden?.AfterDirectHit(enemy);
                 alreadyHit.Add(enemy);
                 if (original && owner != null && owner.FinalForms.Has(AttackFinalForm.Pierce))

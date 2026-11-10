@@ -25,6 +25,7 @@ namespace CCT
         public const string NoticeRecovered = "지난 판이 비정상 종료되어 준비 음료를 사용한 것으로 처리했습니다.";
         public const string NoticeStarter = "첫 제조용 재료 세트를 창고에 넣었습니다.";
         public const string NoticeFirstRp = "연구 포인트 10을 받았습니다(노트북 연구).";
+        public const string NoticeIntegerMigrated = "음료 창고의 소수 수량을 정수(1mL·1g)로 정리했습니다. 이전 파일은 백업해 두었습니다.";
 
         static string overridePath;
         static string loadedPath;
@@ -137,6 +138,13 @@ namespace CCT
                 SaveNow();
             }
             if (!lastLoad.FutureProtected && EnsureOrders(data)) { dirty = true; SaveNow(); }
+            // 2026-11-06 정수 전용 마이그레이션(v2 이하 파일): 원본은 DrinkStore가 백업했고, 여기서 v3로 바로 저장한다(한 번만 안내).
+            if (!lastLoad.FutureProtected && lastLoad.IntegerMigrated)
+            {
+                notices.Add(NoticeIntegerMigrated);
+                dirty = true;
+                SaveNow();
+            }
             sessionNotice = notices.Count > 0 ? string.Join(" ", notices) : null;
         }
 
@@ -240,11 +248,20 @@ namespace CCT
             string specialty = ActiveSpecialtyFor(copy);
             bool ok = Transact(d =>
             {
-                foreach (var s in copy.steps) d.Add(s.id, -s.amount);
+                // 2026-11-10 출처 장부: 일반 출처 우선 소모, 부족분만 끝없는 출처. 쓴 끝없는 출처 양을 음료에 기록(판매 불가 표시).
+                // Transact는 복제본에서 실행하고 저장 성공 때만 교체하므로 실패하면 재고·장부가 함께 원래대로다.
+                var endlessUsed = new List<DrinkAmount>();
+                foreach (var s in copy.steps)
+                {
+                    int used = d.ConsumeNormalFirst(s.id, s.amount);
+                    if (used <= 0) continue;
+                    var row = endlessUsed.Find(x => x.id == s.id);
+                    if (row != null) row.amount += used; else endlessUsed.Add(new DrinkAmount(s.id, used));
+                }
                 d.prepared = new PreparedDrink
                 {
                     state = PreparedDrink.Ready, drinkId = Guid.NewGuid().ToString("N"), recipe = copy,
-                    preparedUtc = DateTime.UtcNow.ToString("o"), specialtyId = specialty,
+                    preparedUtc = DateTime.UtcNow.ToString("o"), specialtyId = specialty, endlessAmounts = endlessUsed,
                 };
                 // 72 §5 직원 채용 조건(제조 누적)은 같은 거래로 센다.
                 if (copy.Kind == DrinkKind.Tea) d.research.teaCrafts++; else if (copy.Kind == DrinkKind.Coffee) d.research.coffeeCrafts++; else d.research.cocktailCrafts++;
@@ -281,7 +298,7 @@ namespace CCT
             var hojicha = DrinkRecipe.NewDraft(DrinkKind.Tea); hojicha.name = "호지차 가벼운 우림";
             hojicha.steps.Add(new DrinkStep(DrinkIngredients.HojichaTea, 20)); list.Add(hojicha);
             var pourOver = DrinkRecipe.NewDraft(DrinkKind.Coffee, CoffeeBrewMethod.PourOver); pourOver.name = "SCA 비율 핸드 드립"; pourOver.water = 3000;
-            pourOver.SetAmount(DrinkIngredients.CoffeeBean, 165); list.Add(pourOver);
+            pourOver.SetAmount(DrinkIngredients.CoffeeBean, 170); list.Add(pourOver);
             var espresso = DrinkRecipe.NewDraft(DrinkKind.Coffee, CoffeeBrewMethod.EspressoMachine); espresso.name = "더블 에스프레소 1:2";
             espresso.SetAmount(DrinkIngredients.CoffeeBean, 180); list.Add(espresso);
             var moka = DrinkRecipe.NewDraft(DrinkKind.Coffee, CoffeeBrewMethod.MokaPot); moka.name = "모카포트 3컵"; moka.water = 1300;
@@ -431,13 +448,17 @@ namespace CCT
         public static bool IsSettled(string runId) => !string.IsNullOrEmpty(runId) && Data.settledRunIds.Contains(runId);
 
         /// <summary>보스 처치 시 확정 지급(런 임시 보상). 같은 runId+awardId는 한 번만. 즉시 저장(실패 시 재시도).</summary>
-        public static bool RecordBossAward(string runId, string awardId, string label, IList<DrinkAmount> items)
+        public static bool RecordBossAward(string runId, string awardId, string label, IList<DrinkAmount> items) =>
+            RecordBossAward(runId, awardId, label, items, false);
+
+        /// <summary>2026-11-10 endless = 끝없는 재료 모으기 런 보상(정산 때 출처 장부에도 기록 — 재료는 그대로 지급).</summary>
+        public static bool RecordBossAward(string runId, string awardId, string label, IList<DrinkAmount> items, bool endless)
         {
             if (string.IsNullOrEmpty(runId) || string.IsNullOrEmpty(awardId) || items == null) return false;
             EnsureLoaded();
             if (IsSettled(runId)) return false;
             foreach (var a in data.pending) if (a.runId == runId && a.awardId == awardId) return false;
-            var award = new DrinkRunAward { runId = runId, awardId = awardId, label = label };
+            var award = new DrinkRunAward { runId = runId, awardId = awardId, label = label, endless = endless };
             foreach (var i in items) if (i != null && i.amount > 0 && DrinkIngredients.Get(i.id) != null) award.items.Add(new DrinkAmount(i.id, i.amount));
             CommitEvent(d => d.pending.Add(award));
             return true;
@@ -490,7 +511,7 @@ namespace CCT
                     foreach (var item in a.items)
                     {
                         if (preserve) settlement.discarded.Add(new DrinkAmount(item.id, item.amount));
-                        else { d.Add(item.id, item.amount); settlement.granted.Add(new DrinkAmount(item.id, item.amount)); }
+                        else { d.AddFrom(item.id, item.amount, a.endless); settlement.granted.Add(new DrinkAmount(item.id, item.amount)); }
                     }
                     d.pending.RemoveAt(i);
                 }
@@ -538,7 +559,7 @@ namespace CCT
                         var a = d.pending[i];
                         if ((a.runId ?? "") != runId) continue;
                         if (!d.settledRunIds.Contains(runId))
-                            foreach (var item in a.items) { d.Add(item.id, item.amount); settlement.granted.Add(new DrinkAmount(item.id, item.amount)); }
+                            foreach (var item in a.items) { d.AddFrom(item.id, item.amount, a.endless); settlement.granted.Add(new DrinkAmount(item.id, item.amount)); }
                         d.pending.RemoveAt(i);
                     }
                     MarkSettled(d, runId);
@@ -685,6 +706,15 @@ namespace CCT
         // ───── 72 §6 판매·주문·외형(모두 플레이어 행동 트랜잭션) ─────
 
         public static int Coins => Data.coins;
+
+        /// <summary>2026-11-10 판매 코인은 스킨 재화와 같은 재화라서, 끝없는 재료 모으기 재료가 섞인 음료는 마실 수 있지만 팔 수 없다.</summary>
+        public const string SaleBlockedEndless = "끝없는 재료 모으기 재료가 들어간 음료는 마실 수 있지만 판매할 수 없습니다(스킨 재화 획득 불가).";
+        public const string CraftEndlessWarning = "이 배합은 끝없는 재료 모으기 재료를 씁니다 — 만든 음료는 마실 수 있지만 판매할 수 없습니다.";
+        /// <summary>현재 준비 음료가 판매 불가(끝없는 출처 포함)인지.</summary>
+        public static bool PreparedSaleBlocked { get { var p = Prepared; return p != null && p.HasEndlessSource; } }
+        /// <summary>제조 전 예고: 지금 만들면 끝없는 출처 재료가 섞이는지.</summary>
+        public static bool WouldUseEndless(DrinkRecipe recipe) => Data.WouldUseEndless(recipe);
+        public static int EndlessOwned(string id) => Data.EndlessOwned(id);
         public static IReadOnlyList<DrinkOrder> Orders => Data.orders;
 
         static bool EnsureOrders(DrinkSaveData d)
@@ -715,6 +745,7 @@ namespace CCT
             var p = data.prepared;
             if (p.state != PreparedDrink.Ready) { error = p.state == PreparedDrink.InRun ? "이번 판에 사용 중인 음료는 팔 수 없습니다." : "팔 음료가 없습니다. 먼저 제조하세요."; return false; }
             if (orderIndex < 0 || orderIndex >= data.orders.Count || !data.orders[orderIndex].IsOpen) { error = "열린 주문이 아닙니다."; return false; }
+            if (p.HasEndlessSource) { error = SaleBlockedEndless; return false; } // 2026-11-10 스킨 재화(판매 코인) 우회 차단
             var order = data.orders[orderIndex];
             int price = DrinkSales.Price(order, p.recipe);
             if (price <= 0) { error = "주문 조건(음료 계열·지정 재료 최소량)을 채우지 못했습니다."; return false; }
@@ -722,6 +753,7 @@ namespace CCT
             bool ok = Transact(d =>
             {
                 if (d.prepared.state != PreparedDrink.Ready || d.prepared.drinkId != drinkId || d.soldDrinkIds.Contains(drinkId)) return false;
+                if (d.prepared.HasEndlessSource) return false; // 같은 거래 안에서 다시 확인(재로드·동시 변경에도 코인 0, 음료·재료 그대로)
                 d.prepared = new PreparedDrink();
                 d.coins = (int)Math.Min(int.MaxValue, (long)d.coins + price);
                 d.soldDrinkIds.Add(drinkId);
@@ -751,7 +783,19 @@ namespace CCT
             if (recipe == null) { error = "준비 음료 정보를 읽을 수 없습니다."; return false; }
             return Transact(d =>
             {
-                if (recipe.steps != null) foreach (var step in recipe.steps) if (step != null && step.amount > 0) d.Add(step.id, step.amount);
+                // 2026-11-10 출처 유지 환불: 제조 때 쓴 끝없는 출처 양은 끝없는 출처로, 나머지는 일반 출처로 돌려준다.
+                var endlessLeft = new Dictionary<string, int>();
+                if (d.prepared.endlessAmounts != null)
+                    foreach (var e in d.prepared.endlessAmounts) if (e != null && e.amount > 0) { endlessLeft.TryGetValue(e.id, out int v); endlessLeft[e.id] = v + e.amount; }
+                if (recipe.steps != null)
+                    foreach (var step in recipe.steps)
+                    {
+                        if (step == null || step.amount <= 0) continue;
+                        endlessLeft.TryGetValue(step.id, out int e);
+                        int endlessPart = Math.Min(e, DrinkRules.Whole(step.amount));
+                        if (endlessPart > 0) { d.AddFrom(step.id, endlessPart, true); endlessLeft[step.id] = e - endlessPart; }
+                        if (step.amount - endlessPart > 0) d.AddFrom(step.id, step.amount - endlessPart, false);
+                    }
                 d.prepared = new PreparedDrink();
                 return true;
             }, out error);

@@ -31,6 +31,10 @@ namespace CCT
         RectTransform hiddenContent;
         float hiddenRefresh;
         public bool HiddenDetailsOpen => hiddenDetails != null && hiddenDetails.activeSelf;
+        /// <summary>2026-11-09 지금 적용 중인 음료·추출법·히든 상태 칸(실제 상태 기준).</summary>
+        public ActiveEffectsStrip EffectsStrip { get; private set; }
+        /// <summary>2026-11-09 런 구간·위험도·실제 보스 예고 배지.</summary>
+        public RunPhaseBadge PhaseBadge { get; private set; }
 
         static Text PaddedLabel(RectTransform box, string content, int size, TextAnchor alignment, Color color)
         {
@@ -207,7 +211,7 @@ namespace CCT
             var detailRt=UiFactory.Place("HiddenDetails",root,new Vector2(.5f,.5f),Vector2.zero,new Vector2(980f,780f));
             UiFactory.SkinPanel(UiFactory.AddImage(detailRt,new Color(.12f,.09f,.12f,1f)));
             view.hiddenDetails=detailRt.gameObject;
-            UiFactory.AddText(UiFactory.Place("Title",detailRt,new Vector2(.5f,1f),new Vector2(0,-24f),new Vector2(900f,50f)),"이번 런 히든 스킬 · 현재 효과",34,TextAnchor.MiddleCenter,Color.white);
+            UiFactory.AddText(UiFactory.Place("Title",detailRt,new Vector2(.5f,1f),new Vector2(0,-24f),new Vector2(900f,50f)),"이번 런 효과 · 음료 · 히든 스킬",34,TextAnchor.MiddleCenter,Color.white);
             var scrollRt=UiFactory.Place("Scroll",detailRt,new Vector2(.5f,1f),new Vector2(0,-88f),new Vector2(920f,590f));
             UiFactory.AddImage(scrollRt,Color.clear).raycastTarget=true;
             scrollRt.gameObject.AddComponent<RectMask2D>();
@@ -231,6 +235,15 @@ namespace CCT
             UiFactory.AddText(UiFactory.Stretch("Label",closeRt),MobilePlatform.IsTouchUI ? "게임 재개" : "게임 재개 · Esc",26,TextAnchor.MiddleCenter,Color.white);
             view.hiddenDetails.SetActive(false);
 
+            // 2026-11-09 지속 효과 칸 + 런 구간 배지(상세 창보다 먼저 만들어 상세 창이 위에 그려지게 형제 순서를 앞으로).
+            if (game != null)
+            {
+                view.EffectsStrip = ActiveEffectsStrip.Create(root, game);
+                view.EffectsStrip.transform.SetSiblingIndex(view.hiddenDetails.transform.GetSiblingIndex());
+                view.PhaseBadge = RunPhaseBadge.Create(root, game);
+                view.PhaseBadge.transform.SetSiblingIndex(view.hiddenDetails.transform.GetSiblingIndex());
+            }
+
             // 2026-10-12 Android 터치: 안전 영역(노치·제스처) 안에 HUD를 두고, 조이스틱·연구·히든 버튼을 붙인다.
             // 조작 방식(키보드/마우스) 전환은 의미가 없어 숨기고, 일시정지 버튼은 손가락 크기로 키운다. 데스크톱은 그대로.
             if (MobilePlatform.IsTouchUI)
@@ -249,17 +262,35 @@ namespace CCT
         {
             foreach(Transform child in hiddenContent) { child.gameObject.SetActive(false); Destroy(child.gameObject); }
             int row=0;
+            float y=0f;
+            // 2026-11-09 "지금 적용 중"(HUD 칸과 같은 실제 상태) — 칸 상한으로 묶인 효과도 여기서 모두 본다.
+            var active=ActiveEffects.Collect(game);
+            if(active.Count>0)
+            {
+                UiFactory.AddText(UiFactory.Place("ActiveHeader",hiddenContent,new Vector2(.5f,1f),new Vector2(0,-y),new Vector2(890f,40f)),"지금 적용 중",28,TextAnchor.MiddleLeft,new Color(.75f,.92f,1f));
+                y+=44f;
+                foreach(var e in active)
+                {
+                    var art=UiFactory.Place("Active_"+e.id,hiddenContent,new Vector2(.5f,1f),new Vector2(0,-y),new Vector2(890f,64f));
+                    UiFactory.AddImage(art,new Color(.14f,.12f,.17f,1f)).raycastTarget=false;
+                    string tag=e.kind==ActiveEffectKind.Run?"[상시]":e.kind==ActiveEffectKind.Timed?$"[지속 {IntNum.RemainingSeconds(e.remaining)}초]":e.kind==ActiveEffectKind.Stack?"[누적]":e.kind==ActiveEffectKind.Ready?"[준비]":"[무효]";
+                    var line=UiFactory.AddText(UiFactory.Place("Line",art,new Vector2(.5f,.5f),Vector2.zero,new Vector2(860f,58f)),tag+" "+e.detail,22,TextAnchor.MiddleLeft,Color.white);
+                    line.resizeTextForBestFit=true; line.resizeTextMinSize=16; line.resizeTextMaxSize=22; line.verticalOverflow=VerticalWrapMode.Truncate;
+                    y+=70f;
+                }
+                y+=10f;
+            }
             foreach(var def in HiddenSkillDatabase.All)
             {
                 if(!game.Player.Hidden.Has(def.skill)) continue;
-                var rt=UiFactory.Place(def.id,hiddenContent,new Vector2(.5f,1f),new Vector2(0,-row*116f),new Vector2(890f,108f));
+                var rt=UiFactory.Place(def.id,hiddenContent,new Vector2(.5f,1f),new Vector2(0,-y-row*116f),new Vector2(890f,108f));
                 UiFactory.AddImage(rt,new Color(.19f,.14f,.17f,1f)).raycastTarget=false;
                 UiFactory.AddText(UiFactory.Place("Name",rt,new Vector2(.5f,1),new Vector2(0,-4),new Vector2(860,34)),JobStudyTheme.HiddenName(def,game.Job)+" · "+HiddenSkillDatabase.TierLabel(def.tier),26,TextAnchor.MiddleLeft,new Color(1f,.85f,.4f));
                 UiFactory.AddText(UiFactory.Place("Effect",rt,new Vector2(.5f,1),new Vector2(0,-40),new Vector2(860,66)),game.Player.HiddenRuntime.StateLabel(def.skill),24,TextAnchor.UpperLeft,Color.white);
                 row++;
             }
-            if(row==0) UiFactory.AddText(UiFactory.Place("Empty",hiddenContent,new Vector2(.5f,1),Vector2.zero,new Vector2(880,80)),JobStudyTheme.Text("이번 런에는 아직 해금한 히든 스킬이 없습니다.\n카드·커피 조합 조건을 달성하면 자동으로 적용됩니다.",game.Job),26,TextAnchor.MiddleCenter,Color.white);
-            hiddenContent.sizeDelta=new Vector2(0,Mathf.Max(100,row*116)); hiddenContent.anchoredPosition=Vector2.zero;
+            if(row==0) UiFactory.AddText(UiFactory.Place("Empty",hiddenContent,new Vector2(.5f,1),new Vector2(0,-y),new Vector2(880,80)),JobStudyTheme.Text("이번 런에는 아직 해금한 히든 스킬이 없습니다.\n카드·커피 조합 조건을 달성하면 자동으로 적용됩니다.",game.Job),26,TextAnchor.MiddleCenter,Color.white);
+            hiddenContent.sizeDelta=new Vector2(0,Mathf.Max(100,y+Mathf.Max(1,row)*116)); hiddenContent.anchoredPosition=Vector2.zero;
             hiddenDetails.SetActive(true); hiddenDetails.transform.SetAsLastSibling();
         }
         public void HideHiddenDetails() => hiddenDetails.SetActive(false);
@@ -359,7 +390,7 @@ namespace CCT
                 jobTrait.text=JobPreset.For(game.Job).name+" · "+game.JobTraitStatus;
                 if(comboTarget!=null) comboTarget.text=ComboTargetLabel(game);
                 var runtime=game.Player.HiddenRuntime;
-                hiddenActivity.text=runtime.LastActivationRemaining>0f ? "효과 발동: "+runtime.LastActivation
+                hiddenActivity.text=runtime.LastActivationRemaining>0f ? "[발동] "+runtime.LastActivation
                     : "";
                 hiddenActivity.transform.parent.gameObject.SetActive(runtime.LastActivationRemaining>0f);
             }
@@ -405,7 +436,7 @@ namespace CCT
             SetIcon(suppressedIcon, stats.BonusesSuppressed);
             SetIcon(sealIcon, stats.FlameLocked || stats.PoisonLocked || stats.HybridLocked);
             suppressed.text = stats.BonusesSuppressed
-                ? $"환불 · 강화 무효 {stats.SuppressedRemaining:0.0}초"
+                ? $"환불 · 강화 무효 {IntNum.RemainingSeconds(stats.SuppressedRemaining)}초"
                 : "";
             if (suppressedBack.activeSelf != stats.BonusesSuppressed) suppressedBack.SetActive(stats.BonusesSuppressed);
 

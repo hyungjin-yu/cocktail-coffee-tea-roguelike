@@ -41,6 +41,13 @@ namespace CCT
         public HiddenSkillRuntime HiddenRuntime { get; private set; }
         /// <summary>72 §4 장착 숙련 효과(런 시작 때 GameManager가 붙인다, 없으면 null).</summary>
         public MasteryRuntime Mastery { get; set; }
+        /// <summary>81 마신 커피의 추출법별 전투 리듬(런 시작 때 GameManager가 붙인다, 커피가 아니면 null).</summary>
+        public CoffeeBrewRuntime Coffee { get; set; }
+        /// <summary>2026-11-10 음료 순환 상성: 이번 런에 실제로 마셔 적용 중인 음료 종류(없으면 null). GameManager가 입장 때 한 번 설정하고
+        /// 런 종료 때 해제한다. 직업·보유 음료가 아니라 마신 음료만 기준.</summary>
+        public DrinkKind? DrunkDrink { get; set; }
+        /// <summary>지금 상성을 일으키는 음료: 마신 음료가 있고 음료 효과가 봉인(환불 무효)되지 않았을 때만. 중첩 등록 없이 한 값.</summary>
+        public DrinkKind? AffinityDrink => DrunkDrink != null && !(stats != null && stats.BonusesSuppressed) ? DrunkDrink : null;
         /// <summary>이번 프레임 이동 입력이 있는지(히든 정지/이동 조건).</summary>
         public bool IsMovingInput => input.sqrMagnitude > 0.0001f;
 
@@ -254,9 +261,12 @@ namespace CCT
             if (amount > 0f) AudioService.PlaySfx("hit_player", transform.position);
             float taken = stats.DamageTakenMultiplier;
             if (HiddenRuntime != null) taken *= HiddenRuntime.ExtraTakenMultiplier(taken);
-            Hp = Mathf.Max(0f, Hp - amount * taken);
-            // 67 원인 기록: 유한한 양수 피해가 실제로 HP를 줄였을 때만(무적·차단·0·음수·NaN·무한대는 이전 기록을 덮지 않는다).
+            // 2026-11-06 정수 전용 전투 경계: 배율(도전·감소·히든)을 모두 곱한 뒤 받는 피해를 정수로(중간값은 0에서 먼 쪽, 양수면 최소 1).
+            // 무한대 피해는 그대로 둔다(즉사·원인 기록 규칙 유지).
             float effective = amount * taken;
+            if (effective > 0f && !float.IsInfinity(effective)) effective = IntNum.Damage(effective);
+            Hp = Mathf.Max(0f, Hp - effective);
+            // 67 원인 기록: 유한한 양수 피해가 실제로 HP를 줄였을 때만(무적·차단·0·음수·NaN·무한대는 이전 기록을 덮지 않는다).
             bool attributable = Hp < hpBefore && amount > 0f && !float.IsInfinity(amount) && effective > 0f && !float.IsInfinity(effective);
             if (attributable) LastDamageSource = source;
             if (amount > 0f) HiddenRuntime?.OnDamaged();

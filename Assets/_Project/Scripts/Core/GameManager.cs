@@ -67,9 +67,9 @@ namespace CCT
         public float MixingRushRemaining => mixingRushRemaining;
         public int DeepSteepLevel => Mathf.Clamp(Cards.HighestStacks(CardCategory.Tea)-1,0,6);
         public string JobTraitStatus => Job==Job.Bartender
-            ? mixingRushRemaining>0f ? $"혼합 러시 {mixingRushRemaining:0.0}초\n피해 +20% · 공속 +15%"
+            ? mixingRushRemaining>0f ? $"혼합 러시 {IntNum.RemainingSeconds(mixingRushRemaining)}초\n피해 +20% · 공속 +15%"
                 : $"혼합 러시 · 새 칵테일 {cocktailTypesSeen%3}/3종\n새 3종마다 12초 강화"
-            : $"깊은 우림 {DeepSteepLevel}/6 · 피해 +{DeepSteepLevel*2}%\n초당 추가 회복 +{DeepSteepLevel*.1f:0.0}";
+            : $"깊은 우림 {DeepSteepLevel}/6 · 피해 +{DeepSteepLevel*2}%\n분당 추가 회복 +{IntNum.PerMinute(DeepSteepLevel*.1f)}";
         void RefreshJobTrait(bool cardTaken=false)
         {
             // 46/49: 새 칵테일 '종류' 3/6/9번째에 발동 — 같은 카드의 추가 중첩은 세지 않는다(2026-10-13 총 중첩 기준 버그 수정).
@@ -144,9 +144,19 @@ namespace CCT
             Time.timeScale = 1f;
         }
 
-        public void Initialize(Job job, WeaponKind weapon)
+        /// <summary>2026-11-10 이번 런 모드(출전 화면 선택 RunModeSelection.Current). 런 동안 고정.</summary>
+        public RunMode Mode { get; private set; }
+        public bool IsEndless => Mode == RunMode.Endless;
+        public EnemySpawner Spawner { get; private set; }
+        /// <summary>끝없는 모드의 현재 웨이브(정규 모드 0).</summary>
+        public int EndlessWave => IsEndless && Spawner != null ? Mathf.Max(1, Spawner.EndlessWave) : 0;
+
+        public void Initialize(Job job, WeaponKind weapon) => Initialize(job, weapon, RunModeSelection.Current);
+
+        public void Initialize(Job job, WeaponKind weapon, RunMode mode)
         {
             Time.timeScale = 1f;
+            Mode = mode;
             Job = job;
             Weapon = weapon;
             var preset = JobPreset.For(job);
@@ -185,16 +195,25 @@ namespace CCT
             var background = CreateBackground();
             Player = CreatePlayer(preset, weapon);
             Player.Mastery = MasteryRuntime.Attach(Player, MasteryTraits);
+            // 81 마신 커피만 추출법별 전투 리듬을 붙인다(입장 1회 — 칵테일·차·무음료는 null).
+            var coffee = DrinkBuff != null ? DrinkLab.DrinkInRun(RunId)?.recipe : null;
+            Player.Coffee = coffee != null && coffee.Kind == DrinkKind.Coffee ? CoffeeBrewRuntime.Attach(Player, coffee.coffeeMethod) : null;
+            // 2026-11-10 음료 순환 상성: 실제로 마신 음료(버프 적용된 준비 음료)만. 무음료면 null(상성 없음).
+            Player.DrunkDrink = coffee != null ? coffee.Kind : (DrinkKind?)null;
+            Markers = PlayerEffectMarkers.Attach(Player, this); // 2026-11-09 지금 켜진 효과의 절제된 캐릭터 표식
+            Ambience = RunAmbience.Attach(background, this);    // 2026-11-09 보스 접근/보스전 배경 강조(인스턴스 색만)
             gameObject.AddComponent<CameraRig>().Init(camera, Player.transform, background);
 
             var spawner = new GameObject("Spawner");
             spawner.transform.SetParent(transform, false);
-            spawner.AddComponent<EnemySpawner>().Init(this, Player);
+            Spawner = spawner.AddComponent<EnemySpawner>();
+            Spawner.Init(this, Player);
 
             var director = new GameObject("BossDirector");
             director.transform.SetParent(transform, false);
             Director = director.AddComponent<BossDirector>();
-            Director.Init(this);
+            // 2026-11-10 끝없는 모드 첫 버전: 정규 보스 스케줄 비활성(일반 적/정예 구성으로 지속, 보스 예고 없음).
+            Director.Init(this, IsEndless ? new List<BossDirector.Spec>() : null);
 
             var canvas = UiFactory.CreateCanvas(transform, "UI", 0);
             Hud = HudView.Create(canvas.transform, this);
@@ -211,6 +230,9 @@ namespace CCT
             Guide = new RunGuide(this);
 
             Player.Died += OnPlayerDied;
+            // 2026-11-10 상성 첫 안내(정규 모드 — 끝없는 모드는 웨이브 1 배너에 함께 표시).
+            if (!IsEndless && DrinkAffinity.GuideLine(Player.DrunkDrink) is string affinityGuide)
+                Hud.ShowBanner("음료 상성", affinityGuide, 2.5f);
 
             AudioService.SetMusicState(AudioService.MusicState.Run); // 09:135 "Playing 일반은 run"
             // 09:139 — 새 런은 항상 억제 해제 상태로 시작한다. 직전 런이 Pause/보상창이 열린 채로
@@ -568,8 +590,9 @@ namespace CCT
             if (State != GameState.GameOver)
             {
                 if (playerDiedFlag) EndRun(false, "사망");
-                else if (bossDefeatedFlag) EndRun(true, "클리어");
-                else if (RunTime >= Balance.RunTimeLimitSeconds) EndRun(false, "시간 초과");
+                // 2026-11-10 끝없는 모드: 보스 처치·시간 제한은 종료를 만들지 않는다(사망·포기·타이틀 복귀만).
+                else if (bossDefeatedFlag && !IsEndless) EndRun(true, "클리어");
+                else if (RunTime >= Balance.RunTimeLimitSeconds && !IsEndless) EndRun(false, "시간 초과");
             }
             playerDiedFlag = false;
             bossDefeatedFlag = false;
@@ -658,6 +681,8 @@ namespace CCT
         /// <summary>이번 런 입장 때 마신 준비 음료의 버프(없으면 null). 런 동안 한 번만 적용된 값.</summary>
         public DrinkBuff DrinkBuff { get; private set; }
         public DrinkRunHud DrinkHud { get; private set; }
+        public PlayerEffectMarkers Markers { get; private set; }
+        public RunAmbience Ambience { get; private set; }
         /// <summary>종료 정산 결과(종료 전 null).</summary>
         public DrinkSettlement DrinkSettlement { get; private set; }
         int bossKillIndex;
@@ -672,7 +697,7 @@ namespace CCT
             string awardId = $"boss{bossKillIndex}_{def.boss}";
             var items = DrinkLab.RollAward(DrinkLab.SourceFor(def.boss), RunId, awardId);
             if (items.Count == 0) return;
-            if (!DrinkLab.RecordBossAward(RunId, awardId, def.name, items)) return;
+            if (!DrinkLab.RecordBossAward(RunId, awardId, def.name, items, IsEndless)) return;
             DrinkHud?.OnBossAward(position, items);
         }
 
@@ -707,7 +732,7 @@ namespace CCT
         void RecordSupply(Vector2 position, DrinkSupply.Source source, string awardId, string label)
         {
             var items = DrinkLab.RollAward(source, RunId, awardId);
-            if (items.Count == 0 || !DrinkLab.RecordBossAward(RunId, awardId, label, items)) return;
+            if (items.Count == 0 || !DrinkLab.RecordBossAward(RunId, awardId, label, items, IsEndless)) return;
             DrinkHud?.OnSupplyAward(position, items);
         }
 
@@ -722,6 +747,7 @@ namespace CCT
         /// <summary>강화 보스 처치 시 즉시 영구 저장 — 이후 플레이어가 죽어도 이번에 얻은 스페셜티는 남는다.</summary>
         void GrantSpecialty()
         {
+            if (IsEndless) return; // 2026-11-10 끝없는 모드는 보스 클리어 보상을 주지 않는다(재료는 기존 처치 정책 그대로)
             // 런당 상한·runId 확인 — 같은 보스 처치 이벤트가 중복돼도 두 번 지급하지 않는다. 즉시 저장.
             if (!PermanentProgress.AwardRunSpecialty(RunId, Balance.SpecialtyDropAmount)) return;
             specialtyEarnedThisRun += Balance.SpecialtyDropAmount;
@@ -912,6 +938,7 @@ namespace CCT
             Cleared = cleared;
             EndReason = reason;
             State = GameState.GameOver;
+            if (Player != null) Player.DrunkDrink = null; // 2026-11-10 런 종료 즉시 상성 해제
             Time.timeScale = 0f;
             CommitRun(cleared ? RunOutcome.Cleared : reason == "포기" ? RunOutcome.Abandoned : RunOutcome.Failed);
             SettleDrinks(cleared ? RunEndKind.Cleared : reason == "사망" ? RunEndKind.Died
@@ -932,6 +959,7 @@ namespace CCT
                 coffeeSkillsUnlocked = Skills.UnlockedCount, cocktailCollected = cocktailCollectedThisRun,
                 teaCollected = teaCollectedThisRun, beansCollected = beansCollectedThisRun,
                 specialtyEarned = specialtyEarnedThisRun, seed = Seed, record = RunRecord,
+                mode = Mode, endlessWave = EndlessWave,
             };
             // 사망: 저장·집계는 위에서 즉시 1회 확정하고, 결과 패널만 쓰러지는 동작(defeat, 실시간 재생)이 보인 뒤에 연다
             // (2026-10-08 아트 검수: 결과 패널이 사망 동작을 가림). 이 런 오브젝트가 사라지면(재시작/타이틀) 예약도 함께 사라진다.
@@ -1007,6 +1035,7 @@ namespace CCT
                 specialtyEarned = specialtyEarnedThisRun,
                 hybridUnlocked = HybridUnlocked,
                 appVersion = Application.version,
+                mode = Mode.ToString(), endlessWave = EndlessWave,
             };
             if (kind == RunEndKind.Died)
             {

@@ -90,8 +90,8 @@ namespace CCT
 
         public static string FamilyOf(DrinkRecipe r) => ColorFamily(DrinkCalculator.Look(r).color);
 
-        /// <summary>주문의 최소량(0.1 단위) = 기준 사용량 d의 50%.</summary>
-        public static int MinFor(string id) { var row = DrinkSupply.Get(id); return DrinkIngredients.IsCoffeeBean(id) ? CoffeeBrewing.DoseMinTenths(CoffeeBrewMethod.PourOver) : row != null ? row.baseUse / 2 : 0; }
+        /// <summary>주문의 최소량(0.1 단위 저장값) = 기준 사용량 d의 50%를 1 단위로 반올림(중간값은 0에서 먼 쪽, 최소 1g/1mL).</summary>
+        public static int MinFor(string id) { var row = DrinkSupply.Get(id); return DrinkIngredients.IsCoffeeBean(id) ? CoffeeBrewing.DoseMinTenths(CoffeeBrewMethod.PourOver) : row != null ? Math.Max(DrinkRules.TenthsPerUnit, DrinkRules.Whole(row.baseUse / 2)) : 0; }
 
         public static int MinFor(string id, CoffeeBrewMethod method) => DrinkIngredients.IsCoffeeBean(id) ? CoffeeBrewing.DoseMinTenths(method) : MinFor(id);
 
@@ -112,6 +112,18 @@ namespace CCT
         public static bool TechniqueMatches(DrinkOrder o, DrinkRecipe r) => o != null && r != null && (int)r.Technique == o.technique;
         public static bool CoffeeMethodMatches(DrinkOrder o, DrinkRecipe r) => o != null && r != null && r.Kind == DrinkKind.Coffee && r.coffeeMethod == (CoffeeBrewMethod)o.method;
         public static bool ColorMatches(DrinkOrder o, DrinkRecipe r) => o != null && r != null && FamilyOf(r) == o.colorFamily;
+
+        /// <summary>판매할 수 없는 첫 이유(판매 버튼 글자용, 짧게). 판매할 수 있으면 null. 순서: 음료 없음 → 종류 → 지정 재료 → 추출 도구.</summary>
+        public static string BlockReason(DrinkOrder o, DrinkRecipe r)
+        {
+            if (o == null || !o.IsOpen) return "주문 없음";
+            if (r == null) return "음료 없음";
+            if ((int)r.Kind != o.kind) return "종류 다름";
+            if (AmountFor(r, o.ingA) < o.minA) return "재료 부족";
+            if (r.Kind == DrinkKind.Coffee) { if (r.coffeeMethod != (CoffeeBrewMethod)o.method) return "도구 다름"; }
+            else if (AmountFor(r, o.ingB) < o.minB) return "재료 부족";
+            return null;
+        }
 
         /// <summary>가격(재료를 더 넣거나 버프가 커도 오르지 않는다): 100 + 기법 25 + 색 25, 최대 150. 조건 미달이면 0.</summary>
         public static int Price(DrinkOrder o, DrinkRecipe r) =>

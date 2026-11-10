@@ -29,14 +29,22 @@ namespace CCT
             for (int i = 0; i < values.Length; i++) if (values[i] > 0f) yield return (DrinkStat)i;
         }
 
-        /// <summary>표시만 반올림(소수 1자리 %). 배합량·계산값은 그대로 둔다.</summary>
-        public static string Pct(DrinkStat s, float v) => s == DrinkStat.CritChance ? $"+{v * 100f:0.0}%p"
-            : s == DrinkStat.CooldownReduction ? $"-{v * 100f:0.0}%" : $"+{v * 100f:0.0}%";
+        /// <summary>정수 퍼센트(2026-11-06 정수 전용, 중간값은 0에서 먼 쪽). 런에 실제로 적용되는 값(DrinkCalculator.ApplyTo)도 같은 정수 %다.</summary>
+        public static int Percent(float v) => IntNum.Percent(v);
+
+        public static string Pct(DrinkStat s, float v) => s == DrinkStat.CritChance ? $"+{Percent(v)}%p"
+            : s == DrinkStat.CooldownReduction ? $"-{Percent(v)}%" : $"+{Percent(v)}%";
+
+        /// <summary>정수 %로 0보다 큰 효과만(표시·적용 공통). 0%로 반올림되는 미세 효과는 적용되지 않으므로 보이지 않는다.</summary>
+        public IEnumerable<DrinkStat> Shown()
+        {
+            foreach (var s in Active()) if (Percent(this[s]) > 0) yield return s;
+        }
 
         public string Describe(string separator = " · ")
         {
             var parts = new List<string>();
-            foreach (var s in Active()) parts.Add($"{DrinkRules.StatName(s)} {Pct(s, this[s])}");
+            foreach (var s in Shown()) parts.Add($"{DrinkRules.StatName(s)} {Pct(s, this[s])}");
             return parts.Count == 0 ? "효과 없음" : string.Join(separator, parts);
         }
     }
@@ -382,13 +390,15 @@ namespace CCT
         public static void ApplyTo(PlayerStats stats, DrinkBuff buff)
         {
             if (stats == null || buff == null) return;
-            stats.damagePercent += buff[DrinkStat.Attack];
-            stats.attackSpeedPercent += buff[DrinkStat.AttackSpeed];
-            stats.moveSpeedPercent += buff[DrinkStat.MoveSpeed];
-            stats.maxHpFlat += stats.baseMaxHp * buff[DrinkStat.MaxHp];
-            stats.drinkCritChance = buff[DrinkStat.CritChance];
-            stats.drinkCooldownReduction = buff[DrinkStat.CooldownReduction];
-            stats.rangePercent += buff[DrinkStat.Range];
+            // 2026-11-06 정수 전용: 화면에 보인 정수 %와 같은 값만 적용한다(예: 3.6% → 4%, 0.4% → 0%).
+            float Q(DrinkStat s) => IntNum.QuantizePercent(buff[s]);
+            stats.damagePercent += Q(DrinkStat.Attack);
+            stats.attackSpeedPercent += Q(DrinkStat.AttackSpeed);
+            stats.moveSpeedPercent += Q(DrinkStat.MoveSpeed);
+            stats.maxHpFlat += IntNum.Round(stats.baseMaxHp * Q(DrinkStat.MaxHp)); // 최대 체력 증가량도 정수
+            stats.drinkCritChance = Q(DrinkStat.CritChance);
+            stats.drinkCooldownReduction = Q(DrinkStat.CooldownReduction);
+            stats.rangePercent += Q(DrinkStat.Range);
         }
     }
 }

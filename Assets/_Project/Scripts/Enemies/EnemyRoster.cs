@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CCT
@@ -123,6 +124,86 @@ namespace CCT
             if ((roll -= wSecond) < 0f) return track.secondRanged;
             if ((roll -= wRanged) < 0f) return track.ranged;
             return track.rush;
+        }
+
+        // ───── 2026-11-10 계열 스폰 테이블(기획/모드별 스폰과 장면 변화.md) ─────
+
+        /// <summary>정규 모드 표(기존 PickCommon 규칙을 그대로 계열로 읽은 값, 정수 % — 표시·검증용, 추첨 경로·난수 소비 불변).
+        /// 바텐더 150초 전: 칵테일 65/차 35. 이후: 칵테일 64/차 34/커피 2(0.98×0.65=63.7 반올림). 찻집: 차 100(커피 몫은 차 연구 정령 = 차 계열).
+        /// 직업 없음(테스트 경로): 50/50, 150초 후 49/49/2.</summary>
+        public static void StandardFamilyPercents(Job? job, float runTime, out int cocktail, out int tea, out int coffee)
+        {
+            float c = CocktailShareOfPair(job);
+            if (runTime < CoffeeTrackUnlockTime) { cocktail = IntNum.Round(c * 100.0); tea = 100 - cocktail; coffee = 0; return; }
+            float pair = CocktailShareAfterCoffee + TeaShareAfterCoffee;
+            float cf = job == null ? CocktailShareAfterCoffee : pair * c;
+            int coffeePct = IntNum.Round(CoffeeShareAfterCoffee * 100.0);
+            cocktail = IntNum.Round(cf * 100.0);
+            if (job == Job.TeaSommelier) { cocktail = 0; coffee = 0; tea = 100; return; }
+            coffee = coffeePct;
+            tea = 100 - cocktail - coffee;
+        }
+
+        /// <summary>끝없는 재료 모으기의 계열 후보(사용자·코디네이터 승인 2026-11-10: 직업과 무관하게 세 계열의 실제 몬스터가 등장해 모든 상성이 가능).
+        /// 정규 모드의 "찻집에는 칵테일 몹 없음" 규칙은 정규 표에만 그대로 남는다(이 모드에서만 별도 표를 명시 선택).
+        /// 차 계열은 찻집(티 소믈리에)이면 찻집 트랙, 아니면 바의 차 트랙. 커피 계열은 기존 커피 몹 2종.</summary>
+        public static IReadOnlyList<EnemyDef> EndlessCandidates(MonsterFamily family, Job? job)
+        {
+            var list = new List<EnemyDef>();
+            switch (family)
+            {
+                case MonsterFamily.Cocktail: AddTrack(list, CocktailTrack); break;
+                case MonsterFamily.Tea: AddTrack(list, job == Job.TeaSommelier ? TeaHouseTrack : TeaTrack); break;
+                case MonsterFamily.Coffee: list.Add(EnemyDef.EspressoBug); list.Add(EnemyDef.MilkFoamer); break;
+            }
+            return list;
+        }
+
+        static void AddTrack(List<EnemyDef> list, Track t)
+        {
+            foreach (var d in new[] { t.rush, t.ranged, t.extra, t.secondRanged, t.suicide, t.summoner, t.elite })
+                if (d != null && !list.Contains(d)) list.Add(d);
+        }
+
+        /// <summary>표 검증: 계열 가중치 합 100, 각 계열 후보가 있고, 후보가 전부 그 계열로 명시 분류됐는지. 문제 목록(빈 목록 = 정상).</summary>
+        public static List<string> ValidateEndlessTable(Job? job, int wave)
+        {
+            var errors = new List<string>();
+            int sum = 0;
+            foreach (var f in EndlessFamilies)
+            {
+                sum += EndlessRules.WeightPercent(wave, f);
+                var c = EndlessCandidates(f, job);
+                if (c.Count == 0) errors.Add($"{MonsterFamilies.Name(f)} 계열 후보 없음(job={job})");
+                foreach (var d in c)
+                    if (MonsterFamilies.Of(d) != f) errors.Add($"{d.name}: 표 계열 {MonsterFamilies.Name(MonsterFamilies.Of(d))} ≠ {MonsterFamilies.Name(f)}");
+            }
+            if (sum != 100) errors.Add($"가중치 합 {sum} ≠ 100");
+            return errors;
+        }
+
+        public static readonly MonsterFamily[] EndlessFamilies = { MonsterFamily.Coffee, MonsterFamily.Tea, MonsterFamily.Cocktail };
+
+        /// <summary>끝없는 모드 1마리 추첨: 계열 1회(정수 % 가중치) + 계열 안 아키타입 1회. 시드 스트림만 사용(재현 가능).
+        /// 후보가 없는 계열은 조용히 다른 테마로 바꾸지 않고 예외로 알린다(표 검증이 막아야 하는 상태).</summary>
+        public static EnemyDef PickEndless(int wave, float runTime, IRandomSource rng, Job? job, out MonsterFamily family)
+        {
+            rng ??= UnityRandomSource.Instance;
+            int roll = Mathf.Clamp(Mathf.FloorToInt(rng.Value() * 100f), 0, 99);
+            family = EndlessFamilies[EndlessFamilies.Length - 1];
+            int acc = 0;
+            foreach (var f in EndlessFamilies)
+            {
+                acc += EndlessRules.WeightPercent(wave, f);
+                if (roll < acc) { family = f; break; }
+            }
+            switch (family)
+            {
+                case MonsterFamily.Cocktail: return PickTrack(runTime, CocktailTrack, rng);
+                case MonsterFamily.Tea: return PickTrack(runTime, job == Job.TeaSommelier ? TeaHouseTrack : TeaTrack, rng);
+                case MonsterFamily.Coffee: return PickCoffee(rng);
+            }
+            throw new System.InvalidOperationException($"끝없는 모드 계열 표 오류: {family}");
         }
 
         /// <summary>아키타입에 맞는 행동 컴포넌트를 붙인다. Rush 는 기본 추적 그대로라 붙일 게 없다.</summary>

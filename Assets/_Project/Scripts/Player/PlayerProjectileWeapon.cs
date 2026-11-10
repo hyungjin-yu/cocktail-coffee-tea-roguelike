@@ -35,6 +35,8 @@ namespace CCT
         }
 
         float AcquireRange => stats.Range + RangedBonusRange + AcquireMargin;
+        /// <summary>2026-11-09 표식용(읽기 전용): 지금 조준 사거리(여유 거리 제외).</summary>
+        public float CurrentReach => stats != null ? stats.Range + RangedBonusRange : 0f;
 
         void Update()
         {

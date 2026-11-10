@@ -40,12 +40,14 @@ namespace CCT
             var def = enemy.Def;
             if (def.summonDef == null || Enemy.Active.Count >= Balance.MaxAliveEnemies) return;
 
-            float hpScale = game != null ? Balance.EnemyHpScale(game.RunTime) : 1f;
+            // 2026-11-10: 정규 모드는 기존 시간 체력 배율. 끝없는 모드는 소환자가 받은 웨이브 체력·공격 배율을 그대로 상속.
+            bool endless = game != null && game.Mode == RunMode.Endless;
+            float hpScale = endless ? enemy.HpScale : game != null ? Balance.EnemyHpScale(game.RunTime) : 1f;
             var offset = Random.insideUnitCircle.normalized * (def.radius + 1f);
             var pos = (Vector2)enemy.transform.position + offset;
             pos.y = Mathf.Clamp(pos.y, Balance.DepthMin, Balance.DepthMax); // 06:22 — y를 레인으로 제한
             pos.x = BattleArena.ClampX(pos.x, def.summonDef.radius); // 57 P0-1 구역 안
-            Enemy.SpawnAt(pos, def.summonDef, hpScale, player, enemy.transform.parent);
+            Enemy.SpawnAt(pos, def.summonDef, hpScale, player, enemy.transform.parent, endless ? enemy.AttackScale : 1f);
             // 04 §8 summon_ring — 칵테일 청색/차 녹색 tint(소환 몹의 재료 종류).
             string tint = def.dropType == IngredientType.Tea ? "tea" : "cocktail";
             ArtVfx.GroundRing("summon_ring", pos, 0.6f, 0.5f, Color.white, true, SortOrders.GroundZone, tint);

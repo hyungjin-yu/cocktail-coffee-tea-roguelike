@@ -415,6 +415,13 @@ namespace CCT
         public static readonly EnemyDef TeaCustomer=TeaVariant(DifficultCustomer,"까다로운 차 손님",DifficultCustomer.ArtId);
     }
 
+    /// <summary>2026-11-10 하나의 직접 공격 피해 결과(기본/추가/합계, 정수). 표시 숫자는 계산된 공격 피해(막타의 실제 HP 감소와 구분).</summary>
+    public struct DamageResult
+    {
+        public int baseDamage, bonusDamage, total;
+        public bool Affinity => bonusDamage > 0;
+    }
+
     /// <summary>몹의 기본 추적 이동을 대신할 수 있는 행동 (보스 패턴용).</summary>
     public interface IEnemyDriver
     {
@@ -437,6 +444,12 @@ namespace CCT
         SpriteRenderer sr;
         IEnemyDriver driver;
         float flash;
+        Color flashColor = Color.white;
+        float dotTintReady;
+        Transform visualTf;
+        Vector3 visualBasePos;
+        Vector2 recoilDir;
+        float recoilDistance, recoilTimer;
         bool dead;
         Sprite normalIcon;
         Sprite enragedIcon;
@@ -459,6 +472,8 @@ namespace CCT
         public PlayerController RunPlayer => player;
         public float Hp { get; private set; }
         public float MaxHp { get; private set; }
+        /// <summary>반올림 전 최대 체력(도전 배율 재조정용). MaxHp = 이 값의 정수 반올림.</summary>
+        float rawMaxHp;
         RunChallenge challenge;
         public bool IsDead => dead;
 
@@ -490,14 +505,35 @@ namespace CCT
         public Color NormalColor { get; private set; }
 
         public static Enemy SpawnAt(Vector2 position, EnemyDef def, float hpScale, PlayerController player,
-            Transform parent)
+            Transform parent) => SpawnAt(position, def, hpScale, player, parent, 1f);
+
+        /// <summary>2026-11-10: attackScale은 끝없는 재료 모으기 웨이브 공격 배율(정규 모드는 항상 1 — 기존 값 그대로).
+        /// 원본 EnemyDef(공유 정적 정의)는 바꾸지 않고 이 개체에만 보관해 접촉·투사체·자폭 장판·소환체에 적용한다.</summary>
+        public static Enemy SpawnAt(Vector2 position, EnemyDef def, float hpScale, PlayerController player,
+            Transform parent, float attackScale)
         {
             var go = new GameObject(def.name);
             go.transform.SetParent(parent, false);
             go.transform.position = position;
             var enemy = go.AddComponent<Enemy>();
+            enemy.AttackScale = float.IsNaN(attackScale) || attackScale <= 0f ? 1f : attackScale;
+            enemy.HpScale = hpScale;
             enemy.Init(def, hpScale, player);
             return enemy;
+        }
+
+        /// <summary>이 개체의 공격 배율(1 = 기존). 생성 때 한 번 정해지고 이후 웨이브가 바뀌어도 그대로(신규 적만 새 수치).</summary>
+        public float AttackScale { get; private set; } = 1f;
+        /// <summary>생성 때 받은 체력 배율(소환체 상속용).</summary>
+        public float HpScale { get; private set; } = 1f;
+        /// <summary>명시 계열 표(MonsterFamilies)의 계열.</summary>
+        public MonsterFamily Family => MonsterFamilies.Of(def);
+
+        /// <summary>공격 배율 적용 정수 피해. 배율 1이면 원래 값을 그대로 돌려준다(정규 모드 회귀 없음). 양수면 최소 1.</summary>
+        public float ScaledAttack(float baseDamage)
+        {
+            if (AttackScale == 1f || baseDamage <= 0f) return baseDamage;
+            return Mathf.Max(1, IntNum.Round(baseDamage * (double)AttackScale));
         }
 
         void Init(EnemyDef def, float hpScale, PlayerController player)
@@ -505,7 +541,9 @@ namespace CCT
             this.def = def;
             this.player = player;
             challenge = player != null ? player.Challenge : null;
-            MaxHp = def.hp * hpScale * (challenge?.HpMultiplier ?? 1f);
+            // 2026-11-06 정수 전용: 최대 체력은 정수(중간값은 0에서 먼 쪽, 최소 1). 피해도 정수라 HP는 항상 정수다.
+            rawMaxHp = def.hp * hpScale * (challenge?.HpMultiplier ?? 1f);
+            MaxHp = Mathf.Max(1, IntNum.Round(rawMaxHp));
             Hp = MaxHp;
             if (challenge != null) challenge.HpMultiplierChanged += RescaleChallengeHp;
 
@@ -549,6 +587,8 @@ namespace CCT
                 visualGo.transform.localScale = Vector3.one * def.radius * 2f * visualScale;
                 sr.sprite = icon != null ? icon : SpriteFactory.Capsule;
             }
+            visualTf = visualGo.transform;
+            visualBasePos = visualTf.localPosition;
             normalIcon = sr.sprite;
             enragedIcon = string.IsNullOrEmpty(def.enragedSpriteResourcePath)
                 ? null : Resources.Load<Sprite>(def.enragedSpriteResourcePath);
@@ -664,9 +704,11 @@ namespace CCT
         void RescaleChallengeHp(float previous, float current)
         {
             if (dead || Hp <= 0f || previous <= 0f) return;
-            float ratio = current / previous;
-            MaxHp *= ratio;
-            Hp *= ratio;
+            // 정수 전용: 반올림 전 원값을 배율로 조정한 뒤 한 번만 반올림한다(새로 나온 적과 같은 최대 체력, 누적 오차 없음).
+            float oldMax = MaxHp;
+            rawMaxHp *= current / previous;
+            MaxHp = Mathf.Max(1, IntNum.Round(rawMaxHp));
+            Hp = Mathf.Clamp(IntNum.Round(Hp * MaxHp / oldMax), 1, (int)MaxHp); // 살아 있는 적은 비율 조정으로 죽지 않는다
         }
 
         void Update()
@@ -680,11 +722,12 @@ namespace CCT
             }
 
             TickBodyAnimation();
+            TickRecoil();
 
             if (flash > 0f)
             {
                 flash -= Time.deltaTime;
-                if (flash > 0f) return;
+                if (flash > 0f) { sr.color = flashColor; return; }
             }
             sr.color = BaseColor;
         }
@@ -776,7 +819,7 @@ namespace CCT
             float touch = def.radius + PlayerController.Radius + 0.15f;
             if (toPlayer.sqrMagnitude <= touch * touch)
             {
-                player.TakeContactDamage(this, def.contactDamage);
+                player.TakeContactDamage(this, ScaledAttack(def.contactDamage));
                 if (def.explodesOnContact) Explode();
             }
         }
@@ -799,36 +842,125 @@ namespace CCT
                 }
                 else
                 {
-                    BurstZone.Spawn(transform.position, def.burstZoneRadius, def.burstZoneDamagePerSecond,
+                    BurstZone.Spawn(transform.position, def.burstZoneRadius, ScaledAttack(def.burstZoneDamagePerSecond),
                         def.burstZoneSeconds, player, transform.parent, BurstZone.OliveFireArt, DamageSource.Zone(def, "자폭 장판"));
                 }
             }
             Die();
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(float amount) => TakeDamage(amount, HitKind.Normal, null);
+
+        /// <summary>피해 적용. kind는 연출 구분만 바꾼다(피해량·판정 불변). hitPoint는 불꽃 위치(없으면 몸 중앙 위).
+        /// 2026-11-09: 무적이면 아무것도 하지 않고, 실제 피해가 0 이하면 섬광·소리·불꽃·숫자를 만들지 않는다.</summary>
+        public void TakeDamage(float amount, HitKind kind, Vector2? hitPoint = null)
         {
             if (dead || Invulnerable) return;
 
+            // 2026-11-06 정수 전용 전투 경계: 양수 피해는 정수로(중간값은 0에서 먼 쪽, 최소 1). 피해 숫자·HP 감소·Damaged 이벤트가 같은 값을 쓴다.
+            if (amount > 0f) amount = IntNum.Damage(amount);
+            Apply(amount, 0, kind, hitPoint);
+        }
+
+        /// <summary>2026-11-10 플레이어의 유효 직접 공격(근접·원래 투사체·광역 직접 공격 — 대상마다 따로 호출).
+        /// 기본 정수 피해 B에 음료 순환 상성 추가 피해 A를 더해 하나의 피해 결과 T = B + A로 한 번만 적용한다
+        /// (TakeDamage를 두 번 부르지 않음 → 사망·처치·드롭·히든 이벤트 1회). 지속 피해·반사·파편/추가 효과는 이 경로를 쓰지 않는다.
+        /// 무적·0 피해면 아무것도 하지 않고(숫자·연출 없음) 기본 결과를 돌려준다.</summary>
+        public DamageResult TakeDirectHit(float amount, HitKind kind, Vector2? hitPoint = null)
+        {
+            if (dead || Invulnerable) return default;
+            int b = amount > 0f ? IntNum.Damage(amount) : 0;
+            if (b <= 0) { Apply(amount > 0f ? 0f : amount, 0, kind, hitPoint); return default; }
+            int a = DrinkAffinity.Bonus(b, player != null ? player.AffinityDrink : null, Family);
+            long t = (long)b + a;
+            var result = new DamageResult { baseDamage = b, bonusDamage = a, total = t > int.MaxValue ? int.MaxValue : (int)t };
+            Apply(result.total, a, kind, hitPoint);
+            return result;
+        }
+
+        void Apply(float amount, int bonus, HitKind kind, Vector2? hitPoint)
+        {
             Hp -= amount;
-            flash = 0.06f;
-            sr.color = Color.white;
-            AudioService.PlaySfx("hit_enemy", transform.position);
-            // 04 §8 hit_spark(피격 위치, 16fps 4장). 판정과 무관한 시각 효과.
-            ArtVfx.Spawn("hit_spark", (Vector2)transform.position + new Vector2(0f, def.radius * 0.3f),
-                Random.Range(0f, 360f), 0.5f + def.radius * 0.5f, 0.25f, Color.white, SortOrders.AirVfx, 1.1f, false);
-            var hurt = bodyArt?.Clip("hurt");
+            if (amount > 0f) PlayHitFeedback(kind, hitPoint);
+            Damaged?.Invoke(amount);
+            DamageNumbers.Show(this, amount, kind, bonus); // 08:80 피해 숫자(설정에서 끄면 숫자만 숨김). 상성이면 "합계 (추가 A)"
+            if (Hp <= 0f) Die();
+        }
+
+        /// <summary>판정과 무관한 피격 연출: 종류별 색조·몸체 반동·불꽃(예산 제한)·소리(AudioService 중복/동시 제한).</summary>
+        void PlayHitFeedback(HitKind kind, Vector2? hitPoint)
+        {
+            if (kind == HitKind.Dot)
+            {
+                // 지속 피해: 소리·불꽃 없이 짧은 색조만, 적마다 쿨다운(직접 타격 섬광을 덮지 않음).
+                if (Time.time < dotTintReady || flash > 0f) return;
+                dotTintReady = Time.time + HitFeedback.DotTintCooldown;
+                SetFlash(kind);
+                return;
+            }
+            SetFlash(kind);
+            string sfx = HitFeedback.Sound(kind);
+            if (sfx != null) AudioService.PlaySfx(sfx, transform.position);
+
+            Vector2 center = (Vector2)transform.position + new Vector2(0f, def.radius * 0.3f);
+            Vector2 at = hitPoint ?? center;
+            float recoil = HitFeedback.Recoil(kind) * (def.IsBoss ? 0.5f : 1f);
+            if (recoil > 0f && visualTf != null)
+            {
+                Vector2 from = hitPoint ?? (player != null ? player.Position : at - Vector2.right);
+                Vector2 dir = (Vector2)transform.position - from;
+                recoilDir = dir.sqrMagnitude > 0.0001f ? dir.normalized : Vector2.right;
+                recoilDistance = recoil;
+                recoilTimer = HitFeedback.RecoilSeconds;
+            }
+
+            // 04 §8 hit_spark(피격 위치, 16fps 4장). 판정과 무관한 시각 효과. 다수 적·관통이 한꺼번에 맞아도 예산만큼만.
+            if (!HitFeedback.TryReserveSpark()) return;
+            float scale = HitFeedback.SparkScale(kind);
+            ArtVfx.Spawn("hit_spark", at, Random.Range(0f, 360f), (0.5f + def.radius * 0.5f) * scale, 0.25f,
+                HitFeedback.SparkColor(kind), SortOrders.AirVfx, 1.1f, false);
+            if ((kind == HitKind.Critical || kind == HitKind.Heavy) && !HitFeedback.LowEffects)
+            {
+                // 치명/강타만 짧은 테두리 고리(기존 원 스프라이트) — 일반 타격과 한눈에 구분.
+                var ring = FadeVfx.Spawn(SpriteFactory.Circle, at, 0f, Vector2.one * 0.25f, Vector2.one * (0.7f + def.radius * 0.6f),
+                    kind == HitKind.Critical ? new Color(1f, 0.85f, 0.3f, 0.55f) : new Color(1f, 0.66f, 0.4f, 0.5f), 0.16f, SortOrders.AirVfx);
+                if (transform.parent != null) ring.transform.SetParent(transform.parent, true);
+            }
+        }
+
+        void SetFlash(HitKind kind)
+        {
+            flashColor = HitFeedback.Tint(kind) * BaseColor;
+            flashColor.a = BaseColor.a;
+            flash = HitFeedback.TintSeconds(kind);
+            sr.color = flashColor;
+            var hurt = kind == HitKind.Dot ? null : bodyArt?.Clip("hurt");
             // 행동 클립(예고·공격: charge_prepare/refund/steam/action 등) 중에는 hurt로 덮지 않는다 — 덮으면 hurt 끝 프레임이
-            // 남은 행동 시간 내내 멈춰 보여 공격 예고가 사라진다(2026-10-08 r14 보스 녹화에서 확인). 피격은 흰 섬광·숫자·불꽃으로 계속 표시된다.
+            // 남은 행동 시간 내내 멈춰 보여 공격 예고가 사라진다(2026-10-08 r14 보스 녹화에서 확인). 피격은 색조·숫자·불꽃으로 계속 표시된다.
             if (hurt != null && animator != null && actionTimer <= 0f)
             {
                 animator.Play(hurt, true);
                 hurtTimer = 0.08f;
             }
-            Damaged?.Invoke(amount);
-            DamageNumbers.Show(this, amount); // 08:80 피해 숫자(설정에서 끄면 숫자만 숨김)
-            if (Hp <= 0f) Die();
         }
+
+        /// <summary>피격 반동: Visual 자식의 위치만 잠깐 밀었다가 원위치(게임 시간 — 일시정지 중 정지).</summary>
+        void TickRecoil()
+        {
+            if (visualTf == null || Time.deltaTime <= 0f) return; // 일시정지(timeScale 0): 반동 위치를 그대로 둔다
+            if (recoilTimer > 0f)
+            {
+                recoilTimer = Mathf.Max(0f, recoilTimer - Time.deltaTime);
+                float k = recoilTimer / HitFeedback.RecoilSeconds; // 1 → 0
+                visualTf.localPosition = visualBasePos + (Vector3)(recoilDir * recoilDistance * k);
+            }
+            else if (visualTf.localPosition != visualBasePos) visualTf.localPosition = visualBasePos;
+        }
+
+        /// <summary>테스트/검수용: 현재 피격 색조가 남아 있는지, 반동 오프셋.</summary>
+        public bool HitTintActive => flash > 0f;
+        public Color CurrentBodyColor => sr != null ? sr.color : Color.clear;
+        public Vector3 VisualOffset => visualTf != null ? visualTf.localPosition - visualBasePos : Vector3.zero;
 
         void Die()
         {

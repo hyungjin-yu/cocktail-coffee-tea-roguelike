@@ -32,22 +32,34 @@ namespace CCT
         public bool BarrierReady { get; private set; }
         public int Combo { get; private set; }
         public bool Standing => stillTime >= StillSeconds;
+        /// <summary>2026-11-09 HUD 지속 표시용(읽기 전용): 얼음 찻잔 재충전 남은 초, 주말 러시 남은 초, 콤보 남은 창.</summary>
+        public float BarrierRemaining => BarrierReady ? 0f : barrierTimer;
+        public float SpeedBurstRemaining => Mathf.Max(0f, speedBurst);
+        public bool BitterWakeActive => player != null && Hidden.Has(HiddenSkill.BitterWake) && player.Hp <= player.MaxHp * 0.35f;
         public string LastActivation { get; private set; } = "";
         public float LastActivationRemaining { get; private set; }
         public int ActivationSerial { get; private set; }
+        /// <summary>직전 ModifyDirectDamage가 치명타(×2)였는지 — 무기가 피격 연출 종류(HitKind.Critical)를 고를 때만 쓴다.</summary>
+        public bool LastHitCritical { get; private set; }
+
+        /// <summary>직접 타격 연출 종류: 치명타 > 강한 공격 > 일반.</summary>
+        public static HitKind DirectKind(HiddenSkillRuntime hidden, bool heavy) =>
+            hidden != null && hidden.LastHitCritical ? HitKind.Critical : heavy ? HitKind.Heavy : HitKind.Normal;
         float feedbackReady;
+        HiddenSkill lastSkill;
+        int activationCount;
 
         public string StateLabel(HiddenSkill skill)
         {
             switch (skill)
             {
-                case HiddenSkill.IcedCup: return BarrierReady ? "보호막 준비 완료 · 다음 단발 피해 차단" : $"보호막 재충전 {Mathf.CeilToInt(barrierTimer)}초";
-                case HiddenSkill.SodaPump: return $"재료 끌어당기기 {Mathf.CeilToInt(magnetTimer)}초 후";
+                case HiddenSkill.IcedCup: return BarrierReady ? "보호막 준비 완료 · 다음 단발 피해 차단" : $"보호막 재충전 {IntNum.RemainingSeconds(barrierTimer)}초";
+                case HiddenSkill.SodaPump: return $"재료 끌어당기기 {IntNum.RemainingSeconds(magnetTimer)}초 후";
                 case HiddenSkill.ShakeRhythm: return $"콤보 {Combo}/{ComboMax} · 직접 피해 +{Combo*2}%";
                 case HiddenSkill.BitterWake: return player.Hp <= player.MaxHp*.35f ? "발동 중 · 공격 속도 +25%" : "대기 · 체력 35% 이하에서 발동";
-                case HiddenSkill.HerbGarden: return Standing ? "발동 중 · 회복량 2배" : "대기 · 0.5초 정지 필요";
-                case HiddenSkill.WeekendRush: return speedBurst > 0f ? $"발동 중 · 이동 +15% · {speedBurst:0.0}초" : "대기 · 일반 적 처치 시 발동";
-                case HiddenSkill.ThickMug: return $"적용 중 · 직접 피해 +{ThickMugBonus(player.MaxHp)*100f:0}%";
+                case HiddenSkill.HerbGarden: return Standing ? "발동 중 · 회복량 2배" : $"대기 · {IntNum.Duration(StillSeconds)} 정지 필요";
+                case HiddenSkill.WeekendRush: return speedBurst > 0f ? $"발동 중 · 이동 +15% · {IntNum.RemainingSeconds(speedBurst)}초" : "대기 · 일반 적 처치 시 발동";
+                case HiddenSkill.ThickMug: return $"적용 중 · 직접 피해 +{IntNum.Percent(ThickMugBonus(player.MaxHp))}%";
                 case HiddenSkill.BarTempo: return Standing ? "정지 보너스 · 받는 피해 -10%" : player.IsMovingInput ? "이동 보너스 · 피해 +10%" : "정지 보너스 준비 중";
                 default: return HiddenSkillDatabase.Get(skill).effect;
             }
@@ -55,10 +67,20 @@ namespace CCT
 
         void Notify(HiddenSkill skill, Vector2 position, Color color)
         {
+            // 2026-11-09: 표시 중인 같은 효과가 다시 발동하면 버리지 않고 ×N으로 합친다(텍스트 1줄 유지, VFX는 아래 쿨다운).
+            string name = JobStudyTheme.HiddenName(HiddenSkillDatabase.Get(skill),GetComponentInParent<GameManager>()?.Job ?? Job.Bartender);
+            if (LastActivationRemaining > 0f && lastSkill == skill) activationCount++;
+            else activationCount = 1;
+            lastSkill = skill;
+            if (activationCount > 1)
+            {
+                LastActivation = name + $" ×{activationCount}\n" + StateLabel(skill);
+                LastActivationRemaining = 3f;
+            }
             // 많은 탄이 한 프레임에 맞아도 텍스트/VFX를 무한 생성하지 않는다.
             if (Time.time < feedbackReady) return;
             feedbackReady = Time.time + .35f;
-            LastActivation = JobStudyTheme.HiddenName(HiddenSkillDatabase.Get(skill),GetComponentInParent<GameManager>()?.Job ?? Job.Bartender) + "\n" + StateLabel(skill);
+            LastActivation = name + (activationCount > 1 ? $" ×{activationCount}" : "") + "\n" + StateLabel(skill);
             LastActivationRemaining = 3f;
             ActivationSerial++;
             var fx = FadeVfx.Spawn(SpriteFactory.Crescent, position + Vector2.up*.4f,
@@ -118,6 +140,7 @@ namespace CCT
         /// <summary>직접 타격 피해에 히든 보정을 곱한다. 조건부 증가는 더하고, 치명타는 마지막에 곱한다.</summary>
         public float ModifyDirectDamage(Enemy enemy, float damage)
         {
+            LastHitCritical = false;
             if (enemy == null) return damage;
             float drinkCrit = player.Stats != null ? player.Stats.drinkCritChance : 0f;
             float dist = Vector2.Distance(player.Position, enemy.transform.position);
@@ -129,7 +152,12 @@ namespace CCT
             {
                 // 69 준비 음료 치명타 확률: 기존 치명타 규칙(완벽한 한 잔과 같은 ×2)만 사용, 새 전투 시스템 없음.
                 float plain = damage * (1f + masteryBonus);
-                if (drinkCrit > 0f && Random.value < drinkCrit) return plain * 2f;
+                if (drinkCrit > 0f && Random.value < drinkCrit)
+                {
+                    LastHitCritical = true;
+                    NotifyDrinkCrit();
+                    return plain * 2f;
+                }
                 return plain;
             }
             float bonus = masteryBonus;
@@ -145,6 +173,8 @@ namespace CCT
             if (critChance > 0f && Random.value < critChance)
             {
                 result *= 2f;
+                LastHitCritical = true;
+                NotifyDrinkCrit();
                 if (Hidden.Has(HiddenSkill.PerfectCup)) Notify(HiddenSkill.PerfectCup, enemy.transform.position, Color.yellow);
             }
             else if (bonus > 0f)
@@ -160,11 +190,21 @@ namespace CCT
             return result;
         }
 
+        void NotifyDrinkCrit()
+        {
+            if (player == null || player.Stats == null || player.Stats.drinkCritChance <= 0f) return;
+            // 2026-11-09: 출처(준비 음료 이름)·효과를 짧게, 연속 치명타는 한 알림의 ×N으로 합친다(DrinkRunHud).
+            var hud = player.GetComponentInParent<GameManager>()?.DrinkHud;
+            hud?.ShowDrinkNotice("drink_crit", hud.PreparedDrinkName, "치명타 · 피해 ×2", DrinkNoticeKind.Instant, 0f,
+                new Color(1f, 0.82f, 0.32f));
+        }
+
         public static float ThickMugBonus(float maxHp) => Mathf.Clamp(Mathf.Floor(Mathf.Max(0f, maxHp - 100f) / 20f) * 0.01f, 0f, 0.20f);
 
         /// <summary>직접 타격 직후: 콤보 누적, 이중 마무리 처형(일반 적, 다른 효과 미발동).</summary>
         public void AfterDirectHit(Enemy enemy)
         {
+            player.Coffee?.OnDirectHit(enemy); // 81 모카포트 증기압(직접 타격만)
             if (Hidden.Has(HiddenSkill.ShakeRhythm))
             {
                 Combo = Mathf.Min(ComboMax, Combo + 1);
@@ -174,7 +214,7 @@ namespace CCT
                 enemy.Hp < enemy.MaxHp * 0.12f)
             {
                 Notify(HiddenSkill.DoubleFinish, enemy.transform.position, Color.yellow);
-                enemy.TakeDamage(enemy.Hp);
+                enemy.TakeDamage(enemy.Hp, HitKind.Heavy);
             }
         }
 
@@ -256,7 +296,7 @@ namespace CCT
             if (thornsReady.TryGetValue(source, out var ready) && now < ready) return;
             thornsReady[source] = now + ThornsCooldown * player.Stats.CooldownScale; // 69 음료 재사용 시간 감소
             if (thornsReady.Count > 64) thornsReady.Clear(); // 죽은 적 키 누적 방지(상한만 지키면 됨)
-            source.TakeDamage(player.Stats.Damage);
+            source.TakeDamage(player.Stats.Damage, HitKind.Effect);
             Notify(HiddenSkill.TrayGuard, source.transform.position, Color.yellow);
         }
     }

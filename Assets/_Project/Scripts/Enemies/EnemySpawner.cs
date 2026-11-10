@@ -26,6 +26,7 @@ namespace CCT
             if (player == null || player.IsDead || game.State != GameState.Playing) return;
 
             float t = game.RunTime;
+            if (game.Mode == RunMode.Endless) { TickEndless(t); return; } // 2026-11-10 별도 모드: 기존 트리클·14초 웨이브 대신
 
             timer -= Time.deltaTime;
             if (timer <= 0f)
@@ -90,7 +91,13 @@ namespace CCT
             var enemy = Enemy.SpawnAt(pos, def, Balance.EnemyHpScale(t), player, transform);
             EnemyRoster.AttachBehavior(enemy, game, player);
             RegularSpawns++;
+            if (def.archetype == EnemyArchetype.EliteBarrage) EliteSpawned?.Invoke(def, pos);
         }
+
+        /// <summary>2026-11-09 장면 변주 알림(읽기 전용 통지 — 스폰 규칙·수·난수 소비 불변):
+        /// 실제로 웨이브가 나온 쪽(왼쪽/오른쪽)과 마리 수, 실제로 나온 정예와 그 위치.</summary>
+        public event System.Action<bool, bool, int> WaveSpawned;
+        public event System.Action<EnemyDef, Vector2> EliteSpawned;
 
         /// <summary>14초마다 양쪽 웨이브. 한쪽 4마리에서 3분마다 한 마리씩 늘며 영구 해금 수는 웨이브 수에 중복 적용하지 않는다.
         /// 57 P0-1: 벽에 붙어 한쪽 화면 밖이 구역 밖이면 그쪽 몫은 반대쪽 화면 밖에서 나오고, 안내 문구도 실제 쪽(왼쪽/오른쪽/양쪽)으로 말한다.</summary>
@@ -99,6 +106,7 @@ namespace CCT
             float hpScale = Balance.EnemyHpScale(t);
             var rng = game.SpawnRng;
             bool fromLeft = false, fromRight = false;
+            int spawned = 0;
 
             for (int i = 0; i < Balance.TimeWaveCountPerSide(t); i++)
             {
@@ -110,15 +118,91 @@ namespace CCT
                     var enemy = Enemy.SpawnAt(pos, def, hpScale, player, transform);
                     EnemyRoster.AttachBehavior(enemy, game, player);
                     WaveSpawns++;
+                    spawned++;
                     if (used < 0f) fromLeft = true; else fromRight = true;
+                    if (def.archetype == EnemyArchetype.EliteBarrage) EliteSpawned?.Invoke(def, pos);
                 }
                 if (!UnderCap) break;
             }
             LastWaveSides = BattleArena.SideLabel(fromLeft, fromRight);
             if (fromLeft || fromRight) game.Hud.ShowBanner("몹 웨이브!", $"{LastWaveSides}에서 몰려온다", 1.6f);
+            if (spawned > 0) WaveSpawned?.Invoke(fromLeft, fromRight, spawned);
         }
 
         /// <summary>시험/보고용 — 마지막 웨이브가 실제로 나온 쪽(왼쪽/오른쪽/양쪽).</summary>
         public string LastWaveSides { get; private set; }
+
+        // ───── 2026-11-10 끝없는 재료 모으기 ─────
+        /// <summary>현재 웨이브(시작 전 0). 웨이브 길이·등장 수·배율은 EndlessRules.</summary>
+        public int EndlessWave { get; private set; }
+        /// <summary>이번 웨이브 구간에 지금까지 풀어 놓은 수(구간 분산 배치 — floor(총수 × 경과/30초)).</summary>
+        public int EndlessReleased { get; private set; }
+        /// <summary>생성 대기(압축 정수 묶음). 동시 개체 상한·프레임 예산 때문에 못 나온 적은 사라지지 않고 이월된다(상한 MaxPending).</summary>
+        public int EndlessPending { get; private set; }
+        /// <summary>이 모드에서 실제로 생성한 적 수(전체·계열별).</summary>
+        public int EndlessSpawned { get; private set; }
+        readonly int[] endlessByFamily = new int[4];
+        public int EndlessSpawnedOf(MonsterFamily f) => endlessByFamily[(int)f];
+        /// <summary>웨이브 시작 알림(웨이브 번호). HUD 안내용 읽기 전용 통지.</summary>
+        public event System.Action<int> EndlessWaveStarted;
+
+        /// <summary>테스트용 — 실제 끝없는 모드 틱을 한 번 실행(Time.deltaTime 무관, 주어진 생존 시간 기준).</summary>
+        public void TickEndlessForTests(float runTime) => TickEndless(runTime);
+
+        void TickEndless(float t)
+        {
+            int target = EndlessRules.WaveAt(t);
+            if (EndlessWave == 0) StartEndlessWave(1);
+            // 한 프레임에 여러 웨이브를 건너뛰어도(매우 큰 dt) 앞 웨이브 잔여분을 대기로 이월한다. 반복 상한으로 멈춤 방지.
+            for (int guard = 0; EndlessWave < target && guard < 64; guard++)
+            {
+                AddPending(EndlessRules.WaveCount(EndlessWave) - EndlessReleased);
+                StartEndlessWave(EndlessWave + 1);
+            }
+            if (EndlessWave < target) StartEndlessWave(target);
+
+            int count = EndlessRules.WaveCount(EndlessWave);
+            double into = System.Math.Max(0d, t - (EndlessWave - 1) * (double)EndlessRules.WaveSeconds);
+            int due = (int)System.Math.Min(count, System.Math.Floor(count * into / EndlessRules.WaveSeconds));
+            if (due > EndlessReleased) { AddPending(due - EndlessReleased); EndlessReleased = due; }
+
+            for (int i = 0; i < EndlessRules.SpawnsPerFrame && EndlessPending > 0 && UnderCap; i++)
+            {
+                SpawnEndlessOne(t);
+                EndlessPending--;
+            }
+        }
+
+        void AddPending(int n)
+        {
+            if (n <= 0) return;
+            EndlessPending = (int)System.Math.Min(EndlessRules.MaxPending, (long)EndlessPending + n);
+        }
+
+        void StartEndlessWave(int wave)
+        {
+            EndlessWave = wave;
+            EndlessReleased = 0;
+            var focus = EndlessRules.FocusFor(wave);
+            string sub = $"집중 {MonsterFamilies.Name(focus)} 계열 {EndlessRules.FocusWeightPercent}% · 체력 {EndlessRules.HpPercent(wave)}% · 공격 {EndlessRules.AttackPercent(wave)}%";
+            if (EndlessRules.IsFocusPreviewWave(wave))
+                sub = $"다음 웨이브부터 집중 계열: {MonsterFamilies.Name(EndlessRules.FocusFor(wave + 1))} · " + sub;
+            if (wave == 1 && DrinkAffinity.GuideLine(player != null ? player.DrunkDrink : null) is string guide) sub += " · 상성 " + guide;
+            game.Hud?.ShowBanner($"웨이브 {wave}", sub, wave == 1 ? 3f : 1.8f);
+            EndlessWaveStarted?.Invoke(wave);
+        }
+
+        void SpawnEndlessOne(float t)
+        {
+            var rng = game.SpawnRng;
+            float side = rng.Value() < 0.5f ? -1f : 1f;
+            var def = EnemyRoster.PickEndless(EndlessWave, t, rng, game.Job, out var family);
+            var pos = BeltScroll.ArenaEdgePosition(cam, side, Balance.SpawnEdgeMargin, def.radius, out _);
+            var enemy = Enemy.SpawnAt(pos, def, EndlessRules.HpScale(EndlessWave), player, transform, EndlessRules.AttackScale(EndlessWave));
+            EnemyRoster.AttachBehavior(enemy, game, player);
+            EndlessSpawned++;
+            endlessByFamily[(int)family]++;
+            if (def.archetype == EnemyArchetype.EliteBarrage) EliteSpawned?.Invoke(def, pos);
+        }
     }
 }

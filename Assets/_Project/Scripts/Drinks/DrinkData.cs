@@ -396,7 +396,8 @@ namespace CCT
         public static readonly Color WaterColor = new Color(0.93f, 0.97f, 1f, 1f);
     }
 
-    /// <summary>제조 규칙·한도(임시 기본값). 모든 양은 정수 1 = 0.1 단위.</summary>
+    /// <summary>제조 규칙·한도(임시 기본값). 내부 저장은 정수 1 = 0.1 단위(세이브·공유 코드 호환)지만,
+    /// 2026-11-06부터 배합·재고·보상·주문에 들어가는 실제 양은 항상 1mL/1g의 배수(10의 배수)로 정수화한다(Whole).</summary>
     public static class DrinkRules
     {
         public const int TenthsPerUnit = 10;
@@ -404,7 +405,7 @@ namespace CCT
         public const int CocktailWaterMax = 300;      // 30.0 mL 희석수
         public const int TeaWaterFixed = 1500;        // 150.0 mL 고정
         public const int TeaAdditiveMax = 300;        // 첨가 액체 30.0 mL
-        public const int TeaLeafMin = 1;              // 0.1 g
+        public const int TeaLeafMin = 10;             // 1 g (2026-11-06 정수 전용: 최소 1g)
         public const int TeaLeafMax = 50;             // 5.0 g
         public const int IceMax = 4;
         public const int JiggerCapacity = 450;        // 45.0 mL 더블 지거
@@ -479,12 +480,12 @@ namespace CCT
 
         public static string TechniqueRule(DrinkTechnique t) => t switch
         {
-            DrinkTechnique.Shake => "셰이커로 흔들기 — 치명타 기여 ×1.15, 나머지 ×0.95",
-            DrinkTechnique.Stir => "믹싱 글라스에서 젓기 — 공격력·공격 속도 기여 ×1.08, 나머지 ×0.95",
-            DrinkTechnique.Build => "마실 잔에 순서대로 붓기 — 전체 ×1.00",
-            DrinkTechnique.Layer => "천천히 층 쌓기 — 서로 다른 효과 2종 이상이면 전체 ×1.05, 1종이면 ×0.90",
-            DrinkTechnique.Steep => "다관에 우리기 — 전체 ×1.00",
-            DrinkTechnique.Brew => "고른 추출 도구로 내리기 — 전체 ×1.00",
+            DrinkTechnique.Shake => "셰이커로 흔들기 — 치명타 기여 115%, 나머지 95%",
+            DrinkTechnique.Stir => "믹싱 글라스에서 젓기 — 공격력·공격 속도 기여 108%, 나머지 95%",
+            DrinkTechnique.Build => "마실 잔에 순서대로 붓기 — 전체 100%",
+            DrinkTechnique.Layer => "천천히 층 쌓기 — 서로 다른 효과 2종 이상이면 전체 105%, 1종이면 90%",
+            DrinkTechnique.Steep => "다관에 우리기 — 전체 100%",
+            DrinkTechnique.Brew => "고른 추출 도구로 내리기 — 전체 100%",
             _ => "",
         };
 
@@ -525,17 +526,25 @@ namespace CCT
             _ => 0f,
         };
 
-        /// <summary>0.1 단위 정수 → "12.3" 표시(반올림 없음, 정확).</summary>
-        public static string Format(int tenths)
-        {
-            bool neg = tenths < 0;
-            long abs = Math.Abs((long)tenths);
-            return (neg ? "-" : "") + (abs / 10) + "." + (abs % 10);
-        }
+        /// <summary>0.1 단위 정수 → 1 단위로 반올림(중간값은 0에서 먼 쪽). 23.5 → 24, 23.4 → 23.</summary>
+        public static int ToUnits(int tenths) => IntNum.Round(tenths / (double)TenthsPerUnit);
+
+        /// <summary>0.1 단위 정수를 1 단위 배수(10의 배수)로 반올림한다(배합·재고·보상·주문의 실제 거래값 경계).</summary>
+        public static int Whole(int tenths) => (int)Math.Max(int.MinValue, Math.Min(int.MaxValue, (long)ToUnits(tenths) * TenthsPerUnit));
+
+        /// <summary>한도(넘으면 안 되는 양)를 1 단위 배수로 내림한다. 음수는 0.</summary>
+        public static int WholeFloor(int tenths) => tenths <= 0 ? 0 : tenths / TenthsPerUnit * TenthsPerUnit;
+
+        /// <summary>정수 1 단위 → 0.1 단위 저장값.</summary>
+        public static int FromUnits(int units) => (int)Math.Max(int.MinValue, Math.Min(int.MaxValue, (long)units * TenthsPerUnit));
+
+        /// <summary>0.1 단위 정수 → 정수 표시("12"). 소수점은 쓰지 않는다(2026-11-06). 실제 거래값은 Whole로 이미 정수다.</summary>
+        public static string Format(int tenths) => ToUnits(tenths).ToString(System.Globalization.CultureInfo.InvariantCulture);
 
         public static string Format(int tenths, IngredientForm form) => Format(tenths) + (form == IngredientForm.Leaf ? "g" : "mL");
 
-        /// <summary>사용자 입력(직접 입력·붙여넣기) → 0.1 단위 정수. 숫자·소수점 한 개만 허용, 소수 둘째 자리 이상·음수·NaN·지수·빈 값은 거부.</summary>
+        /// <summary>사용자 입력(직접 입력·붙여넣기) → 0.1 단위 저장값(항상 10의 배수). 정수만 허용("12", "12mL", "12.0"처럼 0뿐인 소수 자리는 허용),
+        /// 소수(12.5)·음수·NaN·지수·빈 값은 거부한다.</summary>
         public static bool TryParseAmount(string text, out int tenths, out string error)
         {
             tenths = 0;
@@ -553,26 +562,20 @@ namespace CCT
                 char c = s[i];
                 if (c == '.')
                 {
-                    if (dot >= 0) { error = "소수점은 한 번만 쓸 수 있습니다."; return false; }
+                    if (dot >= 0) { error = "정수로만 입력할 수 있습니다."; return false; }
                     dot = i;
                 }
-                else if (c < '0' || c > '9') { error = "숫자와 소수점만 입력할 수 있습니다."; return false; }
+                else if (c < '0' || c > '9') { error = "숫자만 입력할 수 있습니다."; return false; }
             }
             string whole = dot < 0 ? s : s.Substring(0, dot);
             string frac = dot < 0 ? "" : s.Substring(dot + 1);
-            if (whole.Length == 0 && frac.Length == 0) { error = "숫자를 입력하세요."; return false; }
-            if (frac.Length > 1)
-            {
-                // "1.20"처럼 0으로 끝나는 자리는 허용, 0.05 같은 0.1 미만 단위는 거부.
-                for (int i = 1; i < frac.Length; i++)
-                    if (frac[i] != '0') { error = "0.1 단위까지만 입력할 수 있습니다."; return false; }
-                frac = frac.Substring(0, 1);
-            }
-            long w = whole.Length == 0 ? 0 : long.Parse(whole);
-            long f = frac.Length == 0 ? 0 : frac[0] - '0';
-            long value = w * 10 + f;
-            if (value > 100000) { error = "값이 너무 큽니다."; return false; }
-            tenths = (int)value;
+            if (whole.Length == 0) { error = "정수로만 입력할 수 있습니다."; return false; }
+            // "12.0"처럼 0뿐인 소수 자리는 같은 정수로 본다. 12.5 같은 소수는 거부(정수 전용).
+            for (int i = 0; i < frac.Length; i++)
+                if (frac[i] != '0') { error = "정수로만 입력할 수 있습니다."; return false; }
+            long w = long.Parse(whole);
+            if (w > 10000) { error = "값이 너무 큽니다."; return false; }
+            tenths = (int)(w * TenthsPerUnit);
             return true;
         }
     }

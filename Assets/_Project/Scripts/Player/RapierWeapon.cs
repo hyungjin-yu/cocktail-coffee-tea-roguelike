@@ -24,6 +24,8 @@ namespace CCT
         bool isSword;
         int swingIndex;
         float ReachRange => stats.Range * (isSword ? Balance.SwordRangeMultiplier : 1f);
+        /// <summary>2026-11-09 표식용(읽기 전용): 지금 베기 판정 반지름.</summary>
+        public float CurrentReach => stats != null ? ReachRange : 0f;
         /// <summary>48 QA A/B 전용(PlayVerifier가 설정): 검 경직만 끈다. 출시 빌드에서는 설정하는 코드가 없다.</summary>
         public static bool QaDisableSwordStagger;
 
@@ -88,7 +90,11 @@ namespace CCT
                 if (enemy.IsDead || !hitEnemies.Add(enemy) || enemy.RunPlayer != player) continue;
                 EnemyHitStatus.AttachDirect(enemy, player);
                 var hidden = player.HiddenRuntime;
-                enemy.TakeDamage(hidden != null ? hidden.ModifyDirectDamage(enemy, damage) : damage);
+                float dealt = hidden != null ? hidden.ModifyDirectDamage(enemy, damage) : damage;
+                // 2026-11-09 피격 연출: 치명타 > 연속 마무리(강타) > 일반. 불꽃은 적 몸의 플레이어 쪽 가장자리.
+                Vector2 toward = origin - (Vector2)enemy.transform.position;
+                Vector2 edge = (Vector2)enemy.transform.position + (toward.sqrMagnitude > 0.0001f ? toward.normalized : -forwardDir) * enemy.Def.radius * 0.7f;
+                enemy.TakeDirectHit(dealt, HiddenSkillRuntime.DirectKind(hidden, finalChainHit), edge); // 2026-11-10 상성 포함 단일 피해
                 hidden?.AfterDirectHit(enemy);
                 if (isSword && !QaDisableSwordStagger && !enemy.IsDead) enemy.TryStagger(Balance.SwordStaggerSeconds, Balance.SwordStaggerCooldown * stats.CooldownScale);
             }

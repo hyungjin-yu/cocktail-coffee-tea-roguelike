@@ -37,12 +37,13 @@ namespace CCT
     /// 전체 화면 메뉴(직업 선택·조작 안내·카드 선택·트리)의 내용을 캔버스가 1080보다 높을 때 세로 가운데 1080 띠에 둔다.
     /// 루트 자체를 가운데 띠로 줄이고(자식 경로·배치는 그대로), 배경색·카페 배경은 띠 밖까지 늘려 화면 전체를 덮는다.
     /// 캔버스 높이 ≤ 1080(16:9 데스크톱·가로 폰)이면 아무것도 바꾸지 않는다.
+    /// MaxWidth(기본 0 = 끔)를 주면 가로도 같은 방식: 캔버스가 그보다 넓은 창(21:9 등)에서 내용을 가로 가운데 띠에 둔다.
     /// </summary>
     public class CenterBand : MonoBehaviour
     {
         public const float BandHeight = 1080f;
         RectTransform rt, parent, fill, backdrop;
-        float lastExtra = -1f;
+        float lastExtra = -1f, lastExtraW = -1f, maxWidth;
         Vector2 backdropMin, backdropMax;
         Image rootImage; Color rootColor;
 
@@ -78,27 +79,36 @@ namespace CCT
         void LateUpdate() => Apply();
 
         public float Extra => parent == null ? 0f : Mathf.Max(0f, parent.rect.height - BandHeight);
+        public float ExtraWidth => parent == null || maxWidth <= 0f ? 0f : Mathf.Max(0f, parent.rect.width - maxWidth);
+
+        /// <summary>가로 띠 폭(0 이하 = 가로 띠 없음). 바꾸면 바로 다시 배치한다.</summary>
+        public float MaxWidth
+        {
+            get => maxWidth;
+            set { maxWidth = value; lastExtra = lastExtraW = -1f; Apply(); }
+        }
 
         void Apply()
         {
             if (rt == null) return;
-            float extra = Extra;
-            if (Mathf.Approximately(extra, lastExtra)) return;
-            lastExtra = extra;
-            float half = extra * 0.5f;
+            float extra = Extra, extraW = ExtraWidth;
+            if (Mathf.Approximately(extra, lastExtra) && Mathf.Approximately(extraW, lastExtraW)) return;
+            lastExtra = extra; lastExtraW = extraW;
+            var half = new Vector2(extraW * 0.5f, extra * 0.5f);
+            bool banded = extra > 0f || extraW > 0f;
             rt.anchorMin = Vector2.zero; rt.anchorMax = Vector2.one;
-            rt.offsetMin = new Vector2(0f, half); rt.offsetMax = new Vector2(0f, -half);
+            rt.offsetMin = half; rt.offsetMax = -half;
             if (fill != null)
             {
                 // 띠가 필요할 때만 채움을 켜고 루트 이미지를 투명하게(입력 차단은 유지). 16:9 이하는 원래 그대로.
-                fill.gameObject.SetActive(extra > 0f);
-                fill.offsetMin = new Vector2(0f, -half); fill.offsetMax = new Vector2(0f, half);
-                rootImage.color = extra > 0f ? new Color(rootColor.r, rootColor.g, rootColor.b, 0f) : rootColor;
+                fill.gameObject.SetActive(banded);
+                fill.offsetMin = -half; fill.offsetMax = half;
+                rootImage.color = banded ? new Color(rootColor.r, rootColor.g, rootColor.b, 0f) : rootColor;
             }
             if (backdrop != null)
             {
-                backdrop.offsetMin = backdropMin - new Vector2(0f, half);
-                backdrop.offsetMax = backdropMax + new Vector2(0f, half);
+                backdrop.offsetMin = backdropMin - half;
+                backdrop.offsetMax = backdropMax + half;
             }
         }
     }

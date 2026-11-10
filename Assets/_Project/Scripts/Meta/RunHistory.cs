@@ -55,6 +55,11 @@ namespace CCT
         /// <summary>DamageKind 이름(사망일 때만).</summary>
         public string deathCauseKind = "";
         public string appVersion;
+        /// <summary>2026-11-10 런 모드 이름("Standard"/"Endless"). 이전 기록은 빈 값 → 정규 모드로 호환(RunModeSelection.Parse).</summary>
+        public string mode = "";
+        /// <summary>끝없는 모드 도달 웨이브(정규 0).</summary>
+        public int endlessWave;
+        public RunMode Mode => RunModeSelection.Parse(mode);
         public List<RunCardEntry> cards = new List<RunCardEntry>();
         public List<RunNamedEntry> combos = new List<RunNamedEntry>();
         public List<RunNamedEntry> research = new List<RunNamedEntry>();
@@ -564,7 +569,11 @@ namespace CCT
 
         /// <summary>목록 한 줄: "사망 · 바텐더 · 레이피어 · 12:34".</summary>
         public static string ListLine(RunRecord r) =>
-            $"{EndTitle(r.EndKind)}  ·  {JobName(r)}  ·  {WeaponName(r)}  ·  {Time(r.runSeconds)}";
+            $"{EndTitle(r.EndKind)}  ·  {JobName(r)}  ·  {WeaponName(r)}  ·  {Time(r.runSeconds)}" + ModeSuffix(r);
+
+        /// <summary>2026-11-10 끝없는 모드 기록만 "· 끝없는 재료 모으기 웨이브 N"을 붙인다(정규·이전 기록은 기존 문구 그대로).</summary>
+        public static string ModeSuffix(RunRecord r) =>
+            r != null && r.Mode == RunMode.Endless ? $"  ·  {RunModeSelection.Name(RunMode.Endless)} 웨이브 {System.Math.Max(1, r.endlessWave)}" : "";
 
         public static string EndedLocal(RunRecord r)
         {

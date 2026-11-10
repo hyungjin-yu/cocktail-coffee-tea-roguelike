@@ -42,6 +42,13 @@ namespace CCT
         List<Spec> schedule;
         int next;
 
+        /// <summary>2026-11-09 HUD 구간·보스 예고용(읽기 전용, 스케줄·규칙 불변): 이미 등장한 보스 수, 다음 보스 스펙(없으면 null), 전체 수.</summary>
+        public int SpawnedCount => next;
+        /// <summary>실제로 SpawnNow로 등장한 보스 수(스케줄 경로·직접 호출 모두). 장면 단계 판정용.</summary>
+        public int BossesSpawned { get; private set; }
+        public int ScheduleCount => schedule != null ? schedule.Count : 0;
+        public Spec NextSpec => schedule != null && next < schedule.Count ? schedule[next] : null;
+
         public void Init(GameManager game, List<Spec> schedule = null)
         {
             this.game = game;
@@ -89,6 +96,7 @@ namespace CCT
             }
 
             game.ActiveBoss = boss;
+            BossesSpawned++;
             game.Player?.HiddenRuntime?.OnBossSpawned(); // 41 삼색 원두
             AudioService.PlaySfx("boss_warning"); // 09: "보스 입장/위험" — 중앙 고정(worldPos 없음)
             AudioService.SetMusicState(AudioService.MusicState.Boss); // 09:135 "보스 생존은 boss"

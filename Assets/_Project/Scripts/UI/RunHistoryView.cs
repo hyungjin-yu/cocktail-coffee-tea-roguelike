@@ -66,6 +66,8 @@ namespace CCT
 
             v.titleText = UiFactory.AddText(UiFactory.Place("Title", panel, new Vector2(0.5f, 1f), new Vector2(0f, -26f),
                 new Vector2(ScrollWidth, 64f)), "", 44, TextAnchor.MiddleCenter, Gold);
+            // 2026-11-10 끝없는 모드 기록은 제목이 길어진다 — 넘칠 때만 글자를 줄인다(기존 길이는 44 그대로).
+            v.titleText.resizeTextForBestFit = true; v.titleText.resizeTextMinSize = 28; v.titleText.resizeTextMaxSize = 44;
             v.identityText = Line(panel, "Identity", -94f, 44f, 30, Cream);
             v.endText = Line(panel, "EndDetail", -140f, UiFactory.TruncatedBoxHeight(28, 2), 28, new Color(1f, 0.72f, 0.72f));
             v.endText.verticalOverflow = VerticalWrapMode.Truncate;
@@ -120,7 +122,7 @@ namespace CCT
             if (record == null) return;
             shown = record;
             returnFocus = focusAfterClose != null ? focusAfterClose : EventSystem.current?.currentSelectedGameObject;
-            titleText.text = $"{RunRecordText.EndTitle(record.EndKind)}  ·  {RunRecordText.TimeLabel(record)} {RunRecordText.Time(record.runSeconds)}";
+            titleText.text = $"{RunRecordText.EndTitle(record.EndKind)}  ·  {RunRecordText.TimeLabel(record)} {RunRecordText.Time(record.runSeconds)}" + RunRecordText.ModeSuffix(record);
             titleText.color = record.EndKind == RunEndKind.Cleared ? Gold : new Color(1f, 0.6f, 0.65f);
             identityText.text = $"{RunRecordText.JobName(record)}  ·  시작 무기 {RunRecordText.WeaponName(record)}  ·  처치 {record.kills}";
             endText.text = RunRecordText.EndDetail(record);
