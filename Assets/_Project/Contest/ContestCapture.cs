@@ -90,13 +90,8 @@ namespace CCT.Contest
 
         void LateUpdate()
         {
-            if (recording) StartCoroutine(CaptureFrame("frame_" + (frame++).ToString("00000")));
-        }
-
-        IEnumerator CaptureFrame(string name)
-        {
-            yield return new WaitForEndOfFrame();
-            Grab(name);
+            // batchmode 플레이어에서는 WaitForEndOfFrame이 오지 않을 수 있어, Update 이후 직접 렌더해 읽는다.
+            if (recording) Grab("frame_" + (frame++).ToString("00000"));
         }
 
         void Grab(string name)
@@ -114,7 +109,7 @@ namespace CCT.Contest
         IEnumerator Shot(string name)
         {
             yield return new WaitForSecondsRealtime(0.6f); // 행 표시 연출이 끝난 뒤
-            yield return new WaitForEndOfFrame();
+            yield return null;
             Grab(name);
             AuditText(name);
         }
@@ -206,7 +201,8 @@ namespace CCT.Contest
             yield return Press("CupsMinus", () => app.ChangeCups(-1), 0.3f, 0.4f);
             yield return Pour(app);
             yield return Press("Inspect", app.RequestInspection, 0.5f, 3.2f);   // 합격
-            yield return Press("Deliver", app.Deliver, 0.5f, 6.5f);
+            yield return Press("Deliver", app.Deliver, 0.5f, 5.5f);
+            yield return Press("Next", app.NextMission, 0.6f, 5.0f);         // 다음 임무(임무 2) 요청서로 이어짐
         }
 
         IEnumerator Shots(ContestApp app)

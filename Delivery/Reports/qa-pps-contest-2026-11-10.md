@@ -1,4 +1,6 @@
-# QA — 공모전판(음료 마스터: 공공조달 체험편) 2026-11-10
+# QA — 공모전판(음료 마스터: 공공조달 체험편) 2026-11-10 (중단 시점 기록)
+
+> **대체됨:** 최종 검증 결과는 `qa-pps-contest-2026-11-11.md`. 아래는 2026-11-10 중단 당시 상태이며 NOT RUN 항목은 11-11에 실행했다.
 
 - worktree: `C:/Users/user/orca/workspaces/CocktailCoffeeTea/pps-contest-2026`, 브랜치 `hyungjin-yu/pps-contest-2026`, 기반 `f7f3449`
 - Unity 6000.3.25f1 · 저장 프로필: 테스트는 임시 폴더(`%TEMP%/pps-contest-*`), 사용자 save/PlayerPrefs 미접근

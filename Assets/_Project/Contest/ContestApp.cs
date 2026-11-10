@@ -448,7 +448,7 @@ namespace CCT.Contest
             var steam = Kit.Sprite(root, "dl_steam_00", 340, 600, 64, 96);
             Kit.Frames(steam, "dl_steam_", 4, 6f);
 
-            Kit.Label(root, "음료 마스터", 0, 150, 1920, 120, 96, Kit.Cream, TextAnchor.MiddleCenter, "TitleMain");
+            Kit.Label(root, "음료 마스터", 0, 120, 1920, 150, 96, Kit.Cream, TextAnchor.MiddleCenter, "TitleMain");
             Kit.Label(root, "공공조달 체험편", 0, 270, 1920, 70, 48, Kit.Accent, TextAnchor.MiddleCenter, "TitleSub");
             Kit.Label(root, "가상의 지역 행사에 필요한 커피·차를 요청 조건대로 준비해 납품하는 공급 협력자가 되어 보세요.",
                 460, 360, 1000, 90, 28, Kit.Cream, TextAnchor.MiddleCenter, "Pitch");
@@ -508,7 +508,7 @@ namespace CCT.Contest
             Kit.Label(top, "예산 " + s.Remaining + " / " + m.Budget + "코인", 1520, 18, 310, 52, 28, Kit.Cream, TextAnchor.MiddleRight, "Budget");
 
             // 단계 표시
-            int cur = s.Stage switch { Stage.Request => 0, Stage.Supply => 1, Stage.Receive => 2, Stage.Brew => 3, Stage.Inspect => 4, _ => 5 };
+            int cur = s.Stage switch { Stage.Request => 0, Stage.Supply => 1, Stage.Receive => 2, Stage.Brew => 3, Stage.Inspect => 4, Stage.Failed => -1, _ => 5 }; // 중단 시 완료 표시 없음
             for (int i = 0; i < StageNames.Length; i++)
             {
                 var chip = Kit.Rect("Stage" + i, root, 32 + i * 312, 116, 296, 52);
@@ -561,7 +561,7 @@ namespace CCT.Contest
 
         void DrawRequest(RectTransform main, ContestSession s)
         {
-            Kit.Label(main, "1. 요청 확인", 40, 32, 1216, 56, 40, Kit.Accent);
+            Kit.Label(main, "1. 요청 확인", 40, 24, 1216, 68, 40, Kit.Accent);
             Kit.Label(main, s.Mission.Purpose + "\n요청서의 각 항목을 눌러 확인하세요. 확인한 조건이 공급안 선택·제조·검수의 기준이 됩니다.", 40, 100, 1216, 100, 26, Kit.Cream);
             float y = 210;
             for (int i = 0; i < s.Conditions.Count; i++)
@@ -580,7 +580,7 @@ namespace CCT.Contest
 
         void DrawSupply(RectTransform main, ContestSession s)
         {
-            Kit.Label(main, "2. 공급안 선택 — 같은 조건으로 3개 공급안 비교", 40, 24, 1216, 52, 36, Kit.Accent);
+            Kit.Label(main, "2. 공급안 선택 — 같은 조건으로 3개 공급안 비교", 40, 24, 1216, 64, 36, Kit.Accent);
             for (int i = 0; i < 3; i++)
             {
                 var o = s.Mission.Offers[i];
@@ -629,7 +629,7 @@ namespace CCT.Contest
 
         void DrawReceive(RectTransform main, ContestSession s)
         {
-            Kit.Label(main, "3. 입고 확인 — 도착한 포장을 하나씩 검사", 40, 24, 1216, 52, 36, Kit.Accent);
+            Kit.Label(main, "3. 입고 확인 — 도착한 포장을 하나씩 검사", 40, 24, 1216, 64, 36, Kit.Accent);
             Kit.Label(main, "주문: " + s.Chosen.Supplier + " " + ContestText.Name(s.Chosen.Product) + " (" + s.Chosen.UnitsPerPack + "단위/봉, 원산지 표시 " + (s.Chosen.OriginLabeled ? "있음" : "없음") + ")",
                 40, 84, 1216, 40, 26, Kit.Cream);
             // 컨베이어(카운터 아트 재사용)
@@ -663,32 +663,35 @@ namespace CCT.Contest
         void DrawBrew(RectTransform main, ContestSession s)
         {
             var m = s.Mission;
-            Kit.Label(main, "4. 제조 — 요청 조건대로 음료 만들기", 40, 24, 1216, 52, 36, Kit.Accent);
+            Kit.Label(main, "4. 제조 — 요청 조건대로 음료 만들기", 40, 24, 1216, 64, 36, Kit.Accent);
             // 재료
-            Kit.Label(main, "재료", 40, 92, 200, 36, 26, Kit.Cream);
+            Kit.Label(main, "재료 (숫자키)", 40, 84, 300, 44, 26, Kit.Cream);
             var prods = s.StockProducts.ToList();
             for (int i = 0; i < prods.Count; i++)
             {
                 var prod = prods[i];
                 bool sel = Recipe == prod;
-                var b = Kit.Button(main, "Recipe" + i, "", 40 + i * 176, 132, 160, 132, () => SetRecipe(prod), 22, true, sel ? new Color(0.3f, 0.55f, 0.5f) : (Color?)null);
+                var b = Kit.Button(main, "Recipe" + i, "", 40 + i * 176, 132, 160, 132, () => SetRecipe(prod), 22);
+                if (sel) Kit.MarkSelected(b);
                 Kit.Sprite(b.transform, Kit.Tin(prod), 40, 8, 80, 80);
                 Kit.Label(b.transform, (i + 1) + ". " + ContestText.Name(prod) + " " + s.UnitsOf(prod), 4, 92, 152, 36, 20, Kit.Cream, TextAnchor.MiddleCenter);
             }
             if (prods.Count == 0) Kit.Label(main, "재고 없음 — 추가 확보가 필요합니다.", 40, 140, 520, 40, 24, Kit.Ng);
             // 온도
-            Kit.Label(main, "물 온도 (T)", 40, 288, 220, 36, 26, Kit.Cream);
+            Kit.Label(main, "물 온도 (T)", 40, 280, 300, 44, 26, Kit.Cream);
             for (int i = 0; i < 3; i++)
             {
                 var t = (Temp)i;
-                Kit.Button(main, "Temp" + i, ContestText.Name(t), 40 + i * 132, 328, 120, 64, () => SetTemp(t), 28, true, TempSel == t ? new Color(0.3f, 0.55f, 0.5f) : (Color?)null);
+                var tb = Kit.Button(main, "Temp" + i, ContestText.Name(t), 40 + i * 132, 328, 120, 64, () => SetTemp(t), 28);
+                if (TempSel == t) Kit.MarkSelected(tb);
             }
             // 용기
-            Kit.Label(main, "용기 (V)", 40, 412, 220, 36, 26, Kit.Cream);
+            Kit.Label(main, "용기 (V)", 40, 404, 300, 44, 26, Kit.Cream);
             for (int i = 0; i < 3; i++)
             {
                 var v = (Vessel)i;
-                var b = Kit.Button(main, "Vessel" + i, "", 40 + i * 132, 452, 120, 120, () => SetVessel(v), 22, true, VesselSel == v ? new Color(0.3f, 0.55f, 0.5f) : (Color?)null);
+                var b = Kit.Button(main, "Vessel" + i, "", 40 + i * 132, 452, 120, 120, () => SetVessel(v), 22);
+                if (VesselSel == v) Kit.MarkSelected(b);
                 Kit.Sprite(b.transform, Kit.Cup(v), 20, 8, 80, 68);
                 Kit.Label(b.transform, ContestText.Name(v), 4, 80, 112, 36, 22, Kit.Cream, TextAnchor.MiddleCenter);
             }
@@ -730,7 +733,7 @@ namespace CCT.Contest
             // 완성 트레이
             var trayRt = Kit.Rect("Tray", main, 900, 92, 356, 500);
             UiFactory.AddImage(trayRt, new Color(0f, 0f, 0f, 0.25f)).raycastTarget = false;
-            Kit.Label(trayRt, "완성 " + s.Tray.Count + "잔", 16, 8, 324, 36, 26, Kit.Cream);
+            Kit.Label(trayRt, "완성 " + s.Tray.Count + "잔", 16, 8, 324, 44, 26, Kit.Cream);
             for (int i = 0; i < s.Tray.Count && i < 12; i++)
             {
                 var c = s.Tray[i];
@@ -750,7 +753,7 @@ namespace CCT.Contest
             int conforming = s.Tray.Count(c => s.CupFailure(c) == null);
             if (s.Chosen != null && usable + conforming < m.Quantity)
                 Kit.Button(main, "Reorder", "추가 확보: " + s.Chosen.Supplier + " 1봉 (" + s.Chosen.PricePerPack + "코인)", 456, 716, 420, 60, () => Reorder(1), 24, s.Remaining >= s.Chosen.PricePerPack);
-            DrawMessage(main, 40, 724, 400);
+            DrawMessage(main, 40, 708, 400);
             Footer("1~4 재료 · T 온도 · V 용기 · ←/→ 잔 수 · Space 길게 눌러 붓기 · I 검수 요청");
         }
 
@@ -758,7 +761,7 @@ namespace CCT.Contest
         {
             var r = s.LastReport;
             var m = s.Mission;
-            Kit.Label(main, "5. 검사·검수 — 요청 조건과 제조 결과 비교", 40, 24, 1216, 52, 36, Kit.Accent);
+            Kit.Label(main, "5. 검사·검수 — 요청 조건과 제조 결과 비교", 40, 24, 1216, 64, 36, Kit.Accent);
             Kit.Label(main, "요청: " + ContestText.Name(m.Product) + " · " + ContestText.Name(m.Temp) + " · " + ContestText.Name(m.Vessel) + " · " + m.Quantity + "잔" +
                 (m.RequireOriginLabel ? " · 원산지 표시" : "") + (m.RequireCaffeineFree ? " · 카페인 없음" : ""), 40, 84, 1216, 40, 26, Kit.Cream, TextAnchor.UpperLeft, "InspectRequest");
             var list = Kit.Rect("CupList", main, 40, 136, 760, 520);
@@ -771,8 +774,9 @@ namespace CCT.Contest
                 bool ok = !r.CupFailures.ContainsKey(c.Id);
                 UiFactory.AddImage(row, ok ? new Color(0.2f, 0.35f, 0.22f, 0.9f) : new Color(0.42f, 0.16f, 0.14f, 0.9f)).raycastTarget = false;
                 Kit.FilledCup(row, c.Vessel, c.Product, 0.8f, 8, 10, 1.6f, "Cup");
-                Kit.Label(row, "#" + c.Id + " " + ContestText.Name(c.Product) + " " + ContestText.Name(c.Temp) + " " + ContestText.Name(c.Vessel) + "\n" + (ok ? "적합" : "불일치: " + r.CupFailures[c.Id]),
-                    84, 4, 280, 68, 20, ok ? Kit.Cream : Kit.Cream, TextAnchor.MiddleLeft);
+                var rl = Kit.Label(row, "#" + c.Id + " " + ContestText.Name(c.Product) + " " + ContestText.Name(c.Temp) + " " + ContestText.Name(c.Vessel) + "\n" + (ok ? "적합" : "불일치: " + r.CupFailures[c.Id]),
+                    84, 4, 280, 68, 20, Kit.Cream, TextAnchor.MiddleLeft);
+                rl.resizeTextForBestFit = true; rl.resizeTextMinSize = 14; rl.resizeTextMaxSize = 20;
                 rows.Add(row.gameObject);
             }
             if (s.Tray.Count > 12) Kit.Label(list, "외 " + (s.Tray.Count - 12) + "잔", 8, 492, 744, 28, 20, Kit.Dim);
@@ -810,7 +814,7 @@ namespace CCT.Contest
 
         void DrawFailed(RectTransform main, ContestSession s)
         {
-            Kit.Label(main, "임무 중단", 40, 32, 1216, 60, 44, Kit.Ng);
+            Kit.Label(main, "임무 중단", 40, 24, 1216, 72, 44, Kit.Ng);
             Kit.Label(main, s.FailReason + "\n같은 임무를 처음부터 다시 시작할 수 있습니다(이전 시도의 재고·제조 결과는 남지 않습니다).", 40, 110, 1216, 100, 28, Kit.Cream);
             Kit.Label(main, string.Join("\n", s.History.Skip(Mathf.Max(0, s.History.Count - 12))), 40, 230, 1216, 420, 22, Kit.Dim, TextAnchor.UpperLeft, "History");
             Kit.Button(main, "Retry", "처음부터 다시 (R)", 40, 680, 420, 80, Retry, 30, true, new Color(0.3f, 0.55f, 0.5f));
@@ -843,20 +847,20 @@ namespace CCT.Contest
             Kit.Label(hist, "요청 → 공급 → 검수 → 인수 기록", 32, 24, 1104, 48, 32, Kit.Accent);
             Kit.Label(hist, string.Join("\n", s.History.Skip(Mathf.Max(0, s.History.Count - 15))), 32, 80, 1104, 460, 20, Kit.Cream, TextAnchor.UpperLeft, "History");
 
-            var learn = Kit.Panel("Lessons", root, 64, 744, 1792, 168);
+            var learn = Kit.Panel("Lessons", root, 64, 744, 1792, 184);
             Kit.Label(learn, "이번 임무에서 확인한 것", 32, 16, 1728, 40, 28, Kit.Accent);
-            Kit.Label(learn, "· " + string.Join("\n· ", m.Lessons), 32, 60, 1728, 100, 22, Kit.Cream);
+            Kit.Label(learn, "· " + string.Join("\n· ", m.Lessons), 32, 60, 1728, 112, 22, Kit.Cream);
 
             bool last = MissionIndex + 1 >= ContestMissions.All.Length;
-            Kit.Button(root, "Next", last ? "임무 목록 (Enter)" : "다음 임무 (Enter)", 64, 924, 400, 64, NextMission, 28, true, new Color(0.3f, 0.55f, 0.5f));
-            Kit.Button(root, "Retry", "다시 하기 (R)", 488, 924, 300, 64, Retry, 26);
-            Kit.Button(root, "ToSelect", "임무 목록 (Backspace)", 812, 924, 360, 64, ShowSelect, 26);
+            Kit.Button(root, "Next", last ? "임무 목록 (Enter)" : "다음 임무 (Enter)", 64, 944, 400, 64, NextMission, 28, true, new Color(0.3f, 0.55f, 0.5f));
+            Kit.Button(root, "Retry", "다시 하기 (R)", 488, 944, 300, 64, Retry, 26);
+            Kit.Button(root, "ToSelect", "임무 목록 (Backspace)", 812, 944, 360, 64, ShowSelect, 26);
         }
 
         void DrawMessage(RectTransform parent, float x, float y, float w = 1216)
         {
             if (string.IsNullOrEmpty(Message)) return;
-            Kit.Label(parent, Message, x, y, w, 56, 24, messageColor, TextAnchor.UpperLeft, "Message");
+            Kit.Label(parent, Message, x, y, w, 84, 24, messageColor, TextAnchor.UpperLeft, "Message");
         }
 
         // ================= 도움말·출처 =================
@@ -866,6 +870,8 @@ namespace CCT.Contest
             if (!HelpOpen || canvas == null) return;
             helpRoot = UiFactory.Stretch("Help", canvas.transform);
             UiFactory.AddImage(helpRoot, new Color(0f, 0f, 0f, 0.82f));
+            var back = Kit.Rect("HelpBacking", helpRoot, 160, 60, 1600, 960);
+            UiFactory.AddImage(back, new Color(0.16f, 0.12f, 0.11f, 1f));
             var p = Kit.Panel("HelpPanel", helpRoot, 160, 60, 1600, 960);
             Kit.Label(p, "도움말 · 정책 해설 · 출처", 48, 32, 1504, 60, 40, Kit.Accent);
             Kit.Label(p, HelpText, 48, 104, 1504, 740, 23, Kit.Cream, TextAnchor.UpperLeft, "HelpBody");

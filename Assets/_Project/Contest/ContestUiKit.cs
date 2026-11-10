@@ -107,6 +107,16 @@ namespace CCT.Contest
             return b;
         }
 
+        /// <summary>선택 상태 표시: 청록 테두리 + 글자색(스킨이 버튼 색조를 덮어써도 보이게).</summary>
+        public static void MarkSelected(UnityEngine.UI.Button b)
+        {
+            var rt = (RectTransform)b.transform;
+            float w = rt.sizeDelta.x, h = rt.sizeDelta.y, t = 6f;
+            void Bar(string n, float x, float y, float bw, float bh) => UiFactory.AddImage(Rect(n, rt, x, y, bw, bh), Accent).raycastTarget = false;
+            Bar("SelTop", 0, 0, w, t); Bar("SelBottom", 0, h - t, w, t); Bar("SelLeft", 0, 0, t, h); Bar("SelRight", w - t, 0, t, h);
+            foreach (var txt in b.GetComponentsInChildren<Text>()) txt.color = Accent;
+        }
+
         public static Image Sprite(Transform parent, string id, float x, float y, float w, float h, string name = null)
         {
             var rt = Rect(name ?? id, parent, x, y, w, h);
