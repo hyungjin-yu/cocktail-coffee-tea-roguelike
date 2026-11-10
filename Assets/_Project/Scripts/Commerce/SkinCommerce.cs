@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -479,6 +479,9 @@ namespace CCT
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void AutoStart()
         {
+#if PPS_CONTEST
+            return; // 공모전판: 스킨 상점·결제 미노출, 본편 commerce 파일 생성 안 함
+#endif
             if (!Application.isPlaying) return;
             if (SceneManager.GetActiveScene().name.StartsWith("InitTestScene")) return; // 테스트 러너에서는 자동 시작 안 함
             var go = new GameObject("SkinCommerceRunner");

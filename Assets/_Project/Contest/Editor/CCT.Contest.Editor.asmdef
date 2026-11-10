@@ -1,0 +1,19 @@
+{
+    "name": "CCT.Contest.Editor",
+    "rootNamespace": "CCT.Contest",
+    "references": [
+        "CCT.Contest",
+        "CCT.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

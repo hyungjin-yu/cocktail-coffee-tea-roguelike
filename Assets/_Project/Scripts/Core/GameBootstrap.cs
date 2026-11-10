@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 
@@ -13,6 +13,9 @@ namespace CCT
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void AutoStart()
         {
+#if PPS_CONTEST
+            return; // 공모전판: 본편 타이틀·무한 모드·상점·스킨 진입 없음. CCT.Contest.ContestApp가 시작한다.
+#endif
             // -cct-data-dir: save/settings를 실제 사용자 폴더 대신 지정 폴더로(빌드 검증용 격리). -cct-autotour: 자동 캡처.
             LaunchOptions.Apply();
             QuitGuard.Install(); // 08:178 OS 창 닫기도 미저장 확인
