@@ -160,7 +160,8 @@ namespace CCT
         public EnemyDef PickStandardEnemy(float runTime, out EnemyDef rewardDef) =>
             EnemyRoster.PickStandard(runTime, SpawnRng, familyRemapRng, Job, SpawnTable, out rewardDef);
         /// <summary>끝없는 모드의 현재 웨이브(정규 모드 0).</summary>
-        public long EndlessWave => IsEndless && Spawner != null ? System.Math.Max(1L, Spawner.EndlessWave) : 0L;
+        /// <summary>2026-11-11 마스터 도전이면 그 절대 웨이브(기록·결과 표시).</summary>
+        public long EndlessWave => !IsEndless ? 0L : Master != null ? Master.State.Wave : Spawner != null ? System.Math.Max(1L, Spawner.EndlessWave) : 1L;
 
         public void Initialize(Job job, WeaponKind weapon) => Initialize(job, weapon, RunModeSelection.Current);
 
@@ -194,7 +195,7 @@ namespace CCT
             MasteryTraits = DrinkLab.EquippedTraitsSnapshot();
             DrinkBuff = DrinkLab.BeginRun(RunId);
             if (DrinkBuff != null && MasteryTraits.Contains("finesse_4")) DrinkBuff = DrinkCalculator.ScalePositive(DrinkBuff, 1.05f); // 한 잔의 집중(항목 상한 유지)
-            if (DrinkBuff != null) DrinkCalculator.ApplyTo(Stats, DrinkBuff);
+            activeDrinkApplied = DrinkBuff != null ? DrinkCalculator.ApplyTracked(Stats, DrinkBuff) : null; // 2026-11-11 같은 적용 + 교체용 증가량 기록
             normalKillsSinceBundle = 0; normalBundles = 0; eliteBundles = 0; rpKills = 0; midBossKills = 0; finalBossKills = 0;
 
             CocktailGauge = new IngredientGauge(IngredientType.Cocktail, Balance.CocktailGaugeStart,
@@ -232,6 +233,10 @@ namespace CCT
             Hud = HudView.Create(canvas.transform, this);
             // 69 준비 음료·보스 음료 재료 표시. 카드 선택·안내·일시정지·결과 창보다 먼저(뒤에) 만들어 어떤 창도 덮지 않게 한다(hudfix).
             DrinkHud = DrinkRunHud.Create(canvas.transform, this);
+            // 2026-11-11 (카드·결과·일시정지 창보다 먼저 만들어 그 창들이 HUD를 덮게 한다) 마스터 도전: 끝없는 모드 런은 10웨이브 주기 루프(유한 웨이브 목표)로 진행한다.
+            MasterFreezeActive = false; MasterBrewOpen = false;
+            Master = IsEndless ? MasterChallengeDirector.Attach(this) : null;
+            MasterHud = Master != null ? MasterChallengeHud.Create(canvas.transform, this) : null;
             Player.FinalForms.Unlocked += form => Hud.ShowBanner("최종 형태 해금", AttackFinalForms.Description(form), 2.5f);
             cardView = CardSelectView.Create(canvas.transform);
             skillView = SkillTreeView.Create(canvas.transform);
@@ -345,6 +350,8 @@ namespace CCT
         public void RequestEscape()
         {
             if (State == GameState.GameOver) return;
+            if (MasterFreezeActive) return; // 2026-11-11 현수막 설치(3~4초) 중에는 다른 화면을 열지 않는다
+            if (MasterBrewOpen) { CloseMasterBrew(); return; }
             if (!IsPaused && CardView != null && CardView.IsLearningOpen) { CardView.CloseLearning(); return; }
             if (Hud.HiddenDetailsOpen) { CloseHiddenDetails(); return; }
             if (comboView != null && comboView.IsOpen) { comboView.Close(); return; }
@@ -943,8 +950,98 @@ namespace CCT
             bossDefeatedFlag = true;
         }
 
+        // ───── 2026-11-11 마스터 도전 ─────
+        public MasterChallengeDirector Master { get; private set; }
+        public MasterChallengeHud MasterHud { get; private set; }
+        /// <summary>박람회 현수막 설치 정지 중(전투·생성·피해·전투 시간 정지).</summary>
+        public bool MasterFreezeActive { get; private set; }
+        public bool MasterBrewOpen { get; private set; }
+        DrinkCalculator.AppliedDrink activeDrinkApplied;
+        /// <summary>런 중에 마신 런 제조 잔(없으면 null — 로비 준비 음료만).</summary>
+        public RunCup ActiveRunCup { get; private set; }
+
+        public bool BeginMasterFreeze()
+        {
+            if (State != GameState.Playing || IsPaused || resuming || MasterFreezeActive) return false;
+            IsPaused = true; MasterFreezeActive = true; Time.timeScale = 0f;
+            return true;
+        }
+
+        public void EndMasterFreeze()
+        {
+            if (!MasterFreezeActive) return;
+            MasterFreezeActive = false; IsPaused = false;
+            Time.timeScale = State == GameState.Playing ? 1f : 0f;
+            ExitFrozenAudioIfClear();
+        }
+
+        /// <summary>우상단 '음료 만들기' — 제조 창 동안 전투 일시정지. 다른 창·카드·현수막 설치 중에는 열지 않는다.</summary>
+        public bool OpenMasterBrew()
+        {
+            if (Master == null || MasterHud == null || State != GameState.Playing || IsPaused || resuming) return false;
+            IsPaused = true; MasterBrewOpen = true; Time.timeScale = 0f; EnterFrozenAudio();
+            MasterHud.ShowBrew();
+            return true;
+        }
+
+        public void CloseMasterBrew()
+        {
+            if (!MasterBrewOpen) return;
+            MasterBrewOpen = false;
+            MasterHud?.HideBrew();
+            IsPaused = false;
+            Time.timeScale = State == GameState.Playing ? 1f : 0f;
+            ExitFrozenAudioIfClear();
+        }
+
+        /// <summary>런 제조 1잔(런 임시 재료 → 로비 재고 순). 칵테일은 성공 시 종류 집계.</summary>
+        public DrinkLab.RunCraftResult CraftRunCup(DrinkRecipe recipe)
+        {
+            if (Master == null || State == GameState.GameOver) return new DrinkLab.RunCraftResult { Message = "마스터 도전 중에만 만들 수 있습니다." };
+            var res = DrinkLab.CraftInRun(RunId, recipe);
+            if (res.Ok) Master.RegisterCraft(res.Cup);
+            return res;
+        }
+
+        /// <summary>보관 잔 마시기: 기존 활성 음료를 정확히 되돌리고(구효과 역적용) 새 잔을 적용한다. 현재 체력 보존(회복 없음). 저장 실패면 아무것도 바뀌지 않는다.</summary>
+        public bool DrinkRunCup(RunCup cup, out string error)
+        {
+            error = null;
+            if (Master == null || cup == null || State == GameState.GameOver || Player == null) { error = "지금은 마실 수 없습니다."; return false; }
+            if (!DrinkLab.UseRunCup(RunId, cup.cupId, RunCup.Drunk, out error)) return false;
+            var buff = DrinkCalculator.Buff(cup.recipe);
+            if (DrinkQuality.GradeOf(cup.quality) == DrinkQuality.Grade.Best) buff = DrinkCalculator.ScalePositive(buff, 1.05f); // 최고 품질만 ×1.05(항목 상한 유지)
+            if (MasteryTraits.Contains("finesse_4")) buff = DrinkCalculator.ScalePositive(buff, 1.05f); // 로비 음료와 같은 숙련 규칙
+            float prevHp = Player.Hp;
+            DrinkCalculator.Revert(Stats, activeDrinkApplied);
+            activeDrinkApplied = DrinkCalculator.ApplyTracked(Stats, buff);
+            DrinkBuff = buff;
+            ActiveRunCup = cup;
+            CoffeeBrewRuntime.Detach(Player);
+            if (cup.Kind == DrinkKind.Coffee) Player.Coffee = CoffeeBrewRuntime.Attach(Player, cup.recipe.coffeeMethod);
+            Player.DrunkDrink = cup.Kind; // 실제로 마신 음료만 상성
+            Player.PreserveHpAfterDrinkSwap(prevHp);
+            Master.NotifyChanged();
+            return true;
+        }
+
+        /// <summary>보관 잔 박람회 제출(접수 전 수집 구간에서만). 잔은 소비, 유효 가치는 정수 point.</summary>
+        public bool SubmitRunCup(RunCup cup, out string error)
+        {
+            error = null;
+            if (Master == null || cup == null || State == GameState.GameOver) { error = "지금은 제출할 수 없습니다."; return false; }
+            if (!Master.State.CanSubmit) { error = "박람회 도전을 접수한 뒤에는 이번 박람회에 더 제출할 수 없습니다."; return false; }
+            if (!DrinkLab.UseRunCup(RunId, cup.cupId, RunCup.Submitted, out error)) return false;
+            Master.State.TrySubmit(MasterRules.SubmitPoints(cup.Kind, cup.quality));
+            Master.NotifyChanged();
+            return true;
+        }
+
         void EndRun(bool cleared, string reason)
         {
+            if (MasterBrewOpen) { MasterBrewOpen = false; MasterHud?.HideBrew(); }
+            MasterFreezeActive = false;
+            Master?.OnRunEnded();
             // "포기"는 Pause(Playing 복귀 예정)를 닫자마자 곧장 여기로 들어와서, 아직 안 끝난 1초 "계속"
             // 카운트다운이 살아있을 수 있다 — 그대로 두면 1초 뒤 GameOver인데 Time.timeScale이 다시
             // 1로 풀려버린다.

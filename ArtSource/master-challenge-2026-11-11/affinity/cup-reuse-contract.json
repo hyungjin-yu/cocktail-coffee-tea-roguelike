@@ -1,0 +1,18 @@
+{
+  "new_64px_icon_authored": false,
+  "policy": "Reuse existing cup art, preserve aspect at64px UI display; no new cup asset or schema",
+  "source": "Assets\\_Project\\Resources\\DrinkLab\\dl_coffee_cup.png",
+  "size": [
+    32,
+    26
+  ],
+  "bbox": [
+    0,
+    4,
+    30,
+    26
+  ],
+  "sha256": "1f815a822384277e378c46bf17a5eef3b87efb791ea6d998fa06276f1c5c9cbe",
+  "unity_resource_key": "DrinkLab/dl_coffee_cup",
+  "status": "source opened, 64px actual UI composition pending Claude review"
+}

@@ -1,0 +1,66 @@
+{
+  "ppu": 128,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "canonical_direction": "upward-right burst; rotate in world toward impact normal if needed",
+  "timing_proposal": "6frames83ms498ms once + low3frames249ms; alpha last blank",
+  "tools": "actual Aseprite Lua batch pixel drawing, no PixelLab generation, no GUI",
+  "records": [
+    {
+      "path": "Assets\\_Project\\Art\\v1\\leaf_mote\\frames\\leaf_mote_effect_right_00.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "674994d3f5db491898050fc985c1ba9be52109f6d0f5d1f89baa0a60d4aaae49",
+      "status": "source reference"
+    },
+    {
+      "path": "Assets\\_Project\\Art\\v1\\coffee_pool\\frames\\coffee_pool_effect_right_00.png",
+      "size": [
+        256,
+        128
+      ],
+      "sha256": "19d7ad50069f5642e8244ff9902bf82fce0dd62ec013ef1f04d2a5f7d60c1cfa",
+      "status": "source reference"
+    },
+    {
+      "path": "Assets\\_Project\\Art\\v1\\hybrid_tea_martini\\frames\\hybrid_tea_martini_effect_right_00.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "1e82ec9676fbe825a19804758f2dced91be4b6c0668f208b2ea6fd59543e1c34",
+      "status": "source reference"
+    },
+    {
+      "path": "ArtSource\\master-challenge-2026-11-11\\affinity\\cocktail_foam_representative.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "000b2596ac86933ae10e5605357cb04031c6ef5100f3a9ddfae14087ebacc1eb",
+      "status": "representative pending review"
+    },
+    {
+      "path": "ArtSource\\master-challenge-2026-11-11\\affinity\\coffee_bean_steam_representative.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "8e1cc2071be176319106c8bce51b0b0fd8dd57799aaa4d6fb40f1462dad6a0d5",
+      "status": "representative pending review"
+    },
+    {
+      "path": "ArtSource\\master-challenge-2026-11-11\\affinity\\tea_leaf_wind_representative.png",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "fd9fd441bb66b1b795d6467c2323b9da25deef818d3d01fc078d49b5c738d145",
+      "status": "representative pending review"
+    }
+  ]
+}

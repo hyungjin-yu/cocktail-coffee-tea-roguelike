@@ -84,6 +84,7 @@ namespace CCT
 
         void Update()
         {
+            if (Time.deltaTime <= 0f) return; // 2026-11-11 정지된 시간에는 첫 틱 피해도 없음(박람회 현수막 설치 무피해)
             remaining -= Time.deltaTime;
             if (remaining <= 0f)
             {

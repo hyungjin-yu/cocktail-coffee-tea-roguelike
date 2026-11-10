@@ -109,6 +109,7 @@ namespace CCT
 
         void Update()
         {
+            if (Time.deltaTime <= 0f) return; // 2026-11-11 정지된 시간(일시정지·제조 창·박람회 현수막 설치)에는 이동·명중 판정 없음
             life -= Time.deltaTime;
             if (life <= 0f)
             {

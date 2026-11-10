@@ -35,24 +35,24 @@ namespace CCT.Tests
             Assert.AreEqual(RunMode.Endless, game.Mode);
             Time.timeScale = 8f;
             float until = Time.realtimeSinceStartup + 8f;
-            while (game.Spawner.EndlessSpawned < 3 && Time.realtimeSinceStartup < until)
+            while (game.Master.State.Spawned < 3 && Time.realtimeSinceStartup < until)
             {
                 if (game.State == GameState.LevelUp) game.CardView.Choose(0);
                 yield return null;
             }
             Time.timeScale = 1f;
-            Assert.GreaterOrEqual(game.Spawner.EndlessSpawned, 3, "웨이브 1 분산 생성");
-            Assert.AreEqual(1, game.Spawner.EndlessWave);
+            Assert.GreaterOrEqual(game.Master.State.Spawned, 3, "웨이브 1 분산 생성(마스터 도전 유한 목표)");
+            Assert.AreEqual(1, game.Master.State.Wave);
             Assert.IsNull(game.ActiveBoss);
-            StringAssert.Contains("끝없는 재료 모으기", game.Hud.PhaseBadge != null ? RunPhaseBadge.Compute(game).text : "");
+            StringAssert.Contains("마스터 도전", game.Hud.PhaseBadge != null ? RunPhaseBadge.Compute(game).text : "");
 
             game.OpenPause();
             yield return null;
             float t = game.RunTime;
-            long spawned = game.Spawner.EndlessSpawned;
+            long spawned = game.Master.State.Spawned;
             for (int i = 0; i < 20; i++) yield return null;
             Assert.AreEqual(t, game.RunTime, "일시정지 중 웨이브 시간 정지");
-            Assert.AreEqual(spawned, game.Spawner.EndlessSpawned, "일시정지 중 생성 없음");
+            Assert.AreEqual(spawned, game.Master.State.Spawned, "일시정지 중 생성 없음");
             game.GiveUp();
             yield return null;
             Assert.AreEqual(GameState.GameOver, game.State);

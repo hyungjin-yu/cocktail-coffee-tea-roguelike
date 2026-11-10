@@ -202,7 +202,7 @@ namespace CCT.Tests
             Assert.AreEqual(0, old.endlessWave);
             Assert.AreEqual(RunMode.Endless, JsonUtility.FromJson<RunRecord>("{\"mode\":\"Endless\"}").Mode);
             Assert.AreEqual("", RunRecordText.ModeSuffix(old), "이전 기록 문구 그대로");
-            StringAssert.Contains("끝없는 재료 모으기 웨이브 7", RunRecordText.ModeSuffix(new RunRecord { mode = "Endless", endlessWave = 7 }));
+            StringAssert.Contains("마스터 도전 웨이브 7", RunRecordText.ModeSuffix(new RunRecord { mode = "Endless", endlessWave = 7 }));
         }
     }
 
@@ -243,7 +243,7 @@ namespace CCT.Tests
             Assert.AreEqual(GameState.Playing, game.State, "시간 초과로 끝나지 않음");
             var info = RunPhaseBadge.Compute(game);
             Assert.AreEqual(RunPhaseState.Endless, info.state);
-            StringAssert.Contains("끝없는 재료 모으기 · 웨이브 57", info.text);
+            StringAssert.Contains("마스터 도전 · 주기 1 · 웨이브 1", info.text); // 2026-11-11 시간이 아닌 웨이브 처리로 진행
             StringAssert.DoesNotContain("보스", info.text);
 
             game.MarkPlayerDiedForTests();
@@ -252,7 +252,7 @@ namespace CCT.Tests
             Assert.AreEqual("사망", game.EndReason);
             Assert.IsNotNull(game.RunRecord);
             Assert.AreEqual("Endless", game.RunRecord.mode);
-            Assert.AreEqual(57, game.RunRecord.endlessWave);
+            Assert.AreEqual(1, game.RunRecord.endlessWave, "마스터 도전은 처리한 웨이브로 기록(시간 경과로 오르지 않음)");
             var settlement = game.DrinkSettlement;
             game.ResolveEndOfFrame();
             game.GiveUp();
@@ -311,14 +311,14 @@ namespace CCT.Tests
             Assert.AreEqual(1_000_000_001L, sp.EndlessWave);
             Assert.AreEqual(sp.EndlessScheduledTotal, sp.EndlessSpawned + sp.EndlessPending);
             Assert.IsFalse(sp.EndlessPendingSaturated, "10억 웨이브 합(약 10^18)도 long 안");
-            var info = RunPhaseBadge.ComputeEndless(game);
+            var info = RunPhaseBadge.ComputeLegacyEndless(game);
             StringAssert.Contains("웨이브 1000000001", info.text);
 
             // long 한계: 명시 포화(조용한 소실 대신 포화 표시)
             sp.TickEndlessForTests(30d * 9e17d);
             Assert.IsTrue(sp.EndlessPendingSaturated);
             Assert.AreEqual(EndlessRules.SaturatedLong, sp.EndlessPending);
-            StringAssert.Contains("생성 대기 최대(포화)", RunPhaseBadge.ComputeEndless(game).text);
+            StringAssert.Contains("생성 대기 최대(포화)", RunPhaseBadge.ComputeLegacyEndless(game).text);
         }
 
         [Test]

@@ -1,0 +1,570 @@
+{
+  "scope": "affinity follow-up only, core15 clips frozen and coordinator approved for Unity handoff",
+  "status": "exported; runtime aesthetic/actual damage integration NOT RUN",
+  "representative_design": "coordinator approved representative01 comparison before animation expansion",
+  "tools": {
+    "Aseprite": "actual hidden-batch Lua pixel drawing, layered/tagged native, reopen/export",
+    "Pillow": "contact/GIF/sheet assembly and verification",
+    "PixelLab": "not used; zero generation requests",
+    "external_AI": "none",
+    "GUI": "none"
+  },
+  "texture_import": {
+    "ppu": 128,
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "filter": "Point",
+    "wrap": "Clamp",
+    "compression": "None",
+    "mipmaps": false,
+    "blend": "standard alpha, no additive",
+    "sorting": "AirVfx 4"
+  },
+  "hooks": {
+    "trigger": "implementation invokes after actual positive affinity bonus damage has been committed, not on every normal hit",
+    "repeat": "one instance per confirmed qualifying hit; no visual-only bonus claim",
+    "rotation": "Canonical fan upward-right; rotate whole effect uniformly using impact direction, keep unit scale and central impact pivot",
+    "low": "replace full by matching *_low; keep bubble/bean/leaf silhouette; do not play both",
+    "pool": "return after full498ms/low249ms, clear sprite/disable renderer, stop animation, reset frame0 elapsed0 white tint scale1 rotation0 flipXYfalse on next acquire",
+    "budget": "Claude must set active-instance caps and coalescing; do not spawn one per damage tick without budget",
+    "visibility": "small bean/leaf shapes retained; brown-background highlight seam/lead edge maintained; actual small-screen combat QA pending"
+  },
+  "validation": {
+    "contact_review": "all27 frames opened via six dark/light/brown sheets plus peak64px comparison",
+    "native_roundtrip": "27/27 pixel-exact after reopening six natives",
+    "last_frame": "all six clips fully transparent at final exposure",
+    "runtime": "NOT RUN: actual bonus-damage signal, pooling reset/cleanup, active budget, actual cafe visibility and collision/impact direction"
+  },
+  "clips": [
+    {
+      "name": "cocktail_foam",
+      "native": "cocktail_foam.aseprite",
+      "native_sha256": "ab0ce836606662dd73b29e0871ffa659ab64303c2ca7d58fad5c26f43e44cbfe",
+      "tag": "cocktail_foam",
+      "canvas": [
+        128,
+        128
+      ],
+      "sheet": "cocktail_foam_sheet.png",
+      "frames": [
+        {
+          "file": "frames/cocktail_foam_00.png",
+          "index": 0,
+          "duration_ms": 83,
+          "bbox": [
+            58,
+            63,
+            65,
+            70
+          ],
+          "opaque_pixels": 29,
+          "coverage": 0.00177,
+          "sha256": "99104fcc21ed975f140eef580e6d6da8c53e6454b2821537bfe6fd152b1d1d6d"
+        },
+        {
+          "file": "frames/cocktail_foam_01.png",
+          "index": 1,
+          "duration_ms": 83,
+          "bbox": [
+            49,
+            54,
+            75,
+            80
+          ],
+          "opaque_pixels": 168,
+          "coverage": 0.01025,
+          "sha256": "2cb8bd431381daeb57d075329fc54e006b3ea65721808ce4c7315e500bd1deb0"
+        },
+        {
+          "file": "frames/cocktail_foam_02.png",
+          "index": 2,
+          "duration_ms": 83,
+          "bbox": [
+            39,
+            33,
+            95,
+            91
+          ],
+          "opaque_pixels": 388,
+          "coverage": 0.02368,
+          "sha256": "8d2a2da565152c2804589442da5e4e67b6e26fea61a0457d0e8196c9d0843e8b"
+        },
+        {
+          "file": "frames/cocktail_foam_03.png",
+          "index": 3,
+          "duration_ms": 83,
+          "bbox": [
+            45,
+            28,
+            96,
+            78
+          ],
+          "opaque_pixels": 223,
+          "coverage": 0.01361,
+          "sha256": "11b5e14b9fb0bef5f4d56843f431483c56904aae10ac96d755a409e9f88ec20b"
+        },
+        {
+          "file": "frames/cocktail_foam_04.png",
+          "index": 4,
+          "duration_ms": 83,
+          "bbox": [
+            47,
+            22,
+            99,
+            73
+          ],
+          "opaque_pixels": 130,
+          "coverage": 0.00793,
+          "sha256": "c78b4e9296c685183788ebde72cf43d1a97ab26e4306bb846b63b33cce253102"
+        },
+        {
+          "file": "frames/cocktail_foam_05.png",
+          "index": 5,
+          "duration_ms": 83,
+          "bbox": null,
+          "opaque_pixels": 0,
+          "coverage": 0.0,
+          "sha256": "ff30c0a7268849427c5b6085bc05b348e70289a37c3f23be10cec8b29a26ee6d"
+        }
+      ],
+      "exposure_count": 6,
+      "unique_pixel_frames": 6,
+      "duration_ms": 498,
+      "loop": false,
+      "last_frame_fully_transparent": true,
+      "ppu": 128,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "burst_origin_px": [
+        64,
+        64
+      ],
+      "direction": "compact fan upward-right; optional rotate whole effect to impact direction",
+      "nominal_fps": 12,
+      "actual_frame_ms": 83
+    },
+    {
+      "name": "cocktail_foam_low",
+      "native": "cocktail_foam_low.aseprite",
+      "native_sha256": "c43d873016f5537c5d32e8a3f126d7f35713d3e45616d49f870c0bded673c893",
+      "tag": "cocktail_foam_low",
+      "canvas": [
+        128,
+        128
+      ],
+      "sheet": "cocktail_foam_low_sheet.png",
+      "frames": [
+        {
+          "file": "frames/cocktail_foam_low_00.png",
+          "index": 0,
+          "duration_ms": 83,
+          "bbox": [
+            57,
+            49,
+            81,
+            72
+          ],
+          "opaque_pixels": 124,
+          "coverage": 0.00757,
+          "sha256": "254fee1fce8f46f043370742af3d093423b89954fe3d9a82a9dd6b7c887399dc"
+        },
+        {
+          "file": "frames/cocktail_foam_low_01.png",
+          "index": 1,
+          "duration_ms": 83,
+          "bbox": [
+            62,
+            46,
+            84,
+            66
+          ],
+          "opaque_pixels": 88,
+          "coverage": 0.00537,
+          "sha256": "01e3dec0cc453e05bc0a43b0e1fae460ca24c2799453fcd15f7e242489a30e97"
+        },
+        {
+          "file": "frames/cocktail_foam_low_02.png",
+          "index": 2,
+          "duration_ms": 83,
+          "bbox": null,
+          "opaque_pixels": 0,
+          "coverage": 0.0,
+          "sha256": "ff30c0a7268849427c5b6085bc05b348e70289a37c3f23be10cec8b29a26ee6d"
+        }
+      ],
+      "exposure_count": 3,
+      "unique_pixel_frames": 3,
+      "duration_ms": 249,
+      "loop": false,
+      "last_frame_fully_transparent": true,
+      "ppu": 128,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "burst_origin_px": [
+        64,
+        64
+      ],
+      "direction": "compact fan upward-right; optional rotate whole effect to impact direction",
+      "nominal_fps": 12,
+      "actual_frame_ms": 83
+    },
+    {
+      "name": "coffee_bean_steam",
+      "native": "coffee_bean_steam.aseprite",
+      "native_sha256": "f609d06ab4cf423454cf09627961c5c48bedf0e5cf4372b274fc83ca5477e6b8",
+      "tag": "coffee_bean_steam",
+      "canvas": [
+        128,
+        128
+      ],
+      "sheet": "coffee_bean_steam_sheet.png",
+      "frames": [
+        {
+          "file": "frames/coffee_bean_steam_00.png",
+          "index": 0,
+          "duration_ms": 83,
+          "bbox": [
+            58,
+            61,
+            67,
+            70
+          ],
+          "opaque_pixels": 62,
+          "coverage": 0.00378,
+          "sha256": "6f9af574eb4b9568c711756b3f3ccc0a895783edc7af7759695f18c81d1bec6a"
+        },
+        {
+          "file": "frames/coffee_bean_steam_01.png",
+          "index": 1,
+          "duration_ms": 83,
+          "bbox": [
+            51,
+            45,
+            81,
+            77
+          ],
+          "opaque_pixels": 419,
+          "coverage": 0.02557,
+          "sha256": "a19d25f926849237406de7bd1e7d6d903fbeca410c20b4358eaaf9d9b19d7ab9"
+        },
+        {
+          "file": "frames/coffee_bean_steam_02.png",
+          "index": 2,
+          "duration_ms": 83,
+          "bbox": [
+            42,
+            30,
+            91,
+            85
+          ],
+          "opaque_pixels": 876,
+          "coverage": 0.05347,
+          "sha256": "eab5fc463eb4b0e6fe73a667ec825a522fe3420e7df465219bd622fcbccf1a86"
+        },
+        {
+          "file": "frames/coffee_bean_steam_03.png",
+          "index": 3,
+          "duration_ms": 83,
+          "bbox": [
+            39,
+            21,
+            91,
+            79
+          ],
+          "opaque_pixels": 591,
+          "coverage": 0.03607,
+          "sha256": "1fb0b0a8c546ace3c2e8c3a256ad56f459ab541b4195746ec631f1234f46c54b"
+        },
+        {
+          "file": "frames/coffee_bean_steam_04.png",
+          "index": 4,
+          "duration_ms": 83,
+          "bbox": [
+            35,
+            13,
+            92,
+            56
+          ],
+          "opaque_pixels": 302,
+          "coverage": 0.01843,
+          "sha256": "974efbd1f7d5b1e807c8501793fb53f0965cf319c79227ab47b08a793a9ff48e"
+        },
+        {
+          "file": "frames/coffee_bean_steam_05.png",
+          "index": 5,
+          "duration_ms": 83,
+          "bbox": null,
+          "opaque_pixels": 0,
+          "coverage": 0.0,
+          "sha256": "ff30c0a7268849427c5b6085bc05b348e70289a37c3f23be10cec8b29a26ee6d"
+        }
+      ],
+      "exposure_count": 6,
+      "unique_pixel_frames": 6,
+      "duration_ms": 498,
+      "loop": false,
+      "last_frame_fully_transparent": true,
+      "ppu": 128,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "burst_origin_px": [
+        64,
+        64
+      ],
+      "direction": "compact fan upward-right; optional rotate whole effect to impact direction",
+      "nominal_fps": 12,
+      "actual_frame_ms": 83
+    },
+    {
+      "name": "coffee_bean_steam_low",
+      "native": "coffee_bean_steam_low.aseprite",
+      "native_sha256": "d80b5b33d80293148f54bed353d6a154f01fbda9fb1e8e064d32732198956c2a",
+      "tag": "coffee_bean_steam_low",
+      "canvas": [
+        128,
+        128
+      ],
+      "sheet": "coffee_bean_steam_low_sheet.png",
+      "frames": [
+        {
+          "file": "frames/coffee_bean_steam_low_00.png",
+          "index": 0,
+          "duration_ms": 83,
+          "bbox": [
+            54,
+            53,
+            73,
+            73
+          ],
+          "opaque_pixels": 268,
+          "coverage": 0.01636,
+          "sha256": "1e6f1873a78b322f147944f6cb6c32362f45266b3d2090f18796836d3d242276"
+        },
+        {
+          "file": "frames/coffee_bean_steam_low_01.png",
+          "index": 1,
+          "duration_ms": 83,
+          "bbox": [
+            61,
+            52,
+            74,
+            65
+          ],
+          "opaque_pixels": 124,
+          "coverage": 0.00757,
+          "sha256": "a3c211436afb388c24db3d1a0dbb1024755a3053b2dd01de1dfa8491caa79960"
+        },
+        {
+          "file": "frames/coffee_bean_steam_low_02.png",
+          "index": 2,
+          "duration_ms": 83,
+          "bbox": null,
+          "opaque_pixels": 0,
+          "coverage": 0.0,
+          "sha256": "ff30c0a7268849427c5b6085bc05b348e70289a37c3f23be10cec8b29a26ee6d"
+        }
+      ],
+      "exposure_count": 3,
+      "unique_pixel_frames": 3,
+      "duration_ms": 249,
+      "loop": false,
+      "last_frame_fully_transparent": true,
+      "ppu": 128,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "burst_origin_px": [
+        64,
+        64
+      ],
+      "direction": "compact fan upward-right; optional rotate whole effect to impact direction",
+      "nominal_fps": 12,
+      "actual_frame_ms": 83
+    },
+    {
+      "name": "tea_leaf_wind",
+      "native": "tea_leaf_wind.aseprite",
+      "native_sha256": "84b2b48ccca9d18a038f20734250a9eb7ee67eb76cc8984a4001c24faa65fb81",
+      "tag": "tea_leaf_wind",
+      "canvas": [
+        128,
+        128
+      ],
+      "sheet": "tea_leaf_wind_sheet.png",
+      "frames": [
+        {
+          "file": "frames/tea_leaf_wind_00.png",
+          "index": 0,
+          "duration_ms": 83,
+          "bbox": [
+            57,
+            61,
+            69,
+            69
+          ],
+          "opaque_pixels": 46,
+          "coverage": 0.00281,
+          "sha256": "799c76b01566a36af400e2830df4e4df5d7c86090d2fe573981598265a44adbb"
+        },
+        {
+          "file": "frames/tea_leaf_wind_01.png",
+          "index": 1,
+          "duration_ms": 83,
+          "bbox": [
+            46,
+            47,
+            86,
+            84
+          ],
+          "opaque_pixels": 453,
+          "coverage": 0.02765,
+          "sha256": "ed94959e97e3bed34464fd323c22692eecda9234da76fb62b238498b822426f1"
+        },
+        {
+          "file": "frames/tea_leaf_wind_02.png",
+          "index": 2,
+          "duration_ms": 83,
+          "bbox": [
+            34,
+            39,
+            100,
+            97
+          ],
+          "opaque_pixels": 1070,
+          "coverage": 0.06531,
+          "sha256": "fd9fd441bb66b1b795d6467c2323b9da25deef818d3d01fc078d49b5c738d145"
+        },
+        {
+          "file": "frames/tea_leaf_wind_03.png",
+          "index": 3,
+          "duration_ms": 83,
+          "bbox": [
+            30,
+            35,
+            105,
+            102
+          ],
+          "opaque_pixels": 1008,
+          "coverage": 0.06152,
+          "sha256": "137f8bd9cc958561f347889b52c2725caecd4aba44870ddd3eda96866054d9a8"
+        },
+        {
+          "file": "frames/tea_leaf_wind_04.png",
+          "index": 4,
+          "duration_ms": 83,
+          "bbox": [
+            25,
+            32,
+            111,
+            107
+          ],
+          "opaque_pixels": 818,
+          "coverage": 0.04993,
+          "sha256": "f6137fa0a072afb133bd761e7cb0dad1e937ef522295f4d52c741b16398a3b60"
+        },
+        {
+          "file": "frames/tea_leaf_wind_05.png",
+          "index": 5,
+          "duration_ms": 83,
+          "bbox": null,
+          "opaque_pixels": 0,
+          "coverage": 0.0,
+          "sha256": "ff30c0a7268849427c5b6085bc05b348e70289a37c3f23be10cec8b29a26ee6d"
+        }
+      ],
+      "exposure_count": 6,
+      "unique_pixel_frames": 6,
+      "duration_ms": 498,
+      "loop": false,
+      "last_frame_fully_transparent": true,
+      "ppu": 128,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "burst_origin_px": [
+        64,
+        64
+      ],
+      "direction": "compact fan upward-right; optional rotate whole effect to impact direction",
+      "nominal_fps": 12,
+      "actual_frame_ms": 83
+    },
+    {
+      "name": "tea_leaf_wind_low",
+      "native": "tea_leaf_wind_low.aseprite",
+      "native_sha256": "9775f67b67a74f8d2943159d6229887a19e04ae5b04003c92ee135ba1c3f4183",
+      "tag": "tea_leaf_wind_low",
+      "canvas": [
+        128,
+        128
+      ],
+      "sheet": "tea_leaf_wind_low_sheet.png",
+      "frames": [
+        {
+          "file": "frames/tea_leaf_wind_low_00.png",
+          "index": 0,
+          "duration_ms": 83,
+          "bbox": [
+            47,
+            54,
+            77,
+            80
+          ],
+          "opaque_pixels": 340,
+          "coverage": 0.02075,
+          "sha256": "96366b8518b22cd40a98e7d1a1b8b7bb76850c25d174a7097e7e3d0daa3d5a77"
+        },
+        {
+          "file": "frames/tea_leaf_wind_low_01.png",
+          "index": 1,
+          "duration_ms": 83,
+          "bbox": [
+            47,
+            53,
+            78,
+            76
+          ],
+          "opaque_pixels": 183,
+          "coverage": 0.01117,
+          "sha256": "a00d3da9bcbbe07b30d118731f14f97bc907cdbd163dc73219355523ef156680"
+        },
+        {
+          "file": "frames/tea_leaf_wind_low_02.png",
+          "index": 2,
+          "duration_ms": 83,
+          "bbox": null,
+          "opaque_pixels": 0,
+          "coverage": 0.0,
+          "sha256": "ff30c0a7268849427c5b6085bc05b348e70289a37c3f23be10cec8b29a26ee6d"
+        }
+      ],
+      "exposure_count": 3,
+      "unique_pixel_frames": 3,
+      "duration_ms": 249,
+      "loop": false,
+      "last_frame_fully_transparent": true,
+      "ppu": 128,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "burst_origin_px": [
+        64,
+        64
+      ],
+      "direction": "compact fan upward-right; optional rotate whole effect to impact direction",
+      "nominal_fps": 12,
+      "actual_frame_ms": 83
+    }
+  ]
+}

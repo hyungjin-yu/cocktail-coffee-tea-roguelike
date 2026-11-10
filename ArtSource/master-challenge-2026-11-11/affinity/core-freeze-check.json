@@ -1,0 +1,609 @@
+{
+  "all_match": true,
+  "checkpoint_files": [
+    {
+      "file": "animate-effects.lua",
+      "sha256": "8edeb60d9921c5d39eebebf41ef9464f7cca5b3b94b21b732c8f90ce3088d999",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "animate-npcs.lua",
+      "sha256": "79c4be197f8aa2763735ed538a4baa4eed88cd1ce810c7dde7016ade35d12736",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "banner_install.aseprite",
+      "sha256": "d5dc8d771c46f4525f0a600602dc6a04fec663184312701ebfd48504fdffcd9d",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "banner_rolled_representative.aseprite",
+      "sha256": "c4ffc78ca324cf8a85bf0531ecfe4d45541ab7cd8c2a3dd61e5cc627dd64b094",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "banner_settled_representative.aseprite",
+      "sha256": "aa8aa75829cc87e19c56cea6a98e2c7c35f255d95a6adba0e24622ce2b5a935b",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "banner_unfolding_representative.aseprite",
+      "sha256": "b15c8d16032b845d7053a1a3597a8d636be57da480817530982f76c9ee1775f4",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "build-review-and-manifest.py",
+      "sha256": "9e7297c243cbb12d29ae683b27fbbd7a38e8842b26643ae3bcfd002000774403",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "HANDOFF.md",
+      "sha256": "3b276c5e0daf72319c77ff2773038cba0912a67a0b2da6e6af1980544582f324",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "manifest.json",
+      "sha256": "48c3a0e46e1c4b504c739062a08c5101ab3cf310a255515e0a46b5593740464f",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "native-frames.csv",
+      "sha256": "d5de9bd7cb00b01d3f49fc1b21591bc8bfa21e88b6e4908710d833cb12e324f0",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc-revision02-manifest.json",
+      "sha256": "b0b2b85276c1848fe1d550ea292f0f200d562a62474914cde1efec26c8b7c367",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc-revision02.lua",
+      "sha256": "cf9c70f3c6f7266ad44e3fb669b839550644f32154faf560ca9adc4dde605548",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_porter_idle.aseprite",
+      "sha256": "5cf18874d8a46d00155cee52f302c47cbcc4afec05f6b3af96323636bc26695f",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_porter_install.aseprite",
+      "sha256": "2bc7219a8d2cbdd91ff42cc77d6734f942fb518e9b215399c8f7609fb47ccf11",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_porter_representative.aseprite",
+      "sha256": "b94d3b13d87e646e446399c6db9f40dbad44024e8f91f7e353443c67912de5cf",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_porter_revision02.aseprite",
+      "sha256": "80f968d608243455174d686d3e1d2a6560ff7ecb29cac549a69e0e149d7782d0",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_porter_walk_in.aseprite",
+      "sha256": "27b8ab55fc34fa480770f5437e0a872f87158d1bf0c315b63361b9667485a479",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_porter_walk_out.aseprite",
+      "sha256": "047a702876a2f425f8189c3bb2147a33f9bb8039b6ff3b8cd8fce6fc9ec2556d",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_rigger_idle.aseprite",
+      "sha256": "94b01bcceeb3e9c56bea07289e9ac7d4e732ea1334605f94c33003226ad4cb8f",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_rigger_install.aseprite",
+      "sha256": "bf0c22c9fb1e1f8c99a93d02f8a4dffd1149e8a4e072d11ce01962c8e9a92c13",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_rigger_representative.aseprite",
+      "sha256": "c045b8e9f67ac4add036644c6be0fc0ec7fa4a3018660ccb88248be12639ce4a",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_rigger_revision02.aseprite",
+      "sha256": "b3a54fffd9c8354d0cfe32a5ff902c17f9b06b9e145e8e01494a923f1caa48de",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_rigger_walk_in.aseprite",
+      "sha256": "c7992fe13cae8fc5e1b05682c05ea3c6477407a45f4ff9b348a9b9093406acdc",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "npc_rigger_walk_out.aseprite",
+      "sha256": "0cb773205e3d1b9a5118c07cf9cdd5ea0b543893ddfe9901b13e9f14be3c3788",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "quality_excellent.aseprite",
+      "sha256": "176a0033a7e075a812671c4fa0d4547de7fbe8f95f14b7b409d0131799d8fc6c",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "quality_excellent_low.aseprite",
+      "sha256": "02e9e2bd1dddaaf490897f98206e74112918d595c6d82ac9bfb0c6b362c9779c",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "quality_excellent_representative.aseprite",
+      "sha256": "e8e604066b58b6682b9194f43be0acc2c6eb4fade775ddb01aef18ba5a02fbbd",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "quality_master.aseprite",
+      "sha256": "428c2aadb89d495a3198b24cafe185c9ff606c6a27b6a17c2c6eaeae5d40434a",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "quality_master_low.aseprite",
+      "sha256": "3073b936c62e516cf119b3c98d6f76414a358a818f87b52a33e806c3bc7e48ad",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "quality_master_representative.aseprite",
+      "sha256": "c411ec2ec5631bff99f83ee6864eda9f4630bcb0854110b0a3b2c9e9b4f7fe04",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "quality_normal.aseprite",
+      "sha256": "63b52a5394f293e4d8748b690ead987130dfee2980b5097bbfc31df7e00ed01e",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "quality_normal_low.aseprite",
+      "sha256": "99869592817bb9fbea826f8379953326f15d559f677cc580fe8d2dd33f1c16ce",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "quality_normal_representative.aseprite",
+      "sha256": "dea501df9f4d804e94fc2e1302572a6c2c1b779cf44cb49a94ba081bb8dae5cc",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "reference-manifest.json",
+      "sha256": "fde7c40e0a9ce09f751dc58e77fc98421ea208c9ecac1234155792df6b5ed85d",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "reopen-export-all.lua",
+      "sha256": "69e1401edcc4d3f85664c13eb6e2f417a1013b7ebead6bca5f077361f8872ceb",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "representative-manifest.json",
+      "sha256": "e38385943840c4f0087359e195fe239a5cada271c44b699f171aa46320724a27",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "representatives.lua",
+      "sha256": "aa79e1f61d2ddefa509ed5506d1de34f909e68ab3a4d0ce34050611a91557bc9",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "roundtrip-checks.json",
+      "sha256": "fecda3691e8691a615d5a17ecf0db2ad97b4851cf0b84200f70e997a4215ee1d",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "roundtrip-npc02.lua",
+      "sha256": "6d697d576a88c23560749625a95c49cb6a87af4ee6a21ec5c88709abb9a07ec0",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "roundtrip.lua",
+      "sha256": "370868bb41826de23e79bd393e8092eec1991c7a9b05432abe12c6e12b10e2f7",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "STATUS.md",
+      "sha256": "3bcae75b6659b84078188effcfc580899eabbd842f1f40fd60a94648ec06c762",
+      "matches_frozen_checkpoint": true
+    },
+    {
+      "file": "validation.json",
+      "sha256": "0601d211c0e4dec7f7fcd8b8d6160dae79cacba950ccf2a65f2903fd1c63878c",
+      "matches_frozen_checkpoint": true
+    }
+  ],
+  "core15_native_and83_frame_checks": [
+    {
+      "file": "quality_normal.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_normal_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_normal_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_normal_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_normal_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_normal_04.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_normal_05.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "quality_excellent.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_04.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_05.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_06.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_07.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "quality_master.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_04.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_05.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_06.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_07.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "quality_normal_low.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_normal_low_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_normal_low_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_normal_low_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "quality_excellent_low.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_low_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_low_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_excellent_low_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "quality_master_low.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_low_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_low_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/quality_master_low_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "banner_install.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/banner_install_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/banner_install_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/banner_install_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/banner_install_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/banner_install_04.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/banner_install_05.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/banner_install_06.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/banner_install_07.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "npc_porter_walk_in.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_in_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_in_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_in_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_in_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_in_04.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_in_05.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "npc_porter_install.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_install_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_install_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_install_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_install_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_install_04.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_install_05.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "npc_porter_idle.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_idle_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_idle_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_idle_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_idle_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "npc_porter_walk_out.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_out_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_out_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_out_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_out_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_out_04.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_porter_walk_out_05.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "npc_rigger_walk_in.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_in_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_in_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_in_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_in_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_in_04.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_in_05.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "npc_rigger_install.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_install_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_install_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_install_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_install_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_install_04.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_install_05.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "npc_rigger_idle.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_idle_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_idle_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_idle_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_idle_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "npc_rigger_walk_out.aseprite",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_out_00.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_out_01.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_out_02.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_out_03.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_out_04.png",
+      "matches_manifest": true
+    },
+    {
+      "file": "frames/npc_rigger_walk_out_05.png",
+      "matches_manifest": true
+    }
+  ]
+}

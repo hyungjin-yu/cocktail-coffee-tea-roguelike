@@ -264,6 +264,7 @@ namespace CCT
         /// <summary>아키타입에 맞는 행동 컴포넌트를 붙인다. Rush 는 기본 추적 그대로라 붙일 게 없다.</summary>
         public static void AttachBehavior(Enemy enemy, GameManager game, PlayerController player)
         {
+            if (enemy == null || enemy.Harmless) return; // 2026-11-11 보상 몬스터: 원거리·소환 등 공격 행동 컴포넌트를 붙이지 않는다
             switch (enemy.Def.archetype)
             {
                 case EnemyArchetype.Ranged:

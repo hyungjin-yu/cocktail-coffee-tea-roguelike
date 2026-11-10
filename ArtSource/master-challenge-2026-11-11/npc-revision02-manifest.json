@@ -1,0 +1,66 @@
+[
+  {
+    "asset": "npc_porter",
+    "png": "npc_porter_revision02.png",
+    "native": "npc_porter_revision02.aseprite",
+    "frame_count": 1,
+    "banner_hand_px_top_left": [
+      [
+        105,
+        165
+      ],
+      [
+        166,
+        161
+      ]
+    ],
+    "ppu": 128,
+    "pivot": [
+      0.5,
+      0.125
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "bbox": [
+      80,
+      32,
+      176,
+      224
+    ],
+    "roundtrip_pixel_exact": true,
+    "png_sha256": "9c6bbd9b91ab3c766c8e99411b94e6b7ea06d383a4e329abe9bfc47c8945520d",
+    "native_sha256": "80f968d608243455174d686d3e1d2a6560ff7ecb29cac549a69e0e149d7782d0",
+    "status": "PENDING_COORDINATOR_VISUAL_REVIEW"
+  },
+  {
+    "asset": "npc_rigger",
+    "png": "npc_rigger_revision02.png",
+    "native": "npc_rigger_revision02.aseprite",
+    "frame_count": 1,
+    "banner_hand_px_top_left": [
+      194,
+      93
+    ],
+    "ppu": 128,
+    "pivot": [
+      0.5,
+      0.125
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "bbox": [
+      80,
+      38,
+      202,
+      224
+    ],
+    "roundtrip_pixel_exact": true,
+    "png_sha256": "36c84d46225c64571fa5f44dc4f2307bfdf0dce57ebfbaadd5c119dd058012c5",
+    "native_sha256": "b3a54fffd9c8354d0cfe32a5ff902c17f9b06b9e145e8e01494a923f1caa48de",
+    "status": "PENDING_COORDINATOR_VISUAL_REVIEW"
+  }
+]

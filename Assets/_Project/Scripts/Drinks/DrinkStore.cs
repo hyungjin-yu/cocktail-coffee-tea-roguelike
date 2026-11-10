@@ -103,6 +103,9 @@ namespace CCT
         public List<DrinkRecipe> recipes = new List<DrinkRecipe>();
         public PreparedDrink prepared = new PreparedDrink();
         public List<DrinkRunAward> pending = new List<DrinkRunAward>();
+        /// <summary>2026-11-11 마스터 도전 런 안에서 제조한 잔(로비 준비 음료 1슬롯과 분리). 런 정산·비정상 종료 복구 때 같은 사건으로 정리한다.
+        /// 추가 필드라 v4 그대로 읽힌다(없으면 빈 목록 — 기존 단일 prepared 손실 없음).</summary>
+        public List<RunCup> runCups = new List<RunCup>();
         /// <summary>정산을 끝낸 runId(최근 200개). 같은 runId 정산은 다시 하지 않는다.</summary>
         public List<string> settledRunIds = new List<string>();
         public DrinkSettlement lastSettlement = new DrinkSettlement();

@@ -960,7 +960,7 @@ namespace CCT
             {
                 case DrinkLab.CraftStatus.Crafted:
                     Message($"제조 완료 — {DrinkLab.Prepared.recipe.name}: {result.Buff.Describe()}" +
-                        (DrinkLab.PreparedSaleBlocked ? " · 끝없는 재료 모으기 재료 포함: 마실 수 있고 판매는 불가" : ""));
+                        (DrinkLab.PreparedSaleBlocked ? " · 마스터 도전 재료 포함: 마실 수 있고 판매는 불가" : ""));
                     var made = DrinkLab.Prepared.recipe.Clone();
                     BuildIngredientRows();
                     craftButton.interactable = false;

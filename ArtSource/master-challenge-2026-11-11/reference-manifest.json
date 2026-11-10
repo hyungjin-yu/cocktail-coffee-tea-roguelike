@@ -1,0 +1,164 @@
+[
+  {
+    "path": "Assets\\_Project\\Resources\\ProgressionUI\\staff_cocktail_aroma.png",
+    "sha256": "4a836174e786dfec57166dd4aa4e4213b34bfad54597ec8a47782cf5abede378",
+    "size": [
+      28,
+      34
+    ],
+    "bbox": [
+      1,
+      1,
+      27,
+      33
+    ],
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "Assets\\_Project\\Resources\\ProgressionUI\\staff_tea_aroma.png",
+    "sha256": "95d481ea47a9149e8d018c4b428fa496ef4730e6455415bcea597fdb05054df3",
+    "size": [
+      28,
+      34
+    ],
+    "bbox": [
+      3,
+      1,
+      25,
+      33
+    ],
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_defeat_right_00.png",
+    "sha256": "ed1e468cfd9afc0f3dbe76abb50ed2e8a88ea9c176feac54bcf9cbb64b60ed56",
+    "size": [
+      256,
+      256
+    ],
+    "bbox": [
+      72,
+      66,
+      184,
+      224
+    ],
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "Assets\\_Project\\Art\\v1\\tea_sommelier\\frames\\tea_sommelier_defeat_right_00.png",
+    "sha256": "3007d852d15dbe6ff90372b87ba4e6301c14dc77ad3ead48de66a5d2f311656b",
+    "size": [
+      256,
+      256
+    ],
+    "bbox": [
+      62,
+      84,
+      194,
+      224
+    ],
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "Assets\\_Project\\Art\\v1\\cafe_counter\\frames\\cafe_counter_effect_right_00.png",
+    "sha256": "adbb1634958c41c57aeb03784b0485ccebf25605071e120c2631a04cfe9aa8b8",
+    "size": [
+      512,
+      256
+    ],
+    "bbox": [
+      4,
+      60,
+      506,
+      194
+    ],
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "Assets\\_Project\\Art\\v1\\cafe_wall\\frames\\cafe_wall_effect_right_00.png",
+    "sha256": "c091be0e11d2e6c932a07dfaa41549c1e704dc380947d1fb0624d74ada4bb7cc",
+    "size": [
+      1024,
+      512
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      512
+    ],
+    "alpha": [
+      255
+    ]
+  },
+  {
+    "path": "Assets\\_Project\\Art\\v1\\weapon_sword\\frames\\weapon_sword_effect_right_00.png",
+    "sha256": "e6eb1510fe3ec4a1c70ddfa0ed7cd1e67243385fd801b55c8c17241250e2b617",
+    "size": [
+      256,
+      256
+    ],
+    "bbox": [
+      18,
+      104,
+      238,
+      154
+    ],
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "Assets\\_Project\\Art\\v1\\steam_jet\\frames\\steam_jet_effect_right_00.png",
+    "sha256": "901a4987b48e394b16d7bd6dd3314b6d61904faa1fab67ce53297837a41aa126",
+    "size": [
+      128,
+      128
+    ],
+    "bbox": [
+      6,
+      40,
+      110,
+      86
+    ],
+    "alpha": [
+      0,
+      180,
+      225
+    ]
+  },
+  {
+    "path": "Assets\\_Project\\Art\\v1\\hit_spark\\frames\\hit_spark_effect_right_00.png",
+    "sha256": "ec0f6b7bfff3a04b3e8cbb10ff26cd2d0c17ae17174123c254c161aa72a94bf0",
+    "size": [
+      128,
+      128
+    ],
+    "bbox": [
+      50,
+      50,
+      80,
+      78
+    ],
+    "alpha": [
+      0,
+      255
+    ]
+  }
+]

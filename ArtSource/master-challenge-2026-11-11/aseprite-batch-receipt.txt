@@ -1,0 +1,1 @@
+Representative Aseprite Lua creation completed. Eight native files and eight PNGs. No PixelLab request, no GUI injection. NPC rigger raised right hand banner_hand(178,98); representative only, no locomotion clip yet.

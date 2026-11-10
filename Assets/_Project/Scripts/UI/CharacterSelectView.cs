@@ -214,10 +214,10 @@ namespace CCT
             bool endless = RunModeSelection.Current == RunMode.Endless;
             if (SpawnTableButton != null) SpawnTableButton.interactable = !endless;
             if (tableLabel != null)
-                tableLabel.text = endless ? "계열 표: 끝없는 순환" : "계열 표: " + RunModeSelection.TableName(RunModeSelection.StandardTable) + " ▸";
+                tableLabel.text = endless ? "계열 표: 마스터 도전 순환" : "계열 표: " + RunModeSelection.TableName(RunModeSelection.StandardTable) + " ▸";
             if (affinityLine != null)
                 affinityLine.text = DrinkAffinity.CycleLine + " · " + (endless ? EndlessFamilyLine() : StandardFamilyLine(currentJobForLine, RunModeSelection.StandardTable))
-                                    + "\n" + RunModeSelection.NoSwapLine;
+                                    + "\n" + (endless ? RunModeSelection.MasterLine : RunModeSelection.NoSwapLine);
         }
 
         public static string EndlessFamilyLine() =>

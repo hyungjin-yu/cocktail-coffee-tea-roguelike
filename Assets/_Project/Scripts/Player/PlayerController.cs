@@ -84,6 +84,14 @@ namespace CCT
             if (stats != null) stats.Changed -= OnStatsChanged;
         }
 
+        /// <summary>2026-11-11 런 중 음료 교체 뒤: 현재 체력을 보존(회복 없음)하고 최대 체력 아래로만 맞춘다. 살아 있으면 최소 1.</summary>
+        public void PreserveHpAfterDrinkSwap(float previousHp)
+        {
+            lastMaxHp = stats.MaxHp;
+            if (IsDead) return;
+            Hp = Mathf.Clamp(previousHp, 1f, Mathf.Max(1f, stats.MaxHp));
+        }
+
         void OnStatsChanged()
         {
             // 최대 체력이 늘어난 만큼 현재 체력도 함께 회복

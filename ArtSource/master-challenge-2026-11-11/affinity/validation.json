@@ -1,0 +1,172 @@
+{
+  "frame_count": 27,
+  "all_pixel_exact": true,
+  "all_transparent_border": true,
+  "all_binary_alpha": true,
+  "all_last_frames_empty": true,
+  "core_checkpoint_unchanged": true,
+  "frames": [
+    {
+      "frame": "cocktail_foam_00.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "cocktail_foam_01.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "cocktail_foam_02.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "cocktail_foam_03.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "cocktail_foam_04.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "cocktail_foam_05.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "cocktail_foam_low_00.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "cocktail_foam_low_01.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "cocktail_foam_low_02.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "coffee_bean_steam_00.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "coffee_bean_steam_01.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "coffee_bean_steam_02.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "coffee_bean_steam_03.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "coffee_bean_steam_04.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "coffee_bean_steam_05.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "coffee_bean_steam_low_00.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "coffee_bean_steam_low_01.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "coffee_bean_steam_low_02.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "tea_leaf_wind_00.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "tea_leaf_wind_01.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "tea_leaf_wind_02.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "tea_leaf_wind_03.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "tea_leaf_wind_04.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "tea_leaf_wind_05.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "tea_leaf_wind_low_00.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "tea_leaf_wind_low_01.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    },
+    {
+      "frame": "tea_leaf_wind_low_02.png",
+      "native_reopen_pixel_exact": true,
+      "transparent_border": true,
+      "binary_alpha": true
+    }
+  ]
+}

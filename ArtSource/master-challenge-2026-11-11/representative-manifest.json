@@ -1,0 +1,202 @@
+{
+  "ppu": 128,
+  "filter": "Point",
+  "glyphs_baked": false,
+  "npc_pivot": [
+    0.5,
+    0.125
+  ],
+  "banner_pivot": [
+    0.5,
+    1
+  ],
+  "vfx_pivot": [
+    0.5,
+    0.5
+  ],
+  "rigger_banner_hand_px": [
+    178,
+    98
+  ],
+  "porter_banner_hand_px": [
+    [
+      103,
+      165
+    ],
+    [
+      165,
+      161
+    ]
+  ],
+  "animation": "NOT AUTHORED - one representative per native file",
+  "records": [
+    {
+      "file": "banner_rolled_representative.png",
+      "native": "banner_rolled_representative.aseprite",
+      "size": [
+        1280,
+        192
+      ],
+      "bbox": [
+        380,
+        70,
+        900,
+        114
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "a713fa46e6a96db6ad976dd16284fbcfa892826d007416388f0ac8e4276b60f2",
+      "frame_count": 1,
+      "status": "REPRESENTATIVE_PENDING_REVIEW"
+    },
+    {
+      "file": "banner_settled_representative.png",
+      "native": "banner_settled_representative.aseprite",
+      "size": [
+        1280,
+        192
+      ],
+      "bbox": [
+        19,
+        7,
+        1262,
+        174
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "4d93ab968c80c02104ace4bb5e440423ec67dd1bf94212c1fe374f073aaabf36",
+      "frame_count": 1,
+      "status": "REPRESENTATIVE_PENDING_REVIEW"
+    },
+    {
+      "file": "banner_unfolding_representative.png",
+      "native": "banner_unfolding_representative.aseprite",
+      "size": [
+        1280,
+        192
+      ],
+      "bbox": [
+        19,
+        7,
+        1262,
+        108
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "579ccd15cbffaa6f22d63bf1325ac72e247f9a62fdc0842a9c5c457d12ba8e97",
+      "frame_count": 1,
+      "status": "REPRESENTATIVE_PENDING_REVIEW"
+    },
+    {
+      "file": "npc_porter_representative.png",
+      "native": "npc_porter_representative.aseprite",
+      "size": [
+        256,
+        256
+      ],
+      "bbox": [
+        80,
+        32,
+        176,
+        224
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "078f1728af8bdcbe912ebc7ea315b72d04217da1b4ac3a7839ccb2fa0feb3fcf",
+      "frame_count": 1,
+      "status": "REPRESENTATIVE_PENDING_REVIEW"
+    },
+    {
+      "file": "npc_rigger_representative.png",
+      "native": "npc_rigger_representative.aseprite",
+      "size": [
+        256,
+        256
+      ],
+      "bbox": [
+        80,
+        38,
+        185,
+        224
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "1c874a337cf9ba91615c9cfcb66f7e2d598c4b19b7abe35cb02fa81543588eaa",
+      "frame_count": 1,
+      "status": "REPRESENTATIVE_PENDING_REVIEW"
+    },
+    {
+      "file": "quality_excellent_representative.png",
+      "native": "quality_excellent_representative.aseprite",
+      "size": [
+        128,
+        128
+      ],
+      "bbox": [
+        28,
+        22,
+        101,
+        95
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "7e6029f9cb5c96922f7f9e1220e5f1f69ec64d85af338de4cb6bd57483627bfc",
+      "frame_count": 1,
+      "status": "REPRESENTATIVE_PENDING_REVIEW"
+    },
+    {
+      "file": "quality_master_representative.png",
+      "native": "quality_master_representative.aseprite",
+      "size": [
+        128,
+        128
+      ],
+      "bbox": [
+        24,
+        24,
+        112,
+        109
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "54c965272b2a4534514b230f6dfc910cc4dfad3c41e40104a7ae26fc84c2662c",
+      "frame_count": 1,
+      "status": "REPRESENTATIVE_PENDING_REVIEW"
+    },
+    {
+      "file": "quality_normal_representative.png",
+      "native": "quality_normal_representative.aseprite",
+      "size": [
+        128,
+        128
+      ],
+      "bbox": [
+        54,
+        53,
+        75,
+        73
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "d447c9a932755826905d3a8bec63ab1c0e8f84bb16857a4899c5212b87f67051",
+      "frame_count": 1,
+      "status": "REPRESENTATIVE_PENDING_REVIEW"
+    }
+  ]
+}

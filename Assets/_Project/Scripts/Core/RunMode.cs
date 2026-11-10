@@ -23,8 +23,11 @@ namespace CCT
         public static SpawnTable ParseTable(string s) => s == nameof(SpawnTable.AllFamilies) ? SpawnTable.AllFamilies : SpawnTable.JobTheme;
         /// <summary>시작 화면 짧은 안내(코디네이터 확정 A안: 런 중 음료 교체 없음).</summary>
         public const string NoSwapLine = "음료는 출발 때 한 잔만 마시며 런 중 교체 불가 · 집중 계열은 1웨이브 전 예고";
+        /// <summary>2026-11-11 마스터 도전 출전 안내(런 중 제조·교체 가능).</summary>
+        public const string MasterLine = "10웨이브 주기: 재료 모으기 1~5 → 박람회 6~8 → 보상 손님 9~10 · [B] 런 중 음료 제조(마시면 교체)";
 
-        public static string Name(RunMode mode) => mode == RunMode.Endless ? "끝없는 재료 모으기" : "진상 보스 영업";
+        /// <summary>2026-11-11 표시명: 끝없는 모드(RunMode.Endless, 저장·기록 값 그대로)는 본편 작업명 '마스터 도전'. 세계 1등 대회는 후속(우승 표시 없음).</summary>
+        public static string Name(RunMode mode) => mode == RunMode.Endless ? "마스터 도전" : "진상 보스 영업";
 
         /// <summary>기록 문자열(빈 값·알 수 없는 값 = 기존 정규 모드로 호환).</summary>
         public static RunMode Parse(string s) => s == nameof(RunMode.Endless) ? RunMode.Endless : RunMode.Standard;
@@ -32,7 +35,7 @@ namespace CCT
         /// <summary>출전 화면·결과 화면 공용 보상 안내(명세 문구).</summary>
         public const string EndlessRewardLine = "재료 획득 가능 · 스킨 재화 획득 불가";
         public const string EndlessRewardReason =
-            "끝없는 재료 모으기는 스킨 재화(판매 코인)를 주지 않습니다. 이번 판 재료로 만든 음료는 마실 수 있지만 판매할 수 없습니다.";
+            "마스터 도전은 스킨 재화(판매 코인)를 주지 않습니다. 이번 판 재료·박람회 보상으로 만든 음료는 마실 수 있지만 판매할 수 없습니다.";
         public const string StandardRewardLine = "진상 손님 처치로 클리어 · 모은 재료로 만든 음료 판매 가능";
     }
 
@@ -95,6 +98,9 @@ namespace CCT
         public static long SumWaveCounts(long a, long b)
         {
             a = W(a); if (b < a) return 0;
+            // 2026-11-11 decimal 범위(약 7.9×10^28) 밖 곱셈 OverflowException 방지: double 추정이 long 한계를 넘으면 계산 전에 포화.
+            double approx = ((double)b - a + 1d) * (FirstWaveCount + CountGrowthPerWave * (((double)a - 1d + ((double)b - 1d)) / 2d));
+            if (double.IsNaN(approx) || approx >= 9.2e18) return SaturatedLong;
             decimal n = (decimal)b - a + 1m;
             decimal sum = n * FirstWaveCount + CountGrowthPerWave * (((decimal)a - 1m + ((decimal)b - 1m)) * n / 2m);
             return sum >= SaturatedLong ? SaturatedLong : (long)sum;

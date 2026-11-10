@@ -26,7 +26,9 @@ namespace CCT
             if (player == null || player.IsDead || game.State != GameState.Playing) return;
 
             float t = game.RunTime;
-            if (game.Mode == RunMode.Endless) { TickEndless(game.RunTimePrecise); return; } // 2026-11-10 별도 모드: 기존 트리클·14초 웨이브 대신
+            // 2026-11-11 마스터 도전(RunMode.Endless의 본편 루프): 생성은 MasterChallengeDirector가 유한 웨이브 목표로만 한다(시간 웨이브 없음).
+            // 이전 30초 시간 웨이브(TickEndless)는 기존 수치 시험용으로만 남긴다.
+            if (game.Mode == RunMode.Endless) { if (game.Master == null) TickEndless(game.RunTimePrecise); return; }
 
             timer -= Time.deltaTime;
             if (timer <= 0f)
@@ -129,6 +131,19 @@ namespace CCT
             LastWaveSides = BattleArena.SideLabel(fromLeft, fromRight);
             if (fromLeft || fromRight) game.Hud.ShowBanner("몹 웨이브!", $"{LastWaveSides}에서 몰려온다", 1.6f);
             if (spawned > 0) WaveSpawned?.Invoke(fromLeft, fromRight, spawned);
+        }
+
+        /// <summary>2026-11-11 마스터 도전 1마리 생성(동시 상한 안에서만 — 못 내면 null, 목표량은 Director 장부에 그대로 남는다).</summary>
+        public Enemy SpawnMaster(EnemyDef def, float hpScale, float attackScale, bool harmless, bool ignoreChallengeHp)
+        {
+            if (def == null || !UnderCap) return null;
+            var rng = game.SpawnRng;
+            float side = rng.Value() < 0.5f ? -1f : 1f;
+            var pos = BeltScroll.ArenaEdgePosition(cam, side, Balance.SpawnEdgeMargin, def.radius, out _);
+            var enemy = Enemy.SpawnAt(pos, def, hpScale, player, transform, attackScale, harmless, ignoreChallengeHp);
+            EnemyRoster.AttachBehavior(enemy, game, player);
+            if (def.archetype == EnemyArchetype.EliteBarrage) EliteSpawned?.Invoke(def, pos);
+            return enemy;
         }
 
         /// <summary>시험/보고용 — 마지막 웨이브가 실제로 나온 쪽(왼쪽/오른쪽/양쪽).</summary>

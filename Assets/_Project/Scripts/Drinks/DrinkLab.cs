@@ -12,7 +12,7 @@ namespace CCT
     /// 트랜잭션: 모든 변경은 사본에 적용 → 저장. 플레이어 행동(제조·레시피)은 저장 실패 시 사본을 버린다(재고 차감 없음).
     /// 게임 사건(보스 보상·런 시작·종료 정산)은 메모리에 확정하고 실제 시간 5초마다 재시도한다 — runId/awardId 기준이라 재시도가 중복을 만들지 않는다.
     /// </summary>
-    public static class DrinkLab
+    public static partial class DrinkLab
     {
         public const int PreserveKillLimit = 5;
         /// <summary>별도 Windows 실행본 식별(스토어 1.0.x와 구분). Application.version/안드로이드 버전은 바꾸지 않는다.</summary>
@@ -504,6 +504,9 @@ namespace CCT
                     if (drink != null) { d.prepared = new PreparedDrink(); settlement.drink = "Consumed"; }
                     settlement.kind = "Settled";
                 }
+                // 2026-11-11 런 제조 잔: 보관 잔은 로비 재고 몫을 출처대로 환원, 마시거나 제출한 잔의 런 재료는 지급에서 뺀다(같은 사건).
+                var debit = new Dictionary<string, long>();
+                SettleRunCups(d, runId, debit);
                 for (int i = d.pending.Count - 1; i >= 0; i--)
                 {
                     var a = d.pending[i];
@@ -511,7 +514,12 @@ namespace CCT
                     foreach (var item in a.items)
                     {
                         if (preserve) settlement.discarded.Add(new DrinkAmount(item.id, item.amount));
-                        else { d.AddFrom(item.id, item.amount, a.endless); settlement.granted.Add(new DrinkAmount(item.id, item.amount)); }
+                        else
+                        {
+                            int amount = ApplyDebit(debit, item.id, item.amount);
+                            if (amount <= 0) continue;
+                            d.AddFrom(item.id, amount, a.endless); settlement.granted.Add(new DrinkAmount(item.id, amount));
+                        }
                     }
                     d.pending.RemoveAt(i);
                 }
@@ -542,6 +550,8 @@ namespace CCT
                 stale.Add(data.prepared.runId ?? "");
             foreach (var a in data.pending)
                 if (a.runId != exceptRunId && a.runId != liveRunId) stale.Add(a.runId ?? "");
+            foreach (var id in RunCupRunIds(data))
+                if (id != exceptRunId && id != liveRunId) stale.Add(id);
             if (stale.Count == 0) return false;
             bool drinkRecovered = data.prepared.state == PreparedDrink.InRun && stale.Contains(data.prepared.runId ?? "");
             CommitEvent(d =>
@@ -554,12 +564,20 @@ namespace CCT
                         d.prepared = new PreparedDrink();
                         settlement.drink = "Consumed";
                     }
+                    var debit = new Dictionary<string, long>();
+                    bool alreadySettled = d.settledRunIds.Contains(runId);
+                    if (!alreadySettled) SettleRunCups(d, runId, debit); else d.runCups.RemoveAll(c => c == null || (c.runId ?? "") == runId);
                     for (int i = d.pending.Count - 1; i >= 0; i--)
                     {
                         var a = d.pending[i];
                         if ((a.runId ?? "") != runId) continue;
-                        if (!d.settledRunIds.Contains(runId))
-                            foreach (var item in a.items) { d.AddFrom(item.id, item.amount, a.endless); settlement.granted.Add(new DrinkAmount(item.id, item.amount)); }
+                        if (!alreadySettled)
+                            foreach (var item in a.items)
+                            {
+                                int amount = ApplyDebit(debit, item.id, item.amount);
+                                if (amount <= 0) continue;
+                                d.AddFrom(item.id, amount, a.endless); settlement.granted.Add(new DrinkAmount(item.id, amount));
+                            }
                         d.pending.RemoveAt(i);
                     }
                     MarkSettled(d, runId);
@@ -708,8 +726,8 @@ namespace CCT
         public static int Coins => Data.coins;
 
         /// <summary>2026-11-10 판매 코인은 스킨 재화와 같은 재화라서, 끝없는 재료 모으기 재료가 섞인 음료는 마실 수 있지만 팔 수 없다.</summary>
-        public const string SaleBlockedEndless = "끝없는 재료 모으기 재료가 들어간 음료는 마실 수 있지만 판매할 수 없습니다(스킨 재화 획득 불가).";
-        public const string CraftEndlessWarning = "이 배합은 끝없는 재료 모으기 재료를 씁니다 — 만든 음료는 마실 수 있지만 판매할 수 없습니다.";
+        public const string SaleBlockedEndless = "마스터 도전 재료가 들어간 음료는 마실 수 있지만 판매할 수 없습니다(스킨 재화 획득 불가).";
+        public const string CraftEndlessWarning = "이 배합은 마스터 도전 재료를 씁니다 — 만든 음료는 마실 수 있지만 판매할 수 없습니다.";
         /// <summary>현재 준비 음료가 판매 불가(끝없는 출처 포함)인지.</summary>
         public static bool PreparedSaleBlocked { get { var p = Prepared; return p != null && p.HasEndlessSource; } }
         /// <summary>제조 전 예고: 지금 만들면 끝없는 출처 재료가 섞이는지.</summary>

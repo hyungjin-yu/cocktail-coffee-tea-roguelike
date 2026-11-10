@@ -49,6 +49,17 @@ namespace CCT
             return rt;
         }
 
+        /// <summary>2026-11-11 런 중 음료 교체: 커피 추출 리듬을 떼고 그 효과 슬롯을 0으로.</summary>
+        public static void Detach(PlayerController player)
+        {
+            if (player == null) return;
+            var rt = player.GetComponent<CoffeeBrewRuntime>();
+            var s = player.Stats;
+            if (s != null) { s.coffeeAttackSpeed = 0f; s.coffeeMoveSpeed = 0f; s.coffeeRangePercent = 0f; }
+            if (rt != null) { rt.enabled = false; Destroy(rt); }
+            player.Coffee = null;
+        }
+
         void ResetState()
         {
             charge = shotTimer = rechargeTimer = cycleTime = heatIdle = 0f;

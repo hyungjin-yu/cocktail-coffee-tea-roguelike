@@ -79,8 +79,15 @@ namespace CCT
         /// <summary>2026-11-10 끝없는 모드 배지(유한 구간·보스 예고 없음). 두 줄: 모드·웨이브·다음 웨이브 정수 초 / 집중 계열·체력·공격 배율·생성 대기.</summary>
         public static RunPhaseInfo ComputeEndless(GameManager game)
         {
+            if (game.Master != null) return ComputeMaster(game);
+            return ComputeLegacyEndless(game);
+        }
+
+        /// <summary>이전 30초 시간 웨이브 배지(스포너 수치 시험용 — 실제 런은 마스터 도전 배지).</summary>
+        public static RunPhaseInfo ComputeLegacyEndless(GameManager game)
+        {
             var info = new RunPhaseInfo { state = RunPhaseState.Endless };
-            long wave = System.Math.Max(1L, game.EndlessWave);
+            long wave = System.Math.Max(1L, game.Spawner != null ? game.Spawner.EndlessWave : 1L);
             long pending = game.Spawner != null ? game.Spawner.EndlessPending : 0;
             bool saturated = game.Spawner != null && game.Spawner.EndlessPendingSaturated;
             info.segment = (int)System.Math.Min(int.MaxValue, wave);
@@ -92,6 +99,29 @@ namespace CCT
                 ? $" · 다음 웨이브 집중 {MonsterFamilies.Mark(EndlessRules.FocusFor(wave + 1))} {MonsterFamilies.Name(EndlessRules.FocusFor(wave + 1))}" : "";
             info.text = $"{RunModeSelection.Name(RunMode.Endless)} · 웨이브 {EndlessRules.Show(wave)} · 다음 웨이브 {info.secondsToBoss}초{next}" + "\n" +
                         $"집중 {MonsterFamilies.Mark(focus)} {MonsterFamilies.Name(focus)} {EndlessRules.FocusWeightPercent}% · 체력 {EndlessRules.Show(EndlessRules.HpPercentInt(wave))}% · 공격 {EndlessRules.Show(EndlessRules.AttackPercentInt(wave))}% · 생성 대기 {(saturated ? "최대(포화)" : pending.ToString())}";
+            return info;
+        }
+
+        /// <summary>2026-11-11 마스터 도전 배지(두 줄): 주기·구간·웨이브 처리 현황 / 약화율·제출·칵테일 공격 보너스. 시간 웨이브·보스 예고 없음.</summary>
+        public static RunPhaseInfo ComputeMaster(GameManager game)
+        {
+            var info = new RunPhaseInfo { state = RunPhaseState.Endless };
+            var m = game.Master; var st = m.State;
+            long wave = st.Wave;
+            info.segment = (int)System.Math.Min(int.MaxValue, wave);
+            double grow = EndlessRules.HpPercent(wave) / 100d;
+            info.danger = st.Segment == MasterSegment.Reward ? 1 : Mathf.Clamp(1 + (int)System.Math.Floor(System.Math.Log(System.Math.Max(1d, grow), 2d)), 1, 5);
+            string seg = st.Segment == MasterSegment.Fair ? $"박람회 {MasterRules.FairIndex(wave)}/{MasterRules.FairWaves}"
+                : st.Segment == MasterSegment.Reward ? $"보상 손님 {MasterRules.RewardIndex(wave)}/{MasterRules.RewardWaves}"
+                : $"재료 모으기 {MasterRules.InCycle(wave)}/{MasterRules.CollectWaves}";
+            string progress = st.Phase == MasterPhase.AwaitChoice ? "반복 또는 박람회 도전 선택"
+                : st.Phase == MasterPhase.ClearingForFair ? $"남은 손님 {Enemy.Active.Count}명 처리 후 박람회"
+                : st.Phase == MasterPhase.Transition ? "현수막 설치 중 · 전투 정지"
+                : $"처리 {st.Cleared}/{st.Target}";
+            info.text = $"{RunModeSelection.Name(RunMode.Endless)} · 주기 {st.Cycle} · 웨이브 {EndlessRules.Show(wave)} · {seg} · {progress}" + "\n" +
+                        (st.Segment == MasterSegment.Reward ? "보상 손님은 공격하지 않음 · 체력 1웨이브 기준"
+                            : $"체력 {EndlessRules.Show(EndlessRules.HpPercentInt(wave))}% · 공격 {EndlessRules.Show(EndlessRules.AttackPercentInt(wave))}% · 약화 {st.ActiveReduction}%") +
+                        $" · 제출 {st.SubmittedThisCycle}잔 · 칵테일 {m.CocktailUniqueCount}종 공격 +{m.CocktailAttackPercent}%";
             return info;
         }
 

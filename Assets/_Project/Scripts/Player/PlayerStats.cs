@@ -117,7 +117,9 @@ namespace CCT
 
         float Live(float percent) => BonusesSuppressed ? 0f : percent;
 
-        public float DamageBonus => Live(damagePercent + jobDamagePercent);
+        /// <summary>2026-11-11 마스터 도전 칵테일 다양성 공격력(분수, 0.02 = 2%). 매번 U로 다시 계산해 덮어쓴다(누적 곱 없음).</summary>
+        public float masterDamagePercent;
+        public float DamageBonus => Live(damagePercent + jobDamagePercent + masterDamagePercent);
         /// <summary>환불("환불해주세요!") 중엔 0 — 보조 활의 자체 간격 공식(07:118)도 이걸 통해 무효화를 받는다.</summary>
         public float AttackSpeedBonus => Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed);
         public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed + masteryMoveSpeed + coffeeMoveSpeed))) * (IsSlowed ? slowMultiplier : 1f);

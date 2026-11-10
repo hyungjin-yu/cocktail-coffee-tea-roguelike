@@ -68,6 +68,11 @@ namespace CCT
 
         public bool IsBoss => boss != BossKind.None;
 
+        /// <summary>2026-11-11 마스터 도전: 이 정의만의 추가 시각 배율(작은 진상 손님 등). 콜라이더(radius)와 별개. 기본 1 = 기존 그대로.</summary>
+        public float visualScaleMultiplier = 1f;
+        /// <summary>2026-11-11 원본 공유 정의를 바꾸지 않는 별도 사본(마스터 도전 전용 정의 생성용).</summary>
+        public EnemyDef CloneDef() => (EnemyDef)MemberwiseClone();
+
         /// <summary>04 §5 아트 ID(ArtLibrary 몸체 조회용). 비워 두면 spriteResourcePath 파일명(_bgfix 제거)에서 유도.</summary>
         public string artId;
 
@@ -512,15 +517,33 @@ namespace CCT
         public static Enemy SpawnAt(Vector2 position, EnemyDef def, float hpScale, PlayerController player,
             Transform parent, float attackScale)
         {
+            return SpawnAt(position, def, hpScale, player, parent, attackScale, false, false);
+        }
+
+        /// <summary>2026-11-11 마스터 도전 보상 몬스터용: harmless = 접촉·자폭·장판·투사체·소환 등 플레이어 피해 경로 전부 차단(피해 0 호출도 하지 않음),
+        /// ignoreChallengeHp = 영구 해금 도전 체력 배율을 곱하지 않고 이후 배율 변경에도 다시 늘리지 않는다(절대 웨이브1 기준 고정 HP).</summary>
+        public static Enemy SpawnAt(Vector2 position, EnemyDef def, float hpScale, PlayerController player,
+            Transform parent, float attackScale, bool harmless, bool ignoreChallengeHp)
+        {
             var go = new GameObject(def.name);
             go.transform.SetParent(parent, false);
             go.transform.position = position;
             var enemy = go.AddComponent<Enemy>();
             enemy.AttackScale = float.IsNaN(attackScale) || attackScale <= 0f ? 1f : attackScale;
             enemy.HpScale = hpScale;
+            enemy.Harmless = harmless;
+            enemy.IgnoreChallengeHp = ignoreChallengeHp;
             enemy.Init(def, hpScale, player);
             return enemy;
         }
+
+        /// <summary>2026-11-11 true면 이 개체는 플레이어에게 어떤 피해·피격 이벤트도 만들지 않는다(보상 몬스터).</summary>
+        public bool Harmless { get; private set; }
+        public bool IgnoreChallengeHp { get; private set; }
+        /// <summary>마스터 도전 웨이브 소속 표식(0 = 소속 없음). 처치 시 Killed 통지로 웨이브 처리량을 센다.</summary>
+        public long MasterWaveTag { get; set; }
+        /// <summary>2026-11-11 이 개체가 처치(사망)됐을 때 한 번(소속 웨이브 집계용 읽기 전용 통지).</summary>
+        public event System.Action<Enemy> Killed;
 
         /// <summary>이 개체의 공격 배율(1 = 기존). 생성 때 한 번 정해지고 이후 웨이브가 바뀌어도 그대로(신규 적만 새 수치).</summary>
         public float AttackScale { get; private set; } = 1f;
@@ -543,7 +566,7 @@ namespace CCT
         {
             this.def = def;
             this.player = player;
-            challenge = player != null ? player.Challenge : null;
+            challenge = player != null && !IgnoreChallengeHp ? player.Challenge : null;
             // 2026-11-06 정수 전용: 최대 체력은 정수(중간값은 0에서 먼 쪽, 최소 1). 피해도 정수라 HP는 항상 정수다.
             rawMaxHp = def.hp * hpScale * (challenge?.HpMultiplier ?? 1f);
             MaxHp = Mathf.Max(1, IntNum.Round(rawMaxHp));
@@ -578,7 +601,7 @@ namespace CCT
             if (bodyArt != null)
             {
                 visualGo.transform.localPosition = new Vector3(0f, -def.radius, 0f);
-                visualGo.transform.localScale = Vector3.one * bodyArt.BodyVisualScale;
+                visualGo.transform.localScale = Vector3.one * bodyArt.BodyVisualScale * Mathf.Max(0.05f, def.visualScaleMultiplier);
                 animator = visualGo.AddComponent<SpriteAnimator>();
                 animator.Bind(sr);
                 animator.Play(bodyArt.Clip("idle"));
@@ -587,7 +610,7 @@ namespace CCT
             else
             {
                 float visualScale = icon != null ? def.iconVisualScale : 1f;
-                visualGo.transform.localScale = Vector3.one * def.radius * 2f * visualScale;
+                visualGo.transform.localScale = Vector3.one * def.radius * 2f * visualScale; // 아이콘 경로는 radius가 이미 크기를 정한다(축소 정의는 radius로 반영)
                 sr.sprite = icon != null ? icon : SpriteFactory.Capsule;
             }
             visualTf = visualGo.transform;
@@ -816,6 +839,7 @@ namespace CCT
             else
                 rb.linearVelocity = Staggered ? Vector2.zero : toPlayer.normalized * def.speed * StatusSpeedMultiplier;
 
+            if (Harmless) return; // 2026-11-11 보상 몬스터: 접촉·자폭 경로 자체를 건너뛴다(0 피해 호출·피격 무적·보호막 소모도 없음)
             if (!HasArrived) return; // 보스 등장 안내 1초 동안은 접촉 피해 없음 (06:24)
             if (Staggered) return; // 48 검 경직: 짧은 동안 접촉 피해·자폭 없음
 
@@ -976,6 +1000,7 @@ namespace CCT
             // 09:20 "enemy_defeat: 일반 적 사망" — 보스는 대상 밖(보스 처치는 clear/보상 흐름이 대신함).
             if (!def.IsBoss) AudioService.PlaySfx("enemy_defeat", transform.position);
             player?.GetComponentInParent<GameManager>()?.OnEnemyKilled(transform.position, RewardDef ?? def);
+            var killed = Killed; Killed = null; killed?.Invoke(this); // 2026-11-11 한 번만
             Destroy(gameObject);
         }
 

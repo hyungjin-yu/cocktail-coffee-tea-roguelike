@@ -387,6 +387,43 @@ namespace CCT
             $"#{Mathf.RoundToInt(c.r * 255):X2}{Mathf.RoundToInt(c.g * 255):X2}{Mathf.RoundToInt(c.b * 255):X2}/{Mathf.RoundToInt(c.a * 255):X2}";
 
         /// <summary>런 스탯에 버프를 한 번 적용한다(GameManager.Initialize). 기존 스탯 상한(PlayerStats의 최종 clamp)은 그대로 유지된다.</summary>
+        /// <summary>2026-11-11 실제로 더한 양(음료 교체 때 정확히 되돌리기용).</summary>
+        public sealed class AppliedDrink
+        {
+            public float damage, attackSpeed, moveSpeed, maxHpFlat, range, prevCrit, prevCooldown;
+        }
+
+        /// <summary>ApplyTo와 같은 적용을 하고 실제 증가량을 돌려준다.</summary>
+        public static AppliedDrink ApplyTracked(PlayerStats stats, DrinkBuff buff)
+        {
+            if (stats == null || buff == null) return null;
+            var a = new AppliedDrink
+            {
+                damage = stats.damagePercent, attackSpeed = stats.attackSpeedPercent, moveSpeed = stats.moveSpeedPercent,
+                maxHpFlat = stats.maxHpFlat, range = stats.rangePercent, prevCrit = stats.drinkCritChance, prevCooldown = stats.drinkCooldownReduction,
+            };
+            ApplyTo(stats, buff);
+            a.damage = stats.damagePercent - a.damage;
+            a.attackSpeed = stats.attackSpeedPercent - a.attackSpeed;
+            a.moveSpeed = stats.moveSpeedPercent - a.moveSpeed;
+            a.maxHpFlat = stats.maxHpFlat - a.maxHpFlat;
+            a.range = stats.rangePercent - a.range;
+            return a;
+        }
+
+        /// <summary>ApplyTracked로 더한 양만 정확히 뺀다(다른 카드·영구 효과 보존). 치명·쿨감 슬롯은 적용 전 값으로.</summary>
+        public static void Revert(PlayerStats stats, AppliedDrink a)
+        {
+            if (stats == null || a == null) return;
+            stats.damagePercent -= a.damage;
+            stats.attackSpeedPercent -= a.attackSpeed;
+            stats.moveSpeedPercent -= a.moveSpeed;
+            stats.maxHpFlat -= a.maxHpFlat;
+            stats.rangePercent -= a.range;
+            stats.drinkCritChance = a.prevCrit;
+            stats.drinkCooldownReduction = a.prevCooldown;
+        }
+
         public static void ApplyTo(PlayerStats stats, DrinkBuff buff)
         {
             if (stats == null || buff == null) return;
