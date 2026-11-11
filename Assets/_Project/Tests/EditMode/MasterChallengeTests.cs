@@ -413,6 +413,7 @@ namespace CCT.Tests
             game.Initialize(Job.Bartender, WeaponKind.Rapier, mode);
             if (!hadCamera && Camera.main != null) createdCamera = Camera.main.gameObject;
             if (game.Master != null) game.Master.BannersEnabled = false;
+            if (game.Master != null) Assert.IsTrue(game.Master.StartBattle(), "2026-11-12 런 시작 준비 단계 → 전투 시작(이 묶음은 전투 중 규칙 시험)");
         }
 
         [TearDown]

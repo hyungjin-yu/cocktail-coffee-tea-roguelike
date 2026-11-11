@@ -207,7 +207,7 @@ namespace CCT
             yield return Human(0.8f);
             yield return PairShot("s01_title");
             var title = FindFirstObjectByType<TitleView>();
-            if (title == null || !ClickNamed(title, "StartButton")) { Event("FAIL title start button"); yield break; }
+            if ((title == null || !ClickNamed(title, "StartButton")) && FindFirstObjectByType<CharacterSelectView>() == null) { Event("FAIL title start button"); yield break; }
             var select = FindFirstObjectByType<CharacterSelectView>();
             float w0 = Time.realtimeSinceStartup + 5f;
             while (select == null && Time.realtimeSinceStartup < w0) { yield return null; select = FindFirstObjectByType<CharacterSelectView>(); }
@@ -236,6 +236,10 @@ namespace CCT
             var g = GameManager.Instance;
             if (g == null || g.Master == null) { Event("FAIL master run not started"); yield break; }
             BindGame(g);
+            // 2026-11-12 준비 단계(다음 웨이브 예고) 캡처 → 전투 시작
+            yield return Human(1f);
+            yield return PairShot("s04b_prep_wave1");
+            yield return PrepStartShot(g, null);
             yield return new WaitForSecondsRealtime(9f);
             yield return PairShot("s05_combat_wave1");
             if (Buttons(g.MasterHud, "BrewButton").FirstOrDefault() is Button brew) brew.onClick.Invoke();
@@ -263,6 +267,124 @@ namespace CCT
             yield return PairShot("s10_result");
         }
 
+        // ───── 2026-11-12 사용자 제보 조사: 직업·무기 선택 화면 '이상한 이펙트' (-cct-playverify-selectseq) ─────
+        /// <summary>화면 진입 직후 100ms 연속 캡처 + 보이는 효과 객체 목록(포커스 링·월드 스프라이트·파티클·마스터 효과 풀). 값 쓰기 없음.</summary>
+        IEnumerator SelectSeq(string tag, int frames)
+        {
+            var dir = Path.Combine(outDir, "selectseq");
+            Directory.CreateDirectory(dir);
+            for (int i = 0; i < frames; i++)
+            {
+                ScreenCapture.CaptureScreenshot(Path.Combine(dir, $"{tag}_{i:00}.png"));
+                if (i == 0 || i == frames - 1) Inventory($"{tag}@{i}");
+                yield return new WaitForSecondsRealtime(0.1f);
+            }
+        }
+
+        void Inventory(string at)
+        {
+            var rings = FindObjectsByType<CafeUiFocus>(FindObjectsSortMode.None).Where(f => f.isActiveAndEnabled)
+                .Select(f => { var r = f.transform.Find("CafeFocus")?.GetComponent<Image>(); return r != null && r.enabled ? f.gameObject.name : null; })
+                .Where(n => n != null).ToList();
+            var sel = UnityEngine.EventSystems.EventSystem.current?.currentSelectedGameObject;
+            var world = FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None).Where(s => s.enabled && s.gameObject.activeInHierarchy && s.sprite != null)
+                .Select(s => s.gameObject.name).GroupBy(n => n).Select(g => $"{g.Key}x{g.Count()}").ToList();
+            var ps = FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None).Where(p => p.isPlaying).Select(p => p.gameObject.name).ToList();
+            var anims = FindObjectsByType<SpriteAnimator>(FindObjectsSortMode.None).Where(a => a.isActiveAndEnabled).Select(a => a.gameObject.name).GroupBy(n => n).Select(g => $"{g.Key}x{g.Count()}").ToList();
+            var cams = FindObjectsByType<Camera>(FindObjectsSortMode.None).Select(c => $"{c.name}(depth={c.depth},enabled={c.enabled})").ToList();
+            var canv = FindObjectsByType<Canvas>(FindObjectsSortMode.None).Where(c => c.isRootCanvas && c.isActiveAndEnabled).Select(c => $"{c.name}:{c.renderMode}:{c.sortingOrder}").ToList();
+            Event($"INVENTORY {at} selected={(sel != null ? sel.name : "-")} focusRings=[{string.Join(",", rings)}] worldSprites=[{string.Join(",", world)}] particles=[{string.Join(",", ps)}] spriteAnimators=[{string.Join(",", anims)}] masterVfxActive={MasterVfx.ActiveWorld}/{MasterVfx.ActiveUi} pooled={MasterVfx.PooledCount} cameras=[{string.Join(",", cams)}] canvases=[{string.Join(",", canv)}]");
+        }
+
+        IEnumerator SelectSeqFlow()
+        {
+            Application.runInBackground = true;
+            Event("SELECT-SCREEN EFFECT INVESTIGATION (QA capture, automated buttons; fresh data dir = first start)");
+            yield return SelectSeq("a_title", 8);
+            var title = FindFirstObjectByType<TitleView>();
+            if (title == null || !ClickNamed(title, "StartButton")) { Event("FAIL title start (already past title?)"); }
+            yield return SelectSeq("b_job_entry", 20);
+            var select = FindFirstObjectByType<CharacterSelectView>();
+            if (select == null) { Event("FAIL no select"); yield break; }
+            select.BartenderButton.onClick.Invoke();
+            Event("clicked 바텐더");
+            yield return SelectSeq("c_weapon_entry", 20);
+            select.EndlessModeButton.onClick.Invoke();
+            Event("clicked 마스터 도전");
+            yield return SelectSeq("d_master_mode", 8);
+            select.WeaponButtonA.onClick.Invoke();
+            Event("clicked 무기 A");
+            yield return SelectSeq("e_weapon_chosen", 8);
+            select.WeaponBackButton.onClick.Invoke();
+            Event("clicked 뒤로");
+            yield return SelectSeq("f_job_again", 10);
+            select.TeaSommelierButton.onClick.Invoke();
+            Event("clicked 티 소믈리에");
+            yield return SelectSeq("g_tea_weapon", 10);
+        }
+
+        // ───── 2026-11-12 사용자 제보: 도전 시작 첫 제조 창 우측 상단 효과 (-cct-playverify-brewfx) ─────
+        string FxState(GameManager g)
+        {
+            var slot = g.MasterHud.FxSlot;
+            var vs = slot.GetComponentsInChildren<MasterVfx>(true);
+            var imgs = slot.GetComponentsInChildren<Image>(true).Where(i => i.enabled && i.gameObject.activeInHierarchy && i.sprite != null).Select(i => $"{i.gameObject.name}:{i.sprite.name}");
+            return $"slotActive={slot.gameObject.activeInHierarchy} vfx=[{string.Join(",", vs.Select(v => $"{v.ClipName}/playing={v.Playing}/frame={v.CurrentFrame}/active={v.gameObject.activeSelf}"))}] visibleImages=[{string.Join(",", imgs)}] activeUi={MasterVfx.ActiveUi} played={MasterVfx.Played}";
+        }
+
+        IEnumerator BrewFxFlow()
+        {
+            Application.runInBackground = true;
+            shotDir = Path.Combine(outDir, "shots");
+            Directory.CreateDirectory(shotDir);
+            Event("BREW-WINDOW FX INVESTIGATION (QA, fresh data dir, automated buttons)");
+            yield return StartMasterRun();
+            var g = GameManager.Instance;
+            if (g == null || g.Master == null) { Event("FAIL master run not started"); yield break; }
+            BindGame(g);
+            yield return Human(1f);
+            if (Buttons(g.MasterHud, "BrewButton").FirstOrDefault() is Button brew) brew.onClick.Invoke();
+            yield return null; yield return null;
+            Event("first open " + FxState(g));
+            MShot("x01_first_open_0ms");
+            yield return new WaitForSecondsRealtime(0.5f);
+            Event("first open +500ms " + FxState(g));
+            MShot("x02_first_open_500ms");
+            var craft = Buttons(g.MasterHud, "Craft").FirstOrDefault(x => RowText(x).Contains("최고")) ?? Buttons(g.MasterHud, "Craft").FirstOrDefault(x => RowText(x).Contains("[커피]"));
+            if (craft == null) { Event("FAIL no craftable coffee"); yield break; }
+            craft.onClick.Invoke();
+            Event($"crafted \"{RowText(craft)}\" " + FxState(g));
+            foreach (int ms in new[] { 80, 250, 500, 800 })
+            {
+                yield return new WaitForSecondsRealtime(ms == 80 ? 0.08f : ms == 250 ? 0.17f : ms == 500 ? 0.25f : 0.3f);
+                Event($"craft +{ms}ms " + FxState(g));
+                MShot($"x03_craft_{ms}ms");
+            }
+            // 효과 재생 중 바로 닫기 → 다시 열기(정지 잔상 확인)
+            var craft2 = Buttons(g.MasterHud, "Craft").FirstOrDefault(x => RowText(x).Contains("[커피]"));
+            if (craft2 != null)
+            {
+                craft2.onClick.Invoke();
+                Event($"crafted2 \"{RowText(craft2)}\" " + FxState(g));
+                yield return new WaitForSecondsRealtime(0.12f);
+                if (Buttons(g.MasterHud, "Close").FirstOrDefault() is Button close) close.onClick.Invoke();
+                Event("closed mid-effect " + FxState(g));
+                yield return new WaitForSecondsRealtime(1.0f);
+                if (Buttons(g.MasterHud, "BrewButton").FirstOrDefault() is Button brew2) brew2.onClick.Invoke();
+                yield return null; yield return null;
+                Event("reopen " + FxState(g));
+                MShot("x04_reopen_0ms");
+                yield return new WaitForSecondsRealtime(0.15f);
+                Event("reopen +150ms " + FxState(g));
+                MShot("x05_reopen_150ms");
+                yield return new WaitForSecondsRealtime(0.8f);
+                Event("reopen +950ms " + FxState(g));
+                MShot("x06_reopen_950ms");
+            }
+            g.CloseMasterBrew();
+            yield return EndMaster(g);
+        }
+
         IEnumerator MechanicsFlow()
         {
             Application.runInBackground = true;
@@ -279,6 +401,8 @@ namespace CCT
             periodicOn = true;
             StartCoroutine(Periodic());
             Event("run started " + MasterLine(g) + " " + StatLine(g));
+            if (g.Master.State.Phase == MasterPhase.Prep && !System.Array.Exists(System.Environment.GetCommandLineArgs(), x => x == "-cct-playverify-shots"))
+                yield return PrepStartShot(g, null); // 2026-11-12 준비 단계 → 전투 시작
 
             // 2026-11-11 세션 6: 칵테일/차 상성만 검증(-cct-playverify-mech-affinity cocktail|tea). 1잔 제조 → 마시기 → full 3 / low 3 캡처 + 10fps 게임 자체 연속 캡처.
             var argv = System.Environment.GetCommandLineArgs();

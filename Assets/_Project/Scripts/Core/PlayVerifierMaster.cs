@@ -105,6 +105,7 @@ namespace CCT
             periodicOn = true;
             StartCoroutine(Periodic());
             Event("run started " + MasterLine(g));
+            yield return PrepStartShot(g, "01a_prep_wave1");
             yield return Human(1.5f);
             MShot("01_wave1");
 
@@ -247,6 +248,22 @@ namespace CCT
         }
 
         string lastCoffee;
+
+        /// <summary>2026-11-12 런 시작 준비 단계: 예고 패널 캡처 후 실제 '전투 시작' 버튼.</summary>
+        IEnumerator PrepStartShot(GameManager g, string shot)
+        {
+            float until = Time.realtimeSinceStartup + 3f;
+            while (g.Master.State.Phase != MasterPhase.Prep && Time.realtimeSinceStartup < until) yield return null;
+            if (g.Master.State.Phase != MasterPhase.Prep) { Event("no prep phase at run start"); yield break; }
+            yield return Human(0.8f);
+            var ups = g.Master.UpcomingWaves();
+            Event($"prep wave={g.Master.State.Wave} timeScale={Time.timeScale} prepActive={g.MasterPrepActive} plan={(ups.Count > 0 ? ups[0].plan.Label + " " + ups[0].plan.Count : "-")} rows=[{string.Join(" | ", g.MasterHud.Prep.RowTexts)}]");
+            if (shot != null) MShot(shot);
+            yield return Human(0.6f);
+            if (Buttons(g.MasterHud, "PrepStart").FirstOrDefault() is Button b) { b.onClick.Invoke(); Event("clicked 전투 시작 → " + MasterLine(g)); }
+            else Event("FAIL prep start button");
+            prepSince = -1f;
+        }
 
         IEnumerator EndMaster(GameManager g)
         {

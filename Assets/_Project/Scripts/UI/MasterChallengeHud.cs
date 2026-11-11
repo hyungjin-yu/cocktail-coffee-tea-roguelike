@@ -95,8 +95,13 @@ namespace CCT
                 "박람회 도전", 28, new Color(0.55f, 0.14f, 0.16f, 0.95f), out _);
             fairButton.onClick.AddListener(() => { if (game?.Master != null && game.Master.ChooseFair()) Refresh(); });
 
+            // 2026-11-12 다음 웨이브 예고: 준비 패널(Prep·선택 대기)과 전투 중 사전 예고. 제조 창보다 먼저 만들어 제조 창이 위에 그려진다.
+            prepView = MasterPrepView.Create(root, game, (parent, name, anchor, pos, size, label, font, bg) => MakeButton(parent, name, anchor, pos, size, label, font, bg, out _));
             BuildBrewPanel();
         }
+
+        MasterPrepView prepView;
+        public MasterPrepView Prep => prepView;
 
         void BuildBrewPanel()
         {
@@ -130,6 +135,13 @@ namespace CCT
             submitCup.preserveAspect = true;
             submitCup.raycastTarget = false;
             submitCup.enabled = false;
+            // 캡션: 효과 슬롯(오른쪽 위 −44…−156) 왼쪽, 제목 줄 높이(−24…−64). 가운데 제목 글자(±≈260)와 '보관한 잔' 머리글(−76…−112) 사이.
+            var capRt = UiFactory.Place("QualityCaption", prt, new Vector2(1f, 1f), new Vector2(-164f, -24f), new Vector2(300f, 40f));
+            fxCaption = UiFactory.AddText(capRt, "", 24, TextAnchor.MiddleRight, new Color(1f, 0.86f, 0.45f));
+            fxCaption.resizeTextForBestFit = true; fxCaption.resizeTextMinSize = 16; fxCaption.resizeTextMaxSize = 24;
+            fxCaption.verticalOverflow = VerticalWrapMode.Truncate;
+            fxCaption.raycastTarget = false;
+            fxCaption.gameObject.SetActive(false);
             brewMessage = UiFactory.AddText(UiFactory.Place("Message", prt, new Vector2(0.5f, 0f), new Vector2(0f, 178f), new Vector2(1400f, 34f)), "", 22, TextAnchor.MiddleCenter, new Color(1f, 0.9f, 0.6f));
             brewFooter = UiFactory.AddText(UiFactory.Place("Footer", prt, new Vector2(0f, 0f), new Vector2(40f, 30f), new Vector2(1100f, 70f)), "", 22, TextAnchor.MiddleLeft, Color.white);
             brewFooter.verticalOverflow = VerticalWrapMode.Truncate;
@@ -138,8 +150,33 @@ namespace CCT
             brewPanel.SetActive(false);
         }
 
-        public void ShowBrew() { recipePage = 0; cupPage = 0; if (brewMessage != null) brewMessage.text = ""; brewPanel.SetActive(true); RefreshBrew(); }
-        public void HideBrew() { if (brewPanel != null) brewPanel.SetActive(false); Refresh(); }
+        public void ShowBrew() { recipePage = 0; cupPage = 0; if (brewMessage != null) brewMessage.text = ""; brewPanel.SetActive(true); prepView?.Refresh(); RefreshBrew(); }
+        public void HideBrew()
+        {
+            MasterVfx.ReleaseUi(); // 2026-11-12 재생 중 닫아도 다음 열기 때 멈춘 프레임이 남지 않게
+            HideQualityCaption();
+            if (submitCup != null) submitCup.enabled = false;
+            if (brewPanel != null) brewPanel.SetActive(false);
+            Refresh();
+        }
+
+        // ───── 2026-11-12 품질 효과 설명 캡션(제조 창 안, 효과 왼쪽) ─────
+        Text fxCaption;
+        float fxCaptionUntil;
+        public const float FxCaptionSeconds = 1.6f;
+        public bool QualityCaptionVisible => fxCaption != null && fxCaption.gameObject.activeSelf;
+        public string QualityCaptionText => fxCaption != null ? fxCaption.text : "";
+
+        /// <summary>품질 효과와 같은 순간 제조 창 안에 같은 설명을 보인다(HUD 배너는 불투명 제조 창 뒤에 깔려 보이지 않았다 — 2026-11-12 사용자 제보).</summary>
+        public void ShowQualityCaption(string text)
+        {
+            if (fxCaption == null) return;
+            fxCaption.text = text;
+            fxCaption.gameObject.SetActive(!string.IsNullOrEmpty(text));
+            fxCaptionUntil = Time.unscaledTime + FxCaptionSeconds;
+        }
+
+        void HideQualityCaption() { if (fxCaption != null) fxCaption.gameObject.SetActive(false); }
 
         /// <summary>제조 창에 보일 레시피 = 저장 레시피 + 예시 레시피(이름 중복 제외).</summary>
         public static List<DrinkRecipe> RecipeList()
@@ -169,13 +206,14 @@ namespace CCT
             {
                 if (BrewOpen) game.CloseMasterBrew(); else game.OpenMasterBrew();
             }
+            if (fxCaption != null && fxCaption.gameObject.activeSelf && Time.unscaledTime >= fxCaptionUntil) HideQualityCaption();
             refreshTimer -= Time.unscaledDeltaTime;
             if (refreshTimer <= 0f) { refreshTimer = 0.5f; Refresh(); }
         }
 
         public void Refresh()
         {
-            if (game == null || game.Master == null) return;
+            if (this == null || game == null || game.Master == null) return;
             var st = game.Master.State;
             int held = 0;
             foreach (var c in DrinkLab.RunCupsFor(game.RunId)) if (c.IsHeld) held++;
@@ -184,9 +222,11 @@ namespace CCT
             brewButton.interactable = game.State == GameState.Playing && !game.MasterFreezeActive;
 
             bool awaiting = st.Phase == MasterPhase.AwaitChoice, clearing = st.Phase == MasterPhase.ClearingForFair;
-            choiceRoot.SetActive((awaiting || clearing) && game.State != GameState.GameOver);
-            repeatButton.gameObject.SetActive(awaiting);
-            fairButton.gameObject.SetActive(awaiting);
+            // 2026-11-12 선택 대기는 준비 패널(MasterPrepView)이 예고와 함께 맡는다 — 이 상단 패널은 박람회 접수 뒤 '남은 손님 처리' 안내만.
+            choiceRoot.SetActive(clearing && game.State != GameState.GameOver);
+            repeatButton.gameObject.SetActive(false);
+            fairButton.gameObject.SetActive(false);
+            prepView?.Refresh();
             if (awaiting)
                 choiceText.text = $"재료 모으기 5/5 완료! 제출 {st.SubmittedThisCycle}잔{BonusText(st)} → 박람회 약화 {st.PreviewFairReduction}%\n" +
                                   $"반복해도 주기·난이도·약화율은 그대로({st.RepeatCount}회 반복) · 준비되면 박람회에 도전하세요";
@@ -320,7 +360,9 @@ namespace CCT
             string clip = MasterArt.QualityClip(g, HitFeedback.LowEffects);
             if (slot != null && clip != null && MasterVfx.PlayUi(clip, slot, MasterChallengeHud.FxArtPx) != null) LastClip = clip;
             string extra = g == DrinkQuality.Grade.Best ? (moment == Moment.Submitted ? " · 제출 가치 +50%" : moment == Moment.Drunk ? " · 효과 +5%" : "") : "";
-            game?.Hud?.ShowBanner(DrinkQuality.Label(quality), $"{what}{extra}", g == DrinkQuality.Grade.Best ? 1.8f : 1.2f);
+            // 2026-11-12: 제조 창 안이면 효과 옆 캡션으로(뒤에 깔리는 HUD 배너 생략). 창 밖 호출이면 기존 배너.
+            if (slot != null && game != null && game.MasterHud != null && game.MasterBrewOpen) game.MasterHud.ShowQualityCaption($"{DrinkQuality.Label(quality)} · {what}{extra}");
+            else game?.Hud?.ShowBanner(DrinkQuality.Label(quality), $"{what}{extra}", g == DrinkQuality.Grade.Best ? 1.8f : 1.2f);
         }
     }
 }

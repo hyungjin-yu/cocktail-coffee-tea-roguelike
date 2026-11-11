@@ -26,6 +26,7 @@ namespace CCT.Tests
             yield return null;
             game = GameManager.Instance;
             game.Master.BannersEnabled = false;
+            Assert.IsTrue(game.Master.StartBattle(), "2026-11-12 런 시작 준비 단계 → 전투 시작"); // 연출 시험은 전투 진행 상태에서
             game.Stats.baseMaxHp = 100000f;
             game.Player.Heal(1f);
         }

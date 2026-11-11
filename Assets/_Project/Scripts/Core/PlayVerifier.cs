@@ -185,8 +185,10 @@ namespace CCT
             yield return Human(2f);
             var title = FindFirstObjectByType<TitleView>();
             Event($"title open={(title != null && title.IsOpen)}");
+            if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-selectseq")) { yield return SelectSeqFlow(); yield return Finish(); yield break; } // 2026-11-12 선택 화면 효과 제보 조사(QA)
             if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-shots")) { yield return ShotsFlow(); yield return Finish(); yield break; } // 2026-11-11 무기 화면 수정 확인·Steam 스크린샷 후보(QA)
             if (title == null || !ClickNamed(title, "StartButton")) { Event("FAIL title start button"); yield return Finish(); yield break; }
+            if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-brewfx")) { yield return BrewFxFlow(); yield return Finish(); yield break; } // 2026-11-12 제조 창 우측 상단 효과 제보 조사(QA)
             if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-master-mechanics")) { yield return MechanicsFlow(); yield return Finish(); yield break; } // 2026-11-11 미검증 3항목 QA 시나리오(격리 fixture, 자연 플레이 아님)
             if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-master")) { yield return MasterFlow(); yield return Finish(); yield break; } // 2026-11-11 마스터 도전 1주기 검증(입력 대행 동일 원칙)
 
@@ -373,8 +375,21 @@ namespace CCT
         const float HumanUiDelay = 0.45f;
 
         /// <summary>선택창은 사람이 읽고 누르는 간격(실제 0.45초)을 둔 뒤 실제 선택 경로를 호출한다.</summary>
+        float prepSince = -1f;
+        /// <summary>2026-11-12 마스터 준비 단계(다음 주기 등): 사람 간격(≥1초) 뒤 실제 '전투 시작' 버튼. 제조 창이 열려 있으면 기다린다.</summary>
+        void HandleMasterPrep(GameManager g)
+        {
+            if (g == null || g.Master == null || g.Master.State.Phase != MasterPhase.Prep || g.MasterBrewOpen || g.IsPaused) { prepSince = -1f; return; }
+            if (prepSince < 0f) { prepSince = Time.realtimeSinceStartup; return; }
+            if (Time.realtimeSinceStartup - prepSince < 1.0f) return;
+            foreach (var b in g.MasterHud.GetComponentsInChildren<UnityEngine.UI.Button>(false))
+                if (b.gameObject.name == "PrepStart" && b.interactable) { b.onClick.Invoke(); Event($"clicked 전투 시작(준비 단계, wave={g.Master.State.Wave})"); break; }
+            prepSince = -1f;
+        }
+
         void HandleRewardScreens(GameManager g)
         {
+            HandleMasterPrep(g);
             bool selecting = !g.IsPaused && (g.State == GameState.LevelUp || g.State == GameState.SkillSelect || g.State == GameState.HybridOffer);
             if (!selecting) { uiSince = -1f; return; }
             float now = Time.realtimeSinceStartup;

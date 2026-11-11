@@ -53,6 +53,13 @@ namespace CCT
         }
 
         /// <summary>재생 중인 효과를 모두 즉시 반납(런 종료·재시작). 풀은 런 사이에 남으므로, 정지 상태로 끝난 런의 효과가 다음 런의 동시 상한을 차지하지 않게 한다.</summary>
+        /// <summary>2026-11-12 UI 효과만 즉시 반납(제조 창 닫기). 창이 닫히면 효과 개체가 비활성이라 Update가 멈춰, 다시 열 때 정지 프레임이 남지 않게 한다.</summary>
+        public static void ReleaseUi()
+        {
+            Purge();
+            for (int i = active.Count - 1; i >= 0; i--) if (active[i].img != null) active[i].Release();
+        }
+
         public static void ReleaseAll()
         {
             Purge();

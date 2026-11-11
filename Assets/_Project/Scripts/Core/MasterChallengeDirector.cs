@@ -86,12 +86,129 @@ namespace CCT
             go.transform.SetParent(game.transform, false);
             var d = go.AddComponent<MasterChallengeDirector>();
             d.game = game;
-            d.State = new MasterChallengeState();
+            d.State = new MasterChallengeState(MasterRules.SubmitPercentPerCupDefault, cyclePrep: true);
             d.State.WaveStarted += d.OnWaveStarted;
+            d.State.PrepStarted += d.OnPrepStarted;
             d.State.FairSucceeded += d.OnFairSucceeded;
             d.State.CycleCompleted += c => d.Changed?.Invoke();
-            d.OnWaveStarted(1);
+            if (d.State.Phase == MasterPhase.Prep) d.OnPrepStarted(d.State.Wave); else d.OnWaveStarted(d.State.Wave);
             return d;
+        }
+
+        // ───── 2026-11-12 확정 생성 계획(예고 = 실제 생성) ─────
+
+        readonly Dictionary<string, MasterWavePlan> plans = new Dictionary<string, MasterWavePlan>();
+        /// <summary>지금까지 만든 계획 수(재추첨 없음 확인용).</summary>
+        public int PlansBuilt { get; private set; }
+
+        /// <summary>(웨이브, 반복 회차)의 계획. 처음 요청 때 한 번만 만들고 이후 같은 객체를 돌려준다.</summary>
+        public MasterWavePlan PlanFor(long wave, int repeat)
+        {
+            if (MasterRules.SegmentOf(wave) != MasterSegment.Collect) repeat = 0; // 박람회·보상은 반복과 무관
+            string key = wave + ":" + repeat;
+            if (plans.TryGetValue(key, out var p)) return p;
+            var job = game != null ? game.Job : Job.Bartender;
+            p = MasterWavePlan.Build(wave, repeat, game != null ? game.Seed : 0, game != null ? game.RunTime : 0f, job,
+                MasterDefs.FairCustomer(job), MasterDefs.RewardMonster(job));
+            plans[key] = p;
+            PlansBuilt++;
+            return p;
+        }
+
+        /// <summary>이번 웨이브에 실제로 생성한 정의(생성 순서). 웨이브 시작 때 비운다 — 예고 계획과 대조(시험·검수).</summary>
+        public readonly List<EnemyDef> SpawnedThisWave = new List<EnemyDef>();
+
+        /// <summary>현재(시작 대기 중이거나 진행 중인) 웨이브의 계획.</summary>
+        public MasterWavePlan CurrentPlan => PlanFor(State.Wave, State.RepeatCount);
+
+        public sealed class Upcoming
+        {
+            public string title;          // "웨이브 3 · 재료 모으기 3/5" 등
+            public string choice;         // 선택지 이름(반복/박람회), 자동 진행이면 null
+            public MasterWavePlan plan;
+            public long reduction;        // 이 계획 적에게 적용될 약화 %
+            public bool reductionFinal;   // false = 제출에 따라 바뀌는 예상치
+        }
+
+        public static string WaveTitle(long wave)
+        {
+            var seg = MasterRules.SegmentOf(wave);
+            return seg == MasterSegment.Fair ? $"박람회 {MasterRules.FairIndex(wave)}/{MasterRules.FairWaves} (웨이브 {EndlessRules.Show(wave)})"
+                : seg == MasterSegment.Reward ? $"보상 손님 {MasterRules.RewardIndex(wave)}/{MasterRules.RewardWaves} (웨이브 {EndlessRules.Show(wave)})"
+                : $"웨이브 {EndlessRules.Show(wave)} · 재료 모으기 {MasterRules.InCycle(wave)}/{MasterRules.CollectWaves}";
+        }
+
+        Upcoming Make(long wave, int repeat, string choice, long reduction, bool final) =>
+            new Upcoming { title = WaveTitle(wave), choice = choice, plan = PlanFor(wave, repeat), reduction = reduction, reductionFinal = final };
+
+        /// <summary>
+        /// 다음에 싸울 웨이브 예고. Prep = 곧 시작할 이 웨이브 1개. 수집 1~4 진행 중 = 다음 웨이브. 수집 5 진행 중·선택 대기 = 두 선택지(반복 1 / 박람회 1).
+        /// 박람회 접수 후·현수막 = 박람회 1. 박람회·보상 진행 중 = 다음 웨이브(보상 2 다음은 다음 주기 1 — 준비 단계에서 시작).
+        /// </summary>
+        public List<Upcoming> UpcomingWaves()
+        {
+            var list = new List<Upcoming>();
+            if (State == null) return list;
+            long w = State.Wave, cs = MasterRules.CycleStart(State.Cycle);
+            int k = MasterRules.InCycle(w);
+            bool fairFinal = State.FairReductionSnapshot >= 0;
+            long fairPreview = fairFinal ? State.FairReductionSnapshot : State.PreviewFairReduction;
+            switch (State.Phase)
+            {
+                case MasterPhase.Prep:
+                    list.Add(Make(w, State.RepeatCount, null, State.ActiveReduction, true));
+                    break;
+                case MasterPhase.AwaitChoice:
+                    list.Add(Make(cs, State.RepeatCount + 1, "재료 모으기 반복", State.CarriedReduction, true));
+                    list.Add(Make(cs + MasterRules.CollectWaves, 0, "박람회 도전", fairPreview, fairFinal));
+                    break;
+                case MasterPhase.ClearingForFair:
+                case MasterPhase.Transition:
+                    list.Add(Make(cs + MasterRules.CollectWaves, 0, null, fairPreview, fairFinal));
+                    break;
+                default:
+                    if (State.Segment == MasterSegment.Collect)
+                    {
+                        if (k < MasterRules.CollectWaves) list.Add(Make(w + 1, State.RepeatCount, null, State.CarriedReduction, true));
+                        else
+                        {
+                            list.Add(Make(cs, State.RepeatCount + 1, "재료 모으기 반복", State.CarriedReduction, true));
+                            list.Add(Make(cs + MasterRules.CollectWaves, 0, "박람회 도전", fairPreview, fairFinal));
+                        }
+                    }
+                    else if (k < MasterRules.CycleLength)
+                    {
+                        bool reward = MasterRules.SegmentOf(w + 1) == MasterSegment.Reward;
+                        list.Add(Make(w + 1, 0, null, reward ? 0 : fairPreview, reward || fairFinal));
+                    }
+                    else list.Add(Make(w + 1, 0, null, System.Math.Max(0, State.FairReductionSnapshot), true)); // 다음 주기 1(직전 박람회 확정값 전달)
+                    break;
+            }
+            return list;
+        }
+
+        /// <summary>Prep에서 '전투 시작'(버튼·시험 공용). 정지를 풀고 같은 계획으로 웨이브를 시작한다.</summary>
+        public bool StartBattle()
+        {
+            if (State == null || game == null || game.State == GameState.GameOver || !State.StartFromPrep()) return false;
+            SyncPrep();
+            return true;
+        }
+
+        void SyncPrep()
+        {
+            if (game == null || State == null) return;
+            game.SetMasterPrep(State.IsPreparing && game.State != GameState.GameOver);
+        }
+
+        void OnPrepStarted(long wave)
+        {
+            released = 0f;
+            tracked.Clear();
+            PlanFor(wave, State.RepeatCount);
+            // 준비 패널 자체가 안내 — 큰 HUD 배너는 띄우지 않는다(패널 뒤로 비침 방지).
+            SyncPrep();
+            Changed?.Invoke();
         }
 
         /// <summary>박람회 성공 안내(보상 1웨이브 시작 배너에 합쳐 보인다 — 같은 호출 사슬에서 곧바로 덮이지 않게).</summary>
@@ -110,6 +227,9 @@ namespace CCT
         {
             released = 0f;
             tracked.Clear();
+            SpawnedThisWave.Clear();
+            PlanFor(wave, State.RepeatCount); // 시작 전에 예고된 계획이 이미 있으면 그대로(재추첨 없음)
+            UpcomingWaves(); // 다음 웨이브 계획도 지금 확정 — HUD 사전 예고가 실제 생성과 같은 목록을 보인다
             var seg = MasterRules.SegmentOf(wave);
             if (show != null && seg == MasterSegment.Reward) { show.Finish(); show = null; }
             if (seg == MasterSegment.Fair && show != null)
@@ -170,6 +290,7 @@ namespace CCT
         void Update()
         {
             if (game == null || State == null || game.State == GameState.GameOver) return;
+            SyncPrep(); // 준비 지점(Prep·선택 대기) = 전투 정지. 화면 닫기·복귀 뒤에도 매 프레임 같은 규칙으로 맞춘다.
             if (State.Phase == MasterPhase.Transition) { TickTransition(Time.unscaledDeltaTime); return; }
             if (game.IsPaused || game.State != GameState.Playing) return;
             Tick(Time.deltaTime);
@@ -227,6 +348,7 @@ namespace CCT
                 var e = SpawnOne();
                 if (e == null) break; // 동시 상한 — 다음 프레임에 다시(버리지 않음)
                 e.MasterWaveTag = State.Wave;
+                SpawnedThisWave.Add(e.Def);
                 e.Killed += OnTrackedKilled;
                 tracked.Add(e);
                 State.NotifySpawned();
@@ -264,7 +386,8 @@ namespace CCT
                 case MasterSegment.Fair:
                     return sp.SpawnMaster(MasterDefs.FairCustomer(game.Job), Scale(EndlessRules.HpScale(wave), factor), Scale(EndlessRules.AttackScale(wave), factor), false, false);
                 default:
-                    var def = EnemyRoster.PickEndless(wave, game.RunTime, game.SpawnRng, game.Job, out _);
+                    // 2026-11-12: 예고와 같은 확정 계획의 다음 정의(생성 순서 = 계획 순서). 위치 등 다른 난수는 기존 그대로.
+                    var def = PlanFor(wave, State.RepeatCount).DefAt(State.Spawned);
                     return sp.SpawnMaster(def, Scale(EndlessRules.HpScale(wave), factor), Scale(EndlessRules.AttackScale(wave), factor), false, false);
             }
         }
@@ -280,6 +403,7 @@ namespace CCT
         public bool ChooseRepeat()
         {
             if (!State.ChooseRepeat()) return false;
+            SyncPrep();
             return true;
         }
 
@@ -287,6 +411,7 @@ namespace CCT
         public bool ChooseFair()
         {
             if (!State.ChooseFair()) return false;
+            SyncPrep();
             if (Enemy.Active.Count > 0) Banner("박람회 준비", $"남은 손님 {Enemy.Active.Count}명을 먼저 처리하세요", 2.5f);
             Changed?.Invoke();
             return true;
@@ -308,9 +433,11 @@ namespace CCT
         {
             show?.Finish();
             show = null;
+            if (!destroying) Changed?.Invoke(); // 2026-11-12 준비 패널·사전 예고를 결과 화면 전에 바로 닫는다(파괴 중에는 UI 갱신 없음)
         }
 
-        void OnDestroy() => OnRunEnded();
+        bool destroying;
+        void OnDestroy() { destroying = true; OnRunEnded(); }
     }
 
     /// <summary>

@@ -33,6 +33,7 @@ namespace CCT.Tests
             yield return null;
             var game = GameManager.Instance;
             Assert.AreEqual(RunMode.Endless, game.Mode);
+            Assert.IsTrue(game.Master.StartBattle(), "2026-11-12 준비 단계 → 전투 시작");
             Time.timeScale = 8f;
             float until = Time.realtimeSinceStartup + 8f;
             while (game.Master.State.Spawned < 3 && Time.realtimeSinceStartup < until)

@@ -8,7 +8,8 @@ namespace CCT
 
     /// <summary>마스터 도전 진행 단계. Wave = 웨이브 진행 중, AwaitChoice = 수집 5웨이브 완료 후 반복/박람회 선택 대기,
     /// ClearingForFair = 박람회 도전을 골랐지만 남은 적을 먼저 처리하는 중, Transition = NPC 현수막 설치(전투 정지).</summary>
-    public enum MasterPhase { Wave = 0, AwaitChoice = 1, ClearingForFair = 2, Transition = 3 }
+    /// <summary>2026-11-12 Prep = 주기 시작(런 시작 포함) 전투 전 준비: 다음 웨이브 예고 확인·제조/마시기/제출 후 명시적 '전투 시작'(GameManager가 시간 정지).</summary>
+    public enum MasterPhase { Wave = 0, AwaitChoice = 1, ClearingForFair = 2, Transition = 3, Prep = 4 }
 
     /// <summary>
     /// 마스터 도전 조정 가능한 첫 구현 수치(기획/박람회와_세계정상_도전모드.md). **사용자 확정 수치가 아닌 값**은 이름 옆에 '제안'으로 적는다.
@@ -148,13 +149,31 @@ namespace CCT
         readonly HashSet<long> fairRewarded = new HashSet<long>();
 
         public event Action<long> WaveStarted;
+        /// <summary>Prep 진입(웨이브 번호). 생성자에서 첫 Prep은 구독 전이라 Director가 직접 처리한다.</summary>
+        public event Action<long> PrepStarted;
         public event Action<long> FairSucceeded;   // cycle
         public event Action<long> CycleCompleted;  // finished cycle
 
-        public MasterChallengeState(int percentPerCup = MasterRules.SubmitPercentPerCupDefault)
+        /// <summary>true면 주기 시작 웨이브(1, 11, 21…)를 바로 시작하지 않고 Prep에서 기다린다(반복 선택은 선택 자체가 준비 지점이라 제외).</summary>
+        public bool CyclePrep { get; }
+
+        public MasterChallengeState(int percentPerCup = MasterRules.SubmitPercentPerCupDefault, bool cyclePrep = false)
         {
             PercentPerCup = Math.Max(0, percentPerCup);
-            BeginWave(1);
+            CyclePrep = cyclePrep;
+            BeginWave(1, cyclePrep);
+        }
+
+        /// <summary>준비 지점(전투 정지): 주기 시작 Prep 또는 수집 5/5 뒤 선택 대기.</summary>
+        public bool IsPreparing => Phase == MasterPhase.Prep || Phase == MasterPhase.AwaitChoice;
+
+        /// <summary>Prep에서 '전투 시작'. 같은 웨이브(이미 정한 목표·계획)를 그대로 시작한다. 중복 입력은 false.</summary>
+        public bool StartFromPrep()
+        {
+            if (Phase != MasterPhase.Prep) return false;
+            Phase = MasterPhase.Wave;
+            WaveStarted?.Invoke(Wave);
+            return true;
         }
 
         public long Remaining => Math.Max(0, Target - Cleared);
@@ -180,7 +199,7 @@ namespace CCT
         public long BonusPointsThisCycle => Math.Max(0, SubmittedPointsThisCycle - SubmittedThisCycle * MasterRules.CupPoints);
 
         /// <summary>박람회 제출 가능 시점: 이번 주기 접수 전(수집 웨이브 진행·선택 대기).</summary>
-        public bool CanSubmit => FairReductionSnapshot < 0 && (Phase == MasterPhase.Wave || Phase == MasterPhase.AwaitChoice) && Segment == MasterSegment.Collect;
+        public bool CanSubmit => FairReductionSnapshot < 0 && (Phase == MasterPhase.Wave || Phase == MasterPhase.AwaitChoice || Phase == MasterPhase.Prep) && Segment == MasterSegment.Collect;
 
         public bool TrySubmit(int points = MasterRules.CupPoints)
         {
@@ -191,14 +210,14 @@ namespace CCT
             return true;
         }
 
-        void BeginWave(long wave)
+        void BeginWave(long wave, bool prep = false)
         {
             Wave = Math.Max(1, wave);
-            Phase = MasterPhase.Wave;
+            Phase = prep ? MasterPhase.Prep : MasterPhase.Wave;
             Target = MasterRules.TargetCount(Wave);
             Spawned = 0;
             Cleared = 0;
-            WaveStarted?.Invoke(Wave);
+            if (prep) PrepStarted?.Invoke(Wave); else WaveStarted?.Invoke(Wave);
         }
 
         /// <summary>실제로 1마리 생성했다(웨이브 소속).</summary>
@@ -234,7 +253,7 @@ namespace CCT
                 SubmittedPointsThisCycle = 0;
                 RepeatCount = 0;
                 CycleCompleted?.Invoke(finished);
-                BeginWave(Wave + 1);
+                BeginWave(Wave + 1, CyclePrep);
                 return;
             }
             BeginWave(Wave + 1);

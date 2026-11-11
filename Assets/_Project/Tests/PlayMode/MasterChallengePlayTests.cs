@@ -69,13 +69,18 @@ namespace CCT.Tests
         public IEnumerator FullCycle_RealFrames_RepeatChallengeFreezeFairRewardNextCycle()
         {
             var st = game.Master.State;
+            // 2026-11-12 런 시작 = 준비 단계(예고 확인·제조) → 명시적 전투 시작
+            Assert.AreEqual(MasterPhase.Prep, st.Phase);
+            Assert.IsTrue(game.MasterPrepActive);
+            Assert.IsTrue(game.Master.StartBattle());
             Time.timeScale = 10f;
             int maxAlive = 0;
             yield return RunUntil(() => { maxAlive = Mathf.Max(maxAlive, Enemy.Active.Count); return st.Phase == MasterPhase.AwaitChoice; }, 40f);
             Assert.AreEqual(5, st.Wave);
             Assert.LessOrEqual(maxAlive, Balance.MaxAliveEnemiesAbsolute, "동시 상한");
-            Assert.IsTrue(game.MasterHud.ChoiceVisible, "선택 패널 표시");
-            StringAssert.Contains("박람회에 도전", game.MasterHud.ChoiceText);
+            Assert.IsTrue(game.MasterHud.Prep.PanelVisible, "선택(준비) 패널 표시");
+            Assert.IsTrue(game.MasterPrepActive, "선택 대기 = 준비 정지");
+            Assert.IsTrue(game.MasterHud.Prep.BlockHeaders.Any(h => h.Contains("박람회 도전")), "박람회 선택지 예고");
             // 대기 중 신규 생성 없음(자동 박람회 진입 없음)
             long spawnedBefore = st.Spawned;
             for (int i = 0; i < 30; i++) { Dismiss(); yield return null; }
@@ -84,6 +89,7 @@ namespace CCT.Tests
 
             Assert.IsTrue(game.Master.ChooseRepeat());
             Assert.AreEqual(1, st.Wave);
+            Time.timeScale = 10f;
             yield return RunUntil(() => st.Phase == MasterPhase.AwaitChoice, 40f);
             Assert.AreEqual(1, st.Cycle, "반복해도 주기 그대로");
 
@@ -171,6 +177,7 @@ namespace CCT.Tests
             Assert.AreEqual(hp2, game.Player.Hp, "보상 손님 접촉 피해 0");
             Time.timeScale = 10f;
             yield return RunUntil(() => st.Wave == 11, 30f);
+            Assert.AreEqual(MasterPhase.Prep, st.Phase, "다음 주기 1웨이브는 준비 단계에서 시작");
             Assert.AreEqual(2, st.Cycle);
             Assert.AreEqual(MasterSegment.Collect, st.Segment);
             Assert.AreEqual(0, st.CarriedReduction, "제출 0잔 → 다음 주기 약화 0");
@@ -183,6 +190,7 @@ namespace CCT.Tests
         public IEnumerator BrewButton_OpensPausedWindow_NoForcedPopupOnPickup()
         {
             Assert.IsFalse(game.MasterHud.BrewOpen);
+            Assert.IsTrue(game.Master.StartBattle());
             DrinkLab.RecordBossAward(game.RunId, "qa_pick", "qa", new List<DrinkAmount> { new DrinkAmount(DrinkIngredients.Gin, 150) }, true);
             for (int i = 0; i < 40; i++) yield return null;
             Assert.IsFalse(game.MasterHud.BrewOpen, "재료 획득으로 창이 강제로 열리지 않음");

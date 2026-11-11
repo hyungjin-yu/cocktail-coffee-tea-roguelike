@@ -235,7 +235,7 @@ namespace CCT
             // 69 준비 음료·보스 음료 재료 표시. 카드 선택·안내·일시정지·결과 창보다 먼저(뒤에) 만들어 어떤 창도 덮지 않게 한다(hudfix).
             DrinkHud = DrinkRunHud.Create(canvas.transform, this);
             // 2026-11-11 (카드·결과·일시정지 창보다 먼저 만들어 그 창들이 HUD를 덮게 한다) 마스터 도전: 끝없는 모드 런은 10웨이브 주기 루프(유한 웨이브 목표)로 진행한다.
-            MasterFreezeActive = false; MasterBrewOpen = false;
+            MasterFreezeActive = false; MasterBrewOpen = false; MasterPrepActive = false;
             Master = IsEndless ? MasterChallengeDirector.Attach(this) : null;
             MasterHud = Master != null ? MasterChallengeHud.Create(canvas.transform, this) : null;
             Player.FinalForms.Unlocked += form => Hud.ShowBanner("최종 형태 해금", AttackFinalForms.Description(form), 2.5f);
@@ -363,7 +363,7 @@ namespace CCT
                     pauseView.CloseSkillTree();
                     ClosePause();
                     CancelResumeCountdown();
-                    Time.timeScale = State == GameState.Playing ? 1f : 0f;
+                    Time.timeScale = PlayScale;
                 }
                 else if (skillView.IsOpen && State == GameState.SkillSelect && !IsPaused)
                 {
@@ -429,7 +429,7 @@ namespace CCT
             comboView.Show(() =>
             {
                 IsPaused = false;
-                Time.timeScale = State == GameState.Playing ? 1f : 0f;
+                Time.timeScale = PlayScale;
                 if (fromPlaying) ExitFrozenAudioIfClear();
                 if (cardView != null && cardView.IsOpen) cardView.RefreshTargetInfo();
                 if (es != null && focus != null && focus.activeInHierarchy) es.SetSelectedGameObject(focus);
@@ -446,7 +446,7 @@ namespace CCT
         {
             if(!Hud.HiddenDetailsOpen) return;
             Hud.HideHiddenDetails(); IsPaused=false;
-            Time.timeScale=State==GameState.Playing ? 1f : 0f;
+            Time.timeScale=PlayScale;
             ExitFrozenAudioIfClear();
         }
 
@@ -481,7 +481,7 @@ namespace CCT
             PermanentProgress.SaveIfDirty(); // 08:155 UI 선택 시 즉시(발견 저장과 겹치면 바뀐 것이 없어 생략)
             if (OpenNextReward()) return;
             State = GameState.Playing;
-            Time.timeScale = 1f;
+            Time.timeScale = PlayScale; // 2026-11-12 마스터 준비 중이면 0 유지
             ExitFrozenAudioIfClear();
         }
 
@@ -554,7 +554,7 @@ namespace CCT
             resuming = false;
             resumeCoroutine = null;
             pauseView.HideResumeCountdown();
-            Time.timeScale = 1f;
+            Time.timeScale = PlayScale; // 2026-11-12 마스터 준비 중 일시정지에서 돌아오면 준비 정지 유지
         }
 
         void CancelResumeCountdown()
@@ -580,7 +580,7 @@ namespace CCT
         /// 계속 덕킹/억제 상태를 유지해야 한다.</summary>
         void ExitFrozenAudioIfClear()
         {
-            if (!IsPaused && State == GameState.Playing)
+            if (!IsPaused && State == GameState.Playing && !MasterPrepActive)
             {
                 AudioService.SetMusicDucked(false);
                 AudioService.SetCombatSuppressed(false);
@@ -961,6 +961,26 @@ namespace CCT
         /// <summary>런 중에 마신 런 제조 잔(없으면 null — 로비 준비 음료만).</summary>
         public RunCup ActiveRunCup { get; private set; }
 
+        /// <summary>2026-11-12 마스터 준비 지점(주기 시작 Prep·수집 5/5 뒤 선택): 전투 시간·생성·피해 정지(timeScale 0).
+        /// IsPaused와 별개라 제조 창·일시정지·설정을 그 위에 열 수 있고, 그 창들이 닫힐 때 PlayScale이 0을 유지한다. 해제는 Director만.</summary>
+        public bool MasterPrepActive { get; private set; }
+        /// <summary>오버레이가 닫힐 때 돌아갈 timeScale: Playing이고 마스터 준비 중이 아니면 1.</summary>
+        public float PlayScale => State == GameState.Playing && !MasterPrepActive ? 1f : 0f;
+
+        public void SetMasterPrep(bool on)
+        {
+            if (on && MasterPrepActive) { if (Time.timeScale != 0f) Time.timeScale = 0f; return; } // 다른 경로가 1로 되돌려도 준비 중엔 다시 정지
+            if (on == MasterPrepActive) return;
+            if (on && State == GameState.GameOver) return;
+            MasterPrepActive = on;
+            if (on) { Time.timeScale = 0f; EnterFrozenAudio(); }
+            else
+            {
+                if (!IsPaused && !resuming && !MasterFreezeActive) Time.timeScale = PlayScale;
+                ExitFrozenAudioIfClear();
+            }
+        }
+
         public bool BeginMasterFreeze()
         {
             if (State != GameState.Playing || IsPaused || resuming || MasterFreezeActive) return false;
@@ -972,7 +992,7 @@ namespace CCT
         {
             if (!MasterFreezeActive) return;
             MasterFreezeActive = false; IsPaused = false;
-            Time.timeScale = State == GameState.Playing ? 1f : 0f;
+            Time.timeScale = PlayScale;
             ExitFrozenAudioIfClear();
         }
 
@@ -991,7 +1011,7 @@ namespace CCT
             MasterBrewOpen = false;
             MasterHud?.HideBrew();
             IsPaused = false;
-            Time.timeScale = State == GameState.Playing ? 1f : 0f;
+            Time.timeScale = PlayScale;
             ExitFrozenAudioIfClear();
         }
 
@@ -1042,6 +1062,7 @@ namespace CCT
         {
             if (MasterBrewOpen) { MasterBrewOpen = false; MasterHud?.HideBrew(); }
             MasterFreezeActive = false;
+            MasterPrepActive = false;
             Master?.OnRunEnded();
             MasterVfx.ReleaseAll(); // 2026-11-11 상성/품질 효과는 런과 함께 끝낸다(정지 중 종료 시 다음 런 상한 점유 방지)
             // "포기"는 Pause(Playing 복귀 예정)를 닫자마자 곧장 여기로 들어와서, 아직 안 끝난 1초 "계속"
