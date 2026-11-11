@@ -94,18 +94,41 @@ namespace CCT
             return d;
         }
 
+        /// <summary>박람회 성공 안내(보상 1웨이브 시작 배너에 합쳐 보인다 — 같은 호출 사슬에서 곧바로 덮이지 않게).</summary>
+        string fairSuccessSub;
+        /// <summary>마지막으로 띄운 HUD 배너(시험·검수용).</summary>
+        public string LastBannerTitle { get; private set; }
+        public string LastBannerSub { get; private set; }
+
+        void Banner(string title, string sub, float seconds)
+        {
+            LastBannerTitle = title; LastBannerSub = sub;
+            if (BannersEnabled && game != null && game.Hud != null) game.Hud.ShowBanner(title, sub, seconds);
+        }
+
         void OnWaveStarted(long wave)
         {
             released = 0f;
             tracked.Clear();
-            if (show != null && MasterRules.SegmentOf(wave) == MasterSegment.Reward) { show.Finish(); show = null; }
-            if (BannersEnabled && game != null && game.Hud != null)
+            var seg = MasterRules.SegmentOf(wave);
+            if (show != null && seg == MasterSegment.Reward) { show.Finish(); show = null; }
+            if (seg == MasterSegment.Fair && show != null)
             {
-                var seg = MasterRules.SegmentOf(wave);
+                // 현수막이 걸린 동안 박람회 제목은 천 글자로, HUD에는 부제만(큰 HUD 제목 y≈190/1080이 천 아랫부분과 겹침 — 2026-11-11 오프스크린 검수).
+                show.SetLabel($"박람회 {MasterRules.FairIndex(wave)}/{MasterRules.FairWaves}");
+                Banner("", SubLine(wave), 2f);
+            }
+            else if (seg == MasterSegment.Reward && fairSuccessSub != null)
+            {
+                Banner("박람회 성공!", fairSuccessSub + " · " + SubLine(wave), 3.5f);
+                fairSuccessSub = null;
+            }
+            else
+            {
                 string title = seg == MasterSegment.Fair ? $"박람회 {MasterRules.FairIndex(wave)}/{MasterRules.FairWaves}"
                     : seg == MasterSegment.Reward ? $"보상 손님 {MasterRules.RewardIndex(wave)}/{MasterRules.RewardWaves}"
                     : $"웨이브 {EndlessRules.Show(wave)} · 재료 모으기 {MasterRules.InCycle(wave)}/{MasterRules.CollectWaves}";
-                game.Hud.ShowBanner(title, SubLine(wave), 2f);
+                Banner(title, SubLine(wave), 2f);
             }
             Changed?.Invoke();
         }
@@ -128,8 +151,7 @@ namespace CCT
             string awardId = $"master_fair_c{cycle}";
             bool recorded = game != null && DrinkLab.RecordBossAward(game.RunId, awardId, "박람회 성공 보상", items, true);
             if (recorded) FairRewardsGranted.Add(cycle);
-            if (BannersEnabled && game?.Hud != null)
-                game.Hud.ShowBanner("박람회 성공!", recorded ? $"모든 재료 기본 묶음 {items.Count}종 지급(판매 불가 재료) · 이제 보상 손님" : "보상은 이미 기록되었습니다", 3f);
+            fairSuccessSub = recorded ? $"모든 재료 기본 묶음 {items.Count}종 지급(판매 불가 재료)" : "보상은 이미 기록되었습니다";
             Changed?.Invoke();
         }
 
@@ -167,6 +189,7 @@ namespace CCT
                         State.BeginTransition();
                         transitionElapsed = 0f;
                         show = FairBannerShow.Create(game, ClampedPrep);
+                        Banner("", "NPC가 현수막을 거는 중 · 전투 정지", ClampedPrep); // 큰 제목 없이 부제만(천과 겹치지 않음)
                         Changed?.Invoke();
                     }
                     break;
@@ -185,7 +208,8 @@ namespace CCT
             State.FinishTransition();
             game.EndMasterFreeze();
             show?.Settle();
-            if (BannersEnabled) game.Hud?.ShowBanner("박람회 시작!", $"현수막 설치 완료 · 박람회 1/{MasterRules.FairWaves} · 약화 {State.ActiveReduction}%", 2f);
+            string startRed = State.ActiveReduction > 0 ? " · 약화 " + State.ActiveReduction + "%" : "";
+            Banner("", "박람회 시작! 진상 손님 " + State.Target + "명 막기" + startRed, 2.5f); // 제목은 천 글자(박람회 1/3). 720p 좌측 패널에 가리지 않게 짧게
             Changed?.Invoke();
         }
 
@@ -263,7 +287,7 @@ namespace CCT
         public bool ChooseFair()
         {
             if (!State.ChooseFair()) return false;
-            if (BannersEnabled && Enemy.Active.Count > 0) game.Hud?.ShowBanner("박람회 준비", $"남은 손님 {Enemy.Active.Count}명을 먼저 처리하세요", 2.5f);
+            if (Enemy.Active.Count > 0) Banner("박람회 준비", $"남은 손님 {Enemy.Active.Count}명을 먼저 처리하세요", 2.5f);
             Changed?.Invoke();
             return true;
         }
@@ -324,7 +348,8 @@ namespace CCT
             s.duration = Mathf.Max(0.1f, duration);
             Vector2 camPos = cam != null ? (Vector2)cam.transform.position : Vector2.zero;
             float halfH = cam != null && cam.orthographic ? cam.orthographicSize : 6f;
-            float halfW = halfH * (cam != null ? Mathf.Max(0.5f, cam.aspect) : 16f / 9f);
+            // 시작/퇴장 위치는 최소 16:9 폭 기준 화면 밖(좁은 창·배치 화면 비율에서 화면 가장자리에 갑자기 나타나지 않게 — 2026-11-11 연속 프레임 검수).
+            float halfW = halfH * (cam != null ? Mathf.Max(16f / 9f, cam.aspect) : 16f / 9f);
             Vector2 bannerTop = camPos + new Vector2(0f, halfH - BannerTopFromCamTop);
             s.Build(bannerTop, camPos.x, halfW);
             // 카메라는 가로로 플레이어를 따라간다(Y 고정) — 박람회 동안 현수막이 화면 위 벽 영역에 남도록 카메라에 붙인다(월드 위치 유지).
@@ -356,13 +381,16 @@ namespace CCT
             Vector2 pinR = bannerTop + MasterArt.BannerLocal(MasterArt.PinRightPx) * BannerScale;
             riggerStand = pinL - MasterArt.NpcAnchorLocal(MasterArt.RiggerGripPx, false) * npcScale; // 왼쪽 끝: 오른쪽(중앙)을 보며 앞손으로 핀
             porterStand = pinR - MasterArt.NpcAnchorLocal(MasterArt.PorterGripPx, false) * npcScale; // 오른쪽 끝: 바깥을 보며 뒷손으로 핀(퇴장 방향 유지)
-            float off = halfW + 1.6f * npcScale;
+            float off = halfW + 0.7f * npcScale; // 몸 절반 폭(≈0.35×배율)만큼만 화면 밖 — 이동 거리를 줄여 0.8초 접근의 발 미끄럼 완화
             riggerOff = new Vector2(camX - off, riggerStand.y);
             porterOff = new Vector2(camX + off, porterStand.y);
 
             rigger = MakeRenderer("NpcRigger", riggerOff, SortOrders.BackgroundProp + 2);
             porter = MakeRenderer("NpcPorter", porterOff, SortOrders.BackgroundProp + 2);
             rigger.transform.localScale = porter.transform.localScale = Vector3.one * npcScale;
+            cordL = MakeRenderer("CordLeft", Vector2.zero, SortOrders.BackgroundProp + 1);
+            cordR = MakeRenderer("CordRight", Vector2.zero, SortOrders.BackgroundProp + 1);
+            foreach (var c in new[] { cordL, cordR }) { c.sprite = SpriteFactory.Square; c.color = new Color(0.36f, 0.22f, 0.12f); c.enabled = false; }
             if (!UsingArt)
             {
                 var a = ArtLibrary.Get("bartender");
@@ -403,6 +431,9 @@ namespace CCT
         public string RiggerClip { get; private set; }
         public string PorterClip { get; private set; }
         public bool LabelVisible => label != null && label.color.a > 0.5f;
+        public string LabelText => label != null ? label.text : "";
+        /// <summary>걸린 현수막 글자 교체(박람회 n/3). 글자 안전 영역(폭 80%) 안에 들도록 짧은 문구만.</summary>
+        public void SetLabel(string text) { if (label != null && !string.IsNullOrEmpty(text)) label.text = text; }
         public Vector2 RiggerPosition => rigger != null ? (Vector2)rigger.transform.position : Vector2.zero;
         public Vector2 PorterPosition => porter != null ? (Vector2)porter.transform.position : Vector2.zero;
         public Vector2 RiggerStand => riggerStand;
@@ -461,7 +492,48 @@ namespace CCT
                 banner.sprite = bannerFrames[f];
                 BannerFrame = f;
             }
+            UpdateCords();
         }
+
+        /// <summary>
+        /// 2026-11-11 오프스크린 검수 보정: 펼침 00–04 동안 천 끝은 중앙에서 바깥으로 이동하는데 NPC는 발 고정·손은 최종 핀 위치라 손과 천이 떨어져 보였다.
+        /// 발을 미끄러뜨리지 않고, 손(설치 최고점 앵커)에서 그 프레임의 천 끝 핀까지 얇은 줄을 그려 "줄을 당겨 펼친다"로 연결한다. 05부터 끝=핀이라 줄은 사라진다.
+        /// 런타임 보조 선(아트 원본 아님) — 아트 검수 대상.
+        /// </summary>
+        void UpdateCords()
+        {
+            bool on = BannerFrame >= 0 && BannerFrame < 5 && rigger != null && porter != null;
+            CordVisible = on;
+            if (cordL == null || cordR == null) return;
+            cordL.enabled = cordR.enabled = on;
+            if (!on) return;
+            Vector3 pins = MasterArt.BannerPinsPx[BannerFrame];
+            Vector2 top = banner.transform.position;
+            Vector2 endL = top + MasterArt.BannerLocal(new Vector2(pins.x, pins.z)) * BannerScale;
+            Vector2 endR = top + MasterArt.BannerLocal(new Vector2(pins.y, pins.z)) * BannerScale;
+            Vector2 handL = (Vector2)rigger.transform.position + MasterArt.NpcAnchorLocal(MasterArt.RiggerGripPx, rigger.flipX) * npcScale;
+            Vector2 handR = (Vector2)porter.transform.position + MasterArt.NpcAnchorLocal(MasterArt.PorterGripPx, porter.flipX) * npcScale;
+            PlaceCord(cordL, handL, endL);
+            PlaceCord(cordR, handR, endR);
+            CordEndLeft = endL; CordEndRight = endR; CordHandLeft = handL; CordHandRight = handR;
+        }
+
+        static void PlaceCord(SpriteRenderer cord, Vector2 a, Vector2 b)
+        {
+            Vector2 d = b - a;
+            cord.transform.position = new Vector3((a.x + b.x) * 0.5f, (a.y + b.y) * 0.5f, 0f);
+            cord.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg);
+            cord.transform.localScale = new Vector3(Mathf.Max(0.01f, d.magnitude), CordThickness, 1f);
+        }
+
+        /// <summary>줄 두께(월드) = 원본 2px @PPU128 × 현수막 배율.</summary>
+        public const float CordThickness = 2f / 128f * 1.6f;
+        SpriteRenderer cordL, cordR;
+        public bool CordVisible { get; private set; }
+        public Vector2 CordEndLeft { get; private set; }
+        public Vector2 CordEndRight { get; private set; }
+        public Vector2 CordHandLeft { get; private set; }
+        public Vector2 CordHandRight { get; private set; }
 
         void SetNpc(SpriteRenderer sr, Vector2 pos, Sprite[] frames, string clipName, float clipMs, bool flip)
         {

@@ -1,14 +1,11 @@
-# Steam 마스터 도전 아트 연결 · 메모리 중단
+﻿# Steam 마스터 도전 — 검증 재개 후 중단 기록
 
-2026-11-11 현재 여유RAM3470MB 확인. 4GB 기준 미달이므로 Unity·캡처·빌드 추가 실행 보류. 사용자 앱을 종료하거나 자동 감시로 재실행하지 않는다.
+2026-11-11. Claude dispatch ctx_d83d37da22f1.
 
-진행분:
-- ArtSource 인수110프레임을 Resources로 임포트, 원본과 바이트 일치·PPU128/Point/pivot 검사 통과.
-- NPC·현수막3500ms 연출, 품질·상성 VFX one-shot/풀/low대체, schema v5/한 번 백업·미래버전 보호 구현.
-- schema5 포함 대상 EditMode94PASS·0FAIL·기존SKIP1. PlayMode 정규9PASS. 명시 증거 시험 초기 실패와 무효 타이틀 캡처는 별도 기록.
-- 26장 실제 오프스크린 화면에서 현수막이 HUD에 가리는 FAIL 발견. 배율0.8/상단위치1.45로 수정했으나 그 후 재시험·재캡처는 NOT RUN. 현재 코드 전체 통과로 표시하지 않는다.
-- 자원기준 미달에서 두 번 실행한 위반은 보고서에 보존(import3659MB/evidence3789MB). 정상 종료했다는 사실이 실행 기준 준수를 의미하지 않는다.
+현수막 HUD 가림, VFX 풀 해제, 박람회 성공 알림, 720p 부제, 펼침 중 손과 천 연결, NPC 화면 가장자리 출현, StandardFamily 테스트의 빈 대상 검사 등 D1–D8 수정.
 
-미완: 위치 수정 후 손·핀/천인계·발미끄럼/3.5초연속영상·720p합성 재검증, 정규 모드 회귀, 새Windows검수빌드·sourcehash 일치·실제플레이. 공모전·기존세이브는 별도 보존.
+검증: targeted PlayMode 10/10. 전체 PlayMode 358 PASS / 0 FAIL / 11 SKIP는 후속 위치 수정 이전 기준. 전체 EditMode 933 PASS / 1 FAIL / 1 SKIP / 1 Inconclusive; 실패 fixture 수정 후 3/3 PASS. Inconclusive는 미조사.
 
-근거 원본: Unity Delivery/Reports/qa-steam-master-2026-11-11.md 및 qa-steam-master-resume-2026-11-11.md. 두 보고서 복사본을 이 vault에 보관한다. 관련 코드·임포트 아트·테스트·문서를 WIP로 GitHub에 저장하며 성공 SHA는 후속 기록.
+미완료: NPC 발 미끄러짐, D9 화면 밖 여백 축소 이후 테스트 및 캡처, 런타임 줄 아트 검수, Windows 검토용 빌드 및 빌드 전후 소스 해시 비교. 빌드는 여유 메모리 3878/3775MB로 최소 4096MB 조건 미달하여 실행 안 함. 출시 완료 아님.
+
+상세: Unity 프로젝트 Delivery/Reports/qa-steam-master-2026-11-11.md 6–7절. 다음 작업은 D9 검증 → 증거 검수 → 메모리 조건 충족 시 별도 Windows 검토 빌드. 기존 공모전은 변경하지 않음.

@@ -166,3 +166,22 @@ U="C:/Program Files/Unity/Hub/Editor/6000.3.25f1/Editor/Unity.exe"; P=C:/Users/u
 | Tests/PlayMode/QuietBatchAudio.cs | d9161eb3da6d092bc51db183969c42df525be4d040b14f01853fd21842623337 |
 
 필수 경로 JSON 추가 항목: `"Assets/_Project/Tests/PlayMode/QuietBatchAudio.cs"`, `".meta"`, `"Delivery/Reports/steam-master-2026-11-11/frames/"`, `"Delivery/Reports/steam-master-2026-11-11/frames-run1-titleoverlay/"`, `editmode-resume-1.{xml,log}`, `playmode-resume-1.{xml,log}`, `evidence-resume-{1,2}.{xml,log}`.
+
+## 10. 재개 세션 2 (task_8c0850e54a49, 13:00~13:26)
+
+상세는 `qa-steam-master-2026-11-11.md` 6·7절. 요약: targeted PlayMode 10/10(resume-3·4·5), 전체 PlayMode 358/0/11skip, 전체 EditMode 933/1fail(시험 결함 D8 → 수정 후 fixture 3/3)/1skip/1inconclusive. 결함 D1–D8 수정·검증, D9(화면 밖 여백) 수정 NOT RUN. 빌드 NOT RUN(GATE 2회 거부). Git 변경 없음, ArtSource·공모전 미수정.
+
+이번 세션 수정 파일(이전 해시 표 대체):
+| 파일 | sha256 |
+|---|---|
+| Scripts/Core/MasterChallengeDirector.cs | c1e0af0f18d10e0162c8068045dad2c32dd1b4501aa45e0d20f5a5aedfd7be03 |
+| Scripts/Core/MasterVfx.cs | 8b188f56027764ffd9a55716a9e0cd1d62ec21eacb16579f0b171d6322b22ec3 |
+| Scripts/Core/MasterArt.cs | c8633b299feb313b6dcc1b9817418b95c42c791896efd9c9702be2289decda32 |
+| Scripts/Core/GameManager.cs | 62c86e384bfe7ea9728d90313b448ea35f92128ad7a728219f49be4600dda967 |
+| Tests/PlayMode/MasterArtPlayTests.cs | 85b6b34c5c370d85b49b8904a03bc8314e2feddb19adbfc0df5e07823b2d4b6a |
+| Tests/PlayMode/MasterChallengePlayTests.cs | 19c05deb839fab49da898496698ee1079fb74f8bd78083880ff6c4e6f529ed88 |
+| Tests/EditMode/StandardFamilyTableTests.cs | 8c7a3e516df36e2cfd39a468e0da8b6cc9186279636bd3196e2f83cb9d140b2a |
+| Docs/MasterChallenge/IMPLEMENTED.md | 01a1cb4ebee309945735241d2da7c1c819860c66d0909adab9345efccbbe6727 |
+
+추가 증거 경로(JSON 추가분): `Delivery/Reports/steam-master-2026-11-11/{playmode-resume-2..5,editmode-full-1,editmode-stdfamily-rerun,editmode-stdfamily-rerun2,playmode-full-1}.{xml,log}`, `frames/`(resume-5: 현수막 키프레임 720/1080, seq/ 36장, 설치완료+HUD, 품질 full/low, 상성 full/low, notes), `archive-scale1/`(수정 전 증거 3세트), `source-manifest-pre-build.sha256`.
+재개 지점: `qa-steam-master-2026-11-11.md` 7절 명령 1→4.

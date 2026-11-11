@@ -129,6 +129,11 @@ namespace CCT.Tests
             Assert.IsFalse(game.MasterFreezeActive);
             Assert.AreEqual(1f, Time.timeScale);
             Assert.AreEqual(6, st.Wave);
+            var hung = Object.FindObjectsByType<FairBannerShow>(FindObjectsSortMode.None).Single();
+            Assert.IsTrue(hung.Settled && !hung.NpcsPresent, "설치 완료 후 현수막만 남음");
+            Assert.AreEqual("박람회 1/3", hung.LabelText, "박람회 진행은 천 글자로");
+            Assert.AreEqual("", game.Master.LastBannerTitle, "현수막이 걸린 동안 HUD 큰 제목 없음(천과 겹침 방지)");
+            StringAssert.Contains("박람회 시작!", game.Master.LastBannerSub);
 
             // 박람회 3웨이브: 작은 진상 손님만, 클리어 없음
             Time.timeScale = 10f;
@@ -140,6 +145,8 @@ namespace CCT.Tests
                 return st.Wave == 9;
             }, 40f);
             Assert.IsFalse(sawOther, "박람회는 진상 손님 전용");
+            Assert.AreEqual("박람회 성공!", game.Master.LastBannerTitle, "성공 안내가 보상 웨이브 제목에 덮이지 않음");
+            StringAssert.Contains("보상 손님", game.Master.LastBannerSub);
             Assert.AreEqual(GameState.Playing, game.State, "최종 보스 클리어 플래그 없음");
             var awards = DrinkLab.PendingFor(game.RunId).Where(a => a.awardId == "master_fair_c1").ToList();
             Assert.AreEqual(1, awards.Count, "박람회 성공 보상 1회");

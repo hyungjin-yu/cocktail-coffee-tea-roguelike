@@ -130,7 +130,10 @@ namespace CCT.Tests
             {
                 g.Spawner.SpawnOneForTests();
             }
-            foreach (var e in Enemy.Active)
+            // 2026-11-11: EditMode에서는 일반 MonoBehaviour의 OnEnable이 돌지 않아 Enemy.Active가 비어 있다(이전엔 검사 대상 0 → 무조건 통과/실패) → 실제 생성 계층에서 모은다.
+            var spawnedEnemies = root.GetComponentsInChildren<Enemy>(true);
+            Assert.Greater(spawnedEnemies.Length, 0, "실제로 생성됨");
+            foreach (var e in spawnedEnemies)
             {
                 if (e == null || e.Def.IsBoss) continue;
                 var f = e.Family;
@@ -152,7 +155,10 @@ namespace CCT.Tests
             var g = Start(SpawnTable.JobTheme, Job.TeaSommelier);
             g.SetRunTimeForTests(400f);
             for (int i = 0; i < 60; i++) g.Spawner.SpawnOneForTests();
-            foreach (var e in Enemy.Active)
+            // 2026-11-11: EditMode에서는 일반 MonoBehaviour의 OnEnable이 돌지 않아 Enemy.Active가 비어 있다(이전엔 검사 대상 0 → 무조건 통과/실패) → 실제 생성 계층에서 모은다.
+            var spawnedEnemies = root.GetComponentsInChildren<Enemy>(true);
+            Assert.Greater(spawnedEnemies.Length, 0, "실제로 생성됨");
+            foreach (var e in spawnedEnemies)
                 if (e != null && !e.Def.IsBoss) { Assert.AreEqual(MonsterFamily.Tea, e.Family); Assert.IsNull(e.RewardDef); }
         }
 

@@ -68,7 +68,14 @@ namespace CCT
         public const int WalkInEndMs = 800, InstallEndMs = 2300, TotalMs = 3500, BannerStartMs = 1050, BannerEndMs = 2050;
         /// <summary>현수막 최종 핀(1280×192, 좌상단 원점)과 글자 안전 영역(정규화 x0,y0,x1,y1, 좌상단 원점).</summary>
         public static readonly Vector2 PinLeftPx = new Vector2(43, 20), PinRightPx = new Vector2(1237, 20);
-        public static readonly Rect TextSafe = Rect.MinMaxRect(0.1f, 0.2f, 0.9f, 0.8f);
+        /// <summary>현수막 프레임별 천 끝 핀 위치(좌상단 px: 왼쪽 x, 오른쪽 x, y). 2026-11-11 승인 PNG의 알파 상단 띠 끝에서 최종 핀 안쪽 여백(16/15px)·상단+13px로 측정(원본 무수정).
+        /// 00–04는 펼치는 중이라 끝이 바깥으로 이동, 05–07은 최종 핀(43/1237, 20)과 같다.</summary>
+        public static readonly Vector3[] BannerPinsPx =
+        {
+            new Vector3(396, 884, 28), new Vector3(372, 910, 16), new Vector3(261, 1020, 17), new Vector3(152, 1128, 18),
+            new Vector3(68, 1214, 20), new Vector3(43, 1237, 20), new Vector3(43, 1237, 20), new Vector3(43, 1237, 20),
+        };
+        public static readonly Rect TextSafe =Rect.MinMaxRect(0.1f, 0.2f, 0.9f, 0.8f);
         /// <summary>설치 노출 02/03의 안정된 최고 손 좌표(256 캔버스 좌상단 원점).</summary>
         public static readonly Vector2 PorterGripPx = new Vector2(61, 93), RiggerGripPx = new Vector2(194, 93);
         /// <summary>NPC 지면(발) y — 이미지 상단 기준 224 = pivot .125.</summary>

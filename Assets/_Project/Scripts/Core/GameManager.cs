@@ -143,6 +143,7 @@ namespace CCT
         void OnDestroy()
         {
             CancelPendingResult();
+            MasterVfx.ReleaseAll();
             if (Instance == this) Instance = null;
             Time.timeScale = 1f;
         }
@@ -1042,6 +1043,7 @@ namespace CCT
             if (MasterBrewOpen) { MasterBrewOpen = false; MasterHud?.HideBrew(); }
             MasterFreezeActive = false;
             Master?.OnRunEnded();
+            MasterVfx.ReleaseAll(); // 2026-11-11 상성/품질 효과는 런과 함께 끝낸다(정지 중 종료 시 다음 런 상한 점유 방지)
             // "포기"는 Pause(Playing 복귀 예정)를 닫자마자 곧장 여기로 들어와서, 아직 안 끝난 1초 "계속"
             // 카운트다운이 살아있을 수 있다 — 그대로 두면 1초 뒤 GameOver인데 Time.timeScale이 다시
             // 1로 풀려버린다.

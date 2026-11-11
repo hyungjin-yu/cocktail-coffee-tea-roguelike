@@ -55,6 +55,9 @@ namespace CCT.Tests
             float halfW = cam.orthographicSize * cam.aspect;
             Assert.Less(s.RiggerPosition.x, cam.transform.position.x - halfW, "rigger는 화면 밖 왼쪽에서 시작");
             Assert.Greater(s.PorterPosition.x, cam.transform.position.x + halfW, "porter는 화면 밖 오른쪽에서 시작");
+            float wide = cam.orthographicSize * 16f / 9f;
+            Assert.Less(s.RiggerPosition.x + 0.6f * s.NpcScale, cam.transform.position.x - wide, "16:9 화면에서도 시작 시 화면 밖(가장자리 갑툭튀 없음)");
+            Assert.Greater(s.PorterPosition.x - 0.6f * s.NpcScale, cam.transform.position.x + wide);
             Assert.AreEqual("npc_rigger_walk_in", s.RiggerClip);
             Assert.IsTrue(s.PorterFlipped, "porter 접근은 왼쪽을 본다");
             Assert.AreEqual(-1, s.BannerFrame, "1050ms 전 현수막 없음(운반 천만)");
@@ -68,6 +71,14 @@ namespace CCT.Tests
             s.Step(Sec(1500f, d));
             Assert.AreEqual(3, s.BannerFrame, "1050+450ms → 프레임 03");
             Assert.IsFalse(s.LabelVisible, "펼침 완료 전 글자 없음");
+            // 펼치는 중(프레임 03): 손에서 현재 천 끝까지 줄로 연결(손-천 분리 없음), 천 끝은 최종 핀보다 안쪽.
+            Assert.IsTrue(s.CordVisible, "펼치는 중 줄 표시");
+            Vector2 expHandL = s.RiggerPosition + MasterArt.NpcAnchorLocal(MasterArt.RiggerGripPx, s.RiggerFlipped) * s.NpcScale;
+            Assert.Less(Vector2.Distance(s.CordHandLeft, expHandL), 0.001f, "줄 시작 = rigger 손");
+            Vector2 expEndL = s.BannerTopWorld + MasterArt.BannerLocal(new Vector2(MasterArt.BannerPinsPx[3].x, MasterArt.BannerPinsPx[3].z)) * FairBannerShow.BannerScale;
+            Assert.Less(Vector2.Distance(s.CordEndLeft, expEndL), 0.001f, "줄 끝 = 프레임 03 천 왼쪽 끝");
+            Assert.Greater(s.CordEndLeft.x, s.CordHandLeft.x, "천 끝은 손보다 안쪽(펼치는 중)");
+            Assert.Less(s.CordEndRight.x, s.CordHandRight.x);
 
             // 설치 최고점(노출 02/03)의 손 = 현수막 최종 핀(월드).
             Vector2 top = s.BannerTopWorld;
@@ -84,6 +95,7 @@ namespace CCT.Tests
             s.Step(Sec(1925f, d) + 0.001f);
             Assert.AreEqual(7, s.BannerFrame);
             Assert.IsTrue(s.LabelVisible, "07 프레임부터 '박람회' 글자");
+            Assert.IsFalse(s.CordVisible, "최종 핀 도달 후 줄 없음");
 
             s.Step(Sec(2600f, d));
             Assert.AreEqual("npc_rigger_walk_out", s.RiggerClip);
@@ -209,6 +221,8 @@ namespace CCT.Tests
             // 1) 현수막 3500ms 계약 시점별(720p + 1080p). 전투 정지(timeScale 0) 상태 그대로.
             const float d = 3.5f;
             Time.timeScale = 0f;
+            Camera.main.aspect = 16f / 9f; // 캡처 RT(16:9)와 같은 비율로 배치 계산(배치 모드 화면 비율 영향 제거)
+            game.Hud.ShowBanner("", "NPC가 현수막을 거는 중 · 전투 정지", 60f); // 실제 설치 시작 때 Director가 띄우는 형태
             var show = FairBannerShow.Create(game, d);
             foreach (float ms in new[] { 400f, 1000f, 1300f, 1700f, 2050f, 2900f })
             {
@@ -217,8 +231,19 @@ namespace CCT.Tests
                 yield return Shot(outDir, $"banner_{ms:0000}ms_720", notes, n, 1280, 720);
                 yield return Shot(outDir, $"banner_{ms:0000}ms_1080", notes, n, 1920, 1080);
             }
+            // 1b) 동작 검수용 연속 프레임(계약 0~3500ms, 100ms 간격, 720p) — 손/천/발 이동을 프레임 단위로 본다.
+            Directory.CreateDirectory(Path.Combine(outDir, "seq"));
+            for (int ms = 0; ms <= 3500; ms += 100)
+            {
+                show.Step(Sec(ms, d));
+                string n = $"t={ms} rigger={show.RiggerClip} porter={show.PorterClip} bannerFrame={show.BannerFrame} riggerPos={show.RiggerPosition.x:0.000},{show.RiggerPosition.y:0.000} porterPos={show.PorterPosition.x:0.000},{show.PorterPosition.y:0.000} bannerTop={show.BannerTopWorld.x:0.000},{show.BannerTopWorld.y:0.000} scale={show.NpcScale:0.0000} rFlip={show.RiggerFlipped} pFlip={show.PorterFlipped}";
+                yield return Shot(Path.Combine(outDir, "seq"), $"seq_{ms:0000}", notes, n, 1280, 720);
+            }
             show.Settle();
-            yield return Shot(outDir, "banner_settled_720", notes, "settled", 1280, 720);
+            show.SetLabel("박람회 1/3");
+            game.Hud.ShowBanner("", "박람회 시작! 진상 손님 12명 막기", 5f); // 실제 Director가 띄우는 형태(제목 없음, 부제만)
+            yield return Shot(outDir, "banner_settled_hud_720", notes, $"settled label={show.LabelText} + HUD subtitle only", 1280, 720);
+            yield return Shot(outDir, "banner_settled_hud_1080", notes, $"settled label={show.LabelText} + HUD subtitle only", 1920, 1080);
             show.Finish();
             Time.timeScale = 1f;
             yield return null;
@@ -242,6 +267,7 @@ namespace CCT.Tests
             game.CloseMasterBrew();
             yield return null;
 
+            MasterVfx.ReleaseAll(); // 앞 시험이 남긴 정지 효과 정리(시험 순서 독립)
             // 3) 상성 VFX: 실제 적 옆 적중점에 배치(적중 경로 판정은 AffinityVfx_* 시험이 따로 검증). full/low 각 3종.
             var bug = Enemy.SpawnAt((Vector2)game.Player.Position + new Vector2(2.5f, 0f), EnemyDef.EspressoBug, 50f, game.Player, game.transform);
             yield return null;
@@ -258,6 +284,7 @@ namespace CCT.Tests
                     fx.Release();
                 }
             Time.timeScale = 1f;
+            Camera.main.ResetAspect();
             File.WriteAllLines(Path.Combine(outDir, "frames-notes.txt"), notes);
         }
 

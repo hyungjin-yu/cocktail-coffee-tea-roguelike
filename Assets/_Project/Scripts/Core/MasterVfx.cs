@@ -52,6 +52,15 @@ namespace CCT
             active.RemoveAll(v => v == null);
         }
 
+        /// <summary>재생 중인 효과를 모두 즉시 반납(런 종료·재시작). 풀은 런 사이에 남으므로, 정지 상태로 끝난 런의 효과가 다음 런의 동시 상한을 차지하지 않게 한다.</summary>
+        public static void ReleaseAll()
+        {
+            Purge();
+            for (int i = active.Count - 1; i >= 0; i--) active[i].Release();
+            active.Clear();
+            nextAffinityAt = 0f;
+        }
+
         /// <summary>상성 추가 피해가 실제로 확정된 직접 적중 1회에 호출. 저이펙트면 low clip으로 교체.</summary>
         public static bool PlayAffinity(DrinkKind kind, Vector2 at)
         {
