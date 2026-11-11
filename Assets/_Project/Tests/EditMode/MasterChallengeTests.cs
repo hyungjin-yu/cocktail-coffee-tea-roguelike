@@ -382,13 +382,20 @@ namespace CCT.Tests
             Assert.Greater(i, 0);
             // runCups 필드를 뺀 기존 v4 형태로 되돌린다.
             var data = JsonUtility.FromJson<DrinkSaveData>(json);
+            data.schemaVersion = 4;
             string old = JsonUtility.ToJson(data).Replace(",\"runCups\":[]", "");
             StringAssert.DoesNotContain("runCups", old);
             File.WriteAllText(path, old);
             DrinkLab.ReloadForTests();
+            Assert.AreEqual(DrinkStore.LoadSource.Original, DrinkLab.LoadSource);
+            Assert.IsTrue(File.Exists(path + ".pre-runcups-v4.bak"), "v4 원본 1회 백업");
+            Assert.AreEqual(old, File.ReadAllText(path + ".pre-runcups-v4.bak"), "백업은 원본 그대로");
             Assert.IsNotNull(DrinkLab.Prepared, "기존 단일 준비 음료 보존");
             Assert.AreEqual(0, DrinkLab.Data.runCups.Count);
-            Assert.AreEqual(DrinkStore.CurrentVersion, DrinkLab.Data.schemaVersion);
+            // 다음 저장은 v5(v4 빌드는 미래 버전 보호로 덮어쓰지 않음).
+            Assert.IsTrue(DrinkLab.SaveNow());
+            StringAssert.Contains($"\"schemaVersion\": {DrinkStore.CurrentVersion}", File.ReadAllText(path));
+            Assert.AreEqual(5, DrinkStore.CurrentVersion);
         }
     }
 

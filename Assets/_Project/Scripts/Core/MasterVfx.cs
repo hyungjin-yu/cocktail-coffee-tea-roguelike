@@ -1,0 +1,170 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace CCT
+{
+    /// <summary>
+    /// 2026-11-11 마스터 도전 인수 아트(품질 3+3 / 상성 3+3 clip)의 1회 재생기. 월드(SpriteRenderer) 또는 UI(Image) 대상.
+    /// 아트 계약: 성공 거래·확정 적중마다 정확히 1회, loop 없음, 끝나면 renderer 끄고 sprite 해제 후 pool 반납.
+    /// 재사용 때 frame0·elapsed0·white·scale·rotation0·flip false로 초기화. 동시 개체 상한을 넘으면 새 재생을 건너뛴다(쌓지 않음).
+    /// </summary>
+    public sealed class MasterVfx : MonoBehaviour
+    {
+        /// <summary>월드 상성 효과 동시 상한(다수 적·DOT 과밀 예산)과 같은 프레임 연속 생성 최소 간격(초, 전투 시간).</summary>
+        public const int MaxWorldActive = 6;
+        public const float AffinityMinInterval = 0.06f;
+        /// <summary>UI 품질 효과 동시 상한(제조 창 연타 시 겹침 방지 — 새 것으로 교체).</summary>
+        public const int MaxUiActive = 1;
+
+        static readonly List<MasterVfx> worldPool = new List<MasterVfx>(), uiPool = new List<MasterVfx>();
+        static readonly List<MasterVfx> active = new List<MasterVfx>();
+        static Transform worldRoot;
+        static float nextAffinityAt;
+
+        public static int Played { get; private set; }
+        public static int Skipped { get; private set; }
+        public static string LastClip { get; private set; }
+        public static int ActiveWorld { get { int n = 0; foreach (var v in active) if (v != null && v.sr != null) n++; return n; } }
+        public static int ActiveUi { get { int n = 0; foreach (var v in active) if (v != null && v.img != null) n++; return n; } }
+        public static int PooledCount => worldPool.Count + uiPool.Count;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            worldPool.Clear(); uiPool.Clear(); active.Clear(); worldRoot = null;
+            nextAffinityAt = 0f; Played = 0; Skipped = 0; LastClip = null;
+        }
+
+        SpriteRenderer sr;
+        Image img;
+        MasterArt.Clip clip;
+        Sprite[] frames;
+        float elapsedMs;
+        bool unscaled;
+        int shown = -1;
+        public bool Playing { get; private set; }
+
+        static void Purge()
+        {
+            worldPool.RemoveAll(v => v == null);
+            uiPool.RemoveAll(v => v == null);
+            active.RemoveAll(v => v == null);
+        }
+
+        /// <summary>상성 추가 피해가 실제로 확정된 직접 적중 1회에 호출. 저이펙트면 low clip으로 교체.</summary>
+        public static bool PlayAffinity(DrinkKind kind, Vector2 at)
+        {
+            if (Time.time < nextAffinityAt) { Skipped++; return false; }
+            var v = PlayWorld(MasterArt.AffinityClip(kind, HitFeedback.LowEffects), at, 1f, false);
+            if (v != null) nextAffinityAt = Time.time + AffinityMinInterval;
+            return v != null;
+        }
+
+        public static MasterVfx PlayWorld(string clipName, Vector2 at, float scale, bool useUnscaled)
+        {
+            Purge();
+            var def = MasterArt.Get(clipName);
+            var spr = MasterArt.Load(clipName);
+            if (def == null || spr == null) { Skipped++; return null; }
+            if (ActiveWorld >= MaxWorldActive) { Skipped++; return null; }
+            MasterVfx v = null;
+            if (worldPool.Count > 0) { v = worldPool[worldPool.Count - 1]; worldPool.RemoveAt(worldPool.Count - 1); }
+            if (v == null)
+            {
+                if (worldRoot == null) worldRoot = new GameObject("MasterVfxPool").transform;
+                var go = new GameObject("MasterVfx");
+                go.transform.SetParent(worldRoot, false);
+                v = go.AddComponent<MasterVfx>();
+                v.sr = go.AddComponent<SpriteRenderer>();
+                v.sr.sortingOrder = SortOrders.AirVfx;
+            }
+            v.transform.position = new Vector3(at.x, at.y, 0f);
+            v.Begin(def, spr, scale, useUnscaled);
+            return v;
+        }
+
+        /// <summary>UI 슬롯(제조 창 등)에 1회 재생. 이미 재생 중이면 그것을 즉시 반납하고 새 것으로 교체(겹침·누적 없음).</summary>
+        public static MasterVfx PlayUi(string clipName, RectTransform slot, float sizePx)
+        {
+            Purge();
+            if (slot == null) { Skipped++; return null; }
+            var def = MasterArt.Get(clipName);
+            var spr = MasterArt.Load(clipName);
+            if (def == null || spr == null) { Skipped++; return null; }
+            for (int i = active.Count - 1; i >= 0; i--) if (active[i].img != null) active[i].Release();
+            MasterVfx v = null;
+            if (uiPool.Count > 0) { v = uiPool[uiPool.Count - 1]; uiPool.RemoveAt(uiPool.Count - 1); }
+            if (v == null)
+            {
+                var go = new GameObject("MasterVfxUi", typeof(RectTransform));
+                v = go.AddComponent<MasterVfx>();
+                v.img = go.AddComponent<Image>();
+                v.img.raycastTarget = false;
+                v.img.preserveAspect = true;
+            }
+            var rt = (RectTransform)v.transform;
+            rt.SetParent(slot, false);
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.anchoredPosition = Vector2.zero;
+            rt.sizeDelta = new Vector2(sizePx, sizePx);
+            rt.SetAsLastSibling();
+            v.Begin(def, spr, 1f, true);
+            return v;
+        }
+
+        void Begin(MasterArt.Clip def, Sprite[] spr, float scale, bool useUnscaled)
+        {
+            clip = def; frames = spr; elapsedMs = 0f; unscaled = useUnscaled; shown = -1;
+            transform.localScale = Vector3.one * scale;
+            transform.localRotation = Quaternion.identity;
+            if (sr != null) { sr.color = Color.white; sr.flipX = false; sr.flipY = false; sr.enabled = true; }
+            if (img != null) { img.color = Color.white; img.enabled = true; }
+            gameObject.SetActive(true);
+            Playing = true;
+            ShowFrame(0);
+            active.Add(this);
+            Played++;
+            LastClip = def.name;
+        }
+
+        void ShowFrame(int i)
+        {
+            if (i == shown) return;
+            shown = i;
+            if (sr != null) sr.sprite = frames[i];
+            if (img != null) img.sprite = frames[i];
+        }
+
+        void Update()
+        {
+            if (!Playing) return;
+            Step((unscaled ? Time.unscaledDeltaTime : Time.deltaTime) * 1000f);
+        }
+
+        /// <summary>시험/본 루프 공용 진행(ms). 전체 길이를 지나면 반납(마지막 프레임은 완전 투명이라 잔상 없음).</summary>
+        public void Step(float dtMs)
+        {
+            if (!Playing) return;
+            elapsedMs += Mathf.Max(0f, dtMs);
+            if (elapsedMs >= clip.TotalMs) { Release(); return; }
+            ShowFrame(MasterArt.FrameAt(clip, elapsedMs));
+        }
+
+        public void Release()
+        {
+            if (!Playing) return;
+            Playing = false;
+            active.Remove(this);
+            if (sr != null) { sr.sprite = null; sr.enabled = false; }
+            if (img != null) { img.sprite = null; img.enabled = false; }
+            shown = -1;
+            gameObject.SetActive(false);
+            if (img != null) uiPool.Add(this); else worldPool.Add(this);
+        }
+
+        public int CurrentFrame => shown;
+        public string ClipName => clip?.name;
+    }
+}

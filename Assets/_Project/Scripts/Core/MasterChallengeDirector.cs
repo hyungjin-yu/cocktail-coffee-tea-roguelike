@@ -290,94 +290,210 @@ namespace CCT
     }
 
     /// <summary>
-    /// NPC 2명이 맵 위쪽(벽 영역, 전투 레인 위)에 '박람회' 현수막을 거는 연출. 실제 시간으로 진행(전투 정지 중).
-    /// **임시 소재**: 기존 바텐더·티 소믈리에 몸 아트와 단색 천 + 월드 글자. 아트 담당 NPC·현수막 납품·검수 후 교체 예정 — 최종 아트 아님.
+    /// NPC 2명(운반 담당 porter·설치 담당 rigger)이 화면 위쪽 벽 영역에 '박람회' 현수막을 거는 연출. 실제 시간으로 진행(전투 정지 중).
+    /// 2026-11-11 인수 아트(Resources/MasterChallenge, manifest 15 clip) 사용. 아트 계약 3500ms 일정(접근 0–800 / 설치 800–2300 / 퇴장 2300–3500,
+    /// 현수막 1050–2050·마지막 프레임 고정, 글자는 펼침 완료 07 프레임부터)을 설정 길이(3~4초)에 비례해 적용한다.
+    /// 설치 자세(노출 02/03)의 손 좌표가 현수막 최종 핀(43,20)/(1237,20)에 오도록 발 위치를 계산한다(flipX면 x=255−x).
+    /// 아트를 못 읽으면 단색 천·기존 몸 아트 임시 대체(최종 아트 아님).
     /// </summary>
     public class FairBannerShow : MonoBehaviour
     {
-        Transform npcL, npcR, cloth;
+        SpriteRenderer rigger, porter, banner;
+        Sprite[] riggerIn, riggerInstall, riggerOut, porterIn, porterInstall, porterOut, bannerFrames;
         TextMesh label;
         float duration;
-        const float BannerWorldY = 4.1f, NpcWorldY = 2.6f, BannerWidth = 10f, BannerHeight = 1.3f;
+        float npcScale = 1f;
+        Vector2 riggerStand, porterStand, riggerOff, porterOff;
+        public bool UsingArt { get; private set; }
+
+        /// <summary>현수막 상단 = 카메라 위 가장자리에서 이만큼 아래(월드). 2026-11-11 오프스크린 검수: 1.15·배율1은 HUD 레벨 막대(720p y≈20–80px) 아래에 깔림 →
+        /// 1.45(레벨 막대 바로 아래)·배율 0.8(폭 8월드 = 화면 중앙 37.5%, 좌측 정보 패널·우측 음료 버튼 열과 겹치지 않음).</summary>
+        public const float BannerTopFromCamTop = 1.45f;
+        public const float BannerScale = 0.8f;
+        /// <summary>계약 일정(ms, 3500 기준).</summary>
+        public const float ContractMs = MasterArt.TotalMs;
+        /// <summary>현수막 글자 표시 시작 = 배너 시작 + 7프레임(125ms×7).</summary>
+        public const float LabelStartMs = MasterArt.BannerStartMs + 7 * 125f;
 
         public static FairBannerShow Create(GameManager game, float duration)
         {
             var cam = Camera.main;
             var root = new GameObject("FairBanner");
-            if (cam != null) { root.transform.SetParent(cam.transform, false); root.transform.localPosition = new Vector3(0f, 0f, -cam.transform.position.z); }
-            else root.transform.SetParent(game.transform, false);
+            if (game != null) root.transform.SetParent(game.transform, false);
             var s = root.AddComponent<FairBannerShow>();
             s.duration = Mathf.Max(0.1f, duration);
-            float camY = cam != null ? cam.transform.position.y : 0f;
-            s.cloth = MakeSprite("Cloth", root.transform, SpriteFactory.Square, new Color(0.62f, 0.12f, 0.16f), new Vector2(0f, BannerWorldY - camY), SortOrders.BackgroundProp);
-            s.cloth.localScale = new Vector3(0.01f, BannerHeight, 1f);
-            var textGo = new GameObject("Label");
-            textGo.transform.SetParent(root.transform, false);
-            textGo.transform.localPosition = new Vector3(0f, BannerWorldY - camY, -0.01f);
-            s.label = textGo.AddComponent<TextMesh>();
-            s.label.text = "박람회";
-            s.label.font = UiFactory.Font;
-            s.label.fontSize = 96;
-            s.label.characterSize = 0.08f;
-            s.label.anchor = TextAnchor.MiddleCenter;
-            s.label.color = new Color(1f, 0.93f, 0.75f, 0f);
-            var mr = textGo.GetComponent<MeshRenderer>();
-            if (mr != null) { if (UiFactory.Font != null) mr.sharedMaterial = UiFactory.Font.material; mr.sortingOrder = SortOrders.BackgroundProp + 1; }
-            s.npcL = MakeNpc("NpcLeft", root.transform, "bartender", new Vector2(-12f, NpcWorldY - camY), false);
-            s.npcR = MakeNpc("NpcRight", root.transform, "tea_sommelier", new Vector2(12f, NpcWorldY - camY), true);
+            Vector2 camPos = cam != null ? (Vector2)cam.transform.position : Vector2.zero;
+            float halfH = cam != null && cam.orthographic ? cam.orthographicSize : 6f;
+            float halfW = halfH * (cam != null ? Mathf.Max(0.5f, cam.aspect) : 16f / 9f);
+            Vector2 bannerTop = camPos + new Vector2(0f, halfH - BannerTopFromCamTop);
+            s.Build(bannerTop, camPos.x, halfW);
+            // 카메라는 가로로 플레이어를 따라간다(Y 고정) — 박람회 동안 현수막이 화면 위 벽 영역에 남도록 카메라에 붙인다(월드 위치 유지).
+            if (cam != null) root.transform.SetParent(cam.transform, true);
+            s.Step(0f);
             return s;
         }
 
-        static Transform MakeSprite(string name, Transform parent, Sprite sprite, Color color, Vector2 pos, int order)
+        void Build(Vector2 bannerTop, float camX, float halfW)
+        {
+            riggerIn = MasterArt.Load("npc_rigger_walk_in"); riggerInstall = MasterArt.Load("npc_rigger_install"); riggerOut = MasterArt.Load("npc_rigger_walk_out");
+            porterIn = MasterArt.Load("npc_porter_walk_in"); porterInstall = MasterArt.Load("npc_porter_install"); porterOut = MasterArt.Load("npc_porter_walk_out");
+            bannerFrames = MasterArt.Load("banner_install");
+            UsingArt = riggerIn != null && riggerInstall != null && riggerOut != null && porterIn != null && porterInstall != null && porterOut != null && bannerFrames != null;
+
+            var body = ArtLibrary.Get("bartender");
+            npcScale = body != null ? body.BodyVisualScale : 1f;
+
+            banner = MakeRenderer("Banner", bannerTop, SortOrders.BackgroundProp);
+            banner.transform.localScale = Vector3.one * BannerScale;
+            if (!UsingArt)
+            {
+                banner.sprite = SpriteFactory.Square;
+                banner.color = new Color(0.95f, 0.88f, 0.72f);
+            }
+
+            // 손(설치 노출 02/03 최고점)이 최종 핀에 닿도록 발 위치 = 핀 − 손 로컬 오프셋×배율.
+            Vector2 pinL = bannerTop + MasterArt.BannerLocal(MasterArt.PinLeftPx) * BannerScale;
+            Vector2 pinR = bannerTop + MasterArt.BannerLocal(MasterArt.PinRightPx) * BannerScale;
+            riggerStand = pinL - MasterArt.NpcAnchorLocal(MasterArt.RiggerGripPx, false) * npcScale; // 왼쪽 끝: 오른쪽(중앙)을 보며 앞손으로 핀
+            porterStand = pinR - MasterArt.NpcAnchorLocal(MasterArt.PorterGripPx, false) * npcScale; // 오른쪽 끝: 바깥을 보며 뒷손으로 핀(퇴장 방향 유지)
+            float off = halfW + 1.6f * npcScale;
+            riggerOff = new Vector2(camX - off, riggerStand.y);
+            porterOff = new Vector2(camX + off, porterStand.y);
+
+            rigger = MakeRenderer("NpcRigger", riggerOff, SortOrders.BackgroundProp + 2);
+            porter = MakeRenderer("NpcPorter", porterOff, SortOrders.BackgroundProp + 2);
+            rigger.transform.localScale = porter.transform.localScale = Vector3.one * npcScale;
+            if (!UsingArt)
+            {
+                var a = ArtLibrary.Get("bartender");
+                var t = ArtLibrary.Get("tea_sommelier");
+                rigger.sprite = a?.Clip("idle")?.frames is Sprite[] fa && fa.Length > 0 ? fa[0] : SpriteFactory.Capsule;
+                porter.sprite = t?.Clip("idle")?.frames is Sprite[] ft && ft.Length > 0 ? ft[0] : SpriteFactory.Capsule;
+            }
+
+            var textGo = new GameObject("Label");
+            textGo.transform.SetParent(transform, false);
+            // 글자 안전 영역(중앙 80% 폭·60% 높이)의 중심 = 현수막 상단에서 높이 50%.
+            textGo.transform.position = new Vector3(bannerTop.x, bannerTop.y - 192f / 128f * 0.5f * BannerScale, -0.01f);
+            label = textGo.AddComponent<TextMesh>();
+            label.text = "박람회";
+            label.font = UiFactory.Font;
+            label.fontSize = 96;
+            label.characterSize = 0.075f * BannerScale;
+            label.anchor = TextAnchor.MiddleCenter;
+            label.alignment = TextAlignment.Center;
+            label.color = new Color(0.32f, 0.17f, 0.09f, 0f); // 크림 천 위 짙은 갈색 글자
+            var mr = textGo.GetComponent<MeshRenderer>();
+            if (mr != null) { if (UiFactory.Font != null) mr.sharedMaterial = UiFactory.Font.material; mr.sortingOrder = SortOrders.BackgroundProp + 1; }
+        }
+
+        SpriteRenderer MakeRenderer(string name, Vector2 pos, int order)
         {
             var go = new GameObject(name);
-            go.transform.SetParent(parent, false);
-            go.transform.localPosition = pos;
+            go.transform.SetParent(transform, false);
+            go.transform.position = new Vector3(pos.x, pos.y, 0f);
             var sr = go.AddComponent<SpriteRenderer>();
-            sr.sprite = sprite;
-            sr.color = color;
             sr.sortingOrder = order;
-            return go.transform;
+            return sr;
         }
 
-        static Transform MakeNpc(string name, Transform parent, string artId, Vector2 pos, bool flip)
-        {
-            var art = ArtLibrary.Get(artId);
-            var sprite = art?.Clip("idle")?.frames != null && art.Clip("idle").frames.Length > 0 ? art.Clip("idle").frames[0] : SpriteFactory.Capsule;
-            var t = MakeSprite(name, parent, sprite, art != null ? Color.white : new Color(0.9f, 0.8f, 0.6f), pos, SortOrders.BackgroundProp + 2);
-            t.localScale = Vector3.one * (art != null ? art.BodyVisualScale : 0.8f);
-            var sr = t.GetComponent<SpriteRenderer>();
-            sr.flipX = flip;
-            return t;
-        }
+        /// <summary>현재 계약 시각(ms, 0~3500) — 설정 길이에 비례.</summary>
+        public float ContractTime { get; private set; }
+        public int BannerFrame { get; private set; } = -1;
+        public string RiggerClip { get; private set; }
+        public string PorterClip { get; private set; }
+        public bool LabelVisible => label != null && label.color.a > 0.5f;
+        public Vector2 RiggerPosition => rigger != null ? (Vector2)rigger.transform.position : Vector2.zero;
+        public Vector2 PorterPosition => porter != null ? (Vector2)porter.transform.position : Vector2.zero;
+        public Vector2 RiggerStand => riggerStand;
+        public Vector2 PorterStand => porterStand;
+        public float NpcScale => npcScale;
+        public Vector2 BannerTopWorld => banner != null ? (Vector2)banner.transform.position : Vector2.zero;
+        public bool RiggerFlipped => rigger != null && rigger.flipX;
+        public bool PorterFlipped => porter != null && porter.flipX;
+        public bool BannerVisible => banner != null && banner.enabled && banner.sprite != null;
+        public bool NpcsPresent => rigger != null || porter != null;
 
-        /// <summary>아트 계약 타이밍(기본 3.5초 = 접근 0.8 + 설치 1.5 + 퇴장 1.2, 설정 길이에 비례). 프레임 수가 아닌 Director의 실제 시간 상태 타이머로만 진행한다.</summary>
-        public const float ApproachShare = 0.8f / 3.5f, InstallEndShare = 2.3f / 3.5f;
-
+        /// <summary>실제 경과(초) → 계약 시각으로 진행. Director의 실제 시간 상태 타이머로만 호출(프레임 수 의존 없음).</summary>
         public void Step(float elapsed)
         {
-            float k = Mathf.Clamp01(elapsed / duration);
-            float walkIn = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(k / ApproachShare));
-            float unroll = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((k - ApproachShare) / (InstallEndShare - ApproachShare)));
-            float walkOut = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((k - InstallEndShare) / (1f - InstallEndShare)));
-            float edge = BannerWidth * 0.5f + 0.4f;
-            if (npcL != null) npcL.localPosition = new Vector3(Mathf.Lerp(Mathf.Lerp(-12f, -edge, walkIn), -12f, walkOut), npcL.localPosition.y, 0f);
-            if (npcR != null) npcR.localPosition = new Vector3(Mathf.Lerp(Mathf.Lerp(12f, edge, walkIn), 12f, walkOut), npcR.localPosition.y, 0f);
-            if (npcL != null) npcL.GetComponent<SpriteRenderer>().flipX = walkOut > 0f; // 퇴장 때 돌아선다
-            if (npcR != null) npcR.GetComponent<SpriteRenderer>().flipX = walkOut <= 0f;
-            if (cloth != null) cloth.localScale = new Vector3(Mathf.Max(0.01f, BannerWidth * unroll), BannerHeight, 1f);
-            if (label != null) { var c = label.color; c.a = Mathf.Clamp01((k - InstallEndShare) / 0.08f); label.color = c; }
+            float t = Mathf.Clamp01(elapsed / duration) * ContractMs;
+            ContractTime = t;
+            if (UsingArt) StepArt(t); else StepFallback(t);
+            if (label != null)
+            {
+                var c = label.color;
+                c.a = t >= LabelStartMs ? 1f : 0f;
+                label.color = c;
+            }
+        }
+
+        void StepArt(float t)
+        {
+            if (t < MasterArt.WalkInEndMs)
+            {
+                // 접근(walk_in 루프) — 일정 속도 직선 이동. rigger는 왼쪽에서(오른쪽 보기), porter는 오른쪽에서(flipX, 왼쪽 보기).
+                float k = t / MasterArt.WalkInEndMs;
+                SetNpc(rigger, Vector2.Lerp(riggerOff, riggerStand, k), riggerIn, "npc_rigger_walk_in", t, false);
+                SetNpc(porter, Vector2.Lerp(porterOff, porterStand, k), porterIn, "npc_porter_walk_in", t, true);
+            }
+            else if (t < MasterArt.InstallEndMs)
+            {
+                float it = t - MasterArt.WalkInEndMs;
+                SetNpc(rigger, riggerStand, riggerInstall, "npc_rigger_install", it, false);
+                SetNpc(porter, porterStand, porterInstall, "npc_porter_install", it, false);
+            }
+            else
+            {
+                // 퇴장: rigger는 왼쪽으로(flipX), porter는 오른쪽으로(정방향, 천 없음).
+                float ot = t - MasterArt.InstallEndMs;
+                float k = Mathf.Clamp01(ot / (ContractMs - MasterArt.InstallEndMs));
+                SetNpc(rigger, Vector2.Lerp(riggerStand, riggerOff, k), riggerOut, "npc_rigger_walk_out", ot, true);
+                SetNpc(porter, Vector2.Lerp(porterStand, porterOff, k), porterOut, "npc_porter_walk_out", ot, false);
+            }
+
+            // 현수막: 1050ms 전에는 운반 천(porter 그림)만. 이후 8프레임 1회·마지막 고정.
+            if (t < MasterArt.BannerStartMs) { banner.enabled = false; BannerFrame = -1; }
+            else
+            {
+                int f = MasterArt.FrameAt(MasterArt.Get("banner_install"), t - MasterArt.BannerStartMs);
+                banner.enabled = true;
+                banner.sprite = bannerFrames[f];
+                BannerFrame = f;
+            }
+        }
+
+        void SetNpc(SpriteRenderer sr, Vector2 pos, Sprite[] frames, string clipName, float clipMs, bool flip)
+        {
+            if (sr == null) return;
+            sr.transform.position = new Vector3(pos.x, pos.y, 0f);
+            sr.flipX = flip;
+            sr.sprite = frames[MasterArt.FrameAt(MasterArt.Get(clipName), clipMs)];
+            if (sr == rigger) RiggerClip = clipName; else PorterClip = clipName;
+        }
+
+        void StepFallback(float t)
+        {
+            float walkIn = Mathf.Clamp01(t / MasterArt.WalkInEndMs);
+            float unroll = Mathf.Clamp01((t - MasterArt.BannerStartMs) / (MasterArt.BannerEndMs - MasterArt.BannerStartMs));
+            float walkOut = Mathf.Clamp01((t - MasterArt.InstallEndMs) / (ContractMs - MasterArt.InstallEndMs));
+            if (rigger != null) rigger.transform.position = Vector2.Lerp(Vector2.Lerp(riggerOff, riggerStand, walkIn), riggerOff, walkOut);
+            if (porter != null) porter.transform.position = Vector2.Lerp(Vector2.Lerp(porterOff, porterStand, walkIn), porterOff, walkOut);
+            banner.enabled = unroll > 0f;
+            banner.transform.localScale = new Vector3(Mathf.Max(0.01f, 10f * unroll), 1.5f, 1f);
+            BannerFrame = unroll > 0f ? Mathf.Min(7, (int)(unroll * 8f)) : -1;
         }
 
         public bool Settled { get; private set; }
 
-        /// <summary>설치 완료: 현수막은 박람회 동안 남고 NPC는 퇴장(제거).</summary>
+        /// <summary>설치 완료: 현수막(마지막 프레임)과 글자는 박람회 동안 남고 NPC는 퇴장(제거).</summary>
         public void Settle()
         {
             Step(duration);
             Settled = true;
-            if (npcL != null) Destroy(npcL.gameObject);
-            if (npcR != null) Destroy(npcR.gameObject);
+            if (rigger != null) Destroy(rigger.gameObject);
+            if (porter != null) Destroy(porter.gameObject);
+            rigger = porter = null;
         }
 
         public void Finish() { if (this != null && gameObject != null) Destroy(gameObject); }

@@ -166,18 +166,18 @@ namespace CCT.Tests
             Assert.IsFalse(DrinkLab.PreparedSaleBlocked, "출처 정보 없는 기존 음료는 그대로 판매 가능");
             Assert.AreEqual(coins, DrinkLab.Coins, "기존 코인 보존");
             Assert.IsTrue(DrinkLab.Sell(0, out _, out var e), e);
-            StringAssert.Contains("\"schemaVersion\": 4", File.ReadAllText(path));
+            StringAssert.Contains($"\"schemaVersion\": {DrinkStore.CurrentVersion}", File.ReadAllText(path));
         }
 
         [Test]
-        public void FutureV5File_IsProtected_NoWrite()
+        public void FutureVersionFile_IsProtected_NoWrite()
         {
             var path = Path.Combine(dir, "drinks.json");
-            var d = new DrinkSaveData { schemaVersion = 5 };
+            var d = new DrinkSaveData { schemaVersion = DrinkStore.CurrentVersion + 1 };
             File.WriteAllText(path, JsonUtility.ToJson(d, true));
             DrinkLab.ReloadForTests();
             Assert.IsTrue(DrinkLab.WriteBlocked);
-            StringAssert.Contains("\"schemaVersion\": 5", File.ReadAllText(path));
+            StringAssert.Contains($"\"schemaVersion\": {DrinkStore.CurrentVersion + 1}", File.ReadAllText(path));
         }
 
         [Test]

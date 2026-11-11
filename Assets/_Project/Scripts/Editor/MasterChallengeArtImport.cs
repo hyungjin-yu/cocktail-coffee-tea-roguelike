@@ -63,7 +63,7 @@ namespace CCT.Editor
                     frames++;
                 }
             }
-            if (frames != 83) throw new InvalidOperationException("Expected 83 master challenge frames, got " + frames);
+            if (frames != MasterArt.TotalFrames) throw new InvalidOperationException($"Expected {MasterArt.TotalFrames} master challenge frames, got {frames}");
         }
     }
 }

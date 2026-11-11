@@ -241,7 +241,11 @@ namespace CCT
     /// 처음 적용할 때 원본 파일을 "{path}.pre-integer-v{n}.bak"으로 한 번 복사해 둔다(이미 있으면 덮어쓰지 않는다).</summary>
     public static class DrinkStore
     {
-        public const int CurrentVersion = 4;
+        public const int CurrentVersion = 5;
+        /// <summary>2026-11-11 v5: 마스터 도전 런 제조 잔 목록(runCups — 출처별 사용량 포함) 추가. 값 변환 없음(추가 필드만).
+        /// 보관 잔은 로비 재고를 이미 차감했으므로 v4 빌드가 이 파일을 다시 써서 잔 기록(=환원 근거)을 잃지 않게 버전을 올려 미래 버전 보호를 받는다.
+        /// 단일 로비 준비 음료(prepared)는 그대로 둔다(런 잔과 분리).</summary>
+        public const int RunCupsVersion = 5;
         /// <summary>2026-11-10 v4: 끝없는 모드 출처 장부(endlessStock·준비 음료 endlessAmounts·대기 보상 endless) 추가. 값 변환 없음(추가 필드만).
         /// v3 이하 빌드가 v4 파일을 다시 써서 장부를 잃지 않도록 버전을 올려 기존 미래 버전 보호(쓰기 금지)를 받게 한다.</summary>
         public const int EndlessLedgerVersion = 4;
@@ -266,6 +270,8 @@ namespace CCT
             public string IntegerBackupPath;
             /// <summary>v4 출처 장부 이전 파일 원본 백업 경로(없으면 null). 값은 바뀌지 않는다(빈 장부 = 전부 일반 출처).</summary>
             public string LedgerBackupPath;
+            /// <summary>v5 런 제조 잔 이전(v4 이하) 파일 원본 백업 경로(없으면 null). 값은 바뀌지 않는다(빈 잔 목록).</summary>
+            public string RunCupsBackupPath;
         }
 
         struct ReadResult { public FileState State; public DrinkSaveData Data; public int Version; }
@@ -279,7 +285,7 @@ namespace CCT
                 result.Data = original.Data;
                 result.Source = Read(path + ".bak").State == FileState.Future ? LoadSource.FutureProtected : LoadSource.Original;
                 result.SourceVersion = original.Version;
-                if (result.Source == LoadSource.Original) { NoteIntegerMigration(path, path, original.Version, result); NoteLedgerMigration(path, path, original.Version, result); }
+                if (result.Source == LoadSource.Original) { NoteIntegerMigration(path, path, original.Version, result); NoteLedgerMigration(path, path, original.Version, result); NoteRunCupsMigration(path, path, original.Version, result); }
                 return result;
             }
             if (original.State == FileState.Future)
@@ -298,6 +304,7 @@ namespace CCT
                 result.SourceVersion = backup.Version;
                 NoteIntegerMigration(path, path + ".bak", backup.Version, result);
                 NoteLedgerMigration(path, path + ".bak", backup.Version, result);
+                NoteRunCupsMigration(path, path + ".bak", backup.Version, result);
             }
             else if (backup.State == FileState.Future)
             {
@@ -409,6 +416,22 @@ namespace CCT
             }
         }
 
+        /// <summary>v5 이전 파일을 처음 읽을 때 원본을 "{path}.pre-runcups-v{n}.bak"으로 한 번만 복사(이미 있으면 덮어쓰지 않음). 실패해도 진행.</summary>
+        static void NoteRunCupsMigration(string path, string sourcePath, int version, LoadResult result)
+        {
+            if (version >= RunCupsVersion) return;
+            string target = path + ".pre-runcups-v" + version + ".bak";
+            try
+            {
+                if (!File.Exists(target)) File.Copy(sourcePath, target);
+                result.RunCupsBackupPath = target;
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning("[Drinks] 런 제조 잔 마이그레이션 백업 실패 " + target + ": " + e.GetType().Name);
+            }
+        }
+
         /// <summary>손상된 개별 값 보정: 음수 재고 0, 알 수 없는 재고 id 제거, null 목록 복구. 레시피는 지우지 않는다(목록에서 검증 표시).</summary>
         public static void Normalize(DrinkSaveData d)
         {
@@ -418,6 +441,7 @@ namespace CCT
             d.pending ??= new List<DrinkRunAward>();
             d.settledRunIds ??= new List<string>();
             d.prepared ??= new PreparedDrink();
+            d.runCups ??= new List<RunCup>(); // v5 런 제조 잔(없거나 null이면 빈 목록 — v4 이하 파일)
             d.prepared.recipe ??= new DrinkRecipe();
             d.lastSettlement ??= new DrinkSettlement();
             // 재고: 알 수 없는 id 제거, 같은 id는 합쳐 한 줄로(long 합 → 0~StockMax).

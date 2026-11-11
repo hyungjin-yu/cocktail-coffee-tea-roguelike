@@ -38,7 +38,31 @@ namespace CCT
             C("npc_rigger_install", 256, 256, new[] { 125, 125, 500, 500, 125, 125 }, false),
             C("npc_rigger_idle", 256, 256, Repeat(333, 4), true),
             C("npc_rigger_walk_out", 256, 256, Repeat(100, 6), true),
+            // 상성 후속 6 clip(affinity/manifest.json) — 128², 83ms, 1회, 마지막 프레임 완전 투명.
+            C("cocktail_foam", 128, 128, Repeat(83, 6), false),
+            C("coffee_bean_steam", 128, 128, Repeat(83, 6), false),
+            C("tea_leaf_wind", 128, 128, Repeat(83, 6), false),
+            C("cocktail_foam_low", 128, 128, Repeat(83, 3), false),
+            C("coffee_bean_steam_low", 128, 128, Repeat(83, 3), false),
+            C("tea_leaf_wind_low", 128, 128, Repeat(83, 3), false),
         };
+
+        /// <summary>인수 아트 총 노출 수(핵심 83 + 상성 27).</summary>
+        public const int TotalFrames = 110;
+
+        /// <summary>품질 등급 → clip 이름(저이펙트면 _low로 교체 — full과 함께 재생하지 않는다). None은 null.</summary>
+        public static string QualityClip(DrinkQuality.Grade g, bool low)
+        {
+            string n = g == DrinkQuality.Grade.Best ? "quality_master" : g == DrinkQuality.Grade.Good ? "quality_excellent" : g == DrinkQuality.Grade.Normal ? "quality_normal" : null;
+            return n == null ? null : low ? n + "_low" : n;
+        }
+
+        /// <summary>마신 음료 종류 → 상성 적중 clip(저이펙트면 _low로 교체).</summary>
+        public static string AffinityClip(DrinkKind kind, bool low)
+        {
+            string n = kind == DrinkKind.Coffee ? "coffee_bean_steam" : kind == DrinkKind.Tea ? "tea_leaf_wind" : "cocktail_foam";
+            return low ? n + "_low" : n;
+        }
 
         /// <summary>manifest intro_schedule_ms(3500ms 기준) — 설정 길이에 비례해 쓴다.</summary>
         public const int WalkInEndMs = 800, InstallEndMs = 2300, TotalMs = 3500, BannerStartMs = 1050, BannerEndMs = 2050;

@@ -27,6 +27,11 @@ namespace CCT
         RectTransform recipeArea, cupArea;
         int recipePage, cupPage;
         float refreshTimer;
+        RectTransform fxSlot;
+        Image submitCup;
+        public RectTransform FxSlot => fxSlot;
+        public bool SubmitCupShown => submitCup != null && submitCup.enabled;
+        public const float FxSlotPx = 112f;
         public const int RowsPerPage = 9;
         public const float BrewButtonTop = 304f, BrewButtonW = 330f, BrewButtonH = 60f;
 
@@ -113,6 +118,15 @@ namespace CCT
             cprev.onClick.AddListener(() => { cupPage = Mathf.Max(0, cupPage - 1); RefreshBrew(); });
             var cnext = MakeButton(prt, "CupNext", new Vector2(1f, 0f), new Vector2(-40f, 120f), new Vector2(150f, 52f), "다음 ▶", 22, new Color(0.2f, 0.2f, 0.24f, 0.95f), out _);
             cnext.onClick.AddListener(() => { cupPage++; RefreshBrew(); });
+            // 품질 VFX 슬롯: 오른쪽 위 '보관한 잔' 머리글 오른쪽 빈 영역(머리글 글자·첫 잔 버튼과 겹치지 않음). 제출 때는 기존 컵(32×26 → 64×52, Point)을 뒤에 둔다.
+            fxSlot = UiFactory.Place("QualityFx", prt, new Vector2(1f, 1f), new Vector2(-44f, -6f), new Vector2(FxSlotPx, FxSlotPx));
+            var cupRt = UiFactory.Place("SubmitCup", fxSlot, new Vector2(0.5f, 0.5f), new Vector2(0f, 0f), new Vector2(64f, 52f));
+            cupRt.pivot = new Vector2(0.5f, 0.5f);
+            submitCup = cupRt.gameObject.AddComponent<Image>();
+            submitCup.sprite = Resources.Load<Sprite>("DrinkLab/dl_coffee_cup");
+            submitCup.preserveAspect = true;
+            submitCup.raycastTarget = false;
+            submitCup.enabled = false;
             brewMessage = UiFactory.AddText(UiFactory.Place("Message", prt, new Vector2(0.5f, 0f), new Vector2(0f, 178f), new Vector2(1400f, 34f)), "", 22, TextAnchor.MiddleCenter, new Color(1f, 0.9f, 0.6f));
             brewFooter = UiFactory.AddText(UiFactory.Place("Footer", prt, new Vector2(0f, 0f), new Vector2(40f, 30f), new Vector2(1100f, 70f)), "", 22, TextAnchor.MiddleLeft, Color.white);
             brewFooter.verticalOverflow = VerticalWrapMode.Truncate;
@@ -254,7 +268,7 @@ namespace CCT
         {
             var res = game.CraftRunCup(r);
             brewMessage.text = res.Ok ? $"{res.Cup.recipe.name} 1잔 완성{(res.Cup.quality >= 0 ? " · " + DrinkQuality.Label(res.Cup.quality) : "")}" : res.Message;
-            if (res.Ok) DrinkQualityFx.Play(game, res.Cup.quality, DrinkQualityFx.Moment.Crafted);
+            if (res.Ok) PlayQuality(res.Cup.quality, DrinkQualityFx.Moment.Crafted);
             Refresh(); RefreshBrew();
         }
 
@@ -262,7 +276,7 @@ namespace CCT
         {
             bool ok = game.DrinkRunCup(cup, out var error);
             brewMessage.text = ok ? $"{cup.recipe?.name}을(를) 마셨습니다 — 이전 음료 효과는 교체" : error;
-            if (ok) DrinkQualityFx.Play(game, cup.quality, DrinkQualityFx.Moment.Drunk);
+            if (ok) PlayQuality(cup.quality, DrinkQualityFx.Moment.Drunk);
             Refresh(); RefreshBrew();
         }
 
@@ -271,27 +285,37 @@ namespace CCT
             bool ok = game.SubmitRunCup(cup, out var error);
             var st = game.Master.State;
             brewMessage.text = ok ? $"박람회에 제출 — {st.SubmittedThisCycle}잔{BonusText(st)}, 예상 약화 {st.PreviewFairReduction}%" : error;
-            if (ok) DrinkQualityFx.Play(game, cup.quality, DrinkQualityFx.Moment.Submitted);
+            if (ok) PlayQuality(cup.quality, DrinkQualityFx.Moment.Submitted);
             Refresh(); RefreshBrew();
+        }
+
+        /// <summary>성공 거래 1건 = 품질 효과 1회(제조 창 슬롯, 실제 시간). 품질 없는 음료(칵테일·차)는 효과 없이 컵만(제출 시).</summary>
+        void PlayQuality(int quality, DrinkQualityFx.Moment moment)
+        {
+            if (submitCup != null) submitCup.enabled = moment == DrinkQualityFx.Moment.Submitted && submitCup.sprite != null;
+            DrinkQualityFx.Play(game, quality, moment, fxSlot);
         }
     }
 
     /// <summary>
-    /// 품질 시각 피드백(제조 완료·음용·제출). **임시**: 등급별로 모양이 다른 별 표식(★/★★/★★★)과 짧은 확대 연출을 HUD 배너로 보여준다.
-    /// 아트 담당 품질 VFX(보통/좋음/최고 6/8/8f@12fps, 저이펙트 3f) 검수·인수 후 월드 VFX로 교체한다 — 최종 아트 아님.
+    /// 품질 시각 피드백(제조 완료·음용·제출). 인수 아트 quality_normal/excellent/master(저이펙트 _low 교체)를 제조 창 슬롯에 1회 재생하고
+    /// 등급 글자·추가 성능을 HUD 배너로 함께 알린다. 슬롯이 없으면(창 밖 호출) 배너만.
     /// </summary>
     public static class DrinkQualityFx
     {
         public enum Moment { Crafted, Drunk, Submitted }
         public static int LastGrade { get; private set; } = -1;
         public static Moment LastMoment { get; private set; }
+        public static string LastClip { get; private set; }
 
-        public static void Play(GameManager game, int quality, Moment moment)
+        public static void Play(GameManager game, int quality, Moment moment, RectTransform slot = null)
         {
             var g = DrinkQuality.GradeOf(quality);
-            LastGrade = (int)g; LastMoment = moment;
+            LastGrade = (int)g; LastMoment = moment; LastClip = null;
             string what = moment == Moment.Crafted ? "제조 완료" : moment == Moment.Drunk ? "마심" : "박람회 제출";
             if (g == DrinkQuality.Grade.None) return;
+            string clip = MasterArt.QualityClip(g, HitFeedback.LowEffects);
+            if (slot != null && clip != null && MasterVfx.PlayUi(clip, slot, MasterChallengeHud.FxSlotPx) != null) LastClip = clip;
             string extra = g == DrinkQuality.Grade.Best ? (moment == Moment.Submitted ? " · 제출 가치 +50%" : moment == Moment.Drunk ? " · 효과 +5%" : "") : "";
             game?.Hud?.ShowBanner(DrinkQuality.Label(quality), $"{what}{extra}", g == DrinkQuality.Grade.Best ? 1.8f : 1.2f);
         }

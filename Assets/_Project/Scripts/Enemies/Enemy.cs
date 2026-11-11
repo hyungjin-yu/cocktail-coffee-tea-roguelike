@@ -901,6 +901,9 @@ namespace CCT
             int a = DrinkAffinity.Bonus(b, player != null ? player.AffinityDrink : null, Family);
             long t = (long)b + a;
             var result = new DamageResult { baseDamage = b, bonusDamage = a, total = t > int.MaxValue ? int.MaxValue : (int)t };
+            // 2026-11-11 상성 추가 피해가 실제로 확정된 적중에만 인수 아트 1회(상한·간격 예산 — 넘으면 건너뜀, 판정 불변).
+            if (a > 0 && player != null && player.AffinityDrink is DrinkKind ak)
+                MasterVfx.PlayAffinity(ak, hitPoint ?? (Vector2)transform.position + new Vector2(0f, def.radius * 0.3f));
             Apply(result.total, a, kind, hitPoint);
             return result;
         }
