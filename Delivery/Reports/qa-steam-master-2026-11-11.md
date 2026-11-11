@@ -250,3 +250,102 @@ run2(제조·제출 경로를 모두 탄 판) 실측: 수집1~5 도달(실제 12
 - 빌드 입력 소스 2,803 파일 목록 sha256 **fbbb3d11a48a5f82106a585aee9126f36d9fa6bcc10f7717728cb6e1eb2adb06** — 빌드 전·후 동일(`source-manifest-build3-before/after.sha256`). ProjectSettings.asset 불변 `5900a053…`.
 - 검수 빌드 산출물 208 파일 목록 sha256 `c9935d0c933ab091c7b32fb64faa9252e0a193ea7654cdb03f7b755980273616`(`build-review3-files.sha256`), exe `3070e580…d653`, CCT.Runtime.dll `7a896cbd…c84d`.
 - 메모리 게이트: 이번 세션 Unity 시작 8회 모두 ≥4096MB 통과(로그 GATE 줄), 플레이어 실행 5회 모두 직전 ≥4096MB·동시 1개.
+
+## 10. 세션 5 (task_55168e048abc, 18:05~18:50) — 미검증 3항목 집중 검증 + 720p 효과 가독성 국소 개선
+
+기준 HEAD a9985a13(root 체크포인트). root가 run4 `transition-key-crops.png`로 카운터 사이 현수막/글자 수정 승인(재확인: 두 NPC 사이 월드 칸, "박람회" 글자 단독·겹침 없음). 기존 정상 1주기·전체 suite는 반복하지 않음.
+
+### 10.1 검증 방식 — **QA 시나리오(자연 플레이 아님)**
+
+| 항목 | 내용 |
+|---|---|
+| 빌드 | QA 전용 `Builds/SteamMaster-PlayVerify-2026-11-11-mech/`(CCT_PLAY_VERIFIER, 배포 금지) |
+| 흐름 | `-cct-playverify-master-mechanics`(신규 `Scripts/Core/PlayVerifierMechanics.cs`, QA 심볼 빌드에만 컴파일). 화면 선택 = 실제 버튼 onClick, 이동 = 기존 입력 대행. HP·적·생성·시간·보상 값 쓰기 없음. 저이펙트 전환만 격리 settings 저장(`SetEffectsLevel`) |
+| **고정 seed** | `-cct-playverify-seed 20261111`(QA seed override, 기존 기능) |
+| **격리 fixture** | `Builds/SteamMaster-Review-2026-11-11-qa-data/run8-mech-fixture/`(run5 격리 데이터 복사 + drinks.json 일반 창고 gin +900, campari +600, sweet_vermouth +600, dry_vermouth +100, coffee_bean +200 — `QA-FIXTURE.txt` 명시). 1웨이브에서 바로 칵테일 2종·커피 2잔을 만들기 위한 재료 강제 지급이므로 **자연 수집 결과가 아님** |
+| 관찰 | `Enemy.QaDirectHit`(QA 빌드 전용 `#if CCT_PLAY_VERIFIER` 읽기 알림, 판정·값 불변) → `direct-hits.log`. 효과 재생 감지 후 게임 자신의 ScreenCapture |
+| 저장 격리 | `-cct-data-dir` + `-logFile` 격리 폴더. 사용자 폴더 save/settings/drinks/Player.log 메타데이터 전후 동일(`usersave-meta-before-mech.txt`/`usersave-meta-after-mech.txt`; 바뀐 것은 Unity 테스트 실행기 사본 `TestResults.xml`뿐) |
+| 게이트 | Unity 시작 7회·플레이어 실행 4회 모두 직전 free RAM ≥ 4096MB(4,512~5,417MB), 동시 1개 |
+
+실행 기록: run1 = **중단**(fixture 부족: `Owned`는 일반 창고만 셈 → 마티니 2잔째 불가. 폴더 이름 변경이 잠겨 `realbuild-mech-run1/` 이름 그대로 — 마티니→네그로니 U=2 증거만 유효, 반복 단계 미실행). run2 = gin 부족으로 네그로니 미제조(반복 증거·제출·상성·박람회 HP 유효). run3 = 정렬 수정 전 상성 캡처(불꽃에 가림 발견). **run4 = 최종**(모든 수정 후, 박람회 생략 `-cct-playverify-mech-skipfair`).
+
+### 10.2 결과
+
+| # | 검사 | 기대 | 실제(실제 Windows QA 빌드) | 판정 | 증거 |
+|---|---|---|---|---|---|
+| 1a | 칵테일 새 종류 | 마티니 → U=1, +2% | U=1, masterDamagePercent 0.02, Stats.Damage 12→12.24 | PASS | run4 `events.log` `[craft 1_martini]`, `shots/m_craft_1_martini.png` |
+| 1b | 같은 종류 반복 | 마티니 재제조 → U·공격 불변 | 2잔째 제조 성공, U=1·+2%·12.24 그대로 | PASS | run4 `[craft 2_martini_repeat]`(run2 동일) |
+| 1c | 두 번째 종류 | 네그로니 → U=2, +4%(덮어쓰기, 곱 누적 없음) | U=2, 0.04, Stats.Damage 12.48 = 12×1.04 | PASS | run4 `COCKTAIL CHECK`, `m_craft_3_negroni.png` |
+| 2a | 최고 품질 커피 제출 | 150p, 미리보기 round(150×5/100)=8% | points=150, bonus +50p, 예상 약화 8%, 버튼 "제출 +50%", 컵 표시 | PASS | run4 `[6_submit_best]`, `m_6_submit_best.png` |
+| 2b | 일반 잔 추가 | 250p → round(12.5)=13% | submitted=2 points=250 preview=13%, 하단 "제출 2잔(품질 추가 가치 +50p) → 약화 13%" | PASS | run4 `SUBMIT CHECK`, `m_9_brew_footer.png` |
+| 2c | 박람회 접수·실제 적 약화 | 스냅샷 13%, 적 hpScale = HpScale(6)×0.87 | 스냅샷 13%; 박람회 진상 손님 hpScale 1.5225 = 1.75×0.87; maxHp 95 = round(60×1.5225×1.036) — 1.036은 기존 RunChallenge 커피 스킬 3개 적 HP 배율(telemetry `enemyHpMultiplier`) | PASS | run2 `FAIR CHECK`, `telemetry.csv`, `shots/m_10_fair_enemies.png` |
+| 3a | 상성 대상 적중 | 커피 마심 → 차 계열 A=max(1,round(B×20%)), T=B+A 한 번 적용 | 대상 6회 전부 일치(B12→A2 T14, B15→A3 T18), 숫자 "14 (추가 2) 상성!" | PASS | run4 `direct-hits.log`(MISMATCH 0), `AFFINITY CHECK` |
+| 3b | 비대상 | A=0 | 59회 전부 A=0 | PASS | 같은 로그 |
+| 3c | 효과 full | 확정 상성 적중에 coffee_bean_steam 1회 | 3회 캡처, scale 1.5·외곽선 4·frame 2, skipped 0 | PASS | run4 `shots/m_aff_full_1..3.png`, `affinity-key-crops.png` |
+| 3d | 효과 low | 저이펙트에서 _low로 교체 | coffee_bean_steam_low 3회, frame 1(3노출 중 마지막은 투명) | PASS | run4 `shots/m_aff_low_1..3.png` |
+
+주: 칵테일 상성(커피 계열)·차 상성(칵테일 계열) 실제 적중은 이번 실제 빌드에서 돌리지 않음 — 그 두 clip은 PlayMode(`AffinityVfx_*`)·오프스크린 프레임만.
+
+### 10.3 720p 가독성 국소 개선 (승인 ArtSource/Resources PNG 무수정, 풀·동시 상한 6·간격 0.06초 유지)
+
+| 문제(실제 빌드 확인) | 수정 | 파일 |
+|---|---|---|
+| 품질 효과 슬롯 720p ≈45px | 슬롯 112(컵 기준)는 그대로, 효과 그림만 `FxArtPx` 168(1.5배) → ≈65px. 보이는 내용은 패널 위·오른쪽 안, 첫 잔 줄(−118) 위(PlayMode 단언) | `UI/MasterChallengeHud.cs` |
+| 원두 효과 작음 | 상성 월드 배율 원두 1.5 · 거품/찻잎 1.25 | `Core/MasterVfx.cs` |
+| 갈색 적 위 갈색 원두 대비 | 원두 clip만 같은 프레임 크림색(1,.93,.78,.9) 실루엣 4방향 2원본px 외곽선(글꼴과 같은 GUI/Text 셰이더 — 기본 스프라이트 색 곱은 어두운 테두리가 됨을 1차 시도에서 확인 후 교체). 풀 개체에 붙어 재사용, 반납 시 끔 | `Core/MasterVfx.cs` |
+| 실제 판에서 원두가 같은 적중점 피격 불꽃(AirVfx) 아래 가림(run3 발견) | 본 효과 AirVfx+1(불꽃 위, 피해 숫자와 같은 단), 외곽선 AirVfx | `Core/MasterVfx.cs` |
+
+과장 방지: 반짝임·발광·추가 프레임 없음, 재생 길이·횟수 동일. 비교: 오프스크린 `frames/`(전) ↔ `frames-vfxfix/`(후); 실제 빌드 품질 슬롯 전 `realbuild-master-run2/shots/05_craft_2.png` ↔ 후 `realbuild-mech-run4/shots/m_craft_4_espresso_best.png`.
+남은 판단: 피해 숫자와 같은 정렬 단이라 겹칠 때 앞뒤는 Y 정렬에 따름(이번 캡처에서 숫자 가림 없음). 크림 외곽선 굵기는 아트/사용자 최종 판단.
+
+### 10.4 테스트 / 빌드 / 해시
+
+- PlayMode targeted: `playmode-vfxfix-1`(MasterArtPlayTests 7/8 — 기존 `AffinityVfx_*`가 x=3 적에 플레이어 실제 자동 공격이 닿아 추가 효과로 반납 단언 실패; 적을 ±14로 옮겨 시험 독립화), `-2` 3/3, `-3` 4/4(외곽선 셰이더 교체), **`-4` 4/4 PASS**(정렬 수정 후: AffinityVfx·QualityVfx·신규 `Vfx_ReadabilityScaleOutline_ResetOnReuse_UiArtInsidePanel`·오프스크린 증거).
+- QA 빌드 `build-playverify-mech-1..3.log` 성공. 검수 빌드 **`Builds/SteamMaster-Review-2026-11-11-vfx/`**(`build-review-vfx-1.log` 성공, 545MB). 이전 검수 빌드 `SteamMaster-Review-2026-11-11/`·공모전 빌드 미변경.
+- 소스 목록(2,805 파일) 변경 전 `fbbb3d11…`(2,803, 직전 빌드와 동일 — `source-manifest-mech-before.sha256`) → 빌드 직전/직후 **`c93d06d8d50a8b460592433feb7ced25a36fe8645ff6119fe922e4f7308cdd91`** 동일(`source-manifest-vfx-build-before/after.sha256`). 변경 파일: MasterVfx.cs, MasterChallengeHud.cs, Enemy.cs(QA 심볼 블록만), PlayVerifier.cs(분기 1줄), PlayVerifierMechanics.cs(+meta, 신규), 테스트 MasterArtPlayTests.cs. ProjectSettings.asset `5900a053…` 불변.
+- 검수 빌드 208 파일 목록 sha256 `7cff9dc1307bcc5baa07bfb8c9dcdad23f8b3e998fdc8b78d1267c12b17e8015`(`build-review-vfx-files.sha256`), CCT.Runtime.dll `ddff75e4…1cc22`. 검수 빌드 DLL에 `QaDirectHit`·`MechanicsFlow`·`PlayVerifier` 문자열 0건(QA 빌드에는 있음) — QA 강제 데이터/관찰 코드 미포함.
+- 실제 창 사람 조작: 이번에도 하지 않음(자동 대행). 공개 배포/Steam 업로드 없음.
+
+## 11. 세션 6 (task_0e63f27c2749, 18:50~19:10) — 칵테일/차 상성 실제 빌드, 연출 검수, 실제 창 OS 입력, 최종 패키지
+
+### 11.1 칵테일·차 상성 (실제 Windows QA 빌드, **QA 시나리오 — 자연 플레이 아님**)
+
+조건: QA 빌드 `Builds/SteamMaster-PlayVerify-2026-11-11-mech/`(build-playverify-mech-5), `-cct-playverify-mech-affinity cocktail|tea`, 고정 seed 20261111, 데이터 = run5 격리 데이터 **무수정 복사**(`qa-data/run10-aff-cocktail|tea/`, sha256 6a28ffbf… = run5) — 이번에는 재료 편집 없음(자연 누적 재고로 마티니 1·센차 1 제조 가능). 화면 선택은 실제 버튼, 이동은 입력 대행.
+
+| # | 검사 | 실제 | 판정 | 증거(realbuild-aff-*-r2/) |
+|---|---|---|---|---|
+| A1 | 칵테일(마티니) 마심 → 대상 커피 계열 | drunk=Cocktail, target=Coffee, 안내 "[커] 커피 계열 몬스터 추가 피해 +20%" | PASS | cocktail `events.log` |
+| A2 | 대상 적중 B+A | 6회 전부 A=max(1,round(B×20%)), T=B+A(예: 16 (추가 3)), 비대상 4회 A=0, MISMATCH 0 | PASS | `direct-hits.log` |
+| A3 | cocktail_foam full / _low | full 3(scale 1.25, frame 2) / low 3(frame 1), skipped 0 | PASS | `shots/m_aff_*`, `affinity-key-crops.png` |
+| T1 | 차(센차) 마심 → 대상 칵테일 계열 | drunk=Tea, target=Cocktail | PASS | tea `events.log` |
+| T2 | 대상 적중 B+A | 6회 일치(14 (추가 2)), 비대상 13회 A=0 | PASS | `direct-hits.log` |
+| T3 | tea_leaf_wind full / _low | full 3 / low 3, skipped 0 | PASS | `shots/`, `affinity-key-crops.png` |
+
+**연속 영상(게임 자체 캡처)**: 각 실행에서 효과 단계 동안 게임 ScreenCapture 100ms 간격(실제 시간 10fps, 렌더 프레임 전부는 아님) → `continuous-{full,low}-{cocktail,tea}-10fps-realtime.mp4`(54/49/176/19 프레임). 기존 `master-cycle-periodic-1fps-x4.mp4`(1초 간격 모음)와 다름. 첫 실행(`realbuild-aff-cocktail|tea/`)은 연속 캡처 두 개가 같은 중지 플래그를 공유해 full 폴더에 low 구간이 섞인 QA 도구 결함 → 폴더 삭제, 캡처별 토큰으로 수정 후 r2로 재실행(판정 수치는 첫 실행도 동일 PASS).
+시각 판정: 거품 고리·찻잎은 불꽃 위에 보이나 선이 가늘어 원두보다 약함 — 아트 판단(코드 결함 아님, 미수정).
+
+### 11.2 연출 실제 증거 검수 (실제 빌드 run4-final 100ms 프레임)
+
+| 항목 | 판정 | 증거 |
+|---|---|---|
+| 현수막 펼침 줄 | 손에서 천 끝까지 가는 선 연결, 정착 후 핀 — PASS(굵기 아트 판단) | `review-session6/banner-cord-hands-run4final.png` |
+| NPC 근거리 페이드 | 퇴장 마지막 프레임 반투명 확인, 등장도 가까이서 나타남 — PASS | `review-session6/banner-npc-fade-sequence-run4final.png` |
+| 원두 외곽선 | 크림 외곽선·불꽃 위 정렬 — PASS(10.3) | `realbuild-mech-run4/affinity-key-crops.png` |
+
+명백한 코드 결함 없음 → 연출 코드 수정 없음. 승인 PNG/ArtSource 무수정(소스 목록상 Resources/ArtSource 변경 0).
+
+### 11.3 실제 창 OS 입력 (최종 검토 빌드) — **자동 조작이며 사람 직접 조작 아님**
+
+이번에는 새로 띄운 게임 창이 전경(GetForegroundWindow pid = 게임)이어서 `orca computer click`(실제 OS 마우스 입력)을 매 동작 직전 전경 확인 후에만 보냄(전경이 아니면 입력 0, `os-input.log`). 최종 검토 빌드·빈 격리 폴더(`qa-data/final-smoke`)·`-logFile`.
+경로: 타이틀 시작 → 바텐더 → 마스터 도전 → 레이피어 → 영업 시작 → 튜토리얼 시작 → 마스터 1웨이브 HUD 정상 → (키 `b` 주입은 반응 없음 — 키보드 입력 전달 **미확인**) → [음료 만들기] 버튼 클릭 시점에 이동 입력이 없어 18초에 쓰러짐 → 결과 화면 → 타이틀 → 종료(정상 종료, Player.log 예외 0).
+결론: 실제 창 마우스 입력으로 메뉴·모드 시작·결과·종료 확인 PASS. 키보드 이동을 통한 실제 창 전투/제조/박람회 플레이는 **BLOCKED**(단발 키만 제공되는 도구, 누르고 있기 불가·키 전달 미확인) — 사람 직접 플레이 통과 아님. 증거: `review-session6/real-window-os-input/01..10_*.png`, `os-input.log`.
+관찰(범위 밖, 미수정): 무기 선택 화면에서 모드 줄이 무기 카드 아래 테두리와 겹치고 상단 안내 두 번째 줄이 카드 위에 잘림(`02_click_bartender.png`) — 별도 UI 과제 후보.
+
+### 11.4 시험 / 최종 빌드 / 패키지
+
+- PlayMode targeted `playmode-final-1`: MasterArtPlayTests 8 + MasterChallengePlayTests 2 = **10/10 PASS**(전체 suite 미실행 — 범위 밖 반복 금지).
+- 최종 검토 빌드 `Builds/SteamMaster-Review-2026-11-11-final/`(`build-review-final-1.log` 성공). 소스 2,805 파일 빌드 전·후 **37c808dae8ec8e2e06459aa6b89a4bdbe5fd919c013dc84ec30851036be51b38** 동일(`source-manifest-final-before/after.sha256`), 직전 -vfx 빌드 대비 차이는 QA 전용 PlayVerifierMechanics.cs뿐. ProjectSettings `5900a053…` 불변.
+- 산출물 208 파일 목록 sha256 `fc8cbe9649f9c1a60dd6dea9e41663403cfb675ae76047e7b211c636e098c2f8`, exe `3070e580…d653`, CCT.Runtime.dll `ad81c84d…e91d`. DLL 내 `QaDirectHit/MechanicsFlow/AffinityOnly/PlayVerifier/CCT_PLAY_VERIFIER` 0건 — 배포용 QA 코드 미포함.
+- 패키지 `Delivery/CocktailCoffeeTea_SteamMasterReview_2026-11-11.zip`(209 항목, BurstDebugInformation_DoNotShip 제외, README_실행안내·THIRD_PARTY_NOTICES 포함, zip 무결성 OK), sha256 **86e91edbda57828784b427e0901aa6d601b6a37b62123298d3e88cae54653abe**(`.zip.sha256`). 공개 배포·Steam 업로드 없음.
+- 상점 보강 초안: `Delivery/Reports/steam-store-master-draft-2026-11-11.md`(스크린샷 후보는 720p 구도 후보 — 1920×1080 재캡처 필요).
+- 저장 격리: 사용자 폴더 메타데이터 세션 전후 동일(TestResults.xml만 — Unity 시험 실행기 사본). 게이트: Unity 3회·플레이어 4회 모두 ≥4096MB, 동시 1개.

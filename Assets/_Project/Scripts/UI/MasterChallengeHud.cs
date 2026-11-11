@@ -32,6 +32,9 @@ namespace CCT
         public RectTransform FxSlot => fxSlot;
         public bool SubmitCupShown => submitCup != null && submitCup.enabled;
         public const float FxSlotPx = 112f;
+        /// <summary>2026-11-11 가독성 국소 개선: 품질 효과 그림 크기(기준 1920×1080 단위). 슬롯(112, 컵 배치 기준)은 그대로 두고 효과만 1.5배로 그린다.
+        /// 승인 PNG 내용은 128 캔버스의 약 70%라 112면 720p에서 ≈45px — 168이면 ≈65px. 중심이 슬롯 중심이라 보이는 내용은 패널 위 가장자리 안·첫 잔 줄(−118) 위에 머문다.</summary>
+        public const float FxArtPx = 168f;
         public const int RowsPerPage = 9;
         public const float BrewButtonTop = 304f, BrewButtonW = 330f, BrewButtonH = 60f;
 
@@ -315,7 +318,7 @@ namespace CCT
             string what = moment == Moment.Crafted ? "제조 완료" : moment == Moment.Drunk ? "마심" : "박람회 제출";
             if (g == DrinkQuality.Grade.None) return;
             string clip = MasterArt.QualityClip(g, HitFeedback.LowEffects);
-            if (slot != null && clip != null && MasterVfx.PlayUi(clip, slot, MasterChallengeHud.FxSlotPx) != null) LastClip = clip;
+            if (slot != null && clip != null && MasterVfx.PlayUi(clip, slot, MasterChallengeHud.FxArtPx) != null) LastClip = clip;
             string extra = g == DrinkQuality.Grade.Best ? (moment == Moment.Submitted ? " · 제출 가치 +50%" : moment == Moment.Drunk ? " · 효과 +5%" : "") : "";
             game?.Hud?.ShowBanner(DrinkQuality.Label(quality), $"{what}{extra}", g == DrinkQuality.Grade.Best ? 1.8f : 1.2f);
         }

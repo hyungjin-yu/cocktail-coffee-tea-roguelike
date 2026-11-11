@@ -227,8 +227,8 @@ namespace CCT.Tests
             game.Master.enabled = false;
             foreach (var e in Enemy.Active.ToArray()) if (e != null) UnityEngine.Object.DestroyImmediate(e.gameObject);
             game.Player.DrunkDrink = DrinkKind.Cocktail; // 칵테일 → 커피 계열 상성
-            var bug = Enemy.SpawnAt(new Vector2(3f, 0f), EnemyDef.EspressoBug, 50f, game.Player, game.transform);
-            var tea = Enemy.SpawnAt(new Vector2(-3f, 0f), EnemyDef.TeabagImp, 50f, game.Player, game.transform);
+            var bug = Enemy.SpawnAt(new Vector2(14f, 0f), EnemyDef.EspressoBug, 50f, game.Player, game.transform); // 플레이어 실제 자동 공격 사거리 밖(0.7초 안에 닿아 추가 상성 효과가 생기면 반납 단언이 흔들림)
+            var tea = Enemy.SpawnAt(new Vector2(-14f, 0f), EnemyDef.TeabagImp, 50f, game.Player, game.transform);
             yield return new WaitForSeconds(0.1f);
 
             int p = MasterVfx.Played;
@@ -253,6 +253,66 @@ namespace CCT.Tests
             for (int i = 0; i < MasterVfx.MaxWorldActive + 4; i++)
                 MasterVfx.PlayWorld("coffee_bean_steam", Vector2.zero, 1f, false);
             Assert.AreEqual(MasterVfx.MaxWorldActive, MasterVfx.ActiveWorld, "동시 상한");
+        }
+
+        /// <summary>2026-11-11 가독성 국소 개선: 상성 월드 배율(원두 1.5·기타 1.25), 원두만 크림 외곽선 4개(재사용 시 꺼짐), 상한 불변.
+        /// 품질 효과 그림 168(슬롯 112 유지) — 보이는 내용이 제조 창 안·첫 잔 줄 위에 머문다.</summary>
+        [UnityTest]
+        public IEnumerator Vfx_ReadabilityScaleOutline_ResetOnReuse_UiArtInsidePanel()
+        {
+            foreach (var sp in game.GetComponentsInChildren<EnemySpawner>()) sp.enabled = false;
+            game.Master.enabled = false;
+            foreach (var e in Enemy.Active.ToArray()) if (e != null) UnityEngine.Object.DestroyImmediate(e.gameObject);
+            MasterVfx.ReleaseAll();
+            game.Player.DrunkDrink = DrinkKind.Coffee; // 커피 → 차 계열
+            var tea = Enemy.SpawnAt(new Vector2(14f, 0f), EnemyDef.TeabagImp, 50f, game.Player, game.transform);
+            yield return new WaitForSeconds(0.1f);
+            var r = tea.TakeDirectHit(10f, HitKind.Normal);
+            Assert.AreEqual(10, r.baseDamage);
+            Assert.AreEqual(2, r.bonusDamage, "A = max(1, round(10×20%))");
+            Assert.AreEqual(12, r.total);
+            Assert.AreEqual("coffee_bean_steam", MasterVfx.LastClip);
+            var fx = UnityEngine.Object.FindObjectsByType<MasterVfx>(FindObjectsSortMode.None).First(v => v.Playing);
+            Assert.AreEqual(MasterVfx.AffinityScaleCoffee, fx.transform.localScale.x, 1e-4f);
+            Assert.AreEqual(4, fx.OutlineCount, "원두만 외곽선");
+            Assert.Greater(fx.GetComponent<SpriteRenderer>().sortingOrder, SortOrders.AirVfx, "같은 적중점 피격 불꽃(AirVfx) 위");
+            foreach (var o in fx.GetComponentsInChildren<SpriteRenderer>(true).Where(s => s.gameObject != fx.gameObject))
+            {
+                Assert.AreSame(fx.GetComponent<SpriteRenderer>().sprite, o.sprite, "외곽선 = 같은 프레임");
+                Assert.Less(o.sortingOrder, fx.GetComponent<SpriteRenderer>().sortingOrder);
+            }
+            fx.Release();
+            Assert.AreEqual(0, fx.OutlineCount, "반납 시 외곽선 끔");
+            var foam = MasterVfx.PlayWorld(MasterArt.AffinityClip(DrinkKind.Cocktail, false), Vector2.zero, MasterVfx.AffinityScale(DrinkKind.Cocktail), false);
+            Assert.AreSame(fx, foam, "풀 재사용");
+            Assert.AreEqual(0, foam.OutlineCount, "거품은 외곽선 없음");
+            Assert.AreEqual(MasterVfx.AffinityScaleOther, foam.transform.localScale.x, 1e-4f);
+            foam.Release();
+            for (int i = 0; i < MasterVfx.MaxWorldActive + 3; i++) MasterVfx.PlayWorld("coffee_bean_steam", Vector2.zero, MasterVfx.AffinityScaleCoffee, false);
+            Assert.AreEqual(MasterVfx.MaxWorldActive, MasterVfx.ActiveWorld, "동시 상한 불변");
+            MasterVfx.ReleaseAll();
+
+            Assert.IsTrue(game.OpenMasterBrew());
+            yield return null;
+            DrinkQualityFx.Play(game, 95, DrinkQualityFx.Moment.Crafted, game.MasterHud.FxSlot);
+            var ui = game.MasterHud.FxSlot.GetComponentsInChildren<MasterVfx>(true).First(x => x.Playing);
+            var urt = (RectTransform)ui.transform;
+            Assert.AreEqual(MasterChallengeHud.FxArtPx, urt.sizeDelta.x, 1e-3f);
+            Assert.AreEqual(Vector2.zero, urt.anchoredPosition);
+            // 보이는 내용(승인 PNG 알파 경계, 128 캔버스 중 최대 x24–112·y21–103)을 패널 좌표로 환산.
+            var panel = (RectTransform)game.MasterHud.FxSlot.parent;
+            Canvas.ForceUpdateCanvases();
+            var c = new Vector3[4];
+            urt.GetWorldCorners(c); // 0=좌하 1=좌상 2=우상
+            Vector2 tl = panel.InverseTransformPoint(c[1]), br = panel.InverseTransformPoint(c[3]);
+            float sx = (br.x - tl.x) / 128f, sy = (tl.y - br.y) / 128f;
+            float contentTop = tl.y - 21f * sy, contentBottom = tl.y - 103f * sy, contentRight = tl.x + 112f * sx;
+            float panelTop = panel.rect.yMax, panelRight = panel.rect.xMax;
+            Assert.LessOrEqual(contentTop, panelTop, "내용이 패널 위로 넘지 않음");
+            Assert.LessOrEqual(contentRight, panelRight, "내용이 패널 오른쪽으로 넘지 않음");
+            Assert.GreaterOrEqual(contentBottom, panelTop - 118f, "첫 잔 줄(−118) 위");
+            game.CloseMasterBrew();
+            yield return null;
         }
 
         /// <summary>오프스크린 증거 프레임(명시 실행 전용). 창·포커스·소리 없이 메인 카메라+HUD를 렌더 텍스처로 그려 PNG로 남긴다.
@@ -338,7 +398,7 @@ namespace CCT.Tests
                 foreach (var kind in new[] { DrinkKind.Cocktail, DrinkKind.Coffee, DrinkKind.Tea })
                 {
                     string clip = MasterArt.AffinityClip(kind, low);
-                    var fx = MasterVfx.PlayWorld(clip, at, 1f, false);
+                    var fx = MasterVfx.PlayWorld(clip, at, MasterVfx.AffinityScale(kind), false); // 실제 PlayAffinity와 같은 배율
                     Assert.IsNotNull(fx, clip);
                     fx.Step(low ? 83f + 1f : 83f * 2 + 1f);
                     yield return Shot(outDir, $"affinity_{clip}_720", notes, $"clip={fx.ClipName} frame={fx.CurrentFrame} at={at}", 1280, 720);

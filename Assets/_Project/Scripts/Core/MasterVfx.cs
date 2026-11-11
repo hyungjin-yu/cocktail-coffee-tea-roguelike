@@ -61,11 +61,20 @@ namespace CCT
             nextAffinityAt = 0f;
         }
 
+        /// <summary>2026-11-11 가독성 국소 개선(승인 원본 PNG 무수정): 월드 상성 효과 표시 배율. 720p(1월드≈60px)에서 배율 1이면 원두 내용이 ≈24×30px로 작아
+        /// 원두(가장 작은 내용, 갈색)는 1.5, 거품·찻잎은 1.25. 동시 상한·간격 예산은 그대로.</summary>
+        public const float AffinityScaleCoffee = 1.5f, AffinityScaleOther = 1.25f;
+        public static float AffinityScale(DrinkKind kind) => kind == DrinkKind.Coffee ? AffinityScaleCoffee : AffinityScaleOther;
+        /// <summary>갈색 적 위 갈색 원두 대비 보강: 같은 프레임을 크림색으로 상하좌우 2원본px 밀어 뒤에 그린 외곽선(원두 clip만, 4 renderer, 풀 개체에 붙어 재사용).</summary>
+        public static readonly Color OutlineColor = new Color(1f, 0.93f, 0.78f, 0.9f);
+        public const float OutlineSourcePx = 2f;
+        public static bool UsesOutline(string clipName) => clipName != null && clipName.StartsWith("coffee_bean");
+
         /// <summary>상성 추가 피해가 실제로 확정된 직접 적중 1회에 호출. 저이펙트면 low clip으로 교체.</summary>
         public static bool PlayAffinity(DrinkKind kind, Vector2 at)
         {
             if (Time.time < nextAffinityAt) { Skipped++; return false; }
-            var v = PlayWorld(MasterArt.AffinityClip(kind, HitFeedback.LowEffects), at, 1f, false);
+            var v = PlayWorld(MasterArt.AffinityClip(kind, HitFeedback.LowEffects), at, AffinityScale(kind), false);
             if (v != null) nextAffinityAt = Time.time + AffinityMinInterval;
             return v != null;
         }
@@ -86,7 +95,7 @@ namespace CCT
                 go.transform.SetParent(worldRoot, false);
                 v = go.AddComponent<MasterVfx>();
                 v.sr = go.AddComponent<SpriteRenderer>();
-                v.sr.sortingOrder = SortOrders.AirVfx;
+                v.sr.sortingOrder = SortOrders.AirVfx + 1; // 2026-11-11 같은 적중점·같은 순서(AirVfx)의 피격 불꽃에 가려지던 문제 → 불꽃 위(피해 숫자와 같은 단)
             }
             v.transform.position = new Vector3(at.x, at.y, 0f);
             v.Begin(def, spr, scale, useUnscaled);
@@ -123,11 +132,52 @@ namespace CCT
             return v;
         }
 
+        SpriteRenderer[] outline;
+        public bool OutlineOn => outline != null && outline[0].enabled;
+        public int OutlineCount { get { int n = 0; if (outline != null) foreach (var o in outline) if (o.enabled) n++; return n; } }
+
+        static Material outlineMat;
+        /// <summary>외곽선 재질: 텍스처 알파만 쓰고 색은 renderer 색인 단색 실루엣(GUI/Text 셰이더 — 월드 피해 숫자가 이미 쓰는 글꼴 재질과 같은 셰이더라 빌드에 포함).
+        /// 기본 Sprite 재질은 색을 곱해 원두가 더 어두운 갈색 테두리가 되므로 쓰지 않는다. 셰이더를 못 찾으면 외곽선 없이 본 효과만.</summary>
+        static Material OutlineMaterial()
+        {
+            if (outlineMat != null) return outlineMat;
+            var font = UiFactory.Font;
+            var sh = font != null && font.material != null ? font.material.shader : Shader.Find("GUI/Text Shader");
+            if (sh == null) return null;
+            outlineMat = new Material(sh) { name = "MasterVfxOutline", hideFlags = HideFlags.DontSave };
+            return outlineMat;
+        }
+
+        void SetOutline(bool on)
+        {
+            if (sr == null) return;
+            if (on && outline == null && OutlineMaterial() == null) on = false;
+            if (on && outline == null)
+            {
+                outline = new SpriteRenderer[4];
+                float d = OutlineSourcePx / 128f; // 원본 PPU 128 — 부모 배율을 따라 커진다
+                var offs = new[] { new Vector2(d, 0f), new Vector2(-d, 0f), new Vector2(0f, d), new Vector2(0f, -d) };
+                for (int i = 0; i < 4; i++)
+                {
+                    var go = new GameObject("Outline" + i);
+                    go.transform.SetParent(transform, false);
+                    go.transform.localPosition = offs[i];
+                    outline[i] = go.AddComponent<SpriteRenderer>();
+                    outline[i].sharedMaterial = OutlineMaterial();
+                    outline[i].sortingOrder = SortOrders.AirVfx; // 본 효과(AirVfx+1) 바로 뒤, 개체(Actor) 앞
+                }
+            }
+            if (outline == null) return;
+            foreach (var o in outline) { o.enabled = on; o.color = OutlineColor; o.flipX = false; o.flipY = false; if (!on) o.sprite = null; }
+        }
+
         void Begin(MasterArt.Clip def, Sprite[] spr, float scale, bool useUnscaled)
         {
             clip = def; frames = spr; elapsedMs = 0f; unscaled = useUnscaled; shown = -1;
             transform.localScale = Vector3.one * scale;
             transform.localRotation = Quaternion.identity;
+            SetOutline(sr != null && UsesOutline(def.name));
             if (sr != null) { sr.color = Color.white; sr.flipX = false; sr.flipY = false; sr.enabled = true; }
             if (img != null) { img.color = Color.white; img.enabled = true; }
             gameObject.SetActive(true);
@@ -144,6 +194,7 @@ namespace CCT
             shown = i;
             if (sr != null) sr.sprite = frames[i];
             if (img != null) img.sprite = frames[i];
+            if (outline != null && outline[0].enabled) foreach (var o in outline) o.sprite = frames[i];
         }
 
         void Update()
@@ -168,6 +219,7 @@ namespace CCT
             active.Remove(this);
             if (sr != null) { sr.sprite = null; sr.enabled = false; }
             if (img != null) { img.sprite = null; img.enabled = false; }
+            SetOutline(false);
             shown = -1;
             gameObject.SetActive(false);
             if (img != null) uiPool.Add(this); else worldPool.Add(this);

@@ -905,8 +905,14 @@ namespace CCT
             if (a > 0 && player != null && player.AffinityDrink is DrinkKind ak)
                 MasterVfx.PlayAffinity(ak, hitPoint ?? (Vector2)transform.position + new Vector2(0f, def.radius * 0.3f));
             Apply(result.total, a, kind, hitPoint);
+#if CCT_PLAY_VERIFIER
+            QaDirectHit?.Invoke(this, result); // QA 자동 검증 빌드 전용 읽기 관찰(판정·값 불변). 검수/출시 빌드에는 컴파일되지 않는다.
+#endif
             return result;
         }
+#if CCT_PLAY_VERIFIER
+        public static System.Action<Enemy, DamageResult> QaDirectHit;
+#endif
 
         void Apply(float amount, int bonus, HitKind kind, Vector2? hitPoint)
         {

@@ -1,0 +1,247 @@
+#if CCT_PLAY_VERIFIER
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace CCT
+{
+    /// <summary>
+    /// 2026-11-11 마스터 도전 미검증 3항목 집중 검증(-cct-playverify-master-mechanics). **QA 시나리오 — 자연 플레이 아님.**
+    /// 전제(실행 전 준비, 이 코드 밖): 격리 -cct-data-dir 폴더의 drinks.json 창고에 칵테일 2종 제조용 재료를 넣은 QA fixture(보고서에 명시).
+    /// 이 흐름은 값을 쓰지 않는다: 화면 선택은 실제 버튼 onClick, 이동은 AutoInputOverride(기존 입력 대행), 저이펙트 전환만 설정 저장(격리 settings.json)으로 바꾼다.
+    /// 관찰: Enemy.QaDirectHit(이 빌드에만 컴파일되는 읽기 전용 알림)으로 직접 적중 B/A/T, MasterVfx 재생 직후 게임 화면 캡처.
+    /// 1) 칵테일: 마티니 → 마티니(같은 종류 반복) → 네그로니, 매 제조 후 U·공격 %·Stats.Damage.
+    /// 2) 제출: 최고 품질 커피 1잔(150p) + 칵테일 1잔(100p) → 미리보기 round(250×5/100)=13%, 박람회 접수 스냅샷 13%, 박람회 적 HP = 기본×0.87.
+    /// 3) 상성: 커피를 마셔 차 계열 대상 → 실제 적중의 A = max(1, round(B×20%)), T = B + A, 비대상 A = 0. full 3장 → 저이펙트 → low 3장 캡처.
+    /// </summary>
+    public partial class PlayVerifier
+    {
+        readonly List<string> hitLog = new List<string>();
+        int affHits, affBad, nonAffHits, nonAffBad, affVfxSeen;
+
+        void OnQaHit(Enemy e, DamageResult r)
+        {
+            if (e == null || boundGame == null) return;
+            var drink = boundGame.Player != null ? boundGame.Player.AffinityDrink : null;
+            bool target = DrinkAffinity.Matches(drink, e.Family);
+            int expectA = target ? DrinkAffinity.Bonus(r.baseDamage, drink, e.Family) : 0;
+            bool ok = r.bonusDamage == expectA && r.total == r.baseDamage + r.bonusDamage;
+            if (target) { affHits++; if (!ok) affBad++; } else { nonAffHits++; if (!ok) nonAffBad++; }
+            if (hitLog.Count < 400)
+                hitLog.Add($"{boundGame.RunTime:0.00}s {e.Def.name} family={e.Family} drink={(drink?.ToString() ?? "none")} target={target} B={r.baseDamage} A={r.bonusDamage} T={r.total} expectA={expectA} {(ok ? "OK" : "MISMATCH")} hp→{e.Hp:0}");
+        }
+
+        IEnumerator StartMasterRun()
+        {
+            yield return Human(1f);
+            var select = FindFirstObjectByType<CharacterSelectView>();
+            float w = Time.realtimeSinceStartup + 5f;
+            while (select == null && Time.realtimeSinceStartup < w) { yield return null; select = FindFirstObjectByType<CharacterSelectView>(); }
+            if (select == null) { Event("FAIL no character select"); yield break; }
+            select.BartenderButton.onClick.Invoke();
+            yield return Human(0.6f);
+            if (select.EndlessModeButton == null) { Event("FAIL no master mode button"); yield break; }
+            select.EndlessModeButton.onClick.Invoke();
+            yield return Human(0.6f);
+            select.WeaponButtonA.onClick.Invoke();
+            yield return Human(0.5f);
+            select.StartButton.onClick.Invoke();
+            Event("clicked 바텐더 → 마스터 도전 → 무기 A → 영업 시작");
+            yield return Human(0.8f);
+            var tutorial = FindFirstObjectByType<FirstRunTutorialView>();
+            if (tutorial != null && tutorial.IsOpen) { ClickNamed(tutorial, "DismissButton"); yield return Human(0.5f); }
+        }
+
+        string StatLine(GameManager g) =>
+            $"U={g.Master.CocktailUniqueCount} atk+={g.Master.CocktailAttackPercent}% masterDamagePercent={g.Stats.masterDamagePercent:0.####} DamageBonus={g.Stats.DamageBonus:0.####} Stats.Damage={g.Stats.Damage:0.####}";
+
+        IEnumerator CraftRow(GameManager g, string contains, string tag)
+        {
+            var b = Buttons(g.MasterHud, "Craft").FirstOrDefault(x => RowText(x).Contains(contains));
+            if (b == null) { Event($"FAIL craft row not available: {contains}"); yield break; }
+            string row = RowText(b);
+            b.onClick.Invoke();
+            Event($"[craft {tag}] clicked 만들기 \"{row}\" → msg=\"{g.MasterHud.LastMessage}\" fx={DrinkQualityFx.LastClip} {StatLine(g)}");
+            yield return new WaitForSecondsRealtime(0.25f);
+            MShot("m_craft_" + tag);
+            yield return Human(0.5f);
+        }
+
+        IEnumerator UseCup(GameManager g, string button, string contains, string tag)
+        {
+            var b = Buttons(g.MasterHud, button).FirstOrDefault(x => RowText(x).Contains(contains));
+            if (b == null) { Event($"FAIL {button} row not available: {contains}"); yield break; }
+            string row = RowText(b);
+            b.onClick.Invoke();
+            Event($"[{tag}] clicked {button} \"{row}\" → msg=\"{g.MasterHud.LastMessage}\" fx={DrinkQualityFx.LastClip} cupShown={g.MasterHud.SubmitCupShown} " +
+                  $"submitted={g.Master.State.SubmittedThisCycle} points={g.Master.State.SubmittedPointsThisCycle} bonusPoints={g.Master.State.BonusPointsThisCycle} preview={g.Master.State.PreviewFairReduction}% drunk={g.Player.DrunkDrink} affinity={g.Player.AffinityDrink}");
+            yield return new WaitForSecondsRealtime(0.25f);
+            MShot("m_" + tag);
+            yield return Human(0.5f);
+        }
+
+        IEnumerator CaptureAffinity(GameManager g, string prefix, int want, float realLimit)
+        {
+            int got = 0, lastPlayed = MasterVfx.Played;
+            float until = Time.realtimeSinceStartup + realLimit;
+            while (got < want && g.State != GameState.GameOver && Time.realtimeSinceStartup < until)
+            {
+                HandleRewardScreens(g);
+                if (MasterVfx.Played != lastPlayed)
+                {
+                    lastPlayed = MasterVfx.Played;
+                    string clip = MasterVfx.LastClip;
+                    if (clip != null && (clip.StartsWith("coffee_bean") || clip.StartsWith("cocktail_foam") || clip.StartsWith("tea_leaf")))
+                    {
+                        affVfxSeen++;
+                        var fx = FindObjectsByType<MasterVfx>(FindObjectsSortMode.None).FirstOrDefault(v => v.Playing && v.ClipName == clip);
+                        yield return new WaitForSecondsRealtime(HitFeedback.LowEffects ? 0.09f : 0.17f); // full 6노출: 정점 2번째 근처 / low 3노출(마지막 투명): 1번째
+                        got++;
+                        Event($"[{prefix}] affinity vfx clip={clip} scale={(fx != null ? fx.transform.localScale.x : 0f):0.##} outline={(fx != null ? fx.OutlineCount : -1)} frame={(fx != null ? fx.CurrentFrame : -1)} activeWorld={MasterVfx.ActiveWorld} low={HitFeedback.LowEffects}");
+                        MShot($"m_{prefix}_{got}");
+                        yield return null; // 캡처는 프레임 끝 — 다음 화면 전환과 겹치지 않게
+                        lastPlayed = MasterVfx.Played;
+                        continue;
+                    }
+                }
+                yield return null;
+            }
+            Event($"[{prefix}] captured {got}/{want}");
+        }
+
+        int contToken; // 연속 캡처 1개만: 새 캡처를 시작하거나 0으로 두면 이전 캡처가 멈춘다
+        IEnumerator Continuous(string name, float seconds)
+        {
+            var dir = Path.Combine(outDir, name);
+            Directory.CreateDirectory(dir);
+            int k = 0;
+            float end = Time.realtimeSinceStartup + seconds;
+            int token = ++contToken;
+            while (contToken == token && Time.realtimeSinceStartup < end)
+            {
+                ScreenCapture.CaptureScreenshot(Path.Combine(dir, $"c_{k++:0000}.png"));
+                yield return new WaitForSecondsRealtime(0.1f);
+            }
+            Event($"continuous capture {name}: {k} frames @10fps real time (game ScreenCapture, not every rendered frame)");
+        }
+
+        IEnumerator AffinityOnly(GameManager g, string which)
+        {
+            bool tea = which == "tea";
+            string recipe = tea ? "센차" : "드라이 마티니";
+            var expectTarget = tea ? MonsterFamily.Cocktail : MonsterFamily.Coffee;
+            if (Buttons(g.MasterHud, "BrewButton").FirstOrDefault() is Button brew) brew.onClick.Invoke();
+            else { Event("FAIL brew button"); yield return EndMaster(g); yield break; }
+            yield return Human(0.6f);
+            yield return CraftRow(g, recipe, "a1_" + which);
+            yield return UseCup(g, "Drink", tea ? "센차" : "마티니", "a2_drink_" + which);
+            Event($"drunk={g.Player.DrunkDrink} affinity={g.Player.AffinityDrink} target={DrinkAffinity.TargetOf(g.Player.AffinityDrink)} expectTarget={expectTarget} guide=\"{DrinkAffinity.GuideLine(g.Player.AffinityDrink)}\"");
+            if (Buttons(g.MasterHud, "Close").FirstOrDefault() is Button close) close.onClick.Invoke();
+            yield return Human(0.8f);
+            hitLog.Add($"---- after drinking {which} (affinity target = {expectTarget} family) ----");
+            StartCoroutine(Continuous("continuous-full-" + which, 20f));
+            yield return CaptureAffinity(g, "aff_full", 3, 120f);
+            contToken++;
+            yield return null;
+            SettingsService.SetEffectsLevel(SettingsData.EffectsLow);
+            Event($"effects level → low (settings save, isolated) low={HitFeedback.LowEffects}");
+            StartCoroutine(Continuous("continuous-low-" + which, 20f));
+            yield return CaptureAffinity(g, "aff_low", 3, 120f);
+            contToken++;
+            yield return null;
+            SettingsService.SetEffectsLevel(SettingsData.EffectsNormal);
+            Event($"AFFINITY CHECK drink={which} targetHits={affHits} targetMismatch={affBad} nonTargetHits={nonAffHits} nonTargetMismatch={nonAffBad} vfxSeen={affVfxSeen} skipped={MasterVfx.Skipped} activeWorld={MasterVfx.ActiveWorld}");
+            Enemy.QaDirectHit = null;
+            File.WriteAllLines(Path.Combine(outDir, "direct-hits.log"), hitLog);
+            yield return EndMaster(g);
+        }
+
+        IEnumerator MechanicsFlow()
+        {
+            Application.runInBackground = true;
+            shotDir = Path.Combine(outDir, "shots");
+            Directory.CreateDirectory(shotDir);
+            Event("MECHANICS QA SCENARIO (not natural play): isolated -cct-data-dir fixture stock (see report) + fixed QA seed if -cct-playverify-seed; " +
+                  "screens via real buttons, movement via input agent; no HP/enemy/spawn/time/reward writes; effects-low via settings save only");
+            Event($"fixture stock gin={DrinkLab.Owned(DrinkIngredients.Gin)} campari={DrinkLab.Owned(DrinkIngredients.Campari)} sweet_vermouth={DrinkLab.Owned(DrinkIngredients.SweetVermouth)} dry_vermouth={DrinkLab.Owned(DrinkIngredients.DryVermouth)} coffee_bean={DrinkLab.Owned(DrinkIngredients.CoffeeBean)} effects={SettingsService.Current.effectsLevel}");
+            yield return StartMasterRun();
+            var g = GameManager.Instance;
+            if (g == null || g.Master == null) { Event("FAIL master run not started"); yield break; }
+            BindGame(g);
+            Enemy.QaDirectHit = OnQaHit;
+            periodicOn = true;
+            StartCoroutine(Periodic());
+            Event("run started " + MasterLine(g) + " " + StatLine(g));
+
+            // 2026-11-11 세션 6: 칵테일/차 상성만 검증(-cct-playverify-mech-affinity cocktail|tea). 1잔 제조 → 마시기 → full 3 / low 3 캡처 + 10fps 게임 자체 연속 캡처.
+            var argv = System.Environment.GetCommandLineArgs();
+            int ai = System.Array.IndexOf(argv, "-cct-playverify-mech-affinity");
+            if (ai >= 0 && ai + 1 < argv.Length) { yield return AffinityOnly(g, argv[ai + 1]); yield break; }
+
+            // 기준 적중(음료 없음, 칵테일 0종) 6초
+            yield return new WaitForSecondsRealtime(6f);
+            Event($"baseline hits: affinity={affHits} nonAffinity={nonAffHits} bad={affBad + nonAffBad} " + StatLine(g));
+
+            // 1) 칵테일 고유 종류 + 2) 제출
+            if (Buttons(g.MasterHud, "BrewButton").FirstOrDefault() is Button brew) { brew.onClick.Invoke(); Event($"clicked 음료 만들기 open={g.MasterHud.BrewOpen} timeScale={Time.timeScale}"); }
+            else { Event("FAIL brew button"); yield return EndMaster(g); yield break; }
+            yield return Human(0.6f);
+            MShot("m_brew_open");
+            float dmg0 = g.Stats.Damage;
+            yield return CraftRow(g, "드라이 마티니", "1_martini");
+            float dmg1 = g.Stats.Damage;
+            yield return CraftRow(g, "드라이 마티니", "2_martini_repeat");
+            float dmg2 = g.Stats.Damage;
+            yield return CraftRow(g, "네그로니", "3_negroni");
+            float dmg3 = g.Stats.Damage;
+            Event($"COCKTAIL CHECK dmg0={dmg0:0.####} after martini={dmg1:0.####} (x{dmg1 / dmg0:0.####}) after repeat={dmg2:0.####} (same={Mathf.Approximately(dmg1, dmg2)}) after negroni={dmg3:0.####} (x{dmg3 / dmg0:0.####}) final {StatLine(g)}");
+            yield return CraftRow(g, "더블 에스프레소", "4_espresso_best");
+            yield return CraftRow(g, "핸드 드립", "5_pourover");
+            // 최고 품질 커피 제출(150p) → 칵테일 1잔 제출(100p)
+            yield return UseCup(g, "Submit", "최고", "6_submit_best");
+            yield return UseCup(g, "Submit", "마티니", "7_submit_martini");
+            // 커피 마시기 → 차 계열 상성
+            yield return UseCup(g, "Drink", "핸드 드립", "8_drink_coffee");
+            MShot("m_9_brew_footer");
+            Event($"SUBMIT CHECK submitted={g.Master.State.SubmittedThisCycle} points={g.Master.State.SubmittedPointsThisCycle} expectPoints=250 preview={g.Master.State.PreviewFairReduction}% expect=round(250*5/(100*1))=13 footer=\"{g.MasterHud.GetComponentsInChildren<Text>(true).FirstOrDefault(t => t.name == "Footer")?.text?.Replace('\n', '/')}\"");
+            if (Buttons(g.MasterHud, "Close").FirstOrDefault() is Button close) close.onClick.Invoke();
+            yield return Human(0.8f);
+            hitLog.Add("---- after drinking coffee (affinity target = Tea family) ----");
+
+            // 3) 상성 적중 full → low
+            yield return CaptureAffinity(g, "aff_full", 3, 90f);
+            SettingsService.SetEffectsLevel(SettingsData.EffectsLow);
+            Event($"effects level → low (settings save, isolated) low={HitFeedback.LowEffects}");
+            yield return CaptureAffinity(g, "aff_low", 3, 90f);
+            SettingsService.SetEffectsLevel(SettingsData.EffectsNormal);
+            Event($"AFFINITY CHECK targetHits={affHits} targetMismatch={affBad} nonTargetHits={nonAffHits} nonTargetMismatch={nonAffBad} vfxSeen={affVfxSeen} skipped={MasterVfx.Skipped} activeWorld={MasterVfx.ActiveWorld}");
+
+            // 2b) 박람회 접수 스냅샷과 실제 박람회 적 HP
+            if (System.Array.Exists(System.Environment.GetCommandLineArgs(), x => x == "-cct-playverify-mech-skipfair")) { Enemy.QaDirectHit = null; File.WriteAllLines(Path.Combine(outDir, "direct-hits.log"), hitLog); yield return EndMaster(g); yield break; }
+            yield return WaitPhase(g, () => g.Master.State.Phase == MasterPhase.AwaitChoice, 600f, "collect-1..5");
+            if (g.Master.State.Phase == MasterPhase.AwaitChoice && Buttons(g.MasterHud, "Fair").FirstOrDefault() is Button fair)
+            {
+                yield return Human(0.6f);
+                fair.onClick.Invoke();
+                Event($"clicked 박람회 도전 snapshot={g.Master.State.FairReductionSnapshot}% " + MasterLine(g));
+                yield return WaitPhase(g, () => g.Master.State.Segment == MasterSegment.Fair && g.Master.State.Phase == MasterPhase.Wave && Enemy.Active.Any(e => e != null && !e.IsDead), 300f, "to-fair");
+                var fe = Enemy.Active.FirstOrDefault(e => e != null && !e.IsDead);
+                if (fe != null)
+                {
+                    long r = g.Master.State.FairReductionSnapshot;
+                    float scale = MasterChallengeDirector.Scale(EndlessRules.HpScale(g.Master.State.Wave), MasterRules.ReductionFactor(r));
+                    Event($"FAIR CHECK wave={g.Master.State.Wave} enemy={fe.Def.name} maxHp={fe.MaxHp:0.##} hpScale={fe.HpScale:0.####} defHp={MasterRules.FairCustomerHp} expectScale=HpScale({g.Master.State.Wave})={EndlessRules.HpScale(g.Master.State.Wave):0.####}×(1-{r}/100)={scale:0.####} expectMaxHp≈{MasterRules.FairCustomerHp * scale:0.##}");
+                    yield return Human(0.5f);
+                    MShot("m_10_fair_enemies");
+                }
+            }
+            Enemy.QaDirectHit = null;
+            File.WriteAllLines(Path.Combine(outDir, "direct-hits.log"), hitLog);
+            yield return EndMaster(g);
+        }
+    }
+}
+#endif
