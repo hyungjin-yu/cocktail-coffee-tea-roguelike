@@ -185,3 +185,14 @@ U="C:/Program Files/Unity/Hub/Editor/6000.3.25f1/Editor/Unity.exe"; P=C:/Users/u
 
 추가 증거 경로(JSON 추가분): `Delivery/Reports/steam-master-2026-11-11/{playmode-resume-2..5,editmode-full-1,editmode-stdfamily-rerun,editmode-stdfamily-rerun2,playmode-full-1}.{xml,log}`, `frames/`(resume-5: 현수막 키프레임 720/1080, seq/ 36장, 설치완료+HUD, 품질 full/low, 상성 full/low, notes), `archive-scale1/`(수정 전 증거 3세트), `source-manifest-pre-build.sha256`.
 재개 지점: `qa-steam-master-2026-11-11.md` 7절 명령 1→4.
+
+## 11. 재개 세션 3 (task_13015f497cb6)
+
+상세 qa-steam-master-2026-11-11.md 8절. 발 미끄럼 보정(보폭 실측 일정 재분배) → targeted PlayMode 10/10, 검수 빌드 성공, 소스 전후 해시 동일(2f46718f…). 수정 파일 해시:
+| Scripts/Core/MasterChallengeDirector.cs | 6192376d4a8d76fdec2959bb9284cca3a0e7d4cf02cd2e250f3a48a16c07a1e5 |
+| Scripts/Core/MasterArt.cs | 68304401bf971545e887e53c086e07e2329ddb0b73eaa79aa2a4e13c61047d02 |
+| Tests/PlayMode/MasterArtPlayTests.cs | f430facac66e05463bbbb23643a639c5104bf7b27597b331ea7ffe01f494c4fa |
+| Docs/MasterChallenge/IMPLEMENTED.md | 3f86d93fd7365856fc65c3b42f59999a96f0c4576544eda4627ac0dbf289c227 |
+| Delivery/Reports/steam-master-2026-11-11/REVIEW-BUILD.md | 44e09c956e4f0e3b03459b6b681561d3476ebff6eaf15f6f322a3448f3fa544a |
+
+추가 증거: playmode-resume-7.{xml,log}, build-review-1.log, source-manifest-build-{before,after}.sha256, build-review-files.sha256, REVIEW-BUILD.md, frames/(seq-walk-contactsheet.png, seq-rigger-walk-zoom.png, seq-top.gif 포함), 빌드 폴더 Builds/SteamMaster-Review-2026-11-11/(Git 대상 아님 권장).

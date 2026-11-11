@@ -150,3 +150,40 @@ $G -batchmode -quit -projectPath $P -executeMethod CCT.Editor.BuildRelease.Windo
 # 4) 빌드 후 source manifest 재계산·ProjectSettings 해시 비교, exe/Data sha256 기록
 ```
 게이트 스크립트 내용(재작성용): `powershell (Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory/1024 < 4096 → exit 99`, `Get-Process Unity` 중 경로가 `Hub\Editor`인 것이 있으면 exit 98, 아니면 Unity.exe 실행.
+
+## 8. 재개 세션 3 (task_13015f497cb6, 13:28~, 기준 HEAD 38c2d5ac)
+
+모든 Unity 실행은 `Tools/QA/gated-unity.sh`(free RAM ≥ 4096MB·Editor 미실행) 통과 후 하나씩. 거부 0회. 전체 suite 반복 안 함.
+
+### 8.1 발 미끄럼 보정 (D9 대체, 코디네이터 승인: 총 3.5초 안 재분배 허용)
+
+- 실측(승인 ArtSource 읽기만): 걷기 6노출 600ms = 2걸음, 발 사이 최대 폭 77px − 발 길이 ≈25px → **걸음당 52px**. NPC 배율 1.1011 → 자연 보행 1.49 월드/초. 기존 화면 밖 등장은 6.8–9.5 월드/초(보폭의 5–6배)라 3.5초 안 어떤 분배로도 해결 불가.
+- 변경: 일정 접근 0–1000 / 설치 1000–2500 / 퇴장 2500–3500, 현수막 1250–2250(설치 시작+250ms 유지), 글자 2125ms부터. NPC 이동 거리 = 보폭 속도 × 1000ms(1.49 월드), 시작·끝 400ms 투명도 전환(화면 밖 보행 대신 근거리 등장/퇴장). 3·4초 설정에서도 걸음과 이동이 같은 계약 시각을 써 비율 유지.
+- 판정: 발-이동 속도 일치 **PASS**(시험 단언: 100ms 이동 = 보폭 속도×100ms, 오차 1e-3; 연속 프레임 x 증분 0.149/100ms 일정). 연속 프레임 육안 PASS(`frames/seq-walk-contactsheet.png`, `frames/seq-rigger-walk-zoom.png`, `frames/seq-top.gif`). 남은 판단: 근거리 페이드 등장이 연출로 자연스러운지 — 아트/사용자 검수(실제 재생 영상은 NOT RUN).
+- HUD: 새 이동 범위에서 NPC가 좌측 정보 패널·우측 "커피 포인트" 글줄과 겹치지 않음(접근 시작 rigger x≈292px@720, 패널 오른쪽 끝 350px보다 위쪽 벽 영역) — 육안 PASS.
+
+### 8.2 실행
+
+| 실행 | 시작 | free RAM | 결과 |
+|---|---|---|---|
+| playmode-resume-7 (MasterArt·MasterChallenge·EndlessMode + 증거) | 13:30:47 | 4,761 | **10/10 PASS** |
+| build-review-1 (`BuildRelease.Windows64ReleaseToBatch`) | 13:33:37 | 4,769 | **Build Finished, Result: Success**, 544MB, 22초 |
+
+빌드 로그의 "Error"는 `[Licensing::Module] Access token is unavailable` 1건(라이선스 토큰 갱신, 빌드 결과 무관).
+
+### 8.3 Windows 검수 빌드 / source hash
+
+- 출력: `Builds/SteamMaster-Review-2026-11-11/` (기존 `Builds/Windows64`·공모전 빌드 미변경). 검수 안내: `Delivery/Reports/steam-master-2026-11-11/REVIEW-BUILD.md`(원본 세이브 격리 `-cct-data-dir` 필수).
+- 빌드 입력 소스 2,801 파일 목록 sha256 **2f46718fcd88ae5af318b7a4d3ba1a2d9df36028cb38bb8d77875142facb876e** — 빌드 전·후 **완전 동일**(`source-manifest-build-before/after.sha256`, diff 없음). ProjectSettings.asset 전후 `5900a053…` 동일.
+- 산출물 208 파일 목록 `build-review-files.sha256`, 목록 sha256 `a52f83a293199dce1d0910789933faf17ff635a7b7c681e569cbef8ece9e3a8e`; exe `3070e580…d653`, CCT.Runtime.dll `095b1976…908c`.
+- 빌드 실제 실행(창)·실플레이·영상: **NOT RUN** — 창을 띄우려면 GUI 슬롯 요청 필요, 이번엔 요청하지 않음.
+
+### 8.4 기존 Inconclusive 원인
+
+`IngredientPackagingIconTests.MissingTinArt_DrawsTinNotCircle`: 전제 `Assume.That(!DrinkArt.Has("assam_tea"))`가 거짓 — 지금은 `Resources/DrinkLab/dl_tin_assam_tea.png`가 있어 "틴 아트 없는 차" 사례가 사라짐. NUnit Assume 실패 = Inconclusive(설계대로), 게임 결함 아님. 시험은 다른 미보유 차를 찾도록 고치거나 제거할 대상(이번 범위 밖, 미수정).
+
+### 8.5 남은 것
+
+- 검수 빌드 실제 창 실행·마스터 도전 1주기 실플레이·화면 영상(사용자/GUI 슬롯).
+- 아트 검수: 펼침 줄(런타임 보조), 근거리 페이드 등장/퇴장, 품질 VFX 크기, 갈색 적 위 원두 가독성.
+- 스킨 저장 경로가 `-cct-data-dir`를 따르는지 미확인.

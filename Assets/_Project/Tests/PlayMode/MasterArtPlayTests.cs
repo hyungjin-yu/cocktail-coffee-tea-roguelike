@@ -53,23 +53,28 @@ namespace CCT.Tests
 
             var cam = Camera.main;
             float halfW = cam.orthographicSize * cam.aspect;
-            Assert.Less(s.RiggerPosition.x, cam.transform.position.x - halfW, "rigger는 화면 밖 왼쪽에서 시작");
-            Assert.Greater(s.PorterPosition.x, cam.transform.position.x + halfW, "porter는 화면 밖 오른쪽에서 시작");
-            float wide = cam.orthographicSize * 16f / 9f;
-            Assert.Less(s.RiggerPosition.x + 0.6f * s.NpcScale, cam.transform.position.x - wide, "16:9 화면에서도 시작 시 화면 밖(가장자리 갑툭튀 없음)");
-            Assert.Greater(s.PorterPosition.x - 0.6f * s.NpcScale, cam.transform.position.x + wide);
+            // 2026-11-11 발 미끄럼 보정: 화면 밖에서 오지 않고, 설치 위치에서 실측 보폭 속도×걷기 시간만큼 떨어진 곳에서 투명하게 시작.
+            Assert.AreEqual(0f, s.NpcAlpha, 1e-4f, "시작 프레임은 투명(가장자리 갑툭튀 없음)");
+            Assert.AreEqual(MasterArt.WalkSpeedPerMs(s.NpcScale) * MasterArt.WalkInEndMs, s.WalkDistance, 1e-4f, "걷기 거리 = 보폭 속도 × 걷기 시간");
+            Assert.AreEqual(s.RiggerStand.x - s.WalkDistance, s.RiggerPosition.x, 1e-4f);
+            Assert.AreEqual(s.PorterStand.x + s.WalkDistance, s.PorterPosition.x, 1e-4f);
             Assert.AreEqual("npc_rigger_walk_in", s.RiggerClip);
             Assert.IsTrue(s.PorterFlipped, "porter 접근은 왼쪽을 본다");
-            Assert.AreEqual(-1, s.BannerFrame, "1050ms 전 현수막 없음(운반 천만)");
+            Assert.AreEqual(-1, s.BannerFrame, "현수막 시작 전 없음(운반 천만)");
             Assert.IsFalse(s.LabelVisible);
+            s.Step(Sec(MasterArt.NpcFadeMs, d));
+            Assert.AreEqual(1f, s.NpcAlpha, 1e-4f, "전환 후 불투명");
+            // 이동 속도 = 걷기 그림 보폭 속도(계약 시각 기준): 100ms 동안 이동 거리.
+            float x0 = s.RiggerPosition.x; s.Step(Sec(MasterArt.NpcFadeMs + 100f, d));
+            Assert.AreEqual(MasterArt.WalkSpeedPerMs(s.NpcScale) * 100f, s.RiggerPosition.x - x0, 1e-3f, "걸음과 이동 속도 일치(발 미끄럼 최소)");
 
-            s.Step(Sec(1000f, d));
+            s.Step(Sec(MasterArt.WalkInEndMs, d));
             Assert.AreEqual("npc_rigger_install", s.RiggerClip);
             Assert.AreEqual(s.RiggerStand, s.RiggerPosition, "설치 중 발 고정(미끄럼 없음)");
             Assert.AreEqual(-1, s.BannerFrame);
 
-            s.Step(Sec(1500f, d));
-            Assert.AreEqual(3, s.BannerFrame, "1050+450ms → 프레임 03");
+            s.Step(Sec(MasterArt.BannerStartMs + 450f, d));
+            Assert.AreEqual(3, s.BannerFrame, "현수막 시작+450ms → 프레임 03");
             Assert.IsFalse(s.LabelVisible, "펼침 완료 전 글자 없음");
             // 펼치는 중(프레임 03): 손에서 현재 천 끝까지 줄로 연결(손-천 분리 없음), 천 끝은 최종 핀보다 안쪽.
             Assert.IsTrue(s.CordVisible, "펼치는 중 줄 표시");
@@ -92,12 +97,13 @@ namespace CCT.Tests
             Assert.Less(Mathf.Abs(s.PorterStand.x - cam.transform.position.x) + 0.5f, halfW);
             Assert.Less(top.y, cam.transform.position.y + cam.orthographicSize, "현수막은 화면 안 위쪽");
 
-            s.Step(Sec(1925f, d) + 0.001f);
+            s.Step(Sec(MasterArt.BannerStartMs + 875f, d) + 0.001f);
             Assert.AreEqual(7, s.BannerFrame);
             Assert.IsTrue(s.LabelVisible, "07 프레임부터 '박람회' 글자");
             Assert.IsFalse(s.CordVisible, "최종 핀 도달 후 줄 없음");
 
-            s.Step(Sec(2600f, d));
+            s.Step(Sec(MasterArt.InstallEndMs + 100f, d));
+            Assert.AreEqual(1f, s.NpcAlpha, 1e-4f, "퇴장 초반 불투명");
             Assert.AreEqual("npc_rigger_walk_out", s.RiggerClip);
             Assert.IsTrue(s.RiggerFlipped, "rigger 퇴장은 왼쪽을 본다");
             Assert.IsFalse(s.PorterFlipped, "porter 퇴장은 오른쪽(정방향)");
@@ -118,7 +124,7 @@ namespace CCT.Tests
             {
                 var s = FairBannerShow.Create(game, d);
                 s.Step(d * 0.5f);
-                Assert.AreEqual(1750f, s.ContractTime, 0.5f, $"{d}초 중간 = 계약 1750ms");
+                Assert.AreEqual(1750f, s.ContractTime, 0.5f, $"{d}초 중간 = 계약 1750ms"); // 설치 1000–2500 안
                 Assert.AreEqual("npc_porter_install", s.PorterClip);
                 s.Step(d);
                 Assert.AreEqual(7, s.BannerFrame);
@@ -224,7 +230,7 @@ namespace CCT.Tests
             Camera.main.aspect = 16f / 9f; // 캡처 RT(16:9)와 같은 비율로 배치 계산(배치 모드 화면 비율 영향 제거)
             game.Hud.ShowBanner("", "NPC가 현수막을 거는 중 · 전투 정지", 60f); // 실제 설치 시작 때 Director가 띄우는 형태
             var show = FairBannerShow.Create(game, d);
-            foreach (float ms in new[] { 400f, 1000f, 1300f, 1700f, 2050f, 2900f })
+            foreach (float ms in new[] { 400f, 1000f, 1500f, 1900f, 2250f, 3100f } /* 2026-11-11 일정: 접근0–1000·설치1000–2500·현수막1250–2250·퇴장2500–3500 */)
             {
                 show.Step(Sec(ms, d));
                 string n = $"rigger={show.RiggerClip} porter={show.PorterClip} bannerFrame={show.BannerFrame} label={show.LabelVisible} riggerPos={show.RiggerPosition} porterPos={show.PorterPosition}";
@@ -236,7 +242,7 @@ namespace CCT.Tests
             for (int ms = 0; ms <= 3500; ms += 100)
             {
                 show.Step(Sec(ms, d));
-                string n = $"t={ms} rigger={show.RiggerClip} porter={show.PorterClip} bannerFrame={show.BannerFrame} riggerPos={show.RiggerPosition.x:0.000},{show.RiggerPosition.y:0.000} porterPos={show.PorterPosition.x:0.000},{show.PorterPosition.y:0.000} bannerTop={show.BannerTopWorld.x:0.000},{show.BannerTopWorld.y:0.000} scale={show.NpcScale:0.0000} rFlip={show.RiggerFlipped} pFlip={show.PorterFlipped}";
+                string n = $"t={ms} rigger={show.RiggerClip} porter={show.PorterClip} bannerFrame={show.BannerFrame} alpha={show.NpcAlpha:0.00} riggerPos={show.RiggerPosition.x:0.000},{show.RiggerPosition.y:0.000} porterPos={show.PorterPosition.x:0.000},{show.PorterPosition.y:0.000} bannerTop={show.BannerTopWorld.x:0.000},{show.BannerTopWorld.y:0.000} scale={show.NpcScale:0.0000} rFlip={show.RiggerFlipped} pFlip={show.PorterFlipped}";
                 yield return Shot(Path.Combine(outDir, "seq"), $"seq_{ms:0000}", notes, n, 1280, 720);
             }
             show.Settle();

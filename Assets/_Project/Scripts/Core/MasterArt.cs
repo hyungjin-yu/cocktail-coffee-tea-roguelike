@@ -65,7 +65,14 @@ namespace CCT
         }
 
         /// <summary>manifest intro_schedule_ms(3500ms 기준) — 설정 길이에 비례해 쓴다.</summary>
-        public const int WalkInEndMs = 800, InstallEndMs = 2300, TotalMs = 3500, BannerStartMs = 1050, BannerEndMs = 2050;
+        /// 2026-11-11 코디네이터 승인(진짜 계약은 총 3~4초 휴식): 발 미끄럼 완화를 위해 3500ms 안 분배를 접근 0–1000 / 설치 1000–2500 / 퇴장 2500–3500으로 조정.
+        /// 현수막은 설치 시작+250ms(원래 계약과 같은 상대 위치) 1250–2250. 원래 manifest 값: 접근 800·설치 2300·현수막 1050–2050.
+        public const int WalkInEndMs = 1000, InstallEndMs = 2500, TotalMs = 3500, BannerStartMs = 1250, BannerEndMs = 2250;
+        /// <summary>승인 걷기 프레임 실측 보폭(발 사이 최대 폭 77px − 발 길이 ≈25px = 52px/걸음, 6노출 600ms = 2걸음). 배율 1 기준 월드/ms.</summary>
+        public const float WalkStepPx = 52f;
+        public static float WalkSpeedPerMs(float npcScale) => 2f * WalkStepPx / 128f * npcScale / 600f;
+        /// <summary>접근 시작·퇴장 끝 투명도 전환(ms). 화면 밖에서 걸어오면 3.5초 안에 보폭의 5배 속도가 필요해 미끄러지므로, 설치 위치 가까이에서 보폭에 맞는 속도로 걸으며 나타나고 사라진다.</summary>
+        public const float NpcFadeMs = 400f;
         /// <summary>현수막 최종 핀(1280×192, 좌상단 원점)과 글자 안전 영역(정규화 x0,y0,x1,y1, 좌상단 원점).</summary>
         public static readonly Vector2 PinLeftPx = new Vector2(43, 20), PinRightPx = new Vector2(1237, 20);
         /// <summary>현수막 프레임별 천 끝 핀 위치(좌상단 px: 왼쪽 x, 오른쪽 x, y). 2026-11-11 승인 PNG의 알파 상단 띠 끝에서 최종 핀 안쪽 여백(16/15px)·상단+13px로 측정(원본 무수정).

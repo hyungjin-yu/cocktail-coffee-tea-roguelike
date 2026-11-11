@@ -381,9 +381,10 @@ namespace CCT
             Vector2 pinR = bannerTop + MasterArt.BannerLocal(MasterArt.PinRightPx) * BannerScale;
             riggerStand = pinL - MasterArt.NpcAnchorLocal(MasterArt.RiggerGripPx, false) * npcScale; // 왼쪽 끝: 오른쪽(중앙)을 보며 앞손으로 핀
             porterStand = pinR - MasterArt.NpcAnchorLocal(MasterArt.PorterGripPx, false) * npcScale; // 오른쪽 끝: 바깥을 보며 뒷손으로 핀(퇴장 방향 유지)
-            float off = halfW + 0.7f * npcScale; // 몸 절반 폭(≈0.35×배율)만큼만 화면 밖 — 이동 거리를 줄여 0.8초 접근의 발 미끄럼 완화
-            riggerOff = new Vector2(camX - off, riggerStand.y);
-            porterOff = new Vector2(camX + off, porterStand.y);
+            // 2026-11-11 발 미끄럼 보정: 걷기 거리 = 실측 보폭 속도 × 걷기 시간(계약 시각 기준 — 3~4초 비례에도 걸음·이동이 같은 비율). 시작/끝은 투명도 전환.
+            WalkDistance = MasterArt.WalkSpeedPerMs(npcScale) * MasterArt.WalkInEndMs;
+            riggerOff = riggerStand - new Vector2(WalkDistance, 0f);
+            porterOff = porterStand + new Vector2(WalkDistance, 0f);
 
             rigger = MakeRenderer("NpcRigger", riggerOff, SortOrders.BackgroundProp + 2);
             porter = MakeRenderer("NpcPorter", porterOff, SortOrders.BackgroundProp + 2);
@@ -439,6 +440,8 @@ namespace CCT
         public Vector2 RiggerStand => riggerStand;
         public Vector2 PorterStand => porterStand;
         public float NpcScale => npcScale;
+        public float NpcAlpha { get; private set; } = 1f;
+        public float WalkDistance { get; private set; }
         public Vector2 BannerTopWorld => banner != null ? (Vector2)banner.transform.position : Vector2.zero;
         public bool RiggerFlipped => rigger != null && rigger.flipX;
         public bool PorterFlipped => porter != null && porter.flipX;
@@ -482,8 +485,12 @@ namespace CCT
                 SetNpc(rigger, Vector2.Lerp(riggerStand, riggerOff, k), riggerOut, "npc_rigger_walk_out", ot, true);
                 SetNpc(porter, Vector2.Lerp(porterStand, porterOff, k), porterOut, "npc_porter_walk_out", ot, false);
             }
+            // 접근 시작·퇴장 끝 투명도 전환(걷기 속도를 보폭에 맞추느라 가까이서 나타나고 사라진다).
+            NpcAlpha = t < MasterArt.WalkInEndMs ? Mathf.Clamp01(t / MasterArt.NpcFadeMs)
+                : t >= MasterArt.InstallEndMs ? Mathf.Clamp01((ContractMs - t) / MasterArt.NpcFadeMs) : 1f;
+            foreach (var sr in new[] { rigger, porter }) if (sr != null) { var c = sr.color; c.a = NpcAlpha; sr.color = c; }
 
-            // 현수막: 1050ms 전에는 운반 천(porter 그림)만. 이후 8프레임 1회·마지막 고정.
+            // 현수막: BannerStartMs 전에는 운반 천(porter 그림)만. 이후 8프레임 1회·마지막 고정.
             if (t < MasterArt.BannerStartMs) { banner.enabled = false; BannerFrame = -1; }
             else
             {
