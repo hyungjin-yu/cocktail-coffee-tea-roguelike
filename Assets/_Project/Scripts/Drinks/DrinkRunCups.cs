@@ -26,8 +26,21 @@ namespace CCT
         public List<DrinkAmount> fromStockNormal = new List<DrinkAmount>();
         public List<DrinkAmount> fromStockEndless = new List<DrinkAmount>();
 
+        /// <summary>2026-11-12 차 우림 계보(게임 규칙): 첫 우림 잔의 cupId. 비어 있으면(기존 저장) 자기 자신이 계보 시작.</summary>
+        public string teaLineage = "";
+        /// <summary>우림 단계 1~3(차만). 0 = 기존 저장 잔 → 1번째로 본다.</summary>
+        public int teaSteep;
+        /// <summary>이 잔에서 이어 우린 다음 잔 cupId(원 잔당 1회).</summary>
+        public string continuedTo = "";
+
         public DrinkKind Kind => recipe != null ? recipe.Kind : DrinkKind.Cocktail;
         public bool IsHeld => state == Held;
+        public int Steep => Kind == DrinkKind.Tea ? System.Math.Max(1, teaSteep) : 0;
+        public string Lineage => string.IsNullOrEmpty(teaLineage) ? cupId : teaLineage;
+        /// <summary>이어 우리기 가능: 이 런에서 마신 차 잔, 3번째 미만, 아직 이어 우리지 않음.</summary>
+        public bool CanContinueSteep => Kind == DrinkKind.Tea && state == Drunk && Steep < RunDrinkTrait.MaxSteep && string.IsNullOrEmpty(continuedTo);
+        /// <summary>이어 우린 2·3번째 잔은 재료 0 — 박람회 제출 불가.</summary>
+        public bool Submittable => !(Kind == DrinkKind.Tea && Steep >= 2);
     }
 
     /// <summary>커피 품질(정수 0~100)과 등급. 추출법별 목표 비율이 달라 모든 커피에 같은 최적 조건을 강요하지 않는다.</summary>
@@ -139,6 +152,7 @@ namespace CCT
                     need[s.id] = (int)Math.Min(int.MaxValue, (long)need[s.id] + s.amount);
                 }
                 var cup = new RunCup { runId = runId, cupId = Guid.NewGuid().ToString("N"), recipe = copy, quality = DrinkQuality.Of(copy), recipeKey = RecipeKey(copy) };
+                if (copy.Kind == DrinkKind.Tea) { cup.teaSteep = 1; cup.teaLineage = cup.cupId; } // 새로 우리기 = 새 계보 1번째
                 foreach (var id in order)
                 {
                     int want = need[id];
@@ -161,6 +175,42 @@ namespace CCT
             res.Ok = true;
             res.Cup = made;
             res.Message = "한 잔을 만들어 보관했습니다.";
+            return res;
+        }
+
+        /// <summary>
+        /// 2026-11-12 차 이어 우리기(게임 우림 규칙): 이 런에서 **마신** 차 잔의 같은 찻잎으로 다음 단계 잔 1개를 재료 0으로 만든다.
+        /// 원 잔당 1회(continuedTo 기록), 최대 3번째. 같은 차 종류라는 이유로 다른 잔과 연결하지 않는다. 저장 성공 때만 확정.
+        /// </summary>
+        public static RunCraftResult ContinueTeaSteep(string runId, string sourceCupId)
+        {
+            var res = new RunCraftResult();
+            EnsureLoaded();
+            if (string.IsNullOrEmpty(runId) || IsSettled(runId)) { res.Message = "이 판은 이미 정산되었습니다."; return res; }
+            var src = Data.runCups.Find(c => c != null && c.runId == runId && c.cupId == sourceCupId);
+            if (src == null || src.Kind != DrinkKind.Tea) { res.Message = "이어 우릴 차가 없습니다."; return res; }
+            if (src.state != RunCup.Drunk) { res.Message = "마신 차에서만 이어 우릴 수 있습니다."; return res; }
+            if (src.Steep >= RunDrinkTrait.MaxSteep) { res.Message = "3번째 우림까지 마쳤습니다 — 새 찻잎으로 새로 우리세요."; return res; }
+            if (!string.IsNullOrEmpty(src.continuedTo)) { res.Message = "이 찻잎은 이미 다음 단계로 우렸습니다."; return res; }
+            RunCup made = null;
+            bool ok = Transact(d =>
+            {
+                var s = d.runCups.Find(c => c != null && c.runId == runId && c.cupId == sourceCupId);
+                if (s == null || s.state != RunCup.Drunk || s.Steep >= RunDrinkTrait.MaxSteep || !string.IsNullOrEmpty(s.continuedTo)) return false; // 동시·중복 클릭 방어
+                var cup = new RunCup
+                {
+                    runId = runId, cupId = Guid.NewGuid().ToString("N"), recipe = s.recipe != null ? s.recipe.Clone() : null,
+                    quality = -1, recipeKey = s.recipeKey, teaLineage = s.Lineage, teaSteep = s.Steep + 1,
+                };
+                s.continuedTo = cup.cupId;
+                d.runCups.Add(cup);
+                made = cup;
+                return true;
+            }, out var error);
+            if (!ok) { res.Message = error ?? "이어 우리지 못했습니다."; return res; }
+            res.Ok = true;
+            res.Cup = made;
+            res.Message = $"같은 찻잎으로 {made.Steep}번째 우림 1잔(재료 0)";
             return res;
         }
 

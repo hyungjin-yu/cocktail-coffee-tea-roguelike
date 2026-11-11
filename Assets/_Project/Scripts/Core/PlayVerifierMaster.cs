@@ -183,7 +183,11 @@ namespace CCT
             if (g.State != GameState.GameOver && g.Master.State.Wave >= 11)
             {
                 yield return Human(1.2f);
+                // 2026-11-12 다음 주기 준비 패널(전투 정지) 확인 — 사람 간격 뒤 HandleMasterPrep가 실제 '전투 시작'을 누른다.
+                var ups11 = g.Master.UpcomingWaves();
+                Event($"cycle2 prep phase={g.Master.State.Phase} prepActive={g.MasterPrepActive} timeScale={Time.timeScale} panel={g.MasterHud.Prep.PanelVisible} title=\"{g.MasterHud.Prep.PanelTitle}\" plan={(ups11.Count > 0 ? ups11[0].plan.Label + " " + ups11[0].plan.Count + " red=" + ups11[0].reduction : "-")} rows=[{string.Join(" | ", g.MasterHud.Prep.RowTexts)}]");
                 MShot("15_next_cycle_wave11");
+                yield return RtShot("15_next_cycle_wave11_1080", 1920, 1080);
                 yield return WaitPhase(g, () => g.Master.State.Spawned >= 3, 30f, "cycle2");
                 var sample = Enemy.Active.FirstOrDefault(e => e != null && !e.IsDead);
                 Event($"cycle2 sample enemy={(sample != null ? sample.Def.name : "-")} maxHp={(sample != null ? sample.MaxHp : 0):0} carried={g.Master.State.CarriedReduction}% expectedScale=EndlessRules.HpScale(11)*(1-carried/100)");

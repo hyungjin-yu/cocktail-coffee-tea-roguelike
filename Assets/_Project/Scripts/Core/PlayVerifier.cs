@@ -188,6 +188,7 @@ namespace CCT
             if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-selectseq")) { yield return SelectSeqFlow(); yield return Finish(); yield break; } // 2026-11-12 선택 화면 효과 제보 조사(QA)
             if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-shots")) { yield return ShotsFlow(); yield return Finish(); yield break; } // 2026-11-11 무기 화면 수정 확인·Steam 스크린샷 후보(QA)
             if (title == null || !ClickNamed(title, "StartButton")) { Event("FAIL title start button"); yield return Finish(); yield break; }
+            if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-traits")) { yield return TraitsFlow(); yield return Finish(); yield break; } // 2026-11-12 커피·차 전투 특성 실제 빌드 증거(QA)
             if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-brewfx")) { yield return BrewFxFlow(); yield return Finish(); yield break; } // 2026-11-12 제조 창 우측 상단 효과 제보 조사(QA)
             if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-master-mechanics")) { yield return MechanicsFlow(); yield return Finish(); yield break; } // 2026-11-11 미검증 3항목 QA 시나리오(격리 fixture, 자연 플레이 아님)
             if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-master")) { yield return MasterFlow(); yield return Finish(); yield break; } // 2026-11-11 마스터 도전 1주기 검증(입력 대행 동일 원칙)

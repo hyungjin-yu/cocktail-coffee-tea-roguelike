@@ -36,6 +36,8 @@ namespace CCT
         /// 승인 PNG 내용은 128 캔버스의 약 70%라 112면 720p에서 ≈45px — 168이면 ≈65px. 중심이 슬롯 중심이라 보이는 내용은 패널 위 가장자리 안·첫 잔 줄(−118) 위에 머문다.</summary>
         public const float FxArtPx = 168f;
         public const int RowsPerPage = 9;
+        /// <summary>2026-11-12 보관 잔은 한 쪽 5줄 — 아래(−428…−676)는 '현재 잔 특성' 상자.</summary>
+        public const int CupRowsPerPage = 5;
         public const float BrewButtonTop = 304f, BrewButtonW = 330f, BrewButtonH = 60f;
 
         public bool BrewOpen => brewPanel != null && brewPanel.activeSelf;
@@ -116,7 +118,16 @@ namespace CCT
             UiFactory.AddText(UiFactory.Place("CupHeader", prt, new Vector2(1f, 1f), new Vector2(-40f, -76f), new Vector2(600f, 36f)),
                 "보관한 잔 — 한 잔은 한 용도", 24, TextAnchor.MiddleLeft, new Color(0.75f, 0.92f, 1f));
             recipeArea = UiFactory.Place("Recipes", prt, new Vector2(0f, 1f), new Vector2(40f, -118f), new Vector2(780f, RowsPerPage * 62f));
-            cupArea = UiFactory.Place("Cups", prt, new Vector2(1f, 1f), new Vector2(-40f, -118f), new Vector2(600f, RowsPerPage * 62f));
+            cupArea = UiFactory.Place("Cups", prt, new Vector2(1f, 1f), new Vector2(-40f, -118f), new Vector2(600f, CupRowsPerPage * 62f));
+            // 2026-11-12 현재 잔 특성 상자(보관 잔 5줄 아래 −436…−676 — 잔 쪽 넘김 버튼(아래 120–172) 위)
+            var trt = UiFactory.Place("TraitBox", prt, new Vector2(1f, 1f), new Vector2(-40f, -436f), new Vector2(600f, 240f));
+            UiFactory.AddImage(trt, new Color(0.12f, 0.2f, 0.22f, 0.55f)).raycastTarget = false;
+            var tlrt = UiFactory.Stretch("Text", trt);
+            tlrt.offsetMin = new Vector2(14f, 8f); tlrt.offsetMax = new Vector2(-14f, -8f);
+            traitBox = UiFactory.AddText(tlrt, "", 20, TextAnchor.UpperLeft, new Color(0.88f, 0.95f, 1f));
+            traitBox.resizeTextForBestFit = true; traitBox.resizeTextMinSize = 16; traitBox.resizeTextMaxSize = 20;
+            traitBox.verticalOverflow = VerticalWrapMode.Truncate;
+            traitBox.raycastTarget = false;
             var prev = MakeButton(prt, "PrevPage", new Vector2(0f, 0f), new Vector2(40f, 120f), new Vector2(150f, 52f), "◀ 이전", 22, new Color(0.2f, 0.2f, 0.24f, 0.95f), out _);
             prev.onClick.AddListener(() => { recipePage = Mathf.Max(0, recipePage - 1); RefreshBrew(); });
             var next = MakeButton(prt, "NextPage", new Vector2(0f, 0f), new Vector2(200f, 120f), new Vector2(150f, 52f), "다음 ▶", 22, new Color(0.2f, 0.2f, 0.24f, 0.95f), out _);
@@ -144,6 +155,7 @@ namespace CCT
             fxCaption.gameObject.SetActive(false);
             brewMessage = UiFactory.AddText(UiFactory.Place("Message", prt, new Vector2(0.5f, 0f), new Vector2(0f, 178f), new Vector2(1400f, 34f)), "", 22, TextAnchor.MiddleCenter, new Color(1f, 0.9f, 0.6f));
             brewFooter = UiFactory.AddText(UiFactory.Place("Footer", prt, new Vector2(0f, 0f), new Vector2(40f, 30f), new Vector2(1100f, 70f)), "", 22, TextAnchor.MiddleLeft, Color.white);
+            brewFooter.resizeTextForBestFit = true; brewFooter.resizeTextMinSize = 16; brewFooter.resizeTextMaxSize = 22;
             brewFooter.verticalOverflow = VerticalWrapMode.Truncate;
             var close = MakeButton(prt, "Close", new Vector2(1f, 0f), new Vector2(-40f, 34f), new Vector2(260f, 62f), "닫기 (Esc)", 26, new Color(0.25f, 0.22f, 0.3f, 0.95f), out _);
             close.onClick.AddListener(() => game?.CloseMasterBrew());
@@ -270,26 +282,44 @@ namespace CCT
                 recipeRows.Add(row.gameObject);
             }
 
-            var cups = DrinkLab.RunCupsFor(game.RunId).FindAll(c => c.IsHeld);
-            int cpages = Mathf.Max(1, (cups.Count + RowsPerPage - 1) / RowsPerPage);
+            // 2026-11-12: 보관 잔 + 이어 우릴 수 있는 마신 차(같은 찻잎 계보의 최신 잔만 — 원 잔당 1회라 자연히 하나)
+            var cups = DrinkLab.RunCupsFor(game.RunId).FindAll(c => c.IsHeld || c.CanContinueSteep);
+            cups.Sort((x, y) => (x.IsHeld ? 0 : 1).CompareTo(y.IsHeld ? 0 : 1));
+            int cpages = Mathf.Max(1, (cups.Count + CupRowsPerPage - 1) / CupRowsPerPage);
             cupPage = Mathf.Clamp(cupPage, 0, cpages - 1);
             bool canSubmit = game.Master.State.CanSubmit;
-            for (int i = 0; i < RowsPerPage; i++)
+            for (int i = 0; i < CupRowsPerPage; i++)
             {
-                int idx = cupPage * RowsPerPage + i;
+                int idx = cupPage * CupRowsPerPage + i;
                 if (idx >= cups.Count) break;
                 var cup = cups[idx];
                 var row = UiFactory.Place("Cup" + i, cupArea, new Vector2(0f, 1f), new Vector2(0f, -i * 62f), new Vector2(600f, 56f));
                 UiFactory.AddImage(row, new Color(1f, 1f, 1f, 0.06f));
                 string ql = cup.quality >= 0 ? " " + DrinkQuality.Label(cup.quality) : "";
+                string steep = cup.Kind == DrinkKind.Tea ? $" · {cup.Steep}번째 우림" : "";
+                if (!cup.IsHeld)
+                {
+                    // 마신 차: 같은 찻잎으로 다음 단계(재료 0) — 실행 전 규칙을 분명히
+                    int next = cup.Steep + 1;
+                    var ct = UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 0.5f), new Vector2(10f, 0f), new Vector2(390f, 52f)),
+                        $"{(cup.recipe != null ? cup.recipe.name : "차")} {cup.Steep}번째 마심\n→ {next}번째: 재료 0·제출 불가·{RunDrinkTrait.Short(next >= 3 ? RunDrinkTraitKind.TeaThird : RunDrinkTraitKind.TeaSecond)}",
+                        20, TextAnchor.MiddleLeft, new Color(0.75f, 0.92f, 1f));
+                    ct.resizeTextForBestFit = true; ct.resizeTextMinSize = 15; ct.resizeTextMaxSize = 20; ct.verticalOverflow = VerticalWrapMode.Truncate;
+                    var steepB = MakeButton(row, "ContinueSteep", new Vector2(1f, 0.5f), new Vector2(-6f, 0f), new Vector2(190f, 48f), $"이어 우리기 ({next}번째)", 20, new Color(0.18f, 0.3f, 0.32f, 0.95f), out _);
+                    var src = cup;
+                    steepB.onClick.AddListener(() => OnContinueSteep(src));
+                    cupRows.Add(row.gameObject);
+                    continue;
+                }
                 var t = UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 0.5f), new Vector2(10f, 0f), new Vector2(330f, 52f)),
-                    (cup.recipe != null ? cup.recipe.name : "음료") + ql, 20, TextAnchor.MiddleLeft, Color.white);
-                t.resizeTextForBestFit = true; t.resizeTextMinSize = 13; t.resizeTextMaxSize = 20; t.verticalOverflow = VerticalWrapMode.Truncate;
+                    $"{(cup.recipe != null ? cup.recipe.name : "음료")}{ql}{steep}\n마시면 → {RunDrinkTrait.Short(RunDrinkTrait.For(cup))}", 20, TextAnchor.MiddleLeft, Color.white);
+                t.resizeTextForBestFit = true; t.resizeTextMinSize = 15; t.resizeTextMaxSize = 20; t.verticalOverflow = VerticalWrapMode.Truncate;
                 var drink = MakeButton(row, "Drink", new Vector2(1f, 0.5f), new Vector2(-136f, 0f), new Vector2(120f, 48f), "마시기", 20, new Color(0.18f, 0.32f, 0.2f, 0.95f), out _);
                 drink.onClick.AddListener(() => OnDrink(cup));
                 var submit = MakeButton(row, "Submit", new Vector2(1f, 0.5f), new Vector2(-6f, 0f), new Vector2(124f, 48f),
                     MasterRules.SubmitPoints(cup.Kind, cup.quality) > MasterRules.CupPoints ? "제출 +50%" : "제출", 20, new Color(0.55f, 0.14f, 0.16f, 0.95f), out _);
-                submit.interactable = canSubmit;
+                submit.interactable = canSubmit && cup.Submittable;
+                if (!cup.Submittable) { var lbl = submit.GetComponentInChildren<Text>(); if (lbl != null) lbl.text = "제출 불가"; }
                 submit.onClick.AddListener(() => OnSubmit(cup));
                 cupRows.Add(row.gameObject);
             }
@@ -304,7 +334,13 @@ namespace CCT
             string drunk = game.ActiveRunCup != null ? $"마신 잔: {game.ActiveRunCup.recipe?.name}" : "마신 잔: 출발 음료(또는 없음)";
             string submitLine = canSubmit ? $"이번 박람회 제출 {st.SubmittedThisCycle}잔{BonusText(st)} → 약화 {st.PreviewFairReduction}%"
                 : st.FairReductionSnapshot >= 0 ? $"이번 박람회 약화 {st.FairReductionSnapshot}% 확정(접수 후 제출 불가)" : "제출은 재료 모으기 구간에서만";
-            brewFooter.text = $"{submitLine} · 칵테일 {game.Master.CocktailUniqueCount}종 → 공격 +{game.Master.CocktailAttackPercent}%\n{drunk} · 런 제조 음료는 판매 불가 · 다른 잔을 마시면 이전 효과는 교체(중첩 없음)";
+            var trait = game.Player != null ? game.Player.DrinkTrait : RunDrinkTraitKind.None;
+            string traitLine = trait == RunDrinkTraitKind.None ? "현재 잔 특성: 없음" : $"현재 잔 특성: {RunDrinkTrait.Name(trait)} — {RunDrinkTrait.Describe(trait)}";
+            brewFooter.text = $"{submitLine} · 칵테일 {game.Master.CocktailUniqueCount}종 → 공격 +{game.Master.CocktailAttackPercent}%\n{drunk} · 런 제조 음료는 판매 불가";
+            if (traitBox != null)
+                traitBox.text = (trait == RunDrinkTraitKind.None ? "현재 잔 특성: 없음" : $"현재 잔 특성: {RunDrinkTrait.Name(trait)}\n{RunDrinkTrait.Describe(trait)}") +
+                                "\n\n교체: 다른 잔을 마시면 지금 효과·특성은 사라지고 새 잔 것으로(중첩 없음)" +
+                                "\n차 우림(게임 규칙): 마신 차에서 [이어 우리기] 1회 · 3번째까지 · 2·3번째는 재료 0·제출 불가 · 새 찻잎 = 1번째부터";
         }
 
         void OnCraft(DrinkRecipe r)
@@ -314,6 +350,17 @@ namespace CCT
             if (res.Ok) PlayQuality(res.Cup.quality, DrinkQualityFx.Moment.Crafted);
             Refresh(); RefreshBrew();
         }
+
+        void OnContinueSteep(RunCup drunk)
+        {
+            var res = game.ContinueRunTea(drunk);
+            brewMessage.text = res.Ok ? res.Message + " — 보관함에 추가, 마셔야 적용" : res.Message;
+            Refresh(); RefreshBrew();
+        }
+
+        public string BrewFooterText => (brewFooter != null ? brewFooter.text : "") + "\n" + (traitBox != null ? traitBox.text : "");
+        public string TraitBoxText => traitBox != null ? traitBox.text : "";
+        Text traitBox;
 
         void OnDrink(RunCup cup)
         {

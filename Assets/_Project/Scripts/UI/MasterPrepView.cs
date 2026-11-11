@@ -123,11 +123,13 @@ namespace CCT
             startButton.gameObject.SetActive(!choice);
             brewButton.gameObject.SetActive(true);
             panelTitle.text = choice ? "재료 모으기 5/5 완료 — 다음을 고르세요 (전투 정지 중)" : $"다음 웨이브 준비 — {MasterChallengeDirector.WaveTitle(st.Wave)} (전투 정지 중)";
-            panelFooter.text = choice
+            var trait = game.Player != null ? game.Player.DrinkTrait : RunDrinkTraitKind.None;
+            string cur = $"현재 잔: {RunDrinkTrait.Name(trait)} · ";
+            panelFooter.text = cur + (choice
                 ? $"제출 {st.SubmittedThisCycle}잔 → 박람회 약화 {st.PreviewFairReduction}% · 반복해도 주기·난이도는 그대로({st.RepeatCount}회 반복) · 음료는 지금 만들고 마실 수 있음"
-                : st.CanSubmit ? $"음료를 만들고 마신 뒤 시작하세요 · 이번 주기 박람회 제출 {st.SubmittedThisCycle}잔 → 약화 {st.PreviewFairReduction}%" : "음료를 만들고 마신 뒤 시작하세요";
+                : st.CanSubmit ? $"음료를 만들고 마신 뒤 시작하세요(없어도 출발 가능) · 이번 주기 박람회 제출 {st.SubmittedThisCycle}잔 → 약화 {st.PreviewFairReduction}%" : "음료를 만들고 마신 뒤 시작하세요(없어도 출발 가능)");
 
-            string key = $"{st.Phase}|{st.Wave}|{st.RepeatCount}|{st.PreviewFairReduction}|{st.CarriedReduction}|{(game.Challenge != null ? game.Challenge.HpMultiplier : 1f):0.###}|{game.Player?.AffinityDrink}";
+            string key = $"{st.Phase}|{st.Wave}|{st.RepeatCount}|{st.PreviewFairReduction}|{st.CarriedReduction}|{(game.Challenge != null ? game.Challenge.HpMultiplier : 1f):0.###}|{game.Player?.AffinityDrink}|{trait}";
             foreach (var u in ups) key += "|" + u.plan.GetHashCode();
             if (key == builtKey) return;
             builtKey = key;
@@ -185,7 +187,7 @@ namespace CCT
             string extra = groups.Count > rows ? $"그 외 {groups.Count - rows}종 · " : "";
             string aff = u.plan.AffinityHint();
             var adv = UiFactory.AddText(UiFactory.Place("Advice", brt, new Vector2(0f, 0f), new Vector2(16f, 4f), new Vector2(PanelW - 72f, 58f)),
-                $"{extra}{u.plan.Advice()}{(aff.Length > 0 ? "\n" + aff : "")}", 19, TextAnchor.LowerLeft, new Color(0.78f, 0.92f, 1f));
+                $"{extra}{u.plan.Advice()}{(aff.Length > 0 ? "\n" + aff : "")}{(u.plan.DrinkAdvice().Length > 0 ? "\n음료: " + u.plan.DrinkAdvice() : "")}", 19, TextAnchor.LowerLeft, new Color(0.78f, 0.92f, 1f));
             adv.resizeTextForBestFit = true; adv.resizeTextMinSize = 13; adv.resizeTextMaxSize = 19;
             adv.verticalOverflow = VerticalWrapMode.Truncate;
         }

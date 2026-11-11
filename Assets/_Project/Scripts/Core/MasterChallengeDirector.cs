@@ -8,6 +8,8 @@ namespace CCT
     {
         static readonly Dictionary<Job, EnemyDef> fair = new Dictionary<Job, EnemyDef>();
         static readonly Dictionary<Job, EnemyDef> reward = new Dictionary<Job, EnemyDef>();
+        /// <summary>2026-11-12 박람회 작은 진상 손님 정의인지(에스프레소 강적 판정).</summary>
+        public static bool IsFairCustomer(EnemyDef d) => d != null && fair.ContainsValue(d);
 
         /// <summary>작은 진상 손님: 원본 최종 보스(진상 손님 2500HP·접촉20·boss=Final)와 다른 일반 개체. 최종 보스 처치/클리어 플래그를 만들지 않는다(boss=None).
         /// 계열은 원본 손님과 같은 중립(MonsterFamilies 미등록 = 중립) — 음료 상성 추가 피해 대상 아님.</summary>

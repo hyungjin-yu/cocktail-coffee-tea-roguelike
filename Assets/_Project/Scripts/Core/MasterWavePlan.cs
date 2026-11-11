@@ -157,6 +157,19 @@ namespace CCT
             return string.Join(" · ", parts);
         }
 
+        /// <summary>2026-11-12 구현된 런 음료 특성 중 이 웨이브에 맞는 것(실제 제한 포함). 미구현 효과는 쓰지 않는다.</summary>
+        public string DrinkAdvice()
+        {
+            if (Segment == MasterSegment.Reward) return "";
+            var parts = new List<string>();
+            int total = Mathf.Max(1, defs.Count);
+            int elite = Segment == MasterSegment.Fair ? defs.Count : CountOf(Kind.Elite);
+            if (elite > 0) parts.Add($"에스프레소 = 강적{(Segment == MasterSegment.Fair ? "(진상 손님)" : "")} 직접 적중 +{RunDrinkTrait.EspressoElitePercent}%(일반 적 없음)");
+            if (Segment == MasterSegment.Collect && CountOf(Kind.Swarm) * 100 >= total * 40) parts.Add("핸드 드립·차 3번째 = 주변 보조 적중");
+            if (Segment == MasterSegment.Fair || CountOf(Kind.Rush) * 100 >= total * 25) parts.Add("차 2번째 = 적중 둔화(보스 제외)");
+            return string.Join(" · ", parts);
+        }
+
         public string AffinityHint()
         {
             var f = MainFamily();

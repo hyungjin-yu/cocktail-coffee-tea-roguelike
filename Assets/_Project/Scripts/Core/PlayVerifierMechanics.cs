@@ -385,6 +385,101 @@ namespace CCT
             yield return EndMaster(g);
         }
 
+        // ───── 2026-11-12 커피·차 보조 전투 특성 실제 빌드 증거(-cct-playverify-traits) ─────
+        int traitDrinkBonusHits, traitSlowSeen;
+        void OnTraitHit(Enemy e, DamageResult r)
+        {
+            if (r.drinkBonus > 0) { traitDrinkBonusHits++; if (traitDrinkBonusHits <= 5) Event($"[trait] espresso elite hit {e.Def.name} B={r.baseDamage} drink+={r.drinkBonus} affinity+={r.bonusDamage} T={r.total}"); }
+            if (e != null && e.DrinkSlowed) traitSlowSeen++;
+        }
+
+        IEnumerator DrinkFromBrew(GameManager g, string recipe, string tag)
+        {
+            if (Buttons(g.MasterHud, "BrewButton").FirstOrDefault() is Button brew) brew.onClick.Invoke();
+            yield return Human(0.6f);
+            yield return CraftRow(g, recipe, tag + "_craft");
+            yield return UseCup(g, "Drink", recipe, tag + "_drink");
+            Event($"[{tag}] trait={g.Player.DrinkTrait} attackSpeedBonus={g.Stats.AttackSpeedBonus:0.###} footer=\"{g.MasterHud.BrewFooterText.Replace('\n', '/')}\"");
+            yield return PairShot(tag + "_brew_footer");
+            if (Buttons(g.MasterHud, "Close").FirstOrDefault() is Button close) close.onClick.Invoke();
+            yield return Human(0.6f);
+        }
+
+        IEnumerator ContinueAndDrink(GameManager g, string tag)
+        {
+            if (Buttons(g.MasterHud, "BrewButton").FirstOrDefault() is Button brew) brew.onClick.Invoke();
+            yield return Human(0.6f);
+            yield return PairShot(tag + "_before_continue");
+            var b = Buttons(g.MasterHud, "ContinueSteep").FirstOrDefault();
+            if (b == null) { Event($"FAIL [{tag}] no continue button"); yield break; }
+            b.onClick.Invoke();
+            Event($"[{tag}] clicked 이어 우리기 → msg=\"{g.MasterHud.LastMessage}\"");
+            yield return Human(0.5f);
+            var d = Buttons(g.MasterHud, "Drink").FirstOrDefault(x => RowText(x).Contains("번째 우림"));
+            if (d == null) { Event($"FAIL [{tag}] no steep cup"); yield break; }
+            string row = RowText(d);
+            d.onClick.Invoke();
+            Event($"[{tag}] drank \"{row.Replace('\n', '/')}\" trait={g.Player.DrinkTrait} attackSpeedBonus={g.Stats.AttackSpeedBonus:0.###}");
+            yield return Human(0.4f);
+            yield return PairShot(tag + "_after_drink");
+            if (Buttons(g.MasterHud, "Close").FirstOrDefault() is Button close) close.onClick.Invoke();
+            yield return Human(0.6f);
+        }
+
+        IEnumerator WatchTrait(GameManager g, string tag, float seconds, System.Func<bool> captureWhen)
+        {
+            float until = Time.realtimeSinceStartup + seconds;
+            int splash0 = RunDrinkTrait.SplashHits, slow0 = RunDrinkTrait.SlowsApplied, shots = 0;
+            while (Time.realtimeSinceStartup < until && g.State != GameState.GameOver)
+            {
+                HandleRewardScreens(g);
+                if (shots < 2 && captureWhen())
+                {
+                    shots++;
+                    MShot($"{tag}_moment_{shots}");
+                    yield return null;
+                    yield return new WaitForSecondsRealtime(0.4f);
+                }
+                yield return null;
+            }
+            Event($"[{tag}] splashHits+={RunDrinkTrait.SplashHits - splash0} slows+={RunDrinkTrait.SlowsApplied - slow0} espressoEliteHits={traitDrinkBonusHits} shots={shots} {MasterLine(g)}");
+        }
+
+        IEnumerator TraitsFlow()
+        {
+            Application.runInBackground = true;
+            shotDir = Path.Combine(outDir, "shots");
+            Directory.CreateDirectory(shotDir);
+            Event("TRAITS QA SCENARIO (not natural play): isolated data copy + bean fixture (see QA-FIXTURE.txt); real buttons, input agent movement; no stat/time/spawn writes");
+            yield return StartMasterRun();
+            var g = GameManager.Instance;
+            if (g == null || g.Master == null) { Event("FAIL master run not started"); yield break; }
+            BindGame(g);
+            Enemy.QaDirectHit = OnTraitHit;
+            // 준비 단계에서 차 1번째 → 전투, 이어 우리기 2번째(둔화) → 3번째(범위)
+            yield return PrepStartShot(g, null);
+            yield return DrinkFromBrew(g, "센차", "t2_tea1");
+            yield return WatchTrait(g, "t2_tea1", 8f, () => false);
+            yield return ContinueAndDrink(g, "t3_tea2");
+            int sl0 = RunDrinkTrait.SlowsApplied;
+            yield return WatchTrait(g, "t3_tea2", 20f, () => RunDrinkTrait.SlowsApplied > sl0);
+            yield return ContinueAndDrink(g, "t4_tea3");
+            int s3 = RunDrinkTrait.SplashHits;
+            yield return WatchTrait(g, "t4_tea3", 20f, () => RunDrinkTrait.SplashHits > s3);
+            // 박람회(진상 손님 12명 밀집·강적 판정)에서 핸드 드립 보조 적중과 에스프레소 강적 +20%
+            yield return WaitPhase(g, () => g.Master.State.Phase == MasterPhase.AwaitChoice, 400f, "collect-to-choice");
+            if (g.Master.State.Phase == MasterPhase.AwaitChoice && Buttons(g.MasterHud, "Fair").FirstOrDefault() is Button fair) { yield return Human(0.6f); fair.onClick.Invoke(); Event("clicked 박람회 도전"); }
+            yield return WaitPhase(g, () => g.Master.State.Segment == MasterSegment.Fair && g.Master.State.Phase == MasterPhase.Wave && Enemy.Active.Count >= 5, 120f, "fair-crowd");
+            yield return DrinkFromBrew(g, "핸드 드립", "t1_drip");
+            int s0 = RunDrinkTrait.SplashHits;
+            yield return WatchTrait(g, "t1_drip", 15f, () => RunDrinkTrait.SplashHits > s0);
+            yield return DrinkFromBrew(g, "에스프레소", "t5_espresso");
+            int eh0 = traitDrinkBonusHits;
+            yield return WatchTrait(g, "t5_espresso", 20f, () => traitDrinkBonusHits > eh0);
+            Enemy.QaDirectHit = null;
+            yield return EndMaster(g);
+        }
+
         IEnumerator MechanicsFlow()
         {
             Application.runInBackground = true;

@@ -46,6 +46,10 @@ namespace CCT
         /// <summary>2026-11-10 음료 순환 상성: 이번 런에 실제로 마셔 적용 중인 음료 종류(없으면 null). GameManager가 입장 때 한 번 설정하고
         /// 런 종료 때 해제한다. 직업·보유 음료가 아니라 마신 음료만 기준.</summary>
         public DrinkKind? DrunkDrink { get; set; }
+        /// <summary>2026-11-12 마스터 도전에서 마신 런 제조 잔의 보조 전투 특성(한 번에 하나, 새 런 None).</summary>
+        public RunDrinkTraitKind DrinkTrait { get; set; }
+        /// <summary>보조 적중 다음 허용 시각(게임 시간).</summary>
+        public float DrinkSplashReadyAt { get; set; } = float.MinValue;
         /// <summary>지금 상성을 일으키는 음료: 마신 음료가 있고 음료 효과가 봉인(환불 무효)되지 않았을 때만. 중첩 등록 없이 한 값.</summary>
         public DrinkKind? AffinityDrink => DrunkDrink != null && !(stats != null && stats.BonusesSuppressed) ? DrunkDrink : null;
         /// <summary>이번 프레임 이동 입력이 있는지(히든 정지/이동 조건).</summary>

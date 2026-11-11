@@ -424,6 +424,8 @@ namespace CCT
     public struct DamageResult
     {
         public int baseDamage, bonusDamage, total;
+        /// <summary>2026-11-12 런 음료 특성 추가 피해(에스프레소 강적). total = base + bonus(상성) + drinkBonus.</summary>
+        public int drinkBonus;
         public bool Affinity => bonusDamage > 0;
     }
 
@@ -489,6 +491,18 @@ namespace CCT
         public event System.Action<float> Damaged;
         /// <summary>41 히든 불꽃 쇼: 화상 중인 일반 적의 기본 추적 이동 배율(EnemyHitStatus가 설정). 패턴/돌진 속도는 그대로.</summary>
         public float StatusSpeedMultiplier { get; set; } = 1f;
+        /// <summary>2026-11-12 차 2번째 우림 적중 둔화(StatusSpeedMultiplier와 별개 곱 — 불꽃 둔화 등 기존 상태를 덮지 않음). 다시 맞히면 시간만 갱신, 배율은 더 강한 쪽 하나(중첩 없음).</summary>
+        float drinkSlowUntil = float.MinValue, drinkSlowFactor = 1f;
+        public bool DrinkSlowed => Time.time < drinkSlowUntil;
+        public float DrinkSlowMultiplier => DrinkSlowed ? drinkSlowFactor : 1f;
+        public float DrinkSlowRemaining => DrinkSlowed ? drinkSlowUntil - Time.time : 0f;
+        public void ApplyDrinkSlow(float factor, float seconds)
+        {
+            if (dead || def == null || def.IsBoss || seconds <= 0f) return;
+            factor = Mathf.Clamp(factor, 0.05f, 1f);
+            drinkSlowFactor = DrinkSlowed ? Mathf.Min(drinkSlowFactor, factor) : factor;
+            drinkSlowUntil = Time.time + seconds;
+        }
 
         // 48(2026-10-12) 검 타격 경직: 일반 적만, 짧게(Balance.SwordStaggerSeconds), 같은 적은 쿨다운 동안 다시 경직되지 않는다(무한 경직 방지).
         float staggerRemaining;
@@ -837,7 +851,7 @@ namespace CCT
             if (driver != null && driver.TryGetVelocity(rb.position, player.Position, out var driven))
                 rb.linearVelocity = driven; // 돌진·보스 패턴 이동은 경직이 끊지 않는다
             else
-                rb.linearVelocity = Staggered ? Vector2.zero : toPlayer.normalized * def.speed * StatusSpeedMultiplier;
+                rb.linearVelocity = Staggered ? Vector2.zero : toPlayer.normalized * def.speed * StatusSpeedMultiplier * DrinkSlowMultiplier;
 
             if (Harmless) return; // 2026-11-11 보상 몬스터: 접촉·자폭 경로 자체를 건너뛴다(0 피해 호출·피격 무적·보호막 소모도 없음)
             if (!HasArrived) return; // 보스 등장 안내 1초 동안은 접촉 피해 없음 (06:24)
@@ -899,12 +913,16 @@ namespace CCT
             int b = amount > 0f ? IntNum.Damage(amount) : 0;
             if (b <= 0) { Apply(amount > 0f ? 0f : amount, 0, kind, hitPoint); return default; }
             int a = DrinkAffinity.Bonus(b, player != null ? player.AffinityDrink : null, Family);
-            long t = (long)b + a;
-            var result = new DamageResult { baseDamage = b, bonusDamage = a, total = t > int.MaxValue ? int.MaxValue : (int)t };
+            // 2026-11-12 런 음료 특성(에스프레소 강적 +20%): 상성 A는 위처럼 보너스 전 B로 계산 — 서로 증폭하지 않는다.
+            int d = RunDrinkTrait.DirectBonus(player, this, b);
+            long t = (long)b + a + d;
+            var result = new DamageResult { baseDamage = b, bonusDamage = a, drinkBonus = d, total = t > int.MaxValue ? int.MaxValue : (int)t };
             // 2026-11-11 상성 추가 피해가 실제로 확정된 적중에만 인수 아트 1회(상한·간격 예산 — 넘으면 건너뜀, 판정 불변).
             if (a > 0 && player != null && player.AffinityDrink is DrinkKind ak)
                 MasterVfx.PlayAffinity(ak, hitPoint ?? (Vector2)transform.position + new Vector2(0f, def.radius * 0.3f));
             Apply(result.total, a, kind, hitPoint);
+            // 둔화·보조 적중(보조 적중은 TakeDamage(Effect) — 이 직접 적중 경로를 다시 부르지 않는다).
+            RunDrinkTrait.AfterDirectHit(player, this, b, hitPoint ?? (Vector2)transform.position);
 #if CCT_PLAY_VERIFIER
             QaDirectHit?.Invoke(this, result); // QA 자동 검증 빌드 전용 읽기 관찰(판정·값 불변). 검수/출시 빌드에는 컴파일되지 않는다.
 #endif

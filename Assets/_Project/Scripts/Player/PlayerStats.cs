@@ -121,12 +121,14 @@ namespace CCT
         public float masterDamagePercent;
         public float DamageBonus => Live(damagePercent + jobDamagePercent + masterDamagePercent);
         /// <summary>환불("환불해주세요!") 중엔 0 — 보조 활의 자체 간격 공식(07:118)도 이걸 통해 무효화를 받는다.</summary>
-        public float AttackSpeedBonus => Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed);
+        /// <summary>2026-11-12 마스터 도전 런 음료 특성(차 1번째 우림) 공격 속도. 다른 슬롯과 독립 — 잔 교체 때 이 값만 0/값으로 덮어쓴다.</summary>
+        public float drinkTraitAttackSpeed;
+        public float AttackSpeedBonus => Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed + drinkTraitAttackSpeed);
         public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed + masteryMoveSpeed + coffeeMoveSpeed))) * (IsSlowed ? slowMultiplier : 1f);
         public float MaxHp => baseMaxHp + maxHpFlat;
         public float Damage => baseDamage * (1f + DamageBonus);
         /// <summary>기본 공격 재사용 간격. 69 음료 재사용 시간 감소는 간격에 곱하고(공격 속도와 별개), 기존 최소 간격 0.12초 상한은 그대로.</summary>
-        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval * CooldownScale / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed)));
+        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval * CooldownScale / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed + drinkTraitAttackSpeed)));
         public float Range => baseRange * (1f + Live(rangePercent + coffeeRangePercent));
         public float PickupRadius => basePickupRadius + pickupRadiusFlat;
         public float ExtraDropChance => Mathf.Clamp01(dropChancePercent);

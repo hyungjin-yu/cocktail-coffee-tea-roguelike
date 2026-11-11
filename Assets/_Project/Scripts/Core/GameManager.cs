@@ -1041,9 +1041,28 @@ namespace CCT
             CoffeeBrewRuntime.Detach(Player);
             if (cup.Kind == DrinkKind.Coffee) Player.Coffee = CoffeeBrewRuntime.Attach(Player, cup.recipe.coffeeMethod);
             Player.DrunkDrink = cup.Kind; // 실제로 마신 음료만 상성
+            ApplyRunDrinkTrait(RunDrinkTrait.For(cup)); // 2026-11-12 보조 전투 특성: 이전 특성 통째 교체(누적 없음)
             Player.PreserveHpAfterDrinkSwap(prevHp);
             Master.NotifyChanged();
             return true;
+        }
+
+        /// <summary>2026-11-12 런 음료 보조 특성 적용(마시기 성공 직후 한 번). 차 1번째 공격 속도는 전용 슬롯만 덮어쓴다(다른 스탯 재계산과 독립).</summary>
+        void ApplyRunDrinkTrait(RunDrinkTraitKind kind)
+        {
+            if (Player == null) return;
+            Player.DrinkTrait = kind;
+            Player.DrinkSplashReadyAt = float.MinValue;
+            if (Stats != null) Stats.drinkTraitAttackSpeed = kind == RunDrinkTraitKind.TeaFirst ? RunDrinkTrait.TeaFirstAttackSpeed : 0f;
+        }
+
+        /// <summary>2026-11-12 마신 차의 같은 찻잎으로 이어 우리기(재료 0, 원 잔당 1회, 최대 3번째). 새 잔은 보관함에 들어가고 마셔야 적용.</summary>
+        public DrinkLab.RunCraftResult ContinueRunTea(RunCup drunkCup)
+        {
+            if (Master == null || State == GameState.GameOver || drunkCup == null) return new DrinkLab.RunCraftResult { Message = "지금은 이어 우릴 수 없습니다." };
+            var res = DrinkLab.ContinueTeaSteep(RunId, drunkCup.cupId);
+            Master.NotifyChanged();
+            return res;
         }
 
         /// <summary>보관 잔 박람회 제출(접수 전 수집 구간에서만). 잔은 소비, 유효 가치는 정수 point.</summary>
@@ -1052,6 +1071,7 @@ namespace CCT
             error = null;
             if (Master == null || cup == null || State == GameState.GameOver) { error = "지금은 제출할 수 없습니다."; return false; }
             if (!Master.State.CanSubmit) { error = "박람회 도전을 접수한 뒤에는 이번 박람회에 더 제출할 수 없습니다."; return false; }
+            if (!cup.Submittable) { error = "이어 우린 차(2·3번째, 재료 0)는 박람회에 제출할 수 없습니다."; return false; }
             if (!DrinkLab.UseRunCup(RunId, cup.cupId, RunCup.Submitted, out error)) return false;
             Master.State.TrySubmit(MasterRules.SubmitPoints(cup.Kind, cup.quality));
             Master.NotifyChanged();
