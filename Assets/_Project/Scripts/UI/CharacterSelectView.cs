@@ -154,24 +154,27 @@ namespace CCT
         static readonly Color ModeColor = new Color(0.16f, 0.13f, 0.2f, 1f);
         static readonly Color ModeSelectedColor = new Color(0.36f, 0.26f, 0.16f, 1f);
 
-        /// <summary>모드 줄: 무기 카드 아래·영업 시작 위의 빈 띠(카드 하단 y=280, 영업 시작 상단 y=172 사이)에 두 버튼과 보상 안내 한 줄.</summary>
+        /// <summary>무기 단계 세로 띠(기준 1920×1080). 카드 상단(위 기준)·높이, 모드 줄 아래 기준 y, 모드 안내 아래 기준 y. 시험이 겹침 없음을 단언한다.</summary>
+        public const float WeaponCardTop = 248f, WeaponCardHeight = 510f, ModeRowBottom = 246f, ModeRowHeight = 52f, ModeHintBottom = 218f, StartButtonBottom = 130f, StartButtonHeight = 84f;
+        /// <summary>모드 줄: 무기 카드 아래(하단 y=1080−758=322)·영업 시작 위(상단 y=214) 사이 띠에 두 버튼(246–298)과 보상 안내 한 줄(218–244).</summary>
         void BuildModeRow()
         {
             StandardModeButton = BuildModeOption(RunMode.Standard, -410f, out standardModeBg, out standardModeLabel);
             EndlessModeButton = BuildModeOption(RunMode.Endless, 0f, out endlessModeBg, out endlessModeLabel);
             // 2026-11-10 진상 보스 영업 계열 표 선택(기본 = 기존 직업 테마). 끝없는 모드에서는 자체 순환 표라 비활성.
-            var tableRt = UiFactory.Place("SpawnTable", root, new Vector2(0.5f, 0f), new Vector2(410f, 246f), new Vector2(380f, 52f));
+            var tableRt = UiFactory.Place("SpawnTable", root, new Vector2(0.5f, 0f), new Vector2(410f, ModeRowBottom), new Vector2(380f, ModeRowHeight));
             SpawnTableButton = MakeButton(tableRt, UiFactory.AddImage(tableRt, ModeColor), ToggleSpawnTable);
             tableLabel = UiFactory.AddText(UiFactory.Stretch("Label", tableRt), "", 24, TextAnchor.MiddleCenter, Color.white);
             tableLabel.resizeTextForBestFit = true; tableLabel.resizeTextMinSize = 16; tableLabel.resizeTextMaxSize = 24;
-            modeHint = UiFactory.AddText(UiFactory.Place("ModeHint", root, new Vector2(0.5f, 0f), new Vector2(0f, 192f), new Vector2(1300f, 30f)),
+            modeHint = UiFactory.AddText(UiFactory.Place("ModeHint", root, new Vector2(0.5f, 0f), new Vector2(0f, ModeHintBottom), new Vector2(1300f, 26f)),
                 "", 22, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.6f));
+            modeHint.resizeTextForBestFit = true; modeHint.resizeTextMinSize = 16; modeHint.resizeTextMaxSize = 22;
             SetMode(RunModeSelection.Current);
         }
 
         Button BuildModeOption(RunMode mode, float x, out Image bg, out Text label)
         {
-            var rt = UiFactory.Place("Mode_" + mode, root, new Vector2(0.5f, 0f), new Vector2(x, 246f), new Vector2(380f, 52f));
+            var rt = UiFactory.Place("Mode_" + mode, root, new Vector2(0.5f, 0f), new Vector2(x, ModeRowBottom), new Vector2(380f, ModeRowHeight));
             bg = UiFactory.AddImage(rt, ModeColor);
             var button = MakeButton(rt, bg, () => SetMode(mode));
             label = UiFactory.AddText(UiFactory.Stretch("Label", rt), RunModeSelection.Name(mode), 26, TextAnchor.MiddleCenter, Color.white);
@@ -305,13 +308,16 @@ namespace CCT
             UiFactory.AddCafeBackdrop(root);
             CenterBand.Attach(root); // 2026-10-12 폴드 펼침 등 세로가 긴 화면: 내용 세로 가운데
 
-            var title = UiFactory.Place("Title", root, new Vector2(0.5f, 1f), new Vector2(0f, -110f),
-                new Vector2(1200f, 90f));
+            // 2026-11-11 세로 띠 재배치(기준 1080): 제목 96–176 / 안내 2줄 180–240 / 무기 카드 248–758 / 모드 줄 782–834(아래 기준 246–298) /
+            // 모드 안내 836–862 / 영업 시작 866–950. 이전에는 카드 하단(800)이 모드 줄(782)과, 안내 2번째 줄이 카드 위(220)와, 모드 안내가 영업 시작과 겹쳤다.
+            var title = UiFactory.Place("Title", root, new Vector2(0.5f, 1f), new Vector2(0f, -96f),
+                new Vector2(1200f, 80f));
             UiFactory.AddText(title, $"{job.name} — 무기를 선택하세요", 56, TextAnchor.MiddleCenter, Color.white);
             // 2026-11-10 순환 상성과 기본 스테이지 주요 등장 계열(정규 표). 제목과 카드 사이 빈 띠.
             currentJobForLine = job.job;
-            affinityLine = UiFactory.AddText(UiFactory.Place("AffinityCycle", root, new Vector2(0.5f, 1f), new Vector2(0f, -190f), new Vector2(1600f, 52f)),
+            affinityLine = UiFactory.AddText(UiFactory.Place("AffinityCycle", root, new Vector2(0.5f, 1f), new Vector2(0f, -180f), new Vector2(1600f, 60f)),
                 "", 20, TextAnchor.MiddleCenter, new Color(0.8f, 0.9f, 1f));
+            affinityLine.verticalOverflow = VerticalWrapMode.Truncate; // 띠 밖(카드 위)으로 넘치지 않게 — 넘치면 best-fit이 글자를 줄인다
             affinityLine.resizeTextForBestFit = true; affinityLine.resizeTextMinSize = 14; affinityLine.resizeTextMaxSize = 20;
 
             currentJob = job;
@@ -424,7 +430,7 @@ namespace CCT
         Button BuildWeaponOption(float side, WeaponPreset weapon, out Image bg)
         {
             var rt = UiFactory.Place($"Weapon_{weapon.kind}", root, new Vector2(0.5f, 1f),
-                new Vector2(side * 300f, -220f), new Vector2(520f, 580f));
+                new Vector2(side * 300f, -WeaponCardTop), new Vector2(520f, WeaponCardHeight));
             bg = UiFactory.AddImage(rt, WeaponCardColor);
             UiFactory.SkinCard(bg);
 
@@ -451,7 +457,7 @@ namespace CCT
             UiFactory.SkinHeader(UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -190f),
                 new Vector2(460f, 70f)), weapon.name, 46, TextAnchor.MiddleCenter, Color.white));
             UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 1f), new Vector2(0f, -280f),
-                new Vector2(440f, 260f)), weapon.description, 30, MobilePlatform.IsTouchUI ? TextAnchor.MiddleCenter : TextAnchor.UpperCenter,
+                new Vector2(440f, 200f)), weapon.description, 30, MobilePlatform.IsTouchUI ? TextAnchor.MiddleCenter : TextAnchor.UpperCenter,
                 new Color(0.9f, 0.9f, 0.9f));
 
             return button;

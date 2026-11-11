@@ -60,6 +60,53 @@ namespace CCT.Tests
             Assert.IsTrue(view == null, "선택 후 화면(Canvas)이 파괴되어야 한다");
         }
 
+        static Rect ScreenRect(Transform t)
+        {
+            var c = new Vector3[4];
+            ((RectTransform)t).GetWorldCorners(c);
+            return Rect.MinMaxRect(c[0].x, c[0].y, c[2].x, c[2].y);
+        }
+
+        static Transform Named(CharacterSelectView view, string name)
+        {
+            foreach (var t in view.GetComponentsInChildren<Transform>(true)) if (t.name == name) return t;
+            return null;
+        }
+
+        /// <summary>2026-11-11 무기 단계 세로 띠: 제목·안내·카드·모드 줄·모드 안내·영업 시작이 서로 겹치지 않고, 안내 두 줄이 잘리지 않는다(마스터 도전·일반 둘 다, 두 직업).</summary>
+        [UnityTest]
+        public IEnumerator WeaponStep_Bands_NoOverlap_InfoLineNotClipped([Values(Job.Bartender, Job.TeaSommelier)] Job job, [Values(RunMode.Standard, RunMode.Endless)] RunMode mode)
+        {
+            var view = CharacterSelectView.Show((j, w) => { });
+            yield return null;
+            (job == Job.Bartender ? view.BartenderButton : view.TeaSommelierButton).onClick.Invoke();
+            yield return null;
+            view.SetMode(mode);
+            Canvas.ForceUpdateCanvases();
+            yield return null;
+            var cards = new[] { ScreenRect(view.WeaponButtonA.transform), ScreenRect(view.WeaponButtonB.transform) };
+            var title = ScreenRect(Named(view, "Title"));
+            var info = ScreenRect(Named(view, "AffinityCycle"));
+            var hint = ScreenRect(Named(view, "ModeHint"));
+            var start = ScreenRect(view.StartButton.transform);
+            var modes = new[] { ScreenRect(view.StandardModeButton.transform), ScreenRect(view.EndlessModeButton.transform), ScreenRect(view.SpawnTableButton.transform) };
+            Assert.IsFalse(title.Overlaps(info), "제목-안내");
+            foreach (var c in cards)
+            {
+                Assert.IsFalse(info.Overlaps(c), "안내-카드(안내 2번째 줄이 카드 뒤로 잘리던 결함)");
+                foreach (var m in modes) Assert.IsFalse(c.Overlaps(m), "카드-모드 줄(카드 테두리 겹침 결함)");
+            }
+            foreach (var m in modes) Assert.IsFalse(m.Overlaps(hint), "모드 줄-모드 안내");
+            Assert.IsFalse(hint.Overlaps(start), "모드 안내-영업 시작");
+            var text = Named(view, "AffinityCycle").GetComponent<UnityEngine.UI.Text>();
+            Assert.IsFalse(string.IsNullOrEmpty(text.text));
+            var gen = text.cachedTextGenerator;
+            Assert.GreaterOrEqual(gen.characterCountVisible, text.text.Length - 1, $"안내 전부 보임(lines={gen.lineCount}, font={text.cachedTextGenerator.fontSizeUsedForBestFit})");
+            var hintText = Named(view, "ModeHint").GetComponent<UnityEngine.UI.Text>();
+            Assert.GreaterOrEqual(hintText.cachedTextGenerator.characterCountVisible, hintText.text.Length - 1, "모드 안내 전부 보임");
+            RunModeSelection.Current = RunMode.Standard; // 정적 선택 복원(다음 시험의 기본값 단언 보호)
+        }
+
         [UnityTest]
         public IEnumerator WeaponCard_RendersItsIcon()
         {

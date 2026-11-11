@@ -25,20 +25,30 @@ Steam 등록·업로드·Steamworks 제출은 하지 않았다. 수치 중 **제
 
 Windows PC, 한국어 UI, 오프라인 싱글플레이, 키보드·마우스. 게임패드·업적·클라우드·Steam Deck·영문은 구현 실적으로 표시하지 않음.
 
-## 스크린샷 후보(실제 빌드 게임 화면 — 최종 등록 전 1920×1080 재캡처 필요)
+## 문구 상태 구분
 
-Steam 스크린샷은 1920×1080 이상 권장이므로 아래는 **구도 후보**(대부분 1280×720 실제 빌드 캡처)이며, QA 표시(테스트 seed 등)가 없는 일반 검토 빌드로 같은 장면을 다시 찍어야 한다. QA 자동조작 빌드 화면은 그대로 쓰지 않는다.
+| 구분 | 내용 |
+|---|---|
+| 확정(구현·실제 빌드 확인) | 10웨이브 주기(수집 1~5·박람회 6~8·보상 9~10), 반복/박람회 선택, 런 중 음료 제조·마시기·제출, 최고 품질 커피 제출 가치 +50%(150p — 코디네이터 승인 첫 조정값), 마신 음료 순환 상성, 칵테일 고유 레시피 수에 따른 공격력(같은 레시피 반복 불가산) |
+| 제안(사용자 미확정 — 상점에 숫자 금지) | 제출 1잔당 5%, 칵테일 1종당 +2%, 상성 +20%, 박람회 12명/웨이브, 보상 8명/웨이브, 현수막 3.5초 |
+| 미검증/미정 | 사람 직접 플레이, 실제 창 키보드 조작, 최소 사양, 가격·출시일·개발자/배급사 표시명, 게임패드·업적·클라우드·Deck·영문, 캡슐/헤더 최종 아트 |
 
-| # | 장면 | 후보 파일(Delivery/Reports/steam-master-2026-11-11/…) | 비고 |
+## 스크린샷 후보 (1920×1080, 2026-11-11 실제 빌드 렌더)
+
+출처: QA 빌드(`Builds/SteamMaster-PlayVerify-2026-11-11-mech`, CCT_PLAY_VERIFIER)의 `-cct-playverify-shots` 흐름 — 화면 선택은 실제 버튼, 이동은 입력 대행(**자동 조작, 사람 플레이 아님**). 데이터는 run5 격리 데이터 무수정 복사(이전 자동 실행으로 누적된 재고). 1920×1080은 게임 카메라·UI를 그 해상도의 렌더 텍스처에 다시 그린 것(업스케일 아님, 창은 1280×720). 화면에 QA 표시·디버그 오버레이·개인정보 없음. 파일: `Delivery/SteamScreenshotCandidates-2026-11-11/`(SHA256SUMS.txt).
+
+| # | 파일 | 장면 | 한계 |
 |---|---|---|---|
-| 1 | 타이틀 | `review-session6/final-build-boot-window.png` | 최종 검토 빌드 실제 창(창 테두리 제외 재캡처) |
-| 2 | 직업 선택 | `review-session6/real-window-os-input/01_click_start.png` | 실제 창, OS 클릭 |
-| 3 | 마스터 도전 1웨이브 전투 | `review-session6/real-window-os-input/06_click_tutorial_start.png` | HUD·바 무대 |
-| 4 | 음료 만들기 창(최고 품질 효과) | `realbuild-mech-run4/shots/m_craft_4_espresso_best.png` | QA 빌드 — 재캡처 필요 |
-| 5 | 박람회 현수막 설치 | `realbuild-master-run4-final/transition/t_018.png` 전후 | NPC 2명·카운터 사이 |
-| 6 | 상성 적중(원두/찻잎/거품) | `realbuild-mech-run4/affinity-key-crops.png`, `realbuild-aff-tea-r2/shots/m_aff_full_1.png` | 효과가 작아 확대 구도 필요 |
-| 7 | 박람회 진상 손님 다수전 | `realbuild-mech-run2/shots/m_10_fair_enemies.png` | QA 빌드 — 재캡처 필요 |
-| 8 | 결과 화면 | `review-session6/real-window-os-input/08_click_brew_button.png` | "쓰러졌습니다" — 성공 결과 화면이 더 적합 |
+| 1 | 01_s01_title | 타이틀 | 좌하단 버전 표기 "v1.1 MVP 음료 제조 체험판" — 상점용이면 표기 정리 필요(미수정) |
+| 2 | 02_s02_job_select | 직업 선택 | — |
+| 3 | 03_s04_weapon_bartender_master | 무기 선택 + 마스터 도전 선택(이번 수정 후) | — |
+| 4 | 04_s05_combat_wave1 | 1웨이브 전투 | 적이 적어 밋밋함 |
+| 5 | 05_s06_brew_quality | 음료 만들기 창 + 최고 품질 효과 | 레시피 다수 "재료 부족" 회색(격리 재고 상태) |
+| 6 | 06_s07_await_choice | 반복/박람회 선택 | 캐릭터가 화면 하단 끝 |
+| 7 | 07_s08_fair_banner | NPC 박람회 현수막 설치(글자 표시 후) | — |
+| 8 | 08_s09_fair_crowd | 박람회 진상 손님 | 월드 현수막 일부가 좌측 HUD에 가림(알려진 HUD-월드 겹침) |
+
+권장 재촬영: 전투·박람회는 사람이 조작한 판에서 적·효과가 많은 순간을 골라 다시 찍는 것이 좋다.
 
 ## 남은 확인
 

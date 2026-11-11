@@ -349,3 +349,39 @@ run2(제조·제출 경로를 모두 탄 판) 실측: 수집1~5 도달(실제 12
 - 패키지 `Delivery/CocktailCoffeeTea_SteamMasterReview_2026-11-11.zip`(209 항목, BurstDebugInformation_DoNotShip 제외, README_실행안내·THIRD_PARTY_NOTICES 포함, zip 무결성 OK), sha256 **86e91edbda57828784b427e0901aa6d601b6a37b62123298d3e88cae54653abe**(`.zip.sha256`). 공개 배포·Steam 업로드 없음.
 - 상점 보강 초안: `Delivery/Reports/steam-store-master-draft-2026-11-11.md`(스크린샷 후보는 720p 구도 후보 — 1920×1080 재캡처 필요).
 - 저장 격리: 사용자 폴더 메타데이터 세션 전후 동일(TestResults.xml만 — Unity 시험 실행기 사본). 게이트: Unity 3회·플레이어 4회 모두 ≥4096MB, 동시 1개.
+
+## 12. 세션 7 (task_80f191cf89db, 19:05~19:30) — 무기 선택 화면 겹침/잘림 수정, Steam 1920×1080 후보, r2 패키지
+
+root 확인: 이전 ZIP 해시 86e91edb… 일치(이번 세션에도 `sha256sum -c` OK, 이전 ZIP 보존).
+
+### 12.1 결함과 수정 (`Scripts/UI/CharacterSelectView.cs` 무기 단계만)
+
+| 결함(11.3 실제 창 발견) | 원인(기준 1920×1080) | 수정 |
+|---|---|---|
+| 모드 줄이 무기 카드 아래 테두리와 겹침 | 카드 위 220+높이 580 → 하단 800, 모드 줄 782–834 | 카드 위 248·높이 510(하단 758), 설명 칸 260→200(내용 최대 4줄 ≈144) |
+| 상단 안내 2번째 줄이 카드 뒤로 잘림 | 안내 190–242(2줄)과 카드 위 220 겹침 | 제목 96–176, 안내 180–240(Truncate+best-fit 14–20), 카드 248부터 |
+| 모드 안내가 영업 시작 위쪽과 겹침 | 안내 아래 192–222, 영업 시작 130–214 | 안내 218–244(best-fit 16–22), 모드 줄 246–298 그대로 |
+
+상수 `WeaponCardTop/WeaponCardHeight/ModeRowBottom/ModeRowHeight/ModeHintBottom` 공개. 직업 단계·다른 화면 미변경. 승인 아트 무수정.
+
+### 12.2 검증
+
+| 검사 | 결과 | 증거 |
+|---|---|---|
+| PlayMode `CharacterSelectTests`+`EndlessModePlayTests` | 1차 12/13(신규 시험이 정적 RunModeSelection을 Endless로 남겨 기존 기본값 시험 실패 → 시험 끝에 복원) → **2차 13/13 PASS**. 신규 `WeaponStep_Bands_NoOverlap_InfoLineNotClipped` 2직업×2모드: 제목·안내·카드·모드 줄·모드 안내·영업 시작 사각형 겹침 0, 안내·모드 안내 글자 전부 보임 | `playmode-weaponui-1/2.xml` |
+| 실제 720p 창 화면(QA 빌드, 게임 ScreenCapture) | 바텐더/티 소믈리에 × 진상 보스/마스터 4장 모두 겹침·잘림 없음 | `realbuild-shots-run2/shots/s03_*_720.png`, `s04_*_720.png` |
+| 1920×1080 렌더(같은 실행) | 같은 4장 PASS | `realbuild-shots-run2/shots/s03_*_1080.png`, `s04_*_1080.png` |
+| **검수 빌드 실제 창**(r2, 빈 격리 폴더, 전경 확인 후 OS 마우스 클릭) | 타이틀→바텐더→마스터 도전: 수정 배치 표시, 창 닫기로 정상 종료, 예외 0 | `review-session7-final2-real-window/01..05_*.png`, `os-input.log` |
+
+run1(`realbuild-shots-run1`)은 메뉴 1080 렌더가 검정(QA 임시 카메라 cullingMask 0 — QA 도구 결함) → 수정 후 run2. 게임 화면 1080은 run1도 정상.
+
+### 12.3 Steam 스크린샷 후보
+
+8장 `Delivery/SteamScreenshotCandidates-2026-11-11/`(1920×1080, SHA256SUMS.txt). 출처·한계·확정/제안/미검증 구분은 `Delivery/Reports/steam-store-master-draft-2026-11-11.md`. QA 빌드 자동 조작 화면이며 사람 플레이 화면 아님. 가격·표시명·사양 미확정 유지.
+
+### 12.4 빌드 / 패키지
+
+- 새 검토 빌드 `Builds/SteamMaster-Review-2026-11-11-final2/`(이전 `-final`·`-vfx`·원 검수·공모전 빌드 보존). 소스 2,805 파일 빌드 전·후 **b6328b567f77e590c15db7e6b4dcc6e3e1fd207c9805f18f37d1ab6db9c63079** 동일(직전 대비 CharacterSelectView.cs + QA 전용 PlayVerifier.cs/PlayVerifierMechanics.cs). ProjectSettings 불변. 산출물 208 파일 목록 `830d481e…2e39`, CCT.Runtime.dll `2a201b8c…8719` — `QaDirectHit/MechanicsFlow/ShotsFlow/RtShot/PlayVerifier` 0건.
+- 패키지 `Delivery/CocktailCoffeeTea_SteamMasterReview_2026-11-11_r2.zip`(209 항목, DoNotShip 제외, 무결성 OK) sha256 **28ce6e0b2f15cabc4f8d87684272b9022e77ded39cfcf4101c562d40f9769c03**. 이전 `…_2026-11-11.zip`(86e91edb…) 보존·검증 OK.
+- 게이트: Unity 4회·플레이어 3회 ≥4096MB, 동시 1개. 사용자 저장 메타 불변(아래 확인).
+- **미완료**: 사람 직접 플레이(자동 조작으로 대체하지 않음), 실제 창 키보드 조작, 공개 배포·Steam 제출(하지 않음).

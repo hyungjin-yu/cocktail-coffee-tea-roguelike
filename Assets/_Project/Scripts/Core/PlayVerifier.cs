@@ -185,6 +185,7 @@ namespace CCT
             yield return Human(2f);
             var title = FindFirstObjectByType<TitleView>();
             Event($"title open={(title != null && title.IsOpen)}");
+            if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-shots")) { yield return ShotsFlow(); yield return Finish(); yield break; } // 2026-11-11 무기 화면 수정 확인·Steam 스크린샷 후보(QA)
             if (title == null || !ClickNamed(title, "StartButton")) { Event("FAIL title start button"); yield return Finish(); yield break; }
             if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-master-mechanics")) { yield return MechanicsFlow(); yield return Finish(); yield break; } // 2026-11-11 미검증 3항목 QA 시나리오(격리 fixture, 자연 플레이 아님)
             if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-master")) { yield return MasterFlow(); yield return Finish(); yield break; } // 2026-11-11 마스터 도전 1주기 검증(입력 대행 동일 원칙)

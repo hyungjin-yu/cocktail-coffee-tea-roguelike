@@ -159,6 +159,110 @@ namespace CCT
             yield return EndMaster(g);
         }
 
+        /// <summary>QA 전용 진짜 해상도 렌더 캡처: 메인 카메라(메뉴엔 임시 카메라)와 오버레이 캔버스를 w×h 렌더 텍스처에 그린다(창 크기·전경과 무관, 업스케일 아님).</summary>
+        IEnumerator RtShot(string name, int w, int h)
+        {
+            var cam = Camera.main;
+            GameObject tmp = null;
+            if (cam == null) { tmp = new GameObject("QaShotCamera"); cam = tmp.AddComponent<Camera>(); cam.orthographic = true; cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black; cam.cullingMask = ~0; }
+            var rt = new RenderTexture(w, h, 24);
+            var canvases = FindObjectsByType<Canvas>(FindObjectsSortMode.None).Where(c => c.isRootCanvas && c.renderMode == RenderMode.ScreenSpaceOverlay).ToList();
+            var orders = canvases.Select(c => c.sortingOrder).ToList();
+            foreach (var c in canvases) { c.renderMode = RenderMode.ScreenSpaceCamera; c.worldCamera = cam; c.planeDistance = 1f; c.sortingOrder += 1000; }
+            var prev = cam.targetTexture;
+            cam.targetTexture = rt;
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+            cam.Render();
+            var act = RenderTexture.active;
+            RenderTexture.active = rt;
+            var tex = new Texture2D(w, h, TextureFormat.RGB24, false);
+            tex.ReadPixels(new Rect(0, 0, w, h), 0, 0);
+            tex.Apply();
+            RenderTexture.active = act;
+            cam.targetTexture = prev;
+            for (int i = 0; i < canvases.Count; i++) if (canvases[i] != null) { canvases[i].renderMode = RenderMode.ScreenSpaceOverlay; canvases[i].worldCamera = null; canvases[i].sortingOrder = orders[i]; }
+            File.WriteAllBytes(Path.Combine(shotDir, name + ".png"), tex.EncodeToPNG());
+            Destroy(tex); rt.Release(); Destroy(rt);
+            if (tmp != null) Destroy(tmp);
+            Event($"rtshot {name} {w}x{h}");
+        }
+
+        /// <summary>창(1280×720) 실제 화면 캡처 + 1920×1080 렌더 캡처 한 쌍.</summary>
+        IEnumerator PairShot(string name)
+        {
+            MShot(name + "_720");
+            yield return null;
+            yield return null;
+            yield return RtShot(name + "_1080", 1920, 1080);
+        }
+
+        /// <summary>2026-11-11 세션 7: 무기 선택 화면 수정 확인 + Steam 스크린샷 후보(-cct-playverify-shots). 화면 선택은 실제 버튼, 전투 이동은 입력 대행. 값 쓰기 없음.</summary>
+        IEnumerator ShotsFlow()
+        {
+            Application.runInBackground = true;
+            shotDir = Path.Combine(outDir, "shots");
+            Directory.CreateDirectory(shotDir);
+            Event("SHOTS QA SCENARIO (automated input, not human play): real buttons for screens, input agent for movement; no stat/time/spawn writes");
+            yield return Human(0.8f);
+            yield return PairShot("s01_title");
+            var title = FindFirstObjectByType<TitleView>();
+            if (title == null || !ClickNamed(title, "StartButton")) { Event("FAIL title start button"); yield break; }
+            var select = FindFirstObjectByType<CharacterSelectView>();
+            float w0 = Time.realtimeSinceStartup + 5f;
+            while (select == null && Time.realtimeSinceStartup < w0) { yield return null; select = FindFirstObjectByType<CharacterSelectView>(); }
+            if (select == null) { Event("FAIL no character select"); yield break; }
+            yield return Human(0.8f);
+            yield return PairShot("s02_job_select");
+            foreach (var job in new[] { "tea", "bartender" })
+            {
+                (job == "tea" ? select.TeaSommelierButton : select.BartenderButton).onClick.Invoke();
+                yield return Human(0.8f);
+                select.StandardModeButton.onClick.Invoke();
+                yield return Human(0.5f);
+                yield return PairShot($"s03_weapon_{job}_standard");
+                select.EndlessModeButton.onClick.Invoke();
+                yield return Human(0.5f);
+                yield return PairShot($"s04_weapon_{job}_master");
+                if (job == "tea") { select.WeaponBackButton.onClick.Invoke(); yield return Human(0.8f); }
+            }
+            select.WeaponButtonA.onClick.Invoke();
+            yield return Human(0.5f);
+            select.StartButton.onClick.Invoke();
+            Event("clicked 바텐더 → 마스터 도전 → 무기 A → 영업 시작");
+            yield return Human(0.8f);
+            var tutorial = FindFirstObjectByType<FirstRunTutorialView>();
+            if (tutorial != null && tutorial.IsOpen) { ClickNamed(tutorial, "DismissButton"); yield return Human(0.5f); }
+            var g = GameManager.Instance;
+            if (g == null || g.Master == null) { Event("FAIL master run not started"); yield break; }
+            BindGame(g);
+            yield return new WaitForSecondsRealtime(9f);
+            yield return PairShot("s05_combat_wave1");
+            if (Buttons(g.MasterHud, "BrewButton").FirstOrDefault() is Button brew) brew.onClick.Invoke();
+            yield return Human(0.6f);
+            var best = Buttons(g.MasterHud, "Craft").FirstOrDefault(x => RowText(x).Contains("최고"));
+            if (best != null) { best.onClick.Invoke(); Event($"craft \"{RowText(best)}\" → {g.MasterHud.LastMessage}"); yield return new WaitForSecondsRealtime(0.2f); yield return RtShot("s06_brew_quality_1080", 1920, 1080); MShot("s06_brew_quality_720"); }
+            yield return Human(0.6f);
+            var drink = Buttons(g.MasterHud, "Drink").FirstOrDefault();
+            if (drink != null) { drink.onClick.Invoke(); yield return Human(0.5f); }
+            if (Buttons(g.MasterHud, "Close").FirstOrDefault() is Button close) close.onClick.Invoke();
+            yield return Human(0.8f);
+            yield return WaitPhase(g, () => g.Master.State.Phase == MasterPhase.AwaitChoice, 600f, "collect-1..5");
+            if (g.Master.State.Phase == MasterPhase.AwaitChoice)
+            {
+                yield return PairShot("s07_await_choice");
+                if (Buttons(g.MasterHud, "Fair").FirstOrDefault() is Button fair) fair.onClick.Invoke();
+                yield return WaitPhase(g, () => g.Master.State.Phase == MasterPhase.Transition, 300f, "clearing");
+                float t0 = Time.realtimeSinceStartup;
+                while (g.Master.State.Phase == MasterPhase.Transition && Time.realtimeSinceStartup - t0 < 2.7f) yield return null; // 글자(07 프레임, ≈2.1초) 이후·전환(3.5초) 전
+                if (g.Master.State.Phase == MasterPhase.Transition) yield return RtShot("s08_fair_banner_1080", 1920, 1080);
+                yield return WaitPhase(g, () => g.Master.State.Segment == MasterSegment.Fair && Enemy.Active.Count >= 6, 120f, "fair-crowd");
+                yield return PairShot("s09_fair_crowd");
+            }
+            yield return EndMaster(g);
+            yield return PairShot("s10_result");
+        }
+
         IEnumerator MechanicsFlow()
         {
             Application.runInBackground = true;
