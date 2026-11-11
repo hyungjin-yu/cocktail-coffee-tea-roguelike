@@ -330,10 +330,9 @@ namespace CCT
         Vector2 riggerStand, porterStand, riggerOff, porterOff;
         public bool UsingArt { get; private set; }
 
-        /// <summary>현수막 상단 = 카메라 위 가장자리에서 이만큼 아래(월드). 2026-11-11 오프스크린 검수: 1.15·배율1은 HUD 레벨 막대(720p y≈20–80px) 아래에 깔림 →
-        /// 1.45(레벨 막대 바로 아래)·배율 0.8(폭 8월드 = 화면 중앙 37.5%, 좌측 정보 패널·우측 음료 버튼 열과 겹치지 않음).</summary>
-        public const float BannerTopFromCamTop = 1.45f;
-        public const float BannerScale = 0.8f;
+        /// <summary>현수막 배율. 2026-11-11 사용자 결함 수정: 카운터 사이 빈 칸(폭 8월드, 카운터 4월드 간격 12) 안에 양쪽 0.5월드 여유로 들어가는 0.7(폭 7·높이 1.05월드).
+        /// 위쪽 벽 램프(바닥 ≈ 월드 4.3) 아래·바닥선(2.6) 위에 걸린다. 이전 화면 고정(카메라 위 1.45·배율 0.8) 방식은 폐기.</summary>
+        public const float BannerScale = 0.7f;
         /// <summary>계약 일정(ms, 3500 기준).</summary>
         public const float ContractMs = MasterArt.TotalMs;
         /// <summary>현수막 글자 표시 시작 = 배너 시작 + 7프레임(125ms×7).</summary>
@@ -341,22 +340,45 @@ namespace CCT
 
         public static FairBannerShow Create(GameManager game, float duration)
         {
-            var cam = Camera.main;
             var root = new GameObject("FairBanner");
-            if (game != null) root.transform.SetParent(game.transform, false);
+            if (game != null) root.transform.SetParent(game.transform, false); // 월드 고정(카메라·플레이어 자식 아님)
             var s = root.AddComponent<FairBannerShow>();
             s.duration = Mathf.Max(0.1f, duration);
-            Vector2 camPos = cam != null ? (Vector2)cam.transform.position : Vector2.zero;
-            float halfH = cam != null && cam.orthographic ? cam.orthographicSize : 6f;
-            // 시작/퇴장 위치는 최소 16:9 폭 기준 화면 밖(좁은 창·배치 화면 비율에서 화면 가장자리에 갑자기 나타나지 않게 — 2026-11-11 연속 프레임 검수).
-            float halfW = halfH * (cam != null ? Mathf.Max(16f / 9f, cam.aspect) : 16f / 9f);
-            Vector2 bannerTop = camPos + new Vector2(0f, halfH - BannerTopFromCamTop);
-            s.Build(bannerTop, camPos.x, halfW);
-            // 카메라는 가로로 플레이어를 따라간다(Y 고정) — 박람회 동안 현수막이 화면 위 벽 영역에 남도록 카메라에 붙인다(월드 위치 유지).
-            if (cam != null) root.transform.SetParent(cam.transform, true);
+            // 2026-11-11 사용자 결함 수정: 현수막은 화면이 아니라 무대 벽의 카운터와 카운터 사이 빈 칸에 고정 설치한다.
+            // 설치 위치 = 카메라(=플레이어 추적) 기준 HUD에 가리지 않는 가장 가까운 빈 칸 중앙(ChooseGap). 높이 = NPC 발이 바닥선(벽 아래 끝)에 닿고 손이 핀에 닿는 높이.
+            var cam = Camera.main;
+            float refX = game != null && game.Player != null ? game.Player.Position.x : cam != null ? cam.transform.position.x : 0f;
+            float half = BannerHalfWidth;
+            float gapX = ChooseGap(cam != null ? cam.transform.position.x : refX, -BattleArena.HalfWidth + half, BattleArena.HalfWidth - half);
+            var body = ArtLibrary.Get("bartender");
+            float scale = body != null ? body.BodyVisualScale : 1f;
+            float topY = CafeBackground.WallBottomWorldY + (MasterArt.NpcGroundYPx - MasterArt.RiggerGripPx.y) / 128f * scale + MasterArt.PinLeftPx.y / 128f * BannerScale;
+            s.InstalledTopWorld = new Vector2(gapX, topY);
+            s.Build(s.InstalledTopWorld, gapX, 0f);
             s.Step(0f);
             return s;
         }
+
+        /// <summary>설치 칸 선택(설치 순간 한 번 — 이후 월드 고정). 2026-11-11 실제 빌드 검수: 플레이어 가장 가까운 칸이 화면 왼쪽으로 치우치면 현수막·rigger가
+        /// 좌측 HUD 정보 패널(720p x&lt;405px ≈ 카메라 기준 −3.9월드, 같은 높이) 밑에 깔렸다. 카메라 기준 오프셋 off가 [MinCamOffset, MaxCamOffset]
+        /// (현수막+두 NPC가 좌측 패널 오른쪽·화면 오른쪽 끝 안)에 드는 칸을 우선하고(가까운 순), 없으면 벗어난 정도가 가장 작은 칸. 16:9 기준 값.</summary>
+        public const float MinCamOffset = 0.34f, MaxCamOffset = 6.4f;
+        public static float ChooseGap(float camX, float minX, float maxX)
+        {
+            float best = CafeBackground.NearestCounterGapX(camX, minX, maxX), bestScore = float.MaxValue;
+            for (float g = CafeBackground.FirstGapX; g <= maxX + 0.01f; g += CafeBackground.CounterSpacing)
+            {
+                if (g < minX - 0.01f) continue;
+                float off = g - camX;
+                float violation = Mathf.Max(0f, MinCamOffset - off) + Mathf.Max(0f, off - MaxCamOffset);
+                float score = violation * 100f + Mathf.Abs(off);
+                if (score < bestScore) { bestScore = score; best = g; }
+            }
+            return best;
+        }
+        /// <summary>현수막 반폭(월드) = 1280px/128 × 배율 / 2.</summary>
+        public const float BannerHalfWidth = 1280f / 128f * BannerScale * 0.5f;
+        public Vector2 InstalledTopWorld { get; private set; }
 
         void Build(Vector2 bannerTop, float camX, float halfW)
         {

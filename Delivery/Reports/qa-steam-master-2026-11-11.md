@@ -187,3 +187,66 @@ $G -batchmode -quit -projectPath $P -executeMethod CCT.Editor.BuildRelease.Windo
 - 검수 빌드 실제 창 실행·마스터 도전 1주기 실플레이·화면 영상(사용자/GUI 슬롯).
 - 아트 검수: 펼침 줄(런타임 보조), 근거리 페이드 등장/퇴장, 품질 VFX 크기, 갈색 적 위 원두 가독성.
 - 스킨 저장 경로가 `-cct-data-dir`를 따르는지 미확인.
+
+## 9. 세션 4 (task_5415dfdd3cb7, 15:00~15:55) — 세이브 격리 확인, 실제 Windows 빌드 1주기, 사용자 현수막 결함 수정
+
+### 9.1 저장 경로 격리 (정적 + 실측)
+
+| 저장물 | 경로 결정 | `-cct-data-dir` 따름 |
+|---|---|---|
+| save.json(+guest) | `PermanentProgress.PrimaryPath`/`ActiveSavePath` ← `SetPathForTests(dataDir/save.json)` | 예 |
+| settings.json | `SettingsService.SetForTests(dataDir/settings.json, 메모리 구형 저장소)` — PlayerPrefs는 읽기 전용 이전값, 데이터 폴더면 메모리 대체 | 예 |
+| drinks.json(v5, 런 잔) | `DrinkLab.ActivePath = PathForSave(ActiveSavePath)` | 예 |
+| 최근 기록 | `RunHistory.ActivePath = PathForSave(ActiveSavePath)` | 예 |
+| **스킨** | `WeaponSkins.cs:178` `Path.GetDirectoryName(ActiveSavePath)` | 예 |
+| 상점 상태 | `CommerceState.cs:121` 같은 방식, `SkinCommerceRunner.Start()`(다음 프레임, Apply 이후) | 예 |
+| 순서 | Boot 씬 스크립트 0개, BeforeSceneLoad 훅 없음, `GameBootstrap.AutoStart` 첫 줄이 `LaunchOptions.Apply()` | — |
+| 캡처 도구 | `-cct-*-capture` + `-cct-data-dir` 둘 다 있을 때만 | — |
+| Unity Player.log | 엔진이 persistentDataPath에 씀 → **`-logFile <격리폴더>`로 우회** | 인자로 처리 |
+
+실측(파일 이름·크기·수정시각 메타데이터만, 내용 미열람): 실제 사용자 폴더 `%USERPROFILE%\AppData\LocalLow\DefaultCompany\CocktailCoffeeTea`의 save/settings/drinks(+.bak)·Player.log·Player-prev.log는 실행 전후 **동일**(`usersave-meta-before.txt` / `usersave-meta-after-run1.txt` / `usersave-meta-after-all.txt`). 바뀐 것: `Unity\…\Analytics·Insights·ShaderVariantAnalytics`(엔진 원격측정 캐시, 플레이어 실행마다 갱신 — 게임 저장 아님)와 `TestResults.xml`(**Unity 에디터 시험 실행기가 -testResults와 별도로 persistentDataPath에 사본을 씀** — 이전 세션 시험부터 있던 파일, 게임 저장 아님). 결론: 게임 저장 격리 **PASS**, 엔진 부산물은 이 인자로 격리 불가(보고).
+
+### 9.2 실제 창 직접 조작 — BLOCKED → 자동 조작 대체
+
+검수 빌드(PID 25424, HWND 1051610, 격리 데이터 run1 확인)를 띄웠으나 `orca computer --restore-window`가 전경 전환을 못 함(Windows 전경 잠금; 전경은 Orca pid 39092 유지, capabilities `windows.focus=false`). 전경 강탈(전역 키 주입 등)은 금지라 직접 GUI 조작 **BLOCKED**, 입력 0회. 게임은 정상 종료(내 프로세스). 동시에 시작한 ffmpeg 창 녹화는 종료 중 손상되어 삭제(가려진 창이라 Orca 화면이 찍혔을 것).
+대체: QA 전용 `PlayVerifier`(CCT_PLAY_VERIFIER 심볼 빌드에만 컴파일)에 `-cct-playverify-master` 흐름 추가(`Scripts/Core/PlayVerifierMaster.cs`). **자동 조작**: 이동은 키보드와 같은 8방향 입력값(AutoInputOverride), 화면 선택은 실제 버튼 onClick(사람 간격 ≥0.45초). HP·적·생성·재료·시간·무적·보상 값은 쓰지 않음. **시간 단축 없음(실제 시간)**, 체력 보정·치트 없음. 캡처는 게임 자신의 화면(ScreenCapture)이라 다른 창 포커스·OS 입력과 무관. 소리: 격리 settings 볼륨 0.
+
+### 9.3 실제 Windows 빌드 마스터 도전 1주기 (자동 조작, 실제 시간)
+
+| 실행 | 빌드 | 결과 |
+|---|---|---|
+| realbuild-master-run1 | 수정 전 | FAIL(시험 흐름 결함: 모드 버튼은 무기 단계에서 생김) → 흐름 수정 |
+| realbuild-master-run2 | 수정 전(화면 고정 현수막) | 1주기 완료, 오류 0·예외 0 |
+| realbuild-master-run3-userfix | 월드 고정(플레이어 최근접 칸) | 1주기 완료, 오류 0 — 좌측 HUD 가림 발견 |
+| **realbuild-master-run4-final** | 최종(HUD 회피 칸 선택) | **1주기 완료, 오류 0·예외 0** |
+
+run2(제조·제출 경로를 모두 탄 판) 실측: 수집1~5 도달(실제 125초) → 반복 클릭(웨이브1·주기1·반복1, 난이도 그대로) → 다시 1~5 → 음료 만들기(전투 정지 timeScale 0) → 커피 2잔 제조(좋음62 quality_excellent, 최고100 quality_master) → 최고잔 마시기(활성 음료 교체, DrunkDrink=Coffee) → 좋음잔 제출(1잔·100p·예상 약화 5%, 컵 표시) → 닫기 → 박람회 도전(스냅샷 5%) → 남은 적 0 → **현수막 정지: 측정 3.27초(측정 시작이 전환 시작보다 늦음, 설정 3.5) 동안 HP 변화 0, 전투 시간 +0.07초(전환 종료 뒤 대기 프레임분)** → 박람회 3웨이브(부제 "박람회 시작! 진상 손님 12명 막기 · 약화 5%") → 성공 보상 1회 87종·endless 장부, "박람회 성공!" 표시 → 보상 2웨이브 **HP 180→최저 180, 무해 개체만(비무해 0프레임)** → 주기2 웨이브11, 전달 약화 5% → 포기 → 결과 화면. run4(최종)는 제조 가능 커피 1잔뿐이라 마시기만(제출 0 → 전달 0%) — 나머지 단계 동일 PASS.
+미검증: 칵테일 제조·종류 공격 보너스(실제 판에서 제조 가능한 칵테일 없음), 최고품질 **제출** +50%(최고잔은 마심), 실제 판 상성 적중 효과(1초 간격 캡처에 안 잡힘).
+증거: 각 폴더 `events.log`, `shots/`, `transition/`(31장, 100ms), `transition-realtime-10fps.mp4`(3.1초), `master-cycle-periodic-1fps-x4.mp4`(1초 간격 프레임 4배속, run2 97초·run4 85초 — 연속 녹화 아님), `transition-key-crops.png`.
+
+### 9.4 사용자 결함: 현수막이 화면을 따라다니며 테이블 뒤에 깔리고 글자가 겹침
+
+- 원인: 현수막이 카메라 자식·카메라 위 기준 높이(이전 D1 수정)라 무대 바 카운터(같은 정렬 BackgroundProp) 뒤로 천이 가려지고 글자만 카운터 위에 떠 갈색-갈색으로 겹쳤다(사용자 스크린샷).
+- 실제 무대 측정: 카운터 256×128@64 = 4×2월드, x = −30+12k, 월드 y 2.4–4.4. 칸(카운터 사이) 폭 8, 중앙 x = −24+12k. 칸 중앙 벽 램프 바닥 ≈ y 4.3–4.4. 바닥선(벽 아래 끝) y 2.6.
+- 수정: 현수막 **월드 고정**(GameManager 자식, 카메라·플레이어 자식 아님). 설치 순간 칸 하나를 골라 그 칸 중앙에 배율 0.7(7×1.05월드, 양쪽 카운터와 0.5 여유, 램프 아래·바닥선 위). NPC 발은 바닥선, 손은 핀. 글자 "박람회 n/3"는 천 중앙(짙은 갈색, 천보다 위 정렬). 칸 선택은 카메라 기준 좌측 HUD 정보 패널·화면 끝을 피하는 가장 가까운 칸(`ChooseGap`), 없으면 벗어남이 가장 작은 칸. 카메라 위 오프셋 방식 폐기.
+- 검증: EditMode 14/14(칸 계산·HUD 회피 선택 단언), PlayMode 12/12(신규 `BannerShow_WorldFixedInCounterGap_NoPropOverlap_CameraMoveInvariant` 바텐더·티 소믈리에 두 무대: 실제 Counter·Lamp 스프라이트와 현수막·글자 경계 겹침 0, 글자 ⊂ 천, 카메라·플레이어 자식 아님, 플레이어 +6·카메라 +3 이동 후 월드 좌표 불변). 오프스크린 `frames/banner_settled_hud_720/1080.png`, `banner_after_player_move_720/1080.png`(이동 후 같은 벽 칸에 남음), `install-zoom-userfix.png`. 실제 빌드 run4 `transition-key-crops.png`에서 카운터 사이·HUD 밖 확인.
+- 남은 점: 설치 후 플레이어가 크게 움직이면 화면 고정 HUD 패널이 월드 현수막 일부를 덮을 수 있음(HUD-월드 일반 겹침, 스프라이트 겹침 아님). NPC는 설치 중 카운터 끝 앞을 약 0.25월드 지나감(바닥 위 인물이 가구 앞, 1.5초). 차 무대는 경계 시험으로만 확인(실제 빌드 실행은 바텐더 무대).
+
+### 9.5 아트 실제 검수 (실제 빌드 프레임)
+
+| 항목 | 판정 |
+|---|---|
+| 펼침 줄 | 보임(가늘다) — 손-천 끝 연결 PASS, 굵기는 아트 판단 |
+| 근거리 페이드 등장/퇴장 | 실제 3.1초 영상에서 자연스러움 — 아트/사용자 최종 판단 |
+| 품질 VFX(제조창 슬롯) | 등급별 형태 구분 보임, 720p에서 약 45px로 작음 — 확대 검토 권장(미수정) |
+| 제출 컵 | 표시 PASS |
+| 커피(원두) 상성 효과 | 실제 빌드 미포착(NOT RUN), 오프스크린 기존 판정 유지(작고 대비 낮음) |
+| "박람회 n/3" 글자 | 수정 후 천 위 짙은 갈색·중앙 PASS |
+
+### 9.6 빌드 / 해시 (최종)
+
+- 검수 빌드 `Builds/SteamMaster-Review-2026-11-11/` 재빌드(build-review-3 성공). 이전 화면 고정판은 `Builds/SteamMaster-Review-2026-11-11-prefix-screenfixed/`로 보존, 중간판(build-review-2)은 삭제(목록 해시 `build-review2-files.sha256`만 보존).
+- QA 자동 조작 빌드 `Builds/SteamMaster-PlayVerify-2026-11-11/`(CCT_PLAY_VERIFIER, 배포 금지).
+- 빌드 입력 소스 2,803 파일 목록 sha256 **fbbb3d11a48a5f82106a585aee9126f36d9fa6bcc10f7717728cb6e1eb2adb06** — 빌드 전·후 동일(`source-manifest-build3-before/after.sha256`). ProjectSettings.asset 불변 `5900a053…`.
+- 검수 빌드 산출물 208 파일 목록 sha256 `c9935d0c933ab091c7b32fb64faa9252e0a193ea7654cdb03f7b755980273616`(`build-review3-files.sha256`), exe `3070e580…d653`, CCT.Runtime.dll `7a896cbd…c84d`.
+- 메모리 게이트: 이번 세션 Unity 시작 8회 모두 ≥4096MB 통과(로그 GATE 줄), 플레이어 실행 5회 모두 직전 ≥4096MB·동시 1개.

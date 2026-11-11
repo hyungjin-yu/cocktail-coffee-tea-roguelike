@@ -13,6 +13,21 @@ namespace CCT
         public const float Width = 72f;
         /// <summary>아트 사용 시 스냅 단위: 벽 8 유닛(1024px/128)·바닥 4 유닛·장식 배치 간격 24 유닛의 공약수 배수.</summary>
         public const float ArtSnapStep = 24f;
+        /// <summary>2026-11-11 벽 장식 배치 표(아래 Create 루프와 같은 값): 카운터는 x = FirstCounterX + 12k, 램프는 그 +6(카운터 사이 빈 칸 중앙).
+        /// 루트는 월드 (0, LaneCenterY) 고정 — 벽 아래 끝(바닥선) 월드 y = DepthMax + 0.6.</summary>
+        public const float CounterSpacing = 12f;
+        public const float FirstCounterX = -Width * 0.5f + 6f;
+        public const float FirstGapX = FirstCounterX + CounterSpacing * 0.5f;
+        public const float WallBottomWorldY = Balance.DepthMax + 0.6f;
+        /// <summary>x에 가장 가까운 카운터 사이 빈 칸 중앙(월드). minX~maxX 안의 칸만.</summary>
+        public static float NearestCounterGapX(float x, float minX, float maxX)
+        {
+            float k = Mathf.Round((x - FirstGapX) / CounterSpacing);
+            float g = FirstGapX + k * CounterSpacing;
+            while (g < minX) g += CounterSpacing;
+            while (g > maxX) g -= CounterSpacing;
+            return g;
+        }
         public const float PlaceholderSnapStep = 2f;
 
         public static float SnapStep { get; private set; } = PlaceholderSnapStep;

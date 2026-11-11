@@ -62,5 +62,20 @@ namespace CCT.Tests
             Assert.AreEqual("coffee_bean_steam_low", MasterArt.AffinityClip(DrinkKind.Coffee, true));
             Assert.AreEqual("tea_leaf_wind", MasterArt.AffinityClip(DrinkKind.Tea, false));
         }
+
+        [Test]
+        public void BannerGap_WorldFixedBetweenCounters_PrefersHudClearGap()
+        {
+            // 카운터 x = -30 + 12k(폭 4) → 빈 칸 중앙 -24, -12, 0, 12, 24.
+            Assert.AreEqual(-24f, CafeBackground.FirstGapX, 1e-4f);
+            Assert.AreEqual(0f, CafeBackground.NearestCounterGapX(1f, -26.5f, 26.5f), 1e-4f);
+            float half = FairBannerShow.BannerHalfWidth;
+            Assert.LessOrEqual(half, CafeBackground.CounterSpacing * 0.5f - 2f - 0.4f, "현수막 반폭이 빈 칸(카운터 사이 8월드) 안");
+            float min = -BattleArena.HalfWidth + half, max = BattleArena.HalfWidth - half;
+            Assert.AreEqual(0f, FairBannerShow.ChooseGap(0f, min, max), 1e-4f, "카메라 중앙이면 가운데 칸");
+            Assert.AreEqual(12f, FairBannerShow.ChooseGap(9f, min, max), 1e-4f, "왼쪽 칸이 좌측 HUD 밑이면 오른쪽 칸(off 3)");
+            Assert.AreEqual(12f, FairBannerShow.ChooseGap(7f, min, max), 1e-4f, "off 5 칸이 off −7 칸보다 우선");
+            Assert.AreEqual(24f, FairBannerShow.ChooseGap(28f, min, max), 1e-4f, "구역 끝에서는 구역 안 칸만");
+        }
     }
 }

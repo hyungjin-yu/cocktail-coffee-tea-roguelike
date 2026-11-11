@@ -24,7 +24,7 @@ namespace CCT
     /// -cct-playverify-die-after-enhanced는 강화 보스 처치 뒤 회피를 끄고 적·장판 쪽으로 걷는 입력만 바꾼다. 텔레메트리(이동·선택·보스 등장 시각·피해 출처·결과·저장 내용·오류)를 출력 폴더에 남긴다.
     /// </summary>
     [DefaultExecutionOrder(-200)]
-    public class PlayVerifier : MonoBehaviour
+    public partial class PlayVerifier : MonoBehaviour
     {
         // ── 설정 ──
         string outDir;
@@ -186,6 +186,7 @@ namespace CCT
             var title = FindFirstObjectByType<TitleView>();
             Event($"title open={(title != null && title.IsOpen)}");
             if (title == null || !ClickNamed(title, "StartButton")) { Event("FAIL title start button"); yield return Finish(); yield break; }
+            if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-cct-playverify-master")) { yield return MasterFlow(); yield return Finish(); yield break; } // 2026-11-11 마스터 도전 1주기 검증(입력 대행 동일 원칙)
 
             for (runIndex = 1; runIndex <= maxRuns; runIndex++)
             {

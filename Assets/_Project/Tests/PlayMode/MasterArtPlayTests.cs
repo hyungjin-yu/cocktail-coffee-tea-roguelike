@@ -117,6 +117,53 @@ namespace CCT.Tests
             Assert.IsTrue(s.LabelVisible);
         }
 
+        /// <summary>2026-11-11 사용자 결함: 현수막이 카메라를 따라다니며 바 카운터 뒤에 깔리고 글자가 카운터 위에 겹쳤다.
+        /// 현수막·글자는 무대 벽의 카운터 사이 빈 칸에 월드 고정 — 카운터·램프 스프라이트와 겹치지 않고, 플레이어·카메라가 움직여도 월드 좌표 불변.</summary>
+        [UnityTest]
+        public IEnumerator BannerShow_WorldFixedInCounterGap_NoPropOverlap_CameraMoveInvariant([Values(Job.Bartender, Job.TeaSommelier)] Job job)
+        {
+            if (GameManager.Instance != null) { UnityEngine.Object.Destroy(GameManager.Instance.gameObject); yield return null; }
+            RunModeSelection.Current = RunMode.Endless;
+            var g = GameBootstrap.Build(job, job == Job.Bartender ? WeaponKind.Rapier : WeaponKind.Sword);
+            yield return null;
+            g.Master.BannersEnabled = false;
+            foreach (var sp in g.GetComponentsInChildren<EnemySpawner>()) sp.enabled = false;
+            g.Master.enabled = false;
+            var s = FairBannerShow.Create(g, 3.5f);
+            s.Settle();
+            s.SetLabel("박람회 1/3");
+            yield return null;
+
+            var banner = s.GetComponentsInChildren<SpriteRenderer>(true).First(r => r.name == "Banner");
+            var label = s.GetComponentInChildren<TextMesh>(true).GetComponent<MeshRenderer>();
+            Assert.IsNull(s.GetComponentInParent<Camera>(), "카메라 자식 아님(화면 고정 아님)");
+            Assert.IsFalse(s.transform.IsChildOf(g.Player.transform), "플레이어 자식 아님");
+            Bounds bb = banner.bounds, lb = label.bounds;
+            Assert.IsTrue(bb.min.x <= lb.min.x && lb.max.x <= bb.max.x && bb.min.y <= lb.min.y && lb.max.y <= bb.max.y, $"글자는 천 안({lb} ⊂ {bb})");
+            var props = UnityEngine.Object.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None).Where(r => r.name == "Counter" || r.name == "Lamp").ToList();
+            Assert.Greater(props.Count, 4, "실제 무대 카운터·램프 존재");
+            foreach (var p in props)
+            {
+                bool hitB = bb.min.x < p.bounds.max.x && p.bounds.min.x < bb.max.x && bb.min.y < p.bounds.max.y && p.bounds.min.y < bb.max.y;
+                bool hitL = lb.min.x < p.bounds.max.x && p.bounds.min.x < lb.max.x && lb.min.y < p.bounds.max.y && p.bounds.min.y < lb.max.y;
+                Assert.IsFalse(hitB, $"{job}: 현수막 {bb} ↔ {p.name} {p.bounds} 겹침 없음");
+                Assert.IsFalse(hitL, $"{job}: 글자 ↔ {p.name} 겹침 없음");
+            }
+            Assert.GreaterOrEqual(bb.min.y, CafeBackground.WallBottomWorldY - 0.01f, "바닥선 위(벽면)");
+            Assert.Greater(label.sortingOrder, banner.sortingOrder, "글자가 천 위");
+
+            Vector3 before = banner.transform.position, labelBefore = label.transform.position;
+            var cam = Camera.main;
+            g.Player.transform.position += new Vector3(6f, 0f, 0f);
+            for (int i = 0; i < 20; i++) yield return null; // 카메라가 플레이어를 따라감
+            cam.transform.position += new Vector3(3f, 0f, 0f);
+            yield return null;
+            Assert.AreEqual(before, banner.transform.position, "플레이어·카메라 이동 후 현수막 월드 좌표 불변");
+            Assert.AreEqual(labelBefore, label.transform.position, "글자 월드 좌표 불변");
+            Assert.AreEqual((Vector2)before, s.InstalledTopWorld);
+            s.Finish();
+        }
+
         [UnityTest]
         public IEnumerator BannerShow_ScheduleScalesWithPrepSeconds_3And4()
         {
@@ -250,6 +297,14 @@ namespace CCT.Tests
             game.Hud.ShowBanner("", "박람회 시작! 진상 손님 12명 막기", 5f); // 실제 Director가 띄우는 형태(제목 없음, 부제만)
             yield return Shot(outDir, "banner_settled_hud_720", notes, $"settled label={show.LabelText} + HUD subtitle only", 1280, 720);
             yield return Shot(outDir, "banner_settled_hud_1080", notes, $"settled label={show.LabelText} + HUD subtitle only", 1920, 1080);
+            // 월드 고정 확인: 플레이어를 옆으로 옮겨 카메라가 따라간 뒤에도 현수막은 벽의 같은 칸에 남는다.
+            Time.timeScale = 1f;
+            var bannerPos = show.BannerTopWorld;
+            game.Player.transform.position += new Vector3(5f, 0f, 0f);
+            for (int i = 0; i < 30; i++) yield return null;
+            Time.timeScale = 0f;
+            yield return Shot(outDir, "banner_after_player_move_720", notes, $"player moved +5 → bannerTop {bannerPos} → {show.BannerTopWorld} cam={Camera.main.transform.position.x:0.00}", 1280, 720);
+            yield return Shot(outDir, "banner_after_player_move_1080", notes, $"player moved +5 → bannerTop {show.BannerTopWorld}", 1920, 1080);
             show.Finish();
             Time.timeScale = 1f;
             yield return null;
