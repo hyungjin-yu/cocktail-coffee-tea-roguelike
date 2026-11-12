@@ -24,6 +24,7 @@ namespace CCT
 
         public bool IsOpen => root != null && root.activeSelf;
         /// <summary>테스트용 — 지금 목록에 있는 히든과 고를 수 있는지.</summary>
+        public const float ReqIcon = 76f; public const int ReqIconMax = 4;
         public IReadOnlyList<(HiddenSkill skill, Button button)> Rows => rows;
 
         public static ComboTargetView Create(Transform canvas, GameManager game)
@@ -145,9 +146,32 @@ namespace CCT
                 string status = owned ? "해금됨" : !reach.reachable ? "이번 런 불가 · " + reach.reason
                     : isTarget ? "◎ 현재 목표" : $"조건 {met}/{progress.Count}";
                 var titleColor = owned ? new Color(0.6f, 0.85f, 0.6f) : !reach.reachable ? new Color(0.6f, 0.6f, 0.6f) : new Color(1f, 0.85f, 0.4f);
-                UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0f, 1f), new Vector2(18f, -6f), new Vector2(1050f, 36f)),
+                // 2026-11-12 그림 우선: 조건 재료를 오른쪽에 그림 칸으로(카드 = 카드 그림, 커피 = 원두, 하이브리드 = 하이브리드 잔). 충족 = 밝게 + 수치, 미충족 = 흐리게.
+                var reqArt = new List<(HiddenReqProgress p, Sprite sp)>();
+                foreach (var p in progress)
+                {
+                    Sprite sp = p.req.kind == HiddenReqKind.Card ? (game.Cards?.FindInPool(p.req.id) is CardData c ? CardEducationIcons.For(c) : null)
+                        : p.req.kind == HiddenReqKind.Coffee ? Resources.Load<Sprite>("Icons/coffee_bean")
+                        : p.req.kind == HiddenReqKind.Hybrid ? CardSelectView.CategoryIcon(CardCategory.Hybrid) : null;
+                    if (sp != null && reqArt.Count < ReqIconMax) reqArt.Add((p, sp));
+                }
+                int icons = 0;
+                foreach (var (p, sp) in reqArt) // 글자 순서와 같게 왼쪽부터
+                {
+                    float fromRight = (reqArt.Count - 1 - icons) * (ReqIcon + 8f);
+                    var slotRt = UiFactory.Place("Req" + icons, rt, new Vector2(1f, 0.5f), new Vector2(-12f - fromRight, 0f), new Vector2(ReqIcon, ReqIcon));
+                    UiFactory.AddImage(slotRt, new Color(0f, 0f, 0f, 0.28f)).raycastTarget = false;
+                    var img = HudIcons.Icon(slotRt, "Art", new Vector2(0.5f, 0.5f), new Vector2(0f, 4f), ReqIcon - 14f, sp);
+                    img.color = p.met ? Color.white : new Color(1f, 1f, 1f, 0.45f);
+                    if (p.req.kind == HiddenReqKind.Card)
+                        HudIcons.Label(slotRt, "Count", new Vector2(0.5f, 0f), new Vector2(0f, 0f), new Vector2(ReqIcon, 22f), $"{p.current}/{p.req.count}", 18,
+                            p.met ? new Color(0.6f, 1f, 0.6f) : Color.white, TextAnchor.LowerRight, 14).rectTransform.pivot = new Vector2(0.5f, 0f);
+                    icons++;
+                }
+                float textW = 1050f - icons * (ReqIcon + 8f);
+                UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0f, 1f), new Vector2(18f, -6f), new Vector2(textW, 36f)),
                     $"{name} · {(def.tier == HiddenTier.Hard ? HiddenSkillDatabase.TierLabel(def.tier) : $"{progress.Count}요소")}   {status}", 26, TextAnchor.MiddleLeft, titleColor);
-                UiFactory.AddText(UiFactory.Place("Progress", rt, new Vector2(0f, 1f), new Vector2(18f, -46f), new Vector2(1050f, 36f)),
+                UiFactory.AddText(UiFactory.Place("Progress", rt, new Vector2(0f, 1f), new Vector2(18f, -46f), new Vector2(textW, 36f)),
                     HiddenRequirements.ProgressLine(def, job, state),
                     22, TextAnchor.MiddleLeft, reach.reachable ? Color.white : new Color(0.7f, 0.7f, 0.7f));
                 rows.Add((def.skill, b));

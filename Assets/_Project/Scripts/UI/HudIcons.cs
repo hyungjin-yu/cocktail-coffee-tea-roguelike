@@ -32,7 +32,35 @@ namespace CCT
         };
 
         /// <summary>계열 대표 적 그림(상성 대상 표시).</summary>
-        public static Sprite Family(MonsterFamily f) => MasterWavePlan.IconOf(FamilyRepresentative(f));
+        static readonly System.Collections.Generic.Dictionary<MonsterFamily, Sprite> familyCrop = new System.Collections.Generic.Dictionary<MonsterFamily, Sprite>();
+
+        /// <summary>계열 대표 적 그림. 2026-11-12 720p 실측: 몸체 프레임은 투명 여백이 커서 42px 칸에도 적이 ≈20px로 보였다 →
+        /// 첫 프레임 알파 영역(ArtAsset.contentRectNormalized, 빌드 시 계산된 값)으로 잘라 칸을 채운다. 원본 텍스처·PNG는 그대로(같은 텍스처의 부분 사각형).</summary>
+        public static Sprite Family(MonsterFamily f)
+        {
+            if (familyCrop.TryGetValue(f, out var cached) && cached != null) return cached;
+            var def = FamilyRepresentative(f);
+            var src = MasterWavePlan.IconOf(def);
+            var s = Cropped(src, def != null ? ArtLibrary.Get(def.ArtId) : null);
+            if (s != null) familyCrop[f] = s;
+            return s;
+        }
+
+        /// <summary>알파 영역으로 자른 같은 텍스처의 스프라이트(아틀라스 묶음·여백 없음이면 원본 그대로).</summary>
+        public static Sprite Cropped(Sprite src, ArtAsset art)
+        {
+            if (src == null || art == null || src.texture == null || src.packed) return src;
+            var cn = art.contentRectNormalized;
+            if (cn.width >= 0.95f && cn.height >= 0.95f) return src;
+            var r = src.rect;
+            float x0 = Mathf.Floor(r.x + cn.xMin * r.width), y0 = Mathf.Floor(r.y + cn.yMin * r.height);
+            float x1 = Mathf.Ceil(r.x + cn.xMax * r.width), y1 = Mathf.Ceil(r.y + cn.yMax * r.height);
+            var crop = Rect.MinMaxRect(Mathf.Max(r.xMin, x0 - 1f), Mathf.Max(r.yMin, y0 - 1f), Mathf.Min(r.xMax, x1 + 1f), Mathf.Min(r.yMax, y1 + 1f));
+            if (crop.width < 2f || crop.height < 2f) return src;
+            var sp = Sprite.Create(src.texture, crop, new Vector2(0.5f, 0.5f), src.pixelsPerUnit, 0, SpriteMeshType.FullRect);
+            sp.name = src.name + "_hudcrop";
+            return sp;
+        }
 
         /// <summary>2026-11-12 사용자 지시: 계열 이름 대신 서로 모양이 다른 잔 그림(칵테일잔·커피잔·찻잔). 중립은 그림 없음 → 호출자가 '중립' 글자.</summary>
         public static Sprite FamilyCup(MonsterFamily f) => f switch

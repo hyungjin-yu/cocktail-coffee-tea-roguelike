@@ -30,7 +30,7 @@ namespace CCT
                     if(teaNames.TryGetValue(node.id,out var name)) teaWords[node.displayName]=name;
             }
             foreach(var pair in teaWords) text=text.Replace(pair.Key,pair.Value);
-            return text.Replace("커피 포인트", "우림 포인트").Replace("커피", "우림 연구").Replace("원두", "우림 지식");
+            return text.Replace("커피 포인트", "우림 포인트").Replace("커피 연구", "우림 연구").Replace("커피", "우림 연구").Replace("원두", "우림 지식"); // 2026-11-12 "커피 연구"→"우림 연구 연구" 중복 수정
         }
         public static string HiddenName(HiddenSkillDef def, Job job) => job!=Job.TeaSommelier ? def.name : def.skill switch
         {

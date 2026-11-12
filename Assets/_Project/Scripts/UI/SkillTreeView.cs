@@ -127,7 +127,9 @@ namespace CCT
                 var header = UiFactory.Place($"Header_{branch}", root.transform, new Vector2(0.5f, 0.5f),
                     new Vector2(ColumnX(branch), HeaderY), new Vector2(420f, 36f));
                 UiFactory.AddText(header, SkillData.BranchLabel(branch), 32, TextAnchor.MiddleCenter, Kraft);
-                UiFactory.AddIcon(header, BranchIconId(branch), new Vector2(0f, 0.5f), new Vector2(60f, 0f), 36f); // 09 skill_*
+                // 09 skill_* — 2026-11-12 720p 실측 ≈10px(그림 여백) → 알파 영역으로 잘라 56칸에 채운다(같은 승인 텍스처).
+                var branchIcon = UiFactory.AddIcon(header, BranchIconId(branch), new Vector2(0f, 0.5f), new Vector2(40f, 0f), 56f);
+                if (branchIcon != null) branchIcon.sprite = HudIcons.Cropped(branchIcon.sprite, ArtLibrary.Get(BranchIconId(branch)));
             }
 
             for (int i = 0; i < ordered.Count; i++)

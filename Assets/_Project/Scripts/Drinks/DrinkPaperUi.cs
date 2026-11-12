@@ -87,7 +87,13 @@ namespace CCT
             if (b == null) return;
             var img = b.targetGraphic as Image;
             if (img != null) img.sprite = Sprite(on ? "button_equipped" : "button") ?? img.sprite;
+            // 2026-11-12 실제 빌드 720p: button_equipped 오른쪽 ✓ 표식이 가운데 글자 끝("숙련 트리", "서비스")을 덮었다 → 선택 중엔 글자 칸을 표식 왼쪽까지로.
+            var label = b.transform.Find("Label") as RectTransform;
+            if (label != null) label.offsetMax = new Vector2(on ? -EquippedMarkInset : -10f, label.offsetMax.y);
         }
+
+        /// <summary>button_equipped 오른쪽 ✓ 표식 자리(글자 칸 오른쪽 여백).</summary>
+        public const float EquippedMarkInset = 40f;
 
         // ───── 레시피 찢기·입고 모션 ─────
 

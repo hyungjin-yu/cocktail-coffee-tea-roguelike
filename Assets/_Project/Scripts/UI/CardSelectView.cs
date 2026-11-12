@@ -127,6 +127,11 @@ namespace CCT
             slot.title = UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f),
                 new Vector2(0f, -85f), new Vector2(390f, 100f)), "", 36, TextAnchor.MiddleCenter, Color.white);
             UiFactory.SkinHeader(slot.title);
+            // 2026-11-12 그림 우선: 이름판(390×100) 왼쪽에 카드 그림(ArtX, ArtSize), 이름 글자는 오른쪽 칸으로(판은 그대로).
+            slot.title.rectTransform.anchoredPosition = new Vector2(50f, -85f);
+            slot.title.rectTransform.sizeDelta = new Vector2(290f, 100f);
+            slot.title.horizontalOverflow = HorizontalWrapMode.Wrap;
+            slot.title.resizeTextForBestFit = true; slot.title.resizeTextMinSize = 24; slot.title.resizeTextMaxSize = 36;
             slot.description = UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 0.5f),
                 new Vector2(0f, 80f), new Vector2(390f, 80f)), "", 24,
                 MobilePlatform.IsTouchUI ? TextAnchor.MiddleCenter : TextAnchor.UpperCenter, // 2026-10-12 모바일: 설명 세로 가운데
@@ -179,6 +184,9 @@ namespace CCT
             return slot;
         }
 
+        /// <summary>카드 그림 위치(카드 중심 기준): 이름판 왼쪽 칸. 2026-11-12 이전 = 오른쪽 위 64(720p ≈43px, 장식처럼 보였다).</summary>
+        public const float ArtX = -143f, ArtY = 175f, ArtSize = 88f;
+
         /// <summary>09:54 카테고리 도안 — 칵테일/차는 필드 픽업과 같은 재료 아이콘, 하이브리드는 전용 아이콘. 없으면 null(숨김).</summary>
         public static Sprite CategoryIcon(CardCategory category)
         {
@@ -224,8 +232,8 @@ namespace CCT
                 slot.learn.GetComponentInChildren<Text>().text = finalForm.HasValue ? "지식 · 최대 효과 보기" : "지식 상세 보기";
                 slot.fact.text = CardEducationSummary.Fact(card);
                 slot.connection.text = "해석 · " + CardEducationSummary.Connection(card);
-                slot.categoryIcon.rectTransform.anchoredPosition = new Vector2(170f,270f);
-                slot.categoryIcon.rectTransform.sizeDelta = new Vector2(64f,64f);
+                slot.categoryIcon.rectTransform.anchoredPosition = new Vector2(ArtX, ArtY);
+                slot.categoryIcon.rectTransform.sizeDelta = new Vector2(ArtSize, ArtSize);
                 slot.stacks.text = offer.currentStacks == 0
                     ? $"신규 · 최대 {card.maxStacks}"
                     : $"Lv {offer.currentStacks} → {offer.currentStacks + 1}  (최대 {card.maxStacks})";

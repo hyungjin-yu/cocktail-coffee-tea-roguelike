@@ -402,13 +402,24 @@ namespace CCT
             var ink = new Color(0.97f, 0.93f, 0.85f);
             var sub = new Color(0.82f, 0.76f, 0.68f);
             float line1 = UiFactory.TruncatedBoxHeight(30);
-            var top = UiFactory.AddText(UiFactory.Place("Line1", rt, new Vector2(0f, 1f), new Vector2(36f, -8f), new Vector2(ListWidth - 72f, line1)),
+            // 2026-11-12 그림 우선: 행 왼쪽에 직업 몸체 초상 + 시작 무기 아이콘(기존 승인 스프라이트). 알 수 없는 직업·무기(옛 기록)는 그림 없이 글자만.
+            float textX = 36f;
+            Sprite jobArt = RunRecordText.TryParseName(record.job, out Job rj) ? HudIcons.Job(rj) : null;
+            Sprite weaponArt = RunRecordText.TryParseName(record.weapon, out WeaponKind rw) ? HudIcons.Weapon(rw) : null;
+            if (jobArt != null || weaponArt != null)
+            {
+                float s0 = RowHeight - 16f;
+                if (jobArt != null) HudIcons.Icon(rt, "JobArt", new Vector2(0f, 0.5f), new Vector2(20f + s0 * 0.5f, 0f), s0, jobArt).rectTransform.pivot = new Vector2(0.5f, 0.5f);
+                if (weaponArt != null) HudIcons.Icon(rt, "WeaponArt", new Vector2(0f, 0.5f), new Vector2(20f + s0 + 8f + 32f, -14f), 64f, weaponArt).rectTransform.pivot = new Vector2(0.5f, 0.5f);
+                textX = 20f + s0 + 8f + 72f;
+            }
+            var top = UiFactory.AddText(UiFactory.Place("Line1", rt, new Vector2(0f, 1f), new Vector2(textX, -8f), new Vector2(ListWidth - textX - 36f, line1)),
                 $"{index + 1}.  {RunRecordText.ListLine(record)}", 30, TextAnchor.MiddleLeft, ink);
             top.verticalOverflow = VerticalWrapMode.Truncate;
             string when = RunRecordText.EndedLocal(record);
             string second = record.IsDeath ? RunRecordText.EndDetail(record)
                 : $"카드 {record.cards.Count}종 · 조합 {record.combos.Count} · 처치 {record.kills}";
-            var bottom = UiFactory.AddText(UiFactory.Place("Line2", rt, new Vector2(0f, 1f), new Vector2(36f, -8f - line1), new Vector2(ListWidth - 72f, UiFactory.TruncatedBoxHeight(24))),
+            var bottom = UiFactory.AddText(UiFactory.Place("Line2", rt, new Vector2(0f, 1f), new Vector2(textX, -8f - line1), new Vector2(ListWidth - textX - 36f, UiFactory.TruncatedBoxHeight(24))),
                 (when.Length > 0 ? when + "  ·  " : "") + second, 24, TextAnchor.MiddleLeft, sub);
             bottom.verticalOverflow = VerticalWrapMode.Truncate;
             bottom.horizontalOverflow = HorizontalWrapMode.Wrap;

@@ -35,6 +35,7 @@ namespace CCT
         GameObject returnFocus;
         Action onClosed;
 
+        public const float RowIcon = 48f;
         public bool IsOpen => gameObject.activeSelf;
         public Button CloseButton => closeButton;
         public ScrollRect Scroll => scroll;
@@ -159,7 +160,11 @@ namespace CCT
                 y = Row($"획득 기록 {items.Count}건을 재료별로 합친 양", "", y, Muted);
                 foreach (var def in DrinkIngredients.All)
                     if (totals.TryGetValue(def.id, out var v))
-                        y = Row(def.name, DrinkRules.Format((int)Math.Min(v, int.MaxValue), def.form), y, Cream, "Material_" + def.id);
+                    {
+                        // 2026-11-12 그림 우선: 실제 재료 아트(아이콘 → 없으면 병/틴)만. 임시 실루엣이면 그림 없이 글자만(임시 그림을 최종처럼 보이지 않게).
+                        var art = DrinkArt.SpriteOrPlaceholder(def.iconId, out bool placeholder);
+                        y = Row(def.name, DrinkRules.Format((int)Math.Min(v, int.MaxValue), def.form), y, Cream, "Material_" + def.id, placeholder ? null : art);
+                    }
             }
             y -= 14f;
             y = Section("연구 포인트", y);
@@ -184,13 +189,21 @@ namespace CCT
         }
 
         /// <summary>왼쪽 이름 · 오른쪽 값 한 줄(넘치면 줄바꿈해 높이를 늘린다 — 글자를 줄이거나 자르지 않는다).</summary>
-        float Row(string left, string right, float y, Color color, string name = "Line")
+        float Row(string left, string right, float y, Color color, string name = "Line", Sprite icon = null)
         {
             float rowW = scrollWidth - 60f, nameW = right.Length > 0 ? Mathf.Min(560f, rowW * 0.45f) : rowW;
             var rt = UiFactory.Place(name, content, new Vector2(0.5f, 1f), new Vector2(0f, y), new Vector2(rowW, 40f));
-            var l = UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0f, 1f), Vector2.zero, new Vector2(nameW, 40f)),
+            float nameX = 0f;
+            if (icon != null)
+            {
+                var ic = HudIcons.Icon(rt, "Icon", new Vector2(0f, 1f), Vector2.zero, RowIcon, icon);
+                ic.rectTransform.pivot = new Vector2(0f, 1f);
+                nameX = RowIcon + 10f; nameW -= nameX;
+            }
+            var l = UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0f, 1f), new Vector2(nameX, 0f), new Vector2(nameW, 40f)),
                 left, BodyFont, TextAnchor.UpperLeft, color);
             float h = Mathf.Max(UiFactory.TruncatedBoxHeight(BodyFont), l.preferredHeight + 6f);
+            if (icon != null) h = Mathf.Max(h, RowIcon + 4f);
             if (right.Length > 0)
             {
                 var r = UiFactory.AddText(UiFactory.Place("Value", rt, new Vector2(1f, 1f), Vector2.zero, new Vector2(rowW - nameW - 20f, 40f)),

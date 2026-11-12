@@ -30,6 +30,8 @@ namespace CCT
         GameObject hiddenDetails;
         RectTransform hiddenContent;
         float hiddenRefresh;
+        /// <summary>현수막 폭 = 왼쪽 패널 오른쪽 끝(610) 대칭 사이 가운데 열.</summary>
+        public const float BannerW = 680f;
         public bool HiddenDetailsOpen => hiddenDetails != null && hiddenDetails.activeSelf;
         /// <summary>2026-11-09 지금 적용 중인 음료·추출법·히든 상태 칸(실제 상태 기준).</summary>
         public ActiveEffectsStrip EffectsStrip { get; private set; }
@@ -226,12 +228,19 @@ namespace CCT
             if (UiFactory.AddIcon(pauseRt, "ui_pause", new Vector2(0.5f, 0.5f), Vector2.zero, 60f) == null)
                 UiFactory.AddText(UiFactory.Stretch("Label", pauseRt), "II", 34, TextAnchor.MiddleCenter, Color.white);
 
-            var titleRt = UiFactory.Place("BannerTitle", root, new Vector2(0.5f, 1f), new Vector2(0f, -190f),
-                new Vector2(1400f, 90f));
+            // 2026-11-12 실제 빌드 720p: 폭 1400 현수막 부제가 왼쪽 패널(x 30~610, y 174~406) 밑으로 들어가 "[커] 커피 계열"이 가려졌다 →
+            // 제목·부제를 양쪽 패널 사이 가운데 열(BannerW)로 제한하고 부제는 두 줄 줄바꿈 + 크기 맞춤.
+            var titleRt = UiFactory.Place("BannerTitle", root, new Vector2(0.5f, 1f), new Vector2(0f, -202f),
+                new Vector2(BannerW, 64f)); // 64 = 한 줄만 들어가는 높이 → 크기 맞춤이 줄바꿈 대신 글자를 줄인다
             view.bannerTitle = UiFactory.AddText(titleRt, "", 64, TextAnchor.MiddleCenter, new Color(1f, 0.85f, 0.4f));
-            var subRt = UiFactory.Place("BannerSub", root, new Vector2(0.5f, 1f), new Vector2(0f, -270f),
-                new Vector2(1400f, 50f));
-            view.bannerSub = UiFactory.AddText(subRt, "", 32, TextAnchor.MiddleCenter, Color.white);
+            view.bannerTitle.resizeTextForBestFit = true; view.bannerTitle.resizeTextMinSize = 30; view.bannerTitle.resizeTextMaxSize = 64;
+            view.bannerTitle.horizontalOverflow = HorizontalWrapMode.Wrap; view.bannerTitle.verticalOverflow = VerticalWrapMode.Truncate; // 높이 제한이 있어야 크기 맞춤이 줄인다
+            var subRt = UiFactory.Place("BannerSub", root, new Vector2(0.5f, 1f), new Vector2(0f, -278f),
+                new Vector2(BannerW, 96f));
+            view.bannerSub = UiFactory.AddText(subRt, "", 30, TextAnchor.UpperCenter, Color.white);
+            view.bannerSub.horizontalOverflow = HorizontalWrapMode.Wrap;
+            view.bannerSub.resizeTextForBestFit = true; view.bannerSub.resizeTextMinSize = 22; view.bannerSub.resizeTextMaxSize = 30;
+            view.bannerSub.verticalOverflow = VerticalWrapMode.Truncate;
 
             var schemeRt = UiFactory.Place("MovementScheme", root, new Vector2(0f, 0f), new Vector2(30f, 30f),
                 new Vector2(290f, 84f));

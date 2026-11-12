@@ -26,7 +26,7 @@ namespace CCT
     /// MarkPlayerDiedForTests·장판 피해 사망, GiveUp 포기, AutoInputOverride 이동, RequestHybrid 하이브리드 예약,
     /// 화염/독 레벨 직접 부여, 관찰 중 회복, 정지 표적(속도0·접촉0·고HP 복제 정의) — 정상 플레이 완주·키보드 UX·밸런스 검증이 아니다.
     /// </summary>
-    public class AutoTour : MonoBehaviour
+    public partial class AutoTour : MonoBehaviour
     {
         const int CaptureFps = 30;
 
@@ -274,6 +274,7 @@ namespace CCT
                 if (mode == "tea-encounters") yield return TeaEncountersRun();
                 if (mode == "touch") yield return TouchRun();
                 if (mode == "ui-audit") yield return UiAuditRun();
+                if (mode == "ui-states") yield return UiStatesRun(); // 2026-11-12 남은 상태 캡처
                 if (mode == "skins") yield return SkinsRun();
                 if (mode == "feedback") yield return FeedbackRun();
                 if (mode == "water") yield return WaterRun();
