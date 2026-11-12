@@ -174,7 +174,7 @@ namespace CCT
             var trait = game?.Player != null ? game.Player.DrinkTrait : RunDrinkTraitKind.None;
             if (drink == null)
             {
-                drinkLabel.text = "마신 음료 없음 →";
+                drinkLabel.text = "안 마심 →"; // 2026-11-12 정규 60높이·라벨칸 124에서 "마신 음료 없음 →"이 두 줄로 접혔다
                 HudIcons.Set(targetIcon, null);
                 targetLabel.text = "상성 없음";
             }

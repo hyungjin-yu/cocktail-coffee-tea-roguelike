@@ -76,6 +76,30 @@ namespace CCT.Tests
             Assert.AreEqual(0f, Time.timeScale, "확정 해금 창이 뜨는 동안엔 전투가 멈춰야 한다");
         }
 
+        /// <summary>2026-11-12 실제 빌드 결함: 해금 창 위에서 연 일시정지가 해금 창 뒤에 그려졌다(계속·설정 버튼 가림).</summary>
+        [UnityTest]
+        public IEnumerator PauseOverHybridOffer_DrawsAboveHybridWindow_AndReturnsToIt()
+        {
+            var game = GameManager.Instance;
+            game.AddIngredient(IngredientType.Cocktail, 5000);
+            game.AddIngredient(IngredientType.Tea, 5000);
+            yield return null;
+            yield return DrainRewardsUntilHybridOffer(game);
+            Assert.AreEqual(GameState.HybridOffer, game.State);
+            game.RequestEscape();
+            yield return null;
+            Assert.IsTrue(game.IsPaused && game.HybridView.IsOpen, "Esc = 해금 창 위 일시정지(해금 창은 유지)");
+            Assert.AreEqual(game.HybridView.transform.parent, game.PauseView.transform.parent, "같은 캔버스");
+            Assert.Greater(game.PauseView.transform.GetSiblingIndex(), game.HybridView.transform.GetSiblingIndex(), "일시정지가 해금 창 위에 그려진다");
+            game.HybridView.Unlock();
+            Assert.IsFalse(game.HybridUnlocked, "일시정지 중 해금 입력 관통 없음");
+            game.RequestEscape();
+            yield return null;
+            Assert.IsFalse(game.IsPaused);
+            Assert.IsTrue(game.HybridView.IsOpen, "일시정지를 닫으면 해금 창으로 돌아온다");
+            Assert.AreEqual(GameState.HybridOffer, game.State);
+        }
+
         [UnityTest]
         public IEnumerator GunStart_NeverOffersHybrid_EvenWithCocktail3Tea3()
         {

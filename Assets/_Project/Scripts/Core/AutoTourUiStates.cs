@@ -200,6 +200,91 @@ namespace CCT
             if (!title.IsOpen) Fail("ui-states: title not restored after history");
         }
 
+        /// <summary>2026-11-12 "hybrid" 모드 — 하이브리드 해금 창(바텐더·레이피어, 칵테일3+차3).
+        /// 강제 경로(보고 표기): 칵테일 3·차 2 중첩은 GrantCardForTests, 마지막 차 카드는 실제 카드 창(AddIngredient로 유도)에서 고른다 →
+        /// 실제 GameManager 판정이 해금 창을 연다. 키 입력은 QA 키보드 장치 상태 이벤트(실제 Input System·UI 모듈 경로, OS 입력 아님).</summary>
+        IEnumerator HybridRun()
+        {
+            var args = System.Environment.GetCommandLineArgs();
+            int wi = System.Array.IndexOf(args, "-screen-width"), hi = System.Array.IndexOf(args, "-screen-height");
+            if (wi >= 0 && hi >= 0 && wi + 1 < args.Length && hi + 1 < args.Length)
+            {
+                Screen.SetResolution(int.Parse(args[wi + 1]), int.Parse(args[hi + 1]), FullScreenMode.Windowed);
+                yield return Wait(2f);
+            }
+            string H = $"{Screen.width}x{Screen.height}";
+            Line($"HY screen {H}");
+            UnityEngine.InputSystem.InputSystem.settings.backgroundBehavior = UnityEngine.InputSystem.InputSettings.BackgroundBehavior.IgnoreFocus;
+            QaKeyboard = UnityEngine.InputSystem.InputSystem.AddDevice<UnityEngine.InputSystem.Keyboard>("HybridQaKeyboard");
+            QaKeyboard.MakeCurrent();
+            TitleView title = null;
+            for (int i = 0; i < 100 && title == null; i++) { title = FindFirstObjectByType<TitleView>(); yield return Wait(0.1f); }
+            title.RequestStart(); yield return StartCombo(Combos[0], false);
+            var game = GameManager.Instance;
+            if (game == null) { Fail("hybrid: no game"); yield break; }
+            string tag = $"hy_{H}";
+            game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
+            game.Player.Heal(1f);
+            FreezeWorld(game);
+            yield return Wait(0.5f);
+            foreach (var o in game.Cards.Draw(CardCategory.Cocktail, false, 3)) game.GrantCardForTests(o.card);
+            var tea = game.Cards.Draw(CardCategory.Tea, false, 3);
+            for (int k = 0; k < 2 && k < tea.Count; k++) game.GrantCardForTests(tea[k].card);
+            yield return ClearOverlays(game, tag + " after grants");
+            Line($"HY {tag} owned cocktail={game.Cards.CountOwned(CardCategory.Cocktail)} tea={game.Cards.CountOwned(CardCategory.Tea)} hybrid={game.HybridUnlocked}");
+            yield return Shot(tag + "_00_before");
+
+            var gauge = game.TeaGauge;
+            game.AddIngredient(IngredientType.Tea, gauge.Threshold - gauge.Current);
+            yield return Wait(0.6f);
+            if (game.CardView.IsLearningOpen) { game.CardView.CloseLearning(); yield return Wait(0.3f); }
+            Line($"HY {tag} tea card window open={game.CardView.IsOpen} offers=[{string.Join(",", game.CardView.Offers.Select(o => o.card.id + ":" + o.card.category))}]");
+            if (!game.CardView.IsOpen) { Fail(tag + " tea card window did not open"); yield break; }
+            int pick = 0;
+            for (int k = 0; k < game.CardView.Offers.Count; k++) if (game.CardView.Offers[k].card.category == CardCategory.Tea) { pick = k; break; }
+            yield return Shot(tag + "_01_tea_card_window");
+            game.CardView.Choose(pick);
+            for (int k = 0; k < 20 && !game.HybridView.IsOpen; k++) yield return Wait(0.1f);
+            var es = UnityEngine.EventSystems.EventSystem.current;
+            var descT = FindDeep(game.HybridView.transform, "Desc");
+            var desc = descT != null ? descT.GetComponent<UnityEngine.UI.Text>() : null;
+            Canvas.ForceUpdateCanvases();
+            Line($"HY {tag} open={game.HybridView.IsOpen} state={game.State} timeScale={F(Time.timeScale)} selected={SelName(es)} " +
+                 $"descLines={(desc != null ? desc.cachedTextGenerator.lineCount : -1)} descPref={(desc != null ? F(desc.preferredHeight) : "-")}/{(desc != null ? F(desc.rectTransform.rect.height) : "-")}");
+            if (!game.HybridView.IsOpen || game.State != GameState.HybridOffer) { Fail(tag + " hybrid window did not open via real card choice"); yield break; }
+            if (desc != null && desc.preferredHeight > desc.rectTransform.rect.height + 0.5f) Fail(tag + " hybrid desc overflows");
+            yield return Shot(tag + "_02_hybrid_open");
+
+            yield return Key(UnityEngine.InputSystem.Key.Escape);
+            yield return Wait(0.3f);
+            Line($"HY {tag} after Esc: paused={game.IsPaused} hybridOpen={game.HybridView.IsOpen} state={game.State}");
+            if (!game.IsPaused || !game.HybridView.IsOpen) Fail(tag + " Esc should open pause over hybrid without closing it");
+            yield return Shot(tag + "_03_pause_over_hybrid");
+            yield return Key(UnityEngine.InputSystem.Key.Enter); // 일시정지 위 Enter가 해금을 관통하면 안 된다
+            yield return Wait(0.3f);
+            Line($"HY {tag} Enter while paused: unlocked={game.HybridUnlocked} hybridOpen={game.HybridView.IsOpen} paused={game.IsPaused} selected={SelName(es)}");
+            if (game.HybridUnlocked) Fail(tag + " Enter while paused unlocked hybrid");
+            if (game.IsPaused) { yield return Key(UnityEngine.InputSystem.Key.Escape); yield return Wait(0.6f); }
+            Line($"HY {tag} after 2nd Esc: paused={game.IsPaused} hybridOpen={game.HybridView.IsOpen} state={game.State} selected={SelName(es)}");
+            if (game.IsPaused || !game.HybridView.IsOpen) Fail(tag + " 2nd Esc should return to hybrid window");
+            yield return Shot(tag + "_04_back_to_hybrid");
+            yield return Key(UnityEngine.InputSystem.Key.Enter);
+            yield return Wait(0.6f);
+            Line($"HY {tag} after Enter: unlocked={game.HybridUnlocked} hybridOpen={game.HybridView.IsOpen} state={game.State} timeScale={F(Time.timeScale)} bow={(game.Player.GetComponent<HybridBowWeapon>() != null)}");
+            if (!game.HybridUnlocked || game.HybridView.IsOpen || game.State != GameState.Playing) Fail(tag + " Enter did not unlock/close hybrid");
+            yield return Wait(1.2f);
+            yield return Shot(tag + "_05_after_unlock_hud", game);
+            game.OpenPause(); yield return Wait(0.3f);
+            yield return Shot(tag + "_06_pause_effects");
+            game.ClosePause(); yield return Wait(0.4f);
+            game.GiveUp(); yield return Wait(0.6f);
+            yield return Shot(tag + "_07_result");
+            UnityEngine.InputSystem.InputSystem.RemoveDevice(QaKeyboard); QaKeyboard = null;
+        }
+
+        static string SelName(UnityEngine.EventSystems.EventSystem es) =>
+            es != null && es.currentSelectedGameObject != null ? es.currentSelectedGameObject.name : "-";
+
         /// <summary>범례/보스 칩/보스 체력바의 화면 픽셀 사각형과 겹침을 기록한다.</summary>
         void LogLegend(GameManager game, string tag)
         {

@@ -30,9 +30,14 @@ namespace CCT.Tests
             yield return null;
         }
 
+        static int levelUpFrames;
         static void DismissPopups(GameManager game)
         {
-            if (game.State != GameState.LevelUp || game.CardView == null) return;
+            if (game.State != GameState.LevelUp || game.CardView == null) { levelUpFrames = 0; return; }
+            // 2026-11-12 간헐 STALL(LevelUp에서 timeScale 0 지속, 11-09·11-12 각 1회) 원인 추적용 1회 진단 기록.
+            if (++levelUpFrames == 600)
+                Debug.Log($"[BattleArenaDiag] LevelUp 600 frames: cardOpen={game.CardView.IsOpen} learning={game.CardView.IsLearningOpen} tutorial={game.CardView.IsTutorialOpen} " +
+                          $"paused={game.IsPaused} pauseOpen={game.PauseView != null && game.PauseView.IsOpen} hybrid={game.HybridView.IsOpen} skill={game.SkillView.IsOpen} combo={game.ComboTargetOpen} ts={Time.timeScale}");
             // First-run card education is intentionally modal; close it before auto-selecting in movement tests.
             if (game.CardView.IsLearningOpen) game.CardView.CloseLearning();
             if (!game.CardView.IsLearningOpen) game.CardView.Choose(0);

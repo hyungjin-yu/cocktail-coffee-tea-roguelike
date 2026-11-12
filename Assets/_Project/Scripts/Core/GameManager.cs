@@ -244,8 +244,10 @@ namespace CCT
             cardView = CardSelectView.Create(canvas.transform);
             skillView = SkillTreeView.Create(canvas.transform);
             resultView = ResultView.Create(canvas.transform, this);
-            pauseView = PauseView.Create(canvas.transform, this);
+            // 2026-11-12 실제 빌드: 해금 창 위에서 Esc로 연 일시정지가 해금 창 "뒤"에 그려져 계속/설정 버튼이 가려졌다 —
+            // 카드·커피 트리처럼 선택 창은 일시정지보다 먼저(아래) 만든다.
             hybridView = HybridUnlockView.Create(canvas.transform);
+            pauseView = PauseView.Create(canvas.transform, this);
             comboView = ComboTargetView.Create(canvas.transform, this); // 57 P1 목표 조합
             if (rememberedTargets.TryGetValue(job, out var remembered) && CanTarget(remembered)) ComboTarget = remembered;
             Guide = new RunGuide(this);

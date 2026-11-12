@@ -33,7 +33,7 @@ Unity 6000.3.25f1. 확인 해상도 **1280×720 / 1920×1080 실제 창**(QA 빌
 | T2 | PlayMode 관련 23묶음 | 범례·보스·카드·교육·목표·히든·기록·HUD·마스터·제조실·직업선택 등 | 실행 | 실패 0 | 140/140 | `playmode-final3.xml` | PASS |
 | T3 | 신규 `StandardLegendBossChipPlayTests` | 정규 런 | 비보스 범례 60 높이·대상 그림 → 보스 소환 → 범례 접힘·칩 표시·칩/보스바 비겹침·현수막 제목 한 줄·현수막이 왼쪽 패널 3개와 비겹침 → 마신 음료 없음 칩 문구 → 보스 처치 후 범례 복귀, 계열 그림 = 같은 텍스처·여백 잘림 | 모두 | 통과 | `playmode-final3.xml` | PASS |
 | T4 | 신규 `JobStudyThemeTextTests` | EditMode | 찻집 문구 치환 | "연구 연구" 없음, 바텐더 불변 | 통과 | `editmode-final.xml` | PASS |
-| T5 | `BattleArenaPlayTests` | PlayMode | 단독 실행 | 5/5 | 5/5. **주의**: 카드 교육 시험 묶음 뒤에 함께 돌리면 `HoldingOneDirection(1.0f)`가 LevelUp 시간정지로 STALL(1회, `playmode-final.xml`) — 시험 간 정적 상태(첫 카드 안내) 순서 의존, 이번 변경 전에도 같은 DismissPopups 경로. 미수정 | `playmode-battlearena-final.xml`, `playmode-final.xml` | PASS(단독) / 순서 의존 불안정 남음 |
+| T5 | `BattleArenaPlayTests` | PlayMode | 단독 실행 | 5/5 | 5/5. **주의**: 묶음 실행 1회에서 `HoldingOneDirection(1.0f)`가 LevelUp 시간정지로 STALL(`playmode-final.xml`). **정정(2026-11-12 후속)**: "카드 교육 시험 뒤 순서 의존"은 틀린 설명 — 실패 실행에서 BattleArena가 첫 번째였다. 같은 STALL이 2026-11-09 로그에도 있어 기존 간헐 불안정 — `qa-hybrid-unlock-2026-11-12.md` §2 | `playmode-battlearena-final.xml`, `playmode-final.xml` | PASS(단독) / 기존 간헐 불안정 남음 |
 | T6 | `MasterChallengePlayTests.FullCycle…` | PlayMode | 1회차 | — | 1회 3.296초(범위 3.3~4.4) 실패, 재실행 2회 통과 — 실시간 타이머 경계 불안정(기존) | `playmode-1.xml`, `playmode-2/3/final3.xml` | PASS(재실행) / 경계 불안정 남음 |
 
 ## 3. 기능·시각 검증 — 실제 새 QA 빌드(자동 조작)
@@ -122,7 +122,7 @@ Unity 6000.3.25f1. 확인 해상도 **1280×720 / 1920×1080 실제 창**(QA 빌
 
 - 사람 직접 플레이·실제 OS 입력: NOT RUN.
 - 하이브리드 해금 창, 터치 UI 칩 위치, 다른 언어: NOT RUN.
-- 시험 불안정 2건(T5 순서 의존 STALL, T6 실시간 경계) — 기존, 미수정.
+- 시험 불안정 2건(T5 간헐 STALL — 기존, T6 실시간 경계 — 시험 측정 오차) — 후속 `qa-hybrid-unlock-2026-11-12.md` §2에서 분리·T6 수정.
 - 범례의 커피 계열 대표(에스프레소 벌레)는 가로로 납작한 그림이라 잘라도 높이 ≈20px@720 — 판독은 되나 다른 계열보다 작음(아트 형태 한계).
 - 검토 빌드는 작업 트리 전체(다른 사용자의 미커밋 변경 포함)로 만들어졌다. 커밋에는 이번 범위 파일만 넣었다(§7) — 다른 사용자의 미커밋 변경(예: `CardSelectView.cs`의 `IntNum.Round` 줄)은 커밋하지 않고 작업 트리에 보존.
 

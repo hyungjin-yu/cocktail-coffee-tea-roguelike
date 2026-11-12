@@ -115,8 +115,10 @@ namespace CCT.Tests
             BurstZone.Spawn(p, 2f, 50f, 10f, game.Player, game.transform);
             float hp = game.Player.Hp, runTime = game.RunTime;
             long spawned = st.Spawned;
+            float maxFrameDt = 0f; // 설치 타이머는 다음 프레임 unscaledDeltaTime으로 진행 — 시작 프레임 앞부분이 길면 시험 시계보다 먼저 끝난다
             while (Time.realtimeSinceStartup - started < 3.0f)
             {
+                maxFrameDt = Mathf.Max(maxFrameDt, Time.unscaledDeltaTime);
                 game.RequestEscape(); // 중복 입력·Esc로 상태가 꼬이지 않는다
                 Assert.IsFalse(game.Master.ChooseFair());
                 yield return null;
@@ -131,7 +133,10 @@ namespace CCT.Tests
             foreach (var pr in Object.FindObjectsByType<EnemyProjectile>(FindObjectsSortMode.None)) Object.Destroy(pr.gameObject);
             yield return RunUntil(() => st.Phase == MasterPhase.Wave, 3f, kill: false);
             float took = Time.realtimeSinceStartup - started;
-            Assert.That(took, Is.InRange(3.3f, 4.4f), "현수막 설치 3.5초(실제 시간 상태 타이머)");
+            // 2026-11-12: 1회 3.296초 실패(시작 프레임이 길었던 경우) — 게임 타이머 자체(TransitionElapsed ≥ 3.5)는 그대로 단언하고,
+            // 시험 쪽 벽시계 하한만 관측한 최대 프레임 길이만큼 허용한다(상한 4.4는 유지).
+            Assert.GreaterOrEqual(game.Master.TransitionElapsed, 3.5f - 0.001f, "현수막 설치 타이머 3.5초(실제 시간 상태 타이머)");
+            Assert.That(took, Is.InRange(3.3f - Mathf.Min(maxFrameDt, 0.5f), 4.4f), $"현수막 설치 3.5초 벽시계(최대 프레임 {maxFrameDt:0.000}초)");
             Assert.IsFalse(game.MasterFreezeActive);
             Assert.AreEqual(1f, Time.timeScale);
             Assert.AreEqual(6, st.Wave);
