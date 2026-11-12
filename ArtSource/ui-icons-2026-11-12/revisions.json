@@ -1,0 +1,33 @@
+﻿[
+    {
+        "file":  "card_flamed_zest",
+        "reason":  "Orange peel and oil drops read clearly but the flame is not a distinct flame silhouette at icon size; regenerate with an unmistakable small pointed flame between peel and rim.",
+        "description":  "A curved fresh orange peel held above the right rim of one low amber cocktail glass. A clearly visible small pointed orange and yellow flame, shaped like a short horizontal tongue of fire, burns across the citrus oil spray between peel and glass rim. The flame silhouette is essential and must be visible. Only a small controlled garnish flame, no weapon, no firebomb, no entire glass on fire."
+    },
+    {
+        "file":  "research_measured_pour",
+        "reason":  "Generated opaque pitcher has an ambiguous decorative mark instead of clearly readable volume graduations.",
+        "description":  "One transparent clear graduated laboratory-style measuring cylinder held tilted diagonally, pouring a narrow clear stream into a tiny plain ivory cup. Exactly three separate short straight horizontal graduation tick marks on the left wall of the clear cylinder. Visible liquid level inside. No letters, digits, logo, leaf pattern or decorative marking. The graduated cylinder must be clearly different from a metal pitcher."
+    },
+    {
+        "file":  "research_ristretto_tea",
+        "reason":  "Lidded gaiwan silhouette is too similar to first-infusion tea variant; use a distinctly shaped concentrated-brew clay teapot.",
+        "description":  "A very small round unglazed brown clay Yixing teapot with a short narrow curved spout, a tiny separate lid knob, and a round loop handle on the left, pouring a short dense amber tea stream into one tiny handleless cream cup. A small pile of tightly rolled tea leaves beside it. Clearly a spherical clay teapot with spout and handle, NOT a broad gaiwan bowl, NOT porcelain, no coffee equipment."
+    },
+    {
+        "file":  "research_full_body_roast_tea",
+        "reference":  "card_puerh.png",
+        "reason":  "Round compressed cake crosshatching resembles a woven drying basket; use unmistakable dark compressed aged tea brick.",
+        "description":  "A dark brown rectangular brick of compressed aged puerh TEA LEAVES, with one jagged corner broken off revealing dense rough layered dry leaf texture, several distinct loose tea leaves beside the broken piece, half unwrapped in plain tan paper. One slender wooden tea pick lies diagonally beside the brick. Clearly a compressed leaf brick, no food, no cake icing, no woven mesh, no bamboo basket, no round tray, no cup, no writing."
+    },
+    {
+        "file":  "mastery_service_3",
+        "reason":  "Recipe note contains small illegible pseudo-letter strokes; replace with an object-only preparation motif.",
+        "description":  "An elegant completed signature cocktail in a distinctive wide stemmed coupe glass, with a twisted citrus garnish clipped neatly onto its rim. Next to it a tiny wooden preparation board carrying a silver measuring jigger, one orange wedge and one herb sprig arranged neatly in three separate spots. Signature preparation with recognizable physical ingredients and tools only. Absolutely no paper, card, recipe, label, glyphs, lettering, writing, symbols or numbers."
+    },
+    {
+        "file":  "mastery_finesse_2",
+        "reason":  "Horizontal composition is too thin at actual small node-icon size; use a taller diagonal distance-control composition.",
+        "description":  "One unmistakable long silver twisted-handle bar spoon placed on a strong diagonal from lower left to upper right, with its round spoon bowl visible at the top right. Two small ivory serving cups are spaced apart diagonally, one at lower left and one higher on the right. A simple pale double ended distance arrow follows the diagonal space between the cups. Compact tall balanced composition using at least 40 pixels of height within a 64px icon, not a thin horizontal line. No text or numbers."
+    }
+]

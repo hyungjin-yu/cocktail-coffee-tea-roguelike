@@ -1,0 +1,1702 @@
+{
+  "scope": "ui-icons-2026-11-12",
+  "expectedLogicalIds": 41,
+  "expectedFiles": 48,
+  "readyFiles": 46,
+  "integrated": "Unity owner pending",
+  "verified": "runtime pending",
+  "items": [
+    {
+      "id": "ice_cube",
+      "group": "card",
+      "artId": "card_ice_dilution",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_ice_dilution.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_ice_dilution.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        13,
+        60,
+        51
+      ],
+      "opaquePixels": 1422,
+      "sha256": "1d630ba1cb1762c768b5330b2c32bdb7ffe467b4f36aa31eab82d7fdb9afcbea",
+      "nativeSha256": "a53e79444f8c92e3480f8ce7bf421c2f909e8a1e628a4a690188eb4ecdd7b8c9",
+      "pixelSha256": "d379b4568934ad26e5ff7467c6141b64df59efc884fe22218f7c797e871de0b6",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_ice_dilution.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_ice_dilution.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 1,
+        "column": 1
+      },
+      "functionalMotif": "A low wide clear rocks tumbler containing exactly two large square pale blue ice cubes and a shallow amber drink. Outside the tumbler on the right a single separate melting ice cube with a tiny clear water puddle. Show ice cooling and diluting a cocktail. No stem, no goblet, no jigger.",
+      "displayName": "얼음과 희석",
+      "gameEffect": "최대 체력 +20",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "espresso_shot",
+      "group": "research",
+      "artId": "research_espresso_shot",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_espresso_shot.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_espresso_shot.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        19,
+        60,
+        45
+      ],
+      "opaquePixels": 774,
+      "sha256": "2d917911cd76e80aee96be0c26ff0d1eea581405591720292f0bae691e818b09",
+      "nativeSha256": "2b92c1c6bff7b44d4d89ec79259998ac319c5525ef10744ad4c47df09a54d7ec",
+      "pixelSha256": "12fc4223831b21f8b46143e2fac77eccb0242bbb4404a70a96aa049df3e7eaba",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_espresso_shot.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_espresso_shot.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 1,
+        "column": 2
+      },
+      "functionalMotif": "A tiny ivory espresso demitasse with a thick golden crema surface on its small saucer, beside a clearly separate metal portafilter with a dark coffee basket and short black handle. Compact strong coffee shot, not a teapot or big mug.",
+      "displayName": "에스프레소 샷",
+      "gameEffect": "공격력 +20%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "espresso_shot",
+      "group": "research_tea",
+      "artId": "research_espresso_shot_tea",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_espresso_shot_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_espresso_shot_tea.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        6,
+        4,
+        58,
+        60
+      ],
+      "opaquePixels": 1489,
+      "sha256": "496e28a7aa152b17248af02b11378fe43e9b65777e12c03561bfe25a2bcd2d5b",
+      "nativeSha256": "72a3c33593001dd359e73b43c1e6c8b88d8a9df1eb0f3f5da8308ec369e49094",
+      "pixelSha256": "8a45bc2535a0fe2bf364ee248ee9bbb578964046bd890185d7aae1b4364579f2",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_espresso_shot_tea.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_espresso_shot_tea.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 1,
+        "column": 3
+      },
+      "functionalMotif": "An ivory porcelain lidded gaiwan tilted gently pouring a narrow connected stream of pale green first infusion tea into one separate small handleless tasting cup. Sage leaf beside the cup. The gaiwan lid is slightly offset to strain leaves. Clear tea brewing equipment, not espresso equipment.",
+      "displayName": "첫물 우림",
+      "gameEffect": "공격력 +20%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "bar_shoes",
+      "group": "card",
+      "artId": "card_build",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_build.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_build.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        10,
+        4,
+        54,
+        60
+      ],
+      "opaquePixels": 1192,
+      "sha256": "7893428e047423bac940f15f53ef11ab663896d382ff1a8a9d29ba8e6a4db15e",
+      "nativeSha256": "cfdfba816b9392ae56d68a235be8e67467599fac04360e1435390fb57f1d538a",
+      "pixelSha256": "9882b58464b74ad268eb8d629c59a33995d224cb487fcda450a703ba31a115d1",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_build.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_build.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 1,
+        "column": 4
+      },
+      "functionalMotif": "One low rocks glass with amber drink and two ice cubes, a small bottle tilted directly over the serving glass with a short connected stream, a citrus wedge on the rim. Build cocktail technique made directly inside the serving glass; no shaker.",
+      "displayName": "빌드",
+      "gameEffect": "이동 속도 +10%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "champagne_spray",
+      "group": "card",
+      "artId": "card_split_base",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_split_base.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_split_base.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        4,
+        60,
+        60
+      ],
+      "opaquePixels": 1062,
+      "sha256": "1ed0f04464bf1aa419fee699e8dfca6914749f5743c20dab255ad6b3f2865606",
+      "nativeSha256": "e577cf844360825df6dd5bfd5bc7bc97bd8b374b9aa71c491cb1d5d7753c0c48",
+      "pixelSha256": "c27070f1a44e73df9ce69164c2616a02c06aa481ed6023ec769137d6a17493b5",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_split_base.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_split_base.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 1,
+        "column": 5
+      },
+      "functionalMotif": "Two distinctly shaped small spirit bottles, one tall narrow gin bottle and one squat amber rum bottle, each pouring its own narrow stream into a single central mixing glass. Clearly two bases combined, not champagne spray.",
+      "displayName": "스플릿 베이스",
+      "gameEffect": "다중 발사 +1발(부채꼴)",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "liqueur",
+      "group": "card",
+      "artId": "card_liqueur",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_liqueur.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_liqueur.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        5,
+        60,
+        59
+      ],
+      "opaquePixels": 1614,
+      "sha256": "95772f80de09762ed37b16c381dfd3090d99f6d9da8b8b85e8b01ceb14bb8074",
+      "nativeSha256": "322b37baad95bdabb98ae15e3217df2befeba7085aede0ab04fdb0677cb1e783",
+      "pixelSha256": "059a0cfe8116791bb2b3c40499c8c79979070c51b7a2a1155fd4b97994227864",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_liqueur.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_liqueur.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 1,
+        "column": 6
+      },
+      "functionalMotif": "A single squat elegant ruby liqueur bottle with rounded shoulders and a short cork, beside a small orange peel curl and one green herb sprig, tiny stemmed tasting glass with red liqueur. The label is a plain blank cream patch.",
+      "displayName": "리큐르",
+      "gameEffect": "재료 게이지 필요량 -8%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "molotov",
+      "group": "card",
+      "artId": "card_flamed_zest",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_flamed_zest.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_flamed_zest.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        9,
+        4,
+        55,
+        60
+      ],
+      "opaquePixels": 1545,
+      "sha256": "f7224608d081d72f05e28b8f5981e298fa4fc2a3caee0a9b17547f3c039f3800",
+      "nativeSha256": "b857f0810ea48c74bdef4215119ef179569b3e094fd79c136df9030438cc83ad",
+      "pixelSha256": "06d3b9769702ae6c0a139ba066966d4fee9f1e2c45bc38621a747e6430fe3762",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_flamed_zest.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_flamed_zest.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 1,
+        "column": 7
+      },
+      "functionalMotif": "A curved fresh orange peel held above the right rim of one low amber cocktail glass. A clearly visible small pointed orange and yellow flame, shaped like a short horizontal tongue of fire, burns across the citrus oil spray between peel and glass rim. The flame silhouette is essential and must be visible. Only a small controlled garnish flame, no weapon, no firebomb, no entire glass on fire.",
+      "displayName": "플레임드 제스트",
+      "gameEffect": "적중 화염 Lv +1·3초",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "syrup",
+      "group": "card",
+      "artId": "card_prebatch",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_prebatch.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_prebatch.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        7,
+        60,
+        56
+      ],
+      "opaquePixels": 1253,
+      "sha256": "7eb3ddb40566390544899447389b609776b3be0e3ba0d23380bbd33c3728bc12",
+      "nativeSha256": "836fff86b35e83ce3c72f86cb6b373a445b1ba17260cdbbfc9425c3e80935ca3",
+      "pixelSha256": "78f4fbc4bc77167187a7d1ba287da27e908811c818f34e3d9b844389d1e36c71",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_prebatch.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_prebatch.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 1,
+        "column": 8
+      },
+      "functionalMotif": "A large capped clear glass carafe half filled with amber mixed cocktail base, beside three matching tiny empty low glasses in a neat row. Preparing multiple servings ahead, not a syrup jar.",
+      "displayName": "프리배치",
+      "gameEffect": "재료 추가 드랍 +10%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "dried_leaf",
+      "group": "card",
+      "artId": "card_leaf_drying",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_leaf_drying.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_leaf_drying.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        12,
+        60,
+        51
+      ],
+      "opaquePixels": 1539,
+      "sha256": "8387a542df658e6c511223da727e8e035b9e9b4c150add3302b3fe04fa9a3898",
+      "nativeSha256": "533b6b20afd99305dab372a164ddef183e769c85535a8f6a1b1a48f254548af5",
+      "pixelSha256": "fe1e4bee0e875e5304a9d3cb9d1840e7dca84c86900beb4599017963d42d2dd3",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_leaf_drying.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_leaf_drying.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 2,
+        "column": 1
+      },
+      "functionalMotif": "A low round woven bamboo drying tray covered with spread-out separate curled sage green tea leaves, one wooden leaf rake across its edge. Dry tea processing, no sun symbol, no cooked food.",
+      "displayName": "찻잎 건조",
+      "gameEffect": "재료 추가 드랍 +10%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "golden_ratio",
+      "group": "card",
+      "artId": "card_brew_balance",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_brew_balance.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_brew_balance.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        6,
+        60,
+        58
+      ],
+      "opaquePixels": 1612,
+      "sha256": "5177a1bd6699469601dfdffc5fe2fe0ee8892abce8200f30e64cd07f6cfda435",
+      "nativeSha256": "47bfa1a8f268bd095e5fd659c71b4759d18f5a151f2b9cd82e8067280809aa2a",
+      "pixelSha256": "5acf0a0db5f24ec3a11f5b95909825fc8685ea2ca29aa9a2c3bc4684872e4ff5",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_brew_balance.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_brew_balance.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 2,
+        "column": 2
+      },
+      "functionalMotif": "A small porcelain tea brewing pot on a compact weighing scale, with a tiny hourglass and slim thermometer standing clearly beside it, a few tea leaves in front. Measuring tea quantity, water temperature and steeping time together. No digits.",
+      "displayName": "추출 균형",
+      "gameEffect": "공격력 +25%, 공격 속도 +20%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "honey",
+      "group": "card",
+      "artId": "card_teaspoon",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_teaspoon.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_teaspoon.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        9,
+        4,
+        55,
+        60
+      ],
+      "opaquePixels": 961,
+      "sha256": "3dc4e3b1050eee5487d99aac469074ad2355f9d2e968ce96c691749ece7dbb3b",
+      "nativeSha256": "de526bbe8c25057d23e4d696f3cad6967a839b3c887d9f1d82d3de751256a9ee",
+      "pixelSha256": "0403d5e686d8e99919cb26e9b6241c365593b794c7aa179084796b8fdc7721ba",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_teaspoon.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_teaspoon.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 2,
+        "column": 3
+      },
+      "functionalMotif": "One long silver measuring teaspoon shown diagonally, bowl filled with distinct dry green tea leaves, above a small open ceramic leaf jar. Clearly spoon measuring tea leaves, no honey, no dripping liquid.",
+      "displayName": "티스푼 계량",
+      "gameEffect": "재료 게이지 필요량 -8%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "long_spout",
+      "group": "card",
+      "artId": "card_long_spout",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_long_spout.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_long_spout.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        5,
+        60,
+        59
+      ],
+      "opaquePixels": 1210,
+      "sha256": "c6d5fbb9ef2ab5e95c889a04090bac2d8a45600280998723d6bda9aca1e87cf4",
+      "nativeSha256": "e267acf6f289fb468b8fe72bc3dae79c79604a7ec8b70c79eb1c7e51fba55896",
+      "pixelSha256": "05bd2a21187b80c07d072f2734cec734dc20e96a3a4950b354f3c83d9acb9a40",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_long_spout.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_long_spout.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 2,
+        "column": 4
+      },
+      "functionalMotif": "A single round polished silver gooseneck kettle with a very long thin curved spout on the right pouring a narrow connected stream into a little ivory tea cup below. Main silhouette must be the long curved spout.",
+      "displayName": "긴 주둥이 주전자",
+      "gameEffect": "사거리 +15%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "nightshade_blend",
+      "group": "card",
+      "artId": "card_black_tea_finish",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_black_tea_finish.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_black_tea_finish.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        6,
+        4,
+        58,
+        60
+      ],
+      "opaquePixels": 1155,
+      "sha256": "cc77598de927df903bdf8ddb0cfa65c9f70a81f787e80f7666543fdb9dee5918",
+      "nativeSha256": "c99295db6ab9381f54a210ace7a54ecdf273e25a8ee7320e45bc16498c84411d",
+      "pixelSha256": "e76473448eb9fab5ed81925484a4d7ffafd6107b59a8ed752a636ed393a31cde",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_black_tea_finish.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_black_tea_finish.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 2,
+        "column": 5
+      },
+      "functionalMotif": "An ivory handleless tea tasting cup filled with deep copper red black tea, beside distinct curled dark oxidized tea leaves and a single tall curling wisp of fragrant steam. Plain tea, no poisonous plant, no skull.",
+      "displayName": "홍차의 떫은 여운",
+      "gameEffect": "적중 여운 피해 Lv +2·3초",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "piercing_arrowhead",
+      "group": "card",
+      "artId": "card_tea_strainer",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_tea_strainer.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_tea_strainer.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        7,
+        4,
+        57,
+        60
+      ],
+      "opaquePixels": 1210,
+      "sha256": "9e4518a98382fa05e27a9c452cf15e84fb6f887b0d99ae51dc0009aa1bfbc600",
+      "nativeSha256": "4f60352ab8c5cf7790db5e5ff7e762f63e32a4036ac5b76fc6d3c4340b1d2364",
+      "pixelSha256": "566af45cb9ed666ddf709819571eb8f2625a80f23e6ca6b156bb941d6fc6a9e5",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_tea_strainer.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_tea_strainer.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 2,
+        "column": 6
+      },
+      "functionalMotif": "A single fine mesh spherical tea infuser ball opened into two hinged hemispheres, with green tea leaves in one half and a short attached chain ending in a small hook. Clearly tea filtering tool, not a cocktail spring strainer or weapon.",
+      "displayName": "차 거름망",
+      "gameEffect": "발사체 관통 +1",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "tea_leaf_scatter",
+      "group": "card",
+      "artId": "card_blending",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_blending.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_blending.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        11,
+        60,
+        53
+      ],
+      "opaquePixels": 1517,
+      "sha256": "9c643acf0dbb7302b43459d9a61210a755d10e73e50eff8768bba2b079b0c4ac",
+      "nativeSha256": "d4e827856823fb4a27c20723b9b277c19c1b231a2b829512f3e1e886c3344379",
+      "pixelSha256": "ceb5b769f83a7ba9a74ac261e9c0a384f21c4d1cd713d6c805fcfe5c065cd099",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_blending.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_blending.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 2,
+        "column": 7
+      },
+      "functionalMotif": "Three separate small piles of rolled green tea, narrow dark black tea, and pale dried flower petals arranged around one central wooden blending scoop partly filled with mixed leaves. Three visibly different ingredient textures.",
+      "displayName": "블렌딩",
+      "gameEffect": "다중 발사 +1발(부채꼴)",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "warm_cup",
+      "group": "card",
+      "artId": "card_cup_warming",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_cup_warming.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\card_cup_warming.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        7,
+        4,
+        57,
+        60
+      ],
+      "opaquePixels": 1160,
+      "sha256": "57d0f55ade9534b3fa8ae178f5411a6e0acd6872e681201e2747e9fe3144997a",
+      "nativeSha256": "d7660e13e9e29080993eadec7fa8c513b0dd77c614e35f8a4f90705f5bd0a5d0",
+      "pixelSha256": "fdb2696727f5e8f6a37d8ec7e17724d7f732f80881425aeae40f14b5bc3aedee",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_cup_warming.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_cup_warming.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 2,
+        "column": 8
+      },
+      "functionalMotif": "A tilted small ivory pitcher pouring a connected stream of clear hot water into an empty wide ivory handleless tea cup on its saucer, two soft steam curls rise from the receiving cup. Warming an empty tea cup before brewing, no tea leaves in cup.",
+      "displayName": "찻잔 예열",
+      "gameEffect": "최대 체력 +20",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "ristretto",
+      "group": "research",
+      "artId": "research_ristretto",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_ristretto.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_ristretto.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        7,
+        4,
+        57,
+        60
+      ],
+      "opaquePixels": 1345,
+      "sha256": "5938222821b8e17d5ee2e0dd089978bca3d4b8c767f17a94ffdc4a8144866850",
+      "nativeSha256": "29c7320045a918e5c540b663e9cbba2d7e83208f4db1be6c7468eeaf41293c17",
+      "pixelSha256": "79f691d18da80f8cf3ae1c5963cf7d87e3a3b315308402bfa18dc5096321e5ff",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_ristretto.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_ristretto.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 3,
+        "column": 1
+      },
+      "functionalMotif": "A short thick concentrated dark coffee stream dripping from a small metal portafilter into one tiny clear espresso shot glass, only a shallow very dark coffee layer and golden crema. Compact intense extraction, a small brass speed wing detail beside the glass.",
+      "displayName": "리스트레토",
+      "gameEffect": "공격 속도 +25%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "balanced_extraction",
+      "group": "research",
+      "artId": "research_balanced_extraction",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_balanced_extraction.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_balanced_extraction.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        10,
+        60,
+        53
+      ],
+      "opaquePixels": 991,
+      "sha256": "6a9b4190a4896844d9ca56b9d78ce3516b678780f9d48180b0ed1058c823e786",
+      "nativeSha256": "ca2524b66b8d1f8c0963a2cac2828cf15cd45171ee27693fcefc48bd6676499b",
+      "pixelSha256": "1812315c35df2d5fd39c5e1dc3da5a594a0673099d186ca2995c2595de632118",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_balanced_extraction.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_balanced_extraction.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 3,
+        "column": 2
+      },
+      "functionalMotif": "An elegant small brass balance scale with two level pans, one holds a clear water droplet and the other a neutral cream measuring scoop. Straight balanced beam and long horizontal silhouette, no coffee beans or tea leaves.",
+      "displayName": "균형 추출",
+      "gameEffect": "사거리 +15%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "full_body_roast",
+      "group": "research",
+      "artId": "research_full_body_roast",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_full_body_roast.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_full_body_roast.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        7,
+        60,
+        56
+      ],
+      "opaquePixels": 1178,
+      "sha256": "08548f2b70c47234e9caa449466df861607979a612c7f08a4fd2b8b5af0ec913",
+      "nativeSha256": "04cda7ba1170479e16bc38f10f42cc546ff5aa84982a200c2a76bdf326661453",
+      "pixelSha256": "076ec0f73d4c42e5a686af13e5b317da87828103ae16dfb5377c0d08b1cae0db",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_full_body_roast.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_full_body_roast.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 3,
+        "column": 3
+      },
+      "functionalMotif": "A heavy dark iron roasting pan tilted slightly, several large glossy brown roasted coffee beans tumbling out beside two warm roasting heat curls. Coffee roasting tools, no cup, no flames.",
+      "displayName": "풀바디 로스트",
+      "gameEffect": "공격력 +25%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "perfect_extraction",
+      "group": "research",
+      "artId": "research_perfect_extraction",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_perfect_extraction.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_perfect_extraction.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        6,
+        60,
+        57
+      ],
+      "opaquePixels": 1225,
+      "sha256": "8c33b9d556523d9177fe23d03a31fecf7fa467195dccd4971187476130d73ead",
+      "nativeSha256": "ea2932855128b25461f923e40ca2cf5b57b7eac78d85da7e5d9d1bd0a8c7fb60",
+      "pixelSha256": "d54a7c66c694a83dd5b797cf4c77964ff6d649a24614240399fb8389c4ee60e8",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_perfect_extraction.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_perfect_extraction.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 3,
+        "column": 4
+      },
+      "functionalMotif": "A polished espresso portafilter with a split twin spout pouring two distinct dark coffee streams into two tiny matching ivory espresso cups with golden crema. Twin complete pours show additional strike effect.",
+      "displayName": "완전 추출",
+      "gameEffect": "연속타/동시발사 +1",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "caffeine_rush",
+      "group": "research",
+      "artId": "research_caffeine_rush",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_caffeine_rush.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_caffeine_rush.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        4,
+        60,
+        60
+      ],
+      "opaquePixels": 1531,
+      "sha256": "02128d435085d9796e42d901f0966a0e196b7ffa7a53eea09d2fdca0a77d6a49",
+      "nativeSha256": "a3ffa80615af6f18b3965b8a74dac0ef655794b87dc044a4658d480672d1d76c",
+      "pixelSha256": "bb06b0b50fb3b7a7c2ff8c3a7dfde36d74a87e36cdf2e83be818d1c51d582f73",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_caffeine_rush.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_caffeine_rush.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 3,
+        "column": 5
+      },
+      "functionalMotif": "Three large glossy roasted coffee beans with two clear curved forward motion streaks and one tiny gold lightning spark. Dynamic rushing diagonal coffee bean cluster, no cup or teapot.",
+      "displayName": "카페인 각성",
+      "gameEffect": "이동 속도 +12%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "doppio_body",
+      "group": "research",
+      "artId": "research_doppio_body",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_doppio_body.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_doppio_body.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        16,
+        60,
+        47
+      ],
+      "opaquePixels": 1418,
+      "sha256": "bc1efc4cc3872faa70742ab048f52270ef07bcf174d1f1213dac791fe7885c72",
+      "nativeSha256": "aec9e3594ef5e39d7683a2a5aaf1a0add07d872196b8a31a146d961bbb410aa8",
+      "pixelSha256": "36011c374244cc12a6d7a0c194df08f2f2e0a15aeb47432c9815deb13e6b2898",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_doppio_body.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_doppio_body.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 3,
+        "column": 6
+      },
+      "functionalMotif": "Two small sturdy ivory espresso cups side by side on one broad saucer, each filled with dark coffee and thick golden crema, a small warm red heart motif nestled between the cups. Clearly double shot coffee vitality.",
+      "displayName": "도피오 체력",
+      "gameEffect": "최대 체력 +50",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "mellow_finish",
+      "group": "research",
+      "artId": "research_mellow_finish",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_mellow_finish.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_mellow_finish.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        7,
+        4,
+        57,
+        60
+      ],
+      "opaquePixels": 1415,
+      "sha256": "56c82f77878d33dbfc6092628939b88c3b18e225dc2f3f7f3b04752da5798725",
+      "nativeSha256": "7d0dc76d04e04af1dc2b3e52932a3f8960a447be5767721209583f465d0d6d3d",
+      "pixelSha256": "dece10a9dc25184a7b4e9a3cb72e4b84297f355b5a596c66b3ef5f04c63f4dd7",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_mellow_finish.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_mellow_finish.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 3,
+        "column": 7
+      },
+      "functionalMotif": "A plain ivory handleless warm beverage bowl with soft pale steam curling into a simple small heart, on a smooth saucer. Neutral light amber liquid, no coffee beans or specific tea utensils. Gentle warmth and recovery.",
+      "displayName": "부드러운 여운",
+      "gameEffect": "분당 회복량 +60",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "insulated_cup",
+      "group": "research",
+      "artId": "research_insulated_cup",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_insulated_cup.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_insulated_cup.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        7,
+        4,
+        56,
+        60
+      ],
+      "opaquePixels": 1850,
+      "sha256": "7eedfa71ab8e3e44309dce81d7cd60990e70bdc20bacf648bef7b4a616effc8a",
+      "nativeSha256": "eb3e93522956ce271b28b716cad271e1c3527734560ab9ea5af4edf4bdc2c076",
+      "pixelSha256": "97b82b53c78c899af8190eb82301739b6e5a30bf1a007240756e8e8bb54e8239",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_insulated_cup.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_insulated_cup.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 3,
+        "column": 8
+      },
+      "functionalMotif": "One sturdy double wall insulated ivory travel tumbler with a clearly visible thick inner rim, fitted dark lid tilted beside it and a protective sage sleeve. No logo, no coffee beans. Neutral vessel for coffee or tea.",
+      "displayName": "보온 컵",
+      "gameEffect": "최대 체력 +30",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "steady_hand",
+      "group": "research",
+      "artId": "research_steady_hand",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_steady_hand.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_steady_hand.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        12,
+        4,
+        52,
+        60
+      ],
+      "opaquePixels": 956,
+      "sha256": "a677db2f333fb5f2d5d1561c41f7702980846720c4bdcd15b8e15d46b9d0ea9c",
+      "nativeSha256": "3af2f82c7f799380c958a21ff05f80572b9854f04b3ec9f3fe33318b22b4a806",
+      "pixelSha256": "e2b47d212a98cbc5b42700b42b2c474b956b7ebfb324442c771046b1e679bc86",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_steady_hand.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_steady_hand.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 4,
+        "column": 1
+      },
+      "functionalMotif": "One steady gloved cafe hand carefully holding a small neutral silver pouring pitcher above a tiny ivory cup, with a single perfectly straight narrow connected water stream. Stable precise pour, no motion streaks. Hand anatomically simple mitten-like.",
+      "displayName": "흔들림 없는 손",
+      "gameEffect": "받은 피해 -15%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "cold_brew",
+      "group": "research",
+      "artId": "research_cold_brew",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_cold_brew.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_cold_brew.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        18,
+        4,
+        46,
+        60
+      ],
+      "opaquePixels": 1147,
+      "sha256": "e84ca3a0023998d0c456a17d196951a338cbd3940f41d6d6c0b82421d12c4b4c",
+      "nativeSha256": "c57905fa5cb5bb025b1725ecacf161ef36e1777a05545b106ae184382540ebf3",
+      "pixelSha256": "cd1e84d82dab651b708c5be44297dbb5e0860b55d356de9f5796ba51f18be964",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_cold_brew.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_cold_brew.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 4,
+        "column": 2
+      },
+      "functionalMotif": "A tall clear sealed cold infusion bottle half filled with neutral pale amber liquid, a suspended filter pouch inside and two large separate pale blue ice cubes at its base. Neutral cold water extraction, no obvious coffee bean or tea leaf identity.",
+      "displayName": "콜드브루",
+      "gameEffect": "재료 게이지 필요량 -10%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "fine_grind",
+      "group": "research",
+      "artId": "research_fine_grind",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_fine_grind.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_fine_grind.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        5,
+        4,
+        58,
+        60
+      ],
+      "opaquePixels": 1552,
+      "sha256": "3da6c73c928e6cb7b04a22b0ef2e4f8c4d327e607a344419e1cd6834e8eef348",
+      "nativeSha256": "653a38701a0da6f817853353fa15d2b82d52402ca279afb077c04f5d7d9bee9f",
+      "pixelSha256": "40cbbc585e4872811eaca4dd48ce57dc6bce0dfa830042a4c163f0b50e2b3ea0",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_fine_grind.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_fine_grind.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 4,
+        "column": 3
+      },
+      "functionalMotif": "A compact wooden hand coffee grinder with a short horizontal crank and brass knob, open lower drawer showing finely ground brown coffee and two whole beans beside it. Clearly mechanical grinding tool.",
+      "displayName": "곱게 갈기",
+      "gameEffect": "재료 추가 드랍 확률 +15%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "wide_tray",
+      "group": "research",
+      "artId": "research_wide_tray",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_wide_tray.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_wide_tray.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        19,
+        60,
+        45
+      ],
+      "opaquePixels": 1128,
+      "sha256": "86a19607ffe9d580c3ac2a5eb6f75aa424f70903b2d73eb1f532b92fc6fbd7b1",
+      "nativeSha256": "16e501228bcabc53424d74addc2a6fdeeb62acbfef744a61ebc0dfc6a73b470a",
+      "pixelSha256": "a52c6bf1458c00933728cc1d5109d711cd9cb9b91fc75629a47e0ca0ba6e3674",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_wide_tray.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_wide_tray.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 4,
+        "column": 4
+      },
+      "functionalMotif": "A broad oval polished silver cafe serving tray viewed slightly from side with thick raised rim and two short side handles. Three tiny neutral ingredient containers spaced across the tray emphasize its generous pickup area.",
+      "displayName": "넓은 트레이",
+      "gameEffect": "줍기 반경 +100cm",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "measured_pour",
+      "group": "research",
+      "artId": "research_measured_pour",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_measured_pour.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_measured_pour.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        5,
+        4,
+        59,
+        60
+      ],
+      "opaquePixels": 1144,
+      "sha256": "9df0df81075a4753663fff6f1cc8a906aa3a38805eb4239b72e609f446bbe055",
+      "nativeSha256": "f7049afb476843806eb70cdf5e692b7cf46689048777b80af1d1300a9cea4bc3",
+      "pixelSha256": "1039467cf4f2b5bc30977b2faab838ec6f1fd65f012005fddea2a0e569280dd6",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_measured_pour.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_measured_pour.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 4,
+        "column": 5
+      },
+      "functionalMotif": "One transparent clear graduated laboratory-style measuring cylinder held tilted diagonally, pouring a narrow clear stream into a tiny plain ivory cup. Exactly three separate short straight horizontal graduation tick marks on the left wall of the clear cylinder. Visible liquid level inside. No letters, digits, logo, leaf pattern or decorative marking. The graduated cylinder must be clearly different from a metal pitcher.",
+      "displayName": "정량 따르기",
+      "gameEffect": "재료 게이지 필요량 -10%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "zero_waste",
+      "group": "research",
+      "artId": "research_zero_waste",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_zero_waste.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_zero_waste.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        9,
+        4,
+        55,
+        60
+      ],
+      "opaquePixels": 1142,
+      "sha256": "7c02a4ce22943e85fbb1a77a6b7f8f7d1fbef9fd521b4b7b236b79d90ab21d0a",
+      "nativeSha256": "9893cb023d97587d8b75b94effc10b783651de3ed16e678a9af023a74518c0ee",
+      "pixelSha256": "2a9d72167424b869f5dfdd00c220773b77985889b143ce8304564f38019dd828",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_zero_waste.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_zero_waste.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 4,
+        "column": 6
+      },
+      "functionalMotif": "A tilted small glass brewing server almost completely empty, one final large amber droplet falling from its lip into a tiny ivory cup, a small flexible silicone scraper tucked beside the server. Last drop collection, no leaf or bean identity.",
+      "displayName": "남김없는 추출",
+      "gameEffect": "재료 추가 드랍 +20%, 줍기 반경 +50cm",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "ristretto",
+      "group": "research_tea",
+      "artId": "research_ristretto_tea",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_ristretto_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_ristretto_tea.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        5,
+        60,
+        58
+      ],
+      "opaquePixels": 1434,
+      "sha256": "0d1708484ea77fb0c0ef48fa0ffa220ad1bdb0d54ed74b44e1d7f3adf52729e4",
+      "nativeSha256": "9447343373d9aff741542ce92e3408b29577a47e6a6e73aab275c15c1f11000b",
+      "pixelSha256": "24ab28b9385ac6450c1b0ffb5e7771a88b6fad3f36af035eb3b2f00fda4df9f1",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_ristretto_tea.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_ristretto_tea.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 4,
+        "column": 7
+      },
+      "functionalMotif": "A very small round unglazed brown clay Yixing teapot with a short narrow curved spout, a tiny separate lid knob, and a round loop handle on the left, pouring a short dense amber tea stream into one tiny handleless cream cup. A small pile of tightly rolled tea leaves beside it. Clearly a spherical clay teapot with spout and handle, NOT a broad gaiwan bowl, NOT porcelain, no coffee equipment.",
+      "displayName": "농축 우림",
+      "gameEffect": "공격 속도 +25%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "full_body_roast",
+      "group": "research_tea",
+      "artId": "research_full_body_roast_tea",
+      "status": "needs_review",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_full_body_roast_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_full_body_roast_tea.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        7,
+        60,
+        56
+      ],
+      "opaquePixels": 1585,
+      "sha256": "82632970df66ebff2304801dfa4dd5ff5af00d49439143ea8ad39833ea5c3c09",
+      "nativeSha256": "ca166a51dbc9d28645c33f9b24c6c1ab4967eb58217e2843531baf472de3bec0",
+      "pixelSha256": "96ca004aa0c6776e39ddac25c4c9c6c567bca0cbc74adbe302e5873668b41550",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_full_body_roast_tea.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_full_body_roast_tea.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_puerh.png",
+      "contactPosition": {
+        "row": 4,
+        "column": 8
+      },
+      "functionalMotif": "A dark brown rectangular brick of compressed aged puerh TEA LEAVES, with one jagged corner broken off revealing dense rough layered dry leaf texture, several distinct loose tea leaves beside the broken piece, half unwrapped in plain tan paper. One slender wooden tea pick lies diagonally beside the brick. Clearly a compressed leaf brick, no food, no cake icing, no woven mesh, no bamboo basket, no round tray, no cup, no writing.",
+      "displayName": "깊은 숙성",
+      "gameEffect": "공격력 +25%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "perfect_extraction",
+      "group": "research_tea",
+      "artId": "research_perfect_extraction_tea",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_perfect_extraction_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_perfect_extraction_tea.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        6,
+        60,
+        58
+      ],
+      "opaquePixels": 1821,
+      "sha256": "4e774bb57decd3b983b8c64c02f2c8574f0db4a53c138fe4d6733564f40f81e6",
+      "nativeSha256": "d711d36607bcdbbf4c9a2bf2e060638c68ef678818e1285597f7fba4b58be5c3",
+      "pixelSha256": "045aece9c0bd2e004457c70b9fa4d747d2e13400c31c620956da70e44a877a3c",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_perfect_extraction_tea.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_perfect_extraction_tea.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 5,
+        "column": 1
+      },
+      "functionalMotif": "An ivory lidded tea brewing pot with a removable sage leaf infuser basket beside it and two tiny tasting cups filled evenly with golden tea. Fully infused tea shared between two cups, no coffee apparatus.",
+      "displayName": "완전 우림",
+      "gameEffect": "연속타/동시발사 +1",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "caffeine_rush",
+      "group": "research_tea",
+      "artId": "research_caffeine_rush_tea",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_caffeine_rush_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_caffeine_rush_tea.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        10,
+        4,
+        54,
+        60
+      ],
+      "opaquePixels": 967,
+      "sha256": "ea19695429a5a166a0aec270bfc04a119fd3c7eca2569bafde9b604556a0c5f2",
+      "nativeSha256": "92b7c6cc95862ad03ddf4f0d61647bd830c8c4c7856e802475686b7e690a8f84",
+      "pixelSha256": "b23b2b0d755487e8fc624cbd5d6ef6724be3b112a374b5a627ad52b2130bf97b",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_caffeine_rush_tea.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_caffeine_rush_tea.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 5,
+        "column": 2
+      },
+      "functionalMotif": "A bright fresh green tea leaf sprig above a small handleless tea bowl, three sweeping rising aroma curls and two short forward motion strokes. Tea fragrance and vitality, no coffee bean or lightning-shaped cup.",
+      "displayName": "차 향의 활력",
+      "gameEffect": "이동 속도 +12%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "doppio_body",
+      "group": "research_tea",
+      "artId": "research_doppio_body_tea",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_doppio_body_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_doppio_body_tea.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        14,
+        4,
+        49,
+        60
+      ],
+      "opaquePixels": 1078,
+      "sha256": "94bf3024a7be20f61183be594aca2b150af3150516de7098f2cdf6f31467ba24",
+      "nativeSha256": "2198288b94c266b999e83d134298899dcccda9a954c5e6a9e4764e33a87adfeb",
+      "pixelSha256": "2e20ab788261c58333f5d6cc02ecd79d1076ead58ac39e0cf87deed62b3e6d51",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_doppio_body_tea.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_doppio_body_tea.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 5,
+        "column": 3
+      },
+      "functionalMotif": "Three nested curling layers of pale fragrant steam rising from one small ivory tea aroma cup, a pair of overlapping fresh green leaves at its base and a small warm heart in the steam. Layered tea fragrance and vitality, no espresso cups.",
+      "displayName": "겹겹의 향",
+      "gameEffect": "최대 체력 +50",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "fine_grind",
+      "group": "research_tea",
+      "artId": "research_fine_grind_tea",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_fine_grind_tea.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\research_fine_grind_tea.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        7,
+        4,
+        56,
+        60
+      ],
+      "opaquePixels": 1387,
+      "sha256": "d885fafa32974bf53a405c9235ba1d15117ee4c6f16a5f171a1be8847a2727cf",
+      "nativeSha256": "16675c2145974bf6611bcf670e59ec4d502feca184fb0adc17218449a1495428",
+      "pixelSha256": "1f5b09cf788d8ca6c5a4dedcb334ea87471d1a5ba8183082e7c70f840266fba9",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_fine_grind_tea.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_fine_grind_tea.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "contactPosition": {
+        "row": 5,
+        "column": 4
+      },
+      "functionalMotif": "A shallow bamboo tea sorting basket with a few carefully separated long green tea leaves, one slender wooden tweezer selecting a complete leaf above the basket. Tea leaf selection, no grinder or coffee beans.",
+      "displayName": "찻잎 고르기",
+      "gameEffect": "재료 추가 드랍 확률 +15%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "service_1",
+      "group": "mastery",
+      "artId": "mastery_service_1",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_service_1.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_service_1.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        10,
+        60,
+        53
+      ],
+      "opaquePixels": 1310,
+      "sha256": "eb1c83ee5b51c2bdb8dd577034c68210e044398326232a1205484673877d28ee",
+      "nativeSha256": "eb4c3eb12f169a4132b2a3a997561342c9e3bb6e54fa943cb46090d85e9e13a0",
+      "pixelSha256": "b632409b23f28119c081e37589cf1364bd7ecc646085959eea9674e715e517e9",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_service_1.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_service_1.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 5,
+        "column": 5
+      },
+      "functionalMotif": "A cafe serving hand presenting a small freshly filled ivory cup on a silver saucer, beside a compact hourglass with most sand still in the upper bulb. Energetic first service at the beginning, no numeral.",
+      "displayName": "첫 잔의 기세",
+      "gameEffect": "런 시작 30초 동안 피해 +8%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "service_2",
+      "group": "mastery",
+      "artId": "mastery_service_2",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_service_2.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_service_2.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        14,
+        60,
+        49
+      ],
+      "opaquePixels": 1319,
+      "sha256": "4cd41d55bc6fa3fb0f634f33ecc1d60bd7fa7e941ff000a634a3f479e692e825",
+      "nativeSha256": "d9d698d4d8cc28bbe9eb12af361035befd9bdd1ad9e596642214ddbe991911c5",
+      "pixelSha256": "2ccc3c6b7f9e2a491368d25447aeedd95b1031f5d71c76617de2af61c3eb6f8e",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_service_2.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_service_2.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 5,
+        "column": 6
+      },
+      "functionalMotif": "A welcoming cafe service bell next to a small blank loyalty card displaying exactly three punched circular marks, one familiar ivory customer cup nearby. Repeat service rhythm and regular customer recognition, no text.",
+      "displayName": "단골 응대",
+      "gameEffect": "같은 적에게 주무기 직접 적중 3회째 피해 +15%(대상 변경·2초 미적중 시 초기화)",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "service_3",
+      "group": "mastery",
+      "artId": "mastery_service_3",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_service_3.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_service_3.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        7,
+        60,
+        57
+      ],
+      "opaquePixels": 1365,
+      "sha256": "5a1ab926187dd56af7807e8297b2e37b91a1f10d47511d776dc4890d384abf56",
+      "nativeSha256": "787216cb274f8e5bef9d6a40834dd88ba4b2a872b9ba5ae692818c2da009fc34",
+      "pixelSha256": "a63a7d31939cbd11064082a21517ac0586cff6382f0aef723db8a766724bef22",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_service_3.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_service_3.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 5,
+        "column": 7
+      },
+      "functionalMotif": "An elegant completed signature cocktail in a distinctive wide stemmed coupe glass, with a twisted citrus garnish clipped neatly onto its rim. Next to it a tiny wooden preparation board carrying a silver measuring jigger, one orange wedge and one herb sprig arranged neatly in three separate spots. Signature preparation with recognizable physical ingredients and tools only. Absolutely no paper, card, recipe, label, glyphs, lettering, writing, symbols or numbers.",
+      "displayName": "시그니처 준비",
+      "gameEffect": "출발 전 고른 목표 조합을 런 중 완성하면 30초 피해 +10%(1회)",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "service_4",
+      "group": "mastery",
+      "artId": "mastery_service_4",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_service_4.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_service_4.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        7,
+        60,
+        56
+      ],
+      "opaquePixels": 1851,
+      "sha256": "ce6e281aa2070add320abd4187d9ee33a95c276653366531fc40e008b3591161",
+      "nativeSha256": "4377e713f4d2853d86ff920eb04771301d22f5c8688670b0c30a762abd00a45b",
+      "pixelSha256": "37160f54d774d12ddad6b6f11546f952130c138e5a8183f660f8b2a885ea2750",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_service_4.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_service_4.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 5,
+        "column": 8
+      },
+      "functionalMotif": "A compact silver closing service bell beside a small dark cafe clock showing hands close to closing time and a neat stack of empty cups. One small sharp gold emphasis glint, final service concentration, no digits.",
+      "displayName": "마감 집중",
+      "gameEffect": "최종 보스 생존 중 주무기 공격 속도 +5%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "stability_1",
+      "group": "mastery",
+      "artId": "mastery_stability_1",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_stability_1.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_stability_1.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        10,
+        60,
+        53
+      ],
+      "opaquePixels": 1843,
+      "sha256": "168a99ad1d3c465f87b571d6ad37674c2c446206f4805a0f784410469ec25362",
+      "nativeSha256": "cac789973bcae5062586a301657e87c5551bd0473a6c2935269555de7865038e",
+      "pixelSha256": "2804d39bae43428d1260af639aad2c03ce160cba8f7e629b2c2d7cefbb299b85",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_stability_1.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_stability_1.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 6,
+        "column": 1
+      },
+      "functionalMotif": "A cafe tray carried level with a cup of amber tea whose liquid surface stays perfectly flat, a folded ivory service cloth below and one small hourglass beside it. Calm unhurried steady service, no person body.",
+      "displayName": "여유로운 서비스",
+      "gameEffect": "피해 없이 8초 유지 시 이동 속도 +4%(피격 해제)",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "stability_2",
+      "group": "mastery",
+      "artId": "mastery_stability_2",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_stability_2.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_stability_2.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        7,
+        60,
+        57
+      ],
+      "opaquePixels": 1874,
+      "sha256": "fd7ebab25ecc4d926cee35a7ada5d21687081bffe2558d9a860969dba412c0b9",
+      "nativeSha256": "982fcdfcba8f99374ae4b63db0a7f906799d34353776d36d4c7f3e635201603a",
+      "pixelSha256": "2213469a622d8a18df069c60d75dc34e6b9932193eaa1dfded1cd6561837a6a9",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_stability_2.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_stability_2.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 6,
+        "column": 2
+      },
+      "functionalMotif": "An ivory handled cup tipped gently to reveal only one last amber sip at its bottom, backed by a small sturdy curved sage shield. Last sip protective reserve, no full drink or spilled liquid.",
+      "displayName": "마지막 한 모금",
+      "gameEffect": "체력 25% 이하 첫 진입 시 4초 받는 피해 -10%p(런당 1회)",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "stability_3",
+      "group": "mastery",
+      "artId": "mastery_stability_3",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_stability_3.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_stability_3.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        5,
+        60,
+        58
+      ],
+      "opaquePixels": 1750,
+      "sha256": "589498fd4b828bbcafbb058d5dc4656e04fd7524bdd955731e57ce94986d460a",
+      "nativeSha256": "c0e793cab0679b266489b34e6f9e51fb7b7091f3f1107cf952c7dc5ac40f2119",
+      "pixelSha256": "8ca4c932a09e4fb52666c12a6fdba3710d888ba7ad28f75054353f4449a382de",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_stability_3.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_stability_3.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 6,
+        "column": 3
+      },
+      "functionalMotif": "A steaming small ivory cup resting on a folded cafe towel beside a little wall clock and a single fresh leaf. Rest break and recovery after hard service, no weapons or boss monster.",
+      "displayName": "쉬는 시간",
+      "gameEffect": "보스 처치 후 최대 체력 3% 회복(보스별 1회)",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "stability_4",
+      "group": "mastery",
+      "artId": "mastery_stability_4",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_stability_4.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_stability_4.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        7,
+        60,
+        56
+      ],
+      "opaquePixels": 1367,
+      "sha256": "efe49dfe4befe80f38c9ba6350e03129e51e2788b75c87230d670e5499e26e6b",
+      "nativeSha256": "0fa2aeeb9bb66beeef031eb03d22727cf61c911f5b653187a5490cd50bac4457",
+      "pixelSha256": "3f6c306e80a2c457357a1ab0d8f4c5678585017ba87a97f7c7e1806a8d6d2355",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_stability_4.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_stability_4.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 6,
+        "column": 4
+      },
+      "functionalMotif": "A dark cafe work shoe stepping firmly forward beside a small upright cup, a curved return path arrow sweeping behind the shoe and a tiny warm heart near its heel. Composed return to service under pressure, no numeric symbols.",
+      "displayName": "침착한 복귀",
+      "gameEffect": "체력 30% 이하에서 이동 속도 +6%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "finesse_1",
+      "group": "mastery",
+      "artId": "mastery_finesse_1",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_finesse_1.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_finesse_1.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        4,
+        60,
+        59
+      ],
+      "opaquePixels": 1531,
+      "sha256": "fc4e003cd0e3d3fc0da72ddff45b4b8dc3428065ef87a38be806018f9f1c64ef",
+      "nativeSha256": "b3066c9baa23b5e9138fa6657452b2948ccf92875fdf5f34ae2365d135c2360d",
+      "pixelSha256": "e81f3db84971b9c2d6a5ff4ef7072ff2052cb82c7468f6bbd0931e359289d8fa",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_finesse_1.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_finesse_1.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 6,
+        "column": 5
+      },
+      "functionalMotif": "One precise silver teaspoon placing a single round amber droplet exactly at the center of a small cream saucer marked with a subtle concentric target. First exact contact, clean complete utensil, no text or hands.",
+      "displayName": "첫 타의 정확성",
+      "gameEffect": "체력 가득한 적에 첫 주무기 직접 적중 피해 +8%",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "finesse_3",
+      "group": "mastery",
+      "artId": "mastery_finesse_3",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_finesse_3.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_finesse_3.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        4,
+        12,
+        60,
+        52
+      ],
+      "opaquePixels": 1699,
+      "sha256": "f1933a97a4df70a6518273d8e5dd9baf57ee8a0df94da1f44ec5ec7409781ded",
+      "nativeSha256": "1c76df875fe576006588ff8b83a54a41f930fce9a270b7cf4fbb285352f24006",
+      "pixelSha256": "0e793cdef82ad51020da1bf468f2316dba3dbe4eb343ce704ea092cf4545ed8a",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_finesse_3.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_finesse_3.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 6,
+        "column": 6
+      },
+      "functionalMotif": "Four distinctly shaped miniature served drinks on a tray: stemmed red cocktail, low amber rocks glass, green handleless tea bowl, and tall clear infusion glass. Varied cafe service, four unmistakable silhouettes, no confetti.",
+      "displayName": "다채로운 서비스",
+      "gameEffect": "서로 다른 칵테일·차 카드 4종 이상 보유 시 치명타 +1%p",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    },
+    {
+      "id": "finesse_4",
+      "group": "mastery",
+      "artId": "mastery_finesse_4",
+      "status": "ready",
+      "png": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_finesse_4.png",
+      "aseprite": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\mastery_finesse_4.aseprite",
+      "size": [
+        64,
+        64
+      ],
+      "alpha": "binary transparent",
+      "bounds": [
+        11,
+        4,
+        52,
+        60
+      ],
+      "opaquePixels": 1189,
+      "sha256": "794406220c064575bd2470ab38f14a0b2e70412da9f0a80d63a23eaae5ab7361",
+      "nativeSha256": "eaf09c2e4b78a6a14ec36994c0c45969486301359f0dd20eb7d507de1e467738",
+      "pixelSha256": "33c3cba2a4bf5b1a21d526b6b0ed53c72ea37985576e3bf976165a8c535c1c2c",
+      "nativeReopenPixelEqual": true,
+      "request": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_finesse_4.request.json",
+      "receipt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_finesse_4.receipt.json",
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "contactPosition": {
+        "row": 6,
+        "column": 7
+      },
+      "functionalMotif": "One carefully finished amber beverage in a small ivory cup centered under a compact brass cafe task lamp casting a narrow warm spotlight onto the cup only. Focus on a single prepared drink, no floor or backdrop.",
+      "displayName": "한 잔의 집중",
+      "gameEffect": "출발 음료 양수 전투 버프 105%(항목별 상한 유지)",
+      "handoffAuthority": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Delivery\\Reports\\ui-icons-2026-11-12-handoff.md",
+      "nativeFrameCount": 1
+    }
+  ]
+}

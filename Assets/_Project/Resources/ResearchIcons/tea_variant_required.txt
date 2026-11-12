@@ -1,0 +1,7 @@
+caffeine_rush
+doppio_body
+espresso_shot
+fine_grind
+full_body_roast
+perfect_extraction
+ristretto

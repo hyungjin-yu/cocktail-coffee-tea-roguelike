@@ -1,0 +1,7 @@
+﻿{
+    "installedExtensionVersion":  "0.4.130",
+    "tier":  1,
+    "endpoint":  "wss://api.pixellab.ai/generate-image-pro-flash",
+    "per64x64CostExistingGenerations":  5,
+    "newPurchase":  false
+}

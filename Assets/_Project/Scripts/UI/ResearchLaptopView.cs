@@ -320,13 +320,32 @@ namespace CCT
                 nl.alignment = TextAnchor.MiddleLeft;
                 nl.resizeTextMinSize = DrinkPaperUi.Small;
                 if (t.id == selectedTrait) { nl.fontStyle = FontStyle.Bold; nl.color = Accent; }
+                // 2026-11-12 숙련 노드 그림(승인 아트가 임포트된 경우만): 판 안 왼쪽, 글자는 그 오른쪽. 잠김은 흐림(글·테두리로도 구분).
+                var art = ResearchIcons.Mastery(t.id);
+                if (art != null)
+                {
+                    var ic = HudIcons.Icon((RectTransform)node.transform, "NodeArt", new Vector2(0f, 0.5f), new Vector2(18f, -3f), MasteryNodeArt, art);
+                    ic.rectTransform.pivot = new Vector2(0f, 0.5f);
+                    ic.rectTransform.sizeDelta = new Vector2(MasteryNodeArtW, MasteryNodeArt);
+                    ic.color = state == DrinkResearch.NodeState.Locked ? new Color(0.7f, 0.7f, 0.7f, 0.55f) : Color.white;
+                    lr.offsetMin = new Vector2(18f + MasteryNodeArtW + 8f, 14f);
+                }
             }
             // 상세
             var sel = DrinkResearch.Trait(selectedTrait) ?? DrinkResearch.TraitAt(branch, 1);
             var st = DrinkResearch.StateOf(r, sel);
             const float dx = 452f, dw = W - dx - 12f;
-            Label(body, "DetailName", new Vector2(dx, -76f), new Vector2(dw, 40f), $"{DrinkResearch.BranchName(sel.branch)} {sel.tier}단계 · {sel.name}", DrinkPaperUi.Heading, TextMain);
-            Label(body, "DetailEffect", new Vector2(dx, -128f), new Vector2(dw, 92f), sel.effect, DrinkPaperUi.Body, TextMain);
+            var selArt = ResearchIcons.Mastery(sel.id);
+            float tx = 0f;
+            if (selArt != null)
+            {
+                var dic = HudIcons.Icon(body, "DetailArt", new Vector2(0f, 1f), new Vector2(dx, -76f), MasteryDetailArt, selArt);
+                dic.rectTransform.pivot = new Vector2(0f, 1f);
+                dic.color = st == DrinkResearch.NodeState.Locked ? new Color(0.7f, 0.7f, 0.7f, 0.55f) : Color.white;
+                tx = MasteryDetailArt + 12f;
+            }
+            Label(body, "DetailName", new Vector2(dx + tx, -76f), new Vector2(dw - tx, 40f), $"{DrinkResearch.BranchName(sel.branch)} {sel.tier}단계 · {sel.name}", DrinkPaperUi.Heading, TextMain);
+            Label(body, "DetailEffect", new Vector2(dx + tx, -128f), new Vector2(dw - tx, 92f), sel.effect, DrinkPaperUi.Body, TextMain);
             string pre = sel.Prerequisite != null ? $"선행: {DrinkResearch.Trait(sel.Prerequisite).name}" : "선행 없음";
             Label(body, "DetailCost", new Vector2(dx, -222f), new Vector2(dw, 70f), $"해금 {sel.cost} 연구 포인트 · {pre}\n{StateWord(st, sel)}", DrinkPaperUi.Small, st == DrinkResearch.NodeState.Locked ? Bad : TextMuted);
             var unlock = DrinkPaperUi.Button(body, "Unlock", new Vector2(0f, 1f), new Vector2(dx, -300f), new Vector2(270f, 66f), $"해금 ({sel.cost} RP)", DrinkPaperUi.Body,
@@ -340,6 +359,9 @@ namespace CCT
             foreach (var id in r.equippedTraits) { var t = DrinkResearch.Trait(id); if (t != null) names.Add(t.name); }
             Label(body, "Slots", new Vector2(dx, -376f), new Vector2(dw, 76f), $"장착 슬롯 {names.Count}/{DrinkResearch.Slots}: {(names.Count > 0 ? string.Join(" · ", names) : "비어 있음")}\n출발할 때 장착한 특성만 그 판에 적용", DrinkPaperUi.Small, Accent);
         }
+
+        /// <summary>숙련 노드 그림 칸(캔버스 단위): 노드 판 420×74 안 56, 상세 88.</summary>
+        public const float MasteryNodeArt = 56f, MasteryNodeArtW = 72f, MasteryDetailArt = 88f; // 가로로 긴 그림용 노드 칸 72×56
 
         static string NodeArt(DrinkResearch.NodeState s) => s switch
         {

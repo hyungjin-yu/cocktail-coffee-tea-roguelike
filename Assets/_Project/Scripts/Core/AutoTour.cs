@@ -276,6 +276,7 @@ namespace CCT
                 if (mode == "ui-audit") yield return UiAuditRun();
                 if (mode == "ui-states") yield return UiStatesRun(); // 2026-11-12 남은 상태 캡처
                 if (mode == "hybrid") yield return HybridRun(); // 2026-11-12 하이브리드 해금 창
+                if (mode == "icons") yield return IconsRun(); // 2026-11-12 새 UI 아이콘 검수
                 if (mode == "skins") yield return SkinsRun();
                 if (mode == "feedback") yield return FeedbackRun();
                 if (mode == "water") yield return WaterRun();

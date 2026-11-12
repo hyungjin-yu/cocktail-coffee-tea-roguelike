@@ -1,0 +1,30 @@
+{
+  "endpoint": "generate-image-pro-flash",
+  "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+  "events": [
+    {
+      "type": "connected"
+    },
+    {
+      "progress": 0.05,
+      "type": "message_progress"
+    },
+    {
+      "progress": 0.5,
+      "type": "message_progress"
+    },
+    {
+      "progress": 0.75,
+      "type": "message_progress"
+    },
+    {
+      "progress": 0.75,
+      "type": "message_progress"
+    },
+    {
+      "type": "message_done",
+      "generation_id": "e0efa2f3-a167-43ca-8d14-6a12fa0b30b1",
+      "seed": 0
+    }
+  ]
+}

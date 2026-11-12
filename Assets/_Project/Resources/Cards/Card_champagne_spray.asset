@@ -27,5 +27,5 @@ MonoBehaviour:
   gameplayConnection: "나눠진 기반을 다중 발사로 표현했습니다."
   sourceName: "The Bar · Split-base cocktails"
   sourceUrl: "https://www.thebar.com/en-gb/articles/split-base-cocktails"
-  educationArtId: ""
+  educationArtId: card_split_base
   additionalSources: ""

@@ -27,5 +27,5 @@ MonoBehaviour:
   gameplayConnection: "재료 확보을 추가 재료로 표현했습니다."
   sourceName: "UK Tea & Infusions Association · Processing and blending"
   sourceUrl: "https://www.tea.co.uk/tea-processing-and-blending"
-  educationArtId: ""
+  educationArtId: card_leaf_drying
   additionalSources: ""

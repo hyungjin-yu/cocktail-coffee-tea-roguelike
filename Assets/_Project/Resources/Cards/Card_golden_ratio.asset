@@ -29,5 +29,5 @@ MonoBehaviour:
   gameplayConnection: "조절의 균형을 공격·공속으로 표현했습니다."
   sourceName: "UK Tea & Infusions Association · The perfect brew"
   sourceUrl: "https://www.tea.co.uk/make-a-perfect-brew"
-  educationArtId: ""
+  educationArtId: card_brew_balance
   additionalSources: ""

@@ -27,5 +27,5 @@ MonoBehaviour:
   gameplayConnection: "소량의 풍미 보완을 게이지 절약으로 표현했습니다."
   sourceName: "Diageo Bar Academy · Liqueurs, bitters and vermouth"
   sourceUrl: "https://www.diageobaracademy.com/en-us/home/explore-all-categories/liqueurs-bitters-and-vermouth"
-  educationArtId: ""
+  educationArtId: card_liqueur
   additionalSources: ""

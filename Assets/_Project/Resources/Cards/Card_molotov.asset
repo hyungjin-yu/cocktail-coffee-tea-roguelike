@@ -28,5 +28,5 @@ MonoBehaviour:
   gameplayConnection: "순간 불꽃을 적중 화염으로 표현했습니다."
   sourceName: "Diageo Bar Academy · Copper Colours"
   sourceUrl: "https://www.diageobaracademy.com/en-zz/home/explore-all-recipes/copper-colours"
-  educationArtId: ""
+  educationArtId: card_flamed_zest
   additionalSources: ""

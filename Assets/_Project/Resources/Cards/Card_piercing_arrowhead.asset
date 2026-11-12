@@ -27,5 +27,5 @@ MonoBehaviour:
   gameplayConnection: "차탕의 통과을 관통으로 표현했습니다."
   sourceName: "Ippodo Tea · Serving tea with a strainer"
   sourceUrl: "https://global.ippodo-tea.co.jp/blogs/tea-recipe/preparing-different-teas-in-the-tea-bowl-with-serving-spout"
-  educationArtId: ""
+  educationArtId: card_tea_strainer
   additionalSources: ""

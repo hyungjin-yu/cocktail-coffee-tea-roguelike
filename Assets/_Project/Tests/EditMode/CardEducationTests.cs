@@ -68,7 +68,7 @@ namespace CCT.Tests
         {
             CCT.Editor.CardEducationImport.ValidateAll();
             var cards=CardDatabase.LoadAll();
-            Assert.AreEqual(16,cards.Select(c=>c.educationArtId).Where(id=>!string.IsNullOrEmpty(id)).Distinct().Count());
+            Assert.AreEqual(CCT.Editor.CardEducationImport.ExpectedMappedArtIds(),cards.Select(c=>c.educationArtId).Where(id=>!string.IsNullOrEmpty(id)).Distinct().Count()); // 16 + 2026-11-12 ready 카드 그림
             foreach(var c in cards)
             {
                 var sprite=CardEducationIcons.For(c);

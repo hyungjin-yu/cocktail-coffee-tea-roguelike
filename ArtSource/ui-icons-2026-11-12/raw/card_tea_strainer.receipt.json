@@ -1,0 +1,26 @@
+{
+  "endpoint": "generate-image-pro-flash",
+  "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+  "events": [
+    {
+      "type": "connected"
+    },
+    {
+      "progress": 0.05,
+      "type": "message_progress"
+    },
+    {
+      "progress": 0.75,
+      "type": "message_progress"
+    },
+    {
+      "progress": 0.75,
+      "type": "message_progress"
+    },
+    {
+      "type": "message_done",
+      "generation_id": "dad4b47c-7edf-4e81-bfd2-777346a278d6",
+      "seed": 0
+    }
+  ]
+}

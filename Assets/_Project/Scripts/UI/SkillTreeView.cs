@@ -23,6 +23,7 @@ namespace CCT
             public Text name;
             public Text desc;
             public Text status;
+            public Image icon; // 2026-11-12 노드 전용 그림(ResearchIcons) — 없으면 null(기존 글 상자 배치 유지)
         }
 
         readonly List<NodeSlot> slots = new List<NodeSlot>();
@@ -113,6 +114,8 @@ namespace CCT
         const float Tier1Y = 285f;
         const float HeaderY = 380f;
         static readonly Vector2 NodeSize = new Vector2(580f, 140f);
+        /// <summary>노드 그림 칸(캔버스 단위): 720p 56px · 1080p 84px. 단축키 [n](위 12~48) 아래로 내림.</summary>
+        public const float NodeArtSize = 84f, NodeArtW = 112f, NodeArtLeft = 14f, NodeArtY = -24f; // 세로 -66~18 — 단축키(22~58)·노드 끝(-70) 사이, 가로로 긴 그림(잘린 불투명 영역)도 칸을 채우게 가로 112
 
         void BuildSlots()
         {
@@ -169,6 +172,24 @@ namespace CCT
                     new Vector2(556f, 36f)), JobStudyTheme.Text(data.description,CurrentJob), 24, TextAnchor.MiddleCenter, Cream);
                 slot.status = UiFactory.AddText(UiFactory.Place("Status", rt, new Vector2(0.5f, 0f),
                     new Vector2(0f, 12f), new Vector2(556f, 36f)), "", 24, TextAnchor.MiddleCenter, Cream);
+                // 2026-11-12 노드 그림(승인 아트가 임포트된 경우만): 왼쪽 칸(단축키 표시 아래), 글 칸은 오른쪽으로 좁힌다.
+                var art = ResearchIcons.Research(data.id, CurrentJob);
+                if (art != null)
+                {
+                    slot.icon = HudIcons.Icon(rt, "NodeArt", new Vector2(0f, 0.5f), new Vector2(NodeArtLeft, NodeArtY), NodeArtSize, art);
+                    slot.icon.rectTransform.pivot = new Vector2(0f, 0.5f);
+                    slot.icon.rectTransform.sizeDelta = new Vector2(NodeArtW, NodeArtSize);
+                    float shift = (NodeArtLeft + NodeArtW + 8f) * 0.5f;
+                    foreach (var t in new[] { slot.name, slot.desc, slot.status })
+                    {
+                        var r = t.rectTransform;
+                        r.anchoredPosition += new Vector2(shift, 0f);
+                        r.sizeDelta = new Vector2(Mathf.Min(r.sizeDelta.x, NodeSize.x - NodeArtLeft - NodeArtW - 20f), r.sizeDelta.y);
+                    }
+                    // 좁아진 칸에서 긴 효과("재료 추가 드랍 확률 +20%, 줍기 반경 +50cm")가 두 줄로 넘쳐 상태 줄과 겹쳤다(2026-11-12 실측) → 한 줄 크기 맞춤.
+                    slot.desc.horizontalOverflow = HorizontalWrapMode.Wrap; slot.desc.verticalOverflow = VerticalWrapMode.Truncate;
+                    slot.desc.resizeTextForBestFit = true; slot.desc.resizeTextMinSize = 14; slot.desc.resizeTextMaxSize = 24;
+                }
 
                 slots.Add(slot);
             }
@@ -260,6 +281,9 @@ namespace CCT
                 slot.desc.color = text;
                 slot.status.color = statusColor;
                 if (slot.key != null) slot.key.color = text;
+                // 그림 상태: 선행 필요 = 흐림, 포인트 부족 = 약간 흐림(상태는 바탕·문구로도 구분 — 색만으로 구분하지 않음).
+                if (slot.icon != null) slot.icon.color = state == CoffeeNodeState.Unlocked || state == CoffeeNodeState.Available ? Color.white
+                    : state == CoffeeNodeState.NotEnoughPoints ? new Color(1f, 1f, 1f, 0.8f) : new Color(0.7f, 0.7f, 0.7f, 0.55f);
                 slot.button.interactable = !readOnly && state == CoffeeNodeState.Available;
             }
         }

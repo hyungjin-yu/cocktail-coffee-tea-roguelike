@@ -27,5 +27,5 @@ MonoBehaviour:
   gameplayConnection: "물줄기의 길이을 사거리로 표현했습니다."
   sourceName: "HARIO · Product catalogue 2019, p26"
   sourceUrl: "https://global.hario.com/pdf2019/2019HARIO_GC_COFFEE_EN.pdf"
-  educationArtId: ""
+  educationArtId: card_long_spout
   additionalSources: ""

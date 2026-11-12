@@ -1,0 +1,403 @@
+{
+  "readyFiles": 48,
+  "logicalIds": 41,
+  "pngCount": 48,
+  "nativeCount": 48,
+  "allNativeStatic64RGBA": true,
+  "allNativeOriginalLayersEquivalent": true,
+  "allVisibleNativeExportsEqual": true,
+  "allAlphaBinary": true,
+  "allMinimumTransparentMarginAtLeast3": true,
+  "allPixelHashesUnique": true,
+  "apiCompletedAttempts": 55,
+  "guiCompletedRejectedAttempts": 1,
+  "results": [
+    {
+      "artId": "card_ice_dilution",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "10bb6a8e403e15e7106fe21b2394adf72caae31760773858dd3285cbdf0c5689",
+      "generationId": "def98eb9-d404-4633-aec6-41d44b2b669a",
+      "finalSha256": "1d630ba1cb1762c768b5330b2c32bdb7ffe467b4f36aa31eab82d7fdb9afcbea"
+    },
+    {
+      "artId": "research_espresso_shot",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "43d928270be0adccd8876a85d82325bff70b68e6988fb5e067bef8e4290760a5",
+      "generationId": "f1178d12-e1ef-466c-9caa-4d345f8c8787",
+      "finalSha256": "2d917911cd76e80aee96be0c26ff0d1eea581405591720292f0bae691e818b09"
+    },
+    {
+      "artId": "research_espresso_shot_tea",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "b27e946e5a367710e4b81eb942e59da0151601cb86fa586edca856fc46c7cdf1",
+      "generationId": "ad0c93c9-4e64-450d-b406-b13a1e126342",
+      "finalSha256": "496e28a7aa152b17248af02b11378fe43e9b65777e12c03561bfe25a2bcd2d5b"
+    },
+    {
+      "artId": "card_build",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "9a7d2be2543578daed126613e2501ba70522f202b353e783e330246299a883b2",
+      "generationId": "f4f6b6b9-1add-43ab-988f-d728927ecac3",
+      "finalSha256": "7893428e047423bac940f15f53ef11ab663896d382ff1a8a9d29ba8e6a4db15e"
+    },
+    {
+      "artId": "card_split_base",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "97cbd01e47e343ad839da5c2be346fad2f784a370e05a5f9b75acdd42eb2d9d5",
+      "generationId": "a8fc928e-c952-4d73-ad01-96a7014ce6b0",
+      "finalSha256": "1ed0f04464bf1aa419fee699e8dfca6914749f5743c20dab255ad6b3f2865606"
+    },
+    {
+      "artId": "card_liqueur",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "c0ea714f3804e47bff8b2ccde72362235423a060f8522fb66c5a102001c3b11a",
+      "generationId": "9f68ae36-73f4-484c-aa4b-036fd7d12e62",
+      "finalSha256": "95772f80de09762ed37b16c381dfd3090d99f6d9da8b8b85e8b01ceb14bb8074"
+    },
+    {
+      "artId": "card_flamed_zest",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "83aa8924c6238cf93e92559c6ab7e78470cc609b5c85d941e061cc4dcef6ca3d",
+      "generationId": "241835a2-84df-49c2-b676-256fa1235fb8",
+      "finalSha256": "f7224608d081d72f05e28b8f5981e298fa4fc2a3caee0a9b17547f3c039f3800"
+    },
+    {
+      "artId": "card_prebatch",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "d9fd0eb64acc41ef6adad485543bc0056f5530fdb5241a7e6b098530d3a753ab",
+      "generationId": "dcd28813-1467-4b50-9af7-739512a5ea42",
+      "finalSha256": "7eb3ddb40566390544899447389b609776b3be0e3ba0d23380bbd33c3728bc12"
+    },
+    {
+      "artId": "card_leaf_drying",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "691240c2d28707d94e1c7e4422c0776e6416489d747b4bbe74224803990e2e32",
+      "generationId": "2a26bed9-7967-4dd1-acf3-5f85f90d3a9c",
+      "finalSha256": "8387a542df658e6c511223da727e8e035b9e9b4c150add3302b3fe04fa9a3898"
+    },
+    {
+      "artId": "card_brew_balance",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "83529375d5aba654ef016a0670ec2e0b25579a54df8b926b322166c6cd7be851",
+      "generationId": "f4f7c764-c6ca-4f5f-ad52-06c819f34b51",
+      "finalSha256": "5177a1bd6699469601dfdffc5fe2fe0ee8892abce8200f30e64cd07f6cfda435"
+    },
+    {
+      "artId": "card_teaspoon",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "e59a9abcee0b70ca9a42b8b76a172a0101f781abdf9a68bafb97efeb1c81f306",
+      "generationId": "7a62d516-ab4e-4536-b75f-42403a72a5a9",
+      "finalSha256": "3dc4e3b1050eee5487d99aac469074ad2355f9d2e968ce96c691749ece7dbb3b"
+    },
+    {
+      "artId": "card_long_spout",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "8af8a01117c53cf8ebbf811199f30703498dff3676e995cc93df59a3d467bd38",
+      "generationId": "7bb79a2a-03bc-41d4-907f-a02f36b74f04",
+      "finalSha256": "c6d5fbb9ef2ab5e95c889a04090bac2d8a45600280998723d6bda9aca1e87cf4"
+    },
+    {
+      "artId": "card_black_tea_finish",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "9ffa96d81c9af85860a4300f81552b0dda09b79408c48d78e33459ad1c3929af",
+      "generationId": "fb7f1d49-5763-49cf-bed7-41c5f23dbf11",
+      "finalSha256": "cc77598de927df903bdf8ddb0cfa65c9f70a81f787e80f7666543fdb9dee5918"
+    },
+    {
+      "artId": "card_tea_strainer",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "6efa09e3e3cd455520a2d124889ac47b865387e3685f4c3d608a5f8bf18a6d13",
+      "generationId": "dad4b47c-7edf-4e81-bfd2-777346a278d6",
+      "finalSha256": "9e4518a98382fa05e27a9c452cf15e84fb6f887b0d99ae51dc0009aa1bfbc600"
+    },
+    {
+      "artId": "card_blending",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "c9220108e95ab6cda17cc362d9f4bbff19c3ca17601afc90f4bc465a5835d8df",
+      "generationId": "1662268b-47b9-40c7-b3af-72499aba3c4f",
+      "finalSha256": "9c643acf0dbb7302b43459d9a61210a755d10e73e50eff8768bba2b079b0c4ac"
+    },
+    {
+      "artId": "card_cup_warming",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "1e2ef49d43fe55a9ad4dcd759de8e78576eda693fa290fa151af54b63194ff90",
+      "generationId": "4fce9e19-604d-4da3-88f7-091a8d1f6d53",
+      "finalSha256": "57d0f55ade9534b3fa8ae178f5411a6e0acd6872e681201e2747e9fe3144997a"
+    },
+    {
+      "artId": "research_ristretto",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "20745a906a9fa308b093c3a52283f27e444619037027130234782b72dff47ab7",
+      "generationId": "bce18f61-1e13-4a3d-a2ab-39439e71fa4a",
+      "finalSha256": "5938222821b8e17d5ee2e0dd089978bca3d4b8c767f17a94ffdc4a8144866850"
+    },
+    {
+      "artId": "research_balanced_extraction",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "7d02bf7fdffd4bd5389f42322b018790efd9798477e80f720d9d0055ca980323",
+      "generationId": "a9f236e1-ffee-4a01-8aeb-83a95fd7caec",
+      "finalSha256": "6a9b4190a4896844d9ca56b9d78ce3516b678780f9d48180b0ed1058c823e786"
+    },
+    {
+      "artId": "research_full_body_roast",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "94717651726846cff129f16b58ea9e17559835beccbe53346a605110b8c88783",
+      "generationId": "66d703c4-a13b-47cb-bc59-44616e353b2a",
+      "finalSha256": "08548f2b70c47234e9caa449466df861607979a612c7f08a4fd2b8b5af0ec913"
+    },
+    {
+      "artId": "research_perfect_extraction",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "0519c7cdc174c24b0ec6f648556b2d848d5c38cbb897e6ec7385e21b00876c67",
+      "generationId": "8bc8aa54-3d63-40e8-95e4-ce54e5ddfc2d",
+      "finalSha256": "8c33b9d556523d9177fe23d03a31fecf7fa467195dccd4971187476130d73ead"
+    },
+    {
+      "artId": "research_caffeine_rush",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "3700bbf80a7f29a66c73d8677ddd617cf23e82e53511f98017d8107918baad5a",
+      "generationId": "923e0470-fd36-46ac-8c20-01481aeba991",
+      "finalSha256": "02128d435085d9796e42d901f0966a0e196b7ffa7a53eea09d2fdca0a77d6a49"
+    },
+    {
+      "artId": "research_doppio_body",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "58b812b99e0e2a7256942834f24d148265a39b4546f1e3a4502eba12ff70ae6f",
+      "generationId": "60149ac1-5956-49a9-9f1e-2114b6344136",
+      "finalSha256": "bc1efc4cc3872faa70742ab048f52270ef07bcf174d1f1213dac791fe7885c72"
+    },
+    {
+      "artId": "research_mellow_finish",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "e78fa2e9b9302efad3cdd2bc6d31672d0787edc71c7b30657b18c2814456a141",
+      "generationId": "d5db74a4-8e6d-4720-8a73-9bdf9c7a7f6f",
+      "finalSha256": "56c82f77878d33dbfc6092628939b88c3b18e225dc2f3f7f3b04752da5798725"
+    },
+    {
+      "artId": "research_insulated_cup",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "3de9058fd923d93723d9b5d21935f517b93329812594165e7323d26b42a65503",
+      "generationId": "3715b5f2-692f-46cf-8507-d3d05c836ea1",
+      "finalSha256": "7eedfa71ab8e3e44309dce81d7cd60990e70bdc20bacf648bef7b4a616effc8a"
+    },
+    {
+      "artId": "research_steady_hand",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "b1e6dc9154f5237497d27c9b44c0c2b79fc77f4a7f013a40961ef0493bdb42e5",
+      "generationId": "ba557cac-3012-4806-a691-3fef41a103d1",
+      "finalSha256": "a677db2f333fb5f2d5d1561c41f7702980846720c4bdcd15b8e15d46b9d0ea9c"
+    },
+    {
+      "artId": "research_cold_brew",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "f406f44243be922c77e5433a0ecab571bce110e2910766d823820fc2ec070d1c",
+      "generationId": "4d6a441d-172c-4964-b7c4-6018dd4fd22a",
+      "finalSha256": "e84ca3a0023998d0c456a17d196951a338cbd3940f41d6d6c0b82421d12c4b4c"
+    },
+    {
+      "artId": "research_fine_grind",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "9538cbda1543e143528185b4eab57f2b2b4072cf43fc2ec3cbbdfa53a6ce26da",
+      "generationId": "e8b8a4b8-8760-494f-927f-975e38850523",
+      "finalSha256": "3da6c73c928e6cb7b04a22b0ef2e4f8c4d327e607a344419e1cd6834e8eef348"
+    },
+    {
+      "artId": "research_wide_tray",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "2eaa90bc6a238228099e02f11c3cf38bb9acce3ab6d4181d23498a7a1ec864b7",
+      "generationId": "85acc7c2-3030-4484-b492-835373dd9f52",
+      "finalSha256": "86a19607ffe9d580c3ac2a5eb6f75aa424f70903b2d73eb1f532b92fc6fbd7b1"
+    },
+    {
+      "artId": "research_measured_pour",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "a42f9e3964eee4683fcbe17b34722d9e6edd81b7cb91ae0236efeb0819a0327e",
+      "generationId": "e0efa2f3-a167-43ca-8d14-6a12fa0b30b1",
+      "finalSha256": "9df0df81075a4753663fff6f1cc8a906aa3a38805eb4239b72e609f446bbe055"
+    },
+    {
+      "artId": "research_zero_waste",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "01a25fb273190190b850fdaab216b8e8a6a25347bdfe7cc96f55686cfccf30de",
+      "generationId": "eaf538ba-304f-42bb-ab3d-f47c9da02629",
+      "finalSha256": "7c02a4ce22943e85fbb1a77a6b7f8f7d1fbef9fd521b4b7b236b79d90ab21d0a"
+    },
+    {
+      "artId": "research_ristretto_tea",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "97b97904cc9aa2fb9d693e7d7c26916d60ee771bc16e07653139b48ec690a806",
+      "generationId": "e8b41795-5d38-4619-ba4e-01f302338079",
+      "finalSha256": "0d1708484ea77fb0c0ef48fa0ffa220ad1bdb0d54ed74b44e1d7f3adf52729e4"
+    },
+    {
+      "artId": "research_full_body_roast_tea",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "8e5708fbed38e34d231fdaacfaa3dc9a739dd3aa742c29b7633bada9f89375ef",
+      "generationId": "40d691de-f48c-41b9-858c-dbad3288a0cc",
+      "finalSha256": "28b4ff2607b958f08bb5ea28cfa2586fd5269788c23a830042c843e24635efed"
+    },
+    {
+      "artId": "research_perfect_extraction_tea",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "7daef01e2a3070363bf51357d77af2f87136eb9e5a0fb544a6c892ddad7fb5d9",
+      "generationId": "d4a05eec-8d2e-4eae-9b44-cfefeaef28b0",
+      "finalSha256": "4e774bb57decd3b983b8c64c02f2c8574f0db4a53c138fe4d6733564f40f81e6"
+    },
+    {
+      "artId": "research_caffeine_rush_tea",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "536b8e2c8416b98ec24abb8350fcd62f8658d691c7d432d085b13f1d1df95d28",
+      "generationId": "a7c52c14-3578-4f69-9e33-aa21ae7f468d",
+      "finalSha256": "ea19695429a5a166a0aec270bfc04a119fd3c7eca2569bafde9b604556a0c5f2"
+    },
+    {
+      "artId": "research_doppio_body_tea",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "54b0b3a3af200d2fbdbcc79f779cb0942c47174f51443e6a5aeab1a5c68d0698",
+      "generationId": "4a7820a8-6a29-4d7f-8d13-9132edc79b9b",
+      "finalSha256": "94bf3024a7be20f61183be594aca2b150af3150516de7098f2cdf6f31467ba24"
+    },
+    {
+      "artId": "research_fine_grind_tea",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "22b7c033e51c856abf3bfc742eb9043d311a4ea625de3effda410b4ccffb228e",
+      "generationId": "2b33a3b2-f6b8-486c-8d4e-9de6fd085cab",
+      "finalSha256": "d885fafa32974bf53a405c9235ba1d15117ee4c6f16a5f171a1be8847a2727cf"
+    },
+    {
+      "artId": "mastery_service_1",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "dc4917055855cd445d19a1115f5c3656c6d1813caffe3592187b1c20de01b3d0",
+      "generationId": "739d4e1c-fcb1-4b46-994d-26a5abfdbcbf",
+      "finalSha256": "eb1c83ee5b51c2bdb8dd577034c68210e044398326232a1205484673877d28ee"
+    },
+    {
+      "artId": "mastery_service_2",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "8228c0543d3624a0fbe4a5ddd38fd4b1bc9fc057ea929bfc6bd01c2e9bc3c647",
+      "generationId": "278d8386-1b87-4ed6-90b7-8b5e360b53cd",
+      "finalSha256": "4cd41d55bc6fa3fb0f634f33ecc1d60bd7fa7e941ff000a634a3f479e692e825"
+    },
+    {
+      "artId": "mastery_service_3",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "b3ec363804339b16ab65d481b38baa5d57df731ef5091f46e2ded7452b5c99a6",
+      "generationId": "ea7da6f6-b9d8-4eda-832c-f21f6e9712ce",
+      "finalSha256": "5a1ab926187dd56af7807e8297b2e37b91a1f10d47511d776dc4890d384abf56"
+    },
+    {
+      "artId": "mastery_service_4",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "923e2b980b421a4d9e2642f1e8d29d66da7f82125973bb25b98d9b07b0609994",
+      "generationId": "5dc09287-256d-4050-80f3-828992087393",
+      "finalSha256": "ce6e281aa2070add320abd4187d9ee33a95c276653366531fc40e008b3591161"
+    },
+    {
+      "artId": "mastery_stability_1",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "d82c12127f4486f124e861de49271ee9d9fdb2a7d5bc427727c15776056c4ce6",
+      "generationId": "c32aa2ca-7d17-44b3-8aae-5edee0bdabf7",
+      "finalSha256": "168a99ad1d3c465f87b571d6ad37674c2c446206f4805a0f784410469ec25362"
+    },
+    {
+      "artId": "mastery_stability_2",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "63ace6d0e9871cdcc1abec66f1c99ac0fcf159da61b87a27c8be611535bb9d25",
+      "generationId": "5187da3c-f452-462e-8b46-cf0f7ca1a922",
+      "finalSha256": "fd7ebab25ecc4d926cee35a7ada5d21687081bffe2558d9a860969dba412c0b9"
+    },
+    {
+      "artId": "mastery_stability_3",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "e635ec52d9a1b87deeb4fab70b59e4548f059d88c7ea48894a76ee0b4dbd80c1",
+      "generationId": "5b57d1b2-1d73-4663-942f-b9283583da28",
+      "finalSha256": "589498fd4b828bbcafbb058d5dc4656e04fd7524bdd955731e57ce94986d460a"
+    },
+    {
+      "artId": "mastery_stability_4",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "5b8e814e98bf73474a1ad4154e2152fe0dfb01f419ab502d9b0d2c95c04cd084",
+      "generationId": "f2220d84-14da-4f82-b3ab-0329aa8c904e",
+      "finalSha256": "efe49dfe4befe80f38c9ba6350e03129e51e2788b75c87230d670e5499e26e6b"
+    },
+    {
+      "artId": "mastery_finesse_1",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "b0497da4f06f855e3db13715b3f30c8116ccbfee3038df5b391f66485be491c0",
+      "generationId": "ab1760b4-97d2-43ce-8b76-7b440f27d7cc",
+      "finalSha256": "fc4e003cd0e3d3fc0da72ddff45b4b8dc3428065ef87a38be806018f9f1c64ef"
+    },
+    {
+      "artId": "mastery_finesse_2",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "838925d816c9fa44076373308d3c89a8a1cb288cdc69fd3ed3c6f676aec56a2b",
+      "generationId": "11908f20-e612-4f0d-aa0d-8bbb9342b53c",
+      "finalSha256": "97611a12eb49eb5e3aa45e957eede9adcfa6885f2f6687f38e5435f0e51968fc"
+    },
+    {
+      "artId": "mastery_finesse_3",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "aa945b64986d1aa4e11fda7ba3761d414217399cf06c00369f7542d728f80965",
+      "generationId": "9f8f45c4-2e4e-458d-8991-0a7b60ed090a",
+      "finalSha256": "f1933a97a4df70a6518273d8e5dd9baf57ee8a0df94da1f44ec5ec7409781ded"
+    },
+    {
+      "artId": "mastery_finesse_4",
+      "hiddenOriginalSourceEquivalent": true,
+      "sourceSha256": "cf0bdfdca6f634874f212454f5479301dc9b38a4c2b679d486b5a20cc0d63d1c",
+      "generationId": "5f75b150-0f88-4df7-8a9c-5abdd0de2309",
+      "finalSha256": "794406220c064575bd2470ab38f14a0b2e70412da9f0a80d63a23eaae5ab7361"
+    }
+  ],
+  "references": [
+    {
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\bartender_move_right_00.png",
+      "existingAsset": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Assets\\_Project\\Art\\v1\\bartender\\frames\\bartender_move_right_00.png",
+      "equal": true,
+      "sha256": "d0a02353e4cac05e47ef20feec3695986f7857ee318378eb1178381a239478dd"
+    },
+    {
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_gaiwan.png",
+      "existingAsset": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Assets\\_Project\\Resources\\CardEducation\\card_gaiwan.png",
+      "equal": true,
+      "sha256": "ea28520872d1505ba9debc865e096578b9fca411c1a9be4bb458005be10e48e6"
+    },
+    {
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_jigger.png",
+      "existingAsset": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Assets\\_Project\\Resources\\CardEducation\\card_jigger.png",
+      "equal": true,
+      "sha256": "69c65072317ff6d63ad9eda949aedb2d77526a84441086c8685c32efef4536af"
+    },
+    {
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_oolong.png",
+      "existingAsset": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Assets\\_Project\\Resources\\CardEducation\\card_oolong.png",
+      "equal": true,
+      "sha256": "03209d2d90395a9d1c950f9a5ee5f19b9c4bc22cf60233953bdcb4a5307191f9"
+    },
+    {
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\card_puerh.png",
+      "existingAsset": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Assets\\_Project\\Resources\\CardEducation\\card_puerh.png",
+      "equal": true,
+      "sha256": "1f05006d057202d1a26983943be825ab926ab39bc7384b818a17a4d2c6493bbf"
+    },
+    {
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\coffee_bean.png",
+      "existingAsset": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Assets\\_Project\\Resources\\Icons\\coffee_bean.png",
+      "equal": true,
+      "sha256": "035ccb3aa6cc904c7e77c949b49be65434f89f659e680c8ae83b0fec4c4cf42b"
+    },
+    {
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\dl_bottle_gin.png",
+      "existingAsset": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Assets\\_Project\\Resources\\DrinkLab\\dl_bottle_gin.png",
+      "equal": true,
+      "sha256": "261f50d27d400c6492c5eae1c5467a137a7972bbe06b051c0b10fdcc1e2f3858"
+    },
+    {
+      "reference": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\reference\\tea.png",
+      "existingAsset": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\Assets\\_Project\\Resources\\Icons\\tea.png",
+      "equal": true,
+      "sha256": "f874afced86de2b687274e619bcc9d6c143d2a7c8227f40f551709c123496a0b"
+    }
+  ],
+  "runtime": "Unity owner evidence pending"
+}

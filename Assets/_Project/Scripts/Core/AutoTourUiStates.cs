@@ -64,6 +64,22 @@ namespace CCT
                 yield return Shot(tag + "_15_study_tree");
                 game.RequestEscape(); yield return Wait(0.4f);
                 yield return ClearOverlays(game, tag + " after study");
+                // 2026-11-12 연구 노드 상태 혼합(해금됨·해금 가능·선행 필요·포인트): 원두 30 지급(강제) → 실제 커피 트리 보상 창에서 첫 해금 가능 노드 선택.
+                game.AddIngredient(IngredientType.Coffee, 30);
+                for (int k = 0; k < 15 && !game.SkillView.IsOpen; k++) yield return Wait(0.2f);
+                if (game.SkillView.IsOpen && !game.SkillView.IsReadOnlyOpen)
+                {
+                    var firstNode = game.Skills.Nodes.FirstOrDefault(n => game.Skills.IsAvailable(n));
+                    if (firstNode != null) { game.SkillView.Choose(firstNode); Line($"US {tag} study unlocked {firstNode.id} points={game.CoffeePoints}"); }
+                    yield return Wait(0.4f);
+                    if (game.SkillView.IsOpen) yield return Shot(tag + "_16_study_tree_mixed");
+                    else Line($"US {tag} study tree closed after choose (no points left)");
+                    if (game.SkillView.IsOpen && !game.SkillView.IsReadOnlyOpen) game.SkillView.Continue();
+                    yield return Wait(0.3f);
+                }
+                else Line($"US {tag} coffee reward tree did not open (points={game.CoffeePoints})");
+                yield return ClearOverlays(game, tag + " after study mixed");
+                FreezeWorld(game);
 
                 // 정규 보스전 — 범례 접힘, 상성 칩
                 var schedule = BossDirector.DefaultSchedule(combo.job);
@@ -284,6 +300,118 @@ namespace CCT
 
         static string SelName(UnityEngine.EventSystems.EventSystem es) =>
             es != null && es.currentSelectedGameObject != null ? es.currentSelectedGameObject.name : "-";
+
+        /// <summary>2026-11-12 "icons" 모드 — 새 UI 아이콘(ready 매니페스트 임포트분) 실제 화면 검수.
+        /// 도감 상세(새 카드), 카드 선택 창에 새 카드 3장씩(강제: CardView.Show로 제시 — 선택 결과는 버림), 커피/우림 연구 트리
+        /// (전부 잠김 → 원두 지급 후 실제 보상 창에서 첫 노드 해금 = 해금됨·해금 가능·선행 필요 혼합), 새 카드 보유 후 포기 → 이번 판 빌드(카드 행 그림).
+        /// 바텐더·티 소믈리에 각각. 강제 경로 보고 표기.</summary>
+        IEnumerator IconsRun()
+        {
+            var args = System.Environment.GetCommandLineArgs();
+            int wi = System.Array.IndexOf(args, "-screen-width"), hi = System.Array.IndexOf(args, "-screen-height");
+            if (wi >= 0 && hi >= 0 && wi + 1 < args.Length && hi + 1 < args.Length)
+            {
+                Screen.SetResolution(int.Parse(args[wi + 1]), int.Parse(args[hi + 1]), FullScreenMode.Windowed);
+                yield return Wait(2f);
+            }
+            string H = $"{Screen.width}x{Screen.height}";
+            Line($"IC screen {H}");
+            TitleView title = null;
+            for (int i = 0; i < 100 && title == null; i++) { title = FindFirstObjectByType<TitleView>(); yield return Wait(0.1f); }
+            var all = CardDatabase.LoadAll();
+            var newCards = all.Where(c => !string.IsNullOrEmpty(c.educationArtId) && !System.IO.File.Exists("ArtSource/card-education-2026-10-16/" + c.educationArtId + ".png")).ToList();
+            Line($"IC new-art cards ({newCards.Count}): {string.Join(",", newCards.Select(c => c.id + "=" + c.educationArtId))}");
+            var newResearch = SkillDatabase.LoadAll().Where(n => ResearchIcons.Research(n.id, Job.Bartender) != null).Select(n => n.id + (ResearchIcons.HasTeaVariant(n.id) ? "(+tea)" : "")).ToList();
+            Line($"IC new-art research ({newResearch.Count}): {string.Join(",", newResearch)}");
+
+            // 도감: 새 그림 카드 상세 2장 + 목록 탭
+            Click(title.transform, "CardCodexButton"); yield return Wait(0.4f);
+            foreach (var tabButton in title.CodexView.GetComponentsInChildren<UnityEngine.UI.Button>().Where(b => b.name == "Tab_Cocktail" || b.name == "Tab_Tea").ToArray())
+            { tabButton.onClick.Invoke(); yield return Wait(0.2f); yield return Shot($"ic_{H}_01_codex_{tabButton.name}"); }
+            foreach (var c in newCards.Take(2))
+                if (title.CodexView.OpenDetailFor(c.id)) { yield return Wait(0.3f); yield return Shot($"ic_{H}_02_codex_detail_{c.id}"); title.CodexView.HideDetail(); }
+            if (string.IsNullOrEmpty(MobileBackRouter.HandleBack())) Click(title.CodexView.transform, "BackButton");
+            yield return Wait(0.4f);
+
+            foreach (var combo in new[] { Combos[0], Combos[3] })
+            {
+                title = FindFirstObjectByType<TitleView>();
+                title.RequestStart(); yield return StartCombo(combo, false);
+                var game = GameManager.Instance;
+                if (game == null) { Fail("icons: no game"); continue; }
+                string tag = $"ic_{H}_{combo.label}";
+                game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f));
+                game.Player.Heal(1f);
+                FreezeWorld(game);
+                yield return Wait(0.5f);
+                var category = combo.job == Job.Bartender ? CardCategory.Cocktail : CardCategory.Tea;
+                var mine = newCards.Where(c => c.category == category).ToList();
+                for (int g = 0; g * 3 < mine.Count; g++)
+                {
+                    var offers = mine.Skip(g * 3).Take(3).Select(c => new CardOffer { card = game.Cards.FindInPool(c.id) ?? c, rarityPercent = 60f, currentStacks = 0 }).ToList();
+                    game.CardView.Show(offers, _ => { });
+                    yield return Wait(0.4f);
+                    if (game.CardView.IsLearningOpen) { game.CardView.CloseLearning(); yield return Wait(0.3f); }
+                    Line($"IC {tag} card window {g}: [{string.Join(",", offers.Select(o => o.card.id))}]");
+                    yield return Shot($"{tag}_10_card_select_{g}");
+                    game.CardView.Choose(0); yield return Wait(0.3f);
+                }
+                yield return ClearOverlays(game, tag + " after card windows");
+
+                game.OpenCoffeeTree(); yield return Wait(0.4f);
+                yield return Shot($"{tag}_20_study_locked");
+                game.RequestEscape(); yield return Wait(0.4f);
+                yield return ClearOverlays(game, tag + " after study");
+                game.AddIngredient(IngredientType.Coffee, 30);
+                for (int k = 0; k < 15 && !game.SkillView.IsOpen; k++) yield return Wait(0.2f);
+                if (game.SkillView.IsOpen && !game.SkillView.IsReadOnlyOpen)
+                {
+                    var first = game.Skills.Nodes.FirstOrDefault(n => n.id == "espresso_shot" && game.Skills.IsAvailable(n)) ?? game.Skills.Nodes.FirstOrDefault(n => game.Skills.IsAvailable(n));
+                    if (first != null) game.SkillView.Choose(first);
+                    yield return Wait(0.4f);
+                    Line($"IC {tag} unlocked {first?.id} points={game.CoffeePoints} open={game.SkillView.IsOpen}");
+                    if (game.SkillView.IsOpen) yield return Shot($"{tag}_21_study_mixed");
+                    if (game.SkillView.IsOpen && !game.SkillView.IsReadOnlyOpen) game.SkillView.Continue();
+                    yield return Wait(0.3f);
+                }
+                else Fail($"{tag} coffee reward tree did not open");
+                yield return ClearOverlays(game, tag + " after study mixed");
+
+                foreach (var c in mine) { var pc = game.Cards.FindInPool(c.id); if (pc != null) game.GrantCardForTests(pc); }
+                yield return ClearOverlays(game, tag + " after grants");
+                game.GiveUp(); yield return Wait(0.6f);
+                var res = game.ResultScreen;
+                if (res != null && res.BuildDetailButton != null && res.BuildDetailButton.gameObject.activeInHierarchy)
+                {
+                    res.BuildDetailButton.onClick.Invoke(); yield return Wait(0.4f);
+                    yield return Shot($"{tag}_30_build_detail_cards");
+                    if (res.Detail != null && res.Detail.IsOpen) res.Detail.Close();
+                    yield return Wait(0.3f);
+                }
+                game.GoToTitle(); yield return Wait(0.9f);
+            }
+
+            // 연구 노트북 숙련 트리(로비): 연구 포인트 40 지급(강제, 격리 저장) → 서비스 1 해금·장착, 안정 1 해금 → 갈래별 캡처(장착·해금·해금 가능·잠김).
+            DrinkLab.Data.research.researchPoints = 40;
+            DrinkLab.UnlockTrait("service_1", out _); DrinkLab.EquipTrait("service_1", out _); DrinkLab.UnlockTrait("stability_1", out _);
+            title = FindFirstObjectByType<TitleView>();
+            title.RequestStart();
+            CharacterSelectView select = null;
+            for (int k = 0; k < 20 && select == null; k++) { yield return Wait(0.3f); select = FindFirstObjectByType<CharacterSelectView>(); }
+            if (select != null && select.LaptopButton != null) select.LaptopButton.onClick.Invoke(); else ResearchLaptopView.Show(() => { });
+            for (int k = 0; k < 40 && (ResearchLaptopView.Current == null || ResearchLaptopView.Current.State != ResearchLaptopView.Phase.Open); k++) yield return Wait(0.1f);
+            var lap = ResearchLaptopView.Current;
+            if (lap == null) { Fail("icons: laptop did not open"); yield break; }
+            lap.SetTab(ResearchLaptopView.Tab.Mastery); yield return Wait(0.3f);
+            Line($"IC laptop rp={DrinkLab.Research.researchPoints} unlocked=[{string.Join(",", DrinkLab.Research.unlockedTraits)}] equipped=[{string.Join(",", DrinkLab.Research.equippedTraits)}] masteryArt=[{string.Join(",", DrinkResearch.Traits.Where(t => ResearchIcons.Mastery(t.id) != null).Select(t => t.id))}]");
+            foreach (var b in new[] { DrinkResearch.Service, DrinkResearch.Stability, DrinkResearch.Finesse })
+            {
+                if (Click(lap.transform, "Branch_" + b)) { yield return Wait(0.3f); yield return Shot($"ic_{H}_40_laptop_mastery_{b}"); }
+                else Fail("icons: branch button missing " + b);
+            }
+            if (Click(lap.transform, "Node_stability_2")) { yield return Wait(0.3f); yield return Shot($"ic_{H}_41_laptop_detail_locked_stability_2"); }
+            lap.Close(); yield return Wait(0.8f);
+        }
 
         /// <summary>범례/보스 칩/보스 체력바의 화면 픽셀 사각형과 겹침을 기록한다.</summary>
         void LogLegend(GameManager game, string tag)

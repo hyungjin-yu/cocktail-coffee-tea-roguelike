@@ -27,5 +27,5 @@ MonoBehaviour:
   gameplayConnection: "맛의 완충을 최대 체력으로 표현했습니다."
   sourceName: "Diageo Bar Academy · Quality serves"
   sourceUrl: "https://www.diageobaracademy.com/en-us/home/bartender-skills-and-techniques/quality-serves"
-  educationArtId: ""
+  educationArtId: card_ice_dilution
   additionalSources: ""

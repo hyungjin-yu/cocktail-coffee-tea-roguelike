@@ -41,7 +41,7 @@ namespace CCT
                     card.sourceName = "Diageo Bar Academy · Building cocktails";
                     card.sourceUrl = "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/the-art-of-building-cocktails-directly-in-the-glass";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_build"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "ice_cube":
@@ -50,7 +50,7 @@ namespace CCT
                     card.sourceName = "Diageo Bar Academy · Quality serves";
                     card.sourceUrl = "https://www.diageobaracademy.com/en-us/home/bartender-skills-and-techniques/quality-serves";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_ice_dilution"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "liqueur":
@@ -59,7 +59,7 @@ namespace CCT
                     card.sourceName = "Diageo Bar Academy · Liqueurs, bitters and vermouth";
                     card.sourceUrl = "https://www.diageobaracademy.com/en-us/home/explore-all-categories/liqueurs-bitters-and-vermouth";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_liqueur"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "syrup":
@@ -68,7 +68,7 @@ namespace CCT
                     card.sourceName = "Diageo Bar Academy · Batch cocktails";
                     card.sourceUrl = "https://www.diageobaracademy.com/en-us/home/masterclass-webinars/crafting-the-perfect-crowd-pleaser-the-method-behind-batch-cocktails";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_prebatch"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "double_shot":
@@ -104,7 +104,7 @@ namespace CCT
                     card.sourceName = "The Bar · Split-base cocktails";
                     card.sourceUrl = "https://www.thebar.com/en-gb/articles/split-base-cocktails";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_split_base"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "molotov":
@@ -113,7 +113,7 @@ namespace CCT
                     card.sourceName = "Diageo Bar Academy · Copper Colours";
                     card.sourceUrl = "https://www.diageobaracademy.com/en-zz/home/explore-all-recipes/copper-colours";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_flamed_zest"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "scotch_rocks":
@@ -176,7 +176,7 @@ namespace CCT
                     card.sourceName = "HARIO · Product catalogue 2019, p26";
                     card.sourceUrl = "https://global.hario.com/pdf2019/2019HARIO_GC_COFFEE_EN.pdf";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_long_spout"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "tea_sandals":
@@ -194,7 +194,7 @@ namespace CCT
                     card.sourceName = "Global Tea Hut · Gongfu brewing and preheating";
                     card.sourceUrl = "https://archive.globalteahut.org/docs/issues/2014-05.pdf";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_cup_warming"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "honey":
@@ -203,7 +203,7 @@ namespace CCT
                     card.sourceName = "UK Tea & Infusions Association · The perfect brew";
                     card.sourceUrl = "https://www.tea.co.uk/make-a-perfect-brew";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_teaspoon"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "dried_leaf":
@@ -212,7 +212,7 @@ namespace CCT
                     card.sourceName = "UK Tea & Infusions Association · Processing and blending";
                     card.sourceUrl = "https://www.tea.co.uk/tea-processing-and-blending";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_leaf_drying"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "oolong":
@@ -248,7 +248,7 @@ namespace CCT
                     card.sourceName = "UK Tea & Infusions Association · Processing and blending";
                     card.sourceUrl = "https://www.tea.co.uk/tea-processing-and-blending";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_blending"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "chamomile":
@@ -284,7 +284,7 @@ namespace CCT
                     card.sourceName = "UK Tea & Infusions Association · The perfect brew";
                     card.sourceUrl = "https://www.tea.co.uk/make-a-perfect-brew";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_brew_balance"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "ginseng_root":
@@ -302,7 +302,7 @@ namespace CCT
                     card.sourceName = "Oregon State University · Tea; Ippodo · Astringency";
                     card.sourceUrl = "https://lpi.oregonstate.edu/mic/food-beverages/tea";
                     card.additionalSources = "떫은맛과 우림: Ippodo Tea\nhttps://ippodotea.com/blogs/frequently-asked-questions/help-my-tea-is-bitter";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_black_tea_finish"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "piercing_arrowhead":
@@ -311,7 +311,7 @@ namespace CCT
                     card.sourceName = "Ippodo Tea · Serving tea with a strainer";
                     card.sourceUrl = "https://global.ippodo-tea.co.jp/blogs/tea-recipe/preparing-different-teas-in-the-tea-bowl-with-serving-spout";
                     card.additionalSources = "";
-                    card.educationArtId = "";
+                    card.educationArtId = "card_tea_strainer"; // 2026-11-12 ui-icons ready
                     card.flavorText = card.realWorldFact;
                     break;
                 case "hybrid_tea_martini":

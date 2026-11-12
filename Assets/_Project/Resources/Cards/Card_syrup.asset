@@ -27,5 +27,5 @@ MonoBehaviour:
   gameplayConnection: "준비한 분량을 추가 재료로 표현했습니다."
   sourceName: "Diageo Bar Academy · Batch cocktails"
   sourceUrl: "https://www.diageobaracademy.com/en-us/home/masterclass-webinars/crafting-the-perfect-crowd-pleaser-the-method-behind-batch-cocktails"
-  educationArtId: ""
+  educationArtId: card_prebatch
   additionalSources: ""

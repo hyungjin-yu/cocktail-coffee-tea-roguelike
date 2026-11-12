@@ -1,0 +1,336 @@
+[
+  {
+    "file": "card_ice_dilution",
+    "id": "ice_cube",
+    "group": "card",
+    "description": "A low wide clear rocks tumbler containing exactly two large square pale blue ice cubes and a shallow amber drink. Outside the tumbler on the right a single separate melting ice cube with a tiny clear water puddle. Show ice cooling and diluting a cocktail. No stem, no goblet, no jigger."
+  },
+  {
+    "file": "research_espresso_shot",
+    "id": "espresso_shot",
+    "group": "research",
+    "description": "A tiny ivory espresso demitasse with a thick golden crema surface on its small saucer, beside a clearly separate metal portafilter with a dark coffee basket and short black handle. Compact strong coffee shot, not a teapot or big mug."
+  },
+  {
+    "file": "research_espresso_shot_tea",
+    "id": "espresso_shot",
+    "group": "research_tea",
+    "reference": "card_gaiwan.png",
+    "description": "An ivory porcelain lidded gaiwan tilted gently pouring a narrow connected stream of pale green first infusion tea into one separate small handleless tasting cup. Sage leaf beside the cup. The gaiwan lid is slightly offset to strain leaves. Clear tea brewing equipment, not espresso equipment."
+  },
+  {
+    "file": "card_build",
+    "id": "bar_shoes",
+    "group": "card",
+    "reference": "card_jigger.png",
+    "description": "One low rocks glass with amber drink and two ice cubes, a small bottle tilted directly over the serving glass with a short connected stream, a citrus wedge on the rim. Build cocktail technique made directly inside the serving glass; no shaker."
+  },
+  {
+    "file": "card_split_base",
+    "id": "champagne_spray",
+    "group": "card",
+    "reference": "card_jigger.png",
+    "description": "Two distinctly shaped small spirit bottles, one tall narrow gin bottle and one squat amber rum bottle, each pouring its own narrow stream into a single central mixing glass. Clearly two bases combined, not champagne spray."
+  },
+  {
+    "file": "card_liqueur",
+    "id": "liqueur",
+    "group": "card",
+    "reference": "card_jigger.png",
+    "description": "A single squat elegant ruby liqueur bottle with rounded shoulders and a short cork, beside a small orange peel curl and one green herb sprig, tiny stemmed tasting glass with red liqueur. The label is a plain blank cream patch."
+  },
+  {
+    "file": "card_flamed_zest",
+    "id": "molotov",
+    "group": "card",
+    "reference": "card_jigger.png",
+    "description": "A curved fresh orange peel held above the right rim of one low amber cocktail glass. A clearly visible small pointed orange and yellow flame, shaped like a short horizontal tongue of fire, burns across the citrus oil spray between peel and glass rim. The flame silhouette is essential and must be visible. Only a small controlled garnish flame, no weapon, no firebomb, no entire glass on fire."
+  },
+  {
+    "file": "card_prebatch",
+    "id": "syrup",
+    "group": "card",
+    "reference": "card_jigger.png",
+    "description": "A large capped clear glass carafe half filled with amber mixed cocktail base, beside three matching tiny empty low glasses in a neat row. Preparing multiple servings ahead, not a syrup jar."
+  },
+  {
+    "file": "card_leaf_drying",
+    "id": "dried_leaf",
+    "group": "card",
+    "reference": "card_gaiwan.png",
+    "description": "A low round woven bamboo drying tray covered with spread-out separate curled sage green tea leaves, one wooden leaf rake across its edge. Dry tea processing, no sun symbol, no cooked food."
+  },
+  {
+    "file": "card_brew_balance",
+    "id": "golden_ratio",
+    "group": "card",
+    "reference": "card_gaiwan.png",
+    "description": "A small porcelain tea brewing pot on a compact weighing scale, with a tiny hourglass and slim thermometer standing clearly beside it, a few tea leaves in front. Measuring tea quantity, water temperature and steeping time together. No digits."
+  },
+  {
+    "file": "card_teaspoon",
+    "id": "honey",
+    "group": "card",
+    "reference": "card_gaiwan.png",
+    "description": "One long silver measuring teaspoon shown diagonally, bowl filled with distinct dry green tea leaves, above a small open ceramic leaf jar. Clearly spoon measuring tea leaves, no honey, no dripping liquid."
+  },
+  {
+    "file": "card_long_spout",
+    "id": "long_spout",
+    "group": "card",
+    "reference": "card_gaiwan.png",
+    "description": "A single round polished silver gooseneck kettle with a very long thin curved spout on the right pouring a narrow connected stream into a little ivory tea cup below. Main silhouette must be the long curved spout."
+  },
+  {
+    "file": "card_black_tea_finish",
+    "id": "nightshade_blend",
+    "group": "card",
+    "reference": "card_gaiwan.png",
+    "description": "An ivory handleless tea tasting cup filled with deep copper red black tea, beside distinct curled dark oxidized tea leaves and a single tall curling wisp of fragrant steam. Plain tea, no poisonous plant, no skull."
+  },
+  {
+    "file": "card_tea_strainer",
+    "id": "piercing_arrowhead",
+    "group": "card",
+    "reference": "card_gaiwan.png",
+    "description": "A single fine mesh spherical tea infuser ball opened into two hinged hemispheres, with green tea leaves in one half and a short attached chain ending in a small hook. Clearly tea filtering tool, not a cocktail spring strainer or weapon."
+  },
+  {
+    "file": "card_blending",
+    "id": "tea_leaf_scatter",
+    "group": "card",
+    "reference": "card_gaiwan.png",
+    "description": "Three separate small piles of rolled green tea, narrow dark black tea, and pale dried flower petals arranged around one central wooden blending scoop partly filled with mixed leaves. Three visibly different ingredient textures."
+  },
+  {
+    "file": "card_cup_warming",
+    "id": "warm_cup",
+    "group": "card",
+    "reference": "card_gaiwan.png",
+    "description": "A tilted small ivory pitcher pouring a connected stream of clear hot water into an empty wide ivory handleless tea cup on its saucer, two soft steam curls rise from the receiving cup. Warming an empty tea cup before brewing, no tea leaves in cup."
+  },
+  {
+    "file": "research_ristretto",
+    "id": "ristretto",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "A short thick concentrated dark coffee stream dripping from a small metal portafilter into one tiny clear espresso shot glass, only a shallow very dark coffee layer and golden crema. Compact intense extraction, a small brass speed wing detail beside the glass."
+  },
+  {
+    "file": "research_balanced_extraction",
+    "id": "balanced_extraction",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "An elegant small brass balance scale with two level pans, one holds a clear water droplet and the other a neutral cream measuring scoop. Straight balanced beam and long horizontal silhouette, no coffee beans or tea leaves."
+  },
+  {
+    "file": "research_full_body_roast",
+    "id": "full_body_roast",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "A heavy dark iron roasting pan tilted slightly, several large glossy brown roasted coffee beans tumbling out beside two warm roasting heat curls. Coffee roasting tools, no cup, no flames."
+  },
+  {
+    "file": "research_perfect_extraction",
+    "id": "perfect_extraction",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "A polished espresso portafilter with a split twin spout pouring two distinct dark coffee streams into two tiny matching ivory espresso cups with golden crema. Twin complete pours show additional strike effect."
+  },
+  {
+    "file": "research_caffeine_rush",
+    "id": "caffeine_rush",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "Three large glossy roasted coffee beans with two clear curved forward motion streaks and one tiny gold lightning spark. Dynamic rushing diagonal coffee bean cluster, no cup or teapot."
+  },
+  {
+    "file": "research_doppio_body",
+    "id": "doppio_body",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "Two small sturdy ivory espresso cups side by side on one broad saucer, each filled with dark coffee and thick golden crema, a small warm red heart motif nestled between the cups. Clearly double shot coffee vitality."
+  },
+  {
+    "file": "research_mellow_finish",
+    "id": "mellow_finish",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "A plain ivory handleless warm beverage bowl with soft pale steam curling into a simple small heart, on a smooth saucer. Neutral light amber liquid, no coffee beans or specific tea utensils. Gentle warmth and recovery."
+  },
+  {
+    "file": "research_insulated_cup",
+    "id": "insulated_cup",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "One sturdy double wall insulated ivory travel tumbler with a clearly visible thick inner rim, fitted dark lid tilted beside it and a protective sage sleeve. No logo, no coffee beans. Neutral vessel for coffee or tea."
+  },
+  {
+    "file": "research_steady_hand",
+    "id": "steady_hand",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "One steady gloved cafe hand carefully holding a small neutral silver pouring pitcher above a tiny ivory cup, with a single perfectly straight narrow connected water stream. Stable precise pour, no motion streaks. Hand anatomically simple mitten-like."
+  },
+  {
+    "file": "research_cold_brew",
+    "id": "cold_brew",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "A tall clear sealed cold infusion bottle half filled with neutral pale amber liquid, a suspended filter pouch inside and two large separate pale blue ice cubes at its base. Neutral cold water extraction, no obvious coffee bean or tea leaf identity."
+  },
+  {
+    "file": "research_fine_grind",
+    "id": "fine_grind",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "A compact wooden hand coffee grinder with a short horizontal crank and brass knob, open lower drawer showing finely ground brown coffee and two whole beans beside it. Clearly mechanical grinding tool."
+  },
+  {
+    "file": "research_wide_tray",
+    "id": "wide_tray",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "A broad oval polished silver cafe serving tray viewed slightly from side with thick raised rim and two short side handles. Three tiny neutral ingredient containers spaced across the tray emphasize its generous pickup area."
+  },
+  {
+    "file": "research_measured_pour",
+    "id": "measured_pour",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "One transparent clear graduated laboratory-style measuring cylinder held tilted diagonally, pouring a narrow clear stream into a tiny plain ivory cup. Exactly three separate short straight horizontal graduation tick marks on the left wall of the clear cylinder. Visible liquid level inside. No letters, digits, logo, leaf pattern or decorative marking. The graduated cylinder must be clearly different from a metal pitcher."
+  },
+  {
+    "file": "research_zero_waste",
+    "id": "zero_waste",
+    "group": "research",
+    "reference": "card_jigger.png",
+    "description": "A tilted small glass brewing server almost completely empty, one final large amber droplet falling from its lip into a tiny ivory cup, a small flexible silicone scraper tucked beside the server. Last drop collection, no leaf or bean identity."
+  },
+  {
+    "file": "research_ristretto_tea",
+    "id": "ristretto",
+    "group": "research_tea",
+    "reference": "card_gaiwan.png",
+    "description": "A very small round unglazed brown clay Yixing teapot with a short narrow curved spout, a tiny separate lid knob, and a round loop handle on the left, pouring a short dense amber tea stream into one tiny handleless cream cup. A small pile of tightly rolled tea leaves beside it. Clearly a spherical clay teapot with spout and handle, NOT a broad gaiwan bowl, NOT porcelain, no coffee equipment."
+  },
+  {
+    "file": "research_full_body_roast_tea",
+    "id": "full_body_roast",
+    "group": "research_tea",
+    "reference": "card_oolong.png",
+    "description": "An open rounded dark brown clay TEA STORAGE JAR with its lid leaning separately beside it, filled to the mouth with clearly recognizable long curled dark olive and brown dried tea leaves. Several large individual VEINED TEA LEAVES lie beside the jar. A tiny hourglass on the other side signifies deep aging and patient storage. Main silhouette is a broad open clay storage jar full of dry tea leaves, not a teapot, no spout, no coffee beans, no cup, no food, no chocolate, no rectangular brick, no writing or label."
+  },
+  {
+    "file": "research_perfect_extraction_tea",
+    "id": "perfect_extraction",
+    "group": "research_tea",
+    "reference": "card_gaiwan.png",
+    "description": "An ivory lidded tea brewing pot with a removable sage leaf infuser basket beside it and two tiny tasting cups filled evenly with golden tea. Fully infused tea shared between two cups, no coffee apparatus."
+  },
+  {
+    "file": "research_caffeine_rush_tea",
+    "id": "caffeine_rush",
+    "group": "research_tea",
+    "reference": "card_gaiwan.png",
+    "description": "A bright fresh green tea leaf sprig above a small handleless tea bowl, three sweeping rising aroma curls and two short forward motion strokes. Tea fragrance and vitality, no coffee bean or lightning-shaped cup."
+  },
+  {
+    "file": "research_doppio_body_tea",
+    "id": "doppio_body",
+    "group": "research_tea",
+    "reference": "card_gaiwan.png",
+    "description": "Three nested curling layers of pale fragrant steam rising from one small ivory tea aroma cup, a pair of overlapping fresh green leaves at its base and a small warm heart in the steam. Layered tea fragrance and vitality, no espresso cups."
+  },
+  {
+    "file": "research_fine_grind_tea",
+    "id": "fine_grind",
+    "group": "research_tea",
+    "reference": "card_gaiwan.png",
+    "description": "A shallow bamboo tea sorting basket with a few carefully separated long green tea leaves, one slender wooden tweezer selecting a complete leaf above the basket. Tea leaf selection, no grinder or coffee beans."
+  },
+  {
+    "file": "mastery_service_1",
+    "id": "service_1",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "A cafe serving hand presenting a small freshly filled ivory cup on a silver saucer, beside a compact hourglass with most sand still in the upper bulb. Energetic first service at the beginning, no numeral."
+  },
+  {
+    "file": "mastery_service_2",
+    "id": "service_2",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "A welcoming cafe service bell next to a small blank loyalty card displaying exactly three punched circular marks, one familiar ivory customer cup nearby. Repeat service rhythm and regular customer recognition, no text."
+  },
+  {
+    "file": "mastery_service_3",
+    "id": "service_3",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "An elegant completed signature cocktail in a distinctive wide stemmed coupe glass, with a twisted citrus garnish clipped neatly onto its rim. Next to it a tiny wooden preparation board carrying a silver measuring jigger, one orange wedge and one herb sprig arranged neatly in three separate spots. Signature preparation with recognizable physical ingredients and tools only. Absolutely no paper, card, recipe, label, glyphs, lettering, writing, symbols or numbers."
+  },
+  {
+    "file": "mastery_service_4",
+    "id": "service_4",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "A compact silver closing service bell beside a small dark cafe clock showing hands close to closing time and a neat stack of empty cups. One small sharp gold emphasis glint, final service concentration, no digits."
+  },
+  {
+    "file": "mastery_stability_1",
+    "id": "stability_1",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "A cafe tray carried level with a cup of amber tea whose liquid surface stays perfectly flat, a folded ivory service cloth below and one small hourglass beside it. Calm unhurried steady service, no person body."
+  },
+  {
+    "file": "mastery_stability_2",
+    "id": "stability_2",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "An ivory handled cup tipped gently to reveal only one last amber sip at its bottom, backed by a small sturdy curved sage shield. Last sip protective reserve, no full drink or spilled liquid."
+  },
+  {
+    "file": "mastery_stability_3",
+    "id": "stability_3",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "A steaming small ivory cup resting on a folded cafe towel beside a little wall clock and a single fresh leaf. Rest break and recovery after hard service, no weapons or boss monster."
+  },
+  {
+    "file": "mastery_stability_4",
+    "id": "stability_4",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "A dark cafe work shoe stepping firmly forward beside a small upright cup, a curved return path arrow sweeping behind the shoe and a tiny warm heart near its heel. Composed return to service under pressure, no numeric symbols."
+  },
+  {
+    "file": "mastery_finesse_1",
+    "id": "finesse_1",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "One precise silver teaspoon placing a single round amber droplet exactly at the center of a small cream saucer marked with a subtle concentric target. First exact contact, clean complete utensil, no text or hands."
+  },
+  {
+    "file": "mastery_finesse_2",
+    "id": "finesse_2",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "One unmistakable long silver twisted-handle bar spoon placed on a strong diagonal from lower left to upper right, with its round spoon bowl visible at the top right. Two small ivory serving cups are spaced apart diagonally, one at lower left and one higher on the right. A simple pale double ended distance arrow follows the diagonal space between the cups. Compact tall balanced composition using at least 40 pixels of height within a 64px icon, not a thin horizontal line. No text or numbers."
+  },
+  {
+    "file": "mastery_finesse_3",
+    "id": "finesse_3",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "Four distinctly shaped miniature served drinks on a tray: stemmed red cocktail, low amber rocks glass, green handleless tea bowl, and tall clear infusion glass. Varied cafe service, four unmistakable silhouettes, no confetti."
+  },
+  {
+    "file": "mastery_finesse_4",
+    "id": "finesse_4",
+    "group": "mastery",
+    "reference": "card_jigger.png",
+    "description": "One carefully finished amber beverage in a small ivory cup centered under a compact brass cafe task lamp casting a narrow warm spotlight onto the cup only. Focus on a single prepared drink, no floor or backdrop."
+  }
+]

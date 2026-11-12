@@ -27,5 +27,5 @@ MonoBehaviour:
   gameplayConnection: "간결한 동선을 이동 속도로 표현했습니다."
   sourceName: "Diageo Bar Academy · Building cocktails"
   sourceUrl: "https://www.diageobaracademy.com/en-zz/home/bartender-skills-and-techniques/the-art-of-building-cocktails-directly-in-the-glass"
-  educationArtId: ""
+  educationArtId: card_build
   additionalSources: ""

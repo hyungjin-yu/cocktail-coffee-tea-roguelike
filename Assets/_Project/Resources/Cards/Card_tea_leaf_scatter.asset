@@ -27,5 +27,5 @@ MonoBehaviour:
   gameplayConnection: "여러 갈래 재료을 다중 발사로 표현했습니다."
   sourceName: "UK Tea & Infusions Association · Processing and blending"
   sourceUrl: "https://www.tea.co.uk/tea-processing-and-blending"
-  educationArtId: ""
+  educationArtId: card_blending
   additionalSources: ""

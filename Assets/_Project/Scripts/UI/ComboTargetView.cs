@@ -151,7 +151,7 @@ namespace CCT
                 foreach (var p in progress)
                 {
                     Sprite sp = p.req.kind == HiddenReqKind.Card ? (game.Cards?.FindInPool(p.req.id) is CardData c ? CardEducationIcons.For(c) : null)
-                        : p.req.kind == HiddenReqKind.Coffee ? Resources.Load<Sprite>("Icons/coffee_bean")
+                        : p.req.kind == HiddenReqKind.Coffee ? (ResearchIcons.Research(p.req.id, job) ?? Resources.Load<Sprite>("Icons/coffee_bean")) // 노드 전용 그림 → 없으면 공용 원두
                         : p.req.kind == HiddenReqKind.Hybrid ? CardSelectView.CategoryIcon(CardCategory.Hybrid) : null;
                     if (sp != null && reqArt.Count < ReqIconMax) reqArt.Add((p, sp));
                 }

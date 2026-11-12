@@ -1,0 +1,44 @@
+[
+  {
+    "file": "card_flamed_zest",
+    "reason": "Orange peel and oil drops read clearly but the flame is not a distinct flame silhouette at icon size; regenerate with an unmistakable small pointed flame between peel and rim.",
+    "previousAttempt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\rejected\\card_flamed_zest\\attempt-01",
+    "newOutput": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\card_flamed_zest.png",
+    "status": "generated-needs-visual-review"
+  },
+  {
+    "file": "research_measured_pour",
+    "reason": "Generated opaque pitcher has an ambiguous decorative mark instead of clearly readable volume graduations.",
+    "previousAttempt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\rejected\\research_measured_pour\\attempt-01",
+    "newOutput": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_measured_pour.png",
+    "status": "generated-needs-visual-review"
+  },
+  {
+    "file": "research_ristretto_tea",
+    "reason": "Lidded gaiwan silhouette is too similar to first-infusion tea variant; use a distinctly shaped concentrated-brew clay teapot.",
+    "previousAttempt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\rejected\\research_ristretto_tea\\attempt-01",
+    "newOutput": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_ristretto_tea.png",
+    "status": "generated-needs-visual-review"
+  },
+  {
+    "file": "research_full_body_roast_tea",
+    "reason": "Round compressed cake crosshatching resembles a woven drying basket; use unmistakable dark compressed aged tea brick.",
+    "previousAttempt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\rejected\\research_full_body_roast_tea\\attempt-01",
+    "newOutput": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\research_full_body_roast_tea.png",
+    "status": "generated-needs-visual-review"
+  },
+  {
+    "file": "mastery_service_3",
+    "reason": "Recipe note contains small illegible pseudo-letter strokes; replace with an object-only preparation motif.",
+    "previousAttempt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\rejected\\mastery_service_3\\attempt-01",
+    "newOutput": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_service_3.png",
+    "status": "generated-needs-visual-review"
+  },
+  {
+    "file": "mastery_finesse_2",
+    "reason": "Horizontal composition is too thin at actual small node-icon size; use a taller diagonal distance-control composition.",
+    "previousAttempt": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\rejected\\mastery_finesse_2\\attempt-01",
+    "newOutput": "C:\\Users\\user\\orca\\workspaces\\CocktailCoffeeTea\\coffee-brewing\\ArtSource\\ui-icons-2026-11-12\\raw\\mastery_finesse_2.png",
+    "status": "generated-needs-visual-review"
+  }
+]
