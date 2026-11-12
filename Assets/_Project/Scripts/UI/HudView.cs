@@ -37,6 +37,70 @@ namespace CCT
         public RunPhaseBadge PhaseBadge { get; private set; }
         public FamilyLegend Legend { get; private set; }
 
+        // ───── 2026-11-12 좌측 패널 그림 ─────
+        Text hiddenBadge; Image hiddenBadgeBg, jobPortrait, comboCard, comboSlot; Image[] jobPips;
+        public string HiddenBadgeText => hiddenBadge != null ? hiddenBadge.text : "";
+        public bool JobPortraitShown => jobPortrait != null && jobPortrait.enabled;
+        public int JobPipsFilled { get; private set; }
+        public bool ComboCardShown => comboCard != null && comboCard.enabled;
+
+        void BuildLeftVisuals(RectTransform hiddenRt, RectTransform jobRt, RectTransform targetRt, GameManager g)
+        {
+            if (g == null) return;
+            // 히든: 왼쪽 둥근 배지(해금 수) — 글자 'H' 안내는 오른쪽 문구에 그대로
+            var brt = UiFactory.Place("CountBadge", hiddenRt, new Vector2(0f, 0.5f), new Vector2(8f, 0f), new Vector2(42f, 42f));
+            brt.pivot = new Vector2(0f, 0.5f);
+            hiddenBadgeBg = brt.gameObject.AddComponent<Image>();
+            hiddenBadgeBg.sprite = SpriteFactory.Circle; hiddenBadgeBg.color = new Color(0.85f, 0.65f, 0.25f, 1f); hiddenBadgeBg.raycastTarget = false;
+            hiddenBadge = UiFactory.AddText(UiFactory.Stretch("N", brt), "0", 24, TextAnchor.MiddleCenter, new Color(0.15f, 0.1f, 0.05f));
+            hiddenBadge.raycastTarget = false;
+            if (hiddenSummary != null) hiddenSummary.rectTransform.offsetMin = new Vector2(60f, 10f);
+            // 직업: 몸체 첫 프레임 초상 + 진행 칸(바텐더 새 칵테일 3칸 / 티 소믈리에 깊은 우림 6칸)
+            jobPortrait = HudIcons.Icon(jobRt, "Portrait", new Vector2(0f, 0.5f), new Vector2(10f, 0f), 90f, HudIcons.Job(g.Job));
+            jobPortrait.rectTransform.pivot = new Vector2(0f, 0.5f);
+            if (jobTrait != null) { jobTrait.rectTransform.offsetMin = new Vector2(110f, 30f); jobTrait.resizeTextForBestFit = true; jobTrait.resizeTextMinSize = 16; jobTrait.resizeTextMaxSize = 22; }
+            int pipCount = g.Job == Job.Bartender ? 3 : 6;
+            // 진행 칸 앞에 무엇을 세는지 그림(바텐더 = 칵테일잔 · 티 소믈리에 = 찻잔)
+            var kindIcon = HudIcons.Icon(jobRt, "PipKind", new Vector2(0f, 0f), new Vector2(110f, 4f), 26f, HudIcons.FamilyCup(g.Job == Job.Bartender ? MonsterFamily.Cocktail : MonsterFamily.Tea));
+            kindIcon.rectTransform.pivot = new Vector2(0f, 0f);
+            jobPips = HudIcons.Pips(jobRt, "Pip", new Vector2(0f, 0f), new Vector2(142f, 10f), pipCount, 16f, 6f);
+            // 목표 조합: 첫 미충족 카드 그림(없으면 빈 칸 테두리)
+            comboSlot = UiFactory.AddImage(UiFactory.Place("CardSlot", targetRt, new Vector2(0f, 0.5f), new Vector2(8f, 0f), new Vector2(42f, 42f)), new Color(1f, 1f, 1f, 0.18f));
+            comboSlot.rectTransform.pivot = new Vector2(0f, 0.5f); comboSlot.raycastTarget = false;
+            comboCard = HudIcons.Icon(targetRt, "Card", new Vector2(0f, 0.5f), new Vector2(8f, 0f), 42f, null);
+            comboCard.rectTransform.pivot = new Vector2(0f, 0.5f);
+            if (comboTarget != null) comboTarget.rectTransform.offsetMin = new Vector2(60f, 10f);
+        }
+
+        void RefreshLeftVisuals()
+        {
+            if (game == null || game.Player == null) return;
+            if (hiddenBadge != null)
+            {
+                int n = game.Player.Hidden.Count;
+                hiddenBadge.text = n.ToString();
+                hiddenBadgeBg.color = n > 0 ? new Color(0.85f, 0.65f, 0.25f, 1f) : new Color(0.4f, 0.36f, 0.32f, 1f); // 0개는 흐린 배지 + 숫자 0
+            }
+            if (jobPips != null)
+            {
+                int filled = game.Job == Job.Bartender ? (game.MixingRushRemaining > 0f ? 3 : game.MixingRushProgress) : game.DeepSteepLevel;
+                JobPipsFilled = filled;
+                HudIcons.SetPips(jobPips, filled, game.MixingRushRemaining > 0f ? new Color(1f, 0.55f, 0.35f) : new Color(0.75f, 1f, 0.65f), new Color(1f, 1f, 1f, 0.18f));
+            }
+            if (comboCard != null)
+            {
+                Sprite card = null;
+                if (game.ComboTarget.HasValue)
+                {
+                    var def = HiddenSkillDatabase.Get(game.ComboTarget.Value);
+                    foreach (var p in HiddenRequirements.Progress(def.skill, game.Job, game.HiddenState))
+                        if (!p.met && p.req.kind == HiddenReqKind.Card) { var c = game.Cards?.FindInPool(p.req.id); if (c != null) { card = CardEducationIcons.For(c); break; } }
+                    if (card == null) card = Resources.Load<Sprite>("Icons/coffee_bean"); // 카드 조건 충족 뒤 남은 커피 조건 등
+                }
+                HudIcons.Set(comboCard, card);
+            }
+        }
+
         static Text PaddedLabel(RectTransform box, string content, int size, TextAnchor alignment, Color color)
         {
             var rect = UiFactory.Stretch("Label", box);
@@ -208,6 +272,8 @@ namespace CCT
             var jobBg=UiFactory.AddImage(jobRt,new Color(.12f,.09f,.12f,.92f));
             UiFactory.SkinPanel(jobBg); jobBg.raycastTarget=false;
             view.jobTrait=PaddedLabel(jobRt,"",24,TextAnchor.UpperLeft,new Color(.85f,1f,.8f));
+            // 2026-11-12 HUD 가시성(사용자 요청): 히든 = 개수 배지, 직업 = 초상 + 진행 칸 + 강화 남은 시간, 목표 조합 = 카드 그림/빈 칸. 기존 크기·위치·H/T 동작 유지.
+            view.BuildLeftVisuals(hiddenRt, jobRt, targetRt, game);
 
             var detailRt=UiFactory.Place("HiddenDetails",root,new Vector2(.5f,.5f),Vector2.zero,new Vector2(980f,780f));
             UiFactory.SkinPanel(UiFactory.AddImage(detailRt,new Color(.12f,.09f,.12f,1f)));
@@ -389,9 +455,10 @@ namespace CCT
             if(hiddenSummary!=null && game!=null && game.Player!=null && Time.unscaledTime>=hiddenRefresh)
             {
                 hiddenRefresh=Time.unscaledTime+.1f;
-                hiddenSummary.text=MobilePlatform.IsTouchUI ? $"히든 {game.Player.Hidden.Count} · 현재 효과 보기" : $"히든 {game.Player.Hidden.Count} · 현재 효과 보기 [H]";
+                hiddenSummary.text=MobilePlatform.IsTouchUI ? $"히든 스킬 {game.Player.Hidden.Count}개 · 효과 보기" : $"히든 스킬 {game.Player.Hidden.Count}개 · 효과 보기 [H]"; // 2026-11-12 왼쪽 배지와 같은 수(색만으로 구분하지 않게 글자 유지)
                 jobTrait.text=JobPreset.For(game.Job).name+" · "+game.JobTraitStatus;
                 if(comboTarget!=null) comboTarget.text=ComboTargetLabel(game);
+                RefreshLeftVisuals();
                 var runtime=game.Player.HiddenRuntime;
                 hiddenActivity.text=runtime.LastActivationRemaining>0f ? "[발동] "+runtime.LastActivation
                     : "";

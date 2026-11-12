@@ -261,7 +261,21 @@ namespace CCT
                 while (g.Master.State.Phase == MasterPhase.Transition && Time.realtimeSinceStartup - t0 < 2.7f) yield return null; // 글자(07 프레임, ≈2.1초) 이후·전환(3.5초) 전
                 if (g.Master.State.Phase == MasterPhase.Transition) yield return RtShot("s08_fair_banner_1080", 1920, 1080);
                 yield return WaitPhase(g, () => g.Master.State.Segment == MasterSegment.Fair && Enemy.Active.Count >= 6, 120f, "fair-crowd");
-                yield return PairShot("s09_fair_crowd");
+                // 2026-11-12 박람회 밀도 실측: 박람회 1/3 동안 최대 동시·처리 시간·플레이어 체력 변화 + 10fps 게임 자체 연속 캡처 8초
+                StartCoroutine(Continuous("continuous-fair", 8f));
+                long fw = g.Master.State.Wave; float fs = g.RunTime, hp0 = g.Player.Hp, hpMin = hp0; int peak = 0; bool crowdShot = false;
+                float fUntil = Time.realtimeSinceStartup + 90f;
+                while (g.State != GameState.GameOver && g.Master.State.Wave == fw && Time.realtimeSinceStartup < fUntil)
+                {
+                    HandleRewardScreens(g);
+                    int alive = Enemy.Active.Count(e => e != null && !e.IsDead && e.MasterWaveTag == fw);
+                    peak = Mathf.Max(peak, alive); hpMin = Mathf.Min(hpMin, g.Player.Hp);
+                    if (!crowdShot && alive >= 14) { crowdShot = true; yield return PairShot("s09_fair_crowd"); }
+                    yield return null;
+                }
+                contToken++;
+                if (!crowdShot) yield return PairShot("s09_fair_crowd");
+                Event($"FAIR DENSITY wave={fw} target={MasterRules.FairCountPerWave} peakAlive={peak} combatSeconds={g.RunTime - fs:0.0} hpStart={hp0:0} hpMin={hpMin:0} burst={MasterRules.FairBurstSize} interval={MasterRules.FairBurstInterval:0.00}s");
             }
             yield return EndMaster(g);
             yield return PairShot("s10_result");

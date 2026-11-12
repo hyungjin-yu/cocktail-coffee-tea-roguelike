@@ -204,6 +204,36 @@ namespace CCT.Tests
             Assert.AreNotEqual(bannerBefore, game.Hud.BannerSubText);
         }
 
+        /// <summary>2026-11-12 박람회 밀도: 웨이브당 36명, 4명 묶음(같은 쪽) ≈1.56초 간격, 계획·예고 수 일치, 개체 체력 배율 불변.</summary>
+        [UnityTest]
+        public IEnumerator Fair_Density_ThirtySixInBurstsOfFour_SameSide_PlanMatches()
+        {
+            var st = game.Master.State;
+            Assert.IsTrue(game.Master.StartBattle());
+            foreach (var sp in game.GetComponentsInChildren<EnemySpawner>()) if (sp != game.Spawner) sp.enabled = false;
+            for (int w = 0; w < 5; w++) { long t = st.Target; for (long i = 0; i < t; i++) st.NotifySpawned(); for (long i = 0; i < t; i++) st.NotifyCleared(); }
+            Assert.AreEqual(MasterPhase.AwaitChoice, st.Phase);
+            foreach (var e in Enemy.Active.ToArray()) if (e != null) Object.DestroyImmediate(e.gameObject);
+            var fairPreview = game.Master.UpcomingWaves()[1];
+            Assert.AreEqual(MasterRules.FairCountPerWave, fairPreview.plan.Count, "예고 수 = 36");
+            Assert.IsTrue(game.Master.ChooseFair());
+            yield return RunUntil(() => st.Segment == MasterSegment.Fair && st.Phase == MasterPhase.Wave, 8f, kill: false);
+            Assert.AreEqual(36, st.Target, "처리 분모 36");
+            yield return null; yield return null;
+            Assert.GreaterOrEqual(st.Spawned, MasterRules.FairBurstSize, "시작 즉시 1묶음(4명)");
+            var first = Enemy.Active.Where(e => e != null && e.MasterWaveTag == st.Wave).Take(MasterRules.FairBurstSize).ToList();
+            float camX = Camera.main.transform.position.x;
+            Assert.IsTrue(first.All(e => Mathf.Sign(e.transform.position.x - camX) == Mathf.Sign(first[0].transform.position.x - camX)), "한 묶음 = 같은 쪽");
+            float hpScale = first[0].HpScale;
+            Assert.AreEqual(MasterChallengeDirector.Scale(EndlessRules.HpScale(st.Wave), MasterRules.ReductionFactor(st.ActiveReduction)), hpScale, 1e-4f, "개체 체력 배율 그대로");
+            long at0 = st.Spawned;
+            float until = Time.time + MasterRules.FairBurstInterval * 2f + 0.15f; // 게임 시간 두 간격
+            while (Time.time < until) yield return null;
+            Assert.GreaterOrEqual(st.Spawned - at0, MasterRules.FairBurstSize * 2, "간격마다 4명씩");
+            Assert.LessOrEqual(st.Spawned, (long)MasterRules.FairBurstSize * 4, "한 번에 몰아 다 나오지 않음");
+            Assert.GreaterOrEqual(Enemy.Active.Count(e => e != null && !e.IsDead && e.MasterWaveTag == st.Wave), 10, "동시 군중");
+        }
+
         [UnityTest]
         public IEnumerator GiveUp_FromPrep_EndsCleanly()
         {

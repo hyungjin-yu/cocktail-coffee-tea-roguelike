@@ -338,11 +338,23 @@ namespace CCT
 
         public float TransitionElapsed => transitionElapsed;
 
+        float fairElapsed;
+        /// <summary>현재 박람회 묶음 번호(같은 묶음 = 같은 쪽).</summary>
+        public int FairBurstIndex { get; private set; }
+
         void TickWave(float dt)
         {
             long target = State.Target;
             float rel = MasterRules.ReleaseSeconds(State.Segment);
-            released = Mathf.Min(target, released + dt * target / Mathf.Max(0.1f, rel));
+            if (State.Segment == MasterSegment.Fair)
+            {
+                // 2026-11-12 묶음 방출: 시작 즉시 1묶음, 이후 FairBurstInterval마다 FairBurstSize명(동시 상한·프레임 예산은 아래 그대로).
+                if (State.Spawned == 0 && released <= 0f) fairElapsed = 0f;
+                fairElapsed += dt;
+                int bursts = Mathf.FloorToInt(fairElapsed / Mathf.Max(0.1f, MasterRules.FairBurstInterval)) + 1;
+                released = Mathf.Min(target, bursts * (float)MasterRules.FairBurstSize);
+            }
+            else released = Mathf.Min(target, released + dt * target / Mathf.Max(0.1f, rel));
             if (State.Spawned == 0 && target > 0) released = Mathf.Max(released, 1f); // 첫 1마리는 바로
             int budget = MasterRules.SpawnsPerFrame;
             while (budget-- > 0 && State.Spawned < target && State.Spawned < (long)released)
@@ -386,7 +398,10 @@ namespace CCT
                     // 절대 웨이브1 기준 HP(배율 1)·도전 체력 배율 제외·공격 0·무해.
                     return sp.SpawnMaster(MasterDefs.RewardMonster(game.Job), EndlessRules.HpScale(1), 1f, true, true);
                 case MasterSegment.Fair:
-                    return sp.SpawnMaster(MasterDefs.FairCustomer(game.Job), Scale(EndlessRules.HpScale(wave), factor), Scale(EndlessRules.AttackScale(wave), factor), false, false);
+                    // 같은 묶음은 같은 쪽(묶음마다 좌우 교대) — 군중이 한쪽에서 밀려오고 반대쪽은 회피 공간
+                    FairBurstIndex = (int)(State.Spawned / MasterRules.FairBurstSize);
+                    return sp.SpawnMaster(MasterDefs.FairCustomer(game.Job), Scale(EndlessRules.HpScale(wave), factor), Scale(EndlessRules.AttackScale(wave), factor), false, false,
+                        FairBurstIndex % 2 == 0 ? -1f : 1f);
                 default:
                     // 2026-11-12: 예고와 같은 확정 계획의 다음 정의(생성 순서 = 계획 순서). 위치 등 다른 난수는 기존 그대로.
                     var def = PlanFor(wave, State.RepeatCount).DefAt(State.Spawned);

@@ -33,10 +33,15 @@ namespace CCT
         public const int CocktailAttackPercentPerUniqueDefault = 2;
 
         /// <summary>웨이브 목표 처치량(유한). 수집 = 기존 끝없는 모드 식(8+2(w−1)), 박람회 = 웨이브당 고정(제안), 보상 = 웨이브당 고정(제안).</summary>
-        public const int FairCountPerWave = 12;      // 제안
+        /// <summary>2026-11-12 사용자 지시(박람회가 바쁘게 — 기본 개체 수 최소 2배): 12 → 36(3배). 개체 HP·공격 배율은 그대로.</summary>
+        public const int FairCountPerWave = 36;      // 제안(검토판)
+        /// <summary>박람회 묶음 등장: 같은 쪽 가장자리에서 4명씩(한 명씩 줄 서는 느낌 대신 군중).</summary>
+        public const int FairBurstSize = 4;
         public const int RewardCountPerWave = 8;     // 제안
         /// <summary>목표량을 몇 초 동안 나눠 풀지(생성 속도). 동시 상한·프레임 예산은 별도.</summary>
-        public const float CollectReleaseSeconds = 20f, FairReleaseSeconds = 16f, RewardReleaseSeconds = 6f;
+        public const float CollectReleaseSeconds = 20f, FairReleaseSeconds = 14f, RewardReleaseSeconds = 6f; // 2026-11-12 박람회 16 → 14초(36명 = 묶음 9개 ≈1.56초 간격)
+        /// <summary>박람회 묶음 간격(초) = 방출 시간 / 묶음 수.</summary>
+        public static float FairBurstInterval => FairReleaseSeconds / Math.Max(1, (FairCountPerWave + FairBurstSize - 1) / FairBurstSize);
         public const int SpawnsPerFrame = 3;
 
         /// <summary>박람회 작은 진상 손님: 원본 최종 보스와 분리한 별도 정의 수치(다수전용, 제안).</summary>

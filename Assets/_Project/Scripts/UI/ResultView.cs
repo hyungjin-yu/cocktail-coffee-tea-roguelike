@@ -30,6 +30,9 @@ namespace CCT
         /// <summary>2026-11-10 런 모드와 끝없는 모드 도달 웨이브(정규 0).</summary>
         public RunMode mode;
         public long endlessWave;
+        /// <summary>2026-11-12 마스터 도전 결과(그 런에 실제로 있었던 값만): 도달 주기, 런 제조 잔 수·마신 잔·제출 잔, 칵테일 고유 종류.</summary>
+        public long masterCycle;
+        public int cupsMade, cupsDrunk, cupsSubmitted, masterCocktailKinds;
     }
 
     /// <summary>
@@ -115,6 +118,7 @@ namespace CCT
             view.statsSmall = UiFactory.AddText(UiFactory.Place("Stats", small, new Vector2(0.5f, 0.5f), Vector2.zero,
                 new Vector2(1200f, 100f)), "", 26, TextAnchor.MiddleCenter, Muted);
             view.statsSmall.lineSpacing = 1.1f;
+            view.BuildVisualStats(hero, small);
 
             // 69 음료: 보스 음료 재료 창고 반영 여부 + 준비 음료 보존/소모.
             // hudfix 2026-10-19: 긴 판(재료 묶음 수백 개)이 결과 화면 전체를 덮던 문제 — 통계 판 아래(-142)와 버튼 위(-226) 사이에는
@@ -265,6 +269,64 @@ namespace CCT
             statsSmall.text=JobStudyTheme.Text(statsSmall.text,last.job);
             if (last.job == Job.TeaSommelier)
                 statsSmall.text = $"처치  {last.kills}  ·  차 Lv {last.teaLevel}  ·  우림 연구 스킬 해금  {last.coffeeSkillsUnlocked}\n획득 재료  찻잎 {last.teaCollected}  ·  우림 지식 {last.beansCollected}";
+            RefreshVisualStats();
+            if (last.mode == RunMode.Endless && last.masterCycle > 0)
+                subtitle.text = EndlessSubtitle(last.endlessWave).Replace(" · 도달 웨이브", $" · 주기 {last.masterCycle} · 도달 웨이브");
+        }
+
+        // ───── 2026-11-12 결과 그림+수치(사용자 요청: 텍스트 덩어리 대신) — 원래 문구(statsSmall·identity)는 읽기용으로 같은 값 유지 ─────
+        Image jobIcon, weaponIcon;
+        Image[] chipIcons = new Image[8];
+        Text[] chipTexts = new Text[8];
+        public string ChipsText => string.Join(" | ", System.Array.ConvertAll(chipTexts, t => t != null && t.gameObject.activeSelf ? t.text : ""));
+        public bool JobIconShown => jobIcon != null && jobIcon.enabled;
+
+        void BuildVisualStats(RectTransform hero, RectTransform small)
+        {
+            jobIcon = HudIcons.Icon(hero, "JobIcon", new Vector2(0.5f, 0f), new Vector2(-560f, 14f), 64f, null);
+            jobIcon.rectTransform.pivot = new Vector2(0f, 0f);
+            weaponIcon = HudIcons.Icon(hero, "WeaponIcon", new Vector2(0.5f, 0f), new Vector2(-490f, 18f), 52f, null);
+            weaponIcon.rectTransform.pivot = new Vector2(0f, 0f);
+            statsSmall.enabled = false;
+            // 2줄 × 4칸: (그림 40 + 수치 글자) — 위: 칵테일 Lv · 차 Lv · 커피 스킬 · 처치 / 아래: 획득 칵테일 · 찻잎 · 원두 · (마스터) 잔
+            for (int i = 0; i < chipTexts.Length; i++)
+            {
+                int row = i / 4, col = i % 4;
+                var pos = new Vector2(-600f + col * 300f, row == 0 ? 28f : -26f);
+                chipIcons[i] = HudIcons.Icon(small, "ChipIcon" + i, new Vector2(0.5f, 0.5f), pos, 40f, null);
+                chipIcons[i].rectTransform.pivot = new Vector2(0f, 0.5f);
+                chipTexts[i] = HudIcons.Label(small, "ChipText" + i, new Vector2(0.5f, 0.5f), pos + new Vector2(46f, 0f), new Vector2(246f, 44f), "", 26, Muted, TextAnchor.MiddleLeft, 16);
+                chipTexts[i].rectTransform.pivot = new Vector2(0f, 0.5f);
+            }
+        }
+
+        void SetChip(int i, Sprite icon, string text)
+        {
+            HudIcons.Set(chipIcons[i], icon);
+            chipTexts[i].gameObject.SetActive(!string.IsNullOrEmpty(text));
+            chipTexts[i].text = text ?? "";
+            if (string.IsNullOrEmpty(text)) HudIcons.Set(chipIcons[i], null);
+        }
+
+        void RefreshVisualStats()
+        {
+            if (last == null || chipTexts[0] == null) return;
+            HudIcons.Set(jobIcon, HudIcons.Job(last.job));
+            HudIcons.Set(weaponIcon, HudIcons.Weapon(last.weapon));
+            bool tea = last.job == Job.TeaSommelier;
+            var cocktailIcon = HudIcons.Ingredient(IngredientType.Cocktail);
+            var teaIcon = HudIcons.Ingredient(IngredientType.Tea);
+            var beanIcon = HudIcons.Ingredient(IngredientType.Coffee);
+            SetChip(0, tea ? null : cocktailIcon, tea ? "" : $"칵테일 Lv {last.cocktailLevel}");
+            SetChip(1, teaIcon, $"차 Lv {last.teaLevel}");
+            SetChip(2, beanIcon, tea ? $"우림 연구 {last.coffeeSkillsUnlocked}" : $"커피 스킬 {last.coffeeSkillsUnlocked}");
+            SetChip(3, HudIcons.Family(tea ? MonsterFamily.Tea : MonsterFamily.Cocktail), $"처치 {last.kills}"); // 직업 무대 대표 적 그림
+            SetChip(4, tea ? null : cocktailIcon, tea ? "" : $"획득 칵테일 {last.cocktailCollected}");
+            SetChip(5, teaIcon, $"획득 찻잎 {last.teaCollected}");
+            SetChip(6, beanIcon, tea ? $"우림 지식 {last.beansCollected}" : $"획득 원두 {last.beansCollected}");
+            bool master = last.mode == RunMode.Endless;
+            SetChip(7, master ? Resources.Load<Sprite>("DrinkLab/dl_coffee_cup") : null,
+                master ? $"잔 {last.cupsMade} · 마심 {last.cupsDrunk} · 제출 {last.cupsSubmitted}" : "");
         }
 
         public void ToggleSeed()

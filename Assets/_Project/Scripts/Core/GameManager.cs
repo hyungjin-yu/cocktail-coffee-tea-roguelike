@@ -65,6 +65,8 @@ namespace CCT
         int cocktailTypesSeen;
         float mixingRushRemaining;
         public float MixingRushRemaining => mixingRushRemaining;
+        /// <summary>2026-11-12 HUD 진행 칸: 다음 혼합 러시까지 새 칵테일 종류(0~2).</summary>
+        public int MixingRushProgress => cocktailTypesSeen % 3;
         public int DeepSteepLevel => Mathf.Clamp(Cards.HighestStacks(CardCategory.Tea)-1,0,6);
         public string JobTraitStatus => Job==Job.Bartender
             ? mixingRushRemaining>0f ? $"혼합 러시 {IntNum.RemainingSeconds(mixingRushRemaining)}초\n피해 +20% · 공속 +15%"
@@ -1095,6 +1097,10 @@ namespace CCT
             if (Player != null) Player.DrunkDrink = null; // 2026-11-10 런 종료 즉시 상성 해제
             Time.timeScale = 0f;
             CommitRun(cleared ? RunOutcome.Cleared : reason == "포기" ? RunOutcome.Abandoned : RunOutcome.Failed);
+            // 2026-11-12 결과 화면용 마스터 잔 집계(정산이 이 런의 잔 기록을 지우기 전에 읽기만)
+            int cupsMade = 0, cupsDrunk = 0, cupsSubmitted = 0;
+            if (Master != null)
+                foreach (var c in DrinkLab.RunCupsFor(RunId)) { cupsMade++; if (c.state == RunCup.Drunk) cupsDrunk++; else if (c.state == RunCup.Submitted) cupsSubmitted++; }
             SettleDrinks(cleared ? RunEndKind.Cleared : reason == "사망" ? RunEndKind.Died
                 : reason == "시간 초과" ? RunEndKind.TimeUp : RunEndKind.Abandoned, reason == "포기");
             // 67 최근 기록: 결과 패널 지연(사망 동작)과 무관하게 종료 즉시 같은 runId로 한 번만 남긴다.
@@ -1114,6 +1120,8 @@ namespace CCT
                 teaCollected = teaCollectedThisRun, beansCollected = beansCollectedThisRun,
                 specialtyEarned = specialtyEarnedThisRun, seed = Seed, record = RunRecord,
                 mode = Mode, endlessWave = EndlessWave,
+                masterCycle = Master != null ? Master.State.Cycle : 0, cupsMade = cupsMade, cupsDrunk = cupsDrunk, cupsSubmitted = cupsSubmitted,
+                masterCocktailKinds = Master != null ? Master.CocktailUniqueCount : 0,
             };
             // 사망: 저장·집계는 위에서 즉시 1회 확정하고, 결과 패널만 쓰러지는 동작(defeat, 실시간 재생)이 보인 뒤에 연다
             // (2026-10-08 아트 검수: 결과 패널이 사망 동작을 가림). 이 런 오브젝트가 사라지면(재시작/타이틀) 예약도 함께 사라진다.

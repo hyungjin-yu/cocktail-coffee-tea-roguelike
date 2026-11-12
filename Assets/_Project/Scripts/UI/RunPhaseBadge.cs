@@ -69,6 +69,62 @@ namespace CCT
             return view;
         }
 
+        // ───── 2026-11-12 마스터 도전 배지 그림판(사용자 HUD 가시성 요청): 주요 = 구간 그림·주기·웨이브·단계·처리 진행 막대 / 보조 = 난이도·약화·제출·칵테일 보너스 ─────
+        public const float MasterW = 780f, MasterH = 74f;
+        RectTransform masterRoot;
+        Image segIcon, cupIcon, glassIcon;
+        Text primary, progressText, secondary, submitText, cocktailText;
+        HudIcons.Bar progressBar;
+        public string MasterPrimaryText => primary != null ? primary.text : "";
+        public string MasterProgressText => progressText != null ? progressText.text : "";
+        public string MasterSecondaryText => (secondary != null ? secondary.text : "") + " | " + (submitText != null ? submitText.text : "") + " | " + (cocktailText != null ? cocktailText.text : "");
+        public float MasterProgress => progressBar != null ? progressBar.Value : -1f;
+        public bool SegmentIconShown => segIcon != null && segIcon.enabled;
+
+        void BuildMaster()
+        {
+            masterRoot = UiFactory.Stretch("MasterLayout", rt);
+            var top = new Vector2(0f, 1f);
+            segIcon = HudIcons.Icon(masterRoot, "SegIcon", top, new Vector2(8f, -3f), 36f, null);
+            primary = HudIcons.Label(masterRoot, "Primary", top, new Vector2(50f, -2f), new Vector2(400f, 38f), "", 24, Color.white, TextAnchor.MiddleLeft, 16);
+            progressBar = HudIcons.ProgressBar(masterRoot, "Progress", top, new Vector2(456f, -12f), new Vector2(150f, 18f), new Color(1f, 0.78f, 0.38f, 0.95f));
+            progressText = HudIcons.Label(masterRoot, "ProgressText", top, new Vector2(612f, -2f), new Vector2(92f, 38f), "", 22, new Color(1f, 0.9f, 0.7f), TextAnchor.MiddleLeft, 14);
+            secondary = HudIcons.Label(masterRoot, "Secondary", top, new Vector2(50f, -42f), new Vector2(340f, 28f), "", 18, new Color(0.82f, 0.82f, 0.8f), TextAnchor.MiddleLeft, 13);
+            cupIcon = HudIcons.Icon(masterRoot, "CupIcon", top, new Vector2(398f, -42f), 26f, Resources.Load<Sprite>("DrinkLab/dl_coffee_cup"));
+            submitText = HudIcons.Label(masterRoot, "Submit", top, new Vector2(428f, -42f), new Vector2(110f, 28f), "", 18, new Color(0.82f, 0.82f, 0.8f), TextAnchor.MiddleLeft, 13);
+            glassIcon = HudIcons.Icon(masterRoot, "GlassIcon", top, new Vector2(540f, -42f), 26f, Resources.Load<Sprite>("DrinkLab/dl_glass_cocktail"));
+            cocktailText = HudIcons.Label(masterRoot, "Cocktail", top, new Vector2(570f, -42f), new Vector2(130f, 28f), "", 18, new Color(0.82f, 0.82f, 0.8f), TextAnchor.MiddleLeft, 13);
+            label.enabled = false; // 원래 두 줄 문구(Text)는 시험·읽기용으로 계속 갱신
+        }
+
+        void RefreshMaster()
+        {
+            if (masterRoot == null || game == null || game.Master == null) return;
+            var m = game.Master; var st = m.State; long wave = st.Wave;
+            var seg = st.Segment;
+            var segDef = seg == MasterSegment.Fair ? MasterDefs.FairCustomer(game.Job) : seg == MasterSegment.Reward ? MasterDefs.RewardMonster(game.Job) : null;
+            HudIcons.Set(segIcon, segDef != null ? MasterWavePlan.IconOf(segDef) : HudIcons.Ingredient(game.Job == Job.TeaSommelier ? IngredientType.Tea : IngredientType.Cocktail));
+            string segName = seg == MasterSegment.Fair ? $"박람회 {MasterRules.FairIndex(wave)}/{MasterRules.FairWaves}"
+                : seg == MasterSegment.Reward ? $"보상 손님 {MasterRules.RewardIndex(wave)}/{MasterRules.RewardWaves}"
+                : $"재료 모으기 {MasterRules.InCycle(wave)}/{MasterRules.CollectWaves}";
+            primary.text = $"주기 {st.Cycle} · 웨이브 {EndlessRules.Show(wave)} · {segName}";
+            switch (st.Phase)
+            {
+                case MasterPhase.Prep: progressBar.SetValue(0f); progressText.text = "준비 중"; break;
+                case MasterPhase.AwaitChoice: progressBar.SetValue(1f); progressText.text = "선택"; break;
+                case MasterPhase.ClearingForFair: progressBar.SetValue(1f); progressText.text = $"남은 {Enemy.Active.Count}"; break;
+                case MasterPhase.Transition: progressBar.SetValue(1f); progressText.text = "설치 중"; break;
+                default:
+                    progressBar.SetValue(st.Target > 0 ? (float)((double)st.Cleared / st.Target) : 0f);
+                    progressText.text = $"{st.Cleared}/{st.Target}";
+                    break;
+            }
+            secondary.text = seg == MasterSegment.Reward ? "보상 손님: 공격 없음 · 체력 1웨이브"
+                : $"적 체력 {EndlessRules.Show(EndlessRules.HpPercentInt(wave))}% · 공격 {EndlessRules.Show(EndlessRules.AttackPercentInt(wave))}% · 약화 {st.ActiveReduction}%";
+            submitText.text = $"제출 {st.SubmittedThisCycle}잔";
+            cocktailText.text = $"칵테일 {m.CocktailUniqueCount}종 +{m.CocktailAttackPercent}%";
+        }
+
         /// <summary>실제 시간 배율 → 위험 단계 1~5. x = 스폰 배율 × 몹 체력 배율, 단계 = 1 + floor(log2 x).</summary>
         public static int DangerTier(float runTime)
         {
@@ -180,6 +236,7 @@ namespace CCT
         void Refresh()
         {
             nextRefresh = Time.unscaledTime + 0.2f;
+            if (masterRoot == null && game != null && game.Master != null) BuildMaster(); // HUD가 Director보다 먼저 만들어진다
             var info = Compute(game);
             Last = info;
             label.text = info.text ?? "";
@@ -187,7 +244,8 @@ namespace CCT
             float k = DrinkRunHud.ReadableScale(Font, canvas != null ? canvas.scaleFactor : 1f);
             rt.localScale = new Vector3(k, k, 1f);
             // 끝없는 모드는 두 줄(같은 자리, 높이만 늘림 — 이 모드에는 보스 체력바가 없다).
-            rt.sizeDelta = info.state == RunPhaseState.Endless ? new Vector2(BadgeW + 200f, BadgeH * 1.8f) : new Vector2(BadgeW, BadgeH);
+            rt.sizeDelta = masterRoot != null ? new Vector2(MasterW, MasterH) : info.state == RunPhaseState.Endless ? new Vector2(BadgeW + 200f, BadgeH * 1.8f) : new Vector2(BadgeW, BadgeH);
+            RefreshMaster();
             label.rectTransform.sizeDelta = new Vector2(rt.sizeDelta.x - 36f - 84f, rt.sizeDelta.y - 4f);
             switch (info.state)
             {

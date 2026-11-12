@@ -271,7 +271,8 @@ namespace CCT
                 int q = DrinkQuality.Of(r);
                 string kind = r.Kind == DrinkKind.Coffee ? "커피" : r.Kind == DrinkKind.Tea ? "차" : "칵테일";
                 string newKind = r.Kind == DrinkKind.Cocktail && !string.IsNullOrEmpty(DrinkLab.RecipeKey(r)) && !game.Master.HasCocktailKind(DrinkLab.RecipeKey(r)) ? " · 새 종류" : "";
-                var t = UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 0.5f), new Vector2(12f, 0f), new Vector2(560f, 52f)),
+                RowIcon(row, HudIcons.Drink(r.Kind, r.coffeeMethod), can); // 2026-11-12 완성 잔 그림(종류·추출법)
+                var t = UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 0.5f), new Vector2(60f, 0f), new Vector2(512f, 52f)),
                     $"[{kind}] {DrinkValidator.SanitizeName(r.name, DrinkLab.DefaultName(r))}{(q >= 0 ? "  " + DrinkQuality.Label(q) : "")}{newKind}{(can ? "" : "  (재료 부족)")}",
                     22, TextAnchor.MiddleLeft, can ? Color.white : new Color(0.65f, 0.65f, 0.65f));
                 t.resizeTextForBestFit = true; t.resizeTextMinSize = 14; t.resizeTextMaxSize = 22; t.verticalOverflow = VerticalWrapMode.Truncate;
@@ -301,7 +302,8 @@ namespace CCT
                 {
                     // 마신 차: 같은 찻잎으로 다음 단계(재료 0) — 실행 전 규칙을 분명히
                     int next = cup.Steep + 1;
-                    var ct = UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 0.5f), new Vector2(10f, 0f), new Vector2(390f, 52f)),
+                    RowIcon(row, HudIcons.Drink(DrinkKind.Tea), true);
+                    var ct = UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 0.5f), new Vector2(56f, 0f), new Vector2(344f, 52f)),
                         $"{(cup.recipe != null ? cup.recipe.name : "차")} {cup.Steep}번째 마심\n→ {next}번째: 재료 0·제출 불가·{RunDrinkTrait.Short(next >= 3 ? RunDrinkTraitKind.TeaThird : RunDrinkTraitKind.TeaSecond)}",
                         20, TextAnchor.MiddleLeft, new Color(0.75f, 0.92f, 1f));
                     ct.resizeTextForBestFit = true; ct.resizeTextMinSize = 15; ct.resizeTextMaxSize = 20; ct.verticalOverflow = VerticalWrapMode.Truncate;
@@ -311,7 +313,8 @@ namespace CCT
                     cupRows.Add(row.gameObject);
                     continue;
                 }
-                var t = UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 0.5f), new Vector2(10f, 0f), new Vector2(330f, 52f)),
+                RowIcon(row, HudIcons.Drink(cup.Kind, cup.recipe != null ? cup.recipe.coffeeMethod : (CoffeeBrewMethod)0), true);
+                var t = UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 0.5f), new Vector2(56f, 0f), new Vector2(284f, 52f)),
                     $"{(cup.recipe != null ? cup.recipe.name : "음료")}{ql}{steep}\n마시면 → {RunDrinkTrait.Short(RunDrinkTrait.For(cup))}", 20, TextAnchor.MiddleLeft, Color.white);
                 t.resizeTextForBestFit = true; t.resizeTextMinSize = 15; t.resizeTextMaxSize = 20; t.verticalOverflow = VerticalWrapMode.Truncate;
                 var drink = MakeButton(row, "Drink", new Vector2(1f, 0.5f), new Vector2(-136f, 0f), new Vector2(120f, 48f), "마시기", 20, new Color(0.18f, 0.32f, 0.2f, 0.95f), out _);
@@ -349,6 +352,14 @@ namespace CCT
             brewMessage.text = res.Ok ? $"{res.Cup.recipe.name} 1잔 완성{(res.Cup.quality >= 0 ? " · " + DrinkQuality.Label(res.Cup.quality) : "")}" : res.Message;
             if (res.Ok) PlayQuality(res.Cup.quality, DrinkQualityFx.Moment.Crafted);
             Refresh(); RefreshBrew();
+        }
+
+        /// <summary>줄 왼쪽 46px 잔 그림(재료 부족이면 흐리게 — 글자 '(재료 부족)'도 그대로).</summary>
+        static void RowIcon(RectTransform row, Sprite s, bool enabled)
+        {
+            var img = HudIcons.Icon(row, "DrinkIcon", new Vector2(0f, 0.5f), new Vector2(6f, 0f), 46f, s);
+            img.rectTransform.pivot = new Vector2(0f, 0.5f);
+            img.color = enabled ? Color.white : new Color(1f, 1f, 1f, 0.45f);
         }
 
         void OnContinueSteep(RunCup drunk)

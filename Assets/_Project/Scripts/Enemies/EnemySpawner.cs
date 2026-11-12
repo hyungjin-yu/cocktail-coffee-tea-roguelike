@@ -134,11 +134,12 @@ namespace CCT
         }
 
         /// <summary>2026-11-11 마스터 도전 1마리 생성(동시 상한 안에서만 — 못 내면 null, 목표량은 Director 장부에 그대로 남는다).</summary>
-        public Enemy SpawnMaster(EnemyDef def, float hpScale, float attackScale, bool harmless, bool ignoreChallengeHp)
+        public Enemy SpawnMaster(EnemyDef def, float hpScale, float attackScale, bool harmless, bool ignoreChallengeHp, float forcedSide = 0f)
         {
             if (def == null || !UnderCap) return null;
             var rng = game.SpawnRng;
-            float side = rng.Value() < 0.5f ? -1f : 1f;
+            float r = rng.Value(); // 난수 소비 순서는 기존과 같게(지정 쪽이 있어도 한 번 뽑는다)
+            float side = forcedSide != 0f ? Mathf.Sign(forcedSide) : r < 0.5f ? -1f : 1f; // 2026-11-12 박람회 묶음은 같은 쪽
             var pos = BeltScroll.ArenaEdgePosition(cam, side, Balance.SpawnEdgeMargin, def.radius, out _);
             var enemy = Enemy.SpawnAt(pos, def, hpScale, player, transform, attackScale, harmless, ignoreChallengeHp);
             EnemyRoster.AttachBehavior(enemy, game, player);

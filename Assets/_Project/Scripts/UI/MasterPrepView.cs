@@ -14,7 +14,7 @@ namespace CCT
     public sealed class MasterPrepView : MonoBehaviour
     {
         public const float PanelX = 1080f, PanelTop = 130f, PanelW = 940f, PanelH = 782f;
-        public const float BlockH = 296f, RowH = 52f, MaxRows = 3; // 블록 296: 머리 6-38, 요약 38-64, 줄 3x52 66-222, 조언 224-282
+        public const float BlockH = 296f, RowH = 46f, MaxRows = 3; // 블록 296: 머리 6-38, 요약 38-64, 줄 3x46 66-204, 조언 208-282(3줄, 720p 판독 — 2026-11-12)
         public const float NoticeW = 330f, NoticeH = 112f, NoticeGap = 12f;
 
         GameManager game;
@@ -169,7 +169,10 @@ namespace CCT
                 icon.raycastTarget = false;
                 icon.enabled = icon.sprite != null;
                 int hp = MasterWavePlan.ExpectedHp(g.def, u.plan.Segment, u.plan.Wave, u.reduction, mult);
-                string fam = g.family != MonsterFamily.Neutral ? MonsterFamilies.Mark(g.family) + " " : "";
+                // 2026-11-12 계열 표식 글자 대신 계열 잔 그림(적 그림 오른쪽 작은 칸). 그림이 없으면 표식 글자.
+                var cup = HudIcons.FamilyCup(g.family);
+                string fam = g.family != MonsterFamily.Neutral && cup == null ? MonsterFamilies.Mark(g.family) + " " : "";
+                if (cup != null) { var ci = HudIcons.Icon(rrt, "FamilyCup", new Vector2(0f, 0f), new Vector2(RowH - 24f, 0f), 20f, cup); ci.rectTransform.pivot = new Vector2(0f, 0f); } // 적 그림 오른쪽 아래 모서리 배지
                 string kind = u.plan.Segment == MasterSegment.Reward ? "무해" : u.plan.Segment == MasterSegment.Fair ? "박람회" : MasterWavePlan.KindName(g.kind);
                 string line = $"{fam}{g.def.name} ×{g.count} · 체력 약 {hp} · {MasterWavePlan.TraitOf(g.def)} [{kind}]";
                 RowTexts.Add(line);
@@ -186,9 +189,9 @@ namespace CCT
             }
             string extra = groups.Count > rows ? $"그 외 {groups.Count - rows}종 · " : "";
             string aff = u.plan.AffinityHint();
-            var adv = UiFactory.AddText(UiFactory.Place("Advice", brt, new Vector2(0f, 0f), new Vector2(16f, 4f), new Vector2(PanelW - 72f, 58f)),
+            var adv = UiFactory.AddText(UiFactory.Place("Advice", brt, new Vector2(0f, 0f), new Vector2(16f, 4f), new Vector2(PanelW - 72f, 76f)),
                 $"{extra}{u.plan.Advice()}{(aff.Length > 0 ? "\n" + aff : "")}{(u.plan.DrinkAdvice().Length > 0 ? "\n음료: " + u.plan.DrinkAdvice() : "")}", 19, TextAnchor.LowerLeft, new Color(0.78f, 0.92f, 1f));
-            adv.resizeTextForBestFit = true; adv.resizeTextMinSize = 13; adv.resizeTextMaxSize = 19;
+            adv.resizeTextForBestFit = true; adv.resizeTextMinSize = 16; adv.resizeTextMaxSize = 20;
             adv.verticalOverflow = VerticalWrapMode.Truncate;
         }
     }
