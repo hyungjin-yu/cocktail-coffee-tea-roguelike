@@ -22,7 +22,7 @@
 | I2 | 진행 중 관리 | 진행 스냅샷마다 ready만 반영. 공지 전 ready로 바뀐 `card_flamed_zest`를 1회 임포트 후 되돌림(코디네이터 기준 정정 뒤 재적용), needs_review는 한 번도 반영 안 함 | 이 보고 | PASS |
 | I3 | 가로로 긴 그림 판독 | 원본 변형 없이 런타임에서 불투명 영역으로 잘라(같은 텍스처의 부분 사각형) 가로형 칸(연구 112×84, 숙련 72×56)에 채움 | `ResearchIcons.cs`, 시험 `ResearchAndMasteryIcons_AreCroppedToOpaqueBounds_SameTexture` | PASS |
 | I4 | 카드 그림 검증 확장 | `CardEducationImport.ValidateAll`: 원래 16종(2026-10-16 원본) + 새 묶음은 **매니페스트 ready 항목만** 허용(바이트 동일·64×64·Point) | `CardEducationImport.cs` | PASS |
-| T1 | EditMode 전체 | 956 중 952 통과·실패 0·불확정 1·건너뜀 1(기존) — 신규 `UiIconImportTests`(매니페스트 대조·설정·미ready 미임포트·카드 자기 그림·차 변형 규칙·잘림) 포함 | `editmode-final.xml` | PASS |
+| T1 | EditMode 전체 | 954 중 952 통과·실패 0·불확정 1·건너뜀 1(기존) — 신규 `UiIconImportTests`(매니페스트 대조·설정·미ready 미임포트·카드 자기 그림·차 변형 규칙·잘림) 포함 | `editmode-final.xml` | PASS |
 | T2 | PlayMode 15묶음 | 103/103 + 수정 후 관련 3묶음 10/10 — 신규 `UiIconWiringPlayTests`(두 직업 노드 그림·글과 비겹침·효과 한 줄·그림 없는 노드 기존 배치) | `playmode-final.xml`, `playmode-final2.xml` | PASS |
 | D1 | 커밋 기준 의존성 | 스테이징 트리(다른 사용자 미커밋 제외)만 꺼내 Roslyn csc: Runtime/Editor/EditMode/PlayMode 오류 0, `CCT_QA_TOUR` 포함 오류 0 | `depcheck-index-tree.txt` | PASS(컴파일만) |
 
