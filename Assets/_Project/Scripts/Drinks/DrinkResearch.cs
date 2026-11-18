@@ -58,19 +58,19 @@ namespace CCT
             T(Finesse, 1, "finesse_1", "첫 타의 정확성", "체력이 가득 찬 적에 대한 첫 주무기 직접 적중 피해 +8%"),
             T(Finesse, 2, "finesse_2", "거리 조절", "주무기 유효 사거리 70% 이상 거리의 직접 적중 피해 +5%"),
             T(Finesse, 3, "finesse_3", "다채로운 서비스", "서로 다른 칵테일·차 카드 4종 이상 보유 시 주무기 치명타 확률 +1%p"),
-            T(Finesse, 4, "finesse_4", "한 잔의 집중", "출발 음료의 양수 전투 버프 ×1.05 (항목별 상한 유지)"),
+            T(Finesse, 4, "finesse_4", "한 잔의 집중", "출발 음료의 양수 전투 버프 105% (항목별 상한 유지)"),
         };
 
         public static readonly ResearchStaff[] Staff =
         {
             new ResearchStaff { id = "staff_cocktail_aroma", name = "향미 분석가", area = "cocktail", craftsRequired = 0, cost = 6,
-                research = "스터링 전문", effect = "스터링 음료의 공격력 버프 ×1.08", technique = "Stir", kind = "Cocktail", stat = "Attack", portrait = "staff_cocktail_aroma" },
+                research = "스터링 전문", effect = "스터링 음료의 공격력 버프 108%", technique = "Stir", kind = "Cocktail", stat = "Attack", portrait = "staff_cocktail_aroma" },
             new ResearchStaff { id = "staff_cocktail_blend", name = "배합 기술자", area = "cocktail", craftsRequired = 3, cost = 10,
-                research = "셰이킹 전문", effect = "셰이킹 음료의 최대 체력 버프 ×1.08", technique = "Shake", kind = "Cocktail", stat = "MaxHp", portrait = "staff_cocktail_blend" },
+                research = "셰이킹 전문", effect = "셰이킹 음료의 최대 체력 버프 108%", technique = "Shake", kind = "Cocktail", stat = "MaxHp", portrait = "staff_cocktail_blend" },
             new ResearchStaff { id = "staff_tea_aroma", name = "향 평가사", area = "tea", craftsRequired = 0, cost = 6,
-                research = "맑은 우림", effect = "차 음료의 공격력 버프 ×1.08", technique = null, kind = "Tea", stat = "Attack", portrait = "staff_tea_aroma" },
+                research = "맑은 우림", effect = "차 음료의 공격력 버프 108%", technique = null, kind = "Tea", stat = "Attack", portrait = "staff_tea_aroma" },
             new ResearchStaff { id = "staff_tea_blend", name = "블렌딩 연구원", area = "tea", craftsRequired = 3, cost = 10,
-                research = "포근한 우림", effect = "차 음료의 최대 체력 버프 ×1.08", technique = null, kind = "Tea", stat = "MaxHp", portrait = "staff_tea_blend" },
+                research = "포근한 우림", effect = "차 음료의 최대 체력 버프 108%", technique = null, kind = "Tea", stat = "MaxHp", portrait = "staff_tea_blend" },
         };
 
         static MasteryTrait T(string branch, int tier, string id, string name, string effect) =>

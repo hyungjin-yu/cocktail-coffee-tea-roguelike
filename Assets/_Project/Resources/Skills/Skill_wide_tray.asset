@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CCT.Runtime::CCT.SkillData
   id: wide_tray
   displayName: "\uB113\uC740 \uD2B8\uB808\uC774"
-  description: "\uC90D\uAE30 \uBC18\uACBD +1"
+  description: "\uC90D\uAE30 \uBC18\uACBD +100cm"
   branch: 2
   tier: 3
   prerequisite: {fileID: 11400000, guid: 83d631c66bf2578409e1cb3d9a2ed9cc, type: 2}

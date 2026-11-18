@@ -1,0 +1,504 @@
+{
+  "observedMenuVersion": "0.4.131",
+  "requiredVersion": "Official downloaded archive (numeric137 was a worker reading error; verified official baseline0.4.131)",
+  "versionVerification": "Read native Aseprite Edit menu using official Windows Computer Use; package.json/credential fields not read",
+  "priorOfficialFile": "C:\\Users\\user\\Downloads\\PixelLab (2).aseprite-extension",
+  "priorOfficialExists": true,
+  "priorOfficialBytes": 1187138,
+  "priorOfficialSha256": "609161c5b72475b0b49a6cf593db74c421d4b7ed8a99259343c6884043a014f5",
+  "luaOnlyComparison": [
+    {
+      "lua": "PixelLab/generate-style-pose.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-interpolation-pro.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-tileset-sidescroller.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-pose-animation.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-inpainting-pixpatch-v2.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-pixen.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-style-old.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/skeleton.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/mask.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-animation-skeleton-v3.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/request-history.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-image-new.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/dialog-settings.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-style-new.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-tiles-style.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-image-to-pixelart-pro.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/custom-rig.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/get-image.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-inpainting-map.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-pose.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/export-skeleton-for-api.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-create-ui.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-texture.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-interpolation.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-movement.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-character.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/custom-skeleton.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/target-palette.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/pro-sway.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/pixminimax.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-edit-animation-pro.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-remove-background.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-try-on.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generation-queue.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/tileset_transform.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-interpolation-pixminimax.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/dialog-settings-advanced.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-edit-image-pro-flash.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-ui.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/pose-references.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-reference-to-8-rotations.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-8-rotations-v3.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/dialog-skeleton-preview.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-ui-template.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-flux.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/pro-flash-dialog.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/pro-flash.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/pixen-seed-layout.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-animate-with-text.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-rotations.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-animate-pixminimax.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/enhance-prompt.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-no-style-old.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/prepare-for-generation.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-tileset-pro.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-general-images-xl.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-tileset.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/handle-pose.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-animate-with-text-v3.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/place-image.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-canny.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-animation-to-animation.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-animation-template.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/create-json.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-animation-skeleton.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/websocket-multi-layer.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-image-pro-flash.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/tileset-shape-preview.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-correct-pixelart.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-map-flux.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-edit-pixen.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/play-done-sound.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/tileset-enhance-dialog.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-inpainting-map-v2.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/template_info.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-character-old.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-image-to-pixelart-pro-flash.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/quantize-image.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-pixflux-depth.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-4-rotations.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-no-style.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-complete-character.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-flux-same-style.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-isometric-tile.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-re-pose.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-start.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-animate-character-object.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-image-to-pixelart.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/pro-tool-variants.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-edit.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-multi-edit.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-inpainting.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-inpainting-pro-flash.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/unzoom-pixelart.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-rotate-single.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-inpainting-v3.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-edit-image-pro.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/display-images-in-dialog.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/pixen-tall-template.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/websocket.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/update-plugin.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-style.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-general-images.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-reshape.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-8-rotations.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/plugin-menu.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-resize.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-interpolation-v3.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/base64.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/dialog-settings-skeleton.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-transfer-outfit-pro.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-tiles-pro.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/generate-tiles.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/skeleton_references/transform_skeleton_to_2d.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/skeleton_references/draw_skeleton.lua",
+      "matchesOfficialDownloadedArchive": true
+    },
+    {
+      "lua": "PixelLab/skeleton_references/get_skeleton.lua",
+      "matchesOfficialDownloadedArchive": true
+    }
+  ],
+  "matchedLuaCount": 116,
+  "luaCount": 116,
+  "actualGenerationVerified": true,
+  "newReadyCount": 48,
+  "orcaComputerError": "ScriptContainedMaliciousContent: security product blocks Orca runtime.ps1; no security settings changed and flagged script was not bypassed",
+  "nativeAlternative": "@oai/sky works; Aseprite menu observed",
+  "ownProbeCorrection": "_version is not exposed in external script namespace (nil); the incorrect external-scalar assert stopped before any generation. Runtime module table exists; actual GUI version is authoritative.",
+  "generationState": "Final art source scope48PNG ready;42 confirmed generated outputs,41 used by final plus1 rejected footwear precursor preserved; one interrupted pre-restart tin artifact separately retained unverified",
+  "priorDialogActualVersion": "0.4.131",
+  "priorReportVersionError": "The worker misread the pixel-font digit 1 as 7 in the 2026-11-16 installer dialog; it actually says upgrade 0.4.130 -> 0.4.131. Prior 0.4.137 provenance text was incorrect.",
+  "currentExePath": "C:/Program Files/Aseprite/Aseprite.exe",
+  "currentAsepriteVersion": "1.3.18.6",
+  "installedExtensionPath": "C:\\Users\\user\\AppData\\Roaming\\Aseprite\\extensions\\pixellab",
+  "evidenceCrop": "provenance/prior-version-number.png",
+  "sourceComparisonFinding": "116/116 Lua files exactly equal the same official (2) download; no source evidence of a downgrade or different executable.",
+  "reinstallPerformedThisTask": false,
+  "needsCoordinatorVersionContractCorrection": true,
+  "actualGenerationEvidence": {
+    "nativeUi": "Aseprite native console FB17_DONE hidden_iced_cup + FB17_BATCH_COMPLETE and completion alert directly viewed",
+    "archivePng": "C:\\Users\\user\\AppData\\Roaming\\Aseprite\\extensions\\pixellab\\generation_history\\2026-11-17_12-15-35 - FB17 - hidden_iced_cup - 001\\0.png",
+    "localRawPng": "ArtSource\\feedback-art-2026-11-17\\raw\\hidden_iced_cup.png",
+    "dimensions": [
+      32,
+      32
+    ],
+    "nonempty": true,
+    "sha256": "886ad1a5da93629fdd8b0e13647868f0a726f5bd9d89d61ea75a1f34e3a5667e"
+  },
+  "recoveryEvidence": "provenance/native-recovery-completion.json"
+}

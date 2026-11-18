@@ -1,0 +1,745 @@
+{
+  "status": "ready",
+  "ready": true,
+  "scope": "hidden art only; Claude owns Unity import/runtime QA",
+  "assetCount": 9,
+  "assets": [
+    {
+      "assetId": "hidden_iced_cup",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "hidden_hud_icon",
+      "png": "ready/hidden_iced_cup.png",
+      "aseprite": "ready/hidden_iced_cup.aseprite",
+      "sourceRawPng": "raw/hidden_iced_cup.png",
+      "sourceRawAseprite": "raw/hidden_iced_cup.aseprite",
+      "dimensions": [
+        24,
+        24
+      ],
+      "alphaBounds": [
+        5,
+        3,
+        19,
+        22
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        12,
+        12
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_iced_cup.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "336f33aba7c78a64b03a83241635edc0a0beb9bb24d369fc656c344b3e415b55",
+        "aseprite": "8d5707113515fe183cba3ed886747f0c23899c7a118c588d4f9c458cb251c8dc",
+        "sourceRawPng": "886ad1a5da93629fdd8b0e13647868f0a726f5bd9d89d61ea75a1f34e3a5667e",
+        "sourceRawAseprite": "bdf2885158e81b3b2113458a723c2f281132aada7e9b62e67cb27c5ae5ba1fde"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Straw/cream removed, angular ice and broad ivory shield edge added so it reads protection rather than a dessert drink.",
+        "promptEvidence": "provenance/generation-specs.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true
+      },
+      "verification": "verification/hidden-validation.json",
+      "visualPreviews": [
+        "previews/hidden-finish-review.png"
+      ]
+    },
+    {
+      "assetId": "hidden_soda_pump",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "hidden_hud_icon",
+      "png": "ready/hidden_soda_pump.png",
+      "aseprite": "ready/hidden_soda_pump.aseprite",
+      "sourceRawPng": "raw/hidden_soda_pump.png",
+      "sourceRawAseprite": "raw/hidden_soda_pump.aseprite",
+      "dimensions": [
+        24,
+        24
+      ],
+      "alphaBounds": [
+        1,
+        2,
+        23,
+        23
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        12,
+        12
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_soda_pump.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "fb3defdf9b79d5b855c165f8b0e1b83e907619e4b53cfd8aa3afd17eb6b6b28a",
+        "aseprite": "0bc1a403858054ff55d81100e159c3d21a20dff2fded0ea362eb385e07057a60",
+        "sourceRawPng": "c5192365358dd7fd6993f47baef75b2d9f1688b67fb3384826b269364fc07ac5",
+        "sourceRawAseprite": "ea4e695eb6d4b5842abcbe755540f3031ba58a3ba9b239893320f56b5a3f3be7"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Bottle retained; pump plunger, curved outlet and two inward attraction arrows natively added.",
+        "promptEvidence": "provenance/generation-specs.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true
+      },
+      "verification": "verification/hidden-validation.json",
+      "visualPreviews": [
+        "previews/hidden-finish-review.png"
+      ]
+    },
+    {
+      "assetId": "hidden_rhythm_shaker",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "hidden_hud_icon",
+      "png": "ready/hidden_rhythm_shaker.png",
+      "aseprite": "ready/hidden_rhythm_shaker.aseprite",
+      "sourceRawPng": "raw/hidden_rhythm_shaker.png",
+      "sourceRawAseprite": "raw/hidden_rhythm_shaker.aseprite",
+      "dimensions": [
+        24,
+        24
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        21,
+        23
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        12,
+        12
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_rhythm_shaker.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "3cebde5b4f418810d4a4b9d57ceacd8ce87702ca288c1d3fc8162b39f218f266",
+        "aseprite": "99d5c58bc54b52355df3500c2c32a9c5b593c34480c97b6663fe712cd1b591f9",
+        "sourceRawPng": "567880006ff326049f7ab93b5ffb946d707aff8d2d745377526e37161c93edc8",
+        "sourceRawAseprite": "ebc1056679c57ef4eb0ee3d9ca19e0b4f419cec3f117da6b3bbf5b96349af74c"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Metal cap/shoulders and separated beat ticks replace bottle-like neck; shaker body retained.",
+        "promptEvidence": "provenance/generation-specs.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true
+      },
+      "verification": "verification/hidden-validation.json",
+      "visualPreviews": [
+        "previews/hidden-finish-review.png"
+      ]
+    },
+    {
+      "assetId": "hidden_bitter_wake",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "hidden_hud_icon",
+      "png": "ready/hidden_bitter_wake.png",
+      "aseprite": "ready/hidden_bitter_wake.aseprite",
+      "sourceRawPng": "raw/hidden_bitter_wake.png",
+      "sourceRawAseprite": "raw/hidden_bitter_wake.aseprite",
+      "dimensions": [
+        24,
+        24
+      ],
+      "alphaBounds": [
+        4,
+        1,
+        21,
+        23
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        12,
+        12
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_bitter_wake.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "fd2059d81bb0dd26ba040fbac888a88630eeed61374519a45df39d325209efe4",
+        "aseprite": "586c9b72643f76950ea34a6401dc1a1c3ed7b3978bcc22d779183fed8d9c8fda",
+        "sourceRawPng": "ae86723d323f72490c04217d0caf35b0d6a550ffc6a6d97cd10fc42220182383",
+        "sourceRawAseprite": "0fa1251f0b9a4ae56f1a0bce2f9178689050c3ef2f596bd92135a1fdc1b91329"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Crescent notch repaired into bean, strong central eye seam and upward alert chevrons added.",
+        "promptEvidence": "provenance/generation-specs.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true
+      },
+      "verification": "verification/hidden-validation.json",
+      "visualPreviews": [
+        "previews/hidden-finish-review.png"
+      ]
+    },
+    {
+      "assetId": "hidden_herb_garden",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "hidden_hud_icon",
+      "png": "ready/hidden_herb_garden.png",
+      "aseprite": "ready/hidden_herb_garden.aseprite",
+      "sourceRawPng": "raw/hidden_herb_garden.png",
+      "sourceRawAseprite": "raw/hidden_herb_garden.aseprite",
+      "dimensions": [
+        24,
+        24
+      ],
+      "alphaBounds": [
+        5,
+        1,
+        19,
+        23
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        12,
+        12
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_herb_garden.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "4562047cc4b60e71e36bf92f29ea13498f9eb1d82c333cde30f1d8a6d4234ad9",
+        "aseprite": "ed9227fca5a7d25d857c4637c436aaeaa6ba674c3383e7e6f7c38068cde83f43",
+        "sourceRawPng": "a1e5d1a8a97e8f6f9537ff9065569fe90bbaef964562415c4536d1241b910708",
+        "sourceRawAseprite": "dc6864a6bfe56b4879a7746199a2ca45050057226167897b512ef625ac691f36"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Retained leaf planter; compact ivory heart on pot distinguishes healing from a generic herb ingredient.",
+        "promptEvidence": "provenance/generation-specs.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true
+      },
+      "verification": "verification/hidden-validation.json",
+      "visualPreviews": [
+        "previews/hidden-finish-review.png"
+      ]
+    },
+    {
+      "assetId": "hidden_thick_mug",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "hidden_hud_icon",
+      "png": "ready/hidden_thick_mug.png",
+      "aseprite": "ready/hidden_thick_mug.aseprite",
+      "sourceRawPng": "raw/hidden_thick_mug.png",
+      "sourceRawAseprite": "raw/hidden_thick_mug.aseprite",
+      "dimensions": [
+        24,
+        24
+      ],
+      "alphaBounds": [
+        1,
+        1,
+        23,
+        23
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        12,
+        12
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_thick_mug.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "0ff1a31cb2faeca3c079068da4652d0a515fad119e35036487cfedb6badf0496",
+        "aseprite": "73f87a6c9b4360f3f58c817a484bc9831d1939e262787e3106408cfbf43b6dee",
+        "sourceRawPng": "eab68c92e87862f8db3ad057968f53d919945aaba5191a1da9eb3201719b1084",
+        "sourceRawAseprite": "c8d0eb5919e84ea08f283d57a824f8494714d80c7d5df420615d9764204d0140"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Broad generated ceramic rim/handle retained, heart emblem reinforced for vitality at24px.",
+        "promptEvidence": "provenance/generation-specs.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true
+      },
+      "verification": "verification/hidden-validation.json",
+      "visualPreviews": [
+        "previews/hidden-finish-review.png"
+      ]
+    },
+    {
+      "assetId": "hidden_bar_tempo",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "hidden_hud_icon",
+      "png": "ready/hidden_bar_tempo.png",
+      "aseprite": "ready/hidden_bar_tempo.aseprite",
+      "sourceRawPng": "raw/hidden_bar_tempo.png",
+      "sourceRawAseprite": "raw/hidden_bar_tempo.aseprite",
+      "dimensions": [
+        24,
+        24
+      ],
+      "alphaBounds": [
+        5,
+        1,
+        18,
+        23
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        12,
+        12
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_bar_tempo.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "df62df5134d394079482c8254f68c6df2222bd4fdfd83f860d42c646cbcdf058",
+        "aseprite": "9f9f08f8ba248d90cf29764d2c703296693ce8b96d8c04d70c5f883da1b08f72",
+        "sourceRawPng": "b497a3a85f763dcce2335d4a8bed43d4447d61951b9f81cebc6854af3efe36ad",
+        "sourceRawAseprite": "6d9679881def46756dd774be4de4b94aa4977790ce085147cbf9e7c8496aa3b7"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Wooden body retained; vertical ivory pendulum, weight and paired pause marks define stationary defensive tempo.",
+        "promptEvidence": "provenance/generation-specs.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true
+      },
+      "verification": "verification/hidden-validation.json",
+      "visualPreviews": [
+        "previews/hidden-finish-review.png"
+      ]
+    },
+    {
+      "assetId": "hidden_bar_tempo_move",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "hidden_hud_icon",
+      "png": "ready/hidden_bar_tempo_move.png",
+      "aseprite": "ready/hidden_bar_tempo_move.aseprite",
+      "sourceRawPng": "raw/hidden_bar_tempo_move.png",
+      "sourceRawAseprite": "raw/hidden_bar_tempo_move.aseprite",
+      "dimensions": [
+        24,
+        24
+      ],
+      "alphaBounds": [
+        7,
+        1,
+        22,
+        23
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        12,
+        12
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_bar_tempo_move.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "3b279be45626f093ebbf6034ba0ed5128fdc5f64f13d2cabb93d67c416b2ab91",
+        "aseprite": "7ceac95f20107bf00948daad782c15000a57833805c837e46a03227262727ccd",
+        "sourceRawPng": "623f6b21ed32b5559bafba1b42103e30607f9c3a4b6961d42450a24fafc56517",
+        "sourceRawAseprite": "235cd139d9fcb7b1b2d54f785f8c4c746f9865cd538791269d482931def83fb1"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Wooden body retained; diagonal ivory pendulum/weight and outward ticks define moving tempo, not just a recolor.",
+        "promptEvidence": "provenance/generation-specs.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true
+      },
+      "verification": "verification/hidden-validation.json",
+      "visualPreviews": [
+        "previews/hidden-finish-review.png"
+      ]
+    },
+    {
+      "assetId": "hidden_weekend_rush_steps",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "hidden_hud_icon",
+      "png": "ready/hidden_weekend_rush_steps.png",
+      "aseprite": "ready/hidden_weekend_rush_steps.aseprite",
+      "sourceRawPng": "raw/hidden_weekend_rush_steps_v2.png",
+      "sourceRawAseprite": "raw/hidden_weekend_rush_steps_v2.aseprite",
+      "dimensions": [
+        24,
+        24
+      ],
+      "alphaBounds": [
+        1,
+        3,
+        23,
+        21
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        12,
+        12
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_weekend_rush_steps.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "acc696b122bacaa269b56547d8be9dc9d807d4ae27694df4eb647687f34cbb6e",
+        "aseprite": "4d11e2a0fc56f1a594dcf2c04174441736021ffe52560b836ba4a188a309100d",
+        "sourceRawPng": "c747de987eb0f976ad271be2da0cc50284b18e18f24ec0edecbb1921772a3b51",
+        "sourceRawAseprite": "cf2e0711a4227eba9c88494cbea572b274e6ae1a71de6159f43f7ede3004e14a"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Rejected first generated broom-like object. Actual official PixelLab footwear revision retained; native horizontal flip faces movement right, warm/silver palette, sole/lace preservation,20x19 body fit and two short separated heel speed ticks. Not a hue variant.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true
+      },
+      "verification": "verification/hidden-validation.json",
+      "visualPreviews": [
+        "previews/hidden-finish-review.png"
+      ]
+    }
+  ],
+  "asset_manifests": [
+    "ready/hidden_iced_cup.ready.json",
+    "ready/hidden_soda_pump.ready.json",
+    "ready/hidden_rhythm_shaker.ready.json",
+    "ready/hidden_bitter_wake.ready.json",
+    "ready/hidden_herb_garden.ready.json",
+    "ready/hidden_thick_mug.ready.json",
+    "ready/hidden_bar_tempo.ready.json",
+    "ready/hidden_bar_tempo_move.ready.json",
+    "ready/hidden_weekend_rush_steps.ready.json"
+  ],
+  "verification": "verification/hidden-validation.json",
+  "unityIntegrated": false,
+  "unityVerified": false,
+  "pendingExpectedIds": [],
+  "ready_assets": [
+    "hidden_iced_cup",
+    "hidden_soda_pump",
+    "hidden_rhythm_shaker",
+    "hidden_bitter_wake",
+    "hidden_herb_garden",
+    "hidden_thick_mug",
+    "hidden_bar_tempo",
+    "hidden_bar_tempo_move",
+    "hidden_weekend_rush_steps"
+  ]
+}

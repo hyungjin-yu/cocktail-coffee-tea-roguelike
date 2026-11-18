@@ -1,0 +1,122 @@
+{
+  "assetId": "dl_tin_coffee_brazil_cerrado",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-17",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "origin_manufacturing_container",
+  "png": "ready/dl_tin_coffee_brazil_cerrado.png",
+  "aseprite": "ready/dl_tin_coffee_brazil_cerrado.aseprite",
+  "sourceRawPng": "raw/dl_tin_coffee_brazil_cerrado.png",
+  "sourceRawAseprite": "raw/dl_tin_coffee_brazil_cerrado.aseprite",
+  "dimensions": [
+    32,
+    32
+  ],
+  "alphaBounds": [
+    3,
+    7,
+    29,
+    32
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    16,
+    32
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_brazil_cerrado.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 32,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "pivot": [
+      0.5,
+      0
+    ]
+  },
+  "sha256": {
+    "png": "e3b37c9b31f1db9a9b1eb79036d41cc1bf894ca072ed6d89a7e5a624f18cc48a",
+    "aseprite": "bcb8c0491a4739dbd59dec044a55273159005c988e0cb9782b862336544dbc38",
+    "sourceRawPng": "276e7be01176a1bd41a8fb297d03d0304e40cca91851b5d3833a17f1dbfdaf13",
+    "sourceRawAseprite": "c7b984772712d42140e982b6ebaee296e0af23af548ec298622e4d5805b94019"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+    "sourceEvidence": "provenance/collected-generations.json",
+    "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+    "promptEvidence": "provenance/recovery-specs29.json"
+  },
+  "checks": {
+    "dimensions": true,
+    "nativeCanvas": true,
+    "nativeMagic": true,
+    "nativeFrames": true,
+    "roundtripPixels": true,
+    "pivot": true,
+    "alpha": true,
+    "nonempty": true,
+    "cornersTransparent": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false,
+    "unmodifiedRawSourceRoundtrip": true,
+    "actualOpeningAnchors": true
+  },
+  "verification": "verification/containers-validation.json",
+  "visualPreviews": [
+    "previews/containers-color.png",
+    "previews/containers-gray.png",
+    "previews/container-anchors-pour.png"
+  ],
+  "anchors": {
+    "assetId": "dl_tin_coffee_brazil_cerrado",
+    "grip": [
+      0.5,
+      0.26875000000000004
+    ],
+    "height": 32,
+    "mouth": [
+      0.5,
+      0.703125
+    ],
+    "mouthPixelCenterTopLeft": [
+      16,
+      9.5
+    ],
+    "openingBoundsTopLeft": [
+      4,
+      7,
+      28,
+      12
+    ],
+    "pivot": [
+      0.5,
+      0
+    ],
+    "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+    "pourLip": [
+      0.859375,
+      0.703125
+    ],
+    "pourLipPixelCenterTopLeft": [
+      27.5,
+      9.5
+    ],
+    "width": 32
+  },
+  "ingredientId": "coffee_brazil_cerrado",
+  "displayName": "브라질 세하두",
+  "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+  "contractVerification": "verification/container-contract-validation.json"
+}

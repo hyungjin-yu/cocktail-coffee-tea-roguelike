@@ -44,6 +44,18 @@ namespace CCT
         public static bool SkinCard(Image img) => Skin(img, "ui_card_frame", 0.25f);
         public static bool SkinTab(Image img) => Skin(img, "ui_cafe_tab", 0f);
 
+        /// <summary>2026-11-16 피드백 3·6 최종 아트: 미발견 칩 왼쪽 자물쇠(ui_lock_badge 16×16, 정수 배율 Point). 아트가 없으면 null(글 칩만).</summary>
+        public static Image AddLockIcon(RectTransform parent, Vector2 leftCenter, float size)
+        {
+            var sprite = Resources.Load<Sprite>("ProgressionUI/ui_lock_badge");
+            if (sprite == null) return null;
+            var rt = Place("LockIcon", parent, new Vector2(0f, 0.5f), leftCenter, new Vector2(size, size));
+            rt.pivot = new Vector2(0f, 0.5f);
+            var img = rt.gameObject.AddComponent<Image>();
+            img.sprite = sprite; img.preserveAspect = true; img.raycastTarget = false;
+            return img;
+        }
+
         public static void AddCafeBackdrop(RectTransform parent)
         {
             if (CafeSprite("ui_cafe_panel") == null) { CenterBand.Attach(parent); return; }
@@ -245,6 +257,13 @@ namespace CCT
 
         /// <summary>잘리는(Truncate) 글 상자 높이: 실제 줄 높이 × 1.2 + 4 — 720p 캔버스 배율(0.667)의 픽셀 반올림에도
         /// 마지막 줄이 사라지지 않게 하는 여유.</summary>
+        /// <summary>2026-11-15: 재생 중 Destroy, 편집 모드(EditMode 시험) DestroyImmediate.</summary>
+        public static void SafeDestroy(Object o)
+        {
+            if (o == null) return;
+            if (Application.isPlaying) Object.Destroy(o); else Object.DestroyImmediate(o);
+        }
+
         public static float TruncatedBoxHeight(int fontSize, int lines = 1) => Mathf.Ceil(LineHeight(fontSize, lines) * 1.2f + 4f); // 정수 px — 행 경계 누적 오차 없음
 
         public static Canvas CreateCanvas(Transform parent, string name, int sortingOrder)

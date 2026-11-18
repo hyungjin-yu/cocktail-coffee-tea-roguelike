@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: ginseng_root
   displayName: "루이보스 인퓨전"
-  description: "\uCD08\uB2F9 \uD68C\uBCF5\uB7C9 +3"
+  description: "\uBD84\uB2F9 \uD68C\uBCF5\uB7C9 +180"
   flavorText: "남아프리카의 Aspalathus linearis 잎과 줄기로 만드는 허브 인퓨전입니다. 찻나무 Camellia sinensis로 만든 차와 구별합니다."
   category: 1
   rarity: 2

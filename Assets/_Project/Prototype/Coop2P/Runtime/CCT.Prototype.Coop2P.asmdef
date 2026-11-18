@@ -1,0 +1,18 @@
+{
+    "name": "CCT.Prototype.Coop2P",
+    "rootNamespace": "CCT.Prototype.Coop2P",
+    "references": [
+        "CCT.Runtime",
+        "Unity.InputSystem",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

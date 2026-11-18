@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CCT.Runtime::CCT.PermanentSkillData
   id: restorative_break
   displayName: "\uC7A0\uAE50\uC758 \uD2F0\uD0C0\uC784"
-  description: "\uC601\uAD6C \uCD08\uB2F9 \uD68C\uBCF5 +0.15"
+  description: "\uC601\uAD6C \uBD84\uB2F9 \uD68C\uBCF5 +9"
   branch: 1
   tier: 4
   prerequisite: {fileID: 11400000, guid: fc30f748adf7c414a9603b5abe3afa5f, type: 2}

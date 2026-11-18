@@ -19,7 +19,6 @@ namespace CCT
             public SkillData data;
             public Image background;
             public Button button;
-            public Text key;
             public Text name;
             public Text desc;
             public Text status;
@@ -31,6 +30,9 @@ namespace CCT
         GameObject closeButtonGo;
         Text pointsText;
         Text treeTitle;
+        Text keyHint;
+        /// <summary>테스트용 — 화면 아래 단축키 안내(보이지 않으면 빈 문자열).</summary>
+        public string KeyHintLabel => keyHint != null && keyHint.gameObject.activeSelf ? keyHint.text : "";
         Job CurrentJob => GetComponentInParent<GameManager>()?.Job ?? GameManager.Instance?.Job ?? Job.Bartender;
         SkillTree tree;
         Func<int> pointsSource;
@@ -100,6 +102,11 @@ namespace CCT
                 view.Continue();
             });
             UiFactory.AddText(UiFactory.Stretch("Label", closeRt), UiFactory.InputLabel("게임 재개", "Esc"), 28, TextAnchor.MiddleCenter, Cream);
+            // 2026-11-15 피드백 17: 노드에서 뺀 단축키 번호 안내 — 재개 버튼(가운데 ±160, 아래 68~132)과 같은 줄 오른쪽(176~636).
+            // 노드 5단(아래 끝 1080 기준 아래에서 155)과 버튼 사이에는 줄을 둘 높이가 없다. 좁은 화면비(1.18, 가로 ±637)에서도 칸 안.
+            view.keyHint = UiFactory.AddText(UiFactory.Place("KeyHint", rootRt, new Vector2(0.5f, 0f), new Vector2(406f, 68f),
+                new Vector2(460f, 64f)), KeyHintText, 24, TextAnchor.MiddleLeft, Kraft); // 08:47 본문 최소 24
+            view.keyHint.raycastTarget = false;
 
             view.root.SetActive(false);
             return view;
@@ -115,7 +122,11 @@ namespace CCT
         const float HeaderY = 380f;
         static readonly Vector2 NodeSize = new Vector2(580f, 140f);
         /// <summary>노드 그림 칸(캔버스 단위): 720p 56px · 1080p 84px. 단축키 [n](위 12~48) 아래로 내림.</summary>
-        public const float NodeArtSize = 84f, NodeArtW = 112f, NodeArtLeft = 14f, NodeArtY = -24f; // 세로 -66~18 — 단축키(22~58)·노드 끝(-70) 사이, 가로로 긴 그림(잘린 불투명 영역)도 칸을 채우게 가로 112
+        public const float NodeArtSize = 84f, NodeArtW = 112f, NodeArtLeft = 14f, NodeArtY = 0f;
+        // 2026-11-15 피드백 18: 단축키 표시를 뺐으므로 그림 칸을 노드(높이 140) 세로 가운데(-42~42)에 둔다 — 이전 -24 보정은 [n] 회피용 상수였다.
+        // 그림은 ResearchIcons가 불투명 영역으로 잘라 주므로(투명 여백 없음) 칸 가운데 = 실제 그림 가운데. 가로로 긴 그림도 칸을 채우게 가로 112.
+        /// <summary>2026-11-15 피드백 17 공통 단축키 안내(배분 모드·키보드만). 실제 동작: 정렬 순서 앞 6개 노드 = 공격 1~5단계 + 생존 1단계.</summary>
+        public const string KeyHintText = "숫자 키 1~5 = 공격 1~5단계 · 6 = 생존 1단계";
 
         void BuildSlots()
         {
@@ -157,15 +168,8 @@ namespace CCT
                 var captured = data;
                 slot.button.onClick.AddListener(() => ChooseFromInput(captured));
 
-                // 단축키(1~6)는 화면에 15개가 다 안 들어가서 그 앞쪽 슬롯만 실제로 동작한다(Update 참고)
-                // — 안 맞는 번호를 표시해 헷갈리게 하지 않도록, 해당하는 슬롯에만 라벨을 단다.
-                if (i < HotKeys.Length)
-                {
-                    slot.key = UiFactory.AddText(UiFactory.Place("Key", rt, new Vector2(0f, 1f),
-                        new Vector2(16f, -12f), new Vector2(48f, 36f)), MobilePlatform.IsTouchUI ? "" : $"[{i + 1}]", 24, TextAnchor.MiddleLeft, Cream);
-                }
-                // 이름 위 / 효과 가운데(최대 2줄) / 상태·비용 아래. 단축키 표시가 왼쪽 위 모서리라 이름 칸을
-                // 좌우로 줄여 겹치지 않게 한다.
+                // 2026-11-15 피드백 17: 노드 왼쪽 위 "[1]~[6]"은 노드 순번처럼 읽혀 제거. 단축키 1~6(앞쪽 6개 노드)은 그대로 동작하고
+                // 안내는 화면 아래 KeyHint 한 줄(공통 도움말)로 옮겼다. 이름 위 / 효과 가운데 / 상태·비용 아래.
                 slot.name = UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f), new Vector2(0f, -12f),
                     new Vector2(400f, 36f)), JobStudyTheme.Name(data,CurrentJob), 24, TextAnchor.MiddleCenter, Cream);
                 slot.desc = UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 0.5f), new Vector2(0f, 0f),
@@ -247,6 +251,7 @@ namespace CCT
             pointsText.text = $"남은 커피 포인트 {points} · " + (allUnlocked ? "연구 모두 해금" : "카드를 선택해 연구를 해금하세요");
 
             treeTitle.text=JobStudyTheme.TreeTitle(CurrentJob);
+            if (keyHint != null) keyHint.gameObject.SetActive(!readOnly && !MobilePlatform.IsTouchUI);
             pointsText.text=JobStudyTheme.Text(pointsText.text,CurrentJob);
             foreach (var slot in slots)
             {
@@ -280,7 +285,6 @@ namespace CCT
                 slot.name.color = text;
                 slot.desc.color = text;
                 slot.status.color = statusColor;
-                if (slot.key != null) slot.key.color = text;
                 // 그림 상태: 선행 필요 = 흐림, 포인트 부족 = 약간 흐림(상태는 바탕·문구로도 구분 — 색만으로 구분하지 않음).
                 if (slot.icon != null) slot.icon.color = state == CoffeeNodeState.Unlocked || state == CoffeeNodeState.Available ? Color.white
                     : state == CoffeeNodeState.NotEnoughPoints ? new Color(1f, 1f, 1f, 0.8f) : new Color(0.7f, 0.7f, 0.7f, 0.55f);

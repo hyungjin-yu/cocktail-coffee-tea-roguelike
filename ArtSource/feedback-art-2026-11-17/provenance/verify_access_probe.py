@@ -1,0 +1,9 @@
+﻿from pathlib import Path
+from PIL import Image
+import os,json,hashlib,shutil,subprocess
+r=Path('ArtSource/feedback-art-2026-11-17');hist=Path(os.environ['APPDATA'])/'Aseprite/extensions/pixellab/generation_history';fs=sorted(hist.glob('* - FB17 - hidden_iced_cup - */0.png'));assert fs
+f=fs[-1];im=Image.open(f).convert('RGBA');assert im.size==(32,32) and im.getchannel('A').getbbox();dst=r/'raw/hidden_iced_cup.png';shutil.copy2(f,dst)
+p=r/'provenance/tool-access-current.json';d=json.loads(p.read_text(encoding='utf-8'));d.update(requiredVersion='0.4.131 (corrected official baseline approved by coordinator)',actualGenerationVerified=True,actualGenerationEvidence={'nativeUi':'Aseprite native console FB17_DONE hidden_iced_cup + FB17_BATCH_COMPLETE and completion alert directly viewed','archivePng':str(f),'localRawPng':str(dst),'dimensions':[32,32],'nonempty':True,'sha256':hashlib.sha256(dst.read_bytes()).hexdigest()},newReadyCount=0,generationState='One real native generation complete and image verified; quality/native finishing still pending; remaining40 now authorized after this gate');p.write_text(json.dumps(d,indent=2),encoding='utf-8')
+script='local s=app.open('+json.dumps(str(dst.resolve()).replace('\\','/'))+') s.layers[1].name="Original official PixelLab output" s:saveAs('+json.dumps(str(dst.with_suffix('.aseprite').resolve()).replace('\\','/'))+')'
+(r/'provenance/archive-probe.lua').write_text(script,encoding='utf-8');res=subprocess.run(['C:/Program Files/Aseprite/Aseprite.exe','-b','--script',str(r/'provenance/archive-probe.lua')],capture_output=True,text=True,timeout=30);assert res.returncode==0
+p=r/'provenance/generate-native-remaining-40.lua';s=p.read_text(encoding='utf-8');s='\n'.join(line for line in s.splitlines() if 'print("FB17' not in line)+'\n';p.write_text(s,encoding='utf-8');print('Official native access probe verified: 1 generated PNG + native source, ready0; remaining40 held until this completed check, now starting.')

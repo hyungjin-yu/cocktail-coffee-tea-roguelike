@@ -54,6 +54,26 @@ namespace CCT.Editor
                 bow.textureCompression = TextureImporterCompression.Uncompressed;
                 return;
             }
+            if (assetPath.Contains("/Resources/ArtExtra/vfx_arrow_tail/"))
+            {
+                // 2026-11-17 피드백 19 화살 전용 꼬리(Codex 납품 예정 32×16, 3프레임): 화살과 같은 PPU 128, 피벗 = 앞쪽 연결 소켓(30/32, 8/16).
+                var tail = (TextureImporter)assetImporter;
+                tail.textureType = TextureImporterType.Sprite;
+                tail.spriteImportMode = SpriteImportMode.Single;
+                var ts = new TextureImporterSettings();
+                tail.ReadTextureSettings(ts);
+                ts.spriteAlignment = (int)SpriteAlignment.Custom;
+                ts.spritePivot = new Vector2(30f / 32f, 8f / 16f);
+                ts.spritePixelsPerUnit = 128f;
+                ts.spriteMeshType = SpriteMeshType.FullRect;
+                tail.SetTextureSettings(ts);
+                tail.mipmapEnabled = false;
+                tail.filterMode = FilterMode.Point;
+                tail.wrapMode = TextureWrapMode.Clamp;
+                tail.alphaIsTransparency = true;
+                tail.textureCompression = TextureImporterCompression.Uncompressed;
+                return;
+            }
             if (assetPath.Contains("/Resources/ArtExtra/status_") || assetPath.Contains("/Resources/ArtExtra/zone_") ||
                 assetPath.Contains("/Resources/ArtExtra/bg_") || // 47 직업 맵(벽·바닥 반복은 FullRect 필요)
                 assetPath.Contains("/Resources/ArtExtra/drop_")) // 57 재료 드롭 32px(Aseprite+PixelLab, ArtSource/feedback-2026-10-15)
@@ -78,6 +98,27 @@ namespace CCT.Editor
                 vfx.alphaIsTransparency = true;
                 vfx.isReadable = true; // ZoneVisualV2가 프레임 불투명 영역을 실측해 판정 원에 맞춘다(작은 텍스처)
                 vfx.textureCompression = TextureImporterCompression.Uncompressed;
+                return;
+            }
+            if (assetPath.Contains("/Resources/Icons/Hidden/"))
+            {
+                // 2026-11-17 피드백 25 히든 전용 모티프(Codex 24×24 픽셀 아트): 아래 일반 아이콘 규칙(밉맵·쌍선형, 1024px 원본용)은
+                // 작은 픽셀 아트를 흐리게 만든다 → 점 필터·밉맵 없음·무압축·가운데 피벗.
+                var hid = (TextureImporter)assetImporter;
+                hid.textureType = TextureImporterType.Sprite;
+                hid.spriteImportMode = SpriteImportMode.Single;
+                var hs = new TextureImporterSettings();
+                hid.ReadTextureSettings(hs);
+                hs.spriteAlignment = (int)SpriteAlignment.Center;
+                hs.spritePixelsPerUnit = 24f;
+                hs.spriteMeshType = SpriteMeshType.FullRect;
+                hid.SetTextureSettings(hs);
+                hid.isReadable = true;
+                hid.mipmapEnabled = false;
+                hid.filterMode = FilterMode.Point;
+                hid.wrapMode = TextureWrapMode.Clamp;
+                hid.alphaIsTransparency = true;
+                hid.textureCompression = TextureImporterCompression.Uncompressed;
                 return;
             }
             if (!assetPath.Contains("/Resources/Icons/")) return;

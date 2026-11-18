@@ -168,6 +168,8 @@ namespace CCT
             Refresh();
             SetScreen(true);
             anim = null;
+            BuildGuideReplay();
+            if (NotebookGuide.Needed) ShowGuideStep(2); // 2026-11-15 피드백 7: 첫 판 뒤 안내 이어서(숙련 위치 → 보유 포인트)
         }
 
         /// <summary>닫기(0.35초, 연출 중 입력 차단). 이미 닫는 중이면 무시.</summary>
@@ -187,6 +189,39 @@ namespace CCT
             State = Phase.Closed;
             Destroy(canvas.gameObject);
             after?.Invoke();
+        }
+
+        // ── 2026-11-15 피드백 7 노트북 안내(화면 위 벽 쪽 말풍선 — 노트북 화면 UI를 가리지 않는다) ──
+        RectTransform guideBubble;
+        public int GuideStep { get; private set; }
+        public string GuideText => guideBubble != null ? guideBubble.Find("Sub")?.GetComponent<Text>()?.text ?? "" : "";
+
+        public void ShowGuideStep(int step)
+        {
+            if (guideBubble != null) { Destroy(guideBubble.gameObject); guideBubble = null; }
+            GuideStep = step;
+            if (step < 2 || step > 3 || State != Phase.Open) { GuideStep = 0; return; }
+            if (step == 2 && tab != Tab.Mastery) SetTab(Tab.Mastery);
+            // 화면(위 끝 350) 위 벽 자리 y 360~520(1080 기준), 노트북 화면 UI와 겹치지 않는다.
+            guideBubble = NotebookGuide.Bubble(root, "NotebookGuide", new Vector2(0.5f, 0.5f), new Vector2(0f, 440f), new Vector2(1300f, 150f),
+                step == 2 ? "연구 노트북 안내 1/2 · 숙련 트리" : "연구 노트북 안내 2/2 · 보유 연구 포인트",
+                NotebookGuide.StepText(step),
+                step == 2 ? "다음" : "확인", () => { if (step == 2) ShowGuideStep(3); else { NotebookGuide.Complete(); ShowGuideStep(0); } },
+                step == 2 ? "건너뛰기" : null, step == 2 ? () => { NotebookGuide.Complete(); ShowGuideStep(0); } : null);
+        }
+
+        void BuildGuideReplay()
+        {
+            if (root == null || root.Find("GuideReplay") != null) return;
+            // "다시 보기": 안내를 끝냈어도 언제든 같은 2단계를 다시 본다(저장 플래그는 바꾸지 않음).
+            var rt = UiFactory.Place("GuideReplay", root, new Vector2(1f, 1f), new Vector2(-40f, -40f), new Vector2(260f, 60f));
+            var bg = UiFactory.AddImage(rt, new Color(0.18f, 0.16f, 0.14f, 0.92f));
+            var b = rt.gameObject.AddComponent<Button>();
+            b.targetGraphic = bg;
+            UiFactory.ApplyHoverColors(b);
+            UiFactory.AddFocusSfx(b);
+            b.onClick.AddListener(() => ShowGuideStep(2));
+            UiFactory.AddText(UiFactory.Stretch("Label", rt), "노트북 안내 보기", 24, TextAnchor.MiddleCenter, Color.white);
         }
 
         /// <summary>테스트·건너뛰기: 연출을 끝 상태로.</summary>

@@ -61,7 +61,7 @@ namespace CCT
             if (count == 1)
             {
                 EnemyProjectile.Spawn(origin, baseDir, def.projectileSpeed, enemy.ScaledAttack(def.projectileDamage), player, parent,
-                    def.projectileSpriteResourcePath, null, DamageSource.Projectile(def));
+                    def.projectileSpriteResourcePath, null, DamageSource.Projectile(def), EnemyProjectile.TierOf(def));
                 return;
             }
 
@@ -70,7 +70,7 @@ namespace CCT
                 float angle = 360f / count * i;
                 Vector2 dir = Quaternion.Euler(0f, 0f, angle) * baseDir;
                 EnemyProjectile.Spawn(origin, dir, def.projectileSpeed, enemy.ScaledAttack(def.projectileDamage), player, parent,
-                    def.projectileSpriteResourcePath, null, DamageSource.Projectile(def, "탄막"));
+                    def.projectileSpriteResourcePath, null, DamageSource.Projectile(def, "탄막"), EnemyProjectile.TierOf(def));
             }
         }
 

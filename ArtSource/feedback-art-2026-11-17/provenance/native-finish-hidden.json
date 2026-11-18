@@ -1,0 +1,65 @@
+[
+  {
+    "assetId": "hidden_iced_cup",
+    "finish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Straw/cream removed, angular ice and broad ivory shield edge added so it reads protection rather than a dessert drink.",
+    "height": 24,
+    "removedMattePixels": 0,
+    "width": 24
+  },
+  {
+    "assetId": "hidden_soda_pump",
+    "finish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Bottle retained; pump plunger, curved outlet and two inward attraction arrows natively added.",
+    "height": 24,
+    "removedMattePixels": 0,
+    "width": 24
+  },
+  {
+    "assetId": "hidden_rhythm_shaker",
+    "finish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Metal cap/shoulders and separated beat ticks replace bottle-like neck; shaker body retained.",
+    "height": 24,
+    "removedMattePixels": 0,
+    "width": 24
+  },
+  {
+    "assetId": "hidden_bitter_wake",
+    "finish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Crescent notch repaired into bean, strong central eye seam and upward alert chevrons added.",
+    "height": 24,
+    "removedMattePixels": 0,
+    "width": 24
+  },
+  {
+    "assetId": "hidden_herb_garden",
+    "finish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Retained leaf planter; compact ivory heart on pot distinguishes healing from a generic herb ingredient.",
+    "height": 24,
+    "removedMattePixels": 0,
+    "width": 24
+  },
+  {
+    "assetId": "hidden_thick_mug",
+    "finish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Broad generated ceramic rim/handle retained, heart emblem reinforced for vitality at24px.",
+    "height": 24,
+    "removedMattePixels": 0,
+    "width": 24
+  },
+  {
+    "assetId": "hidden_bar_tempo",
+    "finish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Wooden body retained; vertical ivory pendulum, weight and paired pause marks define stationary defensive tempo.",
+    "height": 24,
+    "removedMattePixels": 0,
+    "width": 24
+  },
+  {
+    "assetId": "hidden_bar_tempo_move",
+    "finish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Wooden body retained; diagonal ivory pendulum/weight and outward ticks define moving tempo, not just a recolor.",
+    "height": 24,
+    "removedMattePixels": 0,
+    "width": 24
+  },
+  {
+    "assetId": "hidden_weekend_rush_steps",
+    "finish": "Rejected first generated broom-like object. Actual official PixelLab footwear revision retained; native horizontal flip faces movement right, warm/silver palette, sole/lace preservation,20x19 body fit and two short separated heel speed ticks. Not a hue variant.",
+    "height": 24,
+    "removedMattePixels": 0,
+    "width": 24
+  }
+]

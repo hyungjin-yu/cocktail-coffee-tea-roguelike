@@ -55,7 +55,7 @@ namespace CCT
                 new CardEffect(CardEffectType.MoveSpeedPercent, 0.12f));
             var doppio = Make("doppio_body", "도피오 체력", "최대 체력 +50", SkillBranch.Survival, 2, caffeine,
                 new CardEffect(CardEffectType.MaxHpFlat, 50f));
-            var mellow = Make("mellow_finish", "부드러운 여운", "초당 회복량 +1", SkillBranch.Survival, 3, doppio,
+            var mellow = Make("mellow_finish", "부드러운 여운", "분당 회복량 +60", SkillBranch.Survival, 3, doppio,
                 new CardEffect(CardEffectType.RegenBonus, 1f));
             var insulated = Make("insulated_cup", "보온 컵", "최대 체력 +30", SkillBranch.Survival, 4, mellow,
                 new CardEffect(CardEffectType.MaxHpFlat, 30f));
@@ -66,11 +66,11 @@ namespace CCT
                 new CardEffect(CardEffectType.GaugeNeedPercent, -0.10f));
             var grinder = Make("fine_grind", "곱게 갈기", "재료 추가 드랍 확률 +15%", SkillBranch.Ingredient, 2, coldBrew,
                 new CardEffect(CardEffectType.DropChancePercent, 0.15f));
-            var wideTray = Make("wide_tray", "넓은 트레이", "줍기 반경 +1", SkillBranch.Ingredient, 3, grinder,
+            var wideTray = Make("wide_tray", "넓은 트레이", "줍기 반경 +100cm", SkillBranch.Ingredient, 3, grinder,
                 new CardEffect(CardEffectType.PickupRadiusFlat, 1f));
             var measured = Make("measured_pour", "정량 따르기", "재료 게이지 필요량 -10%", SkillBranch.Ingredient, 4, wideTray,
                 new CardEffect(CardEffectType.GaugeNeedPercent, -0.10f));
-            var zeroWaste = Make("zero_waste", "남김없는 추출", "재료 추가 드랍 확률 +20%, 줍기 반경 +0.5",
+            var zeroWaste = Make("zero_waste", "남김없는 추출", "재료 추가 드랍 확률 +20%, 줍기 반경 +50cm",
                 SkillBranch.Ingredient, 5, measured,
                 new CardEffect(CardEffectType.DropChancePercent, 0.20f),
                 new CardEffect(CardEffectType.PickupRadiusFlat, 0.5f));

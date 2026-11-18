@@ -1,0 +1,79 @@
+{
+  "assetId": "hidden_herb_garden",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-17",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "hidden_hud_icon",
+  "png": "ready/hidden_herb_garden.png",
+  "aseprite": "ready/hidden_herb_garden.aseprite",
+  "sourceRawPng": "raw/hidden_herb_garden.png",
+  "sourceRawAseprite": "raw/hidden_herb_garden.aseprite",
+  "dimensions": [
+    24,
+    24
+  ],
+  "alphaBounds": [
+    5,
+    1,
+    19,
+    23
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0.5
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    12,
+    12
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_herb_garden.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 100,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "sha256": {
+    "png": "4562047cc4b60e71e36bf92f29ea13498f9eb1d82c333cde30f1d8a6d4234ad9",
+    "aseprite": "ed9227fca5a7d25d857c4637c436aaeaa6ba674c3383e7e6f7c38068cde83f43",
+    "sourceRawPng": "a1e5d1a8a97e8f6f9537ff9065569fe90bbaef964562415c4536d1241b910708",
+    "sourceRawAseprite": "dc6864a6bfe56b4879a7746199a2ca45050057226167897b512ef625ac691f36"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+    "sourceEvidence": "provenance/collected-generations.json",
+    "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Retained leaf planter; compact ivory heart on pot distinguishes healing from a generic herb ingredient.",
+    "promptEvidence": "provenance/generation-specs.json"
+  },
+  "checks": {
+    "dimensions": true,
+    "nativeCanvas": true,
+    "nativeMagic": true,
+    "nativeFrames": true,
+    "roundtripPixels": true,
+    "pivot": true,
+    "alpha": true,
+    "nonempty": true,
+    "cornersTransparent": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false,
+    "unmodifiedRawSourceRoundtrip": true
+  },
+  "verification": "verification/hidden-validation.json",
+  "visualPreviews": [
+    "previews/hidden-finish-review.png"
+  ]
+}

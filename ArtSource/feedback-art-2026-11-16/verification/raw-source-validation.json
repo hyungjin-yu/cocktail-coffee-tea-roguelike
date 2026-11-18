@@ -1,0 +1,147 @@
+{
+  "exitCode": 0,
+  "count": 35,
+  "allPass": true,
+  "files": [
+    {
+      "file": "dl_coffee_cappuccino_cup.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_coffee_cappuccino_cup_v2.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_coffee_flatwhite_cup.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_coffee_flatwhite_cup_v2.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_coffee_latte_glass.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_foam_layer.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_brazil_mantiqueira_alves_lima.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_bolivia.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_brazil_cerrado.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_burundi.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_colombia_narino.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_costa_rica_tarrazu.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_el_salvador.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_ethiopia_guji.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_ethiopia_sidama.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_guatemala_antigua.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_honduras_marcala.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_india_malabar.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_indonesia_gayo.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_indonesia_java.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_jamaica_blue_mountain.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_kenya_nyeri.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_mexico_chiapas.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_nicaragua.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_peru_chanchamayo.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_rwanda.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_tanzania.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_uganda.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_coffee_vietnam_dalat.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_colombia_huila_san_pedro_geisha.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_colombia_huila_vergel.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_colombia_la_esperanza_bourbon.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_ethiopia_yirgacheffe_kochere.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "dl_icon_panama_esmeralda_geisha.png",
+      "pixelsEqual": true
+    },
+    {
+      "file": "ui_lock_badge.png",
+      "pixelsEqual": true
+    }
+  ]
+}

@@ -1,0 +1,3488 @@
+{
+  "status": "ready",
+  "ready": true,
+  "scope": "containers art only; Claude owns Unity import/runtime QA",
+  "assetCount": 28,
+  "assets": [
+    {
+      "assetId": "dl_tin_ethiopia_yirgacheffe_kochere",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_ethiopia_yirgacheffe_kochere.png",
+      "aseprite": "ready/dl_tin_ethiopia_yirgacheffe_kochere.aseprite",
+      "sourceRawPng": "raw/dl_tin_ethiopia_yirgacheffe_kochere.png",
+      "sourceRawAseprite": "raw/dl_tin_ethiopia_yirgacheffe_kochere.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_ethiopia_yirgacheffe_kochere.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "09eb3022c94a7e15a5d5529b40149654a2c43a1f2f06ad2145d427a6da721109",
+        "aseprite": "a2b977cb967c0aa2d9b21534419c991e1fcc9ce66520f1413f99e0a6c1a9816f",
+        "sourceRawPng": "e13375ddde3bed97ea3888044adb4668e195c6243ceec92eaf2b88edc2652726",
+        "sourceRawAseprite": "a3ef8cae61692cc1a50f16e8ef2d8f3f284ba83705fe8df6a54cd304e1a267d8"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_ethiopia_yirgacheffe_kochere",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "ethiopia_yirgacheffe_kochere",
+      "displayName": "예가체프 코체레",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_colombia_huila_vergel",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_colombia_huila_vergel.png",
+      "aseprite": "ready/dl_tin_colombia_huila_vergel.aseprite",
+      "sourceRawPng": "raw/dl_tin_colombia_huila_vergel.png",
+      "sourceRawAseprite": "raw/dl_tin_colombia_huila_vergel.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        26,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_colombia_huila_vergel.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "ba609e776e091e470ee25737c2e2f3b86a092f5c8c33964217c02b7d2855ab1e",
+        "aseprite": "a65a58f86de70bc0eceafd55c3f5722919d2adf6e367ece2bbe362c2f5c8ce89",
+        "sourceRawPng": "28239617e8b6cec2f7514b5da2b040c4adbcfcfc10220cad025e4d0b89dd2b5f",
+        "sourceRawAseprite": "999f7c2a7ad9ceff362e6db20498e76efa54b40cc2a6085da17884a75a5e2172"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_colombia_huila_vergel",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          7,
+          5,
+          25,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.765625,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          24.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "colombia_huila_vergel",
+      "displayName": "엘 베르헬 (피탈리토)",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_brazil_mantiqueira_alves_lima",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_brazil_mantiqueira_alves_lima.png",
+      "aseprite": "ready/dl_tin_brazil_mantiqueira_alves_lima.aseprite",
+      "sourceRawPng": "raw/dl_tin_brazil_mantiqueira_alves_lima.png",
+      "sourceRawAseprite": "raw/dl_tin_brazil_mantiqueira_alves_lima.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        15,
+        29,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_brazil_mantiqueira_alves_lima.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "af2a0420db9b00c10f7206ac1522d59f71be1fa9612fd6de3bbe5e86487a70ed",
+        "aseprite": "d06c621b27a600ab7ba0beeb35fb8dfc0802332f6a0562d87e1d2329eb926880",
+        "sourceRawPng": "88a580a4c76a5adcb9d97e653eb7d29f2e71fb57b6104bfd3491c4c4f90402b1",
+        "sourceRawAseprite": "1da0f7399ecca6cb1eb44497cf2914669fa9c45c3da64a3d8b536bab22e4ba3a"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_brazil_mantiqueira_alves_lima",
+        "grip": [
+          0.5,
+          0.16874999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.453125
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          17.5
+        ],
+        "openingBoundsTopLeft": [
+          4,
+          15,
+          28,
+          20
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.859375,
+          0.453125
+        ],
+        "pourLipPixelCenterTopLeft": [
+          27.5,
+          17.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "brazil_mantiqueira_alves_lima",
+      "displayName": "파젠다 알베스 리마",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_panama_esmeralda_geisha",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_panama_esmeralda_geisha.png",
+      "aseprite": "ready/dl_tin_panama_esmeralda_geisha.aseprite",
+      "sourceRawPng": "raw/dl_tin_panama_esmeralda_geisha.png",
+      "sourceRawAseprite": "raw/dl_tin_panama_esmeralda_geisha.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        5,
+        28,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_panama_esmeralda_geisha.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "dbe60049f49f889742c01b4e76a6f77d7f582916533a896aac7c2162a2023165",
+        "aseprite": "be46fd3c2352ff03f5d45ca8432792dff232e36d1c37e18e2c4b8b8c16741844",
+        "sourceRawPng": "95a28430f3602b3d9f1ff84bc9820b74653d25ff4bd2e317d1711cd54b53ec0f",
+        "sourceRawAseprite": "827c1238bc1aab0923eece21a005efdd5cbfb82d0023d32d483d6b7e3dfc940d"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_panama_esmeralda_geisha",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          5,
+          5,
+          27,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.828125,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          26.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "panama_esmeralda_geisha",
+      "displayName": "에스메랄다 게이샤",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_colombia_huila_san_pedro_geisha",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_colombia_huila_san_pedro_geisha.png",
+      "aseprite": "ready/dl_tin_colombia_huila_san_pedro_geisha.aseprite",
+      "sourceRawPng": "raw/dl_tin_colombia_huila_san_pedro_geisha.png",
+      "sourceRawAseprite": "raw/dl_tin_colombia_huila_san_pedro_geisha.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        26,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_colombia_huila_san_pedro_geisha.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "16ba9c107a04f84c9a07a90395adc029090d114735c1917d6c3e25ccbbf61635",
+        "aseprite": "5c203b13c1138229143981794c4a0c7ec55f6ffc1732de5a2efd774f8d6646d8",
+        "sourceRawPng": "d2b387f1153aa8e63ecde0cfad7e150039a17e07cad75143626c89eb09f63203",
+        "sourceRawAseprite": "c01b9df97b278f6dd9a0cd7550b3cae819541609ec7eb05594bf73131985d0e6"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_colombia_huila_san_pedro_geisha",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          7,
+          5,
+          25,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.765625,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          24.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "colombia_huila_san_pedro_geisha",
+      "displayName": "아시엔다 산 페드로",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_colombia_la_esperanza_bourbon",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_colombia_la_esperanza_bourbon.png",
+      "aseprite": "ready/dl_tin_colombia_la_esperanza_bourbon.aseprite",
+      "sourceRawPng": "raw/dl_tin_colombia_la_esperanza_bourbon.png",
+      "sourceRawAseprite": "raw/dl_tin_colombia_la_esperanza_bourbon.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        26,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_colombia_la_esperanza_bourbon.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "235f7ccb3f140f0e19c707b9b87a861ed52fc3556b0f04943c55de70a3ba128e",
+        "aseprite": "3734045ab9950aeb1c278f507fc36cf3f185f15016ba053d96b9d4ea407d06a3",
+        "sourceRawPng": "2864a93df74fd493ddf30f23c09b18f4aed887cf8b73e45dbc55eab0c189f9f6",
+        "sourceRawAseprite": "e10e7157948e7d46aa8ec6a039f9c8aa7283cfa5ea01186a0c713657f1a794c3"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_colombia_la_esperanza_bourbon",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          7,
+          5,
+          25,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.765625,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          24.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "colombia_la_esperanza_bourbon",
+      "displayName": "핀카 라 에스페란사",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_ethiopia_guji",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_ethiopia_guji.png",
+      "aseprite": "ready/dl_tin_coffee_ethiopia_guji.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_ethiopia_guji.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_ethiopia_guji.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        9,
+        29,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_ethiopia_guji.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "125e6ecefafd987bc5f3d08c1996a05be22b34df47a76897ac1bd295212d2549",
+        "aseprite": "c32450841ba41ef394e90261081de1d9335b722f084dc20040a6deb8ec830db2",
+        "sourceRawPng": "7bf61e7cd3224dfde8ceb907668165e7270121bdbbb995ef03da7d798af7b02e",
+        "sourceRawAseprite": "21367d3441a780865bd8f54d695eecafe9055687f01f78fcef6050e0795262a1"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_ethiopia_guji",
+        "grip": [
+          0.5,
+          0.24375000000000002
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.640625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          11.5
+        ],
+        "openingBoundsTopLeft": [
+          4,
+          9,
+          28,
+          14
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.859375,
+          0.640625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          27.5,
+          11.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_ethiopia_guji",
+      "displayName": "에티오피아 구지",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_ethiopia_sidama",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_ethiopia_sidama.png",
+      "aseprite": "ready/dl_tin_coffee_ethiopia_sidama.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_ethiopia_sidama.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_ethiopia_sidama.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_ethiopia_sidama.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "88e208b51002afb59b504426998e10e264b7a55842570b54e1606f3fccdf825d",
+        "aseprite": "dbd2b001f7463c869beae1f0ce9cfc995e2109057daabbd1b46b8343029cb32b",
+        "sourceRawPng": "3e79b9ab128645d3d260dc819161b388f9a0052fb074bc69435bbc9c796c9bb5",
+        "sourceRawAseprite": "7bc1b50804c3765bb5b1e5c3b98d3bea9c0653f585cf4f3729703715cfc5f3d4"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_ethiopia_sidama",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_ethiopia_sidama",
+      "displayName": "에티오피아 시다마",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_kenya_nyeri",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_kenya_nyeri.png",
+      "aseprite": "ready/dl_tin_coffee_kenya_nyeri.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_kenya_nyeri.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_kenya_nyeri.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        5,
+        29,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_kenya_nyeri.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "1486342186fd373d4fe910c0d1f8ad835d8c29a1487f58fb3e678af9f75fe770",
+        "aseprite": "12e85c12c5dd16d2c212e1b42d0bbb39e50773a81f59dbc350000600c112d7d0",
+        "sourceRawPng": "4223285134890e510004cacfdcb15bdfaeddb7864c94ade0d37fb522759057b7",
+        "sourceRawAseprite": "eb8d0781bf35b9c293ba725b455576d32a5ee05d57dbdc43ed2349a4e0ef24be"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_kenya_nyeri",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          4,
+          5,
+          28,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.859375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          27.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_kenya_nyeri",
+      "displayName": "케냐 니에리",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_rwanda",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_rwanda.png",
+      "aseprite": "ready/dl_tin_coffee_rwanda.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_rwanda.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_rwanda.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_rwanda.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "3493e9091745781bb8bfccbe84c4df646ff9a8117c1eea3be72e9c6a25401e53",
+        "aseprite": "d5b7e3a368a8746b147594548c753d26452c35e43cd270dd474ad5c1feff6892",
+        "sourceRawPng": "7bd04b21c73603a0c170121fcd3f15be8dcb9073051e7ca610b88227a6ab0870",
+        "sourceRawAseprite": "25a091a023e036d97a4201f7d4b117cd12012b4eef6270b0a553bfb7e4b595cd"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_rwanda",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_rwanda",
+      "displayName": "르완다 커피",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_burundi",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_burundi.png",
+      "aseprite": "ready/dl_tin_coffee_burundi.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_burundi.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_burundi.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_burundi.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "1534d6421afc4e4563d40f59e8c801dba2cf3fe29fd1c4d0d4961b5af0daa668",
+        "aseprite": "2f610aba92e4037ab552da13baaaf188864b5d5149540b5c4384cc094cf9d015",
+        "sourceRawPng": "f9511012e8d0e00c66f92a2a5d1799c469d9d977b970f63968d6b8a848177d2d",
+        "sourceRawAseprite": "8ecb69793ef287e9daaa2af2e4f56df377e5de45185c509dc383b2c6e66ba00d"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_burundi",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_burundi",
+      "displayName": "부룬디 커피",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_uganda",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_uganda.png",
+      "aseprite": "ready/dl_tin_coffee_uganda.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_uganda.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_uganda.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        7,
+        29,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_uganda.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "a79727f4cd2080693588fb3f871e61a8595e205aa66e5886f98b783421adf84b",
+        "aseprite": "9e68cd1f3f023b3cbe0804a7512b9fd28d8512b0b57f1087a2088b1b47edab7e",
+        "sourceRawPng": "e0437bc9e9b4c027a6123ce007df275674b32eae7a3ec2bb4b31efca5fce9f10",
+        "sourceRawAseprite": "600244e91657adbee43791706b88864b3bc625c684bca0952096819c93bd214e"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_uganda",
+        "grip": [
+          0.5,
+          0.26875000000000004
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.703125
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          9.5
+        ],
+        "openingBoundsTopLeft": [
+          4,
+          7,
+          28,
+          12
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.859375,
+          0.703125
+        ],
+        "pourLipPixelCenterTopLeft": [
+          27.5,
+          9.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_uganda",
+      "displayName": "우간다 커피",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_indonesia_gayo",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_indonesia_gayo.png",
+      "aseprite": "ready/dl_tin_coffee_indonesia_gayo.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_indonesia_gayo.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_indonesia_gayo.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        8,
+        29,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_indonesia_gayo.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "45a4cf3e0cef025e97e20b943017e0099cf9b7e6337093aff85227a121568095",
+        "aseprite": "f304fb2bfa7ebe5d91e5d15096628a2e5e83487dd00661f4fb960a89b17f2912",
+        "sourceRawPng": "93fe5e9c839f9edd98da8242b87df7277a8dd1b3603ebd509703801792481208",
+        "sourceRawAseprite": "3495611d36543c51ff592d5ee461361eabc2b9a7c2684dde92f7ebb6d3273c68"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_indonesia_gayo",
+        "grip": [
+          0.5,
+          0.2562500000000001
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.671875
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          10.5
+        ],
+        "openingBoundsTopLeft": [
+          4,
+          8,
+          28,
+          13
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.859375,
+          0.671875
+        ],
+        "pourLipPixelCenterTopLeft": [
+          27.5,
+          10.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_indonesia_gayo",
+      "displayName": "인도네시아 가요",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_indonesia_java",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_indonesia_java.png",
+      "aseprite": "ready/dl_tin_coffee_indonesia_java.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_indonesia_java.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_indonesia_java.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_indonesia_java.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "ab0a5468b0e774b96f23d0475e715198e0d982b5834fa154c4576c706bdfaf0f",
+        "aseprite": "05c1546801336a5755e61094aad6311d5c07bbc08a5de783a5982df6a44a079c",
+        "sourceRawPng": "8bd910d306ca6daf7b2da2037cad44550eccdebde818eb8acb3080f02febfec0",
+        "sourceRawAseprite": "fffa62723ec41456a133d57e6bef43fe1abd6e2e5cc0c861e1c60385681ebce8"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_indonesia_java",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_indonesia_java",
+      "displayName": "인도네시아 자바",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_vietnam_dalat",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_vietnam_dalat.png",
+      "aseprite": "ready/dl_tin_coffee_vietnam_dalat.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_vietnam_dalat.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_vietnam_dalat.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_vietnam_dalat.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "f7dba6cf03405dfcbc921562beb5f76d5319abdbece60f49b1e32bd59b3ca82d",
+        "aseprite": "3839019c4cd9a64744fc4f6993b93bccf2a3ea0e3cc0c2e7451952629610194e",
+        "sourceRawPng": "b4fc7145a7493c3e579e24dd23341e56714f608ba7bd04264332e178b3dc4741",
+        "sourceRawAseprite": "51dfbf28d65135c182df180caff61d5fea7536254567b58051e85a5798cd6356"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_vietnam_dalat",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_vietnam_dalat",
+      "displayName": "베트남 달랏",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_india_malabar",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_india_malabar.png",
+      "aseprite": "ready/dl_tin_coffee_india_malabar.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_india_malabar.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_india_malabar.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        9,
+        29,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_india_malabar.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "cc53772c574e6fda11a514a7bf781fbb392a4c612e257901d18e19cb47a91408",
+        "aseprite": "7c119ab1618535788ab0e6c24d7806393c07c2d921ee96ce5f5c5abb8751f58e",
+        "sourceRawPng": "02b6dbb036aee50fa4f971c694b11955beea98b1b90545902d725883287eb4b6",
+        "sourceRawAseprite": "df541e7bcd6320a4ff8945b33e646b715ce12e6f2cace51b593ba02774d74537"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_india_malabar",
+        "grip": [
+          0.5,
+          0.24375000000000002
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.640625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          11.5
+        ],
+        "openingBoundsTopLeft": [
+          4,
+          9,
+          28,
+          14
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.859375,
+          0.640625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          27.5,
+          11.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_india_malabar",
+      "displayName": "인도 말라바르",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_costa_rica_tarrazu",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_costa_rica_tarrazu.png",
+      "aseprite": "ready/dl_tin_coffee_costa_rica_tarrazu.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_costa_rica_tarrazu.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_costa_rica_tarrazu.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_costa_rica_tarrazu.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "696572ebff7153f7f3e63835dafe946a47ad5c26f990410ee508b72e78dd239c",
+        "aseprite": "6cdbd0153eed5aa3907548995736cf3ec0ee351ffb077520109b10bced7cac5f",
+        "sourceRawPng": "60233b18907685f051a976a8aea71e36754c9ec51aff5e6cf85d940e6f41cba1",
+        "sourceRawAseprite": "f058cee9d7d9eb47f2a1682293818a676e50375a30e07b9c12b34d927be25a26"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_costa_rica_tarrazu",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_costa_rica_tarrazu",
+      "displayName": "코스타리카 타라주",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_guatemala_antigua",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_guatemala_antigua.png",
+      "aseprite": "ready/dl_tin_coffee_guatemala_antigua.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_guatemala_antigua.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_guatemala_antigua.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        9,
+        29,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_guatemala_antigua.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "02dbbb46c9f2effd11310250645943bfffb2c8d521b930f553dffeb755fb746c",
+        "aseprite": "e90fd94803d86eedae4ad4b917b6eb47ce971680113e01e05a06c775d59727fa",
+        "sourceRawPng": "f475f499a954c091e5f2f022961b8e65b067f20fc35e4211f58c93da048206fe",
+        "sourceRawAseprite": "578a15aba4d607103255f615e20a1eb34977bb9b64af1bfbe91a497b88072002"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_guatemala_antigua",
+        "grip": [
+          0.5,
+          0.24375000000000002
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.640625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          11.5
+        ],
+        "openingBoundsTopLeft": [
+          4,
+          9,
+          28,
+          14
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.859375,
+          0.640625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          27.5,
+          11.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_guatemala_antigua",
+      "displayName": "과테말라 안티구아",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_honduras_marcala",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_honduras_marcala.png",
+      "aseprite": "ready/dl_tin_coffee_honduras_marcala.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_honduras_marcala.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_honduras_marcala.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_honduras_marcala.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "43adebcf8760d8d3fd786fb0111ff4b7f26b518ce63b48161dc60bcb72644477",
+        "aseprite": "8aa90fa077c62f4021d95369700fc08e4f354348a90ceb8b750414da11b85c7e",
+        "sourceRawPng": "08f2b730fef8d87eb9bb1058c66885fe1930c0c8d66b2610ba2e98994e084c3f",
+        "sourceRawAseprite": "9cbfc1be36d87d00942fd46cd71885b4c7fb92d04d886a4b732fac700174e652"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_honduras_marcala",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_honduras_marcala",
+      "displayName": "온두라스 마르칼라",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_peru_chanchamayo",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_peru_chanchamayo.png",
+      "aseprite": "ready/dl_tin_coffee_peru_chanchamayo.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_peru_chanchamayo.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_peru_chanchamayo.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        5,
+        28,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_peru_chanchamayo.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "869fa4e2c37de3b1b21297d5427b892878237810c6efcf970d71e2b767803a32",
+        "aseprite": "82c2f3c8e79c15fcadda24437a3499c2ae803ac1763cedf4e569c253902a34e2",
+        "sourceRawPng": "7a89e9a4d045bd8842eac18e5a6ce0c6e65394c17da7bef8cbb0888bbbadbcb6",
+        "sourceRawAseprite": "d77f57f98a4f2606f51938ff615098a363c2c24bb6eb9ed4bfe77c10404230e5"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_peru_chanchamayo",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          5,
+          5,
+          27,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.828125,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          26.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_peru_chanchamayo",
+      "displayName": "페루 찬차마요",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_mexico_chiapas",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_mexico_chiapas.png",
+      "aseprite": "ready/dl_tin_coffee_mexico_chiapas.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_mexico_chiapas.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_mexico_chiapas.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        5,
+        29,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_mexico_chiapas.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "3b0dca685e88085435b33bb27122e0fc6d2ab4e6d4b9a761137d835f53bb1383",
+        "aseprite": "7361e953866ae190bf0eefa5b7842906019ba49563d76f24a12710ec7a2eed8c",
+        "sourceRawPng": "d65fdd66d9e5e826081c8b4c70dfa5613229cdf871ce447ab186250be711e2e2",
+        "sourceRawAseprite": "36a6fd69b4ae34c82ea72154f001accad6138629cd3ac7d39ea34509c872ab2c"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_mexico_chiapas",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          4,
+          5,
+          28,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.859375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          27.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_mexico_chiapas",
+      "displayName": "멕시코 치아파스",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_jamaica_blue_mountain",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_jamaica_blue_mountain.png",
+      "aseprite": "ready/dl_tin_coffee_jamaica_blue_mountain.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_jamaica_blue_mountain.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_jamaica_blue_mountain.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_jamaica_blue_mountain.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "e77228d7a12aaffecb5db8d368b00cbc980fc7da6b4718bcff54b0c53a3247c7",
+        "aseprite": "8a0486076947277fb6cc325d6550b293bb05b786a225138a343951c08eee1eb6",
+        "sourceRawPng": "8eca9a4225ec7658950aba1a5916c50c10e089aa7c2fb48dde9dd9ffadfced2d",
+        "sourceRawAseprite": "f6b583d9fcf9bab27998825faba3cc8474b084b80a853dd32a7f82cb43280777"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_jamaica_blue_mountain",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_jamaica_blue_mountain",
+      "displayName": "자메이카 블루마운틴",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_brazil_cerrado",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_brazil_cerrado.png",
+      "aseprite": "ready/dl_tin_coffee_brazil_cerrado.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_brazil_cerrado.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_brazil_cerrado.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        7,
+        29,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_brazil_cerrado.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "e3b37c9b31f1db9a9b1eb79036d41cc1bf894ca072ed6d89a7e5a624f18cc48a",
+        "aseprite": "bcb8c0491a4739dbd59dec044a55273159005c988e0cb9782b862336544dbc38",
+        "sourceRawPng": "276e7be01176a1bd41a8fb297d03d0304e40cca91851b5d3833a17f1dbfdaf13",
+        "sourceRawAseprite": "c7b984772712d42140e982b6ebaee296e0af23af548ec298622e4d5805b94019"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_brazil_cerrado",
+        "grip": [
+          0.5,
+          0.26875000000000004
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.703125
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          9.5
+        ],
+        "openingBoundsTopLeft": [
+          4,
+          7,
+          28,
+          12
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.859375,
+          0.703125
+        ],
+        "pourLipPixelCenterTopLeft": [
+          27.5,
+          9.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_brazil_cerrado",
+      "displayName": "브라질 세하두",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_colombia_narino",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_colombia_narino.png",
+      "aseprite": "ready/dl_tin_coffee_colombia_narino.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_colombia_narino.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_colombia_narino.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        13,
+        29,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_colombia_narino.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "233f675dfdf33906e4b4100217f408388dcf0e2459a9e529d62601f19221faa4",
+        "aseprite": "fae78bdc284419fccd3c3c3d11a0f784573396268228e7cc384cdb2829a1110a",
+        "sourceRawPng": "00ed3d2feff3134146e1bc9334b78d2f430c7a068ccf554dea70dbe7ccbcd0ef",
+        "sourceRawAseprite": "3235d6d0d9d4d9aaf5cff3fa95c41763f7b5509c7bc38724766fb5e583eab547"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_colombia_narino",
+        "grip": [
+          0.5,
+          0.19374999999999998
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.515625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          15.5
+        ],
+        "openingBoundsTopLeft": [
+          4,
+          13,
+          28,
+          18
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.859375,
+          0.515625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          27.5,
+          15.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_colombia_narino",
+      "displayName": "콜롬비아 나리뇨",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_el_salvador",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_el_salvador.png",
+      "aseprite": "ready/dl_tin_coffee_el_salvador.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_el_salvador.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_el_salvador.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        5,
+        5,
+        26,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_el_salvador.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "259085dc83ee354531a777b57d5bc97c59179832340a383fde4353a3e78ad510",
+        "aseprite": "cf2483048fd7ba2b4fb79b37ad1b6a81f91814c8c1ab06a5b1d20f98ac342498",
+        "sourceRawPng": "9ee6bf588456e4bc13d768f7764ff8bc96eb767aa46bb22c1f335e4f2fd70a30",
+        "sourceRawAseprite": "50f1659b582def52f8c58134429765e4e08014d5240f9589edfafd650a24cb75"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_el_salvador",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          7,
+          5,
+          25,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.765625,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          24.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_el_salvador",
+      "displayName": "엘살바도르 커피",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_nicaragua",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_nicaragua.png",
+      "aseprite": "ready/dl_tin_coffee_nicaragua.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_nicaragua.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_nicaragua.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        5,
+        27,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_nicaragua.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "c4fb80ab55af1d4bb2adb8152e51521f005343f0b78b7173df15398465b70f31",
+        "aseprite": "2352039af39d39001926e12d6dfb8fa80588be75348636b5b590e3bc6490ae75",
+        "sourceRawPng": "88a723e8efb6c580f3d9db6cfc4a2de73c322bc5c84cf06d85b92b8eca7871f5",
+        "sourceRawAseprite": "19f1b6dbaf19ac914d66ca412e2dcdafb24e58a92cd0b49a5eccc99f55168f26"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_nicaragua",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          6,
+          5,
+          26,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.796875,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          25.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_nicaragua",
+      "displayName": "니카라과 커피",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_tanzania",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_tanzania.png",
+      "aseprite": "ready/dl_tin_coffee_tanzania.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_tanzania.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_tanzania.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_tanzania.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "92591e600fb7ee3e11d5f12a6b0520546faaafba0ac35f04f2882f15bbba2f5a",
+        "aseprite": "ab73f3194088c2f994596d52282bbf4d9043cb6188e16cbf9448e98418beb0ce",
+        "sourceRawPng": "19c886f5d34ba1b43a12e4acb4c52e4220f0ca223b796c96c46aa6156ad0f510",
+        "sourceRawAseprite": "4df903495f65278e8c36a226cd28c8c2dc41f471bae0092391419b3a0f72aa14"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_tanzania",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_tanzania",
+      "displayName": "탄자니아 커피",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    },
+    {
+      "assetId": "dl_tin_coffee_bolivia",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-17",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_manufacturing_container",
+      "png": "ready/dl_tin_coffee_bolivia.png",
+      "aseprite": "ready/dl_tin_coffee_bolivia.aseprite",
+      "sourceRawPng": "raw/dl_tin_coffee_bolivia.png",
+      "sourceRawAseprite": "raw/dl_tin_coffee_bolivia.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        25,
+        32
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_bolivia.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 32,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "11d2daab435c2d0b43ae3a45c1c879413c9bec02cde01ac7947499b3faf907f6",
+        "aseprite": "9764e9f8a8d51d3a5a05fb9f9608627d6f033750aff88d606a32c058eaa25deb",
+        "sourceRawPng": "9b6e8d41fe95db04c432ed3b06bfe8d8b2661a59702462822ad97bd004c63f73",
+        "sourceRawAseprite": "3d783a15b277e5a95b24ef38ae49445e85b68a456e3bf2b8c8549649bcba069f"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+        "sourceEvidence": "provenance/collected-generations.json",
+        "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+        "promptEvidence": "provenance/recovery-specs29.json"
+      },
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false,
+        "unmodifiedRawSourceRoundtrip": true,
+        "actualOpeningAnchors": true
+      },
+      "verification": "verification/containers-validation.json",
+      "visualPreviews": [
+        "previews/containers-color.png",
+        "previews/containers-gray.png",
+        "previews/container-anchors-pour.png"
+      ],
+      "anchors": {
+        "assetId": "dl_tin_coffee_bolivia",
+        "grip": [
+          0.5,
+          0.29374999999999996
+        ],
+        "height": 32,
+        "mouth": [
+          0.5,
+          0.765625
+        ],
+        "mouthPixelCenterTopLeft": [
+          16,
+          7.5
+        ],
+        "openingBoundsTopLeft": [
+          8,
+          5,
+          24,
+          10
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+        "pourLip": [
+          0.734375,
+          0.765625
+        ],
+        "pourLipPixelCenterTopLeft": [
+          23.5,
+          7.5
+        ],
+        "width": 32
+      },
+      "ingredientId": "coffee_bolivia",
+      "displayName": "볼리비아 커피",
+      "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+      "contractVerification": "verification/container-contract-validation.json"
+    }
+  ],
+  "asset_manifests": [
+    "ready/dl_tin_ethiopia_yirgacheffe_kochere.ready.json",
+    "ready/dl_tin_colombia_huila_vergel.ready.json",
+    "ready/dl_tin_brazil_mantiqueira_alves_lima.ready.json",
+    "ready/dl_tin_panama_esmeralda_geisha.ready.json",
+    "ready/dl_tin_colombia_huila_san_pedro_geisha.ready.json",
+    "ready/dl_tin_colombia_la_esperanza_bourbon.ready.json",
+    "ready/dl_tin_coffee_ethiopia_guji.ready.json",
+    "ready/dl_tin_coffee_ethiopia_sidama.ready.json",
+    "ready/dl_tin_coffee_kenya_nyeri.ready.json",
+    "ready/dl_tin_coffee_rwanda.ready.json",
+    "ready/dl_tin_coffee_burundi.ready.json",
+    "ready/dl_tin_coffee_uganda.ready.json",
+    "ready/dl_tin_coffee_indonesia_gayo.ready.json",
+    "ready/dl_tin_coffee_indonesia_java.ready.json",
+    "ready/dl_tin_coffee_vietnam_dalat.ready.json",
+    "ready/dl_tin_coffee_india_malabar.ready.json",
+    "ready/dl_tin_coffee_costa_rica_tarrazu.ready.json",
+    "ready/dl_tin_coffee_guatemala_antigua.ready.json",
+    "ready/dl_tin_coffee_honduras_marcala.ready.json",
+    "ready/dl_tin_coffee_peru_chanchamayo.ready.json",
+    "ready/dl_tin_coffee_mexico_chiapas.ready.json",
+    "ready/dl_tin_coffee_jamaica_blue_mountain.ready.json",
+    "ready/dl_tin_coffee_brazil_cerrado.ready.json",
+    "ready/dl_tin_coffee_colombia_narino.ready.json",
+    "ready/dl_tin_coffee_el_salvador.ready.json",
+    "ready/dl_tin_coffee_nicaragua.ready.json",
+    "ready/dl_tin_coffee_tanzania.ready.json",
+    "ready/dl_tin_coffee_bolivia.ready.json"
+  ],
+  "verification": "verification/containers-validation.json",
+  "unityIntegrated": false,
+  "unityVerified": false,
+  "anchors": "ready/anchors-containers.json",
+  "ready_assets": [
+    "dl_tin_ethiopia_yirgacheffe_kochere",
+    "dl_tin_colombia_huila_vergel",
+    "dl_tin_brazil_mantiqueira_alves_lima",
+    "dl_tin_panama_esmeralda_geisha",
+    "dl_tin_colombia_huila_san_pedro_geisha",
+    "dl_tin_colombia_la_esperanza_bourbon",
+    "dl_tin_coffee_ethiopia_guji",
+    "dl_tin_coffee_ethiopia_sidama",
+    "dl_tin_coffee_kenya_nyeri",
+    "dl_tin_coffee_rwanda",
+    "dl_tin_coffee_burundi",
+    "dl_tin_coffee_uganda",
+    "dl_tin_coffee_indonesia_gayo",
+    "dl_tin_coffee_indonesia_java",
+    "dl_tin_coffee_vietnam_dalat",
+    "dl_tin_coffee_india_malabar",
+    "dl_tin_coffee_costa_rica_tarrazu",
+    "dl_tin_coffee_guatemala_antigua",
+    "dl_tin_coffee_honduras_marcala",
+    "dl_tin_coffee_peru_chanchamayo",
+    "dl_tin_coffee_mexico_chiapas",
+    "dl_tin_coffee_jamaica_blue_mountain",
+    "dl_tin_coffee_brazil_cerrado",
+    "dl_tin_coffee_colombia_narino",
+    "dl_tin_coffee_el_salvador",
+    "dl_tin_coffee_nicaragua",
+    "dl_tin_coffee_tanzania",
+    "dl_tin_coffee_bolivia"
+  ]
+}

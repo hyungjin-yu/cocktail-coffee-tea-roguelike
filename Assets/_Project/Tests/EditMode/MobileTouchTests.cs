@@ -144,6 +144,40 @@ namespace CCT.Tests
         }
 
         [Test]
+        public void CenterBand_MaxWidth_WideCanvas_CentersHorizontally_BackdropReachesEdges_OffByDefault()
+        {
+            // 21:9(2560×1080 → 높이 맞춤 캔버스 2520×1080): 음료 제조 화면은 내용을 가운데 1920 띠에, 카페 테두리는 화면 끝까지.
+            var parentGo = new GameObject("W", typeof(RectTransform)); created.Add(parentGo);
+            var parent = (RectTransform)parentGo.transform;
+            parent.sizeDelta = new Vector2(2520f, 1080f);
+            var root = UiFactory.Stretch("Root", parent);
+            var img = UiFactory.AddImage(root, new Color(0f, 0f, 0f, 1f));
+            var backdrop = UiFactory.Stretch("CafeBackdrop", root);
+            backdrop.offsetMin = new Vector2(24f, 24f); backdrop.offsetMax = new Vector2(-24f, -24f);
+            var band = CenterBand.Attach(root);
+            Assert.AreEqual(2520f, root.rect.width, 1e-3f, "MaxWidth 없으면 가로는 그대로(다른 화면 회귀 없음)");
+            Assert.IsFalse(root.Find("BandFill").gameObject.activeSelf);
+
+            band.MaxWidth = 1920f;
+            Assert.AreEqual(600f, band.ExtraWidth, 1e-3f);
+            Assert.AreEqual(1920f, root.rect.width, 1e-3f, "내용은 가운데 1920 띠");
+            Assert.AreEqual(1080f, root.rect.height, 1e-3f, "세로는 그대로");
+            Assert.AreEqual(300f, root.offsetMin.x, 1e-3f); Assert.AreEqual(-300f, root.offsetMax.x, 1e-3f);
+            var fill = (RectTransform)root.Find("BandFill");
+            Assert.IsTrue(fill.gameObject.activeSelf);
+            Assert.AreEqual(2520f, fill.rect.width, 1e-3f, "배경은 화면 전체 폭");
+            Assert.AreEqual(0f, img.color.a, "띠 안 이중 어둡게 방지");
+            Assert.AreEqual(2520f - 48f, backdrop.rect.width, 1e-3f, "카페 테두리는 화면 가장자리 24 안쪽");
+
+            parent.sizeDelta = new Vector2(1920f, 1080f);
+            band.MaxWidth = 1920f; // 다시 계산
+            Assert.AreEqual(Vector2.zero, root.offsetMin); Assert.AreEqual(Vector2.zero, root.offsetMax);
+            Assert.IsFalse(fill.gameObject.activeSelf, "16:9는 원래 그대로");
+            Assert.AreEqual(1f, img.color.a, 1e-6f);
+            Assert.AreEqual(1920f - 48f, backdrop.rect.width, 1e-3f);
+        }
+
+        [Test]
         public void Fold_TextAlignment_MobileCentered_DesktopOriginal_TutorialTeaWording()
         {
             MobilePlatform.ForceForTests(true);

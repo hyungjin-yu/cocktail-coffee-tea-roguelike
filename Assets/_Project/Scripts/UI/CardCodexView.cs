@@ -26,6 +26,7 @@ namespace CCT
             public Text descText;
             public Text flavorText;
             public Image icon;
+            public GameObject lockBadge;
         }
 
         class SkillEntry
@@ -43,6 +44,7 @@ namespace CCT
             public Text nameText;
             public Text descText;
             public Text prereqText;
+            public Image icon;
         }
 
         public const string CoffeeAcquiredLabel = "최초 획득 기록 있음";
@@ -105,6 +107,11 @@ namespace CCT
         GameObject detailShield;
         Text detailTitle;
         Text detailBody;
+        RectTransform detailContent;
+        /// <summary>테스트용 — 상세에 보이는 출처 주소 복사 버튼(카드 상세만).</summary>
+        public readonly List<Button> DetailSourceButtons = new List<Button>();
+        public RectTransform DetailSourcesRect => detailContent != null ? detailContent.Find("Sources") as RectTransform : null;
+        public RectTransform DetailBodyRect => detailBody != null ? detailBody.rectTransform : null;
         Button detailClose;
         ScrollRect detailScroll;
         GameObject detailReturnFocus;
@@ -336,20 +343,20 @@ namespace CCT
                 var rowRt = UiFactory.Place($"Row_{card.id}", content, new Vector2(0.5f, 1f),
                     new Vector2(x, -ContentTopPadding - i * RowStep), new Vector2(ColumnWidth, RowStep));
 
-                var iconRt = UiFactory.Place("EducationIcon", rowRt, new Vector2(1,1), new Vector2(-8,-5), new Vector2(38,38));
-                var cardIcon = iconRt.gameObject.AddComponent<Image>(); cardIcon.preserveAspect = true; cardIcon.raycastTarget = false;
-                cardIcon.sprite = CardEducationIcons.For(card);
                 var capturedCard = card;
                 MakeRowSelectable(rowRt, () => ShowCardDetail(capturedCard));
-                var nameText = RowText(rowRt, "Name", -24f, 0f, ColumnWidth - 48f, RowNameHeight, RowNameFontSize, TextAnchor.MiddleLeft);
-                var descText = RowText(rowRt, "Desc", 0f, -RowNameHeight, ColumnWidth, RowDescHeight, MinBodyFontSize,
-                    TextAnchor.UpperLeft);
-                var flavorText = RowText(rowRt, "Flavor", 0f, -RowNameHeight - RowDescHeight, ColumnWidth, RowFlavorHeight,
-                    MinBodyFontSize, TextAnchor.MiddleLeft);
+                // 2026-11-15 피드백 2: 그림 → 이름 → 획득 상태. 이전 그림은 오른쪽 위 38(720p ≈25px, 미발견이면 숨김)이었다.
+                var cardIcon = ArtCell(rowRt, CardEducationIcons.For(card));
+                var lockBadge = LockBadge(rowRt);
+                var nameText = RowText(rowRt, "Name", ArtTextLeft, 0f, ColumnWidth - ArtTextLeft - 8f, RowNameHeight, RowNameFontSize, TextAnchor.MiddleLeft, true);
+                var descText = RowText(rowRt, "Desc", ArtTextLeft, -RowNameHeight, ColumnWidth - ArtTextLeft - 8f, RowDescHeight, MinBodyFontSize,
+                    TextAnchor.UpperLeft, true);
+                var flavorText = RowText(rowRt, "Flavor", ArtTextLeft, -RowNameHeight - RowDescHeight, ColumnWidth - ArtTextLeft - 8f, RowFlavorHeight,
+                    MinBodyFontSize, TextAnchor.MiddleLeft, true);
 
                 cardEntries.Add(new CardEntry
                 {
-                    card = card, icon = cardIcon, nameText = nameText, descText = descText, flavorText = flavorText,
+                    card = card, icon = cardIcon, nameText = nameText, descText = descText, flavorText = flavorText, lockBadge = lockBadge,
                 });
                 trackInto.Add(rowRt.gameObject);
             }
@@ -409,13 +416,17 @@ namespace CCT
                     new Vector2(x, top - ContentTopPadding - i * RowStep), new Vector2(ColumnWidth, RowStep));
                 var capturedSkill = skill;
                 MakeRowSelectable(rowRt, () => ShowCoffeeDetail(capturedSkill));
-                var nameText = RowText(rowRt, "Name", 0f, 0f, ColumnWidth, RowNameHeight, RowNameFontSize, TextAnchor.MiddleLeft);
-                var descText = RowText(rowRt, "Desc", 0f, -RowNameHeight, ColumnWidth, RowDescHeight, MinBodyFontSize,
-                    TextAnchor.UpperLeft);
-                var prereqText = RowText(rowRt, "Prereq", 0f, -RowNameHeight - RowDescHeight, ColumnWidth, RowFlavorHeight,
-                    MinBodyFontSize, TextAnchor.MiddleLeft);
+                // 2026-11-15 피드백 2: 연구 노드 그림(2026-11-12 승인 아트)을 왼쪽 칸에 — 그림이 없으면 기존 전체 폭 글.
+                var art = ResearchIcons.Research(skill.id, Job.Bartender);
+                Image icon = art != null ? ArtCell(rowRt, art) : null;
+                float left = icon != null ? ArtTextLeft : 0f, width = icon != null ? ColumnWidth - ArtTextLeft - 8f : ColumnWidth;
+                var nameText = RowText(rowRt, "Name", left, 0f, width, RowNameHeight, RowNameFontSize, TextAnchor.MiddleLeft, icon != null);
+                var descText = RowText(rowRt, "Desc", left, -RowNameHeight, width, RowDescHeight, MinBodyFontSize,
+                    TextAnchor.UpperLeft, icon != null);
+                var prereqText = RowText(rowRt, "Prereq", left, -RowNameHeight - RowDescHeight, width, RowFlavorHeight,
+                    MinBodyFontSize, TextAnchor.MiddleLeft, icon != null);
                 prereqText.color = new Color(0.7f, 0.68f, 0.75f);
-                coffeeEntries.Add(new CoffeeEntry { skill = skill, nameText = nameText, descText = descText, prereqText = prereqText });
+                coffeeEntries.Add(new CoffeeEntry { skill = skill, nameText = nameText, descText = descText, prereqText = prereqText, icon = icon });
             }
             return ordered.Count;
         }
@@ -449,6 +460,50 @@ namespace CCT
                 has ? $"히든 스킬 · {HiddenSkillDatabase.TierLabel(def.tier)}\n바텐더: {def.ConditionFor(Job.Bartender)}\n티 소믈리에: {def.ConditionFor(Job.TeaSommelier)}\n효과: {def.effect}\n런마다 조건을 다시 채우면 그 런에서 발동"
                     : $"히든 스킬 · {HiddenSkillDatabase.TierLabel(def.tier)}\n힌트: 바텐더 {def.HintFor(Job.Bartender)} · 티 소믈리에 {def.HintFor(Job.TeaSommelier)}\n아직 발견하지 않았습니다");
         }
+
+        /// <summary>2026-11-15 피드백 2: 행 왼쪽 그림 칸(1080 기준 112 = 720p ≈75px, 이전 38 = 25px). 연한 바탕 위에 그림 — 미발견은
+        /// 같은 그림을 어두운 실루엣으로(피드백 3) 보여 바탕과 구분된다.</summary>
+        public const float ArtCellSize = 112f, ArtCellLeft = 12f, ArtTextLeft = ArtCellLeft + ArtCellSize + 12f;
+        public const string LockedLabel = "미발견";
+        public const string LockedHint = "플레이 중 획득하면 등록됩니다";
+
+        static string CategoryLabel(CardCategory c) => c == CardCategory.Cocktail ? "칵테일" : c == CardCategory.Tea ? "차" : "하이브리드";
+
+        static Image ArtCell(RectTransform row, Sprite sprite)
+        {
+            var cell = UiFactory.Place("ArtCell", row, new Vector2(0f, 0.5f), new Vector2(ArtCellLeft, 0f), new Vector2(ArtCellSize, ArtCellSize));
+            var back = cell.gameObject.AddComponent<Image>();
+            back.sprite = SpriteFactory.Square;
+            back.color = new Color(0.93f, 0.86f, 0.72f, 0.16f);
+            back.raycastTarget = false;
+            var iconRt = UiFactory.Place("EducationIcon", cell, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(ArtCellSize - 8f, ArtCellSize - 8f));
+            var img = iconRt.gameObject.AddComponent<Image>();
+            img.sprite = sprite;
+            img.preserveAspect = true;
+            img.raycastTarget = false;
+            img.enabled = sprite != null;
+            return img;
+        }
+
+        /// <summary>피드백 3 잠금 배지: 그림 칸 위쪽 "미발견" 글 칩(색만으로 잠금을 나타내지 않는다).</summary>
+        static GameObject LockBadge(RectTransform row)
+        {
+            var rt = UiFactory.Place("LockBadge", row, new Vector2(0f, 0.5f), new Vector2(ArtCellLeft, ArtCellSize * 0.5f - 22f), new Vector2(ArtCellSize, 44f));
+            rt.pivot = new Vector2(0f, 0.5f);
+            var bg = rt.gameObject.AddComponent<Image>();
+            bg.sprite = SpriteFactory.Square;
+            bg.color = new Color(0.12f, 0.1f, 0.14f, 0.92f);
+            bg.raycastTarget = false;
+            var labelRt = UiFactory.Stretch("Label", rt);
+            var t = UiFactory.AddText(labelRt, LockedLabel, MinBodyFontSize, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.6f));
+            t.raycastTarget = false;
+            // 2026-11-16 최종 아트: 칩 왼쪽 자물쇠(28) + 글(자물쇠 오른쪽). 글자와 모양 둘 다로 잠금 표시.
+            if (UiFactory.AddLockIcon(rt, new Vector2(4f, 0f), 28f) != null) labelRt.offsetMin = new Vector2(34f, labelRt.offsetMin.y); // 글 칸 78 ≥ "미발견" 24pt 약 72
+            rt.gameObject.SetActive(false);
+            return rt.gameObject;
+        }
+
+        static readonly Color SilhouetteColor = new Color(0.02f, 0.02f, 0.03f, 0.75f);
 
         /// <summary>행 안 글줄: 상자 높이를 넘는 줄은 잘라 이웃 행을 덮지 않는다(전문은 상세). leftAnchored면 좌상단 기준.</summary>
         static Text RowText(RectTransform row, string name, float x, float y, float width, float height, int size,
@@ -495,33 +550,35 @@ namespace CCT
             foreach (var entry in cardEntries)
             {
                 bool has = discovered.Contains(entry.card.id);
-                if (entry.icon != null) entry.icon.gameObject.SetActive(has);
                 if (has) found++;
+                // 피드백 2·3: 그림은 항상 칸에 — 획득이면 원색, 미발견이면 어두운 실루엣 + "미발견" 배지(이름·효과는 숨김 유지).
+                if (entry.icon != null) entry.icon.color = has ? Color.white : SilhouetteColor;
+                if (entry.lockBadge != null) entry.lockBadge.SetActive(!has);
+                string category = CategoryLabel(entry.card.category);
 
                 if (entry.card.category == CardCategory.Hybrid)
                 {
                     // 07:167 — 하이브리드는 미발견이어도 이름과 해금 조건을 보여준다("???" 추측 게임 금지).
-                    entry.nameText.text = $"{entry.card.displayName}  ({RarityTable.Label(entry.card.rarity)})";
+                    entry.nameText.text = entry.card.displayName;
                     entry.nameText.color = has ? RarityTable.Color(entry.card.rarity) : new Color(1f, 0.85f, 0.6f);
                     entry.descText.text = has
-                        ? entry.card.description
-                        : "해금 조건: 레이피어 시작, 이번 런 칵테일 누적 3 + 차 누적 3";
-                    entry.descText.color = new Color(0.75f, 0.75f, 0.75f, 1f);
-                    entry.flavorText.text = has ? entry.card.flavorText : "";
-                    entry.flavorText.color = new Color(0.6f, 0.58f, 0.65f, has ? 1f : 0.35f);
+                        ? CardEducationSummary.Effect(entry.card)
+                        : "해금: 레이피어 시작 · 칵테일 3 + 차 3 누적";
+                    entry.descText.color = has ? new Color(0.92f, 0.9f, 0.84f) : new Color(0.8f, 0.78f, 0.74f);
+                    entry.flavorText.text = has ? $"획득 · {RarityTable.Label(entry.card.rarity)}" : $"{LockedLabel} · {category}";
+                    entry.flavorText.color = has ? new Color(0.62f, 0.86f, 0.66f) : new Color(1f, 0.86f, 0.6f, 0.85f);
                     continue;
                 }
 
-                entry.nameText.text = has
-                    ? $"{entry.card.displayName}  ({RarityTable.Label(entry.card.rarity)})"
-                    : "???";
-                entry.nameText.color = has ? RarityTable.Color(entry.card.rarity) : new Color(1f, 1f, 1f, 0.35f);
+                entry.nameText.text = has ? entry.card.displayName : "???";
+                entry.nameText.color = has ? RarityTable.Color(entry.card.rarity) : new Color(1f, 1f, 1f, 0.55f);
 
-                entry.descText.text = has ? entry.card.description : "";
-                entry.descText.color = new Color(0.75f, 0.75f, 0.75f, has ? 1f : 0.35f);
+                // 그리드에는 짧은 게임 효과만 — 긴 설명·음료 지식·출처는 클릭 상세(피드백 2).
+                entry.descText.text = has ? CardEducationSummary.Effect(entry.card) : LockedHint;
+                entry.descText.color = has ? new Color(0.92f, 0.9f, 0.84f) : new Color(0.75f, 0.75f, 0.78f, 0.8f);
 
-                entry.flavorText.text = has ? entry.card.flavorText : "";
-                entry.flavorText.color = new Color(0.6f, 0.58f, 0.65f, has ? 1f : 0.35f);
+                entry.flavorText.text = has ? $"획득 · {RarityTable.Label(entry.card.rarity)}" : $"{LockedLabel} · {category} 카드";
+                entry.flavorText.color = has ? new Color(0.62f, 0.86f, 0.66f) : new Color(1f, 0.86f, 0.6f, 0.85f);
             }
             // 커피 노드: 저장된 id 중 실제 노드와 일치하는 것만 센다(알 수 없는 id는 표시·집계 제외, 저장 목록은 보존).
             var acquiredSkills = new HashSet<string>(save.discoveredSkillIds ?? new List<string>());
@@ -532,11 +589,12 @@ namespace CCT
                 if (has) coffeeFound++;
                 entry.nameText.text = $"{entry.skill.displayName}  ({SkillData.BranchLabel(entry.skill.branch)} {entry.skill.tier}단계)";
                 entry.nameText.color = has ? new Color(0.95f, 0.8f, 0.55f) : new Color(1f, 1f, 1f, 0.6f);
-                entry.descText.text = $"티 소믈리에: {JobStudyTheme.Name(entry.skill, Job.TeaSommelier)}\n{entry.skill.description}  ·  {(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}";
-                entry.descText.color = has ? new Color(0.8f, 0.8f, 0.8f) : new Color(1f, 1f, 1f, 0.4f);
-                entry.prereqText.text = entry.skill.prerequisite != null
+                if (entry.icon != null) entry.icon.color = has ? Color.white : new Color(1f, 1f, 1f, 0.55f); // 커피 노드는 비밀 아님 — 흐림만
+                entry.descText.text = $"{entry.skill.description}\n{(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}";
+                entry.descText.color = has ? new Color(0.8f, 0.8f, 0.8f) : new Color(1f, 1f, 1f, 0.55f);
+                entry.prereqText.text = (entry.skill.prerequisite != null
                     ? $"선행: {entry.skill.prerequisite.displayName}"
-                    : "선행: 없음";
+                    : "선행: 없음") + $" · 티: {JobStudyTheme.Name(entry.skill, Job.TeaSommelier)}";
             }
 
             int hiddenFound = 0;
@@ -656,11 +714,13 @@ namespace CCT
             var scrollArea = UiFactory.Place("DetailScroll", rt, new Vector2(.5f,1),new Vector2(0,-DetailBodyTop),new Vector2(DetailPanelWidth-80,DetailPanelHeight-DetailBodyTop-DetailCloseReserved));
             UiFactory.AddImage(scrollArea,new Color(0,0,0,.1f));
             var viewport = UiFactory.Stretch("Viewport",scrollArea); viewport.gameObject.AddComponent<RectMask2D>();
-            detailBody.rectTransform.SetParent(viewport,false);
+            // 2026-11-15 피드백 10: 스크롤 내용 = 본문 글 + (카드면) 출처 영역. 출처는 작은 보조 글꼴·사이트명·주소 복사(CardSourceList).
+            detailContent = UiFactory.Place("Content", viewport, new Vector2(.5f,1), Vector2.zero, new Vector2(DetailPanelWidth-80, 580));
+            detailBody.rectTransform.SetParent(detailContent,false);
             detailBody.rectTransform.anchorMin = detailBody.rectTransform.anchorMax = detailBody.rectTransform.pivot = new Vector2(.5f,1);
             detailBody.rectTransform.anchoredPosition = Vector2.zero;
             detailBody.alignment = TextAnchor.UpperLeft; detailBody.supportRichText=false;
-            detailScroll = scrollArea.gameObject.AddComponent<ScrollRect>(); detailScroll.content=detailBody.rectTransform;detailScroll.viewport=viewport;detailScroll.horizontal=false;detailScroll.scrollSensitivity=40;detailScroll.movementType=ScrollRect.MovementType.Clamped;
+            detailScroll = scrollArea.gameObject.AddComponent<ScrollRect>(); detailScroll.content=detailContent;detailScroll.viewport=viewport;detailScroll.horizontal=false;detailScroll.scrollSensitivity=40;detailScroll.movementType=ScrollRect.MovementType.Clamped;
 
             var closeRt = UiFactory.Place("Close", rt, new Vector2(0.5f, 0f), new Vector2(0f, 30f), new Vector2(260f, 70f));
             var closeBg = UiFactory.AddImage(closeRt, new Color(0.3f, 0.32f, 0.36f));
@@ -678,7 +738,7 @@ namespace CCT
         const float DetailBodyTop = 80f;
         const float DetailCloseReserved = 120f;
 
-        void ShowDetail(string title, string body)
+        void ShowDetail(string title, string body, CardData sourcesOf = null)
         {
             detailTitle.text = title;
             detailBody.text = body;
@@ -687,7 +747,14 @@ namespace CCT
             detailShield.transform.SetAsLastSibling();
             detailRoot.transform.SetAsLastSibling();
             Canvas.ForceUpdateCanvases();
-            detailBody.rectTransform.sizeDelta=new Vector2(DetailPanelWidth-80,Mathf.Max(580,detailBody.preferredHeight+24));
+            float w = DetailPanelWidth - 80;
+            float bodyH = Mathf.Ceil(detailBody.preferredHeight) + 24;
+            detailBody.rectTransform.sizeDelta = new Vector2(w, bodyH);
+            var oldSources = detailContent.Find("Sources");
+            if (oldSources != null) { oldSources.SetParent(null, false); if (Application.isPlaying) Destroy(oldSources.gameObject); else DestroyImmediate(oldSources.gameObject); }
+            DetailSourceButtons.Clear();
+            float srcH = sourcesOf != null ? CardSourceList.Build(detailContent, -bodyH - 8, w, sourcesOf, DetailSourceButtons) : 0f;
+            detailContent.sizeDelta = new Vector2(w, Mathf.Max(580, bodyH + (srcH > 0 ? 8 + srcH + 24 : 0)));
             detailScroll.verticalNormalizedPosition=1;
             detailClose.navigation=new Navigation {mode=Navigation.Mode.None};
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(detailClose.gameObject);
@@ -709,7 +776,8 @@ namespace CCT
             string category = card.category == CardCategory.Cocktail ? "칵테일" : card.category == CardCategory.Tea ? "차" : "하이브리드";
             if (!has && card.category != CardCategory.Hybrid)
             {
-                ShowDetail("???", $"{category} 카드 · 미발견\n런에서 처음 획득하면 이름과 효과가 기록됩니다.");
+                // 피드백 3: 미획득도 안내 상세 — 획득 경로(카드 창)만 알리고 이름·효과는 공개하지 않는다.
+                ShowDetail("???", $"{category} 카드 · {LockedLabel}\n{LockedHint}.\n런에서 {(card.category == CardCategory.Tea ? "찻잎" : "칵테일 재료")} 게이지가 차면 열리는 카드 창에서 이 카드를 고르면 이름·효과·음료 지식이 기록됩니다.");
                 return;
             }
             if (!has)
@@ -718,7 +786,7 @@ namespace CCT
                 return;
             }
             ShowDetail($"{card.displayName}  ({RarityTable.Label(card.rarity)})",
-                CardEducationData.Detail(card));
+                CardEducationData.Body(card), card);
         }
 
         void ShowPermanentDetail(PermanentSkillData skill)

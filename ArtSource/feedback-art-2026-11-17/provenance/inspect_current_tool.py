@@ -1,0 +1,10 @@
+﻿from pathlib import Path
+import zipfile,os,json,hashlib,datetime
+r=Path('ArtSource/feedback-art-2026-11-17');archive=Path('C:/Users/user/Downloads/PixelLab (2).aseprite-extension');ext=Path(os.environ['APPDATA'])/'Aseprite/extensions/pixellab';checks=[]
+if archive.exists():
+ with zipfile.ZipFile(archive) as z:
+  for n in z.namelist():
+   if not n.endswith('.lua'):continue
+   target=ext/Path(*Path(n).parts[1:]);checks.append({'lua':n,'matchesPreviousOfficial137File':target.exists() and target.read_bytes()==z.read(n)})
+record={'observedMenuVersion':'0.4.131','requiredVersion':'0.4.137','versionVerification':'Read native Aseprite Edit menu using official Windows Computer Use; package.json/credential fields not read','priorOfficialFile':str(archive),'priorOfficialExists':archive.exists(),'priorOfficialBytes':archive.stat().st_size if archive.exists() else None,'priorOfficialSha256':hashlib.sha256(archive.read_bytes()).hexdigest() if archive.exists() else None,'luaOnlyComparison':checks,'matchedLuaCount':sum(x['matchesPreviousOfficial137File'] for x in checks),'luaCount':len(checks),'actualGenerationVerified':False,'newReadyCount':0,'orcaComputerError':'ScriptContainedMaliciousContent: security product blocks Orca runtime.ps1; no security settings changed and flagged script was not bypassed','nativeAlternative':'@oai/sky works; Aseprite menu observed','ownProbeCorrection':'_version is not exposed in external script namespace (nil); the incorrect external-scalar assert stopped before any generation. Runtime module table exists; actual GUI version is authoritative.','generationState':'41 specs prepared; initial script halted before any request; do not treat prepared count as generation progress'}
+(r/'provenance/tool-access-current.json').write_text(json.dumps(record,indent=2),encoding='utf-8');print({k:record[k] for k in ['observedMenuVersion','requiredVersion','priorOfficialExists','priorOfficialBytes','priorOfficialSha256','matchedLuaCount','luaCount','actualGenerationVerified','newReadyCount']})

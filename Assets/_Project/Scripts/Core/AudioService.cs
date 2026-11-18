@@ -50,8 +50,21 @@ namespace CCT
             _ => 0, // swing_*/shot_*/hit_enemy/enemy_defeat/pickup/explosion/steam/spell 등
         };
 
-        /// <summary>09:80 "중복 hit_enemy/pickup은50ms 안에1개로 합산, 기타 동일이벤트는30ms 간격".</summary>
-        static float DedupWindow(string id) => id is "hit_enemy" or "pickup" ? 0.05f : 0.03f;
+        /// <summary>09:80 "중복 hit_enemy/pickup은50ms 안에1개로 합산, 기타 동일이벤트는30ms 간격".
+        /// 2026-11-09 hit_crit·hit_heavy도 피격음과 같은 50ms 합산(각자 ID별 4보이스 상한).</summary>
+        static float DedupWindow(string id) => id is "hit_enemy" or "hit_crit" or "hit_heavy" or "pickup" ? 0.05f : 0.03f;
+
+        /// <summary>2026-11-09 타격감: 새 음원 없이 기존 클립을 음높이만 바꿔 다른 ID로 쓴다(중복·동시 상한은 ID별).
+        /// 치명타 = 피격음을 높게, 강타 = 낮고 묵직하게.</summary>
+        static (string clip, float pitch) Resolve(string id) => id switch
+        {
+            "hit_crit" => ("hit_enemy", 1.3f),
+            "hit_heavy" => ("hit_enemy", 0.78f),
+            _ => (id, 1f),
+        };
+
+        /// <summary>테스트용: 별칭 ID가 실제로 재생할 음원과 음높이.</summary>
+        public static (string clip, float pitch) ResolveForTests(string id) => Resolve(id);
 
         public static AudioService EnsureCreated()
         {
@@ -147,7 +160,8 @@ namespace CCT
             if (lastPlayedAt.TryGetValue(id, out var last) && now - last < DedupWindow(id))
                 return; // 09:80 — 너무 가까운 중복 재생은 합산(스킵)
 
-            var clip = LoadClip(id);
+            var (clipId, pitch) = Resolve(id);
+            var clip = LoadClip(clipId);
             if (clip == null) return; // 리소스가 없으면 조용히 무시(에디터 경고는 남김)
 
             // A source may finish before Update, then be reused during the same frame.
@@ -172,6 +186,7 @@ namespace CCT
 
             lastPlayedAt[id] = now;
             freeSource.clip = clip;
+            freeSource.pitch = pitch; // 보이스는 재사용되므로 매번 설정(별칭이 아니면 1)
             freeSource.volume = AudioBus.EffectiveSfxVolume;
             // 09:83 — 좌우 pan은 발음 위치의 화면정규화 x×0.5, UI는 중앙. 보스 경고는 중앙/최우선.
             freeSource.panStereo = (worldPos.HasValue && id != "boss_warning") ? ScreenPan(worldPos.Value) : 0f;

@@ -36,9 +36,19 @@ namespace CCT
         /// <summary>67: 이 탄을 쏜 적/공격(사망 원인 기록 전용, 생성 시점 값).</summary>
         DamageSource source;
 
+        /// <summary>2026-11-15 피드백 20: 쏜 몹 등급(일반·정예·보스) — 테두리 색·두께와 꼬리 길이만 다르다. 판정 반지름·피해·속도는 그대로.</summary>
+        public enum Tier { Normal, Elite, Boss }
+        public static Tier TierOf(EnemyDef def) => def == null ? Tier.Normal : def.IsBoss ? Tier.Boss : def.archetype == EnemyArchetype.EliteBarrage ? Tier.Elite : Tier.Normal;
+        public static Color RimColor(Tier t) => t == Tier.Boss ? new Color(1f, 0.18f, 0.12f, 1f) : t == Tier.Elite ? new Color(1f, 0.62f, 0.15f, 0.95f) : new Color(0.03f, 0.01f, 0.02f, 0.9f);
+        public static float RimScale(Tier t) => t == Tier.Boss ? 1.36f : t == Tier.Elite ? 1.3f : 1.22f;
+        public static int TailCount(Tier t) => t == Tier.Boss ? 3 : t == Tier.Elite ? 2 : 0;
+        public Tier ShotTier { get; private set; }
+        public float HitRadiusForTests => hitRadius;
+        Transform[] tail;
+
         public static void Spawn(Vector2 position, Vector2 direction, float speed, float damage,
             PlayerController player, Transform parent, string spriteResourcePath = null,
-            System.Action onHit = null, DamageSource source = default)
+            System.Action onHit = null, DamageSource source = default, Tier tier = Tier.Normal)
         {
             var go = new GameObject("EnemyProjectile");
             go.transform.SetParent(parent, false);
@@ -76,10 +86,10 @@ namespace CCT
             var outline = new GameObject("Outline");
             outline.transform.SetParent(go.transform, false);
             outline.transform.localPosition = new Vector3(0f, 0f, 0.01f / Mathf.Max(0.0001f, go.transform.localScale.x));
-            outline.transform.localScale = Vector3.one * 1.22f;
+            outline.transform.localScale = Vector3.one * RimScale(tier);
             var osr = outline.AddComponent<SpriteRenderer>();
             osr.sprite = sr.sprite;
-            osr.color = new Color(0.03f, 0.01f, 0.02f, 0.9f);
+            osr.color = RimColor(tier); // 일반 = 기존 어두운 실루엣, 정예 = 주황 테두리, 보스 = 붉은 굵은 테두리
             osr.sortingOrder = SortOrders.Projectile;
             if (art != null && art.Main != null && art.Main.frames.Length > 1)
             {
@@ -96,6 +106,25 @@ namespace CCT
             p.life = Lifetime;
             p.onHit = onHit;
             p.source = source;
+            p.ShotTier = tier;
+            // 등급 꼬리: 같은 그림의 옅고 작은 잔상(진행 반대쪽). 저이펙트면 생략(테두리 색만으로 구분). 판정 없음.
+            int tails = HitFeedback.LowEffects ? 0 : TailCount(tier);
+            if (tails > 0)
+            {
+                p.tail = new Transform[tails];
+                for (int i = 0; i < tails; i++)
+                {
+                    var g = new GameObject("Tail" + i);
+                    g.transform.SetParent(go.transform, false);
+                    g.transform.localScale = Vector3.one * (0.8f - 0.15f * i);
+                    var gsr = g.AddComponent<SpriteRenderer>();
+                    gsr.sprite = sr.sprite;
+                    var c = RimColor(tier); c.a = 0.45f - 0.12f * i;
+                    gsr.color = c;
+                    gsr.sortingOrder = SortOrders.Projectile - 1;
+                    p.tail[i] = g.transform;
+                }
+            }
 
             // 물방울/얼음조각 아트는 위쪽이 뾰족하고 아래쪽(로컬 -Y)이 두꺼운 모양이라,
             // 두꺼운 쪽이 진행 방향(플레이어 쪽)을 향하도록 발사 방향으로 회전시킨다.
@@ -118,6 +147,12 @@ namespace CCT
             }
 
             transform.position += (Vector3)(velocity * Time.deltaTime);
+            if (tail != null && velocity.sqrMagnitude > 0.0001f)
+            {
+                Vector3 back = -(Vector3)velocity.normalized;
+                float spacing = HitRadius * (ShotTier == Tier.Boss ? 1.6f : 1.2f);
+                for (int i = 0; i < tail.Length; i++) if (tail[i] != null) tail[i].position = transform.position + back * spacing * (i + 1) + new Vector3(0f, 0f, 0.02f);
+            }
 
             if (player == null || player.IsDead) return;
 

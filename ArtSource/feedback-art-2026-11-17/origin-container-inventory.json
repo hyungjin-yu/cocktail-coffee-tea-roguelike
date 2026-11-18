@@ -1,0 +1,266 @@
+{
+  "count": 28,
+  "source": "Assets/_Project/Scripts/Drinks/DrinkData.cs",
+  "assets": [
+    {
+      "ingredientId": "ethiopia_yirgacheffe_kochere",
+      "name": "예가체프 코체레",
+      "assetId": "dl_icon_ethiopia_yirgacheffe_kochere",
+      "existingPng": "Assets\\_Project\\Resources\\DrinkLab\\dl_icon_ethiopia_yirgacheffe_kochere.png",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        7,
+        29,
+        31
+      ],
+      "alphaSha256": "77189eb08c8bb0eb207a9e37a28c1333c2c14d9cee2e1ac9178957fe6f1da22a",
+      "pngSha256": "6fbc4c2a94303386e45daf1241a1c0d2e27db60b849dd9309b25bea9bd8b372c",
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_ethiopia_yirgacheffe_kochere"
+    },
+    {
+      "ingredientId": "colombia_huila_vergel",
+      "name": "엘 베르헬 (피탈리토)",
+      "assetId": "dl_icon_colombia_huila_vergel",
+      "existingPng": "Assets\\_Project\\Resources\\DrinkLab\\dl_icon_colombia_huila_vergel.png",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        7,
+        29,
+        31
+      ],
+      "alphaSha256": "77189eb08c8bb0eb207a9e37a28c1333c2c14d9cee2e1ac9178957fe6f1da22a",
+      "pngSha256": "f6148922d491e6594d7ccea7d2eefa2fd3c9d4a359f1ef31b9cd356b8b138489",
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_colombia_huila_vergel"
+    },
+    {
+      "ingredientId": "brazil_mantiqueira_alves_lima",
+      "name": "파젠다 알베스 리마",
+      "assetId": "dl_icon_brazil_mantiqueira_alves_lima",
+      "existingPng": "Assets\\_Project\\Resources\\DrinkLab\\dl_icon_brazil_mantiqueira_alves_lima.png",
+      "size": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        7,
+        29,
+        31
+      ],
+      "alphaSha256": "77189eb08c8bb0eb207a9e37a28c1333c2c14d9cee2e1ac9178957fe6f1da22a",
+      "pngSha256": "800189f0f12d365663bc887bfd098adc4fc2953518e90c4bf859b2bc9714d0e3",
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_brazil_mantiqueira_alves_lima"
+    },
+    {
+      "ingredientId": "panama_esmeralda_geisha",
+      "name": "에스메랄다 게이샤",
+      "assetId": "dl_icon_panama_esmeralda_geisha",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_panama_esmeralda_geisha"
+    },
+    {
+      "ingredientId": "colombia_huila_san_pedro_geisha",
+      "name": "아시엔다 산 페드로",
+      "assetId": "dl_icon_colombia_huila_san_pedro_geisha",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_colombia_huila_san_pedro_geisha"
+    },
+    {
+      "ingredientId": "colombia_la_esperanza_bourbon",
+      "name": "핀카 라 에스페란사",
+      "assetId": "dl_icon_colombia_la_esperanza_bourbon",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_colombia_la_esperanza_bourbon"
+    },
+    {
+      "ingredientId": "coffee_ethiopia_guji",
+      "name": "에티오피아 구지",
+      "assetId": "dl_icon_coffee_ethiopia_guji",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_ethiopia_guji"
+    },
+    {
+      "ingredientId": "coffee_ethiopia_sidama",
+      "name": "에티오피아 시다마",
+      "assetId": "dl_icon_coffee_ethiopia_sidama",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_ethiopia_sidama"
+    },
+    {
+      "ingredientId": "coffee_kenya_nyeri",
+      "name": "케냐 니에리",
+      "assetId": "dl_icon_coffee_kenya_nyeri",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_kenya_nyeri"
+    },
+    {
+      "ingredientId": "coffee_rwanda",
+      "name": "르완다 커피",
+      "assetId": "dl_icon_coffee_rwanda",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_rwanda"
+    },
+    {
+      "ingredientId": "coffee_burundi",
+      "name": "부룬디 커피",
+      "assetId": "dl_icon_coffee_burundi",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_burundi"
+    },
+    {
+      "ingredientId": "coffee_uganda",
+      "name": "우간다 커피",
+      "assetId": "dl_icon_coffee_uganda",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_uganda"
+    },
+    {
+      "ingredientId": "coffee_indonesia_gayo",
+      "name": "인도네시아 가요",
+      "assetId": "dl_icon_coffee_indonesia_gayo",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_indonesia_gayo"
+    },
+    {
+      "ingredientId": "coffee_indonesia_java",
+      "name": "인도네시아 자바",
+      "assetId": "dl_icon_coffee_indonesia_java",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_indonesia_java"
+    },
+    {
+      "ingredientId": "coffee_vietnam_dalat",
+      "name": "베트남 달랏",
+      "assetId": "dl_icon_coffee_vietnam_dalat",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_vietnam_dalat"
+    },
+    {
+      "ingredientId": "coffee_india_malabar",
+      "name": "인도 말라바르",
+      "assetId": "dl_icon_coffee_india_malabar",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_india_malabar"
+    },
+    {
+      "ingredientId": "coffee_costa_rica_tarrazu",
+      "name": "코스타리카 타라주",
+      "assetId": "dl_icon_coffee_costa_rica_tarrazu",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_costa_rica_tarrazu"
+    },
+    {
+      "ingredientId": "coffee_guatemala_antigua",
+      "name": "과테말라 안티구아",
+      "assetId": "dl_icon_coffee_guatemala_antigua",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_guatemala_antigua"
+    },
+    {
+      "ingredientId": "coffee_honduras_marcala",
+      "name": "온두라스 마르칼라",
+      "assetId": "dl_icon_coffee_honduras_marcala",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_honduras_marcala"
+    },
+    {
+      "ingredientId": "coffee_peru_chanchamayo",
+      "name": "페루 찬차마요",
+      "assetId": "dl_icon_coffee_peru_chanchamayo",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_peru_chanchamayo"
+    },
+    {
+      "ingredientId": "coffee_mexico_chiapas",
+      "name": "멕시코 치아파스",
+      "assetId": "dl_icon_coffee_mexico_chiapas",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_mexico_chiapas"
+    },
+    {
+      "ingredientId": "coffee_jamaica_blue_mountain",
+      "name": "자메이카 블루마운틴",
+      "assetId": "dl_icon_coffee_jamaica_blue_mountain",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_jamaica_blue_mountain"
+    },
+    {
+      "ingredientId": "coffee_brazil_cerrado",
+      "name": "브라질 세하두",
+      "assetId": "dl_icon_coffee_brazil_cerrado",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_brazil_cerrado"
+    },
+    {
+      "ingredientId": "coffee_colombia_narino",
+      "name": "콜롬비아 나리뇨",
+      "assetId": "dl_icon_coffee_colombia_narino",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_colombia_narino"
+    },
+    {
+      "ingredientId": "coffee_el_salvador",
+      "name": "엘살바도르 커피",
+      "assetId": "dl_icon_coffee_el_salvador",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_el_salvador"
+    },
+    {
+      "ingredientId": "coffee_nicaragua",
+      "name": "니카라과 커피",
+      "assetId": "dl_icon_coffee_nicaragua",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_nicaragua"
+    },
+    {
+      "ingredientId": "coffee_tanzania",
+      "name": "탄자니아 커피",
+      "assetId": "dl_icon_coffee_tanzania",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_tanzania"
+    },
+    {
+      "ingredientId": "coffee_bolivia",
+      "name": "볼리비아 커피",
+      "assetId": "dl_icon_coffee_bolivia",
+      "existingPng": null,
+      "status": "inventory_only_not_ready",
+      "containerAssetId": "dl_tin_coffee_bolivia"
+    }
+  ]
+}

@@ -1,0 +1,680 @@
+{
+  "scope": "Art registration proof only; actual renderer integration not run",
+  "containerCount": 28,
+  "anchorChecks": [
+    {
+      "assetId": "dl_tin_ethiopia_yirgacheffe_kochere",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_colombia_huila_vergel",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          24,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_brazil_mantiqueira_alves_lima",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          17
+        ],
+        "pourLip": [
+          27,
+          17
+        ],
+        "grip": [
+          16,
+          26
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_panama_esmeralda_geisha",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          26,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_colombia_huila_san_pedro_geisha",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          24,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_colombia_la_esperanza_bourbon",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          24,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_ethiopia_guji",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          11
+        ],
+        "pourLip": [
+          27,
+          11
+        ],
+        "grip": [
+          16,
+          24
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_ethiopia_sidama",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_kenya_nyeri",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          27,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_rwanda",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_burundi",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_uganda",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          9
+        ],
+        "pourLip": [
+          27,
+          9
+        ],
+        "grip": [
+          16,
+          23
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_indonesia_gayo",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          10
+        ],
+        "pourLip": [
+          27,
+          10
+        ],
+        "grip": [
+          16,
+          23
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_indonesia_java",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_vietnam_dalat",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_india_malabar",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          11
+        ],
+        "pourLip": [
+          27,
+          11
+        ],
+        "grip": [
+          16,
+          24
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_costa_rica_tarrazu",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_guatemala_antigua",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          11
+        ],
+        "pourLip": [
+          27,
+          11
+        ],
+        "grip": [
+          16,
+          24
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_honduras_marcala",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_peru_chanchamayo",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          26,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_mexico_chiapas",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          27,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_jamaica_blue_mountain",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_brazil_cerrado",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          9
+        ],
+        "pourLip": [
+          27,
+          9
+        ],
+        "grip": [
+          16,
+          23
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_colombia_narino",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          15
+        ],
+        "pourLip": [
+          27,
+          15
+        ],
+        "grip": [
+          16,
+          25
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_el_salvador",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          24,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_nicaragua",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          25,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_tanzania",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_bolivia",
+      "allNormalized": true,
+      "allOnOpaqueArt": true,
+      "lipRightOfMouth": true,
+      "mouthAndLipSameOpeningHeight": true,
+      "gripBelowMouth": true,
+      "noUnusedLiquidMask": true,
+      "positionsTopLeft": {
+        "mouth": [
+          16,
+          7
+        ],
+        "pourLip": [
+          23,
+          7
+        ],
+        "grip": [
+          16,
+          22
+        ]
+      },
+      "pass": true
+    }
+  ],
+  "exactGrayscaleDuplicates": [],
+  "pass": true
+}

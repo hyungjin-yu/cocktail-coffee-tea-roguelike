@@ -15,7 +15,7 @@ MonoBehaviour:
   id: master_blend
   displayName: "\uB098\uB9CC\uC758 \uC2DC\uADF8\uB2C8\uCC98"
   description: "\uCD94\uAC00 \uB4DC\uB78D +5%p \xB7 \uC6D0\uB450 +10% \xB7 \uC90D\uAE30
-    +0.5"
+    +50cm"
   branch: 2
   tier: 6
   prerequisite: {fileID: 11400000, guid: 44f4cd1f053b1dc4d8fbe27b98a3a75f, type: 2}

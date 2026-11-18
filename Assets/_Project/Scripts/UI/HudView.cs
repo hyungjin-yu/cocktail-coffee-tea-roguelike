@@ -113,6 +113,9 @@ namespace CCT
             label.verticalOverflow = VerticalWrapMode.Truncate;
             return label;
         }
+        public DrinkGoalHud DrinkGoal { get; private set; }
+        public LowHpWarning LowHp { get; private set; }
+
         public static HudView Create(Transform canvas, GameManager game)
         {
             var root = UiFactory.Stretch("Hud", canvas);
@@ -121,6 +124,7 @@ namespace CCT
 
             view.hpBar = new FillBar(root, "HpBar", new Vector2(0f, 1f), new Vector2(30f, -30f),
                 new Vector2(420f, 30f), new Color(0.85f, 0.25f, 0.3f), 22);
+            view.LowHp = LowHpWarning.Attach(view.hpBar.Root, root); // 2026-11-15 피드백 21 HP 20% 미만 경고
             // r13 검수 U3: 중앙 게이지 글자가 벽등·선반 위에 직접 놓여 줄마다 대비가 달랐다. 세 줄 뒤에 공통 어두운 바탕
             // 하나를 깐다(게이지보다 먼저 만들어 뒤에 그려지게, 입력은 막지 않음). 게이지 크기·위치·색은 그대로.
             var gaugeBackRt = UiFactory.Place("GaugeBacking", root, new Vector2(0.5f, 1f), new Vector2(0f, -20f),
@@ -320,6 +324,9 @@ namespace CCT
                 view.PhaseBadge.transform.SetSiblingIndex(view.hiddenDetails.transform.GetSiblingIndex());
                 view.Legend = FamilyLegend.Create(root, game); // 2026-11-10 몬스터 계열 범례(글자 표식 + 상성 대상)
                 view.Legend.transform.SetSiblingIndex(view.hiddenDetails.transform.GetSiblingIndex());
+                // 2026-11-15 피드백 24: 목표 음료 재료 칸(왼쪽 열, 히든 진행 칸 아래 — 목표가 없으면 숨김)
+                view.DrinkGoal = DrinkGoalHud.Create(root, game, new Vector2(30f, -548f));
+                view.DrinkGoal.transform.SetSiblingIndex(view.hiddenDetails.transform.GetSiblingIndex());
             }
 
             // 2026-10-12 Android 터치: 안전 영역(노치·제스처) 안에 HUD를 두고, 조이스틱·연구·히든 버튼을 붙인다.
@@ -491,6 +498,7 @@ namespace CCT
             var player = game.Player;
             hpBar.Set(player.Hp / player.MaxHp);
             hpBar.Label.text = $"HP {Mathf.CeilToInt(player.Hp)} / {Mathf.CeilToInt(player.MaxHp)}";
+            if (LowHp != null) LowHp.Tick(player.Hp, player.MaxHp, game.IsPaused || game.State != GameState.Playing); // 2026-11-15 피드백 21
 
             var gauge = game.CocktailGauge;
             gaugeBar.Set(gauge.Fill01);

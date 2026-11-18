@@ -481,6 +481,7 @@ namespace CCT
         {
             if (!Application.isPlaying) return;
             if (SceneManager.GetActiveScene().name.StartsWith("InitTestScene")) return; // 테스트 러너에서는 자동 시작 안 함
+            if (LaunchOptions.Coop2PRequested) return; // 로컬 2인 실험판은 상점/구매 저장을 열지 않는다(런 메모리 전용)
             var go = new GameObject("SkinCommerceRunner");
             UnityEngine.Object.DontDestroyOnLoad(go);
             go.AddComponent<SkinCommerceRunner>();

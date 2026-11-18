@@ -1,0 +1,24 @@
+{
+  "status": "proposal-awaiting-Claude-agreement",
+  "scope": "same warm material grade for title and combat cafe assets; not darken title to match old combat",
+  "sourceMaterials": [
+    "cafe_wall",
+    "cafe_floor",
+    "cafe_counter"
+  ],
+  "gradeFormula": "Y=(54R+183G+19B)/256;lift=32*(1-Y/255);RGBnew=RGB+lift*(1.10,.86,.55),clamp255;alpha unchanged",
+  "preserves": "No white overlay; original pixel texture/contrast/alpha/palette ordering retained; shadows lift more than highlights",
+  "titleUpperWall": [
+    178,
+    145,
+    103
+  ],
+  "titleCeiling": [
+    118,
+    94,
+    69
+  ],
+  "titleFloorCounterFaceGain": 1.05,
+  "combatDeliverables": "design/tone-proposal/* native/PNG are draft material grades, not imported; Claude must avoid double grading and verify actual combat crowds/drops/enemy bullets",
+  "originalAssetsTouched": false
+}

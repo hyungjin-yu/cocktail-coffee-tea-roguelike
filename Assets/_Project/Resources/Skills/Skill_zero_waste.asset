@@ -15,7 +15,7 @@ MonoBehaviour:
   id: zero_waste
   displayName: "\uB0A8\uAE40\uC5C6\uB294 \uCD94\uCD9C"
   description: "\uC7AC\uB8CC \uCD94\uAC00 \uB4DC\uB78D \uD655\uB960 +20%, \uC90D\uAE30
-    \uBC18\uACBD +0.5"
+    \uBC18\uACBD +50cm"
   branch: 2
   tier: 5
   prerequisite: {fileID: 11400000, guid: 36401c29e1a5e9542b8a435b458b1a3c, type: 2}

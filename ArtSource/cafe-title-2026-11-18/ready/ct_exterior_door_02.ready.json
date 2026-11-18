@@ -1,0 +1,112 @@
+{
+  "assetId": "ct_exterior_door_02",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/cafe-title-2026-11-18",
+  "pathsRelativeTo": "packageRoot",
+  "png": "ready/exterior/door_02.png",
+  "aseprite": "ready/exterior/door_02.aseprite",
+  "dimensions": [
+    184,
+    216
+  ],
+  "alphaBounds": [
+    43,
+    8,
+    124,
+    207
+  ],
+  "alphaValues": [
+    0,
+    42,
+    255
+  ],
+  "nativePivotTopLeftPixels": [
+    43,
+    9
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.23369565217391305,
+    0.9583333333333334
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/door_02.png",
+  "unityResourcePath": "CafeTitle/ready/exterior/door_02",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 100,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "wrapMode": "Clamp"
+  },
+  "sha256": {
+    "png": "af53f8da0ec27a953bb8dfe3ed37a7c10f6a607f47325e39b1b66482ef2512af",
+    "aseprite": "ae9d869625cb70e62197e09550fc77567415a6d482062d2c083fd1b9c470e00d",
+    "nativeMaster": "85f1e960d9b1ad7a5f93c54e49cde609754f3134b642ab1da1b568943d127372"
+  },
+  "sourceEvidence": [
+    "provenance/tool-gate.json",
+    "provenance/source-generation-receipts.json",
+    "provenance/native-source-specs.json",
+    "provenance/finish-scene.lua",
+    "reference/reuse-inventory.json"
+  ],
+  "provenance": {
+    "tools": [
+      "Aseprite1.3.18.6",
+      "official PixelLab0.4.131"
+    ],
+    "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+    "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+    "newGeneratedSourcesUsed": [
+      "ct_bookshelf_source",
+      "ct_coat_cabinet_source",
+      "ct_radio_source",
+      "ct_ledger_source",
+      "ct_espresso_source",
+      "ct_facade_material_source"
+    ],
+    "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+  },
+  "checks": {
+    "dimensions": true,
+    "nonempty": true,
+    "nativeMagic": true,
+    "nativeCanvas": true,
+    "nativeFrames1": true,
+    "nativePivot": true,
+    "roundtripPixelsEqual": true,
+    "alphaPolicy": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false
+  },
+  "verification": "verification/asset-validation.json",
+  "visualPreviews": [
+    "previews/interior-composite.png",
+    "previews/hotspots-labels-proof.png",
+    "previews/entry-continuity-all17.png",
+    "previews/entry-preview.gif",
+    "previews/menu-contain-1920x1080.png",
+    "previews/menu-contain-1280x720.png",
+    "previews/menu-contain-1440x1080.png"
+  ],
+  "nativeMaster": "ready/exterior/ct_door_open_master.aseprite",
+  "animation": {
+    "clip": "ct_door_open",
+    "frame": 2,
+    "frameCount": 8,
+    "fps": 12,
+    "loop": false,
+    "angleDegrees": 30,
+    "hingeWorldMeters": [
+      1.4,
+      -0.025,
+      0
+    ],
+    "constantLeafWidthMeters": 1.046,
+    "constantThicknessMeters": 0.044
+  }
+}

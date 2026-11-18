@@ -1,0 +1,100 @@
+{
+  "assetId": "dl_coffee_cappuccino_cup",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-16",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "cup",
+  "png": "ready/dl_coffee_cappuccino_cup.png",
+  "aseprite": "ready/dl_coffee_cappuccino_cup.aseprite",
+  "sourceRawPng": "raw/dl_coffee_cappuccino_cup_v2.png",
+  "sourceRawAseprite": "raw/dl_coffee_cappuccino_cup_v2.aseprite",
+  "dimensions": [
+    32,
+    26
+  ],
+  "alphaBounds": [
+    2,
+    7,
+    30,
+    26
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    16,
+    26
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_coffee_cappuccino_cup.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 128,
+    "filterMode": "Point",
+    "mipmapEnabled": false,
+    "compression": "None",
+    "alphaIsTransparency": true,
+    "sRGB": true,
+    "wrapModeU": "Clamp",
+    "wrapModeV": "Clamp",
+    "pivot": [
+      0.5,
+      0
+    ]
+  },
+  "sha256": {
+    "png": "4b4f80a90c497531387d37f3c00d6f18e44e88d57b85c1ce48016df96b2cda7a",
+    "aseprite": "8810669201578d6f066eac898522ede2c222e1edb4d29ca91cf38e35c4efa72a"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+    "pixelLabGeneratedAsset": "dl_coffee_cappuccino_cup",
+    "technicalDerivedMask": false,
+    "nativeFinish": "Second actual PixelLab generation selected for round bowl and separate saucer; native palette/alpha cleanup, transparent liquid window required by renderer, uniform crop-fit and bottom contact",
+    "promptEvidence": "provenance/cappuccino-revision-spec.json"
+  },
+  "checks": {
+    "structural": true,
+    "nativeRoundtripPixelsEqual": true,
+    "nativeSourcePivot": true,
+    "alphaPolicy": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false
+  },
+  "verification": "verification/asset-validation.json",
+  "visualPreviews": [
+    "previews/cups-masks-fill.png",
+    "previews/origins-color.png",
+    "previews/origins-gray.png",
+    "previews/foam-repeat-lock.png"
+  ],
+  "anchors": {
+    "assetId": "dl_coffee_cappuccino_cup",
+    "grip": [
+      0.09375,
+      0.46153846153846156
+    ],
+    "liquid": [
+      0.28125,
+      0.3076923076923077,
+      0.78125,
+      0.5769230769230769
+    ],
+    "mouth": [
+      0.53125,
+      0.6153846153846154
+    ],
+    "pivot": [
+      0.5,
+      0
+    ],
+    "pixelOrigin": "bottom-left normalized; mask PNG uses top-left pixels"
+  }
+}

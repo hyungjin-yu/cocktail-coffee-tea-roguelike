@@ -1,0 +1,79 @@
+{
+  "assetId": "hidden_weekend_rush_steps",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-17",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "hidden_hud_icon",
+  "png": "ready/hidden_weekend_rush_steps.png",
+  "aseprite": "ready/hidden_weekend_rush_steps.aseprite",
+  "sourceRawPng": "raw/hidden_weekend_rush_steps_v2.png",
+  "sourceRawAseprite": "raw/hidden_weekend_rush_steps_v2.aseprite",
+  "dimensions": [
+    24,
+    24
+  ],
+  "alphaBounds": [
+    1,
+    3,
+    23,
+    21
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0.5
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    12,
+    12
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_weekend_rush_steps.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 100,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "sha256": {
+    "png": "acc696b122bacaa269b56547d8be9dc9d807d4ae27694df4eb647687f34cbb6e",
+    "aseprite": "4d11e2a0fc56f1a594dcf2c04174441736021ffe52560b836ba4a188a309100d",
+    "sourceRawPng": "c747de987eb0f976ad271be2da0cc50284b18e18f24ec0edecbb1921772a3b51",
+    "sourceRawAseprite": "cf2e0711a4227eba9c88494cbea572b274e6ae1a71de6159f43f7ede3004e14a"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+    "sourceEvidence": "provenance/collected-generations.json",
+    "nativeFinish": "Rejected first generated broom-like object. Actual official PixelLab footwear revision retained; native horizontal flip faces movement right, warm/silver palette, sole/lace preservation,20x19 body fit and two short separated heel speed ticks. Not a hue variant.",
+    "promptEvidence": "provenance/recovery-specs29.json"
+  },
+  "checks": {
+    "dimensions": true,
+    "nativeCanvas": true,
+    "nativeMagic": true,
+    "nativeFrames": true,
+    "roundtripPixels": true,
+    "pivot": true,
+    "alpha": true,
+    "nonempty": true,
+    "cornersTransparent": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false,
+    "unmodifiedRawSourceRoundtrip": true
+  },
+  "verification": "verification/hidden-validation.json",
+  "visualPreviews": [
+    "previews/hidden-finish-review.png"
+  ]
+}

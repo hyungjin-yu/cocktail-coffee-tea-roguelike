@@ -78,6 +78,9 @@ namespace CCT.Tests
             Assert.IsFalse(TouchControlsView.Held);
             Assert.AreEqual(Vector2.zero, TouchControlsView.Move);
             yield return null;
+            // 놓기 직전 프레임에 예약된 MovePosition 한 걸음(0.02초)이 다음 물리 단계에서 적용될 수 있다 — 물리 단계 2번 뒤를 기준으로 본다.
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
             Vector2 stopped = game.Player.Position;
             yield return new WaitForSeconds(0.3f);
             Assert.AreEqual(stopped.x, game.Player.Position.x, 0.05f, "놓으면 정지");

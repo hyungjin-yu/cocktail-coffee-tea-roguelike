@@ -1,0 +1,19 @@
+{
+  "nativeUiVersion": "0.4.131",
+  "active": 0,
+  "waiting": 0,
+  "recent": 29,
+  "finalJob29": {
+    "id": "hidden_weekend_rush_steps_v2",
+    "archive": "C:\\Users\\user\\AppData\\Roaming\\Aseprite\\extensions\\pixellab\\generation_history\\2026-11-17_12-39-30 - FB17R - hidden_weekend_rush_steps_v2 - 029\\0.png",
+    "png": "ArtSource\\feedback-art-2026-11-17\\raw\\hidden_weekend_rush_steps_v2.png",
+    "sha256": "c747de987eb0f976ad271be2da0cc50284b18e18f24ec0edecbb1921772a3b51",
+    "completionEvidence": "Official PixelLab generation queue session history: #29 FB17R-hidden_weekend_rush_steps_v2 Status:Completed; 0active/0waiting/29recent, directly viewed after user reapproval"
+  },
+  "observedOtherCompletedJobs": [
+    "#28 dl_tin_coffee_bolivia",
+    "#27 dl_tin_coffee_tanzania"
+  ],
+  "userReapproval": "msg_61b1c4330c86",
+  "newGenerationRequestsDuringFinalCheck": 0
+}

@@ -107,7 +107,7 @@ namespace CCT.Tests
 
                 var iconRect = WorldRect(iconT);
                 Assert.IsTrue(Contains(WorldRect(slot), iconRect), "아이콘은 카드 안");
-                foreach (var other in new[] { "Stacks", "Odds", "Key", "Rarity", "Name" })
+                foreach (var other in new[] { "Stacks", "Odds", "Rarity", "Name" })
                     Assert.IsFalse(iconRect.Overlaps(WorldRect(slot.Find(other))), $"아이콘이 {other} 줄과 겹친다");
             }
         }

@@ -1,0 +1,132 @@
+{
+  "ct_bookshelf_source": {
+    "path": "C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/cafe-title-2026-11-18/raw/ct_bookshelf_source.png",
+    "size": [
+      128,
+      192
+    ],
+    "bounds": [
+      4,
+      16,
+      124,
+      186
+    ]
+  },
+  "ct_coat_cabinet_source": {
+    "path": "C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/cafe-title-2026-11-18/raw/ct_coat_cabinet_source.png",
+    "size": [
+      128,
+      192
+    ],
+    "bounds": [
+      16,
+      4,
+      112,
+      192
+    ]
+  },
+  "ct_door_material_probe": {
+    "path": "C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/cafe-title-2026-11-18/raw/ct_door_material_probe.png",
+    "size": [
+      96,
+      128
+    ],
+    "bounds": [
+      28,
+      12,
+      68,
+      116
+    ]
+  },
+  "ct_espresso_source": {
+    "path": "C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/cafe-title-2026-11-18/raw/ct_espresso_source.png",
+    "size": [
+      128,
+      96
+    ],
+    "bounds": [
+      15,
+      22,
+      113,
+      80
+    ]
+  },
+  "ct_ledger_source": {
+    "path": "C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/cafe-title-2026-11-18/raw/ct_ledger_source.png",
+    "size": [
+      128,
+      64
+    ],
+    "bounds": [
+      12,
+      1,
+      125,
+      62
+    ]
+  },
+  "ct_radio_source": {
+    "path": "C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/cafe-title-2026-11-18/raw/ct_radio_source.png",
+    "size": [
+      128,
+      64
+    ],
+    "bounds": [
+      25,
+      7,
+      105,
+      57
+    ]
+  },
+  "cafe_counter_effect_right_00": {
+    "path": "C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/cafe-title-2026-11-18/reference/cafe_counter_effect_right_00.png",
+    "size": [
+      512,
+      256
+    ],
+    "bounds": [
+      4,
+      60,
+      506,
+      194
+    ]
+  },
+  "cafe_floor_effect_right_00": {
+    "path": "C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/cafe-title-2026-11-18/reference/cafe_floor_effect_right_00.png",
+    "size": [
+      512,
+      256
+    ],
+    "bounds": [
+      0,
+      0,
+      512,
+      256
+    ]
+  },
+  "cafe_wall_effect_right_00": {
+    "path": "C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/cafe-title-2026-11-18/reference/cafe_wall_effect_right_00.png",
+    "size": [
+      1024,
+      512
+    ],
+    "bounds": [
+      0,
+      0,
+      1024,
+      512
+    ]
+  },
+  "laptop_open": {
+    "path": "C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/cafe-title-2026-11-18/reference/laptop_open.png",
+    "size": [
+      384,
+      256
+    ],
+    "bounds": [
+      4,
+      4,
+      380,
+      252
+    ]
+  }
+}

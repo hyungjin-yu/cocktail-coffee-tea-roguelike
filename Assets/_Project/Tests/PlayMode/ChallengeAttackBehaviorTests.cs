@@ -37,11 +37,11 @@ namespace CCT.Tests
         [UnityTest]public IEnumerator ExistingAndNewEnemies_RescaleHpPercentWithoutDamageEvent_DeadStaysDead()
         {
             var enemy=Target(2,2);float sharedHp=EnemyDef.Brute.hp;
-            Assert.AreEqual(sharedHp*2*1.18f,enemy.MaxHp,.0001f);
+            Assert.AreEqual(IntNum.Round(sharedHp*2*1.18f),enemy.MaxHp,.0001f,"정수 전용: 최대 체력 정수");
             enemy.TakeDamage(enemy.MaxHp*.6f);int damageEvents=0;enemy.Damaged+=_=>damageEvents++;
             var dead=Target(3);dead.TakeDamage(dead.Hp);
             challenge.SetCoffeeCount(15);
-            Assert.AreEqual(sharedHp*2*1.36f,enemy.MaxHp,.0001f);Assert.AreEqual(.4f,enemy.Hp/enemy.MaxHp,.0001f);
+            Assert.AreEqual(IntNum.Round(sharedHp*2*1.36f),enemy.MaxHp,.0001f);Assert.AreEqual(.4f,enemy.Hp/enemy.MaxHp,1f/enemy.MaxHp+.0001f,"정수 HP라 1HP 이내");
             Assert.AreEqual(0,damageEvents);Assert.IsTrue(dead.IsDead);Assert.LessOrEqual(dead.Hp,0);
             var later=Target(4,2);Assert.AreEqual(enemy.MaxHp,later.MaxHp,.0001f);Assert.AreEqual(sharedHp,EnemyDef.Brute.hp);
             yield return null;
@@ -49,10 +49,10 @@ namespace CCT.Tests
         [UnityTest]public IEnumerator CurrentHitMultiplier_OnceBeforeDamageReduction_IFrameAndZoneRemainSeparate()
         {
             stats.damageReduction=.25f;float initial=player.Hp;
-            player.TakeDamage(10);Assert.AreEqual(initial-10*1.072f*.75f,player.Hp,.0001f);
-            player.TakeDamage(10);Assert.AreEqual(initial-10*1.072f*.75f,player.Hp,.0001f);
+            player.TakeDamage(10);Assert.AreEqual(initial-IntNum.Damage(10*1.072f*.75f),player.Hp,.0001f,"정수 전용: 8.04 → 8");
+            player.TakeDamage(10);Assert.AreEqual(initial-IntNum.Damage(10*1.072f*.75f),player.Hp,.0001f);
             challenge.SetCoffeeCount(15);float before=player.Hp;
-            player.TakeZoneDamage(10);Assert.AreEqual(before-10*1.132f*.75f,player.Hp,.0001f);
+            player.TakeZoneDamage(10);Assert.AreEqual(before-IntNum.Damage(10*1.132f*.75f),player.Hp,.0001f);
             Assert.AreEqual(12,stats.Damage,"Enemy challenge never changes player outgoing attack.");yield return null;
         }
         [UnityTest]public IEnumerator ActualGunAndBowPrimaryAttach_StatusButSecondaryAndHybridDoNot()

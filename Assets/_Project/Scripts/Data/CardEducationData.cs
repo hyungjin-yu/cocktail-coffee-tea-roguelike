@@ -328,6 +328,8 @@ namespace CCT
         }
         public const string SymbolNotice = "효과 수치는 게임의 상징적 표현이며 섭취에 따른 건강 효능이나 술의 도수·우열을 뜻하지 않습니다.";
         public static string MaxEffect(CardData c) { var form = AttackFinalForms.ForCard(c.id); return form.HasValue ? "\n" + AttackFinalForms.Description(form.Value) : ""; }
+        /// <summary>2026-11-15 피드백 10: 출처를 뺀 본문(게임 효과 → 음료 지식 → 게임 해석 → 상징 안내). 출처는 CardSourceList가 따로 그린다.</summary>
+        public static string Body(CardData c) => "게임 효과\n" + c.description + "\n최대 중첩 " + c.maxStacks + MaxEffect(c) + "\n\n음료 지식\n" + c.realWorldFact + "\n\n게임 해석\n" + c.gameplayConnection + "\n\n" + SymbolNotice;
         public static string Detail(CardData c) => "게임 효과\n" + c.description + "\n최대 중첩 " + c.maxStacks + MaxEffect(c) + "\n\n음료 지식\n" + c.realWorldFact + "\n\n게임 해석\n" + c.gameplayConnection + "\n\n" + SymbolNotice + "\n\n출처: " + c.sourceName + "\n" + c.sourceUrl + (string.IsNullOrEmpty(c.additionalSources) ? "" : "\n\n" + c.additionalSources);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "assetManifestMatchesIndex": 48,
+  "finalPngHashMatches": 48,
+  "finalNativeHashMatches": 48,
+  "sourcePngAndNativeHashMatches": 48,
+  "allExpectedIdsReady": true,
+  "finalNativeMasterCount": 3,
+  "totalFinalNativeFiles": 51,
+  "priorVersionLabelTextFilesCorrected": 45,
+  "noUnityOrHumanPlayClaim": true
+}

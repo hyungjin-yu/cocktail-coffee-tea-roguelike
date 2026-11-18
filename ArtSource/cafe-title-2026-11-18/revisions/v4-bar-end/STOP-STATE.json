@@ -1,0 +1,368 @@
+{
+  "status": "stopped-at-user-request",
+  "capturedLocal": "2026-11-18 10:15 KST",
+  "task": "task_b61f79dc3b52",
+  "dispatch": "ctx_2d3e0ad83f29",
+  "layoutVersion": 4,
+  "layoutStatus": "temp",
+  "wholeRevisionReady": false,
+  "wholeRevisionManifestExists": false,
+  "partialGradeManifest": "manifest.bg_barwarm.ready.json",
+  "partialGradeCount": 4,
+  "newPixelLabRequestsInV4": 0,
+  "pngFilesOnDisk": 32,
+  "nativeFilesOnDisk": 34,
+  "files": [
+    {
+      "path": "layout.json",
+      "sha256": "08948f3e2c3369c44e8db043a0e498a4a211eef4ed436f2dc748420a4e382b08",
+      "bytes": 30484
+    },
+    {
+      "path": "manifest.bg_barwarm.ready.json",
+      "sha256": "97c9904965c51e0cb5378ba9f6c5be2d735999485ae902071b97e2ce68a1dc79",
+      "bytes": 7527
+    },
+    {
+      "path": "provenance/author-scene.lua",
+      "sha256": "b6837b4ea4ab66fa77ada2ccd1b674399c662a86276e41a41ac0e88ec2789cac",
+      "bytes": 19322
+    },
+    {
+      "path": "provenance/finish-scene.lua",
+      "sha256": "d1763b5a3c9672c9d08cdc0a6c4c4f2aa62a1a59e191f15a1e0121873486ac96",
+      "bytes": 21860
+    },
+    {
+      "path": "ready/bridge/b00.png",
+      "sha256": "84abd1d340839c6d65a573eb6c72b869b2c93bb44bfc26ef345d1b2b5ac84c43",
+      "bytes": 16756
+    },
+    {
+      "path": "ready/bridge/b01.png",
+      "sha256": "052eff446aa75ef1c88abc6a6d0b825f6a57260ab744f17633f9cc6f21d38b82",
+      "bytes": 16755
+    },
+    {
+      "path": "ready/bridge/b02.png",
+      "sha256": "19eefafe19925fb1d8a318bb81af7bb8feadad3ec345278b62da0388a5c7cdc2",
+      "bytes": 18651
+    },
+    {
+      "path": "ready/bridge/b03.png",
+      "sha256": "ed6de715aadfebfe22f32575d3b7eb8c9e224ce0f131f471e3ed417fa598bb81",
+      "bytes": 28709
+    },
+    {
+      "path": "ready/bridge/b04.png",
+      "sha256": "cde661628295c0d42e93f92df3c49fa03fbe55f91f27bae64e51aa268bbfafdc",
+      "bytes": 32295
+    },
+    {
+      "path": "ready/bridge/b05.png",
+      "sha256": "d5e4e17d1a23fb92424f98f9c6b3bf596b291bfb0be68ea5bf6f85085be86e04",
+      "bytes": 29309
+    },
+    {
+      "path": "ready/bridge/b06.png",
+      "sha256": "487be9a867bef53c766698c7979644074c6682511dcf549d6f2c929dbe49be40",
+      "bytes": 25485
+    },
+    {
+      "path": "ready/bridge/b07.png",
+      "sha256": "e1d941b2050bf0f680893b15fd837f825eb3ae2087e051832d26ecc996a6e182",
+      "bytes": 21639
+    },
+    {
+      "path": "ready/exterior/door_00.png",
+      "sha256": "b174306ea23bfbefbd489f3c9a605e5ada34ac534ac226c63ff8af5ef497708e",
+      "bytes": 1586
+    },
+    {
+      "path": "ready/exterior/door_01.png",
+      "sha256": "20def8489e975ae9a34c1b51212bc1e737a7674478ec896ecf3b9f2672c59f98",
+      "bytes": 2016
+    },
+    {
+      "path": "ready/exterior/door_02.png",
+      "sha256": "b48460853a50572d95eca2223c9aeb5374f9f8071015c6b63a0140dda939e62e",
+      "bytes": 2137
+    },
+    {
+      "path": "ready/exterior/door_03.png",
+      "sha256": "850dda1270aba2192c03084e6620412a6d70dd1a75441c515d6fdb9a78bc246e",
+      "bytes": 2155
+    },
+    {
+      "path": "ready/exterior/door_04.png",
+      "sha256": "e231a43f34d4a2ac3784ea2c6a46fde309cc29a5a3c295396c6e7525cd9623e8",
+      "bytes": 2048
+    },
+    {
+      "path": "ready/exterior/door_05.png",
+      "sha256": "b65bc0af803fc7b91af725f039d01722f83d2bad37b3447cf9330ffb62367e3b",
+      "bytes": 1885
+    },
+    {
+      "path": "ready/exterior/door_06.png",
+      "sha256": "38e544bf15abb9de7bc74cd2bf4de6cc1096002ef9234075a421a6f34e5fbeba",
+      "bytes": 1562
+    },
+    {
+      "path": "ready/exterior/door_07.png",
+      "sha256": "7d1d4dcc936bff337d1377bdf9c19ab83d63d8802d11aa7b0c824c4a974e6be1",
+      "bytes": 1461
+    },
+    {
+      "path": "ready/exterior/facade.png",
+      "sha256": "94d2270d63c87474329e0c45fd7ff6e4b2226e006650c10d6185a833372f0899",
+      "bytes": 6853
+    },
+    {
+      "path": "ready/exterior/glimpse.png",
+      "sha256": "632c573d736fd7c4b508797aaa194fa73995fe5f2e7b48dba116bebfe6c27f75",
+      "bytes": 7681
+    },
+    {
+      "path": "ready/gameplay/bg_barwarm_counter/bg_barwarm_counter_00.png",
+      "sha256": "c32f6ad90a448db9acfc5371c93e9fedd57ef96dca30001671c3f3d34a5c7d73",
+      "bytes": 11142
+    },
+    {
+      "path": "ready/gameplay/bg_barwarm_floor/bg_barwarm_floor_00.png",
+      "sha256": "6d779cd9a1928a5d61f1c2987a6fedda9428410538c95172ffd1675171db3929",
+      "bytes": 17047
+    },
+    {
+      "path": "ready/gameplay/bg_barwarm_lamp/bg_barwarm_lamp_00.png",
+      "sha256": "59226f7cf3d052f28810af750f2375ccaf8beca3e71176bcd3468233e63851b7",
+      "bytes": 2563
+    },
+    {
+      "path": "ready/gameplay/bg_barwarm_wall/bg_barwarm_wall_00.png",
+      "sha256": "57f17baa4474c5847206146b161be3c5e0d12ef0ca8d0f7772f9f129570c8681",
+      "bytes": 53746
+    },
+    {
+      "path": "ready/interior/g0.png",
+      "sha256": "581e58539b8504fdf61ad46181a0f6415e2f9a378dfffd4d41b4ba87052ed470",
+      "bytes": 21984
+    },
+    {
+      "path": "ready/interior/g1.png",
+      "sha256": "00cbc6c07e9be4371def75550477997c5dde4679870cd3015df762143e8ac687",
+      "bytes": 11105
+    },
+    {
+      "path": "ready/interior/g2.png",
+      "sha256": "57710be97126d21e8554098298218d2ed3a531baad291bcaeb6944b36a8af5fa",
+      "bytes": 2505
+    },
+    {
+      "path": "ready/interior/g3.png",
+      "sha256": "1e49f16911cabd9a1aadd2ca7bbc2df22ee434adc557aeda0c5d053eb487b8be",
+      "bytes": 6096
+    },
+    {
+      "path": "ready/interior/g4.png",
+      "sha256": "ff6be955e1a35ece77a7dfca09da1483660b72728178a3db3b949750c0ef4632",
+      "bytes": 3571
+    },
+    {
+      "path": "ready/interior/g5.png",
+      "sha256": "da38e9dbbf4a8dcae585e054de17a77deaeb511f99ee3daa9578e0e9b9b6f311",
+      "bytes": 2350
+    },
+    {
+      "path": "ready/interior/g6.png",
+      "sha256": "8cd330ad33ac6da710da766d827cbb56f3aebabd494a601e82bec9232ff5d4fe",
+      "bytes": 1555
+    },
+    {
+      "path": "ready/interior/g7.png",
+      "sha256": "9424e262984efe29fe42db6766e7937b7a6f0b1883af988de78602d09dc06195",
+      "bytes": 868
+    },
+    {
+      "path": "ready/interior/g8.png",
+      "sha256": "f51dbf9468afd134f6c0f93c7591fcc8ec3d949541fe8adf99b97dd843229258",
+      "bytes": 3713
+    },
+    {
+      "path": "ready/interior/light.png",
+      "sha256": "26b9a59986491beb8ff59e4067d863be965fd3aefceca178e57e7dd98fd0b797",
+      "bytes": 3022
+    },
+    {
+      "path": "ready/bridge/b00.aseprite",
+      "sha256": "f804cec2700b01772c4f74b3507627e711b6a83594072ed682973a3a70513d44",
+      "bytes": 14969
+    },
+    {
+      "path": "ready/bridge/b01.aseprite",
+      "sha256": "bb333268ec9187833b86f8d37d0a76794fee3cb3d6e76f21cca4afbaeed88a75",
+      "bytes": 14705
+    },
+    {
+      "path": "ready/bridge/b02.aseprite",
+      "sha256": "344963d581471068793a85c23c0a4731d94e6f86c4e56cbd0ba6647f1f0a2af9",
+      "bytes": 15410
+    },
+    {
+      "path": "ready/bridge/b03.aseprite",
+      "sha256": "4219ae2a7562724016e33ec590f8795361f0da3b1814169a17518c1b1afd6766",
+      "bytes": 20809
+    },
+    {
+      "path": "ready/bridge/b04.aseprite",
+      "sha256": "5fb2d72125ea3458e9fa9804f64fb102229e2a6d3a7676ba60c3ea7c3ed91d86",
+      "bytes": 23278
+    },
+    {
+      "path": "ready/bridge/b05.aseprite",
+      "sha256": "3e8661500c85a0a568c21dfa7fe8e6515bc10a1c4b8eb487e2c5cc4a27c6451c",
+      "bytes": 21598
+    },
+    {
+      "path": "ready/bridge/b06.aseprite",
+      "sha256": "8df20c1c888bef6652a6b0a0b05926c6db4753610a589b7a54c1063421fd5924",
+      "bytes": 20405
+    },
+    {
+      "path": "ready/bridge/b07.aseprite",
+      "sha256": "35b63ca76a0f804cdfd46ec89ca783aa694ec0c6909792135570703ad7da93e6",
+      "bytes": 17910
+    },
+    {
+      "path": "ready/exterior/ct_door_open_master.aseprite",
+      "sha256": "30af39d9e52e07305acf5ba0cd03cb9c6d43f4de5ed97af803db1fb76b9e069e",
+      "bytes": 14745
+    },
+    {
+      "path": "ready/exterior/door_00.aseprite",
+      "sha256": "b80d9c0dbd87e717997f2249795bd620db8a8e55fec36a6ea0448a7426d572a6",
+      "bytes": 2421
+    },
+    {
+      "path": "ready/exterior/door_01.aseprite",
+      "sha256": "1c1682a62e768c50c7865008b88b4d6c97db07f588f95b8b46504ed5e4966cea",
+      "bytes": 2670
+    },
+    {
+      "path": "ready/exterior/door_02.aseprite",
+      "sha256": "6d715e12fc8b4714a43fe210885f8cc6e9b9eb48a8fadfcb09505392b4c8481f",
+      "bytes": 2759
+    },
+    {
+      "path": "ready/exterior/door_03.aseprite",
+      "sha256": "5e7adbda4b6990f45222acd7d046fe2f35f0a211c2b27aa46c44605e0db2aa15",
+      "bytes": 2795
+    },
+    {
+      "path": "ready/exterior/door_04.aseprite",
+      "sha256": "e2821fc28488b5b5dc9ca426bdbd87d88cbae0c6b1eef1b2e593693a769fb5de",
+      "bytes": 2597
+    },
+    {
+      "path": "ready/exterior/door_05.aseprite",
+      "sha256": "016461d9d05b456b37e7e60c3aeef9f864b7c2a1b4662527b4ac1bad0fea8b10",
+      "bytes": 2546
+    },
+    {
+      "path": "ready/exterior/door_06.aseprite",
+      "sha256": "92558b686ef376cc61fbffa38ad1d3494fa81c0c199c92c16c03ddea8ac8224b",
+      "bytes": 2350
+    },
+    {
+      "path": "ready/exterior/door_07.aseprite",
+      "sha256": "cd47905bfbef85148906a7a8036aee716defdcfc006313f389418a604fe2332b",
+      "bytes": 2259
+    },
+    {
+      "path": "ready/exterior/facade.aseprite",
+      "sha256": "8ef83457331fd150ffebbf017d59571a2181eb1a462fb40a5a52e09d928e80b2",
+      "bytes": 9524
+    },
+    {
+      "path": "ready/exterior/glimpse.aseprite",
+      "sha256": "66950faf8b4a152a948bdf01f1f8cc06b57b749ec2c5535f3aeac4f79dd182b1",
+      "bytes": 7278
+    },
+    {
+      "path": "ready/gameplay/bg_barwarm_counter/bg_barwarm_counter_00.aseprite",
+      "sha256": "311bbfad947fbe2a11b368810430c66e8b0d491cb0bb5b64c7a5121afb445028",
+      "bytes": 7429
+    },
+    {
+      "path": "ready/gameplay/bg_barwarm_floor/bg_barwarm_floor_00.aseprite",
+      "sha256": "0f8e2ffff8773a391cb264ac74b899609a472de991c9c6740245eda696ed94f6",
+      "bytes": 10718
+    },
+    {
+      "path": "ready/gameplay/bg_barwarm_lamp/bg_barwarm_lamp_00.aseprite",
+      "sha256": "1eb0d0099881c66dcca2940bfc5c5715e08da2952f37013e11325c1e7e3fe9fa",
+      "bytes": 2331
+    },
+    {
+      "path": "ready/gameplay/bg_barwarm_wall/bg_barwarm_wall_00.aseprite",
+      "sha256": "124af82ca569c10c571c0288df4e92c0e6924705387fdfb33a101b14640395cd",
+      "bytes": 25419
+    },
+    {
+      "path": "ready/interior/ct_interior_master.aseprite",
+      "sha256": "675b7ad991df26bbb0b715fa56a0f873862d13d2707b7d24ddbb20e23923024f",
+      "bytes": 40771
+    },
+    {
+      "path": "ready/interior/g0.aseprite",
+      "sha256": "6b5259168e1ec87472f3cb5ed00f428fe67db70c6caad236f6033d66fa1c3727",
+      "bytes": 17591
+    },
+    {
+      "path": "ready/interior/g1.aseprite",
+      "sha256": "0ad967962209aa62fd7660f3ae4edb55e36d8e409a9ddee5c20be815d406122b",
+      "bytes": 7763
+    },
+    {
+      "path": "ready/interior/g2.aseprite",
+      "sha256": "9775763418dc0c92379833b7de6dd720fb5ee60c9b4dc0b3cffb6b71359becf2",
+      "bytes": 2654
+    },
+    {
+      "path": "ready/interior/g3.aseprite",
+      "sha256": "a460ec81f0348bb247a8a7c50dadd58d792421fc49cd2cd5a6fd3ab7d537c80e",
+      "bytes": 4777
+    },
+    {
+      "path": "ready/interior/g4.aseprite",
+      "sha256": "446d2fbe6b7b5178e0b2295a6a03a0da31652dc39dade2da71a2ac609384bffc",
+      "bytes": 3508
+    },
+    {
+      "path": "ready/interior/g5.aseprite",
+      "sha256": "68fb75216c6a24c9c0b7cc8475cd8ececd158be2cc78925c024cb72226b53ba3",
+      "bytes": 2604
+    },
+    {
+      "path": "ready/interior/g6.aseprite",
+      "sha256": "2e9a2d2e374e6dc8b81bb51a06acb963d802f3ea7c1e9c9fde1b43c6be3fa22e",
+      "bytes": 2309
+    },
+    {
+      "path": "ready/interior/g7.aseprite",
+      "sha256": "81cfc210bee2501347dc47c02b5c7fe64c0c333e1ee3273b3f5fc153681dbe4a",
+      "bytes": 1814
+    },
+    {
+      "path": "ready/interior/g8.aseprite",
+      "sha256": "8a16c50a89310f36813573892208345681856a94e352009e15b9f5ab4d0146c2",
+      "bytes": 3719
+    },
+    {
+      "path": "ready/interior/light.aseprite",
+      "sha256": "76fd5783db6a98f79acebcab2df8519dde47177a9a431c88185301c608a2c916",
+      "bytes": 3445
+    }
+  ],
+  "note": "Hashes are a stop-time backup baseline, not a new validation pass. Some copied masters/metadata are stale; follow STOP-RESUME.md."
+}

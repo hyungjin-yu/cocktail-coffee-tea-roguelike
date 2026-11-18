@@ -1,0 +1,136 @@
+{
+  "aseprite": {
+    "executable": "C:/Program Files/Aseprite/Aseprite.exe",
+    "native_source": "ArtSource\\coffee-brew-2026-10-21\\aseprite\\dl_coffee_cup.aseprite",
+    "header_magic": "0xa5e0",
+    "frames": 1,
+    "size": [
+      32,
+      26
+    ],
+    "batch_exit_code": 0,
+    "roundtrip_pixels_equal": true,
+    "extension_warning": "handle-pose.lua:58: attempt to index a nil value (local 'dlg')"
+  },
+  "pixellab": {
+    "installed_version": "0.4.130",
+    "credential_present": true,
+    "endpoint": "wss://api.pixellab.ai/generate-style",
+    "actual_request_asset": "dl_coffee_latte_glass",
+    "result": "rejected",
+    "exact_error": "Your PixelLab version is outdated. Please update",
+    "process_exit_code": 1,
+    "images_returned": 0,
+    "fallback_used": false
+  },
+  "references": [
+    {
+      "path": "ArtSource/coffee-brew-2026-10-21/raw/dl_coffee_cup.png",
+      "size": [
+        32,
+        26
+      ],
+      "alpha_bounds": [
+        0,
+        4,
+        30,
+        26
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "b1caf2e099748e4c704ed3c3beb5b15f7a2ca5700a8c95815f3660e3a05b7d73"
+    },
+    {
+      "path": "ArtSource/coffee-brew-2026-10-21/raw/dl_coffee_mug.png",
+      "size": [
+        36,
+        36
+      ],
+      "alpha_bounds": [
+        1,
+        3,
+        34,
+        36
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "8aa0644333e4dde9620fe573f4b901179f1c43011ebb0ca80659b3750c494df8"
+    },
+    {
+      "path": "ArtSource/coffee-brew-2026-10-21/raw/dl_coffee_cup_mask.png",
+      "size": [
+        32,
+        26
+      ],
+      "alpha_bounds": [
+        2,
+        5,
+        24,
+        23
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "8c1fad13fcf3a389fd4033d6fd14167702ba1afbd5a2b68b97fba0d0d8bbd297"
+    },
+    {
+      "path": "ArtSource/coffee-brew-2026-10-21/raw/dl_coffee_mug_mask.png",
+      "size": [
+        36,
+        36
+      ],
+      "alpha_bounds": [
+        3,
+        4,
+        27,
+        34
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "e05fa4471533c8819b9213f6cb2bff270ff9efc7e876a568e1d817654413fb53"
+    },
+    {
+      "path": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_bean.png",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_bounds": [
+        7,
+        10,
+        25,
+        23
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "c26e0dfe7bdd1f03e294021985c997484a04bf69abda9e6e9c7c653069459d4b"
+    },
+    {
+      "path": "Assets/_Project/Resources/ProgressionUI/tree_node_locked.png",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_bounds": [
+        4,
+        4,
+        60,
+        60
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "sha256": "ac137881fa7672423f85dd62229f12e9afb5db74290274773af8cd9b89621a16"
+    }
+  ]
+}

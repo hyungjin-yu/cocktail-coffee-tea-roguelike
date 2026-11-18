@@ -27,11 +27,14 @@ namespace CCT
 
         /// <summary>자동 캡처 투어(-cct-autotour) 전용 이동 입력. null이면 실제 키보드/마우스.</summary>
         public Vector2? AutoInputOverride { get; set; }
+        /// <summary>QA 비교 측정 전용(피드백 13 전/후 A/B): true면 이전처럼 보간 없음. 출시 경로에서는 항상 false.</summary>
+        public static bool QaDisableInterpolation;
 
         public float Hp { get; private set; }
         public float MaxHp => stats.MaxHp;
         public bool IsDead { get; private set; }
-        public Vector2 Position => transform.position;
+        /// <summary>판정용 위치 = 물리 위치(rb). 2026-11-15 피드백 13 보간 뒤에도 이전과 같은 값 — 그림(transform)만 렌더 프레임 사이를 잇는다.</summary>
+        public Vector2 Position => rb != null ? rb.position : (Vector2)transform.position;
         public float PickupRadius => stats.PickupRadius;
         public PlayerStats Stats => stats;
         public RunChallenge Challenge { get; private set; }
@@ -71,6 +74,9 @@ namespace CCT
 
             rb.bodyType = RigidbodyType2D.Kinematic;
             rb.gravityScale = 0f;
+            // 2026-11-15 피드백 13: 이동은 FixedUpdate(0.02초 = 50Hz)의 MovePosition인데 그림·카메라는 매 렌더 프레임(60Hz+)이라
+            // 보간 없이 5프레임 중 1프레임쯤 몸이 멈춰 보였다(카메라는 계속 움직여 끊김). 판정 위치(rb.position)는 그대로, 그림만 사이를 잇는다.
+            rb.interpolation = QaDisableInterpolation ? RigidbodyInterpolation2D.None : RigidbodyInterpolation2D.Interpolate;
 
             transform.localScale = Vector3.one; // 물리 루트는 스케일 1 — 판정 반지름을 직접 지정
             visual = PlayerVisual.Create(transform, Radius, color, bodyArtId);

@@ -1,0 +1,19 @@
+{
+    "name": "CCT.Prototype.Coop2P.Editor",
+    "rootNamespace": "CCT.Prototype.Coop2P.Editor",
+    "references": [
+        "CCT.Runtime",
+        "CCT.Prototype.Coop2P"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

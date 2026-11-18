@@ -1,0 +1,82 @@
+[
+  {
+    "id": "start",
+    "bbox": [
+      40,
+      126,
+      142,
+      217
+    ],
+    "pixelCount": 3524
+  },
+  {
+    "id": "permanent",
+    "bbox": [
+      287,
+      137,
+      395,
+      221
+    ],
+    "pixelCount": 3464
+  },
+  {
+    "id": "codex",
+    "bbox": [
+      365,
+      69,
+      446,
+      172
+    ],
+    "pixelCount": 5685
+  },
+  {
+    "id": "skins",
+    "bbox": [
+      329,
+      62,
+      389,
+      141
+    ],
+    "pixelCount": 3141
+  },
+  {
+    "id": "history",
+    "bbox": [
+      99,
+      111,
+      159,
+      168
+    ],
+    "pixelCount": 946
+  },
+  {
+    "id": "settings",
+    "bbox": [
+      213,
+      98,
+      258,
+      145
+    ],
+    "pixelCount": 1851
+  },
+  {
+    "id": "credits",
+    "bbox": [
+      144,
+      48,
+      198,
+      75
+    ],
+    "pixelCount": 1365
+  },
+  {
+    "id": "quit",
+    "bbox": [
+      269,
+      41,
+      343,
+      141
+    ],
+    "pixelCount": 2057
+  }
+]

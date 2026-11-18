@@ -22,9 +22,9 @@ namespace CCT
         /// <summary>찻잎 통(그리고 병 마스크가 없을 때)은 85°부터 흐른다. 액체 병은 실제 잔량의 SolveTilt로 입구에 닿는 각도부터 흐른다
         /// (많으면 일찍, 적으면 더 기울여야). 거의 빈 병까지 따를 수 있게 165°까지 기울인다.</summary>
         public const float TiltStart = 85f, TiltMax = 165f;
-        public const float LiquidMaxRate = 250f; // 0.1mL/초 → 25mL/s
-        public const float LeafMaxRate = 25f;    // 0.1g/초 → 2.5g/s
-        public const float BeanMaxRate = 80f;    // 0.1g/초 → 8g/s (원두는 알갱이가 커서 빨리 떨어진다)
+        public const float LiquidMaxRate = DrinkPourMotion.LiquidMaxRate; // 0.1mL/초 → 25mL/s
+        public const float LeafMaxRate = DrinkPourMotion.LeafMaxRate;     // 0.1g/초 → 2.5g/s
+        public const float BeanMaxRate = DrinkPourMotion.BeanMaxRate;     // 0.1g/초 → 8g/s (원두는 알갱이가 커서 빨리 떨어진다)
         /// <summary>화면 중력(px/s²). 줄기 머리·꼬리와 장부 덩어리의 낙하 시간이 같은 값을 쓴다.</summary>
         public const float GravityPx = 1800f;
 
@@ -377,7 +377,7 @@ namespace CCT
             }
         }
 
-        public static string ServeFor(DrinkRecipe r) => r.Kind == DrinkKind.Tea ? "dl_teacup" : r.Kind == DrinkKind.Coffee ? CoffeeBrewing.CupArt(r.coffeeMethod) : "dl_glass_cocktail";
+        public static string ServeFor(DrinkRecipe r) => r.Kind == DrinkKind.Tea ? "dl_teacup" : r.Kind == DrinkKind.Coffee ? CoffeeStyles.ResolvedCupArt(CoffeeStyles.Of(r), r.coffeeMethod) : "dl_glass_cocktail";
 
         /// <summary>그릇 용량(mL). 완성 잔은 DrinkRules의 고정 용량(최대 배합+얼음에서도 약 80~82%), 제조 도구는 최대 배합의 약 80%.</summary>
         public static float CapacityFor(string id) => id switch
@@ -715,8 +715,8 @@ namespace CCT
             }
             bottleRt.localRotation = Quaternion.identity;
             toolLabel.text = def.IsCoffeeBean ? $"{def.name} — 통을 끌어 스쿱에 덜기({DrinkRules.Format(DrinkRules.CoffeeScoopCapacity)}g씩 {CoffeeBrewing.DisplayName(draft.coffeeMethod)}에)"
-                : leaf ? $"{def.name} — 통을 끌어 다하에 덜기(3.0g씩 다관으로)"
-                : CupReceives(def) ? $"{def.name} — 피처를 끌어 지거에 붓기(잔에 먼저 담고 커피를 그 위로)" : $"{def.name} — 병을 끌어 지거에 붓기(45.0mL씩 나눠 붓기)";
+                : leaf ? $"{def.name} — 통을 끌어 다하에 덜기({DrinkRules.Format(DrinkRules.ChahaCapacity)}g씩 다관으로)"
+                : CupReceives(def) ? $"{def.name} — 피처를 끌어 지거에 붓기(잔에 먼저 담고 커피를 그 위로)" : $"{def.name} — 병을 끌어 지거에 붓기({DrinkRules.Format(DrinkRules.JiggerCapacity)}mL씩 나눠 붓기)";
             jigger.SetEmpty();
             UpdateMeasure();
             UpdateSourceLabel();
@@ -724,6 +724,25 @@ namespace CCT
         }
 
         // ───── 붓기 입력 ─────
+
+        // ── 2026-11-15 피드백 5: 단위 버튼 = 정해진 양을 실제로 따르기 ──
+        int autoTarget;
+        /// <summary>단위 버튼으로 시작한 자동 따르기 중인가(목표량에 닿으면 기존 손 붓기와 같은 경로로 멈추고 지거→그릇 1회 반영).</summary>
+        public bool AutoPouring => autoTarget > 0 && Pouring;
+        public int AutoPourTarget => Pouring ? autoTarget : 0;
+
+        /// <summary>선택 재료를 amountTenths(0.1 단위 저장값, 정수 mL/g의 10배)만큼 병→지거(잎은 다하·스쿱)로 따른다. 이미 붓는 중·옮겨 붓는 중·
+        /// 제조 연출 중이면 거절(false) — 연속 클릭으로 겹쳐 따르거나 두 번 반영하지 않는다. 배합 반영은 기존 CommitMeasure 한 곳뿐(재고 차감은 제조 확정 때).</summary>
+        public bool BeginAutoPour(int amountTenths)
+        {
+            amountTenths = DrinkRules.WholeFloor(amountTenths);
+            if (current == null || sequence != null || Pouring || phase != CyclePhase.None || amountTenths <= 0) return false;
+            BeginPour(Vector2.zero);
+            autoTarget = amountTenths;
+            float onset = srcBottle != null ? bottleOnset : TiltStart;
+            targetTilt = Mathf.Clamp(onset + 45f, 0f, TiltMax); // 최대 속도 근처 — 병은 Update에서 같은 회전 속도로 기운다
+            return true;
+        }
 
         public void BeginPour(Vector2 screenPos)
         {
@@ -739,7 +758,7 @@ namespace CCT
 
         public void DragTo(Vector2 screenPos)
         {
-            if (!Pouring) return;
+            if (!Pouring || autoTarget > 0) return; // 자동 따르기 중에는 끌기로 각도를 바꾸지 않는다
             if (!RectTransformUtility.RectangleContainsScreenPoint(root, screenPos, null)) { StopPour(); StopReason = "제조대 밖으로 나가 멈췄습니다."; UpdateReadout(); return; }
             var canvas = root.GetComponentInParent<Canvas>();
             float scale = canvas != null ? canvas.scaleFactor : 1f;
@@ -838,6 +857,7 @@ namespace CCT
         {
             if (!Pouring && InMeasure == 0) return;
             Pouring = false;
+            autoTarget = 0;
             targetTilt = 0f;
             bottleFall.Stop(); // 흐름은 즉시 멈춘다(병은 Update에서 부드럽게 제자리로)
             Geometry = new PourGeometry { lip = Geometry.lip, mouth = Geometry.mouth, pivot = Geometry.pivot, rotation = Geometry.rotation, streamEnd = Geometry.lip, flowing = false };
@@ -849,18 +869,12 @@ namespace CCT
         /// <summary>현재 기울기에서 0.1 단위/초 속도. 30° 미만은 0, 그 위는 제곱 곡선(작게 끌면 매우 느림), 점성이 높으면 느리게.</summary>
         public static float Rate(float tilt, DrinkIngredientDef def) => Rate(tilt, def, TiltStart);
 
-        /// <summary>흐름 시작 각도 onset에서 50° 더 기울이면 최대 속도(제곱 곡선).</summary>
-        public static float Rate(float tilt, DrinkIngredientDef def, float onset)
-        {
-            if (def == null || tilt <= onset) return 0f;
-            float t = Mathf.Clamp01((tilt - onset) / 50f);
-            float max = def.form == IngredientForm.Leaf ? (def.IsCoffeeBean ? BeanMaxRate : LeafMaxRate) : LiquidMaxRate;
-            return t * t * max * (1f - 0.6f * def.viscosity);
-        }
+        /// <summary>흐름 시작 각도 onset에서 50° 더 기울이면 최대 속도(제곱 곡선). <see cref="DrinkPourMotion.Rate"/>.</summary>
+        public static float Rate(float tilt, DrinkIngredientDef def, float onset) => DrinkPourMotion.Rate(tilt, def, onset);
 
         int MeasureCapacity => current != null && current.form == IngredientForm.Leaf ? LeafToolCapacity(current) : DrinkRules.JiggerCapacity;
 
-        static int LeafToolCapacity(DrinkIngredientDef def) => def != null && def.IsCoffeeBean ? DrinkRules.CoffeeScoopCapacity : DrinkRules.ChahaCapacity;
+        static int LeafToolCapacity(DrinkIngredientDef def) => DrinkPourMotion.LeafToolCapacity(def);
 
         /// <summary>계량 도구 안 받는 면(액면 또는 바닥)의 높이(제조대 좌표).</summary>
         float MeasureSurfaceY()
@@ -874,6 +888,7 @@ namespace CCT
         public void Step(float dt)
         {
             if (!Pouring || current == null) return;
+            if (autoTarget > 0 && PouredThisGesture >= autoTarget) { StopReason = null; StopPour(); return; } // 단위 목표량 도달
             if (phase != CyclePhase.None) { bottleFall.Stop(); return; } // 옮겨 붓는 동안 병→지거 흐름 없음
             double spillTenths = double.MaxValue;
             float rate;
@@ -895,7 +910,8 @@ namespace CCT
             if (rate <= 0f) { bottleFall.Stop(); UpdateReadout(); return; }
             UpdateStream(rate);
             accumulator += rate * dt;
-            int add = Mathf.FloorToInt(accumulator);
+            // 2026-11-06 정수 전용: 병 → 계량 도구는 1 단위(1mL/1g = 저장값 10)씩만 나온다. 장부·지거·배합이 항상 같은 정수다.
+            int add = DrinkRules.WholeFloor(Mathf.FloorToInt(accumulator));
             if (add <= 0) { UpdateReadout(); return; }
             accumulator -= add;
             int room = allowed(current) - InMeasure;
@@ -906,15 +922,18 @@ namespace CCT
                 StopPour();
                 return;
             }
-            add = Mathf.Min(add, room, MeasureCapacity - InMeasure);
-            if (spillTenths < add) { add = (int)Math.Floor(spillTenths); accumulator = 0f; }
+            add = DrinkRules.WholeFloor(Mathf.Min(add, room, MeasureCapacity - InMeasure));
+            if (autoTarget > 0) add = DrinkRules.WholeFloor(Mathf.Min(add, autoTarget - PouredThisGesture)); // 단위 목표를 넘지 않는다
+            if (spillTenths < add) { add = DrinkRules.WholeFloor((int)Math.Floor(spillTenths)); accumulator = 0f; }
             if (add <= 0) { UpdateReadout(); return; }
             InMeasure += add;
             PouredThisGesture += add;
+            bool autoDone = autoTarget > 0 && PouredThisGesture >= autoTarget;
             float fall = (float)DrinkTransferLedger.FallSeconds(Geometry.lip.y - MeasureSurfaceY(), GravityPx);
             if (current.form == IngredientForm.Leaf) Ledger.EmitLeaves(LedgerBottle, LedgerMeasure, current.id, add / 10.0, fall);
             else Ledger.Emit(LedgerBottle, LedgerMeasure, add / 10.0, fall, 0.3);
             MeasureChanged?.Invoke();
+            if (autoDone) { bottleFall.Stop(); StopReason = null; StopPour(); return; } // 목표량 — 지거 내용을 그릇으로(1회)
             if (InMeasure >= MeasureCapacity)
             {
                 // 계량 도구가 가득: 그릇에 옮겨 붓고(누적 표시) 이어서 붓는다.
@@ -1114,6 +1133,7 @@ namespace CCT
                 if (!Mathf.Approximately(Tilt, goal)) ApplyTilt(Mathf.MoveTowards(Tilt, goal, BottleTurnSpeed * dt));
             }
             if (Pouring) Step(dt);
+            UpdateFoamBand();
             UpdateCycle(dt);
             UpdateLid(dt);
             UpdateCamera(dt);
@@ -1199,14 +1219,8 @@ namespace CCT
         public float TransferProgress => phase == CyclePhase.None ? 1f : transferTotal > 0 ? (float)(transferEmitted / transferTotal) : 0f;
         public float ToolTilt => toolTilt;
 
-        /// <summary>흐름 시간: 양·점성 비례(보통 0.8~1.2초, 많거나 걸쭉하면 길게). 찻잎은 잎이 다 떨어지는 시간.</summary>
-        public static float PourSeconds(DrinkIngredientDef def, int tenths)
-        {
-            if (def == null) return 0.8f;
-            if (def.form == IngredientForm.Leaf) return Mathf.Lerp(0.7f, 1.1f, Mathf.Clamp01(tenths / (float)LeafToolCapacity(def)));
-            float baseT = Mathf.Lerp(0.8f, 1.25f, Mathf.Clamp01(tenths / (float)DrinkRules.JiggerCapacity));
-            return baseT * (1f + 0.6f * def.viscosity);
-        }
+        /// <summary>흐름 시간: 양·점성 비례(보통 0.8~1.2초, 많거나 걸쭉하면 길게). 찻잎은 잎이 다 떨어지는 시간. <see cref="DrinkPourMotion.PourSeconds"/>.</summary>
+        public static float PourSeconds(DrinkIngredientDef def, int tenths) => DrinkPourMotion.PourSeconds(def, tenths);
 
         RectTransform Tool => transferDef != null && transferDef.form == IngredientForm.Leaf ? chaha.rectTransform : jigger.Rect;
         Vector2 ToolRest => transferDef != null && transferDef.form == IngredientForm.Leaf ? chahaRest : jiggerRest;
@@ -1251,26 +1265,10 @@ namespace CCT
                 toolStartTilt = transferDef.form == IngredientForm.Liquid ? Mathf.Min(70f, SpillOnsetAngle(jigger, Ledger[LedgerMeasure].LiquidMl) - 4f) : 35f;
         }
 
-        static float Ease(float t) => t * t * (3f - 2f * t);
+        static float Ease(float t) => DrinkPourMotion.Ease(t);
 
         /// <summary>그 양의 액면이 입구 높이에 처음 닿는 기울기(도). 접근 중에는 이 각도 아래로만 기울여 흘리지 않는다.</summary>
-        static float SpillOnsetAngle(DrinkVesselView v, double volumeMl)
-        {
-            if (v == null || v.Profile == null || volumeMl <= 0) return 90f;
-            bool Reached(float a)
-            {
-                var s = DrinkFluidPhysics.SolveTilt(v.Profile, new[] { volumeMl }, a);
-                return s.LipReached || s.SpillMl > 1e-6;
-            }
-            for (float a = 0f; a <= 178f; a += 3f)
-            {
-                if (!Reached(a)) continue;
-                float lo = Mathf.Max(0f, a - 3f), hi = a;
-                for (int i = 0; i < 6; i++) { float mid = (lo + hi) * 0.5f; if (Reached(mid)) hi = mid; else lo = mid; }
-                return hi;
-            }
-            return 178f;
-        }
+        static float SpillOnsetAngle(DrinkVesselView v, double volumeMl) => DrinkPourMotion.SpillOnsetAngle(v != null ? v.Profile : null, volumeMl);
 
         /// <summary>
         /// 계량 도구 자세: move(0=제자리, 1=받는 입구 위)와 tilt(도). 손잡이 피벗으로 회전하고, move=1이면 회전된 실제 입구가 받는 입구 위에 온다.
@@ -1439,7 +1437,7 @@ namespace CCT
             int inDraft = draft.AmountOf(current.id);
             string unit = current.Unit;
             string line = Pouring
-                ? $"붓는 중  {(current.form == IngredientForm.Leaf ? "다하" : "지거")} {DrinkRules.Format(InMeasure)}{unit} · 배합 합계 {DrinkRules.Format(inDraft + InMeasure)}{unit}" + (MeasureDumps > 0 ? $" (나눠 붓기 {MeasureDumps}회)" : "")
+                ? $"붓는 중  {(current.IsCoffeeBean ? "스쿱" : current.form == IngredientForm.Leaf ? "다하" : "지거")} {DrinkRules.Format(InMeasure)}{unit} · 배합 합계 {DrinkRules.Format(inDraft + InMeasure)}{unit}" + (MeasureDumps > 0 ? $" (나눠 붓기 {MeasureDumps}회)" : "")
                 : $"배합에 {current.name} {DrinkRules.Format(inDraft)}{unit}";
             if (StopReason != null) line += "\n" + StopReason;
             readout.text = line;
@@ -1488,6 +1486,15 @@ namespace CCT
             public float amplitude, lean;
         }
         public SpoonProbe Spoon { get; private set; }
+        /// <summary>스터링 넣기/빼기 구간과 전체 길이(초). ramp = Clamp01(min(t, dur - t) / insert). <see cref="DrinkPourMotion.StirRamp"/>.</summary>
+        public const float StirInsert = DrinkPourMotion.StirInsert, StirDuration = DrinkPourMotion.StirDuration;
+
+        /// <summary>즉시 바스푼 자세 지정(시험·QA): 프레임 속도와 무관하게 임의의 t·ramp 자세를 검사한다.</summary>
+        public SpoonProbe PoseSpoonAt(float t, float ramp)
+        {
+            PoseSpoon(t, ramp);
+            return Spoon;
+        }
 
         IEnumerator CraftRoutine(DrinkRecipe r, Action done)
         {
@@ -1543,16 +1550,16 @@ namespace CCT
                         PoseSpoon(0f, 0f); // 림 위 대기 자세에서 시작
                         spoon.gameObject.SetActive(true);
                         float t = 0f;
-                        const float insert = 0.25f, dur = 1.8f + 2f * insert;
+                        const float dur = StirDuration;
                         while (t < dur && !skipRequested)
                         {
                             float dt = Time.unscaledDeltaTime;
                             t += dt;
                             // 젓는 동안만 장부 혼합(넣기·빼기 구간 제외, 최종과 같은 총 강도)
-                            if (!v.Liquid.IsEmpty && t > insert && t < dur - insert) v.Liquid.Mix(0.6, dt * 6.0 / (dur - 2f * insert));
+                            if (!v.Liquid.IsEmpty && DrinkPourMotion.StirMixing(t)) v.Liquid.Mix(0.6, DrinkPourMotion.StirMixStep(dt));
                             vessel.SetLayers(LayersOf(LedgerVessel, r));
                             vessel.SetEffects(0f, 1f - Mathf.Clamp01(t / 1.4f) * 0.4f, 0.3f);
-                            PoseSpoon(t, Mathf.Clamp01(Mathf.Min(t, dur - t) / insert));
+                            PoseSpoon(t, DrinkPourMotion.StirRamp(t));
                             yield return null;
                         }
                         PoseSpoon(dur, 0f);
@@ -1654,7 +1661,7 @@ namespace CCT
         void PoseSpoon(float t, float ramp)
         {
             var frames = DrinkArt.Frames("dl_barspoon");
-            int fi = frames.Length > 1 ? Mathf.FloorToInt(t * 10f) % frames.Length : 0;
+            int fi = DrinkPourMotion.SpoonFrame(t, frames.Length);
             if (frames.Length > 0) spoon.sprite = frames[fi];
             var rt = spoon.rectTransform;
             var lr = DrinkArt.LiquidRect(vessel.AssetId);
@@ -1669,24 +1676,23 @@ namespace CCT
             }
             rt.pivot = tipN;
             float floor = lr.yMin + 1.5f / artH;
-            float bob = (0.5f + 0.5f * Mathf.Sin(t * 7f)) * 2f / artH; // 바닥 위로 0~2 아트 픽셀 들썩임
-            // 넣기/빼기: ramp 0 = 끝이 림 위(입구 위 대기), 1 = 바닥 근처. 끝 높이가 이어져 순간이동 없이 내려가고 올라온다.
+            // 넣기/빼기: ramp 0 = 끝이 림 위(입구 위 대기), 1 = 바닥 근처(바닥 위로 0~2 아트 픽셀 들썩임). 끝 높이가 이어져 순간이동 없이 내려가고 올라온다.
             float above = lr.yMax + 4f / artH;
-            float tipY = Mathf.Lerp(above, floor + bob, Ease(Mathf.Clamp01(ramp)));
-            float phase = t * 9f;
+            float tipY = DrinkPourMotion.SpoonTipY(t, ramp, above, floor, artH);
+            float phase = DrinkPourMotion.StirPhase(t);
             // 젓는 중심과 폭 = 볼 높이(끝 위 4 아트 픽셀)에서 실제 마스크 안쪽 구간 — 마스크가 액체 사각형과 어긋나도 벽 사이 가운데.
             float artW = vessel.Glass.sprite != null ? vessel.Glass.sprite.rect.width : 48f;
             float spanMin, spanMax;
             DrinkArt.MaskSpan(vessel.AssetId, floor + 4f / artH, out spanMin, out spanMax);
             float cx = (spanMin + spanMax) * 0.5f;
-            float bowl = haveRows ? BowlHalfWidth(rows, sw) / artW : 3f / artW;
-            float reach = Mathf.Max(0f, (spanMax - spanMin) * 0.5f - bowl - 1.5f / artW);
+            float bowl = haveRows ? DrinkPourMotion.BowlHalfWidth(rows, sw) / artW : 3f / artW;
+            float reach = DrinkPourMotion.StirReach(spanMin, spanMax, bowl, artW);
             float amp = ramp, lean = 0f;
             int outside = 0;
             for (int i = 0; i <= 10; i++)
             {
-                float x = cx + amp * reach * Mathf.Sin(phase);
-                lean = amp * 4f * Mathf.Cos(phase);
+                float x = DrinkPourMotion.SpoonX(cx, amp, reach, phase);
+                lean = DrinkPourMotion.SpoonLean(amp, phase);
                 rt.localRotation = Quaternion.Euler(0f, 0f, lean);
                 rt.anchoredPosition = vessel.PointInParent(new Vector2(x, tipY));
                 outside = haveRows ? SpoonOutside(rows, sw, sh, out _) : 0;
@@ -1696,21 +1702,6 @@ namespace CCT
             var probe = new SpoonProbe { frame = fi, amplitude = amp, lean = lean, outsidePixels = outside };
             if (haveRows) Measure(ref probe, rows, sw, sh, tipRow, floor, artH);
             Spoon = probe;
-        }
-
-        /// <summary>바스푼 아래쪽(볼) 행들 중 끝 중심에서 가장 먼 가로 거리(아트 픽셀).</summary>
-        static float BowlHalfWidth(int[] rows, int sw)
-        {
-            int tip = 0;
-            while (tip * 2 < rows.Length && rows[tip * 2] < 0) tip++;
-            if (tip * 2 >= rows.Length) return 3f;
-            float c = (rows[tip * 2] + rows[tip * 2 + 1]) * 0.5f, half = 0f;
-            for (int y = tip; y < Mathf.Min(rows.Length / 2, tip + 14); y++)
-            {
-                if (rows[y * 2] < 0) continue;
-                half = Mathf.Max(half, Mathf.Max(c - rows[y * 2], rows[y * 2 + 1] - c));
-            }
-            return half;
         }
 
         /// <summary>스푼 불투명 픽셀(행 구간) 중 그릇 림 아래인데 그릇 안쪽 마스크 밖이거나 벽·바닥에서 1 아트 픽셀 안쪽이 아닌 개수.</summary>
@@ -1732,7 +1723,8 @@ namespace CCT
                 for (int x = a; x < b; x++)
                 {
                     var n = VesselNormalized(rt, vr, new Vector2((x + 0.5f) / sw, (y + 0.5f) / sh));
-                    if (n.y > lr.yMax) continue; // 림 위: 그릇 밖으로 나온 손잡이 쪽
+                    // 림 위: 그릇 밖으로 나온 손잡이 쪽. 중심이 림 선(yMax)에 딱 놓인 픽셀도 마스크(행 내림)로는 림 위 행이므로 같이 뺀다.
+                    if (n.y >= lr.yMax) continue;
                     lowest = Mathf.Min(lowest, n.y);
                     if (!DrinkArt.InsideMask(vessel.AssetId, n) || !DrinkArt.InsideMask(vessel.AssetId, n + mx) || !DrinkArt.InsideMask(vessel.AssetId, n - mx)
                         || !DrinkArt.InsideMask(vessel.AssetId, n - my)) bad++;
@@ -1770,7 +1762,7 @@ namespace CCT
                 foreach (int x in new[] { a, b - 1 })
                 {
                     var n = VesselNormalized(rt, vr, new Vector2((x + 0.5f) / sw, (y + 0.5f) / sh));
-                    if (n.y > lr.yMax) continue;
+                    if (n.y >= lr.yMax) continue; // SpoonOutside와 같은 림 경계
                     lowest = Mathf.Min(lowest, n.y);
                     minX = Mathf.Min(minX, n.x); maxX = Mathf.Max(maxX, n.x);
                     // 같은 높이의 안쪽 벽: 마스크 행을 좌우로 훑는다
@@ -1956,7 +1948,7 @@ namespace CCT
         void PlaceCoffeeCup(DrinkRecipe r, bool empty)
         {
             if (r.Kind != DrinkKind.Coffee || vessel == null) return;
-            if (empty || serve == null || serve.AssetId != ServeFor(r)) EnsureServe(r);
+            if (empty || serve == null || serve.AssetId != ServeFor(r) || !Mathf.Approximately(serveCapacity, DrinkRules.ServeCapacityMl(r))) EnsureServe(r);
             DrinkVesselView.SetPivotKeepPosition(serve.Rect, new Vector2(0.5f, 0f));
             serve.transform.localRotation = Quaternion.identity;
             if (r.coffeeMethod == CoffeeBrewMethod.EspressoMachine)
@@ -2518,13 +2510,89 @@ namespace CCT
             steam.rectTransform.anchoredPosition = over.PointInParent(new Vector2(0.45f, 1.05f)) + new Vector2(0f, 50f + Mathf.Sin(t * 3f) * 6f);
         }
 
+        float serveCapacity;
+        UnityEngine.UI.Image foamBand, foamCap;
+        /// <summary>시험·QA용: 거품 띠 윗면에 승인 거품 아트(dl_foam_layer)가 깔렸는지.</summary>
+        public bool FoamTextured => foamCap != null && foamCap.gameObject.activeInHierarchy && foamCap.sprite != null;
+
+        /// <summary>2026-11-17 거품 두께 픽셀 검수(QA·시험): 화면 픽셀 기준 띠 높이·윗면 타일 높이·기대 높이(거품 부피/잔 용량 × 액체 창 높이)·잔 픽셀 배율.</summary>
+        public (float bandPx, float capPx, float expectedPx, float cupPxPerArtPx, float foamMl) FoamPixels()
+        {
+            if (foamBand == null || !foamBand.gameObject.activeInHierarchy || serve == null || draft == null) return (0f, 0f, 0f, 0f, 0f);
+            float ScreenH(RectTransform r) { var c = new Vector3[4]; r.GetWorldCorners(c); var cam = r.GetComponentInParent<Canvas>()?.worldCamera; return RectTransformUtility.WorldToScreenPoint(cam, c[1]).y - RectTransformUtility.WorldToScreenPoint(cam, c[0]).y; }
+            float cupPx = ScreenH(serve.Rect);
+            var lr = DrinkArt.LiquidRect(serve.AssetId);
+            float foamMl = draft.AmountOf(DrinkIngredients.SteamedMilk) / 10f * CoffeeStyles.FoamRatio(draft.foam);
+            float expected = Mathf.Min(foamMl / Mathf.Max(1f, serveCapacity) * lr.height, Mathf.Max(0f, lr.yMax - serve.SurfaceY)) * cupPx; // UpdateFoamBand와 같은 식
+            var spr = DrinkArt.Sprite(serve.AssetId);
+            float perArt = spr != null ? cupPx / spr.rect.height : 0f;
+            return (ScreenH(foamBand.rectTransform), foamCap != null && foamCap.gameObject.activeInHierarchy ? ScreenH(foamCap.rectTransform) : 0f, expected, perArt, foamMl);
+        }
+        /// <summary>시험·QA용: 잔 위 거품 띠가 보이는지와 높이(잔 정규 좌표).</summary>
+        public bool FoamBandVisible => foamBand != null && foamBand.gameObject.activeInHierarchy;
+        public float FoamBandHeight01 => foamBand != null ? foamBand.rectTransform.anchorMax.y - foamBand.rectTransform.anchorMin.y : 0f;
+
+        /// <summary>2026-11-15 피드백 4: 커피 완성 음료의 거품을 잔 액면 위 띠로(거품 부피 = 우유 × 단계 비율, 검증·용량과 같은 값).
+        /// 2026-11-16 최종 아트 반입: 띠 몸통은 거품 중간색, 윗면에 dl_foam_layer(32×8, 가로 반복)를 잔과 같은 픽셀 배율(×4)로 한 줄 깐다
+        /// (두꺼운 거품도 세로로 반복하지 않음 — 타일 위아래 투명 1px가 줄무늬로 보이지 않게). 아트가 없으면 단색 띠만.</summary>
+        void UpdateFoamBand()
+        {
+            bool on = draft != null && draft.Kind == DrinkKind.Coffee && draft.foam > 0 && serve != null && serve.gameObject.activeInHierarchy;
+            if (!on) { if (foamBand != null && foamBand.gameObject.activeSelf) foamBand.gameObject.SetActive(false); return; }
+            if (foamBand == null || foamBand.transform.parent != serve.Rect)
+            {
+                if (foamBand != null) Destroy(foamBand.gameObject);
+                var go = new GameObject("FoamBand", typeof(RectTransform));
+                go.transform.SetParent(serve.Rect, false);
+                foamBand = go.AddComponent<UnityEngine.UI.Image>();
+                foamBand.raycastTarget = false;
+                foamBand.color = new Color(0.96f, 0.92f, 0.84f, 0.95f);
+                var art = DrinkArt.Sprite("dl_foam_layer");
+                if (art != null)
+                {
+                    var capGo = new GameObject("FoamCap", typeof(RectTransform));
+                    capGo.transform.SetParent(go.transform, false);
+                    foamCap = capGo.AddComponent<UnityEngine.UI.Image>();
+                    foamCap.raycastTarget = false;
+                    foamCap.sprite = art;
+                    foamCap.type = UnityEngine.UI.Image.Type.Tiled;
+                    var canvas = serve.GetComponentInParent<Canvas>();
+                    float refPpu = canvas != null ? canvas.referencePixelsPerUnit : 100f;
+                    // 타일 1칸 = 스프라이트 픽셀 × 잔 픽셀 배율(DrinkVesselView.PixelScale) → 잔 외곽선과 같은 굵기의 픽셀.
+                    foamCap.pixelsPerUnitMultiplier = refPpu / art.pixelsPerUnit / DrinkVesselView.PixelScale;
+                }
+            }
+            foamBand.gameObject.SetActive(true);
+            var lr = DrinkArt.LiquidRect(serve.AssetId);
+            float foamMl = draft.AmountOf(DrinkIngredients.SteamedMilk) / 10f * CoffeeStyles.FoamRatio(draft.foam);
+            float cap = Mathf.Max(1f, serveCapacity);
+            float s = serve.SurfaceY, top = Mathf.Min(lr.yMax, s + foamMl / cap * lr.height);
+            var rt = foamBand.rectTransform;
+            rt.anchorMin = new Vector2(lr.xMin + lr.width * 0.04f, s);
+            rt.anchorMax = new Vector2(lr.xMax - lr.width * 0.04f, Mathf.Max(s + 0.01f, top));
+            rt.offsetMin = rt.offsetMax = Vector2.zero;
+            if (foamCap != null)
+            {
+                // 윗면 한 줄: 높이 = 타일 1칸(8px × 배율), 띠가 그보다 얇으면 띠 높이까지만(아래에서 잘림).
+                var cr = foamCap.rectTransform;
+                float tileH = foamCap.sprite.rect.height * DrinkVesselView.PixelScale;
+                float bandH = Mathf.Max(1f, (rt.anchorMax.y - rt.anchorMin.y) * serve.Rect.rect.height);
+                cr.anchorMin = new Vector2(0f, 1f); cr.anchorMax = new Vector2(1f, 1f); cr.pivot = new Vector2(0.5f, 1f);
+                cr.anchoredPosition = new Vector2(0f, tileH * 0.125f); // 타일 윗줄 투명 1px만큼 위로(띠 윗면과 거품 윗선 일치)
+                cr.sizeDelta = new Vector2(0f, Mathf.Min(tileH, bandH + tileH * 0.125f));
+            }
+        }
+
         void EnsureServe(DrinkRecipe r)
         {
             string id = ServeFor(r);
-            if (serve != null && serve.AssetId != id) { Destroy(serve.gameObject); serve = null; }
+            // 2026-11-15 피드백 4: 커피 잔 용량은 레시피(완성 음료) 기준 — 임시 잔 그림을 공유해도 용량은 표의 값.
+            float cap = r.Kind == DrinkKind.Coffee ? DrinkRules.ServeCapacityMl(r) : CapacityFor(id);
+            if (serve != null && (serve.AssetId != id || !Mathf.Approximately(serveCapacity, cap))) { Destroy(serve.gameObject); serve = null; }
             if (serve == null)
             {
-                serve = DrinkVesselView.Create(scene, id, new Vector2(-170f, -230f), CapacityFor(id));
+                serveCapacity = cap;
+                serve = DrinkVesselView.Create(scene, id, new Vector2(-170f, -230f), cap);
                 serve.Rect.anchoredPosition = StandOnTable(serve, -170f);
                 Placeholders |= serve.Placeholder;
             }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -74,8 +75,13 @@ namespace CCT.Tests
         static float HeightAt(Text t, float width) =>
             t.cachedTextGeneratorForLayout.GetPreferredHeight(t.text, t.GetGenerationSettings(new Vector2(width, 0f))) / t.pixelsPerUnit;
 
-        static float WidthOf(Text t) =>
-            t.cachedTextGeneratorForLayout.GetPreferredWidth(t.text, t.GetGenerationSettings(Vector2.zero)) / t.pixelsPerUnit;
+        /// <summary>한 줄 폭(논리 단위). 최적 맞춤(best fit) 글은 가장 작은 허용 크기에서 잰다 — 그 크기에서 들어가야 렌더링 크기가 칸 안에 들어간다.</summary>
+        static float WidthOf(Text t)
+        {
+            var s = t.GetGenerationSettings(Vector2.zero);
+            if (t.resizeTextForBestFit) { s.resizeTextForBestFit = false; s.fontSize = t.resizeTextMinSize; }
+            return t.cachedTextGeneratorForLayout.GetPreferredWidth(t.text, s) / t.pixelsPerUnit;
+        }
 
         static Rect WorldRect(RectTransform rt)
         {
@@ -87,60 +93,75 @@ namespace CCT.Tests
         [UnityTest]
         public IEnumerator Codex_CultureSeparateFromTaste_FitsAt720pAndNarrowest()
         {
+            // 2026-11-15 피드백 2·6: 도감은 그림 격자 + 칸을 누르면 상세(Codex_<id>). 본문·문화·산지 칸 분리와 상자 안 맞춤은 상세에서 검사한다.
             DrinkLabView lab = null;
             yield return OpenLab(v => lab = v);
             lab.SetTab(DrinkLabView.Tab.Codex);
             yield return null;
-            Canvas.ForceUpdateCanvases();
-            var texts = lab.GetComponentsInChildren<Text>(true);
             int cards = 0, cultures = 0;
             var problems = new System.Collections.Generic.List<string>();
             foreach (var def in DrinkIngredients.All)
             {
-                var card = texts.FirstOrDefault(t => t.name == "Body" && t.transform.parent.name == "Codex_" + def.id)?.transform.parent as RectTransform;
-                Assert.IsNotNull(card, def.id + " 도감 카드");
+                lab.OpenCodexDetail(def);
+                yield return null;
+                Canvas.ForceUpdateCanvases();
+                var card = lab.transform.GetComponentsInChildren<RectTransform>(true).FirstOrDefault(r => r.name == "Codex_" + def.id && r.gameObject.activeInHierarchy);
+                Assert.IsNotNull(card, def.id + " 도감 상세");
+                Assert.AreEqual(def.id, lab.CodexDetailId);
                 cards++;
-                var body = card.Find("Body").GetComponent<Text>();
+                var body = card.Find("DetailScroll/Content/Body").GetComponent<Text>();
                 var name = card.Find("Name").GetComponent<Text>();
-                StringAssert.StartsWith("맛·향: " + def.taste, body.text, def.id + ": 맛·향은 본문 첫 줄");
+                Assert.IsTrue(body.supportRichText, def.id + ": 리치 텍스트 렌더링 활성화");
+                StringAssert.StartsWith("<b>맛·향</b>: " + def.taste, body.text, def.id + ": 맛·향은 굵게 본문 첫 줄");
                 if (!string.IsNullOrEmpty(def.culture)) StringAssert.DoesNotContain(def.culture, body.text, def.id + ": 문화 사실은 본문과 분리");
                 if (WidthOf(name) > name.rectTransform.rect.width + 0.5f) problems.Add($"{def.id} 이름 폭 {WidthOf(name):0}>{name.rectTransform.rect.width}");
+                if (name.resizeTextForBestFit && name.resizeTextMinSize < DrinkPaperUi.Small) problems.Add($"{def.id} 이름 최소 크기 {name.resizeTextMinSize} < {DrinkPaperUi.Small}");
                 var cardRect = WorldRect(card);
-                var cultureTf = card.Find("Culture");
+                if (WorldRect(name.rectTransform).Overlaps(WorldRect((RectTransform)card.Find("ColorGlass")))) problems.Add($"{def.id} 이름 칸이 색 잔과 겹침");
+                if (WorldRect((RectTransform)card.Find("Icon")).Overlaps(WorldRect((RectTransform)card.Find("DetailScroll")))) problems.Add($"{def.id} 큰 그림이 본문과 겹침");
+                var cultureTf = card.Find("DetailScroll/Content/Culture");
                 Assert.AreEqual(!string.IsNullOrEmpty(def.culture), cultureTf != null, def.id + ": 문화·산지 칸은 해설이 있을 때만");
-                // 본문: 실제 폭·가장 좁은 폭(494)·넓은 폭(514)에서 상자 안
-                foreach (float w in new[] { body.rectTransform.rect.width, DrinkLabView.CodexNarrowBodyWidth, 514f })
-                    if (HeightAt(body, w) > body.rectTransform.rect.height + 0.5f) problems.Add($"{def.id} 본문 폭{w}: {HeightAt(body, w):0}>{body.rectTransform.rect.height}");
-                if (cultureTf == null) continue;
-                cultures++;
-                var culture = cultureTf.GetComponent<Text>();
-                Assert.AreEqual("문화·산지: " + def.culture, culture.text, def.id);
-                Assert.GreaterOrEqual(culture.fontSize, DrinkPaperUi.Body, def.id + ": 본문 크기(720p 18px) 이상, 작은 글씨로 줄이지 않음");
-                Assert.AreNotEqual(body.color, culture.color, def.id + ": 색으로도 구분");
-                foreach (float w in new[] { culture.rectTransform.rect.width, DrinkLabView.CodexNarrowBodyWidth, 514f })
-                    if (HeightAt(culture, w) > culture.rectTransform.rect.height + 0.5f) problems.Add($"{def.id} 문화 폭{w}: {HeightAt(culture, w):0}>{culture.rectTransform.rect.height}");
-                var b = WorldRect(body.rectTransform); var c = WorldRect(culture.rectTransform);
-                if (c.yMax > b.yMin + 0.01f) problems.Add($"{def.id} 문화 칸이 본문과 겹침");
-                if (c.yMin < cardRect.yMin - 0.01f) problems.Add($"{def.id} 문화 칸이 카드 밖");
-                TestContext.WriteLine($"{def.id} body {HeightAt(body, 494f):0}/{body.rectTransform.rect.height:0} culture {HeightAt(culture, 494f):0}/{culture.rectTransform.rect.height:0} card {card.rect.height:0}");
+                if (HeightAt(body, body.rectTransform.rect.width) > body.rectTransform.rect.height + 0.5f) problems.Add($"{def.id} 본문 {HeightAt(body, body.rectTransform.rect.width):0}>{body.rectTransform.rect.height}");
+                var content = (RectTransform)body.transform.parent;
+                float bottom = -body.rectTransform.anchoredPosition.y + body.rectTransform.rect.height;
+                if (cultureTf != null)
+                {
+                    cultures++;
+                    var culture = cultureTf.GetComponent<Text>();
+                    Assert.IsTrue(culture.supportRichText, def.id + ": 문화·산지 리치 텍스트 렌더링 활성화");
+                    Assert.AreEqual("<b>문화·산지</b>: " + def.culture, culture.text, def.id + ": 문화·산지 강조 표시");
+                    Assert.GreaterOrEqual(culture.fontSize, DrinkPaperUi.Body, def.id + ": 본문 크기(720p 18px) 이상, 작은 글씨로 줄이지 않음");
+                    Assert.AreNotEqual(body.color, culture.color, def.id + ": 색으로도 구분");
+                    if (HeightAt(culture, culture.rectTransform.rect.width) > culture.rectTransform.rect.height + 0.5f) problems.Add($"{def.id} 문화 {HeightAt(culture, culture.rectTransform.rect.width):0}>{culture.rectTransform.rect.height}");
+                    var b = WorldRect(body.rectTransform); var c = WorldRect(culture.rectTransform);
+                    if (c.yMax > b.yMin + 0.01f) problems.Add($"{def.id} 문화 칸이 본문과 겹침");
+                    bottom = -culture.rectTransform.anchoredPosition.y + culture.rectTransform.rect.height;
+                }
+                if (bottom > content.rect.height + 0.5f) problems.Add($"{def.id} 스크롤 내용 {content.rect.height} < 글 끝 {bottom}");
+                var close = card.Find("CloseDetail") as RectTransform;
+                Assert.IsNotNull(close, def.id + " 목록으로 버튼");
+                if (WorldRect(close).Overlaps(WorldRect((RectTransform)card.Find("DetailScroll")))) problems.Add($"{def.id} 닫기 버튼이 본문 스크롤과 겹침");
+                if (!cardRect.Contains(WorldRect(close).center)) problems.Add($"{def.id} 닫기 버튼이 카드 밖");
+                TestContext.WriteLine($"{def.id} body {body.rectTransform.rect.height:0} content {content.rect.height:0} card {card.rect.height:0}");
+                lab.CloseCodexDetail();
+                Assert.IsFalse(lab.CodexDetailOpen, "목록으로");
             }
             Assert.IsEmpty(problems, string.Join(" / ", problems));
             Assert.AreEqual(DrinkIngredients.All.Count, cards);
             Assert.AreEqual(DrinkIngredients.All.Count(d => !string.IsNullOrEmpty(d.culture)), cultures);
             Assert.GreaterOrEqual(cultures, 10, "신규 10종 모두 문화·산지 칸");
-            // 같은 행 카드는 같은 높이, 다음 행은 겹치지 않는다.
-            var rects = DrinkIngredients.All.Select(d => (RectTransform)lab.transform.GetComponentsInChildren<RectTransform>(true).First(r => r.name == "Codex_" + d.id)).ToList();
-            for (int i = 1; i < rects.Count; i++)
+            // 격자: 같은 행 칸은 같은 높이, 다음 행은 겹치지 않는다. 스크롤 내용이 마지막 칸과 하단 안내까지 담는다.
+            var cells = DrinkIngredients.All.Select(d => (RectTransform)lab.CodexGridContent.Find("Cell_" + d.id)).ToList();
+            Assert.IsTrue(cells.All(c => c != null), "필터 없음 = 모든 재료 칸");
+            for (int i = 1; i < cells.Count; i++)
             {
-                var prev = WorldRect(rects[i - 1]); var cur = WorldRect(rects[i]);
-                if (Mathf.Abs(prev.yMax - cur.yMax) < 0.01f) Assert.AreEqual(prev.height, cur.height, 0.01f, "같은 행 같은 높이 " + rects[i].name);
-                else Assert.LessOrEqual(cur.yMax, prev.yMin + 0.01f, "행이 겹치지 않음 " + rects[i].name);
+                var prev = WorldRect(cells[i - 1]); var cur = WorldRect(cells[i]);
+                if (Mathf.Abs(prev.yMax - cur.yMax) < 0.01f) { Assert.AreEqual(prev.height, cur.height, 0.01f); Assert.LessOrEqual(prev.xMax, cur.xMin + 0.01f, "같은 행 겹침 " + cells[i].name); }
+                else Assert.LessOrEqual(cur.yMax, prev.yMin + 0.01f, "행이 겹치지 않음 " + cells[i].name);
             }
-            // 스크롤 내용이 마지막 카드와 하단 안내까지 담는다.
-            var rule = texts.First(t => t.name == "SupplyRule");
-            var content = (RectTransform)rule.transform.parent;
-            Assert.GreaterOrEqual(WorldRect(rule.rectTransform).yMin, WorldRect(content).yMin - 0.01f, "스크롤 높이 안");
-            Assert.Less(WorldRect(rule.rectTransform).yMax, WorldRect(rects[rects.Count - 1]).yMin + 0.01f, "안내 칸은 마지막 카드 아래");
+            var rule = lab.CodexGridContent.Find("SupplyRule") as RectTransform;
+            Assert.GreaterOrEqual(WorldRect(rule).yMin, WorldRect(lab.CodexGridContent).yMin - 0.01f, "스크롤 높이 안");
+            Assert.Less(WorldRect(rule).yMax, WorldRect(cells[cells.Count - 1]).yMin + 0.01f, "안내 칸은 마지막 칸 아래");
             TestContext.WriteLine($"narrow={lab.Narrow} screen={Screen.width}x{Screen.height}");
         }
 

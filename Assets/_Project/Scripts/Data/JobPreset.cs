@@ -43,7 +43,7 @@ namespace CCT
         };
         public static readonly WeaponPreset Sword = new WeaponPreset
         {
-            kind = WeaponKind.Sword, name = "검", description = "넓게 베기 · 피해 +25%.\n맞은 일반 몹 0.25초 경직(보스 제외).\n근접 강화 카드를 사용.",
+            kind = WeaponKind.Sword, name = "검", description = "넓게 베기 · 피해 +25%.\n맞은 일반 몹 250ms 경직(보스 제외).\n근접 강화 카드를 사용.",
             iconResourcePath = "Icons/Weapons/sword", heldLengthRatio = 0.65f,
         };
         public static readonly WeaponPreset Bow = new WeaponPreset
@@ -89,7 +89,7 @@ namespace CCT
         {
             job = Job.TeaSommelier,
             name = "티 소믈리에",
-            description = "깊은 우림\n같은 차의 추가 중첩당\n피해 +2% · 초당 회복 +0.1\n추가 중첩 최대 6 · 집중 투자",
+            description = "깊은 우림\n같은 차의 추가 중첩당\n피해 +2% · 분당 회복 +6\n추가 중첩 최대 6 · 집중 투자",
             playerColor = new Color(0.55f, 0.85f, 0.5f),
             weapons = new[] { WeaponPreset.Sword, WeaponPreset.Bow },
             bodyArtId = "tea_sommelier",

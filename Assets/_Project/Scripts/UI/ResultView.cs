@@ -58,6 +58,8 @@ namespace CCT
         Button restartButton;
         PermanentSkillView shopView;
         ResultSummary last;
+        /// <summary>2026-11-15 피드백 22 결과 화면 버튼 문구(내부 저장 키·기록 형식은 그대로).</summary>
+        public const string BuildDetailLabel = "성장·조합 보기";
         // 67 이번 판 빌드 상세와 기록 저장 상태
         Button buildButton;
         Text historyStatus;
@@ -134,7 +136,8 @@ namespace CCT
             view.awardButton.targetGraphic = awardBg;
             UiFactory.ApplyHoverColors(view.awardButton);
             view.awardButton.onClick.AddListener(view.OpenAwardDetail);
-            UiFactory.AddText(UiFactory.Stretch("Label", awardRt), "획득 내역", 30, TextAnchor.MiddleCenter, Color.white);
+            view.awardLabel = UiFactory.AddText(UiFactory.Stretch("Label", awardRt), AwardLabel, 30, TextAnchor.MiddleCenter, Color.white);
+            view.awardLabel.resizeTextForBestFit = true; view.awardLabel.resizeTextMinSize = 24; view.awardLabel.resizeTextMaxSize = 30;
 
             view.restartButton = BuildButton(rootRt, "RestartButton", 0f, UiFactory.InputLabel("다시 시작", "R"), true, view.Restart);
             var shopButton = BuildButton(rootRt, "PermanentShopButton", -440f, "영구 강화", false, view.OpenShop);
@@ -149,7 +152,8 @@ namespace CCT
             view.buildButton.targetGraphic = buildBg;
             UiFactory.ApplyHoverColors(view.buildButton);
             view.buildButton.onClick.AddListener(view.OpenDetail);
-            UiFactory.AddText(UiFactory.Stretch("Label", buildRt), "이번 판 빌드", 30, TextAnchor.MiddleCenter, Color.white);
+            // 2026-11-15 피드백 22: "이번 판 빌드"는 무엇을 여는지 모호 — 실제 상세 범위(카드 성장·완성 조합)를 이름으로.
+            UiFactory.AddText(UiFactory.Stretch("Label", buildRt), BuildDetailLabel, 30, TextAnchor.MiddleCenter, Color.white);
             view.historyStatus = UiFactory.AddText(UiFactory.Place("HistoryStatus", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, -488f),
                 new Vector2(1400f, 40f)), "", 24, TextAnchor.MiddleCenter, Muted);
 
@@ -171,6 +175,9 @@ namespace CCT
             view.shopView = PermanentSkillView.Create(canvas, view.ShowRoot);
             // 상세는 결과 화면의 마지막 자식 — 그리기 순서와 MobileBackRouter 탐색에서 "타이틀"보다 위에 있다.
             view.awardDetail = DrinkAwardDetailView.Create(rootRt, () => view.detailClosedFrame = Time.frameCount);
+            // 피드백 23: 획득 내역 창에서 바로 다음 행동(다시 시작·타이틀) — 결과 화면으로 돌아가는 추가 확인 없이 1회 클릭.
+            view.awardDetail.SetNextActions(() => { if (view != null && view.awardDetail != null && view.awardDetail.IsOpen) { view.awardDetail.Close(); view.Restart(); } },
+                () => { if (view != null && view.awardDetail != null && view.awardDetail.IsOpen) { view.awardDetail.Close(); if (view.game != null) view.game.GoToTitle(); } });
             view.detail = RunDetailView.Create(rootRt, () => view.detailClosedFrame = Time.frameCount);
 
             view.root.SetActive(false);
@@ -346,7 +353,25 @@ namespace CCT
             RefreshText();
             root.SetActive(true);
             SetHudHidden(true);
-            if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(restartButton.gameObject);
+            // 2026-11-15 피드백 23: 결과 요약 → 획득 내역 → 다시 시작/로비. 받은 것이 있으면 첫 포커스를 "획득 내역 확인"에 두어
+            // Enter 한 번으로 내역(재료 그림·수량·창고 반영)을 보고, 그 창 아래 버튼으로 바로 다시 시작/타이틀. 받은 것이 없으면 빈 창을 거치지 않는다.
+            bool hasAward = HasAwardContent(game != null ? game.DrinkSettlement : null);
+            if (awardLabel != null) awardLabel.text = hasAward ? AwardNextLabel : AwardLabel;
+            if (awardButton != null) UiFactory.SetChoice(awardButton.targetGraphic as Image, hasAward, hasAward ? new Color(0.62f, 0.44f, 0.16f) : new Color(0.24f, 0.4f, 0.5f));
+            if (EventSystem.current != null)
+                EventSystem.current.SetSelectedGameObject(hasAward && awardButton != null && awardButton.gameObject.activeInHierarchy ? awardButton.gameObject : restartButton.gameObject);
+        }
+
+        public const string AwardLabel = "획득 내역", AwardNextLabel = "획득 내역 확인 ▶";
+        Text awardLabel;
+        public string AwardButtonLabel => awardLabel != null ? awardLabel.text : "";
+
+        /// <summary>피드백 23: 보여 줄 획득 내역이 있는가(재료·연구 포인트·준비 음료 변화). 없으면 결과 화면에서 바로 다음 행동.</summary>
+        public static bool HasAwardContent(DrinkSettlement s)
+        {
+            if (s == null) return false;
+            var items = s.kind == "PreservedAbandon" ? s.discarded : s.granted;
+            return (items != null && items.Count > 0) || s.researchPoints > 0 || (s.drink != null && s.drink != "None");
         }
 
         /// <summary>결과 동안 전투 HUD(체력·게이지·도전·배너)를 숨긴다. 다시 시작/타이틀은 이 GameManager를 파괴하고 새로 만들어
@@ -454,7 +479,7 @@ namespace CCT
             shownHistoryState = HistoryState();
             if (last == null || last.record == null) { historyStatus.text = "이번 판 기록을 만들지 못했습니다."; return; }
             historyStatus.text = RunHistory.IsWriteBlocked ? "새 버전 기록 파일 보존 중 — 이번 판 기록은 이 화면에서만 볼 수 있습니다."
-                : RunHistory.IsDirty ? "기록 저장 실패 — 자동으로 다시 시도합니다. 이번 판 빌드는 지금 볼 수 있습니다."
+                : RunHistory.IsDirty ? "기록 저장 실패 — 자동으로 다시 시도합니다. " + BuildDetailLabel + "는 지금 볼 수 있습니다."
                 : "최근 기록에 저장했습니다 · 타이틀 > 최근 기록";
         }
 
@@ -470,6 +495,7 @@ namespace CCT
             if (awardDetail != null && awardDetail.IsOpen)
             {
                 if (!MobilePlatform.IsTouchUI && kb != null && kb.escapeKey.wasPressedThisFrame) awardDetail.Close();
+                else if (!MobilePlatform.IsTouchUI && kb != null && kb.rKey.wasPressedThisFrame) awardDetail.InvokeRestart(); // 창 버튼과 같은 경로
                 return;
             }
             if (detail != null && (detail.IsOpen || detailClosedFrame == Time.frameCount))

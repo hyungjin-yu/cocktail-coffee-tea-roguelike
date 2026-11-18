@@ -1,0 +1,998 @@
+{
+  "group": "containers",
+  "assetCount": 28,
+  "assets": [
+    {
+      "assetId": "dl_tin_ethiopia_yirgacheffe_kochere",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "09eb3022c94a7e15a5d5529b40149654a2c43a1f2f06ad2145d427a6da721109",
+      "sourceSha256": "a2b977cb967c0aa2d9b21534419c991e1fcc9ce66520f1413f99e0a6c1a9816f",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_colombia_huila_vergel",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        26,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "ba609e776e091e470ee25737c2e2f3b86a092f5c8c33964217c02b7d2855ab1e",
+      "sourceSha256": "a65a58f86de70bc0eceafd55c3f5722919d2adf6e367ece2bbe362c2f5c8ce89",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_brazil_mantiqueira_alves_lima",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        15,
+        29,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "af2a0420db9b00c10f7206ac1522d59f71be1fa9612fd6de3bbe5e86487a70ed",
+      "sourceSha256": "d06c621b27a600ab7ba0beeb35fb8dfc0802332f6a0562d87e1d2329eb926880",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_panama_esmeralda_geisha",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        5,
+        28,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "dbe60049f49f889742c01b4e76a6f77d7f582916533a896aac7c2162a2023165",
+      "sourceSha256": "be46fd3c2352ff03f5d45ca8432792dff232e36d1c37e18e2c4b8b8c16741844",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_colombia_huila_san_pedro_geisha",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        26,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "16ba9c107a04f84c9a07a90395adc029090d114735c1917d6c3e25ccbbf61635",
+      "sourceSha256": "5c203b13c1138229143981794c4a0c7ec55f6ffc1732de5a2efd774f8d6646d8",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_colombia_la_esperanza_bourbon",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        26,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "235f7ccb3f140f0e19c707b9b87a861ed52fc3556b0f04943c55de70a3ba128e",
+      "sourceSha256": "3734045ab9950aeb1c278f507fc36cf3f185f15016ba053d96b9d4ea407d06a3",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_ethiopia_guji",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        9,
+        29,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "125e6ecefafd987bc5f3d08c1996a05be22b34df47a76897ac1bd295212d2549",
+      "sourceSha256": "c32450841ba41ef394e90261081de1d9335b722f084dc20040a6deb8ec830db2",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_ethiopia_sidama",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "88e208b51002afb59b504426998e10e264b7a55842570b54e1606f3fccdf825d",
+      "sourceSha256": "dbd2b001f7463c869beae1f0ce9cfc995e2109057daabbd1b46b8343029cb32b",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_kenya_nyeri",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        5,
+        29,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "1486342186fd373d4fe910c0d1f8ad835d8c29a1487f58fb3e678af9f75fe770",
+      "sourceSha256": "12e85c12c5dd16d2c212e1b42d0bbb39e50773a81f59dbc350000600c112d7d0",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_rwanda",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "3493e9091745781bb8bfccbe84c4df646ff9a8117c1eea3be72e9c6a25401e53",
+      "sourceSha256": "d5b7e3a368a8746b147594548c753d26452c35e43cd270dd474ad5c1feff6892",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_burundi",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "1534d6421afc4e4563d40f59e8c801dba2cf3fe29fd1c4d0d4961b5af0daa668",
+      "sourceSha256": "2f610aba92e4037ab552da13baaaf188864b5d5149540b5c4384cc094cf9d015",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_uganda",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        7,
+        29,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "a79727f4cd2080693588fb3f871e61a8595e205aa66e5886f98b783421adf84b",
+      "sourceSha256": "9e68cd1f3f023b3cbe0804a7512b9fd28d8512b0b57f1087a2088b1b47edab7e",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_indonesia_gayo",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        8,
+        29,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "45a4cf3e0cef025e97e20b943017e0099cf9b7e6337093aff85227a121568095",
+      "sourceSha256": "f304fb2bfa7ebe5d91e5d15096628a2e5e83487dd00661f4fb960a89b17f2912",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_indonesia_java",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "ab0a5468b0e774b96f23d0475e715198e0d982b5834fa154c4576c706bdfaf0f",
+      "sourceSha256": "05c1546801336a5755e61094aad6311d5c07bbc08a5de783a5982df6a44a079c",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_vietnam_dalat",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "f7dba6cf03405dfcbc921562beb5f76d5319abdbece60f49b1e32bd59b3ca82d",
+      "sourceSha256": "3839019c4cd9a64744fc4f6993b93bccf2a3ea0e3cc0c2e7451952629610194e",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_india_malabar",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        9,
+        29,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "cc53772c574e6fda11a514a7bf781fbb392a4c612e257901d18e19cb47a91408",
+      "sourceSha256": "7c119ab1618535788ab0e6c24d7806393c07c2d921ee96ce5f5c5abb8751f58e",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_costa_rica_tarrazu",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "696572ebff7153f7f3e63835dafe946a47ad5c26f990410ee508b72e78dd239c",
+      "sourceSha256": "6cdbd0153eed5aa3907548995736cf3ec0ee351ffb077520109b10bced7cac5f",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_guatemala_antigua",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        9,
+        29,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "02dbbb46c9f2effd11310250645943bfffb2c8d521b930f553dffeb755fb746c",
+      "sourceSha256": "e90fd94803d86eedae4ad4b917b6eb47ce971680113e01e05a06c775d59727fa",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_honduras_marcala",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "43adebcf8760d8d3fd786fb0111ff4b7f26b518ce63b48161dc60bcb72644477",
+      "sourceSha256": "8aa90fa077c62f4021d95369700fc08e4f354348a90ceb8b750414da11b85c7e",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_peru_chanchamayo",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        5,
+        28,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "869fa4e2c37de3b1b21297d5427b892878237810c6efcf970d71e2b767803a32",
+      "sourceSha256": "82c2f3c8e79c15fcadda24437a3499c2ae803ac1763cedf4e569c253902a34e2",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_mexico_chiapas",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        5,
+        29,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "3b0dca685e88085435b33bb27122e0fc6d2ab4e6d4b9a761137d835f53bb1383",
+      "sourceSha256": "7361e953866ae190bf0eefa5b7842906019ba49563d76f24a12710ec7a2eed8c",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_jamaica_blue_mountain",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "e77228d7a12aaffecb5db8d368b00cbc980fc7da6b4718bcff54b0c53a3247c7",
+      "sourceSha256": "8a0486076947277fb6cc325d6550b293bb05b786a225138a343951c08eee1eb6",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_brazil_cerrado",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        7,
+        29,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "e3b37c9b31f1db9a9b1eb79036d41cc1bf894ca072ed6d89a7e5a624f18cc48a",
+      "sourceSha256": "bcb8c0491a4739dbd59dec044a55273159005c988e0cb9782b862336544dbc38",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_colombia_narino",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        13,
+        29,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "233f675dfdf33906e4b4100217f408388dcf0e2459a9e529d62601f19221faa4",
+      "sourceSha256": "fae78bdc284419fccd3c3c3d11a0f784573396268228e7cc384cdb2829a1110a",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_el_salvador",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        5,
+        5,
+        26,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "259085dc83ee354531a777b57d5bc97c59179832340a383fde4353a3e78ad510",
+      "sourceSha256": "cf2483048fd7ba2b4fb79b37ad1b6a81f91814c8c1ab06a5b1d20f98ac342498",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_nicaragua",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        5,
+        27,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "c4fb80ab55af1d4bb2adb8152e51521f005343f0b78b7173df15398465b70f31",
+      "sourceSha256": "2352039af39d39001926e12d6dfb8fa80588be75348636b5b590e3bc6490ae75",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_tanzania",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "92591e600fb7ee3e11d5f12a6b0520546faaafba0ac35f04f2882f15bbba2f5a",
+      "sourceSha256": "ab73f3194088c2f994596d52282bbf4d9043cb6188e16cbf9448e98418beb0ce",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_tin_coffee_bolivia",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        5,
+        25,
+        32
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "11d2daab435c2d0b43ae3a45c1c879413c9bec02cde01ac7947499b3faf907f6",
+      "sourceSha256": "9764e9f8a8d51d3a5a05fb9f9608627d6f033750aff88d606a32c058eaa25deb",
+      "nativePivotTopLeftPx": [
+        16,
+        32
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    }
+  ],
+  "structuralPass": true,
+  "visualReview": {
+    "pass": true,
+    "evidence": [
+      "previews/containers-color.png",
+      "previews/containers-gray.png",
+      "previews/container-anchors-pour.png"
+    ],
+    "scope": "Native output directly reviewed at1x/enlarged in color and gray on cream/green/dark backgrounds. Artwork only; no runtime/human play claim."
+  },
+  "unityImport": false,
+  "unityRuntime": false
+}

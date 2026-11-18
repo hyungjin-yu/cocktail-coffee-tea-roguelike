@@ -1,0 +1,81 @@
+{
+  "assetId": "dl_icon_coffee_uganda",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-16",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "origin_icon",
+  "png": "ready/dl_icon_coffee_uganda.png",
+  "aseprite": "ready/dl_icon_coffee_uganda.aseprite",
+  "sourceRawPng": "raw/dl_icon_coffee_uganda.png",
+  "sourceRawAseprite": "raw/dl_icon_coffee_uganda.aseprite",
+  "dimensions": [
+    32,
+    32
+  ],
+  "alphaBounds": [
+    2,
+    7,
+    30,
+    24
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0.5
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    16,
+    16
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_uganda.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 128,
+    "filterMode": "Point",
+    "mipmapEnabled": false,
+    "compression": "None",
+    "alphaIsTransparency": true,
+    "sRGB": true,
+    "wrapModeU": "Clamp",
+    "wrapModeV": "Clamp",
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "sha256": {
+    "png": "36153788997bf89742c854e2a465a473b1c5e11c9292a32c77ca84c818b334b0",
+    "aseprite": "d3b56b2d8c3a3c2388fe2bde548003895130f02c03ce0146994fbf3f9a01dbe1"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+    "pixelLabGeneratedAsset": "dl_icon_coffee_uganda",
+    "technicalDerivedMask": false,
+    "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+    "promptEvidence": "provenance/batch-native-specs.json"
+  },
+  "checks": {
+    "structural": true,
+    "nativeRoundtripPixelsEqual": true,
+    "nativeSourcePivot": true,
+    "alphaPolicy": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false
+  },
+  "verification": "verification/asset-validation.json",
+  "visualPreviews": [
+    "previews/cups-masks-fill.png",
+    "previews/origins-color.png",
+    "previews/origins-gray.png",
+    "previews/foam-repeat-lock.png"
+  ],
+  "ingredientId": "coffee_uganda",
+  "displayName": "우간다 커피",
+  "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+}

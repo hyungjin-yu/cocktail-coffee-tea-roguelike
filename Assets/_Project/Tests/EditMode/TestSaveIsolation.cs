@@ -26,6 +26,7 @@ namespace CCT.Tests
             SessionPath = Path.Combine(Application.temporaryCachePath, $"cct_editmode_session_{Guid.NewGuid():N}.json");
             PermanentProgress.SetPathForTests(SessionPath);
             CardEducationGuide.SuppressAutomaticForTests=true;
+            NotebookGuide.SuppressForTests=true; DrinkLabView.PracticeSuppressForTests=true; // 2026-11-15 피드백 7 로비 안내는 전용 시험에서만
             SettingsSessionPath = Path.Combine(Application.temporaryCachePath, $"cct_editmode_settings_{Guid.NewGuid():N}.json");
             // EditMode는 실제 창/QualitySettings도 건드리지 않는 메모리 화면 어댑터
             SettingsService.SetForTests(SettingsSessionPath, new MemoryLegacySettingsStore(), new MemoryDisplayAdapter());

@@ -35,6 +35,8 @@ namespace CCT
         /// <summary>2026-11-09 HUD 지속 표시용(읽기 전용): 얼음 찻잔 재충전 남은 초, 주말 러시 남은 초, 콤보 남은 창.</summary>
         public float BarrierRemaining => BarrierReady ? 0f : barrierTimer;
         public float SpeedBurstRemaining => Mathf.Max(0f, speedBurst);
+        /// <summary>2026-11-16 피드백 25: 탄산 펌프 다음 재료 끌어당기기까지 남은 초(읽기 전용, HUD 충전 칸).</summary>
+        public float MagnetRemaining => Mathf.Max(0f, magnetTimer);
         public bool BitterWakeActive => player != null && Hidden.Has(HiddenSkill.BitterWake) && player.Hp <= player.MaxHp * 0.35f;
         public string LastActivation { get; private set; } = "";
         public float LastActivationRemaining { get; private set; }

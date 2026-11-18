@@ -26,6 +26,7 @@ namespace CCT
         Text shakeLabel;
         Text effectsLabel;
         Text damageNumbersLabel;
+        Text tipsyLabel;
         Text confirmCountdownLabel;
         Text noticeLabel;
         Slider masterSlider, musicSlider, sfxSlider;
@@ -70,6 +71,10 @@ namespace CCT
             tutorialRowLabel.text = "다시 보기";
             tutorialBtn.onClick.AddListener(view.ShowTutorialReplay);
 
+            // 2026-11-16 피드백 26 선택형 프로토타입(기본 꺼짐): 표시 전용 배지 — 값 칸에 "표시만"을 함께 적어 능력치·조작 변화가 없음을 밝힌다.
+            view.tipsyLabel = AddRow(rootRt, "TipsyBadge", "취기 표시 (시험)", ref y, out var tipsyBtn);
+            tipsyBtn.onClick.AddListener(view.ToggleTipsyBadge);
+
             y = -220f;
             ColumnX = RightColumnX;
             view.resolutionLabel = AddRow(rootRt, "Resolution", "해상도", ref y, out var resBtn);
@@ -98,6 +103,7 @@ namespace CCT
                 foreach (var hidden in new[] { "Scheme", "Resolution", "Fullscreen", "VSync" })
                     rootRt.Find(hidden).gameObject.SetActive(false);
                 rootRt.Find("TutorialReplay").GetComponent<RectTransform>().anchoredPosition += new Vector2(0f, 84f);
+                rootRt.Find("TipsyBadge").GetComponent<RectTransform>().anchoredPosition += new Vector2(0f, 84f);
                 foreach (var moved in new[] { "Shake", "Effects", "DamageNumbers" })
                     rootRt.Find(moved).GetComponent<RectTransform>().anchoredPosition += new Vector2(0f, 3 * 84f);
             }
@@ -281,6 +287,7 @@ namespace CCT
             shakeLabel.text = $"{SettingsService.Current.shakePercent}%" + (SettingsService.Current.shakePercent == 0 ? " (끔)" : "");
             effectsLabel.text = SettingsService.Current.effectsLevel == SettingsData.EffectsLow ? "낮음 (장식 50%)" : "보통";
             damageNumbersLabel.text = SettingsService.Current.damageNumbers ? "켜짐" : "꺼짐";
+            tipsyLabel.text = SettingsService.Current.tipsyBadge ? "켜짐 · 표시만" : "꺼짐";
             RefreshNotice();
         }
 
@@ -375,6 +382,15 @@ namespace CCT
         public string ShakeLabelText => shakeLabel.text;
         public string EffectsLabelText => effectsLabel.text;
         public string DamageNumbersLabelText => damageNumbersLabel.text;
+        public string TipsyLabelText => tipsyLabel.text;
+
+        /// <summary>피드백 26: 끝없는 모드에서 칵테일을 마신 판에 '취기' 배지(표시 전용) 켜기/끄기.</summary>
+        public void ToggleTipsyBadge()
+        {
+            AudioService.PlaySfx("ui_confirm");
+            SettingsService.SetTipsyBadge(!SettingsService.Current.tipsyBadge);
+            RefreshLabels();
+        }
 
         public void ToggleVSync()
         {

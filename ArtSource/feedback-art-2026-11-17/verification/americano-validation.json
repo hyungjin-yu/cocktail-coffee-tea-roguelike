@@ -1,0 +1,95 @@
+{
+  "group": "americano",
+  "assetCount": 2,
+  "assets": [
+    {
+      "assetId": "dl_coffee_americano_mug",
+      "dimensions": [
+        36,
+        36
+      ],
+      "alphaBounds": [
+        1,
+        3,
+        34,
+        36
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "09ba55768a3581067ebb2f3e67c3d6cb364fd7b3dc34f4d019996dcd14ffb2aa",
+      "sourceSha256": "f1e3ff81ae4aa691e067fda927af095af9c2c39f905361a024a059a6c8d02369",
+      "nativePivotTopLeftPx": [
+        18,
+        36
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "dl_coffee_americano_mug_mask",
+      "dimensions": [
+        36,
+        36
+      ],
+      "alphaBounds": [
+        3,
+        4,
+        27,
+        34
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "pngSha256": "bfdf5818808c7e531ef9d84614da53bc034f084328f168f4954c3259f7a2ae3b",
+      "sourceSha256": "d52f4cc57225b17283dc5876e4808ab336be8bd6fecf407420b7b6f29457bec8",
+      "nativePivotTopLeftPx": [
+        18,
+        36
+      ],
+      "checks": {
+        "dimensions": true,
+        "nativeCanvas": true,
+        "nativeMagic": true,
+        "nativeFrames": true,
+        "roundtripPixels": true,
+        "pivot": true,
+        "alpha": true,
+        "nonempty": true,
+        "cornersTransparent": true,
+        "whiteMask": true
+      },
+      "pass": true
+    }
+  ],
+  "structuralPass": true,
+  "visualReview": {
+    "pass": true,
+    "evidence": [
+      "previews/americano-window-fill.png"
+    ],
+    "scope": "Empty, mask, 245mL illustrative fill and82% limit on cream/green/brown/dark at1x and5x; artwork compositing, not Unity runtime."
+  },
+  "unityImport": false,
+  "unityRuntime": false,
+  "liquidChecks": {
+    "sameCanvas": true,
+    "maskEqualsLiquidAnchor": true,
+    "windowAlphaZero": true,
+    "withinWalls": true,
+    "approvedPixelsOutsideWindowExact": true,
+    "approvedMaskUnchanged": true
+  }
+}

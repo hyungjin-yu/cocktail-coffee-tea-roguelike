@@ -1,0 +1,79 @@
+{
+  "assetId": "hidden_bar_tempo",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-17",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "hidden_hud_icon",
+  "png": "ready/hidden_bar_tempo.png",
+  "aseprite": "ready/hidden_bar_tempo.aseprite",
+  "sourceRawPng": "raw/hidden_bar_tempo.png",
+  "sourceRawAseprite": "raw/hidden_bar_tempo.aseprite",
+  "dimensions": [
+    24,
+    24
+  ],
+  "alphaBounds": [
+    5,
+    1,
+    18,
+    23
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0.5
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    12,
+    12
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_bar_tempo.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 100,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "sha256": {
+    "png": "df62df5134d394079482c8254f68c6df2222bd4fdfd83f860d42c646cbcdf058",
+    "aseprite": "9f9f08f8ba248d90cf29764d2c703296693ce8b96d8c04d70c5f883da1b08f72",
+    "sourceRawPng": "b497a3a85f763dcce2335d4a8bed43d4447d61951b9f81cebc6854af3efe36ad",
+    "sourceRawAseprite": "6d9679881def46756dd774be4de4b94aa4977790ce085147cbf9e7c8496aa3b7"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+    "sourceEvidence": "provenance/collected-generations.json",
+    "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Wooden body retained; vertical ivory pendulum, weight and paired pause marks define stationary defensive tempo.",
+    "promptEvidence": "provenance/generation-specs.json"
+  },
+  "checks": {
+    "dimensions": true,
+    "nativeCanvas": true,
+    "nativeMagic": true,
+    "nativeFrames": true,
+    "roundtripPixels": true,
+    "pivot": true,
+    "alpha": true,
+    "nonempty": true,
+    "cornersTransparent": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false,
+    "unmodifiedRawSourceRoundtrip": true
+  },
+  "verification": "verification/hidden-validation.json",
+  "visualPreviews": [
+    "previews/hidden-finish-review.png"
+  ]
+}

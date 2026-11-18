@@ -1,0 +1,12 @@
+local root="C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/feedback-art-2026-11-17/"
+local records={}
+do local s=app.open(root.."ready/hidden_iced_cup.aseprite") s:saveCopyAs(root.."verification/roundtrip/hidden_iced_cup.png") local p=s.slices[1].pivot records[#records+1]={assetId="hidden_iced_cup",x=p.x,y=p.y,frames=#s.frames} s:close() end
+do local s=app.open(root.."ready/hidden_soda_pump.aseprite") s:saveCopyAs(root.."verification/roundtrip/hidden_soda_pump.png") local p=s.slices[1].pivot records[#records+1]={assetId="hidden_soda_pump",x=p.x,y=p.y,frames=#s.frames} s:close() end
+do local s=app.open(root.."ready/hidden_rhythm_shaker.aseprite") s:saveCopyAs(root.."verification/roundtrip/hidden_rhythm_shaker.png") local p=s.slices[1].pivot records[#records+1]={assetId="hidden_rhythm_shaker",x=p.x,y=p.y,frames=#s.frames} s:close() end
+do local s=app.open(root.."ready/hidden_bitter_wake.aseprite") s:saveCopyAs(root.."verification/roundtrip/hidden_bitter_wake.png") local p=s.slices[1].pivot records[#records+1]={assetId="hidden_bitter_wake",x=p.x,y=p.y,frames=#s.frames} s:close() end
+do local s=app.open(root.."ready/hidden_herb_garden.aseprite") s:saveCopyAs(root.."verification/roundtrip/hidden_herb_garden.png") local p=s.slices[1].pivot records[#records+1]={assetId="hidden_herb_garden",x=p.x,y=p.y,frames=#s.frames} s:close() end
+do local s=app.open(root.."ready/hidden_thick_mug.aseprite") s:saveCopyAs(root.."verification/roundtrip/hidden_thick_mug.png") local p=s.slices[1].pivot records[#records+1]={assetId="hidden_thick_mug",x=p.x,y=p.y,frames=#s.frames} s:close() end
+do local s=app.open(root.."ready/hidden_bar_tempo.aseprite") s:saveCopyAs(root.."verification/roundtrip/hidden_bar_tempo.png") local p=s.slices[1].pivot records[#records+1]={assetId="hidden_bar_tempo",x=p.x,y=p.y,frames=#s.frames} s:close() end
+do local s=app.open(root.."ready/hidden_bar_tempo_move.aseprite") s:saveCopyAs(root.."verification/roundtrip/hidden_bar_tempo_move.png") local p=s.slices[1].pivot records[#records+1]={assetId="hidden_bar_tempo_move",x=p.x,y=p.y,frames=#s.frames} s:close() end
+do local s=app.open(root.."ready/hidden_weekend_rush_steps.aseprite") s:saveCopyAs(root.."verification/roundtrip/hidden_weekend_rush_steps.png") local p=s.slices[1].pivot records[#records+1]={assetId="hidden_weekend_rush_steps",x=p.x,y=p.y,frames=#s.frames} s:close() end
+local f=assert(io.open(root.."verification/pivots-hidden.json","w")) f:write(json.encode(records)) f:close()

@@ -1,0 +1,602 @@
+{
+  "officialArchive": "C:\\Users\\user\\Downloads\\PixelLab (2).aseprite-extension",
+  "size": 1187138,
+  "sha256": "609161c5b72475b0b49a6cf593db74c421d4b7ed8a99259343c6884043a014f5",
+  "installation": "Aseprite Preferences > Extensions > Add Extension, native confirm 0.4.130 -> 0.4.131, accepted, editor restarted",
+  "versionReadFrom": "native installer dialog, not package.json",
+  "secretsRead": false,
+  "officialLuaMatches": [
+    {
+      "file": "PixelLab/generate-style-pose.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-interpolation-pro.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-tileset-sidescroller.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-pose-animation.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-inpainting-pixpatch-v2.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-pixen.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-style-old.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/skeleton.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/mask.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-animation-skeleton-v3.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/request-history.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-image-new.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/dialog-settings.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-style-new.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-tiles-style.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-image-to-pixelart-pro.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/custom-rig.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/get-image.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-inpainting-map.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-pose.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/export-skeleton-for-api.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-create-ui.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-texture.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-interpolation.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-movement.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-character.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/custom-skeleton.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/target-palette.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/pro-sway.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/pixminimax.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-edit-animation-pro.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-remove-background.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-try-on.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generation-queue.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/tileset_transform.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-interpolation-pixminimax.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/dialog-settings-advanced.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-edit-image-pro-flash.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-ui.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/pose-references.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-reference-to-8-rotations.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-8-rotations-v3.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/dialog-skeleton-preview.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-ui-template.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-flux.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/pro-flash-dialog.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/pro-flash.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/pixen-seed-layout.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-animate-with-text.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-rotations.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-animate-pixminimax.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/enhance-prompt.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-no-style-old.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/prepare-for-generation.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-tileset-pro.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-general-images-xl.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-tileset.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/handle-pose.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-animate-with-text-v3.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/place-image.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-canny.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-animation-to-animation.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-animation-template.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/create-json.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-animation-skeleton.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/websocket-multi-layer.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-image-pro-flash.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/tileset-shape-preview.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-correct-pixelart.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-map-flux.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-edit-pixen.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/play-done-sound.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/tileset-enhance-dialog.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-inpainting-map-v2.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/template_info.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-character-old.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-image-to-pixelart-pro-flash.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/quantize-image.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-pixflux-depth.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-4-rotations.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-no-style.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-complete-character.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-flux-same-style.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-isometric-tile.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-re-pose.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-start.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-animate-character-object.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-image-to-pixelart.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/pro-tool-variants.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-edit.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-multi-edit.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-inpainting.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-inpainting-pro-flash.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/unzoom-pixelart.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-rotate-single.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-inpainting-v3.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-edit-image-pro.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/display-images-in-dialog.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/pixen-tall-template.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/websocket.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/update-plugin.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-style.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-general-images.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-reshape.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-8-rotations.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/plugin-menu.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-resize.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-interpolation-v3.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/base64.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/dialog-settings-skeleton.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-transfer-outfit-pro.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-tiles-pro.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/generate-tiles.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/skeleton_references/transform_skeleton_to_2d.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/skeleton_references/draw_skeleton.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    },
+    {
+      "file": "PixelLab/skeleton_references/get_skeleton.lua",
+      "installedExists": true,
+      "exactOfficialBytes": true
+    }
+  ],
+  "nativeGenerationProbe": {
+    "asset": "dl_coffee_latte_glass",
+    "canvas": [
+      32,
+      32
+    ],
+    "camera": "sidescroller (eye level)",
+    "direction": "none",
+    "removeBackground": true,
+    "prompt": "One empty tall latte drinking glass, straight tapered sides, thick flat base, no handle, transparent interior and background, simple chunky cafe inventory pixel art, dark brown outline 201D29, ivory and muted silver edge highlights, three tones per material, side view with only a slight oval rim, full object centered, no liquid, no text, no floor, no shadow, no glow, no smooth antialiasing.",
+    "status": "native_generation_success_seed_4169501354"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "assetId": "dl_icon_coffee_burundi",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-16",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "origin_icon",
+  "png": "ready/dl_icon_coffee_burundi.png",
+  "aseprite": "ready/dl_icon_coffee_burundi.aseprite",
+  "sourceRawPng": "raw/dl_icon_coffee_burundi.png",
+  "sourceRawAseprite": "raw/dl_icon_coffee_burundi.aseprite",
+  "dimensions": [
+    32,
+    32
+  ],
+  "alphaBounds": [
+    4,
+    2,
+    27,
+    30
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0.5
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    16,
+    16
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_burundi.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 128,
+    "filterMode": "Point",
+    "mipmapEnabled": false,
+    "compression": "None",
+    "alphaIsTransparency": true,
+    "sRGB": true,
+    "wrapModeU": "Clamp",
+    "wrapModeV": "Clamp",
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "sha256": {
+    "png": "2d82263b63ec470b7dab8eed9b47fc8902d038d445fde48fe70eb9682e05d7da",
+    "aseprite": "01e6953709181a4f7cd868f46c1cd07a05521aa07d3cfe039bba2b473eef1a3d"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+    "pixelLabGeneratedAsset": "dl_icon_coffee_burundi",
+    "technicalDerivedMask": false,
+    "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+    "promptEvidence": "provenance/batch-native-specs.json"
+  },
+  "checks": {
+    "structural": true,
+    "nativeRoundtripPixelsEqual": true,
+    "nativeSourcePivot": true,
+    "alphaPolicy": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false
+  },
+  "verification": "verification/asset-validation.json",
+  "visualPreviews": [
+    "previews/cups-masks-fill.png",
+    "previews/origins-color.png",
+    "previews/origins-gray.png",
+    "previews/foam-repeat-lock.png"
+  ],
+  "ingredientId": "coffee_burundi",
+  "displayName": "부룬디 커피",
+  "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+}

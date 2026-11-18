@@ -48,11 +48,11 @@ namespace CCT.Tests
 
         static void FailSaves() => DrinkStore.FaultHookForTests = stage => { if (stage == DrinkStore.SaveStage.WriteTmp) throw new IOException("주입된 디스크 실패"); };
 
-        // ───── 입력(0.1 단위) ─────
+        // ───── 입력(2026-11-06 정수 전용: 1 단위 정수만, 저장값은 0.1 단위 10의 배수) ─────
 
-        [TestCase("12.3", 123)] [TestCase("0.1", 1)] [TestCase("1.20", 12)] [TestCase(" 5 ", 50)] [TestCase("5ml", 50)]
-        [TestCase("2.5g", 25)] [TestCase("1,5", 15)] [TestCase(".5", 5)] [TestCase("7.", 70)] [TestCase("0", 0)]
-        public void ParseAmount_AcceptsTenths(string text, int expected)
+        [TestCase("12", 120)] [TestCase("12.0", 120)] [TestCase("1.00", 10)] [TestCase(" 5 ", 50)] [TestCase("5ml", 50)]
+        [TestCase("2g", 20)] [TestCase("7.", 70)] [TestCase("0", 0)]
+        public void ParseAmount_AcceptsIntegers(string text, int expected)
         {
             Assert.IsTrue(DrinkRules.TryParseAmount(text, out int v, out var e), e);
             Assert.AreEqual(expected, v);
@@ -60,6 +60,7 @@ namespace CCT.Tests
 
         [TestCase("-1")] [TestCase("NaN")] [TestCase("1e3")] [TestCase("1.25")] [TestCase("")] [TestCase("abc")]
         [TestCase("1..2")] [TestCase("99999999")] [TestCase("Infinity")] [TestCase(null)] [TestCase("1.2.3")] [TestCase("0.05")]
+        [TestCase("12.3")] [TestCase("0.1")] [TestCase("2.5g")] [TestCase("1,5")] [TestCase(".5")]
         public void ParseAmount_RejectsInvalid(string text)
         {
             Assert.IsFalse(DrinkRules.TryParseAmount(text, out int v, out var e));
@@ -68,12 +69,13 @@ namespace CCT.Tests
         }
 
         [Test]
-        public void Format_IsExactWithoutFloat()
+        public void Format_IsIntegerOnly()
         {
-            Assert.AreEqual("12.3", DrinkRules.Format(123));
-            Assert.AreEqual("0.1", DrinkRules.Format(1));
-            Assert.AreEqual("120.0mL", DrinkRules.Format(1200, IngredientForm.Liquid));
-            Assert.AreEqual("4.9g", DrinkRules.Format(49, IngredientForm.Leaf));
+            Assert.AreEqual("12", DrinkRules.Format(123));
+            Assert.AreEqual("0", DrinkRules.Format(1));
+            Assert.AreEqual("120mL", DrinkRules.Format(1200, IngredientForm.Liquid));
+            Assert.AreEqual("5g", DrinkRules.Format(49, IngredientForm.Leaf));
+            Assert.AreEqual("3g", DrinkRules.Format(25, IngredientForm.Leaf), "2.5 → 3(중간값은 0에서 먼 쪽)");
         }
 
         // ───── 버프 ─────
@@ -103,8 +105,8 @@ namespace CCT.Tests
         {
             float a = DrinkCalculator.Buff(Cocktail(DrinkTechnique.Build, ("rum", 300))).Describe().Length;
             var r1 = DrinkCalculator.Buff(Cocktail(DrinkTechnique.Build, ("rum", 300)))[DrinkStat.AttackSpeed];
-            var r2 = DrinkCalculator.Buff(Cocktail(DrinkTechnique.Build, ("rum", 301)))[DrinkStat.AttackSpeed];
-            Assert.Greater(r2, r1, "0.1mL 차이도 계산에 반영");
+            var r2 = DrinkCalculator.Buff(Cocktail(DrinkTechnique.Build, ("rum", 310)))[DrinkStat.AttackSpeed];
+            Assert.Greater(r2, r1, "1mL 차이도 계산에 반영(정수 전용 최소 단위)");
             Assert.Greater(a, 0);
         }
 
@@ -225,9 +227,9 @@ namespace CCT.Tests
             Assert.IsFalse(DrinkValidator.Check(Cocktail(DrinkTechnique.Shake, ("lemon_juice", 300))).Ok, "베이스 술 필요");
             Assert.IsFalse(DrinkValidator.Check(Cocktail(DrinkTechnique.Shake, ("gin", 300), ("black_tea", 10))).Ok, "칵테일에 찻잎 불가");
             Assert.IsFalse(DrinkValidator.Check(Cocktail(DrinkTechnique.Steep, ("gin", 300))).Ok, "칵테일 우림 불가");
-            Assert.IsFalse(DrinkValidator.Check(Cocktail(DrinkTechnique.Shake, ("gin", 1201))).Ok, "120mL 초과");
-            Assert.IsTrue(DrinkValidator.Check(Cocktail(DrinkTechnique.Shake, ("gin", 1200))).Ok, "경계 120.0mL 허용");
-            var water = Cocktail(DrinkTechnique.Shake, ("gin", 1000)); water.water = 201;
+            Assert.IsFalse(DrinkValidator.Check(Cocktail(DrinkTechnique.Shake, ("gin", 1210))).Ok, "121mL 초과");
+            Assert.IsTrue(DrinkValidator.Check(Cocktail(DrinkTechnique.Shake, ("gin", 1200))).Ok, "경계 120mL 허용");
+            var water = Cocktail(DrinkTechnique.Shake, ("gin", 1000)); water.water = 210;
             Assert.IsFalse(DrinkValidator.Check(water).Ok, "물 포함 합 한도");
             Assert.IsFalse(DrinkValidator.Check(Cocktail(DrinkTechnique.Shake, ("gin", 100), ("gin", 100))).Ok, "중복");
             Assert.IsFalse(DrinkValidator.Check(Cocktail(DrinkTechnique.Shake, ("gin", -5))).Ok, "음수");
@@ -242,11 +244,12 @@ namespace CCT.Tests
             Assert.DoesNotThrow(() => { DrinkValidator.Check(nullList); DrinkCalculator.Buff(nullList); DrinkCalculator.Look(nullList); nullList.Clone(); });
             var many = Cocktail(DrinkTechnique.Shake); for (int i = 0; i < 50; i++) many.steps.Add(new DrinkStep("gin", 1));
             Assert.IsFalse(DrinkValidator.Check(many).Ok, "재료 수 상한");
-            Assert.IsTrue(DrinkValidator.Check(Tea(("green_tea", 1))).Ok, "찻잎 0.1g 최소");
-            Assert.IsTrue(DrinkValidator.Check(Tea(("green_tea", 50))).Ok, "5.0g 경계");
-            Assert.IsFalse(DrinkValidator.Check(Tea(("green_tea", 51))).Ok, "5.1g 초과");
+            Assert.IsTrue(DrinkValidator.Check(Tea(("green_tea", 10))).Ok, "찻잎 1g 최소(정수 전용)");
+            Assert.IsFalse(DrinkValidator.Check(Tea(("green_tea", 5))).Ok, "0.5g 같은 소수 양은 거부");
+            Assert.IsTrue(DrinkValidator.Check(Tea(("green_tea", 50))).Ok, "5g 경계");
+            Assert.IsFalse(DrinkValidator.Check(Tea(("green_tea", 60))).Ok, "6g 초과");
             Assert.IsFalse(DrinkValidator.Check(Tea(("honey", 100))).Ok, "찻잎 없는 차");
-            Assert.IsFalse(DrinkValidator.Check(Tea(("green_tea", 10), ("honey", 301))).Ok, "첨가 액체 30mL 초과");
+            Assert.IsFalse(DrinkValidator.Check(Tea(("green_tea", 10), ("honey", 310))).Ok, "첨가 액체 30mL 초과");
             Assert.IsFalse(DrinkValidator.Check(Tea(("green_tea", 10), ("rum", 10))).Ok, "차에 럼 불가");
             var teaWater = Tea(("green_tea", 10)); teaWater.water = 1000;
             Assert.IsFalse(DrinkValidator.Check(teaWater).Ok, "차 물은 150mL 고정");
@@ -257,8 +260,8 @@ namespace CCT.Tests
         [Test]
         public void ShareCode_RoundTripReproducesMixColorAndBuff()
         {
-            var r = Cocktail(DrinkTechnique.Layer, ("grenadine", 150), ("blue_curacao", 123), ("gin", 301));
-            r.ice = 2; r.water = 55; r.name = "노을 칵테일";
+            var r = Cocktail(DrinkTechnique.Layer, ("grenadine", 150), ("blue_curacao", 120), ("gin", 300));
+            r.ice = 2; r.water = 50; r.name = "노을 칵테일";
             var code = DrinkShareCode.Encode(r);
             StringAssert.StartsWith("CCT1-", code);
             Assert.LessOrEqual(code.Length, DrinkShareCode.MaxCodeLength);
@@ -269,14 +272,14 @@ namespace CCT.Tests
             Assert.AreEqual(DrinkCalculator.Hex(DrinkCalculator.Look(r).color), DrinkCalculator.Hex(DrinkCalculator.Look(back).color));
             Assert.AreEqual(DrinkCalculator.Buff(r).Describe(), DrinkCalculator.Buff(back).Describe());
             Assert.IsNotNull(DrinkShareCode.Decode("  " + code.ToLowerInvariant().Replace("-", " - ") + "\n", out err), "공백·소문자·구분자 허용: " + err);
-            var tea = Tea(("green_tea", 33), ("honey", 120));
+            var tea = Tea(("green_tea", 30), ("honey", 120));
             Assert.IsTrue(tea.SameMix(DrinkShareCode.Decode(DrinkShareCode.Encode(tea), out _)));
         }
 
         [Test]
         public void ShareCode_MaxKoreanNameAndAllCocktailIngredients_RoundTripWithinLimit()
         {
-            var r = Cocktail(DrinkTechnique.Layer, ("gin", 300), ("rum", 200), ("blue_curacao", 150), ("grenadine", 150), ("lemon_juice", 200), ("honey", 199));
+            var r = Cocktail(DrinkTechnique.Layer, ("gin", 300), ("rum", 200), ("blue_curacao", 150), ("grenadine", 150), ("lemon_juice", 200), ("honey", 190));
             r.ice = DrinkRules.IceMax; r.water = 0;
             r.name = new string('가', DrinkRules.RecipeNameMax); // 16자 = 48바이트
             Assert.IsTrue(DrinkValidator.Check(r).Ok, DrinkValidator.Check(r).First);
@@ -345,18 +348,18 @@ namespace CCT.Tests
         [Test]
         public void Craft_DeductsExactlyAndRecordsPreparedInSameSave()
         {
-            var r = Cocktail(DrinkTechnique.Shake, ("gin", 453), ("lemon_juice", 101));
+            var r = Cocktail(DrinkTechnique.Shake, ("gin", 450), ("lemon_juice", 100));
             var res = DrinkLab.Craft(r);
             Assert.AreEqual(DrinkLab.CraftStatus.Crafted, res.Status, res.Message);
-            Assert.AreEqual(600 - 453, DrinkLab.Owned("gin"));
-            Assert.AreEqual(300 - 101, DrinkLab.Owned("lemon_juice"));
+            Assert.AreEqual(600 - 450, DrinkLab.Owned("gin"));
+            Assert.AreEqual(300 - 100, DrinkLab.Owned("lemon_juice"));
             DrinkLab.ReloadForTests(); // 제조 후 재시작
-            Assert.AreEqual(147, DrinkLab.Owned("gin"));
+            Assert.AreEqual(150, DrinkLab.Owned("gin"));
             Assert.IsNotNull(DrinkLab.Prepared);
             Assert.AreEqual(PreparedDrink.Ready, DrinkLab.Prepared.state, "출발 전 음료는 재시작해도 남는다");
             Assert.IsTrue(r.SameMix(DrinkLab.Prepared.recipe));
             Assert.AreEqual(DrinkLab.CraftStatus.AlreadyPrepared, DrinkLab.Craft(r).Status, "한 슬롯 — 덮어쓰지 않음");
-            Assert.AreEqual(147, DrinkLab.Owned("gin"));
+            Assert.AreEqual(150, DrinkLab.Owned("gin"));
         }
 
         [Test]
@@ -376,7 +379,7 @@ namespace CCT.Tests
         [Test]
         public void Craft_RejectsShortageAndUnownedAndInvalid_WithoutDeducting()
         {
-            Assert.AreEqual(DrinkLab.CraftStatus.Shortage, DrinkLab.Craft(Cocktail(DrinkTechnique.Shake, ("gin", 601))).Status);
+            Assert.AreEqual(DrinkLab.CraftStatus.Shortage, DrinkLab.Craft(Cocktail(DrinkTechnique.Shake, ("gin", 610))).Status);
             var data = DrinkLab.Data;
             data.stock.RemoveAll(s => s.id == "rum");
             Assert.AreEqual(DrinkLab.CraftStatus.Shortage, DrinkLab.Craft(Cocktail(DrinkTechnique.Shake, ("rum", 10))).Status, "없는 재료 제조 거부");

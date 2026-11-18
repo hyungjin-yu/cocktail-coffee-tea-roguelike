@@ -1,0 +1,244 @@
+[
+  {
+    "id": "dl_coffee_cappuccino_cup",
+    "width": 32,
+    "height": 26,
+    "description": "One empty round deep bowl-shaped ivory ceramic cappuccino cup with small curved handle on right, sitting on a broad low oval saucer, distinct round belly, no liquid, no steam. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_foam_layer",
+    "width": 32,
+    "height": 8,
+    "description": "A narrow horizontal seamless strip of milk foam, ivory white three shading tones, tiny clustered bubbles with a gently scalloped top edge, opaque foam band across full width, transparent above and below, no cup, no objects, no text, crisp simple pixel art, horizontal tile."
+  },
+  {
+    "id": "ui_lock_badge",
+    "width": 16,
+    "height": 16,
+    "description": "A single centered small closed padlock icon with thick arch-shaped shackle and square golden cream metal body, one dark keyhole, strong dark brown 201D29 one-pixel outline, three shading tones, transparent background, crisp readable cafe game pixel icon, no text, no floor, no glow."
+  },
+  {
+    "id": "dl_icon_ethiopia_yirgacheffe_kochere",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "ethiopia_yirgacheffe_kochere",
+    "name": "예가체프 코체레",
+    "description": "Roasted coffee bean ingredient icon: a tall drawstring sack with a split Y-shaped coffee branch emblem, three oval beans at its base. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_colombia_huila_vergel",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "colombia_huila_vergel",
+    "name": "엘 베르헬 (피탈리토)",
+    "description": "Roasted coffee bean ingredient icon: a squat cylindrical coffee tin with a bold zigzag mountain emblem and one large bean leaning against it. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_brazil_mantiqueira_alves_lima",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "brazil_mantiqueira_alves_lima",
+    "name": "파젠다 알베스 리마",
+    "description": "Roasted coffee bean ingredient icon: a broad shallow wooden coffee tray, diagonal slat pattern and five large beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_panama_esmeralda_geisha",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "panama_esmeralda_geisha",
+    "name": "에스메랄다 게이샤",
+    "description": "Roasted coffee bean ingredient icon: a folded triangular-top coffee pouch with one long curved leaf emblem and two slim beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_colombia_huila_san_pedro_geisha",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "colombia_huila_san_pedro_geisha",
+    "name": "아시엔다 산 페드로",
+    "description": "Roasted coffee bean ingredient icon: a small round tin with a simple four-petal blossom emblem and three beans to its left. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_colombia_la_esperanza_bourbon",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "colombia_la_esperanza_bourbon",
+    "name": "핀카 라 에스페란사",
+    "description": "Roasted coffee bean ingredient icon: a rectangular kraft coffee bag with a stepped crown-like ridge emblem and two beans to its right. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_ethiopia_guji",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_ethiopia_guji",
+    "name": "에티오피아 구지",
+    "description": "Roasted coffee bean ingredient icon: a narrow tied sack with two outward leaf-shaped handles and two beans below. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_ethiopia_sidama",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_ethiopia_sidama",
+    "name": "에티오피아 시다마",
+    "description": "Roasted coffee bean ingredient icon: a low wide woven basket full of coffee beans, pronounced curved upright handle. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_kenya_nyeri",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_kenya_nyeri",
+    "name": "케냐 니에리",
+    "description": "Roasted coffee bean ingredient icon: a tall rectangular lidded coffee tin, bold hollow diamond emblem and two beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_rwanda",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_rwanda",
+    "name": "르완다 커피",
+    "description": "Roasted coffee bean ingredient icon: an asymmetric slanted-open coffee pouch, bold crescent emblem and a spilling bean cluster. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_burundi",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_burundi",
+    "name": "부룬디 커피",
+    "description": "Roasted coffee bean ingredient icon: a round glass jar of roasted beans with wide dark lid and one bright square paper label without writing. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_uganda",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_uganda",
+    "name": "우간다 커피",
+    "description": "Roasted coffee bean ingredient icon: a squat square coffee box with a deep V-shaped emblem and beans in a diagonal line. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_indonesia_gayo",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_indonesia_gayo",
+    "name": "인도네시아 가요",
+    "description": "Roasted coffee bean ingredient icon: a small teardrop-shaped cloth sack with a double wave emblem and three beans on its left. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_indonesia_java",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_indonesia_java",
+    "name": "인도네시아 자바",
+    "description": "Roasted coffee bean ingredient icon: a tapered hexagonal coffee canister with large hollow triangle emblem and two crossed beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_vietnam_dalat",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_vietnam_dalat",
+    "name": "베트남 달랏",
+    "description": "Roasted coffee bean ingredient icon: a short open burlap sack, wide folded rim, two tall leaf sprigs behind roasted coffee beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_india_malabar",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_india_malabar",
+    "name": "인도 말라바르",
+    "description": "Roasted coffee bean ingredient icon: a long shallow oval wooden bean scoop, short thick handle on the upper right, clearly visible roasted beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_costa_rica_tarrazu",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_costa_rica_tarrazu",
+    "name": "코스타리카 타라주",
+    "description": "Roasted coffee bean ingredient icon: a stout angular rectangular pouch with three large stepped ridges emblem and a pair of beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_guatemala_antigua",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_guatemala_antigua",
+    "name": "과테말라 안티구아",
+    "description": "Roasted coffee bean ingredient icon: a wide round coffee tin with a bold sun-ray emblem, two beans on its right. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_honduras_marcala",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_honduras_marcala",
+    "name": "온두라스 마르칼라",
+    "description": "Roasted coffee bean ingredient icon: a slender rounded paper coffee bag with a large three-leaf clover emblem and one bean. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_peru_chanchamayo",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_peru_chanchamayo",
+    "name": "페루 찬차마요",
+    "description": "Roasted coffee bean ingredient icon: a square wooden crate of roasted coffee beans with thick corner braces and diagonal front brace. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_mexico_chiapas",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_mexico_chiapas",
+    "name": "멕시코 치아파스",
+    "description": "Roasted coffee bean ingredient icon: a low ceramic bowl overflowing with roasted beans, a single large forked twig behind. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_jamaica_blue_mountain",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_jamaica_blue_mountain",
+    "name": "자메이카 블루마운틴",
+    "description": "Roasted coffee bean ingredient icon: a tall open paper cone filled with coffee beans, diagonal folded seam and two beans outside. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_brazil_cerrado",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_brazil_cerrado",
+    "name": "브라질 세하두",
+    "description": "Roasted coffee bean ingredient icon: a small straight-sided metal pail of roasted beans with thick swing handle visible to left. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_colombia_narino",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_colombia_narino",
+    "name": "콜롬비아 나리뇨",
+    "description": "Roasted coffee bean ingredient icon: a broad oval burlap sack with zigzag tied neck pointing left, a large spiral emblem and two beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_el_salvador",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_el_salvador",
+    "name": "엘살바도르 커피",
+    "description": "Roasted coffee bean ingredient icon: a slim square glass coffee jar with round screw lid and bold X-shaped paper seal, beans visible inside. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_nicaragua",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_nicaragua",
+    "name": "니카라과 커피",
+    "description": "Roasted coffee bean ingredient icon: a wide low coffee pouch with scalloped folded top, bold single arch emblem and three beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_tanzania",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_tanzania",
+    "name": "탄자니아 커피",
+    "description": "Roasted coffee bean ingredient icon: a very tall narrow coffee tin with large vertical double-chevron emblem and two beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  },
+  {
+    "id": "dl_icon_coffee_bolivia",
+    "width": 32,
+    "height": 32,
+    "ingredientId": "coffee_bolivia",
+    "name": "볼리비아 커피",
+    "description": "Roasted coffee bean ingredient icon: a short barrel-shaped wooden coffee container with two metal hoops, open top showing roasted beans. Single centered readable cafe game inventory pixel sprite. Warm cream paper, muted sage or warm coffee brown material, very dark brown 201D29 one-pixel chunky outline, three clear shading tones per material, upper-left light, side view with slight opening ellipse. Transparent background, crisp pixels, complete silhouette, no letters, numbers, logos, flags, glow, floor or cast shadow, no antialiasing. This is decorative game packaging, not a claim about authentic regional packaging."
+  }
+]

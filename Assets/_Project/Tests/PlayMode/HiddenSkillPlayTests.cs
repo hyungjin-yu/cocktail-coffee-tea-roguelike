@@ -240,7 +240,8 @@ namespace CCT.Tests
             float dmg = 0f; b.Damaged += x => dmg += x;
             float flameDps = b.GetComponent<EnemyHitStatus>().FlameDps, poisonDps = b.GetComponent<EnemyHitStatus>().PoisonDps;
             yield return new WaitForSeconds(1.05f);
-            Assert.AreEqual((flameDps + poisonDps) * 1.25f, dmg, 0.01f, "둘 다 걸린 1초 틱 +25%");
+            // 정수 전용: 화상·중독 틱이 각각 +25% 뒤 정수 피해(IntNum.Damage)로 들어간다.
+            Assert.AreEqual(IntNum.Damage(flameDps * 1.25f) + IntNum.Damage(poisonDps * 1.25f), dmg, 0.01f, "둘 다 걸린 1초 틱 +25%");
         }
     }
 }

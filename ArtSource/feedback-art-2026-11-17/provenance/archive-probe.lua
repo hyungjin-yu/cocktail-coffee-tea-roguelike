@@ -1,0 +1,1 @@
+local s=app.open("C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/feedback-art-2026-11-17/raw/hidden_iced_cup.png") s.layers[1].name="Original official PixelLab output" s:saveAs("C:/Users/user/orca/workspaces/CocktailCoffeeTea/coffee-brewing/ArtSource/feedback-art-2026-11-17/raw/hidden_iced_cup.aseprite")

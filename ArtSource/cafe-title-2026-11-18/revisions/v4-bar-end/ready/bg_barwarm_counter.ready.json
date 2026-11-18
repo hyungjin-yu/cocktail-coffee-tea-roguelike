@@ -1,0 +1,51 @@
+{
+  "assetId": "bg_barwarm_counter",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v4-bar-end",
+  "png": "ready/gameplay/bg_barwarm_counter/bg_barwarm_counter_00.png",
+  "aseprite": "ready/gameplay/bg_barwarm_counter/bg_barwarm_counter_00.aseprite",
+  "sourcePng": "reference/bg_bar_counter_00.png",
+  "dimensions": [
+    256,
+    128
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/ArtExtra/bg_barwarm_counter/bg_barwarm_counter_00.png",
+  "import": {
+    "pixelsPerUnit": 64,
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "meshType": "FullRect"
+  },
+  "sha256": {
+    "png": "c32f6ad90a448db9acfc5371c93e9fedd57ef96dca30001671c3f3d34a5c7d73",
+    "aseprite": "311bbfad947fbe2a11b368810430c66e8b0d491cb0bb5b64c7a5121afb445028",
+    "originalPng": "19f5195af7a7961836f60724fadf38410dadf9f54208b58f222c6320fff6b338"
+  },
+  "checks": {
+    "alphaExact": true,
+    "roundtripPixelsEqual": true,
+    "canvasUnchanged": true
+  },
+  "tone": {
+    "meanLumaBefore": 56.05750406374474,
+    "meanLumaAfter": 78.19156677794732,
+    "whiteFractionAfter": 0.009525081230248809
+  },
+  "activationContract": "Single bartender per-part bg_barwarm override in TryJobMap only; original bg_bar JobPreset prefix retained; no shared cafe skin/tea/coop changes",
+  "rendererRequirement": {
+    "multiplyRGB": [
+      1,
+      1,
+      1
+    ],
+    "veilAlphaMax": 0.08,
+    "avoidDoubleGrade": true
+  },
+  "runtimeContrastVerified": false
+}

@@ -927,6 +927,562 @@
             ],
             "width": 48,
             "height": 24
+        },
+        {
+            "assetId": "dl_coffee_latte_glass",
+            "mouth": [
+                0.5,
+                0.8055555555555556
+            ],
+            "grip": [
+                0.6388888888888888,
+                0.38888888888888884
+            ],
+            "liquid": [
+                0.3611111111111111,
+                0.08333333333333337,
+                0.6666666666666666,
+                0.75
+            ],
+            "width": 36,
+            "height": 36
+        },
+        {
+            "assetId": "dl_coffee_flatwhite_cup",
+            "mouth": [
+                0.46875,
+                0.42307692307692313
+            ],
+            "grip": [
+                0.84375,
+                0.2692307692307693
+            ],
+            "liquid": [
+                0.21875,
+                0.038461538461538436,
+                0.78125,
+                0.34615384615384615
+            ],
+            "width": 32,
+            "height": 26
+        },
+        {
+            "assetId": "dl_coffee_cappuccino_cup",
+            "mouth": [
+                0.53125,
+                0.6153846153846154
+            ],
+            "grip": [
+                0.09375,
+                0.46153846153846156
+            ],
+            "liquid": [
+                0.28125,
+                0.3076923076923077,
+                0.78125,
+                0.5769230769230769
+            ],
+            "width": 32,
+            "height": 26
+        },
+        {
+            "assetId": "dl_coffee_americano_mug",
+            "pourLip": [
+                0.041666666666666664,
+                0.9027777777777778
+            ],
+            "mouth": [
+                0.4027777777777778,
+                0.9027777777777778
+            ],
+            "grip": [
+                0.875,
+                0.4583333333333333
+            ],
+            "liquid": [
+                0.08333333333333333,
+                0.05555555555555555,
+                0.75,
+                0.8888888888888888
+            ],
+            "width": 36,
+            "height": 36
+        },
+        {
+            "assetId": "dl_tin_ethiopia_yirgacheffe_kochere",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_colombia_huila_vergel",
+            "pourLip": [
+                0.765625,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_brazil_mantiqueira_alves_lima",
+            "pourLip": [
+                0.859375,
+                0.453125
+            ],
+            "mouth": [
+                0.5,
+                0.453125
+            ],
+            "grip": [
+                0.5,
+                0.16874999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_panama_esmeralda_geisha",
+            "pourLip": [
+                0.828125,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_colombia_huila_san_pedro_geisha",
+            "pourLip": [
+                0.765625,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_colombia_la_esperanza_bourbon",
+            "pourLip": [
+                0.765625,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_ethiopia_guji",
+            "pourLip": [
+                0.859375,
+                0.640625
+            ],
+            "mouth": [
+                0.5,
+                0.640625
+            ],
+            "grip": [
+                0.5,
+                0.24375000000000002
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_ethiopia_sidama",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_kenya_nyeri",
+            "pourLip": [
+                0.859375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_rwanda",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_burundi",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_uganda",
+            "pourLip": [
+                0.859375,
+                0.703125
+            ],
+            "mouth": [
+                0.5,
+                0.703125
+            ],
+            "grip": [
+                0.5,
+                0.26875000000000004
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_indonesia_gayo",
+            "pourLip": [
+                0.859375,
+                0.671875
+            ],
+            "mouth": [
+                0.5,
+                0.671875
+            ],
+            "grip": [
+                0.5,
+                0.2562500000000001
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_indonesia_java",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_vietnam_dalat",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_india_malabar",
+            "pourLip": [
+                0.859375,
+                0.640625
+            ],
+            "mouth": [
+                0.5,
+                0.640625
+            ],
+            "grip": [
+                0.5,
+                0.24375000000000002
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_costa_rica_tarrazu",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_guatemala_antigua",
+            "pourLip": [
+                0.859375,
+                0.640625
+            ],
+            "mouth": [
+                0.5,
+                0.640625
+            ],
+            "grip": [
+                0.5,
+                0.24375000000000002
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_honduras_marcala",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_peru_chanchamayo",
+            "pourLip": [
+                0.828125,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_mexico_chiapas",
+            "pourLip": [
+                0.859375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_jamaica_blue_mountain",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_brazil_cerrado",
+            "pourLip": [
+                0.859375,
+                0.703125
+            ],
+            "mouth": [
+                0.5,
+                0.703125
+            ],
+            "grip": [
+                0.5,
+                0.26875000000000004
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_colombia_narino",
+            "pourLip": [
+                0.859375,
+                0.515625
+            ],
+            "mouth": [
+                0.5,
+                0.515625
+            ],
+            "grip": [
+                0.5,
+                0.19374999999999998
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_el_salvador",
+            "pourLip": [
+                0.765625,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_nicaragua",
+            "pourLip": [
+                0.796875,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_tanzania",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
+        },
+        {
+            "assetId": "dl_tin_coffee_bolivia",
+            "pourLip": [
+                0.734375,
+                0.765625
+            ],
+            "mouth": [
+                0.5,
+                0.765625
+            ],
+            "grip": [
+                0.5,
+                0.29374999999999996
+            ],
+            "width": 32,
+            "height": 32
         }
     ]
 }

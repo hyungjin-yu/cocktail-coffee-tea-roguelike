@@ -71,6 +71,17 @@ namespace CCT
             _ => null,
         };
 
+        static readonly System.Collections.Generic.Dictionary<EnemyDef, Sprite> enemyCrop = new System.Collections.Generic.Dictionary<EnemyDef, Sprite>();
+        /// <summary>2026-11-15 피드백 15: 적(보스) 초상 — 기존 승인 몸체 아트의 대표 프레임을 불투명 영역으로 자른 같은 텍스처(새 아트 아님).</summary>
+        public static Sprite Enemy(EnemyDef def)
+        {
+            if (def == null) return null;
+            if (enemyCrop.TryGetValue(def, out var cached) && cached != null) return cached;
+            var s = Cropped(MasterWavePlan.IconOf(def), ArtLibrary.Get(def.ArtId));
+            if (s != null) enemyCrop[def] = s;
+            return s;
+        }
+
         public static Sprite Job(Job job) => ArtLibrary.Get(JobPreset.For(job).bodyArtId)?.Clip("idle")?.frames[0];
 
         public static Sprite Weapon(WeaponKind w) => Res(WeaponPreset.For(w)?.iconResourcePath);

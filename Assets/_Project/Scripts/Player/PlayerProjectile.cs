@@ -72,6 +72,99 @@ namespace CCT
             p.projectileArtId = artId;
             p.remainingDistance = maxDistance;
             if (excluded != null) p.alreadyHit.Add(excluded);
+            if (original && owner != null && IsArrowArt(artId)) ApplyArrowElement(go, sr, ArrowElementOf(owner.Stats), art);
+        }
+
+        // ───── 2026-11-16 피드백 19: 화살의 기존 적중 속성 표현(표시 전용) ─────
+        // 새 화살 종류·새 피해가 아니다. 원래 탄이 직접 적중하면 EnemyHitStatus.AttachDirect가 붙이는 화염/여운과 **같은 조건**(Lv>0, 잠금 아님)일 때
+        // 화살 머리 색과 짧은 꼬리 점으로 보여 준다. 피해·확률·습득(카드)·판정 반지름·속도·관통은 그대로. 파편(비원본)은 상태를 붙이지 않으므로 표시도 없다.
+        [Flags] public enum ArrowElement { None = 0, Flame = 1, Bitter = 2 }
+
+        public static bool IsArrowArt(string artId) => !string.IsNullOrEmpty(artId) && artId.Contains("arrow");
+
+        public static ArrowElement ArrowElementOf(PlayerStats stats)
+        {
+            if (stats == null) return ArrowElement.None;
+            var e = ArrowElement.None;
+            if (stats.flameLevel > 0 && !stats.FlameLocked) e |= ArrowElement.Flame;
+            if (stats.poisonLevel > 0 && !stats.PoisonLocked) e |= ArrowElement.Bitter;
+            return e;
+        }
+
+        public static readonly Color FlameTint = new Color(1f, 0.62f, 0.42f), BitterTint = new Color(0.66f, 0.86f, 0.46f);
+        static readonly Color FlameTail = new Color(1f, 0.45f, 0.15f, 0.9f), BitterTail = new Color(0.5f, 0.62f, 0.3f, 0.9f);
+        /// <summary>꼬리 테두리(Codex 검토표 외곽 #201D29).</summary>
+        public static readonly Color TailOutline = new Color(0.125f, 0.114f, 0.161f, 0.9f);
+
+        /// <summary>머리 = 우선 속성 색(화염 우선), 꼬리 점 = 둘 다면 반대 속성 색(두 색으로 동시 보유 표시). 저이펙트면 꼬리 없이 머리 색만.</summary>
+        // ── 2026-11-17 전용 꼬리 아트 연결(Codex 납품 시 자동): Resources/ArtExtra/vfx_arrow_tail/<id>_00..02.png, 32×16·PPU128·피벗 = 앞쪽 소켓.
+        public const string TailFolder = "ArtExtra/vfx_arrow_tail/";
+        public const float TailFps = 8f;
+        static readonly Dictionary<string, Sprite[]> tailFrames = new Dictionary<string, Sprite[]>();
+
+        /// <summary>속성 → 전용 꼬리 아트 ID(화염만 / 여운만 / 둘 다).</summary>
+        public static string TailArtId(ArrowElement e) =>
+            (e & ArrowElement.Flame) != 0 && (e & ArrowElement.Bitter) != 0 ? "vfx_arrow_dual_tail"
+            : (e & ArrowElement.Flame) != 0 ? "vfx_arrow_fire_tail" : (e & ArrowElement.Bitter) != 0 ? "vfx_arrow_bitter_tail" : null;
+
+        /// <summary>전용 꼬리 프레임(_00, _01 …). 없으면 빈 배열 → 원형 점 대체.</summary>
+        public static Sprite[] TailFrames(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return new Sprite[0];
+            if (tailFrames.TryGetValue(id, out var f)) return f;
+            var list = new List<Sprite>();
+            for (int i = 0; i < 8; i++) { var s = Resources.Load<Sprite>($"{TailFolder}{id}_{i:00}"); if (s == null) break; list.Add(s); }
+            f = list.ToArray();
+            tailFrames[id] = f;
+            return f;
+        }
+
+        /// <summary>화살 그림의 깃 끝(불투명 영역 왼쪽 가운데)을 화살 로컬 좌표로. 꼬리 아트의 소켓 피벗을 여기에 붙인다.</summary>
+        public static Vector2 FletchSocketLocal(ArtAsset art)
+        {
+            if (art == null || art.frameSizePx.x <= 0f) return new Vector2(-0.36f, 0f);
+            var c = art.contentRectNormalized;
+            return new Vector2((c.xMin - art.pivotNormalized.x) * art.frameSizePx.x / art.pixelsPerUnit,
+                (c.center.y - art.pivotNormalized.y) * art.frameSizePx.y / art.pixelsPerUnit);
+        }
+
+        static void ApplyArrowElement(GameObject go, SpriteRenderer sr, ArrowElement e, ArtAsset arrowArt)
+        {
+            if (e == ArrowElement.None || sr == null) return;
+            bool flame = (e & ArrowElement.Flame) != 0, bitter = (e & ArrowElement.Bitter) != 0;
+            sr.color = flame ? FlameTint : BitterTint;
+            if (SettingsService.Current.effectsLevel == SettingsData.EffectsLow) return;
+            var frames = TailFrames(TailArtId(e));
+            if (frames.Length > 0)
+            {
+                // 전용 아트: 화살 로컬 공간(같은 PPU 128·같은 배율)에 소켓 피벗을 깃 끝에 맞춰 붙이고 8fps 반복. 판정·피해 무관.
+                var t = new GameObject("ElementTail");
+                t.transform.SetParent(go.transform, false);
+                t.transform.localPosition = FletchSocketLocal(arrowArt);
+                var r = t.AddComponent<SpriteRenderer>();
+                r.sprite = frames[0];
+                r.sortingOrder = sr.sortingOrder - 1;
+                if (frames.Length > 1) t.AddComponent<ArrowTailAnim>().frames = frames;
+                return;
+            }
+            var tail = new GameObject("ElementTail");
+            tail.transform.SetParent(go.transform, false);
+            float k = 1f / Mathf.Max(0.01f, go.transform.localScale.x); // 부모(화살) 배율을 풀어 월드 크기로 지정
+            tail.transform.localPosition = new Vector3(-0.32f * k, 0f, 0f); // 화살 뒤 0.32(월드) — 화살 길이 ≈0.54의 꼬리 쪽
+            tail.transform.localScale = Vector3.one * (0.12f * k);
+            var tr = tail.AddComponent<SpriteRenderer>();
+            tr.sprite = SpriteFactory.Circle;
+            tr.color = bitter && flame ? BitterTail : flame ? FlameTail : BitterTail;
+            tr.sortingOrder = sr.sortingOrder - 1;
+            // 2026-11-16 후속: 찻집 녹색 바닥에서 녹색 꼬리 대비가 낮았다(followup feedback4 12_arrow_bitter) → 꼬리 뒤 어두운 테두리 원(표시 전용, 판정·속성 불변).
+            var ring = new GameObject("ElementTailOutline");
+            ring.transform.SetParent(go.transform, false);
+            ring.transform.localPosition = tail.transform.localPosition;
+            ring.transform.localScale = Vector3.one * (0.17f * k);
+            var rr = ring.AddComponent<SpriteRenderer>();
+            rr.sprite = SpriteFactory.Circle;
+            rr.color = TailOutline;
+            rr.sortingOrder = sr.sortingOrder - 2;
         }
 
         void Update()
@@ -137,6 +230,20 @@ namespace CCT
             transform.position = next;
             remainingDistance -= dist;
             if (remainingDistance <= 0f) Destroy(gameObject);
+        }
+    }
+    /// <summary>2026-11-17 화살 전용 꼬리 프레임 반복(표시 전용, 8fps, 일시정지 중 멈춤).</summary>
+    public class ArrowTailAnim : MonoBehaviour
+    {
+        public Sprite[] frames;
+        SpriteRenderer r;
+        float t;
+        void Awake() => r = GetComponent<SpriteRenderer>();
+        void Update()
+        {
+            if (frames == null || frames.Length == 0 || r == null) return;
+            t += Time.deltaTime;
+            r.sprite = frames[Mathf.FloorToInt(t * PlayerProjectile.TailFps) % frames.Length];
         }
     }
 }

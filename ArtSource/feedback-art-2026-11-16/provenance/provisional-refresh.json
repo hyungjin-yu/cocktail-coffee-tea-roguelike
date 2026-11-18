@@ -1,0 +1,10 @@
+{
+  "refreshedFromFinalOfficialArchives": [
+    "dl_icon_colombia_huila_vergel",
+    "dl_icon_coffee_ethiopia_guji",
+    "dl_icon_coffee_guatemala_antigua",
+    "dl_icon_coffee_nicaragua"
+  ],
+  "earlierSnapshots": "raw/provisional-preserved",
+  "reason": "PixelLab updates archive PNG during streaming; final complete job archive is authoritative, interim snapshots never delivered ready."
+}

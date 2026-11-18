@@ -1,0 +1,1369 @@
+{
+  "version": 4,
+  "status": "temp",
+  "ready": false,
+  "baseScreen": [
+    1920,
+    1080
+  ],
+  "artPixels": [
+    480,
+    270
+  ],
+  "coordinateSystem": "normalized top-left, rect[x,y,w,h], z higher in front",
+  "designApproval": "v2 straight-entry then explicit cut approved msg_45f1f437a9bc; v3 records actual authored perspective/visible objects, no new floorplan",
+  "aspectPolicy": {
+    "mode": "contain",
+    "reason": "Preserve physically placed west doorway and east radio; do not force furniture into4:3 cover crop",
+    "contentAspect": 1.7777777777777777,
+    "allLayersHotspotsLabelsSameTransform": true,
+    "backgroundBars": "dark cafe wall tone; no stretched artwork"
+  },
+  "uiSafeAreas": {
+    "topTitle": [
+      0.15,
+      0.025,
+      0.7,
+      0.07
+    ],
+    "bottomSaveSafety": [
+      0.05,
+      0.87,
+      0.9,
+      0.12
+    ]
+  },
+  "floorPlan": {
+    "units": "meters",
+    "roomBounds": [
+      0,
+      0,
+      7.5,
+      6
+    ],
+    "axes": "+x east,+y north,+z up",
+    "wallHeight": 2.9,
+    "entrance": {
+      "wall": "south",
+      "openingX": [
+        1.4,
+        2.45
+      ],
+      "widthMeters": 1.05,
+      "heightMeters": 2.15,
+      "hingeWorld": [
+        1.4,
+        -0.025,
+        0
+      ],
+      "thresholdWorld": [
+        [
+          1.4,
+          0,
+          0
+        ],
+        [
+          2.45,
+          0,
+          0
+        ]
+      ],
+      "swing": "inward north; fixed west jamb; closed free edge[2.45,0],open free edge[1.4,1.05]",
+      "clearSwingReservation": [
+        1.35,
+        -0.08,
+        2.5,
+        1.1
+      ],
+      "hingeConstruction": "Barrel axis25mm outboard of wall plane;44mm leaf thickness wholly on swing-clear side, no jamb penetration"
+    },
+    "serviceCounter": [
+      5,
+      1.3,
+      5.7,
+      4.8
+    ],
+    "staffAisle": [
+      5.7,
+      1.3,
+      6.8,
+      4.8
+    ],
+    "backEquipmentCounter": [
+      6.8,
+      1.3,
+      7.3,
+      4.8
+    ],
+    "publicPathMeters": [
+      [
+        1.925,
+        -1.5
+      ],
+      [
+        1.925,
+        0.4
+      ],
+      [
+        3.3,
+        1.8
+      ],
+      [
+        4.5,
+        2.7
+      ]
+    ],
+    "minimumPublicClearanceMeters": 1.05,
+    "seating": {
+      "roundTable": {
+        "center": [
+          1.4,
+          4.8
+        ],
+        "diameter": 0.7,
+        "height": 0.72
+      },
+      "chairs": [
+        {
+          "center": [
+            0.7,
+            4.8
+          ],
+          "size": [
+            0.45,
+            0.5
+          ]
+        },
+        {
+          "center": [
+            2.1,
+            4.8
+          ],
+          "size": [
+            0.45,
+            0.5
+          ]
+        }
+      ],
+      "interactive": false,
+      "reason": "Real customer seating outside entry/order/camera threshold path"
+    },
+    "props": [
+      {
+        "id": "start",
+        "worldFootprintMeters": [
+          5,
+          2.2,
+          5.7,
+          3.25
+        ],
+        "heightMeters": 1
+      },
+      {
+        "id": "permanent",
+        "worldFootprintMeters": [
+          1.4,
+          2.6,
+          2.6,
+          3.25
+        ],
+        "heightMeters": 0.78
+      },
+      {
+        "id": "codex",
+        "worldFootprintMeters": [
+          0.1,
+          1.1,
+          0.6,
+          2.0
+        ],
+        "heightMeters": 1.75
+      },
+      {
+        "id": "skins",
+        "worldFootprintMeters": [
+          0.15,
+          0.1,
+          1.1,
+          0.55
+        ],
+        "heightMeters": 1.8
+      },
+      {
+        "id": "history",
+        "worldFootprintMeters": [
+          5,
+          1.3,
+          5.7,
+          1.95
+        ],
+        "heightMeters": 1.03
+      },
+      {
+        "id": "settings",
+        "worldFootprintMeters": [
+          2.9,
+          0.15,
+          3.9,
+          0.7
+        ],
+        "heightMeters": 1.05
+      },
+      {
+        "id": "credits",
+        "worldFootprintMeters": [
+          4.3,
+          0.04,
+          5.45,
+          0.1
+        ],
+        "heightMeters": 2.1
+      },
+      {
+        "id": "quit",
+        "worldFootprintMeters": [
+          1.4,
+          0,
+          2.45,
+          0.08
+        ],
+        "heightMeters": 2.15
+      }
+    ],
+    "barEndLaptop": {
+      "end": "south / screen-right tip of visible bar",
+      "baseWorld": [
+        5.15,
+        1.34,
+        0.998,
+        5.55,
+        1.61,
+        1.018
+      ],
+      "screenWorld": [
+        5.15,
+        1.34,
+        1.018,
+        5.55,
+        1.363,
+        1.3
+      ],
+      "choiceReason": "Opposite north end is too close and cropped; south end preserves staff aisle,door route,machine and codex visibility; ledger moved one station inward"
+    },
+    "removedFurniture": [
+      "independent research table",
+      "its chair"
+    ]
+  },
+  "cameraWorld": {
+    "projection": "rectilinear perspective, same furniture dimensions across two authored viewpoints",
+    "finalEyeMeters": [
+      3.3,
+      5.8,
+      2.3
+    ],
+    "finalHeading": "south",
+    "pitchDownDegrees": 22,
+    "horizontalFovDegrees": 90,
+    "introAxis": "north through south entry; no yaw during actual doorway passage",
+    "introWaypoints": [
+      {
+        "t": 0,
+        "eye": [
+          1.925,
+          -2.8,
+          1.3
+        ],
+        "heading": "north",
+        "doorAngle": 0
+      },
+      {
+        "t": 0.8,
+        "eye": [
+          1.925,
+          -2.8,
+          1.3
+        ],
+        "heading": "north",
+        "doorAngle": 90
+      },
+      {
+        "t": 1.9,
+        "eye": [
+          1.925,
+          0.4,
+          1.3
+        ],
+        "heading": "north",
+        "doorAngle": 90
+      }
+    ],
+    "transition": {
+      "type": "explicit editorial cut after proven threshold crossing",
+      "fromView": "north-facing vestibule/inside entry",
+      "toView": "south-facing fixed interior from rear customer aisle",
+      "purpose": "Show same real doorway and café objects without110deg lens/90deg artificial camera flight",
+      "continuousCameraMotionClaim": false,
+      "noFadeOnlyEntry": true
+    },
+    "bridgeRequirement": "One authored north-facing inside-threshold view; after it a clearly specified cut to south-facing fixed overview. Both views must be derived from same floorplan/materials/light, not independent generation crossfades."
+  },
+  "exterior": {
+    "layers": [
+      {
+        "id": "exterior_same_room_glimpse",
+        "png": "ready/exterior/glimpse.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 0
+      },
+      {
+        "id": "exterior_facade_and_window",
+        "png": "ready/exterior/facade.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 10
+      }
+    ],
+    "sign": {
+      "rect": [
+        0.36666666666666664,
+        0.03333333333333333,
+        0.26666666666666666,
+        0.11481481481481481
+      ],
+      "titleAnchor": [
+        0.5,
+        0.08888888888888889
+      ],
+      "textSource": "GameInfo.Title",
+      "actualTitle": "음료 마스터",
+      "textRect": [
+        0.37916666666666665,
+        0.04814814814814815,
+        0.24166666666666667,
+        0.08148148148148149
+      ],
+      "surfaceQuad": [
+        [
+          0.36666666666666664,
+          0.03333333333333333
+        ],
+        [
+          0.6333333333333333,
+          0.03333333333333333
+        ],
+        [
+          0.6333333333333333,
+          0.14814814814814814
+        ],
+        [
+          0.36666666666666664,
+          0.14814814814814814
+        ]
+      ],
+      "textColor": "#F4E6CF",
+      "outlineColor": "#3B291F",
+      "fontPxAt1080": 40,
+      "alignment": "center",
+      "perspective": "front-facing sign face, zero yaw; text shares exterior transform and clips to sign surface, never a separate UI header",
+      "bakedText": false
+    },
+    "door": {
+      "frames": [
+        "ready/exterior/door_00.png",
+        "ready/exterior/door_01.png",
+        "ready/exterior/door_02.png",
+        "ready/exterior/door_03.png",
+        "ready/exterior/door_04.png",
+        "ready/exterior/door_05.png",
+        "ready/exterior/door_06.png",
+        "ready/exterior/door_07.png"
+      ],
+      "rect": [
+        0.30833333333333335,
+        0.17407407407407408,
+        0.38333333333333336,
+        0.8
+      ],
+      "hinge": [
+        0.3985597166192868,
+        0.20802373460789428
+      ],
+      "swing": "inward north; fixed west jamb; same hinge appears on right in reverse interior camera",
+      "fps": 12,
+      "glimpse": {
+        "png": null,
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "note": "Same-room glimpse already supplied as exterior layer; avoid drawing twice"
+      },
+      "threshold": [
+        [
+          0.3994654334351859,
+          0.942564864454631
+        ],
+        [
+          0.6005345665648141,
+          0.942564864454631
+        ]
+      ],
+      "provisionalUntilGeneratedGeometry": false,
+      "canvas": [
+        184,
+        216
+      ],
+      "closedLeafRectArtPixels": [
+        42,
+        12,
+        100,
+        192
+      ],
+      "hingeBottom": [
+        0.3985597166192868,
+        0.9465519353055735
+      ],
+      "anglesDegrees": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        85,
+        90
+      ],
+      "frameGeometry": "Fixed hinge axis; free edge height/position projected from3D swing. Never scale a flat door rectangle horizontally.",
+      "nativePivotTopLeftPx": [
+        43,
+        9
+      ],
+      "hingeAxisWorld": [
+        [
+          1.4,
+          -0.025,
+          0
+        ],
+        [
+          1.4,
+          -0.025,
+          2.15
+        ]
+      ]
+    },
+    "camera": [
+      {
+        "t": 0,
+        "center": [
+          0.5,
+          0.5
+        ],
+        "zoom": 1
+      },
+      {
+        "t": 1,
+        "center": [
+          0.5,
+          0.5
+        ],
+        "zoom": 1
+      }
+    ],
+    "entrance": {
+      "mode": "await_input",
+      "autoStart": false,
+      "doorInteraction": {
+        "rect": [
+          0.3958333333333333,
+          0.2,
+          0.20833333333333334,
+          0.7555555555555555
+        ]
+      },
+      "prompt": {
+        "primary": "입장하기",
+        "secondary": "아무 키나 입력하세요",
+        "rect": [
+          0.22916666666666666,
+          0.42962962962962964,
+          0.125,
+          0.13333333333333333
+        ],
+        "surfaceRect": [
+          0.21666666666666667,
+          0.4222222222222222,
+          0.14791666666666667,
+          0.13703703703703704
+        ],
+        "color": "#F4E6CF",
+        "primaryFontPxAt1080": 28,
+        "secondaryFontPxAt1080": 22,
+        "bakedText": false
+      },
+      "consumeTriggerInputBeforeMenu": true,
+      "sameTransformAsExterior": true
+    }
+  },
+  "interior": {
+    "layers": [
+      {
+        "id": "room_shell",
+        "png": "ready/interior/g0.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 0
+      },
+      {
+        "id": "order_counter",
+        "png": "ready/interior/g1.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 10
+      },
+      {
+        "id": "bar_end_laptop",
+        "png": "ready/interior/g2.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 20
+      },
+      {
+        "id": "recipe_bookshelf",
+        "png": "ready/interior/g3.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 30
+      },
+      {
+        "id": "coat_cabinet",
+        "png": "ready/interior/g4.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 40
+      },
+      {
+        "id": "ledger_station",
+        "png": "ready/interior/g5.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 50
+      },
+      {
+        "id": "radio_sideboard",
+        "png": "ready/interior/g6.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 60
+      },
+      {
+        "id": "staff_noticeboard",
+        "png": "ready/interior/g7.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 70
+      },
+      {
+        "id": "entry_door",
+        "png": "ready/interior/g8.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 80
+      },
+      {
+        "id": "warm_floor_light",
+        "png": "ready/interior/light.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": 100
+      }
+    ],
+    "light": {
+      "dir": "upper-left warm dominant light, floor shadows toward west/south",
+      "sourceWorldMeters": [
+        5.1,
+        3.0,
+        2.8
+      ],
+      "source": "one warm pendant over order preparation; identical world position in exterior glimpse and reverse interior"
+    },
+    "arrival": {
+      "from_center": [
+        0.5,
+        0.5
+      ],
+      "from_zoom": 1,
+      "note": "Explicit cut arrives at fixed final view; no fake camera turn/room morph"
+    },
+    "entry_door_feature": "quit",
+    "features": [
+      {
+        "id": "start",
+        "label": "시작",
+        "unity_button": "StartButton",
+        "assetId": "ct_start",
+        "worldFootprintMeters": [
+          5,
+          2.2,
+          5.7,
+          3.25
+        ],
+        "heightMeters": 1,
+        "projectedRect": [
+          0.07914,
+          0.46671,
+          0.21845,
+          0.35768
+        ],
+        "hotspot": {
+          "polygon": [
+            [
+              0.09791666666666667,
+              0.6592592592592592
+            ],
+            [
+              0.24375,
+              0.5222222222222223
+            ],
+            [
+              0.27291666666666664,
+              0.5740740740740741
+            ],
+            [
+              0.12916666666666668,
+              0.7703703703703704
+            ],
+            [
+              0.09791666666666667,
+              0.737037037037037
+            ]
+          ]
+        },
+        "label_anchor": [
+          0.15833333333333333,
+          0.8222222222222222
+        ],
+        "label_side": "below",
+        "hotspotStatus": "visible art polygon; verification pending",
+        "desc": "카운터에서 영업 준비",
+        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedPlateArtPixels": [
+          19.33,
+          10.33
+        ],
+        "draftOnly": false
+      },
+      {
+        "id": "permanent",
+        "label": "영구 강화",
+        "unity_button": "PermanentShopButton",
+        "assetId": "ct_permanent",
+        "worldFootprintMeters": [
+          5.15,
+          1.34,
+          5.55,
+          1.61
+        ],
+        "heightMeters": 1.3,
+        "projectedRect": [
+          0.59142,
+          0.55293,
+          0.2324,
+          0.27146
+        ],
+        "hotspot": {
+          "polygon": [
+            [
+              0.24583333333333332,
+              0.34814814814814815
+            ],
+            [
+              0.3020833333333333,
+              0.35555555555555557
+            ],
+            [
+              0.3229166666666667,
+              0.4185185185185185
+            ],
+            [
+              0.23125,
+              0.42962962962962964
+            ]
+          ]
+        },
+        "label_anchor": [
+          0.25,
+          0.3814814814814815
+        ],
+        "label_side": "left",
+        "hotspotStatus": "visible art polygon; verification pending",
+        "desc": "바 끝 노트북으로 성장 관리",
+        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedPlateArtPixels": [
+          36.67,
+          10.33
+        ],
+        "draftOnly": false
+      },
+      {
+        "id": "codex",
+        "label": "도감",
+        "unity_button": "CardCodexButton",
+        "assetId": "ct_codex",
+        "worldFootprintMeters": [
+          0.1,
+          1.1,
+          0.6,
+          2.0
+        ],
+        "heightMeters": 1.75,
+        "projectedRect": [
+          0.75865,
+          0.2564,
+          0.17038,
+          0.38733
+        ],
+        "hotspot": {
+          "polygon": [
+            [
+              0.8104166666666667,
+              0.3333333333333333
+            ],
+            [
+              0.8958333333333334,
+              0.36666666666666664
+            ],
+            [
+              0.8958333333333334,
+              0.5037037037037037
+            ],
+            [
+              0.8104166666666667,
+              0.4666666666666667
+            ]
+          ]
+        },
+        "label_anchor": [
+          0.94375,
+          0.45925925925925926
+        ],
+        "label_side": "right",
+        "hotspotStatus": "visible art polygon; verification pending",
+        "desc": "레시피·재료 책장",
+        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedPlateArtPixels": [
+          19.33,
+          10.33
+        ],
+        "draftOnly": false
+      },
+      {
+        "id": "skins",
+        "label": "스킨",
+        "unity_button": "SkinShopButton",
+        "assetId": "ct_skins",
+        "worldFootprintMeters": [
+          0.15,
+          0.1,
+          1.1,
+          0.55
+        ],
+        "heightMeters": 1.8,
+        "projectedRect": [
+          0.67896,
+          0.22846,
+          0.13261,
+          0.29727
+        ],
+        "hotspot": {
+          "polygon": [
+            [
+              0.69375,
+              0.24444444444444444
+            ],
+            [
+              0.78125,
+              0.25925925925925924
+            ],
+            [
+              0.7729166666666667,
+              0.5074074074074074
+            ],
+            [
+              0.6854166666666667,
+              0.5037037037037037
+            ]
+          ]
+        },
+        "label_anchor": [
+          0.74375,
+          0.2037037037037037
+        ],
+        "label_side": "above",
+        "hotspotStatus": "visible art polygon; verification pending",
+        "desc": "직원 의상 진열장",
+        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedPlateArtPixels": [
+          19.33,
+          10.33
+        ],
+        "draftOnly": false
+      },
+      {
+        "id": "history",
+        "label": "최근 기록",
+        "unity_button": "RunHistoryButton",
+        "assetId": "ct_history",
+        "worldFootprintMeters": [
+          5.05,
+          1.92,
+          5.45,
+          2.24
+        ],
+        "heightMeters": 1.03,
+        "projectedRect": [
+          0.20337,
+          0.40281,
+          0.12778,
+          0.23566
+        ],
+        "hotspot": {
+          "polygon": [
+            [
+              0.19583333333333333,
+              0.44814814814814813
+            ],
+            [
+              0.275,
+              0.44074074074074077
+            ],
+            [
+              0.3020833333333333,
+              0.48148148148148145
+            ],
+            [
+              0.20833333333333334,
+              0.5037037037037037
+            ]
+          ]
+        },
+        "label_anchor": [
+          0.3104166666666667,
+          0.4666666666666667
+        ],
+        "label_side": "right",
+        "hotspotStatus": "visible art polygon; verification pending",
+        "desc": "영업 장부",
+        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedPlateArtPixels": [
+          36.67,
+          10.33
+        ],
+        "draftOnly": false
+      },
+      {
+        "id": "settings",
+        "label": "설정",
+        "unity_button": "SettingsButton",
+        "assetId": "ct_settings",
+        "worldFootprintMeters": [
+          2.9,
+          0.15,
+          3.9,
+          0.7
+        ],
+        "heightMeters": 1.05,
+        "projectedRect": [
+          0.44227,
+          0.35085,
+          0.09621,
+          0.18445
+        ],
+        "hotspot": {
+          "polygon": [
+            [
+              0.4479166666666667,
+              0.37037037037037035
+            ],
+            [
+              0.5333333333333333,
+              0.37777777777777777
+            ],
+            [
+              0.5354166666666667,
+              0.5296296296296297
+            ],
+            [
+              0.44583333333333336,
+              0.5296296296296297
+            ]
+          ]
+        },
+        "label_anchor": [
+          0.4895833333333333,
+          0.44814814814814813
+        ],
+        "label_side": "below",
+        "hotspotStatus": "visible art polygon; verification pending",
+        "desc": "라디오·조절장치",
+        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedPlateArtPixels": [
+          19.33,
+          10.33
+        ],
+        "draftOnly": false
+      },
+      {
+        "id": "credits",
+        "label": "제작 정보",
+        "unity_button": "CreditsButton",
+        "assetId": "ct_credits",
+        "worldFootprintMeters": [
+          4.3,
+          0.04,
+          5.45,
+          0.1
+        ],
+        "heightMeters": 2.1,
+        "projectedRect": [
+          0.29944,
+          0.17627,
+          0.11192,
+          0.10193
+        ],
+        "hotspot": {
+          "polygon": [
+            [
+              0.3,
+              0.17777777777777778
+            ],
+            [
+              0.4083333333333333,
+              0.18888888888888888
+            ],
+            [
+              0.4125,
+              0.2777777777777778
+            ],
+            [
+              0.30625,
+              0.27037037037037037
+            ]
+          ]
+        },
+        "label_anchor": [
+          0.35625,
+          0.2740740740740741
+        ],
+        "label_side": "below",
+        "hotspotStatus": "visible art polygon; verification pending",
+        "desc": "직원 게시판",
+        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedPlateArtPixels": [
+          36.67,
+          10.33
+        ],
+        "draftOnly": false
+      },
+      {
+        "id": "quit",
+        "label": "종료",
+        "unity_button": "QuitButton",
+        "assetId": "ct_quit",
+        "worldFootprintMeters": [
+          1.4,
+          0,
+          2.45,
+          0.08
+        ],
+        "heightMeters": 2.15,
+        "projectedRect": [
+          0.56812,
+          0.16733,
+          0.10913,
+          0.3312
+        ],
+        "hotspot": {
+          "polygon": [
+            [
+              0.5791666666666667,
+              0.17037037037037037
+            ],
+            [
+              0.6708333333333333,
+              0.17037037037037037
+            ],
+            [
+              0.65,
+              0.4888888888888889
+            ],
+            [
+              0.5708333333333333,
+              0.4888888888888889
+            ]
+          ]
+        },
+        "label_anchor": [
+          0.63125,
+          0.12222222222222222
+        ],
+        "label_side": "above",
+        "hotspotStatus": "visible art polygon; verification pending",
+        "desc": "같은 출입문으로 나가기",
+        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedPlateArtPixels": [
+          19.33,
+          10.33
+        ],
+        "draftOnly": false
+      }
+    ],
+    "nav_order": [
+      "start",
+      "history",
+      "permanent",
+      "settings",
+      "credits",
+      "codex",
+      "skins",
+      "quit"
+    ]
+  },
+  "productionAssetsProposed": [],
+  "checksRequired": [
+    "hinge fixed across frames",
+    "leaf stays within reserved swing sector",
+    "physical threshold same world point",
+    "no furniture/aisle overlap",
+    "eight hotspot polygons no overlap after final authored geometry",
+    "native PNG/source roundtrip",
+    "480x270 density and source pivots",
+    "1080/720/4:3 contain previews",
+    "original reference hashes unchanged"
+  ],
+  "approvalQuestions": [],
+  "bridge": {
+    "seconds": 1.1,
+    "blend": "cut",
+    "views": [
+      {
+        "camera": {
+          "center": [
+            0.5,
+            0.5
+          ],
+          "zoom": 1
+        },
+        "cameraWorld": [
+          1.925,
+          -2.3,
+          1.3
+        ],
+        "orientation": "north",
+        "png": "ready/bridge/b00.png",
+        "t": 0,
+        "thresholdSignedY": -2.3
+      },
+      {
+        "camera": {
+          "center": [
+            0.5,
+            0.5
+          ],
+          "zoom": 1
+        },
+        "cameraWorld": [
+          1.925,
+          -1.65,
+          1.3
+        ],
+        "orientation": "north",
+        "png": "ready/bridge/b01.png",
+        "t": 0.14285714285714285,
+        "thresholdSignedY": -1.65
+      },
+      {
+        "camera": {
+          "center": [
+            0.5,
+            0.5
+          ],
+          "zoom": 1
+        },
+        "cameraWorld": [
+          1.925,
+          -1.05,
+          1.3
+        ],
+        "orientation": "north",
+        "png": "ready/bridge/b02.png",
+        "t": 0.2857142857142857,
+        "thresholdSignedY": -1.05
+      },
+      {
+        "camera": {
+          "center": [
+            0.5,
+            0.5
+          ],
+          "zoom": 1
+        },
+        "cameraWorld": [
+          1.925,
+          -0.62,
+          1.3
+        ],
+        "orientation": "north",
+        "png": "ready/bridge/b03.png",
+        "t": 0.42857142857142855,
+        "thresholdSignedY": -0.62
+      },
+      {
+        "camera": {
+          "center": [
+            0.5,
+            0.5
+          ],
+          "zoom": 1
+        },
+        "cameraWorld": [
+          1.925,
+          -0.3,
+          1.3
+        ],
+        "orientation": "north",
+        "png": "ready/bridge/b04.png",
+        "t": 0.5714285714285714,
+        "thresholdSignedY": -0.3
+      },
+      {
+        "camera": {
+          "center": [
+            0.5,
+            0.5
+          ],
+          "zoom": 1
+        },
+        "cameraWorld": [
+          1.925,
+          -0.06,
+          1.3
+        ],
+        "orientation": "north",
+        "png": "ready/bridge/b05.png",
+        "t": 0.7142857142857143,
+        "thresholdSignedY": -0.06
+      },
+      {
+        "camera": {
+          "center": [
+            0.5,
+            0.5
+          ],
+          "zoom": 1
+        },
+        "cameraWorld": [
+          1.925,
+          0.16,
+          1.3
+        ],
+        "orientation": "north",
+        "png": "ready/bridge/b06.png",
+        "t": 0.8571428571428571,
+        "thresholdSignedY": 0.16
+      },
+      {
+        "camera": {
+          "center": [
+            0.5,
+            0.5
+          ],
+          "zoom": 1
+        },
+        "cameraWorld": [
+          1.925,
+          0.4,
+          1.3
+        ],
+        "orientation": "north",
+        "png": "ready/bridge/b07.png",
+        "t": 1,
+        "thresholdSignedY": 0.4
+      }
+    ],
+    "note": "Eight straight-axis physical approach/passage samples, not eight unrelated camera scenes. Same floorplan and native renderer, no yaw or independent generated-view crossfade."
+  },
+  "cut": {
+    "afterThresholdSeconds": 1.65,
+    "thresholdInsideMeters": 0.4,
+    "editSeconds": 1.9,
+    "type": "cut",
+    "fromOrientation": "north",
+    "toOrientation": "south",
+    "sameWorldRoom": true,
+    "continuousCameraClaim": false,
+    "inside40cmViewStartsSeconds": 1.9186666666666667
+  },
+  "fit": "contain",
+  "timing": {
+    "exteriorHoldSeconds": 0.35,
+    "doorOpenSeconds": 0.6666666666666666,
+    "doorFps": 12,
+    "bridgeSeconds": 1.1,
+    "lastInsideViewHoldSeconds": 0.198,
+    "explicitNorthToSouthCutSeconds": 2.1166666666666667,
+    "menuReadySeconds": 2.1166666666666667
+  },
+  "artValidation": "verification/asset-validation.json",
+  "sourceTools": [
+    "Aseprite1.3.18.6",
+    "official PixelLab0.4.131"
+  ]
+}

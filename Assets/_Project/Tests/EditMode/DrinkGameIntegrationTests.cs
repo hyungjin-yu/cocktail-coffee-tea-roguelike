@@ -210,7 +210,8 @@ namespace CCT.Tests
             Assert.IsNotNull(game.DrinkBuff);
             Assert.AreEqual(preview.Describe(), game.DrinkBuff.Describe(), "미리보기와 실제 적용이 같은 계산기");
             var plain = new PlayerStats();
-            Assert.AreEqual(plain.baseMaxHp * (1f + preview[DrinkStat.MaxHp]), game.Stats.MaxHp, 1e-3f);
+            // 2026-11-06 정수 전용: 적용값 = 화면에 보인 정수 %(최대 체력 증가량도 정수).
+            Assert.AreEqual(plain.baseMaxHp + IntNum.Round(plain.baseMaxHp * DrinkBuff.Percent(preview[DrinkStat.MaxHp]) / 100f), game.Stats.MaxHp, 1e-3f);
             Assert.AreEqual(game.Stats.MaxHp, game.Player.Hp, 1e-3f, "늘어난 최대 체력으로 시작");
             float damage = game.Stats.Damage, hp = game.Stats.MaxHp, interval = game.Stats.AttackInterval;
             Assert.Greater(damage, plain.Damage);
@@ -356,7 +357,7 @@ namespace CCT.Tests
             StartGame(true, tea);
             var plain = new PlayerStats();
             Assert.Greater(game.DrinkBuff[DrinkStat.CooldownReduction], 0f);
-            Assert.AreEqual(plain.AttackInterval * (1f - game.DrinkBuff[DrinkStat.CooldownReduction]), game.Stats.AttackInterval, 1e-5f);
+            Assert.AreEqual(plain.AttackInterval * (1f - DrinkBuff.Percent(game.DrinkBuff[DrinkStat.CooldownReduction]) / 100f), game.Stats.AttackInterval, 1e-5f, "정수 % 적용");
         }
 
         [Test]

@@ -1,0 +1,75 @@
+{
+  "status": "blocked",
+  "ready": false,
+  "ready_assets": [],
+  "reason": "Your PixelLab version is outdated. Please update",
+  "assets": [
+    {
+      "assetId": "dl_coffee_latte_glass",
+      "status": "blocked",
+      "ready": false,
+      "png": null,
+      "aseprite": null
+    },
+    {
+      "assetId": "dl_coffee_latte_glass_mask",
+      "status": "blocked",
+      "ready": false,
+      "png": null,
+      "aseprite": null
+    },
+    {
+      "assetId": "dl_coffee_flatwhite_cup",
+      "status": "blocked",
+      "ready": false,
+      "png": null,
+      "aseprite": null
+    },
+    {
+      "assetId": "dl_coffee_flatwhite_cup_mask",
+      "status": "blocked",
+      "ready": false,
+      "png": null,
+      "aseprite": null
+    },
+    {
+      "assetId": "dl_coffee_cappuccino_cup",
+      "status": "blocked",
+      "ready": false,
+      "png": null,
+      "aseprite": null
+    },
+    {
+      "assetId": "dl_coffee_cappuccino_cup_mask",
+      "status": "blocked",
+      "ready": false,
+      "png": null,
+      "aseprite": null
+    },
+    {
+      "assetId": "dl_foam_layer",
+      "status": "blocked",
+      "ready": false,
+      "png": null,
+      "aseprite": null
+    },
+    {
+      "assetId": "ui_lock_badge",
+      "status": "blocked",
+      "ready": false,
+      "png": null,
+      "aseprite": null
+    },
+    {
+      "assetId": "dl_icon_coffee_<origin>",
+      "status": "blocked",
+      "ready": false,
+      "png": null,
+      "aseprite": null
+    }
+  ],
+  "evidence": "provenance/access-and-reference-checks.json",
+  "note": "Reference roundtrip PNG is diagnostic only, never an import deliverable. Origin inventory and final pivots remain pending.",
+  "historicalSnapshot": true,
+  "supersededBy": "manifest.ready.json"
+}

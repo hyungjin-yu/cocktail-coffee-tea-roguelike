@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace CCT
@@ -28,6 +30,10 @@ namespace CCT
         int shownSaveState = -1;
         Button quitCancelButton;
         Button startButton;
+        /// <summary>2026-11-18 카페 입장형 첫 화면: 메뉴 = 카페 실내 물체(같은 버튼 이름 유지). 배치 계약 layout.json.</summary>
+        CafeTitleScene scene;
+        Text tempArtBadge;
+        public CafeTitleScene Scene => scene;
 
         PermanentSkillView shopView;
         CardCodexView codexView;
@@ -69,64 +75,127 @@ namespace CCT
         {
             root = UiFactory.Stretch("Root", canvas.transform).gameObject;
             var rootRt = (RectTransform)root.transform;
-            UiFactory.AddImage(rootRt, new Color(0.06f, 0.05f, 0.08f, 1f));
-            UiFactory.AddCafeBackdrop(rootRt);
+            UiFactory.AddImage(rootRt, new Color(0.04f, 0.03f, 0.03f, 1f)); // 장면 밖(contain 여백) 배경
 
-            var title = UiFactory.Place("Title", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -140f),
-                new Vector2(1400f, 110f));
-            UiFactory.AddText(title, GameInfo.Title, 76, TextAnchor.MiddleCenter, Color.white);
+            // 기존 8메뉴 동작 그대로 — 카페 실내 물체가 같은 이름의 버튼이 된다.
+            var actions = new Dictionary<string, System.Action>
+            {
+                { "start", () => RequestStart() },
+                { "permanent", () => { root.SetActive(false); shopView.Show(); } },
+                { "codex", () => { root.SetActive(false); codexView.Show(); } },
+                { "skins", () => { root.SetActive(false); skinShopView.Show(); } },
+                { "history", OpenHistory },
+                { "settings", () => { root.SetActive(false); settingsView.Show(); } },
+                { "credits", () => { root.SetActive(false); creditsView.Show(); } },
+                { "quit", RequestQuit },
+            };
+            var layout = CafeTitleLayout.Load();
+            if (layout != null && layout.Features.Count >= 8)
+            {
+                scene = CafeTitleScene.Build(rootRt, layout, actions);
+                startButton = scene.Hotspots.TryGetValue("start", out var s) ? s.Button : null;
+            }
+            if (startButton == null) BuildFallbackMenu(rootRt, actions); // 배치 파일이 없거나 깨졌을 때도 메뉴 기능은 잃지 않는다
 
-            var subtitle = UiFactory.Place("Subtitle", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -230f),
-                new Vector2(1200f, 60f));
-            UiFactory.AddText(subtitle, "한 잔의 빌드로 영업을 끝내세요", 32, TextAnchor.MiddleCenter,
-                new Color(0.8f, 0.8f, 0.85f));
+            // 제목: 상단 안전 영역에 간결하게(장면 위 Unity 텍스트).
+            var title = UiFactory.Place("Title", rootRt, new Vector2(0.5f, 1f), new Vector2(0f, -18f), new Vector2(900f, 64f));
+            var titleText = UiFactory.AddText(title, GameInfo.Title, 46, TextAnchor.MiddleCenter, new Color(0.98f, 0.92f, 0.78f));
+            var sh = title.gameObject.AddComponent<Shadow>();
+            sh.effectColor = new Color(0f, 0f, 0f, 0.85f); sh.effectDistance = new Vector2(2f, -3f);
+            title.GetComponent<Text>().raycastTarget = false;
 
-            // 2026-10-04 1차 빌드 캡처에서 발견: 이전 y=-30(위 고정)은 메뉴가 제목·부제 위에 겹쳤다. 부제(-230..-290) 아래부터.
-            float y = -310f;
-            startButton = BuildMenuButton(rootRt, "StartButton", "시작", ref y, new Color(0.9f, 0.35f, 0.75f), () => RequestStart());
-            var shopButton = BuildMenuButton(rootRt, "PermanentShopButton", "영구 강화", ref y, new Color(0.4f, 0.24f, 0.5f), () =>
+            if (layout != null && !layout.IsFinalArt)
             {
-                root.SetActive(false);
-                shopView.Show();
-            });
-            var codexButton = BuildMenuButton(rootRt, "CardCodexButton", "도감", ref y, new Color(0.24f, 0.4f, 0.5f), () =>
-            {
-                root.SetActive(false);
-                codexView.Show();
-            });
-            var settingsButton = BuildMenuButton(rootRt, "SettingsButton", "설정", ref y, new Color(0.32f, 0.3f, 0.34f), () =>
-            {
-                root.SetActive(false);
-                settingsView.Show();
-            });
-            // 09 ui_codex/ui_settings, 04 §8 specialty 아이콘(버튼 왼쪽, 글자는 Unity 텍스트).
-            UiFactory.AddIcon(shopButton.transform, "specialty", new Vector2(0f, 0.5f), new Vector2(12f, 0f), 52f);
-            UiFactory.AddIcon(codexButton.transform, "ui_codex", new Vector2(0f, 0.5f), new Vector2(12f, 0f), 52f);
-            UiFactory.AddIcon(settingsButton.transform, "ui_settings", new Vector2(0f, 0.5f), new Vector2(12f, 0f), 52f);
-            BuildMenuButton(rootRt, "CreditsButton", "제작 정보", ref y, new Color(0.3f, 0.32f, 0.28f), () =>
-            {
-                root.SetActive(false);
-                creditsView.Show();
-            });
-            BuildMenuButton(rootRt, "QuitButton", "종료", ref y, new Color(0.5f, 0.24f, 0.24f), RequestQuit);
-
-            // 2026-10-12 치장 스킨 상점: 세로 메뉴는 저장 알림(SaveNotice)과 겹치지 않게 6개로 꽉 차 있어 오른쪽 위에 둔다.
-            BuildSkinShopButton(rootRt);
-            BuildHistoryButton(rootRt);
+                tempArtBadge = UiFactory.AddText(UiFactory.Place("TempArtBadge", rootRt, new Vector2(1f, 1f), new Vector2(-24f, -20f), new Vector2(520f, 32f)),
+                    $"임시 배치({layout.SourceName}) · 최종 카페 아트 대기", 20, TextAnchor.MiddleRight, new Color(1f, 0.75f, 0.55f, 0.9f));
+                tempArtBadge.raycastTarget = false;
+            }
 
             BuildFooter(rootRt);
             BuildQuitConfirm(rootRt);
             RefreshFooter();
-            SelectDefault();
+            if (scene != null)
+            {
+                Intro = TitleIntro.Attach(scene, titleText);
+                Intro.Completed += SelectDefault; // 입장 연출이 끝난 뒤에 기본 선택 후보를 준다(건너뛴 키가 메뉴를 고르지 않게)
+                ApplyInputGate();
+            }
+            else SelectDefault();
         }
+
+        /// <summary>배치 파일을 못 읽었을 때만: 기존과 같은 세로 메뉴(기능 보존용 안전망).</summary>
+        void BuildFallbackMenu(RectTransform rootRt, Dictionary<string, System.Action> actions)
+        {
+            float y = -120f;
+            foreach (var kv in CafeTitleScene.ButtonNames)
+            {
+                var act = actions[kv.Key];
+                var b = BuildMenuButton(rootRt, kv.Value, FallbackLabel(kv.Key), ref y, new Color(0.3f, 0.22f, 0.18f), () => act());
+                if (kv.Key == "start") startButton = b;
+            }
+        }
+
+        static string FallbackLabel(string id) => id switch
+        {
+            "start" => "시작", "permanent" => "영구 강화", "codex" => "도감", "skins" => "스킨", "history" => "최근 기록",
+            "settings" => "설정", "credits" => "제작 정보", _ => "종료",
+        };
+
+        /// <summary>입장 연출 중·건너뛴 입력이 떼어지기 전에는 실내 물체와 알림 버튼이 눌리지 않는다.</summary>
+        void ApplyInputGate()
+        {
+            bool block = Intro != null && Intro.BlockingInput;
+            if (scene != null) scene.InteriorInteractable = !block;
+            foreach (var go in new[] { guestButtonRoot, retryButtonRoot })
+                if (go != null) go.GetComponent<Button>().interactable = !block;
+        }
+
+        /// <summary>Tab / Shift+Tab: layout nav_order 순서로 실내 물체를 돈다(방향키는 공간 기준 이웃).</summary>
+        void HandleTab()
+        {
+            if (scene == null || !root.activeSelf || quitConfirmRoot.activeSelf || (Intro != null && Intro.BlockingInput)) return;
+            var kb = Keyboard.current;
+            if (kb == null) return;
+            bool arrow = kb.upArrowKey.wasPressedThisFrame || kb.downArrowKey.wasPressedThisFrame || kb.leftArrowKey.wasPressedThisFrame || kb.rightArrowKey.wasPressedThisFrame;
+            var es = EventSystem.current;
+            if (es == null) return;
+            if (es.currentSelectedGameObject == null && (arrow || kb.tabKey.wasPressedThisFrame)) { RevealDefaultOnNavigation(); return; }
+            if (!kb.tabKey.wasPressedThisFrame) return;
+            CafeHotspot cur = null;
+            if (es.currentSelectedGameObject != null) cur = es.currentSelectedGameObject.GetComponent<CafeHotspot>();
+            var next = scene.NextInOrder(cur, kb.shiftKey.isPressed ? -1 : 1);
+            if (next != null) es.SetSelectedGameObject(next.gameObject);
+        }
+
+        public TitleIntro Intro { get; private set; }
 
         /// <summary>G31 — 마우스로 아무것도 안 눌러도 Tab/화살표로 바로 다닐 수 있게 기본 항목을 정해 둔다.
         /// 2026-10-12: 진입 즉시 선택하면 "시작"이 파란 강조로 고정돼 보여, 첫 키보드 입력 때 드러내도록 UiInitialFocus에 맡긴다.</summary>
         void SelectDefault()
         {
+            if (Intro != null && !Intro.Finished) return; // 입장 연출이 끝나면(Completed) 다시 불린다
             // 미래 버전 보호 중이면 임시 플레이 선택 버튼을 먼저 가리킨다.
             var target = guestButtonRoot != null && guestButtonRoot.activeSelf ? guestButtonRoot : startButton.gameObject;
-            UiInitialFocus.Offer(target);
+            if (scene == null) { UiInitialFocus.Offer(target); return; }
+            // 2026-11-18 사용자 관찰 "입장 입력 뒤 추가 입력에 바로 게임 시작" 수정: 카페 실내에서는 키보드 모드여도 아무것도 미리 고르지 않는다.
+            // 기본 항목은 방향키/Tab으로만 드러나고, Enter/Space만으로는 시작(카운터)이 눌리지 않는다.
+            titlePending = target;
+            var es = EventSystem.current;
+            if (es != null && es.currentSelectedGameObject != null && es.currentSelectedGameObject.transform.IsChildOf(transform)) es.SetSelectedGameObject(null);
+            TitleTrace.Log($"select-default pending={target.name} (no preselect)");
+        }
+
+        GameObject titlePending;
+
+        /// <summary>방향키/Tab 첫 입력: 선택이 없으면 기본 항목을 드러내기만 한다(이동·실행 없음). Enter/Space는 드러내지 않는다.</summary>
+        public bool RevealDefaultOnNavigation()
+        {
+            var es = EventSystem.current;
+            if (es == null || titlePending == null || es.currentSelectedGameObject != null || !titlePending.activeInHierarchy) return false;
+            es.SetSelectedGameObject(titlePending);
+            TitleTrace.Log($"reveal-default {titlePending.name}");
+            titlePending = null;
+            return true;
         }
 
         Button BuildMenuButton(RectTransform parent, string name, string label, ref float y, Color color,
@@ -143,29 +212,6 @@ namespace CCT
 
             y -= 88f;
             return button;
-        }
-
-        void BuildSkinShopButton(RectTransform parent)
-        {
-            // 2026-10-15 사용자 피드백: 버튼이 메뉴 테두리(카페 배경 안쪽 여백 24)를 넘어 보였다 — 테두리 안(56)으로 넣고 크기를 줄인다.
-            // 아래 끝 128 < 제목 상자 위 140이라 제목과 겹치지 않는다.
-            var rt = UiFactory.Place("SkinShopButton", parent, new Vector2(1f, 1f), new Vector2(-56f, -56f), new Vector2(240f, 72f));
-            var bg = UiFactory.AddImage(rt, new Color(0.55f, 0.4f, 0.2f));
-            MakeConfirmButton(rt, bg, () =>
-            {
-                root.SetActive(false);
-                skinShopView.Show();
-            });
-            UiFactory.AddText(UiFactory.Stretch("Label", rt), "스킨", 34, TextAnchor.MiddleCenter, Color.white);
-        }
-
-        /// <summary>67 "최근 기록" — 세로 메뉴(6개)와 저장 알림은 그대로 두고, 스킨 버튼과 좌우 대칭인 왼쪽 위(테두리 안 56)에 둔다.</summary>
-        void BuildHistoryButton(RectTransform parent)
-        {
-            var rt = UiFactory.Place("RunHistoryButton", parent, new Vector2(0f, 1f), new Vector2(56f, -56f), new Vector2(240f, 72f));
-            var bg = UiFactory.AddImage(rt, new Color(0.24f, 0.4f, 0.5f));
-            MakeConfirmButton(rt, bg, OpenHistory);
-            UiFactory.AddText(UiFactory.Stretch("Label", rt), "최근 기록", 32, TextAnchor.MiddleCenter, Color.white);
         }
 
         /// <summary>테스트/버튼 공용 — 최근 기록 목록을 연다.</summary>
@@ -192,6 +238,11 @@ namespace CCT
             saveNoticeText = UiFactory.AddText(UiFactory.Place("SaveNotice", parent, new Vector2(0.5f, 0f),
                 new Vector2(0f, 150f), new Vector2(1400f, 80f)), "", 24, TextAnchor.LowerCenter,
                 new Color(1f, 0.85f, 0.7f));
+            // 2026-11-18: 카페 바닥 그림 위에서도 읽히게 저장 알림에 어두운 외곽선(장식으로 숨기지 않음)
+            var noticeOutline = saveNoticeText.gameObject.AddComponent<Outline>();
+            noticeOutline.effectColor = new Color(0f, 0f, 0f, 0.95f); noticeOutline.effectDistance = new Vector2(2f, -2f);
+            foreach (var t in new[] { saveStatusText })
+            { var o = t.gameObject.AddComponent<Outline>(); o.effectColor = new Color(0f, 0f, 0f, 0.9f); o.effectDistance = new Vector2(2f, -2f); }
             guestButtonRoot = BuildNoticeButton(parent, "GuestSessionButton", "임시 플레이 시작", () =>
             {
                 PermanentProgress.AcceptGuestSession();
@@ -211,6 +262,7 @@ namespace CCT
         /// 런을 시작하지 않고 그 선택으로 안내한다(시작하면 런 시작 저장이 필요하므로). 시작하면 true.</summary>
         public bool RequestStart()
         {
+            TitleTrace.Log("RequestStart called", true);
             if (PermanentProgress.IsFutureSaveProtected)
             {
                 guestGuidanceRequested = true;
@@ -323,7 +375,13 @@ namespace CCT
             if (CurrentSaveState() != shownSaveState) RefreshFooter();
         }
 
-        void Update() => PollSaveState();
+        void LateUpdate() => HandleTab(); // EventSystem(방향키 이동) 뒤에 처리: 선택 없을 때의 첫 방향키는 기본 항목 표시만
+
+        void Update()
+        {
+            PollSaveState();
+            ApplyInputGate();
+        }
 
         /// <summary>08:174~178 — 미저장 상태(직전 저장 실패)면 재시도/저장 없이 종료/취소를 묻는다.
         /// "저장 없이 종료"를 기본 포커스로 두지 않는다.</summary>

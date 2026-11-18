@@ -17,6 +17,12 @@ namespace CCT
         public static string DataDir { get; private set; }
         public static string AutoTourDir { get; private set; }
 
+        /// <summary>2026-11-17 로컬 2인 협동 최소 실험판(CCT.Prototype.Coop2P) 명시 진입 인자. 있으면 싱글 부트(타이틀·저장·상점)를 건너뛴다.
+        /// 인자가 없으면 기존 싱글 기본 진입을 그대로 유지한다.</summary>
+        public const string Coop2PArg = "-cct-coop2p";
+        public static bool Coop2PRequested => Array.Exists(Environment.GetCommandLineArgs(),
+            a => string.Equals(a, Coop2PArg, StringComparison.OrdinalIgnoreCase));
+
         public static void Apply() => Apply(Environment.GetCommandLineArgs());
 
         public static void Apply(string[] args)

@@ -1,0 +1,1267 @@
+{
+  "assetCount": 28,
+  "finalNativeCountWithMaster": 29,
+  "assets": [
+    {
+      "height": 270,
+      "kind": "registered interior visible-depth layer",
+      "path": "ready/interior/g0",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "c9787b788ff2fdd52bf83da82ad636faa2da06e53c21febf22b4a9affe9a84e3",
+      "sourceSha256": "0010411c52479f632eb6694bc1e1a471dc6a7dd1d8b1f887ff36fc81c96cbace"
+    },
+    {
+      "height": 270,
+      "kind": "registered interior visible-depth layer",
+      "path": "ready/interior/g1",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        110,
+        156,
+        270
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "f41d58c526de34f6c2c5b5460f7562d34e9e4a22d20a6744f9e875e164754d53",
+      "sourceSha256": "3ae4a826c03a5241fb63c560ea5e1ebdc76a8409deeeb4c24ebca5e5283d86cb"
+    },
+    {
+      "height": 270,
+      "kind": "registered interior visible-depth layer",
+      "path": "ready/interior/g2",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        101,
+        95,
+        159,
+        166
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "0df8096ed8444785405277735c9d6b312ded35d6574e143aa25c7640f0b75b1b",
+      "sourceSha256": "db171ec7315e465956c62b11ca6bf5cccc208ab875961de45e7a9b6faa39e509"
+    },
+    {
+      "height": 270,
+      "kind": "registered interior visible-depth layer",
+      "path": "ready/interior/g3",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        364,
+        69,
+        446,
+        173
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "42fc39df3012d4ea1338a115a8a726451524a624a3d14675ec71eb8341e7f17f",
+      "sourceSha256": "6eb09990044882f6597e158053f1b0e80f5a7e5075bcf7f962e46174eaee703c"
+    },
+    {
+      "height": 270,
+      "kind": "registered interior visible-depth layer",
+      "path": "ready/interior/g4",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        328,
+        62,
+        389,
+        141
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "3c8a3d3a0f4e81fff4303d4ac4f6d6c567736cb6eaeed35f6b687dcb86e1a314",
+      "sourceSha256": "a9cfdc52c6dbbb06d515ea0aa81bc748923f2a2b7cbabc206e0d1e1ef88e8019"
+    },
+    {
+      "height": 270,
+      "kind": "registered interior visible-depth layer",
+      "path": "ready/interior/g5",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        87,
+        120,
+        148,
+        177
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "6167863a96695c280417e454d4875bea96f19f9c7bba26d704a1d2141971cdb6",
+      "sourceSha256": "22869342cdb688e4a3d647faba60f6296c65404f51d237d2574e02811d2e9bfd"
+    },
+    {
+      "height": 270,
+      "kind": "registered interior visible-depth layer",
+      "path": "ready/interior/g6",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        213,
+        98,
+        258,
+        145
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "2441d7e9e64796d23cce6f57e9d2666d68fcbb45034085adb4c0bef44c9165aa",
+      "sourceSha256": "13a635d3e7d1a4ce0005074874352fef25fe3304b74faa318e04514c29a8f870"
+    },
+    {
+      "height": 270,
+      "kind": "registered interior visible-depth layer",
+      "path": "ready/interior/g7",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        144,
+        48,
+        198,
+        75
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "9424e262984efe29fe42db6766e7937b7a6f0b1883af988de78602d09dc06195",
+      "sourceSha256": "81cfc210bee2501347dc47c02b5c7fe64c0c333e1ee3273b3f5fc153681dbe4a"
+    },
+    {
+      "height": 270,
+      "kind": "registered interior visible-depth layer",
+      "path": "ready/interior/g8",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        269,
+        41,
+        342,
+        151
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "18869a38291794909777dba0661f563381f8875a5efe25ab684ada53a3f7f288",
+      "sourceSha256": "bf07e6efbdb4a7b9de825753a22bc47cf50dd7c32ebf54bc384c01f6cd240f5c"
+    },
+    {
+      "height": 270,
+      "kind": "registered interior visible-depth layer",
+      "path": "ready/interior/light",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        75,
+        139,
+        304,
+        270
+      ],
+      "alphaValues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "26b9a59986491beb8ff59e4067d863be965fd3aefceca178e57e7dd98fd0b797",
+      "sourceSha256": "76fd5783db6a98f79acebcab2df8519dde47177a9a431c88185301c608a2c916"
+    },
+    {
+      "height": 270,
+      "kind": "facade frame and static window glass",
+      "path": "ready/exterior/facade",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "39d227e2105b48f8d6206f5bc89edfd06add6e325c1d61ccbe35d6d10dcb7f72",
+      "sourceSha256": "db16df3114c12c017df826026c6fecd5be102899b6768a48697d4444aaa571ae"
+    },
+    {
+      "height": 270,
+      "kind": "same north-facing room visible through real south openings",
+      "path": "ready/exterior/glimpse",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        193,
+        56,
+        422,
+        245
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "4a4b37692b430d42f823a95adbe0cd15765ce6a2ca581e78dce7169d2e5ba11b",
+      "sourceSha256": "c6ab6fb8afdcf6d60642b98fc8db3d43eb2cb5e4365ccfd7ffa85039553da142"
+    },
+    {
+      "extra": {
+        "angle": 0,
+        "hingeWorld": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "thresholdWorld": [
+          [
+            1.4,
+            0,
+            0
+          ],
+          [
+            2.45,
+            0,
+            0
+          ]
+        ]
+      },
+      "height": 216,
+      "kind": "rigid hinge projected door frame",
+      "path": "ready/exterior/door_00",
+      "pivot": [
+        43,
+        9
+      ],
+      "width": 184,
+      "alphaBounds": [
+        43,
+        8,
+        141,
+        207
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "76e61cc6f069b1456c5f75eeb3054a12aba632e3b6a62bba96bac1464cdbc92c",
+      "sourceSha256": "5e54a1b46dccfe482e673db567b3b7329f728a9560959600ff1c59a6ba92fc86"
+    },
+    {
+      "extra": {
+        "angle": 15,
+        "hingeWorld": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "thresholdWorld": [
+          [
+            1.4,
+            0,
+            0
+          ],
+          [
+            2.45,
+            0,
+            0
+          ]
+        ]
+      },
+      "height": 216,
+      "kind": "rigid hinge projected door frame",
+      "path": "ready/exterior/door_01",
+      "pivot": [
+        43,
+        9
+      ],
+      "width": 184,
+      "alphaBounds": [
+        43,
+        8,
+        135,
+        207
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "8e0af32cab31b82e55bd412c214456833c456aa4e126ff6fabb3d4f68957ee70",
+      "sourceSha256": "5f5eff3779a22060caa47faef6d6e34f7214168b5d6c43e6ac7a9fc3c87d961e"
+    },
+    {
+      "extra": {
+        "angle": 30,
+        "hingeWorld": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "thresholdWorld": [
+          [
+            1.4,
+            0,
+            0
+          ],
+          [
+            2.45,
+            0,
+            0
+          ]
+        ]
+      },
+      "height": 216,
+      "kind": "rigid hinge projected door frame",
+      "path": "ready/exterior/door_02",
+      "pivot": [
+        43,
+        9
+      ],
+      "width": 184,
+      "alphaBounds": [
+        43,
+        8,
+        124,
+        207
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "62aab4e447943256af70ebea9e40953034122694b8e928d726531e0f331f66ac",
+      "sourceSha256": "7af9980e0b4c610b6382b18b2a339509282869f4b9a54d1610173a471db05966"
+    },
+    {
+      "extra": {
+        "angle": 45,
+        "hingeWorld": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "thresholdWorld": [
+          [
+            1.4,
+            0,
+            0
+          ],
+          [
+            2.45,
+            0,
+            0
+          ]
+        ]
+      },
+      "height": 216,
+      "kind": "rigid hinge projected door frame",
+      "path": "ready/exterior/door_03",
+      "pivot": [
+        43,
+        9
+      ],
+      "width": 184,
+      "alphaBounds": [
+        43,
+        8,
+        110,
+        207
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "0ff213ceba9d75b5b677c94f6a1176715f48ad8182a9434db2d005b37b7787a8",
+      "sourceSha256": "f09b82eddefe04b266905bb941a42ce7ddc87989cee28db26c2268924e354e97"
+    },
+    {
+      "extra": {
+        "angle": 60,
+        "hingeWorld": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "thresholdWorld": [
+          [
+            1.4,
+            0,
+            0
+          ],
+          [
+            2.45,
+            0,
+            0
+          ]
+        ]
+      },
+      "height": 216,
+      "kind": "rigid hinge projected door frame",
+      "path": "ready/exterior/door_04",
+      "pivot": [
+        43,
+        9
+      ],
+      "width": 184,
+      "alphaBounds": [
+        43,
+        9,
+        95,
+        206
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "b80dc227666c9cb9cd8b7726ea78ff1fcbf4c86e4967608b9a25d0f0e46b7381",
+      "sourceSha256": "a9003098fcd8d2a0d98c5cda87e03a46c9a0dc110012df54de27082ff4c1188c"
+    },
+    {
+      "extra": {
+        "angle": 75,
+        "hingeWorld": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "thresholdWorld": [
+          [
+            1.4,
+            0,
+            0
+          ],
+          [
+            2.45,
+            0,
+            0
+          ]
+        ]
+      },
+      "height": 216,
+      "kind": "rigid hinge projected door frame",
+      "path": "ready/exterior/door_05",
+      "pivot": [
+        43,
+        9
+      ],
+      "width": 184,
+      "alphaBounds": [
+        43,
+        9,
+        78,
+        206
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "22a025cdcff8cf06b49ca938acc62581f024025c26229e3c5f4afad8fa8ebce6",
+      "sourceSha256": "1191f541a858f5822d05c69ba6abc577b0b2a143cb16cd77b2de84235110a911"
+    },
+    {
+      "extra": {
+        "angle": 85,
+        "hingeWorld": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "thresholdWorld": [
+          [
+            1.4,
+            0,
+            0
+          ],
+          [
+            2.45,
+            0,
+            0
+          ]
+        ]
+      },
+      "height": 216,
+      "kind": "rigid hinge projected door frame",
+      "path": "ready/exterior/door_06",
+      "pivot": [
+        43,
+        9
+      ],
+      "width": 184,
+      "alphaBounds": [
+        43,
+        9,
+        67,
+        205
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "7850dedd4bae36887ea76793f665e3fb471fe77929fffeb33459dbc28deb4599",
+      "sourceSha256": "9d676a3bc150d55913730cb816b90fe70a51edea43097b9b2c6081d4d2cf9897"
+    },
+    {
+      "extra": {
+        "angle": 90,
+        "hingeWorld": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "thresholdWorld": [
+          [
+            1.4,
+            0,
+            0
+          ],
+          [
+            2.45,
+            0,
+            0
+          ]
+        ]
+      },
+      "height": 216,
+      "kind": "rigid hinge projected door frame",
+      "path": "ready/exterior/door_07",
+      "pivot": [
+        43,
+        9
+      ],
+      "width": 184,
+      "alphaBounds": [
+        43,
+        9,
+        62,
+        205
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "bc4f16906c3dc766f9a3d838c0919576ae01aa33417dc34645d73d6fde7ba954",
+      "sourceSha256": "d8067ec20b5341cf3ef8e36b397d14cb0dc5c38dbcb9a1a5c6270d0c7d082382"
+    },
+    {
+      "extra": {
+        "cameraWorld": [
+          1.925,
+          -2.3,
+          1.3
+        ],
+        "doorAngle": 90,
+        "heading": "north",
+        "thresholdSignedY": -2.3
+      },
+      "height": 270,
+      "kind": "same-axis actual doorway traversal view",
+      "path": "ready/bridge/b00",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "c9b1b1219ad5ff69401106d3ac01372da58c1451e8de82b1264584e7a257f451",
+      "sourceSha256": "b3cd66999644a784c2c8183465953ef61a2d2aa2d00a0e05634d999df8bd93d6"
+    },
+    {
+      "extra": {
+        "cameraWorld": [
+          1.925,
+          -1.65,
+          1.3
+        ],
+        "doorAngle": 90,
+        "heading": "north",
+        "thresholdSignedY": -1.65
+      },
+      "height": 270,
+      "kind": "same-axis actual doorway traversal view",
+      "path": "ready/bridge/b01",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "009fe1ef7ed3f64ea283ce4c3794f13ab4128a64299c38a23958f4b64fe35c64",
+      "sourceSha256": "b77c9fb955dc544809584dc669570aac64df424316d972bac96c387facd02c14"
+    },
+    {
+      "extra": {
+        "cameraWorld": [
+          1.925,
+          -1.05,
+          1.3
+        ],
+        "doorAngle": 90,
+        "heading": "north",
+        "thresholdSignedY": -1.05
+      },
+      "height": 270,
+      "kind": "same-axis actual doorway traversal view",
+      "path": "ready/bridge/b02",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "0f3de29411150e6556c0d44df91c280db4792cf0ba04fb8d4317d9c9368ebebd",
+      "sourceSha256": "fdc6998f962e98d2eaa47a670a2097d4ea09ce406732bd728db8466eb25ae982"
+    },
+    {
+      "extra": {
+        "cameraWorld": [
+          1.925,
+          -0.62,
+          1.3
+        ],
+        "doorAngle": 90,
+        "heading": "north",
+        "thresholdSignedY": -0.62
+      },
+      "height": 270,
+      "kind": "same-axis actual doorway traversal view",
+      "path": "ready/bridge/b03",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "4aedb135616d3739a2e6a98e57414a164b228c12dfe6286c8d332765fb8ea33d",
+      "sourceSha256": "e49687e80841c8cae581b7e21ea3aebfe8367264c913e7fbbee4078ac6b63f7f"
+    },
+    {
+      "extra": {
+        "cameraWorld": [
+          1.925,
+          -0.3,
+          1.3
+        ],
+        "doorAngle": 90,
+        "heading": "north",
+        "thresholdSignedY": -0.3
+      },
+      "height": 270,
+      "kind": "same-axis actual doorway traversal view",
+      "path": "ready/bridge/b04",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "8c67bbfce9662164ca2b8545d5b3dbfa279a040a141a4fc652a8db39fb02e637",
+      "sourceSha256": "db63aca1b939a5b203e726989eabb2bea17c498cc931a141e28c8d1a833e8df1"
+    },
+    {
+      "extra": {
+        "cameraWorld": [
+          1.925,
+          -0.06,
+          1.3
+        ],
+        "doorAngle": 90,
+        "heading": "north",
+        "thresholdSignedY": -0.06
+      },
+      "height": 270,
+      "kind": "same-axis actual doorway traversal view",
+      "path": "ready/bridge/b05",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "cc84f58335f8b3af8052527b4ffb4d96e00d4112e33abd2a1546bcca666bdbb6",
+      "sourceSha256": "e364b472c93dcb36ce0a21608fa568dc90f37344ec0edb4d3ab3f76d31b0dee4"
+    },
+    {
+      "extra": {
+        "cameraWorld": [
+          1.925,
+          0.16,
+          1.3
+        ],
+        "doorAngle": 90,
+        "heading": "north",
+        "thresholdSignedY": 0.16
+      },
+      "height": 270,
+      "kind": "same-axis actual doorway traversal view",
+      "path": "ready/bridge/b06",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "73674866e3a1706fd4193aa18c17fd2cfb5a6aaaa53eaaf4788be598f501bda8",
+      "sourceSha256": "6b22fb13d6137af285d7088af370021676906f6540b3e4ed67ce2d204291c6e4"
+    },
+    {
+      "extra": {
+        "cameraWorld": [
+          1.925,
+          0.4,
+          1.3
+        ],
+        "doorAngle": 90,
+        "heading": "north",
+        "thresholdSignedY": 0.4
+      },
+      "height": 270,
+      "kind": "same-axis actual doorway traversal view",
+      "path": "ready/bridge/b07",
+      "pivot": [
+        240,
+        135
+      ],
+      "width": 480,
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true
+      },
+      "pass": true,
+      "pngSha256": "4f5c1fa80a62f7fe8dc3399cca1f659cf34a4f5e9fa0679c224cbb549975db5d",
+      "sourceSha256": "44af8bb3e83ae80d3314ab1dc271f13a4287edff9d6cb8c7aa4bb48dd6284453"
+    }
+  ],
+  "allPass": true,
+  "rawSources": [
+    {
+      "png": "raw/ct_bookshelf_source.png",
+      "dimensions": [
+        128,
+        192
+      ],
+      "sha256": "c68889fb37c21c344a42b7e2cb591b44cb071f3a5d78d8349f9b98d826eed9c5",
+      "nativeSha256": "5c6d0b1f9d90b7ef959fb0439235dc90a0fecbb2584ada0762e6e7b5f27ee9ab",
+      "roundtripPixelsEqual": true
+    },
+    {
+      "png": "raw/ct_coat_cabinet_source.png",
+      "dimensions": [
+        128,
+        192
+      ],
+      "sha256": "eca09f76fef97b2550c0334aa905a704c88d40d0056731656bb5617becb11125",
+      "nativeSha256": "b34dcb1b528eb3022f6867ef95902618504f170adc56616fcb914b2445e78f42",
+      "roundtripPixelsEqual": true
+    },
+    {
+      "png": "raw/ct_door_material_probe.png",
+      "dimensions": [
+        96,
+        128
+      ],
+      "sha256": "94533372f5aaa5d672e70727f0be3d45d946f1d182d5cb3f39d9b3bc73d56605",
+      "nativeSha256": "d92f62cefbdce396bf6b9f4fb5916127c8f329d91c8e3b8c1d2275da4e874a42",
+      "roundtripPixelsEqual": true
+    },
+    {
+      "png": "raw/ct_espresso_source.png",
+      "dimensions": [
+        128,
+        96
+      ],
+      "sha256": "e93f7be8e111db1ffc859a8a0806549fc29e915dc1b6c04819ef6216689a753c",
+      "nativeSha256": "2ad721e4ed2b76b57eb5874bb3cda4359cafe8b5117035c21322e8e12cc1fb44",
+      "roundtripPixelsEqual": true
+    },
+    {
+      "png": "raw/ct_facade_material_source.png",
+      "dimensions": [
+        256,
+        128
+      ],
+      "sha256": "aa95900885d40fe04be125407569efbe8ed8d066b1dfc9d42bcdefcde9586627",
+      "nativeSha256": "0e0ff455b740cc89349fe3a33fd37f5889640b587173aa8b01b1e926bbf970b9",
+      "roundtripPixelsEqual": true
+    },
+    {
+      "png": "raw/ct_ledger_source.png",
+      "dimensions": [
+        128,
+        64
+      ],
+      "sha256": "c80d35b635729526172332b053fa7a36a016426408241bd23dc7b45b7e5d55c2",
+      "nativeSha256": "13a12a66e85cd9edcebf0dad2980e1099046630eb057479d689745d53ff475e2",
+      "roundtripPixelsEqual": true
+    },
+    {
+      "png": "raw/ct_radio_source.png",
+      "dimensions": [
+        128,
+        64
+      ],
+      "sha256": "f45e8e5af532426b42c9e0517f1f7581484a1d4d3eab9993687a1820844fed8d",
+      "nativeSha256": "f4b19e43478d35892526b8dcac670256fadc80e0f7776f586c6e747c32badeae",
+      "roundtripPixelsEqual": true
+    }
+  ],
+  "rawSources7Pass": true,
+  "originalReferenceHashesUnchanged": true,
+  "masterRoundtripExact": true,
+  "hotspots8Nonoverlap": true,
+  "geometryPass": true,
+  "visualReview": "pending",
+  "unityRuntime": "not run by art worker",
+  "humanPlay": "not performed"
+}

@@ -68,7 +68,7 @@ namespace CCT
                 tumbler, new CardEffect(CardEffectType.MoveSpeedPercent, 0.10f));
             var apron = Make("padded_apron", "두툼한 앞치마", "영구 받는 피해 감소 +3%p", SkillBranch.Survival, 3, 3,
                 veteran, new CardEffect(CardEffectType.DamageReduction, 0.03f));
-            var rest = Make("restorative_break", "잠깐의 티타임", "영구 초당 회복 +0.15", SkillBranch.Survival, 4, 6,
+            var rest = Make("restorative_break", "잠깐의 티타임", "영구 분당 회복 +9", SkillBranch.Survival, 4, 6,
                 apron, new CardEffect(CardEffectType.RegenBonus, 0.15f));
             rest.minimumClears = 1;
             var tray = Make("balanced_tray", "균형 잡힌 트레이", "영구 최대 체력 +20", SkillBranch.Survival, 5, 9,
@@ -79,7 +79,7 @@ namespace CCT
                 null, new CardEffect(CardEffectType.BeanGainPercent, 0.20f));
             var roasting = Make("skilled_roasting", "정확한 계량", "영구 재료 게이지 필요량 -10%",
                 SkillBranch.Ingredient, 2, 6, cupper, new CardEffect(CardEffectType.GaugeNeedPercent, -0.10f));
-            var tidy = Make("tidy_counter", "정돈된 카운터", "영구 줍기 반경 +0.5", SkillBranch.Ingredient, 3, 3,
+            var tidy = Make("tidy_counter", "정돈된 카운터", "영구 줍기 반경 +50cm", SkillBranch.Ingredient, 3, 3,
                 roasting, new CardEffect(CardEffectType.PickupRadiusFlat, 0.5f));
             var sourcing = Make("careful_sourcing", "엄선한 재료", "영구 추가 재료 드랍 +5%p", SkillBranch.Ingredient, 4, 6,
                 tidy, new CardEffect(CardEffectType.DropChancePercent, 0.05f));
@@ -104,7 +104,7 @@ namespace CCT
                 new CardEffect(CardEffectType.PierceCount, 1f));
             var rhythm = Specialty("bow_rhythm", "차분한 템포", "영구 공격 속도 +10%", WeaponKind.Bow, 2, 6, bow,
                 new CardEffect(CardEffectType.AttackSpeedPercent, 0.10f));
-            var master = Make("master_blend", "나만의 시그니처", "추가 드랍 +5%p · 원두 +10% · 줍기 +0.5",
+            var master = Make("master_blend", "나만의 시그니처", "추가 드랍 +5%p · 원두 +10% · 줍기 +50cm",
                 SkillBranch.Ingredient, 6, 12, service,
                 new CardEffect(CardEffectType.DropChancePercent, 0.05f),
                 new CardEffect(CardEffectType.BeanGainPercent, 0.10f),

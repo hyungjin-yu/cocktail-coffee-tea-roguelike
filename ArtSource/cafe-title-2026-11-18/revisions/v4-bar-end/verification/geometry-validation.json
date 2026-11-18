@@ -1,0 +1,248 @@
+{
+  "hingeRigidNoScale": true,
+  "jambNoPenetration": true,
+  "doorNeverMovesOutsideReservedSwing": true,
+  "barrelOutboard25mm": true,
+  "doorTraces": [
+    {
+      "angle": 0,
+      "leafCornerXY": [
+        [
+          1.4,
+          -0.069
+        ],
+        [
+          1.4,
+          -0.025
+        ],
+        [
+          2.4459999999999997,
+          -0.069
+        ],
+        [
+          2.4459999999999997,
+          -0.025
+        ]
+      ],
+      "fixedBarrelAxis": [
+        1.4,
+        -0.025
+      ],
+      "jambClearancePass": true,
+      "constantLeafWidthMeters": 1.0459999999999998,
+      "constantThicknessMeters": 0.044000000000000004
+    },
+    {
+      "angle": 15,
+      "leafCornerXY": [
+        [
+          1.4113880379845107,
+          -0.06750073635671901
+        ],
+        [
+          1.4,
+          -0.025
+        ],
+        [
+          2.421746452282876,
+          0.20322398482051773
+        ],
+        [
+          2.4103584142983654,
+          0.24572472117723673
+        ]
+      ],
+      "fixedBarrelAxis": [
+        1.4,
+        -0.025
+      ],
+      "jambClearancePass": true,
+      "constantLeafWidthMeters": 1.046,
+      "constantThicknessMeters": 0.04399999999999998
+    },
+    {
+      "angle": 30,
+      "leafCornerXY": [
+        [
+          1.422,
+          -0.06310511776651531
+        ],
+        [
+          1.4,
+          -0.025
+        ],
+        [
+          2.3278625723585225,
+          0.45989488223348457
+        ],
+        [
+          2.3058625723585227,
+          0.4979999999999999
+        ]
+      ],
+      "fixedBarrelAxis": [
+        1.4,
+        -0.025
+      ],
+      "jambClearancePass": true,
+      "constantLeafWidthMeters": 1.0459999999999996,
+      "constantThicknessMeters": 0.04400000000000002
+    },
+    {
+      "angle": 45,
+      "leafCornerXY": [
+        [
+          1.431112698372208,
+          -0.05611269837220809
+        ],
+        [
+          1.4,
+          -0.025
+        ],
+        [
+          2.1707463914933367,
+          0.6835209947489207
+        ],
+        [
+          2.139633693121129,
+          0.7146336931211288
+        ]
+      ],
+      "fixedBarrelAxis": [
+        1.4,
+        -0.025
+      ],
+      "jambClearancePass": true,
+      "constantLeafWidthMeters": 1.046,
+      "constantThicknessMeters": 0.044000000000000004
+    },
+    {
+      "angle": 60,
+      "leafCornerXY": [
+        [
+          1.4381051177665152,
+          -0.047
+        ],
+        [
+          1.4,
+          -0.025
+        ],
+        [
+          1.9611051177665153,
+          0.8588625723585228
+        ],
+        [
+          1.923,
+          0.8808625723585228
+        ]
+      ],
+      "fixedBarrelAxis": [
+        1.4,
+        -0.025
+      ],
+      "jambClearancePass": true,
+      "constantLeafWidthMeters": 1.046,
+      "constantThicknessMeters": 0.04399999999999996
+    },
+    {
+      "angle": 75,
+      "leafCornerXY": [
+        [
+          1.4425007363567188,
+          -0.036388037984510915
+        ],
+        [
+          1.4,
+          -0.025
+        ],
+        [
+          1.7132254575339556,
+          0.9739703763138545
+        ],
+        [
+          1.6707247211772367,
+          0.9853584142983655
+        ]
+      ],
+      "fixedBarrelAxis": [
+        1.4,
+        -0.025
+      ],
+      "jambClearancePass": true,
+      "constantLeafWidthMeters": 1.046,
+      "constantThicknessMeters": 0.043999999999999914
+    },
+    {
+      "angle": 85,
+      "leafCornerXY": [
+        [
+          1.4438325667160368,
+          -0.028834852680896958
+        ],
+        [
+          1.4,
+          -0.025
+        ],
+        [
+          1.534997473630087,
+          1.0131848015230691
+        ],
+        [
+          1.4911649069140502,
+          1.017019654203966
+        ]
+      ],
+      "fixedBarrelAxis": [
+        1.4,
+        -0.025
+      ],
+      "jambClearancePass": true,
+      "constantLeafWidthMeters": 1.0460000000000003,
+      "constantThicknessMeters": 0.04400000000000005
+    },
+    {
+      "angle": 90,
+      "leafCornerXY": [
+        [
+          1.444,
+          -0.025000000000000005
+        ],
+        [
+          1.4,
+          -0.025
+        ],
+        [
+          1.444,
+          1.0210000000000001
+        ],
+        [
+          1.4,
+          1.0210000000000001
+        ]
+      ],
+      "fixedBarrelAxis": [
+        1.4,
+        -0.025
+      ],
+      "jambClearancePass": true,
+      "constantLeafWidthMeters": 1.046,
+      "constantThicknessMeters": 0.04400000000000004
+    }
+  ],
+  "thresholdWorldSameAsLayout": true,
+  "cameraCrossesPhysicalThreshold": true,
+  "bridgeAllNorthSameAxis": true,
+  "fixedFinalSouthShotExplicitCut": true,
+  "staffAisleClearMeters": 1.1,
+  "laptopSupportedOnBarEnd": true,
+  "removedResearchFurniture": true,
+  "laptopFootprintInsideCounter": true,
+  "ledgerSeparatedFromLaptop": true,
+  "radioSupportedOnSideboard": true,
+  "cabinetAndCounterPlinthsContactFloor": true,
+  "oneLightWorldPosition": [
+    5.1,
+    3,
+    2.8
+  ]
+}

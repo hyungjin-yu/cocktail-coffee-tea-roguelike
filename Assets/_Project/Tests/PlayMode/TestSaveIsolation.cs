@@ -32,6 +32,7 @@ namespace CCT.Tests
             EnsureSessionPaths();
             PermanentProgress.SetPathForTests(SessionPath);
             CardEducationGuide.SuppressAutomaticForTests=true;
+            NotebookGuide.SuppressForTests=true; DrinkLabView.PracticeSuppressForTests=true; // 2026-11-15 피드백 7 로비 안내는 전용 시험에서만
             SettingsService.SetForTests(SettingsSessionPath, new MemoryLegacySettingsStore(), new MemoryDisplayAdapter());
             Debug.Log("[TestSaveIsolation] AutoStart 전에 세션 임시 경로로 리다이렉트: " + SessionPath);
         }
@@ -50,6 +51,7 @@ namespace CCT.Tests
             EnsureSessionPaths();
             PermanentProgress.SetPathForTests(SessionPath);
             CardEducationGuide.SuppressAutomaticForTests=true;
+            NotebookGuide.SuppressForTests=true; DrinkLabView.PracticeSuppressForTests=true; // 2026-11-15 피드백 7 로비 안내는 전용 시험에서만
             // 2026-10-06: EditMode와 같이 메모리 화면 어댑터. 실제 어댑터는 에디터의 Screen/QualitySettings를 바꾸고,
             // 에디터 PlayMode에서는 창 모드 전환이 반영되지 않아 검증도 안 됐다(SettingsViewTests 참고).
             SettingsService.SetForTests(SettingsSessionPath, new MemoryLegacySettingsStore(), new MemoryDisplayAdapter());

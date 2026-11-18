@@ -1,0 +1,79 @@
+{
+  "assetId": "hidden_bitter_wake",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-17",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "hidden_hud_icon",
+  "png": "ready/hidden_bitter_wake.png",
+  "aseprite": "ready/hidden_bitter_wake.aseprite",
+  "sourceRawPng": "raw/hidden_bitter_wake.png",
+  "sourceRawAseprite": "raw/hidden_bitter_wake.aseprite",
+  "dimensions": [
+    24,
+    24
+  ],
+  "alphaBounds": [
+    4,
+    1,
+    21,
+    23
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0.5
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    12,
+    12
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_bitter_wake.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 100,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "sha256": {
+    "png": "fd2059d81bb0dd26ba040fbac888a88630eeed61374519a45df39d325209efe4",
+    "aseprite": "586c9b72643f76950ea34a6401dc1a1c3ed7b3978bcc22d779183fed8d9c8fda",
+    "sourceRawPng": "ae86723d323f72490c04217d0caf35b0d6a550ffc6a6d97cd10fc42220182383",
+    "sourceRawAseprite": "0fa1251f0b9a4ae56f1a0bce2f9178689050c3ef2f596bd92135a1fdc1b91329"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+    "sourceEvidence": "provenance/collected-generations.json",
+    "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Crescent notch repaired into bean, strong central eye seam and upward alert chevrons added.",
+    "promptEvidence": "provenance/generation-specs.json"
+  },
+  "checks": {
+    "dimensions": true,
+    "nativeCanvas": true,
+    "nativeMagic": true,
+    "nativeFrames": true,
+    "roundtripPixels": true,
+    "pivot": true,
+    "alpha": true,
+    "nonempty": true,
+    "cornersTransparent": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false,
+    "unmodifiedRawSourceRoundtrip": true
+  },
+  "verification": "verification/hidden-validation.json",
+  "visualPreviews": [
+    "previews/hidden-finish-review.png"
+  ]
+}

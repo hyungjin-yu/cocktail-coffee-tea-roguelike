@@ -1,0 +1,294 @@
+{
+  "group": "tails",
+  "assetCount": 9,
+  "clipCount": 3,
+  "assets": [
+    {
+      "assetId": "vfx_arrow_fire_tail_00",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        3,
+        2,
+        31,
+        13
+      ],
+      "pngSha256": "10ab207e1a57da8b4465d8ca75e030b26a79604a1c9856d98d1de225d5e2c075",
+      "sourceSha256": "047f0f1a0604825c11dda61a3532a8bb17951d089cf4898c797fa9571e26d135",
+      "checks": {
+        "dimensions": true,
+        "alpha": true,
+        "nonempty": true,
+        "nativeCanvas": true,
+        "roundtripPixels": true,
+        "corners": true,
+        "individualSourceRoundtrip": true,
+        "individualPivot": true,
+        "individualFrame": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "vfx_arrow_fire_tail_01",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        3,
+        1,
+        31,
+        12
+      ],
+      "pngSha256": "1ef16e7ab1eb266b7d5de6a88570e2eec3c97d521accce13dac8c5e5eb63bd59",
+      "sourceSha256": "daf0c9be9507fe19a16eb72b2d5ea9e3f4bfdab4e4e22b1518ac48a7efbcb754",
+      "checks": {
+        "dimensions": true,
+        "alpha": true,
+        "nonempty": true,
+        "nativeCanvas": true,
+        "roundtripPixels": true,
+        "corners": true,
+        "individualSourceRoundtrip": true,
+        "individualPivot": true,
+        "individualFrame": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "vfx_arrow_fire_tail_02",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        3,
+        3,
+        31,
+        14
+      ],
+      "pngSha256": "30d15602457f748429a105f7177d292a6d1fafe9f2fd7983f776147e30162be7",
+      "sourceSha256": "cddc1355ac4db7f6e9cd6e6490874470b7e5416c8de7bb21309c51e48aeeb2be",
+      "checks": {
+        "dimensions": true,
+        "alpha": true,
+        "nonempty": true,
+        "nativeCanvas": true,
+        "roundtripPixels": true,
+        "corners": true,
+        "individualSourceRoundtrip": true,
+        "individualPivot": true,
+        "individualFrame": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "vfx_arrow_bitter_tail_00",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        3,
+        2,
+        31,
+        14
+      ],
+      "pngSha256": "c4a94d60779e4bab9255458f6284b4ec717e341fe4d81c63f89d3c71c87ad001",
+      "sourceSha256": "17a068f85c789804964e4818087c8bba89b9eb7c54ae4c646e2ef1320e912b0c",
+      "checks": {
+        "dimensions": true,
+        "alpha": true,
+        "nonempty": true,
+        "nativeCanvas": true,
+        "roundtripPixels": true,
+        "corners": true,
+        "individualSourceRoundtrip": true,
+        "individualPivot": true,
+        "individualFrame": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "vfx_arrow_bitter_tail_01",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        3,
+        1,
+        31,
+        13
+      ],
+      "pngSha256": "3f5338901d8655e8c1a02925a915099f2f30796dfd9f4ac0a53e18d1eb92ab9c",
+      "sourceSha256": "9e5fb67696cb3dbc42669c5e7be8bed14a2ef33107e55a98d82f5ff8efecbdd8",
+      "checks": {
+        "dimensions": true,
+        "alpha": true,
+        "nonempty": true,
+        "nativeCanvas": true,
+        "roundtripPixels": true,
+        "corners": true,
+        "individualSourceRoundtrip": true,
+        "individualPivot": true,
+        "individualFrame": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "vfx_arrow_bitter_tail_02",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        3,
+        3,
+        31,
+        15
+      ],
+      "pngSha256": "0961b4526a1daf35ea579691a9d881ff0a3393f3110aba28c697dc9f360701f3",
+      "sourceSha256": "0615b6c42f84dcd6b211b4ba5f6d835a39ce977083bd8f33d74f89d75e16d4ae",
+      "checks": {
+        "dimensions": true,
+        "alpha": true,
+        "nonempty": true,
+        "nativeCanvas": true,
+        "roundtripPixels": true,
+        "corners": true,
+        "individualSourceRoundtrip": true,
+        "individualPivot": true,
+        "individualFrame": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "vfx_arrow_dual_tail_00",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        31,
+        14
+      ],
+      "pngSha256": "7573205d69900759ca9c2d321cc7ae85bb5cb10a6053ebe5ddb6fb87e21ef6e6",
+      "sourceSha256": "6c95e648a136898c84be0b7cd06764296f32230f44159fc28f3ba702e86a24ec",
+      "checks": {
+        "dimensions": true,
+        "alpha": true,
+        "nonempty": true,
+        "nativeCanvas": true,
+        "roundtripPixels": true,
+        "corners": true,
+        "individualSourceRoundtrip": true,
+        "individualPivot": true,
+        "individualFrame": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "vfx_arrow_dual_tail_01",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        4,
+        1,
+        31,
+        13
+      ],
+      "pngSha256": "5f3d2ac5350f7f5916e44d6df8198ad72dc5ff22b60e6d82659cd03165c2af38",
+      "sourceSha256": "2ed01eb9c3d54eb9f52755811a75783086fc43a9e8fa2df8c8cc580637e73c46",
+      "checks": {
+        "dimensions": true,
+        "alpha": true,
+        "nonempty": true,
+        "nativeCanvas": true,
+        "roundtripPixels": true,
+        "corners": true,
+        "individualSourceRoundtrip": true,
+        "individualPivot": true,
+        "individualFrame": true
+      },
+      "pass": true
+    },
+    {
+      "assetId": "vfx_arrow_dual_tail_02",
+      "dimensions": [
+        32,
+        16
+      ],
+      "alphaBounds": [
+        4,
+        3,
+        31,
+        15
+      ],
+      "pngSha256": "c5d176fa4a22d7599aa54a0366f48b9c33c6b5949d4a1cfa1ab132bfc6d1c11b",
+      "sourceSha256": "0488668fc06705fdffb9846697b2c7db75761b19bcd3c0ad2c49c44a3c6dcb2b",
+      "checks": {
+        "dimensions": true,
+        "alpha": true,
+        "nonempty": true,
+        "nativeCanvas": true,
+        "roundtripPixels": true,
+        "corners": true,
+        "individualSourceRoundtrip": true,
+        "individualPivot": true,
+        "individualFrame": true
+      },
+      "pass": true
+    }
+  ],
+  "clips": [
+    {
+      "state": "fire",
+      "nativeFrames3": true,
+      "nativePivot30_8": true,
+      "native8fps": true,
+      "framesActuallyDifferent": true,
+      "fixedSocketRegion": true,
+      "masterSha256": "a8095c2cf077ebe5e3a0704ba57dc461eb5f82b13e658a725cec163d238d4911",
+      "pass": true
+    },
+    {
+      "state": "bitter",
+      "nativeFrames3": true,
+      "nativePivot30_8": true,
+      "native8fps": true,
+      "framesActuallyDifferent": true,
+      "fixedSocketRegion": true,
+      "masterSha256": "6b4104206a79454bbe827696e0584b20a3fa97a35a96c5eff4128e16b532254d",
+      "pass": true
+    },
+    {
+      "state": "dual",
+      "nativeFrames3": true,
+      "nativePivot30_8": true,
+      "native8fps": true,
+      "framesActuallyDifferent": true,
+      "fixedSocketRegion": true,
+      "masterSha256": "2d842ca5fee07dc63fd7727515fe90eeb764fdc1c3dd7291eb385f343bf09d85",
+      "pass": true
+    }
+  ],
+  "stateSilhouettesDifferent": true,
+  "structuralPass": true,
+  "visualReview": {
+    "pass": true,
+    "evidence": [
+      "previews/tail-frames-contact.png",
+      "previews/tail-original-arrow-backgrounds.png"
+    ],
+    "scope": "All9 frames directly reviewed; original128px tea arrow with unchanged shape and tail anchored at18,63, three floor/background colors. Color-independent lobe/leaf/fork geometry; artwork compositing, not runtime."
+  },
+  "unityImport": false,
+  "unityRuntime": false
+}

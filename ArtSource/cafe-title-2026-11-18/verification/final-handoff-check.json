@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "readyManifestAssets": 28,
+  "perAssetManifestsMatch": 28,
+  "pngAndNativeHashesMatch": 28,
+  "nativeMastersHashMatch": true,
+  "nativeSourceFilesTotal": 30,
+  "doorMaster8FramesPixelEqual": true,
+  "layoutHashMatches": true,
+  "all8Features": true,
+  "allLabelAndHotspotPathsPresent": true,
+  "originalReferences4Unchanged": true,
+  "unityRuntimeNotClaimed": true
+}

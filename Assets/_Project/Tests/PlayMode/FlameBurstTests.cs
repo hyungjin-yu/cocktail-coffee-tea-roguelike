@@ -38,7 +38,7 @@ namespace CCT.Tests
             EnemyHitStatus.AttachDirect(hit,player);EnemyHitStatus.AttachDirect(hit,player);
             var s=hit.GetComponent<EnemyHitStatus>();Assert.AreEqual(2.5f,s.FlameDps,.0001f);
             yield return new WaitForSeconds(3.2f);
-            Assert.AreEqual(before-7.5f,hit.Hp,.001f);Assert.AreEqual(untouched,other.Hp);
+            Assert.AreEqual(before-3*IntNum.Damage(2.5f),hit.Hp,.001f); // 정수 전용: 틱마다 정수 피해Assert.AreEqual(untouched,other.Hp);
             Assert.AreEqual(0,s.FlameRemaining);Assert.IsNotNull(hit.transform.Find("FlameHitMarker"));
         }
         [UnityTest] public IEnumerator LockAndPause_PreserveRemaining_RejectNewAttachment()
@@ -50,7 +50,7 @@ namespace CCT.Tests
             Assert.IsNull(other.GetComponent<EnemyHitStatus>());
             stats.Tick(2);Time.timeScale=0;yield return new WaitForSecondsRealtime(.2f);
             Assert.AreEqual(remaining,s.FlameRemaining);Time.timeScale=1;
-            yield return new WaitForSeconds(1.1f);Assert.AreEqual(before-2.5f,hit.Hp,.001f);
+            yield return new WaitForSeconds(1.1f);Assert.AreEqual(before-IntNum.Damage(2.5f),hit.Hp,.001f);
         }
         [UnityTest] public IEnumerator MaximumCard_ConcentratedFlame_FourTicksAt150Percent()
         {
@@ -58,7 +58,7 @@ namespace CCT.Tests
             player.FinalForms.OnCardTaken(card,3);Object.Destroy(card);
             var e=Target();float before=e.Hp;EnemyHitStatus.AttachDirect(e,player);
             Assert.AreEqual(3.75f,e.GetComponent<EnemyHitStatus>().FlameDps,.001f);
-            yield return new WaitForSeconds(4.2f);Assert.AreEqual(before-15f,e.Hp,.001f);
+            yield return new WaitForSeconds(4.2f);Assert.AreEqual(before-4*IntNum.Damage(3.75f),e.Hp,.001f);
         }
     }
 }

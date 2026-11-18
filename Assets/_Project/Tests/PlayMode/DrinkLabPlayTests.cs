@@ -109,10 +109,13 @@ namespace CCT.Tests
             stage.SetTilt(onset + 5f);
             float rate = DrinkStageView.Rate(stage.Tilt, gin, onset);
             Assert.Less(rate, 5f, "작은 움직임은 0.5mL/s 미만");
-            stage.Step(1f);
+            // 2026-11-06 정수 전용: 병 → 지거는 1mL(저장값 10)씩만 나온다 — 느린 기울기는 1mL가 모일 때까지 기다린다.
+            float poured = 0f;
+            while (stage.InMeasure == 0 && poured < 10f) { stage.Step(0.5f); poured += 0.5f; }
             int expected = stage.InMeasure;
             Assert.Greater(expected, 0);
-            Assert.LessOrEqual(expected, Mathf.FloorToInt(rate), "기울기 곡선 이하(입구 유출량으로도 제한)");
+            Assert.AreEqual(0, expected % DrinkRules.TenthsPerUnit, "계량은 정수 mL");
+            Assert.LessOrEqual(expected, Mathf.FloorToInt(rate * poured), "기울기 곡선 이하(입구 유출량으로도 제한)");
             stage.StopPour();
             Assert.AreEqual(expected, lab.Draft.AmountOf("gin"), "놓으면 지거 양만 배합에");
             Assert.AreEqual(DrinkRules.Format(expected), lab.AmountField.text, "표시 수치 = 실제 배합");
@@ -221,7 +224,8 @@ namespace CCT.Tests
         public IEnumerator Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest()
         {
             // 78: 도감 획득처 문구가 길어지고(판당 60묶음·희귀 후보) 하단 안내 칸에 공급 규칙 한 줄이 늘었다. 넘침(Overflow) 없이 칸 안에 있어야 한다.
-            // 가장 좁은 배치: 화면비 1.18 → layoutW 1274, 2열 카드 본문 폭 494 / 안내 칸 폭 1174. 넓은 배치: 3열 본문 폭 514 / 안내 칸 1820.
+            // 가장 좁은 배치: 화면비 1.18 → layoutW 1274, 목록 폭 1186(좌우 테두리 안전선 44), 2열 카드 본문 폭 480 / 안내 칸 폭 1146.
+            // 넓은 배치: 목록 폭 1832, 3열 본문 폭 504 / 안내 칸 1792.
             DrinkLabView lab = null;
             yield return OpenLab(v => lab = v);
             lab.SetTab(DrinkLabView.Tab.Codex);
@@ -236,26 +240,32 @@ namespace CCT.Tests
             var a = new Vector3[4]; var r = new Vector3[4];
             aux.rectTransform.GetWorldCorners(a); rule.rectTransform.GetWorldCorners(r);
             Assert.Less(r[1].y, a[0].y + 0.01f, "공급 규칙 칸은 기존 안내 칸 아래(겹치지 않음)");
-            foreach (float w in new[] { rule.rectTransform.rect.width, 1174f, 1820f })
+            foreach (float w in new[] { rule.rectTransform.rect.width, 1146f, 1792f })
                 Assert.LessOrEqual(HeightAt(rule, w), rule.rectTransform.rect.height + 0.5f, $"공급 규칙 폭 {w}");
             int bodies = 0;
             var over = new System.Collections.Generic.List<string>();
-            foreach (var t in texts)
+            // 2026-11-15 피드백 2·6: 재료 본문은 칸을 누른 상세(Codex_<id>/DetailScroll/Content/Body)에 있다 — 재료마다 상세를 열어 검사.
+            foreach (var def in DrinkIngredients.All)
             {
-                if (t.name != "Body" || t.transform.parent == null || !t.transform.parent.name.StartsWith("Codex_", StringComparison.Ordinal)) continue;
+                lab.OpenCodexDetail(def);
+                yield return null;
+                Canvas.ForceUpdateCanvases();
+                var card = Array.Find(lab.transform.GetComponentsInChildren<RectTransform>(true), x => x.name == "Codex_" + def.id && x.gameObject.activeInHierarchy);
+                var t = card.Find("DetailScroll/Content/Body").GetComponent<Text>();
                 bodies++;
-                StringAssert.Contains("판당 60묶음까지", t.text, t.transform.parent.name);
-                string id = t.transform.parent.name.Substring("Codex_".Length);
+                StringAssert.Contains("판당 60묶음까지", t.text, card.name);
+                string id = def.id;
                 var row = DrinkSupply.Get(id);
                 string unit = DrinkIngredients.Get(id).form == IngredientForm.Leaf ? "g" : "mL";
                 string oldSrc = (row.rare ? "정예·중간 보스·최종 보스" : "일반 처치 25회마다·정예·중간 보스·최종 보스") + $" (1묶음 {DrinkRules.Format(row.bundle)}{unit}{(row.rare ? ", 보스 희귀 보장" : "")}) · 적게 가진 재료일수록 잘 나옴";
                 string saved = t.text;
                 t.text = saved.Replace(DrinkLab.SourceText(id), oldSrc);
-                float oldH = HeightAt(t, 494f);
+                float w = t.rectTransform.rect.width;
+                float oldH = HeightAt(t, w);
                 t.text = saved;
-                TestContext.WriteLine($"{id} h494 new={HeightAt(t, 494f):0.##} old14765b3={oldH:0.##} h514={HeightAt(t, 514f):0.##} box={t.rectTransform.rect.height}");
-                foreach (float w in new[] { t.rectTransform.rect.width, 494f, 514f })
-                    if (HeightAt(t, w) > t.rectTransform.rect.height + 0.5f) over.Add($"{t.transform.parent.name} 본문 폭 {w}: {HeightAt(t, w):0.##} > {t.rectTransform.rect.height}");
+                TestContext.WriteLine($"{id} w{w:0} new={HeightAt(t, w):0.##} old14765b3={oldH:0.##} box={t.rectTransform.rect.height}");
+                if (HeightAt(t, w) > t.rectTransform.rect.height + 0.5f) over.Add($"{card.name} 본문 폭 {w}: {HeightAt(t, w):0.##} > {t.rectTransform.rect.height}");
+                lab.CloseCodexDetail();
             }
             Assert.AreEqual(DrinkIngredients.All.Count, bodies, "재료 카드 전부 검사");
             Assert.IsEmpty(over, string.Join(" / ", over));
@@ -263,7 +273,7 @@ namespace CCT.Tests
             rule.rectTransform.GetWorldCorners(r);
             var c = new Vector3[4]; content.GetWorldCorners(c);
             Assert.GreaterOrEqual(r[0].y, c[0].y - 0.01f, "스크롤 내용 높이 안에 공급 규칙 칸");
-            TestContext.WriteLine($"narrow={lab.Narrow} ruleW={rule.rectTransform.rect.width} ruleH={HeightAt(rule, 1174f):0}/{rule.rectTransform.rect.height}");
+            TestContext.WriteLine($"narrow={lab.Narrow} ruleW={rule.rectTransform.rect.width} ruleH={HeightAt(rule, 1146f):0}/{rule.rectTransform.rect.height}");
         }
 
         [UnityTest]
@@ -447,11 +457,20 @@ namespace CCT.Tests
             stage.BeginPour(Vector2.zero);
             stage.SetTilt(stage.BottleOnset + 20f);
             yield return new WaitForSecondsRealtime(0.4f);
+            // 정수 전용: 효과는 정수 %가 1 이상이 되는 순간 "효과 없음" 행이 효과 행으로 바뀐다(행 구성 변경 = 정당한 재구성).
+            // 그 뒤 같은 재료 양만 늘어나는 동안 재구성이 없는지를 본다.
+            float tb = Time.realtimeSinceStartup;
+            while (lab.BuffText == "효과 없음" && Time.realtimeSinceStartup - tb < 4f) yield return null;
+            Assert.AreNotEqual("효과 없음", lab.BuffText, "붓는 동안 효과 행이 나타난다");
+            yield return new WaitForSecondsRealtime(0.15f);
             int rebuilds = lab.PanelRebuilds;
-            string first = lab.BuffText;
-            yield return new WaitForSecondsRealtime(0.8f);
+            string first = lab.MixText;
+            // 정수 전용: 양은 1mL씩, 효과는 정수 %로 바뀌므로 실제로 값이 바뀔 때까지(최대 3초) 기다린다.
+            float t0 = Time.realtimeSinceStartup;
+            while (lab.MixText == first && Time.realtimeSinceStartup - t0 < 3f) yield return null;
+            yield return new WaitForSecondsRealtime(0.3f);
             Assert.AreEqual(rebuilds, lab.PanelRebuilds, "같은 재료 양만 바뀌면 행을 다시 만들지 않고 글자만 갱신");
-            Assert.AreNotEqual(first, lab.BuffText, "효과 값은 실시간 갱신");
+            Assert.AreNotEqual(first, lab.MixText, "배합 값은 실시간 갱신");
             stage.StopPour();
         }
 
@@ -475,28 +494,28 @@ namespace CCT.Tests
         {
             DrinkLabView lab = null;
             yield return OpenLab(v => lab = v);
-            Assert.IsTrue(lab.ApplyTypedAmount("12.3"));
-            Assert.AreEqual(123, lab.Draft.AmountOf("gin"));
-            foreach (var bad in new[] { "-1", "NaN", "1.25", "abc", "" })
+            Assert.IsTrue(lab.ApplyTypedAmount("12"));
+            Assert.AreEqual(120, lab.Draft.AmountOf("gin"));
+            foreach (var bad in new[] { "-1", "NaN", "1.25", "12.3", "abc", "" })
             {
                 Assert.IsFalse(lab.ApplyTypedAmount(bad), bad);
-                Assert.AreEqual(123, lab.Draft.AmountOf("gin"), "잘못된 입력은 배합을 바꾸지 않음: " + bad);
+                Assert.AreEqual(120, lab.Draft.AmountOf("gin"), "잘못된 입력은 배합을 바꾸지 않음: " + bad);
                 Assert.IsNotEmpty(lab.AmountErrorText);
-                Assert.AreEqual("12.3", lab.AmountField.text, "입력 칸은 실제 값으로 되돌림");
+                Assert.AreEqual("12", lab.AmountField.text, "입력 칸은 실제 값으로 되돌림");
             }
-            Assert.IsFalse(lab.ApplyTypedAmount("60.1"), "보유 60.0mL 초과");
+            Assert.IsFalse(lab.ApplyTypedAmount("61"), "보유 60mL 초과");
             StringAssert.Contains("보유량", lab.AmountErrorText);
-            Assert.IsTrue(lab.ApplyTypedAmount("  45.0ml "), "붙여넣기 형식");
+            Assert.IsTrue(lab.ApplyTypedAmount("  45.0ml "), "붙여넣기 형식(0뿐인 소수 자리는 같은 정수)");
             Assert.AreEqual(450, lab.Draft.AmountOf("gin"));
-            lab.Nudge(1);
-            Assert.AreEqual(451, lab.Draft.AmountOf("gin"));
-            lab.Nudge(-10);
-            Assert.AreEqual(441, lab.Draft.AmountOf("gin"));
+            lab.Nudge(10);
+            Assert.AreEqual(460, lab.Draft.AmountOf("gin"), "↑ = +1mL");
+            lab.Nudge(-100);
+            Assert.AreEqual(360, lab.Draft.AmountOf("gin"), "Shift ↓ = −10mL");
             Assert.IsTrue(lab.ApplyTypedAmount("0"));
             Assert.AreEqual(0, lab.Draft.AmountOf("gin"), "0은 제거");
-            lab.AmountField.text = "33.3";
-            lab.AmountField.onEndEdit.Invoke("33.3");
-            Assert.AreEqual(333, lab.Draft.AmountOf("gin"), "입력 칸 확정 이벤트");
+            lab.AmountField.text = "33";
+            lab.AmountField.onEndEdit.Invoke("33");
+            Assert.AreEqual(330, lab.Draft.AmountOf("gin"), "입력 칸 확정 이벤트");
             Assert.AreEqual(600, DrinkLab.Owned("gin"));
         }
 
@@ -506,7 +525,7 @@ namespace CCT.Tests
             DrinkLabView lab = null;
             yield return OpenLab(v => lab = v);
             Assert.AreEqual(30, lab.ListRowCount, "칵테일: 확장된 재료 30종");
-            lab.ApplyTypedAmount("10.0");
+            lab.ApplyTypedAmount("10");
             var teaBtn = GameObject.Find("KindTea").GetComponent<Button>();
             teaBtn.onClick.Invoke();
             yield return null;
@@ -711,6 +730,47 @@ namespace CCT.Tests
             float interior = (DrinkArt.LiquidRect("dl_mixing_glass").yMax - DrinkArt.LiquidRect("dl_mixing_glass").yMin) * lab.Stage.MainVessel.Rect.rect.height;
             Assert.Greater(firstTip, interior * 0.8f, "처음엔 입구 위에서 넣기 시작(바닥으로 순간이동 없음)");
             Assert.Greater(lastTip, interior * 0.8f, "끝에는 입구 위로 꺼낸다");
+        }
+
+        [UnityTest]
+        public IEnumerator Stir_BarspoonEveryPoseInsideWalls_FrameRateIndependent()
+        {
+            // 고주사율에서만 잡히던 자세(t≈1.571: 프레임 3 + 들썩임 최저점)까지 1ms 간격으로 모든 자세를 결정적으로 검사한다.
+            DrinkLabView lab = null;
+            yield return OpenLab(v => lab = v);
+            lab.ApplyTypedAmount("45.0");
+            lab.Draft.SetAmount("grenadine", 50);
+            lab.Draft.technique = (int)DrinkTechnique.Stir;
+            lab.SkipMotion = false;
+            lab.ConfirmCraft();
+            Assert.IsNotNull(DrinkLab.Prepared, lab.LastMessage);
+            var stage = lab.Stage;
+            // 실제 젓기 장면(스푼 표시 중)에서, 같은 프레임 안에 모든 자세를 차례로 지정해 본다.
+            yield return Until(() => stage.SpoonRect.gameObject.activeSelf || !stage.SequencePlaying, 15f);
+            Assert.IsTrue(stage.SpoonRect.gameObject.activeSelf, "젓기 장면");
+            Assert.AreEqual("dl_mixing_glass", stage.MainVessel.AssetId);
+            string layout = $"screen={Screen.width}x{Screen.height} vesselH={stage.MainVessel.Rect.rect.height:0.0} scale={stage.MainVessel.Rect.lossyScale.x:0.0000}";
+            Debug.Log("[StirSweep] " + layout);
+            const float dur = DrinkStageView.StirDuration, insert = DrinkStageView.StirInsert;
+            float minTip = float.MaxValue;
+            var times = new System.Collections.Generic.List<float>();
+            for (int i = 0; i <= Mathf.CeilToInt(dur * 1000f); i++) times.Add(Mathf.Min(i / 1000f, dur));
+            // 들썩임 정확히 0(sin(7t) = -1): 끝이 바닥 높이에 딱 맞아 스푼 픽셀 중심이 림 선(liquid yMax)에 정확히 놓인다.
+            for (int k = 0; k < 4; k++) times.Add((1.5f * Mathf.PI + 2f * Mathf.PI * k) / 7f);
+            foreach (float t in times)
+            {
+                float ramp = Mathf.Clamp01(Mathf.Min(t, dur - t) / insert);
+                foreach (float r in new[] { ramp, 1f })
+                {
+                    var p = stage.PoseSpoonAt(t, r);
+                    Assert.AreEqual(0, p.outsidePixels, $"t={t:0.000} ramp={r:0.000} sf={p.frame} amp={p.amplitude:0.000} above={p.tipAboveFloorPx:0.00} clearL={p.leftClearPx:0.0} clearR={p.rightClearPx:0.0} {layout}");
+                    Assert.GreaterOrEqual(p.tipAboveFloorPx, 0f, $"끝이 안쪽 바닥 위 t={t:0.000}");
+                    if (p.tipAboveFloorPx < 100f) { Assert.GreaterOrEqual(p.leftClearPx, 2f, $"왼쪽 벽 여유 t={t:0.000}"); Assert.GreaterOrEqual(p.rightClearPx, 2f, $"오른쪽 벽 여유 t={t:0.000}"); }
+                    if (r >= 1f) minTip = Mathf.Min(minTip, p.tipAboveFloorPx);
+                }
+            }
+            Assert.Less(minTip, 16f, "바닥 가까이까지 내려간다(공중에서 젓지 않음)");
+            yield return Until(() => !stage.SequencePlaying, 15f);
         }
 
         [UnityTest]

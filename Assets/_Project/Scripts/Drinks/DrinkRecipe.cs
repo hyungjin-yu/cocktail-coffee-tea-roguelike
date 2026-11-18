@@ -36,6 +36,12 @@ namespace CCT
         public int ice;
         /// <summary>커피 추출 도구. 칵테일·차는 0(정의되지 않은 값). 이전 저장에 없던 필드라 기존 레시피는 0으로 읽힌다(JsonUtility는 정수로 저장).</summary>
         public CoffeeBrewMethod coffeeMethod;
+        /// <summary>2026-11-15 피드백 4 완성 음료(CoffeeStyle 정수, 0 = 기본). 예전 저장에 없던 필드 → 0으로 읽힘.</summary>
+        public int coffeeStyle;
+        /// <summary>아메리카노 뜨거운 물(0.1mL, 무료 보조 자원 — 재고 차감 없음). 0 = 없음.</summary>
+        public int hotWater;
+        /// <summary>거품 단계(0 없음, 1 얇은, 2 두꺼운) — "거품 내기"로만 올라가고 우유량을 바꾸면 0으로.</summary>
+        public int foam;
 
         public DrinkKind Kind => (DrinkKind)kind;
         public DrinkTechnique Technique => (DrinkTechnique)technique;
@@ -78,9 +84,11 @@ namespace CCT
             return 0;
         }
 
-        /// <summary>재료 양을 절대값으로 설정(0이면 제거). 처음 넣은 재료는 순서 끝에 붙는다. 재고는 건드리지 않는다.</summary>
+        /// <summary>재료 양을 절대값으로 설정(0이면 제거). 처음 넣은 재료는 순서 끝에 붙는다. 재고는 건드리지 않는다.
+        /// 2026-11-06 정수 전용: 양은 1mL/1g 배수로 반올림해 저장한다(계량 도구에서 확정되는 경계). 0.5 미만은 0(제거).</summary>
         public void SetAmount(string id, int amount)
         {
+            amount = DrinkRules.Whole(amount);
             steps ??= new List<DrinkStep>();
             steps.RemoveAll(s => s == null);
             for (int i = 0; i < steps.Count; i++)
@@ -166,6 +174,7 @@ namespace CCT
                 if (!seen.Add(def.id)) res.Errors.Add($"{def.name}이(가) 중복되어 있습니다.");
                 if (s.amount <= 0) res.Errors.Add($"{def.name}의 양이 0 이하입니다.");
                 else if (s.amount > DrinkRules.StepMax) res.Errors.Add($"{def.name}의 양이 너무 많습니다.");
+                else if (s.amount % DrinkRules.TenthsPerUnit != 0) res.Errors.Add($"{def.name}의 양은 정수(1{(def.form == IngredientForm.Leaf ? "g" : "mL")} 단위)여야 합니다.");
                 if (!def.UsableIn(kind)) res.Errors.Add($"{def.name}은(는) {DrinkRules.KindName(kind)}에 쓸 수 없습니다.");
                 if (def.baseSpirit) hasBase = true;
                 if (def.IsCoffeeBean) hasBean = true;
@@ -188,7 +197,31 @@ namespace CCT
                 int wMin = CoffeeBrewing.WaterMinTenths(m), wMax = CoffeeBrewing.WaterMaxTenths(m);
                 if (r.water < wMin || r.water > wMax) res.Errors.Add($"{CoffeeBrewing.DisplayName(m)} 추출량은 {DrinkRules.Format(wMin)}~{DrinkRules.Format(wMax)}mL입니다.");
                 if (r.ice != 0) res.Errors.Add("커피에는 얼음을 넣지 않습니다.");
-                if (liquid > DrinkRules.CoffeeAdditiveMax) res.Errors.Add($"커피 첨가 액체는 최대 {DrinkRules.Format(DrinkRules.CoffeeAdditiveMax)}mL입니다.");
+                // 2026-11-15 피드백 4 완성 음료(게임 분류): 스타일별 우유·뜨거운 물·거품 조건. 기본 스타일은 기존 첨가 상한 그대로.
+                var style = CoffeeStyles.IsDefined(r.coffeeStyle) ? (CoffeeStyle)r.coffeeStyle : CoffeeStyle.None;
+                if (!CoffeeStyles.IsDefined(r.coffeeStyle)) res.Errors.Add("알 수 없는 완성 음료입니다.");
+                int milk = r.AmountOf(DrinkIngredients.SteamedMilk);
+                if (style == CoffeeStyle.None)
+                {
+                    if (liquid > DrinkRules.CoffeeAdditiveMax) res.Errors.Add($"커피 첨가 액체는 최대 {DrinkRules.Format(DrinkRules.CoffeeAdditiveMax)}mL입니다.");
+                    if (r.hotWater != 0 || r.foam != 0) res.Errors.Add("뜨거운 물·거품은 완성 음료를 고른 뒤에만 넣습니다.");
+                }
+                else
+                {
+                    string sn = CoffeeStyles.Name(style);
+                    if (m != CoffeeBrewMethod.EspressoMachine) res.Errors.Add($"{sn}는 에스프레소 머신 추출로만 만듭니다.");
+                    int mMin = CoffeeStyles.MilkMin(style), mMax = CoffeeStyles.MilkMax(style);
+                    if (milk > mMax) res.Errors.Add(mMax == 0 ? $"{sn}에는 스팀 우유를 넣지 않습니다." : $"{sn}의 스팀 우유는 최대 {DrinkRules.Format(mMax)}mL입니다.");
+                    if (requireComplete && milk < mMin) res.Errors.Add($"{sn}에는 스팀 우유가 {DrinkRules.Format(mMin)}mL 이상 필요합니다.");
+                    if (liquid - milk > 0) res.Errors.Add($"{sn}에는 스팀 우유 외 첨가 액체를 넣지 않습니다.");
+                    int hMin = CoffeeStyles.HotWaterMin(style), hMax = CoffeeStyles.HotWaterMax(style);
+                    if (r.hotWater > hMax || r.hotWater < 0) res.Errors.Add(hMax == 0 ? $"{sn}에는 뜨거운 물을 넣지 않습니다." : $"{sn}의 뜨거운 물은 최대 {DrinkRules.Format(hMax)}mL입니다.");
+                    else if (requireComplete && r.hotWater < hMin) res.Errors.Add($"{sn}에는 뜨거운 물이 {DrinkRules.Format(hMin)}mL 이상 필요합니다.");
+                    if (r.hotWater % DrinkRules.TenthsPerUnit != 0) res.Errors.Add("뜨거운 물은 정수(1mL 단위)여야 합니다.");
+                    int needFoam = CoffeeStyles.FoamLevel(style);
+                    if (r.foam != 0 && r.foam != needFoam) res.Errors.Add($"{sn}의 거품 단계가 맞지 않습니다.");
+                    else if (requireComplete && needFoam > 0 && r.foam != needFoam) res.Errors.Add($"{sn}는 '거품 내기'를 마쳐야 합니다.");
+                }
                 int dMin = CoffeeBrewing.DoseMinTenths(m), dMax = CoffeeBrewing.DoseMaxTenths(m);
                 int dose = r.CoffeeDose(); // 기본·산지 원두 합(두 산지를 섞어도 한 분량)
                 if (dose > dMax) res.Errors.Add($"{CoffeeBrewing.DisplayName(m)} 원두는 최대 {DrinkRules.Format(dMax)}g입니다.");
@@ -199,11 +232,13 @@ namespace CCT
                 if (r.water != DrinkRules.TeaWaterFixed) res.Errors.Add($"차의 물은 {DrinkRules.Format(DrinkRules.TeaWaterFixed)}mL로 고정입니다.");
                 if (liquid > DrinkRules.TeaAdditiveMax) res.Errors.Add($"차 첨가 액체는 최대 {DrinkRules.Format(DrinkRules.TeaAdditiveMax)}mL입니다.");
                 if (leaf > DrinkRules.TeaLeafMax) res.Errors.Add($"찻잎은 최대 {DrinkRules.Format(DrinkRules.TeaLeafMax)}g입니다.");
-                if (requireComplete && (!hasLeaf || leaf < DrinkRules.TeaLeafMin)) res.Errors.Add("차는 찻잎이 1종 이상(0.1g 이상) 필요합니다.");
+                if (requireComplete && (!hasLeaf || leaf < DrinkRules.TeaLeafMin)) res.Errors.Add($"차는 찻잎이 1종 이상({DrinkRules.Format(DrinkRules.TeaLeafMin)}g 이상) 필요합니다.");
             }
+            if (r.water % DrinkRules.TenthsPerUnit != 0) res.Errors.Add("물의 양은 정수(1mL 단위)여야 합니다.");
             float fill = DrinkRules.ServeFillMl(r), room = DrinkRules.ServeCapacityMl(r) * DrinkRules.ServeFillMax;
+            // 정수 표기: 액체·얼음은 1mL 배수라 fill은 정수, 잔 한도는 넘으면 안 되는 값이라 내림해 보인다(fill > room ⇔ fill > 내림(room)).
             if (fill > room + 0.001f)
-                res.Errors.Add($"잔에 다 들어가지 않습니다(액체+얼음 {fill:0.#}mL / 최대 {room:0.#}mL). 재료나 얼음을 줄여 주세요.");
+                res.Errors.Add($"잔에 다 들어가지 않습니다(액체+얼음 {IntNum.Round(fill)}mL / 최대 {IntNum.Floor(room)}mL). 재료나 얼음을 줄여 주세요.");
             if (requireComplete && r.steps.Count == 0) res.Errors.Add("재료를 넣어 주세요.");
             if (r.name != null && r.name.Length > DrinkRules.RecipeNameMax) res.Errors.Add($"이름은 {DrinkRules.RecipeNameMax}자 이하입니다.");
             return res;

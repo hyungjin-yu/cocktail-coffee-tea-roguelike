@@ -14,6 +14,8 @@ namespace CCT
     {
         public const string Prefix = "CCT1-";
         public const int Version = 1;
+        /// <summary>2026-11-15 커피 완성 음료가 담긴 코드의 내부 형식(접두사 CCT1- 그대로, 첫 바이트 2).</summary>
+        public const int StyleVersion = 2;
         /// <summary>최대 코드 길이(접두어·구분자 포함). 최대 바이트 = 헤더 8(커피) + 재료 8×3 + 이름 1+48 + CRC 4 = 85 → Base32 136자 + '-' 27 + "CCT1-" 5 = 168.</summary>
         public const int MaxCodeLength = 170;
         /// <summary>붙여넣기 입력 허용 길이(공백·줄바꿈 포함). 넘으면 해석 전에 거부.</summary>
@@ -24,8 +26,11 @@ namespace CCT
 
         public static string Encode(DrinkRecipe r)
         {
-            var bytes = new List<byte> { Version, (byte)r.kind, (byte)r.technique };
+            // 2026-11-15 피드백 4: 완성 음료가 있는 커피만 형식 2(스타일·뜨거운 물·거품 3바이트 추가). 그 외는 기존 형식 1 그대로(예전 빌드와 호환).
+            bool v2 = r.kind == (int)DrinkKind.Coffee && (r.coffeeStyle != 0 || r.hotWater != 0 || r.foam != 0);
+            var bytes = new List<byte> { (byte)(v2 ? StyleVersion : Version), (byte)r.kind, (byte)r.technique };
             if (r.kind == (int)DrinkKind.Coffee) bytes.Add((byte)Math.Max(0, Math.Min(255, (int)r.coffeeMethod)));
+            if (v2) { bytes.Add((byte)Math.Max(0, Math.Min(255, r.coffeeStyle))); U16(bytes, r.hotWater); bytes.Add((byte)Math.Max(0, Math.Min(255, r.foam))); }
             bytes.Add((byte)Math.Max(0, Math.Min(255, r.ice)));
             U16(bytes, r.water);
             bytes.Add((byte)r.steps.Count);
@@ -85,11 +90,18 @@ namespace CCT
             if (Crc32(bytes, bytes.Count - 4) != stored) { error = "검사값이 맞지 않습니다. 코드를 다시 복사해 주세요."; return null; }
             int p = 0;
             int version = bytes[p++];
-            if (version != Version) { error = "지원하지 않는 코드 버전입니다."; return null; }
+            if (version != Version && version != StyleVersion) { error = "지원하지 않는 코드 버전입니다."; return null; }
             var r = new DrinkRecipe { kind = bytes[p++], technique = bytes[p++] };
             if (r.kind == (int)DrinkKind.Coffee) r.coffeeMethod = (CoffeeBrewMethod)bytes[p++];
+            if (version == StyleVersion)
+            {
+                if (r.kind != (int)DrinkKind.Coffee || p + 4 > bytes.Count - 4) { error = "코드가 잘렸거나 손상되었습니다."; return null; }
+                r.coffeeStyle = bytes[p++];
+                r.hotWater = DrinkRules.Whole(bytes[p] << 8 | bytes[p + 1]); p += 2;
+                r.foam = bytes[p++];
+            }
             r.ice = bytes[p++];
-            r.water = bytes[p] << 8 | bytes[p + 1]; p += 2;
+            r.water = DrinkRules.Whole(bytes[p] << 8 | bytes[p + 1]); p += 2; // 정수 전용(2026-11-06): 예전 코드의 소수 양은 1 단위로 반올림
             int n = bytes[p++];
             if (n > MaxSteps) { error = "재료 수가 너무 많습니다."; return null; }
             if (p + n * 3 + 1 > bytes.Count - 4) { error = "코드가 잘렸거나 손상되었습니다."; return null; }
@@ -98,6 +110,8 @@ namespace CCT
                 int idx = bytes[p++];
                 int amt = bytes[p] << 8 | bytes[p + 1]; p += 2;
                 if (idx >= DrinkIngredients.ShareIndex.Length) { error = "알 수 없는 재료가 들어 있습니다."; return null; }
+                // 정수 전용(2026-11-06): 예전 빌드 코드의 0.1 단위 양은 1 단위로 반올림(양수는 최소 1). 코드 형식(u16 0.1 단위)은 그대로.
+                if (amt > 0) amt = Math.Max(DrinkRules.TenthsPerUnit, DrinkRules.Whole(amt));
                 r.steps.Add(new DrinkStep(DrinkIngredients.ShareIndex[idx], amt));
             }
             int nameLen = bytes[p++];

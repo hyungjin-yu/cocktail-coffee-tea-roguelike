@@ -33,7 +33,7 @@ namespace CCT.Tests
             bool had=save.Contains(card.id);if(!had)save.Add(card.id);
             var codex=CardCodexView.Create(canvas.transform,()=>{});codex.Show();
             Assert.IsTrue(codex.OpenDetailFor(card.id));yield return null;
-            StringAssert.Contains(CardEducationData.Detail(card),codex.DetailBodyText);
+            StringAssert.Contains(CardEducationData.Body(card),codex.DetailBodyText);Assert.IsNotNull(codex.DetailSourcesRect,"2026-11-15 피드백 10: 출처는 본문 아래 별도 영역");Assert.GreaterOrEqual(codex.DetailSourceButtons.Count,1);
             if(!had)save.Remove(card.id);
         }
         [UnityTest] public IEnumerator RecommendedBlueBlazerFooterFitsInsideFrame()

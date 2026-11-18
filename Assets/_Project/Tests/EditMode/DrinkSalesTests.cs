@@ -51,6 +51,60 @@ namespace CCT.Tests
         }
 
         [Test]
+        public void Reload_KeepsOpenCoffeeOrder_StillCancelsBrokenOrders()
+        {
+            var before = DrinkLab.Orders[2];
+            Assert.AreEqual(DrinkKind.Coffee, (DrinkKind)before.kind);
+            Assert.IsTrue(before.IsOpen);
+            DrinkLab.ReloadForTests(); // 앱을 다시 켠 것과 같은 경로(drinks.json 읽기 → 정리)
+            var after = DrinkLab.Orders[2];
+            Assert.IsTrue(after.IsOpen, "열린 커피 주문(두 번째 재료 없음·추출 도구로 판정)은 다시 켜도 열린 채");
+            Assert.AreEqual(before.id, after.id);
+            Assert.AreEqual(before.method, after.method);
+            Assert.IsTrue(DrinkLab.Orders[0].IsOpen && DrinkLab.Orders[1].IsOpen);
+            // 손상된 주문은 종류별로 여전히 취소 칸이 된다.
+            var bad = new DrinkSaveData();
+            bad.orders.Add(new DrinkOrder { id = "c1", kind = (int)DrinkKind.Coffee, ingA = DrinkIngredients.CoffeeBean, minA = 80, method = 9, state = "Open" });
+            bad.orders.Add(new DrinkOrder { id = "c2", kind = (int)DrinkKind.Coffee, ingA = "gin", minA = 80, method = 1, state = "Open" });
+            bad.orders.Add(new DrinkOrder { id = "k1", kind = (int)DrinkKind.Cocktail, ingA = "gin", ingB = "", minA = 75, minB = 0, state = "Open" });
+            var path = Path.Combine(dir, "bad.json");
+            File.WriteAllText(path, DrinkStore.Serialize(bad));
+            var loaded = DrinkStore.Load(path).Data;
+            foreach (var o in loaded.orders) Assert.IsFalse(o.IsOpen, $"{o.id}: 손상 주문은 취소");
+        }
+
+        [Test]
+        public void BlockReason_NamesFirstUnmetCondition_NullExactlyWhenSellable()
+        {
+            var cocktail = DrinkLab.Orders[0];
+            var coffee = DrinkLab.Orders[2];
+            var ok = DrinkSales.Reference(cocktail);
+            Assert.IsNull(DrinkSales.BlockReason(cocktail, ok));
+            Assert.Greater(DrinkSales.Price(cocktail, ok), 0);
+            Assert.AreEqual("음료 없음", DrinkSales.BlockReason(cocktail, null));
+            Assert.AreEqual("종류 다름", DrinkSales.BlockReason(cocktail, DrinkSales.Reference(DrinkLab.Orders[1])));
+            var underA = ok.Clone(); underA.SetAmount(cocktail.ingA, cocktail.minA - DrinkRules.TenthsPerUnit); // 정수 전용: 1 단위 모자람
+            Assert.AreEqual("재료 부족", DrinkSales.BlockReason(cocktail, underA));
+            var underB = ok.Clone(); underB.SetAmount(cocktail.ingB, cocktail.minB - DrinkRules.TenthsPerUnit);
+            Assert.AreEqual("재료 부족", DrinkSales.BlockReason(cocktail, underB));
+            var wrongMethod = DrinkSales.Reference(coffee).Clone();
+            wrongMethod.SetCoffeeMethod((CoffeeBrewMethod)(coffee.method % 3 + 1));
+            Assert.AreEqual("도구 다름", DrinkSales.BlockReason(coffee, wrongMethod));
+            var cancelled = DrinkSales.Generate(5, null); cancelled.state = "Cancelled";
+            Assert.AreEqual("주문 없음", DrinkSales.BlockReason(cancelled, ok));
+            // 이유가 없을 때만 팔 수 있다(가격 > 0) — 300개 생성 주문 × 기준/미달/다른 종류 배합
+            for (int i = 0; i < 300; i++)
+            {
+                var o = DrinkSales.Generate(i, null);
+                var r = DrinkSales.Reference(o);
+                var under = r.Clone(); under.SetAmount(o.ingA, o.minA - DrinkRules.TenthsPerUnit);
+                var other = DrinkSales.Reference(DrinkSales.Generate(i + 1, null));
+                foreach (var x in new[] { r, under, other, null })
+                    Assert.AreEqual(DrinkSales.Price(o, x) > 0, DrinkSales.BlockReason(o, x) == null, $"주문 {i}: 이유 ↔ 판매 가능 일치");
+            }
+        }
+
+        [Test]
         public void CoffeeOrder_RequiresCorrectBrewMethodAndSellsForSameCap()
         {
             var o = DrinkLab.Orders[2];
@@ -94,7 +148,7 @@ namespace CCT.Tests
             r.SetAmount(o.ingA, o.minA * 4);
             Assert.LessOrEqual(DrinkSales.Price(o, r), 150, "많이 넣어도 가격 상한");
             var miss = DrinkSales.Reference(o);
-            miss.SetAmount(o.ingB, o.minB - 1);
+            miss.SetAmount(o.ingB, o.minB - DrinkRules.TenthsPerUnit);
             Assert.AreEqual(0, DrinkSales.Price(o, miss), "지정 재료 최소량 미달 = 판매 불가");
             Assert.AreEqual(DrinkLab.CraftStatus.Crafted, DrinkLab.Craft(DrinkSales.Reference(o)).Status);
             Assert.IsNotNull(DrinkLab.BeginRun("runX"));

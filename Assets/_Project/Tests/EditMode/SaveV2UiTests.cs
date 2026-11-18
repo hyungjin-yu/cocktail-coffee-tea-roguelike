@@ -47,6 +47,19 @@ namespace CCT.Tests
                 if (o != t) Assert.IsFalse(Nominal(t).Overlaps(Nominal(o)), $"{target} ↔ {o.name} 겹침");
         }
 
+        /// <summary>2026-11-18: 메뉴가 카페 실내 물체(장면 안 클릭 영역)가 되어, 저장 알림이 그 영역과 겹치지 않는지 기준 화면 좌표로 확인.</summary>
+        static void AssertNoticeClearOfHotspots(TitleView view, string target)
+        {
+            if (view.Scene == null) return;
+            var t = Nominal((RectTransform)view.transform.Find("Root").Find(target));
+            foreach (var h in view.Scene.Hotspots.Values)
+            {
+                var n = h.Feature.HotspotRect; // 정규화 좌상단 원점 → 기준 화면(왼쪽 아래 원점)
+                var r = new Rect(n.x * W, (1f - n.yMax) * H, n.width * W, n.height * H);
+                Assert.IsFalse(t.Overlaps(r), $"{target} ↔ {h.name}(실내 물체) 겹침");
+            }
+        }
+
         static void AssertInSafeArea(RectTransform rt)
         {
             var r = Nominal(rt);
@@ -143,6 +156,8 @@ namespace CCT.Tests
             Assert.IsTrue(items.Any(t => t.name == "GuestSessionButton"));
             AssertNoOverlapWith(root, "SaveNotice", items);
             AssertNoOverlapWith(root, "GuestSessionButton", items);
+            AssertNoticeClearOfHotspots(view, "SaveNotice");
+            AssertNoticeClearOfHotspots(view, "GuestSessionButton");
             AssertInSafeArea((RectTransform)root.Find("SaveNotice"));
             AssertInSafeArea((RectTransform)root.Find("GuestSessionButton"));
             Object.DestroyImmediate(view.gameObject);

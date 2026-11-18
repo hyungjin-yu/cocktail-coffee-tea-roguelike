@@ -177,7 +177,7 @@ namespace CCT.Tests
         {
             var game = StartQuietRun();
             var p = game.Player;
-            p.TakeDamage(p.MaxHp - 0.5f); // 출처 없는 단발 피해 후 0.8초 무적
+            p.TakeDamage(p.MaxHp - 1f); // 출처 없는 단발 피해 후 0.8초 무적(정수 전용: 0.5는 반올림되어 즉사하므로 1 남김)
             Assert.IsNull(p.LastDamageSource.Value.attacker);
             var brute = Enemy.SpawnAt(p.Position + Vector2.right * 0.2f, EnemyDef.Brute, 1f, p, game.transform);
             yield return WaitUntilDead(p, 4f);

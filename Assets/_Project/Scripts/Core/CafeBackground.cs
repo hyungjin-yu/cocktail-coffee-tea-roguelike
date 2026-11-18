@@ -50,6 +50,7 @@ namespace CCT
             root.transform.SetParent(parent, false);
             root.transform.localPosition = new Vector3(0f, Balance.LaneCenterY, 0f);
             ActiveMapPrefix = null;
+            UsesWarmBar = false;
             // 72 맵 외형(판매 코인): 공용 야간 카페를 장착하면 직업 맵 대신 기존 공용 카페 아트(4부속). 배경만 바뀌고 구역·충돌·스폰은 같다.
             bool cafeSkin = job != null && DrinkLab.EquippedMap == DrinkSales.CafeMap;
             if (job != null && !cafeSkin && TryJobMap(root.transform, JobPreset.For(job.Value).mapArtPrefix)) return root.transform;
@@ -112,6 +113,15 @@ namespace CCT
             var counter = JobSprite(prefix, "counter");
             var lamp = JobSprite(prefix, "lamp");
             if (floor == null || wall == null || counter == null || lamp == null) return false;
+            // 2026-11-18 싱글 칵테일 바 밝기: 원본과 같은 캔버스로 암부를 올린 보정본(bg_barwarm_*, 원본 미변경)이 4종 모두 있을 때만 통째로 쓰고
+            // 렌더러 곱 틴트·어두운 막을 거의 없앤다(이중 보정 방지). 하나라도 없으면 기존 원본+기존 톤 그대로. 맵 이름(ActiveMapPrefix)은 bg_bar 유지.
+            UsesWarmBar = false;
+            if (prefix == "bg_bar")
+            {
+                var wf = JobSprite(WarmBarPrefix, "floor"); var ww = JobSprite(WarmBarPrefix, "wall");
+                var wc = JobSprite(WarmBarPrefix, "counter"); var wl = JobSprite(WarmBarPrefix, "lamp");
+                if (wf != null && ww != null && wc != null && wl != null) { floor = wf; wall = ww; counter = wc; lamp = wl; UsesWarmBar = true; }
+            }
             UsesArt = true;
             SnapStep = ArtSnapStep; // 벽 4·바닥 4 유닛 반복, 소품 12 유닛 — 24의 약수
             ActiveMapPrefix = prefix;
@@ -125,7 +135,7 @@ namespace CCT
                 Prop(root, "Counter", counter, new Vector2(x, wallBottomLocal + counter.bounds.size.y * 0.5f - 0.2f));
                 Prop(root, "Lamp", lamp, new Vector2(x + 6f, wallBottomLocal + 2.4f));
             }
-            ApplyReadabilityTone(root, ToneFor(prefix), wallBottomLocal, floorHeight);
+            ApplyReadabilityTone(root, ToneFor(UsesWarmBar ? WarmBarPrefix : prefix), wallBottomLocal, floorHeight);
             AddArenaBounds(root, wallBottomLocal + h, prefix);
             return true;
         }
@@ -138,10 +148,20 @@ namespace CCT
 
         /// <summary>바(bg_bar): 첫 플레이 피드백 "배경이 복잡·진하고·밝아 적·탄·드롭이 묻힌다" — 판자 대비와 주황 채도를 크게 낮춘다.
         /// 찻집(bg_tea): 원래 차분해 부작용이 없도록 아주 약하게만. 그 외(공용 카페)는 바와 찻집 사이.</summary>
+        /// <summary>2026-11-18 암부 보정 바 아트 접두(Resources/ArtExtra/bg_barwarm_floor|wall|counter|lamp).</summary>
+        public const string WarmBarPrefix = "bg_barwarm";
+        /// <summary>마지막 바 맵이 보정본(4종 모두)을 썼는지.</summary>
+        public static bool UsesWarmBar { get; private set; }
+        /// <summary>보정본용 어두운 막 알파(상한 0.08 안에서 실전 적·탄·드롭 대비 측정으로 정함).</summary>
+        public const float WarmBarVeilAlpha = 0.06f;
+
         public static Tone ToneFor(string prefix)
         {
             switch (prefix)
             {
+                case WarmBarPrefix:
+                    // 보정은 원본 픽셀에서 했으므로 곱 틴트 없음(1.0), 막은 아주 약하게만.
+                    return new Tone { floor = Color.white, wall = Color.white, prop = Color.white, veil = new Color(0.13f, 0.11f, 0.13f, WarmBarVeilAlpha) };
                 case "bg_bar":
                     return new Tone { floor = new Color(0.66f, 0.6f, 0.58f), wall = new Color(0.6f, 0.57f, 0.6f),
                         prop = new Color(0.72f, 0.68f, 0.68f), veil = new Color(0.13f, 0.11f, 0.13f, 0.34f) };

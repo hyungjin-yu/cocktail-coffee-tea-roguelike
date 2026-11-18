@@ -1,0 +1,100 @@
+{
+  "assetId": "dl_coffee_latte_glass_mask",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-16",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "liquid_mask",
+  "png": "ready/dl_coffee_latte_glass_mask.png",
+  "aseprite": "ready/dl_coffee_latte_glass_mask.aseprite",
+  "sourceRawPng": "raw/dl_coffee_latte_glass.png",
+  "sourceRawAseprite": "raw/dl_coffee_latte_glass.aseprite",
+  "dimensions": [
+    36,
+    36
+  ],
+  "alphaBounds": [
+    13,
+    9,
+    24,
+    33
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    18,
+    36
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_coffee_latte_glass_mask.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 128,
+    "filterMode": "Point",
+    "mipmapEnabled": false,
+    "compression": "None",
+    "alphaIsTransparency": true,
+    "sRGB": true,
+    "wrapModeU": "Clamp",
+    "wrapModeV": "Clamp",
+    "pivot": [
+      0.5,
+      0
+    ]
+  },
+  "sha256": {
+    "png": "c340b4801cc7c8ea1f05adf360ac4865580a0e6c138e7b53d8dca0171efe0b45",
+    "aseprite": "cdff2894db75101fdca9e26510cacb4f6b9be415b5c801960a0e221cd8597a4e"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+    "pixelLabGeneratedAsset": "dl_coffee_latte_glass",
+    "technicalDerivedMask": true,
+    "nativeFinish": "Native liquid-interior mask derived from same vessel source geometry, opaque white / transparent",
+    "promptEvidence": "provenance/official-install-and-probe.json"
+  },
+  "checks": {
+    "structural": true,
+    "nativeRoundtripPixelsEqual": true,
+    "nativeSourcePivot": true,
+    "alphaPolicy": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false
+  },
+  "verification": "verification/asset-validation.json",
+  "visualPreviews": [
+    "previews/cups-masks-fill.png",
+    "previews/origins-color.png",
+    "previews/origins-gray.png",
+    "previews/foam-repeat-lock.png"
+  ],
+  "anchors": {
+    "assetId": "dl_coffee_latte_glass",
+    "grip": [
+      0.6388888888888888,
+      0.38888888888888884
+    ],
+    "liquid": [
+      0.3611111111111111,
+      0.08333333333333337,
+      0.6666666666666666,
+      0.75
+    ],
+    "mouth": [
+      0.5,
+      0.8055555555555556
+    ],
+    "pivot": [
+      0.5,
+      0
+    ],
+    "pixelOrigin": "bottom-left normalized; mask PNG uses top-left pixels"
+  }
+}

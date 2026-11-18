@@ -35,8 +35,15 @@ namespace CCT
         public int shakePercent = 50;
         public string effectsLevel = EffectsNormal;
         public bool damageNumbers = true;
+        /// <summary>2026-11-16 피드백 26 선택형 프로토타입: 끝없는 모드에서 칵테일을 마신 판에 '취기' 배지만 표시(표시 전용 — 능력치·조작·보상·난수 변화 없음). 기본 꺼짐, 없으면 꺼짐.</summary>
+        public bool tipsyBadge;
         public bool tutorialSeen;
         public int cardEducationGuideVersion;
+        /// <summary>2026-11-15 피드백 7 첫 판 뒤 연구 노트북 안내 완료 버전(없으면 0 = 미완료, 기존 settings.json 그대로 읽힘).</summary>
+        public int notebookGuideVersion;
+        /// <summary>2026-11-15 피드백 5 제조 실습 완료 버전(0 = 미완료)·차/커피 첫 진입 안내 확인 비트(2 = 차, 4 = 커피). 없으면 0.</summary>
+        public int craftGuideVersion;
+        public int kindGuideSeen;
 
         public bool IsWindowed => windowMode == WindowWindowed;
         public MovementScheme Scheme => movementScheme == SchemeMouse ? MovementScheme.Mouse : MovementScheme.Keyboard;
@@ -377,6 +384,41 @@ namespace CCT
             Persist();
         }
 
+        public static void CompleteCraftGuide(int version)
+        {
+            if (Current.craftGuideVersion >= version) return;
+            current.craftGuideVersion = Mathf.Max(0, version);
+            Persist();
+        }
+
+        /// <summary>시험 전용: 제조 실습 안내를 미완료로.</summary>
+        public static void ResetCraftGuideForTests() { Current.craftGuideVersion = 0; current.kindGuideSeen = 0; }
+
+        public static bool KindGuideSeen(int kind) => (Current.kindGuideSeen & (1 << Mathf.Clamp(kind, 0, 30))) != 0;
+
+        public static void MarkKindGuideSeen(int kind)
+        {
+            int bit = 1 << Mathf.Clamp(kind, 0, 30);
+            if ((Current.kindGuideSeen & bit) != 0) return;
+            current.kindGuideSeen |= bit;
+            Persist();
+        }
+
+        public static void CompleteNotebookGuide(int version)
+        {
+            if (Current.notebookGuideVersion >= version) return;
+            current.notebookGuideVersion = Mathf.Max(0, version);
+            Persist();
+        }
+
+        /// <summary>피드백 7 "다시 보기": 다음 로비 진입 때 노트북 안내를 다시 보인다.</summary>
+        public static void ResetNotebookGuide()
+        {
+            if (Current.notebookGuideVersion == 0) return;
+            current.notebookGuideVersion = 0;
+            Persist();
+        }
+
         public static void CompleteCardEducationGuide(int version)
         {
             if(Current.cardEducationGuideVersion >= version)return;
@@ -398,6 +440,13 @@ namespace CCT
             if (level != SettingsData.EffectsNormal && level != SettingsData.EffectsLow) return;
             if (Current.effectsLevel == level) return;
             current.effectsLevel = level;
+            Persist();
+        }
+
+        public static void SetTipsyBadge(bool on)
+        {
+            if (Current.tipsyBadge == on) return;
+            current.tipsyBadge = on;
             Persist();
         }
 
@@ -423,6 +472,7 @@ namespace CCT
             current.shakePercent = d.shakePercent;
             current.effectsLevel = d.effectsLevel;
             current.damageNumbers = d.damageNumbers;
+            current.tipsyBadge = d.tipsyBadge;
             ApplyAudio();
             Display.ApplyVSync(current.vsync);
             Persist();
@@ -609,7 +659,7 @@ namespace CCT
             if (!store.HasKey(key)) return fallback;
             float v = store.GetFloat(key, fallback / 100f);
             if (float.IsNaN(v) || float.IsInfinity(v)) return fallback;
-            return Mathf.Clamp(Mathf.RoundToInt(v * 100f), 0, 100);
+            return Mathf.Clamp(IntNum.Percent(v), 0, 100); // 정수 전용 규칙: 중간값은 0에서 먼 쪽
         }
 
         static ReadResult Read(string path)
@@ -655,8 +705,12 @@ namespace CCT
             d.shakePercent = ReadInt(m, "shakePercent", d.shakePercent, 0, 100, true, diag);
             d.effectsLevel = ReadEnum(m, "effectsLevel", d.effectsLevel, diag, SettingsData.EffectsNormal, SettingsData.EffectsLow);
             d.damageNumbers = ReadBool(m, "damageNumbers", d.damageNumbers, diag);
+            d.tipsyBadge = ReadBool(m, "tipsyBadge", false, diag);
             d.tutorialSeen = ReadBool(m, "tutorialSeen", d.tutorialSeen, diag);
             d.cardEducationGuideVersion = ReadInt(m, "cardEducationGuideVersion", 0, 0, int.MaxValue, true, diag);
+            d.notebookGuideVersion = ReadInt(m, "notebookGuideVersion", 0, 0, int.MaxValue, true, diag);
+            d.craftGuideVersion = ReadInt(m, "craftGuideVersion", 0, 0, int.MaxValue, true, diag);
+            d.kindGuideSeen = ReadInt(m, "kindGuideSeen", 0, 0, int.MaxValue, true, diag);
             d.schemaVersion = CurrentVersion;
 
             return new ReadResult

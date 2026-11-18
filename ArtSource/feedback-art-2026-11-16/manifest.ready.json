@@ -1,0 +1,3120 @@
+{
+  "status": "ready",
+  "ready": true,
+  "scope": "Art-source delivery only; Unity integration and runtime QA owned by Claude",
+  "assetCount": 36,
+  "ready_assets": [
+    "dl_coffee_latte_glass",
+    "dl_coffee_latte_glass_mask",
+    "dl_coffee_flatwhite_cup",
+    "dl_coffee_flatwhite_cup_mask",
+    "dl_coffee_cappuccino_cup",
+    "dl_coffee_cappuccino_cup_mask",
+    "dl_foam_layer",
+    "ui_lock_badge",
+    "dl_icon_ethiopia_yirgacheffe_kochere",
+    "dl_icon_colombia_huila_vergel",
+    "dl_icon_brazil_mantiqueira_alves_lima",
+    "dl_icon_panama_esmeralda_geisha",
+    "dl_icon_colombia_huila_san_pedro_geisha",
+    "dl_icon_colombia_la_esperanza_bourbon",
+    "dl_icon_coffee_ethiopia_guji",
+    "dl_icon_coffee_ethiopia_sidama",
+    "dl_icon_coffee_kenya_nyeri",
+    "dl_icon_coffee_rwanda",
+    "dl_icon_coffee_burundi",
+    "dl_icon_coffee_uganda",
+    "dl_icon_coffee_indonesia_gayo",
+    "dl_icon_coffee_indonesia_java",
+    "dl_icon_coffee_vietnam_dalat",
+    "dl_icon_coffee_india_malabar",
+    "dl_icon_coffee_costa_rica_tarrazu",
+    "dl_icon_coffee_guatemala_antigua",
+    "dl_icon_coffee_honduras_marcala",
+    "dl_icon_coffee_peru_chanchamayo",
+    "dl_icon_coffee_mexico_chiapas",
+    "dl_icon_coffee_jamaica_blue_mountain",
+    "dl_icon_coffee_brazil_cerrado",
+    "dl_icon_coffee_colombia_narino",
+    "dl_icon_coffee_el_salvador",
+    "dl_icon_coffee_nicaragua",
+    "dl_icon_coffee_tanzania",
+    "dl_icon_coffee_bolivia"
+  ],
+  "asset_manifests": [
+    "ready/dl_coffee_latte_glass.ready.json",
+    "ready/dl_coffee_latte_glass_mask.ready.json",
+    "ready/dl_coffee_flatwhite_cup.ready.json",
+    "ready/dl_coffee_flatwhite_cup_mask.ready.json",
+    "ready/dl_coffee_cappuccino_cup.ready.json",
+    "ready/dl_coffee_cappuccino_cup_mask.ready.json",
+    "ready/dl_foam_layer.ready.json",
+    "ready/ui_lock_badge.ready.json",
+    "ready/dl_icon_ethiopia_yirgacheffe_kochere.ready.json",
+    "ready/dl_icon_colombia_huila_vergel.ready.json",
+    "ready/dl_icon_brazil_mantiqueira_alves_lima.ready.json",
+    "ready/dl_icon_panama_esmeralda_geisha.ready.json",
+    "ready/dl_icon_colombia_huila_san_pedro_geisha.ready.json",
+    "ready/dl_icon_colombia_la_esperanza_bourbon.ready.json",
+    "ready/dl_icon_coffee_ethiopia_guji.ready.json",
+    "ready/dl_icon_coffee_ethiopia_sidama.ready.json",
+    "ready/dl_icon_coffee_kenya_nyeri.ready.json",
+    "ready/dl_icon_coffee_rwanda.ready.json",
+    "ready/dl_icon_coffee_burundi.ready.json",
+    "ready/dl_icon_coffee_uganda.ready.json",
+    "ready/dl_icon_coffee_indonesia_gayo.ready.json",
+    "ready/dl_icon_coffee_indonesia_java.ready.json",
+    "ready/dl_icon_coffee_vietnam_dalat.ready.json",
+    "ready/dl_icon_coffee_india_malabar.ready.json",
+    "ready/dl_icon_coffee_costa_rica_tarrazu.ready.json",
+    "ready/dl_icon_coffee_guatemala_antigua.ready.json",
+    "ready/dl_icon_coffee_honduras_marcala.ready.json",
+    "ready/dl_icon_coffee_peru_chanchamayo.ready.json",
+    "ready/dl_icon_coffee_mexico_chiapas.ready.json",
+    "ready/dl_icon_coffee_jamaica_blue_mountain.ready.json",
+    "ready/dl_icon_coffee_brazil_cerrado.ready.json",
+    "ready/dl_icon_coffee_colombia_narino.ready.json",
+    "ready/dl_icon_coffee_el_salvador.ready.json",
+    "ready/dl_icon_coffee_nicaragua.ready.json",
+    "ready/dl_icon_coffee_tanzania.ready.json",
+    "ready/dl_icon_coffee_bolivia.ready.json"
+  ],
+  "assets": [
+    {
+      "assetId": "dl_coffee_latte_glass",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "cup",
+      "png": "ready/dl_coffee_latte_glass.png",
+      "aseprite": "ready/dl_coffee_latte_glass.aseprite",
+      "sourceRawPng": "raw/dl_coffee_latte_glass.png",
+      "sourceRawAseprite": "raw/dl_coffee_latte_glass.aseprite",
+      "dimensions": [
+        36,
+        36
+      ],
+      "alphaBounds": [
+        10,
+        5,
+        26,
+        36
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        18,
+        36
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_coffee_latte_glass.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "1caab7b3e242e2c443e32cc61d55139b7e26ad6758bf238714a1499d96894836",
+        "aseprite": "9b9097ab3259d27672799d5c157bc271406f957559ca8f9b374628e92d80ce89"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_coffee_latte_glass",
+        "technicalDerivedMask": false,
+        "nativeFinish": "PixelLab glass silhouette retained; native transparent interior, silver/ivory glass edges and sparse alpha96 reflection; uniform crop-fit and bottom contact",
+        "promptEvidence": "provenance/official-install-and-probe.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "anchors": {
+        "assetId": "dl_coffee_latte_glass",
+        "grip": [
+          0.6388888888888888,
+          0.38888888888888884
+        ],
+        "liquid": [
+          0.3611111111111111,
+          0.08333333333333337,
+          0.6666666666666666,
+          0.75
+        ],
+        "mouth": [
+          0.5,
+          0.8055555555555556
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "bottom-left normalized; mask PNG uses top-left pixels"
+      }
+    },
+    {
+      "assetId": "dl_coffee_latte_glass_mask",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "liquid_mask",
+      "png": "ready/dl_coffee_latte_glass_mask.png",
+      "aseprite": "ready/dl_coffee_latte_glass_mask.aseprite",
+      "sourceRawPng": "raw/dl_coffee_latte_glass.png",
+      "sourceRawAseprite": "raw/dl_coffee_latte_glass.aseprite",
+      "dimensions": [
+        36,
+        36
+      ],
+      "alphaBounds": [
+        13,
+        9,
+        24,
+        33
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        18,
+        36
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_coffee_latte_glass_mask.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "c340b4801cc7c8ea1f05adf360ac4865580a0e6c138e7b53d8dca0171efe0b45",
+        "aseprite": "cdff2894db75101fdca9e26510cacb4f6b9be415b5c801960a0e221cd8597a4e"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_coffee_latte_glass",
+        "technicalDerivedMask": true,
+        "nativeFinish": "Native liquid-interior mask derived from same vessel source geometry, opaque white / transparent",
+        "promptEvidence": "provenance/official-install-and-probe.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "anchors": {
+        "assetId": "dl_coffee_latte_glass",
+        "grip": [
+          0.6388888888888888,
+          0.38888888888888884
+        ],
+        "liquid": [
+          0.3611111111111111,
+          0.08333333333333337,
+          0.6666666666666666,
+          0.75
+        ],
+        "mouth": [
+          0.5,
+          0.8055555555555556
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "bottom-left normalized; mask PNG uses top-left pixels"
+      }
+    },
+    {
+      "assetId": "dl_coffee_flatwhite_cup",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "cup",
+      "png": "ready/dl_coffee_flatwhite_cup.png",
+      "aseprite": "ready/dl_coffee_flatwhite_cup.aseprite",
+      "sourceRawPng": "raw/dl_coffee_flatwhite_cup.png",
+      "sourceRawAseprite": "raw/dl_coffee_flatwhite_cup.aseprite",
+      "dimensions": [
+        32,
+        26
+      ],
+      "alphaBounds": [
+        2,
+        11,
+        30,
+        26
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        26
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_coffee_flatwhite_cup.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "61016447d1325d6f989f2afff95d42055e725d4d89379c14bf638f3795efd110",
+        "aseprite": "678cc59e0ed8935a0d6a446676511cb90c5d2878a1a250d3bbc1e0bf967233aa"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_coffee_flatwhite_cup",
+        "technicalDerivedMask": false,
+        "nativeFinish": "PixelLab rim/base/handle retained; native artist lowers cup by removing three plain body rows, palette cleanup, uniform crop-fit and transparent liquid window required by renderer",
+        "promptEvidence": "provenance/native-test-spec.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "anchors": {
+        "assetId": "dl_coffee_flatwhite_cup",
+        "grip": [
+          0.84375,
+          0.2692307692307693
+        ],
+        "liquid": [
+          0.21875,
+          0.038461538461538436,
+          0.78125,
+          0.34615384615384615
+        ],
+        "mouth": [
+          0.46875,
+          0.42307692307692313
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "bottom-left normalized; mask PNG uses top-left pixels"
+      }
+    },
+    {
+      "assetId": "dl_coffee_flatwhite_cup_mask",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "liquid_mask",
+      "png": "ready/dl_coffee_flatwhite_cup_mask.png",
+      "aseprite": "ready/dl_coffee_flatwhite_cup_mask.aseprite",
+      "sourceRawPng": "raw/dl_coffee_flatwhite_cup.png",
+      "sourceRawAseprite": "raw/dl_coffee_flatwhite_cup.aseprite",
+      "dimensions": [
+        32,
+        26
+      ],
+      "alphaBounds": [
+        7,
+        17,
+        25,
+        25
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        26
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_coffee_flatwhite_cup_mask.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "97edd645d7584638449a310a359af418f9a02c4a44feb614becbf61a25023f02",
+        "aseprite": "ba0f04f0a2c1ee7be1d68b708092c76a07a45bfb75d26113f8847e3de3fc1dfb"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_coffee_flatwhite_cup",
+        "technicalDerivedMask": true,
+        "nativeFinish": "Native liquid interior; handle and exterior excluded",
+        "promptEvidence": "provenance/native-test-spec.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "anchors": {
+        "assetId": "dl_coffee_flatwhite_cup",
+        "grip": [
+          0.84375,
+          0.2692307692307693
+        ],
+        "liquid": [
+          0.21875,
+          0.038461538461538436,
+          0.78125,
+          0.34615384615384615
+        ],
+        "mouth": [
+          0.46875,
+          0.42307692307692313
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "bottom-left normalized; mask PNG uses top-left pixels"
+      }
+    },
+    {
+      "assetId": "dl_coffee_cappuccino_cup",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "cup",
+      "png": "ready/dl_coffee_cappuccino_cup.png",
+      "aseprite": "ready/dl_coffee_cappuccino_cup.aseprite",
+      "sourceRawPng": "raw/dl_coffee_cappuccino_cup_v2.png",
+      "sourceRawAseprite": "raw/dl_coffee_cappuccino_cup_v2.aseprite",
+      "dimensions": [
+        32,
+        26
+      ],
+      "alphaBounds": [
+        2,
+        7,
+        30,
+        26
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        26
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_coffee_cappuccino_cup.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "4b4f80a90c497531387d37f3c00d6f18e44e88d57b85c1ce48016df96b2cda7a",
+        "aseprite": "8810669201578d6f066eac898522ede2c222e1edb4d29ca91cf38e35c4efa72a"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_coffee_cappuccino_cup",
+        "technicalDerivedMask": false,
+        "nativeFinish": "Second actual PixelLab generation selected for round bowl and separate saucer; native palette/alpha cleanup, transparent liquid window required by renderer, uniform crop-fit and bottom contact",
+        "promptEvidence": "provenance/cappuccino-revision-spec.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "anchors": {
+        "assetId": "dl_coffee_cappuccino_cup",
+        "grip": [
+          0.09375,
+          0.46153846153846156
+        ],
+        "liquid": [
+          0.28125,
+          0.3076923076923077,
+          0.78125,
+          0.5769230769230769
+        ],
+        "mouth": [
+          0.53125,
+          0.6153846153846154
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "bottom-left normalized; mask PNG uses top-left pixels"
+      }
+    },
+    {
+      "assetId": "dl_coffee_cappuccino_cup_mask",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "liquid_mask",
+      "png": "ready/dl_coffee_cappuccino_cup_mask.png",
+      "aseprite": "ready/dl_coffee_cappuccino_cup_mask.aseprite",
+      "sourceRawPng": "raw/dl_coffee_cappuccino_cup_v2.png",
+      "sourceRawAseprite": "raw/dl_coffee_cappuccino_cup_v2.aseprite",
+      "dimensions": [
+        32,
+        26
+      ],
+      "alphaBounds": [
+        9,
+        11,
+        25,
+        18
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        26
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_coffee_cappuccino_cup_mask.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "0109cbaf7054989d6b6d04801789714f1d82e4307add18639ea5251508755b88",
+        "aseprite": "10ba0c4639e1df605b93deb04755a1382ed7d7f48868ec58a7a4b1506a67371f"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_coffee_cappuccino_cup",
+        "technicalDerivedMask": true,
+        "nativeFinish": "Native cup-bowl interior; left handle and broad saucer excluded",
+        "promptEvidence": "provenance/cappuccino-revision-spec.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "anchors": {
+        "assetId": "dl_coffee_cappuccino_cup",
+        "grip": [
+          0.09375,
+          0.46153846153846156
+        ],
+        "liquid": [
+          0.28125,
+          0.3076923076923077,
+          0.78125,
+          0.5769230769230769
+        ],
+        "mouth": [
+          0.53125,
+          0.6153846153846154
+        ],
+        "pivot": [
+          0.5,
+          0
+        ],
+        "pixelOrigin": "bottom-left normalized; mask PNG uses top-left pixels"
+      }
+    },
+    {
+      "assetId": "dl_foam_layer",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "foam_tile",
+      "png": "ready/dl_foam_layer.png",
+      "aseprite": "ready/dl_foam_layer.aseprite",
+      "sourceRawPng": "raw/dl_foam_layer.png",
+      "sourceRawAseprite": "raw/dl_foam_layer.aseprite",
+      "dimensions": [
+        32,
+        8
+      ],
+      "alphaBounds": [
+        0,
+        1,
+        32,
+        7
+      ],
+      "pivotNormalizedBottomLeft": [
+        0,
+        0
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        0,
+        8
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_foam_layer.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Repeat",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0,
+          0
+        ]
+      },
+      "sha256": {
+        "png": "246f052ed5811e1fc35a16dd841a77355ee8c8d147d1a66e34e6def2eeaba382",
+        "aseprite": "20b5f1c4b30bc11b9c1778305f65a7505db163f17a797bc744772f661ca030bf"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_foam_layer",
+        "technicalDerivedMask": false,
+        "nativeFinish": "PixelLab foam silhouette and bubble scallops; native three ivory tones, binary alpha and identical horizontal seam columns",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ]
+    },
+    {
+      "assetId": "ui_lock_badge",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "lock_badge",
+      "png": "ready/ui_lock_badge.png",
+      "aseprite": "ready/ui_lock_badge.aseprite",
+      "sourceRawPng": "raw/ui_lock_badge.png",
+      "sourceRawAseprite": "raw/ui_lock_badge.aseprite",
+      "dimensions": [
+        16,
+        16
+      ],
+      "alphaBounds": [
+        3,
+        1,
+        13,
+        15
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        8,
+        8
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/ProgressionUI/ui_lock_badge.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "907f5ec763365c029f1299e59ddb8f1e5f0e8486c8cb11a88abe973a9725b702",
+        "aseprite": "4515acc8fb7277844acd39f4c46fa451ea20fef6aeb07d362ad04705ad47cae2"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "ui_lock_badge",
+        "technicalDerivedMask": false,
+        "nativeFinish": "PixelLab closed padlock retained; native palette cleanup and one-pixel transparent safety margin",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ]
+    },
+    {
+      "assetId": "dl_icon_ethiopia_yirgacheffe_kochere",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_ethiopia_yirgacheffe_kochere.png",
+      "aseprite": "ready/dl_icon_ethiopia_yirgacheffe_kochere.aseprite",
+      "sourceRawPng": "raw/dl_icon_ethiopia_yirgacheffe_kochere.png",
+      "sourceRawAseprite": "raw/dl_icon_ethiopia_yirgacheffe_kochere.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        30,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_ethiopia_yirgacheffe_kochere.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "cc4a020d0209f42cc8bcc6a52e35e0e1057ba00d61fa13715aaea4c5bd5ce056",
+        "aseprite": "ed31eba27201f019b58ec589101f6963f578beb78fb0347afe06e7274b0c1c73"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_ethiopia_yirgacheffe_kochere",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "ethiopia_yirgacheffe_kochere",
+      "displayName": "예가체프 코체레",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_colombia_huila_vergel",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_colombia_huila_vergel.png",
+      "aseprite": "ready/dl_icon_colombia_huila_vergel.aseprite",
+      "sourceRawPng": "raw/dl_icon_colombia_huila_vergel.png",
+      "sourceRawAseprite": "raw/dl_icon_colombia_huila_vergel.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        2,
+        25,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_colombia_huila_vergel.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "6fd6650af8fb61f2f7ad5dfc56fc2f6d0b3aa35a62a89ee1bb6a75e8fec4fbb1",
+        "aseprite": "acd57ce864b2cd16d25f59ed94fcb90ac2046b507cdc316d6741d5d7741417fc"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_colombia_huila_vergel",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "colombia_huila_vergel",
+      "displayName": "엘 베르헬 (피탈리토)",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_brazil_mantiqueira_alves_lima",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_brazil_mantiqueira_alves_lima.png",
+      "aseprite": "ready/dl_icon_brazil_mantiqueira_alves_lima.aseprite",
+      "sourceRawPng": "raw/dl_icon_brazil_mantiqueira_alves_lima.png",
+      "sourceRawAseprite": "raw/dl_icon_brazil_mantiqueira_alves_lima.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        10,
+        30,
+        21
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_brazil_mantiqueira_alves_lima.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "46d81b11724208fe9383e03bd84d9d9b74443e18d6b6b519cd5e940a2af47fd8",
+        "aseprite": "d2659cfd745d0071c79e81d3571cef8de48787214446b3cf18d36a46da98e443"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_brazil_mantiqueira_alves_lima",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "brazil_mantiqueira_alves_lima",
+      "displayName": "파젠다 알베스 리마",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_panama_esmeralda_geisha",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_panama_esmeralda_geisha.png",
+      "aseprite": "ready/dl_icon_panama_esmeralda_geisha.aseprite",
+      "sourceRawPng": "raw/dl_icon_panama_esmeralda_geisha.png",
+      "sourceRawAseprite": "raw/dl_icon_panama_esmeralda_geisha.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        29,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_panama_esmeralda_geisha.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "2f477f31e0727f8e8b19df2adb51c2c83eb24336c8e69e00b45054b7ea1cd98a",
+        "aseprite": "a62b20dee77da5dadbb6e88b1b24b111294a6a67e0a0f8c1ab43d918b9b10642"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_panama_esmeralda_geisha",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "panama_esmeralda_geisha",
+      "displayName": "에스메랄다 게이샤",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_colombia_huila_san_pedro_geisha",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_colombia_huila_san_pedro_geisha.png",
+      "aseprite": "ready/dl_icon_colombia_huila_san_pedro_geisha.aseprite",
+      "sourceRawPng": "raw/dl_icon_colombia_huila_san_pedro_geisha.png",
+      "sourceRawAseprite": "raw/dl_icon_colombia_huila_san_pedro_geisha.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        30,
+        29
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_colombia_huila_san_pedro_geisha.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "f4df46b5dbe53dd203681f51312e1a8fbe920472901a84c02ef5f6cf44713683",
+        "aseprite": "3ae71b6ef08009c19e3986a495c6d68ff39d3cf83502717e32fa0797963b87a5"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_colombia_huila_san_pedro_geisha",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "colombia_huila_san_pedro_geisha",
+      "displayName": "아시엔다 산 페드로",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_colombia_la_esperanza_bourbon",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_colombia_la_esperanza_bourbon.png",
+      "aseprite": "ready/dl_icon_colombia_la_esperanza_bourbon.aseprite",
+      "sourceRawPng": "raw/dl_icon_colombia_la_esperanza_bourbon.png",
+      "sourceRawAseprite": "raw/dl_icon_colombia_la_esperanza_bourbon.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        2,
+        28,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_colombia_la_esperanza_bourbon.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "b359ea3d69c7ccf0ccd9da3f1eacc3550f82b99cb7c4895029197cf0b6aaa30d",
+        "aseprite": "417cb0da7ab33f35512d86f520f70572f2eae8bde9c53facc4fdbd2e5ad055c5"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_colombia_la_esperanza_bourbon",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "colombia_la_esperanza_bourbon",
+      "displayName": "핀카 라 에스페란사",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_ethiopia_guji",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_ethiopia_guji.png",
+      "aseprite": "ready/dl_icon_coffee_ethiopia_guji.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_ethiopia_guji.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_ethiopia_guji.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        27,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_ethiopia_guji.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "90598fe6d2732521d3e8c33587f69103f35c49fe9ff7824da33f07cabc067a67",
+        "aseprite": "d3bdb9169efb930b827b6a57c75687f65f0d385197d96308478ed9f11ba3de1a"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_ethiopia_guji",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_ethiopia_guji",
+      "displayName": "에티오피아 구지",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_ethiopia_sidama",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_ethiopia_sidama.png",
+      "aseprite": "ready/dl_icon_coffee_ethiopia_sidama.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_ethiopia_sidama.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_ethiopia_sidama.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        4,
+        30,
+        28
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_ethiopia_sidama.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "ab65a2593a7b7b317f7fd9a6fbfe495630b35aee677186aaef38ae46b02fddd8",
+        "aseprite": "91b1119869c13cd4ddc73c15ab5d10df8843fc7cc85f4a101bba74941b5e3205"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_ethiopia_sidama",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_ethiopia_sidama",
+      "displayName": "에티오피아 시다마",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_kenya_nyeri",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_kenya_nyeri.png",
+      "aseprite": "ready/dl_icon_coffee_kenya_nyeri.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_kenya_nyeri.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_kenya_nyeri.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        5,
+        2,
+        27,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_kenya_nyeri.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "53ce30975a29e5653141c6813c562d60a11e6e89a33fd6b8a8ada7c13a032838",
+        "aseprite": "9523b5a26ed66440a267912f58acccfba2127d80ffcf140cde1056f31dafc090"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_kenya_nyeri",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_kenya_nyeri",
+      "displayName": "케냐 니에리",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_rwanda",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_rwanda.png",
+      "aseprite": "ready/dl_icon_coffee_rwanda.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_rwanda.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_rwanda.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        30,
+        29
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_rwanda.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "7d6c074b75631706ec5fb5a709fd15b0a12712df6a14410a966cc73848974fb8",
+        "aseprite": "1f3de606f4f1144d3233e68040942e68629db76ff5d77bebcb3ffc3ba51bdfd9"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_rwanda",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_rwanda",
+      "displayName": "르완다 커피",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_burundi",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_burundi.png",
+      "aseprite": "ready/dl_icon_coffee_burundi.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_burundi.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_burundi.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        27,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_burundi.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "2d82263b63ec470b7dab8eed9b47fc8902d038d445fde48fe70eb9682e05d7da",
+        "aseprite": "01e6953709181a4f7cd868f46c1cd07a05521aa07d3cfe039bba2b473eef1a3d"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_burundi",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_burundi",
+      "displayName": "부룬디 커피",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_uganda",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_uganda.png",
+      "aseprite": "ready/dl_icon_coffee_uganda.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_uganda.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_uganda.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        7,
+        30,
+        24
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_uganda.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "36153788997bf89742c854e2a465a473b1c5e11c9292a32c77ca84c818b334b0",
+        "aseprite": "d3b56b2d8c3a3c2388fe2bde548003895130f02c03ce0146994fbf3f9a01dbe1"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_uganda",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_uganda",
+      "displayName": "우간다 커피",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_indonesia_gayo",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_indonesia_gayo.png",
+      "aseprite": "ready/dl_icon_coffee_indonesia_gayo.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_indonesia_gayo.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_indonesia_gayo.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        2,
+        25,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_indonesia_gayo.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "c60683f96c860773f0dee0306114c4abcbf5a6c3dbfb4a41525297bee0c99184",
+        "aseprite": "3cc2c69a37b02201f2113d2746022ca51515d4c8013dc93b44c89148beb1a0f3"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_indonesia_gayo",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_indonesia_gayo",
+      "displayName": "인도네시아 가요",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_indonesia_java",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_indonesia_java.png",
+      "aseprite": "ready/dl_icon_coffee_indonesia_java.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_indonesia_java.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_indonesia_java.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        2,
+        25,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_indonesia_java.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "6a307245b6dc126316c8b72f172032f173996ebe13d5d5f1c013dc8e603aec5b",
+        "aseprite": "1032f6d87a9714039fea716ce127536b82ce9f9ab40a2b534243cb7deea6d818"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_indonesia_java",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_indonesia_java",
+      "displayName": "인도네시아 자바",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_vietnam_dalat",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_vietnam_dalat.png",
+      "aseprite": "ready/dl_icon_coffee_vietnam_dalat.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_vietnam_dalat.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_vietnam_dalat.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        3,
+        30,
+        28
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_vietnam_dalat.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "bc7b37fbbd764f319c73ad29d02a4799dd149d824ef7ea185a2c8e090e721e27",
+        "aseprite": "2b86f479e1e01877bb448bc0e9dd539a7e7e14fd99f1fd8f7ecb5e3b37dd5959"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_vietnam_dalat",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_vietnam_dalat",
+      "displayName": "베트남 달랏",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_india_malabar",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_india_malabar.png",
+      "aseprite": "ready/dl_icon_coffee_india_malabar.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_india_malabar.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_india_malabar.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        7,
+        30,
+        25
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_india_malabar.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "1367950ba438bdb41a539d6a316cb709d406fbed3860a5a6aaa36ffbf3a722d1",
+        "aseprite": "ca8e9ea57e7e5f93708988b0e2c062f2b324a48c9b9f5c33b8c964fcdfd18f6c"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_india_malabar",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_india_malabar",
+      "displayName": "인도 말라바르",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_costa_rica_tarrazu",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_costa_rica_tarrazu.png",
+      "aseprite": "ready/dl_icon_coffee_costa_rica_tarrazu.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_costa_rica_tarrazu.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_costa_rica_tarrazu.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        27,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_costa_rica_tarrazu.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "d84faa9e22549bea6486ab352caf3184d2252b11584d0bfbedb58c1bdf661ffd",
+        "aseprite": "1f8c17a012f2692134c4c7010d459b3e7947f9f4660de06d48f3c5216f5c2df4"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_costa_rica_tarrazu",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_costa_rica_tarrazu",
+      "displayName": "코스타리카 타라주",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_guatemala_antigua",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_guatemala_antigua.png",
+      "aseprite": "ready/dl_icon_coffee_guatemala_antigua.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_guatemala_antigua.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_guatemala_antigua.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        4,
+        2,
+        28,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_guatemala_antigua.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "65cc296e339a4f2d46d77f20c21b432a572064d865542bb8f4aa465fc935befe",
+        "aseprite": "6993ff297e489418ec9d6eb90f3baf8a059e58b453f798ea7b74975e7afbe13f"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_guatemala_antigua",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_guatemala_antigua",
+      "displayName": "과테말라 안티구아",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_honduras_marcala",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_honduras_marcala.png",
+      "aseprite": "ready/dl_icon_coffee_honduras_marcala.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_honduras_marcala.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_honduras_marcala.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        5,
+        2,
+        27,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_honduras_marcala.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "dbef44236329630f6c459eb01323e06b9bb1f1d9a5d7aa314b958a3d4e02f0e9",
+        "aseprite": "58a0c05b730ab32d774757a44216d590ccea8e44a3e7ef017ab375c044477692"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_honduras_marcala",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_honduras_marcala",
+      "displayName": "온두라스 마르칼라",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_peru_chanchamayo",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_peru_chanchamayo.png",
+      "aseprite": "ready/dl_icon_coffee_peru_chanchamayo.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_peru_chanchamayo.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_peru_chanchamayo.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        30,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_peru_chanchamayo.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "b1652a7b5498bc3b25f0eb3a96f523a88aebc4314b29deae92e590886dda3c88",
+        "aseprite": "9e0a33ad5f5e29ac4a0ea0e498bd0642a1dc789395a5b5fd5221e879c6ad2bef"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_peru_chanchamayo",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_peru_chanchamayo",
+      "displayName": "페루 찬차마요",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_mexico_chiapas",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_mexico_chiapas.png",
+      "aseprite": "ready/dl_icon_coffee_mexico_chiapas.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_mexico_chiapas.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_mexico_chiapas.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        2,
+        2,
+        30,
+        29
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_mexico_chiapas.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "e127a170b6fb2415ee63675ad998a98845c8c70a59c5b14d62ae25ba7c406c5d",
+        "aseprite": "e8d10b2f1054fff8f55b319eb5d66e9a42a6cac02ee6db3e9ad3acc2ee95f3c4"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_mexico_chiapas",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_mexico_chiapas",
+      "displayName": "멕시코 치아파스",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_jamaica_blue_mountain",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_jamaica_blue_mountain.png",
+      "aseprite": "ready/dl_icon_coffee_jamaica_blue_mountain.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_jamaica_blue_mountain.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_jamaica_blue_mountain.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        8,
+        2,
+        24,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_jamaica_blue_mountain.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "6cd87e1f8d7557c29f3be16b176e0a902c24c0db4370fac9c54072fe2d9f0ae4",
+        "aseprite": "1a88604ef2b1aa355ca754be89e7163a7d7beb27a9c1c6b63c161c63fb8e80b8"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_jamaica_blue_mountain",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_jamaica_blue_mountain",
+      "displayName": "자메이카 블루마운틴",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_brazil_cerrado",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_brazil_cerrado.png",
+      "aseprite": "ready/dl_icon_coffee_brazil_cerrado.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_brazil_cerrado.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_brazil_cerrado.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        6,
+        2,
+        25,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_brazil_cerrado.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "59d77c3ce1dc13f7bb949608423aefed9623a35b39f4a616cdc020c89606a236",
+        "aseprite": "e115ddc7cc892e62f3f0bd49b6f1dd6b934fad1e21f70a8d549b48eb777ff8fd"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_brazil_cerrado",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_brazil_cerrado",
+      "displayName": "브라질 세하두",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_colombia_narino",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_colombia_narino.png",
+      "aseprite": "ready/dl_icon_coffee_colombia_narino.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_colombia_narino.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_colombia_narino.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        2,
+        29,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_colombia_narino.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "2cf713645cf886a6bc9fb5f2a2d22664f366a5a9b712088908267df2b378538e",
+        "aseprite": "f291a81772ff1d7572eed29596aaa173b1723eff9f78271f68aaa1ab309ac1a2"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_colombia_narino",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_colombia_narino",
+      "displayName": "콜롬비아 나리뇨",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_el_salvador",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_el_salvador.png",
+      "aseprite": "ready/dl_icon_coffee_el_salvador.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_el_salvador.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_el_salvador.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        7,
+        2,
+        25,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_el_salvador.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "83df04df54ff051faa9a84f3248236a973a8f8187140fd7eb4548807a689f4b5",
+        "aseprite": "8b76949b132a2f90a99a1fa233ad78ea6f150abe6792db634537fd392b30cfef"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_el_salvador",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_el_salvador",
+      "displayName": "엘살바도르 커피",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_nicaragua",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_nicaragua.png",
+      "aseprite": "ready/dl_icon_coffee_nicaragua.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_nicaragua.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_nicaragua.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        3,
+        2,
+        29,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_nicaragua.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "b303e0b0b915c450a08fc18dfd2b25be135f7941918d09762f44246dfd1c14d4",
+        "aseprite": "44cd52a798e5c30176e6a4de6c625cfa65d24a162833d74748e399fede32ade6"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_nicaragua",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_nicaragua",
+      "displayName": "니카라과 커피",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_tanzania",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_tanzania.png",
+      "aseprite": "ready/dl_icon_coffee_tanzania.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_tanzania.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_tanzania.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        9,
+        2,
+        22,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_tanzania.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "60ca15449e73b931d9eedc33b3a934e96ff07edb5a74c6ba24fcf6e38273f890",
+        "aseprite": "315fd0fa34352e3fbfb8aed1f54d91ebf01e27812bdb575cc0bbfaa024b897ef"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_tanzania",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_tanzania",
+      "displayName": "탄자니아 커피",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    },
+    {
+      "assetId": "dl_icon_coffee_bolivia",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/feedback-art-2026-11-16",
+      "pathsRelativeTo": "packageRoot",
+      "kind": "origin_icon",
+      "png": "ready/dl_icon_coffee_bolivia.png",
+      "aseprite": "ready/dl_icon_coffee_bolivia.aseprite",
+      "sourceRawPng": "raw/dl_icon_coffee_bolivia.png",
+      "sourceRawAseprite": "raw/dl_icon_coffee_bolivia.aseprite",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alphaBounds": [
+        5,
+        2,
+        26,
+        30
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "nativeSlicePivotTopLeftPx": [
+        16,
+        16
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_coffee_bolivia.png",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 128,
+        "filterMode": "Point",
+        "mipmapEnabled": false,
+        "compression": "None",
+        "alphaIsTransparency": true,
+        "sRGB": true,
+        "wrapModeU": "Clamp",
+        "wrapModeV": "Clamp",
+        "pivot": [
+          0.5,
+          0.5
+        ]
+      },
+      "sha256": {
+        "png": "e95e73728217eef0244e85ea5ca33cf2c91d804f0a8127441e60691c528406bf",
+        "aseprite": "9022acef77d8afa72e82e6dcd272cdcf4ad9cab743a1a34b622a7ec08ec40051"
+      },
+      "provenance": {
+        "tools": [
+          "Aseprite 1.3.18.6",
+          "official PixelLab extension 0.4.131"
+        ],
+        "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+        "pixelLabGeneratedAsset": "dl_icon_coffee_bolivia",
+        "technicalDerivedMask": false,
+        "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+        "promptEvidence": "provenance/batch-native-specs.json"
+      },
+      "checks": {
+        "structural": true,
+        "nativeRoundtripPixelsEqual": true,
+        "nativeSourcePivot": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/cups-masks-fill.png",
+        "previews/origins-color.png",
+        "previews/origins-gray.png",
+        "previews/foam-repeat-lock.png"
+      ],
+      "ingredientId": "coffee_bolivia",
+      "displayName": "볼리비아 커피",
+      "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+    }
+  ],
+  "anchors": "ready/anchors-handoff.json",
+  "verification": "verification/asset-validation.json",
+  "rawSourceVerification": "verification/raw-source-validation.json",
+  "previews": [
+    "previews/cups-masks-fill.png",
+    "previews/origins-color.png",
+    "previews/origins-gray.png",
+    "previews/foam-repeat-lock.png"
+  ],
+  "optionalReviewOnly": "ARROW-TAIL-AND-HIDDEN-REVIEW.md",
+  "unityIntegrated": false,
+  "unityVerified": false
+}

@@ -1,0 +1,58 @@
+{
+  "status": "pass",
+  "overlapPixelCount": 0,
+  "overlapExamples": [],
+  "hotspots": [
+    {
+      "id": "start",
+      "polygonPixelArea": 2333,
+      "visibleOwnObjectPixelFraction": 1.0,
+      "inBounds": true
+    },
+    {
+      "id": "permanent",
+      "polygonPixelArea": 693,
+      "visibleOwnObjectPixelFraction": 0.6941,
+      "inBounds": true
+    },
+    {
+      "id": "codex",
+      "polygonPixelArea": 1496,
+      "visibleOwnObjectPixelFraction": 0.9913,
+      "inBounds": true
+    },
+    {
+      "id": "skins",
+      "polygonPixelArea": 2887,
+      "visibleOwnObjectPixelFraction": 0.9245,
+      "inBounds": true
+    },
+    {
+      "id": "history",
+      "polygonPixelArea": 578,
+      "visibleOwnObjectPixelFraction": 0.5554,
+      "inBounds": true
+    },
+    {
+      "id": "settings",
+      "polygonPixelArea": 1764,
+      "visibleOwnObjectPixelFraction": 0.9269,
+      "inBounds": true
+    },
+    {
+      "id": "credits",
+      "polygonPixelArea": 1256,
+      "visibleOwnObjectPixelFraction": 0.9857,
+      "inBounds": true
+    },
+    {
+      "id": "quit",
+      "polygonPixelArea": 3525,
+      "visibleOwnObjectPixelFraction": 0.0255,
+      "inBounds": true
+    }
+  ],
+  "all8Visible": true,
+  "doorApertureVerifiedByWorldProjection": true,
+  "doorOpacityException": "Door hotspot selects the real open doorway aperture; empty space is intentional and not a missing asset"
+}

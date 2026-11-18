@@ -121,7 +121,7 @@ namespace CCT.Tests
 
             var stats = new PlayerStats();
             DrinkCalculator.ApplyTo(stats, coffee);
-            Assert.AreEqual(coffee[DrinkStat.Range], stats.rangePercent, 1e-6f);
+            Assert.AreEqual(IntNum.QuantizePercent(coffee[DrinkStat.Range]), stats.rangePercent, 1e-6f, "정수 % 적용(표시와 같음)");
         }
 
         [Test]

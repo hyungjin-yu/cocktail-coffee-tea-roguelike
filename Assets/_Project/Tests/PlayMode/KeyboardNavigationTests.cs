@@ -73,10 +73,13 @@ namespace CCT.Tests
             UiInitialFocus.SetKeyboardModeForTests(false);
             var view = TitleView.Show();
             yield return null;
+            Assert.IsFalse(HasSelection(), "입장 연출 중에는 선택 없음(건너뛴 키가 메뉴를 고르지 않게, 2026-11-18)");
+            view.Intro.Skip(); // 2026-11-18 카페 입장: 기본 선택 후보는 연출이 끝난 뒤
+            yield return null; yield return null; yield return null;
             Assert.IsFalse(HasSelection(), "2026-10-12: 타이틀 진입 즉시 시작 버튼이 강조로 고정되면 안 된다");
 
-            UiInitialFocus.SimulateNavigationForTests();
-            Assert.AreEqual("StartButton", Selected(), "첫 키보드 입력은 시작 버튼을 드러낸다(G31)");
+            Assert.IsTrue(view.RevealDefaultOnNavigation(), "첫 방향키/Tab = 기본 항목 표시");
+            Assert.AreEqual("StartButton", Selected(), "첫 방향키/Tab 입력은 시작(카운터)을 드러내기만 한다(G31)");
             Object.DestroyImmediate(view.gameObject);
         }
 
@@ -86,7 +89,12 @@ namespace CCT.Tests
             UiInitialFocus.SetKeyboardModeForTests(true);
             var view = TitleView.Show();
             yield return null;
-            Assert.AreEqual("StartButton", Selected(), "키보드로 넘어온 경우 바로 탐색 가능");
+            view.Intro.Skip();
+            yield return null; yield return null; yield return null;
+            // 2026-11-18 사용자 관찰 수정: 키보드로 입장해도 시작을 미리 고르지 않는다(입장 키를 한 번 더 눌러 바로 한 판 시작되는 것 방지)
+            Assert.IsFalse(HasSelection(), "입장 직후 미리 선택 없음(Enter만으로 시작되지 않음)");
+            Assert.IsTrue(view.RevealDefaultOnNavigation());
+            Assert.AreEqual("StartButton", Selected(), "방향키/Tab 한 번에 시작(카운터) 표시 — 실행은 별도 Enter");
             UiInitialFocus.SetKeyboardModeForTests(false);
             Object.DestroyImmediate(view.gameObject);
         }

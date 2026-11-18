@@ -274,6 +274,7 @@ namespace CCT
         public static string DefaultName(DrinkRecipe r)
         {
             if (r == null) return "이름 없는 음료";
+            if (r.Kind == DrinkKind.Coffee && CoffeeStyles.Of(r) != CoffeeStyle.None) return CoffeeStyles.Name(CoffeeStyles.Of(r)); // 2026-11-15 피드백 4
             var first = r.steps.Count > 0 ? DrinkIngredients.Get(r.steps[0].id) : null;
             string tech = DrinkRules.TechniqueName(r.Technique);
             return first != null ? $"{first.name} {tech}" : r.Kind == DrinkKind.Tea ? "우린 차" : "칵테일";
@@ -461,6 +462,8 @@ namespace CCT
             var award = new DrinkRunAward { runId = runId, awardId = awardId, label = label, endless = endless };
             foreach (var i in items) if (i != null && i.amount > 0 && DrinkIngredients.Get(i.id) != null) award.items.Add(new DrinkAmount(i.id, i.amount));
             CommitEvent(d => d.pending.Add(award));
+            var handlers = AwardRecorded; // 2026-11-15 표시 전용 알림(지급은 위에서 1회). 구독자마다 따로 — 한 곳의 오류가 다른 표시를 막지 않게.
+            if (handlers != null) foreach (Action<string, IList<DrinkAmount>> h in handlers.GetInvocationList()) { try { h(runId, award.items); } catch (Exception ex) { Debug.LogWarning("[Drinks] 획득 알림 표시 오류: " + ex.GetType().Name); } }
             return true;
         }
 
@@ -587,6 +590,62 @@ namespace CCT
             if (drinkRecovered) sessionNotice = string.IsNullOrEmpty(sessionNotice) ? NoticeRecovered : sessionNotice + " " + NoticeRecovered;
             return true;
         }
+
+        // ───── 2026-11-15 피드백 24 목표 음료 ─────
+        /// <summary>보스 재료 보상이 실제로 기록된 직후(같은 runId+awardId 중복 기록은 호출 안 됨). HUD 획득 그림 표시용.</summary>
+        public static event Action<string, IList<DrinkAmount>> AwardRecorded;
+
+        /// <summary>지금 목표 음료(없으면 null). drinks.json 사용자 저장의 사본.</summary>
+        public static DrinkRecipe GoalRecipe { get { var g = Data.goalRecipe; return g != null && g.steps != null && g.steps.Count > 0 ? g : null; } }
+
+        public static bool IsGoal(DrinkRecipe r)
+        {
+            var g = GoalRecipe;
+            if (g == null || r == null || g.name != r.name || g.steps.Count != r.steps.Count) return false;
+            for (int i = 0; i < g.steps.Count; i++) if (g.steps[i].id != r.steps[i].id || g.steps[i].amount != r.steps[i].amount) return false;
+            return true;
+        }
+
+        /// <summary>목표 지정(기존 목표는 바뀜 — 활성 1개). 저장 실패면 그대로.</summary>
+        public static bool SetGoal(DrinkRecipe r, out string error)
+        {
+            if (r == null || r.steps == null || r.steps.Count == 0) { error = "재료가 없는 레시피는 목표로 정할 수 없습니다."; return false; }
+            var copy = r.Clone();
+            return Transact(d => { d.goalRecipe = copy; return true; }, out error);
+        }
+
+        public static bool ClearGoal(out string error) => Transact(d => { d.goalRecipe = new DrinkRecipe(); return true; }, out error);
+
+        // ───── 2026-11-15 피드백 5 제조 실습 ─────
+        /// <summary>실습 예제 = 기존 예시 "IBA 네그로니"와 같은 배합(진·캄파리·스위트 베르무트 각 30mL, 빌드, 얼음 2).</summary>
+        public static DrinkRecipe PracticeRecipe { get { foreach (var r in ExamplePresets) if (r.name == "IBA 네그로니") return r; return ExamplePresets[0]; } }
+
+        /// <summary>실습 잔에 필요한 양 중 지금 창고에 없는 부족분만, 저장당 1회 지급(트랜잭션 — 저장 실패면 지급·플래그 모두 없음).
+        /// 지급분은 판매 불가 출처로 기록되어 실습 잔(또는 그 재료가 섞인 음료)을 팔아 코인으로 바꿀 수 없다. 반환 = 지급한 재료(빈 목록 = 부족분 없음).</summary>
+        public static bool GrantPracticeKit(out List<DrinkAmount> granted, out string error)
+        {
+            var got = new List<DrinkAmount>();
+            granted = got;
+            if (Data.practiceGranted) { error = "실습 재료는 이미 받았습니다."; return false; }
+            var recipe = PracticeRecipe;
+            bool ok = Transact(d =>
+            {
+                if (d.practiceGranted) return false;
+                foreach (var st in recipe.steps)
+                {
+                    int deficit = DrinkRules.Whole(st.amount) - d.Owned(st.id);
+                    if (deficit <= 0) continue;
+                    d.AddFrom(st.id, deficit, true);
+                    got.Add(new DrinkAmount(st.id, deficit));
+                }
+                d.practiceGranted = true;
+                return true;
+            }, out error);
+            if (!ok && error == null) error = "실습 재료를 지급하지 못했습니다.";
+            return ok;
+        }
+
+        public static bool PracticeGranted => Data.practiceGranted;
 
         /// <summary>격리 테스트 저장 전용 반복 지급. 실제 사용자 저장에서는 항상 거부.</summary>
         public static bool DevGrant()
@@ -726,7 +785,7 @@ namespace CCT
         public static int Coins => Data.coins;
 
         /// <summary>2026-11-10 판매 코인은 스킨 재화와 같은 재화라서, 끝없는 재료 모으기 재료가 섞인 음료는 마실 수 있지만 팔 수 없다.</summary>
-        public const string SaleBlockedEndless = "마스터 도전 재료가 들어간 음료는 마실 수 있지만 판매할 수 없습니다(스킨 재화 획득 불가).";
+        public const string SaleBlockedEndless = "마스터 도전·제조 실습 재료가 들어간 음료는 마실 수 있지만 판매할 수 없습니다(스킨 재화 획득 불가).";
         public const string CraftEndlessWarning = "이 배합은 마스터 도전 재료를 씁니다 — 만든 음료는 마실 수 있지만 판매할 수 없습니다.";
         /// <summary>현재 준비 음료가 판매 불가(끝없는 출처 포함)인지.</summary>
         public static bool PreparedSaleBlocked { get { var p = Prepared; return p != null && p.HasEndlessSource; } }

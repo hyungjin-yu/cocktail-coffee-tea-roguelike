@@ -110,7 +110,7 @@ namespace CCT.Tests
             Assert.AreEqual(300, presets[0].AmountOf(DrinkIngredients.Gin));
             Assert.AreEqual(300, presets[0].AmountOf(DrinkIngredients.Campari));
             Assert.AreEqual(300, presets[0].AmountOf(DrinkIngredients.SweetVermouth), "IBA 네그로니 동량 배합");
-            Assert.AreEqual(165, presets.Single(r => r.coffeeMethod == CoffeeBrewMethod.PourOver).CoffeeDose(), "SCA 55g/L × 300mL");
+            Assert.AreEqual(170, presets.Single(r => r.coffeeMethod == CoffeeBrewMethod.PourOver).CoffeeDose(), "SCA 55g/L × 300mL = 16.5g → 정수 전용 17g");
             Assert.AreEqual(160, presets.Single(r => r.coffeeMethod == CoffeeBrewMethod.MokaPot).CoffeeDose(), "모카포트 3컵 추천 투입량");
             Assert.AreEqual(1300, presets.Single(r => r.coffeeMethod == CoffeeBrewMethod.MokaPot).water, "Bialetti 3컵 모카포트의 약 130mL 배출량");
         }
@@ -193,7 +193,11 @@ namespace CCT.Tests
         {
             // 이전 빌드의 칵테일(진 0·레몬 6·그레나딘 3)·차(홍차 4·꿀 7)·커피(원두 8·우유 9) 코드: 색인이 바뀌었다면 다른 재료로 읽힌다.
             string cocktail = IndependentV1(1, 1, null, 2, 0, new[] { ((byte)0, 450), ((byte)6, 150), ((byte)3, 50) }, "옛 칵테일");
-            string tea = IndependentV1(2, 5, null, 0, DrinkRules.TeaWaterFixed, new[] { ((byte)4, 25), ((byte)7, 50) }, "옛 차");
+            string tea = IndependentV1(2, 5, null, 0, DrinkRules.TeaWaterFixed, new[] { ((byte)4, 30), ((byte)7, 50) }, "옛 차");
+            // 정수 전용(2026-11-06): 예전 빌드의 소수 양(홍차 2.5g) 코드는 읽히되 1 단위로 반올림된다(3g).
+            var legacyFrac = DrinkShareCode.Decode(IndependentV1(2, 5, null, 0, DrinkRules.TeaWaterFixed, new[] { ((byte)4, 25), ((byte)7, 50) }, "옛 차"), out var e0);
+            Assert.IsNotNull(legacyFrac, e0);
+            Assert.AreEqual(30, legacyFrac.AmountOf("black_tea"));
             string coffee = IndependentV1(4, 6, 1, 0, 360, new[] { ((byte)8, 180), ((byte)9, 200) }, "옛 라테");
             var c = DrinkShareCode.Decode(cocktail, out var e1); Assert.IsNotNull(c, e1);
             CollectionAssert.AreEqual(new[] { "gin", "lemon_juice", "grenadine" }, c.steps.Select(s => s.id).ToArray());
@@ -264,10 +268,10 @@ namespace CCT.Tests
             Assert.AreEqual("coffee_bean", DrinkLab.Recipes[0].steps[0].id, "기존 원두 레시피 그대로");
             Assert.IsTrue(DrinkValidator.Check(DrinkLab.Recipes[0]).Ok);
             // 새 재료 재고는 저장·다시 읽기에서 사라지지 않는다.
-            foreach (var id in NewIds) DrinkLab.Data.Add(id, 333);
+            foreach (var id in NewIds) DrinkLab.Data.Add(id, 330);
             Assert.IsTrue(DrinkLab.SaveNow());
             DrinkLab.SetPathForTests(path);
-            foreach (var id in NewIds) Assert.AreEqual(333, DrinkLab.Owned(id), id + " 저장 왕복");
+            foreach (var id in NewIds) Assert.AreEqual(330, DrinkLab.Owned(id), id + " 저장 왕복");
             n = 1;
             foreach (var id in LegacyIds) Assert.AreEqual(1000 + n++ * 7, DrinkLab.Owned(id), id + " 재고 보존(왕복)");
         }

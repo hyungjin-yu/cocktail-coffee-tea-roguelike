@@ -1,0 +1,26 @@
+[
+  {
+    "original": "ArtSource/v1/cafe_counter/frames/cafe_counter_effect_right_00.png",
+    "copy": "reference/cafe_counter_effect_right_00.png",
+    "sha256": "adbb1634958c41c57aeb03784b0485ccebf25605071e120c2631a04cfe9aa8b8",
+    "use": "approved material/palette and furniture proportions; source unchanged"
+  },
+  {
+    "original": "ArtSource/v1/cafe_wall/frames/cafe_wall_effect_right_00.png",
+    "copy": "reference/cafe_wall_effect_right_00.png",
+    "sha256": "c091be0e11d2e6c932a07dfaa41549c1e704dc380947d1fb0624d74ada4bb7cc",
+    "use": "approved material/palette and furniture proportions; source unchanged"
+  },
+  {
+    "original": "ArtSource/v1/cafe_floor/frames/cafe_floor_effect_right_00.png",
+    "copy": "reference/cafe_floor_effect_right_00.png",
+    "sha256": "e49f3b50c1fc4f2fe2881c58c64e690dc28fe53f6ef2aa3f1edd40e6b0bf0327",
+    "use": "approved material/palette and furniture proportions; source unchanged"
+  },
+  {
+    "original": "ArtSource/v1/ProgressionUI-2026-10-19/assets/laptop_open/laptop_open.png",
+    "copy": "reference/laptop_open.png",
+    "sha256": "00ca137c083af7c8f474f479d861c9939f89155454e226a7f79e00cf31a0ede8",
+    "use": "approved material/palette and furniture proportions; source unchanged"
+  }
+]

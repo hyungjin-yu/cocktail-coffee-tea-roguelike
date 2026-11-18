@@ -395,7 +395,7 @@ namespace CCT.Tests
             // 다음 저장은 v5(v4 빌드는 미래 버전 보호로 덮어쓰지 않음).
             Assert.IsTrue(DrinkLab.SaveNow());
             StringAssert.Contains($"\"schemaVersion\": {DrinkStore.CurrentVersion}", File.ReadAllText(path));
-            Assert.AreEqual(5, DrinkStore.CurrentVersion);
+            Assert.GreaterOrEqual(DrinkStore.CurrentVersion, DrinkStore.RunCupsVersion); // 2026-11-15 v6(실습 플래그)도 runCups 유지
         }
     }
 

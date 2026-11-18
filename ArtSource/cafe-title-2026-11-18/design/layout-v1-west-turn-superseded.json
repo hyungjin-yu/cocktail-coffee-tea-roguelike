@@ -1,0 +1,938 @@
+{
+  "version": 1,
+  "status": "draft",
+  "ready": false,
+  "baseScreen": [
+    1920,
+    1080
+  ],
+  "artPixels": [
+    480,
+    270
+  ],
+  "coordinateSystem": "normalized top-left, rect[x,y,w,h], z higher in front",
+  "designApproval": "pending coordinator/Claude agreement before art production",
+  "aspectPolicy": {
+    "mode": "contain",
+    "reason": "Preserve physically placed west doorway and east radio; do not force furniture into4:3 cover crop",
+    "contentAspect": 1.7777777777777777,
+    "allLayersHotspotsLabelsSameTransform": true,
+    "backgroundBars": "dark cafe wall tone; no stretched artwork"
+  },
+  "uiSafeAreas": {
+    "topTitle": [
+      0.15,
+      0.025,
+      0.7,
+      0.07
+    ],
+    "bottomSaveSafety": [
+      0.05,
+      0.87,
+      0.9,
+      0.12
+    ]
+  },
+  "floorPlan": {
+    "units": "meters",
+    "roomBounds": [
+      0,
+      0,
+      8,
+      6
+    ],
+    "axes": "+x east,+y north,+z up",
+    "wallHeight": 2.9,
+    "entrance": {
+      "wall": "west",
+      "openingY": [
+        3,
+        4.05
+      ],
+      "widthMeters": 1.05,
+      "heightMeters": 2.15,
+      "hingeWorld": [
+        0,
+        4.05,
+        0
+      ],
+      "thresholdWorld": [
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          4.05,
+          0
+        ]
+      ],
+      "swing": "inward toward east; fixed north hinge; sweep lies south/east of hinge",
+      "clearSwingReservation": [
+        0,
+        3,
+        1.1,
+        4.1
+      ]
+    },
+    "serviceCounter": [
+      3.9,
+      3.8,
+      7.5,
+      4.5
+    ],
+    "staffAisle": [
+      3.9,
+      4.5,
+      7.5,
+      5.6
+    ],
+    "backEquipmentCounter": [
+      3.9,
+      5.6,
+      7.5,
+      6
+    ],
+    "researchTable": [
+      1.3,
+      4.35,
+      2.5,
+      5.05
+    ],
+    "publicPathMeters": [
+      [
+        -1.6,
+        3.5
+      ],
+      [
+        0.7,
+        3.5
+      ],
+      [
+        1.8,
+        2.8
+      ],
+      [
+        3.5,
+        0.1
+      ],
+      [
+        5.4,
+        3.2
+      ]
+    ],
+    "minimumPublicClearanceMeters": 1.05,
+    "props": [
+      {
+        "id": "start",
+        "label": "시작",
+        "unity_button": "StartButton",
+        "assetId": "ct_order_counter",
+        "worldFootprintMeters": [
+          5.0,
+          3.8,
+          6.8,
+          4.5
+        ],
+        "heightMeters": 1.0,
+        "projectedRect": [
+          0.60315,
+          0.49049,
+          0.1809,
+          0.16607
+        ],
+        "hotspot": {
+          "rect": [
+            0.60315,
+            0.49049,
+            0.1809,
+            0.16607
+          ]
+        },
+        "label_anchor": [
+          0.6936,
+          0.68156
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "permanent",
+        "label": "영구 강화",
+        "unity_button": "PermanentShopButton",
+        "assetId": "ct_research_table",
+        "worldFootprintMeters": [
+          1.3,
+          4.35,
+          2.5,
+          5.05
+        ],
+        "heightMeters": 0.78,
+        "projectedRect": [
+          0.33471,
+          0.49131,
+          0.10279,
+          0.12323
+        ],
+        "hotspot": {
+          "rect": [
+            0.33471,
+            0.49131,
+            0.10279,
+            0.12323
+          ]
+        },
+        "label_anchor": [
+          0.3861,
+          0.63954
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "codex",
+        "label": "도감",
+        "unity_button": "CardCodexButton",
+        "assetId": "ct_recipe_bookshelf",
+        "worldFootprintMeters": [
+          2.7,
+          5.6,
+          3.6,
+          6
+        ],
+        "heightMeters": 1.85,
+        "projectedRect": [
+          0.4483,
+          0.3471,
+          0.05816,
+          0.19803
+        ],
+        "hotspot": {
+          "rect": [
+            0.4483,
+            0.3471,
+            0.05816,
+            0.1529
+          ]
+        },
+        "label_anchor": [
+          0.47738,
+          0.57013
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "skins",
+        "label": "스킨",
+        "unity_button": "SkinShopButton",
+        "assetId": "ct_coat_cabinet",
+        "worldFootprintMeters": [
+          0.25,
+          5.6,
+          1.35,
+          6
+        ],
+        "heightMeters": 1.85,
+        "projectedRect": [
+          0.28999,
+          0.3471,
+          0.09389,
+          0.19803
+        ],
+        "hotspot": {
+          "rect": [
+            0.28999,
+            0.3471,
+            0.09389,
+            0.1529
+          ]
+        },
+        "label_anchor": [
+          0.33693,
+          0.57013
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "history",
+        "label": "최근 기록",
+        "unity_button": "RunHistoryButton",
+        "assetId": "ct_ledger_counter_end",
+        "worldFootprintMeters": [
+          4.0,
+          3.8,
+          4.8,
+          4.5
+        ],
+        "heightMeters": 1.03,
+        "projectedRect": [
+          0.53438,
+          0.48679,
+          0.07782,
+          0.16977
+        ],
+        "hotspot": {
+          "rect": [
+            0.53438,
+            0.48679,
+            0.07782,
+            0.06
+          ]
+        },
+        "label_anchor": [
+          0.5733,
+          0.68156
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "settings",
+        "label": "설정",
+        "unity_button": "SettingsButton",
+        "assetId": "ct_radio_sideboard",
+        "worldFootprintMeters": [
+          7.35,
+          3.0,
+          7.95,
+          3.7
+        ],
+        "heightMeters": 1.08,
+        "projectedRect": [
+          0.80991,
+          0.52421,
+          0.16281,
+          0.21414
+        ],
+        "hotspot": {
+          "rect": [
+            0.80991,
+            0.52421,
+            0.16281,
+            0.21414
+          ]
+        },
+        "label_anchor": [
+          0.89132,
+          0.76335
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "credits",
+        "label": "제작 정보",
+        "unity_button": "CreditsButton",
+        "assetId": "ct_staff_noticeboard",
+        "worldFootprintMeters": [
+          6.2,
+          5.96,
+          7.35,
+          6
+        ],
+        "heightMeters": 2.15,
+        "projectedRect": [
+          0.66069,
+          0.31357,
+          0.07832,
+          0.06128
+        ],
+        "hotspot": {
+          "rect": [
+            0.66069,
+            0.30607,
+            0.07832,
+            0.06
+          ]
+        },
+        "label_anchor": [
+          0.69986,
+          0.39986
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "quit",
+        "label": "종료",
+        "unity_button": "QuitButton",
+        "assetId": "ct_west_entry_door",
+        "worldFootprintMeters": [
+          0,
+          3,
+          0.08,
+          4.05
+        ],
+        "heightMeters": 2.15,
+        "projectedRect": [
+          0.07671,
+          0.34397,
+          0.1671,
+          0.39438
+        ],
+        "hotspot": {
+          "rect": [
+            0.07671,
+            0.34397,
+            0.1671,
+            0.39438
+          ]
+        },
+        "label_anchor": [
+          0.16026,
+          0.76335
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      }
+    ],
+    "seating": {
+      "roundTable": {
+        "center": [
+          6.6,
+          1.3
+        ],
+        "diameter": 0.7,
+        "height": 0.72
+      },
+      "chairs": [
+        {
+          "center": [
+            5.9,
+            1.3
+          ],
+          "size": [
+            0.45,
+            0.5
+          ]
+        },
+        {
+          "center": [
+            7.3,
+            1.3
+          ],
+          "size": [
+            0.45,
+            0.5
+          ]
+        }
+      ],
+      "interactive": false,
+      "reason": "Small actual customer seating, outside all door/camera/order paths"
+    }
+  },
+  "cameraWorld": {
+    "projection": "single rectilinear perspective; final focal projection defines every asset position",
+    "finalEyeMeters": [
+      3.5,
+      0.1,
+      2.7
+    ],
+    "finalHeading": "north",
+    "pitchDownDegrees": 22,
+    "horizontalFovDegrees": 110,
+    "worldWaypoints": [
+      {
+        "t": 0,
+        "eye": [
+          -1.6,
+          3.5,
+          1.55
+        ],
+        "look": "east to doorway"
+      },
+      {
+        "t": 0.9,
+        "eye": [
+          -0.5,
+          3.5,
+          1.55
+        ],
+        "look": "east; door fully opening"
+      },
+      {
+        "t": 1.45,
+        "eye": [
+          0.7,
+          3.5,
+          1.65
+        ],
+        "look": "east; beyond west threshold"
+      },
+      {
+        "t": 2.05,
+        "eye": [
+          1.8,
+          2.8,
+          2.15
+        ],
+        "look": "northeast; turn inside clear aisle"
+      },
+      {
+        "t": 2.8,
+        "eye": [
+          3.5,
+          0.1,
+          2.7
+        ],
+        "look": "north, final22deg down"
+      }
+    ],
+    "bridgeRequirement": "Explicit authored turning/threshold bridge views; a center/zoom-only warp of final room is not a physically valid substitute",
+    "limitations": "Camera and110deg lens are design projection only; native production must preserve one rectilinear vanishing system. No geometric art has been approved ready."
+  },
+  "exterior": {
+    "layers": [],
+    "sign": {
+      "rect": [
+        0.31,
+        0.015,
+        0.38,
+        0.1
+      ],
+      "titleAnchor": [
+        0.5,
+        0.065
+      ]
+    },
+    "door": {
+      "frames": [],
+      "rect": [
+        0.30833333333333335,
+        0.1,
+        0.38333333333333336,
+        0.8
+      ],
+      "hinge": [
+        0.3958333333333333,
+        0.14444444444444443
+      ],
+      "swing": "inward, north jamb; clockwise world rotation",
+      "fps": 12,
+      "glimpse": {
+        "png": null,
+        "requirement": "Eastward view through west doorway must show same east sideboard and room; never reuse north-facing final image as if view identical"
+      },
+      "threshold": [
+        [
+          0.3958333333333333,
+          0.8555555555555555
+        ],
+        [
+          0.6041666666666666,
+          0.8555555555555555
+        ]
+      ],
+      "provisionalUntilGeneratedGeometry": true,
+      "canvas": [
+        184,
+        216
+      ],
+      "closedLeafRectArtPixels": [
+        42,
+        12,
+        100,
+        192
+      ],
+      "hingeBottom": [
+        0.3958333333333333,
+        0.8555555555555555
+      ],
+      "anglesDegrees": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        85,
+        90
+      ],
+      "frameGeometry": "Fixed hinge axis; free edge height/position projected from3D swing. Never scale a flat door rectangle horizontally."
+    },
+    "camera": []
+  },
+  "interior": {
+    "layers": [],
+    "light": {
+      "dir": "upper-left to lower-right",
+      "sourceWorldMeters": [
+        1.6,
+        5.5,
+        2.8
+      ],
+      "source": "one dominant warm ceiling lamp; no inconsistent baked shelf-lamp highlights"
+    },
+    "arrival": {
+      "from_center": [
+        0.5,
+        0.5
+      ],
+      "from_zoom": 1.0,
+      "useAuthoredBridge": true
+    },
+    "entry_door_feature": "quit",
+    "features": [
+      {
+        "id": "start",
+        "label": "시작",
+        "unity_button": "StartButton",
+        "assetId": "ct_order_counter",
+        "worldFootprintMeters": [
+          5.0,
+          3.8,
+          6.8,
+          4.5
+        ],
+        "heightMeters": 1.0,
+        "projectedRect": [
+          0.60315,
+          0.49049,
+          0.1809,
+          0.16607
+        ],
+        "hotspot": {
+          "rect": [
+            0.60315,
+            0.49049,
+            0.1809,
+            0.16607
+          ]
+        },
+        "label_anchor": [
+          0.6936,
+          0.68156
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "permanent",
+        "label": "영구 강화",
+        "unity_button": "PermanentShopButton",
+        "assetId": "ct_research_table",
+        "worldFootprintMeters": [
+          1.3,
+          4.35,
+          2.5,
+          5.05
+        ],
+        "heightMeters": 0.78,
+        "projectedRect": [
+          0.33471,
+          0.49131,
+          0.10279,
+          0.12323
+        ],
+        "hotspot": {
+          "rect": [
+            0.33471,
+            0.49131,
+            0.10279,
+            0.12323
+          ]
+        },
+        "label_anchor": [
+          0.3861,
+          0.63954
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "codex",
+        "label": "도감",
+        "unity_button": "CardCodexButton",
+        "assetId": "ct_recipe_bookshelf",
+        "worldFootprintMeters": [
+          2.7,
+          5.6,
+          3.6,
+          6
+        ],
+        "heightMeters": 1.85,
+        "projectedRect": [
+          0.4483,
+          0.3471,
+          0.05816,
+          0.19803
+        ],
+        "hotspot": {
+          "rect": [
+            0.4483,
+            0.3471,
+            0.05816,
+            0.1529
+          ]
+        },
+        "label_anchor": [
+          0.47738,
+          0.57013
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "skins",
+        "label": "스킨",
+        "unity_button": "SkinShopButton",
+        "assetId": "ct_coat_cabinet",
+        "worldFootprintMeters": [
+          0.25,
+          5.6,
+          1.35,
+          6
+        ],
+        "heightMeters": 1.85,
+        "projectedRect": [
+          0.28999,
+          0.3471,
+          0.09389,
+          0.19803
+        ],
+        "hotspot": {
+          "rect": [
+            0.28999,
+            0.3471,
+            0.09389,
+            0.1529
+          ]
+        },
+        "label_anchor": [
+          0.33693,
+          0.57013
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "history",
+        "label": "최근 기록",
+        "unity_button": "RunHistoryButton",
+        "assetId": "ct_ledger_counter_end",
+        "worldFootprintMeters": [
+          4.0,
+          3.8,
+          4.8,
+          4.5
+        ],
+        "heightMeters": 1.03,
+        "projectedRect": [
+          0.53438,
+          0.48679,
+          0.07782,
+          0.16977
+        ],
+        "hotspot": {
+          "rect": [
+            0.53438,
+            0.48679,
+            0.07782,
+            0.06
+          ]
+        },
+        "label_anchor": [
+          0.5733,
+          0.68156
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "settings",
+        "label": "설정",
+        "unity_button": "SettingsButton",
+        "assetId": "ct_radio_sideboard",
+        "worldFootprintMeters": [
+          7.35,
+          3.0,
+          7.95,
+          3.7
+        ],
+        "heightMeters": 1.08,
+        "projectedRect": [
+          0.80991,
+          0.52421,
+          0.16281,
+          0.21414
+        ],
+        "hotspot": {
+          "rect": [
+            0.80991,
+            0.52421,
+            0.16281,
+            0.21414
+          ]
+        },
+        "label_anchor": [
+          0.89132,
+          0.76335
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "credits",
+        "label": "제작 정보",
+        "unity_button": "CreditsButton",
+        "assetId": "ct_staff_noticeboard",
+        "worldFootprintMeters": [
+          6.2,
+          5.96,
+          7.35,
+          6
+        ],
+        "heightMeters": 2.15,
+        "projectedRect": [
+          0.66069,
+          0.31357,
+          0.07832,
+          0.06128
+        ],
+        "hotspot": {
+          "rect": [
+            0.66069,
+            0.30607,
+            0.07832,
+            0.06
+          ]
+        },
+        "label_anchor": [
+          0.69986,
+          0.39986
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      },
+      {
+        "id": "quit",
+        "label": "종료",
+        "unity_button": "QuitButton",
+        "assetId": "ct_west_entry_door",
+        "worldFootprintMeters": [
+          0,
+          3,
+          0.08,
+          4.05
+        ],
+        "heightMeters": 2.15,
+        "projectedRect": [
+          0.07671,
+          0.34397,
+          0.1671,
+          0.39438
+        ],
+        "hotspot": {
+          "rect": [
+            0.07671,
+            0.34397,
+            0.1671,
+            0.39438
+          ]
+        },
+        "label_anchor": [
+          0.16026,
+          0.76335
+        ],
+        "label_side": "below",
+        "draftOnly": true,
+        "hotspotStatus": "draft bounding proposal; final visible-art polygons required, no overlap pass claimed"
+      }
+    ],
+    "nav_order": [
+      "start",
+      "history",
+      "permanent",
+      "codex",
+      "skins",
+      "credits",
+      "settings",
+      "quit"
+    ]
+  },
+  "productionAssetsProposed": [
+    {
+      "id": "ct_room_shell",
+      "canvas": [
+        480,
+        270
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "layers": [
+        "floor",
+        "back_and_side_walls",
+        "equipment_back",
+        "furniture",
+        "counter_front",
+        "door_frame_front",
+        "warm_light"
+      ]
+    },
+    {
+      "id": "ct_entry_facade",
+      "canvas": [
+        480,
+        270
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "ct_entry_door",
+      "frames": 8,
+      "canvas": [
+        184,
+        216
+      ],
+      "pivot": "fixed hinge; actual leaf quadrilateral rotates in3D projected frames, no width-only scaling"
+    },
+    {
+      "id": "ct_entry_bridge",
+      "frames": 5,
+      "canvas": [
+        480,
+        270
+      ],
+      "purpose": "same west doorway, threshold traversal and90degree interior turn"
+    }
+  ],
+  "checksRequired": [
+    "hinge fixed across frames",
+    "leaf stays within reserved swing sector",
+    "physical threshold same world point",
+    "no furniture/aisle overlap",
+    "eight hotspot polygons no overlap after final authored geometry",
+    "native PNG/source roundtrip",
+    "480x270 density and source pivots",
+    "1080/720/4:3 contain previews",
+    "original reference hashes unchanged"
+  ],
+  "approvalQuestions": [
+    "Accept contain/letterbox at4:3 instead of cover-cropping functional objects?",
+    "Support authored entry/turn bridge frames; center/zoom-only final-room crop is not a continuous physical east-to-north camera turn?",
+    "Confirm floorplan clearances and west inward hinge/visible quit door before native generation?"
+  ]
+}

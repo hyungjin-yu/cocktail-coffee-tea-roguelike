@@ -935,14 +935,19 @@ namespace CCT
         void Apply(float amount, int bonus, HitKind kind, Vector2? hitPoint)
         {
             Hp -= amount;
-            if (amount > 0f) PlayHitFeedback(kind, hitPoint);
+            if (amount > 0f) PlayHitFeedback(kind, hitPoint, Hp <= 0f, bonus > 0);
             Damaged?.Invoke(amount);
             DamageNumbers.Show(this, amount, kind, bonus); // 08:80 피해 숫자(설정에서 끄면 숫자만 숨김). 상성이면 "합계 (추가 A)"
             if (Hp <= 0f) Die();
         }
 
         /// <summary>판정과 무관한 피격 연출: 종류별 색조·몸체 반동·불꽃(예산 제한)·소리(AudioService 중복/동시 제한).</summary>
-        void PlayHitFeedback(HitKind kind, Vector2? hitPoint)
+        /// <summary>2026-11-15 피드백 16 검수용: 마지막 직접 타격 연출이 막타·상성이었는지.</summary>
+        public bool LastHitLethalVfx { get; private set; }
+        public bool LastHitAffinityVfx { get; private set; }
+        public static int LethalVfxCount { get; private set; }
+
+        void PlayHitFeedback(HitKind kind, Vector2? hitPoint, bool lethal = false, bool affinity = false)
         {
             if (kind == HitKind.Dot)
             {
@@ -968,11 +973,34 @@ namespace CCT
                 recoilTimer = HitFeedback.RecoilSeconds;
             }
 
+            LastHitLethalVfx = lethal; LastHitAffinityVfx = affinity;
+            // 2026-11-15 피드백 16 막타: 예산과 별개로 한 번(처치당 1회) — 밝은 큰 고리 + 짧은 하얀 섬광. 저이펙트는 고리만 작게.
+            if (lethal)
+            {
+                LethalVfxCount++;
+                var kill = FadeVfx.Spawn(SpriteFactory.Circle, center, 0f, Vector2.one * 0.3f, Vector2.one * (HitFeedback.LowEffects ? 0.8f : 1.1f + def.radius),
+                    new Color(1f, 0.97f, 0.85f, HitFeedback.LowEffects ? 0.4f : 0.6f), 0.2f, SortOrders.AirVfx);
+                if (transform.parent != null) kill.transform.SetParent(transform.parent, true);
+            }
+
             // 04 §8 hit_spark(피격 위치, 16fps 4장). 판정과 무관한 시각 효과. 다수 적·관통이 한꺼번에 맞아도 예산만큼만.
             if (!HitFeedback.TryReserveSpark()) return;
             float scale = HitFeedback.SparkScale(kind);
+            // 상성 추가 피해가 들어간 타격은 불꽃을 박하색으로(피해 숫자의 "추가" 표시와 같은 사건) — 등급·치명 색과 구분.
             ArtVfx.Spawn("hit_spark", at, Random.Range(0f, 360f), (0.5f + def.radius * 0.5f) * scale, 0.25f,
-                HitFeedback.SparkColor(kind), SortOrders.AirVfx, 1.1f, false);
+                affinity && kind == HitKind.Normal ? new Color(0.62f, 1f, 0.78f) : HitFeedback.SparkColor(kind), SortOrders.AirVfx, 1.1f, false);
+            // 2026-11-15 피드백 16 타격 방향: 맞은 지점에서 밀려나는 방향으로 짧은 흰 줄(0.08초). 판정·이동과 무관, 저이펙트면 생략.
+            if (!HitFeedback.LowEffects && kind != HitKind.Effect)
+            {
+                Vector2 from = player != null ? player.Position : at - Vector2.right; // 공격자(플레이어) → 맞은 지점
+                Vector2 dir = at - from;
+                if (dir.sqrMagnitude < 0.0001f) dir = Vector2.right;
+                float ang = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                float len = (kind == HitKind.Normal ? 0.7f : 1.0f) * (0.6f + def.radius * 0.4f);
+                var streak = FadeVfx.Spawn(SpriteFactory.Square, at + dir.normalized * len * 0.3f, ang, new Vector2(len * 0.5f, 0.07f), new Vector2(len, 0.03f),
+                    new Color(1f, 1f, 0.95f, 0.75f), 0.08f, SortOrders.AirVfx);
+                if (transform.parent != null) streak.transform.SetParent(transform.parent, true);
+            }
             if ((kind == HitKind.Critical || kind == HitKind.Heavy) && !HitFeedback.LowEffects)
             {
                 // 치명/강타만 짧은 테두리 고리(기존 원 스프라이트) — 일반 타격과 한눈에 구분.

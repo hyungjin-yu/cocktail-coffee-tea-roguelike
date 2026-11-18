@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CCT.Runtime::CCT.CardData
   id: chamomile
   displayName: "카모마일 인퓨전"
-  description: "\uCD08\uB2F9 \uD68C\uBCF5\uB7C9 +1.2"
+  description: "\uBD84\uB2F9 \uD68C\uBCF5\uB7C9 +72"
   flavorText: "카모마일 꽃을 물에 우린 허브 인퓨전입니다. 인퓨전은 식물 재료를 물에 우린 음료를 뜻하며, 찻나무 잎으로 만든 차와 구별합니다."
   category: 1
   rarity: 1

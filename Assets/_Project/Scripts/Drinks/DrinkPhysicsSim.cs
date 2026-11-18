@@ -108,6 +108,9 @@ namespace CCT
                 var def = DrinkIngredients.Get(s?.id);
                 if (def != null && def.form == IngredientForm.Liquid && s.amount > 0) col.Pour(Part(def.id, s.amount / 10.0), 0.6);
             }
+            // 2026-11-17: 아메리카노 뜨거운 물(완성 음료 스타일)도 잔에 먼저 담긴 첨가 액체 — 이전에는 잔 표시에 빠져 있었다
+            // (불투명 머그라 보이지 않았음, 액면창 머그 반입 후 1/10만 찬 것처럼 보임). 표시 전용: 검증·용량·효과 계산은 CoffeeStyles 그대로.
+            if (r.hotWater > 0) col.Pour(Part(WaterId, r.hotWater / 10.0), 0.6);
             return col;
         }
 

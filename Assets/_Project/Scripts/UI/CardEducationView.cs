@@ -17,6 +17,11 @@ namespace CCT
     public class CardEducationView : MonoBehaviour
     {
         Text title, body;
+        RectTransform content;
+        /// <summary>테스트용 — 지금 보이는 출처 영역의 주소 복사 버튼.</summary>
+        public readonly System.Collections.Generic.List<Button> SourceButtons = new System.Collections.Generic.List<Button>();
+        public RectTransform SourcesRect => content != null ? content.Find("Sources") as RectTransform : null;
+        public RectTransform BodyRect => body != null ? body.rectTransform : null;
         ScrollRect scroll;
         Button close;
         GameObject returnFocus;
@@ -32,14 +37,16 @@ namespace CCT
             var panel = UiFactory.Place("Panel", root, new Vector2(.5f,.5f), Vector2.zero, new Vector2(1500,900));
             UiFactory.SkinPanel(UiFactory.AddImage(panel,new Color(.1f,.08f,.12f)));
             v.title=UiFactory.AddText(UiFactory.Place("Title",panel,new Vector2(.5f,1),new Vector2(0,-28),new Vector2(1380,90)),"",40,TextAnchor.MiddleCenter,Color.white);
-            UiFactory.AddText(UiFactory.Place("ScrollHint",panel,new Vector2(.5f,1),new Vector2(0,-112),new Vector2(1300,32)),
+            UiFactory.AddText(UiFactory.Place("ScrollHint",panel,new Vector2(.5f,1),new Vector2(0,-100),new Vector2(1300,32)),
                 MobilePlatform.IsTouchUI ? "본문을 위아래로 밀어 지식과 출처 보기" : "휠 · 위아래 키 · 패드 오른쪽 스틱으로 지식과 출처 보기",22,TextAnchor.MiddleCenter,new Color(.7f,.8f,.85f));
-            var area=UiFactory.Place("Scroll",panel,new Vector2(.5f,1),new Vector2(0,-135),new Vector2(1340,600));
+            var area=UiFactory.Place("Scroll",panel,new Vector2(.5f,1),new Vector2(0,-144),new Vector2(1340,592)); // 2026-11-15: 안내 줄(-100~-148 글 상자) 아래에서 시작 — 스크롤한 본문이 안내 글 밑으로 겹쳐 보이던 문제
             UiFactory.AddImage(area,new Color(0,0,0,.15f));
             var viewport=UiFactory.Stretch("Viewport",area);
             viewport.gameObject.AddComponent<RectMask2D>();
-            var content=UiFactory.Place("Body",viewport,new Vector2(.5f,1),Vector2.zero,new Vector2(1290,600));
-            v.body=UiFactory.AddText(content,"",30,TextAnchor.UpperLeft,new Color(.94f,.93f,.9f));
+            // 2026-11-15 피드백 10: 스크롤 내용 = 본문 글(위) + 출처 영역(아래, 작은 보조 글꼴·사이트명·주소 복사). 이전에는 긴 URL이 본문 끝에 그대로 붙었다.
+            var content=UiFactory.Place("Content",viewport,new Vector2(.5f,1),Vector2.zero,new Vector2(1290,600));
+            v.content=content;
+            v.body=UiFactory.AddText(UiFactory.Place("Body",content,new Vector2(.5f,1),Vector2.zero,new Vector2(1290,600)),"",30,TextAnchor.UpperLeft,new Color(.94f,.93f,.9f));
             v.body.supportRichText=false;
             v.scroll=area.gameObject.AddComponent<ScrollRect>();
             v.scroll.content=content;v.scroll.viewport=viewport;v.scroll.horizontal=false;
@@ -55,10 +62,15 @@ namespace CCT
         public void Show(CardData card)
         {
             returnFocus=EventSystem.current?.currentSelectedGameObject;
-            title.text=card.displayName;body.text=CardEducationData.Detail(card);
+            title.text=card.displayName;body.text=CardEducationData.Body(card);
             gameObject.SetActive(true);transform.SetAsLastSibling();
             Canvas.ForceUpdateCanvases();
-            body.rectTransform.sizeDelta=new Vector2(1290,Mathf.Max(600,body.preferredHeight+32));
+            float bodyH=Mathf.Ceil(body.preferredHeight)+24;
+            body.rectTransform.sizeDelta=new Vector2(1290,bodyH);
+            var old=content.Find("Sources"); if(old!=null){old.SetParent(null,false);if(Application.isPlaying)Destroy(old.gameObject);else DestroyImmediate(old.gameObject);}
+            SourceButtons.Clear();
+            float srcH=CardSourceList.Build(content,-bodyH-8,1290,card,SourceButtons);
+            content.sizeDelta=new Vector2(1290,Mathf.Max(600,bodyH+8+srcH+24));
             scroll.verticalNormalizedPosition=1;
             EventSystem.current?.SetSelectedGameObject(close.gameObject);
         }

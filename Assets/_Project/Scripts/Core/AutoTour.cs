@@ -277,6 +277,14 @@ namespace CCT
                 if (mode == "ui-states") yield return UiStatesRun(); // 2026-11-12 남은 상태 캡처
                 if (mode == "hybrid") yield return HybridRun(); // 2026-11-12 하이브리드 해금 창
                 if (mode == "icons") yield return IconsRun(); // 2026-11-12 새 UI 아이콘 검수
+                if (mode == "feedback1") yield return Feedback1Run(); // 2026-11-15 플레이 피드백 첫 묶음
+                if (mode == "feedback2") yield return Feedback2Run(); // 2026-11-15 둘째 묶음(5·7·23·24)
+                if (mode == "containers") yield return ContainersRun(); // 2026-11-17 산지 원두 제조 통 반입 검증
+                if (mode == "americano") yield return AmericanoRun(); // 2026-11-17 아메리카노 액면창 잔 반입 검증
+                if (mode == "feedback4") yield return Feedback4Run(); // 2026-11-16 19·25·26
+                if (mode == "smooth13x") yield return Smooth13xRun(); // 2026-11-16 13 군중·맵 경계 추가 계측
+                if (mode == "smooth13") yield return Smooth13Run(); // 2026-11-15 피드백 13 이동 끊김 A/B 측정
+                if (mode == "feedback3") yield return Feedback3Run(); // 2026-11-15 셋째·넷째 묶음 화면
                 if (mode == "skins") yield return SkinsRun();
                 if (mode == "feedback") yield return FeedbackRun();
                 if (mode == "water") yield return WaterRun();

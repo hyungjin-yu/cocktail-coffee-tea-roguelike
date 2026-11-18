@@ -30,7 +30,7 @@ namespace CCT.Tests
             var a=Target(2);var b=Target(3);float before=a.Hp,other=b.Hp;
             yield return new WaitForSeconds(.2f);Assert.AreEqual(before,a.Hp);
             EnemyHitStatus.AttachDirect(a,player);yield return new WaitForSeconds(3.2f);
-            Assert.AreEqual(before-5.25f,a.Hp,.001f);Assert.AreEqual(other,b.Hp);
+            Assert.AreEqual(before-3*IntNum.Damage(1.75f),a.Hp,.001f); // 정수 전용: 틱마다 정수 피해Assert.AreEqual(other,b.Hp);
         }
         [UnityTest]public IEnumerator StrongerDamageSurvivesRefresh_AndLockedTimerStops()
         {

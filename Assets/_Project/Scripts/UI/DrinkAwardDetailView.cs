@@ -31,12 +31,24 @@ namespace CCT
         RectTransform panel, area, content;
         float scrollWidth = ScrollWidth;
         ScrollRect scroll;
-        Button closeButton;
+        Button closeButton, restartButton, titleButton;
+        Action onRestart, onTitle;
+        /// <summary>2026-11-15 피드백 23: 창 아래 "다시 시작"·"타이틀" — 결과 화면에서 넘긴 동작(한 번만 실행, 창은 닫힌다).</summary>
+        public void SetNextActions(Action restart, Action title) { onRestart = restart; onTitle = title; RefreshNextButtons(); }
+        public Button RestartButton => restartButton;
+        public Button TitleButton => titleButton;
+        public void InvokeRestart() { if (IsOpen && restartButton != null && restartButton.gameObject.activeSelf) restartButton.onClick.Invoke(); }
+        void RefreshNextButtons()
+        {
+            if (restartButton != null) restartButton.gameObject.SetActive(onRestart != null);
+            if (titleButton != null) titleButton.gameObject.SetActive(onTitle != null);
+        }
         GameObject returnFocus;
         Action onClosed;
 
         public const float RowIcon = 48f;
-        public bool IsOpen => gameObject.activeSelf;
+        /// <summary>2026-11-16: 파괴된 뒤 늦게 도착한 연속 입력(타이틀 전환 중 두 번째 클릭)이 NullReference를 내지 않게 Unity null 검사.</summary>
+        public bool IsOpen => this != null && gameObject.activeSelf;
         public Button CloseButton => closeButton;
         public ScrollRect Scroll => scroll;
         public RectTransform Content => content;
@@ -94,10 +106,27 @@ namespace CCT
             UiFactory.AddFocusSfx(v.closeButton);
             v.closeButton.navigation = new Navigation { mode = Navigation.Mode.None };
             v.closeButton.onClick.AddListener(v.Close);
-            UiFactory.AddText(UiFactory.Stretch("Label", closeRt), MobilePlatform.IsTouchUI ? "닫기" : "닫기 · Esc", 32, TextAnchor.MiddleCenter, Color.white);
-
+            UiFactory.AddText(UiFactory.Stretch("Label", closeRt), MobilePlatform.IsTouchUI ? "결과로" : "결과로 · Esc", 32, TextAnchor.MiddleCenter, Color.white);
+            // 피드백 23: 다음 행동 두 개(결과 화면과 같은 동작). 위치는 Fit에서 창 폭에 맞춰 3칸으로 나눈다.
+            v.restartButton = NextButton(panel, "Restart", MobilePlatform.IsTouchUI ? "다시 시작" : "다시 시작 · R", new Color(0.62f, 0.44f, 0.16f), () => v.onRestart?.Invoke());
+            v.titleButton = NextButton(panel, "TitleLobby", "타이틀", new Color(0.3f, 0.32f, 0.36f), () => v.onTitle?.Invoke());
+            v.RefreshNextButtons();
             root.gameObject.SetActive(false);
             return v;
+        }
+
+        static Button NextButton(RectTransform panel, string name, string label, Color color, Action onClick)
+        {
+            var rt = UiFactory.Place(name, panel, new Vector2(0.5f, 0f), new Vector2(0f, 26f), new Vector2(360f, 80f));
+            var bg = UiFactory.AddImage(rt, color);
+            var b = rt.gameObject.AddComponent<Button>();
+            b.targetGraphic = bg;
+            UiFactory.ApplyHoverColors(b);
+            UiFactory.AddFocusSfx(b);
+            b.onClick.AddListener(() => onClick());
+            var t = UiFactory.AddText(UiFactory.Stretch("Label", rt), label, 32, TextAnchor.MiddleCenter, Color.white);
+            t.resizeTextForBestFit = true; t.resizeTextMinSize = 24; t.resizeTextMaxSize = 32;
+            return b;
         }
 
         public void Show(DrinkSettlement s, GameObject focusAfterClose = null)
@@ -112,7 +141,8 @@ namespace CCT
             Canvas.ForceUpdateCanvases();
             scroll.StopMovement();
             scroll.verticalNormalizedPosition = 1f;
-            EventSystem.current?.SetSelectedGameObject(closeButton.gameObject);
+            // 피드백 23: 다음 행동 버튼이 있으면 "다시 시작"에 포커스(Enter 한 번으로 다음 판), 없으면 기존처럼 닫기.
+            EventSystem.current?.SetSelectedGameObject(restartButton != null && restartButton.gameObject.activeSelf ? restartButton.gameObject : closeButton.gameObject);
         }
 
         public void Close()
@@ -138,6 +168,19 @@ namespace CCT
             scrollWidth = w - (PanelWidth - ScrollWidth);
             foreach (var t in new[] { titleText.rectTransform, statusText.rectTransform, area })
                 t.sizeDelta = new Vector2(scrollWidth, t.sizeDelta.y);
+            // 아래 버튼 3칸: 결과로 · 다시 시작 · 타이틀(다음 행동 버튼이 없으면 결과로 하나만 가운데).
+            bool next = restartButton != null && restartButton.gameObject.activeSelf;
+            float slot = next ? Mathf.Min(380f, (w - 60f) / 3f) : 360f, bw = slot - 20f;
+            var close = (RectTransform)closeButton.transform;
+            close.sizeDelta = new Vector2(bw, 80f);
+            close.anchoredPosition = new Vector2(next ? -slot : 0f, 26f);
+            if (next)
+            {
+                ((RectTransform)restartButton.transform).sizeDelta = new Vector2(bw, 80f);
+                ((RectTransform)restartButton.transform).anchoredPosition = new Vector2(0f, 26f);
+                ((RectTransform)titleButton.transform).sizeDelta = new Vector2(bw, 80f);
+                ((RectTransform)titleButton.transform).anchoredPosition = new Vector2(slot, 26f);
+            }
         }
 
         void BuildBody(DrinkSettlement s)
@@ -146,7 +189,7 @@ namespace CCT
             {
                 var child = content.GetChild(i).gameObject;
                 child.SetActive(false);
-                Destroy(child);
+                UiFactory.SafeDestroy(child);
             }
             float y = -12f;
             bool abandon = s.kind == "PreservedAbandon";
@@ -163,7 +206,10 @@ namespace CCT
                     {
                         // 2026-11-12 그림 우선: 실제 재료 아트(아이콘 → 없으면 병/틴)만. 임시 실루엣이면 그림 없이 글자만(임시 그림을 최종처럼 보이지 않게).
                         var art = DrinkArt.SpriteOrPlaceholder(def.iconId, out bool placeholder);
-                        y = Row(def.name, DrinkRules.Format((int)Math.Min(v, int.MaxValue), def.form), y, Cream, "Material_" + def.id, placeholder ? null : art);
+                        // 피드백 23: 받은 양 + 지금 창고 보유량(재고 반영 확인). 보존 포기는 창고에 들어가지 않았으므로 받은 양만.
+                        string amount = (abandon ? "" : "+") + DrinkRules.Format((int)Math.Min(v, int.MaxValue), def.form);
+                        if (!abandon) amount += $"  ·  창고 {DrinkRules.Format(DrinkLab.Owned(def.id), def.form)}";
+                        y = Row(def.name, amount, y, Cream, "Material_" + def.id, placeholder ? null : art);
                     }
             }
             y -= 14f;

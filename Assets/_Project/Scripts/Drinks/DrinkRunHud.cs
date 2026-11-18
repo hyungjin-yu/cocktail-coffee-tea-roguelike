@@ -260,6 +260,68 @@ namespace CCT
             return sb.Append(line).ToString();
         }
 
+        // ── 2026-11-15 피드백 14: 재료 획득 알림 = 실제 재료 그림 + 수량 칩(같은 재료끼리 합침). 알림이 보이는 동안 이어 들어온 획득은 같은 알림에
+        // 합산해 폭주를 막는다(실제 지급·집계는 DrinkLab 기록 그대로 — 그림을 생략해도 수량 합계는 전부 표시). 목표 음료 재료는 DrinkGoalHud가 칸으로 날려 보낸다.
+        public const int ToastChipMax = 5;
+        readonly Dictionary<string, long> toastTotals = new Dictionary<string, long>();
+        RectTransform toastChips;
+        string toastHead = "";
+        public int ToastChipCount => toastChips != null ? toastChips.childCount : 0;
+
+        void ShowAwardToast(string head, List<DrinkAmount> items, float seconds)
+        {
+            bool merge = toastRemaining > 0f && toastTotals.Count > 0;
+            if (!merge) { toastTotals.Clear(); toastHead = head; }
+            else if (head.StartsWith("보스")) toastHead = head;
+            foreach (var kv in DrinkLab.Totals(items)) { toastTotals.TryGetValue(kv.Key, out long v); toastTotals[kv.Key] = v + kv.Value; }
+            var merged = new List<DrinkAmount>();
+            foreach (var kv in toastTotals) merged.Add(new DrinkAmount(kv.Key, (int)System.Math.Min(int.MaxValue, kv.Value)));
+            // 글(시험·보조 접근용 요약 포함)은 왼쪽, 그림 칩은 오른쪽.
+            ToastSummary = DrinkLab.Summarize(merged);
+            ShowToast($"{toastHead}\n판이 끝나면 창고에 저장", Mathf.Max(seconds, toastRemaining));
+            BuildToastChips(merged);
+        }
+
+        void BuildToastChips(List<DrinkAmount> merged)
+        {
+            if (toastChips == null)
+            {
+                toastChips = UiFactory.Place("Chips", (RectTransform)toast.transform, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(1080f, 60f));
+            }
+            for (int i = toastChips.childCount - 1; i >= 0; i--) { var c = toastChips.GetChild(i).gameObject; c.SetActive(false); UiFactory.SafeDestroy(c); }
+            // 글 상자는 칩이 있으면 제목만 짧게(칩이 수량을 보인다).
+            var defs = new List<(DrinkIngredientDef def, int amount)>();
+            foreach (var d in DrinkIngredients.All) foreach (var a in merged) if (a.id == d.id) defs.Add((d, a.amount));
+            int shown = Mathf.Min(ToastChipMax, defs.Count);
+            const float chipW = 170f;
+            float startX = 300f;
+            for (int i = 0; i < shown; i++)
+            {
+                var (def, amount) = defs[i];
+                var chip = UiFactory.Place("Chip_" + def.id, toastChips, new Vector2(0f, 0.5f), new Vector2(startX + i * chipW, 0f), new Vector2(chipW - 8f, 56f));
+                var art = DrinkArt.SpriteOrPlaceholder(def.iconId, out bool placeholder);
+                var img = UiFactory.AddImage(UiFactory.Place("Icon", chip, new Vector2(0f, 0.5f), Vector2.zero, new Vector2(48f, 48f)), Color.white);
+                img.sprite = art; img.preserveAspect = true; img.raycastTarget = false;
+                var t = UiFactory.AddText(UiFactory.Place("Amount", chip, new Vector2(0f, 0.5f), new Vector2(52f, 0f), new Vector2(chipW - 64f, 56f)), DrinkRules.Format(amount, def.form), 24, TextAnchor.MiddleLeft, new Color(1f, 0.92f, 0.7f));
+                t.resizeTextForBestFit = true; t.resizeTextMinSize = 16; t.resizeTextMaxSize = 24; t.raycastTarget = false;
+            }
+            if (defs.Count > shown)
+            {
+                var more = UiFactory.Place("More", toastChips, new Vector2(0f, 0.5f), new Vector2(startX + shown * chipW, 0f), new Vector2(90f, 56f));
+                UiFactory.AddText(more, $"+{defs.Count - shown}종", 24, TextAnchor.MiddleLeft, new Color(1f, 0.92f, 0.7f)).raycastTarget = false;
+            }
+            toastText.alignment = TextAnchor.MiddleLeft;
+            var trt = toastText.rectTransform;
+            trt.offsetMin = new Vector2(16f, 0f);
+            trt.offsetMax = new Vector2(-(1100f - 290f), 0f);
+            toastText.horizontalOverflow = HorizontalWrapMode.Wrap;
+            toastText.verticalOverflow = VerticalWrapMode.Truncate;
+            toastText.resizeTextForBestFit = true; toastText.resizeTextMinSize = 16; toastText.resizeTextMaxSize = ToastFont;
+        }
+
+        /// <summary>시험·보조 접근용: 지금 알림의 재료 합계 글(칩과 같은 값).</summary>
+        public string ToastSummary { get; private set; } = "";
+
         void ShowToast(string text, float seconds)
         {
             toastText.text = text;
@@ -388,7 +450,7 @@ namespace CCT
         /// <summary>보스 처치: 전용 픽업 연출 + 알림. 지급은 이미 확정.</summary>
         public void OnBossAward(Vector2 bossPosition, List<DrinkAmount> items)
         {
-            ShowToast($"보스 음료 재료 확보 — {DrinkLab.Summarize(items)} (판이 끝나면 창고에 저장)", 4.5f);
+            ShowAwardToast("보스 음료 재료 확보", items, 4.5f);
             if (game != null && game.Player != null)
                 DrinkMaterialPickup.Spawn(game.transform, bossPosition, game.Player.transform, game.Job);
         }
@@ -396,7 +458,7 @@ namespace CCT
         /// <summary>72 §2 일반 처치 25회·정예 처치 묶음: 짧은 픽업 연출 + 짧은 알림(찾아다닐 필요 없음, 지급은 이미 확정).</summary>
         public void OnSupplyAward(Vector2 position, List<DrinkAmount> items)
         {
-            ShowToast($"음료 재료 — {DrinkLab.Summarize(items)} (판이 끝나면 창고에 저장)", 2.5f);
+            ShowAwardToast("음료 재료", items, 2.5f);
             if (game != null && game.Player != null)
                 DrinkMaterialPickup.Spawn(game.transform, position, game.Player.transform, game.Job);
         }

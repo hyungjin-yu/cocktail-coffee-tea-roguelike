@@ -1,0 +1,289 @@
+[
+  {
+    "id": "dl_tin_ethiopia_yirgacheffe_kochere",
+    "group": "containers",
+    "ingredientId": "ethiopia_yirgacheffe_kochere",
+    "name": "\uc608\uac00\uccb4\ud504 \ucf54\uccb4\ub808",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a tall oval metal canister with a split Y-shaped coffee branch emblem, three oval beans at its base.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_colombia_huila_vergel",
+    "group": "containers",
+    "ingredientId": "colombia_huila_vergel",
+    "name": "\uc5d8 \ubca0\ub974\ud5ec (\ud53c\ud0c8\ub9ac\ud1a0)",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a squat cylindrical coffee tin with a bold zigzag mountain emblem and one large bean leaning against it.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_brazil_mantiqueira_alves_lima",
+    "group": "containers",
+    "ingredientId": "brazil_mantiqueira_alves_lima",
+    "name": "\ud30c\uc820\ub2e4 \uc54c\ubca0\uc2a4 \ub9ac\ub9c8",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a broad shallow wooden coffee tray, diagonal slat pattern and five large beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_panama_esmeralda_geisha",
+    "group": "containers",
+    "ingredientId": "panama_esmeralda_geisha",
+    "name": "\uc5d0\uc2a4\uba54\ub784\ub2e4 \uac8c\uc774\uc0e4",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a tapered open metal canister with one long curved leaf emblem and two slim beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_colombia_huila_san_pedro_geisha",
+    "group": "containers",
+    "ingredientId": "colombia_huila_san_pedro_geisha",
+    "name": "\uc544\uc2dc\uc5d4\ub2e4 \uc0b0 \ud398\ub4dc\ub85c",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a small round tin with a simple four-petal blossom emblem and three beans to its left.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_colombia_la_esperanza_bourbon",
+    "group": "containers",
+    "ingredientId": "colombia_la_esperanza_bourbon",
+    "name": "\ud540\uce74 \ub77c \uc5d0\uc2a4\ud398\ub780\uc0ac",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a rectangular coffee canister with a stepped crown-like ridge emblem and two beans to its right.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_ethiopia_guji",
+    "group": "containers",
+    "ingredientId": "coffee_ethiopia_guji",
+    "name": "\uc5d0\ud2f0\uc624\ud53c\uc544 \uad6c\uc9c0",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a narrow open coffee tin with two outward leaf-shaped handles and two beans below.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_ethiopia_sidama",
+    "group": "containers",
+    "ingredientId": "coffee_ethiopia_sidama",
+    "name": "\uc5d0\ud2f0\uc624\ud53c\uc544 \uc2dc\ub2e4\ub9c8",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a low wide woven basket full of coffee beans, pronounced curved upright handle.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_kenya_nyeri",
+    "group": "containers",
+    "ingredientId": "coffee_kenya_nyeri",
+    "name": "\ucf00\ub0d0 \ub2c8\uc5d0\ub9ac",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a tall rectangular lidded coffee tin, bold hollow diamond emblem and two beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_rwanda",
+    "group": "containers",
+    "ingredientId": "coffee_rwanda",
+    "name": "\ub974\uc644\ub2e4 \ucee4\ud53c",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: an asymmetric slanted open coffee canister, bold crescent emblem and a spilling bean cluster.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_burundi",
+    "group": "containers",
+    "ingredientId": "coffee_burundi",
+    "name": "\ubd80\ub8ec\ub514 \ucee4\ud53c",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a round glass jar of roasted beans with wide dark lid and one bright square paper label without writing.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_uganda",
+    "group": "containers",
+    "ingredientId": "coffee_uganda",
+    "name": "\uc6b0\uac04\ub2e4 \ucee4\ud53c",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a squat square coffee box with a deep V-shaped emblem and beans in a diagonal line.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_indonesia_gayo",
+    "group": "containers",
+    "ingredientId": "coffee_indonesia_gayo",
+    "name": "\uc778\ub3c4\ub124\uc2dc\uc544 \uac00\uc694",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a teardrop-shaped open ceramic canister with a double wave emblem and three beans on its left.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_indonesia_java",
+    "group": "containers",
+    "ingredientId": "coffee_indonesia_java",
+    "name": "\uc778\ub3c4\ub124\uc2dc\uc544 \uc790\ubc14",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a tapered hexagonal coffee canister with large hollow triangle emblem and two crossed beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_vietnam_dalat",
+    "group": "containers",
+    "ingredientId": "coffee_vietnam_dalat",
+    "name": "\ubca0\ud2b8\ub0a8 \ub2ec\ub78f",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a short open metal coffee canister, wide folded rim, two tall leaf sprigs behind roasted coffee beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_india_malabar",
+    "group": "containers",
+    "ingredientId": "coffee_india_malabar",
+    "name": "\uc778\ub3c4 \ub9d0\ub77c\ubc14\ub974",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a long low oval coffee canister with a rolled metal rim, clearly visible roasted beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_costa_rica_tarrazu",
+    "group": "containers",
+    "ingredientId": "coffee_costa_rica_tarrazu",
+    "name": "\ucf54\uc2a4\ud0c0\ub9ac\uce74 \ud0c0\ub77c\uc8fc",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a stout angular rectangular canister with three large stepped ridges emblem and a pair of beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_guatemala_antigua",
+    "group": "containers",
+    "ingredientId": "coffee_guatemala_antigua",
+    "name": "\uacfc\ud14c\ub9d0\ub77c \uc548\ud2f0\uad6c\uc544",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a wide round coffee tin with a bold sun-ray emblem, two beans on its right.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_honduras_marcala",
+    "group": "containers",
+    "ingredientId": "coffee_honduras_marcala",
+    "name": "\uc628\ub450\ub77c\uc2a4 \ub9c8\ub974\uce7c\ub77c",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a slender rounded coffee canister with a large three-leaf clover emblem and one bean.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_peru_chanchamayo",
+    "group": "containers",
+    "ingredientId": "coffee_peru_chanchamayo",
+    "name": "\ud398\ub8e8 \ucc2c\ucc28\ub9c8\uc694",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a square wooden crate of roasted coffee beans with thick corner braces and diagonal front brace.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_mexico_chiapas",
+    "group": "containers",
+    "ingredientId": "coffee_mexico_chiapas",
+    "name": "\uba55\uc2dc\ucf54 \uce58\uc544\ud30c\uc2a4",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a low ceramic bowl overflowing with roasted beans, a single large forked twig behind.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_jamaica_blue_mountain",
+    "group": "containers",
+    "ingredientId": "coffee_jamaica_blue_mountain",
+    "name": "\uc790\uba54\uc774\uce74 \ube14\ub8e8\ub9c8\uc6b4\ud2f4",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a tall tapered open coffee canister filled with beans, diagonal folded seam and two beans outside.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_brazil_cerrado",
+    "group": "containers",
+    "ingredientId": "coffee_brazil_cerrado",
+    "name": "\ube0c\ub77c\uc9c8 \uc138\ud558\ub450",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a small straight-sided metal pail of roasted beans with thick swing handle visible to left.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_colombia_narino",
+    "group": "containers",
+    "ingredientId": "coffee_colombia_narino",
+    "name": "\ucf5c\ub86c\ube44\uc544 \ub098\ub9ac\ub1e8",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a broad oval coffee canister with a scalloped rolled rim, a large spiral emblem and two beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_el_salvador",
+    "group": "containers",
+    "ingredientId": "coffee_el_salvador",
+    "name": "\uc5d8\uc0b4\ubc14\ub3c4\ub974 \ucee4\ud53c",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a slim square glass coffee jar with an uncovered open rim and bold X-shaped paper label, beans visible inside.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_nicaragua",
+    "group": "containers",
+    "ingredientId": "coffee_nicaragua",
+    "name": "\ub2c8\uce74\ub77c\uacfc \ucee4\ud53c",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a wide low coffee canister with scalloped open rim, bold single arch emblem and three beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_tanzania",
+    "group": "containers",
+    "ingredientId": "coffee_tanzania",
+    "name": "\ud0c4\uc790\ub2c8\uc544 \ucee4\ud53c",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a very tall narrow coffee tin with large vertical double-chevron emblem and two beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "dl_tin_coffee_bolivia",
+    "group": "containers",
+    "ingredientId": "coffee_bolivia",
+    "name": "\ubcfc\ub9ac\ube44\uc544 \ucee4\ud53c",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single OPEN coffee-bean manufacturing container: a short barrel-shaped wooden coffee container with two metal hoops, open top showing roasted beans.  The top MUST be OPEN with a clearly visible dark oval mouth, a thin silver or ivory rim, and roasted beans just inside it. No closed lid, no cap covering the mouth. Large container body occupies most of the icon, decorative motif is a game identifier, no readable text.  Crisp chunky cafe-game pixel icon, one-pixel dark brown outline 201D29, three clear shading tones per material, warm ivory F4F1E7 and paper EAD4A5, muted sage and silver, upper-left light, side view with a slight opening ellipse. Complete centered silhouette, transparent background, no text, letters, digits, logos, glow, floor, cast shadow or smooth antialiasing."
+  },
+  {
+    "id": "hidden_weekend_rush_steps_v2",
+    "width": 32,
+    "height": 32,
+    "model": "create",
+    "description": "A single leather ankle BOOT or SNEAKER in SIDE PROFILE facing RIGHT, horizontal thick dark outsole, rounded toe at lower RIGHT, short upright ankle at upper LEFT. One small cream lace patch on the upper. Two short horizontal movement dashes to the left of the heel. A FOOTWEAR icon; NO broom, NO brush, NO handle, NO tool, NO long shaft, NO standing cone, NO isolated footprint. Chunky clean warm ivory and coffee brown pixel art, single dark outline, transparent background, full object centered, no text, no letters, no smooth edges."
+  }
+]

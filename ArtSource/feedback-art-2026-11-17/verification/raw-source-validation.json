@@ -1,0 +1,514 @@
+{
+  "rawOutputCount": 42,
+  "usedByFinalCount": 41,
+  "rejectedButPreserved": [
+    "hidden_weekend_rush_steps (first broom-like output; final uses explicit footwear revision v2)"
+  ],
+  "assets": [
+    {
+      "assetId": "dl_coffee_americano_mug",
+      "dimensions": [
+        36,
+        36
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "9f488b6dda65dc06dc15cb47df18da1acdf410a9be5a2a2658360819053e7bf0",
+      "sourceSha256": "b1214f2d8d606cd40b3b39a2bb6c40e6cae787a5705f3da8e1ba0afb94908fd0",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_brazil_mantiqueira_alves_lima",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "88a580a4c76a5adcb9d97e653eb7d29f2e71fb57b6104bfd3491c4c4f90402b1",
+      "sourceSha256": "1da0f7399ecca6cb1eb44497cf2914669fa9c45c3da64a3d8b536bab22e4ba3a",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_bolivia",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "9b6e8d41fe95db04c432ed3b06bfe8d8b2661a59702462822ad97bd004c63f73",
+      "sourceSha256": "3d783a15b277e5a95b24ef38ae49445e85b68a456e3bf2b8c8549649bcba069f",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_brazil_cerrado",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "276e7be01176a1bd41a8fb297d03d0304e40cca91851b5d3833a17f1dbfdaf13",
+      "sourceSha256": "c7b984772712d42140e982b6ebaee296e0af23af548ec298622e4d5805b94019",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_burundi",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "f9511012e8d0e00c66f92a2a5d1799c469d9d977b970f63968d6b8a848177d2d",
+      "sourceSha256": "8ecb69793ef287e9daaa2af2e4f56df377e5de45185c509dc383b2c6e66ba00d",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_colombia_narino",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "00ed3d2feff3134146e1bc9334b78d2f430c7a068ccf554dea70dbe7ccbcd0ef",
+      "sourceSha256": "3235d6d0d9d4d9aaf5cff3fa95c41763f7b5509c7bc38724766fb5e583eab547",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_costa_rica_tarrazu",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "60233b18907685f051a976a8aea71e36754c9ec51aff5e6cf85d940e6f41cba1",
+      "sourceSha256": "f058cee9d7d9eb47f2a1682293818a676e50375a30e07b9c12b34d927be25a26",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_el_salvador",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "9ee6bf588456e4bc13d768f7764ff8bc96eb767aa46bb22c1f335e4f2fd70a30",
+      "sourceSha256": "50f1659b582def52f8c58134429765e4e08014d5240f9589edfafd650a24cb75",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_ethiopia_guji",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "7bf61e7cd3224dfde8ceb907668165e7270121bdbbb995ef03da7d798af7b02e",
+      "sourceSha256": "21367d3441a780865bd8f54d695eecafe9055687f01f78fcef6050e0795262a1",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_ethiopia_sidama",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "3e79b9ab128645d3d260dc819161b388f9a0052fb074bc69435bbc9c796c9bb5",
+      "sourceSha256": "7bc1b50804c3765bb5b1e5c3b98d3bea9c0653f585cf4f3729703715cfc5f3d4",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_guatemala_antigua",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "f475f499a954c091e5f2f022961b8e65b067f20fc35e4211f58c93da048206fe",
+      "sourceSha256": "578a15aba4d607103255f615e20a1eb34977bb9b64af1bfbe91a497b88072002",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_honduras_marcala",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "08f2b730fef8d87eb9bb1058c66885fe1930c0c8d66b2610ba2e98994e084c3f",
+      "sourceSha256": "9cbfc1be36d87d00942fd46cd71885b4c7fb92d04d886a4b732fac700174e652",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_india_malabar",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "02b6dbb036aee50fa4f971c694b11955beea98b1b90545902d725883287eb4b6",
+      "sourceSha256": "df541e7bcd6320a4ff8945b33e646b715ce12e6f2cace51b593ba02774d74537",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_indonesia_gayo",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "93fe5e9c839f9edd98da8242b87df7277a8dd1b3603ebd509703801792481208",
+      "sourceSha256": "3495611d36543c51ff592d5ee461361eabc2b9a7c2684dde92f7ebb6d3273c68",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_indonesia_java",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "8bd910d306ca6daf7b2da2037cad44550eccdebde818eb8acb3080f02febfec0",
+      "sourceSha256": "fffa62723ec41456a133d57e6bef43fe1abd6e2e5cc0c861e1c60385681ebce8",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_jamaica_blue_mountain",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "8eca9a4225ec7658950aba1a5916c50c10e089aa7c2fb48dde9dd9ffadfced2d",
+      "sourceSha256": "f6b583d9fcf9bab27998825faba3cc8474b084b80a853dd32a7f82cb43280777",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_kenya_nyeri",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "4223285134890e510004cacfdcb15bdfaeddb7864c94ade0d37fb522759057b7",
+      "sourceSha256": "eb8d0781bf35b9c293ba725b455576d32a5ee05d57dbdc43ed2349a4e0ef24be",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_mexico_chiapas",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "d65fdd66d9e5e826081c8b4c70dfa5613229cdf871ce447ab186250be711e2e2",
+      "sourceSha256": "36a6fd69b4ae34c82ea72154f001accad6138629cd3ac7d39ea34509c872ab2c",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_nicaragua",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "88a723e8efb6c580f3d9db6cfc4a2de73c322bc5c84cf06d85b92b8eca7871f5",
+      "sourceSha256": "19f1b6dbaf19ac914d66ca412e2dcdafb24e58a92cd0b49a5eccc99f55168f26",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_peru_chanchamayo",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "7a89e9a4d045bd8842eac18e5a6ce0c6e65394c17da7bef8cbb0888bbbadbcb6",
+      "sourceSha256": "d77f57f98a4f2606f51938ff615098a363c2c24bb6eb9ed4bfe77c10404230e5",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_rwanda",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "7bd04b21c73603a0c170121fcd3f15be8dcb9073051e7ca610b88227a6ab0870",
+      "sourceSha256": "25a091a023e036d97a4201f7d4b117cd12012b4eef6270b0a553bfb7e4b595cd",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_tanzania",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "19c886f5d34ba1b43a12e4acb4c52e4220f0ca223b796c96c46aa6156ad0f510",
+      "sourceSha256": "4df903495f65278e8c36a226cd28c8c2dc41f471bae0092391419b3a0f72aa14",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_uganda",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "e0437bc9e9b4c027a6123ce007df275674b32eae7a3ec2bb4b31efca5fce9f10",
+      "sourceSha256": "600244e91657adbee43791706b88864b3bc625c684bca0952096819c93bd214e",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_coffee_vietnam_dalat",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "b4fc7145a7493c3e579e24dd23341e56714f608ba7bd04264332e178b3dc4741",
+      "sourceSha256": "51dfbf28d65135c182df180caff61d5fea7536254567b58051e85a5798cd6356",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_colombia_huila_san_pedro_geisha",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "d2b387f1153aa8e63ecde0cfad7e150039a17e07cad75143626c89eb09f63203",
+      "sourceSha256": "c01b9df97b278f6dd9a0cd7550b3cae819541609ec7eb05594bf73131985d0e6",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_colombia_huila_vergel",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "28239617e8b6cec2f7514b5da2b040c4adbcfcfc10220cad025e4d0b89dd2b5f",
+      "sourceSha256": "999f7c2a7ad9ceff362e6db20498e76efa54b40cc2a6085da17884a75a5e2172",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_colombia_la_esperanza_bourbon",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "2864a93df74fd493ddf30f23c09b18f4aed887cf8b73e45dbc55eab0c189f9f6",
+      "sourceSha256": "e10e7157948e7d46aa8ec6a039f9c8aa7283cfa5ea01186a0c713657f1a794c3",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_ethiopia_yirgacheffe_kochere",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "e13375ddde3bed97ea3888044adb4668e195c6243ceec92eaf2b88edc2652726",
+      "sourceSha256": "a3ef8cae61692cc1a50f16e8ef2d8f3f284ba83705fe8df6a54cd304e1a267d8",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "dl_tin_panama_esmeralda_geisha",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "95a28430f3602b3d9f1ff84bc9820b74653d25ff4bd2e317d1711cd54b53ec0f",
+      "sourceSha256": "827c1238bc1aab0923eece21a005efdd5cbfb82d0023d32d483d6b7e3dfc940d",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "hidden_bar_tempo",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "b497a3a85f763dcce2335d4a8bed43d4447d61951b9f81cebc6854af3efe36ad",
+      "sourceSha256": "6d9679881def46756dd774be4de4b94aa4977790ce085147cbf9e7c8496aa3b7",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "hidden_bar_tempo_move",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "623f6b21ed32b5559bafba1b42103e30607f9c3a4b6961d42450a24fafc56517",
+      "sourceSha256": "235cd139d9fcb7b1b2d54f785f8c4c746f9865cd538791269d482931def83fb1",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "hidden_bitter_wake",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "ae86723d323f72490c04217d0caf35b0d6a550ffc6a6d97cd10fc42220182383",
+      "sourceSha256": "0fa1251f0b9a4ae56f1a0bce2f9178689050c3ef2f596bd92135a1fdc1b91329",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "hidden_herb_garden",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "a1e5d1a8a97e8f6f9537ff9065569fe90bbaef964562415c4536d1241b910708",
+      "sourceSha256": "dc6864a6bfe56b4879a7746199a2ca45050057226167897b512ef625ac691f36",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "hidden_iced_cup",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "886ad1a5da93629fdd8b0e13647868f0a726f5bd9d89d61ea75a1f34e3a5667e",
+      "sourceSha256": "bdf2885158e81b3b2113458a723c2f281132aada7e9b62e67cb27c5ae5ba1fde",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "hidden_rhythm_shaker",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "567880006ff326049f7ab93b5ffb946d707aff8d2d745377526e37161c93edc8",
+      "sourceSha256": "ebc1056679c57ef4eb0ee3d9ca19e0b4f419cec3f117da6b3bbf5b96349af74c",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "hidden_soda_pump",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "c5192365358dd7fd6993f47baef75b2d9f1688b67fb3384826b269364fc07ac5",
+      "sourceSha256": "ea4e695eb6d4b5842abcbe755540f3031ba58a3ba9b239893320f56b5a3f3be7",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "hidden_thick_mug",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "eab68c92e87862f8db3ad057968f53d919945aaba5191a1da9eb3201719b1084",
+      "sourceSha256": "c8d0eb5919e84ea08f283d57a824f8494714d80c7d5df420615d9764204d0140",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "hidden_weekend_rush_steps",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "79f9f0b6fa9b671e6168ff0642c7dc7de0ab2c7cc42735d2b271477211b0e6e0",
+      "sourceSha256": "cdaa1b06a4aafe66a2c6d3441e695632ef36b6f6a8e00e59c3e737c36d19739d",
+      "usedByFinal": false
+    },
+    {
+      "assetId": "hidden_weekend_rush_steps_v2",
+      "dimensions": [
+        32,
+        32
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "c747de987eb0f976ad271be2da0cc50284b18e18f24ec0edecbb1921772a3b51",
+      "sourceSha256": "cf2e0711a4227eba9c88494cbea572b274e6ae1a71de6159f43f7ede3004e14a",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "vfx_arrow_bitter_tail",
+      "dimensions": [
+        32,
+        16
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "d897eb6a23833e33e7a7fd120a5d17b3eecb662b13670669b730974d3eae74c6",
+      "sourceSha256": "3bd665a34102f40fb7be276591c4937d3424874ade889a83d9d9309f98c6210c",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "vfx_arrow_dual_tail",
+      "dimensions": [
+        32,
+        16
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "cc587f79eb42eba6cb4e9dbdcf014b8dec4af12d2e0a824bd2499934a298075a",
+      "sourceSha256": "9874e60ce577c1982e7db698b586a6f9037574c1d108ac5c66c2bbca08f0f2a9",
+      "usedByFinal": true
+    },
+    {
+      "assetId": "vfx_arrow_fire_tail",
+      "dimensions": [
+        32,
+        16
+      ],
+      "nonempty": true,
+      "roundtripPixelsEqual": true,
+      "pngSha256": "ce6480e00dec68a5abe08f8d86c062f15264588a67a2e5835e5d87d2b41358e4",
+      "sourceSha256": "e5e08bdf211397d0a922513a161fa57d737da1a8993533a6a7fe5e875a8e7ade",
+      "usedByFinal": true
+    }
+  ],
+  "allPass": true
+}

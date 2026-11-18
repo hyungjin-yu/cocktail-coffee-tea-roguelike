@@ -12,6 +12,7 @@ namespace CCT
         public RunPhaseState state;
         public int segment, segments, danger, secondsToBoss;
         public string bossName;
+        public EnemyDef bossDef; // 2026-11-15 피드백 15 초상
         public string text;
     }
 
@@ -37,6 +38,11 @@ namespace CCT
         CanvasGroup group;
 
         public RunPhaseInfo Last { get; private set; }
+        public const float PortraitSize = 56f;
+        Image portrait, portraitBack;
+        /// <summary>테스트용 — 보스 초상이 보이는지와 그 스프라이트.</summary>
+        public bool PortraitVisible => portrait != null && portrait.transform.parent.gameObject.activeSelf && portrait.sprite != null;
+        public Sprite PortraitSprite => portrait != null ? portrait.sprite : null;
         public string Text => label != null ? label.text : "";
         public bool Visible => rt != null && rt.gameObject.activeInHierarchy && group.alpha > 0f;
 
@@ -53,6 +59,13 @@ namespace CCT
             view.mark = UiFactory.AddImage(UiFactory.Place("Mark", rt, new Vector2(0f, 0.5f), new Vector2(6f, 0f), new Vector2(24f, 24f)), Color.white);
             view.mark.raycastTarget = false;
             view.glyph = UiFactory.AddText(UiFactory.Stretch("Glyph", view.mark.rectTransform), "!", 20, TextAnchor.MiddleCenter, new Color(0.15f, 0.05f, 0.05f));
+            // 2026-11-15 피드백 15: 보스 접근·보스전 동안 배지 왼쪽 바깥에 실제 보스 초상(예고 = 실제 다음 생성 보스, BossDirector.NextSpec과 같은 값).
+            var pRt = UiFactory.Place("BossPortrait", rt, new Vector2(0f, 0.5f), new Vector2(-6f - PortraitSize, 0f), new Vector2(PortraitSize, PortraitSize));
+            view.portraitBack = UiFactory.AddImage(pRt, new Color(0.25f, 0.06f, 0.06f, 0.92f));
+            view.portraitBack.raycastTarget = false;
+            view.portrait = UiFactory.AddImage(UiFactory.Place("Art", pRt, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(PortraitSize - 6f, PortraitSize - 6f)), Color.white);
+            view.portrait.preserveAspect = true; view.portrait.raycastTarget = false;
+            pRt.gameObject.SetActive(false);
             for (int i = 0; i < view.pips.Length; i++)
             {
                 view.pips[i] = UiFactory.AddImage(UiFactory.Place("Danger" + i, rt, new Vector2(1f, 0.5f), new Vector2(-10f - (4 - i) * 14f, 0f), new Vector2(10f, 14f)), Color.white);
@@ -196,6 +209,7 @@ namespace CCT
             {
                 info.state = RunPhaseState.BossFight;
                 info.bossName = boss.Def.name;
+                info.bossDef = boss.Def;
                 info.text = $"보스전 · {info.bossName} · 위험 {info.danger}";
                 return info;
             }
@@ -204,6 +218,7 @@ namespace CCT
             {
                 info.secondsToBoss = IntNum.RemainingSeconds(next.time - t);
                 info.bossName = next.def.name;
+                info.bossDef = next.def;
                 if (next.time - t <= IncomingWarnSeconds)
                 {
                     info.state = RunPhaseState.BossIncoming;
@@ -267,6 +282,14 @@ namespace CCT
                     break;
             }
             glyph.enabled = mark.enabled; // 경고 모양(느낌표 칸)은 접근·보스전에서만
+            bool showPortrait = masterRoot == null && (info.state == RunPhaseState.BossIncoming || info.state == RunPhaseState.BossFight) && info.bossDef != null;
+            var art = showPortrait ? HudIcons.Enemy(info.bossDef) : null;
+            if (portrait != null)
+            {
+                portrait.sprite = art;
+                portrait.transform.parent.gameObject.SetActive(art != null);
+                if (portraitBack != null) portraitBack.color = info.state == RunPhaseState.BossFight ? new Color(0.35f, 0.06f, 0.07f, 0.95f) : new Color(0.25f, 0.12f, 0.05f, 0.92f);
+            }
             for (int i = 0; i < pips.Length; i++)
                 pips[i].color = i < info.danger ? (info.danger >= 4 ? new Color(1f, 0.45f, 0.35f) : new Color(1f, 0.8f, 0.45f)) : new Color(1f, 1f, 1f, 0.18f);
         }

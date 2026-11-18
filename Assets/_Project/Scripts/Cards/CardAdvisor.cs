@@ -183,8 +183,8 @@ namespace CCT
             string what = null;
             foreach (var e in card.effects)
             {
-                if (e.type == CardEffectType.RegenBonus && e.value > 0f) { what = $"초당 회복 +{e.value:0.#}"; break; }
-                if (e.type == CardEffectType.MaxHpFlat && e.value > 0f) { what = $"최대 체력 +{e.value:0}"; break; }
+                if (e.type == CardEffectType.RegenBonus && e.value > 0f) { what = $"분당 회복 +{IntNum.PerMinute(e.value)}"; break; }
+                if (e.type == CardEffectType.MaxHpFlat && e.value > 0f) { what = $"최대 체력 +{IntNum.Round(e.value)}"; break; }
                 if (e.type == CardEffectType.DamageReduction && e.value > 0f && ctx.damageReduction < 0.25f - 1e-4f)
                 { what = "받는 피해 감소"; break; }
             }

@@ -729,33 +729,122 @@ namespace CCT.Tests
         }
     }
 
-    /// <summary>1차 빌드 캡처(01_title.png)에서 발견한 타이틀 메뉴·제목 겹침의 회귀 방지(1920×1080 명목 좌표).</summary>
+    /// <summary>2026-11-18 카페 입장형: 8메뉴 = 실내 물체 클릭 영역(같은 버튼 이름). 기준 1920x1080에서 서로·제목·저장 알림과 겹치지 않고,
+    /// 4:3으로 좌우가 잘려도 남는 안전 영역(x 0.125~0.875) 안에 있다. (이전 세로 버튼 위치 시험을 새 의미로 교체.)</summary>
     public class TitleLayoutTests
     {
+        static readonly string[] Ids = { "start", "permanent", "codex", "skins", "history", "settings", "credits", "quit" };
+
+        static Rect Norm(CafeTitleLayout.Feature f) => f.HotspotRect;
+
         [Test]
-        public void MenuButtons_DoNotOverlapTitleOrSubtitle_AndClearSaveNotice()
+        public void CafeHotspots_AreNamedButtons_InSafeArea_NoOverlap()
         {
             var view = TitleView.Show();
             try
             {
-                var root = view.transform.Find("Root");
-                Rect Nom(string name)
+                var scene = view.Scene;
+                Assert.IsNotNull(scene, "카페 장면");
+                foreach (var id in Ids)
                 {
-                    var rt = (RectTransform)root.Find(name);
-                    var o = new Vector2(rt.anchorMin.x * 1920f, rt.anchorMin.y * 1080f) + rt.anchoredPosition - Vector2.Scale(rt.pivot, rt.sizeDelta);
-                    return new Rect(o, rt.sizeDelta);
+                    Assert.IsTrue(scene.Hotspots.ContainsKey(id), id);
+                    var h = scene.Hotspots[id];
+                    Assert.AreEqual(CafeTitleScene.ButtonNames[id], h.name, "기존 버튼 이름 유지");
+                    Assert.IsNotNull(h.GetComponent<UnityEngine.UI.Button>());
+                    var r = Norm(h.Feature);
+                    if (scene.Layout.FitMode != "contain")
+                    {
+                        // cover(좌우 자름)일 때만 4:3에서 남는 가운데 영역 안이어야 한다. contain은 장면 전체가 보인다.
+                        Assert.GreaterOrEqual(r.xMin, 0.125f - 1e-4f, id + " 4:3 안전 영역(왼쪽)");
+                        Assert.LessOrEqual(r.xMax, 0.875f + 1e-4f, id + " 4:3 안전 영역(오른쪽)");
+                    }
+                    Assert.IsTrue(r.xMin >= -1e-4f && r.xMax <= 1f + 1e-4f, id + " 장면 안");
+                    Assert.GreaterOrEqual(r.yMin, 0.06f - 1e-4f, id + " 위 띠(제목)");
+                    Assert.LessOrEqual(r.yMax, 0.86f + 1e-4f, id + " 아래 띠(저장 알림)");
+                    Assert.GreaterOrEqual(r.width * 1920f, 60f, id + " 최소 클릭 폭");
+                    Assert.GreaterOrEqual(r.height * 1080f, 60f, id + " 최소 클릭 높이");
+                    Assert.IsFalse(string.IsNullOrEmpty(h.LabelText.text), id + " 이름표");
                 }
-                foreach (var button in new[] { "StartButton", "PermanentShopButton", "CardCodexButton", "SettingsButton", "CreditsButton", "QuitButton" })
-                {
-                    Assert.IsFalse(Nom(button).Overlaps(Nom("Title")), $"{button} ↔ Title");
-                    Assert.IsFalse(Nom(button).Overlaps(Nom("Subtitle")), $"{button} ↔ Subtitle");
-                    Assert.IsFalse(Nom(button).Overlaps(Nom("SaveNotice")), $"{button} ↔ SaveNotice");
-                }
+                // 실제 클릭 영역(다각형이면 다각형) 겹침: 격자 표본으로 두 영역에 동시에 드는 점이 없어야 한다.
+                bool Inside(CafeTitleLayout.Feature f, Vector2 p) => f.Polygon != null ? CafeHotspot.PointInPolygon(p, f.Polygon) : f.HotspotRect.Contains(p);
+                for (int a = 0; a < Ids.Length; a++)
+                    for (int c = a + 1; c < Ids.Length; c++)
+                    {
+                        var fa = scene.Hotspots[Ids[a]].Feature; var fc = scene.Hotspots[Ids[c]].Feature;
+                        var both = Rect.MinMaxRect(Mathf.Max(fa.HotspotRect.xMin, fc.HotspotRect.xMin), Mathf.Max(fa.HotspotRect.yMin, fc.HotspotRect.yMin),
+                            Mathf.Min(fa.HotspotRect.xMax, fc.HotspotRect.xMax), Mathf.Min(fa.HotspotRect.yMax, fc.HotspotRect.yMax));
+                        if (both.width <= 0f || both.height <= 0f) continue;
+                        for (int gx = 0; gx <= 20; gx++)
+                            for (int gy = 0; gy <= 20; gy++)
+                            {
+                                var pt = new Vector2(Mathf.Lerp(both.xMin, both.xMax, gx / 20f), Mathf.Lerp(both.yMin, both.yMax, gy / 20f));
+                                Assert.IsFalse(Inside(fa, pt) && Inside(fc, pt), $"{Ids[a]} ↔ {Ids[c]} 클릭 영역 겹침 at {pt}");
+                            }
+                    }
             }
             finally
             {
                 Object.DestroyImmediate(view.gameObject);
             }
+        }
+
+        [Test]
+        public void ExteriorSign_ShowsGameTitle_OnSignRect_InExteriorScene()
+        {
+            var view = TitleView.Show();
+            try
+            {
+                var scene = view.Scene;
+                Assert.IsNotNull(scene.SignTitle, "간판 글자");
+                Assert.AreEqual(GameInfo.Title, scene.SignTitle.text, "간판에 게임 이름");
+                Assert.AreSame(scene.Exterior, scene.SignTitle.transform.parent, "외부 장면과 같은 변환(문 열림·문턱 접근 프레임에서 같이 움직임)");
+                var rt = (RectTransform)scene.SignTitle.transform;
+                var sign = scene.Layout.SignRect;
+                var n = CafeTitleScene.LocalToNorm(rt.anchoredPosition);
+                Assert.IsTrue(sign.Contains(n), $"간판 rect 안 {n}");
+                Assert.LessOrEqual(rt.sizeDelta.x, sign.width * CafeTitleScene.RefW + 0.5f, "판 폭을 넘지 않음");
+                Assert.LessOrEqual(rt.sizeDelta.y, sign.height * CafeTitleScene.RefH + 0.5f, "판 높이를 넘지 않음");
+                foreach (var l in scene.Layout.ExteriorLayers)
+                {
+                    var lt = scene.Exterior.Find(string.IsNullOrEmpty(l.Id) ? "Layer" : l.Id);
+                    if (lt != null) Assert.Greater(rt.GetSiblingIndex(), lt.GetSiblingIndex(), $"간판 글자가 {l.Id} 레이어보다 앞(가려지지 않음)");
+                }
+                Assert.Greater(rt.GetSiblingIndex(), scene.DoorImage.transform.GetSiblingIndex(), "문 그림보다 앞");
+            }
+            finally { Object.DestroyImmediate(view.gameObject); }
+        }
+
+        [Test]
+        public void Polygon_Hotspot_PointInPolygon()
+        {
+            var tri = new[] { new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0f, 1f) };
+            Assert.IsTrue(CafeHotspot.PointInPolygon(new Vector2(0.2f, 0.2f), tri));
+            Assert.IsFalse(CafeHotspot.PointInPolygon(new Vector2(0.8f, 0.8f), tri), "외접 사각형 안이라도 다각형 밖이면 아님");
+        }
+
+        [Test]
+        public void Layout_ParsesContract_TopLeftNormalized()
+        {
+            var l = CafeTitleLayout.Parse("{\"status\":\"ready\",\"fit\":\"contain\",\"interior\":{\"features\":[{\"id\":\"start\",\"label\":\"시작\",\"hotspot\":{\"polygon\":[[0.1,0.2],[0.3,0.2],[0.3,0.5]]},\"label_anchor\":[0.2,0.55]}],\"nav_order\":[\"start\"]},\"exterior\":{\"door\":{\"rect\":[0.4,0.3,0.2,0.5],\"hinge\":[0.4,0.55],\"frames\":[\"a.png\",\"b.png\"]}}}");
+            Assert.IsNotNull(l);
+            Assert.IsTrue(l.IsFinalArt);
+            Assert.AreEqual("contain", l.FitMode);
+            var f = l.FindFeature("start");
+            Assert.AreEqual(0.1f, f.HotspotRect.x, 1e-5f); Assert.AreEqual(0.2f, f.HotspotRect.y, 1e-5f);
+            Assert.AreEqual(0.2f, f.HotspotRect.width, 1e-5f, "다각형 외접 사각형"); Assert.AreEqual(0.3f, f.HotspotRect.height, 1e-5f);
+            Assert.AreEqual(2, l.EntranceDoor.Frames.Length);
+            // 좌상단 원점 정규화 → 장면 로컬(가운데 원점, 위 +y)
+            Assert.AreEqual(new Vector2(-960f, 540f), CafeTitleScene.NormToLocal(Vector2.zero));
+            Assert.AreEqual(new Vector2(960f, -540f), CafeTitleScene.NormToLocal(Vector2.one));
+        }
+
+        [Test]
+        public void TempLayout_IsMarkedTemporary_AndHasAllEightFeatures()
+        {
+            var l = CafeTitleLayout.Load();
+            Assert.IsNotNull(l);
+            Assert.AreEqual(8, l.Features.Count);
+            if (l.SourceName == CafeTitleLayout.TempName) Assert.IsFalse(l.IsFinalArt, "임시 배치는 최종 아트로 표시하지 않음");
         }
     }
 
@@ -900,7 +989,7 @@ namespace CCT.Tests
             float bodyBottomFromTop = -body.anchoredPosition.y + body.sizeDelta.y;
             float closeTopFromTop = panelH - (close.anchoredPosition.y + close.sizeDelta.y);
             Assert.Less(bodyBottomFromTop, closeTopFromTop, "본문 상자가 닫기 버튼 위에서 끝난다");
-            var text = panel.Find("DetailScroll/Viewport/Body").GetComponent<Text>();
+            var text = panel.Find("DetailScroll/Viewport/Content/Body").GetComponent<Text>();
             Assert.AreEqual(VerticalWrapMode.Overflow, text.verticalOverflow, "전문 높이는 내용에 맞추고 RectMask2D 뷰포트가 버튼 영역 침범을 막는다");
             Assert.IsFalse(text.resizeTextForBestFit, "08:49 본문 24를 줄이지 않는다");
             Assert.GreaterOrEqual(text.fontSize, CardCodexView.MinBodyFontSize);
@@ -1063,7 +1152,7 @@ namespace CCT.Tests
             // 상세: 가장 긴 카드의 전문(발견 상태)이 닫기 버튼 위 상자 안에 전부 보인다.
             var longest = CardDatabase.LoadAll().OrderByDescending(c => (c.description + c.flavorText).Length).First();
             Assert.IsTrue(codex.OpenDetailFor(longest.id));
-            var body = root.Find("Detail/DetailScroll/Viewport/Body").GetComponent<Text>();
+            var body = root.Find("Detail/DetailScroll/Viewport/Content/Body").GetComponent<Text>();
             AssertFullyVisible(body, "상세 본문");
             AssertFullyVisible(root.Find("Detail/Title").GetComponent<Text>(), "상세 제목");
         }
@@ -1159,13 +1248,13 @@ namespace CCT.Tests
             StringAssert.Contains("새 칵테일 3종마다 12초", JobPreset.Bartender.description);
             StringAssert.Contains("피해 +20% · 공속 +15%", JobPreset.Bartender.description);
             StringAssert.Contains("같은 차의 추가 중첩당", JobPreset.TeaSommelier.description);
-            StringAssert.Contains("피해 +2% · 초당 회복 +0.1", JobPreset.TeaSommelier.description);
+            StringAssert.Contains("피해 +2% · 분당 회복 +6", JobPreset.TeaSommelier.description);
             foreach (var job in new[] { JobPreset.Bartender, JobPreset.TeaSommelier })
                 StringAssert.DoesNotContain("재료", job.description, job.name);
             Assert.AreEqual("전방 레인을 연속 공격. 칵테일3+차3 획득 시 티니 보우 해금.", WeaponPreset.Rapier.description.Replace("\n", " "));
             Assert.AreEqual("자동 조준 사격. 다중 발사·관통 카드로 강화.", WeaponPreset.Gun.description.Replace("\n", " "));
             // 48(2026-10-12) 사용자 승인 검 밸런스: 넓은 베기·피해·경직 설명
-            Assert.AreEqual("넓게 베기 · 피해 +25%. 맞은 일반 몹 0.25초 경직(보스 제외). 근접 강화 카드를 사용.", WeaponPreset.Sword.description.Replace("\n", " "));
+            Assert.AreEqual("넓게 베기 · 피해 +25%. 맞은 일반 몹 250ms 경직(보스 제외). 근접 강화 카드를 사용.", WeaponPreset.Sword.description.Replace("\n", " "));
             Assert.AreEqual("자동 조준 사격. 기본 관통 1. 다중 발사·관통 카드로 강화.", WeaponPreset.Bow.description.Replace("\n", " "));
         }
     }

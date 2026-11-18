@@ -439,10 +439,11 @@ namespace CCT
 
         /// <summary>완성 잔 용량(mL). 커피는 추출 도구마다 잔이 다르다(에스프레소 잔·머그).</summary>
         public static float ServeCapacityMl(DrinkRecipe r) =>
-            r != null && r.Kind == DrinkKind.Coffee ? CoffeeBrewing.CupCapacityMl(r.coffeeMethod) : ServeCapacityMl(r != null ? r.Kind : DrinkKind.Cocktail);
+            r != null && r.Kind == DrinkKind.Coffee ? CoffeeStyles.CupCapacityMl(CoffeeStyles.Of(r), r.coffeeMethod) : ServeCapacityMl(r != null ? r.Kind : DrinkKind.Cocktail);
 
-        /// <summary>완성 잔에 들어갈 액체 + 얼음 부피(mL).</summary>
-        public static float ServeFillMl(DrinkRecipe r) => r == null ? 0f : (r.LiquidTotal() + Math.Max(0, r.water)) / 10f + Math.Max(0, r.ice) * IceCubeMl;
+        /// <summary>완성 잔에 들어갈 액체 + 얼음 부피(mL). 커피 완성 음료는 뜨거운 물·거품 부피도 더한다(2026-11-15 피드백 4).</summary>
+        public static float ServeFillMl(DrinkRecipe r) => r == null ? 0f : r.Kind == DrinkKind.Coffee ? CoffeeStyles.TotalVolumeMl(r) + Math.Max(0, r.ice) * IceCubeMl
+            : (r.LiquidTotal() + Math.Max(0, r.water)) / 10f + Math.Max(0, r.ice) * IceCubeMl;
 
         public static bool AllowedTechnique(DrinkKind kind, DrinkTechnique t) => kind switch
         {

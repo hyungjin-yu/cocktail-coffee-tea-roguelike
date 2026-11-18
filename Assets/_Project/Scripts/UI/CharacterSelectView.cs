@@ -93,6 +93,7 @@ namespace CCT
             DrinkLabButton = BuildDrinkLabButton();
             LaptopButton = BuildLaptopButton();
             BuildSaveIssueBanner();
+            MaybeShowNotebookGuide();
             // 2026-10-12: 진입 즉시 선택하면 바텐더 카드가 파란 강조로 고정돼 보여 첫 키보드 입력 때 드러낸다.
             var focus = lastJob == Job.TeaSommelier ? TeaSommelierButton : BartenderButton;
             UiInitialFocus.Offer(focus.gameObject);
@@ -254,6 +255,27 @@ namespace CCT
         public Button LaptopButton { get; private set; }
         public ResearchLaptopView LaptopScreen { get; private set; }
 
+        /// <summary>2026-11-15 피드백 7: 첫 판을 끝내고 로비로 오면 노트북 버튼 맥동 테두리 + 안내 말풍선(열기/건너뛰기).
+        /// 결과·획득 내역 화면 뒤 로비에서만 — 화면을 건너뛰어 노트북으로 강제 이동하지 않는다.</summary>
+        void MaybeShowNotebookGuide()
+        {
+            if (!NotebookGuide.Needed || LaptopButton == null || root == null) return;
+            var pulse = GuidePulse.Attach((RectTransform)LaptopButton.transform);
+            RectTransform bubble = null;
+            bubble = NotebookGuide.Bubble(root, "NotebookGuide", new Vector2(0f, 0f), new Vector2(410f, 232f), new Vector2(1100f, 132f),
+                NotebookGuide.LobbyLine, NotebookGuide.LobbySub,
+                "노트북 열기", () => { if (LaptopButton != null) LaptopButton.onClick.Invoke(); },
+                "건너뛰기", () =>
+                {
+                    NotebookGuide.Complete();
+                    if (pulse != null) Destroy(pulse.gameObject);
+                    if (bubble != null) Destroy(bubble.gameObject);
+                });
+        }
+
+        /// <summary>테스트·QA용 — 로비 노트북 안내 말풍선이 보이는가.</summary>
+        public bool NotebookGuideVisible => root != null && root.Find("NotebookGuide") != null;
+
         Button BuildLaptopButton()
         {
             // 아래 줄의 빈 자리(왼쪽 "뒤로"와 가운데 "영업 시작" 사이): 직업·무기 카드와 겹치지 않는다.
@@ -332,6 +354,7 @@ namespace CCT
             DrinkLabButton = BuildDrinkLabButton();
             LaptopButton = BuildLaptopButton();
             BuildModeRow();
+            MaybeShowNotebookGuide();
             UiFactory.AddText(UiFactory.Place("PreparedDrink", root, new Vector2(0.5f, 0f), new Vector2(0f, 64f), new Vector2(1300f, 50f)),
                 PreparedDrinkLine(), 24, TextAnchor.MiddleCenter, new Color(0.75f, 1f, 0.8f));
 

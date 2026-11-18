@@ -157,6 +157,14 @@ namespace CCT
                 Destroy(child);
             }
             float y = -12f;
+            // 2026-11-15 피드백 22: 결과 화면 "성장·조합 보기"가 여는 내용의 제목(카드·조합·연구 범위와 일치).
+            {
+                float hh = UiFactory.TruncatedBoxHeight(SectionFont + 4);
+                var heading = UiFactory.AddText(UiFactory.Place("DetailHeading", content, new Vector2(0.5f, 1f), new Vector2(0f, y), new Vector2(ScrollWidth - 40f, hh)),
+                    DetailHeading, SectionFont + 4, TextAnchor.MiddleCenter, Cream);
+                heading.verticalOverflow = VerticalWrapMode.Truncate;
+                y -= hh + 10f;
+            }
             int totalStacks = 0;
             foreach (var c in record.cards) totalStacks += c.stacks;
             y = Section($"선택 카드  ·  {record.cards.Count}종 · 총 중첩 {totalStacks}", y);
@@ -187,6 +195,9 @@ namespace CCT
             }
             content.sizeDelta = new Vector2(content.sizeDelta.x, -y + 16f);
         }
+
+        /// <summary>2026-11-15 피드백 22 상세 제목 — 결과 "성장·조합 보기"와 타이틀 "최근 기록" 상세 공용.</summary>
+        public const string DetailHeading = "획득 카드와 완성 조합 · 연구";
 
         float Section(string label, float y)
         {

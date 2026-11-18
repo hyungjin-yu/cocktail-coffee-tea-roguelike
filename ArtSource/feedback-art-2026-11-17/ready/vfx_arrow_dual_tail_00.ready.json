@@ -1,0 +1,111 @@
+{
+  "assetId": "vfx_arrow_dual_tail_00",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-17",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "arrow_tail_frame",
+  "png": "ready/vfx_arrow_dual_tail_00.png",
+  "aseprite": "ready/vfx_arrow_dual_tail_00.aseprite",
+  "animationAseprite": "ready/vfx_arrow_dual_tail.aseprite",
+  "animationAsepriteSha256": "2d842ca5fee07dc63fd7727515fe90eeb764fdc1c3dd7291eb385f343bf09d85",
+  "sourceRawPng": "raw/vfx_arrow_dual_tail.png",
+  "sourceRawAseprite": "raw/vfx_arrow_dual_tail.aseprite",
+  "dimensions": [
+    32,
+    16
+  ],
+  "alphaBounds": [
+    4,
+    2,
+    31,
+    14
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.9375,
+    0.5
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    30,
+    8
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/ArtExtra/vfx_arrow_tail/vfx_arrow_dual_tail_00.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 128,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "pivot": [
+      0.9375,
+      0.5
+    ]
+  },
+  "sha256": {
+    "png": "7573205d69900759ca9c2d321cc7ae85bb5cb10a6053ebe5ddb6fb87e21ef6e6",
+    "aseprite": "6c95e648a136898c84be0b7cd06764296f32230f44159fc28f3ba702e86a24ec",
+    "sourceRawPng": "cc587f79eb42eba6cb4e9dbdcf014b8dec4af12d2e0a824bd2499934a298075a",
+    "sourceRawAseprite": "9874e60ce577c1982e7db698b586a6f9037574c1d108ac5c66c2bbca08f0f2a9"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "generate_no_style.generate inside official Aseprite extension",
+    "sourceEvidence": "provenance/collected-generations.json",
+    "nativeFinish": "Official generated flame/leaf material retained as tone sampling; native contour correction defines three flame lobes / two leaf wisps / separated hybrid fork. Three actual native frames with terminal flicker and fixed socket; dark outline plus ivory contrast edge.",
+    "promptEvidence": "provenance/generation-specs.json"
+  },
+  "animation": {
+    "clip": "vfx_arrow_dual_tail",
+    "state": "dual",
+    "frame": 0,
+    "frameCount": 3,
+    "fps": 8,
+    "loop": true,
+    "frameDurationSeconds": 0.125,
+    "fixedSocketVerified": true
+  },
+  "attachment": {
+    "nativeTailSocketTopLeftPx": [
+      30,
+      8
+    ],
+    "arrowBodySocketNormalizedBottomLeft": [
+      0.140625,
+      0.484375
+    ],
+    "teaArrowBodySocketNormalizedBottomLeft": [
+      0.140625,
+      0.4921875
+    ],
+    "preserveBaseArrow": true,
+    "preserveTipTintAndHitRadius": true
+  },
+  "checks": {
+    "dimensions": true,
+    "alpha": true,
+    "nonempty": true,
+    "nativeCanvas": true,
+    "roundtripPixels": true,
+    "corners": true,
+    "individualSourceRoundtrip": true,
+    "individualPivot": true,
+    "individualFrame": true,
+    "native3FrameClip": true,
+    "fixedSocket": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false,
+    "unmodifiedRawSourceRoundtrip": true
+  },
+  "verification": "verification/tails-validation.json",
+  "visualPreviews": [
+    "previews/tail-frames-contact.png",
+    "previews/tail-original-arrow-backgrounds.png",
+    "previews/tail-native-small-gray.png"
+  ]
+}

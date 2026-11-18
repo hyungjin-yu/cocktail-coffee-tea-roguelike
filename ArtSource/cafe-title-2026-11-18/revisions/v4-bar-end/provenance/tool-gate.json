@@ -1,0 +1,19 @@
+{
+  "status": "realNativeGenerationPassed",
+  "aseprite": "1.3.18.6",
+  "actualOfficialVersion": "0.4.131",
+  "versionEvidence": "fresh native Edit menu read separately; not inferred from previous task number",
+  "actualRequest": "native generate_no_style.generate",
+  "actualCompletion": "CT18 access probe completed alert directly viewed",
+  "archive": "C:\\Users\\user\\AppData\\Roaming\\Aseprite\\extensions\\pixellab\\generation_history\\2026-11-18_09-09-08 - CT18 - ct_door_material_probe - 001\\0.png",
+  "rawPng": "ArtSource\\cafe-title-2026-11-18\\raw\\ct_door_material_probe.png",
+  "sha256": "94533372f5aaa5d672e70727f0be3d45d946f1d182d5cb3f39d9b3bc73d56605",
+  "dimensions": [
+    96,
+    128
+  ],
+  "readyCount": 0,
+  "credentialsAccessed": false,
+  "securityBypass": false,
+  "reinstall": false
+}

@@ -194,7 +194,7 @@ namespace CCT
                     EnemyProjectile.Spawn(shotOrigin, dir, StarProjectileSpeed, damage, game.Player,
                         enemy.transform.parent, EnemyProjectile.ArtPrefix + "review_star",
                         () => game.Player.Stats.ApplySlow(StarSlowSeconds, StarSlowMultiplier),
-                        DamageSource.BossSkill(enemy.Def, "별점 1점"));
+                        DamageSource.BossSkill(enemy.Def, "별점 1점"), EnemyProjectile.Tier.Boss); // 2026-11-15 피드백 20 보스 탄 테두리·꼬리
                 }
             }
 

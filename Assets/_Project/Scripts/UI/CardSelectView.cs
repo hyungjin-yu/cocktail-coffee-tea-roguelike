@@ -16,7 +16,6 @@ namespace CCT
         {
             public GameObject root;
             public Image background;
-            public Text key;
             public Text rarity;
             public Text title;
             public Text description;
@@ -29,9 +28,17 @@ namespace CCT
             public GameObject badge;
             public GameObject influenceRoot;
             public Text influence;
+            // 2026-11-15 피드백 11 등급 테두리·등장 / 12 목표 표식(서로 다른 모양·자리 — 등급 = 카드 둘레 테두리, 목표 = 왼쪽 위 표식 + 아래 띠)
+            public Image rarityFrame, sweep;
+            public RectTransform cardRt;
+            public GameObject goalMark;
+            public Text goalMarkText;
+            public float enterT;
+            public bool sweepOn;
         }
 
-        Text reasonLine, targetLine;
+        Text reasonLine, targetLine, keyHint;
+        public string KeyHintLabel => keyHint != null ? keyHint.text : "";
         CardEducationView learning;
         CardEducationGuide tutorial;
         public CardEducationGuide Tutorial => tutorial;
@@ -91,6 +98,10 @@ namespace CCT
 
             for (int i = 0; i < SlotCount; i++)
                 view.slots[i] = view.BuildSlot(rootRt, i);
+            // 2026-11-15 피드백 8: 키보드 선택 안내는 카드 밖 한 줄(카드 아래 목표 진행 띠 -443 아래, 화면 안전선 안).
+            view.keyHint = UiFactory.AddText(UiFactory.Place("KeyHint", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, -478f),
+                new Vector2(900f, 36f)), MobilePlatform.IsTouchUI ? "" : KeyHintText, 22, TextAnchor.MiddleCenter, new Color(0.78f, 0.8f, 0.86f));
+            view.keyHint.raycastTarget = false;
 
             view.learning = CardEducationView.Create(rootRt, () => view.inputGate.Arm(Time.frameCount));
             view.tutorial = CardEducationGuide.Create(rootRt, () => view.inputGate.Arm(Time.frameCount), () => view.OpenLearning(0));
@@ -120,8 +131,7 @@ namespace CCT
             int captured = index;
             button.onClick.AddListener(() => ChooseFromInput(captured));
 
-            slot.key = UiFactory.AddText(UiFactory.Place("Key", rt, new Vector2(0f, 1f), new Vector2(18f, -12f),
-                new Vector2(80f, 40f)), MobilePlatform.IsTouchUI ? "" : $"[{index + 1}]", 30, TextAnchor.UpperLeft, new Color(1f, 1f, 1f, 0.5f));
+            // 2026-11-15 피드백 8: 카드 왼쪽 위 순번 "[1]/[2]/[3]"은 카드 내용(중첩·비용)처럼 읽혀 제거 — 1/2/3 키 선택은 그대로, 안내는 화면 아래 KeyHint 한 줄.
             slot.rarity = UiFactory.AddText(UiFactory.Place("Rarity", rt, new Vector2(0.5f, 1f),
                 new Vector2(-15f, -30f), new Vector2(280f, 44f)), "", 32, TextAnchor.MiddleCenter, Color.white);
             slot.title = UiFactory.AddText(UiFactory.Place("Name", rt, new Vector2(0.5f, 1f),
@@ -132,12 +142,14 @@ namespace CCT
             slot.title.rectTransform.sizeDelta = new Vector2(290f, 100f);
             slot.title.horizontalOverflow = HorizontalWrapMode.Wrap;
             slot.title.resizeTextForBestFit = true; slot.title.resizeTextMinSize = 24; slot.title.resizeTextMaxSize = 36;
+            // 2026-11-15 피드백 9 글자 계층: 이름 → 게임 효과(크게·밝게, 최대 2줄, 자동 축소 없음) → 음료 지식·해석(작게·흐리게).
             slot.description = UiFactory.AddText(UiFactory.Place("Desc", rt, new Vector2(0.5f, 0.5f),
-                new Vector2(0f, 80f), new Vector2(390f, 80f)), "", 24,
+                new Vector2(0f, EffectBoxY), new Vector2(390f, EffectBoxHeight)), "", EffectFontSize,
                 MobilePlatform.IsTouchUI ? TextAnchor.MiddleCenter : TextAnchor.UpperCenter, // 2026-10-12 모바일: 설명 세로 가운데
-                new Color(0.92f, 0.92f, 0.92f));
-            slot.fact = UiFactory.AddText(UiFactory.Place("RealWorldFact", rt, new Vector2(.5f,.5f), new Vector2(0,-15), new Vector2(380,110)), "", 24, TextAnchor.UpperLeft, new Color(.8f,.94f,.84f));
-            slot.connection = UiFactory.AddText(UiFactory.Place("GameConnection", rt, new Vector2(.5f,.5f), new Vector2(0,-105), new Vector2(380,70)), "", 24, TextAnchor.UpperLeft, new Color(.95f,.85f,.7f));
+                EffectColor);
+            slot.description.verticalOverflow = VerticalWrapMode.Truncate;
+            slot.fact = UiFactory.AddText(UiFactory.Place("RealWorldFact", rt, new Vector2(.5f,.5f), new Vector2(0,-28), new Vector2(380,100)), "", SupportFontSize, TextAnchor.UpperLeft, new Color(.68f,.8f,.72f));
+            slot.connection = UiFactory.AddText(UiFactory.Place("GameConnection", rt, new Vector2(.5f,.5f), new Vector2(0,-112), new Vector2(380,60)), "", SupportFontSize, TextAnchor.UpperLeft, new Color(.82f,.74f,.62f));
             slot.fact.verticalOverflow = slot.connection.verticalOverflow = VerticalWrapMode.Truncate;
             var learnRt = UiFactory.Place("Learn", rt, new Vector2(.5f,0), new Vector2(0,118), new Vector2(300,48));
             var learnBg = UiFactory.AddImage(learnRt, new Color(.15f,.3f,.3f));
@@ -178,11 +190,40 @@ namespace CCT
             slot.influence.resizeTextMaxSize = 22;
             slot.influenceRoot = infRt.gameObject;
             slot.influenceRoot.SetActive(false);
+            slot.cardRt = rt;
+            // 피드백 11: 등급 테두리(카드 둘레 6px 띠, 등급 색). 일반은 띠 없음. 영웅·특수는 두께 10 + 등장 때 한 번 빛줄기.
+            // 테두리는 카드 뒤 형제(카드 바탕이 가운데를 덮어 둘레 띠만 보인다 — 효과 글 위에 그리지 않는다).
+            var frameRt = UiFactory.Place($"RarityFrame{index + 1}", parent, new Vector2(0.5f, 0.5f), rt.anchoredPosition, rt.sizeDelta + new Vector2(12f, 12f));
+            frameRt.SetSiblingIndex(rt.GetSiblingIndex());
+            slot.rarityFrame = UiFactory.AddImage(frameRt, Color.clear);
+            slot.rarityFrame.raycastTarget = false;
+            var sweepRt = UiFactory.Place("RaritySweep", rt, new Vector2(0f, 0.5f), Vector2.zero, new Vector2(70f, 560f));
+            slot.sweep = UiFactory.AddImage(sweepRt, Color.clear);
+            slot.sweep.raycastTarget = false;
+            sweepRt.localRotation = Quaternion.Euler(0f, 0f, -12f);
+            sweepRt.SetAsFirstSibling(); // 빛줄기는 글·그림 아래(카드 바탕 위)
+            // 피드백 12: 목표 기여 표식 — 왼쪽 위(순번을 뺀 자리). 청록 표식 + "목표" / 완성이면 금색 "목표 완성".
+            // 카드 위 테두리에 걸친 왼쪽 표식 줄(가운데 "추천" 표식과 같은 줄, 겹치지 않는 왼쪽) — 카드 안 등급 글과 겹치지 않는다.
+            var gm = UiFactory.Place("GoalMark", rt, new Vector2(0f, 1f), new Vector2(-10f, 26f), new Vector2(124f, 44f));
+            UiFactory.AddImage(gm, new Color(0.1f, 0.55f, 0.6f, 0.95f)).raycastTarget = false;
+            slot.goalMarkText = UiFactory.AddText(UiFactory.Stretch("Label", gm), "◎ 목표", 24, TextAnchor.MiddleCenter, Color.white);
+            slot.goalMarkText.raycastTarget = false;
+            slot.goalMarkText.resizeTextForBestFit = true; slot.goalMarkText.resizeTextMinSize = 18; slot.goalMarkText.resizeTextMaxSize = 24;
+            slot.goalMark = gm.gameObject;
+            slot.goalMark.SetActive(false);
             slot.odds = UiFactory.AddText(UiFactory.Place("Odds", rt, new Vector2(0.5f, 0f),
                 new Vector2(0f, 40f), new Vector2(380f, 44f)), "", 28, TextAnchor.MiddleCenter,
                 new Color(1f, 1f, 1f, 0.6f));
             return slot;
         }
+
+        /// <summary>2026-11-15 피드백 9: 게임 효과 글(카드 중심 기준 상자 가운데 y, 높이 = 32 두 줄), 보조 글 크기.
+        /// 이름판 아래 끝 125(카드 중심 기준) 바로 밑 120 ~ 28(32 두 줄), 지식 22 ~ -78(21 세 줄), 해석 -82 ~ -142(두 줄), 지식 버튼 위 끝 -144.</summary>
+        public const int EffectFontSize = 32, SupportFontSize = 21;
+        public const float EffectBoxY = 74f, EffectBoxHeight = 92f;
+        static readonly Color EffectColor = new Color(1f, 0.97f, 0.86f);
+        /// <summary>2026-11-15 피드백 8: 카드에서 뺀 순번 대신 화면 아래 공통 단축키 안내(터치 UI는 표시 안 함).</summary>
+        public const string KeyHintText = "숫자 키 1 · 2 · 3으로 왼쪽부터 카드 선택";
 
         /// <summary>카드 그림 위치(카드 중심 기준): 이름판 왼쪽 칸. 2026-11-12 이전 = 오른쪽 위 64(720p ≈43px, 장식처럼 보였다).</summary>
         public const float ArtX = -143f, ArtY = 175f, ArtSize = 88f;
@@ -214,6 +255,7 @@ namespace CCT
                 var slot = slots[i];
                 bool used = i < offers.Count;
                 slot.root.SetActive(used);
+                slot.rarityFrame.gameObject.SetActive(used);
                 if (!used) continue;
 
                 var offer = offers[i];
@@ -237,7 +279,7 @@ namespace CCT
                 slot.stacks.text = offer.currentStacks == 0
                     ? $"신규 · 최대 {card.maxStacks}"
                     : $"Lv {offer.currentStacks} → {offer.currentStacks + 1}  (최대 {card.maxStacks})";
-                slot.odds.text = offer.earlyRangedPriority ? "초반 원거리 우선 추첨 (60%)" : $"{RarityTable.Label(card.rarity)} 등급 확률 {offer.rarityPercent:0.#}%";
+                slot.odds.text = offer.earlyRangedPriority ? "초반 원거리 우선 추첨 (60%)" : $"{RarityTable.Label(card.rarity)} 등급 확률 {IntNum.Round(offer.rarityPercent)}%";
                 slot.odds.gameObject.SetActive(false);
                 var a = advice[i];
                 slot.advice.text = a.reason;
@@ -248,7 +290,11 @@ namespace CCT
                 var icon = CardEducationIcons.For(card);
                 slot.categoryIcon.sprite = icon;
                 slot.categoryIcon.gameObject.SetActive(icon != null);
+                ApplyRarityStyle(slot, card.rarity);
             }
+            // 영웅·특수 카드가 있으면 창이 열릴 때 한 번만 소리(희소성 표현 — 추천과 무관, 추첨·효과 불변)
+            if (!HitFeedback.LowEffects)
+                foreach (var o in offers) if (o.card.rarity >= CardRarity.Epic) { AudioService.PlaySfx("skill_unlock"); break; }
 
             reasonLine.text = ReasonText(offers.Count > 0 ? offers[0].card.category : CardCategory.Cocktail, GameManager.Instance);
             RefreshTargetInfo();
@@ -258,6 +304,47 @@ namespace CCT
             var game=GameManager.Instance;
             if (!CardEducationGuide.SuppressAutomaticForTests && CardEducationGuide.NeedsIntroduction && game!=null && game.State==GameState.LevelUp)
                 OpenTutorial();
+        }
+
+        /// <summary>테스트·QA용 — 슬롯의 목표 표식 문구(없으면 "")와 등급 테두리 두께(0 = 없음).</summary>
+        public string GoalMarkText(int index) => index >= 0 && index < SlotCount && slots[index].goalMark.activeSelf ? slots[index].goalMarkText.text : "";
+        public float RarityFrameWidth(int index) => index >= 0 && index < SlotCount && slots[index].rarityFrame.color.a > 0f ? (slots[index].rarityFrame.rectTransform.sizeDelta.x - slots[index].cardRt.sizeDelta.x) * 0.5f : 0f;
+
+        /// <summary>피드백 11: 일반 = 테두리 없음·즉시, 희귀 = 등급색 6px 테두리 + 짧은 확대 등장(0.18초), 영웅·특수 = 10px 테두리 + 등장 + 빛줄기 한 번.
+        /// 저이펙트면 등장·빛줄기 없이 테두리만. 효과 본문을 가리지 않게 빛줄기는 반투명(최대 0.35).</summary>
+        void ApplyRarityStyle(Slot slot, CardRarity r)
+        {
+            var c = RarityTable.Color(r);
+            float w = r == CardRarity.Common ? 0f : r == CardRarity.Rare ? 6f : 10f;
+            slot.rarityFrame.color = w > 0f ? new Color(c.r, c.g, c.b, 0.95f) : Color.clear;
+            slot.rarityFrame.rectTransform.sizeDelta = slot.cardRt.sizeDelta + new Vector2(2f * w, 2f * w);
+            slot.sweep.color = Color.clear;
+            slot.cardRt.localScale = Vector3.one;
+            slot.enterT = r == CardRarity.Common || HitFeedback.LowEffects ? -1f : 0f;
+            slot.sweepOn = r >= CardRarity.Epic && !HitFeedback.LowEffects;
+        }
+
+        void TickEntrance()
+        {
+            foreach (var s in slots)
+            {
+                if (s == null || s.enterT < 0f) continue;
+                s.enterT += Time.unscaledDeltaTime;
+                float k = Mathf.Clamp01(s.enterT / 0.18f);
+                float scale = Mathf.Lerp(0.94f, 1f, 1f - (1f - k) * (1f - k));
+                s.cardRt.localScale = new Vector3(scale, scale, 1f);
+                s.rarityFrame.rectTransform.localScale = s.cardRt.localScale;
+                if (s.sweepOn)
+                {
+                    float st = Mathf.Clamp01((s.enterT - 0.1f) / 0.45f);
+                    var srt = s.sweep.rectTransform;
+                    srt.anchoredPosition = new Vector2(Mathf.Lerp(20f, 380f, st), 0f); // 카드 안쪽에서만
+                    var c = s.rarityFrame.color; c.a = 0.35f * Mathf.Sin(st * Mathf.PI);
+                    s.sweep.color = c;
+                    if (st >= 1f) { s.sweep.color = Color.clear; s.sweepOn = false; }
+                }
+                if (k >= 1f && !s.sweepOn) { s.cardRt.localScale = Vector3.one; s.rarityFrame.rectTransform.localScale = Vector3.one; s.enterT = -1f; }
+            }
         }
 
         /// <summary>57 P1 "카드 창이 왜 열렸나 · 다음 카드 창 조건" — 실제 게이지 기준(RunGuide.NextCardStatus).</summary>
@@ -282,7 +369,7 @@ namespace CCT
             bool hasGame = g != null && g.Player != null;
             targetLine.gameObject.SetActive(hasGame);
             ChangeTargetButton.gameObject.SetActive(hasGame);
-            for (int i = 0; i < SlotCount; i++) slots[i].influenceRoot.SetActive(false);
+            for (int i = 0; i < SlotCount; i++) { slots[i].influenceRoot.SetActive(false); slots[i].goalMark.SetActive(false); }
             if (!hasGame) return;
             string key = MobilePlatform.IsTouchUI ? "" : " [T]";
             if (!g.ComboTarget.HasValue)
@@ -301,6 +388,11 @@ namespace CCT
                 string step = $"{JobStudyTheme.Text(before.req.label, g.Job)} {before.current}→{before.current + 1}/{before.req.count}";
                 slots[i].influence.text = completes ? $"목표 '{name}' 조건 완성!" : $"목표 진행 · {step}";
                 slots[i].influenceRoot.SetActive(true);
+                // 피드백 12: 왼쪽 위 목표 표식(등급 테두리와 다른 자리·모양). 마지막 조건이면 금색 "목표 완성".
+                slots[i].goalMark.SetActive(true);
+                slots[i].goalMarkText.text = completes ? "★ 목표 완성" : "◎ 목표";
+                slots[i].goalMark.GetComponent<Image>().color = completes ? new Color(0.85f, 0.62f, 0.12f, 0.98f) : new Color(0.1f, 0.55f, 0.6f, 0.95f);
+                slots[i].goalMarkText.color = completes ? new Color(0.16f, 0.08f, 0.02f) : Color.white;
             }
         }
 
@@ -308,6 +400,7 @@ namespace CCT
         {
             // 08:23 "키 관통 없음" — Pause가 이 화면 위에 겹쳐 열려 있으면(오버레이 스택) 밑에 깔린
             // 이 화면의 단축키(1/2/3)가 새어 들어오면 안 된다.
+            if (IsOpen) TickEntrance(); // 등장 연출은 학습 창·일시정지와 무관하게 끝까지(입력과 무관)
             if (!IsOpen || IsLearningOpen || (GameManager.Instance != null && GameManager.Instance.IsPaused)) return;
 
             // 매 프레임 눌림 상태를 봐야 "뗐다가 다시 누름"을 구분한다(클릭/Submit 경로도 이 판정을 공유).

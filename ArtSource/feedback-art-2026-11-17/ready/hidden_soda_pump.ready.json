@@ -1,0 +1,79 @@
+{
+  "assetId": "hidden_soda_pump",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-17",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "hidden_hud_icon",
+  "png": "ready/hidden_soda_pump.png",
+  "aseprite": "ready/hidden_soda_pump.aseprite",
+  "sourceRawPng": "raw/hidden_soda_pump.png",
+  "sourceRawAseprite": "raw/hidden_soda_pump.aseprite",
+  "dimensions": [
+    24,
+    24
+  ],
+  "alphaBounds": [
+    1,
+    2,
+    23,
+    23
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0.5
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    12,
+    12
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/Icons/Hidden/hidden_soda_pump.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 100,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "sha256": {
+    "png": "fb3defdf9b79d5b855c165f8b0e1b83e907619e4b53cfd8aa3afd17eb6b6b28a",
+    "aseprite": "0bc1a403858054ff55d81100e159c3d21a20dff2fded0ea362eb385e07057a60",
+    "sourceRawPng": "c5192365358dd7fd6993f47baef75b2d9f1688b67fb3384826b269364fc07ac5",
+    "sourceRawAseprite": "ea4e695eb6d4b5842abcbe755540f3031ba58a3ba9b239893320f56b5a3f3be7"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+    "sourceEvidence": "provenance/collected-generations.json",
+    "nativeFinish": "Generated object silhouette/material retained; native palette, alpha cleanup and nearest-neighbour 22px fit. Bottle retained; pump plunger, curved outlet and two inward attraction arrows natively added.",
+    "promptEvidence": "provenance/generation-specs.json"
+  },
+  "checks": {
+    "dimensions": true,
+    "nativeCanvas": true,
+    "nativeMagic": true,
+    "nativeFrames": true,
+    "roundtripPixels": true,
+    "pivot": true,
+    "alpha": true,
+    "nonempty": true,
+    "cornersTransparent": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false,
+    "unmodifiedRawSourceRoundtrip": true
+  },
+  "verification": "verification/hidden-validation.json",
+  "visualPreviews": [
+    "previews/hidden-finish-review.png"
+  ]
+}

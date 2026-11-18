@@ -1,0 +1,122 @@
+{
+  "assetId": "dl_tin_coffee_bolivia",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-17",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "origin_manufacturing_container",
+  "png": "ready/dl_tin_coffee_bolivia.png",
+  "aseprite": "ready/dl_tin_coffee_bolivia.aseprite",
+  "sourceRawPng": "raw/dl_tin_coffee_bolivia.png",
+  "sourceRawAseprite": "raw/dl_tin_coffee_bolivia.aseprite",
+  "dimensions": [
+    32,
+    32
+  ],
+  "alphaBounds": [
+    6,
+    5,
+    25,
+    32
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    16,
+    32
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_bolivia.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 32,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "pivot": [
+      0.5,
+      0
+    ]
+  },
+  "sha256": {
+    "png": "11d2daab435c2d0b43ae3a45c1c879413c9bec02cde01ac7947499b3faf907f6",
+    "aseprite": "9764e9f8a8d51d3a5a05fb9f9608627d6f033750aff88d606a32c058eaa25deb",
+    "sourceRawPng": "9b6e8d41fe95db04c432ed3b06bfe8d8b2661a59702462822ad97bd004c63f73",
+    "sourceRawAseprite": "3d783a15b277e5a95b24ef38ae49445e85b68a456e3bf2b8c8549649bcba069f"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+    "sourceEvidence": "provenance/collected-generations.json",
+    "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+    "promptEvidence": "provenance/recovery-specs29.json"
+  },
+  "checks": {
+    "dimensions": true,
+    "nativeCanvas": true,
+    "nativeMagic": true,
+    "nativeFrames": true,
+    "roundtripPixels": true,
+    "pivot": true,
+    "alpha": true,
+    "nonempty": true,
+    "cornersTransparent": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false,
+    "unmodifiedRawSourceRoundtrip": true,
+    "actualOpeningAnchors": true
+  },
+  "verification": "verification/containers-validation.json",
+  "visualPreviews": [
+    "previews/containers-color.png",
+    "previews/containers-gray.png",
+    "previews/container-anchors-pour.png"
+  ],
+  "anchors": {
+    "assetId": "dl_tin_coffee_bolivia",
+    "grip": [
+      0.5,
+      0.29374999999999996
+    ],
+    "height": 32,
+    "mouth": [
+      0.5,
+      0.765625
+    ],
+    "mouthPixelCenterTopLeft": [
+      16,
+      7.5
+    ],
+    "openingBoundsTopLeft": [
+      8,
+      5,
+      24,
+      10
+    ],
+    "pivot": [
+      0.5,
+      0
+    ],
+    "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+    "pourLip": [
+      0.734375,
+      0.765625
+    ],
+    "pourLipPixelCenterTopLeft": [
+      23.5,
+      7.5
+    ],
+    "width": 32
+  },
+  "ingredientId": "coffee_bolivia",
+  "displayName": "볼리비아 커피",
+  "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+  "contractVerification": "verification/container-contract-validation.json"
+}

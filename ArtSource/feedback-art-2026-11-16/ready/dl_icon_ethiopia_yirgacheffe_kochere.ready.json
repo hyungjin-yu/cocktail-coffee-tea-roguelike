@@ -1,0 +1,81 @@
+{
+  "assetId": "dl_icon_ethiopia_yirgacheffe_kochere",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-16",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "origin_icon",
+  "png": "ready/dl_icon_ethiopia_yirgacheffe_kochere.png",
+  "aseprite": "ready/dl_icon_ethiopia_yirgacheffe_kochere.aseprite",
+  "sourceRawPng": "raw/dl_icon_ethiopia_yirgacheffe_kochere.png",
+  "sourceRawAseprite": "raw/dl_icon_ethiopia_yirgacheffe_kochere.aseprite",
+  "dimensions": [
+    32,
+    32
+  ],
+  "alphaBounds": [
+    2,
+    2,
+    30,
+    30
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0.5
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    16,
+    16
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_icon_ethiopia_yirgacheffe_kochere.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 128,
+    "filterMode": "Point",
+    "mipmapEnabled": false,
+    "compression": "None",
+    "alphaIsTransparency": true,
+    "sRGB": true,
+    "wrapModeU": "Clamp",
+    "wrapModeV": "Clamp",
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "sha256": {
+    "png": "cc4a020d0209f42cc8bcc6a52e35e0e1057ba00d61fa13715aaea4c5bd5ce056",
+    "aseprite": "ed31eba27201f019b58ec589101f6963f578beb78fb0347afe06e7274b0c1c73"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "installed generate_no_style.generate() inside Aseprite; direct GUI for first latte; official native archive for batch",
+    "pixelLabGeneratedAsset": "dl_icon_ethiopia_yirgacheffe_kochere",
+    "technicalDerivedMask": false,
+    "nativeFinish": "native edge-connected matte removal when needed, palette and alpha cleanup; uniform nearest-neighbour crop fit",
+    "promptEvidence": "provenance/batch-native-specs.json"
+  },
+  "checks": {
+    "structural": true,
+    "nativeRoundtripPixelsEqual": true,
+    "nativeSourcePivot": true,
+    "alphaPolicy": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false
+  },
+  "verification": "verification/asset-validation.json",
+  "visualPreviews": [
+    "previews/cups-masks-fill.png",
+    "previews/origins-color.png",
+    "previews/origins-gray.png",
+    "previews/foam-repeat-lock.png"
+  ],
+  "ingredientId": "ethiopia_yirgacheffe_kochere",
+  "displayName": "예가체프 코체레",
+  "designNote": "Decorative game packaging/bean motif differentiates the inventory icon; no claim about authentic regional packaging, flavor or processing."
+}

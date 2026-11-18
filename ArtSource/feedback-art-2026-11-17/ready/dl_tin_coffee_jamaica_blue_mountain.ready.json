@@ -1,0 +1,122 @@
+{
+  "assetId": "dl_tin_coffee_jamaica_blue_mountain",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-17",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "origin_manufacturing_container",
+  "png": "ready/dl_tin_coffee_jamaica_blue_mountain.png",
+  "aseprite": "ready/dl_tin_coffee_jamaica_blue_mountain.aseprite",
+  "sourceRawPng": "raw/dl_tin_coffee_jamaica_blue_mountain.png",
+  "sourceRawAseprite": "raw/dl_tin_coffee_jamaica_blue_mountain.aseprite",
+  "dimensions": [
+    32,
+    32
+  ],
+  "alphaBounds": [
+    7,
+    5,
+    25,
+    32
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    16,
+    32
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_coffee_jamaica_blue_mountain.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 32,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "pivot": [
+      0.5,
+      0
+    ]
+  },
+  "sha256": {
+    "png": "e77228d7a12aaffecb5db8d368b00cbc980fc7da6b4718bcff54b0c53a3247c7",
+    "aseprite": "8a0486076947277fb6cc325d6550b293bb05b786a225138a343951c08eee1eb6",
+    "sourceRawPng": "8eca9a4225ec7658950aba1a5916c50c10e089aa7c2fb48dde9dd9ffadfced2d",
+    "sourceRawAseprite": "f6b583d9fcf9bab27998825faba3cc8474b084b80a853dd32a7f82cb43280777"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+    "sourceEvidence": "provenance/collected-generations.json",
+    "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+    "promptEvidence": "provenance/recovery-specs29.json"
+  },
+  "checks": {
+    "dimensions": true,
+    "nativeCanvas": true,
+    "nativeMagic": true,
+    "nativeFrames": true,
+    "roundtripPixels": true,
+    "pivot": true,
+    "alpha": true,
+    "nonempty": true,
+    "cornersTransparent": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false,
+    "unmodifiedRawSourceRoundtrip": true,
+    "actualOpeningAnchors": true
+  },
+  "verification": "verification/containers-validation.json",
+  "visualPreviews": [
+    "previews/containers-color.png",
+    "previews/containers-gray.png",
+    "previews/container-anchors-pour.png"
+  ],
+  "anchors": {
+    "assetId": "dl_tin_coffee_jamaica_blue_mountain",
+    "grip": [
+      0.5,
+      0.29374999999999996
+    ],
+    "height": 32,
+    "mouth": [
+      0.5,
+      0.765625
+    ],
+    "mouthPixelCenterTopLeft": [
+      16,
+      7.5
+    ],
+    "openingBoundsTopLeft": [
+      8,
+      5,
+      24,
+      10
+    ],
+    "pivot": [
+      0.5,
+      0
+    ],
+    "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+    "pourLip": [
+      0.734375,
+      0.765625
+    ],
+    "pourLipPixelCenterTopLeft": [
+      23.5,
+      7.5
+    ],
+    "width": 32
+  },
+  "ingredientId": "coffee_jamaica_blue_mountain",
+  "displayName": "자메이카 블루마운틴",
+  "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+  "contractVerification": "verification/container-contract-validation.json"
+}

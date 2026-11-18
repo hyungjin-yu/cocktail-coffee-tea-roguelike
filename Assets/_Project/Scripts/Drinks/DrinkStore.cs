@@ -93,6 +93,12 @@ namespace CCT
         public bool starterGranted;
         /// <summary>커피 확장 저장 마이그레이션용 1회 지급 플래그.</summary>
         public bool coffeeStarterGranted;
+        /// <summary>2026-11-15 피드백 5 제조 실습(네그로니 1잔) 재료 지급을 마쳤는지(v6 추가 필드, 없으면 false). 지급은 저장당 1회.
+        /// 지급분은 기존 판매 불가 출처 장부(endlessStock)에 기록 — 일반 재료보다 나중에 쓰이고, 섞인 음료는 판매 코인을 받을 수 없다.</summary>
+        public bool practiceGranted;
+        /// <summary>2026-11-15 피드백 24 목표 음료(활성 1개): 사용자가 고른 레시피의 사본(이름·배합). 비어 있으면 목표 없음.
+        /// 사본이라 서랍 레시피를 고치거나 지워도·전역 예시 정의에도 영향이 없다(목표 해제는 명시적으로).</summary>
+        public DrinkRecipe goalRecipe = new DrinkRecipe();
         public List<DrinkAmount> stock = new List<DrinkAmount>();
         /// <summary>2026-11-10 v4 출처 장부: stock 가운데 "끝없는 재료 모으기"에서 얻은 양(재료별, 항상 0 ≤ endless ≤ stock).
         /// 판매 코인이 스킨 재화와 같은 재화라서(DrinkLab.Sell → coins → BuyCosmetic) 무한 모드 재료로 만든 음료의 판매를 막는 데 쓴다.
@@ -241,11 +247,14 @@ namespace CCT
     /// 처음 적용할 때 원본 파일을 "{path}.pre-integer-v{n}.bak"으로 한 번 복사해 둔다(이미 있으면 덮어쓰지 않는다).</summary>
     public static class DrinkStore
     {
-        public const int CurrentVersion = 5;
+        public const int CurrentVersion = 6;
         /// <summary>2026-11-11 v5: 마스터 도전 런 제조 잔 목록(runCups — 출처별 사용량 포함) 추가. 값 변환 없음(추가 필드만).
         /// 보관 잔은 로비 재고를 이미 차감했으므로 v4 빌드가 이 파일을 다시 써서 잔 기록(=환원 근거)을 잃지 않게 버전을 올려 미래 버전 보호를 받는다.
         /// 단일 로비 준비 음료(prepared)는 그대로 둔다(런 잔과 분리).</summary>
         public const int RunCupsVersion = 5;
+        /// <summary>2026-11-15 v6: 제조 실습 1회 지급 플래그(practiceGranted) 추가. 값 변환 없음(추가 필드만). v5 빌드가 이 파일을 다시 써서
+        /// 플래그를 잃고 실습 재료를 다시 받는 일이 없도록 버전을 올려 미래 버전 보호(쓰기 금지)를 받게 한다.</summary>
+        public const int PracticeVersion = 6;
         /// <summary>2026-11-10 v4: 끝없는 모드 출처 장부(endlessStock·준비 음료 endlessAmounts·대기 보상 endless) 추가. 값 변환 없음(추가 필드만).
         /// v3 이하 빌드가 v4 파일을 다시 써서 장부를 잃지 않도록 버전을 올려 기존 미래 버전 보호(쓰기 금지)를 받게 한다.</summary>
         public const int EndlessLedgerVersion = 4;

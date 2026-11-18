@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ct_bookshelf_source",
+    "width": 128,
+    "height": 192,
+    "description": "A real cafe recipe BOOKSHELF made of dark walnut: a simple rectangular floor-standing cabinet, exactly3 open shelves with cream and muted sage recipe books, a few small coffee jars, short solid base; all objects resting on shelves. No lamps, no decorative arch, no stool. Warm dark walnut and muted amber-ivory cafe pixel art; same dark201D29 outlines, small pixel clusters, restrained highlights, upper-left dominant warm light. Complete object centered, straight-on FRONT elevation, no floor shadow, no text, letters, numbers, logo, neon, characters, floating parts or isometric projection. Realistic furniture proportions.",
+    "model": "pro"
+  },
+  {
+    "id": "ct_coat_cabinet_source",
+    "width": 128,
+    "height": 192,
+    "description": "A narrow real cafe employee COAT CABINET of dark walnut, straight open rectangular frame, a horizontal brass rail at upper third with one muted brown apron and one cream apron hanging from wooden hangers, closed low drawer, no shelves of books and no person. Warm dark walnut and muted amber-ivory cafe pixel art; same dark201D29 outlines, small pixel clusters, restrained highlights, upper-left dominant warm light. Complete object centered, straight-on FRONT elevation, no floor shadow, no text, letters, numbers, logo, neon, characters, floating parts or isometric projection. Realistic furniture proportions.",
+    "model": "pro"
+  },
+  {
+    "id": "ct_radio_source",
+    "width": 128,
+    "height": 64,
+    "description": "One compact real vintage cafe tabletop RADIO, walnut rounded rectangular case, cloth speaker grille on left, two small brass rotary control knobs and narrow ivory tuning dial on right. Device itself only, no table, no antenna taller than case, no text. Warm dark walnut and muted amber-ivory cafe pixel art; same dark201D29 outlines, small pixel clusters, restrained highlights, upper-left dominant warm light. Complete object centered, straight-on FRONT elevation, no floor shadow, no text, letters, numbers, logo, neon, characters, floating parts or isometric projection. Realistic furniture proportions.",
+    "model": "pro"
+  },
+  {
+    "id": "ct_ledger_source",
+    "width": 128,
+    "height": 64,
+    "description": "An OPEN cafe business LEDGER on a flat tabletop, cream paper pages with sparse short brown ruled bookkeeping marks and no legible writing, dark walnut leather binding, a slim pencil lying alongside; natural shallow top view so both page surfaces visible. No table itself, no floating papers. Warm dark walnut and muted amber-ivory cafe pixel art; same dark201D29 outlines, small pixel clusters, restrained highlights, upper-left dominant warm light. Complete object centered, straight-on FRONT elevation, no floor shadow, no text, letters, numbers, logo, neon, characters, floating parts or isometric projection. Realistic furniture proportions.",
+    "model": "pro"
+  },
+  {
+    "id": "ct_espresso_source",
+    "width": 128,
+    "height": 96,
+    "description": "One compact realistic cafe ESPRESSO MACHINE, dark brushed metal and warm brass, two group heads, short drip tray, one small white espresso cup resting on tray under a spout, no steam clouds, no huge cup, no person. Isolated whole appliance, no countertop. Warm dark walnut and muted amber-ivory cafe pixel art; same dark201D29 outlines, small pixel clusters, restrained highlights, upper-left dominant warm light. Complete object centered, straight-on FRONT elevation, no floor shadow, no text, letters, numbers, logo, neon, characters, floating parts or isometric projection. Realistic furniture proportions.",
+    "model": "pro"
+  },
+  {
+    "id": "ct_facade_material_source",
+    "width": 256,
+    "height": 128,
+    "description": "A realistic small cafe exterior wall material study in clean game pixel art: warm dark walnut doorframe molding beside muted brown plaster/brick wall and a small brass wall plate. Straight flat FRONT view of wall surfaces, no perspective room, no actual door, no readable signs, no text, no plants or people. Warm amber indoor light at left, subdued exterior daylight, dark brown201D29 and walnut tan palette, subtle pixel grain and restrained tiny highlights.",
+    "model": "pro"
+  }
+]

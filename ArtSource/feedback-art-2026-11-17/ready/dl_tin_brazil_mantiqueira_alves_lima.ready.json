@@ -1,0 +1,122 @@
+{
+  "assetId": "dl_tin_brazil_mantiqueira_alves_lima",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/feedback-art-2026-11-17",
+  "pathsRelativeTo": "packageRoot",
+  "kind": "origin_manufacturing_container",
+  "png": "ready/dl_tin_brazil_mantiqueira_alves_lima.png",
+  "aseprite": "ready/dl_tin_brazil_mantiqueira_alves_lima.aseprite",
+  "sourceRawPng": "raw/dl_tin_brazil_mantiqueira_alves_lima.png",
+  "sourceRawAseprite": "raw/dl_tin_brazil_mantiqueira_alves_lima.aseprite",
+  "dimensions": [
+    32,
+    32
+  ],
+  "alphaBounds": [
+    3,
+    15,
+    29,
+    32
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0
+  ],
+  "nativeSlicePivotTopLeftPx": [
+    16,
+    32
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/DrinkLab/dl_tin_brazil_mantiqueira_alves_lima.png",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 32,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "pivot": [
+      0.5,
+      0
+    ]
+  },
+  "sha256": {
+    "png": "af2a0420db9b00c10f7206ac1522d59f71be1fa9612fd6de3bbe5e86487a70ed",
+    "aseprite": "d06c621b27a600ab7ba0beeb35fb8dfc0802332f6a0562d87e1d2329eb926880",
+    "sourceRawPng": "88a580a4c76a5adcb9d97e653eb7d29f2e71fb57b6104bfd3491c4c4f90402b1",
+    "sourceRawAseprite": "1da0f7399ecca6cb1eb44497cf2914669fa9c45c3da64a3d8b536bab22e4ba3a"
+  },
+  "provenance": {
+    "tools": [
+      "Aseprite 1.3.18.6",
+      "official PixelLab extension 0.4.131"
+    ],
+    "actualNativeModel": "generate_no_style.generate inside Aseprite official extension",
+    "sourceEvidence": "provenance/collected-generations.json",
+    "nativeFinish": "Actual official PixelLab container body/material retained; native closed-cap crop where needed, minimum readable body-width correction, open dark ellipse with bean pixels and ivory/silver rim. Unique structural origin motif follows approved inventory concept; no color-only distinction. Opening determines per-container mouth/pourLip and body grip.",
+    "promptEvidence": "provenance/recovery-specs29.json"
+  },
+  "checks": {
+    "dimensions": true,
+    "nativeCanvas": true,
+    "nativeMagic": true,
+    "nativeFrames": true,
+    "roundtripPixels": true,
+    "pivot": true,
+    "alpha": true,
+    "nonempty": true,
+    "cornersTransparent": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false,
+    "unmodifiedRawSourceRoundtrip": true,
+    "actualOpeningAnchors": true
+  },
+  "verification": "verification/containers-validation.json",
+  "visualPreviews": [
+    "previews/containers-color.png",
+    "previews/containers-gray.png",
+    "previews/container-anchors-pour.png"
+  ],
+  "anchors": {
+    "assetId": "dl_tin_brazil_mantiqueira_alves_lima",
+    "grip": [
+      0.5,
+      0.16874999999999996
+    ],
+    "height": 32,
+    "mouth": [
+      0.5,
+      0.453125
+    ],
+    "mouthPixelCenterTopLeft": [
+      16,
+      17.5
+    ],
+    "openingBoundsTopLeft": [
+      4,
+      15,
+      28,
+      20
+    ],
+    "pivot": [
+      0.5,
+      0
+    ],
+    "pixelOrigin": "normalized bottom-left; opening dimensions use top-left PNG pixels",
+    "pourLip": [
+      0.859375,
+      0.453125
+    ],
+    "pourLipPixelCenterTopLeft": [
+      27.5,
+      17.5
+    ],
+    "width": 32
+  },
+  "ingredientId": "brazil_mantiqueira_alves_lima",
+  "displayName": "파젠다 알베스 리마",
+  "designNote": "Open manufacturing container, origin-specific decorative game motif; no claim of regional packaging authenticity. Preserve existing destination .meta GUID.",
+  "contractVerification": "verification/container-contract-validation.json"
+}

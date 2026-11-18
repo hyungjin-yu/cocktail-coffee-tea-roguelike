@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CCT.Runtime::CCT.SkillData
   id: mellow_finish
   displayName: "\uBD80\uB4DC\uB7EC\uC6B4 \uC5EC\uC6B4"
-  description: "\uCD08\uB2F9 \uD68C\uBCF5\uB7C9 +1"
+  description: "\uBD84\uB2F9 \uD68C\uBCF5\uB7C9 +60"
   branch: 1
   tier: 3
   prerequisite: {fileID: 11400000, guid: 730dd14ed6d0b2145870f8c985764930, type: 2}

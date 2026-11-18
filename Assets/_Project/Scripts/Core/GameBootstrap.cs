@@ -13,6 +13,8 @@ namespace CCT
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void AutoStart()
         {
+            // 2026-11-17 로컬 2인 실험판(-cct-coop2p)은 CCT.Prototype.Coop2P가 진입한다 — 싱글 저장·설정·타이틀을 열지 않는다.
+            if (LaunchOptions.Coop2PRequested) return;
             // -cct-data-dir: save/settings를 실제 사용자 폴더 대신 지정 폴더로(빌드 검증용 격리). -cct-autotour: 자동 캡처.
             LaunchOptions.Apply();
             QuitGuard.Install(); // 08:178 OS 창 닫기도 미저장 확인

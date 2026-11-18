@@ -89,6 +89,7 @@ namespace CCT
 
             AddCoffee(list, game, suppressed, drink != null ? drink.recipe : null);
             AddHidden(list, game);
+            AddTipsy(list, game);
             list.Sort((a, b) => a.order.CompareTo(b.order));
             return list;
         }
@@ -154,6 +155,65 @@ namespace CCT
             list.Add(e);
         }
 
+        // ───── 2026-11-16 피드백 25: 히든별 차별화(공통 칸 틀 유지, 큰 개별 패널 없음) ─────
+        // 칸 모양 = 실제 동작 종류(충전 = 남은 시간 막대 / 준비 = 굵은 띠 / 누적 = 칸 점 / 조건 충족 중 = 이번 판 테두리)는 기존 그대로,
+        // 여기에 히든마다 기존 승인 아트로 모티프 그림을 붙인다(신규 아트 없음). 순간 발동형(첫 모금·막타 등)은 기존 머리 위 표식·상세 창,
+        // 상시형(쓴맛 조합 등)은 상세 창[H]에만 — 전투 시야 점유를 늘리지 않는다.
+        static readonly Dictionary<string, Sprite> hiddenIconCache = new Dictionary<string, Sprite>();
+
+        /// <summary>히든 id → 기존 아트 id(ArtLibrary). 의미: 얼음 조각=보호막, 재료 스킬=끌어당기기, 타격 불꽃=콤보, 공격 스킬=공격 보너스,
+        /// 근접 궤적=이동 질주, 잎=허브 회복, 생존 스킬=받는 피해 감소. 두꺼운 머그는 커피 잔 그림.</summary>
+        public static string HiddenIconArt(string id, bool alt = false) => id switch
+        {
+            "iced_cup" => "ice_shard",
+            "soda_pump" => "skill_ingredient",
+            "shake_rhythm" => "hit_spark",
+            "bitter_wake" => "skill_attack",
+            "weekend_rush" => "melee_streak",
+            "herb_garden" => "leaf_mote",
+            "bar_tempo" => alt ? "skill_attack" : "skill_survival",
+            _ => null,
+        };
+
+        /// <summary>2026-11-17 히든 전용 모티프(Codex 납품 시 자동): Resources/Icons/Hidden/&lt;아트 ID&gt;.png 24×24.
+        /// 셰이킹 리듬·주말 러시는 검토표 ID, 나머지는 hidden_&lt;히든 id&gt;. 없으면 기존 승인 아트 재사용.</summary>
+        public static string DedicatedHiddenArt(string id) => id switch
+        {
+            "shake_rhythm" => "hidden_rhythm_shaker",
+            "weekend_rush" => "hidden_weekend_rush_steps",
+            _ => "hidden_" + id,
+        };
+
+        public static Sprite HiddenIcon(string id, bool alt = false)
+        {
+            var dedicated = Resources.Load<Sprite>("Icons/Hidden/" + DedicatedHiddenArt(id) + (id == "bar_tempo" && alt ? "_move" : ""));
+            if (dedicated != null) return dedicated;
+            if (id == "thick_mug") return HudIcons.FamilyCup(MonsterFamily.Coffee);
+            string art = HiddenIconArt(id, alt);
+            if (art == null) return null;
+            if (hiddenIconCache.TryGetValue(art, out var cached) && cached != null) return cached;
+            var a = ArtLibrary.Get(art);
+            var sp = a != null ? HudIcons.Cropped(a.FirstSprite, a) : null; // 투명 여백을 잘라 칸 안에서 크게(한 번만 만들어 재사용)
+            if (sp != null) hiddenIconCache[art] = sp;
+            return sp;
+        }
+
+        /// <summary>
+        /// 2026-11-16 피드백 26 선택형 분위기 표시 프로토타입(실제 취기 시뮬레이션 아님): 설정 "취기 표시 (시험)"을 켠 경우에만,
+        /// 끝없는 모드에서 지금 실제로 마신 음료(Player.DrunkDrink — 출발 준비 음료 또는 마스터 도전 런 잔 마시기에서만 설정, 판 끝나면 해제)가
+        /// 칵테일이면 '취기' 칸 하나. 1잔 규칙이라 누적 단계 없음, 난수 없음. 능력치·조작·판정·보상은 바꾸지 않는다(이 함수는 읽기만).
+        /// </summary>
+        public static bool TipsyShown(GameManager game) =>
+            game != null && game.Player != null && SettingsService.Current.tipsyBadge && game.IsEndless && game.Player.DrunkDrink == DrinkKind.Cocktail;
+
+        static void AddTipsy(List<ActiveEffect> list, GameManager game)
+        {
+            if (!TipsyShown(game)) return;
+            list.Add(new ActiveEffect { id = "tipsy", label = "취기", value = "표시만", kind = ActiveEffectKind.Run, order = 60,
+                icon = HudIcons.FamilyCup(MonsterFamily.Cocktail), accent = new Color(1f, 0.7f, 0.85f),
+                detail = "취기(시험 표시) · 끝없는 모드에서 칵테일을 마신 판 · 분위기 표시 전용: 능력치·조작·보상 변화 없음 · 설정 > 취기 표시에서 끌 수 있음" });
+        }
+
         static void AddHidden(List<ActiveEffect> list, GameManager game)
         {
             var p = game.Player;
@@ -169,6 +229,11 @@ namespace CCT
                     : new ActiveEffect { id = "iced_cup", label = "보호막", value = $"{IntNum.RemainingSeconds(rt.BarrierRemaining)}초",
                         kind = ActiveEffectKind.Timed, remaining = rt.BarrierRemaining, duration = HiddenSkillRuntime.BarrierInterval, order = 48,
                         accent = new Color(0.55f, 0.7f, 0.75f), detail = $"{Name(HiddenSkill.IcedCup)} · 보호막 재충전 {IntNum.RemainingSeconds(rt.BarrierRemaining)}초" });
+            // 충전형: 탄산 펌프(12초마다 재료 끌어당기기) — 남은 시간 막대.
+            if (p.Hidden.Has(HiddenSkill.SodaPump))
+                list.Add(new ActiveEffect { id = "soda_pump", label = "흡인", value = $"{IntNum.RemainingSeconds(rt.MagnetRemaining)}초",
+                    kind = ActiveEffectKind.Timed, remaining = rt.MagnetRemaining, duration = HiddenSkillRuntime.MagnetInterval, order = 49,
+                    accent = new Color(0.75f, 0.9f, 1f), detail = $"{Name(HiddenSkill.SodaPump)} · {HiddenSkillRuntime.MagnetInterval:0}초마다 재료 끌어당기기 · {IntNum.RemainingSeconds(rt.MagnetRemaining)}초 후" });
             if (p.Hidden.Has(HiddenSkill.ShakeRhythm) && rt.Combo > 0)
                 list.Add(new ActiveEffect { id = "shake_rhythm", label = "콤보", value = $"{rt.Combo}/{HiddenSkillRuntime.ComboMax}",
                     kind = ActiveEffectKind.Stack, stacks = rt.Combo, maxStacks = HiddenSkillRuntime.ComboMax, order = 20,
@@ -196,6 +261,10 @@ namespace CCT
                     list.Add(new ActiveEffect { id = "thick_mug", label = "머그", value = $"피해+{pct}%", kind = ActiveEffectKind.Run, order = 55,
                         accent = new Color(0.9f, 0.75f, 0.55f), detail = $"{Name(HiddenSkill.ThickMug)} · 최대 체력 기준 직접 피해 +{pct}%" });
             }
+            // 히든 칸마다 모티프 그림(기존 아트) — 템포는 정지/이동 상태에 따라 그림도 바뀐다. 음료·커피 칸(이미 그림 있음)은 그대로.
+            foreach (var e in list)
+                if (e.icon == null && (HiddenIconArt(e.id) != null || e.id == "thick_mug"))
+                    e.icon = HiddenIcon(e.id, e.id == "bar_tempo" && !rt.Standing);
         }
 
         /// <summary>칸 수 상한: 앞에서 max-1개 + "+N" 묶음 칸(상세 창에서 모두 보기). max 이하면 그대로.</summary>
