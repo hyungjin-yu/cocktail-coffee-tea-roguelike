@@ -788,6 +788,7 @@ namespace CCT.Tests
             }
         }
 
+        /// <summary>v5 간판 계약: GameInfo.Title을 textRect 가운데, 간판 면(surfaceQuad) 마스크로 잘라 외부 장면 변환 안에. 별도 UI 머리글 아님.</summary>
         [Test]
         public void ExteriorSign_ShowsGameTitle_OnSignRect_InExteriorScene()
         {
@@ -797,21 +798,172 @@ namespace CCT.Tests
                 var scene = view.Scene;
                 Assert.IsNotNull(scene.SignTitle, "간판 글자");
                 Assert.AreEqual(GameInfo.Title, scene.SignTitle.text, "간판에 게임 이름");
-                Assert.AreSame(scene.Exterior, scene.SignTitle.transform.parent, "외부 장면과 같은 변환(문 열림·문턱 접근 프레임에서 같이 움직임)");
+                Assert.IsTrue(scene.SignTitle.transform.IsChildOf(scene.Exterior), "외부 장면과 같은 변환(문 열림·문턱 접근 프레임에서 같이 움직임)");
                 var rt = (RectTransform)scene.SignTitle.transform;
-                var sign = scene.Layout.SignRect;
-                var n = CafeTitleScene.LocalToNorm(rt.anchoredPosition);
-                Assert.IsTrue(sign.Contains(n), $"간판 rect 안 {n}");
-                Assert.LessOrEqual(rt.sizeDelta.x, sign.width * CafeTitleScene.RefW + 0.5f, "판 폭을 넘지 않음");
-                Assert.LessOrEqual(rt.sizeDelta.y, sign.height * CafeTitleScene.RefH + 0.5f, "판 높이를 넘지 않음");
-                foreach (var l in scene.Layout.ExteriorLayers)
+                var lay = scene.Layout;
+                Assert.IsTrue(lay.SignTextRect.HasValue, "v5 textRect");
+                var tr = lay.SignTextRect.Value;
+                var holder = (RectTransform)rt.parent;
+                Assert.IsNotNull(holder.GetComponent<UnityEngine.UI.RectMask2D>(), "간판 면 밖 잘라냄");
+                var n = CafeTitleScene.LocalToNorm(holder.anchoredPosition + rt.anchoredPosition);
+                Assert.AreEqual(tr.center.x, n.x, 1e-4f); Assert.AreEqual(tr.center.y, n.y, 1e-4f);
+                Assert.AreEqual(tr.width * CafeTitleScene.RefW, rt.sizeDelta.x, 0.5f); Assert.AreEqual(tr.height * CafeTitleScene.RefH, rt.sizeDelta.y, 0.5f);
+                Assert.IsTrue(lay.SignSurfaceRect.Value.Contains(new Vector2(tr.xMin, tr.yMin)) && lay.SignSurfaceRect.Value.Contains(new Vector2(tr.xMax - 1e-4f, tr.yMax - 1e-4f)), "글자 영역이 간판 면 안");
+                Assert.AreEqual(lay.SignFontPx, scene.SignTitle.fontSize, "1080 기준 글자 크기");
+                Assert.AreEqual(lay.SignTextColor, scene.SignTitle.color);
+                var top = holder; // 외부 장면 직속 조상
+                Assert.AreSame(scene.Exterior, top.parent);
+                foreach (var l in lay.ExteriorLayers)
                 {
                     var lt = scene.Exterior.Find(string.IsNullOrEmpty(l.Id) ? "Layer" : l.Id);
-                    if (lt != null) Assert.Greater(rt.GetSiblingIndex(), lt.GetSiblingIndex(), $"간판 글자가 {l.Id} 레이어보다 앞(가려지지 않음)");
+                    if (lt != null) Assert.Greater(top.GetSiblingIndex(), lt.GetSiblingIndex(), $"간판 글자가 {l.Id} 레이어보다 앞(가려지지 않음)");
                 }
-                Assert.Greater(rt.GetSiblingIndex(), scene.DoorImage.transform.GetSiblingIndex(), "문 그림보다 앞");
+                Assert.Greater(top.GetSiblingIndex(), scene.DoorImage.transform.GetSiblingIndex(), "문 그림보다 앞");
+                // 첫 bridge 뷰만 같은 간판 일부가 보인다 → 그 뷰에만 투영 글자
+                for (int i = 0; i < lay.Bridge.Count; i++)
+                    Assert.AreEqual(lay.Bridge[i].SignTextRect.HasValue, scene.BridgeSignTitles[i] != null, $"bridge {i} 간판 글자 유무");
             }
             finally { Object.DestroyImmediate(view.gameObject); }
+        }
+
+        /// <summary>v5 exterior.entrance: 자동 입장 없음, 문 클릭 영역 = doorInteraction, 문 옆 명패(입장하기/아무 키나 눌러 입장)도 같은 입장 버튼.</summary>
+        [Test]
+        public void ExteriorEntrance_V5_DoorAndPromptPlate_FromLayout()
+        {
+            TitleIntro.ResetSessionForTests();
+            var view = TitleView.Show();
+            try
+            {
+                var en = view.Scene.Layout.EntranceInfo;
+                Assert.IsNotNull(en, "v5 entrance 계약");
+                var intro = view.Intro;
+                Assert.IsTrue(intro.IsWaiting, "외관 대기(자동 입장 없음)");
+                Assert.IsTrue(intro.EnterButton.transform.IsChildOf(view.Scene.Exterior));
+                var drt = (RectTransform)intro.EnterButton.transform;
+                var dn = CafeTitleScene.LocalToNorm(drt.anchoredPosition);
+                Assert.AreEqual(en.DoorRect.center.x, dn.x, 1e-4f); Assert.AreEqual(en.DoorRect.center.y, dn.y, 1e-4f);
+                Assert.IsNotNull(intro.PromptButton, "명패 클릭 영역");
+                Assert.AreEqual("입장하기", intro.PromptPrimary.text);
+                Assert.AreEqual("아무 키나 눌러 입장", intro.PromptSecondary.text);
+                Assert.IsFalse(en.PromptRect.Overlaps(en.DoorRect), "명패 글자가 문 클릭 영역과 겹치지 않음");
+                // 대기 시간 경과만으로는 입장하지 않는다(아무 입력 없음 → armed 전 클릭 무시)
+                intro.PromptButton.onClick.Invoke();
+                Assert.IsTrue(intro.IsWaiting, "입력 준비 전 클릭은 입장 시작 아님");
+            }
+            finally { Object.DestroyImmediate(view.gameObject); TitleIntro.ResetSessionForTests(); }
+        }
+
+        /// <summary>v5 labelAnchorContract(edge-pivot) + 실제 Unity 글자 폭 기준 명패가 서로·장면 밖과 겹치지 않음.</summary>
+        [Test]
+        public void Nameplates_EdgePivotContract_NoOverlap_InsideScene()
+        {
+            var view = TitleView.Show();
+            try
+            {
+                var scene = view.Scene;
+                var rects = new System.Collections.Generic.Dictionary<string, Rect>();
+                foreach (var id in Ids)
+                {
+                    var h = scene.Hotspots[id];
+                    var p = h.Nameplate;
+                    var expect = h.Feature.LabelSide switch { "above" => new Vector2(0.5f, 0f), "left" => new Vector2(1f, 0.5f), "right" => new Vector2(0f, 0.5f), _ => new Vector2(0.5f, 1f) };
+                    Assert.AreEqual(expect, p.pivot, id + " edge-pivot");
+                    var a = CafeTitleScene.LocalToNorm(p.anchoredPosition);
+                    Assert.AreEqual(h.Feature.LabelAnchor.x, a.x, 1e-4f); Assert.AreEqual(h.Feature.LabelAnchor.y, a.y, 1e-4f);
+                    Assert.AreEqual(40f, p.sizeDelta.y, 1e-3f);
+                    Assert.AreEqual(Mathf.Max(64f, h.LabelText.preferredWidth + 28f), p.sizeDelta.x, 1e-3f);
+                    float w = p.sizeDelta.x / CafeTitleScene.RefW, hh = p.sizeDelta.y / CafeTitleScene.RefH;
+                    var r = new Rect(a.x - p.pivot.x * w, a.y - (1f - p.pivot.y) * hh, w, hh); // 좌상단 원점 정규화
+                    Assert.IsTrue(r.xMin >= 0f && r.xMax <= 1f && r.yMin >= 0f && r.yMax <= 1f, id + $" 명패 장면 안 {r}");
+                    rects[id] = r;
+                }
+                for (int a = 0; a < Ids.Length; a++)
+                    for (int c = a + 1; c < Ids.Length; c++)
+                        Assert.IsFalse(rects[Ids[a]].Overlaps(rects[Ids[c]]), $"{Ids[a]} ↔ {Ids[c]} 명패 겹침");
+            }
+            finally { Object.DestroyImmediate(view.gameObject); }
+        }
+
+        /// <summary>r5: hover/선택 표시는 도형 윤곽선·바운딩박스 없이 그 물체 레이어의 밝은 사본(물체 픽셀만)과 명패 색 변화. 클릭 다각형은 그대로.</summary>
+        [Test]
+        public void Highlight_IsObjectLight_NoOutline_PlateOnly()
+        {
+            var view = TitleView.Show();
+            try
+            {
+                var scene = view.Scene;
+                foreach (var id in Ids)
+                {
+                    var h = scene.Hotspots[id];
+                    var focus = h.transform.Find("Focus");
+                    Assert.IsNull(focus.Find("PolyEdge"), id + " 다각형 윤곽선 없음");
+                    Assert.IsNull(focus.Find("Edge"), id + " 사각 테두리 없음");
+                    Assert.IsNotNull(h.ObjectLight, id + " 물체 조명 반응(분리 레이어 " + CafeTitleScene.DefaultObjectLayers[id] + ")");
+                    var src = scene.Interior.Find(h.ObjectLayerId) as RectTransform;
+                    var lit = (RectTransform)h.ObjectLight.transform;
+                    Assert.AreEqual(src.GetSiblingIndex() + 1, lit.GetSiblingIndex(), id + " 원 레이어 바로 위(앞 물체가 계속 가림)");
+                    Assert.AreEqual(src.sizeDelta, lit.sizeDelta); Assert.AreEqual(src.anchoredPosition, lit.anchoredPosition);
+                    Assert.AreEqual(0f, h.LightAmount, 1e-5f, id + " 평상시 0");
+                    Assert.IsFalse(h.ObjectLight.raycastTarget, "클릭 판정 불변");
+                    // 밝은 사본: 같은 크기·같은 알파(물체 밖 픽셀 투명 그대로), 밝기는 같거나 조금 높음
+                    var a = src.GetComponent<UnityEngine.UI.Image>().sprite; var b = h.ObjectLight.sprite;
+                    Assert.AreEqual(a.rect.width, b.rect.width); Assert.AreEqual(a.rect.height, b.rect.height);
+                    var pa = a.texture.GetPixels32(); var pb = b.texture.GetPixels32();
+                    int w = (int)a.rect.width, hh = (int)a.rect.height, ox = (int)a.rect.x, oy = (int)a.rect.y, tw = a.texture.width;
+                    float maxLift = 0f;
+                    for (int y = 0; y < hh; y += 2)
+                        for (int x = 0; x < w; x += 2)
+                        {
+                            var p = pa[(y + oy) * tw + x + ox]; var q = pb[y * w + x];
+                            Assert.AreEqual(p.a, q.a, id + " 알파 동일");
+                            Assert.GreaterOrEqual(q.r, p.r); Assert.GreaterOrEqual(q.g, p.g); Assert.GreaterOrEqual(q.b, p.b);
+                            maxLift = Mathf.Max(maxLift, q.r - p.r, q.g - p.g, q.b - p.b);
+                        }
+                    Assert.LessOrEqual(maxLift, 255f * CafeTitleScene.LightLift + 1f, id + " 은은한 상승 상한");
+                    Assert.Greater(maxLift, 0f, id + " 실제로 밝아짐");
+                }
+            }
+            finally { Object.DestroyImmediate(view.gameObject); }
+        }
+
+        /// <summary>2026-11-20 접근 연출 계약 파싱(feature.approach)과 범위 제한.</summary>
+        [Test]
+        public void Approach_ParsesContract_Clamped()
+        {
+            var l = CafeTitleLayout.Parse("{\"status\":\"ready\",\"interior\":{\"features\":[{\"id\":\"permanent\",\"label\":\"영구 강화\",\"hotspot\":{\"rect\":[0.1,0.2,0.1,0.1]}," +
+                "\"approach\":{\"camera\":{\"center\":[0.3,0.4],\"zoom\":9},\"seconds\":0.6,\"returnSeconds\":0.3,\"action\":{\"layer\":\"bar_end_laptop\",\"frames\":[\"a.png\",\"b.png\",\"c.png\"],\"fps\":12,\"holdSeconds\":0.2,\"reverseOnReturn\":false}}}]}}");
+            var a = l.FindFeature("permanent").Approach;
+            Assert.IsNotNull(a);
+            Assert.AreEqual(new Vector2(0.3f, 0.4f), a.Center);
+            Assert.AreEqual(4f, a.Zoom, 1e-5f, "확대 상한 4");
+            Assert.AreEqual(0.6f, a.Seconds, 1e-5f); Assert.AreEqual(0.3f, a.ReturnSeconds, 1e-5f);
+            Assert.AreEqual("bar_end_laptop", a.Layer); Assert.AreEqual(3, a.Frames.Length); Assert.AreEqual(12f, a.Fps, 1e-5f);
+            Assert.IsFalse(a.ReverseOnReturn);
+            Assert.IsNull(CafeTitleLayout.Parse("{\"interior\":{\"features\":[{\"id\":\"x\",\"hotspot\":{\"rect\":[0,0,1,1]}}]}}").FindFeature("x").Approach, "계약 없으면 null(바로 열기)");
+        }
+
+        /// <summary>메뉴 팔레트: 무채색·보라는 같은 휘도의 나무/종이 톤, 의미 색(경고 빨강·확인 파랑·초록·금색)과 알파는 그대로.</summary>
+        [Test]
+        public void MenuTheme_KeepsSemanticColors_AndLuminance()
+        {
+            float L(Color c) => 0.2126f * c.r + 0.7152f * c.g + 0.0722f * c.b;
+            foreach (var c in new[] { new Color(0.55f, 0.22f, 0.2f), new Color(0.24f, 0.4f, 0.5f), new Color(0.3f, 0.7f, 0.35f), new Color(0.95f, 0.8f, 0.3f) })
+                Assert.AreEqual(c, CafeMenuTheme.Map(c, false), "의미 색 유지 " + c);
+            foreach (var c in new[] { new Color(0.05f, 0.04f, 0.07f, 0.97f), new Color(0.1f, 0.08f, 0.12f, 1f), new Color(0.3f, 0.32f, 0.36f), new Color(0.5f, 0.2f, 0.55f), Color.white, new Color(0.6f, 0.6f, 0.6f) })
+            {
+                bool text = c.maxColorComponent > 0.59f;
+                var m = CafeMenuTheme.Map(c, text);
+                if (text) Assert.AreEqual(L(c), L(m), 0.02f, "글자 휘도 유지(대비) " + c);
+                else { Assert.GreaterOrEqual(L(m) + 0.02f, L(c), "바탕은 같거나 조금 밝게 " + c); Assert.LessOrEqual(L(m), L(c) + 0.11f, "바탕 상승 제한 " + c); }
+                Assert.AreEqual(c.a, m.a, 1e-5f, "알파 유지");
+                Assert.GreaterOrEqual(m.r + 1e-4f, m.b, "따뜻한 쪽(빨강≥파랑) " + c);
+            }
+            // 바탕이 밝아져도 순서 유지(어두운 바탕 < 패널 < 중립 버튼)
+            Assert.Less(L(CafeMenuTheme.Map(new Color(0.05f, 0.04f, 0.07f), false)), L(CafeMenuTheme.Map(new Color(0.1f, 0.08f, 0.12f), false)));
+            Assert.Less(L(CafeMenuTheme.Map(new Color(0.1f, 0.08f, 0.12f), false)), L(CafeMenuTheme.Map(new Color(0.3f, 0.32f, 0.36f), false)));
+            // 카페 패널 그림(흰 틴트) → 따뜻한 곱 틴트, 색 있는 틴트는 일반 규칙
+            Assert.AreEqual(new Color(1f, 0.92f, 0.62f, 0.9f), CafeMenuTheme.MapSpriteTint(new Color(1f, 1f, 1f, 0.9f)));
+            Assert.AreEqual(new Color(0.55f, 0.22f, 0.2f), CafeMenuTheme.MapSpriteTint(new Color(0.55f, 0.22f, 0.2f)), "경고 빨강 유지");
         }
 
         [Test]

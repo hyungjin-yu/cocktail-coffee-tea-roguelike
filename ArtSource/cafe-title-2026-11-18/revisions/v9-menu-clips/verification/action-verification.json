@@ -1,0 +1,154 @@
+{
+  "start": {
+    "layer": "order_counter",
+    "changedPixelCounts": [
+      0,
+      25,
+      56,
+      80,
+      96,
+      104
+    ],
+    "clipRectArtPixels": [
+      97,
+      128,
+      112,
+      139
+    ],
+    "matchesNativeExportAndPatchComposition": true,
+    "higherLayerOverlapPixels": 0
+  },
+  "permanent": {
+    "layer": "bar_end_laptop",
+    "changedPixelCounts": [
+      0,
+      147,
+      147,
+      147,
+      147,
+      147
+    ],
+    "clipRectArtPixels": [
+      123,
+      98,
+      138,
+      111
+    ],
+    "matchesNativeExportAndPatchComposition": true,
+    "higherLayerOverlapPixels": 0
+  },
+  "codex": {
+    "layer": "recipe_bookshelf",
+    "changedPixelCounts": [
+      0,
+      188,
+      216,
+      240,
+      265,
+      274
+    ],
+    "clipRectArtPixels": [
+      378,
+      106,
+      397,
+      127
+    ],
+    "matchesNativeExportAndPatchComposition": true,
+    "higherLayerOverlapPixels": 0
+  },
+  "skins": {
+    "layer": "coat_cabinet",
+    "changedPixelCounts": [
+      0,
+      134,
+      367,
+      450,
+      468,
+      485
+    ],
+    "clipRectArtPixels": [
+      338,
+      75,
+      363,
+      123
+    ],
+    "matchesNativeExportAndPatchComposition": true,
+    "higherLayerOverlapPixels": 0
+  },
+  "history": {
+    "layer": "ledger_station",
+    "changedPixelCounts": [
+      0,
+      239,
+      263,
+      194,
+      176,
+      161
+    ],
+    "clipRectArtPixels": [
+      104,
+      109,
+      137,
+      127
+    ],
+    "matchesNativeExportAndPatchComposition": true,
+    "higherLayerOverlapPixels": 0
+  },
+  "settings": {
+    "layer": "radio_sideboard",
+    "changedPixelCounts": [
+      0,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "clipRectArtPixels": [
+      245,
+      103,
+      248,
+      109
+    ],
+    "matchesNativeExportAndPatchComposition": true,
+    "higherLayerOverlapPixels": 0
+  },
+  "credits": {
+    "layer": "staff_noticeboard",
+    "changedPixelCounts": [
+      0,
+      2,
+      26,
+      45,
+      38,
+      38
+    ],
+    "clipRectArtPixels": [
+      179,
+      60,
+      191,
+      70
+    ],
+    "matchesNativeExportAndPatchComposition": true,
+    "higherLayerOverlapPixels": 0
+  },
+  "quit": {
+    "layer": "entry_door",
+    "changedPixelCounts": [
+      0,
+      1084,
+      1760,
+      1575,
+      1084,
+      452
+    ],
+    "clipRectArtPixels": [
+      311,
+      45,
+      342,
+      151
+    ],
+    "matchesNativeExportAndPatchComposition": true,
+    "higherLayerOverlapPixels": 0
+  }
+}

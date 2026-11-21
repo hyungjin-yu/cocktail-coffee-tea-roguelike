@@ -1,0 +1,77 @@
+[
+  {
+    "id": "ct_bookshelf_source",
+    "archive": "C:\\Users\\user\\AppData\\Roaming\\Aseprite\\extensions\\pixellab\\generation_history\\2026-11-18_09-16-38 - CT18 - ct_bookshelf_source - 001",
+    "candidateFiles": [
+      "0.png"
+    ],
+    "selected": "0.png",
+    "png": "ArtSource\\cafe-title-2026-11-18\\raw\\ct_bookshelf_source.png",
+    "sha256": "c68889fb37c21c344a42b7e2cb591b44cb071f3a5d78d8349f9b98d826eed9c5",
+    "completion": "native sequential queue advanced to next job"
+  },
+  {
+    "id": "ct_coat_cabinet_source",
+    "archive": "C:\\Users\\user\\AppData\\Roaming\\Aseprite\\extensions\\pixellab\\generation_history\\2026-11-18_09-17-47 - CT18 - ct_coat_cabinet_source - 002",
+    "candidateFiles": [
+      "0.png"
+    ],
+    "selected": "0.png",
+    "png": "ArtSource\\cafe-title-2026-11-18\\raw\\ct_coat_cabinet_source.png",
+    "sha256": "eca09f76fef97b2550c0334aa905a704c88d40d0056731656bb5617becb11125",
+    "completion": "native sequential queue advanced to next job"
+  },
+  {
+    "id": "ct_radio_source",
+    "archive": "C:\\Users\\user\\AppData\\Roaming\\Aseprite\\extensions\\pixellab\\generation_history\\2026-11-18_09-18-45 - CT18 - ct_radio_source - 003",
+    "candidateFiles": [
+      "0.png",
+      "1.png",
+      "2.png",
+      "3.png"
+    ],
+    "selected": "3.png",
+    "png": "ArtSource\\cafe-title-2026-11-18\\raw\\ct_radio_source.png",
+    "sha256": "f45e8e5af532426b42c9e0517f1f7581484a1d4d3eab9993687a1820844fed8d",
+    "completion": "native sequential queue advanced to next job"
+  },
+  {
+    "id": "ct_ledger_source",
+    "archive": "C:\\Users\\user\\AppData\\Roaming\\Aseprite\\extensions\\pixellab\\generation_history\\2026-11-18_09-19-47 - CT18 - ct_ledger_source - 004",
+    "candidateFiles": [
+      "0.png",
+      "1.png",
+      "2.png",
+      "3.png"
+    ],
+    "selected": "3.png",
+    "png": "ArtSource\\cafe-title-2026-11-18\\raw\\ct_ledger_source.png",
+    "sha256": "c80d35b635729526172332b053fa7a36a016426408241bd23dc7b45b7e5d55c2",
+    "completion": "native sequential queue advanced to next job"
+  },
+  {
+    "id": "ct_espresso_source",
+    "archive": "C:\\Users\\user\\AppData\\Roaming\\Aseprite\\extensions\\pixellab\\generation_history\\2026-11-18_09-20-29 - CT18 - ct_espresso_source - 005",
+    "candidateFiles": [
+      "0.png",
+      "1.png",
+      "2.png",
+      "3.png"
+    ],
+    "selected": "3.png",
+    "png": "ArtSource\\cafe-title-2026-11-18\\raw\\ct_espresso_source.png",
+    "sha256": "e93f7be8e111db1ffc859a8a0806549fc29e915dc1b6c04819ef6216689a753c",
+    "completion": "native sequential queue advanced to next job"
+  },
+  {
+    "id": "ct_facade_material_source",
+    "archive": "C:\\Users\\user\\AppData\\Roaming\\Aseprite\\extensions\\pixellab\\generation_history\\2026-11-18_09-22-00 - CT18 - ct_facade_material_source - 006",
+    "candidateFiles": [
+      "0.png"
+    ],
+    "selected": "0.png",
+    "completion": "Official native queue0active/0waiting/6recent and Session history final source Completed directly viewed",
+    "png": "ArtSource\\cafe-title-2026-11-18\\raw\\ct_facade_material_source.png",
+    "sha256": "aa95900885d40fe04be125407569efbe8ed8d066b1dfc9d42bcdefcde9586627"
+  }
+]

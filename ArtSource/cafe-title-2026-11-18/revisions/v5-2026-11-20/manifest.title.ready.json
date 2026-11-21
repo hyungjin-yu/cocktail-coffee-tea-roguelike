@@ -1,0 +1,2964 @@
+{
+  "status": "ready",
+  "ready": true,
+  "scope": "Single-player café entry/menu ART only; Unity integration/menus/save safety/runtime capture owned by Claude",
+  "assetCount": 28,
+  "finalNativeFiles": 30,
+  "counts": {
+    "interiorLayers": 10,
+    "exteriorStaticLayers": 2,
+    "rigidDoorFrames": 8,
+    "actualStraightEntryBridgeFrames": 8,
+    "rawGeneratedMainSources": 7,
+    "reusedApprovedReferenceFiles": 8,
+    "singleCocktailBarGrades": 0,
+    "newPixelLabRequestsInRevision": 0,
+    "hotspots": 8
+  },
+  "layout": "layout.json",
+  "layoutVersion": 5,
+  "layoutSha256": "9dd36c6915db33188bb1e2f718b64ccd4c5ac6aec8c4c771396d7f1ea65932b7",
+  "ready_assets": [
+    "ct_room_shell",
+    "ct_start",
+    "ct_permanent",
+    "ct_codex",
+    "ct_skins",
+    "ct_history",
+    "ct_settings",
+    "ct_credits",
+    "ct_quit",
+    "ct_warm_light",
+    "ct_exterior_facade",
+    "ct_exterior_glimpse",
+    "ct_exterior_door_00",
+    "ct_exterior_door_01",
+    "ct_exterior_door_02",
+    "ct_exterior_door_03",
+    "ct_exterior_door_04",
+    "ct_exterior_door_05",
+    "ct_exterior_door_06",
+    "ct_exterior_door_07",
+    "ct_bridge_b00",
+    "ct_bridge_b01",
+    "ct_bridge_b02",
+    "ct_bridge_b03",
+    "ct_bridge_b04",
+    "ct_bridge_b05",
+    "ct_bridge_b06",
+    "ct_bridge_b07"
+  ],
+  "assets": [
+    {
+      "assetId": "ct_room_shell",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/interior/g0.png",
+      "aseprite": "ready/interior/g0.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/g0.png",
+      "unityResourcePath": "CafeTitle/ready/interior/g0",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "d673b0ac2b533fcbc1e5018cd95283dfa57d9cbe06853d6ebbc99e7d98eaa3ee",
+        "aseprite": "546ee515686538b91fb8c562742a5333186f117b866c6081220630abc8b106b6",
+        "nativeMaster": "5e4d456ffc8a2dc30752e568a8f125825d1e17fd5ee9bdf4d2d6e6b8b245f88b"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/interior/ct_interior_master.aseprite"
+    },
+    {
+      "assetId": "ct_start",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/interior/g1.png",
+      "aseprite": "ready/interior/g1.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        110,
+        159,
+        270
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/g1.png",
+      "unityResourcePath": "CafeTitle/ready/interior/g1",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "b9b5d156adf9f290550cdc4eef5fad8ac62f7bc65e2a614be12c7b47ade541a1",
+        "aseprite": "2f7e8a5895748fc1ac692c35a4853aac0cdb8add20b5171e3f90c9953e6c59a8",
+        "nativeMaster": "5e4d456ffc8a2dc30752e568a8f125825d1e17fd5ee9bdf4d2d6e6b8b245f88b"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/interior/ct_interior_master.aseprite"
+    },
+    {
+      "assetId": "ct_permanent",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/interior/g2.png",
+      "aseprite": "ready/interior/g2.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        113,
+        96,
+        141,
+        117
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/g2.png",
+      "unityResourcePath": "CafeTitle/ready/interior/g2",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "d1a9af275274911829b817197c923ab917db3be3aab83aa5d30f811f68a9ffad",
+        "aseprite": "f7d349791f432a8bb112fb4d46b07b022b24a5e5db5a7e1cec75302c07616beb",
+        "nativeMaster": "5e4d456ffc8a2dc30752e568a8f125825d1e17fd5ee9bdf4d2d6e6b8b245f88b"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/interior/ct_interior_master.aseprite"
+    },
+    {
+      "assetId": "ct_codex",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/interior/g3.png",
+      "aseprite": "ready/interior/g3.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        364,
+        69,
+        446,
+        173
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/g3.png",
+      "unityResourcePath": "CafeTitle/ready/interior/g3",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "1e49f16911cabd9a1aadd2ca7bbc2df22ee434adc557aeda0c5d053eb487b8be",
+        "aseprite": "a460ec81f0348bb247a8a7c50dadd58d792421fc49cd2cd5a6fd3ab7d537c80e",
+        "nativeMaster": "5e4d456ffc8a2dc30752e568a8f125825d1e17fd5ee9bdf4d2d6e6b8b245f88b"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/interior/ct_interior_master.aseprite"
+    },
+    {
+      "assetId": "ct_skins",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/interior/g4.png",
+      "aseprite": "ready/interior/g4.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        328,
+        62,
+        389,
+        141
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/g4.png",
+      "unityResourcePath": "CafeTitle/ready/interior/g4",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "ff6be955e1a35ece77a7dfca09da1483660b72728178a3db3b949750c0ef4632",
+        "aseprite": "446d2fbe6b7b5178e0b2295a6a03a0da31652dc39dade2da71a2ac609384bffc",
+        "nativeMaster": "5e4d456ffc8a2dc30752e568a8f125825d1e17fd5ee9bdf4d2d6e6b8b245f88b"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/interior/ct_interior_master.aseprite"
+    },
+    {
+      "assetId": "ct_history",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/interior/g5.png",
+      "aseprite": "ready/interior/g5.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        87,
+        120,
+        148,
+        177
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/g5.png",
+      "unityResourcePath": "CafeTitle/ready/interior/g5",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "da38e9dbbf4a8dcae585e054de17a77deaeb511f99ee3daa9578e0e9b9b6f311",
+        "aseprite": "68fb75216c6a24c9c0b7cc8475cd8ececd158be2cc78925c024cb72226b53ba3",
+        "nativeMaster": "5e4d456ffc8a2dc30752e568a8f125825d1e17fd5ee9bdf4d2d6e6b8b245f88b"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/interior/ct_interior_master.aseprite"
+    },
+    {
+      "assetId": "ct_settings",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/interior/g6.png",
+      "aseprite": "ready/interior/g6.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        213,
+        98,
+        258,
+        145
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/g6.png",
+      "unityResourcePath": "CafeTitle/ready/interior/g6",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "8cd330ad33ac6da710da766d827cbb56f3aebabd494a601e82bec9232ff5d4fe",
+        "aseprite": "2e9a2d2e374e6dc8b81bb51a06acb963d802f3ea7c1e9c9fde1b43c6be3fa22e",
+        "nativeMaster": "5e4d456ffc8a2dc30752e568a8f125825d1e17fd5ee9bdf4d2d6e6b8b245f88b"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/interior/ct_interior_master.aseprite"
+    },
+    {
+      "assetId": "ct_credits",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/interior/g7.png",
+      "aseprite": "ready/interior/g7.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        144,
+        48,
+        198,
+        75
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/g7.png",
+      "unityResourcePath": "CafeTitle/ready/interior/g7",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "9424e262984efe29fe42db6766e7937b7a6f0b1883af988de78602d09dc06195",
+        "aseprite": "81cfc210bee2501347dc47c02b5c7fe64c0c333e1ee3273b3f5fc153681dbe4a",
+        "nativeMaster": "5e4d456ffc8a2dc30752e568a8f125825d1e17fd5ee9bdf4d2d6e6b8b245f88b"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/interior/ct_interior_master.aseprite"
+    },
+    {
+      "assetId": "ct_quit",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/interior/g8.png",
+      "aseprite": "ready/interior/g8.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        269,
+        41,
+        342,
+        151
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/g8.png",
+      "unityResourcePath": "CafeTitle/ready/interior/g8",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "f51dbf9468afd134f6c0f93c7591fcc8ec3d949541fe8adf99b97dd843229258",
+        "aseprite": "8a16c50a89310f36813573892208345681856a94e352009e15b9f5ab4d0146c2",
+        "nativeMaster": "5e4d456ffc8a2dc30752e568a8f125825d1e17fd5ee9bdf4d2d6e6b8b245f88b"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/interior/ct_interior_master.aseprite"
+    },
+    {
+      "assetId": "ct_warm_light",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/interior/light.png",
+      "aseprite": "ready/interior/light.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        75,
+        139,
+        304,
+        270
+      ],
+      "alphaValues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/light.png",
+      "unityResourcePath": "CafeTitle/ready/interior/light",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "26b9a59986491beb8ff59e4067d863be965fd3aefceca178e57e7dd98fd0b797",
+        "aseprite": "76fd5783db6a98f79acebcab2df8519dde47177a9a431c88185301c608a2c916",
+        "nativeMaster": "5e4d456ffc8a2dc30752e568a8f125825d1e17fd5ee9bdf4d2d6e6b8b245f88b"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/interior/ct_interior_master.aseprite"
+    },
+    {
+      "assetId": "ct_exterior_facade",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/exterior/facade.png",
+      "aseprite": "ready/exterior/facade.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/facade.png",
+      "unityResourcePath": "CafeTitle/ready/exterior/facade",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "94d2270d63c87474329e0c45fd7ff6e4b2226e006650c10d6185a833372f0899",
+        "aseprite": "8ef83457331fd150ffebbf017d59571a2181eb1a462fb40a5a52e09d928e80b2"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ]
+    },
+    {
+      "assetId": "ct_exterior_glimpse",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/exterior/glimpse.png",
+      "aseprite": "ready/exterior/glimpse.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        193,
+        56,
+        422,
+        245
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/glimpse.png",
+      "unityResourcePath": "CafeTitle/ready/exterior/glimpse",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "632c573d736fd7c4b508797aaa194fa73995fe5f2e7b48dba116bebfe6c27f75",
+        "aseprite": "66950faf8b4a152a948bdf01f1f8cc06b57b749ec2c5535f3aeac4f79dd182b1"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ]
+    },
+    {
+      "assetId": "ct_exterior_door_00",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/exterior/door_00.png",
+      "aseprite": "ready/exterior/door_00.aseprite",
+      "dimensions": [
+        184,
+        216
+      ],
+      "alphaBounds": [
+        43,
+        8,
+        141,
+        207
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        43,
+        9
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.23369565217391305,
+        0.9583333333333334
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/door_00.png",
+      "unityResourcePath": "CafeTitle/ready/exterior/door_00",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "b174306ea23bfbefbd489f3c9a605e5ada34ac534ac226c63ff8af5ef497708e",
+        "aseprite": "b80d9c0dbd87e717997f2249795bd620db8a8e55fec36a6ea0448a7426d572a6",
+        "nativeMaster": "5454025c6097a0c2e760948fcea503e721cd1187647eb66cf5a63425a01cbd79"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/exterior/ct_door_open_master.aseprite",
+      "animation": {
+        "clip": "ct_door_open",
+        "frame": 0,
+        "frameCount": 8,
+        "fps": 12,
+        "loop": false,
+        "angleDegrees": 0,
+        "hingeWorldMeters": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "constantLeafWidthMeters": 1.046,
+        "constantThicknessMeters": 0.044
+      }
+    },
+    {
+      "assetId": "ct_exterior_door_01",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/exterior/door_01.png",
+      "aseprite": "ready/exterior/door_01.aseprite",
+      "dimensions": [
+        184,
+        216
+      ],
+      "alphaBounds": [
+        43,
+        8,
+        135,
+        207
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        43,
+        9
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.23369565217391305,
+        0.9583333333333334
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/door_01.png",
+      "unityResourcePath": "CafeTitle/ready/exterior/door_01",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "20def8489e975ae9a34c1b51212bc1e737a7674478ec896ecf3b9f2672c59f98",
+        "aseprite": "1c1682a62e768c50c7865008b88b4d6c97db07f588f95b8b46504ed5e4966cea",
+        "nativeMaster": "5454025c6097a0c2e760948fcea503e721cd1187647eb66cf5a63425a01cbd79"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/exterior/ct_door_open_master.aseprite",
+      "animation": {
+        "clip": "ct_door_open",
+        "frame": 1,
+        "frameCount": 8,
+        "fps": 12,
+        "loop": false,
+        "angleDegrees": 15,
+        "hingeWorldMeters": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "constantLeafWidthMeters": 1.046,
+        "constantThicknessMeters": 0.044
+      }
+    },
+    {
+      "assetId": "ct_exterior_door_02",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/exterior/door_02.png",
+      "aseprite": "ready/exterior/door_02.aseprite",
+      "dimensions": [
+        184,
+        216
+      ],
+      "alphaBounds": [
+        43,
+        8,
+        124,
+        207
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        43,
+        9
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.23369565217391305,
+        0.9583333333333334
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/door_02.png",
+      "unityResourcePath": "CafeTitle/ready/exterior/door_02",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "b48460853a50572d95eca2223c9aeb5374f9f8071015c6b63a0140dda939e62e",
+        "aseprite": "6d715e12fc8b4714a43fe210885f8cc6e9b9eb48a8fadfcb09505392b4c8481f",
+        "nativeMaster": "5454025c6097a0c2e760948fcea503e721cd1187647eb66cf5a63425a01cbd79"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/exterior/ct_door_open_master.aseprite",
+      "animation": {
+        "clip": "ct_door_open",
+        "frame": 2,
+        "frameCount": 8,
+        "fps": 12,
+        "loop": false,
+        "angleDegrees": 30,
+        "hingeWorldMeters": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "constantLeafWidthMeters": 1.046,
+        "constantThicknessMeters": 0.044
+      }
+    },
+    {
+      "assetId": "ct_exterior_door_03",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/exterior/door_03.png",
+      "aseprite": "ready/exterior/door_03.aseprite",
+      "dimensions": [
+        184,
+        216
+      ],
+      "alphaBounds": [
+        43,
+        8,
+        110,
+        207
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        43,
+        9
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.23369565217391305,
+        0.9583333333333334
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/door_03.png",
+      "unityResourcePath": "CafeTitle/ready/exterior/door_03",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "850dda1270aba2192c03084e6620412a6d70dd1a75441c515d6fdb9a78bc246e",
+        "aseprite": "5e7adbda4b6990f45222acd7d046fe2f35f0a211c2b27aa46c44605e0db2aa15",
+        "nativeMaster": "5454025c6097a0c2e760948fcea503e721cd1187647eb66cf5a63425a01cbd79"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/exterior/ct_door_open_master.aseprite",
+      "animation": {
+        "clip": "ct_door_open",
+        "frame": 3,
+        "frameCount": 8,
+        "fps": 12,
+        "loop": false,
+        "angleDegrees": 45,
+        "hingeWorldMeters": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "constantLeafWidthMeters": 1.046,
+        "constantThicknessMeters": 0.044
+      }
+    },
+    {
+      "assetId": "ct_exterior_door_04",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/exterior/door_04.png",
+      "aseprite": "ready/exterior/door_04.aseprite",
+      "dimensions": [
+        184,
+        216
+      ],
+      "alphaBounds": [
+        43,
+        9,
+        95,
+        206
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        43,
+        9
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.23369565217391305,
+        0.9583333333333334
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/door_04.png",
+      "unityResourcePath": "CafeTitle/ready/exterior/door_04",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "e231a43f34d4a2ac3784ea2c6a46fde309cc29a5a3c295396c6e7525cd9623e8",
+        "aseprite": "e2821fc28488b5b5dc9ca426bdbd87d88cbae0c6b1eef1b2e593693a769fb5de",
+        "nativeMaster": "5454025c6097a0c2e760948fcea503e721cd1187647eb66cf5a63425a01cbd79"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/exterior/ct_door_open_master.aseprite",
+      "animation": {
+        "clip": "ct_door_open",
+        "frame": 4,
+        "frameCount": 8,
+        "fps": 12,
+        "loop": false,
+        "angleDegrees": 60,
+        "hingeWorldMeters": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "constantLeafWidthMeters": 1.046,
+        "constantThicknessMeters": 0.044
+      }
+    },
+    {
+      "assetId": "ct_exterior_door_05",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/exterior/door_05.png",
+      "aseprite": "ready/exterior/door_05.aseprite",
+      "dimensions": [
+        184,
+        216
+      ],
+      "alphaBounds": [
+        43,
+        9,
+        78,
+        206
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        43,
+        9
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.23369565217391305,
+        0.9583333333333334
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/door_05.png",
+      "unityResourcePath": "CafeTitle/ready/exterior/door_05",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "b65bc0af803fc7b91af725f039d01722f83d2bad37b3447cf9330ffb62367e3b",
+        "aseprite": "016461d9d05b456b37e7e60c3aeef9f864b7c2a1b4662527b4ac1bad0fea8b10",
+        "nativeMaster": "5454025c6097a0c2e760948fcea503e721cd1187647eb66cf5a63425a01cbd79"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/exterior/ct_door_open_master.aseprite",
+      "animation": {
+        "clip": "ct_door_open",
+        "frame": 5,
+        "frameCount": 8,
+        "fps": 12,
+        "loop": false,
+        "angleDegrees": 75,
+        "hingeWorldMeters": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "constantLeafWidthMeters": 1.046,
+        "constantThicknessMeters": 0.044
+      }
+    },
+    {
+      "assetId": "ct_exterior_door_06",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/exterior/door_06.png",
+      "aseprite": "ready/exterior/door_06.aseprite",
+      "dimensions": [
+        184,
+        216
+      ],
+      "alphaBounds": [
+        43,
+        9,
+        67,
+        205
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        43,
+        9
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.23369565217391305,
+        0.9583333333333334
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/door_06.png",
+      "unityResourcePath": "CafeTitle/ready/exterior/door_06",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "38e544bf15abb9de7bc74cd2bf4de6cc1096002ef9234075a421a6f34e5fbeba",
+        "aseprite": "92558b686ef376cc61fbffa38ad1d3494fa81c0c199c92c16c03ddea8ac8224b",
+        "nativeMaster": "5454025c6097a0c2e760948fcea503e721cd1187647eb66cf5a63425a01cbd79"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/exterior/ct_door_open_master.aseprite",
+      "animation": {
+        "clip": "ct_door_open",
+        "frame": 6,
+        "frameCount": 8,
+        "fps": 12,
+        "loop": false,
+        "angleDegrees": 85,
+        "hingeWorldMeters": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "constantLeafWidthMeters": 1.046,
+        "constantThicknessMeters": 0.044
+      }
+    },
+    {
+      "assetId": "ct_exterior_door_07",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/exterior/door_07.png",
+      "aseprite": "ready/exterior/door_07.aseprite",
+      "dimensions": [
+        184,
+        216
+      ],
+      "alphaBounds": [
+        43,
+        9,
+        62,
+        205
+      ],
+      "alphaValues": [
+        0,
+        42,
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        43,
+        9
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.23369565217391305,
+        0.9583333333333334
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/door_07.png",
+      "unityResourcePath": "CafeTitle/ready/exterior/door_07",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "7d1d4dcc936bff337d1377bdf9c19ab83d63d8802d11aa7b0c824c4a974e6be1",
+        "aseprite": "cd47905bfbef85148906a7a8036aee716defdcfc006313f389418a604fe2332b",
+        "nativeMaster": "5454025c6097a0c2e760948fcea503e721cd1187647eb66cf5a63425a01cbd79"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ],
+      "nativeMaster": "ready/exterior/ct_door_open_master.aseprite",
+      "animation": {
+        "clip": "ct_door_open",
+        "frame": 7,
+        "frameCount": 8,
+        "fps": 12,
+        "loop": false,
+        "angleDegrees": 90,
+        "hingeWorldMeters": [
+          1.4,
+          -0.025,
+          0
+        ],
+        "constantLeafWidthMeters": 1.046,
+        "constantThicknessMeters": 0.044
+      }
+    },
+    {
+      "assetId": "ct_bridge_b00",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/bridge/b00.png",
+      "aseprite": "ready/bridge/b00.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/bridge/b00.png",
+      "unityResourcePath": "CafeTitle/ready/bridge/b00",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "4efd6ac7279cde37aab665d3fa706df4bcbd73c3be68a4558702f77a631f4290",
+        "aseprite": "093f7d4c35403ae99ffe72f7129d54adfc2c531cfa42368dc6541f6390795bd0"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ]
+    },
+    {
+      "assetId": "ct_bridge_b01",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/bridge/b01.png",
+      "aseprite": "ready/bridge/b01.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/bridge/b01.png",
+      "unityResourcePath": "CafeTitle/ready/bridge/b01",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "052eff446aa75ef1c88abc6a6d0b825f6a57260ab744f17633f9cc6f21d38b82",
+        "aseprite": "bb333268ec9187833b86f8d37d0a76794fee3cb3d6e76f21cca4afbaeed88a75"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ]
+    },
+    {
+      "assetId": "ct_bridge_b02",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/bridge/b02.png",
+      "aseprite": "ready/bridge/b02.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/bridge/b02.png",
+      "unityResourcePath": "CafeTitle/ready/bridge/b02",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "19eefafe19925fb1d8a318bb81af7bb8feadad3ec345278b62da0388a5c7cdc2",
+        "aseprite": "344963d581471068793a85c23c0a4731d94e6f86c4e56cbd0ba6647f1f0a2af9"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ]
+    },
+    {
+      "assetId": "ct_bridge_b03",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/bridge/b03.png",
+      "aseprite": "ready/bridge/b03.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/bridge/b03.png",
+      "unityResourcePath": "CafeTitle/ready/bridge/b03",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "ed6de715aadfebfe22f32575d3b7eb8c9e224ce0f131f471e3ed417fa598bb81",
+        "aseprite": "4219ae2a7562724016e33ec590f8795361f0da3b1814169a17518c1b1afd6766"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ]
+    },
+    {
+      "assetId": "ct_bridge_b04",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/bridge/b04.png",
+      "aseprite": "ready/bridge/b04.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/bridge/b04.png",
+      "unityResourcePath": "CafeTitle/ready/bridge/b04",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "cde661628295c0d42e93f92df3c49fa03fbe55f91f27bae64e51aa268bbfafdc",
+        "aseprite": "5fb2d72125ea3458e9fa9804f64fb102229e2a6d3a7676ba60c3ea7c3ed91d86"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ]
+    },
+    {
+      "assetId": "ct_bridge_b05",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/bridge/b05.png",
+      "aseprite": "ready/bridge/b05.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/bridge/b05.png",
+      "unityResourcePath": "CafeTitle/ready/bridge/b05",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "d5e4e17d1a23fb92424f98f9c6b3bf596b291bfb0be68ea5bf6f85085be86e04",
+        "aseprite": "3e8661500c85a0a568c21dfa7fe8e6515bc10a1c4b8eb487e2c5cc4a27c6451c"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ]
+    },
+    {
+      "assetId": "ct_bridge_b06",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/bridge/b06.png",
+      "aseprite": "ready/bridge/b06.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/bridge/b06.png",
+      "unityResourcePath": "CafeTitle/ready/bridge/b06",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "487be9a867bef53c766698c7979644074c6682511dcf549d6f2c929dbe49be40",
+        "aseprite": "8df20c1c888bef6652a6b0a0b05926c6db4753610a589b7a54c1063421fd5924"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ]
+    },
+    {
+      "assetId": "ct_bridge_b07",
+      "status": "ready",
+      "ready": true,
+      "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+      "pathsRelativeTo": "packageRoot",
+      "png": "ready/bridge/b07.png",
+      "aseprite": "ready/bridge/b07.aseprite",
+      "dimensions": [
+        480,
+        270
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "alphaValues": [
+        255
+      ],
+      "nativePivotTopLeftPixels": [
+        240,
+        135
+      ],
+      "pivotNormalizedBottomLeft": [
+        0.5,
+        0.5
+      ],
+      "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/bridge/b07.png",
+      "unityResourcePath": "CafeTitle/ready/bridge/b07",
+      "import": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "pixelsPerUnit": 100,
+        "filterMode": "Point",
+        "compression": "None",
+        "mipmapEnabled": false,
+        "alphaIsTransparency": true,
+        "wrapMode": "Clamp"
+      },
+      "sha256": {
+        "png": "e1d941b2050bf0f680893b15fd837f825eb3ae2087e051832d26ecc996a6e182",
+        "aseprite": "35b63ca76a0f804cdfd46ec89ca783aa694ec0c6909792135570703ad7da93e6"
+      },
+      "sourceEvidence": [
+        "provenance/tool-gate.json",
+        "provenance/source-generation-receipts.json",
+        "provenance/native-source-specs.json",
+        "provenance/finish-scene.lua",
+        "reference/reuse-inventory.json"
+      ],
+      "provenance": {
+        "tools": [
+          "Aseprite1.3.18.6",
+          "official PixelLab0.4.131"
+        ],
+        "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+        "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+        "newGeneratedSourcesUsed": [
+          "ct_bookshelf_source",
+          "ct_coat_cabinet_source",
+          "ct_radio_source",
+          "ct_ledger_source",
+          "ct_espresso_source",
+          "ct_facade_material_source"
+        ],
+        "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+      },
+      "checks": {
+        "dimensions": true,
+        "nonempty": true,
+        "nativeMagic": true,
+        "nativeCanvas": true,
+        "nativeFrames1": true,
+        "nativePivot": true,
+        "roundtripPixelsEqual": true,
+        "alphaPolicy": true,
+        "visualArtifactReview": true,
+        "unityImport": false,
+        "unityRuntime": false
+      },
+      "verification": "verification/asset-validation.json",
+      "visualPreviews": [
+        "previews/interior-composite.png",
+        "previews/hotspots-labels-proof.png",
+        "previews/entry-continuity-all17.png",
+        "previews/exterior-sign-prompt-1280x720.png",
+        "previews/exterior-sign-prompt-1920x1080.png",
+        "previews/exterior-sign-prompt-1440x1080.png",
+        "previews/menu-contain-1920x1080.png",
+        "previews/menu-contain-1280x720.png",
+        "previews/menu-contain-1440x1080.png"
+      ]
+    }
+  ],
+  "asset_manifests": [
+    "ready/ct_room_shell.ready.json",
+    "ready/ct_start.ready.json",
+    "ready/ct_permanent.ready.json",
+    "ready/ct_codex.ready.json",
+    "ready/ct_skins.ready.json",
+    "ready/ct_history.ready.json",
+    "ready/ct_settings.ready.json",
+    "ready/ct_credits.ready.json",
+    "ready/ct_quit.ready.json",
+    "ready/ct_warm_light.ready.json",
+    "ready/ct_exterior_facade.ready.json",
+    "ready/ct_exterior_glimpse.ready.json",
+    "ready/ct_exterior_door_00.ready.json",
+    "ready/ct_exterior_door_01.ready.json",
+    "ready/ct_exterior_door_02.ready.json",
+    "ready/ct_exterior_door_03.ready.json",
+    "ready/ct_exterior_door_04.ready.json",
+    "ready/ct_exterior_door_05.ready.json",
+    "ready/ct_exterior_door_06.ready.json",
+    "ready/ct_exterior_door_07.ready.json",
+    "ready/ct_bridge_b00.ready.json",
+    "ready/ct_bridge_b01.ready.json",
+    "ready/ct_bridge_b02.ready.json",
+    "ready/ct_bridge_b03.ready.json",
+    "ready/ct_bridge_b04.ready.json",
+    "ready/ct_bridge_b05.ready.json",
+    "ready/ct_bridge_b06.ready.json",
+    "ready/ct_bridge_b07.ready.json"
+  ],
+  "verification": "verification/asset-validation.json",
+  "geometry": "verification/geometry-validation.json",
+  "hotspots": "verification/hotspot-validation.json",
+  "labels": "verification/label-validation.json",
+  "previews": [
+    "previews/interior-composite.png",
+    "previews/hotspots-labels-proof.png",
+    "previews/entry-continuity-all17.png",
+    "previews/exterior-sign-prompt-1280x720.png",
+    "previews/exterior-sign-prompt-1920x1080.png",
+    "previews/exterior-sign-prompt-1440x1080.png",
+    "previews/menu-contain-1920x1080.png",
+    "previews/menu-contain-1280x720.png",
+    "previews/menu-contain-1440x1080.png"
+  ],
+  "unityIntegrated": false,
+  "unityVerified": false,
+  "humanPlayPerformed": false,
+  "pendingExpectedIds": [],
+  "toneContract": "tone-contract.json",
+  "singleCocktailBarGradeManifest": "manifest.bg_barwarm.ready.json"
+}

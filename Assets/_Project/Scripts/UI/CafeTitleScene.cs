@@ -84,6 +84,7 @@ namespace CCT
             foreach (var id in order) if (scene.Hotspots.TryGetValue(id, out var h)) scene.NavOrder.Add(h);
             foreach (var h in scene.Hotspots.Values) if (!scene.NavOrder.Contains(h)) scene.NavOrder.Add(h);
             scene.BuildNavigation();
+            foreach (var h in scene.Hotspots.Values) scene.AttachObjectLight(h);
 
             scene.Exterior = scene.Container("CafeExterior", out scene.exteriorGroup);
             scene.exteriorGroup.blocksRaycasts = false;
@@ -108,6 +109,16 @@ namespace CCT
                 var sprites = new List<Sprite>();
                 foreach (var v in layout.Bridge) sprites.Add(CafeTitleLayout.LoadSprite(v.Png));
                 scene.BridgeSprites = sprites.ToArray();
+                scene.BridgeSignTitles = new Text[layout.Bridge.Count];
+                for (int i = 0; i < layout.Bridge.Count; i++)
+                {
+                    var bv = layout.Bridge[i];
+                    if (!bv.SignTextRect.HasValue || !layout.SignTextRect.HasValue) continue;
+                    float k = bv.SignTextRect.Value.height / Mathf.Max(0.0001f, layout.SignTextRect.Value.height);
+                    // 글자를 감싸는 단위(간판 면 마스크 또는 글자 자신)를 켜고 끈다 → 마스크가 없으면 글자 부모가 bridge 컨테이너가 되지 않게 면을 항상 만든다
+                    scene.BridgeSignTitles[i] = scene.MakeSignText(scene.Bridge, "BridgeSign" + i, bv.SignTextRect.Value, bv.SignSurfaceRect ?? bv.SignTextRect.Value, k);
+                }
+                scene.ShowBridgeSign(-1);
             }
             scene.ApplyCameras();
             return scene;
@@ -117,6 +128,7 @@ namespace CCT
         /// 따뜻한 금색 + 왼쪽 위 주광에 맞춘 오른쪽 아래 짧은 그림자. 정면 간판이라 기울임 없음. 외부 장면과 같은 변환.</summary>
         void AddSignTitle()
         {
+            if (Layout.SignTextRect.HasValue) { SignTitle = MakeSignText(Exterior, "SignTitle", Layout.SignTextRect.Value, Layout.SignSurfaceRect, 1f); return; }
             var r = Layout.SignRect;
             if (r.width <= 0f || r.height <= 0f || (r.width >= 0.999f && r.height >= 0.999f)) return; // 간판 정보 없음
             var rt = Place(Exterior, "SignTitle", r);
@@ -133,6 +145,112 @@ namespace CCT
             var shadow = rt.gameObject.AddComponent<Shadow>();
             shadow.effectColor = new Color(0.12f, 0.06f, 0.03f, 0.85f);
             shadow.effectDistance = new Vector2(3f, -3f);
+        }
+
+        /// <summary>v5 간판 계약: textRect 안 가운데 정렬 GameInfo.Title, 간판 면(surfaceQuad 외접) 밖은 잘라냄(RectMask2D),
+        /// textColor·outlineColor·1080 기준 fontPx(장면 변환과 함께 확대/축소). scale = 이 뷰의 간판 투영 크기 / 외관 간판 크기.</summary>
+        Text MakeSignText(RectTransform parent, string name, Rect textRect, Rect? surface, float scale)
+        {
+            RectTransform holder = parent;
+            Vector2 origin = Vector2.zero;
+            if (surface.HasValue)
+            {
+                holder = Place(parent, name + "Surface", surface.Value);
+                holder.gameObject.AddComponent<RectMask2D>();
+                origin = NormToLocal(surface.Value.center);
+            }
+            var rt = new GameObject(name, typeof(RectTransform)).GetComponent<RectTransform>();
+            rt.SetParent(holder, false);
+            rt.anchorMin = rt.anchorMax = rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.sizeDelta = new Vector2(textRect.width * RefW, textRect.height * RefH);
+            rt.anchoredPosition = NormToLocal(textRect.center) - origin;
+            int px = Mathf.Max(12, Mathf.RoundToInt((Layout.SignFontPx > 0 ? Layout.SignFontPx : textRect.height * RefH * 0.55f) * scale));
+            var t = UiFactory.AddText(rt, GameInfo.Title, px, TextAnchor.MiddleCenter, Layout.SignTextColor);
+            t.color = Layout.SignTextColor;
+            t.raycastTarget = false;
+            t.horizontalOverflow = HorizontalWrapMode.Wrap;
+            t.verticalOverflow = VerticalWrapMode.Truncate;
+            t.resizeTextForBestFit = true;
+            t.resizeTextMinSize = 12;
+            t.resizeTextMaxSize = px;
+            var o = rt.gameObject.AddComponent<Outline>();
+            o.effectColor = Layout.SignOutlineColor ?? new Color(0.12f, 0.06f, 0.03f, 0.85f);
+            o.effectDistance = new Vector2(2f * scale, -2f * scale);
+            return t;
+        }
+
+        /// <summary>bridge 뷰별 간판 글자(그 뷰에 간판이 보일 때만). ApplyBridge가 현재 뷰 것만 켠다.</summary>
+        public Text[] BridgeSignTitles { get; private set; }
+
+        public void ShowBridgeSign(int index)
+        {
+            if (BridgeSignTitles == null) return;
+            for (int i = 0; i < BridgeSignTitles.Length; i++)
+                if (BridgeSignTitles[i] != null) BridgeSignTitles[i].transform.parent.gameObject.SetActive(i == index);
+        }
+
+        /// <summary>2026-11-20 r5: 메뉴 물체 → 그 물체만 그린 실내 레이어(layout feature "layer"가 있으면 그 값). 분리 레이어가 없으면 조명 반응 없이 명패 변화만.</summary>
+        public static readonly Dictionary<string, string> DefaultObjectLayers = new Dictionary<string, string>
+        {
+            { "start", "order_counter" }, { "permanent", "bar_end_laptop" }, { "codex", "recipe_bookshelf" }, { "skins", "coat_cabinet" },
+            { "history", "ledger_station" }, { "settings", "radio_sideboard" }, { "credits", "staff_noticeboard" }, { "quit", "entry_door" },
+        };
+
+        /// <summary>선택·hover된 물체만 은은하게 밝아지는 조명 반응: 그 물체 레이어 픽셀로 만든 밝은 사본을 원 레이어 바로 위(앞 물체보다는 아래)에 겹쳐
+        /// 투명도를 부드럽게 올린다. 테두리·사각 덧칠 없음. 물체 밖 픽셀은 투명 그대로라 그림과 어긋난 밝은 판이 생기지 않는다.</summary>
+        void AttachObjectLight(CafeHotspot h)
+        {
+            string layerId = !string.IsNullOrEmpty(h.Feature.Layer) ? h.Feature.Layer : DefaultObjectLayers.TryGetValue(h.Feature.Id, out var d) ? d : null;
+            if (layerId == null) return;
+            var src = Interior.Find(layerId) as RectTransform;
+            var img = src != null ? src.GetComponent<Image>() : null;
+            var lit = img != null ? LitCopy(img.sprite) : null;
+            if (lit == null) return;
+            var rt = new GameObject(layerId + "_lit", typeof(RectTransform)).GetComponent<RectTransform>();
+            rt.SetParent(Interior, false);
+            rt.anchorMin = src.anchorMin; rt.anchorMax = src.anchorMax; rt.pivot = src.pivot;
+            rt.sizeDelta = src.sizeDelta; rt.anchoredPosition = src.anchoredPosition;
+            rt.SetSiblingIndex(src.GetSiblingIndex() + 1);
+            var g = rt.gameObject.AddComponent<Image>();
+            g.sprite = lit; g.raycastTarget = false; g.color = new Color(1f, 1f, 1f, 0f);
+            h.SetObjectLight(g, layerId);
+        }
+
+        static readonly Dictionary<Sprite, Sprite> litCache = new Dictionary<Sprite, Sprite>();
+        /// <summary>밝기 상승량(남은 밝기 대비 비율). 어두운 외곽선(휘도 낮음)은 거의 그대로 두고 면만 따뜻하게 조금 올린다.</summary>
+        public const float LightLift = 0.14f;
+
+        public static Sprite LitCopy(Sprite s)
+        {
+            if (s == null) return null;
+            if (litCache.TryGetValue(s, out var cached) && cached != null) return cached;
+            var tex = s.texture;
+            if (tex == null || !tex.isReadable) return null;
+            var r = s.rect;
+            Color32[] px;
+            try { px = tex.GetPixels32(); } catch { return null; }
+            int tw = tex.width, w = (int)r.width, hgt = (int)r.height, ox = (int)r.x, oy = (int)r.y;
+            var outPx = new Color32[w * hgt];
+            for (int y = 0; y < hgt; y++)
+                for (int x = 0; x < w; x++)
+                {
+                    var p = px[(y + oy) * tw + x + ox];
+                    if (p.a > 0)
+                    {
+                        float lum = 0.2126f * p.r + 0.7152f * p.g + 0.0722f * p.b;
+                        float k = LightLift * Mathf.Clamp01((lum - 24f) / 70f);
+                        p.r = (byte)Mathf.RoundToInt(p.r + (255 - p.r) * k);
+                        p.g = (byte)Mathf.RoundToInt(p.g + (255 - p.g) * k * 0.93f);
+                        p.b = (byte)Mathf.RoundToInt(p.b + (255 - p.b) * k * 0.78f);
+                    }
+                    outPx[y * w + x] = p;
+                }
+            var t = new Texture2D(w, hgt, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp, name = tex.name + "_lit" };
+            t.SetPixels32(outPx); t.Apply(false, false); // CPU 사본 유지(검사에서 원본과 픽셀 대조, 480x270 몇 장)
+            var lit = Sprite.Create(t, new Rect(0, 0, w, hgt), new Vector2(0.5f, 0.5f), s.pixelsPerUnit, 0, SpriteMeshType.FullRect);
+            lit.name = s.name + "_lit";
+            litCache[s] = lit;
+            return lit;
         }
 
         RectTransform Container(string name, out CanvasGroup group)
@@ -208,6 +326,13 @@ namespace CCT
 
         public void SetExteriorCamera(Vector2 center, float zoom) { exCenter = center; exZoom = zoom; ApplyCameras(); }
         public void SetInteriorCamera(Vector2 center, float zoom) { inCenter = center; inZoom = zoom; ApplyCameras(); }
+        public void GetInteriorCamera(out Vector2 center, out float zoom) { center = inCenter; zoom = inZoom; }
+
+        /// <summary>메뉴 접근 중에는 명패·설명을 숨긴다(확대된 시점에서 이름표가 커져 물체를 덮지 않게). 돌아오면 다시 보인다.</summary>
+        public void SetNameplatesVisible(bool visible)
+        {
+            foreach (var h in Hotspots.Values) if (h.Nameplate != null) h.Nameplate.gameObject.SetActive(visible);
+        }
         public void SetBridgeCamera(Vector2 center, float zoom) { brCenter = center; brZoom = zoom; ApplyCameras(); }
 
         void ApplyCameras()
@@ -279,7 +404,7 @@ namespace CCT
         }
     }
 
-    /// <summary>한 가구의 클릭 영역 + 이름표 + 포커스 표시(평소엔 이름표만, hover/선택 시 얇은 테두리·짧은 설명).</summary>
+    /// <summary>한 가구의 클릭 영역 + 이름표 + 포커스 표시(평소엔 이름표만, hover/선택 시 그 물체만 은은히 밝아짐·명패 색·짧은 설명).</summary>
     public sealed class CafeHotspot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, ICanvasRaycastFilter
     {
         public CafeTitleLayout.Feature Feature { get; private set; }
@@ -288,9 +413,7 @@ namespace CCT
         public Text LabelText { get; private set; }
         GameObject focusRoot;
         bool hovered, selected;
-        public bool FocusVisible => focusRoot != null && focusRoot.activeSelf;
 
-        static readonly Color FocusColor = new Color(1f, 0.86f, 0.55f, 0.9f);
 
         public static CafeHotspot Create(RectTransform interior, string buttonName, CafeTitleLayout.Feature f, System.Action onClick)
         {
@@ -300,20 +423,16 @@ namespace CCT
             var hs = rt.gameObject.AddComponent<CafeHotspot>();
             hs.Feature = f;
             hs.Button = rt.gameObject.AddComponent<Button>();
-            hs.Button.transition = Selectable.Transition.None; // 그림 위 색칠 없음 — 포커스는 테두리로만
+            hs.Button.transition = Selectable.Transition.None; // 그림 위 색칠 없음 — 포커스는 물체 조명 반응·명패로만
             hs.Button.targetGraphic = hit;
             UiFactory.AddFocusSfx(hs.Button);
             hs.Button.onClick.AddListener(() => { AudioService.PlaySfx("ui_confirm"); onClick?.Invoke(); });
 
-            // 포커스 테두리(3px, 가구 둘레)
+            // 2026-11-20 r5: 도형 윤곽선·바운딩박스 없음. hover/선택 표시는 물체 조명 반응(AttachObjectLight) + 명패 색 변화 + 짧은 설명.
             hs.focusRoot = new GameObject("Focus", typeof(RectTransform));
             var frt = (RectTransform)hs.focusRoot.transform;
             frt.SetParent(rt, false);
-            frt.anchorMin = Vector2.zero; frt.anchorMax = Vector2.one; frt.offsetMin = new Vector2(-6f, -6f); frt.offsetMax = new Vector2(6f, 6f);
-            Edge(frt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 3)); // 위
-            Edge(frt, new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 3)); // 아래
-            Edge(frt, new Vector2(0, 0), new Vector2(0, 1), new Vector2(3, 0)); // 왼
-            Edge(frt, new Vector2(1, 0), new Vector2(1, 1), new Vector2(3, 0)); // 오른
+            frt.anchorMin = Vector2.zero; frt.anchorMax = Vector2.one; frt.offsetMin = frt.offsetMax = Vector2.zero;
             hs.focusRoot.SetActive(false);
 
             // 이름표: 가구 옆/아래 작은 명패(Unity 텍스트). 클릭 영역과 같은 장면 변환.
@@ -322,7 +441,8 @@ namespace CCT
             prt.SetParent(interior, false);
             prt.anchorMin = prt.anchorMax = new Vector2(0.5f, 0.5f);
             var bg = plate.AddComponent<Image>();
-            bg.color = new Color(0.13f, 0.085f, 0.06f, 0.88f);
+            bg.color = PlateIdle;
+            hs.plateBg = bg;
             bg.raycastTarget = false;
             var label = UiFactory.AddText(UiFactory.Stretch("Label", prt), f.Label, 26, TextAnchor.MiddleCenter, new Color(0.98f, 0.92f, 0.8f));
             label.raycastTarget = false;
@@ -343,7 +463,14 @@ namespace CCT
             // 짧은 목적 설명(포커스 때만, 이름표 아래)
             if (!string.IsNullOrEmpty(f.Desc))
             {
-                var drt = UiFactory.Place("Desc", prt, new Vector2(0.5f, 0f), new Vector2(0f, -4f), new Vector2(Mathf.Max(w, 300f), 30f));
+                float dw = Mathf.Max(w, 300f);
+                // 장면 가장자리 명패(예: 오른쪽 끝 책장)의 설명이 화면 밖으로 나가지 않게 가로로만 밀어 넣는다
+                float plateCx = anchor.x + (0.5f - prt.pivot.x) * w;
+                // 옆 명패(left/right)는 설명을 물체 반대쪽으로 펼친다(설명이 그 물체를 덮지 않게): 명패의 물체 쪽 가장자리에 맞춤
+                float away = f.LabelSide == "right" ? (dw - w) * 0.5f : f.LabelSide == "left" ? -(dw - w) * 0.5f : 0f;
+                plateCx += away;
+                float shift = away + Mathf.Clamp(plateCx,-CafeTitleScene.RefW * 0.5f + dw * 0.5f + 8f, CafeTitleScene.RefW * 0.5f - dw * 0.5f - 8f) - plateCx;
+                var drt = UiFactory.Place("Desc", prt, new Vector2(0.5f, 0f), new Vector2(shift, -4f), new Vector2(dw, 30f));
                 drt.pivot = new Vector2(0.5f, 1f);
                 var dbg = drt.gameObject.AddComponent<Image>();
                 dbg.color = new Color(0.08f, 0.05f, 0.04f, 0.85f);
@@ -355,25 +482,51 @@ namespace CCT
             return hs;
         }
 
-        static void Edge(RectTransform parent, Vector2 aMin, Vector2 aMax, Vector2 thick)
+        static readonly Color PlateIdle = new Color(0.13f, 0.085f, 0.06f, 0.88f), PlateActive = new Color(0.27f, 0.18f, 0.1f, 0.94f);
+        static readonly Color LabelIdle = new Color(0.98f, 0.92f, 0.8f), LabelActive = new Color(1f, 0.97f, 0.88f);
+        const float LightFadeSeconds = 0.12f;
+        Image plateBg, objectLight;
+        bool active;
+        /// <summary>hover 또는 키보드 선택으로 이 물체가 강조 중인지(조명 반응·명패 색·설명).</summary>
+        public bool FocusVisible => active;
+        /// <summary>이 물체의 조명 반응 이미지(분리 레이어가 없으면 null)와 원 레이어 id.</summary>
+        public Image ObjectLight => objectLight;
+        public string ObjectLayerId { get; private set; }
+        /// <summary>조명 반응 현재 세기(0~1).</summary>
+        public float LightAmount => objectLight != null ? objectLight.color.a : 0f;
+        public Image PlateBackground => plateBg;
+
+        public void SetObjectLight(Image img, string layerId) { objectLight = img; ObjectLayerId = layerId; }
+
+        bool lightSuppressed;
+        /// <summary>접근·조작 프레임 동안 밝은 사본을 끈다(교체된 조작 그림을 원래 물체 사본이 덮지 않게).</summary>
+        public void SuppressLight(bool on)
         {
-            var rt = new GameObject("Edge", typeof(RectTransform)).GetComponent<RectTransform>();
-            rt.SetParent(parent, false);
-            rt.anchorMin = aMin; rt.anchorMax = aMax;
-            rt.pivot = new Vector2(aMin.x == aMax.x ? aMin.x : 0.5f, aMin.y == aMax.y ? aMin.y : 0.5f);
-            rt.sizeDelta = thick;
-            rt.anchoredPosition = Vector2.zero;
-            var img = rt.gameObject.AddComponent<Image>();
-            img.color = FocusColor;
-            img.raycastTarget = false;
+            lightSuppressed = on;
+            if (on && objectLight != null) objectLight.color = new Color(1f, 1f, 1f, 0f);
         }
 
-        void Refresh() { if (focusRoot != null) focusRoot.SetActive((hovered || selected) && Button.interactable); }
+        void Refresh()
+        {
+            active = (hovered || selected) && Button != null && Button.interactable;
+            if (focusRoot != null) focusRoot.SetActive(active);
+            if (plateBg != null) plateBg.color = active ? PlateActive : PlateIdle;
+            if (LabelText != null) LabelText.color = active ? LabelActive : LabelIdle;
+        }
+
+        void Update()
+        {
+            if (objectLight == null) return;
+            float target = active && !lightSuppressed ? 1f : 0f, a = objectLight.color.a;
+            if (Mathf.Approximately(a, target)) return;
+            a = Mathf.MoveTowards(a, target, Time.unscaledDeltaTime / LightFadeSeconds); // 한 방향 페이드(펄스·깜빡임 없음)
+            objectLight.color = new Color(1f, 1f, 1f, a);
+        }
         public void OnPointerEnter(PointerEventData e) { hovered = true; Refresh(); }
         public void OnPointerExit(PointerEventData e) { hovered = false; Refresh(); }
         public void OnSelect(BaseEventData e) { selected = true; Refresh(); }
         public void OnDeselect(BaseEventData e) { selected = false; Refresh(); }
-        void OnDisable() { hovered = selected = false; if (focusRoot != null) focusRoot.SetActive(false); }
+        void OnDisable() { hovered = selected = false; Refresh(); if (objectLight != null) objectLight.color = new Color(1f, 1f, 1f, 0f); }
 
         /// <summary>다각형 클릭 영역: 외접 사각형 안이라도 다각형 밖이면 이 가구를 누르지 않는다(이웃 가구 침범 방지).</summary>
         public bool IsRaycastLocationValid(Vector2 sp, Camera cam)

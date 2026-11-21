@@ -1,0 +1,506 @@
+{
+  "status": "contract-only",
+  "baseLayout": "ArtSource/cafe-title-2026-11-18/revisions/v7-street-2026-11-20/layout.json",
+  "baseLayoutSha256": "896926893563b9ad21e8a8dd0cd693734bba41af585da8673596a12d1a9828ba",
+  "canvas": [
+    480,
+    270
+  ],
+  "camera": {
+    "eyeWorldMeters": [
+      3.3,
+      5.8,
+      2.3
+    ],
+    "headingDegrees": 180,
+    "pitchDownDegrees": 22,
+    "horizontalFov": 90
+  },
+  "actorOrigin": "Floor XY projected to top-left art pixels; use feet pivot and perspective scale from 1.65 m actor height",
+  "actorRadiusMeters": 0.13,
+  "walkSpeedMetersPerSecond": 2.4,
+  "order": [
+    "street_backdrop -10",
+    "room_shell 0",
+    "existing g1-g8 and light",
+    "actor depth-split against same props",
+    "contact patch and palm where in front",
+    "nameplates and dialog"
+  ],
+  "input": "Activation captures one target; hover/focus alone never enters approach. Lock repeat activation during movement/clip; show menu after settled contact, or cancel without activating.",
+  "returnPolicy": "Close menu or cancel quit, restore idle object cels, walk reverse path and restore originating focus. Committed Start or Quit follows existing navigation and save protection.",
+  "entries": {
+    "start": {
+      "layer": "g1",
+      "waypointsXYMeters": [
+        [
+          3.27,
+          3.48
+        ],
+        [
+          4.3,
+          3.26
+        ],
+        [
+          4.68,
+          2.64
+        ]
+      ],
+      "footAnchorsPixels": [
+        [
+          242.39,
+          235.65
+        ],
+        [
+          165.39,
+          223.12
+        ],
+        [
+          152.65,
+          195.06
+        ]
+      ],
+      "standFacing": "east",
+      "minimumObstacleClearanceMeters": 0.28,
+      "contactWorldMeters": [
+        5.18,
+        2.61,
+        1.1
+      ],
+      "contactPixels": [
+        107.58,
+        129.2
+      ],
+      "contactZoneArtPixels": [
+        101.58,
+        123.2,
+        12,
+        12
+      ],
+      "walkDurationSeconds": 0.74,
+      "clipId": "ct_prep_cup",
+      "actionSeconds": 0.4,
+      "beats": [
+        "Reach the tray",
+        "Take the near cup and set it down on the same tray",
+        "Settle on its existing contact pixel"
+      ],
+      "artStatus": "contract-only",
+      "sourceAndRequiredCelWork": "Reuse stationary v5 tray and cup pixels; separate moving cup, hand and contact-shadow cels needed."
+    },
+    "permanent": {
+      "layer": "g2",
+      "waypointsXYMeters": [
+        [
+          3.27,
+          3.48
+        ],
+        [
+          4.43,
+          1.02
+        ],
+        [
+          5.88,
+          1.01
+        ],
+        [
+          5.91,
+          1.75
+        ]
+      ],
+      "footAnchorsPixels": [
+        [
+          242.39,
+          235.65
+        ],
+        [
+          188.77,
+          150.5
+        ],
+        [
+          123.23,
+          150.3
+        ],
+        [
+          104.32,
+          166.99
+        ]
+      ],
+      "standFacing": "southwest",
+      "minimumObstacleClearanceMeters": 0.15,
+      "contactWorldMeters": [
+        5.47,
+        1.62,
+        1.02
+      ],
+      "contactPixels": [
+        120.42,
+        114.11
+      ],
+      "contactZoneArtPixels": [
+        114.42,
+        108.11,
+        12,
+        12
+      ],
+      "walkDurationSeconds": 2.05,
+      "clipId": "ct_laptop_key_light",
+      "actionSeconds": 0.48,
+      "beats": [
+        "Reach the keyboard from the staff aisle",
+        "Press input",
+        "Three-step screen light increase within the mounted panel"
+      ],
+      "artStatus": "contract-only",
+      "sourceAndRequiredCelWork": "Reuse ProgressionUI laptop_light three-frame timing and palette. Project only screen pixels into the installed g2 screen quad; build a masked key/hand patch."
+    },
+    "codex": {
+      "layer": "g3",
+      "waypointsXYMeters": [
+        [
+          3.27,
+          3.48
+        ],
+        [
+          1.89,
+          2.18
+        ],
+        [
+          1.02,
+          1.56
+        ]
+      ],
+      "footAnchorsPixels": [
+        [
+          242.39,
+          235.65
+        ],
+        [
+          320.23,
+          179.18
+        ],
+        [
+          354.17,
+          162.25
+        ]
+      ],
+      "standFacing": "west",
+      "minimumObstacleClearanceMeters": 0.42,
+      "contactWorldMeters": [
+        0.606,
+        1.54,
+        1.21
+      ],
+      "contactPixels": [
+        388.36,
+        102.77
+      ],
+      "contactZoneArtPixels": [
+        382.36,
+        96.77,
+        12,
+        12
+      ],
+      "walkDurationSeconds": 1.24,
+      "clipId": "ct_codex_take_open",
+      "actionSeconds": 0.6,
+      "beats": [
+        "Pull one middle-shelf book along the front-face normal",
+        "Support it under the spine",
+        "Open the two covers outward at chest height"
+      ],
+      "artStatus": "contract-only",
+      "sourceAndRequiredCelWork": "Reuse book pigment and spine from v5 g3 and ct_bookshelf_source; separate book-out, open book and exposed shelf pocket needed. RecipeDrawer is close-up prop reference."
+    },
+    "skins": {
+      "layer": "g4",
+      "waypointsXYMeters": [
+        [
+          3.27,
+          3.48
+        ],
+        [
+          1.22,
+          1.44
+        ],
+        [
+          0.79,
+          1.06
+        ]
+      ],
+      "footAnchorsPixels": [
+        [
+          242.39,
+          235.65
+        ],
+        [
+          341.79,
+          159.43
+        ],
+        [
+          354.6,
+          151.29
+        ]
+      ],
+      "standFacing": "south",
+      "minimumObstacleClearanceMeters": 0.194,
+      "contactWorldMeters": [
+        0.79,
+        0.56,
+        1.37
+      ],
+      "contactPixels": [
+        355.69,
+        84.27
+      ],
+      "contactZoneArtPixels": [
+        349.69,
+        78.27,
+        12,
+        12
+      ],
+      "walkDurationSeconds": 1.44,
+      "clipId": "ct_skin_hanger_inspect",
+      "actionSeconds": 0.5,
+      "beats": [
+        "Touch the closest apron hanger",
+        "Slide and tilt slightly along the actual rail",
+        "Inspect it while still hung"
+      ],
+      "artStatus": "contract-only",
+      "sourceAndRequiredCelWork": "Reuse v5 g4 apron texture; separate apron and hanger, plus rail lip occluder, needed."
+    },
+    "history": {
+      "layer": "g5",
+      "waypointsXYMeters": [
+        [
+          3.27,
+          3.48
+        ],
+        [
+          4.08,
+          2.77
+        ],
+        [
+          4.67,
+          2.09
+        ]
+      ],
+      "footAnchorsPixels": [
+        [
+          242.39,
+          235.65
+        ],
+        [
+          189.01,
+          200.21
+        ],
+        [
+          163.56,
+          176.44
+        ]
+      ],
+      "standFacing": "east",
+      "minimumObstacleClearanceMeters": 0.29,
+      "contactWorldMeters": [
+        5.18,
+        2.08,
+        1.02
+      ],
+      "contactPixels": [
+        125.15,
+        122.37
+      ],
+      "contactZoneArtPixels": [
+        119.15,
+        116.37,
+        12,
+        12
+      ],
+      "walkDurationSeconds": 0.82,
+      "clipId": "ct_ledger_open",
+      "actionSeconds": 0.55,
+      "beats": [
+        "Reach across the front edge",
+        "Lift the ledger cover about its spine",
+        "Settle the open pages flat on the counter"
+      ],
+      "artStatus": "contract-only",
+      "sourceAndRequiredCelWork": "Reuse v5 ledger art for closed cover; make hinged cover page-plane and held-open cels in counter perspective."
+    },
+    "settings": {
+      "layer": "g6",
+      "waypointsXYMeters": [
+        [
+          3.27,
+          3.48
+        ],
+        [
+          3.32,
+          1.51
+        ],
+        [
+          3.33,
+          1.1
+        ]
+      ],
+      "footAnchorsPixels": [
+        [
+          242.39,
+          235.65
+        ],
+        [
+          239.01,
+          161.06
+        ],
+        [
+          238.62,
+          152.1
+        ]
+      ],
+      "standFacing": "south",
+      "minimumObstacleClearanceMeters": 0.4,
+      "contactWorldMeters": [
+        3.44,
+        0.575,
+        0.88
+      ],
+      "contactPixels": [
+        233.75,
+        106.4
+      ],
+      "contactZoneArtPixels": [
+        227.75,
+        100.4,
+        12,
+        12
+      ],
+      "walkDurationSeconds": 0.99,
+      "clipId": "ct_radio_dial",
+      "actionSeconds": 0.37,
+      "beats": [
+        "Reach the radio face",
+        "Turn the right control about its fixed axis",
+        "Settle with a restrained indicator change"
+      ],
+      "artStatus": "contract-only",
+      "sourceAndRequiredCelWork": "Reuse v5 g6 radio and raw ct_radio_source; make dial indicator and reach patch, without moving the case."
+    },
+    "credits": {
+      "layer": "g7",
+      "waypointsXYMeters": [
+        [
+          3.27,
+          3.48
+        ],
+        [
+          4.19,
+          1.66
+        ],
+        [
+          4.57,
+          0.77
+        ]
+      ],
+      "footAnchorsPixels": [
+        [
+          242.39,
+          235.65
+        ],
+        [
+          194.55,
+          164.7
+        ],
+        [
+          184.84,
+          145.78
+        ]
+      ],
+      "standFacing": "south",
+      "minimumObstacleClearanceMeters": 0.551,
+      "contactWorldMeters": [
+        4.55,
+        0.083,
+        1.68
+      ],
+      "contactPixels": [
+        185.78,
+        67.04
+      ],
+      "contactZoneArtPixels": [
+        179.78,
+        61.04,
+        12,
+        12
+      ],
+      "walkDurationSeconds": 1.25,
+      "clipId": "ct_notice_read",
+      "actionSeconds": 0.42,
+      "beats": [
+        "Lift gaze toward the pinned notice",
+        "Steady the lower edge of the existing paper",
+        "Hold briefly to read"
+      ],
+      "artStatus": "contract-only",
+      "sourceAndRequiredCelWork": "Reuse pinned slips from g7; small hand/reach and lower paper corner cels needed; preserve the pin and board."
+    },
+    "quit": {
+      "layer": "g8",
+      "waypointsXYMeters": [
+        [
+          3.27,
+          3.48
+        ],
+        [
+          2.19,
+          1.54
+        ],
+        [
+          2.02,
+          0.75
+        ]
+      ],
+      "footAnchorsPixels": [
+        [
+          242.39,
+          235.65
+        ],
+        [
+          295.37,
+          161.77
+        ],
+        [
+          295.41,
+          145.42
+        ]
+      ],
+      "standFacing": "southwest",
+      "minimumObstacleClearanceMeters": 0.5,
+      "contactWorldMeters": [
+        1.64,
+        0.89,
+        1.01
+      ],
+      "contactPixels": [
+        319.11,
+        104.34
+      ],
+      "contactZoneArtPixels": [
+        313.11,
+        98.34,
+        12,
+        12
+      ],
+      "walkDurationSeconds": 1.26,
+      "clipId": "ct_exit_door_push",
+      "actionSeconds": 0.42,
+      "beats": [
+        "Reach the existing lever",
+        "Push the leaf from its 75-degree resting pose to 90 degrees",
+        "Hold inside the threshold and open the existing confirmation"
+      ],
+      "artStatus": "contract-only",
+      "sourceAndRequiredCelWork": "Reuse door hinge geometry. Need south-facing 75-to-90-degree leaf clips and independent frame, glass and reveal plate; existing north-facing entry frames do not fit."
+    }
+  }
+}

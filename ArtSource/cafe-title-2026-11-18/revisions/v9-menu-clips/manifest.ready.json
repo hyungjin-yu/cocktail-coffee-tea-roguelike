@@ -1,0 +1,446 @@
+{
+  "ready": true,
+  "revision": 9,
+  "scope": "Eight animation clips and observer camera fields over layout v7",
+  "layout": "layout.json",
+  "layoutSha256": "a93a383f192b08edfc7932aaa062e86b1f38987f851a88ac61473adb6629950c",
+  "baseLayout": "ArtSource/cafe-title-2026-11-18/revisions/v7-street-2026-11-20/layout.json",
+  "baseLayoutSha256": "896926893563b9ad21e8a8dd0cd693734bba41af585da8673596a12d1a9828ba",
+  "canvas": [
+    480,
+    270
+  ],
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "pngCount": 48,
+  "nativeCount": 8,
+  "unityRuntimeVerified": false,
+  "assets": [
+    {
+      "id": "start",
+      "layer": "order_counter",
+      "native": "ready/approach/start.aseprite",
+      "nativeSha256": "8bd4d7da4d0211f23089d2f73bd4c6e862f72435d305fca295b13643f971d415",
+      "frames": [
+        {
+          "path": "ready/approach/start_00.png",
+          "sha256": "b9b5d156adf9f290550cdc4eef5fad8ac62f7bc65e2a614be12c7b47ade541a1",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/start_00.png"
+        },
+        {
+          "path": "ready/approach/start_01.png",
+          "sha256": "a8030e960767900ccdc753430a3c19dabc2506df3fada6374bd9c126917e6192",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/start_01.png"
+        },
+        {
+          "path": "ready/approach/start_02.png",
+          "sha256": "e91f0ae96a37094af86fc66784e211dd303b8130ede37b4814109cfc5a8ac75e",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/start_02.png"
+        },
+        {
+          "path": "ready/approach/start_03.png",
+          "sha256": "298d92a8d57ddafceceb69ee6fe67ce66ccca87ec4f7ce4905f8f0cedc039e00",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/start_03.png"
+        },
+        {
+          "path": "ready/approach/start_04.png",
+          "sha256": "55da70722451cc1875dff93103428e291c96622ea5be0fef72326701ab25d9a4",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/start_04.png"
+        },
+        {
+          "path": "ready/approach/start_05.png",
+          "sha256": "ccd5bb0c8ef6852fa0522c098e57039720d53d62f9149000351e8175669957d3",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/start_05.png"
+        }
+      ],
+      "uniqueFrames": 6,
+      "finalDifferenceBounds": [
+        97,
+        128,
+        112,
+        139
+      ],
+      "contactFramingBounds": [
+        13,
+        85,
+        209,
+        196
+      ],
+      "action": "Cup slides on its existing tray"
+    },
+    {
+      "id": "permanent",
+      "layer": "bar_end_laptop",
+      "native": "ready/approach/permanent.aseprite",
+      "nativeSha256": "4f05cf7975fd2a796673cfe5ee5fa7049990d0d3b12a3ea59157392063c267db",
+      "frames": [
+        {
+          "path": "ready/approach/permanent_00.png",
+          "sha256": "d1a9af275274911829b817197c923ab917db3be3aab83aa5d30f811f68a9ffad",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/permanent_00.png"
+        },
+        {
+          "path": "ready/approach/permanent_01.png",
+          "sha256": "6a2dc18a70a297ba6ce2cb4124a6c60dc30231720094a064485aad38848bb92b",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/permanent_01.png"
+        },
+        {
+          "path": "ready/approach/permanent_02.png",
+          "sha256": "aeb23070ce605f16386b94239b6f10001ebcde3289b223b63ab070e2811d51d0",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/permanent_02.png"
+        },
+        {
+          "path": "ready/approach/permanent_03.png",
+          "sha256": "591a95f53431ebf95f64c47e321485ab55022ed73daf8174c3168df3048e23f1",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/permanent_03.png"
+        },
+        {
+          "path": "ready/approach/permanent_04.png",
+          "sha256": "913ec18d1b179e7dde1aec08f4187eed1c975157b0a05459bdf67e211bbb17a6",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/permanent_04.png"
+        },
+        {
+          "path": "ready/approach/permanent_05.png",
+          "sha256": "c3349e3ebb493e593727626c06632676c62dc2a42260ed96cd5e0e7de3adef62",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/permanent_05.png"
+        }
+      ],
+      "uniqueFrames": 6,
+      "finalDifferenceBounds": [
+        123,
+        98,
+        138,
+        111
+      ],
+      "contactFramingBounds": [
+        62,
+        68,
+        204,
+        147
+      ],
+      "action": "Mounted laptop displays a three-step screen wake"
+    },
+    {
+      "id": "codex",
+      "layer": "recipe_bookshelf",
+      "native": "ready/approach/codex.aseprite",
+      "nativeSha256": "f8b2c0f87961782cd44c1143aa04b0f126754b37cddf3ae520ea6bd252161830",
+      "frames": [
+        {
+          "path": "ready/approach/codex_00.png",
+          "sha256": "1e49f16911cabd9a1aadd2ca7bbc2df22ee434adc557aeda0c5d053eb487b8be",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/codex_00.png"
+        },
+        {
+          "path": "ready/approach/codex_01.png",
+          "sha256": "b7c5615c200587872d147060925b3a87915b0029b25c43ab63ae6ed7a957119f",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/codex_01.png"
+        },
+        {
+          "path": "ready/approach/codex_02.png",
+          "sha256": "174228d805d3494ba47d2b79df344780b0c2912f43436040703eb8c236013a5d",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/codex_02.png"
+        },
+        {
+          "path": "ready/approach/codex_03.png",
+          "sha256": "78d6f61adcbb6612b0853e8ec521545c311c0d503b0e204d234c49ea703fcf5f",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/codex_03.png"
+        },
+        {
+          "path": "ready/approach/codex_04.png",
+          "sha256": "1e3fe6c85fdf8da2b54a2efa2bc1fc05f872d526c4a44d2d107289922fe0d77e",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/codex_04.png"
+        },
+        {
+          "path": "ready/approach/codex_05.png",
+          "sha256": "d7684ad7183619b9b03701d82e26c45e277edfcd833cafb6c069ba7e371e6bf8",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/codex_05.png"
+        }
+      ],
+      "uniqueFrames": 6,
+      "finalDifferenceBounds": [
+        378,
+        106,
+        397,
+        127
+      ],
+      "contactFramingBounds": [
+        281,
+        72,
+        462,
+        174
+      ],
+      "action": "Shelf-supported reference book opens around its spine"
+    },
+    {
+      "id": "skins",
+      "layer": "coat_cabinet",
+      "native": "ready/approach/skins.aseprite",
+      "nativeSha256": "0b3aee7355151fae91fb5c74103b2f5df2cf2af3ee91966fdf6882b54dfb973e",
+      "frames": [
+        {
+          "path": "ready/approach/skins_00.png",
+          "sha256": "ff6be955e1a35ece77a7dfca09da1483660b72728178a3db3b949750c0ef4632",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/skins_00.png"
+        },
+        {
+          "path": "ready/approach/skins_01.png",
+          "sha256": "e74cfd9d397fe532b1f8b5105ae38747ed96e0b488289e82df246786b50df48d",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/skins_01.png"
+        },
+        {
+          "path": "ready/approach/skins_02.png",
+          "sha256": "6777715862174395d2fa59ce12e64be547fc16c44e0542a39d919689f9d4a91e",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/skins_02.png"
+        },
+        {
+          "path": "ready/approach/skins_03.png",
+          "sha256": "248e31691d0724350282b7740ef9a0b83bb042f368385239c4d0f6a2f949a5d8",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/skins_03.png"
+        },
+        {
+          "path": "ready/approach/skins_04.png",
+          "sha256": "fce8bdb88a2d744a5f1022d21950d4982118ba69e401f707a1fa20f205bd2507",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/skins_04.png"
+        },
+        {
+          "path": "ready/approach/skins_05.png",
+          "sha256": "0a1794d3e75579742f7c2087439ac2569bdf83f0c05195937f1fcde11e21e5d5",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/skins_05.png"
+        }
+      ],
+      "uniqueFrames": 6,
+      "finalDifferenceBounds": [
+        338,
+        75,
+        363,
+        123
+      ],
+      "contactFramingBounds": [
+        262,
+        56,
+        447,
+        160
+      ],
+      "action": "Apron shifts beneath the fixed hanger rail"
+    },
+    {
+      "id": "history",
+      "layer": "ledger_station",
+      "native": "ready/approach/history.aseprite",
+      "nativeSha256": "f3a40c9b343c5698b0c29c2d25923712bbc7f0d7c4e4a5b2e25eb8909fe2d90a",
+      "frames": [
+        {
+          "path": "ready/approach/history_00.png",
+          "sha256": "da38e9dbbf4a8dcae585e054de17a77deaeb511f99ee3daa9578e0e9b9b6f311",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/history_00.png"
+        },
+        {
+          "path": "ready/approach/history_01.png",
+          "sha256": "e2752b52a1d245f9b6f2c8425dafc5747a4e56f2d54a23482cabc6a53e7f018e",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/history_01.png"
+        },
+        {
+          "path": "ready/approach/history_02.png",
+          "sha256": "1de0a37b329320c685d62fb6909e35f85a106d447f49fde8b9e4a47e4916c45a",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/history_02.png"
+        },
+        {
+          "path": "ready/approach/history_03.png",
+          "sha256": "7db3498a61250d85d716995c746c6fa52e167bbaa4bad406ce49df9c0fe456c6",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/history_03.png"
+        },
+        {
+          "path": "ready/approach/history_04.png",
+          "sha256": "80932ab0cef3f76cba521ee155f59d8cb69fbaa79c35d7d1138ad8b07eefb424",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/history_04.png"
+        },
+        {
+          "path": "ready/approach/history_05.png",
+          "sha256": "457866db696fd0f2438855e454259f032e7ffe566b766f591612ff8e8330a2ee",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/history_05.png"
+        }
+      ],
+      "uniqueFrames": 6,
+      "finalDifferenceBounds": [
+        105,
+        120,
+        137,
+        127
+      ],
+      "contactFramingBounds": [
+        48,
+        80,
+        195,
+        163
+      ],
+      "action": "Ledger cover lifts around the spine and exposes lined pages"
+    },
+    {
+      "id": "settings",
+      "layer": "radio_sideboard",
+      "native": "ready/approach/settings.aseprite",
+      "nativeSha256": "f23a1296dd54d681913866f37713d0d12deb102d5eab8e5cf76d6a6af6b7ae86",
+      "frames": [
+        {
+          "path": "ready/approach/settings_00.png",
+          "sha256": "8cd330ad33ac6da710da766d827cbb56f3aebabd494a601e82bec9232ff5d4fe",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_00.png"
+        },
+        {
+          "path": "ready/approach/settings_01.png",
+          "sha256": "d1a15aa50579676385fb9e1432f9805d49a6ccaa74dd82dc799d7ea66caeb939",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_01.png"
+        },
+        {
+          "path": "ready/approach/settings_02.png",
+          "sha256": "cb7bc33d51517342116bbcbacaeec4246da4a8327cc0a21a8d56bf73e7373871",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_02.png"
+        },
+        {
+          "path": "ready/approach/settings_03.png",
+          "sha256": "cb7bc33d51517342116bbcbacaeec4246da4a8327cc0a21a8d56bf73e7373871",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_03.png"
+        },
+        {
+          "path": "ready/approach/settings_04.png",
+          "sha256": "e44ec3b69c2170d1a68364a1f4db93161f2af7819b1db72d41b8f3cf6bc68b52",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_04.png"
+        },
+        {
+          "path": "ready/approach/settings_05.png",
+          "sha256": "cb7bc33d51517342116bbcbacaeec4246da4a8327cc0a21a8d56bf73e7373871",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_05.png"
+        }
+      ],
+      "uniqueFrames": 4,
+      "finalDifferenceBounds": [
+        245,
+        103,
+        248,
+        109
+      ],
+      "contactFramingBounds": [
+        170,
+        72,
+        302,
+        146
+      ],
+      "action": "Radio dial rotates and its pilot light warms"
+    },
+    {
+      "id": "credits",
+      "layer": "staff_noticeboard",
+      "native": "ready/approach/credits.aseprite",
+      "nativeSha256": "a9fe98e713a2748a4587d180cd1c85034e47de45d9a28d679b4f4cec3f8c4c14",
+      "frames": [
+        {
+          "path": "ready/approach/credits_00.png",
+          "sha256": "9424e262984efe29fe42db6766e7937b7a6f0b1883af988de78602d09dc06195",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/credits_00.png"
+        },
+        {
+          "path": "ready/approach/credits_01.png",
+          "sha256": "b03f487fa0f9b4fe2f8a3b56f181c57d9451af9d7f968b21b36996d07c926bf5",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/credits_01.png"
+        },
+        {
+          "path": "ready/approach/credits_02.png",
+          "sha256": "ebe3f8ec4335ead1cdc1652f6d42779ed30ea454bc0422c610f5634a637b6144",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/credits_02.png"
+        },
+        {
+          "path": "ready/approach/credits_03.png",
+          "sha256": "094acddef616cc48e100fee4cbc66069b635f79c00f01951a8d7fb38a2a277b2",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/credits_03.png"
+        },
+        {
+          "path": "ready/approach/credits_04.png",
+          "sha256": "a44bc5b38c4e841d12aa483e13b43889d2a1cbbc7e2cecf6edbfe4028ea03ec8",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/credits_04.png"
+        },
+        {
+          "path": "ready/approach/credits_05.png",
+          "sha256": "a44bc5b38c4e841d12aa483e13b43889d2a1cbbc7e2cecf6edbfe4028ea03ec8",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/credits_05.png"
+        }
+      ],
+      "uniqueFrames": 5,
+      "finalDifferenceBounds": [
+        179,
+        60,
+        191,
+        70
+      ],
+      "contactFramingBounds": [
+        96,
+        20,
+        246,
+        105
+      ],
+      "action": "Pinned sheet curls outward along its lower edge"
+    },
+    {
+      "id": "quit",
+      "layer": "entry_door",
+      "native": "ready/approach/quit.aseprite",
+      "nativeSha256": "03a01ce2ad3bf61b4726864db213739076a9c9fb8b2abc2a559c3a9cb1654562",
+      "frames": [
+        {
+          "path": "ready/approach/quit_00.png",
+          "sha256": "f51dbf9468afd134f6c0f93c7591fcc8ec3d949541fe8adf99b97dd843229258",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/quit_00.png"
+        },
+        {
+          "path": "ready/approach/quit_01.png",
+          "sha256": "50bf649409012c4e3278534692f0ed6bbbf0554967e47c0d5cfb4e69aa926f56",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/quit_01.png"
+        },
+        {
+          "path": "ready/approach/quit_02.png",
+          "sha256": "1ed9263d92f0a88b4da24f084c12651b23b608c840da29053fbb4fe59d71e1b5",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/quit_02.png"
+        },
+        {
+          "path": "ready/approach/quit_03.png",
+          "sha256": "f486801915e4b0d4e024ed5a0bc7c6569a06467da6dc34850e83a7fcb7d57c58",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/quit_03.png"
+        },
+        {
+          "path": "ready/approach/quit_04.png",
+          "sha256": "50bf649409012c4e3278534692f0ed6bbbf0554967e47c0d5cfb4e69aa926f56",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/quit_04.png"
+        },
+        {
+          "path": "ready/approach/quit_05.png",
+          "sha256": "adac9fe9c965ba2c2454c7f56e2f49abf7edec60522277f07111b19be955c1a7",
+          "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/quit_05.png"
+        }
+      ],
+      "uniqueFrames": 5,
+      "finalDifferenceBounds": [
+        312,
+        45,
+        342,
+        151
+      ],
+      "contactFramingBounds": [
+        199,
+        33,
+        412,
+        153
+      ],
+      "action": "Existing hinged leaf yields and swings open before confirmation"
+    }
+  ],
+  "preview": "previews/actions-six-frame-strip.png",
+  "checks": {
+    "nativeReopen": true,
+    "allFirstFramesMatchOriginalObject": true,
+    "finalFrameMatchesDepthRenderWithinOneChannelUnit": true,
+    "allFinalMovementsInsideCamera": true,
+    "onlyApproachFieldsChanged": true
+  }
+}

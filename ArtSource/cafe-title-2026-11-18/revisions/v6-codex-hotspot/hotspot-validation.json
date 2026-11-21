@@ -1,0 +1,82 @@
+{
+  "canvas": [
+    480,
+    270
+  ],
+  "frontProjectionArtPixels": [
+    [
+      381.67,
+      69.23
+    ],
+    [
+      413.37,
+      76.21
+    ],
+    [
+      388.47,
+      169.99
+    ],
+    [
+      364.59,
+      148.77
+    ]
+  ],
+  "oldArtPixels": [
+    [
+      389.0,
+      90.0
+    ],
+    [
+      430.0,
+      99.0
+    ],
+    [
+      430.0,
+      136.0
+    ],
+    [
+      389.0,
+      126.0
+    ]
+  ],
+  "newArtPixels": [
+    [
+      382.45,
+      69.42
+    ],
+    [
+      413.37,
+      76.21
+    ],
+    [
+      388.47,
+      169.99
+    ],
+    [
+      365.28,
+      149.35
+    ],
+    [
+      367.65,
+      138
+    ],
+    [
+      372,
+      138
+    ],
+    [
+      374.15,
+      108
+    ]
+  ],
+  "visibleFrontPixels": 2680,
+  "oldCoveredFrontPixels": 543,
+  "newCoveredFrontPixels": 2575,
+  "newOutsideVisibleFrontPixels": 0,
+  "overlapWithOtherHotspotsPixels": 0,
+  "overlapWithNameplatesPixels": 0,
+  "rasterScalesChecked": [
+    1,
+    4
+  ]
+}

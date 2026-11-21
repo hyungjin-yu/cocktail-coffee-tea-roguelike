@@ -116,7 +116,7 @@ namespace CCT
             // 2026-11-18 싱글 칵테일 바 밝기: 원본과 같은 캔버스로 암부를 올린 보정본(bg_barwarm_*, 원본 미변경)이 4종 모두 있을 때만 통째로 쓰고
             // 렌더러 곱 틴트·어두운 막을 거의 없앤다(이중 보정 방지). 하나라도 없으면 기존 원본+기존 톤 그대로. 맵 이름(ActiveMapPrefix)은 bg_bar 유지.
             UsesWarmBar = false;
-            if (prefix == "bg_bar")
+            if (prefix == "bg_bar" && !ForceOriginalBarForQa)
             {
                 var wf = JobSprite(WarmBarPrefix, "floor"); var ww = JobSprite(WarmBarPrefix, "wall");
                 var wc = JobSprite(WarmBarPrefix, "counter"); var wl = JobSprite(WarmBarPrefix, "lamp");
@@ -152,6 +152,23 @@ namespace CCT
         public const string WarmBarPrefix = "bg_barwarm";
         /// <summary>마지막 바 맵이 보정본(4종 모두)을 썼는지.</summary>
         public static bool UsesWarmBar { get; private set; }
+        /// <summary>QA 전후 비교 전용(CombatToneCapture -cct-tone-original, 격리 저장에서만): 같은 빌드·같은 조건에서 보정 전 원본 bg_bar+기존 톤을 그린다.</summary>
+        public static bool ForceOriginalBarForQa;
+
+        /// <summary>2026-11-20 밝아진 싱글 바 바닥(보정본 사용 중)에서만 보스 발밑 접지 그림자를 진하고 넓게(기존 ground_shadow 그림 재사용).
+        /// 정렬 Shadow(장판 예고·개체 아래)라 보스 윤곽·위험 예고를 가리지 않는다. 판정·스폰·피해 무관, 다른 맵·일반 적 불변.
+        /// 측정(보스 실루엣 마스크 가장자리 대비 1080: 2.5→6.2, 발 2.4→7.6 / 720 저이펙트 1.4→3.5, 발 0.8→5.0)으로 채택. 몸 뒤 바닥 어둡게(halo)는 분리도 저하로 기각.
+        /// QA 전후 비교: BossGroundBoostForQa=false면 기존과 동일.</summary>
+        public static bool BossGroundBoostForQa = true;
+        public const float WarmBossShadowAlpha = 0.5f, WarmBossShadowWidth = 3.0f;
+
+        public static void ApplyWarmBarBossGround(Transform boss, SpriteRenderer shadow, float radius)
+        {
+            if (!UsesWarmBar || !BossGroundBoostForQa || shadow == null) return;
+            shadow.transform.localScale *= WarmBossShadowWidth / 2.4f; // 기본 폭 radius*2.4 → radius*3.0
+            var c = shadow.color; c.a = WarmBossShadowAlpha; shadow.color = c;
+        }
+
         /// <summary>보정본용 어두운 막 알파(상한 0.08 안에서 실전 적·탄·드롭 대비 측정으로 정함).</summary>
         public const float WarmBarVeilAlpha = 0.06f;
 

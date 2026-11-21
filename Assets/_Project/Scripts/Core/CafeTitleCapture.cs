@@ -56,6 +56,9 @@ namespace CCT
             foreach (var d in UnityEngine.InputSystem.InputSystem.devices.ToArray())
                 if (d != mouse && d != kb) UnityEngine.InputSystem.InputSystem.DisableDevice(d);
             QaBanner.Show($"QA 자동 시험 중 · 사람 플레이 아님 · 첫 화면 검수({mode})");
+            // 2026-11-20 사용자 관찰 "QA 창이 닫히지 않음" 수정: 격리 fixture(저장 실패 등)의 미저장 확인창이 OS 창 닫기·자동 종료를 막고,
+            // 실제 키보드·마우스는 꺼져 있어 확인창도 누를 수 없었다. QA 프로세스에서만 종료 가드를 통과시킨다(사용자 저장과 무관한 격리 폴더).
+            QuitGuard.AllowNextQuit();
         }
 
         void MouseState(Vector2 pos, bool down)
@@ -87,11 +90,11 @@ namespace CCT
             SetupDevices();
             TitleView title = null;
             for (int i = 0; i < 300 && title == null; i++) { title = FindFirstObjectByType<TitleView>(); yield return null; }
-            if (title == null) { Check("title_shown", false, "TitleView 없음"); Finish(); yield break; }
+            if (title == null) { Check("title_shown", false, "TitleView 없음"); Finish(); Application.Quit(); yield break; }
             var scene = title.Scene;
             Log($"mode={mode} screen={Screen.width}x{Screen.height} layout={scene?.Layout.SourceName} status={scene?.Layout.Status} fit={scene?.Layout.FitMode}");
             Check("cafe_scene_built", scene != null && scene.Hotspots.Count == 8, $"hotspots={scene?.Hotspots.Count}");
-            if (scene == null) { Finish(); yield break; }
+            if (scene == null) { Finish(); Application.Quit(); yield break; }
 
             if (mode == "low") { yield return LowEffects(title); Finish(); yield break; }
             if (mode == "normalpath" || mode == "normalpath-click") { yield return NormalPath(title, mode == "normalpath-click"); Finish(); Application.Quit(); yield break; }
@@ -102,6 +105,15 @@ namespace CCT
             Check("exterior_waits_for_input", intro.IsWaiting && intro.BlockingInput, $"waiting={intro.IsWaiting}");
             var sign = scene.SignTitle;
             Check("sign_shows_game_name", sign != null && sign.text == GameInfo.Title && sign.gameObject.activeInHierarchy, $"sign='{sign?.text}'");
+            var signR = sign != null ? WorldRect(sign.rectTransform) : Rect.zero;
+            Check("sign_text_on_screen", sign != null && OnScreen(signR), Fmt(signR));
+            if (intro.PromptPrimary != null)
+            {
+                var pr = WorldRect((RectTransform)intro.PromptPrimary.transform.parent);
+                var door = WorldRect((RectTransform)intro.EnterButton.transform);
+                Check("entrance_prompt_beside_door", intro.PromptPrimary.gameObject.activeInHierarchy && OnScreen(pr) && !pr.Overlaps(signR) && !pr.Overlaps(door)
+                    && intro.PromptPrimary.text == "입장하기" && intro.PromptSecondary.text == "아무 키나 눌러 입장", $"prompt={Fmt(pr)} door={Fmt(door)}");
+            }
             yield return Wait(3.2f);
             Check("no_auto_entry_after_3s", intro.IsWaiting && scene.InteriorAlpha < 0.01f, $"waiting={intro.IsWaiting} interior={scene.InteriorAlpha:0.00}");
             yield return Shot("exterior_waiting");
@@ -150,6 +162,18 @@ namespace CCT
             var startCenter = scene.ScreenRectOf("start").center;
             yield return Shot("interior_arrival");
 
+            // 4b) 문 옆 명패(입장하기) 클릭도 같은 입장(터치/클릭 대체 경로)
+            if (intro.PromptButton != null)
+            {
+                intro.ReplayForQa();
+                yield return Wait(0.3f);
+                yield return Click(ScreenCenter((RectTransform)intro.PromptButton.transform));
+                Check("prompt_plate_click_starts_entry", !intro.IsWaiting, "명패 클릭");
+                yield return Wait(0.2f);
+                intro.Skip();
+                yield return Wait(0.3f);
+            }
+
             // 5) 입장 중 건너뛰기: 시작 입력이 아닌 새 입력만, 그 입력은 메뉴를 누르지 않음(시작 물체 위 클릭)
             intro.ReplayForQa();
             yield return Wait(0.3f);
@@ -192,16 +216,30 @@ namespace CCT
                 MouseState(r.center, false);
                 yield return null; yield return null;
                 yield return Shot($"hover_{id}");
-                Check($"hotspot_{id}_hover_focus", scene.Hotspots[id].FocusVisible, "hover 테두리·설명");
-                yield return Click(r.center);
-                yield return Wait(0.25f);
+                var descRt = scene.Hotspots[id].transform.Find("Focus/Desc") as RectTransform;
+                var descR = descRt != null ? WorldRect(descRt) : Rect.zero;
+                Check($"hotspot_{id}_hover_focus", scene.Hotspots[id].FocusVisible && (descRt == null || OnScreen(descR)), $"hover 테두리·설명 desc={Fmt(descR)}");
+                yield return ApproachOpen(title, id, () => Click(r.center), openers[id]);
                 Check($"open_{id}", openers[id]() && !title.IsOpen, $"open={openers[id]()} titleOpen={title.IsOpen}");
                 yield return Shot($"menu_{id}");
                 yield return Back(title);
-                yield return Wait(0.25f);
+                yield return WaitReturned(title, id);
                 Check($"back_{id}", title.IsOpen && !openers[id]() && intro.Finished, $"titleOpen={title.IsOpen} introFinished={intro.Finished}");
             }
+            // r5 비교 기준: 마우스를 빈 바닥으로 옮긴 평상시 화면(강조 없음)
+            MouseState(new Vector2(Screen.width * 0.5f, Screen.height * 0.82f), false);
+            yield return Wait(0.35f);
+            Check("idle_no_highlight", scene.Hotspots.Values.All(x => !x.FocusVisible && x.LightAmount < 0.001f), "평상시 강조 0");
+            yield return Shot("idle_room");
             yield return Shot("back_to_room_no_reentry_door");
+            yield return ShelfChecks(title);
+            // 명패(이름표): 실제 렌더 위치가 화면 안, 서로 겹치지 않음, 글자가 명패 폭 안
+            var plates = scene.Hotspots.ToDictionary(kv => kv.Key, kv => WorldRect(kv.Value.Nameplate));
+            var overlaps = new List<string>();
+            var keys = plates.Keys.ToList();
+            for (int a = 0; a < keys.Count; a++) for (int c = a + 1; c < keys.Count; c++) if (plates[keys[a]].Overlaps(plates[keys[c]])) overlaps.Add(keys[a] + "/" + keys[c]);
+            bool fit = scene.Hotspots.Values.All(h => h.LabelText.preferredWidth <= h.Nameplate.sizeDelta.x);
+            Check("nameplates_on_screen_no_overlap", plates.Values.All(OnScreen) && overlaps.Count == 0 && fit, $"overlaps=[{string.Join(",", overlaps)}] fit={fit} " + string.Join(" ", plates.Select(kv => kv.Key + Fmt(kv.Value))));
 
             // 4) 키보드: 첫 키는 기본 항목(시작) 표시, 방향키·Tab 이동, Enter 열기, Esc/뒤로
             EventSystem.current?.SetSelectedGameObject(null);
@@ -209,6 +247,14 @@ namespace CCT
             var seq = new List<string> { Selected() };
             foreach (var k in new[] { Key.RightArrow, Key.RightArrow, Key.UpArrow, Key.LeftArrow, Key.DownArrow })
             { yield return Press(k); seq.Add(Selected()); }
+            yield return Wait(0.3f);
+            {
+                var selHs = EventSystem.current?.currentSelectedGameObject?.GetComponent<CafeHotspot>();
+                var litIds = scene.Hotspots.Values.Where(x => x.LightAmount > 0.001f).Select(x => x.Feature.Id).ToList();
+                Check("keyboard_focus_lights_only_selected", selHs != null && selHs.LightAmount > 0.99f && litIds.Count == 1 && litIds[0] == selHs.Feature.Id
+                    && scene.Hotspots.Values.All(x => x.transform.Find("Focus/PolyEdge") == null && x.transform.Find("Focus/Edge") == null),
+                    $"selected={selHs?.Feature.Id} lit=[{string.Join(",", litIds)}]");
+            }
             yield return Shot("keyboard_focus");
             var tabSeq = new List<string>();
             for (int i = 0; i < 8; i++) { yield return Press(Key.Tab); tabSeq.Add(Selected()); }
@@ -217,10 +263,11 @@ namespace CCT
             // Tab으로 도감까지 가서 Enter
             for (int i = 0; i < 9 && Selected() != "CardCodexButton"; i++) yield return Press(Key.Tab);
             yield return Press(Key.Enter);
-            yield return Wait(0.25f);
-            Check("keyboard_enter_opens", title.CodexView.IsOpen, $"selected=CardCodexButton open={title.CodexView.IsOpen}");
+            yield return WaitOpen(() => title.CodexView.IsOpen);
+            Check("keyboard_enter_opens", title.CodexView.IsOpen, $"selected=CardCodexButton open={title.CodexView.IsOpen} approach={title.Approach.LastUsedApproach}");
             yield return Back(title);
-            yield return Wait(0.25f);
+            yield return WaitReturned(title, "codex");
+            yield return ApproachEdgeCases(title);
 
             // 5) 시작 → 직업 선택, 타이틀 재진입은 짧은 실내 페이드(문 입장 반복 없음)
             var sr = scene.ScreenRectOf("start");
@@ -228,7 +275,10 @@ namespace CCT
             Check("hotspot_quit_hit_matches_render", TopHit(scene.ScreenRectOf("quit").center)?.GetComponentInParent<CafeHotspot>() == scene.Hotspots["quit"], Fmt(scene.ScreenRectOf("quit")));
             var quitCenter = scene.ScreenRectOf("quit").center;
             yield return Click(sr.center);
-            yield return Wait(0.4f);
+            yield return Wait(0.2f);
+            Check("start_counter_approach_before_select", title != null && title.Approach.Busy && FindFirstObjectByType<CharacterSelectView>() == null, "카운터 영업 준비 연출 중에는 아직 직업 선택 아님");
+            yield return Shot("approach_start_mid");
+            yield return WaitOpen(() => FindFirstObjectByType<CharacterSelectView>() != null);
             var select = FindFirstObjectByType<CharacterSelectView>();
             Check("start_opens_select", select != null && FindFirstObjectByType<TitleView>() == null, $"select={select != null}");
             yield return Shot("start_to_select");
@@ -307,6 +357,31 @@ namespace CCT
             intro.QaFrozen = false;
             yield return Wait(1f);
             yield return Shot("low_room");
+            {
+                var scene = title.Scene;
+                var cr = scene.ScreenRectOf("credits").center;
+                float maxZoom = 1f;
+                yield return Click(cr);
+                float t0 = Time.realtimeSinceStartup;
+                while (!title.CreditsView.IsOpen && Time.realtimeSinceStartup - t0 < 4f) { scene.GetInteriorCamera(out _, out var z); maxZoom = Mathf.Max(maxZoom, z); yield return null; }
+                Check("low_menu_no_camera_move_opens", title.CreditsView.IsOpen && Mathf.Approximately(maxZoom, 1f) && title.Approach.LastUsedApproach, $"open={title.CreditsView.IsOpen} maxZoom={maxZoom:0.00} took={Time.realtimeSinceStartup - t0:0.00}s");
+                yield return Back(title);
+                yield return WaitReturned(title, "credits");
+                Check("low_menu_back_idle", !title.Approach.Busy && title.IsOpen, "");
+                // 저이펙트 라디오: 이동 없이 마지막 조작 프레임만(실제 화면 캡처)
+                var radio = scene.Interior.Find("radio_sideboard").GetComponent<Image>();
+                var last = scene.Layout.FindFeature("settings").Approach.Frames;
+                yield return Click(scene.ScreenRectOf("settings").center);
+                bool lastShown = false; float t1 = Time.realtimeSinceStartup;
+                while (!title.SettingsView.IsOpen && Time.realtimeSinceStartup - t1 < 4f)
+                {
+                    if (!lastShown && radio.sprite != null && radio.sprite.name == System.IO.Path.GetFileNameWithoutExtension(last[last.Length - 1])) { lastShown = true; yield return Shot("low_radio_final_state"); continue; }
+                    yield return null;
+                }
+                Check("low_radio_final_frame_only", lastShown && title.SettingsView.IsOpen, $"lastShown={lastShown}");
+                yield return Back(title);
+                yield return WaitReturned(title, "settings");
+            }
             Application.Quit();
         }
 
@@ -315,7 +390,10 @@ namespace CCT
             Check("future_protected", PermanentProgress.IsFutureSaveProtected && title.GuestButtonVisible, $"protected={PermanentProgress.IsFutureSaveProtected} guest={title.GuestButtonVisible}");
             yield return Shot("future_protected_room");
             yield return Click(title.Scene.ScreenRectOf("start").center);
+            yield return WaitIdle(title);
             yield return Wait(0.3f);
+            title.Scene.GetInteriorCamera(out var fc, out var fz);
+            Check("future_start_returns_to_room", !title.Approach.Busy && Mathf.Approximately(fz, 1f), $"zoom={fz:0.00}");
             Check("future_start_blocked_guides_guest", FindFirstObjectByType<CharacterSelectView>() == null && title.SaveNoticeText.Contains(TitleView.NoticeChooseGuestFirst), title.SaveNoticeText.Replace("\n", " "));
             yield return Shot("future_start_blocked");
             var guest = title.GetComponentsInChildren<Button>(true).First(b => b.name == "GuestSessionButton");
@@ -337,14 +415,187 @@ namespace CCT
             yield return Wait(0.3f);
             Check("retry_still_failed_kept", PermanentProgress.LastSaveFailed && title.RetryButtonVisible, "재시도도 실패하면 버튼 유지");
             yield return Click(title.Scene.ScreenRectOf("quit").center);
-            yield return Wait(0.3f);
+            yield return Wait(0.2f);
+            bool approaching = title.Approach.Busy && !title.transform.Find("Root/QuitConfirm").gameObject.activeSelf;
+            Check("quit_door_approach_before_confirm", approaching, "문 쪽 접근·문 조작 동안은 종료/확인창 없음");
+            yield return WaitOpen(() => title.transform.Find("Root/QuitConfirm").gameObject.activeSelf);
             var confirm = title.transform.Find("Root/QuitConfirm");
             Check("quit_door_asks_when_unsaved", confirm != null && confirm.gameObject.activeSelf, "출입문(종료) → 저장 실패 확인창");
             yield return Shot("savefail_quit_confirm");
             var cancel = title.GetComponentsInChildren<Button>(true).First(b => b.name == "Cancel");
             yield return Click(ScreenCenter((RectTransform)cancel.transform));
             yield return Wait(0.2f);
-            Check("quit_confirm_cancel", !confirm.gameObject.activeSelf && title.IsOpen, "취소하면 카페로");
+            yield return WaitIdle(title);
+            title.Scene.GetInteriorCamera(out var qc, out var qz);
+            Check("quit_confirm_cancel", !confirm.gameObject.activeSelf && title.IsOpen && !title.Approach.Busy && Mathf.Approximately(qz, 1f), $"취소하면 문에서 물러나 카페로 zoom={qz:0.00}");
+            yield return Shot("savefail_quit_cancel_returned");
+        }
+
+        /// <summary>2026-11-20 v6 도감 책장: 세 선반 높이마다 polygon 안쪽 점이 실제 도감 클릭 영역에 맞고(hover 표시), 아래 선반 클릭으로 열림.
+        /// 의상장(스킨) polygon 안쪽 점은 스킨에 맞아 이웃 경계가 섞이지 않는다.</summary>
+        IEnumerator ShelfChecks(TitleView title)
+        {
+            var scene = title.Scene;
+            var codex = scene.Hotspots["codex"]; var skins = scene.Hotspots["skins"];
+            var labels = new[] { "top", "mid", "low" };
+            var ks = new[] { 0.2f, 0.5f, 0.8f };
+            Vector2 lowPt = Vector2.zero;
+            for (int i = 0; i < 3; i++)
+            {
+                var n = InsideAt(codex.Feature, ks[i]);
+                var sp = NormToScreen(scene, n);
+                var hit = TopHit(sp)?.GetComponentInParent<CafeHotspot>();
+                MouseState(sp, false); yield return null; yield return null;
+                Check($"codex_shelf_{labels[i]}_hit_hover", hit == codex && codex.FocusVisible, $"norm=({n.x:0.000},{n.y:0.000}) screen=({sp.x:0},{sp.y:0}) hit={hit?.name}");
+                yield return Shot($"codex_shelf_{labels[i]}_hover");
+                if (i == 2) lowPt = sp;
+            }
+            // r5: 도형 테두리 없음, 도감 hover 중 도감 물체만 조명 반응(다른 물체 0), 명패 강조는 도감만
+            {
+                bool noOutline = codex.transform.Find("Focus/PolyEdge") == null && codex.transform.Find("Focus/Edge") == null;
+                var others = scene.Hotspots.Values.Where(x => x != codex && x.LightAmount > 0.001f).Select(x => x.Feature.Id).ToList();
+                yield return Wait(0.3f);
+                Check("codex_object_light_only", noOutline && codex.ObjectLight != null && codex.LightAmount > 0.99f && others.Count == 0,
+                    $"noOutline={noOutline} light={codex.LightAmount:0.00} layer={codex.ObjectLayerId} othersLit=[{string.Join(",", others)}]");
+                yield return Shot("codex_hover_settled_a");
+                yield return Wait(0.3f);
+                yield return Shot("codex_hover_settled_b"); // 깜빡임 비교용(같은 상태 두 장)
+            }
+            int skinOk = 0, skinN = 0;
+            foreach (var k in new[] { 0.25f, 0.5f, 0.75f })
+            {
+                var sp = NormToScreen(scene, InsideAt(skins.Feature, k));
+                skinN++; if (TopHit(sp)?.GetComponentInParent<CafeHotspot>() == skins) skinOk++;
+            }
+            Check("skins_neighbor_hits_skins", skinOk == skinN, $"{skinOk}/{skinN}");
+            var skinPt = NormToScreen(scene, InsideAt(skins.Feature, 0.5f));
+            MouseState(skinPt, false); yield return null; yield return null;
+            yield return Wait(0.3f);
+            Check("skins_hover_only_skins_focus", skins.FocusVisible && !codex.FocusVisible && skins.LightAmount > 0.99f && codex.LightAmount < 0.001f, $"skins={skins.FocusVisible}/{skins.LightAmount:0.00} codex={codex.FocusVisible}/{codex.LightAmount:0.00}");
+            yield return Shot("skins_hover_neighbor");
+            yield return Click(lowPt);
+            yield return WaitOpen(() => title.CodexView.IsOpen);
+            Check("codex_low_shelf_click_opens", title.CodexView.IsOpen, $"open={title.CodexView.IsOpen}");
+            yield return Back(title);
+            yield return WaitReturned(title, "codex");
+        }
+
+        /// <summary>polygon 세로 비율 k 높이에서 polygon 안쪽 가로 구간의 가운데(정규화 좌상단 원점).</summary>
+        static Vector2 InsideAt(CafeTitleLayout.Feature f, float k)
+        {
+            var r = f.HotspotRect; float y = Mathf.Lerp(r.yMin, r.yMax, k);
+            float x0 = float.NaN, x1 = float.NaN;
+            for (int i = 0; i <= 200; i++)
+            {
+                float x = Mathf.Lerp(r.xMin, r.xMax, i / 200f);
+                bool inside = f.Polygon != null ? CafeHotspot.PointInPolygon(new Vector2(x, y), f.Polygon) : r.Contains(new Vector2(x, y));
+                if (inside) { if (float.IsNaN(x0)) x0 = x; x1 = x; }
+            }
+            return float.IsNaN(x0) ? r.center : new Vector2((x0 + x1) * 0.5f, y);
+        }
+
+        static Vector2 NormToScreen(CafeTitleScene scene, Vector2 n) => scene.Interior.TransformPoint(CafeTitleScene.NormToLocal(n));
+
+        // ───────── 메뉴 접근 연출 도우미(2026-11-20 v9) ─────────
+
+        IEnumerator WaitOpen(Func<bool> open, float limit = 4f)
+        {
+            float t0 = Time.realtimeSinceStartup;
+            while (!open() && Time.realtimeSinceStartup - t0 < limit) yield return null;
+            yield return Wait(0.2f);
+        }
+
+        IEnumerator WaitIdle(TitleView title, float limit = 4f)
+        {
+            float t0 = Time.realtimeSinceStartup;
+            while (title != null && title.Approach != null && title.Approach.Busy && Time.realtimeSinceStartup - t0 < limit) yield return null;
+        }
+
+        /// <summary>확정 → 접근(시점 이동 중간 캡처) → 조작 프레임(중간 캡처, 물체 그림 교체 확인) → 메뉴 열림. 시점 목표·중복 확정 차단 검사.</summary>
+        IEnumerator ApproachOpen(TitleView title, string id, Func<IEnumerator> confirm, Func<bool> open)
+        {
+            var scene = title.Scene;
+            var ap = scene.Layout.FindFeature(id).Approach;
+            var layer = ap != null ? scene.Interior.Find(ap.Layer)?.GetComponent<Image>() : null;
+            var original = layer != null ? layer.sprite : null;
+            yield return confirm();
+            bool started = title.Approach.Busy && title.Approach.LastUsedApproach && !open();
+            Check($"approach_{id}_started", ap != null && started, $"busy={title.Approach.Busy} contract={ap != null}");
+            bool shotMove = false, shotAct = false, frameChanged = false; float maxZoom = 1f;
+            Sprite lastSprite = original;
+            float t0 = Time.realtimeSinceStartup;
+            while (!open() && Time.realtimeSinceStartup - t0 < 4f)
+            {
+                scene.GetInteriorCamera(out _, out var z); maxZoom = Mathf.Max(maxZoom, z);
+                if (!shotMove && title.Approach.Current == CafeMenuApproach.State.Approaching && z > 1.2f) { shotMove = true; yield return Shot($"approach_{id}_moving"); continue; }
+                if (title.Approach.Current == CafeMenuApproach.State.Acting && layer != null && layer.sprite != original) frameChanged = true;
+                if (id == "settings" && layer != null && layer.sprite != lastSprite && title.Approach.Current == CafeMenuApproach.State.Acting)
+                { lastSprite = layer.sprite; yield return Shot($"radio_forward_{layer.sprite.name}"); continue; } // 라디오 연속 프레임(실제 화면)
+                if (!shotAct && frameChanged) { shotAct = true; yield return Shot($"approach_{id}_acting"); continue; }
+                yield return null;
+            }
+            yield return Wait(0.2f);
+            Check($"approach_{id}_object_action", ap != null && Mathf.Abs(maxZoom - ap.Zoom) < 0.01f && frameChanged && open(),
+                $"targetZoom={ap?.Zoom:0.00} reached={maxZoom:0.00} frameChanged={frameChanged} took={Time.realtimeSinceStartup - t0:0.00}s");
+        }
+
+        /// <summary>메뉴 닫기 → 역재생·원시점 복귀 → 입력 재개(물체 그림 원복, 명패 보임).</summary>
+        IEnumerator WaitReturned(TitleView title, string id)
+        {
+            var scene = title.Scene;
+            var ap = scene.Layout.FindFeature(id).Approach;
+            var layer = ap != null ? scene.Interior.Find(ap.Layer)?.GetComponent<Image>() : null;
+            bool shot = false;
+            Sprite lastRev = layer != null ? layer.sprite : null;
+            float t0 = Time.realtimeSinceStartup;
+            while (title.Approach.Busy && Time.realtimeSinceStartup - t0 < 4f)
+            {
+                if (id == "settings" && layer != null && layer.sprite != lastRev && title.Approach.Current == CafeMenuApproach.State.Returning)
+                { lastRev = layer.sprite; yield return Shot($"radio_reverse_{layer.sprite.name}"); continue; }
+                if (!shot && title.Approach.Current == CafeMenuApproach.State.Returning) { shot = true; yield return Shot($"return_{id}_moving"); continue; }
+                yield return null;
+            }
+            yield return Wait(0.2f);
+            scene.GetInteriorCamera(out var c, out var z);
+            bool restored = layer == null || ap.Frames.Length == 0 || layer.sprite == CafeTitleLayout.LoadSprite(scene.Layout.InteriorLayers.First(l => l.Id == ap.Layer).Png);
+            Check($"return_{id}_to_room", !title.Approach.Busy && Mathf.Approximately(z, 1f) && restored && scene.Hotspots[id].Nameplate.gameObject.activeSelf && scene.InteriorInteractable,
+                $"zoom={z:0.00} restored={restored} took={Time.realtimeSinceStartup - t0:0.00}s");
+        }
+
+        /// <summary>중복·다른 메뉴 확정 차단, 새 입력 건너뛰기(입력 누출 없음), Esc 취소(메뉴 미열림·원위치), 메뉴 화면 나무·종이 톤.</summary>
+        IEnumerator ApproachEdgeCases(TitleView title)
+        {
+            var scene = title.Scene;
+            // 중복·다른 메뉴: 영구 강화 확정 직후 도감 클릭 → 영구 강화만 열림
+            yield return Click(scene.ScreenRectOf("permanent").center);
+            yield return Click(scene.ScreenRectOf("codex").center);
+            yield return Click(scene.ScreenRectOf("permanent").center);
+            yield return WaitOpen(() => title.ShopView.IsOpen);
+            Check("approach_blocks_other_menu_and_repeat", title.ShopView.IsOpen && !title.CodexView.IsOpen, $"shop={title.ShopView.IsOpen} codex={title.CodexView.IsOpen}");
+            var theme = title.GetComponentsInChildren<CafeMenuTheme>(true).Length;
+            Check("menu_screens_have_cafe_theme", theme >= 6, $"themed roots={theme}");
+            yield return Back(title);
+            yield return WaitReturned(title, "permanent");
+            // 건너뛰기: 기록 확정 → 손을 뗀 뒤 Space → 즉시 끝 상태 → 손 뗀 뒤 메뉴(Space가 메뉴를 누르지 않음)
+            yield return Click(scene.ScreenRectOf("history").center);
+            yield return Wait(0.08f);
+            float t0 = Time.realtimeSinceStartup;
+            yield return Press(Key.Space, 3);
+            yield return WaitOpen(() => title.HistoryView.IsOpen);
+            bool stillHistory = title.HistoryView.IsOpen && !title.IsOpen;
+            Check("approach_skip_new_input_no_leak", title.Approach.LastSkipped && stillHistory, $"skipped={title.Approach.LastSkipped} historyOpen={title.HistoryView.IsOpen} took={Time.realtimeSinceStartup - t0:0.00}s");
+            yield return Shot("approach_history_skipped_menu");
+            yield return Back(title);
+            yield return WaitReturned(title, "history");
+            // 취소: 설정 확정 → Esc → 메뉴 미열림, 원위치
+            yield return Click(scene.ScreenRectOf("settings").center);
+            yield return Wait(0.08f);
+            yield return Press(Key.Escape, 2);
+            yield return WaitIdle(title);
+            yield return Wait(0.2f);
+            scene.GetInteriorCamera(out _, out var z);
+            Check("approach_escape_cancels", title.Approach.LastCancelled && !title.SettingsView.IsOpen && title.IsOpen && Mathf.Approximately(z, 1f), $"cancelled={title.Approach.LastCancelled} settings={title.SettingsView.IsOpen} zoom={z:0.00}");
+            yield return Shot("approach_settings_cancelled_room");
         }
 
         // ───────── 도우미 ─────────
@@ -355,6 +606,14 @@ namespace CCT
             if (back != null) yield return Click(ScreenCenter((RectTransform)back.transform));
             else yield return Press(Key.Escape);
         }
+
+        static Rect WorldRect(RectTransform rt)
+        {
+            var c = new Vector3[4]; rt.GetWorldCorners(c);
+            return Rect.MinMaxRect(c[0].x, c[0].y, c[2].x, c[2].y);
+        }
+
+        static bool OnScreen(Rect r) => r.xMin >= -0.5f && r.yMin >= -0.5f && r.xMax <= Screen.width + 0.5f && r.yMax <= Screen.height + 0.5f;
 
         static Vector2 ScreenCenter(RectTransform rt)
         {
@@ -401,6 +660,10 @@ namespace CCT
 
         void Finish()
         {
+            QuitGuard.AllowNextQuit();
+            // 결과를 쓴 뒤에는 실제 입력 장치를 되살린다(창이 남더라도 사용자가 닫거나 조작할 수 있게)
+            foreach (var d in UnityEngine.InputSystem.InputSystem.devices.ToArray())
+                if (!d.enabled) UnityEngine.InputSystem.InputSystem.EnableDevice(d);
             Log($"done pass={pass} fail={fail}");
             File.WriteAllText(Path.Combine(dir, "results.json"),
                 $"{{\n  \"mode\": \"{mode}\", \"screen\": \"{Screen.width}x{Screen.height}\", \"pass\": {pass}, \"fail\": {fail},\n  \"checks\": [\n    {string.Join(",\n    ", checks)}\n  ]\n}}\n", new UTF8Encoding(false));

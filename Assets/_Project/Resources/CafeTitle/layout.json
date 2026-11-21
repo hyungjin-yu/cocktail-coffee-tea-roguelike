@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 7,
   "status": "ready",
   "ready": true,
   "baseScreen": [
@@ -95,12 +95,6 @@
       7.3,
       4.8
     ],
-    "researchTable": [
-      1.4,
-      2.6,
-      2.6,
-      3.25
-    ],
     "publicPathMeters": [
       [
         1.925,
@@ -168,12 +162,12 @@
       {
         "id": "permanent",
         "worldFootprintMeters": [
-          1.4,
-          2.6,
-          2.6,
-          3.25
+          5.151684977257675,
+          1.3231247964019124,
+          5.628315022742324,
+          1.7368752035980877
         ],
-        "heightMeters": 0.78
+        "heightMeters": 1.28
       },
       {
         "id": "codex",
@@ -198,10 +192,10 @@
       {
         "id": "history",
         "worldFootprintMeters": [
-          5,
-          1.3,
-          5.7,
-          1.95
+          5.05,
+          1.92,
+          5.45,
+          2.24
         ],
         "heightMeters": 1.03
       },
@@ -235,6 +229,44 @@
         ],
         "heightMeters": 2.15
       }
+    ],
+    "barEndLaptop": {
+      "end": "south tip of the service counter, the right end of the bar in the final view",
+      "centerXYMeters": [
+        5.39,
+        1.53
+      ],
+      "dimensionsMeters": [
+        0.4,
+        0.27
+      ],
+      "counterSurfaceZMeters": 0.995,
+      "rotationClockwiseDegrees": 25,
+      "keysFaceStaffAisle": true,
+      "screenTopZMeters": 1.28,
+      "choiceReason": "North tip exits the final frame. South tip is visible and clear of the entrance, staff aisle, ledger, espresso machine and recipe shelf.",
+      "baseFootprintWorld": [
+        [
+          5.151684977257675,
+          1.492172101098192
+        ],
+        [
+          5.5142080920723355,
+          1.3231247964019124
+        ],
+        [
+          5.628315022742324,
+          1.567827898901808
+        ],
+        [
+          5.265791907927664,
+          1.7368752035980877
+        ]
+      ]
+    },
+    "removedFurniture": [
+      "independent research table",
+      "its chair"
     ]
   },
   "cameraWorld": {
@@ -341,7 +373,39 @@
       "titleAnchor": [
         0.5,
         0.08888888888888889
-      ]
+      ],
+      "textSource": "GameInfo.Title",
+      "actualTitle": "음료 마스터",
+      "textRect": [
+        0.37916666666666665,
+        0.04814814814814815,
+        0.24166666666666667,
+        0.08148148148148149
+      ],
+      "surfaceQuad": [
+        [
+          0.36666666666666664,
+          0.03333333333333333
+        ],
+        [
+          0.6333333333333333,
+          0.03333333333333333
+        ],
+        [
+          0.6333333333333333,
+          0.14814814814814814
+        ],
+        [
+          0.36666666666666664,
+          0.14814814814814814
+        ]
+      ],
+      "textColor": "#F4E6CF",
+      "outlineColor": "#3B291F",
+      "fontPxAt1080": 40,
+      "alignment": "center",
+      "perspective": "front-facing sign face, zero yaw; text shares exterior transform and clips to sign surface, never a separate UI header",
+      "bakedText": false
     },
     "door": {
       "frames": [
@@ -446,10 +510,63 @@
         ],
         "zoom": 1
       }
-    ]
+    ],
+    "entrance": {
+      "mode": "await_input",
+      "autoStart": false,
+      "doorInteraction": {
+        "rect": [
+          0.3958333333333333,
+          0.2,
+          0.20833333333333334,
+          0.7555555555555555
+        ]
+      },
+      "prompt": {
+        "primary": "입장하기",
+        "secondary": "아무 키나 눌러 입장",
+        "rect": [
+          0.22916666666666666,
+          0.42962962962962964,
+          0.125,
+          0.13333333333333333
+        ],
+        "surfaceRect": [
+          0.21666666666666667,
+          0.4222222222222222,
+          0.14791666666666667,
+          0.13703703703703704
+        ],
+        "color": "#F4E6CF",
+        "primaryFontPxAt1080": 28,
+        "secondaryFontPxAt1080": 22,
+        "bakedText": false
+      },
+      "consumeTriggerInputBeforeMenu": true,
+      "sameTransformAsExterior": true
+    }
   },
   "interior": {
     "layers": [
+      {
+        "id": "street_backdrop",
+        "png": "ready/interior/street_backdrop.png",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "canvas": [
+          480,
+          270
+        ],
+        "pivot": [
+          0.5,
+          0.5
+        ],
+        "z": -10
+      },
       {
         "id": "room_shell",
         "png": "ready/interior/g0.png",
@@ -489,7 +606,7 @@
         "z": 10
       },
       {
-        "id": "research_table",
+        "id": "bar_end_laptop",
         "png": "ready/interior/g2.png",
         "rect": [
           0,
@@ -709,11 +826,36 @@
         "label_side": "below",
         "hotspotStatus": "verified visible-art polygon; zero pixel overlap",
         "desc": "카운터에서 영업 준비",
-        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedFontPxAt1080": 26,
         "labelRecommendedPlateArtPixels": [
-          19.33,
-          10.33
-        ]
+          20.33,
+          10.0
+        ],
+        "approach": {
+          "camera": {
+            "center": [
+              0.232,
+              0.52
+            ],
+            "zoom": 2.45
+          },
+          "seconds": 0.38,
+          "returnSeconds": 0.38,
+          "action": {
+            "layer": "order_counter",
+            "frames": [
+              "ready/approach/start_00.png",
+              "ready/approach/start_01.png",
+              "ready/approach/start_02.png",
+              "ready/approach/start_03.png",
+              "ready/approach/start_04.png",
+              "ready/approach/start_05.png"
+            ],
+            "fps": 10,
+            "holdSeconds": 0.12,
+            "reverseOnReturn": true
+          }
+        }
       },
       {
         "id": "permanent",
@@ -721,12 +863,12 @@
         "unity_button": "PermanentShopButton",
         "assetId": "ct_permanent",
         "worldFootprintMeters": [
-          1.4,
-          2.6,
-          2.6,
-          3.25
+          5.151684977257675,
+          1.3231247964019124,
+          5.628315022742324,
+          1.7368752035980877
         ],
-        "heightMeters": 0.78,
+        "heightMeters": 1.28,
         "projectedRect": [
           0.59142,
           0.55293,
@@ -736,43 +878,72 @@
         "hotspot": {
           "polygon": [
             [
-              0.6125,
-              0.5370370370370371
+              0.25,
+              0.35185185185185186
             ],
             [
-              0.6645833333333333,
-              0.5074074074074074
+              0.28958333333333336,
+              0.35185185185185186
             ],
             [
-              0.725,
-              0.5185185185185185
+              0.29791666666666666,
+              0.4074074074074074
             ],
             [
-              0.8104166666666667,
-              0.6259259259259259
+              0.2916666666666667,
+              0.43703703703703706
             ],
             [
-              0.73125,
-              0.6962962962962963
+              0.23333333333333334,
+              0.43703703703703706
             ],
             [
-              0.6125,
-              0.6259259259259259
+              0.23333333333333334,
+              0.4
+            ],
+            [
+              0.25,
+              0.3925925925925926
             ]
           ]
         },
         "label_anchor": [
-          0.5729166666666666,
-          0.7185185185185186
+          0.3020833333333333,
+          0.3925925925925926
         ],
-        "label_side": "left",
+        "label_side": "right",
         "hotspotStatus": "verified visible-art polygon; zero pixel overlap",
-        "desc": "노트북으로 성장 관리",
-        "labelRecommendedFontPxAt1080": 28,
+        "desc": "바 끝 노트북으로 성장 관리",
+        "labelRecommendedFontPxAt1080": 26,
         "labelRecommendedPlateArtPixels": [
-          36.67,
-          10.33
-        ]
+          36.0,
+          10.0
+        ],
+        "approach": {
+          "camera": {
+            "center": [
+              0.277,
+              0.398
+            ],
+            "zoom": 3.4
+          },
+          "seconds": 0.52,
+          "returnSeconds": 0.38,
+          "action": {
+            "layer": "bar_end_laptop",
+            "frames": [
+              "ready/approach/permanent_00.png",
+              "ready/approach/permanent_01.png",
+              "ready/approach/permanent_02.png",
+              "ready/approach/permanent_03.png",
+              "ready/approach/permanent_04.png",
+              "ready/approach/permanent_05.png"
+            ],
+            "fps": 10,
+            "holdSeconds": 0.18,
+            "reverseOnReturn": true
+          }
+        }
       },
       {
         "id": "codex",
@@ -795,20 +966,32 @@
         "hotspot": {
           "polygon": [
             [
-              0.8104166666666667,
-              0.3333333333333333
+              0.7967708333333333,
+              0.2571111111111111
             ],
             [
-              0.8958333333333334,
-              0.36666666666666664
+              0.8611875,
+              0.2822592592592592
             ],
             [
-              0.8958333333333334,
-              0.5037037037037037
+              0.8093125000000001,
+              0.6295925925925926
             ],
             [
-              0.8104166666666667,
-              0.4666666666666667
+              0.7609999999999999,
+              0.5531481481481482
+            ],
+            [
+              0.7659374999999999,
+              0.5111111111111111
+            ],
+            [
+              0.775,
+              0.5111111111111111
+            ],
+            [
+              0.7794791666666666,
+              0.4
             ]
           ]
         },
@@ -819,11 +1002,36 @@
         "label_side": "right",
         "hotspotStatus": "verified visible-art polygon; zero pixel overlap",
         "desc": "레시피·재료 책장",
-        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedFontPxAt1080": 26,
         "labelRecommendedPlateArtPixels": [
-          19.33,
-          10.33
-        ]
+          20.33,
+          10.0
+        ],
+        "approach": {
+          "camera": {
+            "center": [
+              0.774,
+              0.455
+            ],
+            "zoom": 2.65
+          },
+          "seconds": 0.5,
+          "returnSeconds": 0.38,
+          "action": {
+            "layer": "recipe_bookshelf",
+            "frames": [
+              "ready/approach/codex_00.png",
+              "ready/approach/codex_01.png",
+              "ready/approach/codex_02.png",
+              "ready/approach/codex_03.png",
+              "ready/approach/codex_04.png",
+              "ready/approach/codex_05.png"
+            ],
+            "fps": 10,
+            "holdSeconds": 0.15,
+            "reverseOnReturn": true
+          }
+        }
       },
       {
         "id": "skins",
@@ -870,11 +1078,36 @@
         "label_side": "above",
         "hotspotStatus": "verified visible-art polygon; zero pixel overlap",
         "desc": "직원 의상 진열장",
-        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedFontPxAt1080": 26,
         "labelRecommendedPlateArtPixels": [
-          19.33,
-          10.33
-        ]
+          20.33,
+          10.0
+        ],
+        "approach": {
+          "camera": {
+            "center": [
+              0.738,
+              0.4
+            ],
+            "zoom": 2.6
+          },
+          "seconds": 0.48,
+          "returnSeconds": 0.38,
+          "action": {
+            "layer": "coat_cabinet",
+            "frames": [
+              "ready/approach/skins_00.png",
+              "ready/approach/skins_01.png",
+              "ready/approach/skins_02.png",
+              "ready/approach/skins_03.png",
+              "ready/approach/skins_04.png",
+              "ready/approach/skins_05.png"
+            ],
+            "fps": 10,
+            "holdSeconds": 0.12,
+            "reverseOnReturn": true
+          }
+        }
       },
       {
         "id": "history",
@@ -882,10 +1115,10 @@
         "unity_button": "RunHistoryButton",
         "assetId": "ct_history",
         "worldFootprintMeters": [
-          5,
-          1.3,
-          5.7,
-          1.95
+          5.05,
+          1.92,
+          5.45,
+          2.24
         ],
         "heightMeters": 1.03,
         "projectedRect": [
@@ -897,35 +1130,60 @@
         "hotspot": {
           "polygon": [
             [
-              0.2375,
-              0.4074074074074074
+              0.19583333333333333,
+              0.44814814814814813
             ],
             [
-              0.32916666666666666,
-              0.4111111111111111
+              0.275,
+              0.44074074074074077
             ],
             [
-              0.3229166666666667,
-              0.4888888888888889
+              0.3020833333333333,
+              0.48148148148148145
             ],
             [
-              0.2375,
-              0.4888888888888889
+              0.20833333333333334,
+              0.5037037037037037
             ]
           ]
         },
         "label_anchor": [
-          0.29791666666666666,
-          0.37777777777777777
+          0.3104166666666667,
+          0.4666666666666667
         ],
-        "label_side": "above",
+        "label_side": "right",
         "hotspotStatus": "verified visible-art polygon; zero pixel overlap",
         "desc": "영업 장부",
-        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedFontPxAt1080": 26,
         "labelRecommendedPlateArtPixels": [
-          36.67,
-          10.33
-        ]
+          36.0,
+          10.0
+        ],
+        "approach": {
+          "camera": {
+            "center": [
+              0.253,
+              0.45
+            ],
+            "zoom": 3.25
+          },
+          "seconds": 0.44,
+          "returnSeconds": 0.38,
+          "action": {
+            "layer": "ledger_station",
+            "frames": [
+              "ready/approach/history_00.png",
+              "ready/approach/history_01.png",
+              "ready/approach/history_02.png",
+              "ready/approach/history_03.png",
+              "ready/approach/history_04.png",
+              "ready/approach/history_05.png"
+            ],
+            "fps": 10,
+            "holdSeconds": 0.15,
+            "reverseOnReturn": true
+          }
+        }
       },
       {
         "id": "settings",
@@ -967,16 +1225,41 @@
         },
         "label_anchor": [
           0.4895833333333333,
-          0.562962962962963
+          0.44814814814814813
         ],
         "label_side": "below",
         "hotspotStatus": "verified visible-art polygon; zero pixel overlap",
         "desc": "라디오·조절장치",
-        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedFontPxAt1080": 26,
         "labelRecommendedPlateArtPixels": [
-          19.33,
-          10.33
-        ]
+          20.33,
+          10.0
+        ],
+        "approach": {
+          "camera": {
+            "center": [
+              0.492,
+              0.405
+            ],
+            "zoom": 3.65
+          },
+          "seconds": 0.53,
+          "returnSeconds": 0.38,
+          "action": {
+            "layer": "radio_sideboard",
+            "frames": [
+              "ready/approach/settings_00.png",
+              "ready/approach/settings_01.png",
+              "ready/approach/settings_02.png",
+              "ready/approach/settings_03.png",
+              "ready/approach/settings_04.png",
+              "ready/approach/settings_05.png"
+            ],
+            "fps": 10,
+            "holdSeconds": 0.18,
+            "reverseOnReturn": true
+          }
+        }
       },
       {
         "id": "credits",
@@ -1017,17 +1300,42 @@
           ]
         },
         "label_anchor": [
-          0.35833333333333334,
-          0.3074074074074074
+          0.35625,
+          0.2740740740740741
         ],
         "label_side": "below",
         "hotspotStatus": "verified visible-art polygon; zero pixel overlap",
         "desc": "직원 게시판",
-        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedFontPxAt1080": 26,
         "labelRecommendedPlateArtPixels": [
-          36.67,
-          10.33
-        ]
+          36.0,
+          10.0
+        ],
+        "approach": {
+          "camera": {
+            "center": [
+              0.357,
+              0.231
+            ],
+            "zoom": 3.2
+          },
+          "seconds": 0.47,
+          "returnSeconds": 0.38,
+          "action": {
+            "layer": "staff_noticeboard",
+            "frames": [
+              "ready/approach/credits_00.png",
+              "ready/approach/credits_01.png",
+              "ready/approach/credits_02.png",
+              "ready/approach/credits_03.png",
+              "ready/approach/credits_04.png",
+              "ready/approach/credits_05.png"
+            ],
+            "fps": 10,
+            "holdSeconds": 0.17,
+            "reverseOnReturn": true
+          }
+        }
       },
       {
         "id": "quit",
@@ -1074,21 +1382,46 @@
         "label_side": "above",
         "hotspotStatus": "verified visible-art polygon; zero pixel overlap",
         "desc": "같은 출입문으로 나가기",
-        "labelRecommendedFontPxAt1080": 28,
+        "labelRecommendedFontPxAt1080": 26,
         "labelRecommendedPlateArtPixels": [
-          19.33,
-          10.33
-        ]
+          20.33,
+          10.0
+        ],
+        "approach": {
+          "camera": {
+            "center": [
+              0.637,
+              0.345
+            ],
+            "zoom": 2.25
+          },
+          "seconds": 0.45,
+          "returnSeconds": 0.38,
+          "action": {
+            "layer": "entry_door",
+            "frames": [
+              "ready/approach/quit_00.png",
+              "ready/approach/quit_01.png",
+              "ready/approach/quit_02.png",
+              "ready/approach/quit_03.png",
+              "ready/approach/quit_04.png",
+              "ready/approach/quit_05.png"
+            ],
+            "fps": 10,
+            "holdSeconds": 0.12,
+            "reverseOnReturn": true
+          }
+        }
       }
     ],
     "nav_order": [
       "start",
       "history",
       "permanent",
-      "codex",
-      "skins",
       "credits",
       "settings",
+      "skins",
+      "codex",
       "quit"
     ]
   },
@@ -1125,7 +1458,31 @@
         "orientation": "north",
         "png": "ready/bridge/b00.png",
         "t": 0,
-        "thresholdSignedY": -2.3
+        "thresholdSignedY": -2.3,
+        "signTextRect": [
+          0.35170454545454544,
+          -0.05454545454545462,
+          0.2965909090909092,
+          0.10000000000000002
+        ],
+        "signSurfaceQuad": [
+          [
+            0.3363636363636363,
+            -0.0727272727272728
+          ],
+          [
+            0.6636363636363637,
+            -0.0727272727272728
+          ],
+          [
+            0.6636363636363637,
+            0.06818181818181812
+          ],
+          [
+            0.3363636363636363,
+            0.06818181818181812
+          ]
+        ]
       },
       {
         "camera": {
@@ -1281,5 +1638,21 @@
   "sourceTools": [
     "Aseprite1.3.18.6",
     "official PixelLab0.4.131"
-  ]
+  ],
+  "revision": {
+    "parentVersion": 4,
+    "parentRoot": "ArtSource/cafe-title-2026-11-18/revisions/v4-bar-end",
+    "newPixelLabRequests": 0,
+    "method": "Reused approved native sources; Aseprite rearrangement and source-preserving warm grade"
+  },
+  "labelAnchorContract": {
+    "below": "top-center edge",
+    "above": "bottom-center edge",
+    "left": "right-center edge",
+    "right": "left-center edge",
+    "nameplateHeightAt1080": 40,
+    "fontAt1080": 26,
+    "width": "max64,preferredWidth+28"
+  },
+  "toneContract": "tone-contract.json"
 }

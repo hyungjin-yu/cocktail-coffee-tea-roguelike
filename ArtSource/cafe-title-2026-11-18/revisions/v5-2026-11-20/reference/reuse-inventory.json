@@ -1,0 +1,66 @@
+[
+  {
+    "original": "ArtSource/v1/cafe_counter/frames/cafe_counter_effect_right_00.png",
+    "copy": "reference/cafe_counter_effect_right_00.png",
+    "sha256": "adbb1634958c41c57aeb03784b0485ccebf25605071e120c2631a04cfe9aa8b8",
+    "use": "approved material/palette and furniture proportions; source unchanged"
+  },
+  {
+    "original": "ArtSource/v1/cafe_wall/frames/cafe_wall_effect_right_00.png",
+    "copy": "reference/cafe_wall_effect_right_00.png",
+    "sha256": "c091be0e11d2e6c932a07dfaa41549c1e704dc380947d1fb0624d74ada4bb7cc",
+    "use": "approved material/palette and furniture proportions; source unchanged"
+  },
+  {
+    "original": "ArtSource/v1/cafe_floor/frames/cafe_floor_effect_right_00.png",
+    "copy": "reference/cafe_floor_effect_right_00.png",
+    "sha256": "e49f3b50c1fc4f2fe2881c58c64e690dc28fe53f6ef2aa3f1edd40e6b0bf0327",
+    "use": "approved material/palette and furniture proportions; source unchanged"
+  },
+  {
+    "original": "ArtSource/v1/ProgressionUI-2026-10-19/assets/laptop_open/laptop_open.png",
+    "copy": "reference/laptop_open.png",
+    "sha256": "00ca137c083af7c8f474f479d861c9939f89155454e226a7f79e00cf31a0ede8",
+    "use": "approved material/palette and furniture proportions; source unchanged"
+  },
+  {
+    "original": "Assets/_Project/Resources/ArtExtra/bg_bar_floor/bg_bar_floor_00.png",
+    "copy": "reference/bg_bar_floor_00.png",
+    "sha256": "fa41ba19351830c70130ffd95aa9dcfc83599d23a1e4ac035ba458c02645e617",
+    "dimensions": [
+      256,
+      128
+    ],
+    "use": "actual single-player cocktail bar source, PPU64/center pivot; new ID only, original preserved"
+  },
+  {
+    "original": "Assets/_Project/Resources/ArtExtra/bg_bar_wall/bg_bar_wall_00.png",
+    "copy": "reference/bg_bar_wall_00.png",
+    "sha256": "3d68ce52585fb486ad2b4e80a6094f2ba7e7e9c6f728218f41b36caeef3aad97",
+    "dimensions": [
+      256,
+      192
+    ],
+    "use": "actual single-player cocktail bar source, PPU64/center pivot; new ID only, original preserved"
+  },
+  {
+    "original": "Assets/_Project/Resources/ArtExtra/bg_bar_counter/bg_bar_counter_00.png",
+    "copy": "reference/bg_bar_counter_00.png",
+    "sha256": "19f5195af7a7961836f60724fadf38410dadf9f54208b58f222c6320fff6b338",
+    "dimensions": [
+      256,
+      128
+    ],
+    "use": "actual single-player cocktail bar source, PPU64/center pivot; new ID only, original preserved"
+  },
+  {
+    "original": "Assets/_Project/Resources/ArtExtra/bg_bar_lamp/bg_bar_lamp_00.png",
+    "copy": "reference/bg_bar_lamp_00.png",
+    "sha256": "a95010e301c99d58bc22c94a27caf029fb6b99483a67d321fcca81d0f94b6026",
+    "dimensions": [
+      64,
+      128
+    ],
+    "use": "actual single-player cocktail bar source, PPU64/center pivot; new ID only, original preserved"
+  }
+]

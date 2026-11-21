@@ -1,0 +1,26 @@
+{
+  "changedPixels": 5596,
+  "outsideApertureChanges": 0,
+  "nativeRoundTripExact": true,
+  "apertureCounts": {
+    "door": 3499,
+    "leafGlazing": 0,
+    "window": 2097
+  },
+  "rect": [
+    0,
+    0,
+    1,
+    1
+  ],
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "canvas": [
+    480,
+    270
+  ],
+  "baseCompositeSha256": "8e9abf2c7ea799a9b55a5efc85aa63e68847a2ba29c6f42b087c95c73adb80ad",
+  "newCompositeSha256": "6241dab075f55df8f1e8b4be24622bb303ff71189262318c7fd6af8f38ebce60"
+}

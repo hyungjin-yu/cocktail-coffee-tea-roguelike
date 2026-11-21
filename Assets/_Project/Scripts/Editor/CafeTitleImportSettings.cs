@@ -25,6 +25,8 @@ namespace CCT.Editor
             ti.alphaIsTransparency = true;
             ti.textureCompression = TextureImporterCompression.Uncompressed;
             ti.npotScale = TextureImporterNPOTScale.None;
+            // 2026-11-20 r5: 실내 물체 레이어는 hover/선택 때 그 물체 픽셀만 은은히 밝힌 사본을 실행 중에 만든다(아트 재생성 없음) → CPU 읽기 허용(480x270 몇 장).
+            ti.isReadable = assetPath.Replace(System.IO.Path.DirectorySeparatorChar, '/').Contains("/Resources/CafeTitle/ready/interior/");
         }
     }
 }

@@ -1,0 +1,81 @@
+{
+  "pass": true,
+  "plateRects": [
+    {
+      "id": "start",
+      "rectArtPixels": [
+        65.83333333333333,
+        222.0,
+        20.333333333333332,
+        10.0
+      ]
+    },
+    {
+      "id": "permanent",
+      "rectArtPixels": [
+        145.0,
+        101.0,
+        36.0,
+        10.0
+      ]
+    },
+    {
+      "id": "codex",
+      "rectArtPixels": [
+        453.0,
+        119.0,
+        20.333333333333332,
+        10.0
+      ]
+    },
+    {
+      "id": "skins",
+      "rectArtPixels": [
+        346.8333333333333,
+        45.0,
+        20.333333333333332,
+        10.0
+      ]
+    },
+    {
+      "id": "history",
+      "rectArtPixels": [
+        149.0,
+        121.0,
+        36.0,
+        10.0
+      ]
+    },
+    {
+      "id": "settings",
+      "rectArtPixels": [
+        224.83333333333334,
+        121.0,
+        20.333333333333332,
+        10.0
+      ]
+    },
+    {
+      "id": "credits",
+      "rectArtPixels": [
+        153.0,
+        74.0,
+        36.0,
+        10.0
+      ]
+    },
+    {
+      "id": "quit",
+      "rectArtPixels": [
+        292.8333333333333,
+        23.0,
+        20.333333333333332,
+        10.0
+      ]
+    }
+  ],
+  "labelOverlapPairs": [],
+  "labelsAreUnityTextOnly": true,
+  "previewFontAt1080Approx28": true,
+  "actualUnityMetricsNotRun": true
+}

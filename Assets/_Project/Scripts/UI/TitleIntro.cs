@@ -81,6 +81,7 @@ namespace CCT
         /// <summary>외관 입장 안내: 문 위 투명 클릭 영역 + "입장하기" 명패 + "아무 키나 누르면 입장" 보조 안내(Unity 텍스트).</summary>
         void BuildEnterUi()
         {
+            if (scene.Layout.EntranceInfo != null) { BuildEnterUiV5(scene.Layout.EntranceInfo); return; }
             var door = scene.Layout.EntranceDoor;
             var rt = CafeTitleScene.Place(scene.Exterior, "EnterButton", door.Rect);
             var hit = rt.gameObject.AddComponent<Image>();
@@ -108,6 +109,52 @@ namespace CCT
             var o = hint.gameObject.AddComponent<Outline>(); o.effectColor = new Color(0f, 0f, 0f, 0.9f); o.effectDistance = new Vector2(2f, -2f);
             enterUi.SetActive(false);
         }
+
+        /// <summary>v5 exterior.entrance: 문 클릭 영역(doorInteraction) + 문 옆 실물 명패(prompt.surfaceRect) 위 Unity 글자 2줄.
+        /// 명패도 같은 입장 버튼(클릭·터치). 키보드는 새 키 입력. 외관과 같은 장면 변환.</summary>
+        void BuildEnterUiV5(CafeTitleLayout.Entrance en)
+        {
+            var group = new GameObject("EnterUi", typeof(RectTransform)).GetComponent<RectTransform>();
+            group.SetParent(scene.Exterior, false);
+            group.anchorMin = group.anchorMax = group.pivot = new Vector2(0.5f, 0.5f);
+            group.sizeDelta = new Vector2(CafeTitleScene.RefW, CafeTitleScene.RefH);
+            enterUi = group.gameObject;
+            EnterButton = MakeEnterHit(group, "EnterButton", en.DoorRect);
+            PromptButton = MakeEnterHit(group, "EnterPromptButton", en.PromptSurfaceRect);
+            var prt = CafeTitleScene.Place(group, "EnterPrompt", en.PromptRect);
+            var primary = UiFactory.AddText(UiFactory.Place("Primary", prt, new Vector2(0.5f, 1f), new Vector2(0f, 0f), new Vector2(prt.sizeDelta.x, prt.sizeDelta.y * 0.55f)),
+                en.Primary, en.PrimaryFontPx, TextAnchor.MiddleCenter, en.PromptColor);
+            primary.rectTransform.pivot = new Vector2(0.5f, 1f);
+            var secondary = UiFactory.AddText(UiFactory.Place("Secondary", prt, new Vector2(0.5f, 0f), new Vector2(0f, 0f), new Vector2(prt.sizeDelta.x, prt.sizeDelta.y * 0.45f)),
+                en.Secondary, en.SecondaryFontPx, TextAnchor.MiddleCenter, en.PromptColor);
+            secondary.rectTransform.pivot = new Vector2(0.5f, 0f);
+            foreach (var t in new[] { primary, secondary })
+            {
+                t.color = en.PromptColor; t.raycastTarget = false;
+                t.resizeTextForBestFit = true; t.resizeTextMinSize = 12; t.resizeTextMaxSize = t.fontSize;
+                var o = t.gameObject.AddComponent<Outline>(); o.effectColor = new Color(0.23f, 0.16f, 0.12f, 0.95f); o.effectDistance = new Vector2(2f, -2f);
+            }
+            PromptPrimary = primary; PromptSecondary = secondary;
+            enterUi.SetActive(false);
+        }
+
+        Button MakeEnterHit(RectTransform parent, string name, Rect r)
+        {
+            var rt = CafeTitleScene.Place(parent, name, r);
+            var hit = rt.gameObject.AddComponent<Image>();
+            hit.color = new Color(1f, 1f, 1f, 0f);
+            var b = rt.gameObject.AddComponent<Button>();
+            b.transition = Selectable.Transition.None;
+            b.targetGraphic = hit;
+            b.navigation = new Navigation { mode = Navigation.Mode.None };
+            b.onClick.AddListener(() => { if (IsWaiting && armed) StartEntering(); });
+            return b;
+        }
+
+        /// <summary>v5: 문 옆 명패 클릭 영역과 글자(검수·시험용). 구버전 배치면 null.</summary>
+        public Button PromptButton { get; private set; }
+        public Text PromptPrimary { get; private set; }
+        public Text PromptSecondary { get; private set; }
 
         void EnterWaiting()
         {
@@ -262,6 +309,7 @@ namespace CCT
             int n = Mathf.Min(i + 1, views.Count - 1);
             float span = n > i ? views[n].T - views[i].T : 1f;
             float u = n > i ? Mathf.Clamp01((k - views[i].T) / Mathf.Max(0.0001f, span)) : 0f;
+            scene.ShowBridgeSign(i); // 같은 간판이 보이는 뷰에서만 그 뷰의 투영 글자
             scene.BridgeImage.sprite = scene.BridgeSprites[i];
             scene.BridgeImage.enabled = scene.BridgeSprites[i] != null;
             bool fade = scene.Layout.BridgeBlend == "crossfade" && n > i;

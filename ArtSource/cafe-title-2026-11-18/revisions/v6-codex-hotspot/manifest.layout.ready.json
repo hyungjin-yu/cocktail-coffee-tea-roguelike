@@ -1,0 +1,20 @@
+{
+  "ready": true,
+  "layoutVersion": 6,
+  "layout": "layout.json",
+  "layoutSha256": "0d5d4e12331d37d93dea9a15ad1e07fcb83f3e5665cbaa26a99145223d7e78bc",
+  "scope": "Layout-only overlay for the v5 art package; resolve all art paths from v5.",
+  "changedFeature": "codex",
+  "baseLayout": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20/layout.json",
+  "baseLayoutSha256": "9dd36c6915db33188bb1e2f718b64ccd4c5ac6aec8c4c771396d7f1ea65932b7",
+  "baseManifest": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20/manifest.ready.json",
+  "baseManifestSha256": "85a8ba3709bffb4d92e3293a5f64d952a3e2764303ab84a330c37b2f47828f04",
+  "artFilesChanged": 0,
+  "unityRuntimeVerified": false,
+  "preservedReviewArchive": "Delivery/CocktailCoffeeTea_CafeTitle_2026-11-20.zip",
+  "preservedReviewArchiveSha256": "9fbf101f0117c45c126498afa167485f76756a6fba09b471347b480dcba4fba4",
+  "unityCapture": "Delivery/Verification/2026-11-20/cafetitle-pass1/hover_crops_1080.png",
+  "unityCaptureSha256": "0d06eeb297dfcce8343a8f4ae9c8ea75741ffe11147278798f7163e41dd787cc",
+  "evidence": "hotspot-validation.json",
+  "preview": "bookshelf-hotspot-compare.png"
+}

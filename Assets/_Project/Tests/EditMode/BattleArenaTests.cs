@@ -78,5 +78,50 @@ namespace CCT.Tests
             Assert.Greater(bar.veil.a, tea.veil.a, "찻집은 원래 차분해 약하게만");
             Assert.GreaterOrEqual(tea.floor.maxColorComponent, 0.85f, "찻집 부작용 없음");
         }
+
+        /// <summary>2026-11-20 싱글 칵테일 바 밝기 계약: 보정본 4부속 모두 존재, 곱 틴트 1(이중 보정 없음), 바닥 막 ≤ 0.08.
+        /// 원본 bg_bar·찻집·공용 카페 톤은 그대로. QA 전후 비교 스위치는 기본 꺼짐.</summary>
+        [Test]
+        public void WarmBar_FourParts_NoDoubleGrade_VeilWithinContract_OthersUnchanged()
+        {
+            foreach (var part in new[] { "floor", "wall", "counter", "lamp" })
+            {
+                Assert.IsNotNull(CafeBackground.JobSprite(CafeBackground.WarmBarPrefix, part), "보정본 " + part);
+                Assert.IsNotNull(CafeBackground.JobSprite("bg_bar", part), "원본 보존 " + part);
+            }
+            var w = CafeBackground.ToneFor(CafeBackground.WarmBarPrefix);
+            Assert.AreEqual(Color.white, w.floor); Assert.AreEqual(Color.white, w.wall); Assert.AreEqual(Color.white, w.prop);
+            Assert.LessOrEqual(w.veil.a, 0.08f);
+            Assert.AreEqual(0.34f, CafeBackground.ToneFor("bg_bar").veil.a, 1e-4f, "원본 경로 톤 불변(보정본 없을 때 대비)");
+            Assert.AreEqual(0.12f, CafeBackground.ToneFor("bg_tea").veil.a, 1e-4f, "찻집 불변");
+            Assert.AreEqual(0.22f, CafeBackground.ToneFor(null).veil.a, 1e-4f, "공용 카페 불변");
+            Assert.AreEqual("bg_bar", JobPreset.For(Job.Bartender).mapArtPrefix, "맵 ID 유지");
+            Assert.IsFalse(CafeBackground.ForceOriginalBarForQa, "QA 원본 강제는 기본 꺼짐");
+        }
+
+        /// <summary>2026-11-20 보스 접지 그림자 보완: 보정 바 바닥이 아닐 때(찻집·공용 카페·원본 바)는 아무것도 바꾸지 않는다. 값은 상한 안.</summary>
+        [Test]
+        public void WarmBarBossGround_NoChange_WhenWarmBarInactive()
+        {
+            var go = new GameObject("BossShadowTest");
+            try
+            {
+                var sr = go.AddComponent<SpriteRenderer>();
+                sr.color = new Color(1f, 1f, 1f, 0.22f);
+                go.transform.localScale = Vector3.one * 2f;
+                if (!CafeBackground.UsesWarmBar)
+                {
+                    CafeBackground.ApplyWarmBarBossGround(go.transform, sr, 1f);
+                    Assert.AreEqual(0.22f, sr.color.a, 1e-5f);
+                    Assert.AreEqual(2f, go.transform.localScale.x, 1e-5f);
+                }
+                Assert.DoesNotThrow(() => CafeBackground.ApplyWarmBarBossGround(go.transform, null, 1f));
+                Assert.IsTrue(CafeBackground.BossGroundBoostForQa, "기본 켜짐");
+                Assert.LessOrEqual(CafeBackground.WarmBossShadowAlpha, 0.6f, "그림자는 반투명(윤곽 가림 없음)");
+                Assert.AreEqual(SortOrders.Shadow, 0, "그림자는 장판 예고(GroundZone)·개체보다 아래");
+                Assert.Less(SortOrders.Shadow, SortOrders.GroundZone);
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
     }
 }

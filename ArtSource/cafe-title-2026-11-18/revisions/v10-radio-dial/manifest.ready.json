@@ -1,0 +1,55 @@
+{
+  "ready": true,
+  "revision": 10,
+  "scope": "Settings radio_sideboard only",
+  "baseLayout": "ArtSource/cafe-title-2026-11-18/revisions/v9-menu-clips/layout.json",
+  "baseLayoutSha256": "a93a383f192b08edfc7932aaa062e86b1f38987f851a88ac61473adb6629950c",
+  "baseManifest": "ArtSource/cafe-title-2026-11-18/revisions/v9-menu-clips/manifest.ready.json",
+  "baseManifestSha256": "e6611b023431cae69d4164533a1d4c3bb18e622792610cefaec80747c2d6b59d",
+  "layer": "radio_sideboard",
+  "canvas": [
+    480,
+    270
+  ],
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "fps": 10,
+  "frames": [
+    {
+      "path": "ready/approach/settings_00.png",
+      "sha256": "8cd330ad33ac6da710da766d827cbb56f3aebabd494a601e82bec9232ff5d4fe",
+      "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_00.png"
+    },
+    {
+      "path": "ready/approach/settings_01.png",
+      "sha256": "a230c2504593a8ebee48eb719fc1e7f89c70a5c607c5f4d3f35920de0ebc97ae",
+      "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_01.png"
+    },
+    {
+      "path": "ready/approach/settings_02.png",
+      "sha256": "8f350d5960136a9f16653b744480c860c3a3bbab8315f13bab33d4c220555cf8",
+      "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_02.png"
+    },
+    {
+      "path": "ready/approach/settings_03.png",
+      "sha256": "9d6551059f39ded5babc977ab8c7fdf77eff4533a6cdbf8648f55770163b4ce1",
+      "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_03.png"
+    },
+    {
+      "path": "ready/approach/settings_04.png",
+      "sha256": "05f9b817a94c3237d76fda26277f54a75960e21e7969fc53f4f9acfff08a40f8",
+      "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_04.png"
+    },
+    {
+      "path": "ready/approach/settings_05.png",
+      "sha256": "aa524bd9780345593dbf2ddc165506cc2c1976c239586ed518e670fd4946fc1a",
+      "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/approach/settings_05.png"
+    }
+  ],
+  "native": "ready/approach/settings.aseprite",
+  "nativeSha256": "d374a5f8ff25cf0245ca8101478e5b9ff5d15125d926a2619e2a216f72922013",
+  "verification": "verification/radio-verification.json",
+  "unityRuntimeVerified": false
+}

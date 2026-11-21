@@ -1,0 +1,80 @@
+{
+  "ready": true,
+  "scope": "Interior street backdrop and aperture cutouts, over v5 art and v6 layout",
+  "layout": "layout.json",
+  "layoutVersion": 7,
+  "layoutSha256": "896926893563b9ad21e8a8dd0cd693734bba41af585da8673596a12d1a9828ba",
+  "baseArt": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20/manifest.ready.json",
+  "baseArtSha256": "85a8ba3709bffb4d92e3293a5f64d952a3e2764303ab84a330c37b2f47828f04",
+  "baseLayout": "ArtSource/cafe-title-2026-11-18/revisions/v6-codex-hotspot/layout.json",
+  "baseLayoutSha256": "0d5d4e12331d37d93dea9a15ad1e07fcb83f3e5665cbaa26a99145223d7e78bc",
+  "preservedR5Zip": "Delivery/CocktailCoffeeTea_CafeTitle_2026-11-20_r5.zip",
+  "preservedR5ZipSha256": "e55dff97a26039362b581d92a3801c86a7145c9c9f2bc26e9b8c2d18158504a5",
+  "assets": [
+    {
+      "id": "room_shell",
+      "z": 0,
+      "png": "ready/interior/g0.png",
+      "aseprite": "ready/interior/g0.aseprite",
+      "pngSha256": "cf5823ba8d913016ff5bedbd5b3eab0bf6e0644f024536cd202d05ed4f05d51c",
+      "asepriteSha256": "ce33099ca1176610f9bccd1e59c9d2f3fef31bf4f4257ef92ee74c2973a8f38a",
+      "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/g0.png",
+      "alphaBounds": [
+        0,
+        0,
+        480,
+        270
+      ],
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "canvas": [
+        480,
+        270
+      ]
+    },
+    {
+      "id": "street_backdrop",
+      "z": -10,
+      "png": "ready/interior/street_backdrop.png",
+      "aseprite": "ready/interior/street_backdrop.aseprite",
+      "pngSha256": "41ca22ae31abe049c3d9cf023e6297019a945dd73e3fbcc283ee2cc14c7c01af",
+      "asepriteSha256": "6eabbe75a377655eef13eae80889b6198cf1b9940053b51a9a746eef5dbc15ef",
+      "unityDestination": "Assets/_Project/Resources/CafeTitle/ready/interior/street_backdrop.png",
+      "alphaBounds": [
+        212,
+        44,
+        322,
+        131
+      ],
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "canvas": [
+        480,
+        270
+      ]
+    }
+  ],
+  "master": "ready/interior/ct_interior_master.aseprite",
+  "masterSha256": "b16a34dbcfc423c5f10faa34ad4b649d731dd7a0df3a07216b03111c8d928463",
+  "unchangedUnityFiles": "All other v5 runtime images and nameplate/click contracts",
+  "unityRuntimeVerified": false,
+  "referenceImageSha256": "3fecb017470fb7c462940610bd5badd44eca18e90bf30424d29110c23e3b53dd",
+  "verification": "verification/pixel-validation.json",
+  "preview": "previews/apertures-before-after.png"
+}

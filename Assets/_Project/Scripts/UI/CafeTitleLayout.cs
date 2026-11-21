@@ -29,6 +29,10 @@ namespace CCT
         public sealed class Feature
         {
             public string Id, Label, Desc, LabelSide = "below";
+            /// <summary>이 물체만 그린 실내 레이어 id(선택, 없으면 구현 기본 매핑).</summary>
+            public string Layer;
+            /// <summary>2026-11-20 메뉴 접근 연출 계약(feature.approach). 없으면 기존처럼 바로 메뉴를 연다.</summary>
+            public Approach Approach;
             public Rect HotspotRect;          // 다각형이면 그 외접 사각형
             public Vector2[] Polygon;          // null이면 사각형
             public Vector2 LabelAnchor;
@@ -41,6 +45,32 @@ namespace CCT
             public float T;
             public Vector2 Center = new Vector2(0.5f, 0.5f);
             public float Zoom = 1f;
+            /// <summary>v5: 이 뷰에 같은 간판이 보이면 그 투영 글자 영역/간판 면(외접 사각형). 없으면 null.</summary>
+            public Rect? SignTextRect, SignSurfaceRect;
+        }
+
+        /// <summary>v5 외관 입장 안내(exterior.entrance): 문 클릭 영역 + 문 옆 실물 명패 위 글자(아트에 굽지 않음).</summary>
+        public sealed class Entrance
+        {
+            public Rect DoorRect, PromptRect, PromptSurfaceRect;
+            public string Primary = "입장하기", Secondary = "아무 키나 눌러 입장";
+            public Color PromptColor = new Color(0.957f, 0.902f, 0.812f);
+            public int PrimaryFontPx = 28, SecondaryFontPx = 22;
+        }
+
+        /// <summary>feature.approach: camera{center,zoom}(실내 정규화 좌표·실내와 같은 변환, zoom 1 = 전체 맞춤), seconds(다가가기), returnSeconds,
+        /// action{layer(교체할 실내 물체 레이어 id), frames[](같은 480x270 캔버스·같은 좌표의 투명 PNG), fps, holdSeconds, reverseOnReturn}.</summary>
+        public sealed class Approach
+        {
+            public Vector2 Center = new Vector2(0.5f, 0.5f);
+            public float Zoom = 1f, Seconds = 0.55f, ReturnSeconds = 0.4f, Fps = 10f, HoldSeconds = 0.25f;
+            public string Layer;
+            public string[] Frames = new string[0];
+            public bool ReverseOnReturn = true;
+            /// <summary>패치 방식: 프레임이 물체 일부 영역 그림이면 그 영역(실내 정규화 [x,y,w,h]). 없으면 프레임 = 실내 전체(480x270) 레이어.</summary>
+            public Rect? PatchRect;
+            /// <summary>true면 조작 중 원 물체 레이어를 숨긴다(프레임이 물체 전체를 대신 그릴 때). 기본: 전체 프레임이면 교체, 패치면 원 레이어 위에 덮기.</summary>
+            public bool? HideLayer;
         }
 
         public sealed class CameraKey
@@ -71,6 +101,13 @@ namespace CCT
         public readonly List<string> NavOrder = new List<string>();
         public Door EntranceDoor = new Door();
         public Rect SignRect;
+        /// <summary>v5: 간판 글자 영역·간판 면(surfaceQuad 외접)·색·외곽선·1080 기준 글자 크기. TextRect가 없으면(구버전) SignRect 기준 기존 방식.</summary>
+        public Rect? SignTextRect, SignSurfaceRect;
+        public Color SignTextColor = new Color(0.97f, 0.84f, 0.55f);
+        public Color? SignOutlineColor;
+        public int SignFontPx;
+        /// <summary>v5 외관 입장 안내. null이면 구버전(문 위 명패) 방식.</summary>
+        public Entrance EntranceInfo;
         public Vector2 SignTitleAnchor = new Vector2(0.5f, 0.12f);
         public Vector2 ArrivalCenter = new Vector2(0.5f, 0.5f);
         public float ArrivalZoom = 1.2f;
@@ -134,6 +171,27 @@ namespace CCT
                 {
                     l.SignRect = RectOf(sign, "rect");
                     if (sign.ContainsKey("titleAnchor")) l.SignTitleAnchor = Vec(sign["titleAnchor"]);
+                    if (sign.ContainsKey("textRect")) l.SignTextRect = RectOf(sign, "textRect");
+                    if (sign.ContainsKey("surfaceQuad")) l.SignSurfaceRect = QuadBounds(sign["surfaceQuad"]);
+                    if (sign.ContainsKey("textColor") && ColorOf(sign["textColor"] as string) is Color tc) l.SignTextColor = tc;
+                    if (sign.ContainsKey("outlineColor")) l.SignOutlineColor = ColorOf(sign["outlineColor"] as string);
+                    if (sign.ContainsKey("fontPxAt1080")) l.SignFontPx = (int)Num(sign["fontPxAt1080"]);
+                }
+                if (ex.TryGetValue("entrance", out var enO) && enO is Dictionary<string, object> en)
+                {
+                    var e = new Entrance();
+                    if (en.TryGetValue("doorInteraction", out var diO) && diO is Dictionary<string, object> di) e.DoorRect = RectOf(di, "rect");
+                    if (en.TryGetValue("prompt", out var prO) && prO is Dictionary<string, object> pr)
+                    {
+                        e.PromptRect = RectOf(pr, "rect");
+                        e.PromptSurfaceRect = pr.ContainsKey("surfaceRect") ? RectOf(pr, "surfaceRect") : e.PromptRect;
+                        e.Primary = Str(pr, "primary", e.Primary);
+                        e.Secondary = Str(pr, "secondary", e.Secondary);
+                        if (pr.ContainsKey("color") && ColorOf(pr["color"] as string) is Color pc) e.PromptColor = pc;
+                        if (pr.ContainsKey("primaryFontPxAt1080")) e.PrimaryFontPx = (int)Num(pr["primaryFontPxAt1080"]);
+                        if (pr.ContainsKey("secondaryFontPxAt1080")) e.SecondaryFontPx = (int)Num(pr["secondaryFontPxAt1080"]);
+                    }
+                    if (e.DoorRect.width > 0f && e.DoorRect.width < 1f) l.EntranceInfo = e;
                 }
                 if (ex.TryGetValue("door", out var dO) && dO is Dictionary<string, object> door)
                 {
@@ -181,6 +239,8 @@ namespace CCT
                                 if (cd.ContainsKey("center")) bv.Center = Vec(cd["center"]);
                                 if (cd.ContainsKey("zoom")) bv.Zoom = Num(cd["zoom"]);
                             }
+                            if (vd.TryGetValue("signTextRect", out var stO) && stO is List<object>) bv.SignTextRect = RectOf(vd, "signTextRect");
+                            if (vd.TryGetValue("signSurfaceQuad", out var sqO) && sqO is List<object>) bv.SignSurfaceRect = QuadBounds(sqO);
                             l.Bridge.Add(bv);
                         }
                 l.Bridge.Sort((a, c) => a.T.CompareTo(c.T));
@@ -202,7 +262,7 @@ namespace CCT
                         var f = new Feature
                         {
                             Id = Str(fd, "id", ""), Label = Str(fd, "label", ""), Desc = Str(fd, "desc", ""),
-                            LabelSide = Str(fd, "label_side", "below"),
+                            LabelSide = Str(fd, "label_side", "below"), Layer = Str(fd, "layer", null),
                         };
                         if (fd.TryGetValue("hotspot", out var hO) && hO is Dictionary<string, object> h)
                         {
@@ -215,12 +275,40 @@ namespace CCT
                             else f.HotspotRect = RectOf(h, "rect");
                         }
                         f.LabelAnchor = fd.ContainsKey("label_anchor") ? Vec(fd["label_anchor"]) : new Vector2(f.HotspotRect.center.x, f.HotspotRect.yMax);
+                        if (fd.TryGetValue("approach", out var appO) && appO is Dictionary<string, object> apd2) f.Approach = ApproachOf(apd2);
                         l.Features.Add(f);
                     }
                 if (inn.TryGetValue("nav_order", out var nO) && nO is List<object> nl)
                     foreach (var n in nl) if (n is string ns) l.NavOrder.Add(ns);
             }
             return l;
+        }
+
+        static Approach ApproachOf(Dictionary<string, object> d)
+        {
+            var a = new Approach();
+            if (d.TryGetValue("camera", out var cO) && cO is Dictionary<string, object> c)
+            {
+                if (c.ContainsKey("center")) a.Center = Vec(c["center"]);
+                if (c.ContainsKey("zoom")) a.Zoom = Mathf.Clamp(Num(c["zoom"]), 1f, 4f);
+            }
+            if (d.ContainsKey("seconds")) a.Seconds = Mathf.Clamp(Num(d["seconds"]), 0f, 2f);
+            if (d.ContainsKey("returnSeconds")) a.ReturnSeconds = Mathf.Clamp(Num(d["returnSeconds"]), 0f, 2f);
+            if (d.TryGetValue("action", out var acO) && acO is Dictionary<string, object> ac)
+            {
+                a.Layer = Str(ac, "layer", null);
+                if (ac.TryGetValue("frames", out var fr) && fr is List<object> frl)
+                {
+                    a.Frames = new string[frl.Count];
+                    for (int i = 0; i < frl.Count; i++) a.Frames[i] = frl[i] as string;
+                }
+                if (ac.ContainsKey("fps")) a.Fps = Mathf.Clamp(Num(ac["fps"]), 1f, 30f);
+                if (ac.ContainsKey("holdSeconds")) a.HoldSeconds = Mathf.Clamp(Num(ac["holdSeconds"]), 0f, 2f);
+                if (ac.TryGetValue("reverseOnReturn", out var rv) && rv is bool rb) a.ReverseOnReturn = rb;
+                if (ac.ContainsKey("rect")) a.PatchRect = RectOf(ac, "rect");
+                if (ac.TryGetValue("hideLayer", out var hl) && hl is bool hb) a.HideLayer = hb;
+            }
+            return a;
         }
 
         static void ReadLayers(Dictionary<string, object> d, List<Layer> into)
@@ -240,6 +328,14 @@ namespace CCT
             Tile = ld.TryGetValue("tile", out var t) && t is bool tb && tb,
             TileScale = ld.ContainsKey("tile_scale") ? Num(ld["tile_scale"]) : 1f,
         };
+
+        static Rect? QuadBounds(object o)
+        {
+            if (!(o is List<object> l) || l.Count < 3) return null;
+            var pts = new Vector2[l.Count];
+            for (int i = 0; i < l.Count; i++) pts[i] = Vec(l[i]);
+            return Bounds(pts);
+        }
 
         static Rect Bounds(Vector2[] pts)
         {

@@ -36,6 +36,9 @@ def main(d):
         out['shots'].append({
             'file': s['file'], 'bg_mean': round(float(bg.mean()), 1), 'bg_p10': round(float(np.percentile(bg, 10)), 1),
             'bg_p90': round(float(np.percentile(bg, 90)), 1), 'bg_dark_share_lt40': round(float((bg < 40).mean()), 3),
+            # 2026-11-20 씻김(washed-out) 점검: 밝은 면적 비율·배경 표준편차(질감 대비)·평균 채도
+            'bg_bright_share_gt200': round(float((bg > 200).mean()), 4), 'bg_std': round(float(bg.std()), 1),
+            'bg_sat_mean': round(float(((im.max(axis=2) - im.min(axis=2)) / np.maximum(im.max(axis=2), 1))[mask].mean()), 3),
             'contrast_mean': {k: round(float(np.mean(v)), 1) for k, v in contrasts.items()},
             'counts': {k: len(v) for k, v in contrasts.items()}})
     json.dump(out, open(os.path.join(d, 'metrics.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)

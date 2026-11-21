@@ -643,7 +643,8 @@ namespace CCT
             col.radius = def.radius; // 루트 스케일이 1이므로 반지름을 직접 지정
 
             // 04 §8 발밑 그림자(Visual 다음에 붙여 GetComponentInChildren이 몸체를 먼저 찾게 한다).
-            GroundShadow.Attach(transform, new Vector2(0f, -def.radius), def.radius * 2.4f);
+            var shadow = GroundShadow.Attach(transform, new Vector2(0f, -def.radius), def.radius * 2.4f);
+            if (def.IsBoss) CafeBackground.ApplyWarmBarBossGround(transform, shadow, def.radius); // 2026-11-20 밝은 바 바닥 위 갈색 보스 대비(표시 전용)
             if (def.IsBoss)
             {
                 // 09 boss_arrival — 등장 안내 1초 동안 발밑에 재생(판정 없음).

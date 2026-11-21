@@ -1,0 +1,97 @@
+{
+  "assetId": "ct_exterior_facade",
+  "status": "ready",
+  "ready": true,
+  "packageRoot": "ArtSource/cafe-title-2026-11-18/revisions/v5-2026-11-20",
+  "pathsRelativeTo": "packageRoot",
+  "png": "ready/exterior/facade.png",
+  "aseprite": "ready/exterior/facade.aseprite",
+  "dimensions": [
+    480,
+    270
+  ],
+  "alphaBounds": [
+    0,
+    0,
+    480,
+    270
+  ],
+  "alphaValues": [
+    0,
+    42,
+    255
+  ],
+  "nativePivotTopLeftPixels": [
+    240,
+    135
+  ],
+  "pivotNormalizedBottomLeft": [
+    0.5,
+    0.5
+  ],
+  "recommendedUnityPngDestination": "Assets/_Project/Resources/CafeTitle/ready/exterior/facade.png",
+  "unityResourcePath": "CafeTitle/ready/exterior/facade",
+  "import": {
+    "textureType": "Sprite",
+    "spriteMode": "Single",
+    "pixelsPerUnit": 100,
+    "filterMode": "Point",
+    "compression": "None",
+    "mipmapEnabled": false,
+    "alphaIsTransparency": true,
+    "wrapMode": "Clamp"
+  },
+  "sha256": {
+    "png": "94d2270d63c87474329e0c45fd7ff6e4b2226e006650c10d6185a833372f0899",
+    "aseprite": "8ef83457331fd150ffebbf017d59571a2181eb1a462fb40a5a52e09d928e80b2"
+  },
+  "sourceEvidence": [
+    "provenance/tool-gate.json",
+    "provenance/source-generation-receipts.json",
+    "provenance/native-source-specs.json",
+    "provenance/finish-scene.lua",
+    "reference/reuse-inventory.json"
+  ],
+  "provenance": {
+    "tools": [
+      "Aseprite1.3.18.6",
+      "official PixelLab0.4.131"
+    ],
+    "nativeGeneration": "Actual official model calls: door prototype bitforge,6 pro source requests with approved wall style reference; seven main raw PNG/native pairs preserved",
+    "nativeFinishing": "Aseprite Image pixel API, shared authored meter-scale furniture/surfaces and rigid door, depth visibility and same-camera texture projection; same physical world across north entry and south menu, no independently generated-view crossfade",
+    "newGeneratedSourcesUsed": [
+      "ct_bookshelf_source",
+      "ct_coat_cabinet_source",
+      "ct_radio_source",
+      "ct_ledger_source",
+      "ct_espresso_source",
+      "ct_facade_material_source"
+    ],
+    "doorPrototypeUse": "Generated prototype reviewed; noisy prototype body was rebuilt natively with approved walnut material and generated architectural molding. Do not claim prototype pixels unchanged."
+  },
+  "checks": {
+    "dimensions": true,
+    "nonempty": true,
+    "nativeMagic": true,
+    "nativeCanvas": true,
+    "nativeFrames1": true,
+    "nativePivot": true,
+    "roundtripPixelsEqual": true,
+    "alphaPolicy": true,
+    "visualArtifactReview": true,
+    "unityImport": false,
+    "unityRuntime": false
+  },
+  "verification": "verification/asset-validation.json",
+  "visualPreviews": [
+    "previews/interior-composite.png",
+    "previews/hotspots-labels-proof.png",
+    "previews/entry-continuity-all17.png",
+    "previews/exterior-sign-prompt-1280x720.png",
+    "previews/exterior-sign-prompt-1920x1080.png",
+    "previews/exterior-sign-prompt-1440x1080.png",
+    "previews/menu-contain-1920x1080.png",
+    "previews/menu-contain-1280x720.png",
+    "previews/menu-contain-1440x1080.png"
+  ]
+}

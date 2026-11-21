@@ -1,0 +1,45 @@
+{
+  "status": "reviewed",
+  "scope": "Single-player cocktail bar and café title",
+  "gradeFormula": "Y=(54R+183G+19B)/256; lift=32*(1-Y/255); RGB+=lift*(1.10,.86,.55); clamp255; alpha unchanged",
+  "sharedMaterials": [
+    "bg_bar_floor",
+    "bg_bar_counter",
+    "bg_bar_wall",
+    "bg_bar_lamp"
+  ],
+  "gameplayParts": [
+    "bg_barwarm_floor",
+    "bg_barwarm_wall",
+    "bg_barwarm_counter",
+    "bg_barwarm_lamp"
+  ],
+  "selection": "Single-player bartender only, per-part override with original bg_bar fallback",
+  "rendererCandidate": {
+    "multiplyRGB": [
+      1,
+      1,
+      1
+    ],
+    "veilAlphaMax": 0.08,
+    "avoidDoubleGrade": true
+  },
+  "requiredRuntimeEvidence": "Same-state before/after screen evidence at 720p and 1080p, normal/crowd/boss/drop/low effects",
+  "sourceGradeValidation": "verification/bg_barwarm-grade-validation.json",
+  "renderer": {
+    "multiplyRGB": [
+      1,
+      1,
+      1
+    ],
+    "veilRGBA": [
+      0.13,
+      0.11,
+      0.13,
+      0.06
+    ],
+    "avoidDoubleGrade": true
+  },
+  "runtimeContrastEvidence": "verification/runtime-contrast-review.json",
+  "runtimeContrastEvidenceSha256": "ed2b29689d571f0c44300f6ae9a46303ae3478fd457ca74542049b1312d178d7"
+}

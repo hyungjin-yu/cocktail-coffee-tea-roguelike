@@ -1,0 +1,87 @@
+{
+  "canvas": [
+    480,
+    270
+  ],
+  "fixedCenter": [
+    246,
+    104
+  ],
+  "dialArtRect": [
+    244,
+    102,
+    5,
+    5
+  ],
+  "lampArtRect": [
+    245,
+    107,
+    2,
+    2
+  ],
+  "alphaUnchanged": true,
+  "firstFrameExactG6": true,
+  "baseV9FramesUnchanged": 48,
+  "frames": [
+    {
+      "frame": 0,
+      "changedPixels": 0,
+      "pointerClock": null,
+      "lampRGB": [
+        252,
+        244,
+        164
+      ]
+    },
+    {
+      "frame": 1,
+      "changedPixels": 25,
+      "pointerClock": 8,
+      "lampRGB": [
+        130,
+        79,
+        35
+      ]
+    },
+    {
+      "frame": 2,
+      "changedPixels": 25,
+      "pointerClock": 10,
+      "lampRGB": [
+        143,
+        83,
+        35
+      ]
+    },
+    {
+      "frame": 3,
+      "changedPixels": 25,
+      "pointerClock": 12,
+      "lampRGB": [
+        168,
+        98,
+        39
+      ]
+    },
+    {
+      "frame": 4,
+      "changedPixels": 25,
+      "pointerClock": 2,
+      "lampRGB": [
+        212,
+        136,
+        57
+      ]
+    },
+    {
+      "frame": 5,
+      "changedPixels": 25,
+      "pointerClock": 2,
+      "lampRGB": [
+        255,
+        201,
+        111
+      ]
+    }
+  ]
+}

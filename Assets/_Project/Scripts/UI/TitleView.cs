@@ -60,12 +60,14 @@ namespace CCT
             var view = canvasComp.gameObject.AddComponent<TitleView>();
             view.canvas = canvasComp;
 
+            int before = canvasComp.transform.childCount;
             view.shopView = PermanentSkillView.Create(canvasComp.transform, view.ShowRoot);
             view.codexView = CardCodexView.Create(canvasComp.transform, view.ShowRoot);
             view.settingsView = SettingsView.Create(canvasComp.transform, view.ShowRoot);
             view.creditsView = CreditsView.Create(canvasComp.transform, view.ShowRoot);
             view.skinShopView = SkinShopView.Create(canvasComp.transform, view.ShowRoot);
             view.historyView = RunHistoryListView.Create(canvasComp.transform, view.ShowRoot); // 67 최근 기록
+            for (int i = before; i < canvasComp.transform.childCount; i++) view.menuRoots.Add(canvasComp.transform.GetChild(i).gameObject);
 
             view.BuildRoot();
             return view;
@@ -92,6 +94,13 @@ namespace CCT
             var layout = CafeTitleLayout.Load();
             if (layout != null && layout.Features.Count >= 8)
             {
+                // 2026-11-20 메뉴 접근 연출: 물체 확정 → 다가가기·조작(계약 있을 때) → 같은 기존 메뉴 열기. 접근 계약이 없으면 바로 연다.
+                var direct = new Dictionary<string, System.Action>(actions);
+                foreach (var kv in direct)
+                {
+                    var id = kv.Key; var open = kv.Value;
+                    actions[id] = () => { if (Approach != null) Approach.Begin(id, open); else open(); };
+                }
                 scene = CafeTitleScene.Build(rootRt, layout, actions);
                 startButton = scene.Hotspots.TryGetValue("start", out var s) ? s.Button : null;
             }
@@ -103,6 +112,7 @@ namespace CCT
             var sh = title.gameObject.AddComponent<Shadow>();
             sh.effectColor = new Color(0f, 0f, 0f, 0.85f); sh.effectDistance = new Vector2(2f, -3f);
             title.GetComponent<Text>().raycastTarget = false;
+            titleHeader = title.gameObject;
 
             if (layout != null && !layout.IsFinalArt)
             {
@@ -116,6 +126,9 @@ namespace CCT
             RefreshFooter();
             if (scene != null)
             {
+                Approach = CafeMenuApproach.Attach(gameObject, scene, () => SettingsService.Current.effectsLevel == SettingsData.EffectsLow);
+                Approach.Returned += _ => SelectDefault();
+                foreach (var go in menuRoots) CafeMenuTheme.Attach(go);
                 Intro = TitleIntro.Attach(scene, titleText);
                 Intro.Completed += SelectDefault; // 입장 연출이 끝난 뒤에 기본 선택 후보를 준다(건너뛴 키가 메뉴를 고르지 않게)
                 ApplyInputGate();
@@ -144,7 +157,7 @@ namespace CCT
         /// <summary>입장 연출 중·건너뛴 입력이 떼어지기 전에는 실내 물체와 알림 버튼이 눌리지 않는다.</summary>
         void ApplyInputGate()
         {
-            bool block = Intro != null && Intro.BlockingInput;
+            bool block = (Intro != null && Intro.BlockingInput) || (Approach != null && Approach.Busy);
             if (scene != null) scene.InteriorInteractable = !block;
             foreach (var go in new[] { guestButtonRoot, retryButtonRoot })
                 if (go != null) go.GetComponent<Button>().interactable = !block;
@@ -153,7 +166,7 @@ namespace CCT
         /// <summary>Tab / Shift+Tab: layout nav_order 순서로 실내 물체를 돈다(방향키는 공간 기준 이웃).</summary>
         void HandleTab()
         {
-            if (scene == null || !root.activeSelf || quitConfirmRoot.activeSelf || (Intro != null && Intro.BlockingInput)) return;
+            if (scene == null || !root.activeSelf || quitConfirmRoot.activeSelf || (Intro != null && Intro.BlockingInput) || (Approach != null && Approach.Busy)) return;
             var kb = Keyboard.current;
             if (kb == null) return;
             bool arrow = kb.upArrowKey.wasPressedThisFrame || kb.downArrowKey.wasPressedThisFrame || kb.leftArrowKey.wasPressedThisFrame || kb.rightArrowKey.wasPressedThisFrame;
@@ -168,12 +181,17 @@ namespace CCT
         }
 
         public TitleIntro Intro { get; private set; }
+        /// <summary>메뉴 접근 연출(카페 장면이 있을 때).</summary>
+        public CafeMenuApproach Approach { get; private set; }
+        /// <summary>타이틀에서 연 메뉴 화면 루트들(카페 나무·종이 톤 적용 대상, 전투·일시정지 화면과 별개 인스턴스).</summary>
+        readonly List<GameObject> menuRoots = new List<GameObject>();
 
         /// <summary>G31 — 마우스로 아무것도 안 눌러도 Tab/화살표로 바로 다닐 수 있게 기본 항목을 정해 둔다.
         /// 2026-10-12: 진입 즉시 선택하면 "시작"이 파란 강조로 고정돼 보여, 첫 키보드 입력 때 드러내도록 UiInitialFocus에 맡긴다.</summary>
         void SelectDefault()
         {
             if (Intro != null && !Intro.Finished) return; // 입장 연출이 끝나면(Completed) 다시 불린다
+            if (Approach != null && Approach.Busy) return; // 접근 원위치가 끝나면(Returned) 다시 불린다
             // 미래 버전 보호 중이면 임시 플레이 선택 버튼을 먼저 가리킨다.
             var target = guestButtonRoot != null && guestButtonRoot.activeSelf ? guestButtonRoot : startButton.gameObject;
             if (scene == null) { UiInitialFocus.Offer(target); return; }
@@ -267,6 +285,7 @@ namespace CCT
             {
                 guestGuidanceRequested = true;
                 RefreshFooter();
+                if (Approach != null && Approach.Busy) Approach.Return(); // 카운터에서 물러나 임시 플레이 안내로
                 if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(guestButtonRoot);
                 return false;
             }
@@ -317,7 +336,7 @@ namespace CCT
             var cancelRt = UiFactory.Place("Cancel", rt, new Vector2(0.5f, 0f), new Vector2(230f, 50f),
                 new Vector2(260f, 78f));
             var cancelBg = UiFactory.AddImage(cancelRt, new Color(0.3f, 0.32f, 0.36f));
-            quitCancelButton = MakeConfirmButton(cancelRt, cancelBg, () => quitConfirmRoot.SetActive(false));
+            quitCancelButton = MakeConfirmButton(cancelRt, cancelBg, () => { quitConfirmRoot.SetActive(false); if (Approach != null && Approach.Busy) Approach.Return(); });
             UiFactory.AddText(UiFactory.Stretch("Label", cancelRt), "취소", 26, TextAnchor.MiddleCenter, Color.white);
 
             quitConfirmRoot.SetActive(false);
@@ -337,6 +356,7 @@ namespace CCT
         {
             RefreshFooter();
             root.SetActive(true);
+            if (Approach != null && Approach.Busy) { Approach.Return(); return; } // 메뉴를 닫으면 같은 경로로 원위치 → Returned에서 기본 선택
             SelectDefault();
         }
 
@@ -377,10 +397,14 @@ namespace CCT
 
         void LateUpdate() => HandleTab(); // EventSystem(방향키 이동) 뒤에 처리: 선택 없을 때의 첫 방향키는 기본 항목 표시만
 
+        GameObject titleHeader;
+
         void Update()
         {
             PollSaveState();
             ApplyInputGate();
+            // 물체로 다가간 시점에서는 장면 위에 뜬 제목 글자를 숨긴다(가까이 본 가구 위에 제목이 떠 보이지 않게). 저장 상태·알림은 그대로.
+            if (titleHeader != null) { bool show = Approach == null || !Approach.Busy; if (titleHeader.activeSelf != show) titleHeader.SetActive(show); }
         }
 
         /// <summary>08:174~178 — 미저장 상태(직전 저장 실패)면 재시도/저장 없이 종료/취소를 묻는다.

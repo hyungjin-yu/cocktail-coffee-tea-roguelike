@@ -1,0 +1,58 @@
+{
+  "verdict": "pass",
+  "verdictScope": "Coordinator accepted the four background grades for integration following same-build fixture review.",
+  "resolutions": [
+    "1280x720",
+    "1920x1080"
+  ],
+  "scenarios": [
+    "normal",
+    "crowd",
+    "boss",
+    "drop",
+    "low"
+  ],
+  "lowEffectsResolution": "1280x720",
+  "fixtureRuns": 24,
+  "report": "Delivery/Verification/2026-11-20/tone/summary.json",
+  "reportSha256": "a78ced9b11d603a9992920eeef1ea07b73adcb3157f000c102ae2e764f38244a",
+  "barManifestSha256": "047e202b4c36dac17e50580f55859862e98d1d4bfa4ba74ae5a697cb395a9030",
+  "renderer": {
+    "multiplyRGB": [
+      1,
+      1,
+      1
+    ],
+    "veilRGBA": [
+      0.13,
+      0.11,
+      0.13,
+      0.06
+    ],
+    "avoidDoubleGrade": true
+  },
+  "reviewedComparisons": [
+    {
+      "path": "Delivery/Verification/2026-11-20/tone/cmp_normal_t16_1080.png",
+      "sha256": "aa209d56b1923c17f72520c2b0b436e05336a743f208a798ada82cdefd6e6c0a"
+    },
+    {
+      "path": "Delivery/Verification/2026-11-20/tone/cmp_crowd_t44_1080.png",
+      "sha256": "b68a688be9a95e759c3fb5f6810d27196320cf0fd252682963eedba71d438e13"
+    },
+    {
+      "path": "Delivery/Verification/2026-11-20/tone/cmp_boss_720_gray.png",
+      "sha256": "6990718fd4d30a5917dd882be7ac04f0526952f73b4d62dea28f3033dacfb760"
+    },
+    {
+      "path": "Delivery/Verification/2026-11-20/tone/cmp_drop_720.png",
+      "sha256": "7fb1a27b50f35b2ddb59e3ea2914007ebc79137af6a5b2a2da147561dabcde1c"
+    }
+  ],
+  "observations": "Playfield luminance ~28 to ~59; dark fraction ~.87 to ~.16, >200 area <=1.6%. Enemy and drop silhouettes remain legible in samples. Brown boss luminance contrast decreased from 16-17 to 12-15.",
+  "openVerification": [
+    "Hostile projectile sample count was zero in these 24 runs",
+    "Human play not performed",
+    "Title runtime sign, input and hit regions pending the integration owner review"
+  ]
+}
