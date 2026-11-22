@@ -1,0 +1,352 @@
+{
+  "editorVersion": "1.3.18.6-x64",
+  "method": "Aseprite CLI sheet export compared to every RGBA PNG byte for byte, plus layer names, frame durations, binary alpha and flat safe content region checks.",
+  "sources": [
+    {
+      "source": "native/card_common.aseprite",
+      "layers": [
+        "Dark interior",
+        "Fittings"
+      ],
+      "frames": [
+        {
+          "png": "ready/card_common.png",
+          "ms": 100,
+          "sha256": "6cc8cf9f6d49d018277d982f01f45b254364471ccc2d33f98d77f9d2cd77f384"
+        }
+      ]
+    },
+    {
+      "source": "native/bartender_common.aseprite",
+      "layers": [
+        "Uniform",
+        "Head",
+        "Arms",
+        "Menu",
+        "Fingers"
+      ],
+      "frames": [
+        {
+          "png": "ready/bartender/common/00.png",
+          "ms": 55,
+          "sha256": "fd61b53e51c57dc95ea1ee9a93e48c03c3957b367f4dd84972bb3bbe9ae212d0"
+        },
+        {
+          "png": "ready/bartender/common/01.png",
+          "ms": 65,
+          "sha256": "0be4d178faf4d07cd57fe5a964a2ab87cf1187b64495849158f92d0b41335f7c"
+        },
+        {
+          "png": "ready/bartender/common/02.png",
+          "ms": 70,
+          "sha256": "16360c9671b5952ff25b09317c2ab01678fcf08046988b25f6b0f963e5516de9"
+        }
+      ]
+    },
+    {
+      "source": "native/tea_sommelier_common.aseprite",
+      "layers": [
+        "Uniform",
+        "Head",
+        "Arms",
+        "Menu",
+        "Fingers"
+      ],
+      "frames": [
+        {
+          "png": "ready/tea_sommelier/common/00.png",
+          "ms": 55,
+          "sha256": "dbcb1c41f6c1aef8dfab120e52b5f6f3cdf8f356e14379561e02a34ad55063bc"
+        },
+        {
+          "png": "ready/tea_sommelier/common/01.png",
+          "ms": 65,
+          "sha256": "02f0c929258a30a3d17b4a433d0b4e9abcacbcf108b0f2576b32808a8dec1e75"
+        },
+        {
+          "png": "ready/tea_sommelier/common/02.png",
+          "ms": 70,
+          "sha256": "b5a903bfcb08cfe626ea461a2bcb881903ff01c8eeb8da664ad97b139a56d0bc"
+        }
+      ]
+    },
+    {
+      "source": "native/card_rare.aseprite",
+      "layers": [
+        "Dark interior",
+        "Fittings"
+      ],
+      "frames": [
+        {
+          "png": "ready/card_rare.png",
+          "ms": 100,
+          "sha256": "154701f42ceb1a8b29e2dd29da66ffb3436495cdb61a1f4c720af9d63370f286"
+        }
+      ]
+    },
+    {
+      "source": "native/bartender_rare.aseprite",
+      "layers": [
+        "Uniform",
+        "Head",
+        "Arms",
+        "Menu",
+        "Fingers"
+      ],
+      "frames": [
+        {
+          "png": "ready/bartender/rare/00.png",
+          "ms": 55,
+          "sha256": "88cda8cb3c93b12ae3057d7b88321afe55d59ff42659c4b51db1448b13f7268b"
+        },
+        {
+          "png": "ready/bartender/rare/01.png",
+          "ms": 70,
+          "sha256": "19f9b97091d9189633ed746430239ac66f7ffee4e79ab5c9c2e6e1bb98dafc57"
+        },
+        {
+          "png": "ready/bartender/rare/02.png",
+          "ms": 65,
+          "sha256": "be50cffa76dd5d2798dead47bbcd0450f512dd04f106885c819a8ca7a334f3cd"
+        },
+        {
+          "png": "ready/bartender/rare/03.png",
+          "ms": 60,
+          "sha256": "70c8b191ca241bc2b4e72bf6295d561809bc87122c58e364502a3e498ec65977"
+        }
+      ]
+    },
+    {
+      "source": "native/tea_sommelier_rare.aseprite",
+      "layers": [
+        "Uniform",
+        "Head",
+        "Arms",
+        "Menu",
+        "Fingers"
+      ],
+      "frames": [
+        {
+          "png": "ready/tea_sommelier/rare/00.png",
+          "ms": 55,
+          "sha256": "bb02f98838f3c70094c2e5c62cb9a28481122b923887894b907e1160c5b66d37"
+        },
+        {
+          "png": "ready/tea_sommelier/rare/01.png",
+          "ms": 70,
+          "sha256": "30f9a6947d51ea9d36a7fc134928bbee3ad14546f2c89d0dd0545f135ca6d3c9"
+        },
+        {
+          "png": "ready/tea_sommelier/rare/02.png",
+          "ms": 65,
+          "sha256": "e45fe931d6e52c74ac1eb71db8e95cb289ebc749843a6b0e6ce9afbe694bfe96"
+        },
+        {
+          "png": "ready/tea_sommelier/rare/03.png",
+          "ms": 60,
+          "sha256": "3df6516e846d66f439280c913481a94c6bdfa79b33df55cf1dc41b31615275b4"
+        }
+      ]
+    },
+    {
+      "source": "native/card_epic.aseprite",
+      "layers": [
+        "Dark interior",
+        "Fittings"
+      ],
+      "frames": [
+        {
+          "png": "ready/card_epic.png",
+          "ms": 100,
+          "sha256": "8f81d10d32ab92ecd90f1bcae05184d250b6ec7cc60f867c8dca59da3378333a"
+        }
+      ]
+    },
+    {
+      "source": "native/bartender_epic.aseprite",
+      "layers": [
+        "Uniform",
+        "Head",
+        "Arms",
+        "Menu",
+        "Fingers"
+      ],
+      "frames": [
+        {
+          "png": "ready/bartender/epic/00.png",
+          "ms": 55,
+          "sha256": "d935824619f330335c472baaea94bd9a169bc88d8766b189020481ec3d636e69"
+        },
+        {
+          "png": "ready/bartender/epic/01.png",
+          "ms": 65,
+          "sha256": "fb80695d39a0e38a71338b7f3c0e965cc28b4e65d93dfff78a895a320a5d9b4a"
+        },
+        {
+          "png": "ready/bartender/epic/02.png",
+          "ms": 70,
+          "sha256": "f0b04ddbb769b49db1af62f7d20b08a7f1b04d5d241259cc975b14f4e3cd5540"
+        },
+        {
+          "png": "ready/bartender/epic/03.png",
+          "ms": 65,
+          "sha256": "f5421dacdb673974359851e08ce95912eb43ae4aa803993b19035c83b8750058"
+        },
+        {
+          "png": "ready/bartender/epic/04.png",
+          "ms": 65,
+          "sha256": "02ab43d4a9d8630a5856b79b8712c0462ec03a25a9351b4d3bbd13f233e60ca7"
+        }
+      ]
+    },
+    {
+      "source": "native/tea_sommelier_epic.aseprite",
+      "layers": [
+        "Uniform",
+        "Head",
+        "Arms",
+        "Menu",
+        "Fingers"
+      ],
+      "frames": [
+        {
+          "png": "ready/tea_sommelier/epic/00.png",
+          "ms": 55,
+          "sha256": "61b5d7757820c3b8bdb831e0f2bf0b570d39ae8783047e25587b6c0d4df9ba6b"
+        },
+        {
+          "png": "ready/tea_sommelier/epic/01.png",
+          "ms": 65,
+          "sha256": "7777abe163f22b104fc9fcaf80241a01aa31a0e517ce250144326cce77af46de"
+        },
+        {
+          "png": "ready/tea_sommelier/epic/02.png",
+          "ms": 70,
+          "sha256": "9ae9f26e8d0cbf990fd2350033d825f65f88aac780eca631f23e84cb45aecbe1"
+        },
+        {
+          "png": "ready/tea_sommelier/epic/03.png",
+          "ms": 65,
+          "sha256": "b16fa8b2a60f1ccde727da2c89c2ada2cec0f2b9505e4b79336105e0138ae8d7"
+        },
+        {
+          "png": "ready/tea_sommelier/epic/04.png",
+          "ms": 65,
+          "sha256": "f4c3c1a7725171848a8297d8ea426dd0caf08c05dfb47ccbce0930266d6145dc"
+        }
+      ]
+    },
+    {
+      "source": "native/card_special.aseprite",
+      "layers": [
+        "Dark interior",
+        "Fittings"
+      ],
+      "frames": [
+        {
+          "png": "ready/card_special.png",
+          "ms": 100,
+          "sha256": "ade9be5137930432bd97415cd927c67f71c1dbcb1e65e201ba05727dffa3db05"
+        }
+      ]
+    },
+    {
+      "source": "native/hybrid_special.aseprite",
+      "layers": [
+        "Dark interior",
+        "Fittings"
+      ],
+      "frames": [
+        {
+          "png": "ready/hybrid_special.png",
+          "ms": 100,
+          "sha256": "d28c23e29b74571ac20f0c1acd04e1a1918e91e983eb3363a8095d9406b16a77"
+        }
+      ]
+    },
+    {
+      "source": "native/bartender_special.aseprite",
+      "layers": [
+        "Uniform",
+        "Head",
+        "Arms",
+        "Menu",
+        "Fingers"
+      ],
+      "frames": [
+        {
+          "png": "ready/bartender/special/00.png",
+          "ms": 55,
+          "sha256": "d310e0c16b150f5b5b01bcea9c0cf83d42937278baf34773c9287320d343e756"
+        },
+        {
+          "png": "ready/bartender/special/01.png",
+          "ms": 65,
+          "sha256": "eceec6950950675e27ca1d733c62ec46c0896c9ff29ff2a58a189783ec089531"
+        },
+        {
+          "png": "ready/bartender/special/02.png",
+          "ms": 65,
+          "sha256": "46aa53769aa44f199b60fa952f33b30a95337db25f51b36d77d2e66ab2c2b66b"
+        },
+        {
+          "png": "ready/bartender/special/03.png",
+          "ms": 65,
+          "sha256": "0121b60bf9a3e0f9278267bc8f9efbd7649d36cf4862a5783aa7bf35231d36ae"
+        },
+        {
+          "png": "ready/bartender/special/04.png",
+          "ms": 65,
+          "sha256": "730c030cd827e94b40346604178cfdca9dda28ad4af33abb97230af0fc49ad72"
+        },
+        {
+          "png": "ready/bartender/special/05.png",
+          "ms": 65,
+          "sha256": "cc09ddebb25cfda76c7b7372ca8dd8e122045bc499b3c0bf00c3ad1c4b87291a"
+        }
+      ]
+    },
+    {
+      "source": "native/tea_sommelier_special.aseprite",
+      "layers": [
+        "Uniform",
+        "Head",
+        "Arms",
+        "Menu",
+        "Fingers"
+      ],
+      "frames": [
+        {
+          "png": "ready/tea_sommelier/special/00.png",
+          "ms": 55,
+          "sha256": "823ca683a5f878b4758bc532a0a82cddde44d19081581c17ec88bb0f94af0119"
+        },
+        {
+          "png": "ready/tea_sommelier/special/01.png",
+          "ms": 65,
+          "sha256": "39a9985ce706075c59832a128729cfe721f6f272dd4953363f6d797ec8dde48d"
+        },
+        {
+          "png": "ready/tea_sommelier/special/02.png",
+          "ms": 65,
+          "sha256": "a2382b6babd0af5243052660c87e7f8bea956711e13a8d1fbdaa178c3df3fa3a"
+        },
+        {
+          "png": "ready/tea_sommelier/special/03.png",
+          "ms": 65,
+          "sha256": "e13634315026d3f83d4a67e43fb92df994c9f18d356cad21012e2626f56ef66b"
+        },
+        {
+          "png": "ready/tea_sommelier/special/04.png",
+          "ms": 65,
+          "sha256": "598573f0f7446a1db222890533a3647f080a260fedc3368382fcb2f8eee9908d"
+        },
+        {
+          "png": "ready/tea_sommelier/special/05.png",
+          "ms": 65,
+          "sha256": "64b510be2d19afa6c4d274052f05df5699021e0beef39f1d47e5ab1f5f9ad94b"
+        }
+      ]
+    }
+  ]
+}

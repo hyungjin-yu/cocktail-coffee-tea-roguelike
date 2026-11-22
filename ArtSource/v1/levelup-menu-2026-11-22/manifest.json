@@ -1,0 +1,356 @@
+{
+  "sourceCommit": "7fb00e4",
+  "runtimeBaseline": "dfcc628",
+  "origin": "bottom-left pixel edges for anchors and rects",
+  "import": {
+    "mode": "Single",
+    "filter": "Point",
+    "mipmaps": false,
+    "compression": "None",
+    "sRGB": true,
+    "pixelsPerUnit": 128,
+    "raycastTarget": false
+  },
+  "rules": {
+    "sharedClip": "maximum rarity among visible offers",
+    "perCardDecoration": "each offer's own rarity",
+    "emptyOffers": "skip presentation",
+    "clock": "unscaled",
+    "lowEffects": "cards immediately available subject to existing release gate",
+    "specialEntry": "HybridUnlockView (separate from normal Draw)"
+  },
+  "handoff": {
+    "canvasSizePx": [
+      128,
+      96
+    ],
+    "targetAnchorPx": [
+      64,
+      32
+    ],
+    "finalBoardRectPx": [
+      14,
+      17,
+      101,
+      28
+    ],
+    "revealMs": 70,
+    "lowEffectsRevealMs": 0
+  },
+  "tiers": [
+    {
+      "id": "common",
+      "runtimeEnum": "Common",
+      "value": 0,
+      "runtimeLabel": "일반",
+      "labelTint": "#d1d1d1",
+      "decoration": {
+        "source": "native/card_common.aseprite",
+        "png": "ready/card_common.png",
+        "sizePx": [
+          86,
+          124
+        ],
+        "safeContentPx": [
+          7,
+          3,
+          72,
+          118
+        ]
+      },
+      "clips": {
+        "bartender": {
+          "source": "native/bartender_common.aseprite",
+          "frames": [
+            {
+              "png": "ready/bartender/common/00.png",
+              "durationMs": 55
+            },
+            {
+              "png": "ready/bartender/common/01.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/bartender/common/02.png",
+              "durationMs": 70
+            }
+          ],
+          "handoffAtMs": 190,
+          "selectAtMs": 260,
+          "loop": false
+        },
+        "tea_sommelier": {
+          "source": "native/tea_sommelier_common.aseprite",
+          "frames": [
+            {
+              "png": "ready/tea_sommelier/common/00.png",
+              "durationMs": 55
+            },
+            {
+              "png": "ready/tea_sommelier/common/01.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/tea_sommelier/common/02.png",
+              "durationMs": 70
+            }
+          ],
+          "handoffAtMs": 190,
+          "selectAtMs": 260,
+          "loop": false
+        }
+      }
+    },
+    {
+      "id": "rare",
+      "runtimeEnum": "Rare",
+      "value": 1,
+      "runtimeLabel": "희귀",
+      "labelTint": "#66b8ff",
+      "decoration": {
+        "source": "native/card_rare.aseprite",
+        "png": "ready/card_rare.png",
+        "sizePx": [
+          86,
+          124
+        ],
+        "safeContentPx": [
+          7,
+          3,
+          72,
+          118
+        ]
+      },
+      "clips": {
+        "bartender": {
+          "source": "native/bartender_rare.aseprite",
+          "frames": [
+            {
+              "png": "ready/bartender/rare/00.png",
+              "durationMs": 55
+            },
+            {
+              "png": "ready/bartender/rare/01.png",
+              "durationMs": 70
+            },
+            {
+              "png": "ready/bartender/rare/02.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/bartender/rare/03.png",
+              "durationMs": 60
+            }
+          ],
+          "handoffAtMs": 250,
+          "selectAtMs": 320,
+          "loop": false
+        },
+        "tea_sommelier": {
+          "source": "native/tea_sommelier_rare.aseprite",
+          "frames": [
+            {
+              "png": "ready/tea_sommelier/rare/00.png",
+              "durationMs": 55
+            },
+            {
+              "png": "ready/tea_sommelier/rare/01.png",
+              "durationMs": 70
+            },
+            {
+              "png": "ready/tea_sommelier/rare/02.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/tea_sommelier/rare/03.png",
+              "durationMs": 60
+            }
+          ],
+          "handoffAtMs": 250,
+          "selectAtMs": 320,
+          "loop": false
+        }
+      }
+    },
+    {
+      "id": "epic",
+      "runtimeEnum": "Epic",
+      "value": 2,
+      "runtimeLabel": "영웅",
+      "labelTint": "#d180ff",
+      "decoration": {
+        "source": "native/card_epic.aseprite",
+        "png": "ready/card_epic.png",
+        "sizePx": [
+          86,
+          124
+        ],
+        "safeContentPx": [
+          7,
+          3,
+          72,
+          118
+        ]
+      },
+      "clips": {
+        "bartender": {
+          "source": "native/bartender_epic.aseprite",
+          "frames": [
+            {
+              "png": "ready/bartender/epic/00.png",
+              "durationMs": 55
+            },
+            {
+              "png": "ready/bartender/epic/01.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/bartender/epic/02.png",
+              "durationMs": 70
+            },
+            {
+              "png": "ready/bartender/epic/03.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/bartender/epic/04.png",
+              "durationMs": 65
+            }
+          ],
+          "handoffAtMs": 320,
+          "selectAtMs": 390,
+          "loop": false
+        },
+        "tea_sommelier": {
+          "source": "native/tea_sommelier_epic.aseprite",
+          "frames": [
+            {
+              "png": "ready/tea_sommelier/epic/00.png",
+              "durationMs": 55
+            },
+            {
+              "png": "ready/tea_sommelier/epic/01.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/tea_sommelier/epic/02.png",
+              "durationMs": 70
+            },
+            {
+              "png": "ready/tea_sommelier/epic/03.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/tea_sommelier/epic/04.png",
+              "durationMs": 65
+            }
+          ],
+          "handoffAtMs": 320,
+          "selectAtMs": 390,
+          "loop": false
+        }
+      }
+    },
+    {
+      "id": "special",
+      "runtimeEnum": "Special",
+      "value": 3,
+      "runtimeLabel": "특수",
+      "labelTint": "#ffbf59",
+      "decoration": {
+        "source": "native/card_special.aseprite",
+        "png": "ready/card_special.png",
+        "sizePx": [
+          86,
+          124
+        ],
+        "safeContentPx": [
+          7,
+          3,
+          72,
+          118
+        ]
+      },
+      "clips": {
+        "bartender": {
+          "source": "native/bartender_special.aseprite",
+          "frames": [
+            {
+              "png": "ready/bartender/special/00.png",
+              "durationMs": 55
+            },
+            {
+              "png": "ready/bartender/special/01.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/bartender/special/02.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/bartender/special/03.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/bartender/special/04.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/bartender/special/05.png",
+              "durationMs": 65
+            }
+          ],
+          "handoffAtMs": 380,
+          "selectAtMs": 450,
+          "loop": false
+        },
+        "tea_sommelier": {
+          "source": "native/tea_sommelier_special.aseprite",
+          "frames": [
+            {
+              "png": "ready/tea_sommelier/special/00.png",
+              "durationMs": 55
+            },
+            {
+              "png": "ready/tea_sommelier/special/01.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/tea_sommelier/special/02.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/tea_sommelier/special/03.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/tea_sommelier/special/04.png",
+              "durationMs": 65
+            },
+            {
+              "png": "ready/tea_sommelier/special/05.png",
+              "durationMs": 65
+            }
+          ],
+          "handoffAtMs": 380,
+          "selectAtMs": 450,
+          "loop": false
+        }
+      },
+      "hybridPanel": {
+        "source": "native/hybrid_special.aseprite",
+        "png": "ready/hybrid_special.png",
+        "sizePx": [
+          196,
+          112
+        ],
+        "safeContentPx": [
+          7,
+          3,
+          182,
+          106
+        ]
+      }
+    }
+  ]
+}
