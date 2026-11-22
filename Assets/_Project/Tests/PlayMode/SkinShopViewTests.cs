@@ -79,6 +79,7 @@ namespace CCT.Tests
                 if (b.name == "SkinShopButton") skinButton = b;
             Assert.IsNotNull(skinButton, "타이틀에 스킨 버튼");
             skinButton.onClick.Invoke();
+            { float t0 = Time.realtimeSinceStartup; while (!(title.SkinShopView.IsOpen) && Time.realtimeSinceStartup - t0 < 4f) yield return null; } // 2026-11-20 물체 접근 연출 뒤에 열린다
             Assert.IsTrue(title.SkinShopView.IsOpen);
             Assert.IsFalse(title.IsOpen);
 
@@ -98,6 +99,9 @@ namespace CCT.Tests
             foreach (var b in title.GetComponentsInChildren<Button>(true))
                 if (b.name == "SkinShopButton") rt = (RectTransform)b.transform;
             Assert.IsNotNull(rt);
+            // 2026-11-18 카페 입장형 첫 화면: 스킨 버튼은 실내 진열장 물체(배치 계약 layout.json이 위치·클릭 영역을 정하고
+            // TitleLayoutTests.CafeHotspots_AreNamedButtons_InSafeArea_NoOverlap이 안전 영역·겹침을 검사). 이 시험은 배치 파일이 없을 때의 세로 메뉴 전용.
+            if (title.Scene != null) Assert.Ignore("카페 실내 물체 메뉴 — 위치 검사는 TitleLayoutTests 담당");
             Assert.AreEqual(new Vector2(1f, 1f), rt.anchorMin, "오른쪽 위 기준");
             float right = -rt.anchoredPosition.x, top = -rt.anchoredPosition.y;
             Assert.GreaterOrEqual(right, 24f + 16f, "오른쪽 테두리 안");

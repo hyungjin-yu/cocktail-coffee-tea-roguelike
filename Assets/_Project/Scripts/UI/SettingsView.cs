@@ -253,6 +253,19 @@ namespace CCT
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(masterSlider.gameObject);
         }
 
+        /// <summary>2026-11-21 타이틀·직업 선택에서의 데스크톱 Esc("닫기 · Esc" 표기와 일치). 가장 위 하나만 처리한다:
+        /// 조작 안내 → 해상도 확인창(되돌리기, 설정은 유지) → 설정 닫기(닫기 버튼과 같은 경로). 전투 일시정지의 설정은
+        /// GameManager.RequestEscape가 따로 맡으므로 여기서 부르지 않는다. 처리했으면 true.</summary>
+        public bool HandleEscape()
+        {
+            if (!IsOpen) return false;
+            if (tutorialView != null && tutorialView.IsOpen) { tutorialView.Dismiss(); return true; }
+            if (confirmRoot != null && confirmRoot.activeSelf) { RevertResolution(); return true; }
+            AudioService.PlaySfx("ui_cancel");
+            Hide();
+            return true;
+        }
+
         public void Hide()
         {
             // 08:128 "미확인 해상도 변경만 복원" — 확인 대기 중에 닫으면(Esc 포함) 직전 확정값으로 되돌린다.

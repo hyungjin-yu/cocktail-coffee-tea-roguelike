@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace CCT
@@ -26,6 +27,10 @@ namespace CCT
         /// <summary>08:67 무기 선택 후 확정하는 "영업 시작" 버튼 / 직업 선택으로 돌아가는 "뒤로" 버튼(2단계에서만).</summary>
         public Button StartButton { get; private set; }
         public Button WeaponBackButton { get; private set; }
+        /// <summary>2026-11-21 직업 선택(1단계)에서 타이틀(카페 실내)로 돌아가는 버튼. 무기 단계의 "뒤로"와 같은 자리·이름.</summary>
+        public Button TitleBackButton { get; private set; }
+        /// <summary>테스트·QA: 지금 무기 선택(2단계)인가.</summary>
+        public bool IsWeaponStep => StartButton != null;
         /// <summary>2단계에서 현재 고른 무기(무기 카드를 누르면 바뀌고, 영업 시작으로 확정).</summary>
         public WeaponKind SelectedWeapon { get; private set; }
 
@@ -71,6 +76,7 @@ namespace CCT
             standardModeBg = null; endlessModeBg = null; modeHint = null; standardModeLabel = null; endlessModeLabel = null;
             StartButton = null;
             WeaponBackButton = null;
+            TitleBackButton = null;
         }
 
         void ShowJobStep()
@@ -92,6 +98,7 @@ namespace CCT
             SettingsButton = BuildSettingsButton();
             DrinkLabButton = BuildDrinkLabButton();
             LaptopButton = BuildLaptopButton();
+            TitleBackButton = BuildTitleBackButton();
             BuildSaveIssueBanner();
             MaybeShowNotebookGuide();
             // 2026-10-12: 진입 즉시 선택하면 바텐더 카드가 파란 강조로 고정돼 보여 첫 키보드 입력 때 드러낸다.
@@ -308,6 +315,53 @@ namespace CCT
             return button;
         }
 
+        /// <summary>2026-11-21 직업 선택 1단계 → 타이틀(카페 실내). 무기 단계 "뒤로"와 같은 왼쪽 아래 자리(연구 노트북 왼쪽).
+        /// 이름 BackButton이라 터치 UI의 뒤로 가기(MobileBackRouter)도 같은 동작을 탄다.</summary>
+        Button BuildTitleBackButton()
+        {
+            var rt = UiFactory.Place("BackButton", root, new Vector2(0f, 0f), new Vector2(170f, 130f), new Vector2(240f, 70f));
+            var button = MakeButton(rt, UiFactory.AddImage(rt, new Color(0.28f, 0.26f, 0.3f)), () => { AudioService.PlaySfx("ui_cancel"); BackToTitle(); });
+            UiFactory.AddText(UiFactory.Stretch("Label", rt), UiFactory.InputLabel("카페로", "Esc"), 26, TextAnchor.MiddleCenter, Color.white);
+            return button;
+        }
+
+        /// <summary>직업 선택을 닫고 타이틀(카페 실내)을 다시 연다. 타이틀은 이번 실행에서 이미 입장했으므로 짧은 재진입 페이드로
+        /// 실내에 바로 서고, 아무것도 미리 고르지 않는다(입력만으로 전투 출발 없음 — 기존 확정 방향 그대로).</summary>
+        public void BackToTitle()
+        {
+            if (canvas == null) return;
+            Destroy(canvas.gameObject);
+            canvas = null;
+            GameBootstrap.ShowTitle();
+        }
+
+        /// <summary>2026-11-21 데스크톱 Esc. 가장 위 하나만: 설정(조작 안내·해상도 확인 포함) → 도감(상세 포함) → 무기 단계면 직업 단계로
+        /// → 직업 단계면 타이틀로. 영구 강화·연구 노트북·음료 제조는 각자 Esc/닫기를 가지므로 건드리지 않는다.
+        /// 다른 화면이 같은 프레임에 Esc로 닫히며 이 화면이 다시 그려진 경우(직전 프레임에 루트가 숨어 있었음)는 무시한다. 처리했으면 true.</summary>
+        public bool HandleEscape()
+        {
+            if (canvas == null || Time.frameCount == escapeFrame) return false; // 한 번의 Esc(같은 프레임)는 한 단계만
+            if (settingsView.HandleEscape() || codexView.HandleEscape()) { escapeFrame = Time.frameCount; return true; }
+            if (root == null || !root.gameObject.activeInHierarchy || !rootIdleLastFrame) return false;
+            escapeFrame = Time.frameCount;
+            AudioService.PlaySfx("ui_cancel");
+            if (IsWeaponStep) ShowJobStep(); else BackToTitle();
+            return true;
+        }
+
+        bool rootIdleLastFrame;
+        int escapeFrame = -1;
+
+        void Update()
+        {
+            if (!MobilePlatform.IsTouchUI && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame) HandleEscape();
+        }
+
+        void LateUpdate()
+        {
+            rootIdleLastFrame = root != null && root.gameObject.activeInHierarchy && !settingsView.IsOpen && !codexView.IsOpen && !shopView.IsOpen;
+        }
+
         Button BuildCardCodexButton()
         {
             var rt = UiFactory.Place("CardCodexButton", root, new Vector2(0f, 1f), new Vector2(210f, -50f),
@@ -361,7 +415,7 @@ namespace CCT
             var backRt = UiFactory.Place("BackButton", root, new Vector2(0f, 0f), new Vector2(170f, 130f),
                 new Vector2(240f, 70f));
             WeaponBackButton = MakeButton(backRt, UiFactory.AddImage(backRt, new Color(0.28f, 0.26f, 0.3f)), ShowJobStep);
-            UiFactory.AddText(UiFactory.Stretch("Label", backRt), "뒤로", 26, TextAnchor.MiddleCenter, Color.white);
+            UiFactory.AddText(UiFactory.Stretch("Label", backRt), UiFactory.InputLabel("뒤로", "Esc"), 26, TextAnchor.MiddleCenter, Color.white);
 
             // 같은 직업을 다시 고르면 지난 무기, 아니면 첫 무기(바텐더=레이피어)를 기본 선택.
             // 2026-10-12: 기본값은 논리 상태로만 두고 "선택됨" 테두리는 사용자가 무기를 직접 고른 뒤에만 그린다.

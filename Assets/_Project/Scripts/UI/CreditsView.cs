@@ -51,7 +51,7 @@ namespace CCT
             UiFactory.ApplyHoverColors(button);
             button.onClick.AddListener(() => { AudioService.PlaySfx("ui_cancel"); view.Hide(); });
             view.closeButton = button;
-            UiFactory.AddText(UiFactory.Stretch("Label", closeRt), "닫기", 30, TextAnchor.MiddleCenter, Color.white);
+            UiFactory.AddText(UiFactory.Stretch("Label", closeRt), UiFactory.InputLabel("닫기", "Esc"), 30, TextAnchor.MiddleCenter, Color.white);
 
             // 2026-10-13 공개 개인정보처리방침(기획 52/53) — 외부 브라우저로 연다.
             var privacyRt = UiFactory.Place("PrivacyPolicyButton", rootRt, new Vector2(0.5f, 0f), new Vector2(-380f, 70f),
@@ -72,6 +72,15 @@ namespace CCT
         {
             root.SetActive(true);
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(closeButton.gameObject);
+        }
+
+        /// <summary>2026-11-21 데스크톱 Esc = 닫기 버튼과 같은 경로. 처리했으면 true.</summary>
+        public bool HandleEscape()
+        {
+            if (!IsOpen) return false;
+            AudioService.PlaySfx("ui_cancel");
+            Hide();
+            return true;
         }
 
         public void Hide()

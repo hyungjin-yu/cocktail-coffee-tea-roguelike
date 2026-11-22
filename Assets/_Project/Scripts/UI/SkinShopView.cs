@@ -160,7 +160,7 @@ namespace CCT
 
             restoreButton = MakeButton(rootRt, "RestoreButton", "구매 복원", new Vector2(0.5f, 0f), new Vector2(-230f, 50f),
                 new Vector2(420f, 120f), new Color(0.24f, 0.4f, 0.5f), out _, OnRestore);
-            backButton = MakeButton(rootRt, "BackButton", "뒤로", new Vector2(0.5f, 0f), new Vector2(230f, 50f),
+            backButton = MakeButton(rootRt, "BackButton", UiFactory.InputLabel("뒤로", "Esc"), new Vector2(0.5f, 0f), new Vector2(230f, 50f),
                 new Vector2(420f, 120f), new Color(0.3f, 0.32f, 0.36f), out _, Hide, "ui_cancel");
         }
 
@@ -461,6 +461,15 @@ namespace CCT
             var current = Find(selectedId);
             if (current != null) return current.row.gameObject; // 목록의 선택 행 — 방향키로 행 이동, →로 구매/장착
             return backButton.gameObject;
+        }
+
+        /// <summary>2026-11-21 데스크톱 Esc = 뒤로 버튼과 같은 경로(ui_cancel + 닫기). 처리했으면 true.</summary>
+        public bool HandleEscape()
+        {
+            if (!IsOpen) return false;
+            AudioService.PlaySfx("ui_cancel");
+            Hide();
+            return true;
         }
 
         public void Hide()

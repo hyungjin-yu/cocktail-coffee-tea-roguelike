@@ -201,5 +201,198 @@ namespace CCT.Tests
             var jobSelect = Object.FindFirstObjectByType<CharacterSelectView>();
             Assert.IsNotNull(jobSelect, "직업/무기 선택 화면으로 이어져야 한다");
         }
+
+        // ───── 2026-11-21 데스크톱 Esc(타이틀 메뉴) · 직업 선택 → 타이틀 ─────
+
+        static IEnumerator OpenFromRoom(TitleView view, string buttonName, System.Func<bool> open)
+        {
+            Click(view, buttonName);
+            yield return WaitUntil(open);
+            Assert.IsTrue(open(), buttonName + " 열림");
+        }
+
+        static IEnumerator EnteredTitle(System.Action<TitleView> got)
+        {
+            TitleIntro.ResetSessionForTests();
+            var view = TitleView.Show();
+            yield return null;
+            view.Intro.Skip();
+            for (int i = 0; i < 5; i++) yield return null;
+            got(view);
+        }
+
+        /// <summary>설정·제작 정보·도감·스킨: Esc = 닫기/뒤로 버튼과 같은 경로 → 타이틀 루트 복귀 → 역재생·원시점(zoom 1) → 입력 재개. 표기에 Esc 포함.</summary>
+        [UnityTest]
+        public IEnumerator Escape_ClosesSettingsCreditsCodexSkins_AndReturnsToRoom()
+        {
+            TitleView view = null;
+            yield return EnteredTitle(v => view = v);
+            var cases = new (string button, System.Func<bool> open, Transform screen)[]
+            {
+                ("SettingsButton", () => view.SettingsView.IsOpen, view.SettingsView.transform),
+                ("CreditsButton", () => view.CreditsView.IsOpen, view.CreditsView.transform),
+                ("CardCodexButton", () => view.CodexView.IsOpen, view.CodexView.transform),
+                ("SkinShopButton", () => view.SkinShopView.IsOpen, view.SkinShopView.transform),
+            };
+            foreach (var c in cases)
+            {
+                yield return OpenFromRoom(view, c.button, c.open);
+                bool labelled = false;
+                foreach (var b in c.screen.GetComponentsInChildren<UnityEngine.UI.Button>(false))
+                    if ((b.name == "CloseButton" || b.name == "BackButton") && b.GetComponentInChildren<UnityEngine.UI.Text>().text.Contains("Esc")) labelled = true;
+                Assert.IsTrue(labelled, c.button + ": 닫기/뒤로 표기에 Esc");
+                Assert.IsTrue(view.HandleMenuEscape(), c.button + ": Esc 처리");
+                Assert.IsFalse(c.open(), c.button + ": Esc로 닫힘");
+                Assert.IsTrue(view.IsOpen, c.button + ": 타이틀 루트 복귀");
+                Assert.IsFalse(view.HandleMenuEscape(), "실내(메뉴 없음)에서 Esc는 메뉴 라우터가 아무것도 안 함");
+                yield return WaitUntil(() => !view.Approach.Busy);
+                yield return null; // 입력 게이트는 다음 Update에서 갱신
+                view.Scene.GetInteriorCamera(out var center, out var zoom);
+                Assert.AreEqual(1f, zoom, 1e-4f, c.button + ": 원시점");
+                Assert.IsTrue(view.Scene.InteriorInteractable, c.button + ": 입력 재개");
+            }
+            TitleIntro.ResetSessionForTests();
+        }
+
+        /// <summary>영구 강화·최근 기록은 자체 Esc가 있어 타이틀 라우터가 건드리지 않는다(한 번의 Esc가 두 번 처리되지 않음).</summary>
+        [UnityTest]
+        public IEnumerator Escape_LeavesPermanentAndHistoryToOwnHandlers()
+        {
+            TitleView view = null;
+            yield return EnteredTitle(v => view = v);
+            yield return OpenFromRoom(view, "PermanentShopButton", () => view.ShopView.IsOpen);
+            Assert.IsFalse(view.HandleMenuEscape(), "영구 강화는 자체 Esc");
+            Assert.IsTrue(view.ShopView.IsOpen);
+            foreach (var b in view.ShopView.GetComponentsInChildren<UnityEngine.UI.Button>(false)) if (b.name == "BackButton") { b.onClick.Invoke(); break; }
+            yield return WaitUntil(() => view.IsOpen && !view.Approach.Busy);
+            Assert.IsFalse(view.ShopView.IsOpen);
+            yield return OpenFromRoom(view, "RunHistoryButton", () => view.HistoryView.IsOpen);
+            Assert.IsFalse(view.HandleMenuEscape(), "최근 기록은 자체 Esc");
+            yield return null;
+            Assert.IsTrue(view.HistoryView.HandleEscape());
+            yield return WaitUntil(() => view.IsOpen && !view.Approach.Busy);
+            TitleIntro.ResetSessionForTests();
+        }
+
+        /// <summary>가장 위 하나만: 도감 상세 → 상세만 닫힘. 설정 해상도 확인창 → 되돌리기만(설정 유지). 조작 안내 → 안내만.</summary>
+        [UnityTest]
+        public IEnumerator Escape_ClosesTopmostLayerOnly()
+        {
+            TitleView view = null;
+            yield return EnteredTitle(v => view = v);
+            yield return OpenFromRoom(view, "CardCodexButton", () => view.CodexView.IsOpen);
+            UnityEngine.UI.Button row = null;
+            foreach (var b in view.CodexView.GetComponentsInChildren<UnityEngine.UI.Button>(false)) if (b.name.StartsWith("Row_")) { row = b; break; }
+            Assert.IsNotNull(row, "도감 행");
+            row.onClick.Invoke();
+            Assert.IsTrue(view.CodexView.IsDetailOpen);
+            Assert.IsTrue(view.HandleMenuEscape());
+            Assert.IsFalse(view.CodexView.IsDetailOpen, "상세만 닫힘");
+            Assert.IsTrue(view.CodexView.IsOpen, "도감은 유지");
+            Assert.IsTrue(view.HandleMenuEscape());
+            Assert.IsFalse(view.CodexView.IsOpen);
+            yield return WaitUntil(() => !view.Approach.Busy);
+
+            yield return OpenFromRoom(view, "SettingsButton", () => view.SettingsView.IsOpen);
+            view.SettingsView.CycleResolution();
+            Assert.IsTrue(view.SettingsView.IsResolutionConfirmPending);
+            Assert.IsTrue(view.HandleMenuEscape());
+            Assert.IsFalse(view.SettingsView.IsResolutionConfirmPending, "해상도 확인창은 되돌리기");
+            Assert.IsTrue(view.SettingsView.IsOpen, "설정은 유지");
+            view.SettingsView.ShowTutorialReplay();
+            Assert.IsTrue(view.SettingsView.TutorialView.IsOpen);
+            Assert.IsTrue(view.HandleMenuEscape());
+            Assert.IsFalse(view.SettingsView.TutorialView.IsOpen, "조작 안내만 닫힘");
+            Assert.IsTrue(view.SettingsView.IsOpen);
+            Assert.IsTrue(view.HandleMenuEscape());
+            Assert.IsFalse(view.SettingsView.IsOpen);
+            yield return WaitUntil(() => !view.Approach.Busy);
+            TitleIntro.ResetSessionForTests();
+        }
+
+        /// <summary>실제 키 입력 경로(Update): 가상 키보드의 Esc 상태 이벤트로 제작 정보가 닫힌다(배치 PlayMode 포커스 없음 → 이 시험 동안만 입력 항상 전달).</summary>
+        [UnityTest]
+        public IEnumerator Escape_KeyboardEvent_ClosesCredits()
+        {
+            TitleView view = null;
+            yield return EnteredTitle(v => view = v);
+            yield return OpenFromRoom(view, "CreditsButton", () => view.CreditsView.IsOpen);
+            var settings = UnityEngine.InputSystem.InputSystem.settings;
+            var savedEditor = settings.editorInputBehaviorInPlayMode; var savedBg = settings.backgroundBehavior;
+            settings.editorInputBehaviorInPlayMode = UnityEngine.InputSystem.InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+            settings.backgroundBehavior = UnityEngine.InputSystem.InputSettings.BackgroundBehavior.IgnoreFocus;
+            var kb = UnityEngine.InputSystem.InputSystem.AddDevice<UnityEngine.InputSystem.Keyboard>("TitleEscKeyboard");
+            try
+            {
+                kb.MakeCurrent();
+                UnityEngine.InputSystem.InputSystem.QueueStateEvent(kb, new UnityEngine.InputSystem.LowLevel.KeyboardState(UnityEngine.InputSystem.Key.Escape));
+                yield return null; yield return null;
+                UnityEngine.InputSystem.InputSystem.QueueStateEvent(kb, new UnityEngine.InputSystem.LowLevel.KeyboardState());
+                yield return null;
+                Assert.IsFalse(view.CreditsView.IsOpen, "Esc 키로 닫힘");
+                Assert.IsTrue(view.IsOpen);
+                yield return WaitUntil(() => !view.Approach.Busy);
+            }
+            finally
+            {
+                UnityEngine.InputSystem.InputSystem.RemoveDevice(kb);
+                settings.editorInputBehaviorInPlayMode = savedEditor; settings.backgroundBehavior = savedBg;
+                TitleIntro.ResetSessionForTests();
+            }
+        }
+
+        /// <summary>직업 선택 1단계: "카페로 · Esc" 버튼과 Esc가 타이틀(카페 실내)로 돌아간다. 무기 단계 Esc는 직업 단계로. 전투 시작·미리 선택 없음.</summary>
+        [UnityTest]
+        public IEnumerator CharacterSelect_BackAndEscape_ReturnToTitle_NoRunStart()
+        {
+            TitleIntro.ResetSessionForTests();
+            var first = TitleView.Show(); yield return null; first.Intro.Skip(); yield return null;
+            Object.Destroy(first.gameObject); yield return null; // 이번 실행에서 이미 입장함 → 재진입은 짧은 페이드
+            bool chosen = false;
+            var select = CharacterSelectView.Show((j, w) => chosen = true);
+            yield return null; yield return null;
+            Assert.IsNotNull(select.TitleBackButton, "직업 단계에 타이틀로 돌아가는 버튼");
+            Assert.AreEqual("BackButton", select.TitleBackButton.name, "터치 뒤로 가기도 같은 버튼");
+            StringAssert.Contains("Esc", select.TitleBackButton.GetComponentInChildren<UnityEngine.UI.Text>().text);
+            // 무기 단계 → Esc → 직업 단계(타이틀로 가지 않음)
+            select.BartenderButton.onClick.Invoke();
+            yield return null; yield return null;
+            Assert.IsTrue(select.IsWeaponStep);
+            Assert.IsNull(select.TitleBackButton, "무기 단계에는 직업 단계로 가는 뒤로만");
+            Assert.IsTrue(select.HandleEscape());
+            Assert.IsFalse(select.IsWeaponStep, "무기 단계 Esc = 직업 단계");
+            Assert.IsFalse(select.HandleEscape(), "다시 그려진 직후 같은 Esc가 타이틀로 새지 않음");
+            yield return null; yield return null;
+            // 설정 위 Esc는 설정만
+            select.SettingsButton.onClick.Invoke();
+            Assert.IsTrue(select.SettingsView.IsOpen);
+            Assert.IsTrue(select.HandleEscape());
+            Assert.IsFalse(select.SettingsView.IsOpen);
+            Assert.IsNotNull(Object.FindFirstObjectByType<CharacterSelectView>(), "설정만 닫히고 직업 선택 유지");
+            yield return null; yield return null;
+            // 화면 버튼 → 타이틀
+            select.TitleBackButton.onClick.Invoke();
+            yield return null; yield return null;
+            Assert.IsTrue(select == null, "직업 선택 닫힘");
+            var title = Object.FindFirstObjectByType<TitleView>();
+            Assert.IsNotNull(title, "타이틀(카페 실내)로");
+            Assert.IsFalse(title.Intro.PlayedFull, "문 입장 반복 없음(짧은 재진입)");
+            Assert.IsNull(GameManager.Instance, "전투 시작 없음");
+            Assert.IsFalse(chosen);
+            yield return WaitUntil(() => title.Intro.Finished);
+            var es = UnityEngine.EventSystems.EventSystem.current;
+            Assert.IsTrue(es == null || es.currentSelectedGameObject == null, "미리 선택 없음(Enter만으로 시작 안 됨)");
+            // Esc 경로: 다시 직업 선택 → Esc → 타이틀
+            Object.Destroy(title.gameObject); yield return null;
+            var select2 = CharacterSelectView.Show((j, w) => chosen = true);
+            yield return null; yield return null;
+            Assert.IsTrue(select2.HandleEscape());
+            yield return null; yield return null;
+            Assert.IsTrue(select2 == null);
+            Assert.IsNotNull(Object.FindFirstObjectByType<TitleView>());
+            Assert.IsNull(GameManager.Instance);
+            Assert.IsFalse(chosen);
+            TitleIntro.ResetSessionForTests();
+        }
     }
 }

@@ -268,6 +268,7 @@ namespace CCT
             yield return Back(title);
             yield return WaitReturned(title, "codex");
             yield return ApproachEdgeCases(title);
+            yield return EscapeCloses(title);
 
             // 5) 시작 → 직업 선택, 타이틀 재진입은 짧은 실내 페이드(문 입장 반복 없음)
             var sr = scene.ScreenRectOf("start");
@@ -282,10 +283,7 @@ namespace CCT
             var select = FindFirstObjectByType<CharacterSelectView>();
             Check("start_opens_select", select != null && FindFirstObjectByType<TitleView>() == null, $"select={select != null}");
             yield return Shot("start_to_select");
-            if (select != null) Destroy(select.gameObject);
-            yield return null;
-            GameBootstrap.ShowTitle();
-            yield return null;
+            yield return SelectBackToTitle(select);
             var t2 = FindFirstObjectByType<TitleView>();
             Check("reentry_short_no_door", t2 != null && !t2.Intro.PlayedFull && !t2.Intro.IsWaiting && Mathf.Approximately(t2.Intro.Duration, TitleIntro.ShortSeconds), $"full={t2?.Intro.PlayedFull} waiting={t2?.Intro.IsWaiting} dur={t2?.Intro.Duration:0.00}");
             yield return Wait(0.6f);
@@ -596,6 +594,80 @@ namespace CCT
             scene.GetInteriorCamera(out _, out var z);
             Check("approach_escape_cancels", title.Approach.LastCancelled && !title.SettingsView.IsOpen && title.IsOpen && Mathf.Approximately(z, 1f), $"cancelled={title.Approach.LastCancelled} settings={title.SettingsView.IsOpen} zoom={z:0.00}");
             yield return Shot("approach_settings_cancelled_room");
+        }
+
+        /// <summary>2026-11-21 데스크톱 Esc: 설정·제작 정보·도감(상세 포함)·스킨이 Esc로 닫히고 역재생·원시점으로 돌아온다(표기 "· Esc"와 일치).</summary>
+        IEnumerator EscapeCloses(TitleView title)
+        {
+            var scene = title.Scene;
+            var openers = new Dictionary<string, Func<bool>>
+            {
+                { "settings", () => title.SettingsView.IsOpen }, { "credits", () => title.CreditsView.IsOpen },
+                { "codex", () => title.CodexView.IsOpen }, { "skins", () => title.SkinShopView.IsOpen },
+            };
+            foreach (var id in new[] { "settings", "credits", "codex", "skins" })
+            {
+                yield return Click(scene.ScreenRectOf(id).center);
+                yield return WaitOpen(openers[id]);
+                var labels = title.GetComponentsInChildren<Button>(false).Where(b => (b.name == "BackButton" || b.name == "CloseButton") && b.gameObject.activeInHierarchy)
+                    .Select(b => b.GetComponentInChildren<Text>()?.text ?? "").ToList();
+                Check($"esc_{id}_label", labels.Any(s => s.Contains("Esc")), $"labels=[{string.Join("|", labels)}]");
+                if (id == "codex")
+                {
+                    // 상세 위 Esc: 상세만 닫힘(도감 유지)
+                    var row = title.CodexView.GetComponentsInChildren<Button>(false).FirstOrDefault(b => b.name.StartsWith("Row_"));
+                    if (row != null) row.onClick.Invoke();
+                    bool opened = title.CodexView.IsDetailOpen;
+                    if (opened)
+                    {
+                        yield return Wait(0.2f);
+                        yield return Shot("esc_codex_detail_open");
+                        yield return Press(Key.Escape, 2);
+                        yield return Wait(0.2f);
+                        Check("esc_codex_detail_first", !title.CodexView.IsDetailOpen && title.CodexView.IsOpen, $"detail={title.CodexView.IsDetailOpen} codex={title.CodexView.IsOpen}");
+                    }
+                    else Check("esc_codex_detail_first", false, $"상세를 열 행 없음 row={row?.name}");
+                }
+                yield return Shot($"esc_{id}_menu");
+                yield return Press(Key.Escape, 2);
+                yield return null;
+                bool closed = !openers[id]() && title.IsOpen;
+                yield return WaitReturned(title, id);
+                Check($"esc_{id}_closes_and_returns", closed && !openers[id]() && title.IsOpen && !title.Approach.Busy, $"closedSameFrame={closed} open={openers[id]()} titleOpen={title.IsOpen}");
+                yield return Shot($"esc_{id}_returned");
+            }
+        }
+
+        /// <summary>2026-11-21 직업 선택 → 타이틀: 무기 단계 Esc = 직업 단계, 직업 단계 Esc = 카페 실내(짧은 재진입, 미리 선택 없음).
+        /// 화면 버튼("카페로 · Esc")은 무기 단계 "뒤로"와 같은 자리, 다른 버튼과 겹치지 않음.</summary>
+        IEnumerator SelectBackToTitle(CharacterSelectView select)
+        {
+            if (select == null) { Check("select_back_to_title", false, "select 없음"); yield break; }
+            yield return Wait(0.3f);
+            var back = select.TitleBackButton;
+            var br = back != null ? WorldRect((RectTransform)back.transform) : Rect.zero;
+            var others = select.GetComponentsInChildren<Button>(false).Where(b => b != back && b.gameObject.activeInHierarchy).Select(b => (b.name, r: WorldRect((RectTransform)b.transform))).ToList();
+            var hits = others.Where(o => o.r.Overlaps(br)).Select(o => o.name).ToList();
+            string label = back != null ? back.GetComponentInChildren<Text>()?.text : null;
+            Check("select_title_back_button", back != null && OnScreen(br) && hits.Count == 0 && label != null && label.Contains("Esc") && TopHit(br.center)?.GetComponentInParent<Button>() == back,
+                $"rect={Fmt(br)} overlaps=[{string.Join(",", hits)}] label={label}");
+            yield return Shot("select_job_step_back_button");
+            // 무기 단계 → Esc → 직업 단계
+            yield return Click(ScreenCenter((RectTransform)select.BartenderButton.transform));
+            yield return Wait(0.3f);
+            bool weapon = select.IsWeaponStep;
+            yield return Shot("select_weapon_step");
+            yield return Press(Key.Escape, 2);
+            yield return Wait(0.3f);
+            Check("select_weapon_escape_to_job", weapon && select != null && !select.IsWeaponStep && FindFirstObjectByType<TitleView>() == null, $"wasWeapon={weapon} weaponNow={select != null && select.IsWeaponStep}");
+            // 직업 단계 → Esc → 타이틀
+            yield return Press(Key.Escape, 2);
+            yield return Wait(0.2f);
+            var t2 = FindFirstObjectByType<TitleView>();
+            Check("select_job_escape_to_title", t2 != null && FindFirstObjectByType<CharacterSelectView>() == null && GameManager.Instance == null, $"title={t2 != null}");
+            yield return Wait(0.6f);
+            Check("select_back_no_preselect", EventSystem.current == null || EventSystem.current.currentSelectedGameObject == null, $"selected={Selected()}");
+            yield return Shot("select_back_room");
         }
 
         // ───────── 도우미 ─────────

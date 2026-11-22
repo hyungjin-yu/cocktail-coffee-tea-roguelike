@@ -399,8 +399,22 @@ namespace CCT
 
         GameObject titleHeader;
 
+        /// <summary>2026-11-21 타이틀에서 연 메뉴의 데스크톱 Esc. 설정·제작 정보·도감·스킨은 자체 Esc가 없어 여기서
+        /// 닫기/뒤로 버튼과 같은 경로로 닫는다(→ ShowRoot → 역재생·원시점). 영구 강화·최근 기록은 각자 Esc를 처리하므로
+        /// 건드리지 않는다(이중 처리 방지). 한 번의 Esc는 가장 위 화면 하나만. 터치 UI는 MobileBackRouter 담당. 처리했으면 true.</summary>
+        public bool HandleMenuEscape()
+        {
+            if (root == null || root.activeSelf) return false; // 실내(메뉴 없음)·접근 연출 중 Esc는 CafeMenuApproach 취소 경로
+            if (settingsView.HandleEscape()) return true;
+            if (creditsView.HandleEscape()) return true;
+            if (codexView.HandleEscape()) return true;
+            if (skinShopView.HandleEscape()) return true;
+            return false;
+        }
+
         void Update()
         {
+            if (!MobilePlatform.IsTouchUI && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame) HandleMenuEscape();
             PollSaveState();
             ApplyInputGate();
             // 물체로 다가간 시점에서는 장면 위에 뜬 제목 글자를 숨긴다(가까이 본 가구 위에 제목이 떠 보이지 않게). 저장 상태·알림은 그대로.

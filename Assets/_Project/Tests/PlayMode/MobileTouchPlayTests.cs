@@ -164,6 +164,8 @@ namespace CCT.Tests
             var title = Object.FindFirstObjectByType<TitleView>();
             title.GetComponentsInChildren<UnityEngine.UI.Button>(true).First(b => b.name == "CardCodexButton").onClick.Invoke();
             yield return null;
+            { float t0 = Time.realtimeSinceStartup; while (!(title.CodexView.IsOpen) && Time.realtimeSinceStartup - t0 < 4f) yield return null; } // 2026-11-20 물체 접근 연출 뒤에 열린다
+
             var codex = Object.FindObjectsByType<CardCodexView>(FindObjectsSortMode.None).First(v => v.IsOpen);
             var handled = MobileBackRouter.HandleBack();
             Assert.IsNotNull(handled, "도감 뒤로 버튼");

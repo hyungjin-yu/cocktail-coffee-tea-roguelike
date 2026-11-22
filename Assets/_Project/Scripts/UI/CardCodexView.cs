@@ -208,7 +208,7 @@ namespace CCT
             backButton.targetGraphic = backBg;
             UiFactory.ApplyHoverColors(backButton);
             backButton.onClick.AddListener(view.Close);
-            UiFactory.AddText(UiFactory.Stretch("Label", backRt), "뒤로", 30, TextAnchor.MiddleCenter, Color.white);
+            UiFactory.AddText(UiFactory.Stretch("Label", backRt), UiFactory.InputLabel("뒤로", "Esc"), 30, TextAnchor.MiddleCenter, Color.white);
 
             view.root.SetActive(false);
             return view;
@@ -639,6 +639,14 @@ namespace CCT
                     : "<color=#6A6A6A>???</color>");
                 entry.varietyText.text = string.Join(", ", names);
             }
+        }
+
+        /// <summary>2026-11-21 데스크톱 Esc: 항목 상세가 열려 있으면 상세만, 아니면 뒤로 버튼과 같은 경로로 닫는다. 처리했으면 true.</summary>
+        public bool HandleEscape()
+        {
+            if (!IsOpen) return false;
+            if (IsDetailOpen) HideDetail(); else Close();
+            return true;
         }
 
         void Close()

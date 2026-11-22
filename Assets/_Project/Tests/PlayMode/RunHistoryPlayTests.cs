@@ -220,6 +220,7 @@ namespace CCT.Tests
             var button = title.GetComponentsInChildren<Button>(true).First(b => b.name == "RunHistoryButton");
             button.onClick.Invoke();
             yield return null;
+            { float t0 = Time.realtimeSinceStartup; while (!(title.HistoryView.IsOpen) && Time.realtimeSinceStartup - t0 < 4f) yield return null; } // 2026-11-20 물체 접근 연출 뒤에 열린다
             var list = title.HistoryView;
             Assert.IsTrue(list.IsOpen);
             Assert.IsFalse(title.IsOpen, "타이틀 메뉴는 가려져 클릭이 닿지 않는다");
