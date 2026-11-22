@@ -76,23 +76,30 @@ namespace CCT.Tests
         }
 
         [UnityTest]
-        public IEnumerator Bartender_DiverseCocktailsTriggerRush_RepeatsDoNotRetrigger_ChoiceFreezesTimer()
+        public IEnumerator Bartender_DiverseCocktailsTriggerRush_NoDuration_DuplicateTurnsItOff()
         {
-            var choices=CardDatabase.LoadAll().Where(c=>c.category==CardCategory.Cocktail).Take(3).ToArray();
+            // 2026-11-22 주인 결정(피드백 7): 지속시간 없음 · 새 칵테일 3종이면 켜짐 · 이미 가진 카드를 고르면 꺼짐 · 켜진 동안 이동·공속 +40%(피해 보너스 없음).
+            var choices=CardDatabase.LoadAll().Where(c=>c.category==CardCategory.Cocktail && c.weaponRestriction!=WeaponRestriction.RangedOnly).Take(6).ToArray();
+            float baseMove=game.Stats.MoveSpeed;
             game.GrantCardForTests(choices[0]); game.GrantCardForTests(choices[1]);
-            Assert.AreEqual(0f,game.MixingRushRemaining);
+            Assert.IsFalse(game.MixingRushActive);
             game.GrantCardForTests(choices[2]);
-            Assert.AreEqual(12f,game.MixingRushRemaining);
-            Assert.AreEqual(.20f,game.Stats.jobDamagePercent,1e-6f);
-            Assert.AreEqual(.15f,game.Stats.jobAttackSpeedPercent,1e-6f);
+            Assert.IsTrue(game.MixingRushActive,"새 칵테일 3종째 켜짐");
+            Assert.AreEqual(0f,game.Stats.jobDamagePercent,1e-6f,"피해 보너스 없음");
+            Assert.AreEqual(GameManager.MixingRushSpeedBonus,game.Stats.jobAttackSpeedPercent,1e-6f);
+            Assert.AreEqual(GameManager.MixingRushSpeedBonus,game.Stats.jobMoveSpeedPercent,1e-6f);
+            Assert.Greater(game.Stats.MoveSpeed,baseMove,"이동 속도 실제 증가");
+            yield return new WaitForSeconds(1.5f);
+            Assert.IsTrue(game.MixingRushActive,"시간이 지나도 꺼지지 않음");
             game.GrantCardForTests(choices[0]);
-            game.OpenCoffeeTree();
-            float remaining=game.MixingRushRemaining;
-            yield return new WaitForSecondsRealtime(.1f);
-            Assert.AreEqual(remaining,game.MixingRushRemaining);
-            game.RequestEscape();
-            yield return new WaitForSeconds(.1f);
-            Assert.Less(game.MixingRushRemaining,remaining);
+            Assert.IsFalse(game.MixingRushActive,"중복 카드 = 꺼짐");
+            Assert.AreEqual(0f,game.Stats.jobAttackSpeedPercent,1e-6f);
+            Assert.AreEqual(0f,game.Stats.jobMoveSpeedPercent,1e-6f);
+            Assert.AreEqual(1,game.MixingRushOffCount);
+            game.GrantCardForTests(choices[3]); game.GrantCardForTests(choices[4]);
+            Assert.IsFalse(game.MixingRushActive,"4·5종째는 아직");
+            game.GrantCardForTests(choices[5]);
+            Assert.IsTrue(game.MixingRushActive,"6종째 다시 켜짐");
         }
 
         [UnityTest]

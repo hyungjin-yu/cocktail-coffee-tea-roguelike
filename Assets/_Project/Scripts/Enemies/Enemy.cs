@@ -70,6 +70,10 @@ namespace CCT
 
         /// <summary>2026-11-11 마스터 도전: 이 정의만의 추가 시각 배율(작은 진상 손님 등). 콜라이더(radius)와 별개. 기본 1 = 기존 그대로.</summary>
         public float visualScaleMultiplier = 1f;
+        /// <summary>2026-11-22 임시 아트: 기존 아이콘·몸체 그림을 이 색으로 물들인다(흰색 = 원본 그대로).</summary>
+        public Color iconTint = Color.white;
+        /// <summary>2026-11-22 공용 디버프 몹: 닿으면 회복 차단(초) / 공격 속도 감소(초, 배율).</summary>
+        public float contactHealBlockSeconds, contactAttackSlowSeconds, contactAttackSlowMultiplier = 1f;
         /// <summary>2026-11-11 원본 공유 정의를 바꾸지 않는 별도 사본(마스터 도전 전용 정의 생성용).</summary>
         public EnemyDef CloneDef() => (EnemyDef)MemberwiseClone();
 
@@ -418,6 +422,45 @@ namespace CCT
         public static readonly EnemyDef BambooScoopArcher=TeaVariant(KettleCannon,"차시 궁수","bamboo_scoop_archer");
         public static readonly EnemyDef TeaLeafScholar=TeaVariant(EspressoBug,"차 연구 정령","leaf_warden");
         public static readonly EnemyDef TeaCustomer=TeaVariant(DifficultCustomer,"까다로운 차 손님",DifficultCustomer.ArtId);
+
+        // ───── 2026-11-22 주인 결정(피드백 13): 바텐더·차 공용 디버프 몹 2종(중립 계열, 재료 드랍 없음 — 처치 보상은 '디버프 해소').
+        // 임시 아트: 기존 몹 그림을 색만 바꿨다(정식 스프라이트는 아트 작업자 몫 — 보고서 목록 참고). 등장 = DebuffMobSchedule.
+
+        /// <summary>쓴맛 안개: 거리를 두고 떠다니다 4.5초마다 1초 예고(발밑 원이 차오름) 뒤 반경 2.4 파동 —
+        /// 안에 있으면 이동 둔화(70%)·공격 속도 -25% 3초. 체력 낮음(처치 우선순위), 접촉 피해 작음.</summary>
+        public static readonly EnemyDef BitterMist = new EnemyDef
+        {
+            name = "쓴맛 안개",
+            color = new Color(0.62f, 0.45f, 0.85f),
+            radius = 0.42f,
+            hp = 45f,
+            speed = 1.3f,
+            contactDamage = 3f,
+            dropCount = 0,
+            spriteResourcePath = "Icons/Enemies/swirl_stick_conjuror",
+            iconVisualScale = 2f,
+            iconTint = new Color(0.72f, 0.55f, 1f),
+        };
+
+        /// <summary>빈 잔 도둑: 빠르게 다가와 닿으면 회복 차단 5초 + 공격 속도 -20% 3초, 그 뒤 1.6초 달아난다(치고 빠지기).
+        /// 가까워지면(2.8 안) 몸이 파랗게 깜빡여 예고. 체력 낮음.</summary>
+        public static readonly EnemyDef GlassThief = new EnemyDef
+        {
+            name = "빈 잔 도둑",
+            color = new Color(0.55f, 0.75f, 0.95f),
+            radius = 0.35f,
+            hp = 30f,
+            speed = 3.3f,
+            contactDamage = 4f,
+            dropCount = 0,
+            // 임시 아트: 밀크 포머(흰 거품) 그림을 하늘색으로 — 초록 라임웨지와 헷갈리지 않게(2026-11-22 화면 검수 반영). 머리 위 하늘색 표식은 GlassThiefDriver.
+            spriteResourcePath = "Icons/Enemies/milk_foamer_bgfix",
+            iconVisualScale = 2f,
+            iconTint = new Color(0.45f, 0.72f, 1f),
+            contactHealBlockSeconds = 5f,
+            contactAttackSlowSeconds = 3f,
+            contactAttackSlowMultiplier = 0.8f,
+        };
     }
 
     /// <summary>2026-11-10 하나의 직접 공격 피해 결과(기본/추가/합계, 정수). 표시 숫자는 계산된 공격 피해(막타의 실제 HP 감소와 구분).</summary>
@@ -634,7 +677,7 @@ namespace CCT
                 ? null : Resources.Load<Sprite>(def.enragedSpriteResourcePath);
             // 실제 아이콘은 원본 색 그대로(흰색 틴트), 없으면 placeholder를 def.color로 물들인다.
             // 피격 플래시 후 이 색으로 돌아가므로 BaseColor 도 함께 맞춘다.
-            NormalColor = icon != null ? Color.white : def.color;
+            NormalColor = icon != null ? def.iconTint : def.color;
             BaseColor = NormalColor;
             sr.color = BaseColor;
             sr.sortingOrder = 2; // 플레이어와 같은 순서 → 카메라의 깊이 정렬(Y)로 앞뒤가 갈린다
@@ -704,6 +747,8 @@ namespace CCT
 
         /// <summary>보스 패턴 컴포넌트가 자신을 등록한다.</summary>
         public void SetDriver(IEnemyDriver driver) => this.driver = driver;
+        /// <summary>2026-11-22 플레이어에게 접촉 피해를 준 순간(치고 빠지기 드라이버용).</summary>
+        public event System.Action<Enemy> ContactLanded;
 
         /// <summary>진상 손님의 HP 50% 미만("Enraged") 2페 아트 전환. enragedSpriteResourcePath가 없으면 아무 효과 없음.
         /// 매 프레임 호출해도 안전 — 이미 같은 상태면 무시한다.</summary>
@@ -862,6 +907,9 @@ namespace CCT
             if (toPlayer.sqrMagnitude <= touch * touch)
             {
                 player.TakeContactDamage(this, ScaledAttack(def.contactDamage));
+                if (def.contactHealBlockSeconds > 0f) player.Stats.BlockHeal(def.contactHealBlockSeconds);
+                if (def.contactAttackSlowSeconds > 0f) player.Stats.ApplyAttackSlow(def.contactAttackSlowSeconds, def.contactAttackSlowMultiplier);
+                ContactLanded?.Invoke(this);
                 if (def.explodesOnContact) Explode();
             }
         }

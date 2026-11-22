@@ -126,6 +126,39 @@ namespace CCT
                 if (combo.job == Job.Bartender && game.MixingRushRemaining <= 0f) Fail($"{tag} mixing rush not active after 3 cocktail kinds");
                 yield return Shot(tag + "_22_job_active", game);
 
+                // 2026-11-22 주인 결정 2차: 러시 꺼짐(이미 가진 카드) · 공용 디버프 몹(예고 원·접근 깜빡임·상태 줄) — 강제 생성(일정 120초를 건너뜀, 보고 시 표기)
+                if (combo.job == Job.Bartender && offers.Count > 0)
+                {
+                    game.GrantCardForTests(offers[0].card);
+                    yield return Wait(0.15f);
+                    Line($"US {tag} rush after duplicate active={game.MixingRushActive} off={game.MixingRushOffCount}");
+                    if (game.MixingRushActive) Fail($"{tag} rush still active after duplicate card");
+                    yield return Shot(tag + "_24_rush_off", game);
+                    yield return Wait(1.6f);
+                }
+                {
+                    var p = game.Player;
+                    var mist = game.Spawner.SpawnDebuffMob(game.RunTime);
+                    var thief = game.Spawner.SpawnDebuffMob(game.RunTime);
+                    mist.Invulnerable = thief.Invulnerable = true;
+                    mist.transform.position = p.Position + new Vector2(-2.2f, 0.4f);
+                    thief.transform.position = p.Position + new Vector2(2.4f, -0.2f);
+                    var md = mist.GetComponent<BitterMistDriver>();
+                    float t0 = Time.realtimeSinceStartup;
+                    while (md != null && !md.Telegraphing && Time.realtimeSinceStartup - t0 < 4f) yield return null;
+                    yield return Wait(0.5f);
+                    Line($"US {tag} debuff mobs mist={mist.Def.name} telegraph={md != null && md.Telegraphing} thiefWarn={thief.GetComponent<GlassThiefDriver>()?.Warning}");
+                    yield return Shot(tag + "_25_debuff_mobs", game);
+                    md?.Pulse();
+                    p.Stats.BlockHeal(5f); // 빈 잔 도둑 접촉과 같은 효과(접촉 대기 없이)
+                    yield return Wait(0.4f);
+                    Line($"US {tag} debuff status='{game.Hud.StatusLineText}'");
+                    if (!game.Hud.StatusLineText.Contains("공속")) Fail($"{tag} debuff status line missing");
+                    yield return Shot(tag + "_26_debuff_status", game);
+                    Object.Destroy(mist.gameObject); Object.Destroy(thief.gameObject);
+                    yield return Wait(0.2f);
+                }
+
                 // 목표 조합 → 카드 선택 창 → 목표 바꾸기 창 → 선택 후 HUD 목표 카드
                 var target = HiddenSkillDatabase.All.FirstOrDefault(d => game.CanTarget(d.skill));
                 if (target != null) game.SetComboTarget(target.skill);

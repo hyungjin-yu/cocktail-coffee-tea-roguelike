@@ -58,6 +58,8 @@ namespace CCT
                 R(EnemyDef.TeaKilnDragon, MonsterFamily.Tea, "차 화로"),
                 R(EnemyDef.DifficultCustomer, MonsterFamily.Neutral, "손님 — 음료 테마 아님"),
                 R(EnemyDef.TeaCustomer, MonsterFamily.Neutral, "손님 — 음료 테마 아님(진상 손님과 같은 분류)"),
+                R(EnemyDef.BitterMist, MonsterFamily.Neutral, "2026-11-22 공용 디버프 몹 — 바텐더·차 모두 등장"),
+                R(EnemyDef.GlassThief, MonsterFamily.Neutral, "2026-11-22 공용 디버프 몹 — 바텐더·차 모두 등장"),
             };
             map = new Dictionary<EnemyDef, MonsterFamily>();
             foreach (var r in rows) map[r.def] = r.family;

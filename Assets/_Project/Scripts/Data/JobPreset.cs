@@ -77,7 +77,7 @@ namespace CCT
         {
             job = Job.Bartender,
             name = "바텐더",
-            description = "혼합 러시\n새 칵테일 3종마다 12초\n피해 +20% · 공속 +15%\n다양한 조합에 유리",
+            description = "혼합 러시\n새 칵테일 3종이면 켜짐\n이동·공속 +40% · 같은 카드 고르면 꺼짐\n다양한 조합에 유리",
             playerColor = new Color(0.35f, 0.85f, 0.95f),
             weapons = new[] { WeaponPreset.Rapier, WeaponPreset.Gun },
             bodyArtId = "bartender",

@@ -1397,8 +1397,9 @@ namespace CCT.Tests
         public void JobAndWeaponCards_UsePlanning08Copy_WithoutIngredientBias()
         {
             // 사용자 직업 차별화 승인: 정확한 발동 조건/수치가 선택 화면에 보여야 한다.
-            StringAssert.Contains("새 칵테일 3종마다 12초", JobPreset.Bartender.description);
-            StringAssert.Contains("피해 +20% · 공속 +15%", JobPreset.Bartender.description);
+            // 2026-11-22 주인 결정(피드백 7): 혼합 러시는 지속시간 없이 새 칵테일 3종이면 켜지고 같은 카드를 고르면 꺼진다(이동·공속 +40%).
+            StringAssert.Contains("새 칵테일 3종이면 켜짐", JobPreset.Bartender.description);
+            StringAssert.Contains("이동·공속 +40% · 같은 카드 고르면 꺼짐", JobPreset.Bartender.description);
             StringAssert.Contains("같은 차의 추가 중첩당", JobPreset.TeaSommelier.description);
             StringAssert.Contains("피해 +2% · 분당 회복 +6", JobPreset.TeaSommelier.description);
             foreach (var job in new[] { JobPreset.Bartender, JobPreset.TeaSommelier })

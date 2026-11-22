@@ -51,6 +51,8 @@ namespace CCT
         public float coffeeAttackSpeed, coffeeMoveSpeed, coffeeRangePercent;
         public float hiddenRegenMultiplier = 1f;
         public float jobDamagePercent, jobAttackSpeedPercent, jobRegenBonus;
+        /// <summary>2026-11-22 혼합 러시(바텐더) 이동 속도 보너스.</summary>
+        public float jobMoveSpeedPercent;
         /// <summary>받는 둔화 약화 비율(0.4면 둔화량의 40%를 덜 받음).</summary>
         public float slowResist;
         public float suppressDurationScale = 1f;
@@ -79,6 +81,22 @@ namespace CCT
         /// <summary>슈가 큐브 바머 등이 거는 이동속도 둔화. 더 강하거나(낮은 배율) 더 긴 효과로만 갱신된다.</summary>
         public bool IsSlowed => slowRemaining > 0f;
 
+        // ───── 2026-11-22 공용 디버프 몹(피드백 13): 공격 속도 감소·회복 차단 ─────
+        float attackSlowRemaining, attackSlowMultiplier = 1f, healBlockRemaining;
+        public bool AttackSlowed => attackSlowRemaining > 0f;
+        public float AttackSlowRemaining => attackSlowRemaining;
+        public float AttackSlowMultiplier => AttackSlowed ? attackSlowMultiplier : 1f;
+        public bool HealBlocked => healBlockRemaining > 0f;
+        public float HealBlockRemaining => healBlockRemaining;
+        /// <summary>공격 간격을 1/multiplier배로(0.75 = 공격 속도 25% 감소). 더 강하거나 긴 효과로만 갱신.</summary>
+        public void ApplyAttackSlow(float duration, float multiplier)
+        {
+            attackSlowMultiplier = AttackSlowed ? Mathf.Min(attackSlowMultiplier, multiplier) : multiplier;
+            attackSlowRemaining = Mathf.Max(attackSlowRemaining, duration);
+        }
+        /// <summary>자연 회복(초당 회복)을 duration초 동안 0으로.</summary>
+        public void BlockHeal(float duration) => healBlockRemaining = Mathf.Max(healBlockRemaining, duration);
+
         public void ApplySlow(float duration, float multiplier)
         {
             slowRemaining = Mathf.Max(slowRemaining, duration);
@@ -102,6 +120,8 @@ namespace CCT
             if (suppressedRemaining > 0f)
                 suppressedRemaining = Mathf.Max(0f, suppressedRemaining - deltaTime);
 
+            if (attackSlowRemaining > 0f) { attackSlowRemaining = Mathf.Max(0f, attackSlowRemaining - deltaTime); if (attackSlowRemaining <= 0f) attackSlowMultiplier = 1f; }
+            if (healBlockRemaining > 0f) healBlockRemaining = Mathf.Max(0f, healBlockRemaining - deltaTime);
             if (slowRemaining > 0f)
             {
                 slowRemaining = Mathf.Max(0f, slowRemaining - deltaTime);
@@ -124,18 +144,18 @@ namespace CCT
         /// <summary>2026-11-12 마스터 도전 런 음료 특성(차 1번째 우림) 공격 속도. 다른 슬롯과 독립 — 잔 교체 때 이 값만 0/값으로 덮어쓴다.</summary>
         public float drinkTraitAttackSpeed;
         public float AttackSpeedBonus => Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed + drinkTraitAttackSpeed);
-        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed + masteryMoveSpeed + coffeeMoveSpeed))) * (IsSlowed ? slowMultiplier : 1f);
+        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed + masteryMoveSpeed + coffeeMoveSpeed + jobMoveSpeedPercent))) * (IsSlowed ? slowMultiplier : 1f);
         public float MaxHp => baseMaxHp + maxHpFlat;
         public float Damage => baseDamage * (1f + DamageBonus);
         /// <summary>기본 공격 재사용 간격. 69 음료 재사용 시간 감소는 간격에 곱하고(공격 속도와 별개), 기존 최소 간격 0.12초 상한은 그대로.</summary>
-        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval * CooldownScale / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed + drinkTraitAttackSpeed)));
+        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval * CooldownScale / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed + drinkTraitAttackSpeed)) / AttackSlowMultiplier);
         public float Range => baseRange * (1f + Live(rangePercent + coffeeRangePercent));
         public float PickupRadius => basePickupRadius + pickupRadiusFlat;
         public float ExtraDropChance => Mathf.Clamp01(dropChancePercent);
         /// <summary>받은 피해에 곱할 배율 (1 - clamp(damageReduction, 0, 0.25)).</summary>
         public float DamageTakenMultiplier => 1f - Mathf.Clamp(damageReduction + masteryDamageReduction, 0f, 0.25f);
         /// <summary>실제 초당 회복량. 음수로 떨어지지 않게 하한 0.</summary>
-        public float RegenPerSecond => Mathf.Max(0f, Balance.PlayerRegenPerSecond + regenBonus + jobRegenBonus) * Mathf.Max(1f, hiddenRegenMultiplier);
+        public float RegenPerSecond => HealBlocked ? 0f : Mathf.Max(0f, Balance.PlayerRegenPerSecond + regenBonus + jobRegenBonus) * Mathf.Max(1f, hiddenRegenMultiplier);
 
         /// <summary>게이지 필요량 배율. 과도한 감소 방지를 위해 하한 0.5.</summary>
         public float GaugeNeedMultiplier => Mathf.Max(0.5f, 1f + gaugeNeedPercent);

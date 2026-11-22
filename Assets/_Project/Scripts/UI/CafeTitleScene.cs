@@ -206,6 +206,20 @@ namespace CCT
             var img = src != null ? src.GetComponent<Image>() : null;
             var lit = img != null ? LitCopy(img.sprite) : null;
             if (lit == null) return;
+            // 2026-11-22 플레이 피드백 C(1): hover·선택 때 물체 실루엣 둘레 선명한 외곽선(금색 1px + 바깥 어두운 1px, 장면 픽셀 기준).
+            // 원 레이어 바로 뒤(앞 물체가 계속 가림, 물체 자신이 안쪽을 덮어 둘레만 보임). 평상시 투명.
+            var edge = OutlineCopy(img.sprite);
+            if (edge != null)
+            {
+                var ert = new GameObject(layerId + "_outline", typeof(RectTransform)).GetComponent<RectTransform>();
+                ert.SetParent(Interior, false);
+                ert.anchorMin = src.anchorMin; ert.anchorMax = src.anchorMax; ert.pivot = src.pivot;
+                ert.sizeDelta = src.sizeDelta; ert.anchoredPosition = src.anchoredPosition;
+                ert.SetSiblingIndex(src.GetSiblingIndex());
+                var eimg = ert.gameObject.AddComponent<Image>();
+                eimg.sprite = edge; eimg.raycastTarget = false; eimg.color = new Color(1f, 1f, 1f, 0f);
+                h.SetObjectOutline(eimg);
+            }
             var rt = new GameObject(layerId + "_lit", typeof(RectTransform)).GetComponent<RectTransform>();
             rt.SetParent(Interior, false);
             rt.anchorMin = src.anchorMin; rt.anchorMax = src.anchorMax; rt.pivot = src.pivot;
@@ -251,6 +265,47 @@ namespace CCT
             lit.name = s.name + "_lit";
             litCache[s] = lit;
             return lit;
+        }
+
+        static readonly Dictionary<Sprite, Sprite> outlineCache = new Dictionary<Sprite, Sprite>();
+        /// <summary>2026-11-22 피드백 C(1) 외곽선 색: 안쪽 링 = 따뜻한 금색(밝은 벽·어두운 가구 모두에서 보임), 바깥 링 = 짙은 갈색(밝은 벽 대비).</summary>
+        public static readonly Color32 OutlineInner = new Color32(255, 214, 110, 255), OutlineOuter = new Color32(48, 24, 10, 230);
+
+        /// <summary>물체 레이어 알파의 둘레 링(1px 금색 + 그 바깥 1px 어두운 선). 물체 안쪽 픽셀은 투명(물체 그림을 덮지 않음).</summary>
+        public static Sprite OutlineCopy(Sprite s)
+        {
+            if (s == null) return null;
+            if (outlineCache.TryGetValue(s, out var cached) && cached != null) return cached;
+            var tex = s.texture;
+            if (tex == null || !tex.isReadable) return null;
+            var r = s.rect;
+            Color32[] px;
+            try { px = tex.GetPixels32(); } catch { return null; }
+            int tw = tex.width, w = (int)r.width, hgt = (int)r.height, ox = (int)r.x, oy = (int)r.y;
+            bool Solid(int x, int y) => x >= 0 && y >= 0 && x < w && y < hgt && px[(y + oy) * tw + x + ox].a > 24;
+            var outPx = new Color32[w * hgt];
+            for (int y = 0; y < hgt; y++)
+                for (int x = 0; x < w; x++)
+                {
+                    if (Solid(x, y)) continue;
+                    bool ring1 = false, ring2 = false;
+                    for (int dy = -2; dy <= 2 && !ring1; dy++)
+                        for (int dx = -2; dx <= 2; dx++)
+                        {
+                            if (!Solid(x + dx, y + dy)) continue;
+                            int d = Mathf.Max(Mathf.Abs(dx), Mathf.Abs(dy));
+                            if (d == 1) { ring1 = true; break; }
+                            ring2 = true;
+                        }
+                    if (ring1) outPx[y * w + x] = OutlineInner;
+                    else if (ring2) outPx[y * w + x] = OutlineOuter;
+                }
+            var t = new Texture2D(w, hgt, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp, name = tex.name + "_outline" };
+            t.SetPixels32(outPx); t.Apply(false, false);
+            var edge = Sprite.Create(t, new Rect(0, 0, w, hgt), new Vector2(0.5f, 0.5f), s.pixelsPerUnit, 0, SpriteMeshType.FullRect);
+            edge.name = s.name + "_outline";
+            outlineCache[s] = edge;
+            return edge;
         }
 
         RectTransform Container(string name, out CanvasGroup group)
@@ -443,7 +498,9 @@ namespace CCT
             var bg = plate.AddComponent<Image>();
             bg.color = PlateIdle;
             hs.plateBg = bg;
-            bg.raycastTarget = false;
+            // 2026-11-22 플레이 피드백 C(3): 이름표도 그 물체의 hover·클릭 대상(같은 버튼 동작, 실내 입력 차단 그룹 안이라 연출 중엔 안 눌림).
+            bg.raycastTarget = true;
+            plate.AddComponent<CafeNameplateTarget>().Owner = hs;
             var label = UiFactory.AddText(UiFactory.Stretch("Label", prt), f.Label, 26, TextAnchor.MiddleCenter, new Color(0.98f, 0.92f, 0.8f));
             label.raycastTarget = false;
             float w = Mathf.Max(64f, label.preferredWidth + 28f), h = 40f;
@@ -497,6 +554,16 @@ namespace CCT
         public Image PlateBackground => plateBg;
 
         public void SetObjectLight(Image img, string layerId) { objectLight = img; ObjectLayerId = layerId; }
+        Image objectOutline;
+        /// <summary>2026-11-22 피드백 C(1) 물체 외곽선(없으면 null)과 현재 세기(0~1, 조명 반응과 같이 변한다).</summary>
+        public Image ObjectOutline => objectOutline;
+        public float OutlineAmount => objectOutline != null ? objectOutline.color.a : 0f;
+        public void SetObjectOutline(Image img) { objectOutline = img; }
+        bool plateHovered;
+        /// <summary>이름표 위 마우스(물체 hover와 같은 강조).</summary>
+        public void SetPlateHover(bool on) { plateHovered = on; Refresh(); }
+        /// <summary>이름표 클릭 = 물체 클릭(버튼이 비활성이면 무시).</summary>
+        public void ClickFromPlate() { if (Button != null && Button.interactable && Button.IsActive()) Button.onClick.Invoke(); }
 
         bool lightSuppressed;
         /// <summary>접근·조작 프레임 동안 밝은 사본을 끈다(교체된 조작 그림을 원래 물체 사본이 덮지 않게).</summary>
@@ -504,11 +571,12 @@ namespace CCT
         {
             lightSuppressed = on;
             if (on && objectLight != null) objectLight.color = new Color(1f, 1f, 1f, 0f);
+            if (on && objectOutline != null) objectOutline.color = new Color(1f, 1f, 1f, 0f);
         }
 
         void Refresh()
         {
-            active = (hovered || selected) && Button != null && Button.interactable;
+            active = (hovered || plateHovered || selected) && Button != null && Button.interactable;
             if (focusRoot != null) focusRoot.SetActive(active);
             if (plateBg != null) plateBg.color = active ? PlateActive : PlateIdle;
             if (LabelText != null) LabelText.color = active ? LabelActive : LabelIdle;
@@ -518,6 +586,8 @@ namespace CCT
         {
             if (objectLight == null) return;
             float target = active && !lightSuppressed ? 1f : 0f, a = objectLight.color.a;
+            if (objectOutline != null && !Mathf.Approximately(objectOutline.color.a, target))
+                objectOutline.color = new Color(1f, 1f, 1f, Mathf.MoveTowards(objectOutline.color.a, target, Time.unscaledDeltaTime / LightFadeSeconds));
             if (Mathf.Approximately(a, target)) return;
             a = Mathf.MoveTowards(a, target, Time.unscaledDeltaTime / LightFadeSeconds); // 한 방향 페이드(펄스·깜빡임 없음)
             objectLight.color = new Color(1f, 1f, 1f, a);
@@ -526,7 +596,7 @@ namespace CCT
         public void OnPointerExit(PointerEventData e) { hovered = false; Refresh(); }
         public void OnSelect(BaseEventData e) { selected = true; Refresh(); }
         public void OnDeselect(BaseEventData e) { selected = false; Refresh(); }
-        void OnDisable() { hovered = selected = false; Refresh(); if (objectLight != null) objectLight.color = new Color(1f, 1f, 1f, 0f); }
+        void OnDisable() { hovered = selected = plateHovered = false; Refresh(); if (objectLight != null) objectLight.color = new Color(1f, 1f, 1f, 0f); if (objectOutline != null) objectOutline.color = new Color(1f, 1f, 1f, 0f); }
 
         /// <summary>다각형 클릭 영역: 외접 사각형 안이라도 다각형 밖이면 이 가구를 누르지 않는다(이웃 가구 침범 방지).</summary>
         public bool IsRaycastLocationValid(Vector2 sp, Camera cam)
@@ -547,5 +617,19 @@ namespace CCT
                     inside = !inside;
             return inside;
         }
+    }
+
+    /// <summary>2026-11-22 플레이 피드백 C(3): 이름표 → 소속 물체로 hover·클릭을 넘긴다(물체와 같은 강조·같은 메뉴).</summary>
+    public sealed class CafeNameplateTarget : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    {
+        public CafeHotspot Owner;
+        public void OnPointerEnter(PointerEventData e) { if (Owner != null) Owner.SetPlateHover(true); }
+        public void OnPointerExit(PointerEventData e) { if (Owner != null) Owner.SetPlateHover(false); }
+        public void OnPointerClick(PointerEventData e)
+        {
+            if (Owner == null || e.button != PointerEventData.InputButton.Left) return;
+            Owner.ClickFromPlate();
+        }
+        void OnDisable() { if (Owner != null) Owner.SetPlateHover(false); }
     }
 }

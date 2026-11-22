@@ -44,6 +44,17 @@ namespace CCT
         public string HiddenBadgeText => hiddenBadge != null ? hiddenBadge.text : "";
         public bool JobPortraitShown => jobPortrait != null && jobPortrait.enabled;
         public int JobPipsFilled { get; private set; }
+        // 2026-11-22 피드백 D(4) 바텐더 칵테일 종류 표시
+        Image[] stackCups; Text stackCount; int lastKinds = -1; float stackPopT = -1f; int popCup = -1;
+        public const float StackPopSeconds = 0.4f;
+        /// <summary>테스트·QA용 — 칵테일 종류 글("칵테일 4종"), 채워진 잔 수, 튀어오름 연출 진행 중인지.</summary>
+        public string StackCountText => stackCount != null ? stackCount.text : "";
+        /// <summary>테스트·QA용 — 상태 줄(환불·공속 감소·회복 차단) 글.</summary>
+        public string StatusLineText => suppressed != null ? suppressed.text : "";
+        public int StackCupsFilled { get; private set; }
+        public bool StackRushShown { get; private set; }
+        public bool StackPopping => stackPopT >= 0f;
+        public float StackCountScale => stackCount != null ? stackCount.rectTransform.localScale.x : 1f;
         public bool ComboCardShown => comboCard != null && comboCard.enabled;
 
         void BuildLeftVisuals(RectTransform hiddenRt, RectTransform jobRt, RectTransform targetRt, GameManager g)
@@ -65,7 +76,26 @@ namespace CCT
             // 진행 칸 앞에 무엇을 세는지 그림(바텐더 = 칵테일잔 · 티 소믈리에 = 찻잔)
             var kindIcon = HudIcons.Icon(jobRt, "PipKind", new Vector2(0f, 0f), new Vector2(110f, 4f), 26f, HudIcons.FamilyCup(g.Job == Job.Bartender ? MonsterFamily.Cocktail : MonsterFamily.Tea));
             kindIcon.rectTransform.pivot = new Vector2(0f, 0f);
-            jobPips = HudIcons.Pips(jobRt, "Pip", new Vector2(0f, 0f), new Vector2(142f, 10f), pipCount, 16f, 6f);
+            if (g.Job == Job.Bartender)
+            {
+                // 2026-11-22 플레이 피드백 D(4): 바텐더 = 칸 대신 칵테일잔 3개(다음 혼합 러시까지 새 종류)가 채워지고, 옆에 지금까지 모은 서로 다른 칵테일 수.
+                // 새 종류가 생기는 순간 숫자가 튀어오르고 새로 찬 잔이 커졌다 돌아오며 소리(pickup). 러시 중엔 세 잔 모두 주황.
+                var cupSprite = HudIcons.FamilyCup(MonsterFamily.Cocktail);
+                stackCups = new Image[3];
+                for (int i = 0; i < 3; i++)
+                {
+                    stackCups[i] = HudIcons.Icon(jobRt, "StackCup" + i, new Vector2(0f, 0f), new Vector2(142f + i * 32f, 2f), 28f, cupSprite);
+                    stackCups[i].rectTransform.pivot = new Vector2(0f, 0f);
+                }
+                kindIcon.enabled = false; // 잔 자체가 무엇을 세는지 보여 준다
+                foreach (var c in stackCups) c.rectTransform.anchoredPosition -= new Vector2(32f, 0f);
+                stackCount = UiFactory.AddText(UiFactory.Place("StackCount", jobRt, new Vector2(0f, 0f), new Vector2(214f, 0f), new Vector2(220f, 34f)), "", 24, TextAnchor.MiddleLeft, StatStyle.JobColorBartender);
+                stackCount.rectTransform.pivot = new Vector2(0f, 0f);
+                stackCount.raycastTarget = false;
+                stackCount.horizontalOverflow = HorizontalWrapMode.Overflow; // 접혀서 위 문구와 겹치지 않게
+                lastKinds = g.CocktailKinds;
+            }
+            else jobPips = HudIcons.Pips(jobRt, "Pip", new Vector2(0f, 0f), new Vector2(142f, 10f), pipCount, 16f, 6f);
             // 목표 조합: 첫 미충족 카드 그림(없으면 빈 칸 테두리)
             comboSlot = UiFactory.AddImage(UiFactory.Place("CardSlot", targetRt, new Vector2(0f, 0.5f), new Vector2(8f, 0f), new Vector2(42f, 42f)), new Color(1f, 1f, 1f, 0.18f));
             comboSlot.rectTransform.pivot = new Vector2(0f, 0.5f); comboSlot.raycastTarget = false;
@@ -83,11 +113,30 @@ namespace CCT
                 hiddenBadge.text = n.ToString();
                 hiddenBadgeBg.color = n > 0 ? new Color(0.85f, 0.65f, 0.25f, 1f) : new Color(0.4f, 0.36f, 0.32f, 1f); // 0개는 흐린 배지 + 숫자 0
             }
+            if (stackCups != null)
+            {
+                int kinds = game.CocktailKinds;
+                bool rush = game.MixingRushActive;
+                int filled = rush ? 3 : game.MixingRushProgress;
+                JobPipsFilled = StackCupsFilled = filled;
+                stackCount.text = $"칵테일 {kinds}종"; // 켜짐/꺼짐은 위 직업 문구 + 잔 색(주황) + 숫자 색으로(한 줄 칸 안)
+                stackCount.color = rush ? new Color(1f, 0.62f, 0.32f) : new Color(0.88f, 0.84f, 0.78f);
+                StackRushShown = rush;
+                if (lastKinds >= 0 && kinds > lastKinds)
+                {
+                    stackPopT = 0f;
+                    popCup = rush ? 2 : Mathf.Clamp(filled - 1, 0, 2);
+                    AudioService.PlaySfx("pickup");
+                }
+                lastKinds = kinds;
+                for (int i = 0; i < stackCups.Length; i++)
+                    stackCups[i].color = i < filled ? (rush ? new Color(1f, 0.62f, 0.32f) : Color.white) : new Color(0.35f, 0.32f, 0.34f, 0.55f);
+            }
             if (jobPips != null)
             {
-                int filled = game.Job == Job.Bartender ? (game.MixingRushRemaining > 0f ? 3 : game.MixingRushProgress) : game.DeepSteepLevel;
+                int filled = game.Job == Job.Bartender ? (game.MixingRushActive ? 3 : game.MixingRushProgress) : game.DeepSteepLevel;
                 JobPipsFilled = filled;
-                HudIcons.SetPips(jobPips, filled, game.MixingRushRemaining > 0f ? new Color(1f, 0.55f, 0.35f) : new Color(0.75f, 1f, 0.65f), new Color(1f, 1f, 1f, 0.18f));
+                HudIcons.SetPips(jobPips, filled, game.MixingRushActive ? new Color(1f, 0.55f, 0.35f) : new Color(0.75f, 1f, 0.65f), new Color(1f, 1f, 1f, 0.18f));
             }
             if (comboCard != null)
             {
@@ -195,8 +244,11 @@ namespace CCT
             view.suppressedBack.SetActive(false);
             var suppressRt = UiFactory.Place("Suppressed", root, new Vector2(0f, 1f), new Vector2(hasStatusIcons ? 184f : 30f, -70f),
                 new Vector2(hasStatusIcons ? 320f : 520f, 40f));
-            view.suppressed = UiFactory.AddText(suppressRt, "", 26, TextAnchor.UpperLeft,
+            view.suppressed = UiFactory.AddText(suppressRt, "", 26, TextAnchor.MiddleLeft,
                 new Color(1f, 0.4f, 0.45f));
+            // 2026-11-22: 디버프(공속 감소·회복 차단)가 겹쳐도 한 줄 칸 안에서 글자만 줄인다.
+            view.suppressed.resizeTextForBestFit = true; view.suppressed.resizeTextMinSize = 14; view.suppressed.resizeTextMaxSize = 26;
+            view.suppressed.horizontalOverflow = HorizontalWrapMode.Wrap; view.suppressed.verticalOverflow = VerticalWrapMode.Truncate; // 칸 높이 안에서 글자를 줄임(넘쳐 아래로 삐져나오지 않게)
 
             // 08:175 저장 실패 — 짧은 문구 + 다시 시도 버튼(디스크 정보는 로그로만). 5초 자동 재시도는 SaveRetryRunner.
             var saveRt = UiFactory.Place("SaveFailed", root, new Vector2(0f, 1f), new Vector2(48f, -116f),
@@ -466,8 +518,22 @@ namespace CCT
             schemeLabel.text = $"조작: {InputSettings.Label(InputSettings.Scheme)}\n(클릭해서 전환)";
         }
 
+        /// <summary>피드백 D(4) 튀어오름: 숫자 1.6배 → 1, 새로 찬 잔 1.8배 → 1(0.4초, 게임 일시정지와 무관). 저이펙트 = 크기 변화 없이 색·숫자만.</summary>
+        void TickStackPop()
+        {
+            if (stackPopT < 0f || stackCount == null) return;
+            stackPopT += Time.unscaledDeltaTime;
+            float k = Mathf.Clamp01(stackPopT / StackPopSeconds);
+            float bounce = HitFeedback.LowEffects ? 0f : (1f - k) * (1f - k);
+            stackCount.rectTransform.localScale = Vector3.one * (1f + 0.6f * bounce);
+            for (int i = 0; i < stackCups.Length; i++)
+                stackCups[i].rectTransform.localScale = Vector3.one * (i == popCup ? 1f + 0.8f * bounce : 1f);
+            if (k >= 1f) { stackPopT = -1f; stackCount.rectTransform.localScale = Vector3.one; foreach (var c in stackCups) c.rectTransform.localScale = Vector3.one; }
+        }
+
         void Update()
         {
+            TickStackPop();
             if(hiddenSummary!=null && game!=null && game.Player!=null && Time.unscaledTime>=hiddenRefresh)
             {
                 hiddenRefresh=Time.unscaledTime+.1f;
@@ -519,13 +585,17 @@ namespace CCT
             info.text = $"{seconds / 60:00}:{seconds % 60:00}\n처치 {game.Kills}";
 
             var stats = game.Stats;
-            SetIcon(slowIcon, stats.IsSlowed);
+            SetIcon(slowIcon, stats.IsSlowed || stats.AttackSlowed);
             SetIcon(suppressedIcon, stats.BonusesSuppressed);
             SetIcon(sealIcon, stats.FlameLocked || stats.PoisonLocked || stats.HybridLocked);
-            suppressed.text = stats.BonusesSuppressed
-                ? $"환불 · 강화 무효 {IntNum.RemainingSeconds(stats.SuppressedRemaining)}초"
-                : "";
-            if (suppressedBack.activeSelf != stats.BonusesSuppressed) suppressedBack.SetActive(stats.BonusesSuppressed);
+            // 2026-11-22 공용 디버프 몹: 공격 속도 감소·회복 차단을 같은 상태 줄에 남은 초와 함께(환불이 우선).
+            var debuffs = new System.Collections.Generic.List<string>();
+            if (stats.BonusesSuppressed) debuffs.Add($"환불 · 강화 무효 {IntNum.RemainingSeconds(stats.SuppressedRemaining)}초");
+            if (stats.AttackSlowed) debuffs.Add($"공속 -{IntNum.Percent(1f - stats.AttackSlowMultiplier)}% {IntNum.RemainingSeconds(stats.AttackSlowRemaining)}초");
+            if (stats.HealBlocked) debuffs.Add($"회복 차단 {IntNum.RemainingSeconds(stats.HealBlockRemaining)}초");
+            suppressed.text = string.Join(" · ", debuffs);
+            bool showDebuff = debuffs.Count > 0;
+            if (suppressedBack.activeSelf != showDebuff) suppressedBack.SetActive(showDebuff);
 
             var boss = game.ActiveBoss;
             bool showBoss = boss != null && !boss.IsDead;

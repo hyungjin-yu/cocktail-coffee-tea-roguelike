@@ -37,6 +37,8 @@ namespace CCT
                 SpawnOne(t);
             }
 
+            TickDebuffMobs(t);
+
             // 보스전 중에는 웨이브를 쉬어서 난이도가 과하게 겹치지 않게 한다
             if (game.ActiveBoss == null)
             {
@@ -47,6 +49,30 @@ namespace CCT
                     SpawnWave(t);
                 }
             }
+        }
+
+        // ───── 2026-11-22 공용 디버프 몹(피드백 13): 고정 일정(DebuffMobSchedule), 몹 추첨표·시드 난수 불변 ─────
+        int debuffSpawned;
+        /// <summary>시험/계측용 — 일정에 따라 실제 생성한 디버프 몹 수.</summary>
+        public int DebuffSpawns => debuffSpawned;
+
+        void TickDebuffMobs(float t)
+        {
+            if (game.ActiveBoss != null) return; // 보스전 중 쉼(밀린 일정은 이어서 한 마리씩)
+            if (debuffSpawned >= DebuffMobSchedule.DueCount(t) || DebuffMobSchedule.AliveCount() >= DebuffMobSchedule.MaxAlive || !UnderCap) return;
+            SpawnDebuffMob(t);
+        }
+
+        /// <summary>다음 차례 디버프 몹 한 마리(시험·QA도 같은 경로). 좌우 번갈아 화면 밖에서.</summary>
+        public Enemy SpawnDebuffMob(float t)
+        {
+            var def = DebuffMobSchedule.DefFor(debuffSpawned);
+            float side = debuffSpawned % 2 == 0 ? 1f : -1f;
+            debuffSpawned++;
+            var pos = BeltScroll.ArenaEdgePosition(cam, side, Balance.SpawnEdgeMargin, def.radius, out _);
+            var enemy = Enemy.SpawnAt(pos, def, Balance.EnemyHpScale(t), player, transform);
+            DebuffMobSchedule.AttachDriver(enemy, game);
+            return enemy;
         }
 
         /// <summary>시험/계측용 — 일반 스폰 주기로 실제 생성한 적 수(웨이브·소환형의 소환은 제외). 읽기 전용.</summary>

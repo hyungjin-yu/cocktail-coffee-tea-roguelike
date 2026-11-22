@@ -27,6 +27,10 @@ namespace CCT
     {
         public const float IncomingWarnSeconds = 15f;
         public const float BadgeW = 560f, BadgeH = 36f, BadgeY = 92f;
+        /// <summary>2026-11-22 플레이 피드백 F(10): 정규 모드 배지는 화면 위 오른쪽(경과 시간·처치·커피 포인트 바로 아래)에서 다음 보스까지 남은 시간을 실시간으로.
+        /// 폭 480 = 중앙 게이지·안내 띠(x 490~1430, 4:3도 캔버스 폭 1920)와 겹치지 않는 오른쪽 칸. 끝없는·마스터 배지는 기존 아래 가운데.</summary>
+        public const float TopBadgeW = 480f, TopRight = -30f, TopY = -172f;
+        public bool AtTop { get; private set; }
         const int Font = 20;
 
         GameManager game;
@@ -225,7 +229,7 @@ namespace CCT
                     info.text = $"보스 접근 {info.secondsToBoss}초 · {info.bossName}";
                     return info;
                 }
-                info.text = $"구간 {info.segment}/{info.segments} · 다음 보스 {info.secondsToBoss / 60}:{info.secondsToBoss % 60:00} · 위험 {info.danger}";
+                info.text = $"다음 보스 {info.secondsToBoss / 60}:{info.secondsToBoss % 60:00} · 구간 {info.segment}/{info.segments}"; // 위험 단계는 오른쪽 칸 5개로(좁은 위쪽 칸에서 글이 잘리지 않게)
                 return info;
             }
             info.text = $"구간 {info.segment}/{info.segments} · 위험 {info.danger}";
@@ -250,7 +254,7 @@ namespace CCT
 
         void Refresh()
         {
-            nextRefresh = Time.unscaledTime + 0.2f;
+            nextRefresh = Time.unscaledTime + 0.1f; // 피드백 F: 남은 초가 바뀌는 순간을 놓치지 않게(1초 단위 표시, 0.1초마다 확인)
             if (masterRoot == null && game != null && game.Master != null) BuildMaster(); // HUD가 Director보다 먼저 만들어진다
             var info = Compute(game);
             Last = info;
@@ -259,7 +263,11 @@ namespace CCT
             float k = DrinkRunHud.ReadableScale(Font, canvas != null ? canvas.scaleFactor : 1f);
             rt.localScale = new Vector3(k, k, 1f);
             // 끝없는 모드는 두 줄(같은 자리, 높이만 늘림 — 이 모드에는 보스 체력바가 없다).
-            rt.sizeDelta = masterRoot != null ? new Vector2(MasterW, MasterH) : info.state == RunPhaseState.Endless ? new Vector2(BadgeW + 200f, BadgeH * 1.8f) : new Vector2(BadgeW, BadgeH);
+            rt.sizeDelta = masterRoot != null ? new Vector2(MasterW, MasterH) : info.state == RunPhaseState.Endless ? new Vector2(BadgeW + 200f, BadgeH * 1.8f) : new Vector2(TopBadgeW / Mathf.Max(1f, k), BadgeH); // 위쪽 배지: 읽기 배율로 키워도 화면 폭은 TopBadgeW(가운데 안내 띠와 비겹침, 글자는 칸 안에서 줄임)
+            AtTop = masterRoot == null && info.state != RunPhaseState.Endless;
+            var a = AtTop ? new Vector2(1f, 1f) : new Vector2(0.5f, 0f);
+            if (rt.anchorMin != a) { rt.anchorMin = rt.anchorMax = rt.pivot = a; }
+            rt.anchoredPosition = AtTop ? new Vector2(TopRight, TopY) : new Vector2(0f, BadgeY);
             RefreshMaster();
             label.rectTransform.sizeDelta = new Vector2(rt.sizeDelta.x - 36f - 84f, rt.sizeDelta.y - 4f);
             switch (info.state)

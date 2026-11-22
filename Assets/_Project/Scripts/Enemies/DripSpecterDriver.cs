@@ -93,7 +93,7 @@ namespace CCT
             yield return new WaitForSeconds(DripWaveTelegraphSeconds);
 
             if (enemy == null || enemy.IsDead || game.Player == null) yield break;
-            BurstZone.Spawn(pos, DripWaveZoneRadius, DripWaveDamagePerSecond, DripWaveZoneSeconds,
+            BurstZone.Spawn(pos, DripWaveZoneRadius, enemy.ScaledAttack(DripWaveDamagePerSecond), DripWaveZoneSeconds,
                 game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.SteamKettleElder ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt),
                 DamageSource.Zone(enemy.Def, "드립 웨이브"));
         }
@@ -140,7 +140,7 @@ namespace CCT
 
             enemy.transform.position = target;
             enemy.PlayAction("appear");
-            BurstZone.Spawn(target, ReappearZoneRadius, ReappearDamagePerSecond, ReappearZoneSeconds,
+            BurstZone.Spawn(target, ReappearZoneRadius, enemy.ScaledAttack(ReappearDamagePerSecond), ReappearZoneSeconds,
                 game.Player, enemy.transform.parent, (enemy.Def==EnemyDef.SteamKettleElder ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt),
                 DamageSource.Zone(enemy.Def, "재등장 장판"));
         }

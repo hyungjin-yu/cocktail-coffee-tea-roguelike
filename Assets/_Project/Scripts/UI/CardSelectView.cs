@@ -35,6 +35,17 @@ namespace CCT
             public Text goalMarkText;
             public float enterT;
             public bool sweepOn;
+            // 2026-11-22 플레이 피드백 A(5·9·12·2·17): 효과 줄(아이콘+색+수치), 직업 연계 칩, 테두리 빛, hover 확대, 잔 채우기 등장
+            public RectTransform effects;
+            public GameObject jobChip;
+            public Text jobChipText;
+            public Image glow, fill, fillSurface;
+            public CanvasGroup group;
+            public CardRarity rarityValue;
+            public bool hovered;
+            public float hoverScale = 1f, delay;
+            public int index;
+            public float sweepPhase;
         }
 
         Text reasonLine, targetLine, keyHint;
@@ -191,12 +202,41 @@ namespace CCT
             slot.influenceRoot = infRt.gameObject;
             slot.influenceRoot.SetActive(false);
             slot.cardRt = rt;
+            slot.index = index;
+            slot.group = rt.gameObject.AddComponent<CanvasGroup>();
+            // 효과 줄 묶음(Desc 상자와 같은 자리). 능력치 효과가 없는 특수 카드만 Desc 글을 그대로 보인다.
+            slot.effects = UiFactory.Place("Effects", rt, new Vector2(0.5f, 0.5f), new Vector2(0f, EffectBoxY + EffectBoxHeight * 0.5f), new Vector2(400f, EffectBoxHeight));
+            slot.effects.pivot = new Vector2(0.5f, 1f);
+            // 직업 연계: 등급 글에 붙이던 " · 직업 연계"를 오른쪽 위 칩으로(왼쪽 위 = 목표, 가운데 = 추천 — 자리·색이 서로 다름)
+            var jc = UiFactory.Place("JobChip", rt, new Vector2(1f, 1f), new Vector2(24f, 34f), new Vector2(136f, 40f)); // 가운데 "추천"(±90)과 겹치지 않게 오른쪽 끝으로
+            var jcBg = UiFactory.AddImage(jc, StatStyle.JobColorBartender);
+            jcBg.raycastTarget = false;
+            slot.jobChipText = UiFactory.AddText(UiFactory.Stretch("Label", jc), "직업 연계", 22, TextAnchor.MiddleCenter, new Color(0.16f, 0.08f, 0.03f));
+            slot.jobChipText.raycastTarget = false;
+            slot.jobChip = jc.gameObject;
+            slot.jobChip.SetActive(false);
+            // 잔 채우기 등장: 카드 아래에서 위로 차오르는 액체 막(등급 색) + 수면 선. 다 차면 사라진다. 글·버튼 위(마지막 형제), 클릭 막지 않음.
+            var fillRt = UiFactory.Place("PourFill", rt, new Vector2(0.5f, 0f), Vector2.zero, new Vector2(rt.sizeDelta.x - 8f, 0f));
+            fillRt.pivot = new Vector2(0.5f, 0f);
+            slot.fill = UiFactory.AddImage(fillRt, Color.clear); slot.fill.raycastTarget = false;
+            var surf = UiFactory.Place("Surface", fillRt, new Vector2(0.5f, 1f), Vector2.zero, new Vector2(rt.sizeDelta.x - 8f, 6f));
+            surf.pivot = new Vector2(0.5f, 0.5f);
+            slot.fillSurface = UiFactory.AddImage(surf, Color.clear); slot.fillSurface.raycastTarget = false;
+            // hover·키보드 선택 확대
+            var trig = rt.gameObject.AddComponent<EventTrigger>();
+            var enter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter }; enter.callback.AddListener(_ => slot.hovered = true); trig.triggers.Add(enter);
+            var exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit }; exit.callback.AddListener(_ => slot.hovered = false); trig.triggers.Add(exit);
             // 피드백 11: 등급 테두리(카드 둘레 6px 띠, 등급 색). 일반은 띠 없음. 영웅·특수는 두께 10 + 등장 때 한 번 빛줄기.
             // 테두리는 카드 뒤 형제(카드 바탕이 가운데를 덮어 둘레 띠만 보인다 — 효과 글 위에 그리지 않는다).
             var frameRt = UiFactory.Place($"RarityFrame{index + 1}", parent, new Vector2(0.5f, 0.5f), rt.anchoredPosition, rt.sizeDelta + new Vector2(12f, 12f));
             frameRt.SetSiblingIndex(rt.GetSiblingIndex());
             slot.rarityFrame = UiFactory.AddImage(frameRt, Color.clear);
             slot.rarityFrame.raycastTarget = false;
+            // 테두리 빛(희귀 이상): 테두리 바깥 은은한 빛 띠, 천천히 숨쉬듯 밝기 변화(저이펙트 = 고정)
+            var glowRt = UiFactory.Place($"RarityGlow{index + 1}", parent, new Vector2(0.5f, 0.5f), rt.anchoredPosition, rt.sizeDelta + new Vector2(40f, 40f));
+            glowRt.SetSiblingIndex(frameRt.GetSiblingIndex());
+            slot.glow = UiFactory.AddImage(glowRt, Color.clear);
+            slot.glow.raycastTarget = false;
             var sweepRt = UiFactory.Place("RaritySweep", rt, new Vector2(0f, 0.5f), Vector2.zero, new Vector2(70f, 560f));
             slot.sweep = UiFactory.AddImage(sweepRt, Color.clear);
             slot.sweep.raycastTarget = false;
@@ -264,16 +304,34 @@ namespace CCT
 
                 slot.rarity.text = RarityTable.Label(card.rarity);
                 var job=GameManager.Instance;
-                if(job!=null && ((job.Job==Job.Bartender && card.category==CardCategory.Cocktail && offer.currentStacks==0)
-                    || (job.Job==Job.TeaSommelier && card.category==CardCategory.Tea && offer.currentStacks>0)))
-                    slot.rarity.text+=" · 직업 연계";
+                bool jobLink = job!=null && ((job.Job==Job.Bartender && card.category==CardCategory.Cocktail && offer.currentStacks==0)
+                    || (job.Job==Job.TeaSommelier && card.category==CardCategory.Tea && offer.currentStacks>0));
+                // 2026-11-22 혼합 러시가 켜져 있으면 이미 가진 카드(중첩)는 러시를 끈다 → 빨간 칩으로 미리 경고.
+                bool rushOff = job!=null && job.Job==Job.Bartender && job.MixingRushActive && offer.currentStacks>0;
+                // 2026-11-22 피드백 A: 직업 연계는 등급 글 대신 오른쪽 위 칩(직업 색)으로 따로 보인다.
+                slot.jobChip.SetActive(jobLink || rushOff);
+                if (rushOff)
+                {
+                    slot.jobChip.GetComponent<Image>().color = RushOffColor;
+                    slot.jobChipText.text = "러시 꺼짐!";
+                    slot.jobChipText.color = Color.white;
+                }
+                else if (jobLink)
+                {
+                    slot.jobChip.GetComponent<Image>().color = StatStyle.JobColor(job.Job);
+                    slot.jobChipText.text = job.Job == Job.Bartender ? (job.MixingRushActive ? "러시 유지" : "혼합 러시") : "깊은 우림";
+                    slot.jobChipText.color = new Color(0.16f, 0.08f, 0.03f);
+                }
                 slot.rarity.color = rarityColor;
                 slot.title.text = card.displayName;
                 slot.description.text = CardEducationSummary.Effect(card);
+                // 효과 한 줄 = 아이콘 + 능력치 색 이름 + 수치. 능력치 표에 없는 특수 효과(하이브리드 보조 활 등)는 기존 효과 글.
+                BuildEffectLines(slot, card);
                 var finalForm = AttackFinalForms.ForCard(card.id);
                 slot.learn.GetComponentInChildren<Text>().text = finalForm.HasValue ? "지식 · 최대 효과 보기" : "지식 상세 보기";
                 slot.fact.text = CardEducationSummary.Fact(card);
                 slot.connection.text = "해석 · " + CardEducationSummary.Connection(card);
+                slot.connection.gameObject.SetActive(false); // 피드백 9·12 글 줄이기: 해석은 '지식 상세 보기'에서(글 자체는 유지)
                 slot.categoryIcon.rectTransform.anchoredPosition = new Vector2(ArtX, ArtY);
                 slot.categoryIcon.rectTransform.sizeDelta = new Vector2(ArtSize, ArtSize);
                 slot.stacks.text = offer.currentStacks == 0
@@ -282,7 +340,7 @@ namespace CCT
                 slot.odds.text = offer.earlyRangedPriority ? "초반 원거리 우선 추첨 (60%)" : $"{RarityTable.Label(card.rarity)} 등급 확률 {IntNum.Round(offer.rarityPercent)}%";
                 slot.odds.gameObject.SetActive(false);
                 var a = advice[i];
-                slot.advice.text = a.reason;
+                slot.advice.text = TintAdvice(a.reason, job != null ? job.Job : (Job?)null);
                 slot.advice.color = a.recommended ? new Color(1f, 0.86f, 0.55f) : new Color(0.85f, 0.85f, 0.9f, 0.85f);
                 slot.badge.SetActive(a.recommended);
                 UiFactory.SetChoice(slot.background, false,
@@ -291,6 +349,8 @@ namespace CCT
                 slot.categoryIcon.sprite = icon;
                 slot.categoryIcon.gameObject.SetActive(icon != null);
                 ApplyRarityStyle(slot, card.rarity);
+                slot.delay = i * 0.08f;
+                slot.fill.transform.SetAsLastSibling();
             }
             // 영웅·특수 카드가 있으면 창이 열릴 때 한 번만 소리(희소성 표현 — 추천과 무관, 추첨·효과 불변)
             if (!HitFeedback.LowEffects)
@@ -310,40 +370,137 @@ namespace CCT
         public string GoalMarkText(int index) => index >= 0 && index < SlotCount && slots[index].goalMark.activeSelf ? slots[index].goalMarkText.text : "";
         public float RarityFrameWidth(int index) => index >= 0 && index < SlotCount && slots[index].rarityFrame.color.a > 0f ? (slots[index].rarityFrame.rectTransform.sizeDelta.x - slots[index].cardRt.sizeDelta.x) * 0.5f : 0f;
 
-        /// <summary>피드백 11: 일반 = 테두리 없음·즉시, 희귀 = 등급색 6px 테두리 + 짧은 확대 등장(0.18초), 영웅·특수 = 10px 테두리 + 등장 + 빛줄기 한 번.
-        /// 저이펙트면 등장·빛줄기 없이 테두리만. 효과 본문을 가리지 않게 빛줄기는 반투명(최대 0.35).</summary>
+        /// <summary>2026-11-22 피드백 A(5·9·12): 효과를 줄 단위로(아이콘 + 능력치 색 이름 + 짧은 수치). 3줄까지, 줄이 많으면 줄 높이·글자만 줄인다.
+        /// 능력치 효과가 하나도 없으면(특수 카드) 기존 효과 글(Desc)을 그대로 보인다.</summary>
+        void BuildEffectLines(Slot slot, CardData card)
+        {
+            for (int c = slot.effects.childCount - 1; c >= 0; c--) DestroyImmediate(slot.effects.GetChild(c).gameObject);
+            var list = new List<CardEffect>();
+            if (card.effects != null) foreach (var e in card.effects) if (StatStyle.Has(e.type)) list.Add(e);
+            bool lines = list.Count > 0;
+            slot.description.enabled = !lines;
+            slot.effects.gameObject.SetActive(lines);
+            effectLineTexts[slot.index] = lines ? string.Join(" / ", list.ConvertAll(e => StatStyle.LineText(e, card.weaponRestriction))) : "";
+            if (!lines) return;
+            int n = Mathf.Min(3, list.Count);
+            float h = n <= 2 ? 44f : 30f; int font = n <= 2 ? 30 : 24;
+            float top = (EffectBoxHeight - n * h) * 0.5f; // 줄 묶음을 상자 세로 가운데
+            for (int k = 0; k < n; k++)
+            {
+                var row = StatStyle.BuildLine(slot.effects, "Effect" + k, list[k], card.weaponRestriction, 400f, h, font);
+                row.anchoredPosition = new Vector2(0f, -top - k * h);
+            }
+        }
+
+        readonly string[] effectLineTexts = new string[SlotCount];
+        /// <summary>테스트·QA용 — 카드 효과 줄 글("공격력 +15% / 공격 속도 +20%"), 특수 카드는 "".</summary>
+        public string EffectLines(int index) => index >= 0 && index < SlotCount ? effectLineTexts[index] ?? "" : "";
+        public int EffectLineCount(int index) => index >= 0 && index < SlotCount && slots[index].effects.gameObject.activeSelf ? slots[index].effects.childCount : 0;
+        public static readonly Color RushOffColor = new Color(0.78f, 0.2f, 0.18f);
+        public string JobChipText(int index) => JobChipVisible(index) ? slots[index].jobChipText.text : "";
+        public bool JobChipVisible(int index) => index >= 0 && index < SlotCount && slots[index].jobChip.activeSelf;
+
+        /// <summary>추천 근거 문구의 조각을 색으로 구분: 히든(숨은 조합·히든) = 금색, 직업 연계(러시·우림) = 직업 색. 나머지는 원래 색.</summary>
+        public static string TintAdvice(string reason, Job? job)
+        {
+            if (string.IsNullOrEmpty(reason)) return reason;
+            var parts = reason.Split(new[] { " · " }, StringSplitOptions.None);
+            for (int i = 0; i < parts.Length; i++)
+            {
+                string p = parts[i];
+                Color? c = p.Contains("꺼짐") ? RushOffColor
+                    : p.Contains("숨은 조합") || p.Contains("히든") ? StatStyle.HiddenColor
+                    : p.Contains("러시") || p.Contains("우림") ? StatStyle.JobColor(job ?? (p.Contains("우림") ? Job.TeaSommelier : Job.Bartender)) : (Color?)null;
+                if (c.HasValue) parts[i] = "<color=#" + ColorUtility.ToHtmlStringRGB(c.Value) + ">" + p + "</color>";
+            }
+            return string.Join(" · ", parts);
+        }
+
+        /// <summary>피드백 11 + 2026-11-22 피드백 A(2·17): 등급 테두리(일반 없음 / 희귀 6px / 영웅·특수 10px) + 희귀 이상 테두리 빛(숨쉬기),
+        /// 영웅·특수 빛줄기 반복(2.6초마다), 모든 카드 "잔 채우기" 등장(카드마다 0.08초 차이), hover·선택 확대(1.05).
+        /// 저이펙트: 등장·빛줄기·숨쉬기 없이 테두리·고정 빛만(확대는 유지 — 선택 위치 표시).</summary>
         void ApplyRarityStyle(Slot slot, CardRarity r)
         {
             var c = RarityTable.Color(r);
             float w = r == CardRarity.Common ? 0f : r == CardRarity.Rare ? 6f : 10f;
+            slot.rarityValue = r;
             slot.rarityFrame.color = w > 0f ? new Color(c.r, c.g, c.b, 0.95f) : Color.clear;
             slot.rarityFrame.rectTransform.sizeDelta = slot.cardRt.sizeDelta + new Vector2(2f * w, 2f * w);
+            slot.glow.color = r == CardRarity.Common ? Color.clear : new Color(c.r, c.g, c.b, GlowBase);
             slot.sweep.color = Color.clear;
+            slot.sweepPhase = 0f;
             slot.cardRt.localScale = Vector3.one;
-            slot.enterT = r == CardRarity.Common || HitFeedback.LowEffects ? -1f : 0f;
-            slot.sweepOn = r >= CardRarity.Epic && !HitFeedback.LowEffects;
+            slot.hoverScale = 1f;
+            bool low = HitFeedback.LowEffects;
+            slot.enterT = low ? -1f : 0f;
+            slot.sweepOn = r >= CardRarity.Epic && !low;
+            slot.group.alpha = low ? 1f : 0f;
+            slot.fill.color = slot.fillSurface.color = Color.clear;
+            slot.fill.rectTransform.sizeDelta = new Vector2(slot.fill.rectTransform.sizeDelta.x, 0f);
         }
+
+        public const float PourSeconds = 0.34f, PourFadeSeconds = 0.18f, HoverScale = 1.05f, GlowBase = 0.22f;
+        /// <summary>테스트·QA용 — 등장 연출이 끝났는지, 카드 확대 배율, 테두리 빛 알파, 카드 투명도.</summary>
+        public bool EntranceDone(int index) => index >= 0 && index < SlotCount && slots[index].enterT < 0f;
+        public float CardScale(int index) => index >= 0 && index < SlotCount ? slots[index].cardRt.localScale.x : 1f;
+        public float GlowAlpha(int index) => index >= 0 && index < SlotCount ? slots[index].glow.color.a : 0f;
+        public float CardAlpha(int index) => index >= 0 && index < SlotCount ? slots[index].group.alpha : 1f;
 
         void TickEntrance()
         {
+            var es = EventSystem.current;
+            bool low = HitFeedback.LowEffects;
             foreach (var s in slots)
             {
-                if (s == null || s.enterT < 0f) continue;
-                s.enterT += Time.unscaledDeltaTime;
-                float k = Mathf.Clamp01(s.enterT / 0.18f);
-                float scale = Mathf.Lerp(0.94f, 1f, 1f - (1f - k) * (1f - k));
-                s.cardRt.localScale = new Vector3(scale, scale, 1f);
-                s.rarityFrame.rectTransform.localScale = s.cardRt.localScale;
-                if (s.sweepOn)
+                if (s == null || !s.root.activeSelf) continue;
+                float entrance = 1f;
+                if (s.enterT >= 0f)
                 {
-                    float st = Mathf.Clamp01((s.enterT - 0.1f) / 0.45f);
+                    s.enterT += Time.unscaledDeltaTime;
+                    float t = s.enterT - s.delay;
+                    float k = Mathf.Clamp01(t / PourSeconds);
+                    float ease = 1f - (1f - k) * (1f - k);
+                    entrance = Mathf.Lerp(0.96f, 1f, ease);
+                    s.group.alpha = Mathf.Clamp01(k * 1.4f); // 잔이 차오르며 내용이 드러남
+                    var rc = RarityTable.Color(s.rarityValue);
+                    var liquid = Color.Lerp(new Color(0.95f, 0.62f, 0.28f), rc, 0.45f);
+                    float fade = t <= PourSeconds ? 1f : 1f - Mathf.Clamp01((t - PourSeconds) / PourFadeSeconds);
+                    bool pouring = t > 0f;
+                    var frt = s.fill.rectTransform;
+                    frt.sizeDelta = new Vector2(frt.sizeDelta.x, s.cardRt.sizeDelta.y * k);
+                    s.fill.color = pouring ? new Color(liquid.r, liquid.g, liquid.b, 0.5f * fade) : Color.clear;
+                    s.fillSurface.color = pouring && k < 1f ? new Color(1f, 0.96f, 0.85f, 0.85f) : Color.clear;
+                    if (t >= PourSeconds + PourFadeSeconds)
+                    {
+                        s.enterT = -1f; s.group.alpha = 1f;
+                        s.fill.color = s.fillSurface.color = Color.clear;
+                        frt.sizeDelta = new Vector2(frt.sizeDelta.x, 0f);
+                    }
+                }
+                if (s.sweepOn && s.enterT < 0f)
+                {
+                    // 영웅·특수: 빛줄기가 2.6초마다 카드 안을 한 번 지나간다(효과 글을 가리지 않게 반투명 최대 0.35)
+                    s.sweepPhase += Time.unscaledDeltaTime;
+                    float st = Mathf.Clamp01(s.sweepPhase / 0.45f);
                     var srt = s.sweep.rectTransform;
-                    srt.anchoredPosition = new Vector2(Mathf.Lerp(20f, 380f, st), 0f); // 카드 안쪽에서만
+                    srt.anchoredPosition = new Vector2(Mathf.Lerp(20f, 380f, st), 0f);
                     var c = s.rarityFrame.color; c.a = 0.35f * Mathf.Sin(st * Mathf.PI);
                     s.sweep.color = c;
-                    if (st >= 1f) { s.sweep.color = Color.clear; s.sweepOn = false; }
+                    if (s.sweepPhase >= 2.6f) s.sweepPhase = 0f;
                 }
-                if (k >= 1f && !s.sweepOn) { s.cardRt.localScale = Vector3.one; s.rarityFrame.rectTransform.localScale = Vector3.one; s.enterT = -1f; }
+                if (s.rarityValue != CardRarity.Common)
+                {
+                    var g = s.glow.color;
+                    g.a = low ? GlowBase : GlowBase + 0.12f * Mathf.Sin(Time.unscaledTime * 2.6f + s.index);
+                    s.glow.color = g;
+                }
+                bool focus = s.hovered || (es != null && es.currentSelectedGameObject == s.root);
+                s.hoverScale = Mathf.MoveTowards(s.hoverScale, focus ? HoverScale : 1f, Time.unscaledDeltaTime * 0.5f / 0.12f);
+                float scale = entrance * s.hoverScale;
+                var v = new Vector3(scale, scale, 1f);
+                s.cardRt.localScale = v;
+                s.rarityFrame.rectTransform.localScale = v;
+                s.glow.rectTransform.localScale = v;
             }
         }
 

@@ -51,6 +51,9 @@ namespace CCT
 
         const float Top = -262f, CardLeft = 56f, CardRegion = 1200f, CardHeight = 300f, RowGap = 24f;
         const float DetailWidth = 580f, DetailHeight = 690f;
+        /// <summary>2026-11-22 피드백 B(16): 카드 그림·이름·효과 줄 크기(그림이 글보다 눈에 먼저 들어오게).</summary>
+        public const float IconSize = 84f, EffectRowHeight = 30f;
+        public const int NameFont = 24, EffectFont = 22;
 
         public static string GroupLabel(PermanentSkillGroup value) => value switch
         { PermanentSkillGroup.Attack => "공격", PermanentSkillGroup.Survival => "생존", PermanentSkillGroup.Ingredient => "재료", PermanentSkillGroup.Weapon => "무기 특화", _ => "마스터" };
@@ -141,14 +144,34 @@ namespace CCT
                     var entry=new EventTrigger.Entry { eventID=kind };
                     entry.callback.AddListener(_=>{previewNode=captured;RefreshDetail();});trigger.triggers.Add(entry);
                 }
+                // 2026-11-22 플레이 피드백 B(16): 글이 그림보다 너무 컸다 → 그림 48→IconSize(84), 이름 28→24, 효과는 능력치 색표 줄(22).
                 var icon=Icon(data);
                 if(icon!=null)
                 {
-                    var ir=UiFactory.Place("Icon",rt,new Vector2(.5f,1),new Vector2(0,-18),new Vector2(48,48));
+                    var ir=UiFactory.Place("Icon",rt,new Vector2(.5f,1),new Vector2(0,-14),new Vector2(IconSize,IconSize));
                     var img=ir.gameObject.AddComponent<Image>();img.sprite=icon;img.preserveAspect=true;img.raycastTarget=false;
                 }
-                s.name=UiFactory.AddText(UiFactory.Place("Name",rt,new Vector2(.5f,1),new Vector2(0,-72),new Vector2(width-24,40)),data.displayName,28,TextAnchor.MiddleCenter,Color.white);
-                s.effect=UiFactory.AddText(UiFactory.Place("Desc",rt,new Vector2(.5f,1),new Vector2(0,-116),new Vector2(width-28,64)),data.description,24,TextAnchor.UpperCenter,Gold);
+                s.name=UiFactory.AddText(UiFactory.Place("Name",rt,new Vector2(.5f,1),new Vector2(0,-102),new Vector2(width-24,34)),data.displayName,NameFont,TextAnchor.MiddleCenter,Color.white);
+                s.name.resizeTextForBestFit=true;s.name.resizeTextMinSize=18;s.name.resizeTextMaxSize=NameFont;
+                s.effect=UiFactory.AddText(UiFactory.Place("Desc",rt,new Vector2(.5f,1),new Vector2(0,-140),new Vector2(width-28,60)),data.description,EffectFont,TextAnchor.UpperCenter,Gold);
+                // 효과 줄(레벨업 카드와 같은 아이콘·색). 능력치 효과가 없으면 위 설명 글을 그대로 둔다.
+                var stat=new List<CardEffect>();
+                if(data.effects!=null)foreach(var e in data.effects)if(StatStyle.Has(e.type))stat.Add(e);
+                if(stat.Count>0)
+                {
+                    s.effect.enabled=false;
+                    // 1~2개 = 세로 줄(두 줄이면 줄 높이 24), 3개 이상 = 한 줄에 나란히(마스터 카드처럼 넓은 카드) — 아래 비용 글과 겹치지 않게.
+                    int n=Mathf.Min(3,stat.Count);
+                    bool across=n>=3; float rowH=n==1?EffectRowHeight:24f; int font=n==1?EffectFont:20;
+                    var box=UiFactory.Place("Effects",rt,new Vector2(.5f,1),new Vector2(0,-140),new Vector2(width-20,across?EffectRowHeight:rowH*n));
+                    box.pivot=new Vector2(.5f,1f);
+                    float colW=(width-20)/n;
+                    for(int k=0;k<n;k++)
+                    {
+                        var row=StatStyle.BuildLine(box,"Effect"+k,stat[k],WeaponRestriction.Any,across?colW:width-20,across?EffectRowHeight:rowH,font,true);
+                        row.anchoredPosition=across?new Vector2(-(width-20)*.5f+colW*(k+.5f),0):new Vector2(0,-k*rowH);
+                    }
+                }
                 s.cost=UiFactory.AddText(UiFactory.Place("Cost",rt,new Vector2(.5f,0),new Vector2(0,78),new Vector2(width-28,32)),$"비용 {data.cost} 스페셜티",24,TextAnchor.MiddleCenter,Cream);
                 var chip=UiFactory.Place("Chip",rt,new Vector2(.5f,0),new Vector2(0,18),new Vector2(width-36,52));
                 s.chip=UiFactory.AddImage(chip,Color.white);s.chip.raycastTarget=false;

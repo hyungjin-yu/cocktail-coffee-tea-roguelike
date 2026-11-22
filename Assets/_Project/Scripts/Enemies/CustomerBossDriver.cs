@@ -182,7 +182,7 @@ namespace CCT
 
             if (enemy != null && !enemy.IsDead && game.Player != null)
             {
-                float damage = enraged ? StarEnragedDamage : StarDamage;
+                float damage = enemy.ScaledAttack(enraged ? StarEnragedDamage : StarDamage);
                 float step = StarFanDegrees / (StarShotCount - 1);
                 float startAngle = -StarFanDegrees * 0.5f;
                 // 별점 탄은 지금 보이는 review 프레임의 reviewOrigin(휴대폰)에서 나간다. 부채 방향(baseDir)·시점은 예고 그대로.
@@ -251,7 +251,7 @@ namespace CCT
             yield return new WaitForSeconds(CoffeeZoneTelegraphSeconds);
 
             if (game.Player != null)
-                BurstZone.Spawn(pos, CoffeeZoneRadius, CoffeeZoneDamagePerSecond, CoffeeZoneSeconds,
+                BurstZone.Spawn(pos, CoffeeZoneRadius, enemy != null ? enemy.ScaledAttack(CoffeeZoneDamagePerSecond) : CoffeeZoneDamagePerSecond, CoffeeZoneSeconds,
                     game.Player, enemy.transform.parent, tea ? BurstZone.TeaPoolArt : BurstZone.CoffeePoolArt,
                     DamageSource.Zone(enemy != null ? enemy.Def : null, tea ? "뜨거운 찻물 장판" : "커피 장판"));
 

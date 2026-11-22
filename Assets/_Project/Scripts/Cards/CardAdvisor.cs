@@ -17,6 +17,8 @@ namespace CCT
         public float hp = 100f, maxHp = 100f;
         /// <summary>이번 런 보유 칵테일 고유 종류 수(혼합 러시 기준), 칵테일/차 총 중첩(하이브리드 기준).</summary>
         public int cocktailKinds, cocktailStacks, teaStacks;
+        /// <summary>2026-11-22 혼합 러시가 켜져 있는지(켜져 있으면 이미 가진 카드는 러시를 끈다).</summary>
+        public bool mixingRushActive;
         public int deepSteepLevel;
         public bool hybridUnlocked, hybridPending;
         public float damageReduction;
@@ -156,11 +158,19 @@ namespace CCT
 
         static void AddJobTrait(CardData card, CardAdviceContext ctx, int cur, int next, List<Reason> reasons)
         {
+            if (ctx.job == Job.Bartender && ctx.mixingRushActive && cur > 0)
+            {
+                // 2026-11-22: 켜진 혼합 러시는 이미 가진 카드(중첩)를 고르면 꺼진다 — 참고 정보로 경고(단독 추천·회피 판단은 기존 점수).
+                reasons.Add(new Reason { score = 14, text = "같은 카드: 혼합 러시 꺼짐" });
+                return;
+            }
             if (ctx.job == Job.Bartender && card.category == CardCategory.Cocktail)
             {
                 if (cur > 0) return; // 이미 보유한 칵테일의 추가 중첩은 새 종류가 아니다.
                 int after = ctx.cocktailKinds + 1;
-                if (MixingRushTriggers(ctx.cocktailKinds, after))
+                if (ctx.mixingRushActive)
+                    reasons.Add(new Reason { score = 15, text = "새 칵테일 종류 (러시 유지)" });
+                else if (MixingRushTriggers(ctx.cocktailKinds, after))
                     reasons.Add(new Reason { score = 60, text = $"새 칵테일 {after}종째: 혼합 러시 발동" });
                 else
                     reasons.Add(new Reason { score = 15, text = $"새 칵테일 종류 (러시 {after % MixingRushEvery}/{MixingRushEvery})" });

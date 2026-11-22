@@ -83,7 +83,7 @@ namespace CCT.Tests
             game.GrantCardForTests(C("shot_glass"));
             Assert.AreEqual(0f, game.MixingRushRemaining);
             game.GrantCardForTests(C("bar_shoes"));
-            Assert.AreEqual(12f, game.MixingRushRemaining, "새 종류 3번째");
+            Assert.IsTrue(game.MixingRushActive, "새 종류 3번째"); // 2026-11-22: 지속시간 없음(켜짐/꺼짐)
         }
 
         static readonly (Job job, WeaponKind weapon)[] Combos =

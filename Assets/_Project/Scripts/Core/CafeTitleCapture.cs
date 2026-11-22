@@ -210,7 +210,7 @@ namespace CCT
             {
                 var r = scene.ScreenRectOf(id);
                 var hit = TopHit(r.center);
-                bool hitOk = hit != null && hit.GetComponentInParent<CafeHotspot>() == scene.Hotspots[id];
+                bool hitOk = hit != null && OwnerOf(hit) == scene.Hotspots[id];
                 bool onScreen = r.xMin >= 0 && r.xMax <= Screen.width && r.yMin >= 0 && r.yMax <= Screen.height;
                 Check($"hotspot_{id}_hit_matches_render", hitOk && onScreen, $"rect={Fmt(r)} top={hit?.name}");
                 MouseState(r.center, false);
@@ -219,8 +219,18 @@ namespace CCT
                 var descRt = scene.Hotspots[id].transform.Find("Focus/Desc") as RectTransform;
                 var descR = descRt != null ? WorldRect(descRt) : Rect.zero;
                 Check($"hotspot_{id}_hover_focus", scene.Hotspots[id].FocusVisible && (descRt == null || OnScreen(descR)), $"hover 테두리·설명 desc={Fmt(descR)}");
-                yield return ApproachOpen(title, id, () => Click(r.center), openers[id]);
-                Check($"open_{id}", openers[id]() && !title.IsOpen, $"open={openers[id]()} titleOpen={title.IsOpen}");
+                // 2026-11-22 피드백 C(1·3): hover 외곽선이 켜지고, 이름표 위로 옮겨도 같은 물체가 강조된다
+                yield return Wait(0.2f);
+                Check($"hotspot_{id}_hover_outline", scene.Hotspots[id].OutlineAmount > 0.9f, $"outline={scene.Hotspots[id].OutlineAmount:0.00}");
+                var plateC = ScreenCenter(scene.Hotspots[id].Nameplate);
+                MouseState(plateC, false);
+                yield return null; yield return null;
+                Check($"hotspot_{id}_nameplate_hover", OwnerOf(TopHit(plateC)) == scene.Hotspots[id] && scene.Hotspots[id].FocusVisible, $"plateTop={TopHit(plateC)?.name}");
+                yield return Shot($"hover_plate_{id}");
+                // 제작 정보는 이름표를 눌러 연다(피드백 C3 — 이름표 클릭 = 물체 클릭), 나머지는 물체를 누른다
+                bool viaPlate = id == "credits";
+                yield return ApproachOpen(title, id, () => Click(viaPlate ? plateC : r.center), openers[id]);
+                Check($"open_{id}" + (viaPlate ? "_via_nameplate" : ""), openers[id]() && !title.IsOpen, $"open={openers[id]()} titleOpen={title.IsOpen}");
                 yield return Shot($"menu_{id}");
                 yield return Back(title);
                 yield return WaitReturned(title, id);
@@ -272,8 +282,8 @@ namespace CCT
 
             // 5) 시작 → 직업 선택, 타이틀 재진입은 짧은 실내 페이드(문 입장 반복 없음)
             var sr = scene.ScreenRectOf("start");
-            Check("hotspot_start_hit_matches_render", TopHit(sr.center)?.GetComponentInParent<CafeHotspot>() == scene.Hotspots["start"], Fmt(sr));
-            Check("hotspot_quit_hit_matches_render", TopHit(scene.ScreenRectOf("quit").center)?.GetComponentInParent<CafeHotspot>() == scene.Hotspots["quit"], Fmt(scene.ScreenRectOf("quit")));
+            Check("hotspot_start_hit_matches_render", OwnerOf(TopHit(sr.center)) == scene.Hotspots["start"], Fmt(sr));
+            Check("hotspot_quit_hit_matches_render", OwnerOf(TopHit(scene.ScreenRectOf("quit").center)) == scene.Hotspots["quit"], Fmt(scene.ScreenRectOf("quit")));
             var quitCenter = scene.ScreenRectOf("quit").center;
             yield return Click(sr.center);
             yield return Wait(0.2f);
@@ -442,7 +452,7 @@ namespace CCT
             {
                 var n = InsideAt(codex.Feature, ks[i]);
                 var sp = NormToScreen(scene, n);
-                var hit = TopHit(sp)?.GetComponentInParent<CafeHotspot>();
+                var hit = OwnerOf(TopHit(sp));
                 MouseState(sp, false); yield return null; yield return null;
                 Check($"codex_shelf_{labels[i]}_hit_hover", hit == codex && codex.FocusVisible, $"norm=({n.x:0.000},{n.y:0.000}) screen=({sp.x:0},{sp.y:0}) hit={hit?.name}");
                 yield return Shot($"codex_shelf_{labels[i]}_hover");
@@ -463,7 +473,7 @@ namespace CCT
             foreach (var k in new[] { 0.25f, 0.5f, 0.75f })
             {
                 var sp = NormToScreen(scene, InsideAt(skins.Feature, k));
-                skinN++; if (TopHit(sp)?.GetComponentInParent<CafeHotspot>() == skins) skinOk++;
+                skinN++; if (OwnerOf(TopHit(sp)) == skins) skinOk++;
             }
             Check("skins_neighbor_hits_skins", skinOk == skinN, $"{skinOk}/{skinN}");
             var skinPt = NormToScreen(scene, InsideAt(skins.Feature, 0.5f));
@@ -691,6 +701,14 @@ namespace CCT
         {
             var c = new Vector3[4]; rt.GetWorldCorners(c);
             return (c[0] + c[2]) * 0.5f;
+        }
+
+        /// <summary>2026-11-22 이름표도 그 물체의 클릭 대상(CafeNameplateTarget) — 맨 위가 물체 자신이거나 그 물체의 이름표면 같은 물체.</summary>
+        static CafeHotspot OwnerOf(GameObject hit)
+        {
+            if (hit == null) return null;
+            var plate = hit.GetComponentInParent<CafeNameplateTarget>();
+            return plate != null ? plate.Owner : hit.GetComponentInParent<CafeHotspot>();
         }
 
         static GameObject TopHit(Vector2 screen)

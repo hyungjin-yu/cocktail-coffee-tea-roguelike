@@ -63,29 +63,54 @@ namespace CCT
         public bool HybridUnlocked { get; private set; }
         public Job Job { get; private set; }
         int cocktailTypesSeen;
-        float mixingRushRemaining;
-        public float MixingRushRemaining => mixingRushRemaining;
+        bool mixingRushActive;
+        /// <summary>2026-11-22 주인 결정(피드백 7): 혼합 러시는 지속시간이 없다. 새 칵테일 3/6/9…종째에 켜지고, 이미 가진 카드(중복)를 고르면 꺼진다.
+        /// 켜져 있는 동안 이동 속도·공격 속도 각 +MixingRushSpeedBonus(피해 보너스 없음).</summary>
+        public bool MixingRushActive => mixingRushActive;
+        public const float MixingRushSpeedBonus = 0.40f;
+        /// <summary>이전 시간제 API 호환(켜짐 = 1, 꺼짐 = 0). 남은 시간 개념은 없다.</summary>
+        public float MixingRushRemaining => mixingRushActive ? 1f : 0f;
+        /// <summary>러시가 꺼진 횟수·직전에 꺼진 이유(HUD·QA용).</summary>
+        public int MixingRushOffCount { get; private set; }
         /// <summary>2026-11-12 HUD 진행 칸: 다음 혼합 러시까지 새 칵테일 종류(0~2).</summary>
         public int MixingRushProgress => cocktailTypesSeen % 3;
+        /// <summary>2026-11-22 피드백 D(4): 이번 런에 모은 서로 다른 칵테일 카드 종류 수(HUD 표시용, 규칙 불변).</summary>
+        public int CocktailKinds => cocktailTypesSeen;
+        public MixingRushAura RushAura { get; private set; }
         public int DeepSteepLevel => Mathf.Clamp(Cards.HighestStacks(CardCategory.Tea)-1,0,6);
         public string JobTraitStatus => Job==Job.Bartender
-            ? mixingRushRemaining>0f ? $"혼합 러시 {IntNum.RemainingSeconds(mixingRushRemaining)}초\n피해 +20% · 공속 +15%"
-                : $"혼합 러시 · 새 칵테일 {cocktailTypesSeen%3}/3종\n새 3종마다 12초 강화"
+            ? mixingRushActive ? $"혼합 러시 켜짐 · 이동·공속 +{IntNum.Percent(MixingRushSpeedBonus)}%\n같은 카드를 고르면 꺼짐"
+                : $"혼합 러시 꺼짐 · 새 칵테일 {cocktailTypesSeen%3}/3종\n새 3종이면 켜짐(이동·공속 +{IntNum.Percent(MixingRushSpeedBonus)}%)"
             : $"깊은 우림 {DeepSteepLevel}/6 · 피해 +{DeepSteepLevel*2}%\n분당 추가 회복 +{IntNum.PerMinute(DeepSteepLevel*.1f)}";
-        void RefreshJobTrait(bool cardTaken=false)
+        void RefreshJobTrait(bool cardTaken=false, CardData taken=null)
         {
-            // 46/49: 새 칵테일 '종류' 3/6/9번째에 발동 — 같은 카드의 추가 중첩은 세지 않는다(2026-10-13 총 중첩 기준 버그 수정).
+            // 46/49: 새 칵테일 '종류' 3/6/9번째에 켜짐 — 같은 카드의 추가 중첩은 세지 않는다(2026-10-13 총 중첩 기준 버그 수정).
+            // 2026-11-22 주인 결정: 지속시간 없음. 이미 가진 카드를 다시 고르면(중첩 2 이상이 된 카드, 칵테일·차 모두) 꺼진다.
             int count=Cards.CountKinds(CardCategory.Cocktail);
-            if(Job==Job.Bartender && cardTaken && CardAdvisor.MixingRushTriggers(cocktailTypesSeen,count))
+            if(Job==Job.Bartender && cardTaken)
             {
-                mixingRushRemaining=12f;
-                var flash=FadeVfx.Spawn(SpriteFactory.Crescent,Player.Position+Vector2.up*.5f,20f,
-                    new Vector2(.5f,.5f),new Vector2(.8f,.8f),new Color(1f,.7f,.3f),.35f,SortOrders.AirVfx);
-                flash.transform.SetParent(transform,true);
+                bool duplicate=taken!=null && Cards.GetStacks(taken)>1;
+                if(CardAdvisor.MixingRushTriggers(cocktailTypesSeen,count) && !mixingRushActive)
+                {
+                    mixingRushActive=true;
+                    var flash=FadeVfx.Spawn(SpriteFactory.Crescent,Player.Position+Vector2.up*.5f,20f,
+                        new Vector2(.5f,.5f),new Vector2(.8f,.8f),new Color(1f,.7f,.3f),.35f,SortOrders.AirVfx);
+                    flash.transform.SetParent(transform,true);
+                    AudioService.PlaySfx("skill_unlock");
+                    Hud?.ShowBanner("혼합 러시 켜짐!", $"이동 속도·공격 속도 +{IntNum.Percent(MixingRushSpeedBonus)}% · 같은 카드를 고르면 꺼집니다",2f);
+                }
+                else if(mixingRushActive && duplicate)
+                {
+                    mixingRushActive=false;
+                    MixingRushOffCount++;
+                    AudioService.PlaySfx("ui_cancel");
+                    Hud?.ShowBanner("혼합 러시 꺼짐", $"같은 카드({taken.displayName})를 골랐습니다 · 새 칵테일 3종을 다시 모으면 켜집니다",2f);
+                }
             }
             cocktailTypesSeen=count;
-            Stats.jobDamagePercent=Job==Job.Bartender ? mixingRushRemaining>0f ? .20f : 0f : DeepSteepLevel*.02f;
-            Stats.jobAttackSpeedPercent=Job==Job.Bartender && mixingRushRemaining>0f ? .15f : 0f;
+            Stats.jobDamagePercent=Job==Job.Bartender ? 0f : DeepSteepLevel*.02f;
+            Stats.jobAttackSpeedPercent=Job==Job.Bartender && mixingRushActive ? MixingRushSpeedBonus : 0f;
+            Stats.jobMoveSpeedPercent=Job==Job.Bartender && mixingRushActive ? MixingRushSpeedBonus : 0f;
             Stats.jobRegenBonus=Job==Job.TeaSommelier ? DeepSteepLevel*.1f : 0f;
         }
         public WeaponKind Weapon { get; private set; }
@@ -211,6 +236,7 @@ namespace CCT
             var camera = SetupCamera();
             var background = CreateBackground();
             Player = CreatePlayer(preset, weapon);
+            if (job == Job.Bartender) RushAura = MixingRushAura.Attach(Player, this); // 2026-11-22 피드백 D(6) 혼합 러시 오라(표시 전용)
             Player.Mastery = MasteryRuntime.Attach(Player, MasteryTraits);
             // 81 마신 커피만 추출법별 전투 리듬을 붙인다(입장 1회 — 칵테일·차·무음료는 null).
             var coffee = DrinkBuff != null ? DrinkLab.DrinkInRun(RunId)?.recipe : null;
@@ -341,7 +367,6 @@ namespace CCT
 
             RunTime += Time.deltaTime;
             RunTimePrecise += Time.deltaTime;
-            mixingRushRemaining=Mathf.Max(0f,mixingRushRemaining-Time.deltaTime);
             RefreshJobTrait();
             Stats.Tick(Time.deltaTime);
             // 08:155 Playing 중 재료 변화가 있으면 게임시간 5초마다 체크포인트(activeRun 반영량과 같은 스냅샷).
@@ -805,7 +830,7 @@ namespace CCT
         void ChooseCard(CardOffer offer)
         {
             cards.Take(offer.card, Stats);
-            RefreshJobTrait(true);
+            RefreshJobTrait(true, offer.card);
             completedCardChoices++;
             Player.FinalForms.OnCardTaken(offer.card, cards.GetStacks(offer.card));
             EvaluateHidden();
@@ -853,7 +878,7 @@ namespace CCT
         public void GrantCardForTests(CardData card)
         {
             cards.Take(card, Stats);
-            RefreshJobTrait(true);
+            RefreshJobTrait(true, card);
             Player.FinalForms.OnCardTaken(card, cards.GetStacks(card));
             EvaluateHidden();
         }
@@ -869,6 +894,7 @@ namespace CCT
                     PermanentProgress.Current.discoveredCardIds.Contains(id),
                 hp = Player != null ? Player.Hp : 0f, maxHp = Player != null ? Player.MaxHp : 0f,
                 cocktailKinds = cards.CountKinds(CardCategory.Cocktail),
+                mixingRushActive = mixingRushActive,
                 cocktailStacks = cards.CountOwned(CardCategory.Cocktail), teaStacks = cards.CountOwned(CardCategory.Tea),
                 deepSteepLevel = DeepSteepLevel, hybridUnlocked = HybridUnlocked, hybridPending = rewards.HybridPending,
                 damageReduction = Stats.damageReduction, extraThrusts = Stats.extraThrusts, pierceCount = Stats.pierceCount,

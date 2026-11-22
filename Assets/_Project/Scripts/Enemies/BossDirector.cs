@@ -11,7 +11,22 @@ namespace CCT
             public float time;
             public EnemyDef def;
             public float hpScale = 1f;
+            /// <summary>2026-11-22 보스 공격 배율(접촉·패턴 피해, 정수 반올림). 1 = 기존.</summary>
+            public float attackScale = 1f;
         }
+
+        /// <summary>
+        /// 2026-11-22 플레이 피드백 E(8·11·14): "보스가 너무 쉽게 죽는다". 패턴은 그대로 두고 체력·피해 배율만 올린다(순서별 같은 값, 바텐더·차 공통).
+        /// 1번 중간보스 ×2 체력, 2번 중간보스(드립 서버 스펙터 / 김 서린 주전자 장로) ×4 체력, 강화 보스 ×3, 최종보스 ×8 체력·×1.75 피해(체력×피해 ≈ 14배).
+        /// 변경 전 = 전부 ×1. 수치는 이 표 한 곳에서만 조정한다(플레이 테스트 후 재조정 예정 — 가안).
+        /// </summary>
+        public static readonly (float hp, float attack)[] BossTuning =
+        {
+            (2f, 1.25f),  // 1 중간보스 A
+            (4f, 1.4f),   // 2 중간보스 B
+            (3f, 1.5f),   // 3 강화 보스
+            (8f, 1.75f),  // 4 최종보스
+        };
 
         /// <summary>
         /// 가안 스케줄. 기획서 10장의 중간보스 A → B → 강화 보스 → 진상 손님 순서를 그대로 따른다.
@@ -19,10 +34,10 @@ namespace CCT
         /// </summary>
         public static List<Spec> DefaultSchedule() => new List<Spec>
         {
-            new Spec { time = 150f, def = EnemyDef.GrinderGolem, hpScale = 1f },
-            new Spec { time = 320f, def = EnemyDef.DripServerSpecter, hpScale = 1f },
-            new Spec { time = 500f, def = EnemyDef.EspressoLeviathan, hpScale = 1f },
-            new Spec { time = 680f, def = EnemyDef.DifficultCustomer, hpScale = 1f },
+            new Spec { time = 150f, def = EnemyDef.GrinderGolem, hpScale = BossTuning[0].hp, attackScale = BossTuning[0].attack },
+            new Spec { time = 320f, def = EnemyDef.DripServerSpecter, hpScale = BossTuning[1].hp, attackScale = BossTuning[1].attack },
+            new Spec { time = 500f, def = EnemyDef.EspressoLeviathan, hpScale = BossTuning[2].hp, attackScale = BossTuning[2].attack },
+            new Spec { time = 680f, def = EnemyDef.DifficultCustomer, hpScale = BossTuning[3].hp, attackScale = BossTuning[3].attack },
         };
 
         public static List<Spec> DefaultSchedule(Job job)
@@ -71,7 +86,7 @@ namespace CCT
             float side = game.BossPositionRng.Value() < 0.5f ? -1f : 1f;
             // 57 P0-1: 유한 전투 구역 안 화면 밖. 벽 쪽이 막히면 반대쪽. 실제 쪽을 안내 문구에 쓴다.
             var pos = BeltScroll.ArenaEdgePosition(Camera.main, side, Balance.SpawnEdgeMargin, spec.def.radius, out float usedSide);
-            var boss = Enemy.SpawnAt(pos, spec.def, spec.hpScale, game.Player, game.transform);
+            var boss = Enemy.SpawnAt(pos, spec.def, spec.hpScale, game.Player, game.transform, spec.attackScale);
             string from = usedSide < 0f ? "◀ 왼쪽에서 접근 · " : "오른쪽에서 접근 ▶ · ";
             // 2026-11-10 계열 표식: 배너 부제 맨 앞에 [커]/[차]/[중] 계열(색만으로 구분하지 않음). 판정·일정 불변.
             from = MonsterFamilies.Mark(MonsterFamilies.Of(spec.def)) + " " + MonsterFamilies.Name(MonsterFamilies.Of(spec.def)) + " 계열 · " + from;
