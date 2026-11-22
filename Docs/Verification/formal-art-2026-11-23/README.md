@@ -1,6 +1,6 @@
 # 통합 9012e67 검수 (2026-11-23)
 
-- EditMode 전체 1072: 통과 1070 · 실패 0 · 무시 1(인코니클루시브 1은 Ignore). PlayMode 전체 435: 통과 418 · 실패 0 · 건너뜀 17. 컴파일 오류 0. (Unity 6000.3.25f1 batchmode, 가상 입력)
+- EditMode 전체 1072: 통과 1070 · 실패 0 · 무시(inconclusive) 1. PlayMode 전체 435: 통과 418 · 실패 0 · 건너뜀 17. 컴파일 오류 0. (Unity 6000.3.25f1 batchmode, 가상 입력)
 - 가상 렌더 캡처(창 없음, `FeedbackArtEvidenceCapture`, CCT_EVIDENCE_DIR 필요): 표준·마스터 도전 × 바텐더·티 소믈리에, 쓴맛 안개 예고/파동 + 빈 잔 도둑 + HUD 상태(공속 -25%·회복 차단·이동 둔화), 1920x1080 / 1280x720 / 1440x1080(4:3), 저이펙트 1건. `evidence-log.txt`.
 - 실제 Windows 창(검수 전용 빌드, 격리 데이터 폴더, OS 마우스 클릭 = 실제 입력, 키 입력은 `orca computer press-key`가 Unity에 전달되지 않음): `real-window/`.
   - 확인: 설정 "레벨업 연출 속도" 기본 0.5배, 순환 0.5→0.75→…→0.5, settings.json의 levelUpAnimPercent 저장 확인(75, 50). 바텐더·티 소믈리에 카드 창 정착 모습(등급별 틴트·장식), 마우스 선택 후 다음 레벨업 창 반복 열림, 티 소믈리에 저이펙트에서 즉시 정착(장식 없음).
