@@ -62,7 +62,7 @@ namespace CCT
                 yield return Wait(0.08f);
                 if (game.CardView.IsLearningOpen) { game.CardView.CloseLearning(); yield return Wait(0.2f); }
                 yield return Shot($"{tag}_10_card_rarity_enter");
-                yield return Wait(0.8f);
+                yield return WaitCardSettled(game);
                 Line($"F3 {tag} cards [{string.Join(",", pick.Select(c => c.id + ":" + c.rarity))}] frames=[{game.CardView.RarityFrameWidth(0)},{game.CardView.RarityFrameWidth(1)},{game.CardView.RarityFrameWidth(2)}] goal=['{game.CardView.GoalMarkText(0)}','{game.CardView.GoalMarkText(1)}','{game.CardView.GoalMarkText(2)}'] target={target?.id}");
                 yield return Shot($"{tag}_11_card_rarity_goal");
                 game.CardView.Choose(0); yield return Wait(0.3f);

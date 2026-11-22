@@ -122,6 +122,7 @@ namespace CCT
             fairButton.gameObject.SetActive(choice);
             startButton.gameObject.SetActive(!choice);
             brewButton.gameObject.SetActive(true);
+            brewButton.interactable = game.CanOpenMasterBrew;
             panelTitle.text = choice ? "재료 모으기 5/5 완료 — 다음을 고르세요 (전투 정지 중)" : $"다음 웨이브 준비 — {MasterChallengeDirector.WaveTitle(st.Wave)} (전투 정지 중)";
             var trait = game.Player != null ? game.Player.DrinkTrait : RunDrinkTraitKind.None;
             string cur = $"현재 잔: {RunDrinkTrait.Name(trait)} · ";

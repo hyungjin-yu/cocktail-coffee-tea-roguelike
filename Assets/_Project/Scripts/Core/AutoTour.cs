@@ -85,6 +85,14 @@ namespace CCT
             yield return new WaitForSecondsRealtime(seconds);
         }
 
+        /// <summary>카드 창 건네기(속도 설정으로 0.5x면 약 1초 이상)가 정착할 때까지 대기 — 고정 0.4초 뒤 캡처는 애니메이션 중간을 찍는다. 재생이 없으면(저사양 효과) 바로 끝.</summary>
+        static IEnumerator WaitCardSettled(GameManager game, float timeoutSeconds = 8f)
+        {
+            float until = Time.realtimeSinceStartup + timeoutSeconds;
+            while (game.CardView.IsOpen && game.CardView.HandoffPlaying && Time.realtimeSinceStartup < until) yield return null;
+            yield return null; yield return null;
+        }
+
         static string F(float v) => v.ToString("0.###", CultureInfo.InvariantCulture);
 
         // ── 오버레이 ─────────────────────────────────────────────

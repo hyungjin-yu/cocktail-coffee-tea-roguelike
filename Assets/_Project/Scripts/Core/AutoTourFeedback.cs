@@ -138,7 +138,7 @@ namespace CCT
                 while (picks.Count < 3) picks.Add(pool.First(c => !picks.Contains(c)));
                 var offers = picks.Select(c => new CardOffer { card = game.Cards.FindInPool(c.id) ?? c, rarityPercent = 60f, currentStacks = 0 }).ToList();
                 game.CardView.Show(offers, _ => { });
-                yield return Wait(0.4f);
+                yield return WaitCardSettled(game);
                 if (game.CardView.IsLearningOpen) { game.CardView.CloseLearning(); yield return Wait(0.3f); }
                 Line($"FB {tag} card window [{string.Join(",", offers.Select(o => o.card.id + "='" + CardEducationSummary.Effect(o.card) + "'"))}] hint='{game.CardView.KeyHintLabel}'");
                 yield return Shot($"{tag}_20_card_select");

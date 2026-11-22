@@ -231,7 +231,7 @@ namespace CCT
             foreach (var c in DrinkLab.RunCupsFor(game.RunId)) if (c.IsHeld) held++;
             int craftable = CraftableCount(game.RunId);
             brewLabel.text = $"음료 만들기 [B] · 가능 {craftable} · 보관 {held}";
-            brewButton.interactable = game.State == GameState.Playing && !game.MasterFreezeActive;
+            brewButton.interactable = game.CanOpenMasterBrew; // 카드·일시정지·현수막 설치 등 다른 창이 위에 있으면 누를 수 없음(OpenMasterBrew와 같은 규칙)
 
             bool awaiting = st.Phase == MasterPhase.AwaitChoice, clearing = st.Phase == MasterPhase.ClearingForFair;
             // 2026-11-12 선택 대기는 준비 패널(MasterPrepView)이 예고와 함께 맡는다 — 이 상단 패널은 박람회 접수 뒤 '남은 손님 처리' 안내만.

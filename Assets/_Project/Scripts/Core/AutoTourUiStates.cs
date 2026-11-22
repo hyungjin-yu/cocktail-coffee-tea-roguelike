@@ -174,6 +174,7 @@ namespace CCT
                 }
                 if (game.CardView.IsOpen)
                 {
+                    yield return WaitCardSettled(game);
                     foreach (var def in HiddenSkillDatabase.All)
                     {
                         if (!game.CanTarget(def.skill)) continue;
@@ -289,6 +290,7 @@ namespace CCT
             if (game.CardView.IsLearningOpen) { game.CardView.CloseLearning(); yield return Wait(0.3f); }
             Line($"HY {tag} tea card window open={game.CardView.IsOpen} offers=[{string.Join(",", game.CardView.Offers.Select(o => o.card.id + ":" + o.card.category))}]");
             if (!game.CardView.IsOpen) { Fail(tag + " tea card window did not open"); yield break; }
+            yield return WaitCardSettled(game);
             int pick = 0;
             for (int k = 0; k < game.CardView.Offers.Count; k++) if (game.CardView.Offers[k].card.category == CardCategory.Tea) { pick = k; break; }
             yield return Shot(tag + "_01_tea_card_window");
@@ -383,7 +385,7 @@ namespace CCT
                 {
                     var offers = mine.Skip(g * 3).Take(3).Select(c => new CardOffer { card = game.Cards.FindInPool(c.id) ?? c, rarityPercent = 60f, currentStacks = 0 }).ToList();
                     game.CardView.Show(offers, _ => { });
-                    yield return Wait(0.4f);
+                    yield return WaitCardSettled(game);
                     if (game.CardView.IsLearningOpen) { game.CardView.CloseLearning(); yield return Wait(0.3f); }
                     Line($"IC {tag} card window {g}: [{string.Join(",", offers.Select(o => o.card.id))}]");
                     yield return Shot($"{tag}_10_card_select_{g}");

@@ -1026,10 +1026,13 @@ namespace CCT
             ExitFrozenAudioIfClear();
         }
 
+        /// <summary>제조 창을 지금 열 수 있는지 — 단축키·상단 버튼·준비 패널 버튼이 같은 규칙을 쓴다(열 수 없는 동안 버튼은 비활성).</summary>
+        public bool CanOpenMasterBrew => Master != null && MasterHud != null && State == GameState.Playing && !IsPaused && !resuming;
+
         /// <summary>우상단 '음료 만들기' — 제조 창 동안 전투 일시정지. 다른 창·카드·현수막 설치 중에는 열지 않는다.</summary>
         public bool OpenMasterBrew()
         {
-            if (Master == null || MasterHud == null || State != GameState.Playing || IsPaused || resuming) return false;
+            if (!CanOpenMasterBrew) return false;
             IsPaused = true; MasterBrewOpen = true; Time.timeScale = 0f; EnterFrozenAudio();
             MasterHud.ShowBrew();
             return true;
