@@ -20,7 +20,7 @@ namespace CCT
         Text bannerSub;
         Text schemeLabel;
         GameObject saveFailedRoot;
-        Image slowIcon, suppressedIcon, sealIcon, bossInvulnerableIcon;
+        Image slowIcon, suppressedIcon, sealIcon, attackSlowIcon, healBlockIcon, bossInvulnerableIcon;
         Button pauseButton;
         float bannerRemaining;
         Text hiddenSummary, hiddenActivity, jobTrait, comboTarget, guide;
@@ -233,16 +233,20 @@ namespace CCT
             view.slowIcon = UiFactory.AddIcon(root, "status_slow", new Vector2(0f, 1f), new Vector2(48f, -70f), 40f);
             view.suppressedIcon = UiFactory.AddIcon(root, "status_suppressed", new Vector2(0f, 1f), new Vector2(92f, -70f), 40f);
             view.sealIcon = UiFactory.AddIcon(root, "seal_lock", new Vector2(0f, 1f), new Vector2(136f, -70f), 40f);
-            foreach (var icon in new[] { view.slowIcon, view.suppressedIcon, view.sealIcon })
+            // 2026-11-22 정식 아트: 공격 속도 감소·회복 차단은 전용 아이콘(둔화 아이콘은 이동 둔화 전용). 아트가 없으면 둔화 아이콘이 공격 속도 감소도 겸한다.
+            view.attackSlowIcon = UiFactory.AddIcon(root, FeedbackArt.StatusAttackSpeedDown, new Vector2(0f, 1f), new Vector2(180f, -70f), 40f);
+            view.healBlockIcon = UiFactory.AddIcon(root, FeedbackArt.StatusHealBlock, new Vector2(0f, 1f), new Vector2(224f, -70f), 40f);
+            foreach (var icon in new[] { view.slowIcon, view.suppressedIcon, view.sealIcon, view.attackSlowIcon, view.healBlockIcon })
                 if (icon != null) icon.gameObject.SetActive(false);
             bool hasStatusIcons = view.slowIcon != null;
+            float statusTextX = view.attackSlowIcon != null && view.healBlockIcon != null ? 88f : 0f; // 아이콘 2칸(44px씩) 늘어난 만큼 문구를 오른쪽으로
             // 2026-10-12: 환불 무효 상태가 선반 그림 위 글자만이라 안 보였다 — 걸렸을 때만 어두운 바탕(입력 안 막음).
-            var suppressBackRt = UiFactory.Place("SuppressedBacking", root, new Vector2(0f, 1f), new Vector2(hasStatusIcons ? 176f : 22f, -66f),
+            var suppressBackRt = UiFactory.Place("SuppressedBacking", root, new Vector2(0f, 1f), new Vector2(hasStatusIcons ? 176f + statusTextX : 22f, -66f),
                 new Vector2(hasStatusIcons ? 336f : 536f, 46f));
             UiFactory.AddImage(suppressBackRt, new Color(.06f, .05f, .08f, .86f)).raycastTarget = false;
             view.suppressedBack = suppressBackRt.gameObject;
             view.suppressedBack.SetActive(false);
-            var suppressRt = UiFactory.Place("Suppressed", root, new Vector2(0f, 1f), new Vector2(hasStatusIcons ? 184f : 30f, -70f),
+            var suppressRt = UiFactory.Place("Suppressed", root, new Vector2(0f, 1f), new Vector2(hasStatusIcons ? 184f + statusTextX : 30f, -70f),
                 new Vector2(hasStatusIcons ? 320f : 520f, 40f));
             view.suppressed = UiFactory.AddText(suppressRt, "", 26, TextAnchor.MiddleLeft,
                 new Color(1f, 0.4f, 0.45f));
@@ -585,7 +589,9 @@ namespace CCT
             info.text = $"{seconds / 60:00}:{seconds % 60:00}\n처치 {game.Kills}";
 
             var stats = game.Stats;
-            SetIcon(slowIcon, stats.IsSlowed || stats.AttackSlowed);
+            SetIcon(slowIcon, stats.IsSlowed || (stats.AttackSlowed && attackSlowIcon == null)); // 정식 아이콘이 있으면 둔화 = 이동 둔화 전용
+            SetIcon(attackSlowIcon, stats.AttackSlowed);
+            SetIcon(healBlockIcon, stats.HealBlocked); // 두 상태는 함께 걸릴 수 있다(둘 다 표시)
             SetIcon(suppressedIcon, stats.BonusesSuppressed);
             SetIcon(sealIcon, stats.FlameLocked || stats.PoisonLocked || stats.HybridLocked);
             // 2026-11-22 공용 디버프 몹: 공격 속도 감소·회복 차단을 같은 상태 줄에 남은 초와 함께(환불이 우선).

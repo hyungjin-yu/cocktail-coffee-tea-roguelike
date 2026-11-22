@@ -424,7 +424,8 @@ namespace CCT
         public static readonly EnemyDef TeaCustomer=TeaVariant(DifficultCustomer,"까다로운 차 손님",DifficultCustomer.ArtId);
 
         // ───── 2026-11-22 주인 결정(피드백 13): 바텐더·차 공용 디버프 몹 2종(중립 계열, 재료 드랍 없음 — 처치 보상은 '디버프 해소').
-        // 임시 아트: 기존 몹 그림을 색만 바꿨다(정식 스프라이트는 아트 작업자 몫 — 보고서 목록 참고). 등장 = DebuffMobSchedule.
+        // 정식 아트(2026-11-22 v1-formal-pixels): artId → FeedbackArt(128px 몸체 별도 등록). spriteResourcePath 는 아트 누락 시 fallback 전용 —
+        // 다른 몹도 쓰는 파일이라 덮어쓰지 않는다. 등장 = DebuffMobSchedule.
 
         /// <summary>쓴맛 안개: 거리를 두고 떠다니다 4.5초마다 1초 예고(발밑 원이 차오름) 뒤 반경 2.4 파동 —
         /// 안에 있으면 이동 둔화(70%)·공격 속도 -25% 3초. 체력 낮음(처치 우선순위), 접촉 피해 작음.</summary>
@@ -437,9 +438,10 @@ namespace CCT
             speed = 1.3f,
             contactDamage = 3f,
             dropCount = 0,
-            spriteResourcePath = "Icons/Enemies/swirl_stick_conjuror",
+            artId = FeedbackArt.BitterMist,
+            spriteResourcePath = "Icons/Enemies/swirl_stick_conjuror", // fallback 전용
             iconVisualScale = 2f,
-            iconTint = new Color(0.72f, 0.55f, 1f),
+            iconTint = Color.white,
         };
 
         /// <summary>빈 잔 도둑: 빠르게 다가와 닿으면 회복 차단 5초 + 공격 속도 -20% 3초, 그 뒤 1.6초 달아난다(치고 빠지기).
@@ -453,10 +455,10 @@ namespace CCT
             speed = 3.3f,
             contactDamage = 4f,
             dropCount = 0,
-            // 임시 아트: 밀크 포머(흰 거품) 그림을 하늘색으로 — 초록 라임웨지와 헷갈리지 않게(2026-11-22 화면 검수 반영). 머리 위 하늘색 표식은 GlassThiefDriver.
-            spriteResourcePath = "Icons/Enemies/milk_foamer_bgfix",
+            artId = FeedbackArt.GlassThief,
+            spriteResourcePath = "Icons/Enemies/milk_foamer_bgfix", // fallback 전용(다른 몹 공용 파일)
             iconVisualScale = 2f,
-            iconTint = new Color(0.45f, 0.72f, 1f),
+            iconTint = Color.white,
             contactHealBlockSeconds = 5f,
             contactAttackSlowSeconds = 3f,
             contactAttackSlowMultiplier = 0.8f,
