@@ -21,7 +21,7 @@ namespace CCT.Tests
         readonly StringBuilder log = new StringBuilder();
         GameManager game;
         Canvas canvas;
-        bool savedSuppress;
+        bool savedSuppress, setUpDone;
 
         [UnitySetUp]
         public IEnumerator SetUp()
@@ -33,6 +33,7 @@ namespace CCT.Tests
             foreach (var v in UnityEngine.Object.FindObjectsByType<TitleView>(FindObjectsSortMode.None)) UnityEngine.Object.DestroyImmediate(v.gameObject);
             savedSuppress = CardEducationGuide.SuppressAutomaticForTests;
             CardEducationGuide.SuppressAutomaticForTests = true;
+            setUpDone = true;
             SettingsService.SetEffectsLevel(SettingsData.EffectsNormal);
     
             yield return null;
@@ -41,6 +42,8 @@ namespace CCT.Tests
         [UnityTearDown]
         public IEnumerator TearDown()
         {
+            // 증거 환경 변수가 없어 SetUp에서 Ignore되면 아무것도 건드리지 않는다(전역 시험 상태 오염 방지: 안내 자동 표시 억제 값을 false로 되돌려 이후 시험이 깨졌다).
+            if (!setUpDone) yield break;
             Time.captureFramerate = 0;
             if (!string.IsNullOrEmpty(dir)) File.AppendAllText(Path.Combine(dir, "evidence-log.txt"), log.ToString(), new UTF8Encoding(false));
             if (game != null) UnityEngine.Object.Destroy(game.gameObject);

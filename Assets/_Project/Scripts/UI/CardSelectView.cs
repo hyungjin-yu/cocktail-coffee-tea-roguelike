@@ -47,7 +47,7 @@ namespace CCT
             public int index;
             public float sweepPhase;
             // 2026-11-22 레벨업 메뉴판: 등급별 내부 장식(불투명 바탕 포함), 건네기 중 노출·정착 상태
-            public Image deco;
+            public Image deco, focusTint;
             public CanvasGroup frameGroup, glowGroup;
             public float baseX, settle = 1f;
         }
@@ -259,6 +259,11 @@ namespace CCT
             slot.deco = decoRt.gameObject.AddComponent<Image>();
             slot.deco.color = Color.white; slot.deco.raycastTarget = false;
             decoRt.SetAsFirstSibling();
+            // 불투명 장식이 기존 바탕 위 hover/선택 색 변화를 가리므로, 장식 바로 위·글/아이콘 아래에 은은한 등급색 막을 둔다(확대·테두리와 함께 표시).
+            var tintRt = UiFactory.Stretch("FocusTint", rt);
+            slot.focusTint = tintRt.gameObject.AddComponent<Image>();
+            slot.focusTint.color = Color.clear; slot.focusTint.raycastTarget = false;
+            tintRt.SetSiblingIndex(1);
             // 피드백 12: 목표 기여 표식 — 왼쪽 위(순번을 뺀 자리). 청록 표식 + "목표" / 완성이면 금색 "목표 완성".
             // 카드 위 테두리에 걸친 왼쪽 표식 줄(가운데 "추천" 표식과 같은 줄, 겹치지 않는 왼쪽) — 카드 안 등급 글과 겹치지 않는다.
             var gm = UiFactory.Place("GoalMark", rt, new Vector2(0f, 1f), new Vector2(-10f, 26f), new Vector2(124f, 44f));
@@ -464,6 +469,8 @@ namespace CCT
             slot.fill.rectTransform.sizeDelta = new Vector2(slot.fill.rectTransform.sizeDelta.x, 0f);
         }
 
+        public const float FocusTintAlpha = 0.16f;
+        public float FocusAlpha(int index) => index >= 0 && index < SlotCount ? slots[index].focusTint.color.a : 0f;
         public const float PourSeconds = 0.34f, PourFadeSeconds = 0.18f, HoverScale = 1.05f, GlowBase = 0.22f;
         /// <summary>테스트·QA용 — 등장 연출이 끝났는지, 카드 확대 배율, 테두리 빛 알파, 카드 투명도.</summary>
         public bool EntranceDone(int index) => index >= 0 && index < SlotCount && slots[index].enterT < 0f;
@@ -524,6 +531,9 @@ namespace CCT
                 float scale = entrance * s.hoverScale;
                 var v = new Vector3(scale, scale, 1f);
                 s.cardRt.localScale = v;
+                float focusK = Mathf.InverseLerp(1f, HoverScale, s.hoverScale);
+                var tc = Color.Lerp(RarityTable.Color(s.rarityValue), Color.white, 0.5f);
+                s.focusTint.color = new Color(tc.r, tc.g, tc.b, FocusTintAlpha * focusK);
                 s.rarityFrame.rectTransform.localScale = v;
                 s.glow.rectTransform.localScale = v;
             }

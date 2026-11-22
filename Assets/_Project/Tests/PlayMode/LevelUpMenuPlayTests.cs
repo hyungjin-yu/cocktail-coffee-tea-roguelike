@@ -34,10 +34,13 @@ namespace CCT.Tests
         [UnityTearDown]
         public IEnumerator Cleanup()
         {
-            if (kb != null)
+            if (kb != null || mouse != null || touch != null)
             {
-                UnityEngine.InputSystem.InputSystem.RemoveDevice(kb); kb = null;
-                var s = UnityEngine.InputSystem.InputSystem.settings; s.backgroundBehavior = savedBg; s.editorInputBehaviorInPlayMode = savedEditor;
+                if (kb != null) UnityEngine.InputSystem.InputSystem.RemoveDevice(kb);
+                if (mouse != null) UnityEngine.InputSystem.InputSystem.RemoveDevice(mouse);
+                if (touch != null) UnityEngine.InputSystem.InputSystem.RemoveDevice(touch);
+                kb = null; mouse = null; touch = null;
+                var s =UnityEngine.InputSystem.InputSystem.settings; s.backgroundBehavior = savedBg; s.editorInputBehaviorInPlayMode = savedEditor;
             }
             if (game != null) Object.Destroy(game.gameObject);
             game = null;
@@ -328,6 +331,134 @@ namespace CCT.Tests
             Assert.AreEqual(GameState.HybridOffer, game.State);
             Assert.AreEqual(3, game.HybridView.HandoffTier);
             game.HybridView.Unlock();
+        }
+
+        // ───── 2차 검수: 선택 틴트·마우스·터치·정상 런 레벨업 입력과 재진입 ─────
+
+        static Vector2 Center(RectTransform rt)
+        {
+            var c = new Vector3[4]; rt.GetWorldCorners(c);
+            return (c[0] + c[2]) * 0.5f;
+        }
+
+        Mouse mouse;
+        Touchscreen touch;
+
+        void AllowVirtualDevices()
+        {
+            var st = UnityEngine.InputSystem.InputSystem.settings;
+            if (kb == null && mouse == null && touch == null) { savedBg = st.backgroundBehavior; savedEditor = st.editorInputBehaviorInPlayMode; }
+            st.editorInputBehaviorInPlayMode = UnityEngine.InputSystem.InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+            st.backgroundBehavior = UnityEngine.InputSystem.InputSettings.BackgroundBehavior.IgnoreFocus;
+        }
+
+        [UnityTest]
+        public IEnumerator FocusTint_ShowsOnSelectedCard_AboveDecorationBelowText()
+        {
+            yield return Run(Job.Bartender, WeaponKind.Rapier);
+            var view = game.CardView;
+            view.Show(Mixed(), _ => { });
+            yield return new WaitForSecondsRealtime(0.7f);
+            Assert.AreEqual(CardSelectView.FocusTintAlpha, view.FocusAlpha(0), 0.01f, "선택된(첫) 카드: 장식 위 틴트");
+            Assert.AreEqual(0f, view.FocusAlpha(1), 1e-4f, "다른 카드는 틴트 없음");
+            Assert.Less(CardSelectView.FocusTintAlpha, 0.25f, "글자 가독성 유지(은은한 막)");
+            var tint = view.transform.Find("Card1/FocusTint");
+            Assert.Less(tint.GetSiblingIndex(), view.transform.Find("Card1/Name").GetSiblingIndex(), "틴트는 글·아이콘 아래");
+            Assert.Greater(tint.GetSiblingIndex(), view.transform.Find("Card1/MenuDeco").GetSiblingIndex(), "장식 위");
+            Assert.IsFalse(tint.GetComponent<Image>().raycastTarget);
+            view.Choose(0);
+        }
+
+        [UnityTest]
+        public IEnumerator Mouse_Hover_Tints_Click_Selects_NotDuringHandoff()
+        {
+            yield return Run(Job.Bartender, WeaponKind.Rapier);
+            AllowVirtualDevices();
+            mouse = UnityEngine.InputSystem.InputSystem.AddDevice<Mouse>("LevelUpMenuMouse");
+            mouse.MakeCurrent();
+            var view = game.CardView;
+            CardOffer? chosen = null;
+            view.Show(Mixed(), o => chosen = o);
+            yield return null;
+            Vector2 p2 = Center((RectTransform)view.transform.Find("Card2"));
+            UnityEngine.InputSystem.InputSystem.QueueStateEvent(mouse, new MouseState { position = p2 }.WithButton(MouseButton.Left, true));
+            yield return null; yield return null;
+            UnityEngine.InputSystem.InputSystem.QueueStateEvent(mouse, new MouseState { position = p2 });
+            yield return null; yield return null;
+            Assert.IsNull(chosen, "전달 중 클릭은 선택하지 않는다");
+            yield return new WaitForSecondsRealtime(0.6f);
+            UnityEngine.InputSystem.InputSystem.QueueStateEvent(mouse, new MouseState { position = p2 });
+            yield return null; yield return null; yield return null;
+            Assert.Greater(view.FocusAlpha(1), 0.05f, "마우스를 올리면 그 카드에 틴트");
+            UnityEngine.InputSystem.InputSystem.QueueStateEvent(mouse, new MouseState { position = p2 }.WithButton(MouseButton.Left, true));
+            yield return null; yield return null;
+            UnityEngine.InputSystem.InputSystem.QueueStateEvent(mouse, new MouseState { position = p2 });
+            yield return null; yield return null;
+            Assert.IsTrue(chosen.HasValue, "정착 뒤 클릭은 그 카드 선택");
+            Assert.AreEqual(Pick(CardRarity.Rare, CardCategory.Cocktail).id, chosen.Value.card.id);
+        }
+
+        [UnityTest]
+        public IEnumerator Touch_Tap_Selects_AfterSettle_NotDuringHandoff()
+        {
+            yield return Run(Job.Bartender, WeaponKind.Rapier);
+            AllowVirtualDevices();
+            touch = UnityEngine.InputSystem.InputSystem.AddDevice<Touchscreen>("LevelUpMenuTouch");
+            var view = game.CardView;
+            CardOffer? chosen = null;
+            view.Show(Mixed(), o => chosen = o);
+            yield return null;
+            Vector2 p3 = Center((RectTransform)view.transform.Find("Card3"));
+            void Touch(int id, bool down) => UnityEngine.InputSystem.InputSystem.QueueStateEvent(touch, new TouchState
+            {
+                touchId = id, phase = down ? UnityEngine.InputSystem.TouchPhase.Began : UnityEngine.InputSystem.TouchPhase.Ended,
+                position = p3, pressure = down ? 1f : 0f,
+            });
+            Touch(1, true); yield return null; yield return null; Touch(1, false); yield return null; yield return null;
+            Assert.IsNull(chosen, "전달 중 탭은 선택하지 않는다");
+            yield return new WaitForSecondsRealtime(0.6f);
+            Touch(2, true); yield return null; yield return null; Touch(2, false); yield return null; yield return null;
+            Assert.IsTrue(chosen.HasValue, "정착 뒤 탭 선택");
+            Assert.AreEqual(Pick(CardRarity.Epic, CardCategory.Cocktail).id, chosen.Value.card.id);
+        }
+
+        [UnityTest]
+        public IEnumerator RealRun_LevelUp_KeyChoose_ReentryHoldsWhileKeyStillPressed()
+        {
+            yield return Run(Job.Bartender, WeaponKind.Rapier);
+            game.Stats.Apply(new CardEffect(CardEffectType.MaxHpFlat, 100000f)); game.Player.Heal(1f);
+            VirtualKeyboard();
+            game.AddIngredient(IngredientType.Cocktail, 5000);
+            int opened = 0, handoffs = 0, heldReentries = 0;
+            for (int guard = 0; guard < 900 && opened < 3; guard++)
+            {
+                if (game.State == GameState.LevelUp && game.CardView.IsOpen)
+                {
+                    opened++;
+                    if (game.CardView.HandoffPlaying) handoffs++;
+                    float until = Time.realtimeSinceStartup + 3f;
+                    while ((game.CardView.HandoffPlaying || game.CardView.InputLocked) && Time.realtimeSinceStartup < until) yield return null;
+                    Assert.IsTrue(game.CardView.IsOpen, "정착까지 자동 선택 없음");
+                    var firstOffers = game.CardView.Offers.Select(o => o.card.id).ToList();
+                    Queue(kb, Key.Digit1); // 1키 선택, 이후 계속 누른 상태
+                    yield return null; yield return null;
+                    if (game.State == GameState.LevelUp && game.CardView.IsOpen)
+                    {
+                        // 같은 호출에서 다음 보상이 열림 — 눌린 키로 자동 선택되면 안 된다
+                        for (int i = 0; i < 25; i++) yield return null;
+                        Assert.IsTrue(game.State == GameState.LevelUp && game.CardView.IsOpen, "눌린 키로 재진입 창이 자동 선택됨");
+                        heldReentries++;
+                    }
+                    Queue(kb);
+                    yield return null; yield return null;
+                    continue;
+                }
+                if (game.State == GameState.SkillSelect) game.SkillView.Choose(game.Skills.Nodes.First(n => game.Skills.IsAvailable(n)));
+                yield return null;
+            }
+            Assert.GreaterOrEqual(opened, 1, "정상 런에서 레벨업이 열려야 한다");
+            Assert.GreaterOrEqual(handoffs, 1, "정상 런 레벨업도 건네기로 시작");
+            Debug.Log($"[LevelUpMenu] realrun opened={opened} handoffs={handoffs} heldReentries={heldReentries}");
         }
     }
 }
