@@ -1,0 +1,1437 @@
+{
+  "ready": true,
+  "revision": 1,
+  "scope": "2026-11-22 feedback 1/2 formal pixel art",
+  "pngCount": 83,
+  "nativeCount": 21,
+  "unityRuntimeVerified": false,
+  "pivotOrigin": "bottom-left normalized",
+  "previews": [
+    {
+      "path": "previews/enemy-comparison.png",
+      "sha256": "748dafa8b2154592c2fcecef00b04952ad8f474c5eada7402e4e5a30260f9753",
+      "canvas": [
+        880,
+        286
+      ]
+    },
+    {
+      "path": "previews/body-frames.png",
+      "sha256": "221752ba1505198ec0c24d0f83e260e2d94208a6e533e219ae48fe34f369b1f6",
+      "canvas": [
+        925,
+        1540
+      ]
+    },
+    {
+      "path": "previews/ground-fx-frames.png",
+      "sha256": "1b5f5571fdb45b7b500fb0f0f5b240bfcc514e00db879f75459816ccc02740ba",
+      "canvas": [
+        925,
+        560
+      ]
+    },
+    {
+      "path": "previews/icons.png",
+      "sha256": "ea2978b031d67564175acb7980b2cea374ebd9fd9a31afc386d556b9d9f53784",
+      "canvas": [
+        825,
+        396
+      ]
+    },
+    {
+      "path": "previews/bitter_mist.gif",
+      "sha256": "0d0d4f1cce2de7aa37006bb48c283216e354f93f7b9de75496d8f5513e3b21ed",
+      "canvas": [
+        128,
+        128
+      ]
+    },
+    {
+      "path": "previews/glass_thief.gif",
+      "sha256": "5db0c6ddd1f915ad2b520c465f3a708bbe19b9b3eda27c5726714dcc9d2b9039",
+      "canvas": [
+        128,
+        128
+      ]
+    },
+    {
+      "path": "previews/bitter_mist_pulse.gif",
+      "sha256": "bf102bc9e65fa9edcd8f4f0b0e99cd780a12ee27501563d27838ae7076166c88",
+      "canvas": [
+        256,
+        128
+      ]
+    },
+    {
+      "path": "previews/mixing_rush_aura.gif",
+      "sha256": "51fe8dd453fb0660beeaed05f33dfbd20a04983bfd25bd1ffd2b8bff291f71b1",
+      "canvas": [
+        256,
+        128
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "bitter_mist",
+      "kind": "body",
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.125
+      ],
+      "clips": [
+        {
+          "name": "idle",
+          "fps": 6,
+          "loop": true,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 167,
+              "path": "ready/body/bitter_mist/bitter_mist_idle_right_00.png",
+              "sha256": "efd93c1f3ff40d566121fdbdf1d673c9687a81268d464b21d49dce5dcb104c9d",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_idle_right_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 1,
+              "durationMs": 166,
+              "path": "ready/body/bitter_mist/bitter_mist_idle_right_01.png",
+              "sha256": "1f807e8f5a3c3b3914bdbd750347619f23bbee253983420306a3159023d5cfe8",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_idle_right_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 2,
+              "durationMs": 167,
+              "path": "ready/body/bitter_mist/bitter_mist_idle_right_02.png",
+              "sha256": "5a102d16322fe0141dd9e5df57ba8c35f91ecbddd017d2fa80be72ca44659fcd",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_idle_right_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 3,
+              "durationMs": 167,
+              "path": "ready/body/bitter_mist/bitter_mist_idle_right_03.png",
+              "sha256": "ab7297cbd1e259c7eb0b71e4f67aed74d71692575d3b297c149e0c179b46f0fe",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_idle_right_03.png"
+            }
+          ]
+        },
+        {
+          "name": "move",
+          "fps": 8,
+          "loop": true,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 4,
+              "durationMs": 125,
+              "path": "ready/body/bitter_mist/bitter_mist_move_right_00.png",
+              "sha256": "3200f0894cdec65152ce3a338c544006b4ee211354707d495cf7c6d07bd7d334",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_move_right_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 5,
+              "durationMs": 125,
+              "path": "ready/body/bitter_mist/bitter_mist_move_right_01.png",
+              "sha256": "35d351f3e5c7dcacd83e557de528dd52ecc383b341b4dd12ba31c71e9ab34d4e",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_move_right_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 6,
+              "durationMs": 125,
+              "path": "ready/body/bitter_mist/bitter_mist_move_right_02.png",
+              "sha256": "46541ee9f1ab9556872179bde41a00d694d56c2f949cd65d0b6e13748c6dd59d",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_move_right_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 7,
+              "durationMs": 125,
+              "path": "ready/body/bitter_mist/bitter_mist_move_right_03.png",
+              "sha256": "0060462924686a0fdf4f0eb4435bddcc88b4f48f8e2f6677db7a9a5a95f4a899",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_move_right_03.png"
+            },
+            {
+              "index": 4,
+              "timelineIndex": 8,
+              "durationMs": 125,
+              "path": "ready/body/bitter_mist/bitter_mist_move_right_04.png",
+              "sha256": "3200f0894cdec65152ce3a338c544006b4ee211354707d495cf7c6d07bd7d334",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_move_right_04.png"
+            },
+            {
+              "index": 5,
+              "timelineIndex": 9,
+              "durationMs": 125,
+              "path": "ready/body/bitter_mist/bitter_mist_move_right_05.png",
+              "sha256": "218d87dacd0bd7aacdeae9c918fbfc3c57313e2074f8853f5fa41158e875c161",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_move_right_05.png"
+            }
+          ]
+        },
+        {
+          "name": "action",
+          "fps": 10,
+          "loop": false,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 10,
+              "durationMs": 100,
+              "path": "ready/body/bitter_mist/bitter_mist_action_right_00.png",
+              "sha256": "b4c28e8e502752e52f253127394e94c1b82dfad3946ee4d9f9cdaccae01a3d85",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_action_right_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 11,
+              "durationMs": 100,
+              "path": "ready/body/bitter_mist/bitter_mist_action_right_01.png",
+              "sha256": "ae3e781e8844add622f24b1c63557edfa7d17e7b30524e26d3b84544d4b56f30",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_action_right_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 12,
+              "durationMs": 100,
+              "path": "ready/body/bitter_mist/bitter_mist_action_right_02.png",
+              "sha256": "53f63b957be64a0b038968f5853b6b28348901adc60f620c2ba9f2502ea5095a",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_action_right_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 13,
+              "durationMs": 100,
+              "path": "ready/body/bitter_mist/bitter_mist_action_right_03.png",
+              "sha256": "1287cf9373e9a27965910107af928c024de4f5edf2a6f050fe682e471e87431e",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_action_right_03.png"
+            },
+            {
+              "index": 4,
+              "timelineIndex": 14,
+              "durationMs": 100,
+              "path": "ready/body/bitter_mist/bitter_mist_action_right_04.png",
+              "sha256": "2dc5769b15e14ccfd1f1d8a9da4cfecf1b4d32521c2f112a7b391240cf94f9df",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_action_right_04.png"
+            },
+            {
+              "index": 5,
+              "timelineIndex": 15,
+              "durationMs": 100,
+              "path": "ready/body/bitter_mist/bitter_mist_action_right_05.png",
+              "sha256": "a5f3d2cb5463304a037fd5e30bb0017149a027beded305ed202cecae01f80dc3",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_action_right_05.png"
+            }
+          ]
+        },
+        {
+          "name": "hurt",
+          "fps": 12.5,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 16,
+              "durationMs": 80,
+              "path": "ready/body/bitter_mist/bitter_mist_hurt_right_00.png",
+              "sha256": "28130fb18579704eff74ba1a3c33d7698302e6306a923715ad4d651c08f0df95",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_hurt_right_00.png"
+            }
+          ]
+        },
+        {
+          "name": "defeat",
+          "fps": 10,
+          "loop": false,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 17,
+              "durationMs": 100,
+              "path": "ready/body/bitter_mist/bitter_mist_defeat_right_00.png",
+              "sha256": "470374e73df4975536f70dcb83135976cb6e46c77c37221c3025b0177df4c450",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_defeat_right_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 18,
+              "durationMs": 100,
+              "path": "ready/body/bitter_mist/bitter_mist_defeat_right_01.png",
+              "sha256": "350c8180c0c5a14e07972522ecfe875e1b508902d80b72e31d34ffed46753815",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_defeat_right_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 19,
+              "durationMs": 100,
+              "path": "ready/body/bitter_mist/bitter_mist_defeat_right_02.png",
+              "sha256": "eb640c1a17632cf8bb8cbe05a3acdb35db3b494356a2e69b63a66de22bd0badb",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_defeat_right_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 20,
+              "durationMs": 100,
+              "path": "ready/body/bitter_mist/bitter_mist_defeat_right_03.png",
+              "sha256": "3fee46ef7a500b9ebd2796b2933849594c6dae04c4ad2d67d450be0b1173a357",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist/bitter_mist_defeat_right_03.png"
+            }
+          ]
+        }
+      ],
+      "bodyHeightPx": 90,
+      "pixelsPerUnit": 128,
+      "facing": "right",
+      "mirrorForLeft": true,
+      "footPixelY": 16,
+      "native": "native/body/bitter_mist.aseprite",
+      "nativeSha256": "ba05ff3724e3ec8e75f52ec355281e2708933a98cb7695692af12c7525e344da"
+    },
+    {
+      "id": "glass_thief",
+      "kind": "body",
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.125
+      ],
+      "clips": [
+        {
+          "name": "idle",
+          "fps": 6,
+          "loop": true,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 167,
+              "path": "ready/body/glass_thief/glass_thief_idle_right_00.png",
+              "sha256": "6f2add74a4a68efe4c618b63f5e0bd117a02a60d9004c3583b163302b8620870",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_idle_right_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 1,
+              "durationMs": 166,
+              "path": "ready/body/glass_thief/glass_thief_idle_right_01.png",
+              "sha256": "28ca5f8d694416a9776357433f2e9dee52a9cd41117cc099aa06b14ff6eb243d",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_idle_right_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 2,
+              "durationMs": 167,
+              "path": "ready/body/glass_thief/glass_thief_idle_right_02.png",
+              "sha256": "5590d308ed17b34e147eb1b1878c6a16ac3877b939bb6063afe934f472054446",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_idle_right_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 3,
+              "durationMs": 167,
+              "path": "ready/body/glass_thief/glass_thief_idle_right_03.png",
+              "sha256": "e1c27cc50c3118b9e779c58cca62ffe3f77ad95ed65ac5c79f9e19fd0945077e",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_idle_right_03.png"
+            }
+          ]
+        },
+        {
+          "name": "move",
+          "fps": 12,
+          "loop": true,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 4,
+              "durationMs": 83,
+              "path": "ready/body/glass_thief/glass_thief_move_right_00.png",
+              "sha256": "fcbfa453be6e1fdd8d7b27209178d4b62580f86f597ee2fe65ef4836548f4e79",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_move_right_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 5,
+              "durationMs": 84,
+              "path": "ready/body/glass_thief/glass_thief_move_right_01.png",
+              "sha256": "f4c803959a484f86bc2fcbff40941e4f8c4564b4b5336bfeb1384b93bf64c520",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_move_right_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 6,
+              "durationMs": 83,
+              "path": "ready/body/glass_thief/glass_thief_move_right_02.png",
+              "sha256": "774b10f21abbe7bb1a4ab9f8d4570e00cee0facd22b30203c628429aafe0b867",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_move_right_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 7,
+              "durationMs": 83,
+              "path": "ready/body/glass_thief/glass_thief_move_right_03.png",
+              "sha256": "d46591902d4875c71edfc9f2245da20076c0c69a44fc0cd62fd4e7f2c584fa4b",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_move_right_03.png"
+            },
+            {
+              "index": 4,
+              "timelineIndex": 8,
+              "durationMs": 84,
+              "path": "ready/body/glass_thief/glass_thief_move_right_04.png",
+              "sha256": "ca83181d96f239bcbf2cb4050bdd36666f0e67e529b56b208148cc93a41b030d",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_move_right_04.png"
+            },
+            {
+              "index": 5,
+              "timelineIndex": 9,
+              "durationMs": 83,
+              "path": "ready/body/glass_thief/glass_thief_move_right_05.png",
+              "sha256": "dd957d82859e024ec5b3abed59397589ef433a0584410bf507ff2b55c467aceb",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_move_right_05.png"
+            }
+          ]
+        },
+        {
+          "name": "action",
+          "fps": 14,
+          "loop": false,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 10,
+              "durationMs": 71,
+              "path": "ready/body/glass_thief/glass_thief_action_right_00.png",
+              "sha256": "9bc44723736dd1ef4627ac66cecb0bf68ddf463c581dbc7c5c2461e9e315d095",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_action_right_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 11,
+              "durationMs": 72,
+              "path": "ready/body/glass_thief/glass_thief_action_right_01.png",
+              "sha256": "4e09f50a9bf0c5f98be40cdcbed63c5307d1540cdcce27870554273d79eb7d0c",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_action_right_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 12,
+              "durationMs": 71,
+              "path": "ready/body/glass_thief/glass_thief_action_right_02.png",
+              "sha256": "ec184ee4fb43986cae337ee934ea50e41869303c1a01ca7c76d325ff2ce78d81",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_action_right_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 13,
+              "durationMs": 72,
+              "path": "ready/body/glass_thief/glass_thief_action_right_03.png",
+              "sha256": "8c5a9c3ce8c913b49e7f7e3a5732085a2602eff89a57156b58d4d7d6f95dd9d4",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_action_right_03.png"
+            }
+          ]
+        },
+        {
+          "name": "flee",
+          "fps": 14,
+          "loop": true,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 14,
+              "durationMs": 71,
+              "path": "ready/body/glass_thief/glass_thief_flee_right_00.png",
+              "sha256": "e227126d6327ad0c75e512e4537b01edb3aafb5de700545a8040d8f853964ea0",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_flee_right_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 15,
+              "durationMs": 72,
+              "path": "ready/body/glass_thief/glass_thief_flee_right_01.png",
+              "sha256": "d4236a9599dcd88d3ecaacc9a3ccd37d5dce482309a1995bcdd155d8692e0290",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_flee_right_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 16,
+              "durationMs": 71,
+              "path": "ready/body/glass_thief/glass_thief_flee_right_02.png",
+              "sha256": "57009a5befa704ddfcf1b481d7277cca740ddeddb814cea18b5bb529006c1bcc",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_flee_right_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 17,
+              "durationMs": 72,
+              "path": "ready/body/glass_thief/glass_thief_flee_right_03.png",
+              "sha256": "38bd89613f96f2374e89eca22fcc80725f5070ce77154e208c72af72e0c60d9e",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_flee_right_03.png"
+            },
+            {
+              "index": 4,
+              "timelineIndex": 18,
+              "durationMs": 71,
+              "path": "ready/body/glass_thief/glass_thief_flee_right_04.png",
+              "sha256": "38b379929e2ce36d9932c0e936540a8932f496ba358eec920e6a61ed0a872356",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_flee_right_04.png"
+            },
+            {
+              "index": 5,
+              "timelineIndex": 19,
+              "durationMs": 72,
+              "path": "ready/body/glass_thief/glass_thief_flee_right_05.png",
+              "sha256": "6c35314f59c85a563c18b5edb402fc5ab8e2a62c284974edd9a5c1fa551f56c1",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_flee_right_05.png"
+            }
+          ]
+        },
+        {
+          "name": "hurt",
+          "fps": 12.5,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 20,
+              "durationMs": 80,
+              "path": "ready/body/glass_thief/glass_thief_hurt_right_00.png",
+              "sha256": "96c6ca1610e536b876dc18aac4dbf3a9f813a7d5d232594b6432fd292a8cd82f",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_hurt_right_00.png"
+            }
+          ]
+        },
+        {
+          "name": "defeat",
+          "fps": 10,
+          "loop": false,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 21,
+              "durationMs": 100,
+              "path": "ready/body/glass_thief/glass_thief_defeat_right_00.png",
+              "sha256": "5d4be61544bcd215395b5ab582588f30ce1e186ffa7723c9f6f0302e8ac740b6",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_defeat_right_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 22,
+              "durationMs": 100,
+              "path": "ready/body/glass_thief/glass_thief_defeat_right_01.png",
+              "sha256": "5895b867a12d1650924ea030f3fdd0aefd23a015a4f0c74a9f2b8968802e4134",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_defeat_right_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 23,
+              "durationMs": 100,
+              "path": "ready/body/glass_thief/glass_thief_defeat_right_02.png",
+              "sha256": "2be0a2fe3c42c78296a2938c3392403688de3598f9b7a057650ea8b1dcce6f6e",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_defeat_right_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 24,
+              "durationMs": 100,
+              "path": "ready/body/glass_thief/glass_thief_defeat_right_03.png",
+              "sha256": "e36c22db327e726055a7f2da54ec51aab87c5411f64d1f4030efee5208b1b180",
+              "destination": "Assets/_Project/Resources/FeedbackArt/glass_thief/glass_thief_defeat_right_03.png"
+            }
+          ]
+        }
+      ],
+      "bodyHeightPx": 70,
+      "pixelsPerUnit": 128,
+      "facing": "right",
+      "mirrorForLeft": true,
+      "footPixelY": 16,
+      "native": "native/body/glass_thief.aseprite",
+      "nativeSha256": "7e2f4c33f87a2ca6d1b569eee6d38723c9179101cc6ec51d10cc0342c6129d2c"
+    },
+    {
+      "id": "bitter_mist_pulse",
+      "kind": "ground_fx",
+      "canvas": [
+        256,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "charge",
+          "fps": 6,
+          "loop": false,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 167,
+              "path": "ready/ground_fx/bitter_mist_pulse/bitter_mist_pulse_charge_00.png",
+              "sha256": "1bae6188e7c9f94b9aba10ad13b4d9b018bf1655a29f8f9db75ca66a6ee725b2",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist_pulse/bitter_mist_pulse_charge_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 1,
+              "durationMs": 166,
+              "path": "ready/ground_fx/bitter_mist_pulse/bitter_mist_pulse_charge_01.png",
+              "sha256": "4afd14c30ecada0ee1f22b93b089a3ef594f61fc34560d0b26eb445fe81e57c5",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist_pulse/bitter_mist_pulse_charge_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 2,
+              "durationMs": 167,
+              "path": "ready/ground_fx/bitter_mist_pulse/bitter_mist_pulse_charge_02.png",
+              "sha256": "4c6a3d3cbcede6b47922546699f2eea6c53f230c33e9acb9efa2f339973d35e3",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist_pulse/bitter_mist_pulse_charge_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 3,
+              "durationMs": 167,
+              "path": "ready/ground_fx/bitter_mist_pulse/bitter_mist_pulse_charge_03.png",
+              "sha256": "c0a2ccba5ab4d70260719df2ea579a702436bfccfefe29999389d6f35fb23ea0",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist_pulse/bitter_mist_pulse_charge_03.png"
+            },
+            {
+              "index": 4,
+              "timelineIndex": 4,
+              "durationMs": 166,
+              "path": "ready/ground_fx/bitter_mist_pulse/bitter_mist_pulse_charge_04.png",
+              "sha256": "50141a4487de0d3d124a9d0f87745ffc0d3a519757801ce1c8dd5809ab318280",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist_pulse/bitter_mist_pulse_charge_04.png"
+            },
+            {
+              "index": 5,
+              "timelineIndex": 5,
+              "durationMs": 167,
+              "path": "ready/ground_fx/bitter_mist_pulse/bitter_mist_pulse_charge_05.png",
+              "sha256": "64248704feb6a7ce6a90a1e69f3bb66654fa29f760dadb28a31358dad6ce540b",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist_pulse/bitter_mist_pulse_charge_05.png"
+            }
+          ]
+        },
+        {
+          "name": "burst",
+          "fps": 14,
+          "loop": false,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 6,
+              "durationMs": 71,
+              "path": "ready/ground_fx/bitter_mist_pulse/bitter_mist_pulse_burst_00.png",
+              "sha256": "a1f1c3b1c31c0c4d15bc714f6c2b6e6df9e35ad3c2681e157cd82a8a8ba08dde",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist_pulse/bitter_mist_pulse_burst_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 7,
+              "durationMs": 72,
+              "path": "ready/ground_fx/bitter_mist_pulse/bitter_mist_pulse_burst_01.png",
+              "sha256": "85bacc9a0cc74be395bcdd757e648407808e74bbc7c9a14bf95aa1df46aa62fb",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist_pulse/bitter_mist_pulse_burst_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 8,
+              "durationMs": 71,
+              "path": "ready/ground_fx/bitter_mist_pulse/bitter_mist_pulse_burst_02.png",
+              "sha256": "912eb4f71270fe2ac75443384814c1bbe10b17a3b442d26555d7a0861de20502",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist_pulse/bitter_mist_pulse_burst_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 9,
+              "durationMs": 72,
+              "path": "ready/ground_fx/bitter_mist_pulse/bitter_mist_pulse_burst_03.png",
+              "sha256": "772d005dbb13726b65a5452c3a26c55dd9eb8ac8cb1c1c6c4a3f9241335b0a6c",
+              "destination": "Assets/_Project/Resources/FeedbackArt/bitter_mist_pulse/bitter_mist_pulse_burst_03.png"
+            }
+          ]
+        }
+      ],
+      "native": "native/ground_fx/bitter_mist_pulse.aseprite",
+      "nativeSha256": "03ea49e7bf41a4ef1a324fa020e65939b5853e740d0d1d00d341e0545bbc38e8"
+    },
+    {
+      "id": "mixing_rush_aura",
+      "kind": "ground_fx",
+      "canvas": [
+        256,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "active",
+          "fps": 8,
+          "loop": true,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 125,
+              "path": "ready/ground_fx/mixing_rush_aura/mixing_rush_aura_active_00.png",
+              "sha256": "7262dc4135a791f893a1a63c212443062a80ea80ad1968a619860d0bc47530f4",
+              "destination": "Assets/_Project/Resources/FeedbackArt/mixing_rush_aura/mixing_rush_aura_active_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 1,
+              "durationMs": 125,
+              "path": "ready/ground_fx/mixing_rush_aura/mixing_rush_aura_active_01.png",
+              "sha256": "dc11eba919d515e63f5ee0b43478e7ad8002400c5770da171b74b678bc66f181",
+              "destination": "Assets/_Project/Resources/FeedbackArt/mixing_rush_aura/mixing_rush_aura_active_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 2,
+              "durationMs": 125,
+              "path": "ready/ground_fx/mixing_rush_aura/mixing_rush_aura_active_02.png",
+              "sha256": "b2bb334a25962f0a58bfc49f45d64f2dc3d5c34658b94a1766d46b41a2d0d2ef",
+              "destination": "Assets/_Project/Resources/FeedbackArt/mixing_rush_aura/mixing_rush_aura_active_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 3,
+              "durationMs": 125,
+              "path": "ready/ground_fx/mixing_rush_aura/mixing_rush_aura_active_03.png",
+              "sha256": "1c6cc4276b18b07a01d4c246709762cd790a3e50dac634ae6b703591279fa537",
+              "destination": "Assets/_Project/Resources/FeedbackArt/mixing_rush_aura/mixing_rush_aura_active_03.png"
+            },
+            {
+              "index": 4,
+              "timelineIndex": 4,
+              "durationMs": 125,
+              "path": "ready/ground_fx/mixing_rush_aura/mixing_rush_aura_active_04.png",
+              "sha256": "c4e46e73f1f2c03e7e4a10011520752eb61bbf79401b657ac240ce0f5ef7350e",
+              "destination": "Assets/_Project/Resources/FeedbackArt/mixing_rush_aura/mixing_rush_aura_active_04.png"
+            },
+            {
+              "index": 5,
+              "timelineIndex": 5,
+              "durationMs": 125,
+              "path": "ready/ground_fx/mixing_rush_aura/mixing_rush_aura_active_05.png",
+              "sha256": "50118503cdfcc1b08bda771eacd21c5fbd76b98181e16c3d51704f8ae783e4ab",
+              "destination": "Assets/_Project/Resources/FeedbackArt/mixing_rush_aura/mixing_rush_aura_active_05.png"
+            }
+          ]
+        },
+        {
+          "name": "off",
+          "fps": 12,
+          "loop": false,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 6,
+              "durationMs": 83,
+              "path": "ready/ground_fx/mixing_rush_aura/mixing_rush_aura_off_00.png",
+              "sha256": "d3ee9968536f78103eea5b47703035132b29addce7b719e4557b7e94f23cd70e",
+              "destination": "Assets/_Project/Resources/FeedbackArt/mixing_rush_aura/mixing_rush_aura_off_00.png"
+            },
+            {
+              "index": 1,
+              "timelineIndex": 7,
+              "durationMs": 84,
+              "path": "ready/ground_fx/mixing_rush_aura/mixing_rush_aura_off_01.png",
+              "sha256": "8b69f95204bf2bd8d851983dfd84baae2e6ee8d3a3be0b6c2503e7178abd5211",
+              "destination": "Assets/_Project/Resources/FeedbackArt/mixing_rush_aura/mixing_rush_aura_off_01.png"
+            },
+            {
+              "index": 2,
+              "timelineIndex": 8,
+              "durationMs": 83,
+              "path": "ready/ground_fx/mixing_rush_aura/mixing_rush_aura_off_02.png",
+              "sha256": "d985fd3d5f4ea97c473b52df4fbbfe45366d22b2d0e6ecc2a3c92d105aba22dd",
+              "destination": "Assets/_Project/Resources/FeedbackArt/mixing_rush_aura/mixing_rush_aura_off_02.png"
+            },
+            {
+              "index": 3,
+              "timelineIndex": 9,
+              "durationMs": 83,
+              "path": "ready/ground_fx/mixing_rush_aura/mixing_rush_aura_off_03.png",
+              "sha256": "44f7fb586e2fe7f1b8ef7f629e2ccbb60bc886519f2ed25f8ba7875d4f6741c3",
+              "destination": "Assets/_Project/Resources/FeedbackArt/mixing_rush_aura/mixing_rush_aura_off_03.png"
+            }
+          ]
+        }
+      ],
+      "native": "native/ground_fx/mixing_rush_aura.aseprite",
+      "nativeSha256": "c9d2c7ec7bdda9cd0a2dd26506bbf91e03f8c43e89b3994ad2bc84d89c68fb0a"
+    },
+    {
+      "id": "status_attack_speed_down",
+      "kind": "status",
+      "canvas": [
+        40,
+        40
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/status/status_attack_speed_down.png",
+              "sha256": "f8b8aafdf8067eb52c0410ab43e58f5fadf7d005054ed1d00913d86d96856f9d",
+              "destination": "Assets/_Project/Resources/FeedbackArt/Status/status_attack_speed_down.png"
+            }
+          ]
+        }
+      ],
+      "native": "native/status/status_attack_speed_down.aseprite",
+      "nativeSha256": "993eaa5253b1f57a15b92bd37cf14bbf801d18b121ef3946d6730323e411494d"
+    },
+    {
+      "id": "status_heal_block",
+      "kind": "status",
+      "canvas": [
+        40,
+        40
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/status/status_heal_block.png",
+              "sha256": "2febb2fa8b73b37220765509e64f5c14f578d82dd48e2f19b0a6f20b96d1e685",
+              "destination": "Assets/_Project/Resources/FeedbackArt/Status/status_heal_block.png"
+            }
+          ]
+        }
+      ],
+      "native": "native/status/status_heal_block.aseprite",
+      "nativeSha256": "70384aa1dd8d7381d3ddc541b3b23dc0147eb73c7732ecd0b5d2691a6b4e8a00"
+    },
+    {
+      "id": "stat_damage",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_damage.png",
+              "sha256": "0ef4cf2c33ea5a31fca9f08a545981476777ee1e10c01b481b5cfe12d2814530",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_damage.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        255,
+        107,
+        90
+      ],
+      "native": "native/stat/stat_damage.aseprite",
+      "nativeSha256": "0fe1edd5f97ad1b3811a7365c65724bf35176bf1b2bc730c0498d84f09fc2d9e",
+      "label": "공격력"
+    },
+    {
+      "id": "stat_attack_speed",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_attack_speed.png",
+              "sha256": "9d7cd3c3f63ede8e96ea15ae0b9745e16e7af4ffb0fa361a851846ce616487be",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_attack_speed.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        255,
+        210,
+        74
+      ],
+      "native": "native/stat/stat_attack_speed.aseprite",
+      "nativeSha256": "6ce62877ed680b3bdda4b16be7753d89fede0f1aeb1eca87281c98878b90577d",
+      "label": "공격 속도"
+    },
+    {
+      "id": "stat_range",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_range.png",
+              "sha256": "23ee8b03b6cd76a3373cdc59ca7b2d9adbd265d8a61202e3634881a8a1d54546",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_range.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        90,
+        210,
+        255
+      ],
+      "native": "native/stat/stat_range.aseprite",
+      "nativeSha256": "d69ee6d211bd26c083ec8a6805042ba43ce858c9e907f99321bfcaddc33dadc8",
+      "label": "사거리"
+    },
+    {
+      "id": "stat_move_speed",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_move_speed.png",
+              "sha256": "f1c3374d5a224dbc9f4c4dc09cfbf17b02ced98adfc0e3eedef1b7d716102e4f",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_move_speed.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        107,
+        224,
+        122
+      ],
+      "native": "native/stat/stat_move_speed.aseprite",
+      "nativeSha256": "a1aa262ccfccc24b60ec610dc3ad99905f37c41ce62627b6f3ade138ed6402b9",
+      "label": "이동 속도"
+    },
+    {
+      "id": "stat_max_hp",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_max_hp.png",
+              "sha256": "6ad754b637720f1b01b9d4dda603d554d9130c4b760386be237d69651bed0230",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_max_hp.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        255,
+        127,
+        168
+      ],
+      "native": "native/stat/stat_max_hp.aseprite",
+      "nativeSha256": "dbd5430efcbfebd40e59feef49743c1567c858c88d29a5a86eceaee5f26ddb8d",
+      "label": "최대 체력"
+    },
+    {
+      "id": "stat_regen",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_regen.png",
+              "sha256": "23d99575580e11263425db6e88ed7d2530a3b1f665e677466cf9d3ddb8970f20",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_regen.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        127,
+        255,
+        208
+      ],
+      "native": "native/stat/stat_regen.aseprite",
+      "nativeSha256": "1283fabc1c03368289615399b6d8da04d335777491f8839dd4dcfc375ec6e321",
+      "label": "분당 회복"
+    },
+    {
+      "id": "stat_damage_reduction",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_damage_reduction.png",
+              "sha256": "c79b24a4924b2cd0e19f2f8c762949d071ce6b6caaf056034b953c40dad686c9",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_damage_reduction.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        157,
+        184,
+        255
+      ],
+      "native": "native/stat/stat_damage_reduction.aseprite",
+      "nativeSha256": "12b068bf719665f711cd70f32d0f92d26fdd5dcb5b82dcf9796daca6c7a3ec10",
+      "label": "받는 피해 감소"
+    },
+    {
+      "id": "stat_flame",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_flame.png",
+              "sha256": "deb563876366721031b127c5a256de7c6103617f85dcce473c149b932da1db57",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_flame.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        255,
+        154,
+        60
+      ],
+      "native": "native/stat/stat_flame.aseprite",
+      "nativeSha256": "a94fe9d8946621adb8e9e4ac730cf2e5eb7f21aa3489b27780eef8f1ac8e86d1",
+      "label": "적중 화염"
+    },
+    {
+      "id": "stat_poison",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_poison.png",
+              "sha256": "15b2d1c071ecc2fe922557c5c199f537392ef658ee20ecbfaec95eeab6c28a71",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_poison.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        197,
+        140,
+        255
+      ],
+      "native": "native/stat/stat_poison.aseprite",
+      "nativeSha256": "cf9c1c5c1dcaed8067efdef36bed49203bf3d481fab1623a9c3aee512f8a4739",
+      "label": "적중 여운"
+    },
+    {
+      "id": "stat_pierce",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_pierce.png",
+              "sha256": "f8f209de4fe4aa0d65168ea58331561c857034a00826621a80b8d4812117d710",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_pierce.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        208,
+        216,
+        232
+      ],
+      "native": "native/stat/stat_pierce.aseprite",
+      "nativeSha256": "465e5d6e6f22b2f450fa0471382014db2ee1965cdc98439552d4847c275135b7",
+      "label": "관통"
+    },
+    {
+      "id": "stat_multi_hit",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_multi_hit.png",
+              "sha256": "3b074e0456f6f2b0e9e06b52d46bc5df0aa034806678544f9a63f7e1df860489",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_multi_hit.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        255,
+        176,
+        122
+      ],
+      "native": "native/stat/stat_multi_hit.aseprite",
+      "nativeSha256": "bca2b889e3ab839db72b05ddf7dde867fcaf3f6b856522453a423229fc73a80e",
+      "label": "연속 타격"
+    },
+    {
+      "id": "stat_drop",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_drop.png",
+              "sha256": "ee071f1ad5d9bb828d0fa3783c1e33c283ba5bc320f37563d5c26fd4147c2f7a",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_drop.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        245,
+        196,
+        106
+      ],
+      "native": "native/stat/stat_drop.aseprite",
+      "nativeSha256": "aa6225de707cfb5217ebd8edcf89b70f89906db2346b41a53f4dc44fd1c03934",
+      "label": "추가 드랍"
+    },
+    {
+      "id": "stat_gauge",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_gauge.png",
+              "sha256": "7b7f6ed22c34fae2999542e2658b60c9981d51584dad08319f029dd2f50992b8",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_gauge.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        236,
+        226,
+        196
+      ],
+      "native": "native/stat/stat_gauge.aseprite",
+      "nativeSha256": "fac9d78a8d4d41cf24da67f54421e0b4ffe524e2c9848a402a95728dbbc62744",
+      "label": "게이지 필요량"
+    },
+    {
+      "id": "stat_bean",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_bean.png",
+              "sha256": "7e22a2e93d046eda0daf31e5df3572e4c9a51147c9f75c80a38c8ee8fac21ed0",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_bean.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        217,
+        160,
+        102
+      ],
+      "native": "native/stat/stat_bean.aseprite",
+      "nativeSha256": "5c6de16a66a8d8a54187e65c192884fd63eb7f8d745cbb50fbf6a748bf6431ee",
+      "label": "원두 획득"
+    },
+    {
+      "id": "stat_pickup",
+      "kind": "stat",
+      "canvas": [
+        32,
+        32
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "clips": [
+        {
+          "name": "static",
+          "fps": null,
+          "loop": false,
+          "frameCount": 1,
+          "frames": [
+            {
+              "index": 0,
+              "timelineIndex": 0,
+              "durationMs": 100,
+              "path": "ready/stat/stat_pickup.png",
+              "sha256": "88d312655b497a5ed01af6cc1ebfdffa87d3f3190c24d9cdf16a7efa544bf014",
+              "destination": "Assets/_Project/Resources/StatIcons/stat_pickup.png"
+            }
+          ]
+        }
+      ],
+      "statStyleRgb": [
+        200,
+        240,
+        106
+      ],
+      "native": "native/stat/stat_pickup.aseprite",
+      "nativeSha256": "7707cd7f1a3d79f328ca4bd709e0857008243775d93cb7947cfed0d761818473",
+      "label": "줍기 반경"
+    }
+  ],
+  "verification": {
+    "path": "verification/aseprite-roundtrip.json",
+    "sha256": "1474f9621304943e12fdc01faa251ac46c57f2b3509b3b343e436fd63f012b90"
+  }
+}
