@@ -22,8 +22,9 @@ namespace CCT.Tests
                 Assert.IsTrue(MonsterFamilies.IsClassified(d));
                 Assert.AreEqual(0, d.dropCount, d.name + " 재료 드랍 없음(경제 불변)");
                 Assert.LessOrEqual(d.hp, 45f, d.name + " 낮은 체력(처치 우선순위)");
-                Assert.AreNotEqual(Color.white, d.iconTint, d.name + " 임시 아트 = 기존 그림 색만 바꿈");
-                Assert.IsNotNull(Resources.Load<Sprite>(d.spriteResourcePath), d.name + " 기존 그림 경로");
+                Assert.AreEqual(Color.white, d.iconTint, d.name + " 정식 아트 = 틴트 없음(흰색 기준)");
+                Assert.IsNotNull(ArtLibrary.Get(d.ArtId), d.name + " 정식 몸체 아트 등록(FeedbackArt)");
+                Assert.IsNotNull(Resources.Load<Sprite>(d.spriteResourcePath), d.name + " 기존 그림 경로(fallback)");
                 Assert.IsFalse(d.IsBoss);
             }
             Assert.Greater(EnemyDef.GlassThief.contactHealBlockSeconds, 0f);

@@ -6,7 +6,7 @@ namespace CCT
 {
     /// <summary>
     /// 2026-11-22 플레이 피드백 B(15): 능력치마다 고유 색·아이콘 하나. 레벨업 카드와 영구 강화가 같은 표를 쓴다.
-    /// 효과 한 줄 = 아이콘 + 능력치 이름(색) + 짧은 수치. 아이콘은 임시 아트(Resources/StatIcons, Tools/Art/make_stat_icons.py — 색 동일).
+    /// 효과 한 줄 = 아이콘 + 능력치 이름(색) + 짧은 수치. 아이콘은 정식 픽셀 아트 32x32(Resources/StatIcons, 2026-11-22 v1-formal-pixels — 본체 RGB가 이 표 색과 동일).
     /// 색은 어두운 카드 바탕(#2A2030 부근)에서 읽히게 밝은 쪽으로 고르고, 서로 색상(hue)이 겹치지 않게 나눴다. 색만으로 구분하지 않도록 아이콘·이름을 함께 쓴다.
     /// </summary>
     public static class StatStyle
@@ -51,7 +51,7 @@ namespace CCT
         public static Color ColorOf(CardEffectType t) => Get(t).color;
 
         static readonly Dictionary<string, Sprite> icons = new Dictionary<string, Sprite>();
-        /// <summary>능력치 아이콘(임시 아트). 없으면 null.</summary>
+        /// <summary>능력치 아이콘(정식 픽셀 아트). 없으면 null.</summary>
         public static Sprite Icon(CardEffectType t)
         {
             var key = Get(t).key;

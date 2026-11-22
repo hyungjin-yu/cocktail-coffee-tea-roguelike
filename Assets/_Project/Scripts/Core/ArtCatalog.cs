@@ -184,7 +184,7 @@ namespace CCT
             EnsureLoaded();
             if (!byId.TryGetValue(assetId, out var a))
             {
-                a=TeaEncounterArt.Load(assetId);
+                a=TeaEncounterArt.Load(assetId) ?? FeedbackArt.Load(assetId);
                 if(a==null) return null;
                 byId[assetId]=a;
             }

@@ -34,15 +34,20 @@ namespace CCT
         }
     }
 
-    /// <summary>쓴맛 안개: 플레이어와 KeepDistance만큼 거리를 두고 천천히 맴돈다. PulseEvery마다 TelegraphSeconds 동안 발밑 보라 원이
-    /// 반경 PulseRadius까지 차오르며(예고) 끝나는 순간 파동 — 안에 있으면 이동 둔화·공격 속도 감소. 저이펙트에서도 예고 원은 그린다(피할 정보).</summary>
+    /// <summary>쓴맛 안개: 플레이어와 KeepDistance만큼 거리를 두고 천천히 맴돈다. PulseEvery마다 TelegraphSeconds(정확히 1초) 동안 발밑
+    /// 정식 파동 아트(bitter_mist_pulse charge 6장·6fps)가 재생되고 — 바깥 테두리가 처음부터 판정 경계(반경 PulseRadius)를 표시 —
+    /// 끝나는 순간 파동(burst) — 안에 있으면 이동 둔화·공격 속도 감소. 저이펙트에서도 예고는 그린다(피할 정보).
+    /// 아트가 없으면(누락) 기존 절차 원으로 떨어진다.</summary>
     public class BitterMistDriver : MonoBehaviour, IEnemyDriver
     {
         public const float KeepDistance = 3.4f, PulseEvery = 4.5f, TelegraphSeconds = 1f, PulseRadius = 2.4f;
         public const float SlowSeconds = 3f, SlowMultiplier = 0.7f, AttackSlowSeconds = 3f, AttackSlowMultiplier = 0.75f;
         Enemy enemy; GameManager game;
-        SpriteRenderer warn, edge;
+        SpriteRenderer warn, edge;      // 아트 누락 시 fallback 절차 원
+        SpriteRenderer fx; ArtClip chargeClip, burstClip; // 정식 파동 아트(256x128 센터 피벗)
         float timer = 2f, telegraph = -1f, flash;
+        /// <summary>정식 파동 아트를 쓰는 중인지(테스트·QA).</summary>
+        public bool UsesFormalArt => fx != null;
         public bool Telegraphing => telegraph >= 0f;
         public int Pulses { get; private set; }
 
@@ -50,9 +55,25 @@ namespace CCT
         {
             enemy = e; game = g;
             e.SetDriver(this);
+            var art = ArtLibrary.Get(FeedbackArt.BitterMistPulse);
+            chargeClip = art?.Clip("charge"); burstClip = art?.Clip("burst");
+            if (chargeClip != null && burstClip != null)
+            {
+                var go = new GameObject("PulseFx");
+                go.transform.SetParent(transform, false);
+                go.transform.localPosition = new Vector3(0f, -enemy.Def.radius, 0f);
+                // 텍스처 자체가 반투명 타원이라 Y 압축·코드 색 틴트는 겹쳐 쓰지 않는다. 바깥 테두리 가로 지름 = 판정 지름(반경 2.4의 두 배).
+                float s = PulseRadius * 2f / (FeedbackArt.PulseOutlinePx / art.pixelsPerUnit);
+                go.transform.localScale = new Vector3(s, s, 1f);
+                fx = go.AddComponent<SpriteRenderer>();
+                fx.sortingOrder = SortOrders.GroundZone; fx.color = Color.white; fx.enabled = false;
+                return;
+            }
             warn = Ring("PulseWarn", 0.18f);
             edge = Ring("PulseEdge", 0.55f);
         }
+
+        void HideFx() { if (fx != null) fx.enabled = false; if (warn != null) warn.enabled = false; if (edge != null) edge.enabled = false; }
 
         SpriteRenderer Ring(string name, float alpha)
         {
@@ -85,29 +106,50 @@ namespace CCT
 
         void Update()
         {
-            if (enemy == null || enemy.IsDead || game == null || game.State != GameState.Playing || game.Player == null) { if (warn != null) warn.enabled = edge.enabled = false; return; }
+            if (enemy == null || enemy.IsDead || game == null || game.State != GameState.Playing || game.Player == null) { HideFx(); return; }
             float dt = Time.deltaTime;
-            if (flash > 0f) { flash -= dt; edge.color = new Color(0.8f, 0.6f, 1f, 0.6f * Mathf.Clamp01(flash / 0.25f)); if (flash <= 0f) edge.enabled = false; }
+            if (flash > 0f)
+            {
+                flash -= dt;
+                if (fx != null)
+                {
+                    if (flash > 0f) { fx.sprite = burstClip.FrameAt(burstClip.Duration - flash); fx.enabled = true; }
+                    else fx.enabled = false;
+                }
+                else { edge.color = new Color(0.8f, 0.6f, 1f, 0.6f * Mathf.Clamp01(flash / 0.25f)); if (flash <= 0f) edge.enabled = false; }
+            }
             if (telegraph >= 0f)
             {
                 telegraph += dt;
                 float k = Mathf.Clamp01(telegraph / TelegraphSeconds);
-                warn.enabled = edge.enabled = true;
-                SetRing(warn, PulseRadius * k); SetRing(edge, PulseRadius);
-                warn.color = new Color(0.65f, 0.4f, 1f, 0.12f + 0.2f * k);
-                edge.color = new Color(0.8f, 0.6f, 1f, 0.35f + 0.25f * Mathf.PingPong(telegraph * 6f, 1f));
+                if (fx != null)
+                {
+                    fx.sprite = chargeClip.FrameAt(telegraph); fx.enabled = true;
+                }
+                else
+                {
+                    warn.enabled = edge.enabled = true;
+                    SetRing(warn, PulseRadius * k); SetRing(edge, PulseRadius);
+                    warn.color = new Color(0.65f, 0.4f, 1f, 0.12f + 0.2f * k);
+                    edge.color = new Color(0.8f, 0.6f, 1f, 0.35f + 0.25f * Mathf.PingPong(telegraph * 6f, 1f));
+                }
                 if (k >= 1f) Pulse();
                 return;
             }
             timer -= dt;
-            if (timer <= 0f) { telegraph = 0f; enemy.PlayAction("action"); }
+            // 몸체 action(6장·10fps = 0.6초)은 예고 시작에 재생하고 파동까지 마지막 컷을 유지한다(hold = 예고 1초).
+            if (timer <= 0f) { telegraph = 0f; enemy.PlayAction("action", TelegraphSeconds); }
         }
 
         /// <summary>파동: 반경 안이면 디버프. 시험에서 직접 부를 수 있다.</summary>
         public void Pulse()
         {
             telegraph = -1f; timer = PulseEvery; Pulses++;
-            warn.enabled = false; flash = 0.25f; SetRing(edge, PulseRadius);
+            if (fx != null)
+            {
+                flash = burstClip.Duration; fx.sprite = burstClip.frames[0]; fx.enabled = true;
+            }
+            else { warn.enabled = false; flash = 0.25f; SetRing(edge, PulseRadius); }
             var p = game.Player;
             if (p == null || p.IsDead) return;
             if (((Vector2)transform.position - p.Position).sqrMagnitude <= PulseRadius * PulseRadius)
@@ -119,7 +161,9 @@ namespace CCT
     }
 
     /// <summary>빈 잔 도둑: 기본 추적으로 빠르게 다가오고, WarnDistance 안에 들어오면 몸이 파랗게 깜빡여 예고한다.
-    /// 닿으면(Enemy 접촉 경로가 회복 차단·공격 속도 감소를 건다) FleeSeconds 동안 반대쪽으로 달아난다.</summary>
+    /// 닿으면(Enemy 접촉 경로가 회복 차단·공격 속도 감소를 건다) FleeSeconds 동안 반대쪽으로 달아난다.
+    /// 시각: 접촉 순간 action(낚아채기 4장·14fps)을 재생하고 이어 flee 클립을 도주 시간 동안 반복한다(방향은 실제 도주 속도를 따른다).
+    /// 클립은 표시 전용 — 접촉·도주 타이머는 시각 클립과 독립이다.</summary>
     public class GlassThiefDriver : MonoBehaviour, IEnemyDriver
     {
         public const float WarnDistance = 2.8f, FleeSeconds = 1.6f;
@@ -128,21 +172,17 @@ namespace CCT
         public bool Fleeing => flee > 0f;
         public bool Warning { get; private set; }
 
-        SpriteRenderer marker;
+        public const float SnatchSeconds = 4f / 14f;
+        float snatchLeft; bool fleeClipPlayed;
         public void Init(Enemy e, GameManager g)
         {
             enemy = e; game = g;
             e.SetDriver(this);
-            e.ContactLanded += _ => flee = FleeSeconds;
-            // 디버프 몹 표식(임시): 머리 위 작은 하늘색 원 — 일반 몹과 한눈에 구분
-            var go = new GameObject("DebuffMarker");
-            go.transform.SetParent(transform, false);
-            go.transform.localPosition = new Vector3(0f, e.Def.radius * 2.6f, 0f);
-            marker = go.AddComponent<SpriteRenderer>();
-            marker.sprite = SpriteFactory.Circle; marker.sortingOrder = SortOrders.AirVfx;
-            marker.color = new Color(0.45f, 0.8f, 1f, 0.95f);
-            float size = marker.sprite != null ? marker.sprite.bounds.size.x : 1f;
-            go.transform.localScale = Vector3.one * (0.28f / size);
+            e.ContactLanded += _ =>
+            {
+                flee = FleeSeconds; fleeClipPlayed = false;
+                snatchLeft = e.PlayAction("action") ? SnatchSeconds : 0f;
+            };
         }
 
         public bool TryGetVelocity(Vector2 self, Vector2 player, out Vector2 velocity)
@@ -156,10 +196,15 @@ namespace CCT
         void Update()
         {
             if (enemy == null || enemy.IsDead || game == null || game.Player == null) return;
-            if (flee > 0f) flee -= Time.deltaTime;
+            if (flee > 0f)
+            {
+                flee -= Time.deltaTime;
+                if (snatchLeft > 0f) snatchLeft -= Time.deltaTime;
+                else if (!fleeClipPlayed) { fleeClipPlayed = true; enemy.PlayAction("flee", Mathf.Max(0.1f, flee)); }
+            }
             float d = ((Vector2)transform.position - game.Player.Position).magnitude;
             Warning = flee <= 0f && d <= WarnDistance;
-            var basis = enemy.Def.iconTint;
+            var basis = enemy.Def.iconTint; // 정식 아트: 흰색(원본 색 그대로)
             enemy.BaseColor = Warning ? Color.Lerp(basis, new Color(0.35f, 0.65f, 1f), HitFeedback.LowEffects ? 0.6f : 0.35f + 0.35f * Mathf.PingPong(Time.time * 8f, 1f)) : basis;
         }
     }
