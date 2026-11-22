@@ -47,7 +47,7 @@ namespace CCT.Tests
         public void HybridUnlock_OpaquePanelCoversTextAndButton_ButtonLabelIsLight()
         {
             var view = HybridUnlockView.Create(Canvas());
-            var root = view.transform;
+            var root = view.transform.Find("Content"); // 2026-11-22 메뉴판 건네기 때 한 묶음(CanvasGroup)으로 감싼 내용
             var panel = root.Find("Panel");
             Assert.IsNotNull(panel, "U1: 안내 뒤 불투명 패널");
             Assert.AreEqual(1f, panel.GetComponent<Image>().color.a, 1e-4f, "패널은 불투명이어야 뒤 전투 효과를 가린다");

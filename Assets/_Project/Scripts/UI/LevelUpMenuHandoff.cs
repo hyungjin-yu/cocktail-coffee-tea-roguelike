@@ -57,7 +57,7 @@ namespace CCT
             for (int i = 0; i < ms.Length; i++) { acc += ms[i] / 1000f; if (t < acc) { frame = i; break; } }
             float handoff = HandoffMs(tier) / 1000f;
             reveal = t < handoff ? 0f : Mathf.Clamp01((t - handoff) / RevealSeconds);
-            done = t >= handoff + RevealSeconds;
+            done = t >= handoff + RevealSeconds - 1e-4f;
         }
 
         public static bool HasClip(Job job) => job == Job.Bartender || job == Job.TeaSommelier;
