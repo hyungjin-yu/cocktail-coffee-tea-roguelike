@@ -1,0 +1,601 @@
+08:29:33.781 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s01.jpg
+08:29:43.329 down space
+08:29:43.390 up space held=60
+08:29:45.972 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s02.jpg
+08:29:52.544 click 203,606
+08:29:55.110 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s03.jpg
+08:30:08.342 click 440,285
+08:30:12.418 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s04.jpg
+08:30:19.712 click 840,320
+08:30:20.375 click 640,605
+08:30:24.449 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s05.jpg
+08:30:33.590 down d
+08:30:34.793 up d
+08:30:34.793 down s
+08:30:35.609 up s
+08:30:35.610 down a
+08:30:37.218 up a
+08:30:37.218 down w
+08:30:38.034 up w
+08:30:38.103 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s06.jpg
+08:30:45.814 down w
+08:30:46.524 up w
+08:30:46.524 down d
+08:30:47.726 up d
+08:30:47.789 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s07.jpg
+08:30:59.910 down 2
+08:30:59.971 up 2 held=60
+08:31:00.197 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s08.jpg
+08:31:01.735 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s09.jpg
+08:31:12.938 down a
+08:31:14.448 up a
+08:31:14.448 down s
+08:31:15.365 up s
+08:31:15.365 down d
+08:31:16.283 up d
+08:31:16.347 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s10.jpg
+08:31:32.723 ABORT stop file
+08:31:51.994 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\s11_after_user_click.jpg
+08:33:55.427 down r
+08:33:55.488 up r held=60
+08:33:59.060 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\r01.jpg
+08:34:33.239 click 440,285
+08:34:34.897 click 840,320
+08:34:35.456 click 640,605
+08:36:11.253 down 3
+08:36:11.314 up 3 held=60
+08:36:12.576 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\w1_after_early3.jpg
+08:36:12.578 down 3
+08:36:12.638 up 3 held=60
+08:36:12.872 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\w1_after_settled3.jpg
+08:37:03.237 step 1 ('d',) dead (np.int64(0), np.int64(3973))
+08:37:03.241 DETECT dead at 08:37:03.237
+08:37:15.821 down r
+08:37:15.883 up r held=60
+08:37:18.559 click 440,285
+08:37:20.217 click 840,320
+08:37:20.776 click 640,605
+08:37:23.475 HOLD down 1
+08:37:24.282 step 1 ('d',) play (np.int64(0), np.int64(340))
+08:37:25.092 step 2 ('d', 's') play (np.int64(0), np.int64(268))
+08:37:25.902 step 3 ('s',) play (np.int64(0), np.int64(241))
+08:37:26.713 step 4 ('s', 'a') play (np.int64(0), np.int64(262))
+08:37:27.522 step 5 ('a',) play (np.int64(0), np.int64(498))
+08:37:28.332 step 6 ('a', 'w') play (np.int64(0), np.int64(481))
+08:37:29.143 step 7 ('w',) play (np.int64(0), np.int64(404))
+08:37:29.952 step 8 ('w', 'd') play (np.int64(0), np.int64(476))
+08:37:30.764 step 9 ('d',) play (np.int64(0), np.int64(338))
+08:37:31.573 step 10 ('d', 's') play (np.int64(0), np.int64(265))
+08:37:32.381 step 11 ('s',) play (np.int64(0), np.int64(241))
+08:37:33.202 step 12 ('s', 'a') play (np.int64(0), np.int64(261))
+08:37:34.013 step 13 ('a',) play (np.int64(0), np.int64(484))
+08:37:34.821 step 14 ('a', 'w') play (np.int64(0), np.int64(473))
+08:37:35.632 step 15 ('w',) play (np.int64(0), np.int64(411))
+08:37:36.443 step 16 ('w', 'd') play (np.int64(0), np.int64(457))
+08:37:37.254 step 17 ('d',) play (np.int64(0), np.int64(335))
+08:37:38.065 step 18 ('d', 's') play (np.int64(0), np.int64(294))
+08:37:38.883 step 19 ('s',) play (np.int64(0), np.int64(241))
+08:37:39.702 step 20 ('s', 'a') play (np.int64(0), np.int64(261))
+08:37:40.510 step 21 ('a',) play (np.int64(0), np.int64(491))
+08:37:41.321 step 22 ('a', 'w') play (np.int64(0), np.int64(479))
+08:37:42.131 step 23 ('w',) play (np.int64(0), np.int64(404))
+08:37:42.943 step 24 ('w', 'd') play (np.int64(0), np.int64(476))
+08:37:43.752 step 25 ('d',) play (np.int64(0), np.int64(335))
+08:37:44.562 step 26 ('d', 's') play (np.int64(0), np.int64(258))
+08:37:45.372 step 27 ('s',) play (np.int64(0), np.int64(241))
+08:37:46.182 step 28 ('s', 'a') play (np.int64(0), np.int64(265))
+08:37:46.991 step 29 ('a',) play (np.int64(0), np.int64(485))
+08:37:47.802 step 30 ('a', 'w') play (np.int64(0), np.int64(474))
+08:37:48.622 step 31 ('w',) play (np.int64(0), np.int64(404))
+08:37:49.435 step 32 ('w', 'd') play (np.int64(0), np.int64(0))
+08:37:50.240 step 33 ('d',) play (np.int64(0), np.int64(0))
+08:37:51.051 step 34 ('d', 's') play (np.int64(0), np.int64(0))
+08:37:51.861 step 35 ('s',) play (np.int64(0), np.int64(0))
+08:37:52.670 step 36 ('s', 'a') play (np.int64(0), np.int64(0))
+08:37:53.492 step 37 ('a',) play (np.int64(0), np.int64(0))
+08:37:54.300 step 38 ('a', 'w') play (np.int64(0), np.int64(0))
+08:37:55.110 step 39 ('w',) play (np.int64(0), np.int64(0))
+08:37:55.920 step 40 ('w', 'd') play (np.int64(0), np.int64(0))
+08:37:56.730 step 41 ('d',) play (np.int64(0), np.int64(0))
+08:37:57.543 step 42 ('d', 's') play (np.int64(0), np.int64(0))
+08:37:58.362 step 43 ('s',) play (np.int64(0), np.int64(0))
+08:37:59.171 step 44 ('s', 'a') play (np.int64(0), np.int64(0))
+08:37:59.980 step 45 ('a',) play (np.int64(0), np.int64(0))
+08:38:00.800 step 46 ('a', 'w') play (np.int64(0), np.int64(0))
+08:38:01.611 step 47 ('w',) play (np.int64(0), np.int64(0))
+08:38:02.420 step 48 ('w', 'd') play (np.int64(0), np.int64(0))
+08:38:03.232 step 49 ('d',) play (np.int64(0), np.int64(0))
+08:38:04.041 step 50 ('d', 's') play (np.int64(0), np.int64(0))
+08:38:04.850 step 51 ('s',) play (np.int64(0), np.int64(0))
+08:38:05.660 step 52 ('s', 'a') play (np.int64(0), np.int64(0))
+08:38:06.469 step 53 ('a',) play (np.int64(0), np.int64(0))
+08:38:07.280 step 54 ('a', 'w') play (np.int64(0), np.int64(0))
+08:38:08.098 step 55 ('w',) play (np.int64(0), np.int64(0))
+08:38:08.912 step 56 ('w', 'd') play (np.int64(0), np.int64(0))
+08:38:09.721 step 57 ('d',) play (np.int64(0), np.int64(0))
+08:38:10.530 step 58 ('d', 's') play (np.int64(0), np.int64(0))
+08:38:11.339 step 59 ('s',) play (np.int64(0), np.int64(0))
+08:38:12.155 step 60 ('s', 'a') play (np.int64(0), np.int64(0))
+08:38:12.969 step 61 ('a',) play (np.int64(0), np.int64(0))
+08:38:13.780 step 62 ('a', 'w') play (np.int64(0), np.int64(0))
+08:38:14.589 step 63 ('w',) play (np.int64(0), np.int64(0))
+08:38:15.400 step 64 ('w', 'd') play (np.int64(0), np.int64(0))
+08:38:16.210 step 65 ('d',) play (np.int64(0), np.int64(0))
+08:38:17.019 step 66 ('d', 's') play (np.int64(0), np.int64(0))
+08:38:17.839 step 67 ('s',) play (np.int64(0), np.int64(0))
+08:38:18.660 step 68 ('s', 'a') play (np.int64(0), np.int64(0))
+08:38:19.468 step 69 ('a',) play (np.int64(0), np.int64(0))
+08:38:20.279 step 70 ('a', 'w') play (np.int64(0), np.int64(0))
+08:38:21.089 step 71 ('w',) play (np.int64(0), np.int64(0))
+08:38:21.898 step 72 ('w', 'd') play (np.int64(0), np.int64(0))
+08:38:22.710 step 73 ('d',) play (np.int64(0), np.int64(0))
+08:38:23.520 step 74 ('d', 's') play (np.int64(0), np.int64(0))
+08:38:25.208 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\h1_held_1p5s.jpg
+08:38:25.208 up 1
+08:38:25.844 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\h1_released.jpg
+08:38:25.845 down 1
+08:38:25.905 up 1 held=60
+08:38:26.235 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\h1_after_repress.jpg
+08:39:06.866 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\now1.jpg
+08:39:16.491 down esc
+08:39:16.552 up esc held=60
+08:39:17.525 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\p1_paused.jpg
+08:39:17.526 down 1
+08:39:17.587 up 1 held=60
+08:39:18.331 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\p2_paused_after_key1.jpg
+08:39:18.332 down esc
+08:39:18.393 up esc held=60
+08:39:19.342 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\p3_resumed.jpg
+08:39:19.343 down 2
+08:39:19.404 up 2 held=60
+08:39:19.742 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\p4_after_key2.jpg
+08:39:35.796 step 1 ('d',) play (np.int64(0), np.int64(0))
+08:39:36.622 step 2 ('d', 's') play (np.int64(0), np.int64(0))
+08:39:37.434 step 3 ('s',) play (np.int64(0), np.int64(0))
+08:39:38.245 step 4 ('s', 'a') play (np.int64(0), np.int64(0))
+08:39:39.061 step 5 ('a',) play (np.int64(0), np.int64(0))
+08:39:39.865 step 6 ('a', 'w') play (np.int64(0), np.int64(0))
+08:39:40.681 step 7 ('w',) play (np.int64(0), np.int64(0))
+08:39:41.495 step 8 ('w', 'd') play (np.int64(0), np.int64(0))
+08:39:42.304 step 9 ('d',) play (np.int64(0), np.int64(0))
+08:39:43.116 step 10 ('d', 's') play (np.int64(0), np.int64(0))
+08:39:43.925 step 11 ('s',) play (np.int64(0), np.int64(0))
+08:39:44.735 step 12 ('s', 'a') play (np.int64(0), np.int64(0))
+08:39:45.545 step 13 ('a',) play (np.int64(0), np.int64(0))
+08:39:46.355 step 14 ('a', 'w') play (np.int64(0), np.int64(0))
+08:39:47.163 step 15 ('w',) play (np.int64(0), np.int64(0))
+08:39:47.975 step 16 ('w', 'd') play (np.int64(0), np.int64(0))
+08:39:48.786 step 17 ('d',) play (np.int64(0), np.int64(0))
+08:39:49.595 step 18 ('d', 's') play (np.int64(0), np.int64(0))
+08:39:50.405 step 19 ('s',) play (np.int64(0), np.int64(0))
+08:39:51.214 step 20 ('s', 'a') play (np.int64(0), np.int64(0))
+08:39:52.024 step 21 ('a',) play (np.int64(0), np.int64(0))
+08:39:52.836 step 22 ('a', 'w') play (np.int64(0), np.int64(0))
+08:39:53.645 step 23 ('w',) play (np.int64(0), np.int64(0))
+08:39:54.454 step 24 ('w', 'd') play (np.int64(0), np.int64(0))
+08:39:55.264 step 25 ('d',) play (np.int64(0), np.int64(0))
+08:39:56.074 step 26 ('d', 's') play (np.int64(0), np.int64(0))
+08:39:56.884 step 27 ('s',) play (np.int64(0), np.int64(0))
+08:39:57.694 step 28 ('s', 'a') play (np.int64(0), np.int64(0))
+08:39:58.503 step 29 ('a',) play (np.int64(0), np.int64(0))
+08:39:59.314 step 30 ('a', 'w') play (np.int64(0), np.int64(0))
+08:40:00.134 step 31 ('w',) play (np.int64(0), np.int64(0))
+08:40:00.948 step 32 ('w', 'd') play (np.int64(0), np.int64(0))
+08:40:01.764 step 33 ('d',) play (np.int64(0), np.int64(0))
+08:40:02.574 step 34 ('d', 's') play (np.int64(0), np.int64(0))
+08:40:03.384 step 35 ('s',) play (np.int64(0), np.int64(0))
+08:40:04.198 step 36 ('s', 'a') play (np.int64(0), np.int64(0))
+08:40:05.013 step 37 ('a',) play (np.int64(0), np.int64(0))
+08:40:05.823 step 38 ('a', 'w') play (np.int64(0), np.int64(0))
+08:40:06.633 step 39 ('w',) play (np.int64(0), np.int64(0))
+08:40:07.443 step 40 ('w', 'd') play (np.int64(0), np.int64(0))
+08:40:08.254 step 41 ('d',) play (np.int64(0), np.int64(0))
+08:40:09.064 step 42 ('d', 's') play (np.int64(0), np.int64(0))
+08:40:09.873 step 43 ('s',) play (np.int64(0), np.int64(0))
+08:40:10.683 step 44 ('s', 'a') play (np.int64(0), np.int64(0))
+08:40:11.494 step 45 ('a',) play (np.int64(0), np.int64(0))
+08:40:12.302 step 46 ('a', 'w') play (np.int64(0), np.int64(0))
+08:40:13.112 step 47 ('w',) play (np.int64(0), np.int64(0))
+08:40:13.922 step 48 ('w', 'd') play (np.int64(0), np.int64(0))
+08:40:14.733 step 49 ('d',) play (np.int64(0), np.int64(0))
+08:40:15.543 step 50 ('d', 's') play (np.int64(0), np.int64(0))
+08:40:16.353 step 51 ('s',) play (np.int64(0), np.int64(0))
+08:40:17.161 step 52 ('s', 'a') play (np.int64(0), np.int64(0))
+08:40:17.972 step 53 ('a',) play (np.int64(0), np.int64(0))
+08:40:18.783 step 54 ('a', 'w') play (np.int64(0), np.int64(0))
+08:40:19.593 step 55 ('w',) play (np.int64(0), np.int64(0))
+08:40:20.402 step 56 ('w', 'd') play (np.int64(0), np.int64(0))
+08:40:21.216 step 57 ('d',) play (np.int64(0), np.int64(0))
+08:40:22.034 step 58 ('d', 's') play (np.int64(0), np.int64(0))
+08:40:22.850 step 59 ('s',) play (np.int64(0), np.int64(0))
+08:40:23.664 step 60 ('s', 'a') play (np.int64(0), np.int64(0))
+08:40:24.471 step 61 ('a',) play (np.int64(0), np.int64(0))
+08:40:25.282 step 62 ('a', 'w') play (np.int64(0), np.int64(0))
+08:40:26.092 step 63 ('w',) play (np.int64(0), np.int64(0))
+08:40:26.903 step 64 ('w', 'd') play (np.int64(0), np.int64(0))
+08:40:27.713 step 65 ('d',) play (np.int64(0), np.int64(0))
+08:40:28.523 step 66 ('d', 's') play (np.int64(0), np.int64(0))
+08:40:29.331 step 67 ('s',) play (np.int64(0), np.int64(0))
+08:40:30.157 step 68 ('s', 'a') play (np.int64(0), np.int64(0))
+08:40:30.972 step 69 ('a',) play (np.int64(0), np.int64(0))
+08:40:31.792 step 70 ('a', 'w') play (np.int64(0), np.int64(0))
+08:40:32.602 step 71 ('w',) play (np.int64(0), np.int64(0))
+08:40:33.412 step 72 ('w', 'd') play (np.int64(0), np.int64(0))
+08:40:34.222 step 73 ('d',) play (np.int64(0), np.int64(0))
+08:40:35.032 step 74 ('d', 's') play (np.int64(0), np.int64(0))
+08:40:35.150 down 3
+08:40:35.212 up 3 held=60
+08:40:36.580 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\e1_after_early3.jpg
+08:40:36.581 down 3
+08:40:36.642 up 3 held=60
+08:40:36.938 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\e1_after_settled3.jpg
+08:41:01.171 step 1 ('d',) play (np.int64(0), np.int64(0))
+08:41:01.990 step 2 ('d', 's') play (np.int64(0), np.int64(0))
+08:41:02.800 step 3 ('s',) play (np.int64(0), np.int64(0))
+08:41:03.615 step 4 ('s', 'a') play (np.int64(0), np.int64(0))
+08:41:04.432 step 5 ('a',) play (np.int64(0), np.int64(0))
+08:41:05.241 step 6 ('a', 'w') play (np.int64(0), np.int64(0))
+08:41:06.051 step 7 ('w',) play (np.int64(0), np.int64(0))
+08:41:06.871 step 8 ('w', 'd') play (np.int64(0), np.int64(0))
+08:41:07.680 step 9 ('d',) play (np.int64(0), np.int64(0))
+08:41:08.490 step 10 ('d', 's') play (np.int64(0), np.int64(0))
+08:41:09.302 step 11 ('s',) play (np.int64(0), np.int64(0))
+08:41:10.114 step 12 ('s', 'a') play (np.int64(0), np.int64(0))
+08:41:10.942 step 13 ('a',) play (np.int64(0), np.int64(0))
+08:41:11.756 step 14 ('a', 'w') play (np.int64(0), np.int64(0))
+08:41:12.570 step 15 ('w',) play (np.int64(0), np.int64(0))
+08:41:30.059 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\now2.jpg
+08:41:54.581 down 3
+08:41:54.641 up 3 held=60
+08:41:55.888 step 1 ('d',) play (np.int64(191), np.int64(366))
+08:41:56.699 step 2 ('d', 's') play (np.int64(190), np.int64(288))
+08:41:57.508 step 3 ('s',) play (np.int64(183), np.int64(249))
+08:41:58.322 step 4 ('s', 'a') play (np.int64(185), np.int64(299))
+08:41:59.138 step 5 ('a',) play (np.int64(186), np.int64(492))
+08:41:59.948 step 6 ('a', 'w') play (np.int64(186), np.int64(419))
+08:42:00.759 step 7 ('w',) play (np.int64(188), np.int64(335))
+08:42:01.581 step 8 ('w', 'd') play (np.int64(189), np.int64(504))
+08:42:02.387 step 9 ('d',) play (np.int64(187), np.int64(404))
+08:42:02.569 step 10 ('d', 's') card (np.int64(2639), np.int64(0))
+08:42:02.571 DETECT card at 08:42:02.569
+08:42:02.701 down 3
+08:42:02.761 up 3 held=60
+08:42:04.127 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\e3_after_early3.jpg
+08:42:04.127 down 3
+08:42:04.189 up 3 held=60
+08:42:04.483 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\e3_after_settled3.jpg
+08:42:57.008 step 1 ('d',) dead (np.int64(0), np.int64(3968))
+08:42:57.014 DETECT dead at 08:42:57.008
+08:42:57.185 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\L_now.jpg
+08:43:13.363 down r
+08:43:13.424 up r held=60
+08:43:16.090 click 840,285
+08:43:17.651 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\tea_weapon.jpg
+08:43:29.479 click 840,320
+08:43:30.039 click 640,605
+08:43:34.253 step 1 ('d',) play (np.int64(105), np.int64(114))
+08:43:35.762 step 2 ('s',) play (np.int64(105), np.int64(68))
+08:43:37.292 step 3 ('a',) play (np.int64(106), np.int64(0))
+08:43:38.825 step 4 ('w',) play (np.int64(109), np.int64(0))
+08:43:40.352 step 5 ('d',) play (np.int64(107), np.int64(112))
+08:43:41.852 step 6 ('s',) play (np.int64(108), np.int64(68))
+08:43:43.362 step 7 ('a',) play (np.int64(113), np.int64(0))
+08:43:44.392 step 8 ('w',) card (np.int64(2639), np.int64(0))
+08:43:44.395 DETECT card at 08:43:44.392
+08:43:45.999 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T1_settled.jpg
+08:43:46.000 down 1
+08:43:46.061 up 1 held=60
+08:43:47.992 step 1 ('d',) play (np.int64(106), np.int64(106))
+08:43:49.523 step 2 ('s',) play (np.int64(108), np.int64(69))
+08:43:51.053 step 3 ('a',) play (np.int64(105), np.int64(0))
+08:43:52.563 step 4 ('w',) play (np.int64(106), np.int64(0))
+08:43:54.072 step 5 ('d',) play (np.int64(107), np.int64(117))
+08:43:55.601 step 6 ('s',) play (np.int64(111), np.int64(64))
+08:43:57.130 step 7 ('a',) play (np.int64(113), np.int64(0))
+08:43:58.102 step 8 ('w',) card (np.int64(2639), np.int64(0))
+08:43:58.104 DETECT card at 08:43:58.102
+08:43:59.677 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T2_settled.jpg
+08:43:59.679 down 1
+08:43:59.739 up 1 held=60
+08:44:01.661 step 1 ('d',) play (np.int64(109), np.int64(114))
+08:44:03.169 step 2 ('s',) play (np.int64(111), np.int64(68))
+08:44:04.681 step 3 ('a',) play (np.int64(108), np.int64(0))
+08:44:06.214 step 4 ('w',) play (np.int64(113), np.int64(0))
+08:44:07.719 step 5 ('d',) play (np.int64(109), np.int64(113))
+08:44:08.531 step 6 ('s',) card (np.int64(2639), np.int64(0))
+08:44:08.534 DETECT card at 08:44:08.531
+08:44:10.120 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T3_settled.jpg
+08:44:10.120 down 1
+08:44:10.181 up 1 held=60
+08:44:12.109 step 1 ('d',) play (np.int64(98), np.int64(46))
+08:44:13.619 step 2 ('s',) play (np.int64(109), np.int64(46))
+08:44:15.130 step 3 ('a',) play (np.int64(116), np.int64(66))
+08:44:16.634 step 4 ('w',) play (np.int64(110), np.int64(68))
+08:44:18.139 step 5 ('d',) play (np.int64(114), np.int64(45))
+08:44:18.440 step 6 ('s',) card (np.int64(2639), np.int64(0))
+08:44:18.443 DETECT card at 08:44:18.440
+08:44:20.029 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T4_settled.jpg
+08:44:20.030 down 1
+08:44:20.091 up 1 held=60
+08:44:22.030 step 1 ('d',) play (np.int64(111), np.int64(62))
+08:44:23.559 step 2 ('s',) play (np.int64(110), np.int64(61))
+08:44:25.059 step 3 ('a',) play (np.int64(112), np.int64(50))
+08:44:26.595 step 4 ('w',) play (np.int64(107), np.int64(50))
+08:44:28.100 step 5 ('d',) play (np.int64(113), np.int64(62))
+08:44:29.629 step 6 ('s',) play (np.int64(115), np.int64(61))
+08:44:31.130 step 7 ('a',) play (np.int64(113), np.int64(50))
+08:44:32.011 step 8 ('w',) card (np.int64(2639), np.int64(0))
+08:44:32.015 DETECT card at 08:44:32.011
+08:44:33.618 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T5_settled.jpg
+08:44:33.619 down 1
+08:44:33.680 up 1 held=60
+08:44:35.589 step 1 ('d',) play (np.int64(117), np.int64(62))
+08:44:36.008 step 2 ('s',) card (np.int64(2639), np.int64(0))
+08:44:36.013 DETECT card at 08:44:36.008
+08:44:37.608 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T6_settled.jpg
+08:44:37.608 down 1
+08:44:37.670 up 1 held=60
+08:44:39.579 step 1 ('d',) play (np.int64(113), np.int64(61))
+08:44:41.109 step 2 ('s',) play (np.int64(111), np.int64(61))
+08:44:42.621 step 3 ('a',) play (np.int64(115), np.int64(61))
+08:44:44.135 step 4 ('w',) play (np.int64(115), np.int64(61))
+08:44:45.639 step 5 ('d',) play (np.int64(115), np.int64(61))
+08:44:47.168 step 6 ('s',) play (np.int64(115), np.int64(61))
+08:44:48.669 step 7 ('a',) play (np.int64(117), np.int64(61))
+08:44:49.240 step 8 ('w',) card (np.int64(2639), np.int64(0))
+08:44:49.242 DETECT card at 08:44:49.240
+08:44:50.827 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T7_settled.jpg
+08:44:50.827 down 1
+08:44:50.889 up 1 held=60
+08:44:52.806 step 1 ('d',) play (np.int64(114), np.int64(61))
+08:44:54.316 step 2 ('s',) play (np.int64(114), np.int64(61))
+08:44:55.008 step 3 ('a',) card (np.int64(2639), np.int64(0))
+08:44:55.012 DETECT card at 08:44:55.008
+08:44:56.598 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T8_settled.jpg
+08:44:56.599 down 1
+08:44:56.660 up 1 held=60
+08:44:58.588 step 1 ('d',) play (np.int64(114), np.int64(61))
+08:45:00.098 step 2 ('s',) play (np.int64(114), np.int64(61))
+08:45:01.599 step 3 ('a',) play (np.int64(117), np.int64(61))
+08:45:03.131 step 4 ('w',) play (np.int64(117), np.int64(61))
+08:45:04.645 step 5 ('d',) play (np.int64(117), np.int64(61))
+08:45:06.149 step 6 ('s',) play (np.int64(117), np.int64(61))
+08:45:07.675 step 7 ('a',) play (np.int64(121), np.int64(61))
+08:45:08.649 step 8 ('w',) card (np.int64(2639), np.int64(0))
+08:45:08.652 DETECT card at 08:45:08.649
+08:45:10.237 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T9_settled.jpg
+08:45:10.237 down 1
+08:45:10.299 up 1 held=60
+08:45:12.210 step 1 ('d',) play (np.int64(111), np.int64(61))
+08:45:13.737 step 2 ('s',) play (np.int64(111), np.int64(61))
+08:45:15.246 step 3 ('a',) play (np.int64(114), np.int64(61))
+08:45:16.752 step 4 ('w',) play (np.int64(113), np.int64(61))
+08:45:18.255 step 5 ('d',) play (np.int64(113), np.int64(61))
+08:45:19.757 step 6 ('s',) play (np.int64(113), np.int64(61))
+08:45:21.266 step 7 ('a',) play (np.int64(113), np.int64(61))
+08:45:22.799 step 8 ('w',) play (np.int64(117), np.int64(61))
+08:45:24.316 step 9 ('d',) play (np.int64(117), np.int64(61))
+08:45:25.846 step 10 ('s',) play (np.int64(117), np.int64(61))
+08:45:27.376 step 11 ('a',) play (np.int64(117), np.int64(61))
+08:45:28.909 step 12 ('w',) play (np.int64(116), np.int64(61))
+08:45:30.436 step 13 ('d',) play (np.int64(116), np.int64(61))
+08:45:31.936 step 14 ('s',) play (np.int64(116), np.int64(61))
+08:45:33.438 step 15 ('a',) play (np.int64(118), np.int64(61))
+08:45:34.188 step 16 ('w',) card (np.int64(2639), np.int64(0))
+08:45:34.191 DETECT card at 08:45:34.188
+08:45:35.766 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T10_settled.jpg
+08:45:35.766 down 1
+08:45:35.827 up 1 held=60
+08:45:36.196 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T_now.jpg
+08:45:49.037 step 1 ('d',) play (np.int64(111), np.int64(61))
+08:45:50.565 step 2 ('s',) play (np.int64(111), np.int64(61))
+08:45:52.086 step 3 ('a',) play (np.int64(111), np.int64(61))
+08:45:53.620 step 4 ('w',) play (np.int64(114), np.int64(61))
+08:45:55.135 step 5 ('d',) play (np.int64(111), np.int64(71))
+08:45:55.334 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M11.jpg
+08:45:57.063 step 1 ('d',) play (np.int64(114), np.int64(61))
+08:45:58.596 step 2 ('s',) play (np.int64(114), np.int64(61))
+08:46:00.125 step 3 ('a',) play (np.int64(111), np.int64(61))
+08:46:01.659 step 4 ('w',) play (np.int64(113), np.int64(61))
+08:46:03.164 step 5 ('d',) play (np.int64(115), np.int64(61))
+08:46:03.334 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M12.jpg
+08:46:05.046 step 1 ('d',) play (np.int64(115), np.int64(61))
+08:46:06.575 step 2 ('s',) play (np.int64(115), np.int64(61))
+08:46:08.103 step 3 ('a',) play (np.int64(115), np.int64(61))
+08:46:09.639 step 4 ('w',) play (np.int64(116), np.int64(61))
+08:46:10.334 step 5 ('d',) card (np.int64(2639), np.int64(0))
+08:46:10.336 DETECT card at 08:46:10.334
+08:46:11.934 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T13_settled.jpg
+08:46:11.935 down 1
+08:46:11.996 up 1 held=60
+08:46:13.923 step 1 ('d',) play (np.int64(111), np.int64(61))
+08:46:15.432 step 2 ('s',) play (np.int64(111), np.int64(61))
+08:46:16.933 step 3 ('a',) play (np.int64(112), np.int64(61))
+08:46:18.468 step 4 ('w',) play (np.int64(113), np.int64(61))
+08:46:19.974 step 5 ('d',) play (np.int64(113), np.int64(150))
+08:46:20.154 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M14.jpg
+08:46:21.863 step 1 ('d',) play (np.int64(113), np.int64(150))
+08:46:23.393 step 2 ('s',) play (np.int64(113), np.int64(150))
+08:46:24.904 step 3 ('a',) play (np.int64(113), np.int64(150))
+08:46:26.414 step 4 ('w',) play (np.int64(120), np.int64(150))
+08:46:27.934 step 5 ('d',) play (np.int64(118), np.int64(150))
+08:46:28.104 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M15.jpg
+08:46:29.814 step 1 ('d',) play (np.int64(118), np.int64(150))
+08:46:31.334 step 2 ('s',) play (np.int64(118), np.int64(150))
+08:46:32.864 step 3 ('a',) play (np.int64(118), np.int64(150))
+08:46:34.387 step 4 ('w',) play (np.int64(117), np.int64(150))
+08:46:35.895 step 5 ('d',) play (np.int64(119), np.int64(150))
+08:46:36.092 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M16.jpg
+08:46:37.812 step 1 ('d',) play (np.int64(119), np.int64(150))
+08:46:39.341 step 2 ('s',) play (np.int64(119), np.int64(150))
+08:46:40.841 step 3 ('a',) play (np.int64(119), np.int64(150))
+08:46:41.686 step 4 ('w',) card (np.int64(2639), np.int64(0))
+08:46:41.689 DETECT card at 08:46:41.686
+08:46:43.284 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T17_settled.jpg
+08:46:43.285 down 1
+08:46:43.347 up 1 held=60
+08:46:44.378 step 1 ('d',) card (np.int64(660), np.int64(83))
+08:46:44.382 DETECT card at 08:46:44.378
+08:46:45.977 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T18_settled.jpg
+08:46:45.978 down 1
+08:46:46.039 up 1 held=60
+08:46:46.542 step 1 ('d',) card (np.int64(660), np.int64(83))
+08:46:46.546 DETECT card at 08:46:46.542
+08:46:48.141 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T19_settled.jpg
+08:46:48.141 down 1
+08:46:48.203 up 1 held=60
+08:46:48.635 step 1 ('d',) card (np.int64(660), np.int64(83))
+08:46:48.640 DETECT card at 08:46:48.635
+08:46:50.223 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T20_settled.jpg
+08:46:50.223 down 1
+08:46:50.284 up 1 held=60
+08:47:09.749 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\R0.jpg
+08:47:09.750 down esc
+08:47:09.811 up esc held=60
+08:47:10.446 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\R1.jpg
+08:47:34.250 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:47:35.778 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:47:37.280 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:47:38.005 step 4 ('w',) card (np.int64(2577), np.int64(0))
+08:47:38.007 DETECT card at 08:47:38.005
+08:47:39.648 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T21_settled.jpg
+08:47:39.650 down 1
+08:47:39.710 up 1 held=60
+08:47:41.650 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:47:43.150 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:47:44.659 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:47:46.186 step 4 ('w',) play (np.int64(21), np.int64(61))
+08:47:46.372 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M22.jpg
+08:47:48.079 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:47:49.582 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:47:51.123 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:47:52.636 step 4 ('w',) play (np.int64(21), np.int64(61))
+08:47:52.809 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M23.jpg
+08:47:54.543 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:47:56.052 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:47:57.562 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:47:57.882 step 4 ('w',) card (np.int64(2577), np.int64(0))
+08:47:57.885 DETECT card at 08:47:57.882
+08:47:59.467 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T24_settled.jpg
+08:47:59.467 down 1
+08:47:59.528 up 1 held=60
+08:48:01.437 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:48:02.954 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:48:04.459 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:48:05.973 step 4 ('w',) play (np.int64(21), np.int64(61))
+08:48:06.156 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M25.jpg
+08:48:07.910 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:48:09.430 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:48:10.959 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:48:12.494 step 4 ('w',) play (np.int64(21), np.int64(61))
+08:48:12.668 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M26.jpg
+08:48:14.386 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:48:15.897 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:48:17.413 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:48:18.944 step 4 ('w',) play (np.int64(21), np.int64(61))
+08:48:19.136 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M27.jpg
+08:48:20.849 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:48:22.369 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:48:23.892 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:48:25.426 step 4 ('w',) play (np.int64(66), np.int64(61))
+08:48:25.636 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M28.jpg
+08:48:27.348 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:48:28.870 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:48:30.398 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:48:31.133 step 4 ('w',) card (np.int64(2577), np.int64(0))
+08:48:31.136 DETECT card at 08:48:31.134
+08:48:32.746 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T29_settled.jpg
+08:48:32.746 down 1
+08:48:32.808 up 1 held=60
+08:48:34.767 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:48:36.286 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:48:37.816 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:48:39.342 step 4 ('w',) play (np.int64(21), np.int64(61))
+08:48:39.516 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M30.jpg
+08:48:41.248 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:48:42.767 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:48:44.277 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:48:45.810 step 4 ('w',) play (np.int64(21), np.int64(61))
+08:48:45.996 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M31.jpg
+08:48:47.727 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:48:49.247 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:48:50.749 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:48:51.131 step 4 ('w',) card (np.int64(2577), np.int64(0))
+08:48:51.134 DETECT card at 08:48:51.131
+08:48:52.715 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\T32_settled.jpg
+08:48:52.715 down 1
+08:48:52.776 up 1 held=60
+08:48:54.738 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:48:56.248 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:48:57.756 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:48:59.263 step 4 ('w',) play (np.int64(21), np.int64(61))
+08:48:59.448 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M33.jpg
+08:49:01.177 step 1 ('d',) play (np.int64(21), np.int64(61))
+08:49:02.690 step 2 ('s',) play (np.int64(21), np.int64(61))
+08:49:04.228 step 3 ('a',) play (np.int64(21), np.int64(61))
+08:49:05.765 step 4 ('w',) play (np.int64(21), np.int64(61))
+08:49:05.985 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\M34.jpg
+08:49:53.339 down esc
+08:49:53.400 up esc held=60
+08:49:53.958 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\pause_hold.jpg
+08:51:26.003 click 640,489
+08:51:27.256 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\ab1.jpg
+08:51:38.942 click 766,400
+08:51:41.505 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\ab2.jpg
+08:51:52.514 down r
+08:51:52.575 up r held=60
+08:51:55.240 click 840,285
+08:51:56.904 click 840,320
+08:51:57.462 click 640,540
+08:51:58.234 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\ms0.jpg
+08:51:58.386 click 640,605
+08:52:01.920 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\ms1.jpg
+08:52:13.242 down b
+08:52:13.302 up b held=60
+08:52:14.563 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\ms2_brew.jpg
+08:52:14.564 down esc
+08:52:14.624 up esc held=60
+08:52:15.569 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\ms3_after_esc.jpg
+08:52:31.449 click 919,377
+08:52:33.013 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\ms4_combat.jpg
+08:52:34.435 step 1 ('d',) play (np.int64(18), np.int64(111))
+08:52:35.642 step 2 ('s',) play (np.int64(21), np.int64(111))
+08:52:36.872 step 3 ('a',) play (np.int64(21), np.int64(0))
+08:52:38.106 step 4 ('w',) play (np.int64(18), np.int64(0))
+08:52:39.310 step 5 ('d',) play (np.int64(21), np.int64(117))
+08:52:40.513 step 6 ('s',) play (np.int64(18), np.int64(111))
+08:52:41.742 step 7 ('a',) play (np.int64(21), np.int64(0))
+08:52:42.956 step 8 ('w',) play (np.int64(18), np.int64(0))
+08:52:44.186 step 9 ('d',) play (np.int64(18), np.int64(114))
+08:52:45.393 step 10 ('s',) play (np.int64(18), np.int64(111))
+08:52:46.604 step 11 ('a',) play (np.int64(21), np.int64(0))
+08:52:47.825 step 12 ('w',) play (np.int64(18), np.int64(0))
+08:52:49.042 step 13 ('d',) play (np.int64(21), np.int64(118))
+08:52:50.263 step 14 ('s',) play (np.int64(21), np.int64(111))
+08:52:51.474 step 15 ('a',) play (np.int64(21), np.int64(0))
+08:52:52.707 step 16 ('w',) play (np.int64(21), np.int64(0))
+08:52:53.912 step 17 ('d',) play (np.int64(21), np.int64(117))
+08:52:55.132 step 18 ('s',) play (np.int64(21), np.int64(111))
+08:52:56.343 step 19 ('a',) play (np.int64(21), np.int64(0))
+08:52:57.578 step 20 ('w',) play (np.int64(21), np.int64(0))
+08:52:58.793 step 21 ('d',) play (np.int64(21), np.int64(114))
+08:53:00.028 step 22 ('s',) play (np.int64(21), np.int64(111))
+08:53:01.233 step 23 ('a',) play (np.int64(21), np.int64(0))
+08:53:02.465 step 24 ('w',) play (np.int64(21), np.int64(0))
+08:53:03.692 step 25 ('d',) play (np.int64(21), np.int64(117))
+08:53:04.923 step 26 ('s',) play (np.int64(21), np.int64(111))
+08:53:06.144 step 27 ('a',) play (np.int64(21), np.int64(0))
+08:53:07.354 step 28 ('w',) play (np.int64(21), np.int64(0))
+08:53:08.581 step 29 ('d',) play (np.int64(0), np.int64(83))
+08:53:09.801 step 30 ('s',) play (np.int64(0), np.int64(83))
+08:53:11.032 step 31 ('a',) play (np.int64(0), np.int64(83))
+08:53:12.264 step 32 ('w',) play (np.int64(0), np.int64(83))
+08:53:13.490 step 33 ('d',) play (np.int64(0), np.int64(83))
+08:53:14.692 step 34 ('s',) play (np.int64(0), np.int64(83))
+08:53:15.912 step 35 ('a',) play (np.int64(0), np.int64(83))
+08:53:17.143 step 36 ('w',) play (np.int64(0), np.int64(83))
+08:53:18.372 step 37 ('d',) play (np.int64(0), np.int64(83))
+08:53:23.220 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\ms5.jpg
+08:53:36.336 down esc
+08:53:36.397 up esc held=60
+08:53:37.169 shot C:\Users\user\AppData\Local\Temp\claude\84a755128e00db50\ad77d919-d8f2-45f1-a3f9-7d8dd2a9cd0a\scratchpad\qa\ms6.jpg
