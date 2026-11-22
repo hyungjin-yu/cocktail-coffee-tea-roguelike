@@ -1,0 +1,157 @@
+low_std_bartender: mode=Standard mist=쓴맛 안개 thief=빈 잔 도둑 low=True
+low_std_bartender: formalArt=True
+low_std_bartender: telegraph=True
+shot low_std_bartender_telegraph_1920x1080.png 1920x1080
+shot low_std_bartender_telegraph_1280x720.png 1280x720
+shot low_std_bartender_telegraph_1440x1080_4x3.png 1440x1080
+low_std_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot low_std_bartender_pulse_status_1920x1080.png 1920x1080
+shot low_std_bartender_pulse_status_1280x720.png 1280x720
+shot low_std_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+low_std_bartender: mode=Standard mist=쓴맛 안개 thief=빈 잔 도둑 low=True
+low_std_bartender: formalArt=True
+low_std_bartender: telegraph=True
+shot low_std_bartender_telegraph_1920x1080.png 1920x1080
+shot low_std_bartender_telegraph_1280x720.png 1280x720
+shot low_std_bartender_telegraph_1440x1080_4x3.png 1440x1080
+low_std_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot low_std_bartender_pulse_status_1920x1080.png 1920x1080
+shot low_std_bartender_pulse_status_1280x720.png 1280x720
+shot low_std_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+master_bartender: mode=Endless mist=쓴맛 안개 thief=빈 잔 도둑 low=False
+master_bartender: formalArt=True
+master_bartender: telegraph=False
+shot master_bartender_telegraph_1920x1080.png 1920x1080
+shot master_bartender_telegraph_1280x720.png 1280x720
+shot master_bartender_telegraph_1440x1080_4x3.png 1440x1080
+master_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot master_bartender_pulse_status_1920x1080.png 1920x1080
+shot master_bartender_pulse_status_1280x720.png 1280x720
+shot master_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+master_bartender: masterHud=True brewInteractable=True
+low_std_bartender: mode=Standard mist=쓴맛 안개 thief=빈 잔 도둑 low=True
+low_std_bartender: formalArt=True
+low_std_bartender: telegraph=True
+shot low_std_bartender_telegraph_1920x1080.png 1920x1080
+shot low_std_bartender_telegraph_1280x720.png 1280x720
+shot low_std_bartender_telegraph_1440x1080_4x3.png 1440x1080
+low_std_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot low_std_bartender_pulse_status_1920x1080.png 1920x1080
+shot low_std_bartender_pulse_status_1280x720.png 1280x720
+shot low_std_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+master_bartender: mode=Endless mist=쓴맛 안개 thief=빈 잔 도둑 low=False
+master_bartender: formalArt=True
+master_bartender: telegraph=False
+shot master_bartender_telegraph_1920x1080.png 1920x1080
+shot master_bartender_telegraph_1280x720.png 1280x720
+shot master_bartender_telegraph_1440x1080_4x3.png 1440x1080
+master_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot master_bartender_pulse_status_1920x1080.png 1920x1080
+shot master_bartender_pulse_status_1280x720.png 1280x720
+shot master_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+master_bartender: masterHud=True brewInteractable=True
+master_tea: mode=Endless mist=쓴맛 안개 thief=빈 잔 도둑 low=False
+master_tea: formalArt=True
+master_tea: telegraph=False
+shot master_tea_telegraph_1920x1080.png 1920x1080
+shot master_tea_telegraph_1280x720.png 1280x720
+shot master_tea_telegraph_1440x1080_4x3.png 1440x1080
+master_tea: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot master_tea_pulse_status_1920x1080.png 1920x1080
+shot master_tea_pulse_status_1280x720.png 1280x720
+shot master_tea_pulse_status_1440x1080_4x3.png 1440x1080
+master_tea: masterHud=True brewInteractable=True
+low_std_bartender: mode=Standard mist=쓴맛 안개 thief=빈 잔 도둑 low=True
+low_std_bartender: formalArt=True
+low_std_bartender: telegraph=True
+shot low_std_bartender_telegraph_1920x1080.png 1920x1080
+shot low_std_bartender_telegraph_1280x720.png 1280x720
+shot low_std_bartender_telegraph_1440x1080_4x3.png 1440x1080
+low_std_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot low_std_bartender_pulse_status_1920x1080.png 1920x1080
+shot low_std_bartender_pulse_status_1280x720.png 1280x720
+shot low_std_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+master_bartender: mode=Endless mist=쓴맛 안개 thief=빈 잔 도둑 low=False
+master_bartender: formalArt=True
+master_bartender: telegraph=False
+shot master_bartender_telegraph_1920x1080.png 1920x1080
+shot master_bartender_telegraph_1280x720.png 1280x720
+shot master_bartender_telegraph_1440x1080_4x3.png 1440x1080
+master_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot master_bartender_pulse_status_1920x1080.png 1920x1080
+shot master_bartender_pulse_status_1280x720.png 1280x720
+shot master_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+master_bartender: masterHud=True brewInteractable=True
+master_tea: mode=Endless mist=쓴맛 안개 thief=빈 잔 도둑 low=False
+master_tea: formalArt=True
+master_tea: telegraph=False
+shot master_tea_telegraph_1920x1080.png 1920x1080
+shot master_tea_telegraph_1280x720.png 1280x720
+shot master_tea_telegraph_1440x1080_4x3.png 1440x1080
+master_tea: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot master_tea_pulse_status_1920x1080.png 1920x1080
+shot master_tea_pulse_status_1280x720.png 1280x720
+shot master_tea_pulse_status_1440x1080_4x3.png 1440x1080
+master_tea: masterHud=True brewInteractable=True
+std_bartender: mode=Standard mist=쓴맛 안개 thief=빈 잔 도둑 low=False
+std_bartender: formalArt=True
+std_bartender: telegraph=True
+shot std_bartender_telegraph_1920x1080.png 1920x1080
+shot std_bartender_telegraph_1280x720.png 1280x720
+shot std_bartender_telegraph_1440x1080_4x3.png 1440x1080
+std_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot std_bartender_pulse_status_1920x1080.png 1920x1080
+shot std_bartender_pulse_status_1280x720.png 1280x720
+shot std_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+low_std_bartender: mode=Standard mist=쓴맛 안개 thief=빈 잔 도둑 low=True
+low_std_bartender: formalArt=True
+low_std_bartender: telegraph=True
+shot low_std_bartender_telegraph_1920x1080.png 1920x1080
+shot low_std_bartender_telegraph_1280x720.png 1280x720
+shot low_std_bartender_telegraph_1440x1080_4x3.png 1440x1080
+low_std_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot low_std_bartender_pulse_status_1920x1080.png 1920x1080
+shot low_std_bartender_pulse_status_1280x720.png 1280x720
+shot low_std_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+master_bartender: mode=Endless mist=쓴맛 안개 thief=빈 잔 도둑 low=False
+master_bartender: formalArt=True
+master_bartender: telegraph=False
+shot master_bartender_telegraph_1920x1080.png 1920x1080
+shot master_bartender_telegraph_1280x720.png 1280x720
+shot master_bartender_telegraph_1440x1080_4x3.png 1440x1080
+master_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot master_bartender_pulse_status_1920x1080.png 1920x1080
+shot master_bartender_pulse_status_1280x720.png 1280x720
+shot master_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+master_bartender: masterHud=True brewInteractable=True
+master_tea: mode=Endless mist=쓴맛 안개 thief=빈 잔 도둑 low=False
+master_tea: formalArt=True
+master_tea: telegraph=False
+shot master_tea_telegraph_1920x1080.png 1920x1080
+shot master_tea_telegraph_1280x720.png 1280x720
+shot master_tea_telegraph_1440x1080_4x3.png 1440x1080
+master_tea: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot master_tea_pulse_status_1920x1080.png 1920x1080
+shot master_tea_pulse_status_1280x720.png 1280x720
+shot master_tea_pulse_status_1440x1080_4x3.png 1440x1080
+master_tea: masterHud=True brewInteractable=True
+std_bartender: mode=Standard mist=쓴맛 안개 thief=빈 잔 도둑 low=False
+std_bartender: formalArt=True
+std_bartender: telegraph=True
+shot std_bartender_telegraph_1920x1080.png 1920x1080
+shot std_bartender_telegraph_1280x720.png 1280x720
+shot std_bartender_telegraph_1440x1080_4x3.png 1440x1080
+std_bartender: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot std_bartender_pulse_status_1920x1080.png 1920x1080
+shot std_bartender_pulse_status_1280x720.png 1280x720
+shot std_bartender_pulse_status_1440x1080_4x3.png 1440x1080
+std_tea: mode=Standard mist=쓴맛 안개 thief=빈 잔 도둑 low=False
+std_tea: formalArt=True
+std_tea: telegraph=True
+shot std_tea_telegraph_1920x1080.png 1920x1080
+shot std_tea_telegraph_1280x720.png 1280x720
+shot std_tea_telegraph_1440x1080_4x3.png 1440x1080
+std_tea: slowed=True atkSlow=True healBlock=True status='공속 -25% 3초 · 회복 차단 5초'
+shot std_tea_pulse_status_1920x1080.png 1920x1080
+shot std_tea_pulse_status_1280x720.png 1280x720
+shot std_tea_pulse_status_1440x1080_4x3.png 1440x1080
