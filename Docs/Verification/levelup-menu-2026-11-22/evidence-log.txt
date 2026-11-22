@@ -1,0 +1,252 @@
+bartender_mixed_common_rare_epic: tier=2 playing=True offers=Common,Rare,Epic
+bartender_mixed_common_rare_epic: frame 1 reveal 0.00
+shot bartender_mixed_common_rare_epic_flight_f1_1920x1080.png 1920x1080
+bartender_mixed_common_rare_epic: last pose frame 4 reveal 0.00
+shot bartender_mixed_common_rare_epic_lastpose_1920x1080.png 1920x1080
+shot bartender_mixed_common_rare_epic_lastpose_1280x720.png 1280x720
+bartender_mixed_common_rare_epic: reveal 0.60
+shot bartender_mixed_common_rare_epic_reveal_1920x1080.png 1920x1080
+bartender_mixed_common_rare_epic: settled playing=False alpha=1.00 interactive=True
+shot bartender_mixed_common_rare_epic_settled_1920x1080.png 1920x1080
+shot bartender_mixed_common_rare_epic_settled_1280x720.png 1280x720
+bartender_mixed_common_rare_epic: tier=2 playing=True offers=Common,Rare,Epic
+bartender_mixed_common_rare_epic: frame 1 reveal 0.00
+shot bartender_mixed_common_rare_epic_flight_f1_1920x1080.png 1920x1080
+bartender_mixed_common_rare_epic: last pose frame 4 reveal 0.00
+shot bartender_mixed_common_rare_epic_lastpose_1920x1080.png 1920x1080
+shot bartender_mixed_common_rare_epic_lastpose_1280x720.png 1280x720
+bartender_mixed_common_rare_epic: reveal 0.60
+shot bartender_mixed_common_rare_epic_reveal_1920x1080.png 1920x1080
+bartender_mixed_common_rare_epic: settled playing=False alpha=1.00 interactive=True
+shot bartender_mixed_common_rare_epic_settled_1920x1080.png 1920x1080
+shot bartender_mixed_common_rare_epic_settled_1280x720.png 1280x720
+repeat1_common_only: tier=0 playing=True offers=Common,Common,Common
+repeat1_common_only: frame 1 reveal 0.00
+shot repeat1_common_only_flight_f1_1920x1080.png 1920x1080
+repeat1_common_only: last pose frame 2 reveal 0.00
+shot repeat1_common_only_lastpose_1920x1080.png 1920x1080
+shot repeat1_common_only_lastpose_1280x720.png 1280x720
+repeat1_common_only: reveal 0.44
+shot repeat1_common_only_reveal_1920x1080.png 1920x1080
+repeat1_common_only: settled playing=False alpha=1.00 interactive=True
+shot repeat1_common_only_settled_1920x1080.png 1920x1080
+shot repeat1_common_only_settled_1280x720.png 1280x720
+repeat2_common_rare: tier=1 playing=True offers=Common,Rare,Common
+repeat2_common_rare: frame 1 reveal 0.00
+shot repeat2_common_rare_flight_f1_1920x1080.png 1920x1080
+repeat2_common_rare: last pose frame 3 reveal 0.00
+shot repeat2_common_rare_lastpose_1920x1080.png 1920x1080
+shot repeat2_common_rare_lastpose_1280x720.png 1280x720
+repeat2_common_rare: reveal 0.43
+shot repeat2_common_rare_reveal_1920x1080.png 1920x1080
+repeat2_common_rare: settled playing=False alpha=1.00 interactive=True
+shot repeat2_common_rare_settled_1920x1080.png 1920x1080
+shot repeat2_common_rare_settled_1280x720.png 1280x720
+repeat3_epic_rare_epic: tier=2 playing=True offers=Epic,Rare,Epic
+repeat3_epic_rare_epic: frame 1 reveal 0.00
+shot repeat3_epic_rare_epic_flight_f1_1920x1080.png 1920x1080
+repeat3_epic_rare_epic: last pose frame 4 reveal 0.00
+shot repeat3_epic_rare_epic_lastpose_1920x1080.png 1920x1080
+shot repeat3_epic_rare_epic_lastpose_1280x720.png 1280x720
+repeat3_epic_rare_epic: reveal 0.40
+shot repeat3_epic_rare_epic_reveal_1920x1080.png 1920x1080
+repeat3_epic_rare_epic: settled playing=False alpha=1.00 interactive=True
+shot repeat3_epic_rare_epic_settled_1920x1080.png 1920x1080
+shot repeat3_epic_rare_epic_settled_1280x720.png 1280x720
+repeat4_two_cards_rare_common: tier=1 playing=True offers=Rare,Common
+repeat4_two_cards_rare_common: settled playing=False alpha=1.00 interactive=True
+shot repeat4_two_cards_rare_common_settled_1920x1080.png 1920x1080
+shot repeat4_two_cards_rare_common_settled_1280x720.png 1280x720
+bartender_mixed_common_rare_epic: tier=2 playing=True offers=Common,Rare,Epic
+bartender_mixed_common_rare_epic: frame 1 reveal 0.00
+shot bartender_mixed_common_rare_epic_flight_f1_1920x1080.png 1920x1080
+bartender_mixed_common_rare_epic: last pose frame 4 reveal 0.00
+shot bartender_mixed_common_rare_epic_lastpose_1920x1080.png 1920x1080
+shot bartender_mixed_common_rare_epic_lastpose_1280x720.png 1280x720
+bartender_mixed_common_rare_epic: reveal 0.60
+shot bartender_mixed_common_rare_epic_reveal_1920x1080.png 1920x1080
+bartender_mixed_common_rare_epic: settled playing=False alpha=1.00 interactive=True
+shot bartender_mixed_common_rare_epic_settled_1920x1080.png 1920x1080
+shot bartender_mixed_common_rare_epic_settled_1280x720.png 1280x720
+repeat1_common_only: tier=0 playing=True offers=Common,Common,Common
+repeat1_common_only: frame 1 reveal 0.00
+shot repeat1_common_only_flight_f1_1920x1080.png 1920x1080
+repeat1_common_only: last pose frame 2 reveal 0.00
+shot repeat1_common_only_lastpose_1920x1080.png 1920x1080
+shot repeat1_common_only_lastpose_1280x720.png 1280x720
+repeat1_common_only: reveal 0.44
+shot repeat1_common_only_reveal_1920x1080.png 1920x1080
+repeat1_common_only: settled playing=False alpha=1.00 interactive=True
+shot repeat1_common_only_settled_1920x1080.png 1920x1080
+shot repeat1_common_only_settled_1280x720.png 1280x720
+repeat2_common_rare: tier=1 playing=True offers=Common,Rare,Common
+repeat2_common_rare: frame 1 reveal 0.00
+shot repeat2_common_rare_flight_f1_1920x1080.png 1920x1080
+repeat2_common_rare: last pose frame 3 reveal 0.00
+shot repeat2_common_rare_lastpose_1920x1080.png 1920x1080
+shot repeat2_common_rare_lastpose_1280x720.png 1280x720
+repeat2_common_rare: reveal 0.43
+shot repeat2_common_rare_reveal_1920x1080.png 1920x1080
+repeat2_common_rare: settled playing=False alpha=1.00 interactive=True
+shot repeat2_common_rare_settled_1920x1080.png 1920x1080
+shot repeat2_common_rare_settled_1280x720.png 1280x720
+repeat3_epic_rare_epic: tier=2 playing=True offers=Epic,Rare,Epic
+repeat3_epic_rare_epic: frame 1 reveal 0.00
+shot repeat3_epic_rare_epic_flight_f1_1920x1080.png 1920x1080
+repeat3_epic_rare_epic: last pose frame 4 reveal 0.00
+shot repeat3_epic_rare_epic_lastpose_1920x1080.png 1920x1080
+shot repeat3_epic_rare_epic_lastpose_1280x720.png 1280x720
+repeat3_epic_rare_epic: reveal 0.40
+shot repeat3_epic_rare_epic_reveal_1920x1080.png 1920x1080
+repeat3_epic_rare_epic: settled playing=False alpha=1.00 interactive=True
+shot repeat3_epic_rare_epic_settled_1920x1080.png 1920x1080
+shot repeat3_epic_rare_epic_settled_1280x720.png 1280x720
+repeat4_two_cards_rare_common: tier=1 playing=True offers=Rare,Common
+repeat4_two_cards_rare_common: settled playing=False alpha=1.00 interactive=True
+shot repeat4_two_cards_rare_common_settled_1920x1080.png 1920x1080
+shot repeat4_two_cards_rare_common_settled_1280x720.png 1280x720
+low: playing=False alpha=1.00
+shot card_loweffects_1920x1080.png 1920x1080
+shot card_loweffects_1280x720.png 1280x720
+bartender_mixed_common_rare_epic: tier=2 playing=True offers=Common,Rare,Epic
+bartender_mixed_common_rare_epic: frame 1 reveal 0.00
+shot bartender_mixed_common_rare_epic_flight_f1_1920x1080.png 1920x1080
+bartender_mixed_common_rare_epic: last pose frame 4 reveal 0.00
+shot bartender_mixed_common_rare_epic_lastpose_1920x1080.png 1920x1080
+shot bartender_mixed_common_rare_epic_lastpose_1280x720.png 1280x720
+bartender_mixed_common_rare_epic: reveal 0.60
+shot bartender_mixed_common_rare_epic_reveal_1920x1080.png 1920x1080
+bartender_mixed_common_rare_epic: settled playing=False alpha=1.00 interactive=True
+shot bartender_mixed_common_rare_epic_settled_1920x1080.png 1920x1080
+shot bartender_mixed_common_rare_epic_settled_1280x720.png 1280x720
+repeat1_common_only: tier=0 playing=True offers=Common,Common,Common
+repeat1_common_only: frame 1 reveal 0.00
+shot repeat1_common_only_flight_f1_1920x1080.png 1920x1080
+repeat1_common_only: last pose frame 2 reveal 0.00
+shot repeat1_common_only_lastpose_1920x1080.png 1920x1080
+shot repeat1_common_only_lastpose_1280x720.png 1280x720
+repeat1_common_only: reveal 0.44
+shot repeat1_common_only_reveal_1920x1080.png 1920x1080
+repeat1_common_only: settled playing=False alpha=1.00 interactive=True
+shot repeat1_common_only_settled_1920x1080.png 1920x1080
+shot repeat1_common_only_settled_1280x720.png 1280x720
+repeat2_common_rare: tier=1 playing=True offers=Common,Rare,Common
+repeat2_common_rare: frame 1 reveal 0.00
+shot repeat2_common_rare_flight_f1_1920x1080.png 1920x1080
+repeat2_common_rare: last pose frame 3 reveal 0.00
+shot repeat2_common_rare_lastpose_1920x1080.png 1920x1080
+shot repeat2_common_rare_lastpose_1280x720.png 1280x720
+repeat2_common_rare: reveal 0.43
+shot repeat2_common_rare_reveal_1920x1080.png 1920x1080
+repeat2_common_rare: settled playing=False alpha=1.00 interactive=True
+shot repeat2_common_rare_settled_1920x1080.png 1920x1080
+shot repeat2_common_rare_settled_1280x720.png 1280x720
+repeat3_epic_rare_epic: tier=2 playing=True offers=Epic,Rare,Epic
+repeat3_epic_rare_epic: frame 1 reveal 0.00
+shot repeat3_epic_rare_epic_flight_f1_1920x1080.png 1920x1080
+repeat3_epic_rare_epic: last pose frame 4 reveal 0.00
+shot repeat3_epic_rare_epic_lastpose_1920x1080.png 1920x1080
+shot repeat3_epic_rare_epic_lastpose_1280x720.png 1280x720
+repeat3_epic_rare_epic: reveal 0.40
+shot repeat3_epic_rare_epic_reveal_1920x1080.png 1920x1080
+repeat3_epic_rare_epic: settled playing=False alpha=1.00 interactive=True
+shot repeat3_epic_rare_epic_settled_1920x1080.png 1920x1080
+shot repeat3_epic_rare_epic_settled_1280x720.png 1280x720
+repeat4_two_cards_rare_common: tier=1 playing=True offers=Rare,Common
+repeat4_two_cards_rare_common: settled playing=False alpha=1.00 interactive=True
+shot repeat4_two_cards_rare_common_settled_1920x1080.png 1920x1080
+shot repeat4_two_cards_rare_common_settled_1280x720.png 1280x720
+low: playing=False alpha=1.00
+shot card_loweffects_1920x1080.png 1920x1080
+shot card_loweffects_1280x720.png 1280x720
+hybrid: tier=3 playing=True
+shot hybrid_flight_1920x1080.png 1920x1080
+shot hybrid_reveal_1920x1080.png 1920x1080
+hybrid: settled playing=False alpha=1.00
+shot hybrid_settled_1920x1080.png 1920x1080
+shot hybrid_settled_1280x720.png 1280x720
+hybrid low: playing=False alpha=1.00
+shot hybrid_loweffects_1920x1080.png 1920x1080
+shot hybrid_loweffects_1280x720.png 1280x720
+bartender_mixed_common_rare_epic: tier=2 playing=True offers=Common,Rare,Epic
+bartender_mixed_common_rare_epic: frame 1 reveal 0.00
+shot bartender_mixed_common_rare_epic_flight_f1_1920x1080.png 1920x1080
+bartender_mixed_common_rare_epic: last pose frame 4 reveal 0.00
+shot bartender_mixed_common_rare_epic_lastpose_1920x1080.png 1920x1080
+shot bartender_mixed_common_rare_epic_lastpose_1280x720.png 1280x720
+bartender_mixed_common_rare_epic: reveal 0.60
+shot bartender_mixed_common_rare_epic_reveal_1920x1080.png 1920x1080
+bartender_mixed_common_rare_epic: settled playing=False alpha=1.00 interactive=True
+shot bartender_mixed_common_rare_epic_settled_1920x1080.png 1920x1080
+shot bartender_mixed_common_rare_epic_settled_1280x720.png 1280x720
+repeat1_common_only: tier=0 playing=True offers=Common,Common,Common
+repeat1_common_only: frame 1 reveal 0.00
+shot repeat1_common_only_flight_f1_1920x1080.png 1920x1080
+repeat1_common_only: last pose frame 2 reveal 0.00
+shot repeat1_common_only_lastpose_1920x1080.png 1920x1080
+shot repeat1_common_only_lastpose_1280x720.png 1280x720
+repeat1_common_only: reveal 0.44
+shot repeat1_common_only_reveal_1920x1080.png 1920x1080
+repeat1_common_only: settled playing=False alpha=1.00 interactive=True
+shot repeat1_common_only_settled_1920x1080.png 1920x1080
+shot repeat1_common_only_settled_1280x720.png 1280x720
+repeat2_common_rare: tier=1 playing=True offers=Common,Rare,Common
+repeat2_common_rare: frame 1 reveal 0.00
+shot repeat2_common_rare_flight_f1_1920x1080.png 1920x1080
+repeat2_common_rare: last pose frame 3 reveal 0.00
+shot repeat2_common_rare_lastpose_1920x1080.png 1920x1080
+shot repeat2_common_rare_lastpose_1280x720.png 1280x720
+repeat2_common_rare: reveal 0.43
+shot repeat2_common_rare_reveal_1920x1080.png 1920x1080
+repeat2_common_rare: settled playing=False alpha=1.00 interactive=True
+shot repeat2_common_rare_settled_1920x1080.png 1920x1080
+shot repeat2_common_rare_settled_1280x720.png 1280x720
+repeat3_epic_rare_epic: tier=2 playing=True offers=Epic,Rare,Epic
+repeat3_epic_rare_epic: frame 1 reveal 0.00
+shot repeat3_epic_rare_epic_flight_f1_1920x1080.png 1920x1080
+repeat3_epic_rare_epic: last pose frame 4 reveal 0.00
+shot repeat3_epic_rare_epic_lastpose_1920x1080.png 1920x1080
+shot repeat3_epic_rare_epic_lastpose_1280x720.png 1280x720
+repeat3_epic_rare_epic: reveal 0.40
+shot repeat3_epic_rare_epic_reveal_1920x1080.png 1920x1080
+repeat3_epic_rare_epic: settled playing=False alpha=1.00 interactive=True
+shot repeat3_epic_rare_epic_settled_1920x1080.png 1920x1080
+shot repeat3_epic_rare_epic_settled_1280x720.png 1280x720
+repeat4_two_cards_rare_common: tier=1 playing=True offers=Rare,Common
+repeat4_two_cards_rare_common: settled playing=False alpha=1.00 interactive=True
+shot repeat4_two_cards_rare_common_settled_1920x1080.png 1920x1080
+shot repeat4_two_cards_rare_common_settled_1280x720.png 1280x720
+low: playing=False alpha=1.00
+shot card_loweffects_1920x1080.png 1920x1080
+shot card_loweffects_1280x720.png 1280x720
+hybrid: tier=3 playing=True
+shot hybrid_flight_1920x1080.png 1920x1080
+shot hybrid_reveal_1920x1080.png 1920x1080
+hybrid: settled playing=False alpha=1.00
+shot hybrid_settled_1920x1080.png 1920x1080
+shot hybrid_settled_1280x720.png 1280x720
+hybrid low: playing=False alpha=1.00
+shot hybrid_loweffects_1920x1080.png 1920x1080
+shot hybrid_loweffects_1280x720.png 1280x720
+tea_mixed_common_rare_epic: tier=2 playing=True offers=Common,Rare,Epic
+tea_mixed_common_rare_epic: frame 1 reveal 0.00
+shot tea_mixed_common_rare_epic_flight_f1_1920x1080.png 1920x1080
+tea_mixed_common_rare_epic: last pose frame 4 reveal 0.00
+shot tea_mixed_common_rare_epic_lastpose_1920x1080.png 1920x1080
+shot tea_mixed_common_rare_epic_lastpose_1280x720.png 1280x720
+tea_mixed_common_rare_epic: reveal 0.40
+shot tea_mixed_common_rare_epic_reveal_1920x1080.png 1920x1080
+tea_mixed_common_rare_epic: settled playing=False alpha=1.00 interactive=True
+shot tea_mixed_common_rare_epic_settled_1920x1080.png 1920x1080
+shot tea_mixed_common_rare_epic_settled_1280x720.png 1280x720
+tea_common_only: tier=0 playing=True offers=Common,Common
+tea_common_only: frame 1 reveal 0.00
+shot tea_common_only_flight_f1_1920x1080.png 1920x1080
+tea_common_only: last pose frame 2 reveal 0.00
+shot tea_common_only_lastpose_1920x1080.png 1920x1080
+shot tea_common_only_lastpose_1280x720.png 1280x720
+tea_common_only: reveal 0.40
+shot tea_common_only_reveal_1920x1080.png 1920x1080
+tea_common_only: settled playing=False alpha=1.00 interactive=True
+shot tea_common_only_settled_1920x1080.png 1920x1080
+shot tea_common_only_settled_1280x720.png 1280x720
