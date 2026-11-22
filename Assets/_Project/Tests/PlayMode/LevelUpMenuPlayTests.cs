@@ -10,8 +10,9 @@ using UnityEngine.UI;
 
 namespace CCT.Tests
 {
-    /// <summary>2026-11-22 레벨업 메뉴판 건네기 실제 경로: 카드별 장식·최고 등급 공통 연출 한 번·두 직업·특수 경로·저이펙트·입력 해제/잠금·재오픈 잔상.
-    /// 입력은 가상 키보드(실제 PC 입력·포커스 미사용).</summary>
+    /// <summary>2026-11-22 레벨업 메뉴판 건네기 실제 경로 / 2026-11-23 항목 8 후속: 카드별 장식·**카드별 자기 등급 전달**·두 직업·특수 경로·저이펙트·
+    /// 입력 해제/잠금·재오픈 잔상·재생 속도 설정·창 안 포커스 묶음과 닫힘 복원. 입력은 가상 키보드(실제 PC 입력·포커스 미사용).
+    /// 원본 시간표 검사는 재생 속도 100%로 고정하고(Setup), 기본 0.5배는 따로 검사한다.</summary>
     public class LevelUpMenuPlayTests
     {
         GameManager game;
@@ -19,6 +20,7 @@ namespace CCT.Tests
         UnityEngine.InputSystem.InputSettings.BackgroundBehavior savedBg;
         UnityEngine.InputSystem.InputSettings.EditorInputBehaviorInPlayMode savedEditor;
         bool savedSuppress;
+        int savedSpeed;
 
         [UnitySetUp]
         public IEnumerator Setup()
@@ -28,6 +30,8 @@ namespace CCT.Tests
             savedSuppress = CardEducationGuide.SuppressAutomaticForTests;
             CardEducationGuide.SuppressAutomaticForTests = true;
             SettingsService.SetEffectsLevel(SettingsData.EffectsNormal);
+            savedSpeed = SettingsService.Current.levelUpAnimPercent;
+            SettingsService.SetLevelUpAnimPercent(100); // 원본 시간표(1배) 기준 시험 — 기본 0.5배는 DefaultSpeed_* 시험
             yield return null;
         }
 
@@ -48,6 +52,7 @@ namespace CCT.Tests
             Time.timeScale = 1f;
             CardEducationGuide.SuppressAutomaticForTests = savedSuppress;
             SettingsService.SetEffectsLevel(SettingsData.EffectsNormal);
+            SettingsService.SetLevelUpAnimPercent(savedSpeed);
         }
 
         IEnumerator Run(Job job, WeaponKind weapon)
@@ -86,17 +91,26 @@ namespace CCT.Tests
         static void Queue(Keyboard k, params Key[] keys) => UnityEngine.InputSystem.InputSystem.QueueStateEvent(k, new KeyboardState(keys));
 
         [UnityTest]
-        public IEnumerator Mixed_EachCardOwnDecoration_SingleClipAtHighestRarity()
+        public IEnumerator Mixed_EachCardOwnDecoration_AndOwnRarityHandoffInItsSlot()
         {
             yield return Run(Job.Bartender, WeaponKind.Rapier);
             var view = game.CardView;
             view.Show(Mixed(), _ => { });
             Assert.IsTrue(view.HandoffPlaying);
-            Assert.AreEqual(2, view.HandoffTier, "일반·희귀·영웅 → 영웅 동작 한 번");
+            Assert.AreEqual(2, view.HandoffTier, "가장 늦게 정착하는 카드 = 영웅");
             Assert.AreEqual("card_common", DecoName(view.SlotDecoration(0)));
             Assert.AreEqual("card_rare", DecoName(view.SlotDecoration(1)));
             Assert.AreEqual("card_epic", DecoName(view.SlotDecoration(2)));
             Assert.AreSame(LevelUpMenuArt.Frames(Job.Bartender, 2)[0], view.HandoffSprite, "바텐더 영웅 첫 프레임");
+            for (int i = 0; i < 3; i++)
+            {
+                Assert.IsTrue(view.SlotHandoffPlaying(i), $"카드 {i} 자기 전달");
+                Assert.AreEqual(i, view.SlotHandoffTier(i), "일반·희귀·영웅 카드가 각자 자기 등급 동작");
+                Assert.AreSame(LevelUpMenuArt.Frames(Job.Bartender, i)[0], view.SlotHandoffSprite(i), "바텐더 외형 · 카드 등급 첫 프레임");
+                Assert.AreEqual((i - 1) * 480f * LevelUpMenuArt.StartOffsetFraction, view.SlotHandoffAnchor(i).x, 0.01f, "판 앵커 = 그 카드의 시작 좌표");
+                Assert.AreEqual(view.SlotPosition(i).x, view.SlotHandoffAnchor(i).x, 0.01f, "메뉴판이 그 슬롯으로 이어짐");
+                Assert.AreEqual(LevelUpMenuArt.CardGroupAnchorY, view.SlotHandoffAnchor(i).y, 0.01f);
+            }
             for (int i = 0; i < 3; i++)
             {
                 Assert.AreEqual(0f, view.CardAlpha(i), 1e-4f);
@@ -133,6 +147,124 @@ namespace CCT.Tests
         }
 
         [UnityTest]
+        public IEnumerator Mixed_EachCardSettlesAtOwnTime_InputOpensOnlyAfterLast()
+        {
+            yield return Run(Job.Bartender, WeaponKind.Rapier);
+            var view = game.CardView;
+            view.Show(Mixed(), _ => { });
+            float start = Time.realtimeSinceStartup;
+            // 일반(260 ms) 정착 뒤 · 영웅(390 ms) 정착 전
+            while (view.SlotHandoffPlaying(0) && Time.realtimeSinceStartup - start < 3f) yield return null;
+            Assert.IsTrue(view.SlotHandoffPlaying(2), "일반 카드가 먼저 끝나도 영웅 카드는 아직 전달 중");
+            Assert.AreEqual(1f, view.CardAlpha(0), 1e-4f, "일반 카드는 자기 시점에 정착");
+            Assert.AreEqual(0f, view.SlotPosition(0).x + 480f, 0.01f, "일반 카드 최종 좌표");
+            Assert.AreEqual(0f, view.CardAlpha(2), 1e-4f, "영웅 카드는 아직 감춤");
+            Assert.IsFalse(view.SlotInteractive(0), "모든 카드가 정착할 때까지 입력은 닫힘");
+            Assert.IsTrue(view.HandoffPlaying);
+            while (view.HandoffPlaying && Time.realtimeSinceStartup - start < 3f) yield return null;
+            for (int i = 0; i < 3; i++) Assert.IsTrue(view.SlotInteractive(i));
+            view.Choose(0);
+        }
+
+        [UnityTest]
+        public IEnumerator DefaultSpeed_Half_DoublesDuration_SettingAppliesToNextOpen()
+        {
+            yield return Run(Job.Bartender, WeaponKind.Rapier);
+            SettingsService.SetLevelUpAnimPercent(SettingsService.LevelUpAnimDefaultPercent);
+            var view = game.CardView;
+            view.Show(Mixed(), _ => { });
+            Assert.AreEqual(0.5f, view.SlotHandoffSpeed(0), 1e-6f, "기본 0.5배");
+            float start = Time.realtimeSinceStartup;
+            while (view.HandoffPlaying && Time.realtimeSinceStartup - start < 4f) yield return null;
+            float took = Time.realtimeSinceStartup - start;
+            Assert.GreaterOrEqual(took, LevelUpMenuArt.RealSelectSeconds(2, 0.5f) - 0.03f, "영웅 390 ms × 2 = 780 ms 이전에 끝나지 않는다");
+            Assert.Less(took, LevelUpMenuArt.RealSelectSeconds(2, 0.5f) + 0.3f, "별도 대기 없음");
+            view.Choose(0);
+            yield return null;
+
+            SettingsService.SetLevelUpAnimPercent(200);
+            view.Show(Mixed(), _ => { });
+            Assert.AreEqual(2f, view.SlotHandoffSpeed(2), 1e-6f, "설정 변경은 다음 창부터");
+            start = Time.realtimeSinceStartup;
+            while (view.HandoffPlaying && Time.realtimeSinceStartup - start < 3f) yield return null;
+            Assert.Less(Time.realtimeSinceStartup - start, LevelUpMenuArt.RealSelectSeconds(2, 2f) + 0.25f);
+            view.Choose(0);
+
+            SettingsService.SetLevelUpAnimPercent(SettingsService.LevelUpAnimDefaultPercent);
+            var hybrid = game.HybridView;
+            hybrid.Show(() => { });
+            start = Time.realtimeSinceStartup;
+            while (hybrid.HandoffPlaying && Time.realtimeSinceStartup - start < 4f) yield return null;
+            Assert.GreaterOrEqual(Time.realtimeSinceStartup - start, LevelUpMenuArt.RealSelectSeconds(3, 0.5f) - 0.03f, "특수 해금도 같은 속도 설정");
+            hybrid.Unlock();
+        }
+
+        [UnityTest]
+        public IEnumerator LowEffects_IgnoresSpeed_StillImmediate()
+        {
+            yield return Run(Job.TeaSommelier, WeaponKind.Bow);
+            SettingsService.SetLevelUpAnimPercent(25);
+            SettingsService.SetEffectsLevel(SettingsData.EffectsLow);
+            var view = game.CardView;
+            view.Show(Mixed(CardCategory.Tea), _ => { });
+            Assert.IsFalse(view.HandoffPlaying, "저이펙트는 속도와 무관하게 즉시");
+            for (int i = 0; i < 3; i++) { Assert.IsFalse(view.SlotHandoffPlaying(i)); Assert.AreEqual(1f, view.CardAlpha(i)); Assert.IsTrue(view.SlotInteractive(i)); }
+            view.Choose(0);
+        }
+
+        [UnityTest]
+        public IEnumerator KeyboardFocus_StaysInsideCardWindow_RestoredOnClose_Standard() { yield return FocusScope(RunMode.Standard); }
+
+        [UnityTest]
+        public IEnumerator KeyboardFocus_StaysInsideCardWindow_RestoredOnClose_Master() { yield return FocusScope(RunMode.Endless); }
+
+        IEnumerator FocusScope(RunMode mode)
+        {
+            var savedMode = RunModeSelection.Current;
+            RunModeSelection.Current = mode;
+            try
+            {
+                yield return Run(Job.Bartender, WeaponKind.Rapier);
+                Assert.AreEqual(mode == RunMode.Endless, game.IsEndless);
+                var view = game.CardView;
+                // 덮개 아래 화면의 버튼(예: 마스터 도전 준비 패널의 '전투 시작')에 포커스가 있던 상태에서 연다.
+                var under = new GameObject("UnderButton", typeof(RectTransform), typeof(Image), typeof(Button));
+                under.transform.SetParent(view.transform.parent, false);
+                under.transform.SetSiblingIndex(0);
+                UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(under);
+                view.Show(Mixed(), _ => { });
+                var inside = new HashSet<Selectable>(view.GetComponentsInChildren<Selectable>(true));
+                for (int i = 0; i < 3; i++)
+                {
+                    foreach (var sel in new Selectable[] { view.SlotButton(i), view.LearnButton(i) })
+                    {
+                        Assert.AreEqual(Navigation.Mode.Explicit, sel.navigation.mode, sel.name + " 명시 이동");
+                        foreach (var to in new[] { sel.navigation.selectOnLeft, sel.navigation.selectOnRight, sel.navigation.selectOnUp, sel.navigation.selectOnDown })
+                            if (to != null) Assert.IsTrue(inside.Contains(to), $"{sel.name} → {to.name}: 카드 창 밖(덮개 아래)으로 포커스가 나가면 안 된다");
+                    }
+                }
+                Assert.AreSame(view.SlotButton(1), view.SlotButton(0).navigation.selectOnRight);
+                Assert.IsNull(view.SlotButton(0).navigation.selectOnLeft, "가장자리는 멈춤(창 밖으로 감기지 않음)");
+                Assert.AreSame(view.ChangeTargetButton, view.SlotButton(1).navigation.selectOnUp, "목표 바꾸기는 정상 런에서 보임 → 위 이동 대상");
+                Assert.AreSame(view.LearnButton(2), view.SlotButton(2).navigation.selectOnDown);
+                foreach (var to in new[] { view.ChangeTargetButton.navigation.selectOnDown, view.ChangeTargetButton.navigation.selectOnUp, view.LearningHelpButton.navigation.selectOnDown })
+                    if (to != null) Assert.IsTrue(inside.Contains(to));
+                Assert.IsFalse(inside.Contains(under.GetComponent<Button>()));
+                view.Choose(0); // 다음 화면 없음 → 열기 전 포커스로 복원
+                Assert.IsFalse(view.IsOpen);
+                Assert.AreSame(under, UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject, "닫히면 열기 전 포커스 복원");
+                yield return null;
+
+                // 2장: 셋째 카드·지식 버튼은 이동 대상에서 빠진다
+                view.Show(Mixed().Take(2).ToList(), _ => { });
+                Assert.AreEqual(Navigation.Mode.None, view.SlotButton(2).navigation.mode);
+                Assert.IsNull(view.SlotButton(1).navigation.selectOnRight);
+                view.Choose(1);
+            }
+            finally { RunModeSelection.Current = savedMode; }
+        }
+
+        [UnityTest]
         public IEnumerator TeaSommelier_UsesTeaClip_SingleCardCentered()
         {
             yield return Run(Job.TeaSommelier, WeaponKind.Bow);
@@ -140,6 +272,7 @@ namespace CCT.Tests
             view.Show(new List<CardOffer> { new CardOffer { card = Pick(CardRarity.Common, CardCategory.Tea) } }, _ => { });
             Assert.AreEqual(0, view.HandoffTier);
             Assert.AreSame(LevelUpMenuArt.Frames(Job.TeaSommelier, 0)[0], view.HandoffSprite);
+            Assert.AreEqual(0f, view.SlotHandoffAnchor(0).x, 0.01f, "1장 = 가운데에서 전달");
             Assert.AreNotSame(LevelUpMenuArt.Frames(Job.Bartender, 0)[0], view.HandoffSprite, "직업별 외형");
             Assert.AreEqual(0f, view.SlotPosition(0).x, 0.01f, "1장은 가운데 정렬");
             yield return new WaitForSecondsRealtime(0.45f);
@@ -154,7 +287,10 @@ namespace CCT.Tests
             yield return Run(Job.Bartender, WeaponKind.Rapier);
             var view = game.CardView;
             view.Show(Mixed().Take(2).ToList(), _ => { });
-            Assert.AreEqual(1, view.HandoffTier, "일반·희귀 → 희귀 동작");
+            Assert.AreEqual(1, view.HandoffTier, "일반·희귀 → 가장 늦게 정착하는 카드 = 희귀");
+            Assert.AreEqual(0, view.SlotHandoffTier(0)); Assert.AreEqual(1, view.SlotHandoffTier(1));
+            Assert.AreEqual(-240f * LevelUpMenuArt.StartOffsetFraction, view.SlotHandoffAnchor(0).x, 0.01f);
+            Assert.AreEqual(240f * LevelUpMenuArt.StartOffsetFraction, view.SlotHandoffAnchor(1).x, 0.01f);
             yield return new WaitForSecondsRealtime(0.5f);
             Assert.AreEqual(-240f, view.SlotPosition(0).x, 0.01f);
             Assert.AreEqual(240f, view.SlotPosition(1).x, 0.01f);
@@ -232,15 +368,21 @@ namespace CCT.Tests
             view.Show(new List<CardOffer> { new CardOffer { card = Pick(CardRarity.Common, CardCategory.Cocktail) } }, _ => { }); // 재추첨
             Assert.AreEqual(0, view.HandoffTier, "새 후보 기준 등급 클립으로 교체");
             Assert.AreEqual(0, view.HandoffFrame, "처음부터");
-            Assert.AreEqual(1, view.GetComponentsInChildren<Transform>(true).Count(t => t.name == "MenuHandoff"), "재생 이미지 하나");
+            var imgs = view.GetComponentsInChildren<Transform>(true).Where(t => t.name.StartsWith("MenuHandoff")).ToList();
+            Assert.AreEqual(3, imgs.Count, "슬롯마다 재생 이미지 하나(재추첨해도 늘지 않음)");
+            Assert.AreEqual(1, imgs.Count(t => t.gameObject.activeSelf), "1장으로 재추첨 → 재생 이미지 1개만");
+            Assert.IsFalse(view.SlotHandoffPlaying(1)); Assert.IsFalse(view.SlotHandoffPlaying(2));
             view.Choose(0); // 전달 중 닫기
             Assert.IsFalse(view.HandoffPlaying);
-            var img = view.transform.Find("MenuHandoff");
-            Assert.IsFalse(img.gameObject.activeSelf, "닫으면 메뉴판 이미지 없음");
-            Assert.AreEqual(Color.white, img.GetComponent<Image>().color);
+            foreach (var img in imgs)
+            {
+                Assert.IsFalse(img.gameObject.activeSelf, "닫으면 메뉴판 이미지 없음");
+                Assert.AreEqual(Color.white, img.GetComponent<Image>().color);
+            }
             yield return null;
             view.Show(Mixed(), _ => { }); // 재오픈: 지난 재생의 잠금·알파·오프셋이 남지 않고 새로 시작
             Assert.AreEqual(2, view.HandoffTier); Assert.AreEqual(0, view.HandoffFrame);
+            for (int i = 0; i < 3; i++) { Assert.AreEqual(i, view.SlotHandoffTier(i)); Assert.AreEqual(0, view.SlotHandoffFrame(i)); }
             yield return new WaitForSecondsRealtime(0.7f);
             for (int i = 0; i < 3; i++)
             {

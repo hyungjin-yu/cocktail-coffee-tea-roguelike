@@ -4,8 +4,9 @@ using UnityEngine.UI;
 namespace CCT
 {
     /// <summary>
-    /// 2026-11-22 레벨업 메뉴판 건네기(원본 ArtSource/v1/levelup-menu-2026-11-22/manifest.json). 바텐더·차 소믈리에 실제 직업 외형이
-    /// 표시 후보 중 최고 등급의 동작을 한 번 재생하고, 카드마다 자기 등급의 내부 장식을 쓴다.
+    /// 2026-11-22 레벨업 메뉴판 건네기(원본 ArtSource/v1/levelup-menu-2026-11-22/manifest.json). 2026-11-23 항목 8 후속: 공통 한 번 대신
+    /// **카드마다 자기 등급의 동작**을 그 슬롯 자리에서 바텐더·차 소믈리에 실제 직업 외형으로 재생하고, 카드마다 자기 등급의 내부 장식을 쓴다.
+    /// 프레임 표(ms)는 원본 그대로이며 재생 속도는 설정(기본 0.5배 = 약 2배 길이)으로 늘이거나 줄인다.
     /// 시간은 모두 Time.unscaledDeltaTime(시간 정지 중 재생), 표시 전용 — 추첨·효과·저장과 무관, 무음.
     /// </summary>
     public static class LevelUpMenuArt
@@ -29,6 +30,12 @@ namespace CCT
         public const float CardGroupAnchorY = -30f, HybridAnchorY = 105f;
 
         public static int Tier(CardRarity r) => Mathf.Clamp((int)r, 0, 3);
+
+        /// <summary>설정의 재생 속도 배율(기본 0.5). 1 = 원본 프레임 시간, 0.5 = 두 배 길이. 저장 값은 25~200%로 정리된다.</summary>
+        public static float PlaybackSpeed =>
+            Mathf.Clamp(SettingsService.Current.levelUpAnimPercent, SettingsService.LevelUpAnimMinPercent, SettingsService.LevelUpAnimMaxPercent) / 100f;
+        /// <summary>실제(벽시계) 선택 가능 시점(초) = 원본 선택 시점 ÷ 재생 속도.</summary>
+        public static float RealSelectSeconds(int tier, float speed) => SelectMs(tier) / 1000f / Mathf.Max(0.01f, speed);
         public static int FrameCount(int tier) => FrameMs[Mathf.Clamp(tier, 0, 3)].Length;
         public static int FrameMsAt(int tier, int frame) => FrameMs[Mathf.Clamp(tier, 0, 3)][frame];
 
@@ -41,7 +48,7 @@ namespace CCT
         }
         public static int SelectMs(int tier) => HandoffMs(tier) + Mathf.RoundToInt(RevealSeconds * 1000f);
 
-        /// <summary>표시 후보의 최고 등급(없으면 -1) — 공통 연출 한 번의 기준.</summary>
+        /// <summary>표시 후보의 최고 등급(없으면 -1) — 카드별 재생 중 가장 늦게 정착하는 슬롯(입력이 열리는 시점)의 기준.</summary>
         public static int MaxTier(System.Collections.Generic.IReadOnlyList<CardOffer> offers)
         {
             int max = -1;
@@ -80,7 +87,8 @@ namespace CCT
         public static Sprite HybridDecoration() => Resources.Load<Sprite>("LevelUpMenu/hybrid_special");
     }
 
-    /// <summary>한 번의 건네기 재생 상태. 같은 인스턴스를 다시 Begin하면 이전 재생을 지우고 새로 시작한다(중복 실행 없음).</summary>
+    /// <summary>한 번의 건네기 재생 상태. 같은 인스턴스를 다시 Begin하면 이전 재생을 지우고 새로 시작한다(중복 실행 없음).
+    /// t는 원본 시간표(클립 시간) 기준 — 벽시계 delta × 재생 속도를 누적한다.</summary>
     public sealed class MenuHandoffPlayer
     {
         Image image;
@@ -88,17 +96,24 @@ namespace CCT
         int tier;
         float t;
         int startFrame;
+        float speed = 1f;
 
         public bool Active { get; private set; }
         public int Tier => tier;
+        /// <summary>이번 재생의 속도 배율(Begin 때 고정 — 재생 중 설정을 바꿔도 다음 재생부터).</summary>
+        public float Speed => speed;
+        public Sprite CurrentSprite => Active && image != null ? image.sprite : null;
         public int Frame { get; private set; }
         /// <summary>카드 그룹 노출 비율. 전달 중 0 → 종료 뒤 70 ms 동안 1.</summary>
         public float Reveal { get; private set; }
 
-        public void Begin(Image target, Sprite[] clip, int clipTier)
+        public void Begin(Image target, Sprite[] clip, int clipTier) => Begin(target, clip, clipTier, LevelUpMenuArt.PlaybackSpeed);
+
+        public void Begin(Image target, Sprite[] clip, int clipTier, float playbackSpeed)
         {
             Stop();
             image = target; frames = clip; tier = clipTier; t = 0f; startFrame = Time.frameCount;
+            speed = Mathf.Clamp(playbackSpeed, 0.25f, 2f);
             Active = image != null && clip != null && clip.Length > 0;
             if (!Active) return;
             Apply();
@@ -110,7 +125,7 @@ namespace CCT
         {
             if (!Active) return false;
             // 시작한 프레임의 delta는 시작 이전 시간을 포함하므로 세지 않는다(카드 창이 뜨는 프레임의 끊김이 전달을 잘라먹지 않게).
-            if (Time.frameCount != startFrame) t += Mathf.Min(unscaledDelta, 0.1f); // 프레임 정지 뒤 한 번에 건너뛰지 않게 한 틱 상한
+            if (Time.frameCount != startFrame) t += Mathf.Min(unscaledDelta, 0.1f) * speed; // 프레임 정지 뒤 한 번에 건너뛰지 않게 한 틱 상한(벽시계 기준)
             Apply();
             LevelUpMenuArt.Evaluate(tier, t, out _, out _, out bool done);
             if (!done) return false;

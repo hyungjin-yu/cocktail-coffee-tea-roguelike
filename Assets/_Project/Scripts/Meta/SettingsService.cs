@@ -37,6 +37,9 @@ namespace CCT
         public bool damageNumbers = true;
         /// <summary>2026-11-16 피드백 26 선택형 프로토타입: 끝없는 모드에서 칵테일을 마신 판에 '취기' 배지만 표시(표시 전용 — 능력치·조작·보상·난수 변화 없음). 기본 꺼짐, 없으면 꺼짐.</summary>
         public bool tipsyBadge;
+        /// <summary>2026-11-23 레벨업 메뉴판 건네기 재생 속도(%). 기본 50 = 아트 원본 시간의 약 2배. 25~200으로 정리(범위 밖은 경계로), 없으면 기본값.
+        /// 표시 전용 — 추첨·효과·저장 진행과 무관. 효과 강도 '낮음'이면 이 값과 무관하게 즉시 정착.</summary>
+        public int levelUpAnimPercent = SettingsService.LevelUpAnimDefaultPercent;
         public bool tutorialSeen;
         public int cardEducationGuideVersion;
         /// <summary>2026-11-15 피드백 7 첫 판 뒤 연구 노트북 안내 완료 버전(없으면 0 = 미완료, 기존 settings.json 그대로 읽힘).</summary>
@@ -191,6 +194,9 @@ namespace CCT
     public static class SettingsService
     {
         public const int CurrentVersion = 2;
+        /// <summary>레벨업 메뉴판 재생 속도(%) — 기본·허용 범위·설정 화면 순환 단계.</summary>
+        public const int LevelUpAnimDefaultPercent = 50, LevelUpAnimMinPercent = 25, LevelUpAnimMaxPercent = 200;
+        public static readonly int[] LevelUpAnimSteps = { 50, 75, 100, 150, 200 };
         public const float RetryIntervalSeconds = 5f;
 
         public const string NoticeBackupRestored = "설정 파일을 읽지 못해 백업에서 복구했습니다.";
@@ -450,6 +456,15 @@ namespace CCT
             Persist();
         }
 
+        /// <summary>레벨업 메뉴판 재생 속도(%) 저장(25~200 정리). 다음에 열리는 건네기부터 적용된다.</summary>
+        public static void SetLevelUpAnimPercent(int percent)
+        {
+            percent = Mathf.Clamp(percent, LevelUpAnimMinPercent, LevelUpAnimMaxPercent);
+            if (Current.levelUpAnimPercent == percent) return;
+            current.levelUpAnimPercent = percent;
+            Persist();
+        }
+
         public static void SetDamageNumbers(bool on)
         {
             if (Current.damageNumbers == on) return;
@@ -473,6 +488,7 @@ namespace CCT
             current.effectsLevel = d.effectsLevel;
             current.damageNumbers = d.damageNumbers;
             current.tipsyBadge = d.tipsyBadge;
+            current.levelUpAnimPercent = d.levelUpAnimPercent;
             ApplyAudio();
             Display.ApplyVSync(current.vsync);
             Persist();
@@ -706,6 +722,7 @@ namespace CCT
             d.effectsLevel = ReadEnum(m, "effectsLevel", d.effectsLevel, diag, SettingsData.EffectsNormal, SettingsData.EffectsLow);
             d.damageNumbers = ReadBool(m, "damageNumbers", d.damageNumbers, diag);
             d.tipsyBadge = ReadBool(m, "tipsyBadge", false, diag);
+            d.levelUpAnimPercent = ReadInt(m, "levelUpAnimPercent", LevelUpAnimDefaultPercent, LevelUpAnimMinPercent, LevelUpAnimMaxPercent, true, diag);
             d.tutorialSeen = ReadBool(m, "tutorialSeen", d.tutorialSeen, diag);
             d.cardEducationGuideVersion = ReadInt(m, "cardEducationGuideVersion", 0, 0, int.MaxValue, true, diag);
             d.notebookGuideVersion = ReadInt(m, "notebookGuideVersion", 0, 0, int.MaxValue, true, diag);

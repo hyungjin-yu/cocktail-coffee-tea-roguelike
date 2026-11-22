@@ -27,6 +27,7 @@ namespace CCT
         Text effectsLabel;
         Text damageNumbersLabel;
         Text tipsyLabel;
+        Text levelUpAnimLabel;
         Text confirmCountdownLabel;
         Text noticeLabel;
         Slider masterSlider, musicSlider, sfxSlider;
@@ -75,6 +76,10 @@ namespace CCT
             view.tipsyLabel = AddRow(rootRt, "TipsyBadge", "취기 표시 (시험)", ref y, out var tipsyBtn);
             tipsyBtn.onClick.AddListener(view.ToggleTipsyBadge);
 
+            // 2026-11-23 레벨업 메뉴판 건네기 재생 속도(기본 0.5배 = 약 2배 길이). 효과 강도 '낮음'이면 연출 없이 즉시 표시.
+            view.levelUpAnimLabel = AddRow(rootRt, "LevelUpAnimSpeed", "레벨업 연출 속도", ref y, out var levelUpAnimBtn);
+            levelUpAnimBtn.onClick.AddListener(view.CycleLevelUpAnimSpeed);
+
             y = -220f;
             ColumnX = RightColumnX;
             view.resolutionLabel = AddRow(rootRt, "Resolution", "해상도", ref y, out var resBtn);
@@ -104,6 +109,7 @@ namespace CCT
                     rootRt.Find(hidden).gameObject.SetActive(false);
                 rootRt.Find("TutorialReplay").GetComponent<RectTransform>().anchoredPosition += new Vector2(0f, 84f);
                 rootRt.Find("TipsyBadge").GetComponent<RectTransform>().anchoredPosition += new Vector2(0f, 84f);
+                rootRt.Find("LevelUpAnimSpeed").GetComponent<RectTransform>().anchoredPosition += new Vector2(0f, 84f);
                 foreach (var moved in new[] { "Shake", "Effects", "DamageNumbers" })
                     rootRt.Find(moved).GetComponent<RectTransform>().anchoredPosition += new Vector2(0f, 3 * 84f);
             }
@@ -301,6 +307,7 @@ namespace CCT
             effectsLabel.text = SettingsService.Current.effectsLevel == SettingsData.EffectsLow ? "낮음 (장식 50%)" : "보통";
             damageNumbersLabel.text = SettingsService.Current.damageNumbers ? "켜짐" : "꺼짐";
             tipsyLabel.text = SettingsService.Current.tipsyBadge ? "켜짐 · 표시만" : "꺼짐";
+            levelUpAnimLabel.text = LevelUpAnimText(SettingsService.Current.levelUpAnimPercent, SettingsService.Current.effectsLevel == SettingsData.EffectsLow);
             RefreshNotice();
         }
 
@@ -396,6 +403,27 @@ namespace CCT
         public string EffectsLabelText => effectsLabel.text;
         public string DamageNumbersLabelText => damageNumbersLabel.text;
         public string TipsyLabelText => tipsyLabel.text;
+        public string LevelUpAnimLabelText => levelUpAnimLabel.text;
+
+        /// <summary>값 칸 문구: 재생 배율(0.5배 등)과 기본 표시. 효과 강도 '낮음'이면 연출이 생략됨을 함께 적는다.</summary>
+        public static string LevelUpAnimText(int percent, bool lowEffects)
+        {
+            string x = (percent / 100f).ToString("0.##", System.Globalization.CultureInfo.InvariantCulture) + "배";
+            if (percent == SettingsService.LevelUpAnimDefaultPercent) x += " (기본)";
+            return lowEffects ? x + " · 효과 낮음: 즉시" : x;
+        }
+
+        /// <summary>레벨업 연출 속도 0.5 → 0.75 → 1 → 1.5 → 2 → 0.5배 순환(저장 값이 단계 밖이면 그보다 큰 첫 단계로).</summary>
+        public void CycleLevelUpAnimSpeed()
+        {
+            AudioService.PlaySfx("ui_confirm");
+            int cur = SettingsService.Current.levelUpAnimPercent;
+            var steps = SettingsService.LevelUpAnimSteps;
+            int next = steps[0];
+            foreach (int st in steps) if (st > cur) { next = st; break; }
+            SettingsService.SetLevelUpAnimPercent(next);
+            RefreshLabels();
+        }
 
         /// <summary>피드백 26: 끝없는 모드에서 칵테일을 마신 판에 '취기' 배지(표시 전용) 켜기/끄기.</summary>
         public void ToggleTipsyBadge()

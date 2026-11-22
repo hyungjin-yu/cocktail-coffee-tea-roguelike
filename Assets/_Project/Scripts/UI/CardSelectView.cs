@@ -50,6 +50,9 @@ namespace CCT
             public Image deco, focusTint;
             public CanvasGroup frameGroup, glowGroup;
             public float baseX, settle = 1f;
+            // 2026-11-23 항목 8 후속: 카드마다 자기 등급·직업 외형의 건네기(슬롯 자리에서 재생, 끝나면 그 카드가 정착)
+            public Image handoffImage;
+            public readonly MenuHandoffPlayer handoff = new MenuHandoffPlayer();
         }
 
         Text reasonLine, targetLine, keyHint;
@@ -71,9 +74,11 @@ namespace CCT
         /// <summary>08:39 — 보상이 같은 호출에서 연달아 열릴 때(07:46) 직전 화면을 닫은 키/클릭/Submit이
         /// 이 화면을 바로 누르지 않도록, 연 프레임과 눌림 해제 전까지 사용자 입력 경로를 잠근다.</summary>
         readonly InputReleaseGate inputGate = new InputReleaseGate();
-        /// <summary>2026-11-22 메뉴판 건네기: 표시 후보 최고 등급의 공통 연출 한 번. 끝나면 카드가 정착하고 그때 입력 게이트를 새로 무장한다.</summary>
-        readonly MenuHandoffPlayer handoff = new MenuHandoffPlayer();
-        Image handoffImage;
+        /// <summary>2026-11-23 메뉴판 건네기: 카드마다 자기 등급 동작을 그 슬롯에서 동시에 재생한다(슬롯별 MenuHandoffPlayer).
+        /// 각 카드는 자기 전달이 끝나면 정착하고, 모든 카드가 정착한 프레임에 입력 게이트를 새로 무장한다.</summary>
+        bool handoffRunning;
+        /// <summary>창을 열기 직전의 포커스(예: 마스터 도전 준비 패널 버튼). 닫힐 때 다른 화면이 포커스를 가져가지 않았으면 되돌린다.</summary>
+        GameObject focusBeforeOpen;
 
         public bool IsOpen => root != null && root.activeSelf;
         /// <summary>49 추천 결과(테스트·QA용, 표시 중인 제시 순서와 같다).</summary>
@@ -116,7 +121,9 @@ namespace CCT
 
             for (int i = 0; i < SlotCount; i++)
                 view.slots[i] = view.BuildSlot(rootRt, i);
-            view.handoffImage = MenuHandoffPlayer.CreateImage(rootRt, "MenuHandoff", LevelUpMenuArt.CardGroupAnchorY);
+            // 카드별 건네기 이미지 — 모든 카드 위(이웃 카드보다 앞)에 그린다. 384 폭 < 시작 간격 422(=480×0.88)라 서로 겹치지 않는다.
+            for (int i = 0; i < SlotCount; i++)
+                view.slots[i].handoffImage = MenuHandoffPlayer.CreateImage(rootRt, $"MenuHandoff{i + 1}", LevelUpMenuArt.CardGroupAnchorY);
             // 2026-11-15 피드백 8: 키보드 선택 안내는 카드 밖 한 줄(카드 아래 목표 진행 띠 -443 아래, 화면 안전선 안).
             view.keyHint = UiFactory.AddText(UiFactory.Place("KeyHint", rootRt, new Vector2(0.5f, 0.5f), new Vector2(0f, -478f),
                 new Vector2(900f, 36f)), MobilePlatform.IsTouchUI ? "" : KeyHintText, 22, TextAnchor.MiddleCenter, new Color(0.78f, 0.8f, 0.86f));
@@ -128,6 +135,7 @@ namespace CCT
             var helpBg=UiFactory.AddImage(helpRt,new Color(.17f,.3f,.32f));
             var help=helpRt.gameObject.AddComponent<Button>(); help.targetGraphic=helpBg;
             help.onClick.AddListener(view.OpenTutorial);
+            view.LearningHelpButton = help;
             UiFactory.AddText(UiFactory.Stretch("Label",helpRt),"학습 안내",26,TextAnchor.MiddleCenter,Color.white);
             view.root.SetActive(false);
             return view;
@@ -304,6 +312,12 @@ namespace CCT
         /// <param name="adviceContext">49 추천 판정 상태. null이면 실행 중 게임의 실제 상태(없으면 추천 표시 없음).</param>
         public void Show(List<CardOffer> newOffers, Action<CardOffer> callback, CardAdviceContext adviceContext = null)
         {
+            if (!IsOpen) // 다시 추첨(열린 채 Show)은 처음 연 시점의 포커스를 유지
+            {
+                // 연속 보상으로 닫힌 직후 다시 열리면 지금 포커스는 이 창의 (꺼진) 카드다 — 그때는 처음 열기 전 포커스를 유지한다.
+                var cur = EventSystem.current != null ? EventSystem.current.currentSelectedGameObject : null;
+                if (cur == null || !cur.transform.IsChildOf(transform)) focusBeforeOpen = cur;
+            }
             CancelHandoff(); // 다시 추첨·재오픈: 이전 재생을 지우고 새 후보가 확정된 시점에 새로 시작
             offers.Clear();
             offers.AddRange(newOffers);
@@ -388,6 +402,7 @@ namespace CCT
             BeginHandoff();
             reasonLine.text = ReasonText(offers.Count > 0 ? offers[0].card.category : CardCategory.Cocktail, GameManager.Instance);
             RefreshTargetInfo();
+            WireNavigation();
             inputGate.Arm(Time.frameCount);
             root.SetActive(true);
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(slots[0].root);
@@ -599,7 +614,7 @@ namespace CCT
             // 매 프레임 눌림 상태를 봐야 "뗐다가 다시 누름"을 구분한다(클릭/Submit 경로도 이 판정을 공유).
             inputGate.Poll(Time.frameCount, InputReleaseGate.AnyConfirmHeld());
             var kb = Keyboard.current;
-            if (kb == null || inputGate.Locked || handoff.Active) return; // 건네기 중에는 사용자 입력 선택 없음(테스트 API Choose는 영향 없음)
+            if (kb == null || inputGate.Locked || handoffRunning) return; // 건네기 중에는 사용자 입력 선택 없음(테스트 API Choose는 영향 없음)
             if (kb.digit1Key.wasPressedThisFrame || kb.numpad1Key.wasPressedThisFrame) Choose(0);
             else if (kb.digit2Key.wasPressedThisFrame || kb.numpad2Key.wasPressedThisFrame) Choose(1);
             else if (kb.digit3Key.wasPressedThisFrame || kb.numpad3Key.wasPressedThisFrame) Choose(2);
@@ -607,17 +622,49 @@ namespace CCT
 
         void OnDisable() { CancelHandoff(); }
 
-        // ---- 2026-11-22 메뉴판 건네기 ----
-        /// <summary>테스트·QA용 — 건네기 재생 중 여부, 재생 중인 공통 클립 등급(0 일반~3 특수, 없으면 -1), 현재 프레임, 카드 그룹 노출 비율.</summary>
-        public bool HandoffPlaying => handoff.Active;
-        public int HandoffTier => handoff.Active ? handoff.Tier : -1;
-        public int HandoffFrame => handoff.Active ? handoff.Frame : -1;
-        public float HandoffReveal => handoff.Reveal;
+        // ---- 2026-11-22 메뉴판 건네기 / 2026-11-23 카드별 건네기 ----
+        /// <summary>테스트·QA용 — 건네기 재생 중 여부(어느 카드든), 가장 늦게 정착하는(최고 등급) 재생 중 카드의 등급·프레임·스프라이트, 재생 중 카드들의 최소 노출 비율.</summary>
+        public bool HandoffPlaying => handoffRunning;
+        public int HandoffTier { get { var s = LeadSlot(); return s != null ? s.handoff.Tier : -1; } }
+        public int HandoffFrame { get { var s = LeadSlot(); return s != null ? s.handoff.Frame : -1; } }
+        public float HandoffReveal
+        {
+            get
+            {
+                if (!handoffRunning) return 0f;
+                float min = 1f;
+                for (int i = 0; i < offers.Count && i < SlotCount; i++) if (slots[i].handoff.Active) min = Mathf.Min(min, slots[i].handoff.Reveal);
+                return min;
+            }
+        }
+        public Sprite HandoffSprite { get { var s = LeadSlot(); return s != null ? s.handoff.CurrentSprite : null; } }
+        /// <summary>카드별: 재생 중 여부·등급(-1 = 없음)·프레임·스프라이트·건네기 앵커 위치(슬롯 시작 좌표)·재생 속도.</summary>
+        public bool SlotHandoffPlaying(int index) => index >= 0 && index < SlotCount && slots[index].handoff.Active;
+        public int SlotHandoffTier(int index) => SlotHandoffPlaying(index) ? slots[index].handoff.Tier : -1;
+        public int SlotHandoffFrame(int index) => SlotHandoffPlaying(index) ? slots[index].handoff.Frame : -1;
+        public Sprite SlotHandoffSprite(int index) => SlotHandoffPlaying(index) ? slots[index].handoff.CurrentSprite : null;
+        public Vector2 SlotHandoffAnchor(int index) => slots[index].handoffImage.rectTransform.anchoredPosition;
+        public float SlotHandoffSpeed(int index) => SlotHandoffPlaying(index) ? slots[index].handoff.Speed : 0f;
         public Sprite SlotDecoration(int index) => index >= 0 && index < SlotCount && slots[index].deco.gameObject.activeSelf ? slots[index].deco.sprite : null;
         public bool InputLocked => inputGate.Locked;
-        public Sprite HandoffSprite => handoff.Active ? handoffImage.sprite : null;
         public Vector2 SlotPosition(int index) => slots[index].cardRt.anchoredPosition;
         public bool SlotInteractive(int index) => slots[index].group.interactable && slots[index].group.blocksRaycasts;
+        public Button SlotButton(int index) => slots[index].root.GetComponent<Button>();
+        public Button LearnButton(int index) => slots[index].learn;
+        public Button LearningHelpButton { get; private set; }
+
+        /// <summary>재생 중인 카드 가운데 가장 늦게 정착하는(최고 등급, 같으면 앞) 카드.</summary>
+        Slot LeadSlot()
+        {
+            Slot lead = null;
+            for (int i = 0; i < offers.Count && i < SlotCount; i++)
+            {
+                var s = slots[i];
+                if (!s.handoff.Active) continue;
+                if (lead == null || s.handoff.Tier > lead.handoff.Tier) lead = s;
+            }
+            return lead;
+        }
 
         void PlaceSlot(Slot s, float offsetFraction, float scale)
         {
@@ -637,52 +684,114 @@ namespace CCT
             s.group.blocksRaycasts = interactive;
         }
 
+        /// <summary>카드마다 자기 등급의 동작을 그 슬롯의 시작 좌표(최종 가로 오프셋 88%)에서 동시에 재생한다. 판 앵커가 카드 시작 위치와 같아
+        /// 마지막 포즈의 메뉴판이 그 카드로 이어지고, 카드는 자기 전달이 끝나면 거기서 최종 좌표·크기로 정착한다(카드마다 별도 대기 없음).
+        /// 저이펙트·후보 없음·직업 클립 없음은 기존처럼 즉시(또는 기존 등장) 경로.</summary>
         void BeginHandoff()
         {
             var game = GameManager.Instance;
-            int tier = LevelUpMenuArt.MaxTier(offers);
-            if (tier < 0 || game == null || HitFeedback.LowEffects || handoffImage == null) return;
-            var clip = LevelUpMenuArt.Frames(game.Job, tier);
-            if (clip == null) return;
-            handoff.Begin(handoffImage, clip, tier);
-            if (!handoff.Active) return;
-            for (int i = 0; i < offers.Count; i++)
+            if (offers.Count == 0 || game == null || HitFeedback.LowEffects) return;
+            float speed = LevelUpMenuArt.PlaybackSpeed; // 한 번 연 창의 카드들은 같은 속도
+            for (int i = 0; i < offers.Count && i < SlotCount; i++)
+            {
+                var s = slots[i];
+                if (s.handoffImage == null || offers[i].card == null) continue;
+                int tier = LevelUpMenuArt.Tier(offers[i].card.rarity);
+                var clip = LevelUpMenuArt.Frames(game.Job, tier);
+                if (clip == null) continue;
+                s.handoffImage.rectTransform.anchoredPosition = new Vector2(s.baseX * LevelUpMenuArt.StartOffsetFraction, LevelUpMenuArt.CardGroupAnchorY);
+                s.handoff.Begin(s.handoffImage, clip, tier, speed);
+                handoffRunning |= s.handoff.Active;
+            }
+            if (!handoffRunning) return;
+            for (int i = 0; i < offers.Count && i < SlotCount; i++)
             {
                 var s = slots[i];
                 s.enterT = -1f; // 기존 잔 채우기 등장은 이 전환으로 대체
                 s.fill.color = s.fillSurface.color = Color.clear;
-                PlaceSlot(s, LevelUpMenuArt.StartOffsetFraction, LevelUpMenuArt.StartScale);
-                SetSlotReveal(s, 0f, false);
+                bool playing = s.handoff.Active;
+                PlaceSlot(s, playing ? LevelUpMenuArt.StartOffsetFraction : 1f, playing ? LevelUpMenuArt.StartScale : 1f);
+                SetSlotReveal(s, playing ? 0f : 1f, false); // 클립이 없는 카드는 바로 보이되 모두 정착할 때까지 입력은 닫힘
             }
         }
 
         void TickHandoff()
         {
-            if (!handoff.Active) return;
-            bool done = handoff.Tick(Time.unscaledDeltaTime);
-            float k = done ? 1f : handoff.Reveal;
-            for (int i = 0; i < offers.Count; i++)
+            if (!handoffRunning) return;
+            bool allDone = true;
+            for (int i = 0; i < offers.Count && i < SlotCount; i++)
             {
                 var s = slots[i];
+                if (!s.handoff.Active) continue;
+                bool done = s.handoff.Tick(Time.unscaledDeltaTime);
+                float k = done ? 1f : s.handoff.Reveal;
                 PlaceSlot(s, Mathf.Lerp(LevelUpMenuArt.StartOffsetFraction, 1f, k), Mathf.Lerp(LevelUpMenuArt.StartScale, 1f, k));
-                SetSlotReveal(s, k, done);
+                SetSlotReveal(s, k, false);
+                if (!done) allDone = false;
             }
-            // 카드가 정착한 뒤에만 입력을 새로 무장한다 — 전달 중 눌린 키·버튼이 정착 순간 선택으로 이어지지 않는다.
-            if (done) inputGate.Arm(Time.frameCount);
+            if (!allDone) return;
+            handoffRunning = false;
+            for (int i = 0; i < offers.Count && i < SlotCount; i++) SetSlotReveal(slots[i], 1f, true);
+            // 모든 카드가 정착한 뒤에만 입력을 새로 무장한다 — 전달 중 눌린 키·버튼이 정착 순간 선택으로 이어지지 않는다.
+            inputGate.Arm(Time.frameCount);
         }
 
         /// <summary>닫기·재오픈·비활성화에서 재생 상태를 지운다(잔상·잠금 없음): 위치·크기·투명도·상호작용을 최종 상태로 되돌린다.</summary>
         void CancelHandoff()
         {
-            bool was = handoff.Active;
-            handoff.Stop();
+            bool was = handoffRunning;
+            handoffRunning = false;
             foreach (var s in slots)
             {
                 if (s == null || s.cardRt == null) continue;
+                s.handoff.Stop();
                 if (was) s.enterT = -1f;
                 PlaceSlot(s, 1f, 1f);
                 SetSlotReveal(s, 1f, true);
             }
+        }
+
+        /// <summary>2026-11-23 모드별 포커스 묶음: 카드 창의 키보드 이동을 이 창 안(카드 ↔ 지식 버튼 ↔ 목표 바꾸기 ↔ 학습 안내)으로 명시한다.
+        /// 자동 이동은 덮개 아래의 HUD(일시정지·조작 방식·히든·목표) 버튼이나 마스터 도전 준비 패널(반복·박람회·전투 시작·음료 만들기)로
+        /// 포커스를 넘길 수 있었다 — 보이지 않는 그 버튼에서 Enter가 눌리면 카드 창 아래 화면이 조작된다. 숨긴 버튼(게임 없음의 목표 바꾸기)은 대상에서 뺀다.
+        /// 마우스·터치는 기존 전체 덮개가 막는다. 닫히면 Choose가 열기 전 포커스를 복원한다.</summary>
+        void WireNavigation()
+        {
+            int n = Mathf.Min(offers.Count, SlotCount);
+            bool changeOn = ChangeTargetButton != null && ChangeTargetButton.gameObject.activeSelf;
+            Selectable top = changeOn ? ChangeTargetButton : (Selectable)LearningHelpButton;
+            Selectable first = n > 0 ? SlotButton(0) : null;
+            for (int i = 0; i < SlotCount; i++)
+            {
+                bool used = i < n;
+                SlotButton(i).navigation = !used ? new Navigation { mode = Navigation.Mode.None } : new Navigation
+                {
+                    mode = Navigation.Mode.Explicit,
+                    selectOnLeft = i > 0 ? SlotButton(i - 1) : null,
+                    selectOnRight = i + 1 < n ? SlotButton(i + 1) : null,
+                    selectOnUp = top,
+                    selectOnDown = slots[i].learn,
+                };
+                slots[i].learn.navigation = !used ? new Navigation { mode = Navigation.Mode.None } : new Navigation
+                {
+                    mode = Navigation.Mode.Explicit,
+                    selectOnLeft = i > 0 ? slots[i - 1].learn : null,
+                    selectOnRight = i + 1 < n ? slots[i + 1].learn : null,
+                    selectOnUp = SlotButton(i),
+                };
+            }
+            if (ChangeTargetButton != null)
+                ChangeTargetButton.navigation = new Navigation
+                {
+                    mode = Navigation.Mode.Explicit, selectOnDown = first, selectOnUp = LearningHelpButton, selectOnRight = LearningHelpButton,
+                };
+            if (LearningHelpButton != null)
+                LearningHelpButton.navigation = new Navigation
+                {
+                    mode = Navigation.Mode.Explicit,
+                    selectOnDown = changeOn ? ChangeTargetButton : first,
+                    selectOnLeft = changeOn ? ChangeTargetButton : null,
+                };
         }
 
         public void OpenLearning(int index)
@@ -701,7 +810,7 @@ namespace CCT
         /// <summary>버튼 클릭/Submit 경로 — 08:39 입력 잠금을 거친다(테스트는 Choose를 직접 호출).</summary>
         void ChooseFromInput(int index)
         {
-            if (handoff.Active || !inputGate.Allows(Time.frameCount, InputReleaseGate.AnyConfirmHeld())) return;
+            if (handoffRunning || !inputGate.Allows(Time.frameCount, InputReleaseGate.AnyConfirmHeld())) return;
             Choose(index);
         }
 
@@ -717,7 +826,17 @@ namespace CCT
             onChosen = null;
             CancelHandoff();
             root.SetActive(false);
+            var restore = focusBeforeOpen;
             callback(offer);
+            // 전환 복원: 이어서 열린 화면(다음 카드·하이브리드·커피 트리)이 포커스를 가져가지 않았으면 열기 전 포커스로(예: 마스터 준비 패널).
+            // 같은 호출에서 카드 창이 다시 열렸으면(연속 보상) 처음 열기 전 포커스를 그대로 들고 간다.
+            if (IsOpen) return;
+            focusBeforeOpen = null;
+            var es = EventSystem.current;
+            if (es == null) return;
+            var now = es.currentSelectedGameObject;
+            bool lost = now == null || !now.activeInHierarchy || now.transform.IsChildOf(transform);
+            if (lost) es.SetSelectedGameObject(restore != null && restore.activeInHierarchy ? restore : null);
         }
     }
 }
