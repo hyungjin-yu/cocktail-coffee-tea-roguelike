@@ -80,6 +80,8 @@ namespace CCT
         /// <summary>알림 출처로 쓰는 준비 음료 이름(없으면 "준비 음료").</summary>
         public string PreparedDrinkName => game != null ? DrinkLab.DrinkInRun(game.RunId)?.recipe?.name ?? "준비 음료" : "준비 음료";
         public RectTransform ChipRect => chipRt;
+        /// <summary>칩 아래 가장자리(캔버스 위쪽에서 내려온 거리, 칩 글자 배율 포함). 칩이 없으면 0. 2026-11-23 #14: 마스터 '음료 만들기' 버튼이 여러 줄 칩을 가리지 않게.</summary>
+        public float ChipBottomEdge => ChipVisible && laidOutTop > 0f ? laidOutTop + chipRt.sizeDelta.y * chipRt.localScale.y : 0f;
         public RectTransform ToastRect => toast != null ? (RectTransform)toast.transform : null;
         public Text ChipTitle => chipTitle;
         /// <summary>효과 전체를 한 줄씩 적은 접근성·시험용 글(화면에는 그리지 않음 — 화면은 효과 행).</summary>

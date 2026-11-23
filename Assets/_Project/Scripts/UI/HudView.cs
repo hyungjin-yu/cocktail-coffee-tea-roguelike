@@ -277,24 +277,21 @@ namespace CCT
             view.healBlockIcon = UiFactory.AddIcon(root, FeedbackArt.StatusHealBlock, new Vector2(0f, 1f), new Vector2(224f, -70f), 40f);
             foreach (var icon in new[] { view.slowIcon, view.suppressedIcon, view.sealIcon, view.attackSlowIcon, view.healBlockIcon })
                 if (icon != null) icon.gameObject.SetActive(false);
-            bool hasStatusIcons = view.slowIcon != null;
-            float statusTextX = view.attackSlowIcon != null && view.healBlockIcon != null ? 88f : 0f; // 아이콘 2칸(44px씩) 늘어난 만큼 문구를 오른쪽으로
             // 2026-10-12: 환불 무효 상태가 선반 그림 위 글자만이라 안 보였다 — 걸렸을 때만 어두운 바탕(입력 안 막음).
-            var suppressBackRt = UiFactory.Place("SuppressedBacking", root, new Vector2(0f, 1f), new Vector2(hasStatusIcons ? 176f + statusTextX : 22f, -66f),
-                new Vector2(hasStatusIcons ? 336f : 536f, 46f));
-            UiFactory.AddImage(suppressBackRt, new Color(.06f, .05f, .08f, .86f)).raycastTarget = false;
+            // 2026-11-23 #14 공동 검수: 디버프 4종 동시에 320px 한 줄 칸에서 글자가 14pt(720p 약 9px)까지 줄고 게이지 바와 겹쳤다(캡처).
+            // 아이콘 줄(−70..−110) 아래 왼쪽 전체 폭(22..506)에서 두 줄(최소 17pt)로 — 게이지 바(x 510~)와 왼쪽 패널(y −174~) 사이.
+            var suppressBackRt = UiFactory.Place("SuppressedBacking", root, new Vector2(0f, 1f), new Vector2(22f, -110f), new Vector2(484f, 60f));
+            UiFactory.AddImage(suppressBackRt, new Color(.06f, .05f, .08f, .9f)).raycastTarget = false;
             view.suppressedBack = suppressBackRt.gameObject;
             view.suppressedBack.SetActive(false);
-            var suppressRt = UiFactory.Place("Suppressed", root, new Vector2(0f, 1f), new Vector2(hasStatusIcons ? 184f + statusTextX : 30f, -70f),
-                new Vector2(hasStatusIcons ? 320f : 520f, 40f));
-            view.suppressed = UiFactory.AddText(suppressRt, "", 26, TextAnchor.MiddleLeft,
-                new Color(1f, 0.4f, 0.45f));
-            // 2026-11-22: 디버프(공속 감소·회복 차단)가 겹쳐도 한 줄 칸 안에서 글자만 줄인다.
-            view.suppressed.resizeTextForBestFit = true; view.suppressed.resizeTextMinSize = 14; view.suppressed.resizeTextMaxSize = 26;
+            var suppressRt = UiFactory.Place("Suppressed", root, new Vector2(0f, 1f), new Vector2(30f, -112f), new Vector2(468f, 56f));
+            view.suppressed = UiFactory.AddText(suppressRt, "", 24, TextAnchor.MiddleLeft,
+                new Color(1f, 0.55f, 0.58f));
+            view.suppressed.resizeTextForBestFit = true; view.suppressed.resizeTextMinSize = 17; view.suppressed.resizeTextMaxSize = 24;
             view.suppressed.horizontalOverflow = HorizontalWrapMode.Wrap; view.suppressed.verticalOverflow = VerticalWrapMode.Truncate; // 칸 높이 안에서 글자를 줄임(넘쳐 아래로 삐져나오지 않게)
 
             // 08:175 저장 실패 — 짧은 문구 + 다시 시도 버튼(디스크 정보는 로그로만). 5초 자동 재시도는 SaveRetryRunner.
-            var saveRt = UiFactory.Place("SaveFailed", root, new Vector2(0f, 1f), new Vector2(48f, -116f),
+            var saveRt = UiFactory.Place("SaveFailed", root, new Vector2(0f, 0f), new Vector2(48f, 150f), // 2026-11-23: 왼쪽 위 칸을 디버프 두 줄이 쓰므로 왼쪽 아래(조작 안내 위)로
                 new Vector2(520f, 44f));
             var saveBg = UiFactory.AddImage(saveRt, new Color(0.4f, 0.12f, 0.1f, 0.9f));
             var saveButton = saveRt.gameObject.AddComponent<Button>();

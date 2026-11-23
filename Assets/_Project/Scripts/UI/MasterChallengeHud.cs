@@ -224,9 +224,22 @@ namespace CCT
             // 2026-11-23 마스터 모드 카드 창 검수: 버튼 활성은 0.5초 주기 Refresh에서만 바뀌어, 카드 창이 닫힌 직후 최대 0.5초 동안 '음료 만들기'가
             // 비활성 색으로 남았다(B 키는 바로 됨). 열고 닫는 판정(CanOpenMasterBrew)과 매 프레임 맞춘다 — 값싼 bool 대입만.
             if (game != null && brewButton != null) { bool can = game.CanOpenMasterBrew; if (brewButton.interactable != can) brewButton.interactable = can; }
+            PlaceBrewButton();
             prepView?.SyncInteractable();
             refreshTimer -= Time.unscaledDeltaTime;
             if (refreshTimer <= 0f) { refreshTimer = 0.5f; Refresh(); }
+        }
+
+        /// <summary>2026-11-23 #14 공동 검수: 효과가 여러 줄인 준비 음료 칩(오른쪽 위)이 고정 위치 '음료 만들기' 버튼(−304)에 가려졌다(1024×768 4효과 캡처).
+        /// 버튼과 그 아래 다음 웨이브 예고를 칩 아래 가장자리 + 8 아래로 내린다(칩이 짧으면 기존 위치).</summary>
+        void PlaceBrewButton()
+        {
+            if (game == null || brewButton == null) return;
+            float chipBottom = game.DrinkHud != null ? game.DrinkHud.ChipBottomEdge : 0f;
+            float top = Mathf.Max(BrewButtonTop, chipBottom > 0f ? chipBottom + 8f : 0f);
+            var rt = (RectTransform)brewButton.transform;
+            if (!Mathf.Approximately(rt.anchoredPosition.y, -top)) rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -top);
+            prepView?.PlaceNotice(top + BrewButtonH + MasterPrepView.NoticeGap);
         }
 
         public void Refresh()
@@ -237,6 +250,7 @@ namespace CCT
             foreach (var c in DrinkLab.RunCupsFor(game.RunId)) if (c.IsHeld) held++;
             int craftable = CraftableCount(game.RunId);
             brewLabel.text = $"음료 만들기 [B] · 가능 {craftable} · 보관 {held}";
+            PlaceBrewButton();
             brewButton.interactable = game.CanOpenMasterBrew; // 카드·일시정지·현수막 설치 등 다른 창이 위에 있으면 누를 수 없음(OpenMasterBrew와 같은 규칙)
 
             bool awaiting = st.Phase == MasterPhase.AwaitChoice, clearing = st.Phase == MasterPhase.ClearingForFair;

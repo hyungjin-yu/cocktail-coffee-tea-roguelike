@@ -13,8 +13,8 @@ namespace CCT
     /// </summary>
     public sealed class MasterPrepView : MonoBehaviour
     {
-        public const float PanelX = 1080f, PanelTop = 130f, PanelW = 940f, PanelH = 782f;
-        public const float BlockH = 296f, RowH = 46f, MaxRows = 3; // 블록 296: 머리 6-38, 요약 38-64, 줄 3x46 66-204, 조언 208-282(3줄, 720p 판독 — 2026-11-12)
+        public const float PanelX = 930f, PanelTop = 130f, PanelW = 660f, PanelH = 782f; // 2026-11-23 #14: 왼쪽 HUD 패널(~x600)과 준비 음료 칩(1280x720 x1390~, 4:3 1024x768은 글자 배율로 x1265~) 사이 — 전 940폭은 칩을 160~330 가림
+        public const float BlockH = 316f, RowH = 46f, MaxRows = 3; // 블록 296: 머리 6-38, 요약 38-64, 줄 3x46 66-204, 조언 208-282(3줄, 720p 판독 — 2026-11-12)
         public const float NoticeW = 330f, NoticeH = 112f, NoticeGap = 12f;
 
         GameManager game;
@@ -29,6 +29,10 @@ namespace CCT
         public string PanelTitle => panelTitle != null ? panelTitle.text : "";
         public RectTransform Panel => panel;
         public RectTransform Notice => notice;
+        public void PlaceNotice(float top)
+        {
+            if (notice != null && !Mathf.Approximately(notice.anchoredPosition.y, -top)) notice.anchoredPosition = new Vector2(notice.anchoredPosition.x, -top);
+        }
         /// <summary>준비 패널에 그린 줄 문구(시험·검수용).</summary>
         public readonly List<string> RowTexts = new List<string>();
         public readonly List<string> BlockHeaders = new List<string>();
@@ -57,13 +61,13 @@ namespace CCT
             panelFooter.resizeTextForBestFit = true; panelFooter.resizeTextMinSize = 14; panelFooter.resizeTextMaxSize = 20;
             panelFooter.verticalOverflow = VerticalWrapMode.Truncate;
 
-            repeatButton = makeButton(panel, "Repeat", new Vector2(0.5f, 0f), new Vector2(-300f, 16f), new Vector2(280f, 70f), "재료 모으기 반복 (1~5)", 24, new Color(0.18f, 0.32f, 0.2f, 0.95f));
+            repeatButton = makeButton(panel, "Repeat", new Vector2(0.5f, 0f), new Vector2(-218f, 16f), new Vector2(200f, 70f), "재료 모으기 반복 (1~5)", 24, new Color(0.18f, 0.32f, 0.2f, 0.95f));
             repeatButton.onClick.AddListener(() => { if (game?.Master != null && game.Master.ChooseRepeat()) Refresh(); });
-            brewButton = makeButton(panel, "PrepBrew", new Vector2(0.5f, 0f), new Vector2(0f, 16f), new Vector2(280f, 70f), "음료 만들기 [B]", 24, new Color(0.32f, 0.18f, 0.1f, 0.95f));
+            brewButton = makeButton(panel, "PrepBrew", new Vector2(0.5f, 0f), new Vector2(0f, 16f), new Vector2(200f, 70f), "음료 만들기 [B]", 24, new Color(0.32f, 0.18f, 0.1f, 0.95f));
             brewButton.onClick.AddListener(() => game?.OpenMasterBrew());
-            fairButton = makeButton(panel, "Fair", new Vector2(0.5f, 0f), new Vector2(300f, 16f), new Vector2(280f, 70f), "박람회 도전", 26, new Color(0.55f, 0.14f, 0.16f, 0.95f));
+            fairButton = makeButton(panel, "Fair", new Vector2(0.5f, 0f), new Vector2(218f, 16f), new Vector2(200f, 70f), "박람회 도전", 26, new Color(0.55f, 0.14f, 0.16f, 0.95f));
             fairButton.onClick.AddListener(() => { if (game?.Master != null && game.Master.ChooseFair()) Refresh(); });
-            startButton = makeButton(panel, "PrepStart", new Vector2(0.5f, 0f), new Vector2(300f, 16f), new Vector2(280f, 70f), "전투 시작", 28, new Color(0.55f, 0.32f, 0.14f, 0.95f));
+            startButton = makeButton(panel, "PrepStart", new Vector2(0.5f, 0f), new Vector2(218f, 16f), new Vector2(200f, 70f), "전투 시작", 28, new Color(0.55f, 0.32f, 0.14f, 0.95f));
             startButton.onClick.AddListener(() => { if (game?.Master != null && game.Master.StartBattle()) Refresh(); });
             panel.gameObject.SetActive(false);
 
@@ -206,7 +210,7 @@ namespace CCT
             }
             string extra = groups.Count > rows ? $"그 외 {groups.Count - rows}종 · " : "";
             string aff = u.plan.AffinityHint();
-            var adv = UiFactory.AddText(UiFactory.Place("Advice", brt, new Vector2(0f, 0f), new Vector2(16f, 4f), new Vector2(PanelW - 72f, 76f)),
+            var adv = UiFactory.AddText(UiFactory.Place("Advice", brt, new Vector2(0f, 0f), new Vector2(16f, 4f), new Vector2(PanelW - 72f, 96f)),
                 $"{extra}{u.plan.Advice()}{(aff.Length > 0 ? "\n" + aff : "")}{(u.plan.DrinkAdvice().Length > 0 ? "\n음료: " + u.plan.DrinkAdvice() : "")}", 19, TextAnchor.LowerLeft, new Color(0.78f, 0.92f, 1f));
             adv.resizeTextForBestFit = true; adv.resizeTextMinSize = 16; adv.resizeTextMaxSize = 20;
             adv.verticalOverflow = VerticalWrapMode.Truncate;

@@ -1,0 +1,142 @@
+audit boss_banner_bartender 1280x720 flagged=0
+shot boss_banner_bartender_1280x720.png 1280x720
+audit boss_banner_bartender 1920x1080 flagged=0
+shot boss_banner_bartender_1920x1080.png 1920x1080
+audit boss_banner_bartender 1024x768 flagged=0
+shot boss_banner_bartender_1024x768.png 1024x768
+card_bartender_standard cards open=True [0] 티니 보우 조건 칵테일 1/3 · 차 0/3 · <color=#FF9952>새 칵테일 종류 (러시 1/3)</color> | [1] 티니 보우 조건 칵테일 1/3 · 차 0/3 · <color=#FF9952>새 칵테일 종류 (러시 1/3)</color> | [2] 티니 보우 조건 칵테일 1/3 · 차 0/3 · <color=#FF9952>새 칵테일 종류 (러시 1/3)</color> | [3]  | [4]  | [5]  | 
+audit card_bartender_standard 1280x720 flagged=0
+shot card_bartender_standard_1280x720.png 1280x720
+audit card_bartender_standard 1920x1080 flagged=0
+shot card_bartender_standard_1920x1080.png 1920x1080
+audit card_bartender_standard 1024x768 flagged=0
+shot card_bartender_standard_1024x768.png 1024x768
+card_tea_master cards open=True [0] <color=#FFD652>숨은 조합까지 이 카드 4장</color> | [1] <color=#FFD652>숨은 조합 재료</color> | [2] <color=#FFD652>숨은 조합 재료</color> | [3]  | [4]  | [5]  | 
+audit card_tea_master 1280x720 flagged=0
+shot card_tea_master_1280x720.png 1280x720
+audit card_tea_master 1920x1080 flagged=0
+shot card_tea_master_1920x1080.png 1920x1080
+audit card_tea_master 1024x768 flagged=0
+shot card_tea_master_1024x768.png 1024x768
+audit hud_bartender_master_4debuffs 1280x720 flagged=0
+shot hud_bartender_master_4debuffs_1280x720.png 1280x720
+audit hud_bartender_master_4debuffs 1920x1080 flagged=0
+shot hud_bartender_master_4debuffs_1920x1080.png 1920x1080
+audit hud_bartender_master_4debuffs 1024x768 flagged=0
+shot hud_bartender_master_4debuffs_1024x768.png 1024x768
+audit hud_bartender_standard_4debuffs 1280x720 flagged=0
+shot hud_bartender_standard_4debuffs_1280x720.png 1280x720
+audit hud_bartender_standard_4debuffs 1920x1080 flagged=0
+shot hud_bartender_standard_4debuffs_1920x1080.png 1920x1080
+audit hud_bartender_standard_4debuffs 1024x768 flagged=0
+shot hud_bartender_standard_4debuffs_1024x768.png 1024x768
+audit hud_tea_master_plain 1280x720 flagged=0
+shot hud_tea_master_plain_1280x720.png 1280x720
+audit hud_tea_master_plain 1920x1080 flagged=0
+shot hud_tea_master_plain_1920x1080.png 1920x1080
+audit hud_tea_master_plain 1024x768 flagged=0
+shot hud_tea_master_plain_1024x768.png 1024x768
+audit hud_tea_standard_4debuffs 1280x720 flagged=0
+shot hud_tea_standard_4debuffs_1280x720.png 1280x720
+audit hud_tea_standard_4debuffs 1920x1080 flagged=0
+shot hud_tea_standard_4debuffs_1920x1080.png 1920x1080
+audit hud_tea_standard_4debuffs 1024x768 flagged=0
+shot hud_tea_standard_4debuffs_1024x768.png 1024x768
+audit hybrid_unlock_tea 1280x720 flagged=0
+shot hybrid_unlock_tea_1280x720.png 1280x720
+audit hybrid_unlock_tea 1920x1080 flagged=0
+shot hybrid_unlock_tea_1920x1080.png 1920x1080
+audit hybrid_unlock_tea 1024x768 flagged=0
+shot hybrid_unlock_tea_1024x768.png 1024x768
+audit master_bartender_prep 1280x720 flagged=0
+shot master_bartender_prep_1280x720.png 1280x720
+audit master_bartender_prep 1920x1080 flagged=0
+shot master_bartender_prep_1920x1080.png 1920x1080
+audit master_bartender_prep 1024x768 flagged=0
+shot master_bartender_prep_1024x768.png 1024x768
+audit master_bartender_brew 1280x720 flagged=0
+shot master_bartender_brew_1280x720.png 1280x720
+audit master_bartender_brew 1920x1080 flagged=0
+shot master_bartender_brew_1920x1080.png 1920x1080
+audit master_bartender_brew 1024x768 flagged=0
+shot master_bartender_brew_1024x768.png 1024x768
+audit master_longname_prep 1280x720 flagged=0
+shot master_longname_prep_1280x720.png 1280x720
+audit master_longname_prep 1920x1080 flagged=0
+shot master_longname_prep_1920x1080.png 1920x1080
+audit master_longname_prep 1024x768 flagged=0
+shot master_longname_prep_1024x768.png 1024x768
+audit master_longname_brew 1280x720 flagged=0
+shot master_longname_brew_1280x720.png 1280x720
+audit master_longname_brew 1920x1080 flagged=0
+shot master_longname_brew_1920x1080.png 1920x1080
+audit master_longname_brew 1024x768 flagged=0
+shot master_longname_brew_1024x768.png 1024x768
+audit master_tea_prep 1280x720 flagged=0
+shot master_tea_prep_1280x720.png 1280x720
+audit master_tea_prep 1920x1080 flagged=0
+shot master_tea_prep_1920x1080.png 1920x1080
+audit master_tea_prep 1024x768 flagged=0
+shot master_tea_prep_1024x768.png 1024x768
+audit master_tea_brew 1280x720 flagged=0
+shot master_tea_brew_1280x720.png 1280x720
+audit master_tea_brew 1920x1080 flagged=0
+shot master_tea_brew_1920x1080.png 1920x1080
+audit master_tea_brew 1024x768 flagged=0
+shot master_tea_brew_1024x768.png 1024x768
+audit pause_bartender 1280x720 flagged=0
+shot pause_bartender_1280x720.png 1280x720
+audit pause_bartender 1920x1080 flagged=0
+shot pause_bartender_1920x1080.png 1920x1080
+audit pause_bartender 1024x768 flagged=0
+shot pause_bartender_1024x768.png 1024x768
+audit pause_tea 1280x720 flagged=0
+shot pause_tea_1280x720.png 1280x720
+audit pause_tea 1920x1080 flagged=0
+shot pause_tea_1920x1080.png 1920x1080
+audit pause_tea 1024x768 flagged=0
+shot pause_tea_1024x768.png 1024x768
+pause_over_card_bartender_standard cards open=True [0] 티니 보우 조건 칵테일 1/3 · 차 0/3 · <color=#FF9952>새 칵테일 종류 (러시 1/3)</color> | [1] 최종 형태까지 2장 · 티니 보우 조건 칵테일 1/3 · 차 0/3 | [2] 티니 보우 조건 칵테일 1/3 · 차 0/3 · <color=#FF9952>새 칵테일 종류 (러시 1/3)</color> | [3]  | [4]  | [5]  | 
+audit pause_over_card_bartender_standard 1280x720 flagged=0
+shot pause_over_card_bartender_standard_1280x720.png 1280x720
+audit pause_over_card_bartender_standard 1920x1080 flagged=0
+shot pause_over_card_bartender_standard_1920x1080.png 1920x1080
+audit pause_over_card_bartender_standard 1024x768 flagged=0
+shot pause_over_card_bartender_standard_1024x768.png 1024x768
+pause_over_card_tea_master cards open=True [0] <color=#FFD652>숨은 조합까지 이 카드 4장</color> | [1] <color=#FFD652>숨은 조합 재료</color> | [2] <color=#FFD652>숨은 조합 재료</color> | [3]  | [4]  | [5]  | 
+audit pause_over_card_tea_master 1280x720 flagged=0
+shot pause_over_card_tea_master_1280x720.png 1280x720
+audit pause_over_card_tea_master 1920x1080 flagged=0
+shot pause_over_card_tea_master_1920x1080.png 1920x1080
+audit pause_over_card_tea_master 1024x768 flagged=0
+shot pause_over_card_tea_master_1024x768.png 1024x768
+audit result_bartender_standard 1280x720 flagged=0
+shot result_bartender_standard_1280x720.png 1280x720
+audit result_bartender_standard 1920x1080 flagged=0
+shot result_bartender_standard_1920x1080.png 1920x1080
+audit result_bartender_standard 1024x768 flagged=0
+shot result_bartender_standard_1024x768.png 1024x768
+audit result_tea_master 1280x720 flagged=0
+shot result_tea_master_1280x720.png 1280x720
+audit result_tea_master 1920x1080 flagged=0
+shot result_tea_master_1920x1080.png 1920x1080
+audit result_tea_master 1024x768 flagged=0
+shot result_tea_master_1024x768.png 1024x768
+audit settings 1280x720 flagged=0
+shot settings_1280x720.png 1280x720
+audit settings 1920x1080 flagged=0
+shot settings_1920x1080.png 1920x1080
+audit settings 1024x768 flagged=0
+shot settings_1024x768.png 1024x768
+audit tutorial_bartender 1280x720 flagged=0
+shot tutorial_bartender_1280x720.png 1280x720
+audit tutorial_bartender 1920x1080 flagged=0
+shot tutorial_bartender_1920x1080.png 1920x1080
+audit tutorial_bartender 1024x768 flagged=0
+shot tutorial_bartender_1024x768.png 1024x768
+audit tutorial_tea 1280x720 flagged=0
+shot tutorial_tea_1280x720.png 1280x720
+audit tutorial_tea 1920x1080 flagged=0
+shot tutorial_tea_1920x1080.png 1920x1080
+audit tutorial_tea 1024x768 flagged=0
+shot tutorial_tea_1024x768.png 1024x768
