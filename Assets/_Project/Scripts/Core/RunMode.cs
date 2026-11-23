@@ -19,10 +19,17 @@ namespace CCT
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics() { Current = RunMode.Standard; StandardTable = SpawnTable.JobTheme; }
 
+        /// <summary>2026-11-23 무기 선택 화면 "등장 몬스터" 두 상태 표시와 바로 아래 짧은 설명(보스·보상은 두 설정 모두 그대로).</summary>
+        public static string TableLabel(SpawnTable t) => "등장 몬스터: " + (t == SpawnTable.AllFamilies ? "세 계열 혼합" : "직업 기본");
+        public static string TableDesc(SpawnTable t) => t == SpawnTable.AllFamilies
+            ? "칵테일·차·커피 몬스터가 섞여 등장 · 보스·보상은 그대로"
+            : "선택 직업 스테이지의 일반 몬스터 등장 · 보스·보상은 그대로";
+        public const string MasterTableLabel = "등장 몬스터: 세 계열 순환";
+        public const string MasterTableDesc = "집중 계열 70%(커피→차→칵테일, 3웨이브마다) · 전환 1웨이브 전 예고";
         public static string TableName(SpawnTable t) => t == SpawnTable.AllFamilies ? "세 계열 고르게" : "직업 테마";
         public static SpawnTable ParseTable(string s) => s == nameof(SpawnTable.AllFamilies) ? SpawnTable.AllFamilies : SpawnTable.JobTheme;
         /// <summary>시작 화면 짧은 안내(코디네이터 확정 A안: 런 중 음료 교체 없음).</summary>
-        public const string NoSwapLine = "음료는 출발 때 한 잔만 마시며 런 중 교체 불가 · 집중 계열은 1웨이브 전 예고";
+        public const string NoSwapLine = "음료는 출발 때 한 잔만 마시며 런 중 교체 불가";
         /// <summary>2026-11-11 마스터 도전 출전 안내(런 중 제조·교체 가능).</summary>
         public const string MasterLine = "10웨이브 주기: 재료 모으기 1~5 → 박람회 6~8 → 보상 손님 9~10 · [B] 런 중 음료 제조(마시면 교체)";
 

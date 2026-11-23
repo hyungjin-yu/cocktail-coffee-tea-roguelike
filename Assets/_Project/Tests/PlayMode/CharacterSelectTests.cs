@@ -104,7 +104,57 @@ namespace CCT.Tests
             Assert.GreaterOrEqual(gen.characterCountVisible, text.text.Length - 1, $"안내 전부 보임(lines={gen.lineCount}, font={text.cachedTextGenerator.fontSizeUsedForBestFit})");
             var hintText = Named(view, "ModeHint").GetComponent<UnityEngine.UI.Text>();
             Assert.GreaterOrEqual(hintText.cachedTextGenerator.characterCountVisible, hintText.text.Length - 1, "모드 안내 전부 보임");
+            var desc = ScreenRect(Named(view, "SpawnTableDesc"));
+            var drinkRule = ScreenRect(Named(view, "DrinkRule"));
+            var prepared = ScreenRect(Named(view, "PreparedDrink"));
+            Assert.IsFalse(desc.Overlaps(hint), "표 설명-모드 안내");
+            Assert.IsFalse(desc.Overlaps(start) || desc.Overlaps(ScreenRect(view.DrinkLabButton.transform)) || desc.Overlaps(ScreenRect(view.LaptopButton.transform)), "표 설명-하단 버튼");
+            foreach (var c in cards) Assert.IsFalse(c.Overlaps(desc) || c.Overlaps(hint), "카드-설명");
+            Assert.IsFalse(drinkRule.Overlaps(prepared), "음료 규칙-준비 음료");
+            Assert.IsFalse(ScreenRect(view.SpawnTableButton.transform).Overlaps(desc), "표 버튼-표 설명");
+            foreach (var t in new[] { desc, hint, drinkRule })
+                Assert.IsTrue(t.width > 0f);
+            foreach (var n in new[] { "SpawnTableDesc", "DrinkRule" })
+            {
+                var tx = Named(view, n).GetComponent<UnityEngine.UI.Text>();
+                Assert.GreaterOrEqual(tx.cachedTextGenerator.characterCountVisible, tx.text.Length - 1, n + " 전부 보임");
+            }
+            bool endless = mode == RunMode.Endless;
+            Assert.AreEqual(!endless, view.SpawnTableButton.gameObject.activeInHierarchy, "마스터 도전에서는 변경 버튼 숨김");
+            Assert.AreEqual(endless, Named(view, "SpawnTableReadOnly").gameObject.activeInHierarchy, "마스터 도전은 같은 자리 읽기 전용 문구");
+            if (endless) StringAssert.Contains("순환", view.TableReadOnlyText);
+            else StringAssert.Contains("직업 기본", view.SpawnTableButton.GetComponentInChildren<UnityEngine.UI.Text>().text);
             RunModeSelection.Current = RunMode.Standard; // 정적 선택 복원(다음 시험의 기본값 단언 보호)
+        }
+
+        [UnityTest]
+        public IEnumerator WeaponStep_SpawnTable_TwoStates_LabelAndDescription()
+        {
+            var view = CharacterSelectView.Show((j, w) => { });
+            yield return null;
+            view.BartenderButton.onClick.Invoke();
+            yield return null;
+            view.SetMode(RunMode.Standard);
+            RunModeSelection.StandardTable = SpawnTable.JobTheme;
+            view.ToggleSpawnTable(); // 혼합
+            Assert.AreEqual(SpawnTable.AllFamilies, RunModeSelection.StandardTable);
+            Assert.AreEqual("등장 몬스터: 세 계열 혼합", view.TableLabelText);
+            StringAssert.Contains("칵테일·차·커피", view.TableDescText);
+            StringAssert.Contains("보스·보상은 그대로", view.TableDescText);
+            view.SpawnTableButton.onClick.Invoke(); // 직업 기본
+            Assert.AreEqual(SpawnTable.JobTheme, RunModeSelection.StandardTable);
+            Assert.AreEqual("등장 몬스터: 직업 기본", view.TableLabelText);
+            StringAssert.Contains("선택 직업 스테이지의 일반 몬스터", view.TableDescText);
+            StringAssert.Contains("보스·보상은 그대로", view.TableDescText);
+            StringAssert.Contains("교체 불가", view.DrinkRuleText);
+            StringAssert.DoesNotContain("집중", view.DrinkRuleText);
+            view.SetMode(RunMode.Endless);
+            view.ToggleSpawnTable();
+            Assert.AreEqual(SpawnTable.JobTheme, RunModeSelection.StandardTable, "마스터 도전에서 표 전환 무시");
+            StringAssert.Contains("집중 계열", view.TableDescText);
+            StringAssert.Contains("[B]", view.DrinkRuleText);
+            view.SetMode(RunMode.Standard);
+            RunModeSelection.Current = RunMode.Standard;
         }
 
         [UnityTest]

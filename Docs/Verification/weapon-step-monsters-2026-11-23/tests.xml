@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Passed" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-23 02:31:53Z" end-time="2026-11-23 02:31:57Z" duration="3.9835997">
+  <test-suite type="TestSuite" id="1561" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-11-23 02:31:53Z" end-time="2026-11-23 02:31:57Z" duration="3.983600" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1555" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/orca/workspaces/CocktailCoffeeTea/levelup-menu-unity/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-11-23 02:31:53Z" end-time="2026-11-23 02:31:57Z" duration="3.975182" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="25868" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1556" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-11-23 02:31:53Z" end-time="2026-11-23 02:31:57Z" duration="3.972631" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1536" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-11-23 02:31:53Z" end-time="2026-11-23 02:31:57Z" duration="3.970047" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1061" name="CharacterSelectTests" fullname="CCT.Tests.CharacterSelectTests" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-23 02:31:53Z" end-time="2026-11-23 02:31:54Z" duration="0.911769" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_924a71fa1596479dbc18adc69b54483e.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1070" name="Build_WithChosenJobAndWeapon_AppliesBoth" fullname="CCT.Tests.CharacterSelectTests.Build_WithChosenJobAndWeapon_AppliesBoth" methodname="Build_WithChosenJobAndWeapon_AppliesBoth" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="681706083" result="Passed" start-time="2026-11-23 02:31:53Z" end-time="2026-11-23 02:31:53Z" duration="0.330241" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:53.437 START CCT.Tests.CharacterSelectTests.Build_WithChosenJobAndWeapon_AppliesBoth (t=0.1 ts=1)
+[Commerce] 결제 비활성: commerce_config.enabled=false
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_4440d301b0fb4381b87fea38f0320bed.json (source=Defaults)
+[TestProgress] 11:31:53.770 END Passed 0.3s CCT.Tests.CharacterSelectTests.Build_WithChosenJobAndWeapon_AppliesBoth (t=0.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1071" name="Build_WithMeleeWeapon_AttachesRapierWeapon" fullname="CCT.Tests.CharacterSelectTests.Build_WithMeleeWeapon_AttachesRapierWeapon" methodname="Build_WithMeleeWeapon_AttachesRapierWeapon" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="501735862" result="Passed" start-time="2026-11-23 02:31:53Z" end-time="2026-11-23 02:31:53Z" duration="0.139215" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:53.772 START CCT.Tests.CharacterSelectTests.Build_WithMeleeWeapon_AttachesRapierWeapon (t=0.4 ts=1)
+[TestProgress] 11:31:53.912 END Passed 0.1s CCT.Tests.CharacterSelectTests.Build_WithMeleeWeapon_AttachesRapierWeapon (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1062" name="ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen" fullname="CCT.Tests.CharacterSelectTests.ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen" methodname="ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1562885812" result="Passed" start-time="2026-11-23 02:31:53Z" end-time="2026-11-23 02:31:54Z" duration="0.254426" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:53.912 START CCT.Tests.CharacterSelectTests.ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen (t=0.6 ts=1)
+[TestProgress] 11:31:54.167 END Passed 0.3s CCT.Tests.CharacterSelectTests.ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1073" name="MeleeWeapon_NeverOffersRangedOnlyCards" fullname="CCT.Tests.CharacterSelectTests.MeleeWeapon_NeverOffersRangedOnlyCards" methodname="MeleeWeapon_NeverOffersRangedOnlyCards" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="626275460" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:54Z" duration="0.042133" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:54.167 START CCT.Tests.CharacterSelectTests.MeleeWeapon_NeverOffersRangedOnlyCards (t=0.8 ts=1)
+[TestProgress] 11:31:54.210 END Passed 0.0s CCT.Tests.CharacterSelectTests.MeleeWeapon_NeverOffersRangedOnlyCards (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1072" name="RangedWeapon_NeverOffersMeleeOnlyCards" fullname="CCT.Tests.CharacterSelectTests.RangedWeapon_NeverOffersMeleeOnlyCards" methodname="RangedWeapon_NeverOffersMeleeOnlyCards" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="355301225" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:54Z" duration="0.039243" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:54.210 START CCT.Tests.CharacterSelectTests.RangedWeapon_NeverOffersMeleeOnlyCards (t=0.9 ts=1)
+[TestProgress] 11:31:54.249 END Passed 0.0s CCT.Tests.CharacterSelectTests.RangedWeapon_NeverOffersMeleeOnlyCards (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1069" name="WeaponCard_RendersItsIcon" fullname="CCT.Tests.CharacterSelectTests.WeaponCard_RendersItsIcon" methodname="WeaponCard_RendersItsIcon" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="171734329" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:54Z" duration="0.012813" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:54.250 START CCT.Tests.CharacterSelectTests.WeaponCard_RendersItsIcon (t=0.9 ts=1)
+[TestProgress] 11:31:54.263 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponCard_RendersItsIcon (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1067" name="WeaponStep_Bands_NoOverlap_InfoLineNotClipped" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:54Z" duration="0.068179" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <test-case id="1063" name="WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Standard)" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Standard)" methodname="WeaponStep_Bands_NoOverlap_InfoLineNotClipped" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1372242717" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:54Z" duration="0.026200" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 11:31:54.264 START CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Standard) (t=0.9 ts=1)
+[TestProgress] 11:31:54.290 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Standard) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1064" name="WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Endless)" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Endless)" methodname="WeaponStep_Bands_NoOverlap_InfoLineNotClipped" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="328542795" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:54Z" duration="0.013929" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 11:31:54.291 START CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Endless) (t=1.0 ts=1)
+[TestProgress] 11:31:54.305 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Endless) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1065" name="WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Standard)" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Standard)" methodname="WeaponStep_Bands_NoOverlap_InfoLineNotClipped" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1919264872" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:54Z" duration="0.012408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 11:31:54.305 START CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Standard) (t=1.0 ts=1)
+[TestProgress] 11:31:54.317 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Standard) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1066" name="WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Endless)" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Endless)" methodname="WeaponStep_Bands_NoOverlap_InfoLineNotClipped" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1243239026" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:54Z" duration="0.011809" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 11:31:54.317 START CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Endless) (t=1.0 ts=1)
+[TestProgress] 11:31:54.330 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Endless) (t=1.0 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1068" name="WeaponStep_SpawnTable_TwoStates_LabelAndDescription" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_SpawnTable_TwoStates_LabelAndDescription" methodname="WeaponStep_SpawnTable_TwoStates_LabelAndDescription" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1627765388" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:54Z" duration="0.012393" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:54.331 START CCT.Tests.CharacterSelectTests.WeaponStep_SpawnTable_TwoStates_LabelAndDescription (t=1.0 ts=1)
+[TestProgress] 11:31:54.344 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponStep_SpawnTable_TwoStates_LabelAndDescription (t=1.0 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1185" name="EndlessModePlayTests" fullname="CCT.Tests.EndlessModePlayTests" classname="CCT.Tests.EndlessModePlayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:55Z" duration="0.818191" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1188" name="CharacterSelect_ModeToggle_DefaultsStandard_ShowsRewardLine" fullname="CCT.Tests.EndlessModePlayTests.CharacterSelect_ModeToggle_DefaultsStandard_ShowsRewardLine" methodname="CharacterSelect_ModeToggle_DefaultsStandard_ShowsRewardLine" classname="CCT.Tests.EndlessModePlayTests" runstate="Runnable" seed="936060146" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:54Z" duration="0.013220" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:54.345 START CCT.Tests.EndlessModePlayTests.CharacterSelect_ModeToggle_DefaultsStandard_ShowsRewardLine (t=1.0 ts=1)
+[TestProgress] 11:31:54.359 END Passed 0.0s CCT.Tests.EndlessModePlayTests.CharacterSelect_ModeToggle_DefaultsStandard_ShowsRewardLine (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1186" name="Endless_RealFrames_WaveSpawnsEnemies_PauseStopsProgress_NoBoss" fullname="CCT.Tests.EndlessModePlayTests.Endless_RealFrames_WaveSpawnsEnemies_PauseStopsProgress_NoBoss" methodname="Endless_RealFrames_WaveSpawnsEnemies_PauseStopsProgress_NoBoss" classname="CCT.Tests.EndlessModePlayTests" runstate="Runnable" seed="1761529898" result="Passed" start-time="2026-11-23 02:31:54Z" end-time="2026-11-23 02:31:55Z" duration="0.748140" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:54.360 START CCT.Tests.EndlessModePlayTests.Endless_RealFrames_WaveSpawnsEnemies_PauseStopsProgress_NoBoss (t=1.0 ts=1)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_playmode_session_924a71fa1596479dbc18adc69b54483e.run-history.json (source=Fresh, 0판)
+[TestProgress] 11:31:55.108 END Passed 0.7s CCT.Tests.EndlessModePlayTests.Endless_RealFrames_WaveSpawnsEnemies_PauseStopsProgress_NoBoss (t=6.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1187" name="Standard_RealFrames_UsesRegularSpawner_NotEndless" fullname="CCT.Tests.EndlessModePlayTests.Standard_RealFrames_UsesRegularSpawner_NotEndless" methodname="Standard_RealFrames_UsesRegularSpawner_NotEndless" classname="CCT.Tests.EndlessModePlayTests" runstate="Runnable" seed="1251825417" result="Passed" start-time="2026-11-23 02:31:55Z" end-time="2026-11-23 02:31:55Z" duration="0.054011" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:55.108 START CCT.Tests.EndlessModePlayTests.Standard_RealFrames_UsesRegularSpawner_NotEndless (t=6.1 ts=1)
+[TestProgress] 11:31:55.162 END Passed 0.1s CCT.Tests.EndlessModePlayTests.Standard_RealFrames_UsesRegularSpawner_NotEndless (t=6.1 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1283" name="KeyboardNavigationTests" fullname="CCT.Tests.KeyboardNavigationTests" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-23 02:31:55Z" end-time="2026-11-23 02:31:57Z" duration="2.219546" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1291" name="CardCodex_SelectsAllTab" fullname="CCT.Tests.KeyboardNavigationTests.CardCodex_SelectsAllTab" methodname="CardCodex_SelectsAllTab" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1301534374" result="Passed" start-time="2026-11-23 02:31:55Z" end-time="2026-11-23 02:31:55Z" duration="0.299741" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:55.165 START CCT.Tests.KeyboardNavigationTests.CardCodex_SelectsAllTab (t=6.1 ts=1)
+[TestProgress] 11:31:55.465 END Passed 0.3s CCT.Tests.KeyboardNavigationTests.CardCodex_SelectsAllTab (t=6.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1287" name="CharacterSelect_JobStepAndWeaponStep_SelectSomething" fullname="CCT.Tests.KeyboardNavigationTests.CharacterSelect_JobStepAndWeaponStep_SelectSomething" methodname="CharacterSelect_JobStepAndWeaponStep_SelectSomething" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="242629261" result="Passed" start-time="2026-11-23 02:31:55Z" end-time="2026-11-23 02:31:55Z" duration="0.038205" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:55.465 START CCT.Tests.KeyboardNavigationTests.CharacterSelect_JobStepAndWeaponStep_SelectSomething (t=6.4 ts=1)
+[TestProgress] 11:31:55.503 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.CharacterSelect_JobStepAndWeaponStep_SelectSomething (t=6.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1288" name="CharacterSelect_WeaponDefault_LogicalOnlyUntilExplicitChoice" fullname="CCT.Tests.KeyboardNavigationTests.CharacterSelect_WeaponDefault_LogicalOnlyUntilExplicitChoice" methodname="CharacterSelect_WeaponDefault_LogicalOnlyUntilExplicitChoice" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1399815883" result="Passed" start-time="2026-11-23 02:31:55Z" end-time="2026-11-23 02:31:55Z" duration="0.014161" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:55.504 START CCT.Tests.KeyboardNavigationTests.CharacterSelect_WeaponDefault_LogicalOnlyUntilExplicitChoice (t=6.5 ts=1)
+[TestProgress] 11:31:55.518 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.CharacterSelect_WeaponDefault_LogicalOnlyUntilExplicitChoice (t=6.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1284" name="CoffeeTree_EscapeInput_ClosesOnlyTree_ResumesAndNextEscapePauses" fullname="CCT.Tests.KeyboardNavigationTests.CoffeeTree_EscapeInput_ClosesOnlyTree_ResumesAndNextEscapePauses" methodname="CoffeeTree_EscapeInput_ClosesOnlyTree_ResumesAndNextEscapePauses" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1824105640" result="Passed" start-time="2026-11-23 02:31:55Z" end-time="2026-11-23 02:31:55Z" duration="0.069207" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:55.518 START CCT.Tests.KeyboardNavigationTests.CoffeeTree_EscapeInput_ClosesOnlyTree_ResumesAndNextEscapePauses (t=6.5 ts=1)
+[TestProgress] 11:31:55.589 END Passed 0.1s CCT.Tests.KeyboardNavigationTests.CoffeeTree_EscapeInput_ClosesOnlyTree_ResumesAndNextEscapePauses (t=6.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1289" name="Pause_SelectsContinueButton_AndEndRunConfirm_SelectsCancel" fullname="CCT.Tests.KeyboardNavigationTests.Pause_SelectsContinueButton_AndEndRunConfirm_SelectsCancel" methodname="Pause_SelectsContinueButton_AndEndRunConfirm_SelectsCancel" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1936387437" result="Passed" start-time="2026-11-23 02:31:55Z" end-time="2026-11-23 02:31:55Z" duration="0.060788" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:55.589 START CCT.Tests.KeyboardNavigationTests.Pause_SelectsContinueButton_AndEndRunConfirm_SelectsCancel (t=6.6 ts=1)
+[TestProgress] 11:31:55.649 END Passed 0.1s CCT.Tests.KeyboardNavigationTests.Pause_SelectsContinueButton_AndEndRunConfirm_SelectsCancel (t=6.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1292" name="PermanentSkillView_SelectsSomething" fullname="CCT.Tests.KeyboardNavigationTests.PermanentSkillView_SelectsSomething" methodname="PermanentSkillView_SelectsSomething" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1180633531" result="Passed" start-time="2026-11-23 02:31:55Z" end-time="2026-11-23 02:31:55Z" duration="0.088171" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:55.650 START CCT.Tests.KeyboardNavigationTests.PermanentSkillView_SelectsSomething (t=6.6 ts=1)
+[TestProgress] 11:31:55.739 END Passed 0.1s CCT.Tests.KeyboardNavigationTests.PermanentSkillView_SelectsSomething (t=6.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1294" name="ResultView_SelectsRestartButton" fullname="CCT.Tests.KeyboardNavigationTests.ResultView_SelectsRestartButton" methodname="ResultView_SelectsRestartButton" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1558609456" result="Passed" start-time="2026-11-23 02:31:55Z" end-time="2026-11-23 02:31:57Z" duration="1.462417" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:55.739 START CCT.Tests.KeyboardNavigationTests.ResultView_SelectsRestartButton (t=6.7 ts=1)
+[TestProgress] 11:31:57.202 END Passed 1.5s CCT.Tests.KeyboardNavigationTests.ResultView_SelectsRestartButton (t=6.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1290" name="Settings_SelectsMasterVolumeSlider" fullname="CCT.Tests.KeyboardNavigationTests.Settings_SelectsMasterVolumeSlider" methodname="Settings_SelectsMasterVolumeSlider" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="156593252" result="Passed" start-time="2026-11-23 02:31:57Z" end-time="2026-11-23 02:31:57Z" duration="0.040340" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:57.202 START CCT.Tests.KeyboardNavigationTests.Settings_SelectsMasterVolumeSlider (t=6.7 ts=1)
+[TestProgress] 11:31:57.242 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.Settings_SelectsMasterVolumeSlider (t=6.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1293" name="SkillTreeReadOnly_SelectsCloseButton" fullname="CCT.Tests.KeyboardNavigationTests.SkillTreeReadOnly_SelectsCloseButton" methodname="SkillTreeReadOnly_SelectsCloseButton" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="64754508" result="Passed" start-time="2026-11-23 02:31:57Z" end-time="2026-11-23 02:31:57Z" duration="0.042109" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:57.243 START CCT.Tests.KeyboardNavigationTests.SkillTreeReadOnly_SelectsCloseButton (t=6.8 ts=1)
+[TestProgress] 11:31:57.285 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.SkillTreeReadOnly_SelectsCloseButton (t=6.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1286" name="Title_KeyboardMode_SelectsStartButtonImmediately" fullname="CCT.Tests.KeyboardNavigationTests.Title_KeyboardMode_SelectsStartButtonImmediately" methodname="Title_KeyboardMode_SelectsStartButtonImmediately" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1005585085" result="Passed" start-time="2026-11-23 02:31:57Z" end-time="2026-11-23 02:31:57Z" duration="0.057793" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:57.286 START CCT.Tests.KeyboardNavigationTests.Title_KeyboardMode_SelectsStartButtonImmediately (t=6.8 ts=1)
+[TestProgress] 11:31:57.343 END Passed 0.1s CCT.Tests.KeyboardNavigationTests.Title_KeyboardMode_SelectsStartButtonImmediately (t=6.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1285" name="Title_NoFocusOnEntry_FirstKeyRevealsStartButton" fullname="CCT.Tests.KeyboardNavigationTests.Title_NoFocusOnEntry_FirstKeyRevealsStartButton" methodname="Title_NoFocusOnEntry_FirstKeyRevealsStartButton" classname="CCT.Tests.KeyboardNavigationTests" runstate="Runnable" seed="1520083576" result="Passed" start-time="2026-11-23 02:31:57Z" end-time="2026-11-23 02:31:57Z" duration="0.037523" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:31:57.344 START CCT.Tests.KeyboardNavigationTests.Title_NoFocusOnEntry_FirstKeyRevealsStartButton (t=6.9 ts=1)
+[TestProgress] 11:31:57.382 END Passed 0.0s CCT.Tests.KeyboardNavigationTests.Title_NoFocusOnEntry_FirstKeyRevealsStartButton (t=6.9 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

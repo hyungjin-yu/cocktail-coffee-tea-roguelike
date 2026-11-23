@@ -72,7 +72,7 @@ namespace CCT
             if (root != null) Destroy(root.gameObject);
             WeaponButtonA = null;
             WeaponButtonB = null;
-            StandardModeButton = null; EndlessModeButton = null; SpawnTableButton = null; tableLabel = null; affinityLine = null;
+            StandardModeButton = null; EndlessModeButton = null; SpawnTableButton = null; tableLabel = null; tableSubLabel = null; tableReadOnly = null; tableDesc = null; affinityLine = null; drinkRule = null;
             standardModeBg = null; endlessModeBg = null; modeHint = null; standardModeLabel = null; endlessModeLabel = null;
             StartButton = null;
             WeaponBackButton = null;
@@ -156,26 +156,36 @@ namespace CCT
         public Button StandardModeButton { get; private set; }
         public Button EndlessModeButton { get; private set; }
         Image standardModeBg, endlessModeBg;
-        Text modeHint, standardModeLabel, endlessModeLabel, tableLabel, affinityLine;
+        Text modeHint, standardModeLabel, endlessModeLabel, tableLabel, tableSubLabel, tableReadOnly, tableDesc, affinityLine, drinkRule;
         public Button SpawnTableButton { get; private set; }
         Job currentJobForLine;
         static readonly Color ModeColor = new Color(0.16f, 0.13f, 0.2f, 1f);
         static readonly Color ModeSelectedColor = new Color(0.36f, 0.26f, 0.16f, 1f);
 
         /// <summary>무기 단계 세로 띠(기준 1920×1080). 카드 상단(위 기준)·높이, 모드 줄 아래 기준 y, 모드 안내 아래 기준 y. 시험이 겹침 없음을 단언한다.</summary>
-        public const float WeaponCardTop = 248f, WeaponCardHeight = 510f, ModeRowBottom = 246f, ModeRowHeight = 52f, ModeHintBottom = 218f, StartButtonBottom = 130f, StartButtonHeight = 84f;
+        public const float WeaponCardTop = 222f, WeaponCardHeight = 510f, ModeRowBottom = 278f, ModeRowHeight = 64f, ModeHintBottom = 218f, ModeHintHeight = 56f, StartButtonBottom = 130f, StartButtonHeight = 84f;
         /// <summary>모드 줄: 무기 카드 아래(하단 y=1080−758=322)·영업 시작 위(상단 y=214) 사이 띠에 두 버튼(246–298)과 보상 안내 한 줄(218–244).</summary>
         void BuildModeRow()
         {
             StandardModeButton = BuildModeOption(RunMode.Standard, -410f, out standardModeBg, out standardModeLabel);
             EndlessModeButton = BuildModeOption(RunMode.Endless, 0f, out endlessModeBg, out endlessModeLabel);
-            // 2026-11-10 진상 보스 영업 계열 표 선택(기본 = 기존 직업 테마). 끝없는 모드에서는 자체 순환 표라 비활성.
+            // 2026-11-23 "등장 몬스터" 두 상태(세 계열 혼합 / 직업 기본)를 버튼 글자와 아래 짧은 설명으로 드러낸다. 마스터 도전에서는 버튼을 숨기고 같은 자리에 읽기 전용 문구.
             var tableRt = UiFactory.Place("SpawnTable", root, new Vector2(0.5f, 0f), new Vector2(410f, ModeRowBottom), new Vector2(380f, ModeRowHeight));
             SpawnTableButton = MakeButton(tableRt, UiFactory.AddImage(tableRt, ModeColor), ToggleSpawnTable);
-            tableLabel = UiFactory.AddText(UiFactory.Stretch("Label", tableRt), "", 24, TextAnchor.MiddleCenter, Color.white);
+            tableLabel = UiFactory.AddText(UiFactory.Place("Label", tableRt, new Vector2(0.5f, 1f), new Vector2(0f, -4f), new Vector2(368f, 32f)), "", 24, TextAnchor.MiddleCenter, Color.white);
             tableLabel.resizeTextForBestFit = true; tableLabel.resizeTextMinSize = 16; tableLabel.resizeTextMaxSize = 24;
-            modeHint = UiFactory.AddText(UiFactory.Place("ModeHint", root, new Vector2(0.5f, 0f), new Vector2(0f, ModeHintBottom), new Vector2(1300f, 26f)),
+            tableSubLabel = UiFactory.AddText(UiFactory.Place("Sub", tableRt, new Vector2(0.5f, 0f), new Vector2(0f, 4f), new Vector2(368f, 24f)), "", 18, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.6f));
+            tableSubLabel.resizeTextForBestFit = true; tableSubLabel.resizeTextMinSize = 14; tableSubLabel.resizeTextMaxSize = 18;
+            var roRt = UiFactory.Place("SpawnTableReadOnly", root, new Vector2(0.5f, 0f), new Vector2(410f, ModeRowBottom), new Vector2(380f, ModeRowHeight));
+            tableReadOnly = UiFactory.AddText(roRt, "", 24, TextAnchor.MiddleCenter, new Color(0.85f, 0.85f, 0.9f));
+            tableReadOnly.resizeTextForBestFit = true; tableReadOnly.resizeTextMinSize = 16; tableReadOnly.resizeTextMaxSize = 24;
+            tableDesc = UiFactory.AddText(UiFactory.Place("SpawnTableDesc", root, new Vector2(0.5f, 0f), new Vector2(410f, ModeHintBottom), new Vector2(600f, ModeHintHeight)),
+                "", 22, TextAnchor.MiddleCenter, new Color(0.8f, 0.9f, 1f));
+            tableDesc.verticalOverflow = VerticalWrapMode.Truncate;
+            tableDesc.resizeTextForBestFit = true; tableDesc.resizeTextMinSize = 16; tableDesc.resizeTextMaxSize = 22;
+            modeHint = UiFactory.AddText(UiFactory.Place("ModeHint", root, new Vector2(0.5f, 0f), new Vector2(-290f, ModeHintBottom), new Vector2(620f, ModeHintHeight)),
                 "", 22, TextAnchor.MiddleCenter, new Color(1f, 0.86f, 0.6f));
+            modeHint.verticalOverflow = VerticalWrapMode.Truncate;
             modeHint.resizeTextForBestFit = true; modeHint.resizeTextMinSize = 16; modeHint.resizeTextMaxSize = 22;
             SetMode(RunModeSelection.Current);
         }
@@ -204,8 +214,8 @@ namespace CCT
             RefreshTableAndLines();
             if (modeHint != null)
                 modeHint.text = endless
-                    ? $"{RunModeSelection.Name(mode)} · 사망·포기까지 30초마다 웨이브 · {RunModeSelection.EndlessRewardLine}"
-                    : $"{RunModeSelection.Name(mode)} · {RunModeSelection.StandardRewardLine}";
+                    ? $"사망·포기까지 30초마다 웨이브 · {RunModeSelection.EndlessRewardLine}"
+                    : RunModeSelection.StandardRewardLine;
         }
 
         public string ModeHintText => modeHint != null ? modeHint.text : "";
@@ -220,19 +230,22 @@ namespace CCT
             RefreshTableAndLines();
         }
 
+        public string TableDescText => tableDesc != null ? tableDesc.text : "";
+        public string TableReadOnlyText => tableReadOnly != null ? tableReadOnly.text : "";
+        public string DrinkRuleText => drinkRule != null ? drinkRule.text : "";
+
         void RefreshTableAndLines()
         {
             bool endless = RunModeSelection.Current == RunMode.Endless;
-            if (SpawnTableButton != null) SpawnTableButton.interactable = !endless;
-            if (tableLabel != null)
-                tableLabel.text = endless ? "계열 표: 마스터 도전 순환" : "계열 표: " + RunModeSelection.TableName(RunModeSelection.StandardTable) + " ▸";
-            if (affinityLine != null)
-                affinityLine.text = DrinkAffinity.CycleLine + " · " + (endless ? EndlessFamilyLine() : StandardFamilyLine(currentJobForLine, RunModeSelection.StandardTable))
-                                    + "\n" + (endless ? RunModeSelection.MasterLine : RunModeSelection.NoSwapLine);
+            bool mixed = RunModeSelection.StandardTable == SpawnTable.AllFamilies;
+            if (SpawnTableButton != null) SpawnTableButton.gameObject.SetActive(!endless);
+            if (tableReadOnly != null) { tableReadOnly.gameObject.SetActive(endless); tableReadOnly.text = RunModeSelection.MasterTableLabel; }
+            if (tableLabel != null) tableLabel.text = RunModeSelection.TableLabel(RunModeSelection.StandardTable);
+            if (tableSubLabel != null) tableSubLabel.text = "클릭·Enter로 변경 ▸ " + (mixed ? "직업 기본" : "세 계열 혼합");
+            if (tableDesc != null) tableDesc.text = endless ? RunModeSelection.MasterTableDesc : RunModeSelection.TableDesc(RunModeSelection.StandardTable);
+            if (affinityLine != null) affinityLine.text = DrinkAffinity.ShortCycleLine;
+            if (drinkRule != null) drinkRule.text = endless ? RunModeSelection.MasterLine : RunModeSelection.NoSwapLine;
         }
-
-        public static string EndlessFamilyLine() =>
-            $"끝없는 모드: 세 계열 모두 등장, 집중 계열 {EndlessRules.FocusWeightPercent}%(커피→차→칵테일, 3웨이브마다)";
 
         Button BuildDrinkLabButton()
         {
@@ -391,10 +404,10 @@ namespace CCT
             UiFactory.AddText(title, $"{job.name} — 무기를 선택하세요", 56, TextAnchor.MiddleCenter, Color.white);
             // 2026-11-10 순환 상성과 기본 스테이지 주요 등장 계열(정규 표). 제목과 카드 사이 빈 띠.
             currentJobForLine = job.job;
-            affinityLine = UiFactory.AddText(UiFactory.Place("AffinityCycle", root, new Vector2(0.5f, 1f), new Vector2(0f, -180f), new Vector2(1600f, 60f)),
-                "", 20, TextAnchor.MiddleCenter, new Color(0.8f, 0.9f, 1f));
-            affinityLine.verticalOverflow = VerticalWrapMode.Truncate; // 띠 밖(카드 위)으로 넘치지 않게 — 넘치면 best-fit이 글자를 줄인다
-            affinityLine.resizeTextForBestFit = true; affinityLine.resizeTextMinSize = 14; affinityLine.resizeTextMaxSize = 20;
+            affinityLine = UiFactory.AddText(UiFactory.Place("AffinityCycle", root, new Vector2(0.5f, 1f), new Vector2(0f, -178f), new Vector2(1200f, 34f)),
+                "", 22, TextAnchor.MiddleCenter, new Color(0.8f, 0.9f, 1f));
+            affinityLine.verticalOverflow = VerticalWrapMode.Truncate;
+            affinityLine.resizeTextForBestFit = true; affinityLine.resizeTextMinSize = 16; affinityLine.resizeTextMaxSize = 22;
 
             currentJob = job;
             WeaponButtonA = BuildWeaponOption(-1, job.weapons[0], out weaponBgA);
@@ -411,6 +424,10 @@ namespace CCT
             MaybeShowNotebookGuide();
             UiFactory.AddText(UiFactory.Place("PreparedDrink", root, new Vector2(0.5f, 0f), new Vector2(0f, 64f), new Vector2(1300f, 50f)),
                 PreparedDrinkLine(), 24, TextAnchor.MiddleCenter, new Color(0.75f, 1f, 0.8f));
+            drinkRule = UiFactory.AddText(UiFactory.Place("DrinkRule", root, new Vector2(0.5f, 0f), new Vector2(0f, 30f), new Vector2(1500f, 30f)),
+                "", 20, TextAnchor.MiddleCenter, new Color(0.7f, 0.85f, 0.75f));
+            drinkRule.resizeTextForBestFit = true; drinkRule.resizeTextMinSize = 15; drinkRule.resizeTextMaxSize = 20;
+            RefreshTableAndLines();
 
             var backRt = UiFactory.Place("BackButton", root, new Vector2(0f, 0f), new Vector2(170f, 130f),
                 new Vector2(240f, 70f));

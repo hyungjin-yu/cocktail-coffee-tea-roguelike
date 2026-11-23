@@ -139,6 +139,7 @@ namespace CCT
             return t == MonsterFamily.Neutral ? null : $"{MonsterFamilies.Mark(t)} {MonsterFamilies.Name(t)} 계열 몬스터 추가 피해 +{BonusPercent}%";
         }
 
+        public const string ShortCycleLine = "음료 상성: 칵테일→커피 · 커피→차 · 차→칵테일 몬스터";
         public const string CycleLine = "순환 상성: 칵테일 → 커피 몬스터 · 커피 → 차 몬스터 · 차 → 칵테일 몬스터";
     }
 }

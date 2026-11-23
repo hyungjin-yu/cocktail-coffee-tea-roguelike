@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-23 02:29:57Z" end-time="2026-11-23 02:29:58Z" duration="1.3739454">
+  <test-suite type="TestSuite" id="1560" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-11-23 02:29:57Z" end-time="2026-11-23 02:29:58Z" duration="1.373945" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1554" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/orca/workspaces/CocktailCoffeeTea/levelup-menu-unity/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-11-23 02:29:57Z" end-time="2026-11-23 02:29:58Z" duration="1.363633" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37248" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1555" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-11-23 02:29:57Z" end-time="2026-11-23 02:29:58Z" duration="1.359153" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1535" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-11-23 02:29:57Z" end-time="2026-11-23 02:29:58Z" duration="1.354245" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1552" name="WeaponStepEvidenceCapture" fullname="CCT.Tests.WeaponStepEvidenceCapture" classname="CCT.Tests.WeaponStepEvidenceCapture" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-23 02:29:57Z" end-time="2026-11-23 02:29:58Z" duration="1.347297" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_db6b41345b384fcdb74715a0cf109494.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1553" name="CaptureWeaponStep" fullname="CCT.Tests.WeaponStepEvidenceCapture.CaptureWeaponStep" methodname="CaptureWeaponStep" classname="CCT.Tests.WeaponStepEvidenceCapture" runstate="Explicit" seed="1532891101" result="Passed" start-time="2026-11-23 02:29:57Z" end-time="2026-11-23 02:29:58Z" duration="1.338457" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="_SKIPREASON" value="QA 증거 프레임 — 지정 실행 전용" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 11:29:57.565 START CCT.Tests.WeaponStepEvidenceCapture.CaptureWeaponStep (t=0.1 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\weapon-evidence-56e59c6b497d4eef9bfb72e7e93df72b\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\weapon-evidence-56e59c6b497d4eef9bfb72e7e93df72b\save.json (source=Fresh, v2)
+[TestProgress] 11:29:58.906 END Passed 1.3s CCT.Tests.WeaponStepEvidenceCapture.CaptureWeaponStep (t=1.4 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
