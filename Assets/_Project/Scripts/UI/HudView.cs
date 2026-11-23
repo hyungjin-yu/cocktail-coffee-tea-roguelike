@@ -152,6 +152,38 @@ namespace CCT
             }
         }
 
+        /// <summary>상태 줄(디버프) 문구 — UI 가독성 감사 E-5/S-1: "공속 -25% 3초"는 25%가 3초인지 불명했고 약칭이었다.
+        /// 전체 명칭 + 실제 감소율(정수 %, 부호 -) + 괄호 안 남은 시간(올림 초)으로 감소율과 지속시간을 분리한다.
+        /// 감소율은 PlayerStats가 실제 적용하는 배율에서 계산(이동 = MoveSpeed 배율, 공격 = 공격 간격 1/배율 → 속도 배율).
+        /// 환불은 공격력·공격 속도·사거리·이동 속도 % 보너스를 끄는 효과(PlayerStats.SuppressBonuses)라 "% 보너스 무효"로 적는다.</summary>
+        public static string DebuffLine(bool bonusesSuppressed, float suppressedLeft, bool moveSlowed, float moveMultiplier, float moveLeft,
+            bool attackSlowed, float attackMultiplier, float attackLeft, bool healBlocked, float healLeft)
+        {
+            var parts = new System.Collections.Generic.List<string>();
+            if (bonusesSuppressed) parts.Add($"환불: % 보너스 무효 ({IntNum.RemainingSeconds(suppressedLeft)}초)");
+            if (moveSlowed) parts.Add($"{SlowPart("이동 속도", moveMultiplier)} ({IntNum.RemainingSeconds(moveLeft)}초)");
+            if (attackSlowed) parts.Add($"{SlowPart("공격 속도", attackMultiplier)} ({IntNum.RemainingSeconds(attackLeft)}초)");
+            if (healBlocked) parts.Add($"회복 차단 ({IntNum.RemainingSeconds(healLeft)}초)");
+            return string.Join(" · ", parts);
+        }
+
+        /// <summary>"이동 속도 -30%" — 감소율이 0%로 반올림되면 수치 없이 "느려짐"(0%를 보이지 않음).</summary>
+        static string SlowPart(string label, float multiplier)
+        {
+            int pct = IntNum.Percent(1f - multiplier);
+            return pct > 0 ? $"{label} -{pct}%" : $"{label} 느려짐";
+        }
+
+        /// <summary>게이지 글자를 바 높이 안에서만 줄인다(바 밖으로 넘쳐 옆 줄과 닿지 않게) — 감사 E-3.</summary>
+        static void GaugeLabelFit(Text label)
+        {
+            label.resizeTextMaxSize = label.fontSize;
+            label.resizeTextMinSize = 14;
+            label.resizeTextForBestFit = true;
+            label.horizontalOverflow = HorizontalWrapMode.Wrap;
+            label.verticalOverflow = VerticalWrapMode.Truncate;
+        }
+
         static Text PaddedLabel(RectTransform box, string content, int size, TextAnchor alignment, Color color)
         {
             var rect = UiFactory.Stretch("Label", box);
@@ -180,26 +212,29 @@ namespace CCT
             view.LowHp = LowHpWarning.Attach(view.hpBar.Root, root); // 2026-11-15 피드백 21 HP 20% 미만 경고
             // r13 검수 U3: 중앙 게이지 글자가 벽등·선반 위에 직접 놓여 줄마다 대비가 달랐다. 세 줄 뒤에 공통 어두운 바탕
             // 하나를 깐다(게이지보다 먼저 만들어 뒤에 그려지게, 입력은 막지 않음). 게이지 크기·위치·색은 그대로.
+            // UI 가독성 감사 E-3(2026-11-23 캡처): 찻잎(26px)·원두(24px) 바 안의 20pt 글자가 바 높이를 넘어 6px 간격에서 서로 닿고
+            // 원두 줄은 막대 테두리에 걸렸다 → 두 바를 28px로 높이고 간격 6px 유지, 글자는 바 안에서만 줄인다(GaugeLabelFit).
             var gaugeBackRt = UiFactory.Place("GaugeBacking", root, new Vector2(0.5f, 1f), new Vector2(0f, -20f),
-                new Vector2(940f, 112f)); // 피벗=상단: -20..-132, 세 바(-30..-122)를 감싼다
+                new Vector2(940f, 118f)); // 피벗=상단: -20..-138, 세 바(-30..-128)를 감싼다
             UiFactory.AddImage(gaugeBackRt, new Color(0.06f, 0.05f, 0.08f, 0.82f)).raycastTarget = false;
             view.gaugeBar = new FillBar(root, "GaugeBar", new Vector2(0.5f, 1f), new Vector2(0f, -30f),
                 new Vector2(900f, 30f), new Color(0.9f, 0.35f, 0.75f), 22);
             view.teaBar = new FillBar(root, "TeaBar", new Vector2(0.5f, 1f), new Vector2(0f, -66f),
-                new Vector2(900f, 26f), new Color(0.45f, 0.75f, 0.4f), 20);
-            view.beanBar = new FillBar(root, "BeanBar", new Vector2(0.5f, 1f), new Vector2(0f, -98f),
-                new Vector2(600f, 24f), new Color(0.65f, 0.42f, 0.25f), 20);
+                new Vector2(900f, 28f), new Color(0.45f, 0.75f, 0.4f), 20);
+            view.beanBar = new FillBar(root, "BeanBar", new Vector2(0.5f, 1f), new Vector2(0f, -100f),
+                new Vector2(600f, 28f), new Color(0.65f, 0.42f, 0.25f), 20);
+            foreach (var gauge in new[] { view.gaugeBar, view.teaBar, view.beanBar }) GaugeLabelFit(gauge.Label);
             // 47(2026-10-12): 찻집(티 소믈리에) 런은 칵테일 몹·재료가 없다 — 비어 있는 칵테일 바를 숨기고 찻잎·원두를 한 칸씩 올린다.
             if (game != null && game.Job == Job.TeaSommelier)
             {
                 view.gaugeBar.Root.gameObject.SetActive(false);
                 view.teaBar.Root.anchoredPosition = new Vector2(0f, -30f);
-                view.beanBar.Root.anchoredPosition = new Vector2(0f, -62f);
-                gaugeBackRt.sizeDelta = new Vector2(940f, 76f);
+                view.beanBar.Root.anchoredPosition = new Vector2(0f, -64f);
+                gaugeBackRt.sizeDelta = new Vector2(940f, 82f); // -20..-102
             }
 
             // 57 P1 첫 수집 안내(게이지 바로 아래, 입력 안 막음). RunGuide가 처음 몇 판만 띄운다.
-            var guideRt = UiFactory.Place("Guide", root, new Vector2(0.5f, 1f), new Vector2(0f, game != null && game.Job == Job.TeaSommelier ? -102f : -138f),
+            var guideRt = UiFactory.Place("Guide", root, new Vector2(0.5f, 1f), new Vector2(0f, game != null && game.Job == Job.TeaSommelier ? -108f : -144f),
                 new Vector2(860f, 50f));
             UiFactory.AddImage(guideRt, new Color(0.1f, 0.2f, 0.24f, 0.92f)).raycastTarget = false;
             view.guide = PaddedLabel(guideRt, "", 22, TextAnchor.MiddleCenter, new Color(0.85f, 0.97f, 1f));
@@ -602,14 +637,12 @@ namespace CCT
             SetIcon(suppressedIcon, stats.BonusesSuppressed);
             SetIcon(sealIcon, stats.FlameLocked || stats.PoisonLocked || stats.HybridLocked);
             // 2026-11-22 공용 디버프 몹: 공격 속도 감소·회복 차단을 같은 상태 줄에 남은 초와 함께(환불이 우선).
-            var debuffs = new System.Collections.Generic.List<string>();
-            if (stats.BonusesSuppressed) debuffs.Add($"환불 · 강화 무효 {IntNum.RemainingSeconds(stats.SuppressedRemaining)}초");
             // 2026-11-23: 쓴맛 안개 파동 직후 이동 둔화가 아이콘(>>)으로만 보이고 글이 없었다 — 다른 디버프처럼 남은 초를 함께.
-            if (stats.IsSlowed) debuffs.Add($"이동 둔화 {IntNum.RemainingSeconds(stats.SlowRemaining)}초");
-            if (stats.AttackSlowed) debuffs.Add($"공속 -{IntNum.Percent(1f - stats.AttackSlowMultiplier)}% {IntNum.RemainingSeconds(stats.AttackSlowRemaining)}초");
-            if (stats.HealBlocked) debuffs.Add($"회복 차단 {IntNum.RemainingSeconds(stats.HealBlockRemaining)}초");
-            suppressed.text = string.Join(" · ", debuffs);
-            bool showDebuff = debuffs.Count > 0;
+            suppressed.text = DebuffLine(stats.BonusesSuppressed, stats.SuppressedRemaining,
+                stats.IsSlowed, stats.MoveSlowMultiplier, stats.SlowRemaining,
+                stats.AttackSlowed, stats.AttackSlowMultiplier, stats.AttackSlowRemaining,
+                stats.HealBlocked, stats.HealBlockRemaining);
+            bool showDebuff = suppressed.text.Length > 0;
             if (suppressedBack.activeSelf != showDebuff) suppressedBack.SetActive(showDebuff);
 
             var boss = game.ActiveBoss;

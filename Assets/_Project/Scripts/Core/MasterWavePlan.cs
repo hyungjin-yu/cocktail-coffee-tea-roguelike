@@ -176,7 +176,7 @@ namespace CCT
             if (f == null) return ""; // 박람회는 Advice에 '상성 없음(중립)'이 이미 있다
             var drink = CounterDrink(f.Value);
             int c = defs.Count(d => MonsterFamilies.Of(d) == f.Value);
-            return drink == null ? "" : $"주요 계열 {MonsterFamilies.Mark(f.Value)} {MonsterFamilies.Name(f.Value)} {c}/{defs.Count} — {DrinkName(drink.Value)}을(를) 마시면 이 계열에 상성 추가 피해";
+            return drink == null ? "" : $"주요 계열 {MonsterFamilies.Mark(f.Value)} {MonsterFamilies.Name(f.Value)} {c}/{defs.Count} — {KoreanParticle.EulReul(DrinkName(drink.Value))} 마시면 이 계열에 상성 추가 피해";
         }
 
         /// <summary>한 마리의 예상 최대 체력(정수): 정의 체력 × 웨이브 배율 × (1 − 약화) × 현재 도전 체력 배율. 보상 = 웨이브1 배율·도전 배율 제외(실제 생성과 같은 식).</summary>

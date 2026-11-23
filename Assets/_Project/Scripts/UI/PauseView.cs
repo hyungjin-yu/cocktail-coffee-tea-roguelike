@@ -21,6 +21,7 @@ namespace CCT
         System.Action pendingConfirmAction;
         Button skillTreeButton;
         Text skillTreeReasonText;
+        RectTransform skillTreeLabelRt;
         SettingsView settingsView;
         FirstRunTutorialView tutorialView;
         GameObject resumeCountdownGo;
@@ -86,11 +87,14 @@ namespace CCT
                 view.HideMenuForSubView(view.skillTreeButton.gameObject);
                 view.game.SkillView.ShowReadOnly(view.game.Skills, () => view.game.CoffeePoints, view.RestoreMenuAfterSubView);
             });
-            UiFactory.AddText(UiFactory.Stretch("Label", skillTreeRt), JobStudyTheme.TreeTitle(game != null ? game.Job : Job.Bartender), 27,
+            view.skillTreeLabelRt = UiFactory.Stretch("Label", skillTreeRt);
+            UiFactory.AddText(view.skillTreeLabelRt, JobStudyTheme.TreeTitle(game != null ? game.Job : Job.Bartender), 27,
                 TextAnchor.MiddleCenter, Color.white);
+            // UI 가독성 감사 E-1: 사유가 버튼 아래(y -20)로 삐져나와 5px 간격을 넘어 "설정" 버튼에 겹쳐 잘렸다.
+            // 사유는 버튼 안 아랫줄(4~28px)에 두고, 사유가 보일 때만 라벨을 윗부분으로 올린다(RefreshSkillTreeButton).
             view.skillTreeReasonText = UiFactory.AddText(UiFactory.Place("Reason", skillTreeRt,
-                new Vector2(0.5f, 0f), new Vector2(0f, -20f), new Vector2(380f, 26f)),
-                "", 17, TextAnchor.MiddleCenter, new Color(1f, 0.8f, 0.7f));
+                new Vector2(0.5f, 0f), new Vector2(0f, 4f), new Vector2(380f, 24f)),
+                "", 18, TextAnchor.MiddleCenter, new Color(1f, 0.82f, 0.72f));
 
             var settingsRt = UiFactory.Place("SettingsButton", rootRt, new Vector2(0.5f, 0.5f),
                 new Vector2(0f, -26f), new Vector2(400f, 78f));
@@ -266,6 +270,7 @@ namespace CCT
             bool allowed = game.State == GameState.Playing;
             skillTreeButton.interactable = allowed;
             skillTreeReasonText.text = allowed ? "" : "현재 보상 선택 후 이용";
+            if (skillTreeLabelRt != null) skillTreeLabelRt.offsetMin = new Vector2(0f, allowed ? 0f : 24f);
         }
 
         /// <summary>08:100 "취소 기본 포커스".</summary>

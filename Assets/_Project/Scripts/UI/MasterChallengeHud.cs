@@ -116,7 +116,7 @@ namespace CCT
             brewTitle = UiFactory.AddText(UiFactory.Place("Title", prt, new Vector2(0.5f, 1f), new Vector2(0f, -18f), new Vector2(1400f, 48f)),
                 "음료 만들기 — 전투 일시정지 중", 34, TextAnchor.MiddleCenter, Color.white);
             UiFactory.AddText(UiFactory.Place("RecipeHeader", prt, new Vector2(0f, 1f), new Vector2(40f, -76f), new Vector2(760f, 36f)),
-                "레시피 (이번 판 재료 → 부족분 창고 재고)", 24, TextAnchor.MiddleLeft, new Color(1f, 0.85f, 0.45f));
+                "레시피 · 이번 판 재료 먼저, 부족분은 창고에서 차감", 24, TextAnchor.MiddleLeft, new Color(1f, 0.85f, 0.45f));
             UiFactory.AddText(UiFactory.Place("CupHeader", prt, new Vector2(1f, 1f), new Vector2(-40f, -76f), new Vector2(600f, 36f)),
                 "보관한 잔 — 한 잔은 한 용도", 24, TextAnchor.MiddleLeft, new Color(0.75f, 0.92f, 1f));
             recipeArea = UiFactory.Place("Recipes", prt, new Vector2(0f, 1f), new Vector2(40f, -118f), new Vector2(780f, RowsPerPage * 62f));
@@ -279,11 +279,14 @@ namespace CCT
                 string newKind = r.Kind == DrinkKind.Cocktail && !string.IsNullOrEmpty(DrinkLab.RecipeKey(r)) && !game.Master.HasCocktailKind(DrinkLab.RecipeKey(r)) ? " · 새 종류" : "";
                 RowIcon(row, HudIcons.Drink(r.Kind, r.coffeeMethod), can); // 2026-11-12 완성 잔 그림(종류·추출법)
                 var t = UiFactory.AddText(UiFactory.Place("Name", row, new Vector2(0f, 0.5f), new Vector2(60f, 0f), new Vector2(512f, 52f)),
-                    $"[{kind}] {DrinkValidator.SanitizeName(r.name, DrinkLab.DefaultName(r))}{(q >= 0 ? "  " + DrinkQuality.Label(q) : "")}{newKind}{(can ? "" : "  (재료 부족)")}",
+                    $"[{kind}] {DrinkValidator.SanitizeName(r.name, DrinkLab.DefaultName(r))}{(q >= 0 ? "  " + DrinkQuality.Label(q) : "")}{newKind}",
                     22, TextAnchor.MiddleLeft, can ? Color.white : new Color(0.65f, 0.65f, 0.65f));
                 t.resizeTextForBestFit = true; t.resizeTextMinSize = 14; t.resizeTextMaxSize = 22; t.verticalOverflow = VerticalWrapMode.Truncate;
-                var b = MakeButton(row, "Craft", new Vector2(1f, 0.5f), new Vector2(-6f, 0f), new Vector2(190f, 48f), "만들기", 22, new Color(0.3f, 0.2f, 0.1f, 0.95f), out _);
+                // UI 가독성 감사 E-9: 재료 부족 행도 버튼이 같은 밝기의 "만들기"라 눌리는지 불명했다(이름 끝 "(재료 부족)"과 중복) →
+                // 버튼 글자 자체를 "재료 부족"(흐린 색)으로 바꾸고 이름 줄의 괄호 문구는 뺀다. 판정(CanCraft)·동작은 그대로.
+                var b = MakeButton(row, "Craft", new Vector2(1f, 0.5f), new Vector2(-6f, 0f), new Vector2(190f, 48f), can ? "만들기" : "재료 부족", 22, new Color(0.3f, 0.2f, 0.1f, 0.95f), out var craftLabel);
                 b.interactable = can;
+                if (!can) craftLabel.color = new Color(0.62f, 0.62f, 0.62f);
                 var recipe = r;
                 b.onClick.AddListener(() => OnCraft(recipe));
                 recipeRows.Add(row.gameObject);
@@ -382,7 +385,7 @@ namespace CCT
         void OnDrink(RunCup cup)
         {
             bool ok = game.DrinkRunCup(cup, out var error);
-            brewMessage.text = ok ? $"{cup.recipe?.name}을(를) 마셨습니다 — 이전 음료 효과는 교체" : error;
+            brewMessage.text = ok ? $"{KoreanParticle.EulReul(cup.recipe?.name)} 마셨습니다 — 이전 음료 효과는 교체" : error;
             if (ok) PlayQuality(cup.quality, DrinkQualityFx.Moment.Drunk);
             Refresh(); RefreshBrew();
         }

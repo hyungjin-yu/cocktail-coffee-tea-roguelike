@@ -134,5 +134,76 @@ namespace CCT.Tests
             foreach (var name in new[] { "HpBar", "Info", "CoffeePoints", "PauseButton" })
                 Assert.IsFalse(backRect.Overlaps(WorldRect(root.Find(name))), $"바탕이 {name}를 가린다");
         }
+
+        /// <summary>UI 가독성 감사 E-3: 세 게이지 바는 서로 겹치지 않고, 글자는 바 높이 안에서만 줄어든다(바 밖으로 넘치지 않음).
+        /// 안내 띠(Guide)는 게이지 바탕 아래에서 시작한다.</summary>
+        [Test]
+        public void Hud_CenterGauges_DoNotOverlap_LabelsFitInsideBars()
+        {
+            var hud = HudView.Create(Canvas(), null);
+            var root = hud.transform;
+            var names = new[] { "GaugeBar", "TeaBar", "BeanBar" };
+            for (int i = 0; i < names.Length; i++)
+            {
+                var bar = root.Find(names[i]);
+                Assert.GreaterOrEqual(((RectTransform)bar).sizeDelta.y, 28f, $"{names[i]} 높이(20pt 글자가 들어가는 칸)");
+                var label = bar.Find("Label").GetComponent<Text>();
+                Assert.IsTrue(label.resizeTextForBestFit, $"{names[i]} 글자는 바 안에서 줄인다");
+                Assert.AreEqual(VerticalWrapMode.Truncate, label.verticalOverflow, $"{names[i]} 글자가 바 밖으로 넘치지 않는다");
+                for (int j = i + 1; j < names.Length; j++)
+                    Assert.IsFalse(WorldRect(bar).Overlaps(WorldRect(root.Find(names[j]))), $"{names[i]}와 {names[j]} 겹침");
+            }
+            var guide = root.Find("Guide");
+            Assert.LessOrEqual(WorldRect(guide).yMax, WorldRect(root.Find("GaugeBacking")).yMin + 0.01f, "안내 띠는 게이지 바탕 아래");
+        }
+
+        /// <summary>감사 E-5/S-1: 상태 줄은 전체 명칭 + 실제 감소율(부호 -, 정수 %) + 괄호 안 남은 초(올림).</summary>
+        [Test]
+        public void Hud_DebuffLine_FullNames_RateAndSecondsSeparated()
+        {
+            Assert.AreEqual("", HudView.DebuffLine(false, 0f, false, 1f, 0f, false, 1f, 0f, false, 0f));
+            Assert.AreEqual("공격 속도 -25% (3초) · 회복 차단 (5초)",
+                HudView.DebuffLine(false, 0f, false, 1f, 0f, true, 0.75f, 2.2f, true, 4.1f));
+            Assert.AreEqual("환불: % 보너스 무효 (2초) · 이동 속도 -30% (3초)",
+                HudView.DebuffLine(true, 1.5f, true, 0.7f, 3f, false, 1f, 0f, false, 0f));
+            StringAssert.Contains("이동 속도 느려짐 (1초)", HudView.DebuffLine(false, 0f, true, 0.999f, 0.5f, false, 1f, 0f, false, 0f),
+                "0%로 반올림되는 둔화는 0%를 쓰지 않는다");
+        }
+
+        /// <summary>감사 S-10/P5: "현재 → 선택 후"는 최종값이 단순 가산으로 바로 계산되는 능력치만. 시간제 보정이 섞이는 능력치는 빈 글(추정 금지).</summary>
+        [Test]
+        public void StatStyle_Preview_OnlyForExactStats_UsesRealFinalValues()
+        {
+            var s = new PlayerStats();
+            Assert.AreEqual("현재 100 → 선택 후 120", StatStyle.Preview(new CardEffect(CardEffectType.MaxHpFlat, 20f), s));
+            Assert.AreEqual("필요량 현재 100% → 선택 후 92%", StatStyle.Preview(new CardEffect(CardEffectType.GaugeNeedPercent, -0.08f), s));
+            Assert.AreEqual("확률 현재 0% → 선택 후 10%", StatStyle.Preview(new CardEffect(CardEffectType.DropChancePercent, 0.10f), s));
+            s.Apply(new CardEffect(CardEffectType.GaugeNeedPercent, -0.48f));
+            Assert.AreEqual("필요량 현재 52% → 선택 후 50%", StatStyle.Preview(new CardEffect(CardEffectType.GaugeNeedPercent, -0.08f), s), "하한 50% 그대로");
+            s.Apply(new CardEffect(CardEffectType.DamageReduction, 0.2f));
+            Assert.AreEqual("현재 20% → 선택 후 25% (최대 25%)", StatStyle.Preview(new CardEffect(CardEffectType.DamageReduction, 0.1f), s), "상한 25% 그대로");
+            Assert.AreEqual("현재 250cm → 선택 후 300cm", StatStyle.Preview(new CardEffect(CardEffectType.PickupRadiusFlat, 0.5f), new PlayerStats()));
+            foreach (var t in new[] { CardEffectType.DamagePercent, CardEffectType.AttackSpeedPercent, CardEffectType.RangePercent, CardEffectType.MoveSpeedPercent,
+                         CardEffectType.RegenBonus, CardEffectType.FlameLevel, CardEffectType.PoisonLevel, CardEffectType.PierceCount, CardEffectType.ExtraThrust })
+                Assert.AreEqual("", StatStyle.Preview(new CardEffect(t, 1f), s), $"{t}: 시간제·무기별 보정이 섞여 미리보기 없음");
+            Assert.AreEqual("", StatStyle.Preview(new CardEffect(CardEffectType.MaxHpFlat, 20f), null));
+        }
+
+        /// <summary>감사 S-11: 조사 괄호("을(를)", "(으)로")를 받침으로 고른다. 판정 못 하는 끝 글자(영문)는 괄호 표기 유지.</summary>
+        [Test]
+        public void KoreanParticle_PicksByFinalConsonant()
+        {
+            Assert.AreEqual("칵테일을", KoreanParticle.EulReul("칵테일"));
+            Assert.AreEqual("차를", KoreanParticle.EulReul("차"));
+            Assert.AreEqual("커피를", KoreanParticle.EulReul("커피"));
+            Assert.AreEqual("창 모드로", KoreanParticle.EuRo("창 모드"));
+            Assert.AreEqual("전체 화면으로", KoreanParticle.EuRo("전체 화면"));
+            Assert.AreEqual("레일로", KoreanParticle.EuRo("레일"), "ㄹ 받침은 로");
+            Assert.AreEqual("설탕이", KoreanParticle.IGa("설탕"));
+            Assert.AreEqual("우유는", KoreanParticle.EunNeun("우유"));
+            Assert.AreEqual("모카포트 3을", KoreanParticle.EulReul("모카포트 3"));
+            Assert.AreEqual("IBA(으)로", KoreanParticle.EuRo("IBA"), "영문 끝은 판정 불가 → 괄호 유지");
+            Assert.AreEqual("을(를)", KoreanParticle.EulReulOf(null));
+        }
     }
 }

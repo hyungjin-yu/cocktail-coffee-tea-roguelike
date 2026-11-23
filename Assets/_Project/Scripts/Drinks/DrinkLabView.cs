@@ -379,7 +379,7 @@ namespace CCT
             {
                 // 옮겨 붓기가 끝나 도구가 제자리로 돌아온 뒤 바꾼다(도구 순간이동 없음).
                 queuedSelect = def;
-                Message("옮겨 붓기가 끝나면 " + (def != null ? def.name : "재료") + "(으)로 바꿉니다.");
+                Message("옮겨 붓기가 끝나면 " + KoreanParticle.EuRo(def != null ? def.name : "재료") + " 바꿉니다.");
                 return;
             }
             if (def != null && (!def.UsableIn(kind) || DrinkLab.Owned(def.id) <= 0)) return; // 없는 재료는 제조에 쓸 수 없다
@@ -1259,7 +1259,7 @@ namespace CCT
                 if (!owned)
                 {
                     var buy = DrinkPaperUi.Button(card, "Buy", new Vector2(1f, 0.5f), new Vector2(-30f, 0f), new Vector2(260f, 66f), onSale ? $"구매 ({c.price}코인)" : "준비 중", DrinkPaperUi.Small,
-                        () => { if (DrinkLab.BuyCosmetic(cc.id, SafeCashOwned, out var e)) Message($"{cc.name}을(를) 샀습니다."); else Message(e); SetTab(Tab.Orders); }, onSale && DrinkLab.Coins >= c.price ? "button_available" : "button_locked");
+                        () => { if (DrinkLab.BuyCosmetic(cc.id, SafeCashOwned, out var e)) Message($"{KoreanParticle.EulReul(cc.name)} 샀습니다."); else Message(e); SetTab(Tab.Orders); }, onSale && DrinkLab.Coins >= c.price ? "button_available" : "button_locked");
                     buy.interactable = onSale && DrinkLab.Coins >= c.price;
                 }
                 else

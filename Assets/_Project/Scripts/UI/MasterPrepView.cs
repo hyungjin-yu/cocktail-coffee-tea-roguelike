@@ -134,12 +134,17 @@ namespace CCT
             startButton.gameObject.SetActive(!choice);
             brewButton.gameObject.SetActive(true);
             brewButton.interactable = game.CanOpenMasterBrew;
-            panelTitle.text = choice ? "재료 모으기 5/5 완료 — 다음을 고르세요 (전투 정지 중)" : $"다음 웨이브 준비 — {MasterChallengeDirector.WaveTitle(st.Wave)} (전투 정지 중)";
+            // UI 가독성 감사 E-2/S-6: "웨이브 1 · 재료 모으기 1/5"가 제목과 바로 아래 예고 블록 머리에 두 번 나왔다 →
+            // 위치(웨이브·구간)는 블록 머리(u.title)에만 두고 제목은 단계만 말한다.
+            panelTitle.text = choice ? "재료 모으기 5/5 완료 — 다음을 고르세요 (전투 정지 중)" : "다음 웨이브 준비 (전투 정지 중)";
             var trait = game.Player != null ? game.Player.DrinkTrait : RunDrinkTraitKind.None;
-            string cur = $"현재 잔: {RunDrinkTrait.Name(trait)} · ";
+            string cur = $"현재 잔: {RunDrinkTrait.Name(trait)}";
+            // 하단 한 줄에 정보 4개가 14pt까지 줄어들었다 — 바로 아래 [음료 만들기] 버튼과 겹치는 안내("음료는 지금 만들고 마실 수 있음")는 빼고
+            // 현재 잔 · 제출→약화 · (선택 단계) 반복 규칙만 남긴다. 수치·규칙 자체는 그대로.
+            string submit = $" · 이번 주기 제출 {st.SubmittedThisCycle}잔 → 박람회 약화 {st.PreviewFairReduction}%";
             panelFooter.text = cur + (choice
-                ? $"제출 {st.SubmittedThisCycle}잔 → 박람회 약화 {st.PreviewFairReduction}% · 반복해도 주기·난이도는 그대로({st.RepeatCount}회 반복) · 음료는 지금 만들고 마실 수 있음"
-                : st.CanSubmit ? $"음료를 만들고 마신 뒤 시작하세요(없어도 출발 가능) · 이번 주기 박람회 제출 {st.SubmittedThisCycle}잔 → 약화 {st.PreviewFairReduction}%" : "음료를 만들고 마신 뒤 시작하세요(없어도 출발 가능)");
+                ? submit + $" · 반복해도 주기·난이도 그대로({st.RepeatCount}회 반복)"
+                : (st.CanSubmit ? submit : "") + " · 음료 없이도 출발 가능");
 
             string key = $"{st.Phase}|{st.Wave}|{st.RepeatCount}|{st.PreviewFairReduction}|{st.CarriedReduction}|{(game.Challenge != null ? game.Challenge.HpMultiplier : 1f):0.###}|{game.Player?.AffinityDrink}|{trait}";
             foreach (var u in ups) key += "|" + u.plan.GetHashCode();

@@ -98,7 +98,7 @@ namespace CCT
             if (t == null) { why = "알 수 없는 특성입니다."; return false; }
             if (s.unlockedTraits.Contains(id)) { why = "이미 해금했습니다."; return false; }
             var pre = t.Prerequisite;
-            if (pre != null && !s.unlockedTraits.Contains(pre)) { why = $"먼저 '{Trait(pre).name}'을(를) 해금하세요."; return false; }
+            if (pre != null && !s.unlockedTraits.Contains(pre)) { why = $"먼저 '{Trait(pre).name}'{KoreanParticle.EulReulOf(Trait(pre).name)} 해금하세요."; return false; }
             if (s.researchPoints < t.cost) { why = $"연구 포인트가 {t.cost - s.researchPoints} 부족합니다."; return false; }
             return true;
         }

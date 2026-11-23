@@ -426,21 +426,47 @@ namespace CCT
             slot.description.enabled = !lines;
             slot.effects.gameObject.SetActive(lines);
             effectLineTexts[slot.index] = lines ? string.Join(" / ", list.ConvertAll(e => StatStyle.LineText(e, card.weaponRestriction))) : "";
+            previewTexts[slot.index] = "";
             if (!lines) return;
             int n = Mathf.Min(3, list.Count);
             float h = n <= 2 ? 44f : 30f; int font = n <= 2 ? 30 : 24;
-            float top = (EffectBoxHeight - n * h) * 0.5f; // 줄 묶음을 상자 세로 가운데
+            // P5(감사 S-10): 효과가 한 줄뿐이고 실제 최종값이 바로 계산되는 능력치면(StatStyle.Preview) 아래 둘째 줄에 "현재 → 선택 후".
+            // 상자(92) = 효과 줄 44 + 미리보기 30. 추정이 필요한 능력치·여러 효과 카드는 미리보기 없음.
+            var stats = GameManager.Instance != null ? GameManager.Instance.Stats : null;
+            string preview = n == 1 ? StatStyle.Preview(list[0], stats) : "";
+            previewTexts[slot.index] = preview;
+            const float PreviewH = 30f;
+            float top = (EffectBoxHeight - n * h - (preview.Length > 0 ? PreviewH : 0f)) * 0.5f; // 줄 묶음을 상자 세로 가운데
             for (int k = 0; k < n; k++)
             {
                 var row = StatStyle.BuildLine(slot.effects, "Effect" + k, list[k], card.weaponRestriction, 400f, h, font);
                 row.anchoredPosition = new Vector2(0f, -top - k * h);
             }
+            if (preview.Length > 0)
+            {
+                var prt = UiFactory.Place("Preview", slot.effects, new Vector2(0.5f, 1f), new Vector2(0f, -top - n * h), new Vector2(400f, PreviewH));
+                prt.pivot = new Vector2(0.5f, 1f);
+                var pt = UiFactory.AddText(prt, preview, 22, TextAnchor.MiddleCenter, new Color(0.86f, 0.86f, 0.9f));
+                pt.resizeTextForBestFit = true; pt.resizeTextMinSize = 16; pt.resizeTextMaxSize = 22;
+                pt.verticalOverflow = VerticalWrapMode.Truncate;
+                pt.raycastTarget = false;
+            }
         }
+
+        readonly string[] previewTexts = new string[SlotCount];
+        /// <summary>테스트·QA용 — 카드 효과 "현재 → 선택 후" 미리보기 글(없으면 "").</summary>
+        public string EffectPreview(int index) => index >= 0 && index < SlotCount ? previewTexts[index] ?? "" : "";
 
         readonly string[] effectLineTexts = new string[SlotCount];
         /// <summary>테스트·QA용 — 카드 효과 줄 글("공격력 +15% / 공격 속도 +20%"), 특수 카드는 "".</summary>
         public string EffectLines(int index) => index >= 0 && index < SlotCount ? effectLineTexts[index] ?? "" : "";
-        public int EffectLineCount(int index) => index >= 0 && index < SlotCount && slots[index].effects.gameObject.activeSelf ? slots[index].effects.childCount : 0;
+        public int EffectLineCount(int index)
+        {
+            if (index < 0 || index >= SlotCount || !slots[index].effects.gameObject.activeSelf) return 0;
+            int n = 0; // "현재 → 선택 후" 미리보기 줄(Preview)은 효과 줄이 아니다
+            foreach (Transform c in slots[index].effects) if (c.name.StartsWith("Effect")) n++;
+            return n;
+        }
         public static readonly Color RushOffColor = new Color(0.78f, 0.2f, 0.18f);
         public string JobChipText(int index) => JobChipVisible(index) ? slots[index].jobChipText.text : "";
         public bool JobChipVisible(int index) => index >= 0 && index < SlotCount && slots[index].jobChip.activeSelf;

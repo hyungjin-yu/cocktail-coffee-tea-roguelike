@@ -153,7 +153,7 @@ namespace CCT
                     p.Stats.BlockHeal(5f); // 빈 잔 도둑 접촉과 같은 효과(접촉 대기 없이)
                     yield return Wait(0.4f);
                     Line($"US {tag} debuff status='{game.Hud.StatusLineText}'");
-                    if (!game.Hud.StatusLineText.Contains("공속")) Fail($"{tag} debuff status line missing");
+                    if (!game.Hud.StatusLineText.Contains("공격 속도")) Fail($"{tag} debuff status line missing");
                     yield return Shot(tag + "_26_debuff_status", game);
                     Object.Destroy(mist.gameObject); Object.Destroy(thief.gameObject);
                     yield return Wait(0.2f);

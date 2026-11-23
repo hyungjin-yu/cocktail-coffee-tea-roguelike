@@ -171,11 +171,11 @@ namespace CCT
                 if (s == null) { res.Errors.Add("비어 있는 재료 줄이 있습니다."); continue; }
                 var def = DrinkIngredients.Get(s.id);
                 if (def == null) { res.Errors.Add("알 수 없는 재료가 있습니다."); continue; }
-                if (!seen.Add(def.id)) res.Errors.Add($"{def.name}이(가) 중복되어 있습니다.");
+                if (!seen.Add(def.id)) res.Errors.Add($"{KoreanParticle.IGa(def.name)} 중복되어 있습니다.");
                 if (s.amount <= 0) res.Errors.Add($"{def.name}의 양이 0 이하입니다.");
                 else if (s.amount > DrinkRules.StepMax) res.Errors.Add($"{def.name}의 양이 너무 많습니다.");
                 else if (s.amount % DrinkRules.TenthsPerUnit != 0) res.Errors.Add($"{def.name}의 양은 정수(1{(def.form == IngredientForm.Leaf ? "g" : "mL")} 단위)여야 합니다.");
-                if (!def.UsableIn(kind)) res.Errors.Add($"{def.name}은(는) {DrinkRules.KindName(kind)}에 쓸 수 없습니다.");
+                if (!def.UsableIn(kind)) res.Errors.Add($"{KoreanParticle.EunNeun(def.name)} {DrinkRules.KindName(kind)}에 쓸 수 없습니다.");
                 if (def.baseSpirit) hasBase = true;
                 if (def.IsCoffeeBean) hasBean = true;
                 if (def.form == IngredientForm.Leaf) hasLeaf = true;

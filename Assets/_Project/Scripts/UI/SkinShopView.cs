@@ -496,7 +496,7 @@ namespace CCT
                 bool ok;
                 try { ok = DrinkLab.BuyCosmetic(productId, commerce.IsCashOwned, out error); }
                 catch (Exception) { ok = false; error = "코인 구매를 처리하지 못했습니다."; }
-                coinMessage = ok ? $"{def.displayName}을(를) 판매 코인 {SkinCatalog.CoinSkinPrice}으로 샀습니다. 장착할 수 있습니다." : error;
+                coinMessage = ok ? $"{KoreanParticle.EulReul(def.displayName)} 판매 코인 {SkinCatalog.CoinSkinPrice}으로 샀습니다. 장착할 수 있습니다." : error;
             }
             Refresh();
         }

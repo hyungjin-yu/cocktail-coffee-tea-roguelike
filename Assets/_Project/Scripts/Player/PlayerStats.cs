@@ -81,6 +81,8 @@ namespace CCT
         /// <summary>슈가 큐브 바머 등이 거는 이동속도 둔화. 더 강하거나(낮은 배율) 더 긴 효과로만 갱신된다.</summary>
         public bool IsSlowed => slowRemaining > 0f;
         public float SlowRemaining => slowRemaining;
+        /// <summary>현재 이동 속도에 곱해지는 둔화 배율(둔화 아님 = 1). MoveSpeed와 같은 값 — HUD 상태 줄이 실제 감소율을 표시할 때 쓴다.</summary>
+        public float MoveSlowMultiplier => IsSlowed ? slowMultiplier : 1f;
 
         // ───── 2026-11-22 공용 디버프 몹(피드백 13): 공격 속도 감소·회복 차단 ─────
         float attackSlowRemaining, attackSlowMultiplier = 1f, healBlockRemaining;
@@ -145,7 +147,7 @@ namespace CCT
         /// <summary>2026-11-12 마스터 도전 런 음료 특성(차 1번째 우림) 공격 속도. 다른 슬롯과 독립 — 잔 교체 때 이 값만 0/값으로 덮어쓴다.</summary>
         public float drinkTraitAttackSpeed;
         public float AttackSpeedBonus => Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed + drinkTraitAttackSpeed);
-        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed + masteryMoveSpeed + coffeeMoveSpeed + jobMoveSpeedPercent))) * (IsSlowed ? slowMultiplier : 1f);
+        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed + masteryMoveSpeed + coffeeMoveSpeed + jobMoveSpeedPercent))) * MoveSlowMultiplier;
         public float MaxHp => baseMaxHp + maxHpFlat;
         public float Damage => baseDamage * (1f + DamageBonus);
         /// <summary>기본 공격 재사용 간격. 69 음료 재사용 시간 감소는 간격에 곱하고(공격 속도와 별개), 기존 최소 간격 0.12초 상한은 그대로.</summary>

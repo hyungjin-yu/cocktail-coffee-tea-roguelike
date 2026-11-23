@@ -129,11 +129,12 @@ namespace CCT.Tests
             mist.transform.position = p.Position + new Vector2(1f, 0f);
             driver.Pulse();
             yield return new WaitForSeconds(0.2f);
-            StringAssert.Contains("이동 둔화 3초", game.Hud.StatusLineText, "파동 직후 이동 둔화 글");
-            StringAssert.Contains("공속 -25% 3초", game.Hud.StatusLineText, "공속 감소 글 유지");
+            StringAssert.Contains("이동 속도 -", game.Hud.StatusLineText, "파동 직후 이동 둔화 글(실제 감소율)");
+            StringAssert.Contains("(3초)", game.Hud.StatusLineText, "남은 시간은 괄호 안 초");
+            StringAssert.Contains("공격 속도 -25% (3초)", game.Hud.StatusLineText, "공격 속도 감소 글 유지(전체 명칭)");
             yield return new WaitForSeconds(BitterMistDriver.SlowSeconds + 0.3f);
             Assert.IsFalse(p.Stats.IsSlowed);
-            StringAssert.DoesNotContain("이동 둔화", game.Hud.StatusLineText, "끝나면 사라짐");
+            StringAssert.DoesNotContain("이동 속도", game.Hud.StatusLineText, "끝나면 사라짐");
         }
     }
 }

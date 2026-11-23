@@ -491,7 +491,7 @@ namespace CCT
         {
             var d = SettingsService.EffectiveDisplay;
             string mode = d.windowed ? "창 모드" : "전체 화면";
-            confirmCountdownLabel.text = $"화면을 {d.width}×{d.height} {mode}(으)로 바꿨습니다.\n" +
+            confirmCountdownLabel.text = $"화면을 {d.width}×{d.height} {KoreanParticle.EuRo(mode)} 바꿨습니다.\n" +
                                           $"{Mathf.CeilToInt(Mathf.Max(0f, confirmRemaining))}초 후 자동으로 되돌립니다.";
         }
 

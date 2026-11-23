@@ -199,7 +199,7 @@ namespace CCT.Tests
             driver.Pulse();
             Assert.IsTrue(p.Stats.IsSlowed); Assert.IsTrue(p.Stats.AttackSlowed);
             yield return new WaitForSeconds(0.2f);
-            StringAssert.Contains("공속 -25%", game.Hud.StatusLineText, "상태 줄에 공속 감소 표시");
+            StringAssert.Contains("공격 속도 -25%", game.Hud.StatusLineText, "상태 줄에 공속 감소 표시");
             // 예고: 시간이 지나면 예고 원 → 파동
             float t0 = Time.time; int pulses = driver.Pulses; bool sawTelegraph = false;
             while (Time.time - t0 < BitterMistDriver.PulseEvery + 2f && driver.Pulses == pulses) { sawTelegraph |= driver.Telegraphing; yield return null; }

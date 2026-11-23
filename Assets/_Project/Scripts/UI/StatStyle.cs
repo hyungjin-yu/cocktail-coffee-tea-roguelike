@@ -102,6 +102,34 @@ namespace CCT
             }
         }
 
+        /// <summary>
+        /// UI 가독성 감사 S-10/P5: 카드 선택 시 실제 최종값이 "현재 → 선택 후"로 바로 계산되는 효과만 미리보기 글을 낸다(그 외 "").
+        /// PlayerStats가 이 효과를 단순 가산하고 최종값 공식에 시간제·조건부 보정(직업 러시·히든·커피·환불 봉인·음료)이 끼지 않는 능력치만:
+        /// 최대 체력(base + flat, HUD와 같은 올림), 게이지 필요량(max(50%, 100%+합)), 추가 드랍 확률(0~100%로 자름),
+        /// 받는 피해 감소(숙련 포함 합, 0~25%로 자름), 줍기 반경(base + flat, cm).
+        /// 공격력·공격 속도·사거리·이동 속도·회복은 시간제 보정이 섞여 지금 값이 계속 바뀌므로, 화염·여운·관통·연속 타격은 무기마다 쓰임이 달라 표시하지 않는다(추정 금지).
+        /// </summary>
+        public static string Preview(CardEffect e, PlayerStats s)
+        {
+            if (s == null) return "";
+            float v = e.value;
+            switch (e.type)
+            {
+                case CardEffectType.MaxHpFlat:
+                    return $"현재 {IntNum.Ceil(s.MaxHp)} → 선택 후 {IntNum.Ceil(s.baseMaxHp + s.maxHpFlat + v)}";
+                case CardEffectType.GaugeNeedPercent:
+                    return $"필요량 현재 {IntNum.Percent(s.GaugeNeedMultiplier)}% → 선택 후 {IntNum.Percent(Mathf.Max(0.5f, 1f + s.gaugeNeedPercent + v))}%";
+                case CardEffectType.DropChancePercent:
+                    return $"확률 현재 {IntNum.Percent(s.ExtraDropChance)}% → 선택 후 {IntNum.Percent(Mathf.Clamp01(s.dropChancePercent + v))}%";
+                case CardEffectType.DamageReduction:
+                    return $"현재 {IntNum.Percent(1f - s.DamageTakenMultiplier)}% → 선택 후 {IntNum.Percent(Mathf.Clamp(s.damageReduction + v + s.masteryDamageReduction, 0f, 0.25f))}% (최대 25%)";
+                case CardEffectType.PickupRadiusFlat:
+                    return $"현재 {IntNum.Centimeters(s.PickupRadius)}cm → 선택 후 {IntNum.Centimeters(s.basePickupRadius + s.pickupRadiusFlat + v)}cm";
+                default:
+                    return "";
+            }
+        }
+
         /// <summary>효과 한 줄 글자(테스트·접근성용): "공격력 +15%".</summary>
         public static string LineText(CardEffect e, WeaponRestriction restriction = WeaponRestriction.Any, bool percentPoint = false) =>
             Label(e.type, restriction) + " " + Value(e, percentPoint);

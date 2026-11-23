@@ -106,7 +106,7 @@ namespace CCT
         {
             var def = DrinkIngredients.Get(id);
             int now = draft.AmountOf(id), need = Need(id);
-            string sel = selected == def ? "" : $"왼쪽 목록에서 {def?.name}을(를) 고르고 ";
+            string sel = selected == def ? "" : $"왼쪽 목록에서 {KoreanParticle.EulReul(def?.name)} 고르고 ";
             string over = now > need ? $" · {DrinkRules.Format(now - need)}mL 넘쳤습니다 — −5로 줄여도 됩니다" : "";
             return $"{sel}+30mL 단위 버튼을 누르면 병이 기울어 지거에 30mL를 따른 뒤 잔으로 옮깁니다(병을 직접 끌어 부어도 됩니다). 지금 {DrinkRules.Format(now)} / {DrinkRules.Format(need)}mL{over}";
         }
