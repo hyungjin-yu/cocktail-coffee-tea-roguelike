@@ -1,0 +1,39 @@
+gin_boss_incoming 1280x720 chipVisible=True badgeAtTop=True badge='보스 접근 6초 · 그라인더 골렘' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.667)
+shot gin_boss_incoming_1280x720.png 1280x720
+gin_boss_incoming 1920x1080 chipVisible=True badgeAtTop=True badge='보스 접근 6초 · 그라인더 골렘' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 1)
+shot gin_boss_incoming_1920x1080.png 1920x1080
+gin_boss_incoming 1024x768 chipVisible=True badgeAtTop=True badge='보스 접근 6초 · 그라인더 골렘' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.533)
+shot gin_boss_incoming_1024x768.png 1024x768
+gin_boss_fight 1280x720 chipVisible=True badgeAtTop=True badge='보스전 · 그라인더 골렘 · 위험 1' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.667)
+shot gin_boss_fight_1280x720.png 1280x720
+gin_boss_fight 1920x1080 chipVisible=True badgeAtTop=True badge='보스전 · 그라인더 골렘 · 위험 1' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 1)
+shot gin_boss_fight_1920x1080.png 1920x1080
+gin_boss_fight 1024x768 chipVisible=True badgeAtTop=True badge='보스전 · 그라인더 골렘 · 위험 1' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.533)
+shot gin_boss_fight_1024x768.png 1024x768
+gin_master 1280x720 chipVisible=True badgeAtTop=False badge='마스터 도전 · 주기 1 · 웨이브 1 · 재료 모으기 1/5 · 처리 0/8
+체력 100% · 공격 100% · 약화 0% · 제출 0잔 · 칵테일 0종 공격 +0%' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=-8.8px(canvas 0.667)
+shot gin_master_1280x720.png 1280x720
+gin_master 1920x1080 chipVisible=True badgeAtTop=False badge='마스터 도전 · 주기 1 · 웨이브 1 · 재료 모으기 1/5 · 처리 0/8
+체력 100% · 공격 100% · 약화 0% · 제출 0잔 · 칵테일 0종 공격 +0%' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=-8.8px(canvas 1)
+shot gin_master_1920x1080.png 1920x1080
+gin_master 1024x768 chipVisible=True badgeAtTop=False badge='마스터 도전 · 주기 1 · 웨이브 1 · 재료 모으기 1/5 · 처리 0/8
+체력 100% · 공격 100% · 약화 0% · 제출 0잔 · 칵테일 0종 공격 +0%' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=-9.6px(canvas 0.533)
+shot gin_master_1024x768.png 1024x768
+gin_standard 1280x720 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.667)
+shot gin_standard_1280x720.png 1280x720
+gin_standard 1920x1080 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 1)
+shot gin_standard_1920x1080.png 1920x1080
+gin_standard 1024x768 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.533)
+shot gin_standard_1024x768.png 1024x768
+longname_many_standard 1280x720 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 한밤의블루큐라소진레몬셰이킹특제' rows=[공격력 +5% | 공격 속도 +3% | 치명타 확률 +2%p | 최대 체력 +3%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.667)
+shot longname_many_standard_1280x720.png 1280x720
+longname_many_standard 1920x1080 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 한밤의블루큐라소진레몬셰이킹특제' rows=[공격력 +5% | 공격 속도 +3% | 치명타 확률 +2%p | 최대 체력 +3%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 1)
+shot longname_many_standard_1920x1080.png 1920x1080
+longname_many_standard 1024x768 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 한밤의블루큐라소진레몬셰이킹특제' rows=[공격력 +5% | 공격 속도 +3% | 치명타 확률 +2%p | 최대 체력 +3%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.533)
+shot longname_many_standard_1024x768.png 1024x768
+nopanel_standard 1280x720 chipVisible=False badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='' rows=[] state='' overlap=n/a
+shot nopanel_standard_1280x720.png 1280x720
+nopanel_standard 1920x1080 chipVisible=False badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='' rows=[] state='' overlap=n/a
+shot nopanel_standard_1920x1080.png 1920x1080
+nopanel_standard 1024x768 chipVisible=False badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='' rows=[] state='' overlap=n/a
+shot nopanel_standard_1024x768.png 1024x768

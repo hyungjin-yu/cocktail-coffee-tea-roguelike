@@ -242,7 +242,8 @@ namespace CCT
             coffeeRt.gameObject.SetActive(chipCoffee.text.Length > 0);
             buffRt.gameObject.SetActive(false);
             int shownRows = 0;
-            foreach (var r in rows) if (r.rt.gameObject.activeSelf) shownRows++;
+            // 캔버스 배율이 바뀌면 행 글자도 새 해상도로 다시 만든다(제목·상태 줄은 preferredHeight 질의로 다시 만들어지지만 행은 그렇지 않아 번졌다).
+            foreach (var r in rows) { r.label.SetAllDirty(); r.value.SetAllDirty(); if (r.rt.gameObject.activeSelf) shownRows++; }
             foreach (var (rt, text) in new[] { (titleRt, chipTitle), (rowsRt, (Text)null), (coffeeRt, chipCoffee), (stateRt, chipState) })
             {
                 if (!rt.gameObject.activeSelf) continue;
@@ -311,13 +312,13 @@ namespace CCT
                 r.rt = UiFactory.Place("Row" + rows.Count, rowsRt, new Vector2(0f, 1f), new Vector2(0f, -rows.Count * (RowHeight + 2f)), new Vector2(w, RowHeight));
                 r.icon = UiFactory.AddImage(UiFactory.Place("Icon", r.rt, new Vector2(0f, 0.5f), Vector2.zero, new Vector2(RowIcon, RowIcon)), Color.white);
                 r.icon.preserveAspect = true; r.icon.raycastTarget = false;
-                r.label = UiFactory.AddText(UiFactory.Place("Label", r.rt, new Vector2(0f, 0.5f), new Vector2(RowIcon + 8f, 0f), new Vector2(w - RowIcon - 8f - ValueColW, RowHeight)),
-                    "", RowFont, TextAnchor.MiddleLeft, Color.white);
-                r.label.horizontalOverflow = HorizontalWrapMode.Overflow; r.label.raycastTarget = false;
+                r.label = UiFactory.AddText(UiFactory.Place("Label", r.rt, new Vector2(0f, 1f), new Vector2(RowIcon + 8f, -3f), new Vector2(w - RowIcon - 8f - ValueColW, RowHeight - 3f)),
+                    "", RowFont, TextAnchor.UpperLeft, Color.white); // 위 정렬: 가운데 정렬은 반 픽셀에 걸려 글자가 번진다
+                r.label.raycastTarget = false;
                 // 수치 열: 오른쪽 끝 고정 폭·오른쪽 정렬 — 줄마다 수치 끝이 세로로 가지런하다.
-                var vrt = UiFactory.Place("Value", r.rt, new Vector2(1f, 0.5f), Vector2.zero, new Vector2(ValueColW, RowHeight));
-                r.value = UiFactory.AddText(vrt, "", ValueFont, TextAnchor.MiddleRight, Color.white);
-                r.value.fontStyle = FontStyle.Bold; r.value.horizontalOverflow = HorizontalWrapMode.Overflow; r.value.raycastTarget = false;
+                var vrt = UiFactory.Place("Value", r.rt, new Vector2(1f, 1f), new Vector2(-10f, -1f), new Vector2(ValueColW, RowHeight - 1f)); // 굵은 글자 오른쪽 돌출분 여백
+                r.value = UiFactory.AddText(vrt, "", ValueFont, TextAnchor.UpperRight, Color.white);
+                r.value.fontStyle = FontStyle.Bold; r.value.horizontalOverflow = HorizontalWrapMode.Wrap; r.value.raycastTarget = false;
                 rows.Add(r);
             }
             return rows[i];

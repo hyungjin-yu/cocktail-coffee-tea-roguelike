@@ -157,7 +157,9 @@ namespace CCT.Tests
                 if (t.enabled && t.transform.parent.name.StartsWith("Row"))
                 {
                     var g = GlyphBounds(t);
-                    AssertInside(g, ScreenRect(t.rectTransform), t.name + " 글자/글 상자", 3f);
+                    // 굵은 수치는 오른쪽 정렬 글 상자를 몇 px 넘는 값으로 재질 수 있어(글꼴 bearing) 상자 대신 칩·행 안에서 본다.
+                    AssertInside(g, chipRect, t.name + " 글자/칩");
+                    AssertInside(g, ScreenRect((RectTransform)t.transform.parent), t.name + " 글자/행", 8f);
                 }
             var phase = game.Hud.PhaseBadge;
             if (phase != null && phase.Visible && phase.AtTop)
