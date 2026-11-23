@@ -41,6 +41,8 @@ namespace CCT
         public const float BrewButtonTop = 304f, BrewButtonW = 330f, BrewButtonH = 60f;
 
         public bool BrewOpen => brewPanel != null && brewPanel.activeSelf;
+        /// <summary>우상단 '음료 만들기' 버튼이 지금 눌리는지(시험·QA).</summary>
+        public bool BrewButtonInteractable => brewButton != null && brewButton.interactable;
         public bool ChoiceVisible => choiceRoot != null && choiceRoot.activeSelf;
         public string BrewButtonText => brewLabel != null ? brewLabel.text : "";
         public string ChoiceText => choiceText != null ? choiceText.text : "";
@@ -219,6 +221,10 @@ namespace CCT
                 if (BrewOpen) game.CloseMasterBrew(); else game.OpenMasterBrew();
             }
             if (fxCaption != null && fxCaption.gameObject.activeSelf && Time.unscaledTime >= fxCaptionUntil) HideQualityCaption();
+            // 2026-11-23 마스터 모드 카드 창 검수: 버튼 활성은 0.5초 주기 Refresh에서만 바뀌어, 카드 창이 닫힌 직후 최대 0.5초 동안 '음료 만들기'가
+            // 비활성 색으로 남았다(B 키는 바로 됨). 열고 닫는 판정(CanOpenMasterBrew)과 매 프레임 맞춘다 — 값싼 bool 대입만.
+            if (game != null && brewButton != null) { bool can = game.CanOpenMasterBrew; if (brewButton.interactable != can) brewButton.interactable = can; }
+            prepView?.SyncInteractable();
             refreshTimer -= Time.unscaledDeltaTime;
             if (refreshTimer <= 0f) { refreshTimer = 0.5f; Refresh(); }
         }

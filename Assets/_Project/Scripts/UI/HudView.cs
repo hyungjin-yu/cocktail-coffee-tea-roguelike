@@ -164,6 +164,10 @@ namespace CCT
         }
         public DrinkGoalHud DrinkGoal { get; private set; }
         public LowHpWarning LowHp { get; private set; }
+        /// <summary>2026-11-23 위험 예고를 가리는 HUD 패널 반투명 처리(시험·QA).</summary>
+        public HudHazardOcclusion HazardOcclusion { get; private set; }
+        /// <summary>왼쪽 패널(히든·직업·목표 조합·발동) — 시험·증거 캡처용.</summary>
+        public RectTransform[] LeftPanels { get; private set; }
 
         public static HudView Create(Transform canvas, GameManager game)
         {
@@ -343,6 +347,9 @@ namespace CCT
             view.jobTrait=PaddedLabel(jobRt,"",24,TextAnchor.UpperLeft,new Color(.85f,1f,.8f));
             // 2026-11-12 HUD 가시성(사용자 요청): 히든 = 개수 배지, 직업 = 초상 + 진행 칸 + 강화 남은 시간, 목표 조합 = 카드 그림/빈 칸. 기존 크기·위치·H/T 동작 유지.
             view.BuildLeftVisuals(hiddenRt, jobRt, targetRt, game);
+            // 2026-11-23 실창 720p: 왼쪽 패널이 쓴맛 안개 몸체·파동 테두리(판정 경계)를 가렸다 — 겹친 패널만 반투명(배치·입력·판정 그대로).
+            view.HazardOcclusion = HudHazardOcclusion.Attach(root, hiddenRt, jobRt, targetRt, activityRt, schemeRt);
+            view.LeftPanels = new[] { hiddenRt, jobRt, targetRt, activityRt };
 
             var detailRt=UiFactory.Place("HiddenDetails",root,new Vector2(.5f,.5f),Vector2.zero,new Vector2(980f,780f));
             UiFactory.SkinPanel(UiFactory.AddImage(detailRt,new Color(.12f,.09f,.12f,1f)));
@@ -597,6 +604,8 @@ namespace CCT
             // 2026-11-22 공용 디버프 몹: 공격 속도 감소·회복 차단을 같은 상태 줄에 남은 초와 함께(환불이 우선).
             var debuffs = new System.Collections.Generic.List<string>();
             if (stats.BonusesSuppressed) debuffs.Add($"환불 · 강화 무효 {IntNum.RemainingSeconds(stats.SuppressedRemaining)}초");
+            // 2026-11-23: 쓴맛 안개 파동 직후 이동 둔화가 아이콘(>>)으로만 보이고 글이 없었다 — 다른 디버프처럼 남은 초를 함께.
+            if (stats.IsSlowed) debuffs.Add($"이동 둔화 {IntNum.RemainingSeconds(stats.SlowRemaining)}초");
             if (stats.AttackSlowed) debuffs.Add($"공속 -{IntNum.Percent(1f - stats.AttackSlowMultiplier)}% {IntNum.RemainingSeconds(stats.AttackSlowRemaining)}초");
             if (stats.HealBlocked) debuffs.Add($"회복 차단 {IntNum.RemainingSeconds(stats.HealBlockRemaining)}초");
             suppressed.text = string.Join(" · ", debuffs);

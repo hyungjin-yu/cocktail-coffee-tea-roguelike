@@ -57,7 +57,7 @@ namespace CCT.Tests
         IEnumerator Capture(Camera cam, IList<Canvas> canvases, int w, int h, string name) => CaptureTo(dir, Line, cam, canvases, w, h, name);
 
         /// <summary>79 증거(Skins10EvidenceCapture)도 같은 창 없는 렌더 경로를 쓴다.</summary>
-        internal static IEnumerator CaptureTo(string dir, Action<string> Line, Camera cam, IList<Canvas> canvases, int w, int h, string name)
+        internal static IEnumerator CaptureTo(string dir, Action<string> Line, Camera cam, IList<Canvas> canvases, int w, int h, string name, Action beforeRender = null)
         {
             yield return null;
             // 배치 모드는 WaitForEndOfFrame이 없다 — 렌더 직전에 LateUpdate의 스킨 교체를 같은 순서로 한 번 더 적용한다.
@@ -94,6 +94,7 @@ namespace CCT.Tests
             ReapplyCenterBands(canvases); // 세로 띠 배치(CenterBand, LateUpdate)를 새 16:9 캔버스 크기로 즉시 다시 계산
             foreach (var c in canvases) if (c != null) LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)c.transform);
             Canvas.ForceUpdateCanvases();
+            beforeRender?.Invoke(); // 2026-11-23: 캔버스·해상도를 바꾼 직후 화면 좌표 기준 상태(HUD 가림 등)를 다시 계산
             cam.Render();
             var prevActive = RenderTexture.active;
             RenderTexture.active = rt;

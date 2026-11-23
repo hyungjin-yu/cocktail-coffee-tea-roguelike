@@ -80,6 +80,7 @@ namespace CCT
 
         /// <summary>슈가 큐브 바머 등이 거는 이동속도 둔화. 더 강하거나(낮은 배율) 더 긴 효과로만 갱신된다.</summary>
         public bool IsSlowed => slowRemaining > 0f;
+        public float SlowRemaining => slowRemaining;
 
         // ───── 2026-11-22 공용 디버프 몹(피드백 13): 공격 속도 감소·회복 차단 ─────
         float attackSlowRemaining, attackSlowMultiplier = 1f, healBlockRemaining;

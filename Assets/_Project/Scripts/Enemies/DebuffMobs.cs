@@ -38,7 +38,7 @@ namespace CCT
     /// 정식 파동 아트(bitter_mist_pulse charge 6장·6fps)가 재생되고 — 바깥 테두리가 처음부터 판정 경계(반경 PulseRadius)를 표시 —
     /// 끝나는 순간 파동(burst) — 안에 있으면 이동 둔화·공격 속도 감소. 저이펙트에서도 예고는 그린다(피할 정보).
     /// 아트가 없으면(누락) 기존 절차 원으로 떨어진다.</summary>
-    public class BitterMistDriver : MonoBehaviour, IEnemyDriver
+    public class BitterMistDriver : MonoBehaviour, IEnemyDriver, IHudHazard
     {
         public const float KeepDistance = 3.4f, PulseEvery = 4.5f, TelegraphSeconds = 1f, PulseRadius = 2.4f;
         public const float SlowSeconds = 3f, SlowMultiplier = 0.7f, AttackSlowSeconds = 3f, AttackSlowMultiplier = 0.75f;
@@ -139,6 +139,18 @@ namespace CCT
             timer -= dt;
             // 몸체 action(6장·10fps = 0.6초)은 예고 시작에 재생하고 파동까지 마지막 컷을 유지한다(hold = 예고 1초).
             if (timer <= 0f) { telegraph = 0f; enemy.PlayAction("action", TelegraphSeconds); }
+        }
+
+        /// <summary>2026-11-23 HUD 가림 판정(표시 전용): 몸체 + 예고·파동이 보이는 동안은 바닥 테두리(= 판정 경계) 그림 경계.
+        /// 위치·반경·판정은 바꾸지 않고, HUD가 이 영역을 덮을 때 HudHazardOcclusion이 겹친 패널만 반투명으로 낮춘다.</summary>
+        public bool TryGetHudHazardBounds(out Bounds worldBounds)
+        {
+            worldBounds = default;
+            if (enemy == null || enemy.IsDead) return false;
+            worldBounds = enemy.VisualBounds;
+            if (fx != null) { if (fx.enabled && fx.sprite != null) worldBounds.Encapsulate(fx.bounds); }
+            else if (edge != null && edge.enabled) worldBounds.Encapsulate(edge.bounds);
+            return true;
         }
 
         /// <summary>파동: 반경 안이면 디버프. 시험에서 직접 부를 수 있다.</summary>

@@ -1,0 +1,8 @@
+frame,t_ms,unscaled_dt_ms,tier,clip_frame,playing,content_alpha,interactive
+0,1,0.7,-1,-1,False,1.00,True
+1,29,27.9,-1,-1,False,1.00,True
+2,57,28.1,-1,-1,False,1.00,True
+3,85,28.4,-1,-1,False,1.00,True
+4,112,26.8,-1,-1,False,1.00,True
+5,141,29.2,-1,-1,False,1.00,True
+6,170,28.6,-1,-1,False,1.00,True

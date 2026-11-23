@@ -1,0 +1,64 @@
+09:28:17.524 shot C:/Users/user/AppData/Local/Temp/claude/84a755128e00db50/113b49f4-0122-4915-8d59-64db92c01939/scratchpad/qa/r01.jpg
+09:28:24.056 down space
+09:28:24.118 up space held=60
+09:28:26.676 shot C:/Users/user/AppData/Local/Temp/claude/84a755128e00db50/113b49f4-0122-4915-8d59-64db92c01939/scratchpad/qa/r02.jpg
+09:28:30.669 click 203,606
+09:28:33.245 shot C:/Users/user/AppData/Local/Temp/claude/84a755128e00db50/113b49f4-0122-4915-8d59-64db92c01939/scratchpad/qa/r03.jpg
+09:28:37.698 click 840,320
+09:28:39.266 shot C:/Users/user/AppData/Local/Temp/claude/84a755128e00db50/113b49f4-0122-4915-8d59-64db92c01939/scratchpad/qa/r04.jpg
+09:29:03.208 click 640,605
+09:29:04.771 shot C:/Users/user/AppData/Local/Temp/claude/84a755128e00db50/113b49f4-0122-4915-8d59-64db92c01939/scratchpad/qa/r05.jpg
+09:29:21.260 down 1
+09:29:21.321 up 1 held=60
+09:29:21.321 overlay -> key 1 at 12.2
+09:29:24.115 down 1
+09:29:24.176 up 1 held=60
+09:29:24.176 overlay -> key 1 at 15.1
+09:29:37.395 down 1
+09:29:37.456 up 1 held=60
+09:29:37.456 overlay -> key 1 at 28.4
+09:29:42.313 down 1
+09:29:42.374 up 1 held=60
+09:29:42.374 overlay -> key 1 at 33.3
+09:29:55.510 down 1
+09:29:55.571 up 1 held=60
+09:29:55.571 overlay -> key 1 at 46.5
+09:30:11.492 down 1
+09:30:11.553 up 1 held=60
+09:30:11.553 overlay -> key 1 at 62.5
+09:30:20.512 down 1
+09:30:20.573 up 1 held=60
+09:30:20.573 overlay -> key 1 at 71.5
+09:30:26.620 down 1
+09:30:26.681 up 1 held=60
+09:30:26.681 overlay -> key 1 at 77.6
+09:30:32.849 down 1
+09:30:32.911 up 1 held=60
+09:30:32.911 overlay -> key 1 at 83.8
+09:30:46.360 down 1
+09:30:46.422 up 1 held=60
+09:30:46.422 overlay -> key 1 at 97.3
+09:31:02.130 down 1
+09:31:02.191 up 1 held=60
+09:31:02.191 overlay -> key 1 at 113.1
+09:31:16.250 down 1
+09:31:16.310 up 1 held=60
+09:31:16.310 overlay -> key 1 at 127.2
+09:31:35.036 down 1
+09:31:35.097 up 1 held=60
+09:31:35.098 overlay -> key 1 at 146.0
+09:31:50.788 down 1
+09:31:50.849 up 1 held=60
+09:31:50.849 overlay -> key 1 at 161.8
+09:32:25.344 down 1
+09:32:25.406 up 1 held=60
+09:32:25.406 overlay -> key 1 at 196.3
+09:33:17.522 down 1
+09:33:17.583 up 1 held=60
+09:33:17.583 overlay -> key 1 at 248.5
+09:33:18.219 down esc
+09:33:18.280 up esc held=60
+09:33:18.280 still overlay -> esc
+09:33:24.453 down 1
+09:33:24.514 up 1 held=60
+09:33:24.515 overlay -> key 1 at 255.4

@@ -1,0 +1,52 @@
+bartender: telegraph=True formal=True mist=(-3.20, 0.46) player=(0.00, -2.00) pulseRadius=2.4
+bartender_mist_under_left_hud_telegraph 1280x720 occlusion=False hazards=1 HiddenSkillsButton=1.00 JobTrait=1.00 ComboTargetButton=1.00 HiddenActivity=1.00
+shot bartender_mist_under_left_hud_telegraph_before_1280x720.png 1280x720
+bartender_mist_under_left_hud_telegraph 1280x720 occlusion=True hazards=1 HiddenSkillsButton=1.00 JobTrait=0.28 ComboTargetButton=0.28 HiddenActivity=0.28
+shot bartender_mist_under_left_hud_telegraph_after_1280x720.png 1280x720
+bartender_mist_under_left_hud_telegraph 1920x1080 occlusion=False hazards=1 HiddenSkillsButton=1.00 JobTrait=1.00 ComboTargetButton=1.00 HiddenActivity=1.00
+shot bartender_mist_under_left_hud_telegraph_before_1920x1080.png 1920x1080
+bartender_mist_under_left_hud_telegraph 1920x1080 occlusion=True hazards=1 HiddenSkillsButton=1.00 JobTrait=0.28 ComboTargetButton=0.28 HiddenActivity=0.28
+shot bartender_mist_under_left_hud_telegraph_after_1920x1080.png 1920x1080
+bartender: slowed=True slowLeft=2.68 atkSlow=True status='이동 둔화 3초 · 공속 -25% 3초'
+shot bartender_pulse_hit_status_1280x720.png 1280x720
+shot bartender_pulse_hit_status_1920x1080.png 1920x1080
+tea: telegraph=True formal=True mist=(-3.20, 0.46) player=(0.00, -2.00) pulseRadius=2.4
+tea_mist_under_left_hud_telegraph 1280x720 occlusion=False hazards=1 HiddenSkillsButton=1.00 JobTrait=1.00 ComboTargetButton=1.00 HiddenActivity=1.00
+shot tea_mist_under_left_hud_telegraph_before_1280x720.png 1280x720
+tea_mist_under_left_hud_telegraph 1280x720 occlusion=True hazards=1 HiddenSkillsButton=1.00 JobTrait=0.28 ComboTargetButton=0.28 HiddenActivity=0.28
+shot tea_mist_under_left_hud_telegraph_after_1280x720.png 1280x720
+tea_mist_under_left_hud_telegraph 1920x1080 occlusion=False hazards=1 HiddenSkillsButton=1.00 JobTrait=1.00 ComboTargetButton=1.00 HiddenActivity=1.00
+shot tea_mist_under_left_hud_telegraph_before_1920x1080.png 1920x1080
+tea_mist_under_left_hud_telegraph 1920x1080 occlusion=True hazards=1 HiddenSkillsButton=1.00 JobTrait=0.28 ComboTargetButton=0.28 HiddenActivity=0.28
+shot tea_mist_under_left_hud_telegraph_after_1920x1080.png 1920x1080
+tea: slowed=True slowLeft=2.67 atkSlow=True status='이동 둔화 3초 · 공속 -25% 3초'
+shot tea_pulse_hit_status_1280x720.png 1280x720
+shot tea_pulse_hit_status_1920x1080.png 1920x1080
+bartender_mixed_epic_rare_common_05x 1280x720: offers=Epic,Rare,Common speed=0.50 low=False firstInteractiveFrame=22 (≈367 ms) expectedSelect≈780 ms
+bartender_mixed_epic_rare_common_05x 1920x1080: offers=Epic,Rare,Common speed=0.50 low=False firstInteractiveFrame=13 (≈217 ms) expectedSelect≈780 ms
+bartender_mixed_common_epic_epic_05x 1280x720: offers=Common,Epic,Epic speed=0.50 low=False firstInteractiveFrame=25 (≈417 ms) expectedSelect≈780 ms
+tea_mixed_rare_epic_common_05x 1280x720: offers=Rare,Epic,Common speed=0.50 low=False firstInteractiveFrame=22 (≈367 ms) expectedSelect≈780 ms
+hybrid_special_05x 1280x720: speed=0.50 low=False firstInteractiveFrame=30 (≈500 ms) expectedSelect≈900 ms
+hybrid_special_05x 1920x1080: speed=0.50 low=False firstInteractiveFrame=17 (≈283 ms) expectedSelect≈900 ms
+shot master_prep_before_battle_1280x720.png 1280x720
+shot master_prep_before_battle_1920x1080.png 1920x1080
+master wave: brewButton=BrewButton notice=True prepPanel=False
+shot master_wave_before_card_1280x720.png 1280x720
+shot master_wave_before_card_1920x1080.png 1920x1080
+master card open: brewInteractable=False canOpen=False notice=True topAtBrew=BandFill
+shot master_wave_card_open_settled_1280x720.png 1280x720
+shot master_wave_card_open_settled_1920x1080.png 1920x1080
+master card closed: state=Playing framesUntilBrewInteractable=0 canOpen=True
+shot master_after_card_brew_by_B_1280x720.png 1280x720
+shot master_after_card_brew_by_B_1920x1080.png 1920x1080
+shot standard_card_open_settled_1280x720.png 1280x720
+shot standard_card_open_settled_1920x1080.png 1920x1080
+standard card closed: state=Playing timeScale=1
+speed100_mixed_epic_rare_common 1280x720: offers=Epic,Rare,Common speed=1.00 low=False firstInteractiveFrame=19 at 397 ms (real time since Show) expectedSelect≈390 ms
+speed100_hybrid_special 1280x720: speed=1.00 low=False firstInteractiveFrame=26 at 455 ms (real time since Show) expectedSelect≈450 ms
+speed200_mixed_epic_rare_common 1280x720: offers=Epic,Rare,Common speed=2.00 low=False firstInteractiveFrame=11 at 203 ms (real time since Show) expectedSelect≈195 ms
+speed200_hybrid_special 1280x720: speed=2.00 low=False firstInteractiveFrame=13 at 235 ms (real time since Show) expectedSelect≈225 ms
+speed25_mixed_epic_rare_common 1280x720: offers=Epic,Rare,Common speed=0.25 low=False firstInteractiveFrame=92 at 1567 ms (real time since Show) expectedSelect≈1560 ms
+speed25_hybrid_special 1280x720: speed=0.25 low=False firstInteractiveFrame=106 at 1810 ms (real time since Show) expectedSelect≈1800 ms
+low_mixed_epic_rare_common 1280x720: offers=Epic,Rare,Common speed=0.50 low=True firstInteractiveFrame=0 at 4 ms (real time since Show) expectedSelect≈0 ms
+low_hybrid_special 1280x720: speed=0.50 low=True firstInteractiveFrame=0 at 1 ms (real time since Show) expectedSelect≈0 ms

@@ -93,6 +93,17 @@ namespace CCT
             return $"{head} · {u.plan.Count}명{(top.Length > 0 ? " · " + top : "")}";
         }
 
+        /// <summary>준비 패널 '음료 만들기' 버튼이 지금 눌리는지(시험·QA).</summary>
+        public bool BrewButtonInteractable => brewButton != null && brewButton.interactable;
+
+        /// <summary>2026-11-23: 버튼 활성만 매 프레임 실제 열기 판정과 맞춘다(패널 재구성 없음).</summary>
+        public void SyncInteractable()
+        {
+            if (game == null || brewButton == null || !PanelVisible) return;
+            bool can = game.CanOpenMasterBrew;
+            if (brewButton.interactable != can) brewButton.interactable = can;
+        }
+
         public void Refresh()
         {
             if (this == null || panel == null || notice == null || game == null || game.Master == null) return;

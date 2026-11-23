@@ -521,6 +521,8 @@ namespace CCT
         public bool HasArrived => arrivalGrace <= 0f;
 
         public EnemyDef Def => def;
+        /// <summary>2026-11-23 HUD 가림 판정용 몸체 그림 경계(표시 전용). 그림이 없으면 반경 기준 상자.</summary>
+        public Bounds VisualBounds => sr != null && sr.sprite != null ? sr.bounds : new Bounds(transform.position, Vector3.one * ((def != null ? def.radius : 0.5f) * 2f));
         public PlayerController RunPlayer => player;
         public float Hp { get; private set; }
         public float MaxHp { get; private set; }
