@@ -14,7 +14,7 @@ namespace CCT
     public sealed class MasterPrepView : MonoBehaviour
     {
         public const float PanelX = 930f, PanelTop = 130f, PanelW = 660f, PanelH = 782f; // 2026-11-23 #14: 왼쪽 HUD 패널(~x600)과 준비 음료 칩(1280x720 x1390~, 4:3 1024x768은 글자 배율로 x1265~) 사이 — 전 940폭은 칩을 160~330 가림
-        public const float BlockH = 316f, RowH = 46f, MaxRows = 3; // 블록 296: 머리 6-38, 요약 38-64, 줄 3x46 66-204, 조언 208-282(3줄, 720p 판독 — 2026-11-12)
+        public const float BlockH = 344f, RowH = 46f, MaxRows = 3; // 블록 296: 머리 6-38, 요약 38-64, 줄 3x46 66-204, 조언 208-282(3줄, 720p 판독 — 2026-11-12)
         public const float NoticeW = 330f, NoticeH = 112f, NoticeGap = 12f;
 
         GameManager game;
@@ -210,9 +210,9 @@ namespace CCT
             }
             string extra = groups.Count > rows ? $"그 외 {groups.Count - rows}종 · " : "";
             string aff = u.plan.AffinityHint();
-            var adv = UiFactory.AddText(UiFactory.Place("Advice", brt, new Vector2(0f, 0f), new Vector2(16f, 4f), new Vector2(PanelW - 72f, 96f)),
+            var adv = UiFactory.AddText(UiFactory.Place("Advice", brt, new Vector2(0f, 0f), new Vector2(16f, 4f), new Vector2(PanelW - 72f, 124f)),
                 $"{extra}{u.plan.Advice()}{(aff.Length > 0 ? "\n" + aff : "")}{(u.plan.DrinkAdvice().Length > 0 ? "\n음료: " + u.plan.DrinkAdvice() : "")}", 19, TextAnchor.LowerLeft, new Color(0.78f, 0.92f, 1f));
-            adv.resizeTextForBestFit = true; adv.resizeTextMinSize = 16; adv.resizeTextMaxSize = 20;
+            adv.resizeTextForBestFit = true; adv.resizeTextMinSize = 20; adv.resizeTextMaxSize = 22; // 2026-11-23: 최소 16→20(720p 약 11→13px), 칸 96→124
             adv.verticalOverflow = VerticalWrapMode.Truncate;
         }
     }

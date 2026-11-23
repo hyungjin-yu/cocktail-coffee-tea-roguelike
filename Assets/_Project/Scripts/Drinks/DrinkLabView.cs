@@ -558,8 +558,20 @@ namespace CCT
             return r;
         }
 
+        float noticeWidth = -1f;
+        /// <summary>2026-11-23 #14: 안내 한 줄의 말줄임은 만들 때의 칸 폭으로 한 번만 계산돼, 창 크기·비율이 바뀐 뒤에도 짧게 잘려 있었다(캡처). 폭이 바뀌면 다시 계산.</summary>
+        public void RefreshNoticeLayout()
+        {
+            if (notice == null) return;
+            float w = notice.rectTransform.rect.width;
+            if (Mathf.Approximately(w, noticeWidth)) return;
+            noticeWidth = w;
+            RefreshNotice();
+        }
+
         void Update()
         {
+            RefreshNoticeLayout();
             RebuildIfLayoutChanged();
             TickPractice(); // 2026-11-15 피드백 5 실습 단계(실제 배합·준비 음료 상태로 판정)
             TickFoam(); // 2026-11-15 피드백 4 거품 내기 진행
