@@ -31,6 +31,8 @@ namespace CCT
         /// 폭 480 = 중앙 게이지·안내 띠(x 490~1430, 4:3도 캔버스 폭 1920)와 겹치지 않는 오른쪽 칸. 끝없는·마스터 배지는 기존 아래 가운데.</summary>
         public const float TopBadgeW = 480f, TopRight = -30f, TopY = -172f;
         public bool AtTop { get; private set; }
+        /// <summary>위쪽 배지의 아래 가장자리까지 캔버스 위에서 잰 거리(아래 가운데 배치면 0). 준비 음료 칩이 이 아래에 놓여 겹치지 않는다.</summary>
+        public float TopBottomEdge => AtTop && rt != null ? -TopY + rt.sizeDelta.y * rt.localScale.y : 0f;
         const int Font = 20;
 
         GameManager game;

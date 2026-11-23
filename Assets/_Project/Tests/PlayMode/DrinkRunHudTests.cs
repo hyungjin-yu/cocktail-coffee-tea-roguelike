@@ -107,10 +107,10 @@ namespace CCT.Tests
             var screen = new Rect(0, 0, Screen.width, Screen.height);
             var chip = ScreenRect(hud.ChipRect);
             AssertInside(chip, screen, "칩 사각형/화면");
-            foreach (var t in new[] { hud.ChipTitle, hud.ChipBuff, hud.ChipState })
+            foreach (var t in new[] { hud.ChipTitle, hud.ChipState })
             {
                 Assert.IsFalse(t.resizeTextForBestFit, "글자를 줄여서 맞추지 않는다");
-                Assert.GreaterOrEqual(t.fontSize, 20, t.name + " 글자 크기");
+                Assert.GreaterOrEqual(t.fontSize, DrinkRunHud.SmallFont, t.name + " 글자 크기");
                 float px = t.fontSize * t.canvas.scaleFactor * hud.ChipRect.localScale.x;
                 Assert.GreaterOrEqual(px + 0.01f, Mathf.Min(DrinkRunHud.MinGlyphPx, t.fontSize * t.canvas.scaleFactor * 1.6f), $"{t.name} 화면 글자 {px:0.0}px");
                 Assert.LessOrEqual(t.preferredHeight, t.rectTransform.rect.height + 0.5f, t.name + " 필요한 높이 > 상자 높이");
@@ -141,14 +141,27 @@ namespace CCT.Tests
             StringAssert.Contains(LongName, hud.ChipTitle.text);
             AssertChipContained(hud);
             Assert.Greater(hud.ChipRect.rect.height, DrinkRunHud.ChipMinHeight, "긴 이름+여러 효과면 칩이 높아진다");
-            // 효과 하나("공격 속도 +3.6%")는 한 줄 안에 통째로 있다.
-            var lines = hud.ChipBuff.text.Split('\n');
-            foreach (var s in game.DrinkBuff.Active())
+            // 효과 하나는 한 행(아이콘·라벨·수치)이고 수치는 DrinkBuff.Pct 그대로(%·%p·부호 보존). 수치 오른쪽 끝이 모든 행에서 같다.
+            var rows = hud.EffectRows.ToList();
+            Assert.AreEqual(game.DrinkBuff.Shown().Count(), rows.Count, "효과마다 한 행");
+            foreach (var st in game.DrinkBuff.Shown())
+                Assert.IsTrue(rows.Any(r => r.label == DrinkRunHud.RowLabel(st) && r.value == DrinkBuff.Pct(st, game.DrinkBuff[st])), $"효과 행 없음: {st}");
+            var chipRect = ScreenRect(hud.ChipRect);
+            foreach (var r in rows)
             {
-                string item = $"{DrinkRules.StatName(s)} {DrinkBuff.Pct(s, game.DrinkBuff[s])}";
-                Assert.IsTrue(lines.Any(l => l.Contains(item)), $"효과 '{item}'가 줄 사이에서 끊김: {hud.ChipBuff.text}");
+                var rr = ScreenRect(r.rect);
+                AssertInside(rr, chipRect, "효과 행/칩");
+                AssertInside(rr, new Rect(0, 0, Screen.width, Screen.height), "효과 행/화면");
             }
-            Assert.AreEqual(lines.Length, hud.ChipBuff.cachedTextGenerator.lineCount, "묶은 줄이 상자 안에서 다시 줄바꿈되지 않음");
+            foreach (var t in hud.ChipRect.GetComponentsInChildren<Text>())
+                if (t.enabled && t.transform.parent.name.StartsWith("Row"))
+                {
+                    var g = GlyphBounds(t);
+                    AssertInside(g, ScreenRect(t.rectTransform), t.name + " 글자/글 상자", 3f);
+                }
+            var phase = game.Hud.PhaseBadge;
+            if (phase != null && phase.Visible && phase.AtTop)
+                Assert.IsFalse(ScreenRect((RectTransform)phase.transform).Overlaps(chipRect), "구간 배지와 준비 음료 칩이 겹치지 않음");
             // 5킬 뒤 상태 문구가 바뀌어도 칩 안.
             for (int i = 0; i < DrinkLab.PreserveKillLimit; i++) game.OnEnemyKilled(Vector2.zero, Mob);
             yield return null;

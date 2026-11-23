@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,13 @@ namespace CCT
         /// <summary>폭 맞춤으로 캔버스가 크게 줄어드는 좁은 창(예: 836×705 → 0.435배)에서도 칩·알림 글자가 이 화면 픽셀보다 작아지지 않게 칩만 키운다.</summary>
         public const float MinGlyphPx = 12f;
         const int BodyFont = 20, ToastFont = 24, ProcFont = 24;
+        /// <summary>2026-11-23: 이름·적용 중 표시는 작게(SmallFont), 효과 행은 라벨 RowFont + 눈에 띄는 수치 ValueFont. 최소 가독 배율은 가장 작은 글자 기준.</summary>
+        public const int SmallFont = 18, RowFont = 20, ValueFont = 24;
+        public const float RowHeight = 30f, RowIcon = 24f, ValueColW = 104f, BadgeGap = 12f;
+        RectTransform rowsRt;
+        readonly List<EffectRow> rows = new List<EffectRow>();
+        sealed class EffectRow { public RectTransform rt; public Image icon; public Text label, value; }
+        float laidOutTop = -1f;
 
         GameManager game;
         RectTransform chipRt, titleRt, buffRt, coffeeRt, stateRt;
@@ -74,7 +82,12 @@ namespace CCT
         public RectTransform ChipRect => chipRt;
         public RectTransform ToastRect => toast != null ? (RectTransform)toast.transform : null;
         public Text ChipTitle => chipTitle;
+        /// <summary>효과 전체를 한 줄씩 적은 접근성·시험용 글(화면에는 그리지 않음 — 화면은 효과 행).</summary>
         public Text ChipBuff => chipBuff;
+        /// <summary>화면에 그려진 효과 행(아이콘·라벨·수치)(시험·검수용).</summary>
+        public IEnumerable<(string label, string value, RectTransform rect)> EffectRows =>
+            rows.Where(r => r.rt.gameObject.activeSelf).Select(r => (r.label.text, r.value.text, r.rt));
+        public Image[] EffectIcons => rows.Where(r => r.rt.gameObject.activeSelf).Select(r => r.icon).ToArray();
         public Text ChipState => chipState;
         /// <summary>81 마신 커피의 추출법 상태 줄(커피가 아니면 빈 문자열·숨김).</summary>
         public Text ChipCoffee => chipCoffee;
@@ -105,14 +118,16 @@ namespace CCT
             view.chipVesselSlot = UiFactory.Place("PreparedDrinkVessel", chipRt, new Vector2(0f, 0.5f), new Vector2(12f, 0f), new Vector2(44f, 72f));
             float w = ChipWidth - TextLeft - Pad * 2f;
             view.titleRt = UiFactory.Place("Title", chipRt, new Vector2(0f, 1f), new Vector2(TextLeft, -Pad), new Vector2(w, 30f));
-            view.chipTitle = UiFactory.AddText(view.titleRt, "", 22, TextAnchor.UpperLeft, new Color(1f, 0.86f, 0.55f));
+            view.chipTitle = UiFactory.AddText(view.titleRt, "", SmallFont, TextAnchor.UpperLeft, new Color(1f, 0.86f, 0.55f));
             view.buffRt = UiFactory.Place("Buff", chipRt, new Vector2(0f, 1f), new Vector2(TextLeft, -38f), new Vector2(w, 28f));
             view.chipBuff = UiFactory.AddText(view.buffRt, "", BodyFont, TextAnchor.UpperLeft, Color.white);
+            view.chipBuff.enabled = false; // 글은 접근성·시험용 — 화면에는 아래 효과 행이 그린다
+            view.rowsRt = UiFactory.Place("EffectRows", chipRt, new Vector2(0f, 1f), new Vector2(TextLeft, -38f), new Vector2(w, RowHeight));
             view.coffeeRt = UiFactory.Place("Coffee", chipRt, new Vector2(0f, 1f), new Vector2(TextLeft, -66f), new Vector2(w, 26f));
-            view.chipCoffee = UiFactory.AddText(view.coffeeRt, "", BodyFont, TextAnchor.UpperLeft, new Color(1f, 0.78f, 0.5f));
+            view.chipCoffee = UiFactory.AddText(view.coffeeRt, "", SmallFont, TextAnchor.UpperLeft, new Color(1f, 0.78f, 0.5f));
             view.coffeeRt.gameObject.SetActive(false);
             view.stateRt = UiFactory.Place("State", chipRt, new Vector2(0f, 1f), new Vector2(TextLeft, -66f), new Vector2(w, 26f));
-            view.chipState = UiFactory.AddText(view.stateRt, "", BodyFont, TextAnchor.UpperLeft, new Color(0.75f, 0.9f, 1f));
+            view.chipState = UiFactory.AddText(view.stateRt, "", SmallFont, TextAnchor.UpperLeft, new Color(0.75f, 0.9f, 1f));
             view.chipRt = chipRt;
             view.chip = chipRt.gameObject;
 
@@ -186,7 +201,7 @@ namespace CCT
             if (!force && shownKills == game.Kills && shownLocked == locked && shownTitle == title)
             {
                 // 창 크기가 바뀌면(캔버스 배율) 글자 줄바꿈이 달라질 수 있어 다시 잰다.
-                if (show && !Mathf.Approximately(laidOutScale, CanvasScale())) Layout();
+                if (show && (!Mathf.Approximately(laidOutScale, CanvasScale()) || !Mathf.Approximately(laidOutTop, TopOffset()))) Layout();
                 return;
             }
             shownKills = game.Kills;
@@ -206,9 +221,10 @@ namespace CCT
                 chipVessel.Rect.anchoredPosition = new Vector2(0f, -height * DrinkVesselView.PixelScale * fit * 0.5f);
             }
             chipVessel.SetLiquid(look.color, look.totalVolume, look.turbidity);
-            chipState.text = locked ? "이번 판에 사용됨 — 판이 끝나면 사라집니다"
-                : $"지금 포기하면 음료 보존 (처치 {Mathf.Min(game.Kills, DrinkLab.PreserveKillLimit)}/{DrinkLab.PreserveKillLimit})";
+            chipState.text = locked ? "적용 중 · 이번 판에 사용됨 — 판이 끝나면 사라집니다"
+                : $"적용 중 · 지금 포기하면 음료 보존 (처치 {Mathf.Min(game.Kills, DrinkLab.PreserveKillLimit)}/{DrinkLab.PreserveKillLimit})";
             shownBuff = game.DrinkBuff.Describe("\u0001");
+            BuildRows();
             Layout();
         }
 
@@ -216,21 +232,103 @@ namespace CCT
         void Layout()
         {
             laidOutScale = CanvasScale();
-            float k = ReadableScale(BodyFont, laidOutScale);
+            float k = ReadableScale(SmallFont, laidOutScale);
             chipRt.localScale = new Vector3(k, k, 1f);
+            laidOutTop = TopOffset();
+            chipRt.anchoredPosition = new Vector2(-ChipRight, -laidOutTop);
             float w = titleRt.sizeDelta.x;
-            chipBuff.text = PackLines(chipBuff, shownBuff.Split('\u0001'), " · ", w);
+            chipBuff.text = shownBuff.Replace('\u0001', '\n');
             float y = Pad;
             coffeeRt.gameObject.SetActive(chipCoffee.text.Length > 0);
-            foreach (var (rt, text) in new[] { (titleRt, chipTitle), (buffRt, chipBuff), (coffeeRt, chipCoffee), (stateRt, chipState) })
+            buffRt.gameObject.SetActive(false);
+            int shownRows = 0;
+            foreach (var r in rows) if (r.rt.gameObject.activeSelf) shownRows++;
+            foreach (var (rt, text) in new[] { (titleRt, chipTitle), (rowsRt, (Text)null), (coffeeRt, chipCoffee), (stateRt, chipState) })
             {
                 if (!rt.gameObject.activeSelf) continue;
-                float h = Mathf.Ceil(text.preferredHeight) + 2f;
+                float h = text != null ? Mathf.Ceil(text.preferredHeight) + 2f : shownRows * (RowHeight + 2f) - 2f;
                 rt.anchoredPosition = new Vector2(TextLeft, -y);
                 rt.sizeDelta = new Vector2(w, h);
-                y += h + Gap;
+                y += h + Gap + (text == null ? 3f : 0f);
             }
             chipRt.sizeDelta = new Vector2(ChipWidth, Mathf.Max(ChipMinHeight, y - Gap + Pad));
+        }
+
+        /// <summary>DrinkStat → 기존 StatStyle 능력치(아이콘·색). 치명타 확률·재사용 시간 감소는 StatStyle에 없어 false(능력치 색 점으로 대신).</summary>
+        public static bool TryStatStyle(DrinkStat s, out CardEffectType type)
+        {
+            switch (s)
+            {
+                case DrinkStat.Attack: type = CardEffectType.DamagePercent; return true;
+                case DrinkStat.AttackSpeed: type = CardEffectType.AttackSpeedPercent; return true;
+                case DrinkStat.MaxHp: type = CardEffectType.MaxHpFlat; return true;
+                case DrinkStat.MoveSpeed: type = CardEffectType.MoveSpeedPercent; return true;
+                case DrinkStat.Range: type = CardEffectType.RangePercent; return true;
+                default: type = default; return false;
+            }
+        }
+
+        static readonly Color CritColor = new Color(1f, 0.84f, 0.32f), CooldownColor = new Color(0.55f, 0.9f, 1f);
+
+        /// <summary>효과 행 짧은 라벨(나머지는 DrinkRules.StatName 그대로).</summary>
+        public static string RowLabel(DrinkStat s) => s == DrinkStat.CooldownReduction ? "재사용 감소" : DrinkRules.StatName(s);
+
+        /// <summary>효과 행: [아이콘] 라벨(능력치 색) … 수치(밝게·굵게, 오른쪽 열 정렬). 수치는 DrinkBuff.Pct 그대로(%·%p·부호 보존).</summary>
+        void BuildRows()
+        {
+            var buff = game.DrinkBuff;
+            int n = 0;
+            foreach (var s in buff.Shown())
+            {
+                var row = RowAt(n++);
+                bool styled = TryStatStyle(s, out var type);
+                Color c = styled ? StatStyle.ColorOf(type) : s == DrinkStat.CritChance ? CritColor : CooldownColor;
+                var sprite = styled ? StatStyle.Icon(type) : null;
+                row.label.text = RowLabel(s);
+                row.label.color = c;
+                row.value.text = DrinkBuff.Pct(s, buff[s]);
+                row.value.color = Color.Lerp(c, Color.white, 0.6f);
+                row.icon.sprite = sprite;
+                row.icon.color = sprite != null ? Color.white : c; // 아이콘이 없으면 능력치 색 점
+                row.rt.gameObject.SetActive(true);
+            }
+            if (n == 0)
+            {
+                var row = RowAt(n++);
+                row.label.text = "효과 없음"; row.label.color = Color.white; row.value.text = "";
+                row.icon.sprite = null; row.icon.color = Color.clear;
+                row.rt.gameObject.SetActive(true);
+            }
+            for (int i = n; i < rows.Count; i++) rows[i].rt.gameObject.SetActive(false);
+        }
+
+        EffectRow RowAt(int i)
+        {
+            while (rows.Count <= i)
+            {
+                float w = rowsRt.sizeDelta.x;
+                var r = new EffectRow();
+                r.rt = UiFactory.Place("Row" + rows.Count, rowsRt, new Vector2(0f, 1f), new Vector2(0f, -rows.Count * (RowHeight + 2f)), new Vector2(w, RowHeight));
+                r.icon = UiFactory.AddImage(UiFactory.Place("Icon", r.rt, new Vector2(0f, 0.5f), Vector2.zero, new Vector2(RowIcon, RowIcon)), Color.white);
+                r.icon.preserveAspect = true; r.icon.raycastTarget = false;
+                r.label = UiFactory.AddText(UiFactory.Place("Label", r.rt, new Vector2(0f, 0.5f), new Vector2(RowIcon + 8f, 0f), new Vector2(w - RowIcon - 8f - ValueColW, RowHeight)),
+                    "", RowFont, TextAnchor.MiddleLeft, Color.white);
+                r.label.horizontalOverflow = HorizontalWrapMode.Overflow; r.label.raycastTarget = false;
+                // 수치 열: 오른쪽 끝 고정 폭·오른쪽 정렬 — 줄마다 수치 끝이 세로로 가지런하다.
+                var vrt = UiFactory.Place("Value", r.rt, new Vector2(1f, 0.5f), Vector2.zero, new Vector2(ValueColW, RowHeight));
+                r.value = UiFactory.AddText(vrt, "", ValueFont, TextAnchor.MiddleRight, Color.white);
+                r.value.fontStyle = FontStyle.Bold; r.value.horizontalOverflow = HorizontalWrapMode.Overflow; r.value.raycastTarget = false;
+                rows.Add(r);
+            }
+            return rows[i];
+        }
+
+        /// <summary>위쪽 오른쪽 구간 배지(다음 보스·구간)가 있으면 그 실제 아래 가장자리 + 간격, 없으면 기본 위치.</summary>
+        float TopOffset()
+        {
+            var badge = game != null && game.Hud != null ? game.Hud.PhaseBadge : null;
+            float below = badge != null ? badge.TopBottomEdge : 0f;
+            return below > 0f ? Mathf.Max(ChipTop, below + BadgeGap) : ChipTop;
         }
 
         /// <summary>글자 크기 × 캔버스 배율이 MinGlyphPx보다 작으면 그만큼 키운다(최대 1.6배 — 836×705에서 칩 폭 ≈ 화면 36%).</summary>
@@ -238,27 +336,6 @@ namespace CCT
             canvasScale <= 0f ? 1f : Mathf.Clamp(MinGlyphPx / (fontSize * canvasScale), 1f, 1.6f);
 
         float CanvasScale() => chipTitle.canvas != null ? chipTitle.canvas.scaleFactor : 1f;
-
-        static string PackLines(Text t, string[] items, string sep, float width)
-        {
-            var settings = t.GetGenerationSettings(Vector2.zero);
-            settings.horizontalOverflow = HorizontalWrapMode.Overflow;
-            float ppu = Mathf.Max(0.0001f, t.pixelsPerUnit);
-            var gen = t.cachedTextGeneratorForLayout;
-            var sb = new StringBuilder();
-            string line = "";
-            foreach (var item in items)
-            {
-                string candidate = line.Length == 0 ? item : line + sep + item;
-                if (line.Length > 0 && gen.GetPreferredWidth(candidate, settings) / ppu > width)
-                {
-                    sb.Append(line).Append('\n');
-                    line = item;
-                }
-                else line = candidate;
-            }
-            return sb.Append(line).ToString();
-        }
 
         // ── 2026-11-15 피드백 14: 재료 획득 알림 = 실제 재료 그림 + 수량 칩(같은 재료끼리 합침). 알림이 보이는 동안 이어 들어온 획득은 같은 알림에
         // 합산해 폭주를 막는다(실제 지급·집계는 DrinkLab 기록 그대로 — 그림을 생략해도 수량 합계는 전부 표시). 목표 음료 재료는 DrinkGoalHud가 칸으로 날려 보낸다.
