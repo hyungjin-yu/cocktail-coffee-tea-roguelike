@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 09:46:36Z" end-time="2026-11-24 09:46:39Z" duration="3.2860618">
+  <test-suite type="TestSuite" id="1641" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="522" result="Passed" start-time="2026-11-24 09:46:36Z" end-time="2026-11-24 09:46:39Z" duration="3.286062" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1635" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/orca/workspaces/CocktailCoffeeTea/levelup-menu-unity/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="522" result="Passed" start-time="2026-11-24 09:46:36Z" end-time="2026-11-24 09:46:39Z" duration="3.276433" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="2360" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1636" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="522" result="Passed" start-time="2026-11-24 09:46:36Z" end-time="2026-11-24 09:46:39Z" duration="3.272345" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1591" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="522" result="Passed" start-time="2026-11-24 09:46:36Z" end-time="2026-11-24 09:46:39Z" duration="3.268275" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1323" name="IntegerOnlyPlayTests" fullname="CCT.Tests.IntegerOnlyPlayTests" classname="CCT.Tests.IntegerOnlyPlayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-24 09:46:36Z" end-time="2026-11-24 09:46:39Z" duration="3.259764" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_b402f3415a054b659bb915962e8e1eeb.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1325" name="CoffeeTeaCodexOrders_NoDecimalsVisible" fullname="CCT.Tests.IntegerOnlyPlayTests.CoffeeTeaCodexOrders_NoDecimalsVisible" methodname="CoffeeTeaCodexOrders_NoDecimalsVisible" classname="CCT.Tests.IntegerOnlyPlayTests" runstate="Runnable" seed="402281325" result="Passed" start-time="2026-11-24 09:46:36Z" end-time="2026-11-24 09:46:39Z" duration="3.049020" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 18:46:36.234 START CCT.Tests.IntegerOnlyPlayTests.CoffeeTeaCodexOrders_NoDecimalsVisible (t=0.1 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_67ca3e580a7d447abeb63af81516b265.json (source=Defaults)
+[IntegerOnly] coffee guide moka: <color=#1f548f>전투 운용 · 모카포트</color> | 행동 · 직접 타격마다 증기압 +1(최대 10), 타격 없이 1.5초마다 −1 | 효과 · 가득 차면 증기 폭발: 반경 260cm 안 적에게 기본 피해 120%, 0.35초 경직(일반 적이 멈춤)
+[Commerce] 결제 비활성: commerce_config.enabled=false
+[TestProgress] 18:46:39.287 END Passed 3.0s CCT.Tests.IntegerOnlyPlayTests.CoffeeTeaCodexOrders_NoDecimalsVisible (t=1.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1324" name="CraftScreen_DecimalInputRejected_IntegerInputMatchesDisplay_NoDecimalsVisible" fullname="CCT.Tests.IntegerOnlyPlayTests.CraftScreen_DecimalInputRejected_IntegerInputMatchesDisplay_NoDecimalsVisible" methodname="CraftScreen_DecimalInputRejected_IntegerInputMatchesDisplay_NoDecimalsVisible" classname="CCT.Tests.IntegerOnlyPlayTests" runstate="Runnable" seed="1289255675" result="Passed" start-time="2026-11-24 09:46:39Z" end-time="2026-11-24 09:46:39Z" duration="0.201165" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 18:46:39.288 START CCT.Tests.IntegerOnlyPlayTests.CraftScreen_DecimalInputRejected_IntegerInputMatchesDisplay_NoDecimalsVisible (t=1.2 ts=1)
+[IntegerOnly] reject: 정수로만 입력할 수 있습니다.
+[IntegerOnly] mix: 진 15mL / 보유 60mL, 레몬즙 8mL / 보유 30mL
+[IntegerOnly] buff: 공격력 +5%
+[TestProgress] 18:46:39.490 END Passed 0.2s CCT.Tests.IntegerOnlyPlayTests.CraftScreen_DecimalInputRejected_IntegerInputMatchesDisplay_NoDecimalsVisible (t=1.5 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
