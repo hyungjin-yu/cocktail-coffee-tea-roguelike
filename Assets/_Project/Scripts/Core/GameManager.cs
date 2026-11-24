@@ -77,6 +77,7 @@ namespace CCT
         /// <summary>2026-11-22 피드백 D(4): 이번 런에 모은 서로 다른 칵테일 카드 종류 수(HUD 표시용, 규칙 불변).</summary>
         public int CocktailKinds => cocktailTypesSeen;
         public MixingRushAura RushAura { get; private set; }
+        public TeaDrinkAura TeaAura { get; private set; }
         public int DeepSteepLevel => Mathf.Clamp(Cards.HighestStacks(CardCategory.Tea)-1,0,6);
         public string JobTraitStatus => Job==Job.Bartender
             ? mixingRushActive ? $"혼합 러시 켜짐 · 이동·공속 +{IntNum.Percent(MixingRushSpeedBonus)}%\n같은 카드를 고르면 꺼짐"
@@ -237,6 +238,7 @@ namespace CCT
             var background = CreateBackground();
             Player = CreatePlayer(preset, weapon);
             if (job == Job.Bartender) RushAura = MixingRushAura.Attach(Player, this); // 2026-11-22 피드백 D(6) 혼합 러시 오라(표시 전용)
+            if (job == Job.TeaSommelier) TeaAura = TeaDrinkAura.Attach(Player, this); // 2026-11-24 항목 16: 차 소믈리에 음료 오라(DrinkBuff를 따르는 표시 전용)
             Player.Mastery = MasteryRuntime.Attach(Player, MasteryTraits);
             // 81 마신 커피만 추출법별 전투 리듬을 붙인다(입장 1회 — 칵테일·차·무음료는 null).
             var coffee = DrinkBuff != null ? DrinkLab.DrinkInRun(RunId)?.recipe : null;
