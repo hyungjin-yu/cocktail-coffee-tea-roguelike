@@ -122,11 +122,11 @@ namespace CCT.Tests
                 Assert.AreEqual(DrinkLab.CraftStatus.Crafted, first.Status, first.Message);
                 Assert.AreEqual(id, first.SignatureId, "정식 레시피 인식");
                 Assert.IsTrue(first.FirstDiscovery, "첫 발견");
-                DrinkLab.Data.preparedDrink = null; // 같은 레시피 재제조 확인을 위해 준비 슬롯만 비운다(테스트 전용)
+                DrinkLab.Data.prepared = new PreparedDrink(); // 같은 레시피 재제조 확인을 위해 준비 슬롯만 비운다(테스트 전용)
                 var again = DrinkLab.Craft(recipe.Clone());
                 Assert.AreEqual(id, again.SignatureId);
                 Assert.IsFalse(again.FirstDiscovery, "반복 제조는 최초 아님");
-                DrinkLab.Data.preparedDrink = null;
+                DrinkLab.Data.prepared = new PreparedDrink();
             }
             Assert.AreEqual(3, DrinkLab.DiscoveredCount);
             Assert.IsNull(DrinkLab.Craft(Plain()).SignatureId, "일반 레시피는 시그니처 아님");
