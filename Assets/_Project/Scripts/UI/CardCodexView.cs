@@ -942,8 +942,10 @@ namespace CCT
                 ShowDetail($"{card.displayName} (미발견)", "해금 조건: 레이피어 시작, 이번 런 칵테일 누적 3 + 차 누적 3");
                 return;
             }
+            // #19 발견한 차 카드 상세에서만 티 소믈리에 획득 단계 공개(미발견 ???·히든 스킬 도감은 그대로).
+            string stages = TeaCardStages.CodexText(card);
             ShowDetail($"{card.displayName}  ({RarityTable.Label(card.rarity)})",
-                CardEducationData.Body(card), card);
+                stages.Length > 0 ? CardEducationData.Body(card) + "\n\n" + stages : CardEducationData.Body(card), card);
         }
 
         void ShowPermanentDetail(PermanentSkillData skill)

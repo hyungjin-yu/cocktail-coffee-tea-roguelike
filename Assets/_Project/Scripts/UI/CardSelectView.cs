@@ -366,7 +366,7 @@ namespace CCT
                 slot.title.text = card.displayName;
                 slot.description.text = GunRangeCard(card) ? GunHoming.Describe(offer.currentStacks + 1) : CardEducationSummary.Effect(card);
                 // 효과 한 줄 = 아이콘 + 능력치 색 이름 + 수치. 능력치 표에 없는 특수 효과(하이브리드 보조 활 등)는 기존 효과 글.
-                BuildEffectLines(slot, card);
+                BuildEffectLines(slot, card, offer.currentStacks);
                 var finalForm = AttackFinalForms.ForCard(card.id);
                 slot.learn.GetComponentInChildren<Text>().text = finalForm.HasValue ? "지식 · 최대 효과 보기" : "지식 상세 보기";
                 slot.fact.text = CardEducationSummary.Fact(card);
@@ -421,7 +421,7 @@ namespace CCT
         static bool GunRangeCard(CardData card) =>
             GameManager.Instance != null && GameManager.Instance.Stats != null && GameManager.Instance.Stats.gunHoming && CardEffectsView.IsRangeCard(card);
 
-        void BuildEffectLines(Slot slot, CardData card)
+        void BuildEffectLines(Slot slot, CardData card, int currentStacks = 0)
         {
             for (int c = slot.effects.childCount - 1; c >= 0; c--) DestroyImmediate(slot.effects.GetChild(c).gameObject);
             var list = new List<CardEffect>();
@@ -432,16 +432,24 @@ namespace CCT
             slot.effects.gameObject.SetActive(lines);
             effectLineTexts[slot.index] = lines ? string.Join(" / ", list.ConvertAll(e => StatStyle.LineText(e, card.weaponRestriction))) : "";
             previewTexts[slot.index] = "";
+            // #19 티 소믈리에 차 카드: 이번 선택으로 새로 더해지는 단계 줄(2회 숨은·3회 핵심·4·5회 유틸)을 고르기 전에 공개. 바텐더·1회째는 "".
+            var gm = GameManager.Instance;
+            string stage = lines && gm != null ? TeaCardStages.NextLine(gm.Job, card, currentStacks) : "";
+            stageTexts[slot.index] = stage;
             if (!lines) return;
             int n = Mathf.Min(3, list.Count);
-            float h = n <= 2 ? 44f : 30f; int font = n <= 2 ? 30 : 24;
+            bool hasStage = stage.Length > 0;
+            float h = n <= 2 && !hasStage ? 44f : 30f; int font = n <= 2 && !hasStage ? 30 : 24;
+            const float StageH = 26f;
             // P5(감사 S-10): 효과가 한 줄뿐이고 실제 최종값이 바로 계산되는 능력치면(StatStyle.Preview) 아래 둘째 줄에 "현재 → 선택 후".
             // 상자(92) = 효과 줄 44 + 미리보기 30. 추정이 필요한 능력치·여러 효과 카드는 미리보기 없음.
             var stats = GameManager.Instance != null ? GameManager.Instance.Stats : null;
             string preview = n == 1 ? StatStyle.Preview(list[0], stats) : "";
             previewTexts[slot.index] = preview;
             const float PreviewH = 30f;
-            float top = (EffectBoxHeight - n * h - (preview.Length > 0 ? PreviewH : 0f)) * 0.5f; // 줄 묶음을 상자 세로 가운데
+            if (hasStage && n >= 3) preview = ""; // 3줄 효과 + 단계 줄이면 미리보기는 상자에 들어가지 않는다(차 카드에는 없음)
+            previewTexts[slot.index] = preview;
+            float top = (EffectBoxHeight - n * h - (preview.Length > 0 ? PreviewH : 0f) - (hasStage ? StageH : 0f)) * 0.5f; // 줄 묶음을 상자 세로 가운데
             for (int k = 0; k < n; k++)
             {
                 var row = StatStyle.BuildLine(slot.effects, "Effect" + k, list[k], card.weaponRestriction, 400f, h, font);
@@ -456,7 +464,21 @@ namespace CCT
                 pt.verticalOverflow = VerticalWrapMode.Truncate;
                 pt.raycastTarget = false;
             }
+            if (hasStage)
+            {
+                float y = -top - n * h - (preview.Length > 0 ? PreviewH : 0f);
+                var srt = UiFactory.Place("TeaStage", slot.effects, new Vector2(0.5f, 1f), new Vector2(0f, y), new Vector2(400f, StageH));
+                srt.pivot = new Vector2(0.5f, 1f);
+                var st = UiFactory.AddText(srt, stage, 22, TextAnchor.MiddleCenter, StatStyle.JobColorTea);
+                st.resizeTextForBestFit = true; st.resizeTextMinSize = 15; st.resizeTextMaxSize = 22;
+                st.verticalOverflow = VerticalWrapMode.Truncate;
+                st.raycastTarget = false;
+            }
         }
+
+        readonly string[] stageTexts = new string[SlotCount];
+        /// <summary>테스트·QA용 — #19 이번 선택으로 더해질 티 소믈리에 단계 줄(없으면 "").</summary>
+        public string StageLine(int index) => index >= 0 && index < SlotCount ? stageTexts[index] ?? "" : "";
 
         readonly string[] previewTexts = new string[SlotCount];
         /// <summary>테스트·QA용 — 카드 효과 "현재 → 선택 후" 미리보기 글(없으면 "").</summary>

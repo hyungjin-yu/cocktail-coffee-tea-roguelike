@@ -832,7 +832,7 @@ namespace CCT
 
         void ChooseCard(CardOffer offer)
         {
-            cards.Take(offer.card, Stats);
+            TakeCard(offer.card);
             RefreshJobTrait(true, offer.card);
             completedCardChoices++;
             Player.FinalForms.OnCardTaken(offer.card, cards.GetStacks(offer.card));
@@ -852,6 +852,16 @@ namespace CCT
             // 07:31 — 리큐르/꿀 같은 요구 감소 카드로 잔량이 새 요구 이상이 되면 바로 보상을 예약한다.
             rewards.ReevaluateGauges();
             FinishRewardChoice();
+        }
+
+        /// <summary>#19 카드 1장 받기: 기존 기본 효과(CardSystem.Take) 다음, 티 소믈리에 차 카드면 새 중첩의 단계 줄을 한 번 더한다.
+        /// 중첩이 실제로 늘었을 때만(상한이면 아무것도 안 함). 바텐더는 기존 그대로.</summary>
+        void TakeCard(CardData card)
+        {
+            int before = cards.GetStacks(card);
+            cards.Take(card, Stats);
+            int after = cards.GetStacks(card);
+            if (after > before) TeaCardStages.ApplyOnTake(Job, card, after, Stats);
         }
 
         /// <summary>41 히든 스킬: 카드 선택·하이브리드·커피 노드 해금 직후 이번 런 상태로 판정. 새로 충족한 것만 런당 1회 해금,
@@ -880,7 +890,7 @@ namespace CCT
         /// <summary>테스트용 — 카드 선택 화면 없이 실제 선택과 같은 경로(중첩·최종 형태·히든 판정)로 카드를 받는다.</summary>
         public void GrantCardForTests(CardData card)
         {
-            cards.Take(card, Stats);
+            TakeCard(card);
             RefreshJobTrait(true, card);
             Player.FinalForms.OnCardTaken(card, cards.GetStacks(card));
             EvaluateHidden();
