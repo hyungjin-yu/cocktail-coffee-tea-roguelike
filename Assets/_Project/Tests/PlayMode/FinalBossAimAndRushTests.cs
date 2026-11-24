@@ -52,7 +52,7 @@ namespace CCT.Tests
             driver.Init(boss, game);
             driver.enabled = autoPatterns;
             game.ActiveBoss = boss;
-            if (hpFraction < 1f) boss.TakeDamage(boss.Hp - boss.MaxHp * hpFraction);
+            if (hpFraction < 1f) { boss.Invulnerable = false; boss.TakeDamage(boss.Hp - boss.MaxHp * hpFraction); } // 등장 무적 중 피해가 무시되어 HP가 그대로였다(통합 검수 발견)
             got(boss, driver);
             yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 0.1f);
         }
@@ -161,7 +161,7 @@ namespace CCT.Tests
                 if (game.Player.Hp < game.Player.MaxHp * 0.5f) game.Player.Heal(1f);
                 yield return null;
             }
-            Assert.IsTrue(driver.InFinalPhase, "HP 30% 이하 → 최종 단계");
+            Assert.IsTrue(driver.InFinalPhase, $"HP 30% 이하 → 최종 단계 (state={game.State} arrived={boss.HasArrived} hp={boss.Hp}/{boss.MaxHp} enabled={driver.enabled} dead={boss.IsDead} ts={Time.timeScale})");
             Assert.AreEqual(1, driver.RushCount, "최종 단계 첫 패턴은 러시");
             float started = Time.time;
             // 러시는 벽1 1.0 + 여유 1.2 + 저격 ~1.2 + 여유 1.0 + 벽2 1.0 + 회복 2.0 ≈ 7.4초 — 그동안 다음 패턴이 시작되지 않는다.
@@ -183,8 +183,8 @@ namespace CCT.Tests
             int before = EnemyProjectile.ActiveCount;
             Invoke(driver, "Snipe", false);
             yield return new WaitForSeconds(0.4f);
-            boss.TakeDamage(999999f);
-            yield return new WaitForSeconds(2f);
+            boss.TakeDamage(999999f); // 최종 보스 사망 = 런 종료(timeScale 0) — 실시간으로 기다린다
+            yield return new WaitForSecondsRealtime(2f);
             Assert.AreEqual(0, driver == null ? 0 : driver.SnipeVolleys, "사망 뒤 발사 없음");
             Assert.AreEqual(before, EnemyProjectile.ActiveCount, "탄 생성 없음");
         }
