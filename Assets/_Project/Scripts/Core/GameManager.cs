@@ -205,7 +205,7 @@ namespace CCT
             rng = new RunRandom(RunRandom.QaSeedOverride ?? RunRandom.GenerateSeed());
             SpawnTable = mode == RunMode.Standard ? RunModeSelection.StandardTable : SpawnTable.JobTheme;
             familyRemapRng = new SeededRandomSource(unchecked(rng.Seed * 397 ^ 7));
-            Stats = new PlayerStats();
+            Stats = new PlayerStats { gunHoming = weapon == WeaponKind.Gun };
             // 활 초반 군중 처리: 기본 한 발이 두 대상까지 명중. 카드 관통은 기존 상한까지 누적.
             if (weapon == WeaponKind.Bow) Stats.pierceCount = 1;
             cards = new CardSystem(CardDatabase.LoadAll(), rng.Cards);

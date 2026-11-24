@@ -62,6 +62,22 @@ namespace CCT.Tests
         }
 
         [UnityTest]
+        public IEnumerator GunHoming_BulletCurvesToOffAxisEnemy_UnhomedBulletMisses()
+        {
+            // 제자리 몹(스월스틱 컨저러)을 직진 경로에서 22° 벗어난 곳에 둔다: 유도 0 = 빗나감, 유도 3단계 = 맞힘.
+            var enemy = Enemy.SpawnAt(player.Position + new Vector2(3f, 1.2f), EnemyDef.SwirlConjuror, 1f, player, null);
+            float hpBefore = enemy.Hp;
+            PlayerProjectile.Spawn(player.Position, Vector2.right, 9f, 15f, 0, null, null, player, true);
+            yield return new WaitForSeconds(0.8f);
+            Assert.AreEqual(hpBefore, enemy.Hp, 1e-3f, "유도 미획득 탄환은 직진한다");
+
+            PlayerProjectile.Spawn(player.Position, Vector2.right, 9f, 15f, 0, null, null, player, true, null, 2f, float.PositiveInfinity, 3);
+            yield return new WaitForSeconds(0.8f);
+            Assert.Less(enemy.Hp, hpBefore, "유도 3단계 탄환은 휘어서 맞힌다");
+            Object.Destroy(enemy.gameObject);
+        }
+
+        [UnityTest]
         public IEnumerator PlayerProjectile_HitsEnemy_ThenDestroysItself()
         {
             var enemy = Enemy.SpawnAt(player.Position + new Vector2(2f, 0f), EnemyDef.Brute, 1f, player, null);

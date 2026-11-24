@@ -21,6 +21,10 @@ namespace CCT
         public float damagePercent;
         public float attackSpeedPercent;
         public float rangePercent;
+        /// <summary>총을 고른 런에서 true(GameManager.Initialize). 이때 레벨업 카드의 사거리 효과는 사거리 대신 탄환 유도 단계가 된다. 영구 강화·히든·커피는 그대로 사거리.</summary>
+        public bool gunHoming;
+        /// <summary>탄환 유도 단계(0=직진, 1~GunHoming.MaxLevel). 카드 중첩 수와 같다.</summary>
+        public int homingLevel;
         public float moveSpeedPercent;
         public float maxHpFlat;
         public float dropChancePercent;
@@ -186,6 +190,7 @@ namespace CCT
                 case CardEffectType.BeanGainPercent: beanGainPercent += effect.value; break;
                 case CardEffectType.DamageReduction: damageReduction += effect.value; break;
                 case CardEffectType.PickupRadiusFlat: pickupRadiusFlat += effect.value; break;
+                case CardEffectType.BulletHoming: homingLevel = Mathf.Min(GunHoming.MaxLevel, homingLevel + Mathf.RoundToInt(effect.value)); break;
             }
             Changed?.Invoke();
         }

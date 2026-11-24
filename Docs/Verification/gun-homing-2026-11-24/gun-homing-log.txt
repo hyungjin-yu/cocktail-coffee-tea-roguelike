@@ -1,0 +1,55 @@
+Bartender t0 bullet pos=(0.63,-1.92) angle=12.6
+Bartender t0 bullet pos=(0.63,-2.00) angle=0.0
+Bartender t1 bullet pos=(1.22,-1.72) angle=25.2
+Bartender t1 bullet pos=(1.26,-2.00) angle=0.0
+shot gun_flight_Bartender_f1.png 1280x720
+Bartender t2 bullet pos=(1.24,-1.71) angle=27.3
+Bartender t2 bullet pos=(3.32,-2.00) angle=0.0
+Bartender t3 bullet pos=(3.95,-2.00) angle=0.0
+shot gun_flight_Bartender_f3.png 1280x720
+Bartender t4 bullet pos=(4.59,-2.00) angle=0.0
+Bartender t5 bullet pos=(5.22,-2.00) angle=0.0
+Bartender enemy hp 40 -> 25
+TeaSommelier t0 bullet pos=(0.63,-1.93) angle=12.6
+TeaSommelier t0 bullet pos=(0.63,-2.00) angle=0.0
+TeaSommelier t0 bullet pos=(11.65,-2.00) angle=0.0
+TeaSommelier t1 bullet pos=(1.22,-1.73) angle=25.2
+TeaSommelier t1 bullet pos=(1.26,-2.00) angle=0.0
+TeaSommelier t1 bullet pos=(12.28,-2.00) angle=0.0
+shot gun_flight_TeaSommelier_f1.png 1280x720
+TeaSommelier t2 bullet pos=(1.79,-1.43) angle=27.5
+TeaSommelier t2 bullet pos=(1.90,-2.00) angle=0.0
+TeaSommelier t2 bullet pos=(12.92,-2.00) angle=0.0
+TeaSommelier t3 bullet pos=(2.35,-1.14) angle=27.5
+TeaSommelier t3 bullet pos=(2.53,-2.00) angle=0.0
+TeaSommelier t3 bullet pos=(13.55,-2.00) angle=0.0
+shot gun_flight_TeaSommelier_f3.png 1280x720
+TeaSommelier t4 bullet pos=(3.17,-2.00) angle=0.0
+TeaSommelier t4 bullet pos=(14.19,-2.00) angle=0.0
+TeaSommelier t5 bullet pos=(3.81,-2.00) angle=0.0
+TeaSommelier t5 bullet pos=(14.83,-2.00) angle=0.0
+TeaSommelier enemy hp 40 -> 25
+Bartender/Gun/long_stirrer stacks=0 desc='탄환이 움직이는 적을 따라갑니다' lines=''
+Bartender/Gun/long_stirrer stacks=1 desc='탄환이 적을 더 빠르게 따라갑니다' lines=''
+card canvas: UI
+shot gun_card_Bartender_Gun.png 1280x720
+Bartender/Bow/long_stirrer stacks=0 desc='' lines='사거리 +15%'
+Bartender/Bow/long_stirrer stacks=1 desc='' lines='사거리 +15%'
+card canvas: UI
+shot gun_card_Bartender_Bow.png 1280x720
+Bartender/Sword/long_stirrer stacks=0 desc='' lines='사거리 +15%'
+Bartender/Sword/long_stirrer stacks=1 desc='' lines='사거리 +15%'
+card canvas: UI
+shot gun_card_Bartender_Sword.png 1280x720
+TeaSommelier/Gun/long_spout stacks=0 desc='탄환이 움직이는 적을 따라갑니다' lines=''
+TeaSommelier/Gun/long_spout stacks=1 desc='탄환이 적을 더 빠르게 따라갑니다' lines=''
+card canvas: UI
+shot gun_card_TeaSommelier_Gun.png 1280x720
+TeaSommelier/Bow/long_spout stacks=0 desc='' lines='사거리 +15%'
+TeaSommelier/Bow/long_spout stacks=1 desc='' lines='사거리 +15%'
+card canvas: UI
+shot gun_card_TeaSommelier_Bow.png 1280x720
+TeaSommelier/Sword/long_spout stacks=0 desc='' lines='사거리 +15%'
+TeaSommelier/Sword/long_spout stacks=1 desc='' lines='사거리 +15%'
+card canvas: UI
+shot gun_card_TeaSommelier_Sword.png 1280x720

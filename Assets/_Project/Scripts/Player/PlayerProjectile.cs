@@ -31,11 +31,15 @@ namespace CCT
         bool original;
         float remainingDistance = float.PositiveInfinity;
         string projectileArtId;
+        // 총 전용 유도(GunHoming). 0단계는 직진. 표적은 진행 방향 원뿔 안의 살아 있는 적, 이미 맞힌 적·무적은 제외.
+        int homingLevel;
+        float homingBudgetDeg, homingScan;
+        Enemy homingTarget;
 
         /// <param name="artId">04 §8 탄 아트(bullet/arrow/tea_arrow). 없거나 미반입이면 노란 원 placeholder.</param>
         public static void Spawn(Vector2 position, Vector2 direction, float speed, float damage, int pierceCount,
             Transform parent, string artId = null, PlayerController owner = null, bool original = false,
-            Enemy excluded = null, float lifetime = Lifetime, float maxDistance = float.PositiveInfinity)
+            Enemy excluded = null, float lifetime = Lifetime, float maxDistance = float.PositiveInfinity, int homingLevel = 0)
         {
             var go = new GameObject("PlayerProjectile");
             go.transform.SetParent(parent, false);
@@ -71,6 +75,8 @@ namespace CCT
             p.original = original;
             p.projectileArtId = artId;
             p.remainingDistance = maxDistance;
+            p.homingLevel = GunHoming.Clamp(homingLevel);
+            p.homingBudgetDeg = GunHoming.BudgetDeg(p.homingLevel);
             if (excluded != null) p.alreadyHit.Add(excluded);
             if (original && owner != null && IsArrowArt(artId)) ApplyArrowElement(go, sr, ArrowElementOf(owner.Stats), art);
         }
@@ -167,6 +173,38 @@ namespace CCT
             rr.sortingOrder = sr.sortingOrder - 2;
         }
 
+        bool ValidHomingTarget(Enemy e, Vector2 pos) =>
+            e != null && !e.IsDead && !e.Invulnerable && !alreadyHit.Contains(e) && (owner == null || e.RunPlayer == owner) &&
+            ((Vector2)e.transform.position - pos).sqrMagnitude <= GunHoming.DetectRadius * GunHoming.DetectRadius * GunHoming.LoseRadiusScale * GunHoming.LoseRadiusScale;
+
+        /// <summary>표적이 없으면 0.1초마다 원뿔 안 가장 작은 각도의 적을 잡고, 있으면 초당 선회각 상한 안에서만 방향을 튼다(순간 꺾임·무한 추적 없음).</summary>
+        void SteerHoming(Vector2 pos, float dt)
+        {
+            if (velocity.sqrMagnitude < 0.0001f || homingBudgetDeg <= 0f) return;
+            if (!ValidHomingTarget(homingTarget, pos)) homingTarget = null;
+            if (homingTarget == null)
+            {
+                homingScan -= dt;
+                if (homingScan > 0f) return;
+                homingScan = GunHoming.ScanInterval;
+                float best = float.MaxValue;
+                for (int i = 0; i < Enemy.Active.Count; i++)
+                {
+                    var e = Enemy.Active[i];
+                    if (!ValidHomingTarget(e, pos)) continue;
+                    Vector2 to = (Vector2)e.transform.position - pos;
+                    if (!GunHoming.InCone(velocity, to, homingLevel)) continue;
+                    float a = Vector2.Angle(velocity, to);
+                    if (a < best) { best = a; homingTarget = e; }
+                }
+                if (homingTarget == null) return;
+            }
+            float speed = velocity.magnitude;
+            Vector2 dir = GunHoming.Steer(velocity / speed, (Vector2)homingTarget.transform.position - pos, homingLevel, dt, ref homingBudgetDeg);
+            velocity = dir * speed;
+            transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+        }
+
         void Update()
         {
             if (owner != null && owner.IsDead) { Destroy(gameObject); return; }
@@ -181,6 +219,7 @@ namespace CCT
             // 프레임 간 선분 스윕으로 고속 이동 시 통과 누락을 막는다 (06:20). 경로상 가까운
             // 충돌부터 순서대로 처리하고, 무적 적은 피해·관통 횟수를 소비하지 않고 통과한다(06:23).
             Vector2 prev = transform.position;
+            if (homingLevel > 0) SteerHoming(prev, Time.deltaTime);
             Vector2 delta = velocity * Time.deltaTime;
             if (delta.magnitude > remainingDistance) delta = delta.normalized * remainingDistance;
             Vector2 next = prev + delta;
