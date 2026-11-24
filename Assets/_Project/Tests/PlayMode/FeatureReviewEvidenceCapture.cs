@@ -118,7 +118,9 @@ namespace CCT.Tests
             CardData C(string id) => CardDatabase.LoadAll().First(c => c.id == id);
             var offers = new List<CardOffer> { new CardOffer { card = C("green_tea"), currentStacks = 0 }, new CardOffer { card = C("oolong"), currentStacks = 1 }, new CardOffer { card = C("aged_puerh"), currentStacks = 2 } };
             game.CardView.Show(offers, o => { });
-            for (int w = 0; w < 600 && !(game.CardView.EntranceDone(0) && game.CardView.EntranceDone(1) && game.CardView.EntranceDone(2)); w++) yield return null;
+            float until = Time.realtimeSinceStartup + 8f;
+            while (Time.realtimeSinceStartup < until && !(game.CardView.EntranceDone(0) && game.CardView.EntranceDone(1) && game.CardView.EntranceDone(2))) yield return null;
+            yield return new WaitForSecondsRealtime(0.5f);
             Line($"tea19 stage lines: [{game.CardView.StageLine(0)}] [{game.CardView.StageLine(1)}] [{game.CardView.StageLine(2)}]");
             var cardCanvas = game.CardView.GetComponentInParent<Canvas>().rootCanvas;
             foreach (var (w, h) in Sizes) yield return SkinEvidenceCapture.CaptureTo(dir, Line, Camera.main, new[] { cardCanvas }, w, h, $"t19_card_stage_{w}x{h}");
@@ -186,5 +188,54 @@ namespace CCT.Tests
             yield return Shot("f22_low_effects", Sizes[0]);
             var bartender = game; // 바텐더/레이피어: 얼룩만
         }
+
+        // ── #24 최종 보스: 저격 추적/고정/발사, 폐점 러시 통로, 저이펙트, 근접·원거리, 바닥 위험 + 속성 화살 동시 ──
+        IEnumerator FinalBoss(Job job, WeaponKind weapon, string tag, bool low, bool withHazardsAndArrows)
+        {
+            yield return Build(job, weapon);
+            SettingsService.SetEffectsLevel(low ? SettingsData.EffectsLow : SettingsData.EffectsNormal);
+            if (!withHazardsAndArrows) foreach (var mb in player.GetComponents<MonoBehaviour>()) if (mb is PlayerProjectileWeapon || mb is RapierWeapon) mb.enabled = false;
+            player.transform.position = new Vector3(0f, Balance.LaneCenterY, 0f);
+            var def = job == Job.TeaSommelier ? EnemyDef.TeaCustomer : EnemyDef.DifficultCustomer;
+            var boss = Enemy.SpawnAt(player.Position + new Vector2(7.5f, 0f), def, 1f, player, game.transform);
+            var driver = boss.gameObject.AddComponent<CustomerBossDriver>(); driver.Init(boss, game); driver.enabled = false; game.ActiveBoss = boss;
+            boss.TakeDamage(boss.Hp - boss.MaxHp * 0.29f);
+            yield return new WaitForSeconds(Balance.BossArrivalGraceSeconds + 0.1f);
+            System.Action<string, bool> start = (m, arg) =>
+            {
+                var mi = typeof(CustomerBossDriver).GetMethod(m, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                driver.StartCoroutine((IEnumerator)(mi.GetParameters().Length == 0 ? mi.Invoke(driver, null) : mi.Invoke(driver, new object[] { arg })));
+            };
+            if (withHazardsAndArrows)
+            {
+                var s = player.Stats; s.arrowBurnLevel = 1; s.arrowShockLevel = 1; s.extraThrusts = 2;
+                var hz = game.Spawner.Hazards;
+                hz.SpawnAt(FloorHazardKind.Water, player.Position + new Vector2(-4f, 1.2f), 0f);
+                hz.SpawnAt(FloorHazardKind.Stain, player.Position + new Vector2(3f, -1.4f), 0f);
+            }
+            start("Snipe", false);
+            yield return new WaitForSeconds(0.6f);
+            Line($"{tag} snipe tracking, volleys={driver.SnipeVolleys} dir={driver.LastSnipeDirection}");
+            yield return Shot(tag + "_snipe_tracking", low ? new[] { Sizes[0] } : Sizes);
+            yield return new WaitForSeconds(CustomerBossDriver.SnipeFirstTrackSeconds - 0.6f + 0.2f);
+            Line($"{tag} snipe locked, dir={driver.LastSnipeDirection}");
+            yield return Shot(tag + "_snipe_locked", Sizes[0]);
+            yield return new WaitForSeconds(CustomerBossDriver.SnipeLockSeconds + 0.35f);
+            yield return Shot(tag + "_snipe_fired", Sizes[0]);
+            yield return new WaitForSeconds(2.2f);
+            start("ClosingRush", false);
+            yield return null;
+            Line($"{tag} rush gapCenterY={driver.LastGapCenterY} player.y={player.Position.y}");
+            yield return Shot(tag + "_rush_telegraph", low ? new[] { Sizes[0] } : Sizes);
+            yield return new WaitForSeconds(CustomerBossDriver.WallTelegraphSeconds + 0.3f);
+            yield return Shot(tag + "_rush_walls", Sizes[0]);
+            var dodge = HudCanvas.GetComponentsInChildren<UnityEngine.UI.Text>(false).Where(t => t.text.Contains("회피")).Select(t => t.text).ToList();
+            Line($"{tag} texts containing 회피 (should be none): [{string.Join("|", dodge)}]");
+            Assert.AreEqual(0, dodge.Count);
+        }
+
+        [UnityTest] public IEnumerator Boss24_Bartender_Rapier_Melee() { yield return FinalBoss(Job.Bartender, WeaponKind.Rapier, "b24_bar_rapier", false, false); }
+        [UnityTest] public IEnumerator Boss24_Tea_Bow_Ranged_Low() { yield return FinalBoss(Job.TeaSommelier, WeaponKind.Bow, "b24_tea_bow_low", true, false); }
+        [UnityTest] public IEnumerator Boss24_Tea_Bow_HazardsAndArrows() { yield return FinalBoss(Job.TeaSommelier, WeaponKind.Bow, "b24_tea_bow_hazard_arrows", false, true); }
     }
 }

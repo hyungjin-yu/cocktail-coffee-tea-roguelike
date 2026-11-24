@@ -514,7 +514,7 @@ namespace CCT
     {
         public const int MaxNextVolley = PlayerStats.MaxExtraThrusts + 1;
         public const int FollowingShown = 3;
-        public const float IconLength = 0.3f, IconSpacing = 0.13f, GroupGap = 0.12f, FollowingScale = 0.75f, FollowingAlpha = 0.45f;
+        public const float IconLength = 0.5f, IconSpacing = 0.21f, GroupGap = 0.2f, FollowingScale = 0.75f, FollowingAlpha = 0.45f;
 
         PlayerController player;
         PlayerStats stats;
@@ -554,7 +554,7 @@ namespace CCT
             }
             row.gameObject.SetActive(on);
             if (!on) { shown.Clear(); shownVolley = -1; return; }
-            row.localPosition = new Vector3(0f, HeadTop() + 0.28f, 0f);
+            row.localPosition = new Vector3(0f, HeadTop() + 0.4f, 0f);
 
             int volley = Mathf.Clamp(1 + stats.extraThrusts, 1, MaxNextVolley);
             int total = volley + FollowingShown;
