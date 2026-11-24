@@ -246,6 +246,7 @@ namespace CCT
             // 2026-11-10 음료 순환 상성: 실제로 마신 음료(버프 적용된 준비 음료)만. 무음료면 null(상성 없음).
             Player.DrunkDrink = coffee != null ? coffee.Kind : (DrinkKind?)null;
             Markers = PlayerEffectMarkers.Attach(Player, this); // 2026-11-09 지금 켜진 효과의 절제된 캐릭터 표식
+            if (job == Job.Bartender && weapon == WeaponKind.Gun) GunVolleyPips.Attach(Player); // #23 근거리 산탄 폭발 준비(히든 보유 시에만 보임)
             Ambience = RunAmbience.Attach(background, this);    // 2026-11-09 보스 접근/보스전 배경 강조(인스턴스 색만)
             gameObject.AddComponent<CameraRig>().Init(camera, Player.transform, background);
 
