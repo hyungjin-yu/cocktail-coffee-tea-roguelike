@@ -460,6 +460,8 @@ namespace CCT
 
         readonly string[] previewTexts = new string[SlotCount];
         /// <summary>테스트·QA용 — 카드 효과 "현재 → 선택 후" 미리보기 글(없으면 "").</summary>
+        /// <summary>검증용(읽기 전용): 카드 슬롯의 효과 설명 글.</summary>
+        public string DescriptionText(int index) => index >= 0 && index < SlotCount && slots[index].description.enabled ? slots[index].description.text : "";
         public string EffectPreview(int index) => index >= 0 && index < SlotCount ? previewTexts[index] ?? "" : "";
 
         readonly string[] effectLineTexts = new string[SlotCount];
