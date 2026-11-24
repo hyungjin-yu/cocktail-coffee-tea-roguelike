@@ -8,6 +8,10 @@ public static string Effect(CardData c) => c.id switch {
 "flambe" or "second_infusion" => "연속 타격 +1회",
 "rifled_barrel" or "piercing_arrowhead" => "발사체 관통 +1",
 "hybrid_tea_martini" => "보조 활 · 자동 화살 발사",
+"arrow_burn" => ArrowElementRules.ShortEffect(ArrowElementKind.Burn),
+"arrow_freeze" => ArrowElementRules.ShortEffect(ArrowElementKind.Freeze),
+"arrow_shock" => ArrowElementRules.ShortEffect(ArrowElementKind.Shock),
+"arrow_poison" => ArrowElementRules.ShortEffect(ArrowElementKind.Poison),
 _ => c.description };
 public static string Fact(CardData c) { switch(c.id) {
 case "dry_gin": return "주니퍼 향이 특징인 증류주. 드라이는 단맛 관련 표현입니다.";

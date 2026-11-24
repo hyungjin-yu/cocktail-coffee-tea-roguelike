@@ -11,7 +11,9 @@ namespace CCT
     public enum CardRarity { Common, Rare, Epic, Special }
 
     /// <summary>이 카드가 어느 무기군에만 나올지. 대부분 카드는 Any(둘 다). 무기별 정체성이 있는 카드만 제한.</summary>
-    public enum WeaponRestriction { Any, MeleeOnly, RangedOnly }
+    /// <summary>2026-11-24 #21: BowOnly = 기본 활(시작 무기)로 시작한 런에서만 나온다. 총·보조 활(티니 보우)·근접에는 나오지 않는다.
+    /// 저장 호환: 정수 값이 바뀌지 않게 끝에만 추가한다.</summary>
+    public enum WeaponRestriction { Any, MeleeOnly, RangedOnly, BowOnly }
 
     public enum CardEffectType
     {
@@ -36,6 +38,15 @@ namespace CCT
         DamageReduction,
         /// <summary>줍기 반경 가산치 (07:141 wide_tray/zero_waste 등).</summary>
         PickupRadiusFlat,
+        // ── 2026-11-24 #21 속성 화살(기본 활 전용 카드). 저장 호환: 끝에만 추가(기존 정수 값 불변). 능력치 줄(StatStyle)이 아니라 행동 설명 카드로 보인다.
+        /// <summary>화상 화살 레벨 — 짧고 빠른 지속 피해.</summary>
+        ArrowBurn,
+        /// <summary>빙결 화살 레벨 — 일반 적 잠시 정지, 보스는 추가 피해.</summary>
+        ArrowFreeze,
+        /// <summary>감전 화살 레벨 — 가까운 다른 적으로 제한된 연쇄.</summary>
+        ArrowShock,
+        /// <summary>중독 화살 레벨 — 오래 가고 상한까지 쌓이는 지속 피해.</summary>
+        ArrowPoison,
     }
 
     [Serializable]

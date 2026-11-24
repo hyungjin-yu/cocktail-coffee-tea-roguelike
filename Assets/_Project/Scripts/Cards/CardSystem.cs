@@ -65,11 +65,11 @@ namespace CCT
         }
 
         public List<CardOffer> Draw(CardCategory category, bool isRanged, int count = 3,
-            float runTime = 180f, int completedChoices = 6)
+            float runTime = 180f, int completedChoices = 6, bool isBow = false)
         {
             var eligible = new List<CardData>();
             foreach (var card in pool)
-                if (card.category == category && GetStacks(card) < card.maxStacks && IsWeaponCompatible(card, isRanged))
+                if (card.category == category && GetStacks(card) < card.maxStacks && IsWeaponCompatible(card, isRanged, isBow))
                     eligible.Add(card);
 
             // 노출 확률: 지금 뽑을 수 있는 카드가 남아있는 등급들끼리 가중치를 정규화
@@ -117,12 +117,14 @@ namespace CCT
             return offers;
         }
 
-        public static bool IsWeaponCompatible(CardData card, bool isRanged)
+        /// <param name="isBow">시작 무기가 기본 활인지(#21 속성 화살 카드). 보조 활(티니 보우)은 시작 무기가 아니므로 false.</param>
+        public static bool IsWeaponCompatible(CardData card, bool isRanged, bool isBow = false)
         {
             return card.weaponRestriction switch
             {
                 WeaponRestriction.MeleeOnly => !isRanged,
                 WeaponRestriction.RangedOnly => isRanged,
+                WeaponRestriction.BowOnly => isBow,
                 _ => true,
             };
         }

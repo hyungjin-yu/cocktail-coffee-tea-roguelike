@@ -40,7 +40,8 @@ namespace CCT.Tests
             var used = new HashSet<CardEffectType>();
             foreach (var c in CardDatabase.LoadAll()) if (c.effects != null) foreach (var e in c.effects) used.Add(e.type);
             foreach (var n in PermanentSkillDatabase.LoadAll()) if (n.effects != null) foreach (var e in n.effects) used.Add(e.type);
-            foreach (var t in used) Assert.IsTrue(StatStyle.Has(t), t + " 색표 항목");
+            // #21 속성 화살은 능력치 줄이 아니라 행동 설명 카드(효과 글을 그대로 보임) — 색표 대상 밖.
+            foreach (var t in used) if (!DefaultArrowCards.IsArrowEffect(t)) Assert.IsTrue(StatStyle.Has(t), t + " 색표 항목");
             var types = StatStyle.Types.ToList();
             for (int i = 0; i < types.Count; i++)
             {

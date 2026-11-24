@@ -31,11 +31,17 @@ namespace CCT
         bool original;
         float remainingDistance = float.PositiveInfinity;
         string projectileArtId;
+        /// <summary>2026-11-24 #21 속성 화살(기본 활의 원래 화살만). 감전 연쇄는 첫 대상에서만.</summary>
+        ArrowElementKind element;
+        bool elementFirstHitDone;
+        int volley;
+        public ArrowElementKind Element => element;
 
         /// <param name="artId">04 §8 탄 아트(bullet/arrow/tea_arrow). 없거나 미반입이면 노란 원 placeholder.</param>
         public static void Spawn(Vector2 position, Vector2 direction, float speed, float damage, int pierceCount,
             Transform parent, string artId = null, PlayerController owner = null, bool original = false,
-            Enemy excluded = null, float lifetime = Lifetime, float maxDistance = float.PositiveInfinity)
+            Enemy excluded = null, float lifetime = Lifetime, float maxDistance = float.PositiveInfinity,
+            ArrowElementKind element = ArrowElementKind.None, int volley = 0)
         {
             var go = new GameObject("PlayerProjectile");
             go.transform.SetParent(parent, false);
@@ -72,7 +78,24 @@ namespace CCT
             p.projectileArtId = artId;
             p.remainingDistance = maxDistance;
             if (excluded != null) p.alreadyHit.Add(excluded);
-            if (original && owner != null && IsArrowArt(artId)) ApplyArrowElement(go, sr, ArrowElementOf(owner.Stats), art);
+            // 속성은 원래 화살 + 주인 있음 + 화살 그림일 때만(보조 활 tea_arrow는 주인 없이 쏘므로 해당 없음).
+            p.element = original && owner != null && IsArrowArt(artId) ? element : ArrowElementKind.None;
+            p.volley = volley;
+            if (p.element != ArrowElementKind.None) ApplyElementArrowArt(go, sr, p.element);
+            else if (original && owner != null && IsArrowArt(artId)) ApplyArrowElement(go, sr, ArrowElementOf(owner.Stats), art);
+        }
+
+        /// <summary>2026-11-24 #21 속성 화살 비행 그림: 기본 화살과 같은 128 캔버스·가로 스팬(98px)·중앙 피벗·+X라 배율·회전을 그대로 두고 그림만 바꾼다.
+        /// 보통 = &lt;속성&gt;_arrow 3프레임 루프, 저이펙트 = &lt;속성&gt;_arrow_low 정지. 아트가 없으면 속성 색 틴트(판정·피해 무관).</summary>
+        static void ApplyElementArrowArt(GameObject go, SpriteRenderer sr, ArrowElementKind e)
+        {
+            bool low = ArrowElementRules.LowEffects;
+            var frames = ArrowElementArt.Frames(e, low ? "arrow_low" : "arrow");
+            if (frames.Length == 0) frames = ArrowElementArt.Frames(e, "arrow_low");
+            if (frames.Length == 0) { sr.color = ArrowElementArt.FallbackColor(e); return; }
+            sr.sprite = frames[0];
+            sr.color = Color.white;
+            if (!low && frames.Length > 1) go.AddComponent<ArrowElementAnim>().Play(frames, ArrowElementArt.ArrowMs, true, false);
         }
 
         // ───── 2026-11-16 피드백 19: 화살의 기존 적중 속성 표현(표시 전용) ─────
@@ -200,6 +223,7 @@ namespace CCT
                 if (original) EnemyHitStatus.AttachDirect(enemy, owner);
                 var hidden = original && owner != null ? owner.HiddenRuntime : null; // 41 히든: 원래 탄의 직접 타격만
                 float dealt = hidden != null ? hidden.ModifyDirectDamage(enemy, damage) : damage;
+                dealt = ArrowElementRules.ModifyDirect(element, enemy, owner, dealt); // #21 빙결 화살: 보스만 이 화살 피해 증가
                 // 2026-11-09 피격 연출: 치명타/일반 구분, 불꽃은 실제 접촉 지점. 파편(비원본)은 보조 효과로 가볍게.
                 float reach = enemy.Def.radius + 0.6f; // 시작부터 겹친 캐스트 등 접점이 몸에서 멀면 몸 중앙 위로 대체
                 Vector2? at = ((Vector2)hit.point - (Vector2)enemy.transform.position).sqrMagnitude <= reach * reach ? hit.point : (Vector2?)null;
@@ -207,6 +231,13 @@ namespace CCT
                 if (original) enemy.TakeDirectHit(dealt, HiddenSkillRuntime.DirectKind(hidden, false), at);
                 else enemy.TakeDamage(dealt, HitKind.Effect, at);
                 hidden?.AfterDirectHit(enemy);
+                if (element != ArrowElementKind.None)
+                {
+                    // #21 피해 적용 뒤(막타면 상태 없이 명중 연출·감전 연쇄만). 감전은 이 화살의 첫 대상에서만 — 관통으로 연쇄가 늘지 않게.
+                    ArrowElementStatus.OnArrowHit(enemy, owner, element, !elementFirstHitDone, dealt,
+                        at ?? (Vector2)enemy.transform.position + new Vector2(0f, enemy.Def.radius * 0.3f), volley);
+                    elementFirstHitDone = true;
+                }
                 alreadyHit.Add(enemy);
                 if (original && owner != null && owner.FinalForms.Has(AttackFinalForm.Pierce))
                 {

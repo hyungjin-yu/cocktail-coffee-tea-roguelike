@@ -81,13 +81,22 @@ namespace CCT
         public static List<CardData> LoadAll()
         {
             var loaded = Resources.LoadAll<CardData>("Cards");
+            List<CardData> all;
             if (loaded != null && loaded.Length > 0)
-                return new List<CardData>(loaded);
-
-            var runtime = DefaultCards.CreateRuntime();
-            runtime.AddRange(DefaultTeaCards.CreateRuntime());
-            runtime.AddRange(DefaultHybridCards.CreateRuntime());
-            return runtime;
+                all = new List<CardData>(loaded);
+            else
+            {
+                all = DefaultCards.CreateRuntime();
+                all.AddRange(DefaultTeaCards.CreateRuntime());
+                all.AddRange(DefaultHybridCards.CreateRuntime());
+            }
+            // 2026-11-24 #21 기본 활 전용 속성 화살 4장 — 코드 정의(07 §3 기본 34장·에셋 DB와 별개). 이미 에셋으로 구워졌으면 중복 추가하지 않는다.
+            foreach (var arrow in DefaultArrowCards.CreateRuntime())
+            {
+                if (all.Exists(c => c != null && c.id == arrow.id)) { Object.DestroyImmediate(arrow); continue; }
+                all.Add(arrow);
+            }
+            return all;
         }
     }
 }
