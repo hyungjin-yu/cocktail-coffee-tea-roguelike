@@ -96,7 +96,7 @@ namespace CCT
         /// <summary>69 준비 음료(런 입장 시 1회 적용): 기존 치명타 규칙(직접 타격 ×2)의 발동 확률 가산, 재사용 시간 감소 비율.</summary>
         public float drinkCritChance;
         public float drinkCooldownReduction;
-        public float CooldownScale => 1f - Mathf.Clamp(drinkCooldownReduction, 0f, DrinkRules.Cap(DrinkStat.CooldownReduction));
+        public float CooldownScale => 1f - Mathf.Clamp(drinkCooldownReduction, 0f, DrinkRules.DepartureCap(DrinkStat.CooldownReduction)); // #25 출발+런 잔 합산 상한
 
         float suppressedRemaining;
         float slowRemaining;
@@ -192,7 +192,9 @@ namespace CCT
         /// <summary>2026-11-12 마스터 도전 런 음료 특성(차 1번째 우림) 공격 속도. 다른 슬롯과 독립 — 잔 교체 때 이 값만 0/값으로 덮어쓴다.</summary>
         public float drinkTraitAttackSpeed;
         public float AttackSpeedBonus => Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed + drinkTraitAttackSpeed);
-        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed + masteryMoveSpeed + coffeeMoveSpeed + jobMoveSpeedPercent))) * MoveSlowMultiplier;
+        /// <summary>2026-11-24 #25 시그니처(사이드카 질주) 지속 중 이동 속도 보너스. SignatureRuntime이 켜고 끈다(다른 % 보너스처럼 상한 10·환불 봉인 적용).</summary>
+        public float signatureMoveSpeed;
+        public float MoveSpeed => Mathf.Min(10f, baseMoveSpeed * (1f + Live(moveSpeedPercent + hiddenMoveSpeed + masteryMoveSpeed + coffeeMoveSpeed + jobMoveSpeedPercent + signatureMoveSpeed))) * MoveSlowMultiplier;
         public float MaxHp => baseMaxHp + maxHpFlat;
         public float Damage => baseDamage * (1f + DamageBonus);
         /// <summary>기본 공격 재사용 간격. 69 음료 재사용 시간 감소는 간격에 곱하고(공격 속도와 별개), 기존 최소 간격 0.12초 상한은 그대로.</summary>
