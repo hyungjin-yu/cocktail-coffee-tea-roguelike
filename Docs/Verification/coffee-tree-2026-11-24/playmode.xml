@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 08:46:07Z" end-time="2026-11-24 08:46:10Z" duration="3.4772599">
+  <test-suite type="TestSuite" id="1603" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="489" result="Passed" start-time="2026-11-24 08:46:07Z" end-time="2026-11-24 08:46:10Z" duration="3.477260" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1597" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/orca/workspaces/CocktailCoffeeTea/levelup-menu-unity/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="489" result="Passed" start-time="2026-11-24 08:46:07Z" end-time="2026-11-24 08:46:10Z" duration="3.454424" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="4936" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1598" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="489" result="Passed" start-time="2026-11-24 08:46:07Z" end-time="2026-11-24 08:46:10Z" duration="3.451059" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1553" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="489" result="Passed" start-time="2026-11-24 08:46:07Z" end-time="2026-11-24 08:46:10Z" duration="3.448114" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1077" name="CodexReadabilityEvidenceCapture" fullname="CCT.Tests.CodexReadabilityEvidenceCapture" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-24 08:46:07Z" end-time="2026-11-24 08:46:10Z" duration="3.438883" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_37106692f452498da0e9a92abccfa402.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1082" name="CharacterSelect_PermanentButton_Buyable" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.CharacterSelect_PermanentButton_Buyable" methodname="CharacterSelect_PermanentButton_Buyable" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="957761918" result="Passed" start-time="2026-11-24 08:46:07Z" end-time="2026-11-24 08:46:07Z" duration="0.396107" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:46:07.535 START CCT.Tests.CodexReadabilityEvidenceCapture.CharacterSelect_PermanentButton_Buyable (t=0.1 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-5c132309b65640c4a8f9afeae5d51069\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-5c132309b65640c4a8f9afeae5d51069\save.json (source=Fresh, v2)
+[Codex1124] char-select shop label=영구 강화 (스페셜티 3) / ▶ 강화 가능 3개
+[Codex1124] shot perm17_charselect_button_buyable_1280x720.png 1280x720
+[Codex1124] shot perm17_charselect_button_buyable_1024x768.png 1024x768
+[Codex1124] shot perm17_charselect_button_buyable_1920x1080.png 1920x1080
+[TestProgress] 17:46:07.935 END Passed 0.4s CCT.Tests.CodexReadabilityEvidenceCapture.CharacterSelect_PermanentButton_Buyable (t=0.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1079" name="Codex_AllUndiscovered" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.Codex_AllUndiscovered" methodname="Codex_AllUndiscovered" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="859719492" result="Passed" start-time="2026-11-24 08:46:07Z" end-time="2026-11-24 08:46:08Z" duration="0.369151" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:46:07.935 START CCT.Tests.CodexReadabilityEvidenceCapture.Codex_AllUndiscovered (t=0.5 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-50e37ebca0c443c7b22a4cebad300a3d\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-50e37ebca0c443c7b22a4cebad300a3d\save.json (source=Fresh, v2)
+[Codex1124] undiscovered count=카드 발견 0/35  ·  히든 스킬 발견 0/24  ·  직업 연구 해금 기록 0/15  ·  영구 강화 해금 0/24
+[Codex1124] shot codex_undiscovered_1280x720.png 1280x720
+[Codex1124] shot codex_undiscovered_1024x768.png 1024x768
+[Codex1124] shot codex_undiscovered_1920x1080.png 1920x1080
+[Codex1124] shot codex_detail_material_tea_undiscovered_1280x720.png 1280x720
+[Codex1124] shot codex_detail_material_tea_undiscovered_1024x768.png 1024x768
+[Codex1124] shot codex_detail_material_tea_undiscovered_1920x1080.png 1920x1080
+[TestProgress] 17:46:08.306 END Passed 0.4s CCT.Tests.CodexReadabilityEvidenceCapture.Codex_AllUndiscovered (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1078" name="Codex_States" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.Codex_States" methodname="Codex_States" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="394587381" result="Passed" start-time="2026-11-24 08:46:08Z" end-time="2026-11-24 08:46:09Z" duration="1.296041" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:46:08.306 START CCT.Tests.CodexReadabilityEvidenceCapture.Codex_States (t=0.9 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-06c11878908c4ee1944c4e03e36c636e\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-06c11878908c4ee1944c4e03e36c636e\save.json (source=Fresh, v2)
+[Codex1124] count=카드 발견 16/35  ·  히든 스킬 발견 0/24  ·  직업 연구 해금 기록 7/15  ·  영구 강화 해금 1/24
+[Codex1124] liqueur=게이지를 채우는 데 필요한 재료 -8% | meta=(등급 일반, 발견함)
+[Codex1124] materials=(칵테일 재료 6/6종 · 누적 3038개, <color=#E8E8E8>진, 럼, 보드카, 데킬라</color> <color=#E8E8E8>외 2종</color>  <color=#A09AA8>(눌러서 보기)</color>) / (커피 원두 6/6종 · 누적 292개, <color=#E8E8E8>에티오피아 원두</color> <color=#E8E8E8>외 5종</color>  <color=#A09AA8>(눌러서 보기)</color>)
+[Codex1124] shot codex_all_1280x720.png 1280x720
+[Codex1124] shot codex_all_1024x768.png 1024x768
+[Codex1124] shot codex_all_1920x1080.png 1920x1080
+[Codex1124] shot codex_filter_cocktail_1280x720.png 1280x720
+[Codex1124] shot codex_filter_cocktail_1024x768.png 1024x768
+[Codex1124] shot codex_filter_cocktail_1920x1080.png 1920x1080
+[Codex1124] shot codex_filter_hybrid_1280x720.png 1280x720
+[Codex1124] shot codex_filter_hybrid_1024x768.png 1024x768
+[Codex1124] shot codex_filter_hybrid_1920x1080.png 1920x1080
+[Codex1124] shot codex_scroll_mid_1280x720.png 1280x720
+[Codex1124] shot codex_scroll_mid_1024x768.png 1024x768
+[Codex1124] shot codex_scroll_mid_1920x1080.png 1920x1080
+[Codex1124] shot codex_scroll_bottom_1280x720.png 1280x720
+[Codex1124] shot codex_scroll_bottom_1024x768.png 1024x768
+[Codex1124] shot codex_scroll_bottom_1920x1080.png 1920x1080
+[Codex1124] shot codex_keyboard_focus_card_1280x720.png 1280x720
+[Codex1124] shot codex_keyboard_focus_card_1024x768.png 1024x768
+[Codex1124] shot codex_keyboard_focus_card_1920x1080.png 1920x1080
+[Codex1124] shot codex_keyboard_focus_material_1280x720.png 1280x720
+[Codex1124] shot codex_keyboard_focus_material_1024x768.png 1024x768
+[Codex1124] shot codex_keyboard_focus_material_1920x1080.png 1920x1080
+[Codex1124] shot codex_detail_material_coffee_1280x720.png 1280x720
+[Codex1124] shot codex_detail_material_coffee_1024x768.png 1024x768
+[Codex1124] shot codex_detail_material_coffee_1920x1080.png 1920x1080
+[Codex1124] shot codex_detail_card_1280x720.png 1280x720
+[Codex1124] shot codex_detail_card_1024x768.png 1024x768
+[Codex1124] shot codex_detail_card_1920x1080.png 1920x1080
+[Codex1124] shot codex_detail_permanent_1280x720.png 1280x720
+[Codex1124] shot codex_detail_permanent_1024x768.png 1024x768
+[Codex1124] shot codex_detail_permanent_1920x1080.png 1920x1080
+[TestProgress] 17:46:09.602 END Passed 1.3s CCT.Tests.CodexReadabilityEvidenceCapture.Codex_States (t=2.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1081" name="CoffeeTree_States" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.CoffeeTree_States" methodname="CoffeeTree_States" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="158360186" result="Passed" start-time="2026-11-24 08:46:09Z" end-time="2026-11-24 08:46:09Z" duration="0.237944" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:46:09.602 START CCT.Tests.CodexReadabilityEvidenceCapture.CoffeeTree_States (t=2.2 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-65295112d69d4c8d8acb52eadf519336\settings.json (source=Defaults)
+[Codex1124] shot coffee_tree_2pt_before_1280x720.png 1280x720
+[Codex1124] shot coffee_tree_2pt_before_1024x768.png 1024x768
+[Codex1124] shot coffee_tree_2pt_before_1920x1080.png 1920x1080
+[Codex1124] coffee tree after buy pts=1 status=✓ 해금됨 · 다음 2단계 비용 1
+[Codex1124] shot coffee_tree_1pt_after_purchase_1280x720.png 1280x720
+[Codex1124] shot coffee_tree_1pt_after_purchase_1024x768.png 1024x768
+[Codex1124] shot coffee_tree_1pt_after_purchase_1920x1080.png 1920x1080
+[TestProgress] 17:46:09.840 END Passed 0.2s CCT.Tests.CodexReadabilityEvidenceCapture.CoffeeTree_States (t=2.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1080" name="PermanentShop_States" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.PermanentShop_States" methodname="PermanentShop_States" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="1073802663" result="Passed" start-time="2026-11-24 08:46:09Z" end-time="2026-11-24 08:46:10Z" duration="0.879255" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:46:09.841 START CCT.Tests.CodexReadabilityEvidenceCapture.PermanentShop_States (t=2.4 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-d2f2ff4451c145cb80ae3bcebe0c2eab\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-d2f2ff4451c145cb80ae3bcebe0c2eab\save.json (source=Fresh, v2)
+[Codex1124] perm summary=(9, 3)
+[Codex1124] shot perm17_before_purchase_1280x720.png 1280x720
+[Codex1124] shot perm17_before_purchase_1024x768.png 1024x768
+[Codex1124] shot perm17_before_purchase_1920x1080.png 1920x1080
+[Codex1124] perm purchased=Purchased header=보유 스페셜티 6 | 해금 1 / 24 | 누적 획득 9 · 사용 3 · 클리어 0회 · 해금한 영구 강화는 다음 런의 몹도 강하게 합니다
+[Codex1124] shot perm17_after_purchase_next_step_1280x720.png 1280x720
+[Codex1124] shot perm17_after_purchase_next_step_1024x768.png 1024x768
+[Codex1124] shot perm17_after_purchase_next_step_1920x1080.png 1920x1080
+[Codex1124] shot perm17_owned_detail_1280x720.png 1280x720
+[Codex1124] shot perm17_owned_detail_1024x768.png 1024x768
+[Codex1124] shot perm17_owned_detail_1920x1080.png 1920x1080
+[Codex1124] shot perm17_master_locked_1280x720.png 1280x720
+[Codex1124] shot perm17_master_locked_1024x768.png 1024x768
+[Codex1124] shot perm17_master_locked_1920x1080.png 1920x1080
+[Codex1124] shot perm17_master_complete_1280x720.png 1280x720
+[Codex1124] shot perm17_master_complete_1024x768.png 1024x768
+[Codex1124] shot perm17_master_complete_1920x1080.png 1920x1080
+[TestProgress] 17:46:10.720 END Passed 0.9s CCT.Tests.CodexReadabilityEvidenceCapture.PermanentShop_States (t=3.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1083" name="WeaponSelect_SwordCard" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.WeaponSelect_SwordCard" methodname="WeaponSelect_SwordCard" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="1000429157" result="Passed" start-time="2026-11-24 08:46:10Z" end-time="2026-11-24 08:46:10Z" duration="0.245907" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:46:10.721 START CCT.Tests.CodexReadabilityEvidenceCapture.WeaponSelect_SwordCard (t=3.3 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-5b1adbaaa46641d1b0adb71bcbfc0d76\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-5b1adbaaa46641d1b0adb71bcbfc0d76\save.json (source=Fresh, v2)
+[Codex1124] sword desc=넓게 베기 · 피해 +25%. / 맞은 일반 몬스터가 0.25초 동안 / 움직임을 멈춥니다 (보스 제외). / 근접 강화 카드를 사용.
+[Codex1124] shot weapon_select_bartender_1280x720.png 1280x720
+[Codex1124] shot weapon_select_bartender_1024x768.png 1024x768
+[Codex1124] shot weapon_select_bartender_1920x1080.png 1920x1080
+[Codex1124] shot weapon_select_tea_sword_bow_1280x720.png 1280x720
+[Codex1124] shot weapon_select_tea_sword_bow_1024x768.png 1024x768
+[Codex1124] shot weapon_select_tea_sword_bow_1920x1080.png 1920x1080
+[TestProgress] 17:46:10.968 END Passed 0.2s CCT.Tests.CodexReadabilityEvidenceCapture.WeaponSelect_SwordCard (t=3.5 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
