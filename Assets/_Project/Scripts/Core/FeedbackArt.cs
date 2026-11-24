@@ -14,6 +14,12 @@ namespace CCT
         public const string BitterMist = "bitter_mist", GlassThief = "glass_thief", BitterMistPulse = "bitter_mist_pulse",
             MixingRushAura = "mixing_rush_aura", StatusAttackSpeedDown = "status_attack_speed_down", StatusHealBlock = "status_heal_block";
 
+        /// <summary>2026-11-24 #24 최종 보스 예고(바·찻집 공용, ArtSource/final-boss-telegraphs-2026-11-24/manifest.json).
+        /// 알파 상자(content)가 실제 판정 경계 — Band/GroundRing이 이 상자를 판정 치수로 늘린다.</summary>
+        public const string FinalRefundRing = "final_refund_ring", FinalStarFan = "final_star_fan", FinalAimTrack = "final_aim_track",
+            FinalAimLock = "final_aim_lock", FinalQueueWall = "final_queue_wall";
+        const string FinalTelegraphSource = "ArtSource/final-boss-telegraphs-2026-11-24";
+
         /// <summary>바닥 효과 알파 영역 가로(px, manifest 실측): 쓴맛 안개 파동 바깥 테두리 244, 혼합 러시 오라 활성 평균 약 200.</summary>
         public const float PulseOutlinePx = 244f, AuraContentPx = 200f;
 
@@ -26,7 +32,16 @@ namespace CCT
         struct Spec
         {
             public string kind; public Vector2 frame; public Vector2 pivot; public float bodyPx, targetWorld; public ClipSpec[] clips; public string folder, pattern;
+            /// <summary>바닥 효과 알파 상자(픽셀, 좌하단 원점 x,y,w,h). 비면 프레임 전체.</summary>
+            public Rect contentPx; public string source;
         }
+
+        /// <summary>#24 예고 스펙: manifest alphaBoundsTopLeftPx(좌상단 기준 x0,y0,x1,y1)를 좌하단 기준 상자로 바꿔 둔다.</summary>
+        static Spec Telegraph(string id, int w, int h, int x0, int y0, int x1, int y1, ClipSpec clip, float pivotX = 0.5f) => new Spec
+        {
+            kind = "ground_fx", frame = new Vector2(w, h), pivot = new Vector2(pivotX, 0.5f), folder = "FeedbackArt/" + id + "/", pattern = "{0}_{1}_{2:00}",
+            clips = new[] { clip }, contentPx = new Rect(x0, h - y1, x1 - x0, y1 - y0), source = FinalTelegraphSource,
+        };
 
         static readonly Dictionary<string, Spec> table = new Dictionary<string, Spec>
         {
@@ -53,6 +68,12 @@ namespace CCT
                 kind = "ground_fx", frame = new Vector2(256, 128), pivot = new Vector2(0.5f, 0.5f), folder = "FeedbackArt/mixing_rush_aura/", pattern = "{0}_{1}_{2:00}",
                 clips = new[] { new ClipSpec("active", 6, 8f, true), new ClipSpec("off", 4, 12f, false) },
             },
+            [FinalRefundRing] = Telegraph(FinalRefundRing, 256, 128, 68, 4, 188, 124, new ClipSpec("effect", 6, 7.5f, false)),
+            // 별점 부채: 피벗 = 휴대폰 발사점(왼쪽에서 11.62px, 시작점 뒤 탄 반경 0.62 포함). 스프라이트 메타 피벗과 같은 값.
+            [FinalStarFan] = Telegraph(FinalStarFan, 256, 128, 2, 2, 254, 126, new ClipSpec("effect", 6, 7.5f, false), 11.620689655172415f / 256f),
+            [FinalAimTrack] = Telegraph(FinalAimTrack, 256, 16, 2, 2, 254, 14, new ClipSpec("effect", 4, 10f, true)),
+            [FinalAimLock] = Telegraph(FinalAimLock, 256, 32, 2, 2, 254, 30, new ClipSpec("effect", 3, 12f, false)),
+            [FinalQueueWall] = Telegraph(FinalQueueWall, 256, 64, 2, 2, 254, 62, new ClipSpec("effect", 6, 6f, false)),
             [StatusAttackSpeedDown] = StatusSpec(),
             [StatusHealBlock] = StatusSpec(),
         };
@@ -93,10 +114,12 @@ namespace CCT
             float footY = s.pivot.y * s.frame.y;
             return new ArtAsset
             {
-                assetId = id, kind = s.kind, status = "ready", sourcePath = "ArtSource/feedback-art-2026-11-22/revisions/v1-formal-pixels",
+                assetId = id, kind = s.kind, status = "ready", sourcePath = s.source ?? "ArtSource/feedback-art-2026-11-22/revisions/v1-formal-pixels",
                 pixelsPerUnit = 128f, frameSizePx = s.frame, pivotNormalized = s.pivot,
                 bodyHeightPx = s.bodyPx, targetBodyHeightWorld = s.targetWorld,
-                contentRectNormalized = body ? new Rect(0f, s.pivot.y, 1f, s.bodyPx / s.frame.y) : new Rect(0f, 0f, 1f, 1f),
+                contentRectNormalized = body ? new Rect(0f, s.pivot.y, 1f, s.bodyPx / s.frame.y)
+                    : s.contentPx.width > 0f ? new Rect(s.contentPx.x / s.frame.x, s.contentPx.y / s.frame.y, s.contentPx.width / s.frame.x, s.contentPx.height / s.frame.y)
+                    : new Rect(0f, 0f, 1f, 1f),
                 clips = clips,
             };
         }

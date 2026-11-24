@@ -22,7 +22,7 @@ namespace CCT.Tests
                     total += clip.frames.Length;
                 }
             }
-            Assert.AreEqual(68, total, "몸체 46 + 바닥 효과 20 + HUD 2");
+            Assert.AreEqual(93, total, "몸체 46 + 바닥 효과 20 + HUD 2 + #24 최종 보스 예고 25");
         }
 
         [Test]
