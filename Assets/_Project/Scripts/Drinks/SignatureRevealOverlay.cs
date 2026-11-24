@@ -50,42 +50,70 @@ namespace CCT
             if (kb != null && (kb.enterKey.wasPressedThisFrame || kb.escapeKey.wasPressedThisFrame || kb.spaceKey.wasPressedThisFrame)) skip = true;
         }
 
+        /// <summary>최초 발견 시트 표시 이미지(검수용). 아트가 없으면 null(절차형 대체).</summary>
+        public Image ArtImage { get; private set; }
+        public string ArtClip { get; private set; }
+
         IEnumerator RunFull(SignatureDef def, bool low)
         {
             var root = UiFactory.Stretch("Root", canvas.transform);
             var dim = UiFactory.AddImage(root, new Color(0.03f, 0.02f, 0.04f, 0f));
             dim.raycastTarget = true;
             root.gameObject.AddComponent<ClickToSkip>().Owner = this;
-            Image ring = null, ring2 = null;
-            if (!low)
+
+            // #25 아트(ArtSource/signature-drinks-2026-11-24): 320×180 시트를 16:9 비율 그대로 화면 가운데에 맞춘다(720p 4배·1080p 6배 정수 확대, Point).
+            // 저이펙트는 1.3초부터 같은 크기의 정적 잔만(입자·배경 장식·크기 변화 없음). 글자는 아트에 굽지 않고 아래 런타임 텍스트로.
+            ArtClip = SignatureArt.DiscoveryClip(def.id, low);
+            var artFrames = SignatureArt.Load(ArtClip);
+            var artClip = SignatureArt.Get(ArtClip);
+            if (artFrames != null)
             {
+                ArtImage = UiFactory.AddImage(UiFactory.Stretch("Art", root), Color.white);
+                ArtImage.sprite = artFrames[0];
+                ArtImage.preserveAspect = true;
+                ArtImage.raycastTarget = false;
+                ArtImage.enabled = !low;
+            }
+            Image ring = null, ring2 = null;
+            if (!low && artFrames == null)
+            {
+                // 아트 미임포트 대체(기존 절차형)
                 ring = UiFactory.AddImage(UiFactory.Place("Ring", root, new Vector2(0.5f, 0.5f), new Vector2(0f, 60f), new Vector2(100f, 100f)), def.accent);
                 ring.sprite = SpriteFactory.Circle; ring.raycastTarget = false;
                 ring2 = UiFactory.AddImage(UiFactory.Place("Ring2", root, new Vector2(0.5f, 0.5f), new Vector2(0f, 60f), new Vector2(60f, 60f)), Color.white);
                 ring2.sprite = SpriteFactory.Circle; ring2.raycastTarget = false;
             }
-            var head = UiFactory.AddText(UiFactory.Place("Head", root, new Vector2(0.5f, 0.5f), new Vector2(0f, 250f), new Vector2(1400f, 50f)), "정식 레시피 발견!", 34, TextAnchor.MiddleCenter, new Color(1f, 0.88f, 0.5f));
-            var ingredients = UiFactory.AddText(UiFactory.Place("Ingredients", root, new Vector2(0.5f, 0.5f), new Vector2(0f, 170f), new Vector2(1400f, 50f)), "", 26, TextAnchor.MiddleCenter, new Color(0.9f, 0.9f, 0.9f));
-            var name = UiFactory.AddText(UiFactory.Place("Name", root, new Vector2(0.5f, 0.5f), new Vector2(0f, 60f), new Vector2(1400f, 110f)), "", 76, TextAnchor.MiddleCenter, Color.white);
-            var category = UiFactory.AddText(UiFactory.Place("Category", root, new Vector2(0.5f, 0.5f), new Vector2(0f, -20f), new Vector2(1400f, 40f)), "", 24, TextAnchor.MiddleCenter, new Color(0.8f, 0.8f, 0.85f));
-            var sig = UiFactory.AddText(UiFactory.Place("Signature", root, new Vector2(0.5f, 0.5f), new Vector2(0f, -110f), new Vector2(1500f, 110f)), "", 30, TextAnchor.MiddleCenter, def.accent);
-            var foot = UiFactory.AddText(UiFactory.Place("Foot", root, new Vector2(0.5f, 0f), new Vector2(0f, 60f), new Vector2(1200f, 40f)), "클릭·Enter로 건너뛰기", 22, TextAnchor.MiddleCenter, new Color(0.7f, 0.7f, 0.7f));
-            foreach (var t in new[] { head, ingredients, name, category, sig, foot }) t.raycastTarget = false;
+            // 글자 배치(HANDOFF 720p 시안 → 1080 기준 ×1.5): 제목 y113→170, 이름 586→879, 시그니처 636→954, 하단 안내 678→1017(위에서).
+            // 재료 줄은 제목 아래, 분류는 제목 줄에 붙여 중앙 잔과 겹치지 않게 한다.
+            var top = new Vector2(0.5f, 1f);
+            var head = UiFactory.AddText(UiFactory.Place("Head", root, top, new Vector2(0f, -150f), new Vector2(1500f, 44f)), "정식 레시피 발견!", 34, TextAnchor.MiddleCenter, new Color(1f, 0.88f, 0.5f));
+            var ingredients = UiFactory.AddText(UiFactory.Place("Ingredients", root, top, new Vector2(0f, -200f), new Vector2(1500f, 40f)), "", 26, TextAnchor.MiddleCenter, new Color(0.9f, 0.9f, 0.9f));
+            var name = UiFactory.AddText(UiFactory.Place("Name", root, top, new Vector2(0f, -835f), new Vector2(1500f, 88f)), "", 64, TextAnchor.MiddleCenter, Color.white);
+            var sig = UiFactory.AddText(UiFactory.Place("Signature", root, top, new Vector2(0f, -932f), new Vector2(1600f, 44f)), "", 30, TextAnchor.MiddleCenter, def.accent);
+            var foot = UiFactory.AddText(UiFactory.Place("Foot", root, top, new Vector2(0f, -998f), new Vector2(1600f, 38f)), "", 22, TextAnchor.MiddleCenter, new Color(0.85f, 0.85f, 0.85f));
+            var skipHint = UiFactory.AddText(UiFactory.Place("Skip", root, new Vector2(1f, 1f), new Vector2(-30f, -24f), new Vector2(420f, 32f)), "클릭·Enter로 건너뛰기", 20, TextAnchor.MiddleRight, new Color(0.7f, 0.7f, 0.7f));
+            foreach (var tx in new[] { head, ingredients, name, sig, foot, skipHint }) { tx.raycastTarget = false; tx.resizeTextForBestFit = true; tx.resizeTextMinSize = 16; tx.resizeTextMaxSize = tx.fontSize; }
             head.enabled = false;
+            string category = string.IsNullOrEmpty(def.category) ? "IBA 공식 레시피" : $"IBA 공식 레시피 · {def.category}";
 
             float t0 = 0f;
             while (t0 < FullSeconds && !skip)
             {
                 t0 += Time.unscaledDeltaTime;
-                float k = t0 / FullSeconds;
+                float ms = t0 * 1000f;
                 dim.color = new Color(0.03f, 0.02f, 0.04f, Mathf.Min(0.9f, t0 / 0.3f * 0.9f));
                 head.enabled = t0 >= 0.15f;
-                // 0.3~1.2s 재료 이름이 하나씩(처음 공개). 1.3s 이름, 1.8s 시그니처, 2.2s 도감 기록.
+                // 0.3~1.2s 재료 이름이 하나씩(처음 공개). 1.3s 잔·이름(아트의 잔 등장과 같은 시각), 1.8s 시그니처, 2.2s 도감 기록.
                 int shownIng = Mathf.Clamp(Mathf.FloorToInt((t0 - 0.3f) / 0.3f) + 1, 0, def.ingredientIds.Length);
                 ingredients.text = IngredientNames(def, shownIng);
-                if (t0 >= 1.3f) { name.text = def.name; category.text = string.IsNullOrEmpty(def.category) ? "IBA 공식 레시피" : $"IBA 공식 레시피 · {def.category}"; }
-                if (t0 >= 1.8f) sig.text = $"시그니처 · {def.effectName} — {def.effectShort}\n이 잔을 마시고 출발하면 전투에서 <b>한 번</b> 쓸 수 있어요 (Q 또는 시그니처 칸 클릭)";
-                if (t0 >= 2.2f) foot.text = "도감 · 정식 레시피에 기록했습니다";
+                if (t0 >= 1.3f) { name.text = def.name; head.text = "정식 레시피 발견! · " + category; }
+                if (t0 >= 1.8f) sig.text = $"시그니처 · {def.effectName} — {def.effectShort}";
+                if (t0 >= 2.2f) foot.text = "이 잔을 마시고 출발하면 전투에서 한 번 (Q 또는 시그니처 칸) · 도감에 기록했습니다";
+                if (ArtImage != null)
+                {
+                    if (low) ArtImage.enabled = ms >= SignatureArt.LowDiscoveryStartMs;
+                    else ArtImage.sprite = artFrames[SignatureArt.FrameAt(artClip, ms)];
+                }
                 if (ring != null)
                 {
                     float rk = Mathf.Clamp01((t0 - 0.3f) / 0.9f);
@@ -94,7 +122,6 @@ namespace CCT
                     float r2 = Mathf.Clamp01((t0 - 1.25f) / 0.5f);
                     ring2.rectTransform.sizeDelta = Vector2.one * Mathf.Lerp(60f, 520f, r2);
                     ring2.color = new Color(1f, 1f, 1f, t0 < 1.25f ? 0f : 0.6f * (1f - r2));
-                    name.transform.localScale = Vector3.one * (t0 < 1.3f ? 1f : Mathf.Lerp(1.25f, 1f, Mathf.Clamp01((t0 - 1.3f) / 0.25f)));
                 }
                 yield return null;
             }

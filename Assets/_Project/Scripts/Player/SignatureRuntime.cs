@@ -20,6 +20,9 @@ namespace CCT
         GameManager game;
         PlayerController player;
         float sidecarRemaining;
+        SignatureVfx.SidecarTrail sidecarFx;
+        /// <summary>마지막 화이트 아웃에서 경직(=얼음 배지)이 실제로 걸린 적 수(검수용).</summary>
+        public int LastHeld { get; private set; }
 
         /// <summary>지금 충전된(아직 쓰지 않은) 시그니처. 없으면 null.</summary>
         public SignatureDef Charged { get; private set; }
@@ -70,6 +73,7 @@ namespace CCT
             Charged = null;
             UsedDef = def;
             UseSerial++;
+            LastHeld = 0;
             LastAffected = Execute(def);
             LastMessage = $"시그니처 · {def.effectName} 사용함";
             return true;
@@ -90,14 +94,15 @@ namespace CCT
                         if (e == null || e.IsDead || ((Vector2)e.transform.position - at).sqrMagnitude > r2) continue;
                         Hit(e, dmg); e.ApplySignatureHold(SaltRimHold); n++;
                     }
-                    SignatureVfx.Ring(at, SaltRimRadius, def.accent);
+                    SignatureVfx.SaltRim(at, def.accent); // 발동 순간 좌표 고정, 지름 8월드 = 반경 4 판정
                     return n;
                 }
                 case SignatureEffect.Sidecar:
                     player.GrantInvulnerability(SidecarSeconds);
                     sidecarRemaining = SidecarSeconds;
                     game.Stats.signatureMoveSpeed = SidecarMoveSpeed;
-                    SignatureVfx.Aura(player.transform, SidecarSeconds, def.accent);
+                    sidecarFx?.Stop();
+                    sidecarFx = SignatureVfx.Sidecar(player, SidecarSeconds); // 5초 바람선·잔상(저이펙트: 발밑 정적 표식)
                     return 0;
                 case SignatureEffect.WhiteOut:
                 {
@@ -107,10 +112,12 @@ namespace CCT
                     foreach (var e in Enemy.Active.ToArray())
                     {
                         if (e == null || e.IsDead || !OnScreen(cam, e.transform.position)) continue;
-                        Hit(e, dmg); e.ApplySignatureHold(WhiteOutHold); n++;
+                        Hit(e, dmg);
+                        // 얼음 배지는 경직이 실제로 걸린(살아 있는 일반·정예) 대상에게만 — 보스·사망·플레이어는 ApplySignatureHold가 false.
+                        if (e.ApplySignatureHold(WhiteOutHold)) { SignatureVfx.Badge(e, WhiteOutHold); LastHeld++; }
+                        n++;
                     }
-                    SignatureVfx.ScreenFlash(def.accent);
-                    SignatureVfx.Ring(at, 9f, def.accent);
+                    SignatureVfx.WhiteOutEdge(); // 가장자리 서리만(가운데 시야 보존, 전체 화면 틴트·큰 원 없음)
                     return n;
                 }
             }
@@ -141,12 +148,18 @@ namespace CCT
         {
             if (sidecarRemaining <= 0f) return;
             sidecarRemaining -= Time.deltaTime;
-            if (sidecarRemaining <= 0f && game != null && game.Stats != null) { sidecarRemaining = 0f; game.Stats.signatureMoveSpeed = 0f; }
+            if (sidecarRemaining <= 0f)
+            {
+                sidecarRemaining = 0f;
+                if (game != null && game.Stats != null) game.Stats.signatureMoveSpeed = 0f;
+                sidecarFx?.Stop(); sidecarFx = null; // 버프 종료 = 바람선·잔상 모두 제거
+            }
         }
 
         void OnDestroy()
         {
             if (game != null && game.Stats != null) game.Stats.signatureMoveSpeed = 0f;
+            if (sidecarFx != null) Destroy(sidecarFx.gameObject);
         }
     }
 }
