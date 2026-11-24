@@ -128,9 +128,7 @@ namespace CCT.Tests
             Line($"perm summary={PermanentSkillView.Summary()}");
             yield return Shots(canvas, "perm17_before_purchase");
             shop.TryBuy(shop.Nodes.First(n => n.id == "dark_roast_blend"));
-            Line("perm purchased=" + shop.LastPurchaseResult + " header=" + shop.HeaderText.Replace("
-", " | "));
-            shop.GetComponentInChildren<Button>(); // 갱신은 TryBuy → Refresh 안에서 이미 끝났다
+            Line("perm purchased=" + shop.LastPurchaseResult + " header=" + shop.HeaderText.Replace("\n", " | "));
             yield return Shots(canvas, "perm17_after_purchase_next_step");
             shop.SelectGroup(PermanentSkillGroup.Attack);
             EventSystem.current.SetSelectedGameObject(GameObject.Find("Node_dark_roast_blend"));
@@ -154,8 +152,7 @@ namespace CCT.Tests
             PermanentProgress.AddSpecialty(3);
             var view = CharacterSelectView.Show((j, w) => { });
             yield return null;
-            Line("char-select shop label=" + view.PermanentShopButton.GetComponentInChildren<Text>().text.Replace("
-", " / "));
+            Line("char-select shop label=" + view.PermanentShopButton.GetComponentInChildren<Text>().text.Replace("\n", " / "));
             yield return Shots(view.GetComponent<Canvas>(), "perm17_charselect_button_buyable");
             UnityEngine.Object.DestroyImmediate(view.gameObject);
         }
