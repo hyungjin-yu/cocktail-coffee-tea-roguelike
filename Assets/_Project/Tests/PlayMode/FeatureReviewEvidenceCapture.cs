@@ -117,6 +117,7 @@ namespace CCT.Tests
             yield return Build(Job.TeaSommelier, WeaponKind.Sword, false);
             CardData C(string id) => CardDatabase.LoadAll().First(c => c.id == id);
             var offers = new List<CardOffer> { new CardOffer { card = C("green_tea"), currentStacks = 0 }, new CardOffer { card = C("oolong"), currentStacks = 1 }, new CardOffer { card = C("aged_puerh"), currentStacks = 2 } };
+            SettingsService.SetEffectsLevel(SettingsData.EffectsLow); // 등장 연출 없이 바로 정착한 모습(일반 효과의 정착 화면은 기존 standard_card_open_settled)
             game.CardView.Show(offers, o => { });
             for (int fr = 0; fr < 6000 && !(game.CardView.EntranceDone(0) && game.CardView.EntranceDone(1) && game.CardView.EntranceDone(2)); fr++) yield return null;
             for (int fr = 0; fr < 30; fr++) yield return null;
