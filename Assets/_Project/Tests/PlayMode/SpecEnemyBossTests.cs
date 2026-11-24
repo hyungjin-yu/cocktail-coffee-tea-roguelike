@@ -350,7 +350,7 @@ namespace CCT.Tests
             float suppressedAt = -1f;
             int enemiesBeforeSummon2 = -1, summon2 = -1;
             float t0 = Time.time;
-            while (order.Count < 6 && Time.time - t0 < 60f)
+            while (order.Count < 7 && Time.time - t0 < 60f)
             {
                 string clip = boss.Animator != null ? boss.Animator.Current?.name : null;
                 if (clip != last && clip != null && clip != "idle" && clip != "move" && clip != "hurt")
@@ -362,9 +362,9 @@ namespace CCT.Tests
                         boss.Invulnerable = false;
                         boss.TakeDamage(boss.Hp - boss.MaxHp * 0.49f);
                     }
-                    if (order.Count == 5) enemiesBeforeSummon2 = Enemy.Active.Count;
+                    if (order.Count == 6) enemiesBeforeSummon2 = Enemy.Active.Count;
                 }
-                if (order.Count == 6 && summon2 < 0) summon2 = Enemy.Active.Count - enemiesBeforeSummon2;
+                if (order.Count == 7 && summon2 < 0) summon2 = Enemy.Active.Count - enemiesBeforeSummon2;
                 last = clip;
                 if (game.Stats.BonusesSuppressed && !sawSuppressed)
                 {
@@ -384,7 +384,8 @@ namespace CCT.Tests
             yield return new WaitForSeconds(1.2f);
             if (summon2 < 0 || summon2 == 0) summon2 = Enemy.Active.Count - enemiesBeforeSummon2;
             Time.timeScale = 1f;
-            Assert.That(order.Take(6), Is.EqualTo(new[] { "refund", "summon", "review", "reject", "refund", "summon" }), "고정 순서 환불→소환→별점→주문 부정");
+            // 2026-11-24 #24: 5번째 "영수증 저격"(review 클립 재사용)이 주문 부정 뒤에 추가됐다 — 두 번째 소환은 7번째.
+            Assert.That(order.Take(7), Is.EqualTo(new[] { "refund", "summon", "review", "reject", "review", "refund", "summon" }), "고정 순서 환불→소환→별점→주문 부정→저격");
             Assert.IsTrue(sawSuppressed && restored, "환불 범위 안: 무효화 후 복원");
             Assert.AreEqual(Balance.BossArrivalGraceSeconds + 3f, times[0], 0.4f, "등장 안내 1초 + 첫 지연 3초 — 측정 " + times[0]);
             Assert.AreEqual(7f, times[1] - times[0], 0.4f, "일반 대기 7초");

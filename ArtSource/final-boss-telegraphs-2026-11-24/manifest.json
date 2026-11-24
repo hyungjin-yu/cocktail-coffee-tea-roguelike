@@ -1,0 +1,316 @@
+{
+  "specVersion": "1.0",
+  "issue": 24,
+  "encoding": "RGBA8",
+  "gridPx": 2,
+  "filter": "Point",
+  "mipmaps": false,
+  "compression": "None",
+  "mesh": "FullRect",
+  "alphaFillMax": 0.403921568627451,
+  "sortOrder": "GroundZone (1)",
+  "rotateDirection": "+X",
+  "playFade": false,
+  "sprites": {
+    "final_refund_ring": {
+      "frameSizePx": [
+        256,
+        128
+      ],
+      "alphaBoundsTopLeftPx": [
+        68,
+        4,
+        188,
+        124
+      ],
+      "alphaSizePx": [
+        120,
+        120
+      ],
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "packedSource": "final_refund_ring/final_refund_ring.aseprite",
+      "anchorPxBottomLeft": {
+        "center": [
+          128.0,
+          64.0
+        ]
+      },
+      "largestPngBytes": 1066,
+      "clip": {
+        "name": "effect",
+        "fps": 7.5,
+        "loop": false,
+        "holdLastFrame": true,
+        "frames": [
+          "final_refund_ring/final_refund_ring_effect_00.png",
+          "final_refund_ring/final_refund_ring_effect_01.png",
+          "final_refund_ring/final_refund_ring_effect_02.png",
+          "final_refund_ring/final_refund_ring_effect_03.png",
+          "final_refund_ring/final_refund_ring_effect_04.png",
+          "final_refund_ring/final_refund_ring_effect_05.png"
+        ],
+        "lowEffectsFrame": 0
+      },
+      "anchor": "bossFoot",
+      "durationSeconds": 0.8,
+      "radiusWorld": 4,
+      "scaleXY": [
+        8.533333333333333,
+        8.533333333333333
+      ]
+    },
+    "final_star_fan": {
+      "frameSizePx": [
+        256,
+        128
+      ],
+      "alphaBoundsTopLeftPx": [
+        2,
+        2,
+        254,
+        126
+      ],
+      "alphaSizePx": [
+        252,
+        124
+      ],
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.045393318965517244,
+        0.5
+      ],
+      "packedSource": "final_star_fan/final_star_fan.aseprite",
+      "anchorPxBottomLeft": {
+        "shotOrigin": [
+          11.620689655172415,
+          64
+        ]
+      },
+      "largestPngBytes": 1121,
+      "clip": {
+        "name": "effect",
+        "fps": 7.5,
+        "loop": false,
+        "holdLastFrame": true,
+        "frames": [
+          "final_star_fan/final_star_fan_effect_00.png",
+          "final_star_fan/final_star_fan_effect_01.png",
+          "final_star_fan/final_star_fan_effect_02.png",
+          "final_star_fan/final_star_fan_effect_03.png",
+          "final_star_fan/final_star_fan_effect_04.png",
+          "final_star_fan/final_star_fan_effect_05.png"
+        ],
+        "lowEffectsFrame": 0
+      },
+      "anchor": "reviewOrigin",
+      "durationSeconds": 0.8,
+      "anglesDegrees": [
+        -30,
+        -15,
+        0,
+        15,
+        30
+      ],
+      "rangeWorld": 15,
+      "laneWidthWorld": 1.24,
+      "worldBoundsFromAnchorXY": [
+        -0.62,
+        -8.12,
+        15.62,
+        8.12
+      ],
+      "scaleXY": [
+        8.248888888888889,
+        16.763870967741934
+      ]
+    },
+    "final_aim_track": {
+      "frameSizePx": [
+        256,
+        16
+      ],
+      "alphaBoundsTopLeftPx": [
+        2,
+        2,
+        254,
+        14
+      ],
+      "alphaSizePx": [
+        252,
+        12
+      ],
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "packedSource": "final_aim_track/final_aim_track.aseprite",
+      "anchorPxBottomLeft": {
+        "center": [
+          128.0,
+          8.0
+        ]
+      },
+      "largestPngBytes": 203,
+      "clip": {
+        "name": "effect",
+        "fps": 10,
+        "loop": true,
+        "holdLastFrame": false,
+        "frames": [
+          "final_aim_track/final_aim_track_effect_00.png",
+          "final_aim_track/final_aim_track_effect_01.png",
+          "final_aim_track/final_aim_track_effect_02.png",
+          "final_aim_track/final_aim_track_effect_03.png"
+        ],
+        "lowEffectsFrame": 0
+      },
+      "lengthWorld": 26,
+      "widthWorld": 0.12,
+      "scaleXY": [
+        13.206349206349206,
+        1.28
+      ],
+      "durationSeconds": {
+        "first": 1.2,
+        "normal": 1,
+        "enraged": 0.75,
+        "enragedSecond": 0.5
+      }
+    },
+    "final_aim_lock": {
+      "frameSizePx": [
+        256,
+        32
+      ],
+      "alphaBoundsTopLeftPx": [
+        2,
+        2,
+        254,
+        30
+      ],
+      "alphaSizePx": [
+        252,
+        28
+      ],
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "packedSource": "final_aim_lock/final_aim_lock.aseprite",
+      "anchorPxBottomLeft": {
+        "center": [
+          128.0,
+          16.0
+        ]
+      },
+      "largestPngBytes": 429,
+      "clip": {
+        "name": "effect",
+        "fps": 12,
+        "loop": false,
+        "holdLastFrame": true,
+        "frames": [
+          "final_aim_lock/final_aim_lock_effect_00.png",
+          "final_aim_lock/final_aim_lock_effect_01.png",
+          "final_aim_lock/final_aim_lock_effect_02.png"
+        ],
+        "lowEffectsFrame": 0
+      },
+      "lengthWorld": 26,
+      "widthWorld": 1.24,
+      "scaleXY": [
+        13.206349206349206,
+        5.668571428571428
+      ],
+      "durationSeconds": {
+        "normal": 0.55,
+        "enraged": 0.45
+      }
+    },
+    "final_queue_wall": {
+      "frameSizePx": [
+        256,
+        64
+      ],
+      "alphaBoundsTopLeftPx": [
+        2,
+        2,
+        254,
+        62
+      ],
+      "alphaSizePx": [
+        252,
+        60
+      ],
+      "pixelsPerUnit": 128,
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "packedSource": "final_queue_wall/final_queue_wall.aseprite",
+      "anchorPxBottomLeft": {
+        "center": [
+          128.0,
+          32.0
+        ]
+      },
+      "largestPngBytes": 538,
+      "clip": {
+        "name": "effect",
+        "fps": 6,
+        "loop": false,
+        "holdLastFrame": true,
+        "frames": [
+          "final_queue_wall/final_queue_wall_effect_00.png",
+          "final_queue_wall/final_queue_wall_effect_01.png",
+          "final_queue_wall/final_queue_wall_effect_02.png",
+          "final_queue_wall/final_queue_wall_effect_03.png",
+          "final_queue_wall/final_queue_wall_effect_04.png",
+          "final_queue_wall/final_queue_wall_effect_05.png"
+        ],
+        "lowEffectsFrame": 0
+      },
+      "lengthWorld": 21,
+      "widthWorldFormula": "lastRowY - firstRowY + 1.24",
+      "scaleXYFormula": [
+        "21 * 128 / 252",
+        "widthWorld * 128 / 60"
+      ],
+      "durationSeconds": 1,
+      "rowCentersY": [
+        -5.5,
+        -4.5,
+        -3.5,
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "gapRows": 2,
+      "gapWidthWorld": 1.76
+    }
+  },
+  "reused": {
+    "summon": {
+      "assetId": "summon_ring",
+      "durationSeconds": 1,
+      "markerRadiusWorld": 1.2,
+      "origin": "x = bossX +/- 4.3 clamped 1.2 from wall; y = -2",
+      "hasDamageFootprint": false
+    },
+    "reject": {
+      "assetId": "zone_warning_v2",
+      "radiusWorld": 1.2,
+      "durationSeconds": 0.8,
+      "poolDurationSeconds": 2,
+      "origin": "player position at fallback telegraph start"
+    }
+  }
+}

@@ -16,8 +16,12 @@ namespace CCT
 
         /// <summary>spriteResourcePath가 이 접두어로 시작하면 ArtLibrary(04 §8 VFX) ID로 본다. 예: "art:glass_shard".</summary>
         public const string ArtPrefix = "art:";
-        const float Lifetime = 3f;
+        const float Lifetime = LifetimeSeconds;
         const float HitRadius = 0.22f;
+        /// <summary>기본 탄 판정 반지름(물방울·얼음 축소 제외). 보스 예고 띠 두께 = 2×(이 값 + 플레이어 반지름)으로 실제 위험 폭을 그린다.</summary>
+        public const float BaseHitRadius = HitRadius;
+        /// <summary>탄 수명(초). 사거리 = 속도 × 이 값.</summary>
+        public const float LifetimeSeconds = 3f;
         /// <summary>57(2026-10-15) 사용자 피드백: 물방울 탄은 지금 보이는 크기의 절반(추가 ×0.5)으로, 판정 반지름도 같은 비율(0.22→0.11).
         /// 다른 탄은 그대로. 피해·속도·수명 불변.</summary>
         public const string WaterDropId = "water_drop";
