@@ -364,7 +364,7 @@ namespace CCT
                 }
                 slot.rarity.color = rarityColor;
                 slot.title.text = card.displayName;
-                slot.description.text = CardEducationSummary.Effect(card);
+                slot.description.text = GunRangeCard(card) ? GunHoming.Describe(offer.currentStacks + 1) : CardEducationSummary.Effect(card);
                 // 효과 한 줄 = 아이콘 + 능력치 색 이름 + 수치. 능력치 표에 없는 특수 효과(하이브리드 보조 활 등)는 기존 효과 글.
                 BuildEffectLines(slot, card);
                 var finalForm = AttackFinalForms.ForCard(card.id);
@@ -417,11 +417,16 @@ namespace CCT
 
         /// <summary>2026-11-22 피드백 A(5·9·12): 효과를 줄 단위로(아이콘 + 능력치 색 이름 + 짧은 수치). 3줄까지, 줄이 많으면 줄 높이·글자만 줄인다.
         /// 능력치 효과가 하나도 없으면(특수 카드) 기존 효과 글(Desc)을 그대로 보인다.</summary>
+        /// <summary>총을 고른 런에서 사거리 카드 = 탄환 유도 카드(CardSystem.Take가 같은 규칙으로 치환). 카드 ID·이름·도감은 그대로.</summary>
+        static bool GunRangeCard(CardData card) =>
+            GameManager.Instance != null && GameManager.Instance.Stats != null && GameManager.Instance.Stats.gunHoming && CardEffectsView.IsRangeCard(card);
+
         void BuildEffectLines(Slot slot, CardData card)
         {
             for (int c = slot.effects.childCount - 1; c >= 0; c--) DestroyImmediate(slot.effects.GetChild(c).gameObject);
             var list = new List<CardEffect>();
-            if (card.effects != null) foreach (var e in card.effects) if (StatStyle.Has(e.type)) list.Add(e);
+            bool gunRange = GunRangeCard(card); // 총: 사거리 효과 줄 대신 유도 설명 글(description)을 보인다
+            if (card.effects != null) foreach (var e in card.effects) if (StatStyle.Has(e.type) && !(gunRange && e.type == CardEffectType.RangePercent)) list.Add(e);
             bool lines = list.Count > 0;
             slot.description.enabled = !lines;
             slot.effects.gameObject.SetActive(lines);

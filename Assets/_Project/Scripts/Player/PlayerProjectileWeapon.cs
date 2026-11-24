@@ -70,10 +70,11 @@ namespace CCT
             int count = 1 + stats.extraThrusts;
             float damage = stats.Damage;
             int pierce = stats.pierceCount;
+            int homing = stats.gunHoming ? stats.homingLevel : 0; // 총 전용 — 활은 사거리 카드가 그대로 사거리
             if (count <= 1)
             {
-                PlayerProjectile.Spawn(origin, baseDir, ProjectileSpeed, damage, pierce, transform.parent, projectileArtId, player, true);
-                FireFinalSides(origin, baseDir, 0f, damage);
+                PlayerProjectile.Spawn(origin, baseDir, ProjectileSpeed, damage, pierce, transform.parent, projectileArtId, player, true, null, 2f, float.PositiveInfinity, homing);
+                FireFinalSides(origin, baseDir, 0f, damage, homing);
                 return;
             }
 
@@ -84,18 +85,18 @@ namespace CCT
             for (int i = 0; i < count; i++)
             {
                 var dir = Quaternion.Euler(0f, 0f, startAngle + step * i) * baseDir;
-                PlayerProjectile.Spawn(origin, dir, ProjectileSpeed, damage, pierce, transform.parent, projectileArtId, player, true);
+                PlayerProjectile.Spawn(origin, dir, ProjectileSpeed, damage, pierce, transform.parent, projectileArtId, player, true, null, 2f, float.PositiveInfinity, homing);
             }
-            FireFinalSides(origin, baseDir, spread, damage);
+            FireFinalSides(origin, baseDir, spread, damage, homing);
         }
 
-        void FireFinalSides(Vector2 origin, Vector2 direction, float spread, float damage)
+        void FireFinalSides(Vector2 origin, Vector2 direction, float spread, float damage, int homing)
         {
             if (!player.FinalForms.Has(AttackFinalForm.Spread)) return;
             float outside = spread * .5f + SpreadDegreesPerShot;
             foreach (float angle in new[] { -outside, outside })
                 PlayerProjectile.Spawn(origin, Quaternion.Euler(0f, 0f, angle) * direction, ProjectileSpeed,
-                    damage * .6f, stats.pierceCount, transform.parent, projectileArtId, player, false);
+                    damage * .6f, stats.pierceCount, transform.parent, projectileArtId, player, false, null, 2f, float.PositiveInfinity, homing);
         }
     }
 }

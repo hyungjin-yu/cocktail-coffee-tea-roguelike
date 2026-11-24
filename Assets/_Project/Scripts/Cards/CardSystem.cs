@@ -132,7 +132,7 @@ namespace CCT
             if (card == null || GetStacks(card) >= card.maxStacks) return;
             owned[card] = GetStacks(card) + 1;
             if (card.effects == null) return;
-            foreach (var effect in card.effects)
+            foreach (var effect in CardEffectsView.For(card.effects, stats.gunHoming))
                 stats.Apply(effect);
         }
 
