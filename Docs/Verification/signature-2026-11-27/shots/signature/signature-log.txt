@@ -1,0 +1,36 @@
+departure buff=공격력 +5% · 치명타 확률 +8%p dmg=12.6
+hud charged title='시그니처 · 솔트 림' state='1회 남음 · Q 또는 클릭'
+shot sig_hud_charged_1280x720.png 1280x720
+shot sig_hud_charged_1920x1080.png 1920x1080
+shot sig_hud_charged_1024x768.png 1024x768
+after run cup dmg=13.44 buff=공격력 +10% · 치명타 확률 +8%p · 최대 체력 +3%
+shot sig_salt_rim_used_1280x720.png 1280x720
+shot sig_salt_rim_used_1920x1080.png 1920x1080
+shot sig_salt_rim_used_1024x768.png 1024x768
+reuse blocked: '시그니처 · 솔트 림은 이번 판에 이미 사용했습니다.' serial=1
+shot sig_hud_used_1280x720.png 1280x720
+reveal full clip=iba_margarita_discovery last='full:iba_margarita'
+shot sig_reveal_full_0p5s_1280x720.png 1280x720
+shot sig_reveal_full_0p5s_1920x1080.png 1920x1080
+shot sig_reveal_full_0p5s_1024x768.png 1024x768
+shot sig_reveal_full_1p5s_1280x720.png 1280x720
+shot sig_reveal_short_1280x720.png 1280x720
+shot sig_reveal_low_1280x720.png 1280x720
+shot sig_reveal_low_1920x1080.png 1920x1080
+shot sig_reveal_low_1024x768.png 1024x768
+shot sig_sidecar_moving_1280x720.png 1280x720
+shot sig_sidecar_low_1280x720.png 1280x720
+book locked: <b>칵테일 정식 레시피 0 / 3 발견</b> | 국제바텐더협회(IBA) 공식 레시피와 같은 재료·비율·기법으로 실제 제조하면 발견됩니다. 차·커피는 이번 판정 대상이 아닙니다. |  | <b>???</b> — 아직 발견하지 못한 정식 레시피 — 직접 만들어 확인하세요. | <b>???</b> — 아직 발견하지 못한 정식 레시피 — 직접 만들어 확인하세요. | <b>???</b> — 아직 발견하지 못한 정식 레시피 — 직접 만들어 확인하세요. | 
+button label: 정식 레시피 0/3
+shot sig_book_locked_1280x720.png 1280x720
+shot sig_book_locked_1920x1080.png 1920x1080
+shot sig_book_locked_1024x768.png 1024x768
+book open: <b>칵테일 정식 레시피 3 / 3 발견</b> | 국제바텐더협회(IBA) 공식 레시피와 같은 재료·비율·기법으로 실제 제조하면 발견됩니다. 차·커피는 이번 판정 대상이 아닙니다. |  | <b>◆ 마가리타</b>  ·  IBA 공식 레시피 | 공식 배합: 블랑코 테킬라 50mL · 트리플 섹 20mL · 라임즙 15mL | 방법: 얼음과 셰이킹 후 차갑게 한 칵테일 잔에 거르기 · 장식: 잔 반쪽 소금 테두리(선택)(게임에서는 판정하지 않음) | 내가 처음 맞힌 배합: 블랑코 테킬라 50mL · 트리플 섹 20mL · 라임즙 15mL · 셰이킹 | 발견: 2026-11-24 20:10 | <b>시그니처 · 솔트 림</b> — 내 주변(반경 4) 적에게 공격력의 250% 피해 + 일반·정예 2초 경직. 보스는 피해만(최대 체력 12% 상한). | 이 레시피로 만든 잔을 마시면 그 판에서 한 번 사용(Q 또는 시그니처 칸). 쓰면 그 판에서는 다시 쓸 수 없습니다. | 출처: https://iba-world.com/iba-cocktail/margarita/ |  | <b>◆ 사이드카</b>  ·  IBA 공식 레시피 · The Unforgettables | 공식 배합: 코냑 50mL · 트리플 섹 20mL · 레몬즙 20mL | 방법: 얼음과 충분히 셰이킹 후 차갑게 한 칵테일 잔에 거르기 | 내가 처음 맞힌 배합: 코냑 50mL · 트리플 섹 20mL · 레몬즙 20mL · 셰이킹 | 발견: 2026-11-24 20:10 | <b>시그니처 · 사이드카 질주</b> — 5초 동안 받는 피해 무효 + 이동 속도 +40%(기존 이동 속도 상한 유지). | 이 레시피로 만든 잔을 마시면 그 판에서 한 번 사용(Q 또는 시그니처 칸). 쓰면 그 판에서는 다시 쓸 수 없습니다. | 출처: https://iba-world.com/iba-cocktail/sidecar/ |  | <b>◆ 화이트 레이디</b>  ·  IBA 공식 레시피 · The Unforgettables | 공식 배합: 진 40mL · 트리플 섹 30mL · 레몬즙 20mL | 방법: 얼음과 충분히 셰이킹 후 차갑게 한 칵테일 잔에 거르기 | 내가 처음 맞힌 배합: 진 40mL · 트리플 섹 30mL · 레몬즙 20mL · 셰이킹 | 발견: 2026-11-24 20:10 | <b>시그니처 · 화이트 아웃</b> — 화면 안 모든 적에게 공격력의 150% 피해 + 일반·정예 4초 경직. 보스는 피해만(최대 체력 12% 상한). | 이 레시피로 만든 잔을 마시면 그 판에서 한 번 사용(Q 또는 시그니처 칸). 쓰면 그 판에서는 다시 쓸 수 없습니다. | 출처: https://iba-world.com/iba-cocktail/white-lady/ |  |  | <b>판정 안내</b>: 공식 배합과 같은 재료·같은 기법이면, 비율이 조금 달라도(재료마다 약 1~4%p) 인정합니다. 잔이 작으면 같은 비율로 줄여도 됩니다(최소 45mL).
+shot sig_book_discovered_1280x720.png 1280x720
+shot sig_book_discovered_1920x1080.png 1920x1080
+shot sig_book_discovered_1024x768.png 1024x768
+whiteout held=1 badges=1 mobStaggered=True bossStaggered=False
+shot sig_whiteout_badge_1280x720.png 1280x720
+shot sig_whiteout_badge_1920x1080.png 1920x1080
+shot sig_whiteout_badge_1024x768.png 1024x768
+shot sig_whiteout_badge_low_1280x720.png 1280x720
