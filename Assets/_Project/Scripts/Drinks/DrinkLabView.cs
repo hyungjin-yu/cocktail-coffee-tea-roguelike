@@ -814,7 +814,7 @@ namespace CCT
                 Add(new RowSpec { kind = RowKind.Line, name = "TechDesc", left = DrinkRules.TechniqueShort(shown.Technique), color = Muted, h = 66f, size = DrinkPaperUi.Small });
             }
             Add(new RowSpec { kind = RowKind.Header, name = "H_buff", left = "예상 효과", right = "이번 판 동안" });
-            var buff = DrinkCalculator.Buff(shown);
+            var buff = DrinkCalculator.DepartureBuff(shown); // #25 출발 잔 효과(출발 배율 포함)
             var buffParts = new List<string>();
             foreach (var s in buff.Shown())
             {
@@ -1140,7 +1140,16 @@ namespace CCT
                     var made = DrinkLab.Prepared.recipe.Clone();
                     BuildIngredientRows();
                     craftButton.interactable = false;
-                    stage.PlayCraft(made, skipMotion, () => { RefreshMix(); });
+                    // #25 정식 레시피: 제조 저장이 성공한 뒤, 완성 모션이 끝나는 순간에만 이름·시그니처 공개(첫 발견은 긴 연출, 재발견은 짧은 알림).
+                    var signature = DrinkSignatures.Get(result.SignatureId);
+                    bool firstDiscovery = result.FirstDiscovery;
+                    stage.PlayCraft(made, skipMotion, () =>
+                    {
+                        RefreshMix();
+                        if (signature == null) return;
+                        if (firstDiscovery) SignatureRevealOverlay.Play(signature);
+                        else SignatureRevealOverlay.PlayShort(signature);
+                    });
                     break;
                 case DrinkLab.CraftStatus.Shortage:
                     Message("재료가 부족합니다 — 부족한 재료는 도감에서 획득처를 확인하세요.");
@@ -1389,7 +1398,7 @@ namespace CCT
             if (index < 0 || index >= list.Count) return false;
             var r = list[index];
             var check = DrinkValidator.Check(r);
-            var buff = DrinkCalculator.Buff(r); // 저장값이 아니라 현재 밸런스로 재계산
+            var buff = DrinkCalculator.DepartureBuff(r); // #25 출발 잔 기준. 저장값이 아니라 현재 밸런스로 재계산
             var look = DrinkCalculator.Look(r);
             var shortages = DrinkValidator.Shortages(r, DrinkLab.Owned);
             var titleRt = UiFactory.Stretch("SheetTitle", content);
@@ -1517,7 +1526,7 @@ namespace CCT
             var shortages = DrinkValidator.Shortages(r, DrinkLab.Owned);
             previewText.text = $"{r.name} · {DrinkRules.KindName(r.Kind)} · {DrinkRules.TechniqueName(r.Technique)}\n{RecipeLine(r)}\n" +
                                $"완성 모습: {LookWords(look)}\n" +
-                               $"버프(현재 밸런스로 계산): {DrinkCalculator.Buff(r).Describe()}\n" +
+                               $"버프(현재 밸런스로 계산): {DrinkCalculator.DepartureBuff(r).Describe()}\n" +
                                (shortages.Count > 0 ? $"<color=#ff8a80>내 재료 부족: {DrinkRecipeFlow.ShortageLine(shortages)}</color>" : "내 재료로 바로 제조할 수 있습니다.");
         }
 

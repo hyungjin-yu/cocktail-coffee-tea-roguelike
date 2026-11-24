@@ -152,7 +152,7 @@ namespace CCT
             if (p == null) return "준비 음료 없음 — 버프 없이 출발합니다 (음료 제조에서 만들 수 있음)";
             // 2026-11-10 상성 대상과 정수 수치(예: 커피 계열 추가 피해 +20%)를 출전 전에 보여 준다.
             string aff = DrinkAffinity.Describe(p.recipe.Kind);
-            return $"준비 음료: {p.recipe.name} — {DrinkCalculator.Buff(p.recipe, p.specialtyId).Describe()}" +
+            return $"준비 음료: {p.recipe.name} — {DrinkCalculator.DepartureBuff(p.recipe, p.specialtyId).Describe()}" +
                    (aff != null ? " · " + aff : "") + " (출발할 때 마심)";
         }
 

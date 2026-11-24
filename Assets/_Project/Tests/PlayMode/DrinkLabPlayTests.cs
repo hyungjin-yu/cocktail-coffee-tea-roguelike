@@ -399,7 +399,7 @@ namespace CCT.Tests
             yield return new WaitForSecondsRealtime(0.25f); // 갱신 주기
             Assert.IsTrue(stage.Pouring, "아직 누르고 있음(배합 확정 전)");
             Assert.AreEqual(stage.InMeasure, lab.Projected().AmountOf("blue_curacao"), "예상 = 지거 안 양");
-            var expected = DrinkCalculator.Buff(lab.Projected());
+            var expected = DrinkCalculator.DepartureBuff(lab.Projected()); // #25 제조 화면 예상 효과 = 출발 잔 값
             StringAssert.Contains(DrinkRules.StatName(DrinkStat.CritChance), lab.BuffText, "붓는 중에도 예상 효과에 반영");
             StringAssert.Contains(DrinkBuff.Pct(DrinkStat.CritChance, expected[DrinkStat.CritChance]), lab.BuffText);
             Assert.IsFalse(lab.CraftInteractable, "붓는 중에는 제조 확정 불가");

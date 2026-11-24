@@ -36,6 +36,10 @@ namespace CCT
         /// <summary>2026-11-10 출처 장부: 제조 때 소모한 재료 중 "끝없는 재료 모으기" 출처 양(재료별). 1 단위라도 있으면 판매 불가(마시는 것은 가능).
         /// 기존(출처 정보 없는) 준비 음료는 빈 목록 → 기존처럼 판매 가능.</summary>
         public List<DrinkAmount> endlessAmounts = new List<DrinkAmount>();
+        /// <summary>2026-11-24 #25(v7) 제조 확정 때 판정한 정식 레시피 id(DrinkSignatures, 아니면 ""). 미리보기·불러오기에서는 정해지지 않는다.</summary>
+        public string signatureId = "";
+        /// <summary>#25 이 잔의 시그니처를 사용한 runId(없으면 ""). 사용과 같은 저장 사건에서 locked = true — 포기 보존·재시작으로 되돌릴 수 없다.</summary>
+        public string signatureUsedRunId = "";
 
         public bool Exists => state == Ready || state == InRun;
         public bool HasEndlessSource
@@ -53,6 +57,15 @@ namespace CCT
             if (endlessAmounts != null) foreach (var a in endlessAmounts) if (a != null && a.id == id) sum += Math.Max(0, a.amount);
             return (int)Math.Min(int.MaxValue, sum);
         }
+    }
+
+    /// <summary>2026-11-24 #25 발견한 정식 레시피 한 건(도감 저장). firstRecipe = 처음 맞힌 실제 배합 사본(이름·양).</summary>
+    [Serializable]
+    public class DrinkSignatureRecord
+    {
+        public string id = "";
+        public string utc = "";
+        public DrinkRecipe firstRecipe = new DrinkRecipe();
     }
 
     /// <summary>보스 처치 시 확정된 음료 재료(런 임시 보상). 종료 정산 전까지 pending에 남는다(중간 보스 후 사망도 보존).</summary>
@@ -112,6 +125,10 @@ namespace CCT
         /// <summary>2026-11-11 마스터 도전 런 안에서 제조한 잔(로비 준비 음료 1슬롯과 분리). 런 정산·비정상 종료 복구 때 같은 사건으로 정리한다.
         /// 추가 필드라 v4 그대로 읽힌다(없으면 빈 목록 — 기존 단일 prepared 손실 없음).</summary>
         public List<RunCup> runCups = new List<RunCup>();
+        /// <summary>2026-11-24 #25(v7) 발견한 정식 레시피(영구). 실제 제조 확정 때만 추가되며 지우지 않는다. 없으면 빈 목록(v6 이하 파일).</summary>
+        public List<DrinkSignatureRecord> signatures = new List<DrinkSignatureRecord>();
+        /// <summary>#25 시그니처를 이미 사용한 runId(최근 200). 같은 판에서 두 번 쓰지 못하게 하는 디스크 기록(재시작·복구 후에도 유지).</summary>
+        public List<string> signatureUsedRunIds = new List<string>();
         /// <summary>정산을 끝낸 runId(최근 200개). 같은 runId 정산은 다시 하지 않는다.</summary>
         public List<string> settledRunIds = new List<string>();
         public DrinkSettlement lastSettlement = new DrinkSettlement();
@@ -247,7 +264,10 @@ namespace CCT
     /// 처음 적용할 때 원본 파일을 "{path}.pre-integer-v{n}.bak"으로 한 번 복사해 둔다(이미 있으면 덮어쓰지 않는다).</summary>
     public static class DrinkStore
     {
-        public const int CurrentVersion = 6;
+        public const int CurrentVersion = 7;
+        /// <summary>2026-11-24 #25 v7: 정식 레시피 발견 기록(signatures)·시그니처 사용 기록(signatureUsedRunIds)·잔의 signatureId 추가. 값 변환 없음(추가 필드만).
+        /// v6 빌드가 이 파일을 다시 써서 발견 기록을 잃지 않도록 버전을 올려 미래 버전 보호(쓰기 금지)를 받게 한다.</summary>
+        public const int SignatureVersion = 7;
         /// <summary>2026-11-11 v5: 마스터 도전 런 제조 잔 목록(runCups — 출처별 사용량 포함) 추가. 값 변환 없음(추가 필드만).
         /// 보관 잔은 로비 재고를 이미 차감했으므로 v4 빌드가 이 파일을 다시 써서 잔 기록(=환원 근거)을 잃지 않게 버전을 올려 미래 버전 보호를 받는다.
         /// 단일 로비 준비 음료(prepared)는 그대로 둔다(런 잔과 분리).</summary>
@@ -451,6 +471,12 @@ namespace CCT
             d.settledRunIds ??= new List<string>();
             d.prepared ??= new PreparedDrink();
             d.runCups ??= new List<RunCup>(); // v5 런 제조 잔(없거나 null이면 빈 목록 — v4 이하 파일)
+            // #25 v7 정식 레시피 발견·사용 기록(없으면 빈 목록). 알 수 없는 id(이후 판정 대상에서 빠진 레시피)도 지우지 않는다 — 발견 기록 보호.
+            d.signatures ??= new List<DrinkSignatureRecord>();
+            d.signatures.RemoveAll(s => s == null || string.IsNullOrEmpty(s.id));
+            { var seenSig = new HashSet<string>(); d.signatures.RemoveAll(s => !seenSig.Add(s.id)); }
+            d.signatureUsedRunIds ??= new List<string>();
+            d.signatureUsedRunIds.RemoveAll(string.IsNullOrEmpty);
             d.prepared.recipe ??= new DrinkRecipe();
             d.lastSettlement ??= new DrinkSettlement();
             // 재고: 알 수 없는 id 제거, 같은 id는 합쳐 한 줄로(long 합 → 0~StockMax).
@@ -471,6 +497,8 @@ namespace CCT
             d.prepared.recipe.steps ??= new List<DrinkStep>();
             d.prepared.recipe.steps.RemoveAll(s => s == null);
             d.prepared.runId ??= "";
+            d.prepared.signatureId ??= "";
+            d.prepared.signatureUsedRunId ??= "";
             // 손상된 준비 음료(규칙 위반 배합)는 버프를 주지 않도록 비운다 — 재료 환불도 하지 않는다(복제 방지).
             if (!d.prepared.Exists || !DrinkValidator.Check(d.prepared.recipe).Ok) d.prepared = new PreparedDrink();
             d.pending.RemoveAll(a => a == null || string.IsNullOrEmpty(a.runId) || string.IsNullOrEmpty(a.awardId));

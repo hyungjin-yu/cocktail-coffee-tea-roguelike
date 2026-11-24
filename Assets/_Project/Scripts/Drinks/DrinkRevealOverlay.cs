@@ -50,7 +50,7 @@ namespace CCT
             UiFactory.AddImage(root, new Color(0.04f, 0.03f, 0.05f, 0.92f)).raycastTarget = true;
             root.gameObject.AddComponent<ClickToSkip>().Owner = this;
             var r = drink.recipe;
-            var buff = DrinkCalculator.Buff(r);
+            var buff = DrinkCalculator.DepartureBuff(r, drink.specialtyId); // #25 출발 잔 효과(런 적용과 같은 값)
             UiFactory.AddText(UiFactory.Place("Title", root, new Vector2(0.5f, 1f), new Vector2(0f, -110f), new Vector2(1200f, 70f)), $"완성 — {r.name}", 48, TextAnchor.MiddleCenter, new Color(1f, 0.9f, 0.6f));
             UiFactory.AddText(UiFactory.Place("Hint", root, new Vector2(0.5f, 0f), new Vector2(0f, 60f), new Vector2(1200f, 40f)), "클릭·Enter로 건너뛰기", 22, TextAnchor.MiddleCenter, new Color(0.7f, 0.7f, 0.75f));
             var stage = UiFactory.Place("Stage", root, new Vector2(0.5f, 0.5f), new Vector2(0f, 60f), new Vector2(448f, 448f));
@@ -80,6 +80,8 @@ namespace CCT
             gainImg.raycastTarget = false;
             gainImg.enabled = gain.Length > 0;
             BuffLine = $"버프 획득 — {buff.Describe()}";
+            var signature = DrinkSignatures.Get(drink.signatureId);
+            if (signature != null) BuffLine += $"\n시그니처 · {signature.effectName} 1회 (Q 또는 시그니처 칸)"; // #25 발견한 정식 레시피 잔만(이미 공개된 이름)
             UiFactory.AddText(UiFactory.Place("BuffText", root, new Vector2(0.5f, 0.5f), new Vector2(0f, -230f), new Vector2(1400f, 120f)),
                 BuffLine + "\n(이번 판 동안 유지 · 5마리 처치 전에 포기하면 음료 보존)", 30, TextAnchor.MiddleCenter, new Color(0.75f, 1f, 0.8f));
             t = 0f;
