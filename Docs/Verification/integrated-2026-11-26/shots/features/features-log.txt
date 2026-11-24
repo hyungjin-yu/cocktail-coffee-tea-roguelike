@@ -1,0 +1,74 @@
+arrow21 head preview next4=Burn,Freeze,Shock,Poison
+shot a21_head_icons_1280x720.png 1280x720
+shot a21_head_icons_1920x1080.png 1920x1080
+shot a21_head_icons_1024x768.png 1024x768
+arrow21 flight f0 in-air=Burn,Freeze,Shock,Poison
+shot a21_flight_f0_1280x720.png 1280x720
+arrow21 flight f1 in-air=Burn,Freeze,Shock,Poison
+shot a21_flight_f1_1280x720.png 1280x720
+arrow21 flight f2 in-air=Burn,Freeze,Shock,Poison
+shot a21_flight_f2_1280x720.png 1280x720
+arrow21 flight f3 in-air=Burn,Freeze,Shock,Poison
+shot a21_flight_f3_1280x720.png 1280x720
+shot a21_head_icons_low_1280x720.png 1280x720
+shot a21_flight_low_1280x720.png 1280x720
+b24_bar_rapier snipe tracking, volleys=0 dir=(0.00, 0.00)
+shot b24_bar_rapier_snipe_tracking_1280x720.png 1280x720
+shot b24_bar_rapier_snipe_tracking_1920x1080.png 1920x1080
+shot b24_bar_rapier_snipe_tracking_1024x768.png 1024x768
+b24_bar_rapier snipe locked, dir=(-1.00, -0.05)
+shot b24_bar_rapier_snipe_locked_1280x720.png 1280x720
+shot b24_bar_rapier_snipe_fired_1280x720.png 1280x720
+b24_bar_rapier rush gapCenterY=0 player.y=-2
+shot b24_bar_rapier_rush_telegraph_1280x720.png 1280x720
+shot b24_bar_rapier_rush_telegraph_1920x1080.png 1920x1080
+shot b24_bar_rapier_rush_telegraph_1024x768.png 1024x768
+shot b24_bar_rapier_rush_walls_1280x720.png 1280x720
+b24_bar_rapier texts containing 회피 (should be none): []
+b24_tea_bow_hazard_arrows snipe tracking, volleys=0 dir=(0.00, 0.00)
+shot b24_tea_bow_hazard_arrows_snipe_tracking_1280x720.png 1280x720
+shot b24_tea_bow_hazard_arrows_snipe_tracking_1920x1080.png 1920x1080
+shot b24_tea_bow_hazard_arrows_snipe_tracking_1024x768.png 1024x768
+b24_tea_bow_hazard_arrows snipe locked, dir=(-1.00, -0.05)
+shot b24_tea_bow_hazard_arrows_snipe_locked_1280x720.png 1280x720
+shot b24_tea_bow_hazard_arrows_snipe_fired_1280x720.png 1280x720
+b24_tea_bow_hazard_arrows rush gapCenterY=0 player.y=-2
+shot b24_tea_bow_hazard_arrows_rush_telegraph_1280x720.png 1280x720
+shot b24_tea_bow_hazard_arrows_rush_telegraph_1920x1080.png 1920x1080
+shot b24_tea_bow_hazard_arrows_rush_telegraph_1024x768.png 1024x768
+shot b24_tea_bow_hazard_arrows_rush_walls_1280x720.png 1280x720
+b24_tea_bow_hazard_arrows texts containing 회피 (should be none): []
+b24_tea_bow_low snipe tracking, volleys=0 dir=(0.00, 0.00)
+shot b24_tea_bow_low_snipe_tracking_1280x720.png 1280x720
+b24_tea_bow_low snipe locked, dir=(-1.00, -0.05)
+shot b24_tea_bow_low_snipe_locked_1280x720.png 1280x720
+shot b24_tea_bow_low_snipe_fired_1280x720.png 1280x720
+b24_tea_bow_low rush gapCenterY=0 player.y=-2
+shot b24_tea_bow_low_rush_telegraph_1280x720.png 1280x720
+shot b24_tea_bow_low_rush_walls_1280x720.png 1280x720
+b24_tea_bow_low texts containing 회피 (should be none): []
+shot f22_warning_1280x720.png 1280x720
+floor22 tea aura showing=True fade=1 hazardAura=True slip=True stress=True status='미끄러짐(물기 1곳) · 스트레스(얼룩 1곳) · 구역 안 3초 머물러 청소'
+shot f22_active_both_tea_aura_1280x720.png 1280x720
+shot f22_active_both_tea_aura_1920x1080.png 1920x1080
+shot f22_active_both_tea_aura_1024x768.png 1024x768
+shot f22_cleaning_progress_1280x720.png 1280x720
+shot f22_low_effects_1280x720.png 1280x720
+shot h18_pips0_1280x720.png 1280x720
+shot h18_pips0_1920x1080.png 1920x1080
+shot h18_pips0_1024x768.png 1024x768
+shot h18_pips1_1280x720.png 1280x720
+shot h18_pips2_1280x720.png 1280x720
+h18 burst total=1 filledShown=3 flashing=True
+shot h18_burst_flash_1280x720.png 1280x720
+shot h18_burst_flash_1920x1080.png 1920x1080
+shot h18_burst_flash_1024x768.png 1024x768
+shot h18_pips2_low_1280x720.png 1280x720
+shot h18_burst_low_1280x720.png 1280x720
+tea19 stage lines: [] [2회 숨은 효과 · 최대 체력 +15] [3회 핵심 효과 · 공격 속도 +15%]
+shot t19_card_stage_1280x720.png 1280x720
+shot t19_card_stage_1920x1080.png 1920x1080
+shot t19_card_stage_1024x768.png 1024x768
+shot t19_codex_detail_oolong_1280x720.png 1280x720
+shot t19_codex_detail_oolong_1920x1080.png 1920x1080
+shot t19_codex_detail_oolong_1024x768.png 1024x768
