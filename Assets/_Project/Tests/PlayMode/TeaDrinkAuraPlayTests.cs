@@ -59,7 +59,7 @@ namespace CCT.Tests
             Assert.IsFalse(game.TeaAura.Showing, "제조만으로는 오라 없음(마시기 전)");
             Assert.IsTrue(game.DrinkRunCup(res.Cup, out var err), err);
             for (int i = 0; i < 40; i++) yield return null;
-            Assert.IsTrue(game.TeaAura.Showing, "실제 음용 후 오라");
+            Assert.IsTrue(game.TeaAura.Showing, $"실제 음용 후 오라 (state={game.State} job={game.Job} buff={(game.DrinkBuff != null)} dead={game.Player.IsDead} fade={game.TeaAura.Fade} ts={Time.timeScale})");
             Assert.AreEqual(TeaDrinkAura.Ripples, game.TeaAura.VisibleRipples);
             Assert.AreEqual(TeaDrinkAura.Wisps, game.TeaAura.VisibleWisps);
             Assert.AreEqual(1f, game.TeaAura.Fade, 1e-3f);

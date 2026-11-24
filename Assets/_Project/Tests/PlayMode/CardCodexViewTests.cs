@@ -162,7 +162,7 @@ namespace CCT.Tests
                 .GetComponent<UnityEngine.UI.Text>();
 
             Assert.IsTrue(varietyText.text.Contains(known.displayName), "발견한 품종은 이름이 보여야 한다");
-            Assert.IsTrue(varietyText.text.Contains("???"), "아직 못 본 품종은 ???로 보여야 한다");
+            Assert.IsTrue(varietyText.text.Contains("미발견 5종"), "아직 못 본 품종은 이름 없이 미발견 N종(2026-11-24 도감 정리, 상세에서는 ???)");
 
             var otherNames = MaterialVarieties.Cocktail.Where(v => v.id != known.id).Select(v => v.displayName);
             foreach (var name in otherNames)

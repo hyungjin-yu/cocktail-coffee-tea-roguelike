@@ -168,6 +168,11 @@ namespace CCT.Tests
             var canvas = view.GetComponent<Canvas>();
             Line("sword desc=" + WeaponPreset.Sword.description.Replace("\n", " / "));
             yield return Shots(canvas, "weapon_select_bartender");
+            view.WeaponBackButton?.onClick.Invoke();
+            yield return null;
+            view.TeaSommelierButton.onClick.Invoke();
+            yield return null;
+            yield return Shots(canvas, "weapon_select_tea_sword_bow");
             UnityEngine.Object.DestroyImmediate(view.gameObject);
         }
     }

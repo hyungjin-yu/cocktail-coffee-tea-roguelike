@@ -63,9 +63,13 @@ namespace CCT
             go.transform.SetParent(player.transform, false);
             go.transform.localPosition = new Vector3(0f, -PlayerController.Radius, 0f); // 발밑(기존 음료 표식과 같은 높이)
             var a = go.AddComponent<TeaDrinkAura>();
-            a.player = player; a.game = game; a.root = go.transform;
+            // 통합 검수 수정(2026-11-24): 스스로를 비활성화하면 LateUpdate가 돌지 않아 오라가 영영 켜지지 않았다 —
+            // 컴포넌트는 항상 켜 두고 보이는 것(고리·김)은 자식 root를 켜고 끈다.
+            var visuals = new GameObject("Visuals");
+            visuals.transform.SetParent(go.transform, false);
+            a.player = player; a.game = game; a.root = visuals.transform;
             a.Build();
-            go.SetActive(false);
+            visuals.SetActive(false);
             return a;
         }
 

@@ -14,7 +14,8 @@ namespace CCT.Tests
     /// </summary>
     public class IntegerOnlyTests
     {
-        static readonly Regex Decimal = new Regex(@"\d[.,]\d");
+        // 2026-11-24 사용자 지시: 시간은 ms 대신 초 소수("0.25초")를 허용 — 초 단위 소수만 예외, 그 밖의 소수는 여전히 금지.
+        static readonly Regex Decimal = new Regex(@"\d[.,]\d(?![\d]*초)");
         string dir, path;
 
         [SetUp]
