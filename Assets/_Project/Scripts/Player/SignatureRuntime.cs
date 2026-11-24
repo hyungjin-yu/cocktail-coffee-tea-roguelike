@@ -62,7 +62,7 @@ namespace CCT
         /// <summary>Q / HUD 클릭. 성공하면 true(효과 발동). 실패 사유는 LastMessage.</summary>
         public bool TryUse()
         {
-            if (Charged == null) { LastMessage = Used ? $"시그니처 · {UsedDef.effectName}는 이번 판에 이미 사용했습니다." : "이번 판에 쓸 시그니처가 없습니다."; return false; }
+            if (Charged == null) { LastMessage = Used ? $"시그니처 · {KoreanParticle.EunNeun(UsedDef.effectName)} 이번 판에 이미 사용했습니다." : "이번 판에 쓸 시그니처가 없습니다."; return false; }
             if (!CanUseNow) { LastMessage = "지금은 시그니처를 쓸 수 없습니다(전투 중에만)."; return false; }
             var def = Charged;
             if (!DrinkLab.CommitSignatureUse(game.RunId, def.id, ChargedFromPrepared, out var error))

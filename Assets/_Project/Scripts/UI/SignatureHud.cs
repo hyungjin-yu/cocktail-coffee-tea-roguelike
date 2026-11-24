@@ -11,7 +11,7 @@ namespace CCT
     /// </summary>
     public class SignatureHud : MonoBehaviour
     {
-        public const float Right = 30f, Bottom = 150f, W = 380f, H = 104f;
+        public const float Right = 30f, Bottom = 150f, W = 380f, H = 124f;
         GameManager game;
         GameObject root;
         Button button;
@@ -51,7 +51,7 @@ namespace CCT
             icon.raycastTarget = false;
             title = UiFactory.AddText(UiFactory.Place("Title", rt, new Vector2(0f, 1f), new Vector2(92f, -8f), new Vector2(W - 104f, 34f)), "", 22, TextAnchor.MiddleLeft, new Color(1f, 0.88f, 0.55f));
             state = UiFactory.AddText(UiFactory.Place("State", rt, new Vector2(0f, 1f), new Vector2(92f, -42f), new Vector2(W - 104f, 30f)), "", 20, TextAnchor.MiddleLeft, Color.white);
-            line = UiFactory.AddText(UiFactory.Place("Line", rt, new Vector2(0f, 0f), new Vector2(92f, 6f), new Vector2(W - 104f, 26f)), "", 16, TextAnchor.MiddleLeft, new Color(0.85f, 0.85f, 0.85f));
+            line = UiFactory.AddText(UiFactory.Place("Line", rt, new Vector2(0f, 0f), new Vector2(92f, 6f), new Vector2(W - 104f, 46f)), "", 18, TextAnchor.MiddleLeft, new Color(0.85f, 0.85f, 0.85f));
             foreach (var t in new[] { title, state, line })
             {
                 t.raycastTarget = false; t.resizeTextForBestFit = true; t.resizeTextMinSize = 14; t.resizeTextMaxSize = t.fontSize;

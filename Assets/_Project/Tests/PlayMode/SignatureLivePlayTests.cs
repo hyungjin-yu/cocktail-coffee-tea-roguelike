@@ -112,6 +112,8 @@ namespace CCT.Tests
             StringAssert.Contains(DrinkLabView.SignatureLockedName, lockedBook);
             Line("book locked: " + lockedBook.Replace("\n", " | "));
             Line("button label: " + DrinkLabView.SignatureBookButtonLabel());
+            lab.SetTab(DrinkLabView.Tab.Codex);
+            yield return null;
             lab.OpenSignatureBook();
             yield return Shots("sig_book_locked", lab.GetComponent<Canvas>());
 
@@ -133,6 +135,8 @@ namespace CCT.Tests
             string openBook = DrinkLabView.SignatureBookText();
             foreach (var d in DrinkSignatures.All) StringAssert.Contains(d.name, openBook, "발견 후 공개");
             Line("book open: " + openBook.Replace("\n", " | "));
+            lab.SetTab(DrinkLabView.Tab.Codex);
+            yield return null;
             lab.OpenSignatureBook();
             yield return Shots("sig_book_discovered", lab.GetComponent<Canvas>());
         }
