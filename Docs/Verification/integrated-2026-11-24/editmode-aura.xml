@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="64" result="Skipped:Ignored" total="64" passed="63" failed="0" inconclusive="0" skipped="1" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.6286805">
+  <test-suite type="TestSuite" id="1000" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="1088" result="Skipped" label="Ignored" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.628681" total="64" passed="63" failed="0" inconclusive="0" skipped="1" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <reason>
+      <message><![CDATA[One or more child tests were ignored]]></message>
+    </reason>
+    <test-suite type="Assembly" id="2261" name="CCT.Tests.EditMode.dll" fullname="C:/Users/user/orca/workspaces/CocktailCoffeeTea/levelup-menu-unity/Library/ScriptAssemblies/CCT.Tests.EditMode.dll" runstate="Runnable" testcasecount="988" result="Skipped" label="Ignored" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.613899" total="64" passed="63" failed="0" inconclusive="0" skipped="1" asserts="0">
+      <properties>
+        <property name="_PID" value="25144" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <reason>
+        <message><![CDATA[One or more child tests were ignored]]></message>
+      </reason>
+      <test-suite type="TestSuite" id="2262" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="988" result="Skipped" label="Ignored" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.604396" total="64" passed="63" failed="0" inconclusive="0" skipped="1" asserts="0">
+        <properties />
+        <reason>
+          <message><![CDATA[One or more child tests were ignored]]></message>
+        </reason>
+        <test-suite type="SetUpFixture" id="2232" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="988" result="Skipped" label="Ignored" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.595001" total="64" passed="63" failed="0" inconclusive="0" skipped="1" asserts="0">
+          <properties />
+          <reason>
+            <message><![CDATA[One or more child tests were ignored]]></message>
+          </reason>
+          <test-suite type="TestFixture" id="1779" name="IntegerOnlyTests" fullname="CCT.Tests.IntegerOnlyTests" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" testcasecount="61" result="Skipped" label="Ignored" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.568688" total="61" passed="60" failed="0" inconclusive="0" skipped="1" asserts="0">
+            <properties />
+            <reason>
+              <message><![CDATA[One or more child tests were ignored]]></message>
+            </reason>
+            <test-case id="1834" name="Craft_And_Sell_AreIntegerTransactions_MatchingDisplay" fullname="CCT.Tests.IntegerOnlyTests.Craft_And_Sell_AreIntegerTransactions_MatchingDisplay" methodname="Craft_And_Sell_AreIntegerTransactions_MatchingDisplay" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1629736780" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.056463" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.138 START CCT.Tests.IntegerOnlyTests.Craft_And_Sell_AreIntegerTransactions_MatchingDisplay (t=0.3 ts=1)
+[TestProgress] 17:40:29.198 END Passed 0.1s CCT.Tests.IntegerOnlyTests.Craft_And_Sell_AreIntegerTransactions_MatchingDisplay (t=0.3 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1803" name="Damage_RoundsWithMinimumOne" fullname="CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.009786" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1797" name="Damage_RoundsWithMinimumOne(10.5f,11)" fullname="CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(10.5f,11)" methodname="Damage_RoundsWithMinimumOne" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="473739180" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000790" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.200 START CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(10.5f,11) (t=0.5 ts=1)
+[TestProgress] 17:40:29.201 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(10.5f,11) (t=0.5 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1798" name="Damage_RoundsWithMinimumOne(10.4f,10)" fullname="CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(10.4f,10)" methodname="Damage_RoundsWithMinimumOne" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1686035370" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.202 START CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(10.4f,10) (t=0.5 ts=1)
+[TestProgress] 17:40:29.202 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(10.4f,10) (t=0.5 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1799" name="Damage_RoundsWithMinimumOne(0.2f,1)" fullname="CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(0.2f,1)" methodname="Damage_RoundsWithMinimumOne" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="17730611" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000475" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.203 START CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(0.2f,1) (t=0.5 ts=1)
+[TestProgress] 17:40:29.204 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(0.2f,1) (t=0.5 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1800" name="Damage_RoundsWithMinimumOne(2.5f,3)" fullname="CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(2.5f,3)" methodname="Damage_RoundsWithMinimumOne" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1315970256" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000520" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.204 START CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(2.5f,3) (t=0.5 ts=1)
+[TestProgress] 17:40:29.205 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(2.5f,3) (t=0.5 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1801" name="Damage_RoundsWithMinimumOne(0.0f,0)" fullname="CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(0.0f,0)" methodname="Damage_RoundsWithMinimumOne" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="41204415" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000698" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.206 START CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(0.0f,0) (t=0.5 ts=1)
+[TestProgress] 17:40:29.207 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(0.0f,0) (t=0.5 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1802" name="Damage_RoundsWithMinimumOne(-3.0f,0)" fullname="CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(-3.0f,0)" methodname="Damage_RoundsWithMinimumOne" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="53087132" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000443" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.207 START CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(-3.0f,0) (t=0.5 ts=1)
+[TestProgress] 17:40:29.208 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Damage_RoundsWithMinimumOne(-3.0f,0) (t=0.5 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1841" name="DrinkBuff_DisplayedPercent_EqualsAppliedPercent" fullname="CCT.Tests.IntegerOnlyTests.DrinkBuff_DisplayedPercent_EqualsAppliedPercent" methodname="DrinkBuff_DisplayedPercent_EqualsAppliedPercent" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1325606609" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.002878" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.209 START CCT.Tests.IntegerOnlyTests.DrinkBuff_DisplayedPercent_EqualsAppliedPercent (t=0.5 ts=1)
+[TestProgress] 17:40:29.212 END Passed 0.0s CCT.Tests.IntegerOnlyTests.DrinkBuff_DisplayedPercent_EqualsAppliedPercent (t=0.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1842" name="DrinkBuff_TinyEffect_RoundsToZero_IsHiddenAndNotApplied" fullname="CCT.Tests.IntegerOnlyTests.DrinkBuff_TinyEffect_RoundsToZero_IsHiddenAndNotApplied" methodname="DrinkBuff_TinyEffect_RoundsToZero_IsHiddenAndNotApplied" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="962671082" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000715" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.213 START CCT.Tests.IntegerOnlyTests.DrinkBuff_TinyEffect_RoundsToZero_IsHiddenAndNotApplied (t=0.5 ts=1)
+[TestProgress] 17:40:29.214 END Passed 0.0s CCT.Tests.IntegerOnlyTests.DrinkBuff_TinyEffect_RoundsToZero_IsHiddenAndNotApplied (t=0.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1843" name="Enemy_TakesIntegerDamage_AndHasIntegerMaxHp" fullname="CCT.Tests.IntegerOnlyTests.Enemy_TakesIntegerDamage_AndHasIntegerMaxHp" methodname="Enemy_TakesIntegerDamage_AndHasIntegerMaxHp" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1383869702" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.282005" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.214 START CCT.Tests.IntegerOnlyTests.Enemy_TakesIntegerDamage_AndHasIntegerMaxHp (t=0.5 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_editmode_settings_35132a61010746af9fd14b8e93f04a0c.json (source=Defaults)
+[TestProgress] 17:40:29.496 END Passed 0.3s CCT.Tests.IntegerOnlyTests.Enemy_TakesIntegerDamage_AndHasIntegerMaxHp (t=0.5 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1810" name="Format_IsIntegerOnly" fullname="CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.008277" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1804" name="Format_IsIntegerOnly(235,&quot;24&quot;)" fullname="CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(235,&quot;24&quot;)" methodname="Format_IsIntegerOnly" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="2019666450" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.001156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.497 START CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(235,"24") (t=0.8 ts=1)
+[TestProgress] 17:40:29.499 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(235,"24") (t=0.8 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1805" name="Format_IsIntegerOnly(234,&quot;23&quot;)" fullname="CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(234,&quot;23&quot;)" methodname="Format_IsIntegerOnly" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1900371948" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.499 START CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(234,"23") (t=0.8 ts=1)
+[TestProgress] 17:40:29.500 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(234,"23") (t=0.8 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1806" name="Format_IsIntegerOnly(-15,&quot;-2&quot;)" fullname="CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(-15,&quot;-2&quot;)" methodname="Format_IsIntegerOnly" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="981980992" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000404" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.500 START CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(-15,"-2") (t=0.8 ts=1)
+[TestProgress] 17:40:29.502 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(-15,"-2") (t=0.8 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1807" name="Format_IsIntegerOnly(0,&quot;0&quot;)" fullname="CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(0,&quot;0&quot;)" methodname="Format_IsIntegerOnly" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="931826463" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000391" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.502 START CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(0,"0") (t=0.8 ts=1)
+[TestProgress] 17:40:29.503 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(0,"0") (t=0.8 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1808" name="Format_IsIntegerOnly(1500,&quot;150&quot;)" fullname="CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(1500,&quot;150&quot;)" methodname="Format_IsIntegerOnly" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1243744022" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.503 START CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(1500,"150") (t=0.8 ts=1)
+[TestProgress] 17:40:29.504 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(1500,"150") (t=0.8 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1809" name="Format_IsIntegerOnly(5,&quot;1&quot;)" fullname="CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(5,&quot;1&quot;)" methodname="Format_IsIntegerOnly" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="231933955" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000416" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.504 START CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(5,"1") (t=0.8 ts=1)
+[TestProgress] 17:40:29.504 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Format_IsIntegerOnly(5,"1") (t=0.8 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1811" name="Format_WithUnit_HasNoDecimalPoint" fullname="CCT.Tests.IntegerOnlyTests.Format_WithUnit_HasNoDecimalPoint" methodname="Format_WithUnit_HasNoDecimalPoint" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="2034575849" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000564" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.504 START CCT.Tests.IntegerOnlyTests.Format_WithUnit_HasNoDecimalPoint (t=0.8 ts=1)
+[TestProgress] 17:40:29.506 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Format_WithUnit_HasNoDecimalPoint (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1846" name="HiddenSkillRegenAndRadiusTexts_UseIntegerUnits" fullname="CCT.Tests.IntegerOnlyTests.HiddenSkillRegenAndRadiusTexts_UseIntegerUnits" methodname="HiddenSkillRegenAndRadiusTexts_UseIntegerUnits" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="40953427" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.017614" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.506 START CCT.Tests.IntegerOnlyTests.HiddenSkillRegenAndRadiusTexts_UseIntegerUnits (t=0.8 ts=1)
+[TestProgress] 17:40:29.524 END Passed 0.0s CCT.Tests.IntegerOnlyTests.HiddenSkillRegenAndRadiusTexts_UseIntegerUnits (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1839" name="Migration_FutureFile_IsNotTouched" fullname="CCT.Tests.IntegerOnlyTests.Migration_FutureFile_IsNotTouched" methodname="Migration_FutureFile_IsNotTouched" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="186903066" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.002647" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.524 START CCT.Tests.IntegerOnlyTests.Migration_FutureFile_IsNotTouched (t=0.8 ts=1)
+[TestProgress] 17:40:29.527 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Migration_FutureFile_IsNotTouched (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1837" name="Migration_IsAppliedOnce_NoRepeatedGain" fullname="CCT.Tests.IntegerOnlyTests.Migration_IsAppliedOnce_NoRepeatedGain" methodname="Migration_IsAppliedOnce_NoRepeatedGain" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="41596574" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.052771" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.528 START CCT.Tests.IntegerOnlyTests.Migration_IsAppliedOnce_NoRepeatedGain (t=0.8 ts=1)
+[TestProgress] 17:40:29.581 END Passed 0.1s CCT.Tests.IntegerOnlyTests.Migration_IsAppliedOnce_NoRepeatedGain (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1840" name="Migration_IsIdempotent_OnWholeData" fullname="CCT.Tests.IntegerOnlyTests.Migration_IsIdempotent_OnWholeData" methodname="Migration_IsIdempotent_OnWholeData" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="2138332657" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000928" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.581 START CCT.Tests.IntegerOnlyTests.Migration_IsIdempotent_OnWholeData (t=0.8 ts=1)
+[TestProgress] 17:40:29.582 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Migration_IsIdempotent_OnWholeData (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1838" name="Migration_UserSaveCopy_IsolatedRun" fullname="CCT.Tests.IntegerOnlyTests.Migration_UserSaveCopy_IsolatedRun" methodname="Migration_UserSaveCopy_IsolatedRun" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="2139220468" result="Skipped" label="Ignored" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.003556" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <reason>
+                <message><![CDATA[CCT_MIGRATION_SAMPLE 없음 — 사용자 세이브 복사본 검증 전용]]></message>
+              </reason>
+              <output><![CDATA[[TestProgress] 17:40:29.583 START CCT.Tests.IntegerOnlyTests.Migration_UserSaveCopy_IsolatedRun (t=0.8 ts=1)
+[TestProgress] 17:40:29.586 END Skipped:Ignored 0.0s CCT.Tests.IntegerOnlyTests.Migration_UserSaveCopy_IsolatedRun (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1836" name="Migration_V2_RoundsOnce_BacksUp_AndSavesV3" fullname="CCT.Tests.IntegerOnlyTests.Migration_V2_RoundsOnce_BacksUp_AndSavesV3" methodname="Migration_V2_RoundsOnce_BacksUp_AndSavesV3" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="752183462" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.026046" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.587 START CCT.Tests.IntegerOnlyTests.Migration_V2_RoundsOnce_BacksUp_AndSavesV3 (t=0.8 ts=1)
+[TestProgress] 17:40:29.614 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Migration_V2_RoundsOnce_BacksUp_AndSavesV3 (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1833" name="OrderMinimums_AndSupplyBundles_AreWholeUnits" fullname="CCT.Tests.IntegerOnlyTests.OrderMinimums_AndSupplyBundles_AreWholeUnits" methodname="OrderMinimums_AndSupplyBundles_AreWholeUnits" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="482375795" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.009923" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.614 START CCT.Tests.IntegerOnlyTests.OrderMinimums_AndSupplyBundles_AreWholeUnits (t=0.8 ts=1)
+[TestProgress] 17:40:29.624 END Passed 0.0s CCT.Tests.IntegerOnlyTests.OrderMinimums_AndSupplyBundles_AreWholeUnits (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1819" name="ParseAmount_AcceptsIntegers" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.009841" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1812" name="ParseAmount_AcceptsIntegers(&quot;12&quot;,120)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers(&quot;12&quot;,120)" methodname="ParseAmount_AcceptsIntegers" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="400230798" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.002052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.625 START CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("12",120) (t=0.9 ts=1)
+[TestProgress] 17:40:29.628 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("12",120) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1813" name="ParseAmount_AcceptsIntegers(&quot;12.0&quot;,120)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers(&quot;12.0&quot;,120)" methodname="ParseAmount_AcceptsIntegers" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="2126526911" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000559" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.629 START CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("12.0",120) (t=0.9 ts=1)
+[TestProgress] 17:40:29.630 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("12.0",120) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1814" name="ParseAmount_AcceptsIntegers(&quot; 5 &quot;,50)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers(&quot; 5 &quot;,50)" methodname="ParseAmount_AcceptsIntegers" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="623228027" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.630 START CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers(" 5 ",50) (t=0.9 ts=1)
+[TestProgress] 17:40:29.631 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers(" 5 ",50) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1815" name="ParseAmount_AcceptsIntegers(&quot;5ml&quot;,50)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers(&quot;5ml&quot;,50)" methodname="ParseAmount_AcceptsIntegers" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="521242192" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.631 START CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("5ml",50) (t=0.9 ts=1)
+[TestProgress] 17:40:29.631 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("5ml",50) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1816" name="ParseAmount_AcceptsIntegers(&quot;3g&quot;,30)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers(&quot;3g&quot;,30)" methodname="ParseAmount_AcceptsIntegers" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="519768836" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.632 START CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("3g",30) (t=0.9 ts=1)
+[TestProgress] 17:40:29.632 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("3g",30) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1817" name="ParseAmount_AcceptsIntegers(&quot;0&quot;,0)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers(&quot;0&quot;,0)" methodname="ParseAmount_AcceptsIntegers" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1715044368" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.633 START CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("0",0) (t=0.9 ts=1)
+[TestProgress] 17:40:29.633 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("0",0) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1818" name="ParseAmount_AcceptsIntegers(&quot;7.&quot;,70)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers(&quot;7.&quot;,70)" methodname="ParseAmount_AcceptsIntegers" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1934012922" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.634 START CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("7.",70) (t=0.9 ts=1)
+[TestProgress] 17:40:29.634 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_AcceptsIntegers("7.",70) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1829" name="ParseAmount_RejectsDecimalsAndJunk" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.010203" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1820" name="ParseAmount_RejectsDecimalsAndJunk(&quot;12.5&quot;)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(&quot;12.5&quot;)" methodname="ParseAmount_RejectsDecimalsAndJunk" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="860499216" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000723" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.636 START CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("12.5") (t=0.9 ts=1)
+[TestProgress] 17:40:29.636 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("12.5") (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1821" name="ParseAmount_RejectsDecimalsAndJunk(&quot;0.1&quot;)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(&quot;0.1&quot;)" methodname="ParseAmount_RejectsDecimalsAndJunk" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1203840908" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.638 START CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("0.1") (t=0.9 ts=1)
+[TestProgress] 17:40:29.638 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("0.1") (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1822" name="ParseAmount_RejectsDecimalsAndJunk(&quot;.5&quot;)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(&quot;.5&quot;)" methodname="ParseAmount_RejectsDecimalsAndJunk" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="57808050" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000498" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.638 START CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(".5") (t=0.9 ts=1)
+[TestProgress] 17:40:29.639 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(".5") (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1823" name="ParseAmount_RejectsDecimalsAndJunk(&quot;1,5&quot;)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(&quot;1,5&quot;)" methodname="ParseAmount_RejectsDecimalsAndJunk" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1069519275" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.639 START CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("1,5") (t=0.9 ts=1)
+[TestProgress] 17:40:29.640 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("1,5") (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1824" name="ParseAmount_RejectsDecimalsAndJunk(&quot;2.05&quot;)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(&quot;2.05&quot;)" methodname="ParseAmount_RejectsDecimalsAndJunk" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="352496317" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.640 START CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("2.05") (t=0.9 ts=1)
+[TestProgress] 17:40:29.641 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("2.05") (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1825" name="ParseAmount_RejectsDecimalsAndJunk(&quot;-1&quot;)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(&quot;-1&quot;)" methodname="ParseAmount_RejectsDecimalsAndJunk" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1601436597" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000434" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.641 START CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("-1") (t=0.9 ts=1)
+[TestProgress] 17:40:29.642 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("-1") (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1826" name="ParseAmount_RejectsDecimalsAndJunk(&quot;1e3&quot;)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(&quot;1e3&quot;)" methodname="ParseAmount_RejectsDecimalsAndJunk" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="2021340721" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.642 START CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("1e3") (t=0.9 ts=1)
+[TestProgress] 17:40:29.643 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("1e3") (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1827" name="ParseAmount_RejectsDecimalsAndJunk(&quot;&quot;)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(&quot;&quot;)" methodname="ParseAmount_RejectsDecimalsAndJunk" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1377497344" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.643 START CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("") (t=0.9 ts=1)
+[TestProgress] 17:40:29.643 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("") (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1828" name="ParseAmount_RejectsDecimalsAndJunk(&quot;1.2.3&quot;)" fullname="CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk(&quot;1.2.3&quot;)" methodname="ParseAmount_RejectsDecimalsAndJunk" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="608049542" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000428" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.644 START CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("1.2.3") (t=0.9 ts=1)
+[TestProgress] 17:40:29.644 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ParseAmount_RejectsDecimalsAndJunk("1.2.3") (t=0.9 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1796" name="Percent_Multiplier_Duration_Distance_PerMinute" fullname="CCT.Tests.IntegerOnlyTests.Percent_Multiplier_Duration_Distance_PerMinute" methodname="Percent_Multiplier_Duration_Distance_PerMinute" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1560476111" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000940" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.645 START CCT.Tests.IntegerOnlyTests.Percent_Multiplier_Duration_Distance_PerMinute (t=0.9 ts=1)
+[TestProgress] 17:40:29.646 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Percent_Multiplier_Duration_Distance_PerMinute (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1844" name="Player_TakesIntegerDamage_AfterAllMultipliers" fullname="CCT.Tests.IntegerOnlyTests.Player_TakesIntegerDamage_AfterAllMultipliers" methodname="Player_TakesIntegerDamage_AfterAllMultipliers" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1740088930" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.005892" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.647 START CCT.Tests.IntegerOnlyTests.Player_TakesIntegerDamage_AfterAllMultipliers (t=0.9 ts=1)
+[TestProgress] 17:40:29.653 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Player_TakesIntegerDamage_AfterAllMultipliers (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1795" name="RemainingSeconds_Ceil" fullname="CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.008753" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1788" name="RemainingSeconds_Ceil(2.0f,2)" fullname="CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(2.0f,2)" methodname="RemainingSeconds_Ceil" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="846425349" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000709" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.654 START CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(2.0f,2) (t=0.9 ts=1)
+[TestProgress] 17:40:29.655 END Passed 0.0s CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(2.0f,2) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1789" name="RemainingSeconds_Ceil(2.00009f,2)" fullname="CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(2.00009f,2)" methodname="RemainingSeconds_Ceil" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="754862000" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.655 START CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(2.00009f,2) (t=0.9 ts=1)
+[TestProgress] 17:40:29.657 END Passed 0.0s CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(2.00009f,2) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1790" name="RemainingSeconds_Ceil(1.01f,2)" fullname="CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(1.01f,2)" methodname="RemainingSeconds_Ceil" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1094988851" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000766" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.657 START CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(1.01f,2) (t=0.9 ts=1)
+[TestProgress] 17:40:29.658 END Passed 0.0s CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(1.01f,2) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1791" name="RemainingSeconds_Ceil(0.01f,1)" fullname="CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(0.01f,1)" methodname="RemainingSeconds_Ceil" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="816051223" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000521" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.658 START CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(0.01f,1) (t=0.9 ts=1)
+[TestProgress] 17:40:29.659 END Passed 0.0s CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(0.01f,1) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1792" name="RemainingSeconds_Ceil(0.0f,0)" fullname="CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(0.0f,0)" methodname="RemainingSeconds_Ceil" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="471467930" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000472" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.659 START CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(0.0f,0) (t=0.9 ts=1)
+[TestProgress] 17:40:29.660 END Passed 0.0s CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(0.0f,0) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1793" name="RemainingSeconds_Ceil(-1.0f,0)" fullname="CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(-1.0f,0)" methodname="RemainingSeconds_Ceil" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="957356098" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.661 START CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(-1.0f,0) (t=0.9 ts=1)
+[TestProgress] 17:40:29.661 END Passed 0.0s CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(-1.0f,0) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1794" name="RemainingSeconds_Ceil(11.9f,12)" fullname="CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(11.9f,12)" methodname="RemainingSeconds_Ceil" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="432585701" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000428" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.661 START CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(11.9f,12) (t=0.9 ts=1)
+[TestProgress] 17:40:29.662 END Passed 0.0s CCT.Tests.IntegerOnlyTests.RemainingSeconds_Ceil(11.9f,12) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1787" name="Round_DiffersFromBankersRounding" fullname="CCT.Tests.IntegerOnlyTests.Round_DiffersFromBankersRounding" methodname="Round_DiffersFromBankersRounding" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1808927219" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000591" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.662 START CCT.Tests.IntegerOnlyTests.Round_DiffersFromBankersRounding (t=0.9 ts=1)
+[TestProgress] 17:40:29.663 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Round_DiffersFromBankersRounding (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1786" name="Round_MidpointAwayFromZero" fullname="CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.007065" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1780" name="Round_MidpointAwayFromZero(2.5d,3)" fullname="CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(2.5d,3)" methodname="Round_MidpointAwayFromZero" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="333356983" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.664 START CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(2.5d,3) (t=0.9 ts=1)
+[TestProgress] 17:40:29.664 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(2.5d,3) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1781" name="Round_MidpointAwayFromZero(-2.5d,-3)" fullname="CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(-2.5d,-3)" methodname="Round_MidpointAwayFromZero" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="434757467" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.666 START CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(-2.5d,-3) (t=0.9 ts=1)
+[TestProgress] 17:40:29.666 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(-2.5d,-3) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1782" name="Round_MidpointAwayFromZero(0.5d,1)" fullname="CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(0.5d,1)" methodname="Round_MidpointAwayFromZero" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1669676823" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000405" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.666 START CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(0.5d,1) (t=0.9 ts=1)
+[TestProgress] 17:40:29.667 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(0.5d,1) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1783" name="Round_MidpointAwayFromZero(1.4999d,1)" fullname="CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(1.4999d,1)" methodname="Round_MidpointAwayFromZero" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1863240761" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.667 START CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(1.4999d,1) (t=0.9 ts=1)
+[TestProgress] 17:40:29.668 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(1.4999d,1) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1784" name="Round_MidpointAwayFromZero(3.5d,4)" fullname="CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(3.5d,4)" methodname="Round_MidpointAwayFromZero" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="718439488" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.668 START CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(3.5d,4) (t=0.9 ts=1)
+[TestProgress] 17:40:29.669 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(3.5d,4) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1785" name="Round_MidpointAwayFromZero(-0.4d,0)" fullname="CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(-0.4d,0)" methodname="Round_MidpointAwayFromZero" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="878420974" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:40:29.669 START CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(-0.4d,0) (t=0.9 ts=1)
+[TestProgress] 17:40:29.671 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Round_MidpointAwayFromZero(-0.4d,0) (t=0.9 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1830" name="SetAmount_SnapsToWholeUnits" fullname="CCT.Tests.IntegerOnlyTests.SetAmount_SnapsToWholeUnits" methodname="SetAmount_SnapsToWholeUnits" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="112820776" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000695" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.671 START CCT.Tests.IntegerOnlyTests.SetAmount_SnapsToWholeUnits (t=0.9 ts=1)
+[TestProgress] 17:40:29.672 END Passed 0.0s CCT.Tests.IntegerOnlyTests.SetAmount_SnapsToWholeUnits (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1835" name="ShareCode_LegacyFractionalAmounts_ImportAsWhole" fullname="CCT.Tests.IntegerOnlyTests.ShareCode_LegacyFractionalAmounts_ImportAsWhole" methodname="ShareCode_LegacyFractionalAmounts_ImportAsWhole" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="578378433" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.002821" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.672 START CCT.Tests.IntegerOnlyTests.ShareCode_LegacyFractionalAmounts_ImportAsWhole (t=0.9 ts=1)
+[TestProgress] 17:40:29.675 END Passed 0.0s CCT.Tests.IntegerOnlyTests.ShareCode_LegacyFractionalAmounts_ImportAsWhole (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1832" name="StockAdd_RoundsDeltaToWholeUnits" fullname="CCT.Tests.IntegerOnlyTests.StockAdd_RoundsDeltaToWholeUnits" methodname="StockAdd_RoundsDeltaToWholeUnits" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1382631083" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000626" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.676 START CCT.Tests.IntegerOnlyTests.StockAdd_RoundsDeltaToWholeUnits (t=0.9 ts=1)
+[TestProgress] 17:40:29.676 END Passed 0.0s CCT.Tests.IntegerOnlyTests.StockAdd_RoundsDeltaToWholeUnits (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1845" name="UserFacingDataTexts_HaveNoDecimalNumbers" fullname="CCT.Tests.IntegerOnlyTests.UserFacingDataTexts_HaveNoDecimalNumbers" methodname="UserFacingDataTexts_HaveNoDecimalNumbers" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="1093894120" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.022328" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.677 START CCT.Tests.IntegerOnlyTests.UserFacingDataTexts_HaveNoDecimalNumbers (t=0.9 ts=1)
+[TestProgress] 17:40:29.699 END Passed 0.0s CCT.Tests.IntegerOnlyTests.UserFacingDataTexts_HaveNoDecimalNumbers (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1831" name="Validator_RejectsFractionalSteps_AndTeaMinimumIsOneGram" fullname="CCT.Tests.IntegerOnlyTests.Validator_RejectsFractionalSteps_AndTeaMinimumIsOneGram" methodname="Validator_RejectsFractionalSteps_AndTeaMinimumIsOneGram" classname="CCT.Tests.IntegerOnlyTests" runstate="Runnable" seed="835228016" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000887" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.699 START CCT.Tests.IntegerOnlyTests.Validator_RejectsFractionalSteps_AndTeaMinimumIsOneGram (t=0.9 ts=1)
+[TestProgress] 17:40:29.700 END Passed 0.0s CCT.Tests.IntegerOnlyTests.Validator_RejectsFractionalSteps_AndTeaMinimumIsOneGram (t=0.9 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2222" name="TeaDrinkAuraTests" fullname="CCT.Tests.TeaDrinkAuraTests" classname="CCT.Tests.TeaDrinkAuraTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.003670" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2225" name="Pool_IsFixed_AndTintDiffersFromRushOrange" fullname="CCT.Tests.TeaDrinkAuraTests.Pool_IsFixed_AndTintDiffersFromRushOrange" methodname="Pool_IsFixed_AndTintDiffersFromRushOrange" classname="CCT.Tests.TeaDrinkAuraTests" runstate="Runnable" seed="1569428162" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000699" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.702 START CCT.Tests.TeaDrinkAuraTests.Pool_IsFixed_AndTintDiffersFromRushOrange (t=1.0 ts=1)
+[TestProgress] 17:40:29.703 END Passed 0.0s CCT.Tests.TeaDrinkAuraTests.Pool_IsFixed_AndTintDiffersFromRushOrange (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="2224" name="RippleCurve_Thin_ExpandsAndFadesWithinBudget" fullname="CCT.Tests.TeaDrinkAuraTests.RippleCurve_Thin_ExpandsAndFadesWithinBudget" methodname="RippleCurve_Thin_ExpandsAndFadesWithinBudget" classname="CCT.Tests.TeaDrinkAuraTests" runstate="Runnable" seed="225954196" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000476" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.703 START CCT.Tests.TeaDrinkAuraTests.RippleCurve_Thin_ExpandsAndFadesWithinBudget (t=1.0 ts=1)
+[TestProgress] 17:40:29.704 END Passed 0.0s CCT.Tests.TeaDrinkAuraTests.RippleCurve_Thin_ExpandsAndFadesWithinBudget (t=1.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="2223" name="ShouldShow_OnlyTeaSommelier_WithAppliedBuff_WhilePlayingAndAlive" fullname="CCT.Tests.TeaDrinkAuraTests.ShouldShow_OnlyTeaSommelier_WithAppliedBuff_WhilePlayingAndAlive" methodname="ShouldShow_OnlyTeaSommelier_WithAppliedBuff_WhilePlayingAndAlive" classname="CCT.Tests.TeaDrinkAuraTests" runstate="Runnable" seed="944047803" result="Passed" start-time="2026-11-24 08:40:29Z" end-time="2026-11-24 08:40:29Z" duration="0.000149" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:40:29.704 START CCT.Tests.TeaDrinkAuraTests.ShouldShow_OnlyTeaSommelier_WithAppliedBuff_WhilePlayingAndAlive (t=1.0 ts=1)
+[TestProgress] 17:40:29.705 END Passed 0.0s CCT.Tests.TeaDrinkAuraTests.ShouldShow_OnlyTeaSommelier_WithAppliedBuff_WhilePlayingAndAlive (t=1.0 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

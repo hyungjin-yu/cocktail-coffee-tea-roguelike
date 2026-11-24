@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 08:41:09Z" end-time="2026-11-24 08:41:10Z" duration="0.778366">
+  <test-suite type="TestSuite" id="1602" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="488" result="Passed" start-time="2026-11-24 08:41:09Z" end-time="2026-11-24 08:41:10Z" duration="0.778366" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1596" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/orca/workspaces/CocktailCoffeeTea/levelup-menu-unity/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="488" result="Passed" start-time="2026-11-24 08:41:09Z" end-time="2026-11-24 08:41:10Z" duration="0.766670" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="32100" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1597" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="488" result="Passed" start-time="2026-11-24 08:41:09Z" end-time="2026-11-24 08:41:10Z" duration="0.760957" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="SetUpFixture" id="1552" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="488" result="Passed" start-time="2026-11-24 08:41:09Z" end-time="2026-11-24 08:41:10Z" duration="0.754707" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1536" name="TeaDrinkAuraPlayTests" fullname="CCT.Tests.TeaDrinkAuraPlayTests" classname="CCT.Tests.TeaDrinkAuraPlayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-24 08:41:09Z" end-time="2026-11-24 08:41:10Z" duration="0.743994" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_e01a86b1a26d4248854fe947a21d375a.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1538" name="MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides" fullname="CCT.Tests.TeaDrinkAuraPlayTests.MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides" methodname="MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides" classname="CCT.Tests.TeaDrinkAuraPlayTests" runstate="Runnable" seed="2042327820" result="Passed" start-time="2026-11-24 08:41:09Z" end-time="2026-11-24 08:41:10Z" duration="0.632115" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:41:09.604 START CCT.Tests.TeaDrinkAuraPlayTests.MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides (t=0.1 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_76e05593b6844c10950416e9e780f9fa.json (source=Defaults)
+[Commerce] 결제 비활성: commerce_config.enabled=false
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_playmode_session_e01a86b1a26d4248854fe947a21d375a.run-history.json (source=Fresh, 0판)
+[TestProgress] 17:41:10.240 END Passed 0.6s CCT.Tests.TeaDrinkAuraPlayTests.MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides (t=0.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1537" name="NoDrink_NoAura_And_Bartender_HasNone" fullname="CCT.Tests.TeaDrinkAuraPlayTests.NoDrink_NoAura_And_Bartender_HasNone" methodname="NoDrink_NoAura_And_Bartender_HasNone" classname="CCT.Tests.TeaDrinkAuraPlayTests" runstate="Runnable" seed="814702295" result="Passed" start-time="2026-11-24 08:41:10Z" end-time="2026-11-24 08:41:10Z" duration="0.101521" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:41:10.241 START CCT.Tests.TeaDrinkAuraPlayTests.NoDrink_NoAura_And_Bartender_HasNone (t=0.1 ts=1)
+[TestProgress] 17:41:10.342 END Passed 0.1s CCT.Tests.TeaDrinkAuraPlayTests.NoDrink_NoAura_And_Bartender_HasNone (t=0.3 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,68 @@
+char-select shop label=영구 강화 (스페셜티 3) / ▶ 강화 가능 3개
+shot perm17_charselect_button_buyable_1280x720.png 1280x720
+shot perm17_charselect_button_buyable_1024x768.png 1024x768
+shot perm17_charselect_button_buyable_1920x1080.png 1920x1080
+undiscovered count=카드 발견 0/35  ·  히든 스킬 발견 0/24  ·  직업 연구 해금 기록 0/15  ·  영구 강화 해금 0/24
+shot codex_undiscovered_1280x720.png 1280x720
+shot codex_undiscovered_1024x768.png 1024x768
+shot codex_undiscovered_1920x1080.png 1920x1080
+shot codex_detail_material_tea_undiscovered_1280x720.png 1280x720
+shot codex_detail_material_tea_undiscovered_1024x768.png 1024x768
+shot codex_detail_material_tea_undiscovered_1920x1080.png 1920x1080
+count=카드 발견 16/35  ·  히든 스킬 발견 0/24  ·  직업 연구 해금 기록 7/15  ·  영구 강화 해금 1/24
+liqueur=게이지를 채우는 데 필요한 재료 -8% | meta=(등급 일반, 발견함)
+materials=(칵테일 재료 6/6종 · 누적 3038개, <color=#E8E8E8>진, 럼, 보드카, 데킬라</color> <color=#E8E8E8>외 2종</color>  <color=#A09AA8>(눌러서 보기)</color>) / (커피 원두 6/6종 · 누적 292개, <color=#E8E8E8>에티오피아 원두</color> <color=#E8E8E8>외 5종</color>  <color=#A09AA8>(눌러서 보기)</color>)
+shot codex_all_1280x720.png 1280x720
+shot codex_all_1024x768.png 1024x768
+shot codex_all_1920x1080.png 1920x1080
+shot codex_filter_cocktail_1280x720.png 1280x720
+shot codex_filter_cocktail_1024x768.png 1024x768
+shot codex_filter_cocktail_1920x1080.png 1920x1080
+shot codex_filter_hybrid_1280x720.png 1280x720
+shot codex_filter_hybrid_1024x768.png 1024x768
+shot codex_filter_hybrid_1920x1080.png 1920x1080
+shot codex_scroll_mid_1280x720.png 1280x720
+shot codex_scroll_mid_1024x768.png 1024x768
+shot codex_scroll_mid_1920x1080.png 1920x1080
+shot codex_scroll_bottom_1280x720.png 1280x720
+shot codex_scroll_bottom_1024x768.png 1024x768
+shot codex_scroll_bottom_1920x1080.png 1920x1080
+shot codex_keyboard_focus_card_1280x720.png 1280x720
+shot codex_keyboard_focus_card_1024x768.png 1024x768
+shot codex_keyboard_focus_card_1920x1080.png 1920x1080
+shot codex_keyboard_focus_material_1280x720.png 1280x720
+shot codex_keyboard_focus_material_1024x768.png 1024x768
+shot codex_keyboard_focus_material_1920x1080.png 1920x1080
+shot codex_detail_material_coffee_1280x720.png 1280x720
+shot codex_detail_material_coffee_1024x768.png 1024x768
+shot codex_detail_material_coffee_1920x1080.png 1920x1080
+shot codex_detail_card_1280x720.png 1280x720
+shot codex_detail_card_1024x768.png 1024x768
+shot codex_detail_card_1920x1080.png 1920x1080
+shot codex_detail_permanent_1280x720.png 1280x720
+shot codex_detail_permanent_1024x768.png 1024x768
+shot codex_detail_permanent_1920x1080.png 1920x1080
+perm summary=(9, 3)
+shot perm17_before_purchase_1280x720.png 1280x720
+shot perm17_before_purchase_1024x768.png 1024x768
+shot perm17_before_purchase_1920x1080.png 1920x1080
+perm purchased=Purchased header=보유 스페셜티 6 | 해금 1 / 24 | 누적 획득 9 · 사용 3 · 클리어 0회 · 해금한 영구 강화는 다음 런의 몹도 강하게 합니다
+shot perm17_after_purchase_next_step_1280x720.png 1280x720
+shot perm17_after_purchase_next_step_1024x768.png 1024x768
+shot perm17_after_purchase_next_step_1920x1080.png 1920x1080
+shot perm17_owned_detail_1280x720.png 1280x720
+shot perm17_owned_detail_1024x768.png 1024x768
+shot perm17_owned_detail_1920x1080.png 1920x1080
+shot perm17_master_locked_1280x720.png 1280x720
+shot perm17_master_locked_1024x768.png 1024x768
+shot perm17_master_locked_1920x1080.png 1920x1080
+shot perm17_master_complete_1280x720.png 1280x720
+shot perm17_master_complete_1024x768.png 1024x768
+shot perm17_master_complete_1920x1080.png 1920x1080
+sword desc=넓게 베기 · 피해 +25%. / 맞은 일반 몬스터가 0.25초 동안 / 움직임을 멈춥니다 (보스 제외). / 근접 강화 카드를 사용.
+shot weapon_select_bartender_1280x720.png 1280x720
+shot weapon_select_bartender_1024x768.png 1024x768
+shot weapon_select_bartender_1920x1080.png 1920x1080
+shot weapon_select_tea_sword_bow_1280x720.png 1280x720
+shot weapon_select_tea_sword_bow_1024x768.png 1024x768
+shot weapon_select_tea_sword_bow_1920x1080.png 1920x1080

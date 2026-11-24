@@ -1,0 +1,33 @@
+shot codex_1280x720.png 1280x720
+shot codex_1024x768.png 1024x768
+shot codex_1920x1080.png 1920x1080
+shot codex_detail_1280x720.png 1280x720
+shot codex_detail_1024x768.png 1024x768
+shot codex_detail_1920x1080.png 1920x1080
+shot permanent_shop_1280x720.png 1280x720
+shot permanent_shop_1024x768.png 1024x768
+shot permanent_shop_1920x1080.png 1920x1080
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_craft_1280x720.png 1280x720
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_craft_1024x768.png 1024x768
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_craft_1920x1080.png 1920x1080
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_codex_1280x720.png 1280x720
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_codex_1024x768.png 1024x768
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_codex_1920x1080.png 1920x1080
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_recipes_1280x720.png 1280x720
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_recipes_1024x768.png 1024x768
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_recipes_1920x1080.png 1920x1080
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_orders_1280x720.png 1280x720
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_orders_1024x768.png 1024x768
+notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+shot lab_orders_1920x1080.png 1920x1080

@@ -1,0 +1,1403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="94" result="Failed(Child)" total="94" passed="92" failed="1" inconclusive="0" skipped="1" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 08:34:14Z" end-time="2026-11-24 08:39:46Z" duration="331.8335939">
+  <test-suite type="TestSuite" id="1602" name="CocktailCoffeeTea" fullname="CocktailCoffeeTea" runstate="Runnable" testcasecount="488" result="Failed" site="Child" start-time="2026-11-24 08:34:14Z" end-time="2026-11-24 08:39:46Z" duration="331.833594" total="94" passed="92" failed="1" inconclusive="0" skipped="1" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1596" name="CCT.Tests.PlayMode.dll" fullname="C:/Users/user/orca/workspaces/CocktailCoffeeTea/levelup-menu-unity/Library/ScriptAssemblies/CCT.Tests.PlayMode.dll" runstate="Runnable" testcasecount="488" result="Failed" site="Child" start-time="2026-11-24 08:34:14Z" end-time="2026-11-24 08:39:46Z" duration="331.824906" total="94" passed="92" failed="1" inconclusive="0" skipped="1" asserts="0">
+      <properties>
+        <property name="_PID" value="17036" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1597" name="CCT" fullname="CCT" runstate="Runnable" testcasecount="488" result="Failed" site="Child" start-time="2026-11-24 08:34:14Z" end-time="2026-11-24 08:39:46Z" duration="331.822078" total="94" passed="92" failed="1" inconclusive="0" skipped="1" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="SetUpFixture" id="1552" name="Tests" fullname="CCT.Tests.TestSaveIsolation" classname="CCT.Tests.TestSaveIsolation" runstate="Runnable" testcasecount="488" result="Failed" site="Child" start-time="2026-11-24 08:34:14Z" end-time="2026-11-24 08:39:46Z" duration="331.819110" total="94" passed="92" failed="1" inconclusive="0" skipped="1" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1037" name="CardCodexViewTests" fullname="CCT.Tests.CardCodexViewTests" classname="CCT.Tests.CardCodexViewTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-24 08:34:14Z" end-time="2026-11-24 08:34:15Z" duration="0.909890" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_ae1e7e6c65cd469fbe25a2c76ed8c2a8.json (source=Fresh, v2)
+]]></output>
+            <test-case id="1044" name="ChoosingACard_RecordsItInTheCodex_AndPersistsAcrossRestarts" fullname="CCT.Tests.CardCodexViewTests.ChoosingACard_RecordsItInTheCodex_AndPersistsAcrossRestarts" methodname="ChoosingACard_RecordsItInTheCodex_AndPersistsAcrossRestarts" classname="CCT.Tests.CardCodexViewTests" runstate="Runnable" seed="643227799" result="Passed" start-time="2026-11-24 08:34:14Z" end-time="2026-11-24 08:34:15Z" duration="0.435446" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:14.646 START CCT.Tests.CardCodexViewTests.ChoosingACard_RecordsItInTheCodex_AndPersistsAcrossRestarts (t=0.2 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_30f071cab2b64c528c501d234560f8dd.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_test_codexview_914ef354b44a401eb6fe386101a59c63.json (source=Fresh, v2)
+[Commerce] 결제 비활성: commerce_config.enabled=false
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_test_codexview_914ef354b44a401eb6fe386101a59c63.run-history.json (source=Fresh, 0판)
+[TestProgress] 17:34:15.086 END Passed 0.4s CCT.Tests.CardCodexViewTests.ChoosingACard_RecordsItInTheCodex_AndPersistsAcrossRestarts (t=0.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1038" name="CodexButton_OpensCodex_AndHidesJobStep" fullname="CCT.Tests.CardCodexViewTests.CodexButton_OpensCodex_AndHidesJobStep" methodname="CodexButton_OpensCodex_AndHidesJobStep" classname="CCT.Tests.CardCodexViewTests" runstate="Runnable" seed="987136902" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.079463" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.087 START CCT.Tests.CardCodexViewTests.CodexButton_OpensCodex_AndHidesJobStep (t=0.5 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_test_codexview_f108136ae93f410d96d5b9898bec4092.json (source=Fresh, v2)
+[TestProgress] 17:34:15.167 END Passed 0.1s CCT.Tests.CardCodexViewTests.CodexButton_OpensCodex_AndHidesJobStep (t=0.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1043" name="CodexShows_DiscoveredVariety_ByName_AndUndiscoveredAsQuestionMarks" fullname="CCT.Tests.CardCodexViewTests.CodexShows_DiscoveredVariety_ByName_AndUndiscoveredAsQuestionMarks" methodname="CodexShows_DiscoveredVariety_ByName_AndUndiscoveredAsQuestionMarks" classname="CCT.Tests.CardCodexViewTests" runstate="Runnable" seed="2059974129" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.068942" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.167 START CCT.Tests.CardCodexViewTests.CodexShows_DiscoveredVariety_ByName_AndUndiscoveredAsQuestionMarks (t=0.6 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_test_codexview_9fd83fe6187a4a38813f7742388e4efb.json (source=Fresh, v2)
+[TestProgress] 17:34:15.236 END Passed 0.1s CCT.Tests.CardCodexViewTests.CodexShows_DiscoveredVariety_ByName_AndUndiscoveredAsQuestionMarks (t=0.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1042" name="CodexShows_UnlockedPermanentSkill_AndCollectedMaterials" fullname="CCT.Tests.CardCodexViewTests.CodexShows_UnlockedPermanentSkill_AndCollectedMaterials" methodname="CodexShows_UnlockedPermanentSkill_AndCollectedMaterials" classname="CCT.Tests.CardCodexViewTests" runstate="Runnable" seed="2001542537" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.077208" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.237 START CCT.Tests.CardCodexViewTests.CodexShows_UnlockedPermanentSkill_AndCollectedMaterials (t=0.7 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_test_codexview_cd060c10051b4fdc99478be35a188f13.json (source=Fresh, v2)
+[TestProgress] 17:34:15.314 END Passed 0.1s CCT.Tests.CardCodexViewTests.CodexShows_UnlockedPermanentSkill_AndCollectedMaterials (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1040" name="HybridCard_ShowsNameAndUnlockCondition_EvenBeforeDiscovery" fullname="CCT.Tests.CardCodexViewTests.HybridCard_ShowsNameAndUnlockCondition_EvenBeforeDiscovery" methodname="HybridCard_ShowsNameAndUnlockCondition_EvenBeforeDiscovery" classname="CCT.Tests.CardCodexViewTests" runstate="Runnable" seed="687807700" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.087919" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.314 START CCT.Tests.CardCodexViewTests.HybridCard_ShowsNameAndUnlockCondition_EvenBeforeDiscovery (t=0.8 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_test_codexview_21dcc3c864cc41cb93da0d5927e44a0d.json (source=Fresh, v2)
+[TestProgress] 17:34:15.403 END Passed 0.1s CCT.Tests.CardCodexViewTests.HybridCard_ShowsNameAndUnlockCondition_EvenBeforeDiscovery (t=0.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1041" name="HybridCard_ShowsRealDescription_AfterDiscovery" fullname="CCT.Tests.CardCodexViewTests.HybridCard_ShowsRealDescription_AfterDiscovery" methodname="HybridCard_ShowsRealDescription_AfterDiscovery" classname="CCT.Tests.CardCodexViewTests" runstate="Runnable" seed="1133711080" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.072518" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.403 START CCT.Tests.CardCodexViewTests.HybridCard_ShowsRealDescription_AfterDiscovery (t=0.8 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_test_codexview_4fcaee7a9f5045b69fb67dfb071ae856.json (source=Fresh, v2)
+[TestProgress] 17:34:15.476 END Passed 0.1s CCT.Tests.CardCodexViewTests.HybridCard_ShowsRealDescription_AfterDiscovery (t=0.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1039" name="Tabs_FilterOnlyTheMatchingCardColumn" fullname="CCT.Tests.CardCodexViewTests.Tabs_FilterOnlyTheMatchingCardColumn" methodname="Tabs_FilterOnlyTheMatchingCardColumn" classname="CCT.Tests.CardCodexViewTests" runstate="Runnable" seed="66388770" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.074155" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.477 START CCT.Tests.CardCodexViewTests.Tabs_FilterOnlyTheMatchingCardColumn (t=0.9 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_test_codexview_73f8ce6794874bdaa8baa0977c38d59e.json (source=Fresh, v2)
+[TestProgress] 17:34:15.551 END Passed 0.1s CCT.Tests.CardCodexViewTests.Tabs_FilterOnlyTheMatchingCardColumn (t=1.0 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1061" name="CharacterSelectTests" fullname="CCT.Tests.CharacterSelectTests" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.330442" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1070" name="Build_WithChosenJobAndWeapon_AppliesBoth" fullname="CCT.Tests.CharacterSelectTests.Build_WithChosenJobAndWeapon_AppliesBoth" methodname="Build_WithChosenJobAndWeapon_AppliesBoth" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="686595255" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.060692" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.555 START CCT.Tests.CharacterSelectTests.Build_WithChosenJobAndWeapon_AppliesBoth (t=1.0 ts=1)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_ae1e7e6c65cd469fbe25a2c76ed8c2a8.json (source=Fresh, v2)
+[TestProgress] 17:34:15.616 END Passed 0.1s CCT.Tests.CharacterSelectTests.Build_WithChosenJobAndWeapon_AppliesBoth (t=1.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1071" name="Build_WithMeleeWeapon_AttachesRapierWeapon" fullname="CCT.Tests.CharacterSelectTests.Build_WithMeleeWeapon_AttachesRapierWeapon" methodname="Build_WithMeleeWeapon_AttachesRapierWeapon" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1833945683" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.043428" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.617 START CCT.Tests.CharacterSelectTests.Build_WithMeleeWeapon_AttachesRapierWeapon (t=1.1 ts=1)
+[TestProgress] 17:34:15.660 END Passed 0.0s CCT.Tests.CharacterSelectTests.Build_WithMeleeWeapon_AttachesRapierWeapon (t=1.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1062" name="ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen" fullname="CCT.Tests.CharacterSelectTests.ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen" methodname="ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1628611678" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.024598" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.660 START CCT.Tests.CharacterSelectTests.ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen (t=1.1 ts=1)
+[TestProgress] 17:34:15.686 END Passed 0.0s CCT.Tests.CharacterSelectTests.ClickingJob_ThenWeapon_InvokesCallback_AndDestroysScreen (t=1.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1073" name="MeleeWeapon_NeverOffersRangedOnlyCards" fullname="CCT.Tests.CharacterSelectTests.MeleeWeapon_NeverOffersRangedOnlyCards" methodname="MeleeWeapon_NeverOffersRangedOnlyCards" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="2109990696" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.045953" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.687 START CCT.Tests.CharacterSelectTests.MeleeWeapon_NeverOffersRangedOnlyCards (t=1.1 ts=1)
+[TestProgress] 17:34:15.732 END Passed 0.0s CCT.Tests.CharacterSelectTests.MeleeWeapon_NeverOffersRangedOnlyCards (t=1.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1072" name="RangedWeapon_NeverOffersMeleeOnlyCards" fullname="CCT.Tests.CharacterSelectTests.RangedWeapon_NeverOffersMeleeOnlyCards" methodname="RangedWeapon_NeverOffersMeleeOnlyCards" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="128436971" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.046514" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.733 START CCT.Tests.CharacterSelectTests.RangedWeapon_NeverOffersMeleeOnlyCards (t=1.2 ts=1)
+[TestProgress] 17:34:15.779 END Passed 0.0s CCT.Tests.CharacterSelectTests.RangedWeapon_NeverOffersMeleeOnlyCards (t=1.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1069" name="WeaponCard_RendersItsIcon" fullname="CCT.Tests.CharacterSelectTests.WeaponCard_RendersItsIcon" methodname="WeaponCard_RendersItsIcon" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1202909883" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.014005" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.780 START CCT.Tests.CharacterSelectTests.WeaponCard_RendersItsIcon (t=1.2 ts=1)
+[TestProgress] 17:34:15.795 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponCard_RendersItsIcon (t=1.2 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1067" name="WeaponStep_Bands_NoOverlap_InfoLineNotClipped" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.071489" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <test-case id="1063" name="WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Standard)" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Standard)" methodname="WeaponStep_Bands_NoOverlap_InfoLineNotClipped" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1420527738" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.017661" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:34:15.797 START CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Standard) (t=1.2 ts=1)
+[TestProgress] 17:34:15.815 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Standard) (t=1.3 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1064" name="WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Endless)" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Endless)" methodname="WeaponStep_Bands_NoOverlap_InfoLineNotClipped" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1103391052" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.016433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:34:15.815 START CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Endless) (t=1.3 ts=1)
+[TestProgress] 17:34:15.831 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(Bartender,Endless) (t=1.3 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1065" name="WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Standard)" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Standard)" methodname="WeaponStep_Bands_NoOverlap_InfoLineNotClipped" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1458568113" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.016298" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:34:15.832 START CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Standard) (t=1.3 ts=1)
+[TestProgress] 17:34:15.848 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Standard) (t=1.3 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1066" name="WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Endless)" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Endless)" methodname="WeaponStep_Bands_NoOverlap_InfoLineNotClipped" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="674171587" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.015941" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:34:15.849 START CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Endless) (t=1.3 ts=1)
+[TestProgress] 17:34:15.866 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponStep_Bands_NoOverlap_InfoLineNotClipped(TeaSommelier,Endless) (t=1.3 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1068" name="WeaponStep_SpawnTable_TwoStates_LabelAndDescription" fullname="CCT.Tests.CharacterSelectTests.WeaponStep_SpawnTable_TwoStates_LabelAndDescription" methodname="WeaponStep_SpawnTable_TwoStates_LabelAndDescription" classname="CCT.Tests.CharacterSelectTests" runstate="Runnable" seed="1833842721" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:15Z" duration="0.015860" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.867 START CCT.Tests.CharacterSelectTests.WeaponStep_SpawnTable_TwoStates_LabelAndDescription (t=1.3 ts=1)
+[TestProgress] 17:34:15.883 END Passed 0.0s CCT.Tests.CharacterSelectTests.WeaponStep_SpawnTable_TwoStates_LabelAndDescription (t=1.3 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1077" name="CodexReadabilityEvidenceCapture" fullname="CCT.Tests.CodexReadabilityEvidenceCapture" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:19Z" duration="3.134701" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1081" name="CharacterSelect_PermanentButton_Buyable" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.CharacterSelect_PermanentButton_Buyable" methodname="CharacterSelect_PermanentButton_Buyable" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="807569142" result="Passed" start-time="2026-11-24 08:34:15Z" end-time="2026-11-24 08:34:16Z" duration="0.375766" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:15.884 START CCT.Tests.CodexReadabilityEvidenceCapture.CharacterSelect_PermanentButton_Buyable (t=1.3 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-6b68538937df4e65a44ab1b1384f2d16\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-6b68538937df4e65a44ab1b1384f2d16\save.json (source=Fresh, v2)
+[Codex1124] char-select shop label=영구 강화 (스페셜티 3) / ▶ 강화 가능 3개
+[Codex1124] shot perm17_charselect_button_buyable_1280x720.png 1280x720
+[Codex1124] shot perm17_charselect_button_buyable_1024x768.png 1024x768
+[Codex1124] shot perm17_charselect_button_buyable_1920x1080.png 1920x1080
+[TestProgress] 17:34:16.261 END Passed 0.4s CCT.Tests.CodexReadabilityEvidenceCapture.CharacterSelect_PermanentButton_Buyable (t=1.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1079" name="Codex_AllUndiscovered" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.Codex_AllUndiscovered" methodname="Codex_AllUndiscovered" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="1367637739" result="Passed" start-time="2026-11-24 08:34:16Z" end-time="2026-11-24 08:34:16Z" duration="0.502333" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:16.262 START CCT.Tests.CodexReadabilityEvidenceCapture.Codex_AllUndiscovered (t=1.7 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-afd2590c2783416ebeca82bdd12b8535\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-afd2590c2783416ebeca82bdd12b8535\save.json (source=Fresh, v2)
+[Codex1124] undiscovered count=카드 발견 0/35  ·  히든 스킬 발견 0/24  ·  직업 연구 해금 기록 0/15  ·  영구 강화 해금 0/24
+[Codex1124] shot codex_undiscovered_1280x720.png 1280x720
+[Codex1124] shot codex_undiscovered_1024x768.png 1024x768
+[Codex1124] shot codex_undiscovered_1920x1080.png 1920x1080
+[Codex1124] shot codex_detail_material_tea_undiscovered_1280x720.png 1280x720
+[Codex1124] shot codex_detail_material_tea_undiscovered_1024x768.png 1024x768
+[Codex1124] shot codex_detail_material_tea_undiscovered_1920x1080.png 1920x1080
+[TestProgress] 17:34:16.764 END Passed 0.5s CCT.Tests.CodexReadabilityEvidenceCapture.Codex_AllUndiscovered (t=2.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1078" name="Codex_States" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.Codex_States" methodname="Codex_States" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="220187209" result="Passed" start-time="2026-11-24 08:34:16Z" end-time="2026-11-24 08:34:18Z" duration="1.310145" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:16.764 START CCT.Tests.CodexReadabilityEvidenceCapture.Codex_States (t=2.2 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-a29b51f26b0548f5bf0085d7c055c68e\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-a29b51f26b0548f5bf0085d7c055c68e\save.json (source=Fresh, v2)
+[Codex1124] count=카드 발견 16/35  ·  히든 스킬 발견 0/24  ·  직업 연구 해금 기록 7/15  ·  영구 강화 해금 1/24
+[Codex1124] liqueur=게이지를 채우는 데 필요한 재료 -8% | meta=(등급 일반, 발견함)
+[Codex1124] materials=(칵테일 재료 6/6종 · 누적 3038개, <color=#E8E8E8>진, 럼, 보드카, 데킬라</color> <color=#E8E8E8>외 2종</color>  <color=#A09AA8>(눌러서 보기)</color>) / (커피 원두 6/6종 · 누적 292개, <color=#E8E8E8>에티오피아 원두</color> <color=#E8E8E8>외 5종</color>  <color=#A09AA8>(눌러서 보기)</color>)
+[Codex1124] shot codex_all_1280x720.png 1280x720
+[Codex1124] shot codex_all_1024x768.png 1024x768
+[Codex1124] shot codex_all_1920x1080.png 1920x1080
+[Codex1124] shot codex_filter_cocktail_1280x720.png 1280x720
+[Codex1124] shot codex_filter_cocktail_1024x768.png 1024x768
+[Codex1124] shot codex_filter_cocktail_1920x1080.png 1920x1080
+[Codex1124] shot codex_filter_hybrid_1280x720.png 1280x720
+[Codex1124] shot codex_filter_hybrid_1024x768.png 1024x768
+[Codex1124] shot codex_filter_hybrid_1920x1080.png 1920x1080
+[Codex1124] shot codex_scroll_mid_1280x720.png 1280x720
+[Codex1124] shot codex_scroll_mid_1024x768.png 1024x768
+[Codex1124] shot codex_scroll_mid_1920x1080.png 1920x1080
+[Codex1124] shot codex_scroll_bottom_1280x720.png 1280x720
+[Codex1124] shot codex_scroll_bottom_1024x768.png 1024x768
+[Codex1124] shot codex_scroll_bottom_1920x1080.png 1920x1080
+[Codex1124] shot codex_keyboard_focus_card_1280x720.png 1280x720
+[Codex1124] shot codex_keyboard_focus_card_1024x768.png 1024x768
+[Codex1124] shot codex_keyboard_focus_card_1920x1080.png 1920x1080
+[Codex1124] shot codex_keyboard_focus_material_1280x720.png 1280x720
+[Codex1124] shot codex_keyboard_focus_material_1024x768.png 1024x768
+[Codex1124] shot codex_keyboard_focus_material_1920x1080.png 1920x1080
+[Codex1124] shot codex_detail_material_coffee_1280x720.png 1280x720
+[Codex1124] shot codex_detail_material_coffee_1024x768.png 1024x768
+[Codex1124] shot codex_detail_material_coffee_1920x1080.png 1920x1080
+[Codex1124] shot codex_detail_card_1280x720.png 1280x720
+[Codex1124] shot codex_detail_card_1024x768.png 1024x768
+[Codex1124] shot codex_detail_card_1920x1080.png 1920x1080
+[Codex1124] shot codex_detail_permanent_1280x720.png 1280x720
+[Codex1124] shot codex_detail_permanent_1024x768.png 1024x768
+[Codex1124] shot codex_detail_permanent_1920x1080.png 1920x1080
+[TestProgress] 17:34:18.075 END Passed 1.3s CCT.Tests.CodexReadabilityEvidenceCapture.Codex_States (t=3.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1080" name="PermanentShop_States" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.PermanentShop_States" methodname="PermanentShop_States" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="633569416" result="Passed" start-time="2026-11-24 08:34:18Z" end-time="2026-11-24 08:34:18Z" duration="0.709642" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:18.075 START CCT.Tests.CodexReadabilityEvidenceCapture.PermanentShop_States (t=3.5 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-12ef46a49bfe4d4bb5edf538364d8478\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-12ef46a49bfe4d4bb5edf538364d8478\save.json (source=Fresh, v2)
+[Codex1124] perm summary=(9, 3)
+[Codex1124] shot perm17_before_purchase_1280x720.png 1280x720
+[Codex1124] shot perm17_before_purchase_1024x768.png 1024x768
+[Codex1124] shot perm17_before_purchase_1920x1080.png 1920x1080
+[Codex1124] perm purchased=Purchased header=보유 스페셜티 6 | 해금 1 / 24 | 누적 획득 9 · 사용 3 · 클리어 0회 · 해금한 영구 강화는 다음 런의 몹도 강하게 합니다
+[Codex1124] shot perm17_after_purchase_next_step_1280x720.png 1280x720
+[Codex1124] shot perm17_after_purchase_next_step_1024x768.png 1024x768
+[Codex1124] shot perm17_after_purchase_next_step_1920x1080.png 1920x1080
+[Codex1124] shot perm17_owned_detail_1280x720.png 1280x720
+[Codex1124] shot perm17_owned_detail_1024x768.png 1024x768
+[Codex1124] shot perm17_owned_detail_1920x1080.png 1920x1080
+[Codex1124] shot perm17_master_locked_1280x720.png 1280x720
+[Codex1124] shot perm17_master_locked_1024x768.png 1024x768
+[Codex1124] shot perm17_master_locked_1920x1080.png 1920x1080
+[Codex1124] shot perm17_master_complete_1280x720.png 1280x720
+[Codex1124] shot perm17_master_complete_1024x768.png 1024x768
+[Codex1124] shot perm17_master_complete_1920x1080.png 1920x1080
+[TestProgress] 17:34:18.784 END Passed 0.7s CCT.Tests.CodexReadabilityEvidenceCapture.PermanentShop_States (t=4.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1082" name="WeaponSelect_SwordCard" fullname="CCT.Tests.CodexReadabilityEvidenceCapture.WeaponSelect_SwordCard" methodname="WeaponSelect_SwordCard" classname="CCT.Tests.CodexReadabilityEvidenceCapture" runstate="Runnable" seed="1939018274" result="Passed" start-time="2026-11-24 08:34:18Z" end-time="2026-11-24 08:34:19Z" duration="0.232353" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:18.785 START CCT.Tests.CodexReadabilityEvidenceCapture.WeaponSelect_SwordCard (t=4.2 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-5333e6b70d9140a68703bbb4842a25ab\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\codex1124-5333e6b70d9140a68703bbb4842a25ab\save.json (source=Fresh, v2)
+[Codex1124] sword desc=넓게 베기 · 피해 +25%. / 맞은 일반 몬스터가 0.25초 동안 / 움직임을 멈춥니다 (보스 제외). / 근접 강화 카드를 사용.
+[Codex1124] shot weapon_select_bartender_1280x720.png 1280x720
+[Codex1124] shot weapon_select_bartender_1024x768.png 1024x768
+[Codex1124] shot weapon_select_bartender_1920x1080.png 1920x1080
+[Codex1124] shot weapon_select_tea_sword_bow_1280x720.png 1280x720
+[Codex1124] shot weapon_select_tea_sword_bow_1024x768.png 1024x768
+[Codex1124] shot weapon_select_tea_sword_bow_1920x1080.png 1920x1080
+[TestProgress] 17:34:19.018 END Passed 0.2s CCT.Tests.CodexReadabilityEvidenceCapture.WeaponSelect_SwordCard (t=4.5 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1090" name="CoffeeLabPlayTests" fullname="CCT.Tests.CoffeeLabPlayTests" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" testcasecount="21" result="Skipped" label="Ignored" start-time="2026-11-24 08:34:19Z" end-time="2026-11-24 08:37:37Z" duration="198.905831" total="21" passed="20" failed="0" inconclusive="0" skipped="1" asserts="0">
+            <properties />
+            <reason>
+              <message><![CDATA[One or more child tests were ignored]]></message>
+            </reason>
+            <test-suite type="ParameterizedMethod" id="1098" name="BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring" fullname="CCT.Tests.CoffeeLabPlayTests.BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-24 08:34:19Z" end-time="2026-11-24 08:34:28Z" duration="9.207805" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <test-case id="1095" name="BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(EspressoMachine)" fullname="CCT.Tests.CoffeeLabPlayTests.BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(EspressoMachine)" methodname="BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="668344508" result="Passed" start-time="2026-11-24 08:34:19Z" end-time="2026-11-24 08:34:22Z" duration="3.194236" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:34:19.026 START CCT.Tests.CoffeeLabPlayTests.BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(EspressoMachine) (t=4.5 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_30f071cab2b64c528c501d234560f8dd.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_ae1e7e6c65cd469fbe25a2c76ed8c2a8.json (source=Original, v2)
+[TestProgress] 17:34:19.587 HB frame=934 dt=0.0004 unscaledDt=0.0004 state=noGM enemies=0 (t=5.0 ts=1)
+[TestProgress] 17:34:22.220 END Passed 3.2s CCT.Tests.CoffeeLabPlayTests.BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(EspressoMachine) (t=7.7 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1096" name="BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(PourOver)" fullname="CCT.Tests.CoffeeLabPlayTests.BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(PourOver)" methodname="BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="40483981" result="Passed" start-time="2026-11-24 08:34:22Z" end-time="2026-11-24 08:34:25Z" duration="3.006246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:34:22.221 START CCT.Tests.CoffeeLabPlayTests.BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(PourOver) (t=7.7 ts=1)
+[TestProgress] 17:34:24.586 HB frame=10271 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=10.0 ts=1)
+[TestProgress] 17:34:25.227 END Passed 3.0s CCT.Tests.CoffeeLabPlayTests.BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(PourOver) (t=10.7 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1097" name="BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(MokaPot)" fullname="CCT.Tests.CoffeeLabPlayTests.BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(MokaPot)" methodname="BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="170765173" result="Passed" start-time="2026-11-24 08:34:25Z" end-time="2026-11-24 08:34:28Z" duration="3.003705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:34:25.227 START CCT.Tests.CoffeeLabPlayTests.BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(MokaPot) (t=10.7 ts=1)
+[TestProgress] 17:34:28.231 END Passed 3.0s CCT.Tests.CoffeeLabPlayTests.BeanScoop_FlipsTowardEveryCoffeeMethodOnlyWhileTransferring(MokaPot) (t=13.7 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1094" name="BeanScoop_OneScoopHolds20g_TinStaysClearOfScoop" fullname="CCT.Tests.CoffeeLabPlayTests.BeanScoop_OneScoopHolds20g_TinStaysClearOfScoop" methodname="BeanScoop_OneScoopHolds20g_TinStaysClearOfScoop" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="1006377045" result="Passed" start-time="2026-11-24 08:34:28Z" end-time="2026-11-24 08:34:33Z" duration="5.055400" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:28.231 START CCT.Tests.CoffeeLabPlayTests.BeanScoop_OneScoopHolds20g_TinStaysClearOfScoop (t=13.7 ts=1)
+[TestProgress] 17:34:29.586 HB frame=19859 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=15.0 ts=1)
+[TestProgress] 17:34:33.288 END Passed 5.1s CCT.Tests.CoffeeLabPlayTests.BeanScoop_OneScoopHolds20g_TinStaysClearOfScoop (t=18.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1092" name="BeanScoop_PoursBeansIntoApparatus_ExactDraftAmount" fullname="CCT.Tests.CoffeeLabPlayTests.BeanScoop_PoursBeansIntoApparatus_ExactDraftAmount" methodname="BeanScoop_PoursBeansIntoApparatus_ExactDraftAmount" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="1726635791" result="Passed" start-time="2026-11-24 08:34:33Z" end-time="2026-11-24 08:34:38Z" duration="4.857639" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:33.288 START CCT.Tests.CoffeeLabPlayTests.BeanScoop_PoursBeansIntoApparatus_ExactDraftAmount (t=18.7 ts=1)
+[TestProgress] 17:34:34.587 HB frame=29070 dt=0.0005 unscaledDt=0.0005 state=noGM enemies=0 (t=20.0 ts=1)
+[TestProgress] 17:34:38.146 END Passed 4.9s CCT.Tests.CoffeeLabPlayTests.BeanScoop_PoursBeansIntoApparatus_ExactDraftAmount (t=23.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1091" name="CoffeeKind_ListsOnlyBeans_MethodButtonsSwapCenteredApparatus" fullname="CCT.Tests.CoffeeLabPlayTests.CoffeeKind_ListsOnlyBeans_MethodButtonsSwapCenteredApparatus" methodname="CoffeeKind_ListsOnlyBeans_MethodButtonsSwapCenteredApparatus" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="272296654" result="Passed" start-time="2026-11-24 08:34:38Z" end-time="2026-11-24 08:34:38Z" duration="0.124769" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:38.146 START CCT.Tests.CoffeeLabPlayTests.CoffeeKind_ListsOnlyBeans_MethodButtonsSwapCenteredApparatus (t=23.6 ts=1)
+[TestProgress] 17:34:38.271 END Passed 0.1s CCT.Tests.CoffeeLabPlayTests.CoffeeKind_ListsOnlyBeans_MethodButtonsSwapCenteredApparatus (t=23.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1099" name="CoffeeScreen_TopAndBottomControlsStayInsideFrame" fullname="CCT.Tests.CoffeeLabPlayTests.CoffeeScreen_TopAndBottomControlsStayInsideFrame" methodname="CoffeeScreen_TopAndBottomControlsStayInsideFrame" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="1134086594" result="Passed" start-time="2026-11-24 08:34:38Z" end-time="2026-11-24 08:34:38Z" duration="0.079880" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:38.271 START CCT.Tests.CoffeeLabPlayTests.CoffeeScreen_TopAndBottomControlsStayInsideFrame (t=23.7 ts=1)
+[TestProgress] 17:34:38.352 END Passed 0.1s CCT.Tests.CoffeeLabPlayTests.CoffeeScreen_TopAndBottomControlsStayInsideFrame (t=23.8 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1109" name="Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod" fullname="CCT.Tests.CoffeeLabPlayTests.Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-24 08:34:38Z" end-time="2026-11-24 08:34:58Z" duration="20.066900" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <test-case id="1106" name="Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(EspressoMachine)" fullname="CCT.Tests.CoffeeLabPlayTests.Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(EspressoMachine)" methodname="Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="867570195" result="Passed" start-time="2026-11-24 08:34:38Z" end-time="2026-11-24 08:34:42Z" duration="4.151920" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:34:38.354 START CCT.Tests.CoffeeLabPlayTests.Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(EspressoMachine) (t=23.8 ts=1)
+[TestProgress] 17:34:39.587 HB frame=38300 dt=0.0005 unscaledDt=0.0005 state=noGM enemies=0 (t=25.0 ts=1)
+[TestProgress] 17:34:42.505 END Passed 4.2s CCT.Tests.CoffeeLabPlayTests.Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(EspressoMachine) (t=27.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1107" name="Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(PourOver)" fullname="CCT.Tests.CoffeeLabPlayTests.Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(PourOver)" methodname="Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="126967303" result="Passed" start-time="2026-11-24 08:34:42Z" end-time="2026-11-24 08:34:50Z" duration="7.701297" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:34:42.506 START CCT.Tests.CoffeeLabPlayTests.Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(PourOver) (t=27.9 ts=1)
+[TestProgress] 17:34:44.589 HB frame=43540 dt=0.0021 unscaledDt=0.0021 state=noGM enemies=0 (t=30.0 ts=1)
+[TestProgress] 17:34:49.590 HB frame=47356 dt=0.0015 unscaledDt=0.0015 state=noGM enemies=0 (t=35.0 ts=1)
+[TestProgress] 17:34:50.207 END Passed 7.7s CCT.Tests.CoffeeLabPlayTests.Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(PourOver) (t=35.6 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1108" name="Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(MokaPot)" fullname="CCT.Tests.CoffeeLabPlayTests.Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(MokaPot)" methodname="Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="1817782108" result="Passed" start-time="2026-11-24 08:34:50Z" end-time="2026-11-24 08:34:58Z" duration="8.210330" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:34:50.208 START CCT.Tests.CoffeeLabPlayTests.Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(MokaPot) (t=35.6 ts=1)
+[TestProgress] 17:34:54.590 HB frame=55740 dt=0.0018 unscaledDt=0.0018 state=noGM enemies=0 (t=40.0 ts=1)
+[TestProgress] 17:34:58.418 END Passed 8.2s CCT.Tests.CoffeeLabPlayTests.Craft_EachMethod_PlaysApparatusFlow_FinalCupAndSavedMethod(MokaPot) (t=43.9 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1111" name="Craft_SkipMotion_SameFinalCup" fullname="CCT.Tests.CoffeeLabPlayTests.Craft_SkipMotion_SameFinalCup" methodname="Craft_SkipMotion_SameFinalCup" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="1239338561" result="Passed" start-time="2026-11-24 08:34:58Z" end-time="2026-11-24 08:34:58Z" duration="0.134555" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:58.419 START CCT.Tests.CoffeeLabPlayTests.Craft_SkipMotion_SameFinalCup (t=43.9 ts=1)
+[TestProgress] 17:34:58.554 END Passed 0.1s CCT.Tests.CoffeeLabPlayTests.Craft_SkipMotion_SameFinalCup (t=44.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1112" name="EspressoCloseUp_DropsThenStream_LevelAndColorFromLedger_ReturnsToScene" fullname="CCT.Tests.CoffeeLabPlayTests.EspressoCloseUp_DropsThenStream_LevelAndColorFromLedger_ReturnsToScene" methodname="EspressoCloseUp_DropsThenStream_LevelAndColorFromLedger_ReturnsToScene" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="9286583" result="Passed" start-time="2026-11-24 08:34:58Z" end-time="2026-11-24 08:35:02Z" duration="4.114694" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:34:58.555 START CCT.Tests.CoffeeLabPlayTests.EspressoCloseUp_DropsThenStream_LevelAndColorFromLedger_ReturnsToScene (t=44.0 ts=1)
+[TestProgress] 17:34:59.591 HB frame=58847 dt=0.0017 unscaledDt=0.0017 state=noGM enemies=0 (t=45.0 ts=1)
+[TestProgress] 17:35:02.670 END Passed 4.1s CCT.Tests.CoffeeLabPlayTests.EspressoCloseUp_DropsThenStream_LevelAndColorFromLedger_ReturnsToScene (t=48.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1113" name="EspressoCloseUp_SkipMidStream_CleansUp_SameFinalCup" fullname="CCT.Tests.CoffeeLabPlayTests.EspressoCloseUp_SkipMidStream_CleansUp_SameFinalCup" methodname="EspressoCloseUp_SkipMidStream_CleansUp_SameFinalCup" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="870337097" result="Passed" start-time="2026-11-24 08:35:02Z" end-time="2026-11-24 08:35:04Z" duration="1.467260" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:35:02.670 START CCT.Tests.CoffeeLabPlayTests.EspressoCloseUp_SkipMidStream_CleansUp_SameFinalCup (t=48.1 ts=1)
+[TestProgress] 17:35:04.138 END Passed 1.5s CCT.Tests.CoffeeLabPlayTests.EspressoCloseUp_SkipMidStream_CleansUp_SameFinalCup (t=49.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1105" name="Evidence_MethodCombatGuide_Captures" fullname="CCT.Tests.CoffeeLabPlayTests.Evidence_MethodCombatGuide_Captures" methodname="Evidence_MethodCombatGuide_Captures" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="972237671" result="Passed" start-time="2026-11-24 08:35:04Z" end-time="2026-11-24 08:35:04Z" duration="0.498968" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:35:04.138 START CCT.Tests.CoffeeLabPlayTests.Evidence_MethodCombatGuide_Captures (t=49.6 ts=1)
+[Evidence] shot coffee_combat_PourOver_1920x1080.png 1920x1080
+[Evidence] shot coffee_combat_MokaPot_1920x1080.png 1920x1080
+[Evidence] shot coffee_combat_EspressoMachine_1920x1080.png 1920x1080
+[Evidence] shot coffee_combat_PourOver_1280x720.png 1280x720
+[Evidence] shot coffee_combat_MokaPot_1280x720.png 1280x720
+[TestProgress] 17:35:04.594 HB frame=63779 dt=0.0413 unscaledDt=0.0413 state=noGM enemies=0 (t=50.0 ts=1)
+[Evidence] shot coffee_combat_EspressoMachine_1280x720.png 1280x720
+[TestProgress] 17:35:04.637 END Passed 0.5s CCT.Tests.CoffeeLabPlayTests.Evidence_MethodCombatGuide_Captures (t=50.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1103" name="MethodButtons_LabelsFit_SelectedCheckDoesNotCoverLabel" fullname="CCT.Tests.CoffeeLabPlayTests.MethodButtons_LabelsFit_SelectedCheckDoesNotCoverLabel" methodname="MethodButtons_LabelsFit_SelectedCheckDoesNotCoverLabel" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="686135886" result="Passed" start-time="2026-11-24 08:35:04Z" end-time="2026-11-24 08:35:04Z" duration="0.090950" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:35:04.637 START CCT.Tests.CoffeeLabPlayTests.MethodButtons_LabelsFit_SelectedCheckDoesNotCoverLabel (t=50.1 ts=1)
+[TestProgress] 17:35:04.729 END Passed 0.1s CCT.Tests.CoffeeLabPlayTests.MethodButtons_LabelsFit_SelectedCheckDoesNotCoverLabel (t=50.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1104" name="MethodCombatGuide_UpdatesWithSelection_FitsBelowMethodDescription" fullname="CCT.Tests.CoffeeLabPlayTests.MethodCombatGuide_UpdatesWithSelection_FitsBelowMethodDescription" methodname="MethodCombatGuide_UpdatesWithSelection_FitsBelowMethodDescription" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="1082595131" result="Passed" start-time="2026-11-24 08:35:04Z" end-time="2026-11-24 08:35:04Z" duration="0.104672" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:35:04.730 START CCT.Tests.CoffeeLabPlayTests.MethodCombatGuide_UpdatesWithSelection_FitsBelowMethodDescription (t=50.2 ts=1)
+[TestProgress] 17:35:04.834 END Passed 0.1s CCT.Tests.CoffeeLabPlayTests.MethodCombatGuide_UpdatesWithSelection_FitsBelowMethodDescription (t=50.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1100" name="OrdersTab_DisabledSellShowsReason_PreparedHeaderStaysTwoLines" fullname="CCT.Tests.CoffeeLabPlayTests.OrdersTab_DisabledSellShowsReason_PreparedHeaderStaysTwoLines" methodname="OrdersTab_DisabledSellShowsReason_PreparedHeaderStaysTwoLines" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="885174681" result="Passed" start-time="2026-11-24 08:35:04Z" end-time="2026-11-24 08:35:05Z" duration="0.603524" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:35:04.834 START CCT.Tests.CoffeeLabPlayTests.OrdersTab_DisabledSellShowsReason_PreparedHeaderStaysTwoLines (t=50.3 ts=1)
+[TestProgress] 17:35:05.438 END Passed 0.6s CCT.Tests.CoffeeLabPlayTests.OrdersTab_DisabledSellShowsReason_PreparedHeaderStaysTwoLines (t=50.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1093" name="OriginTins_All28_TinStaysClearOfScoop_OneScoop" fullname="CCT.Tests.CoffeeLabPlayTests.OriginTins_All28_TinStaysClearOfScoop_OneScoop" methodname="OriginTins_All28_TinStaysClearOfScoop_OneScoop" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="1666521684" result="Passed" start-time="2026-11-24 08:35:05Z" end-time="2026-11-24 08:37:26Z" duration="140.862191" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:35:05.438 START CCT.Tests.CoffeeLabPlayTests.OriginTins_All28_TinStaysClearOfScoop_OneScoop (t=50.7 ts=1)
+[TestProgress] 17:35:09.595 HB frame=69741 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=54.9 ts=1)
+[TestProgress] 17:35:14.595 HB frame=77698 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=59.9 ts=1)
+[TestProgress] 17:35:19.595 HB frame=86540 dt=0.0009 unscaledDt=0.0009 state=noGM enemies=0 (t=64.9 ts=1)
+[TestProgress] 17:35:24.596 HB frame=95501 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=69.9 ts=1)
+[TestProgress] 17:35:29.595 HB frame=104679 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=74.9 ts=1)
+[TestProgress] 17:35:34.596 HB frame=114013 dt=0.0005 unscaledDt=0.0005 state=noGM enemies=0 (t=79.9 ts=1)
+[TestProgress] 17:35:39.596 HB frame=123153 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=84.9 ts=1)
+[TestProgress] 17:35:44.597 HB frame=132313 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=89.9 ts=1)
+[TestProgress] 17:35:49.598 HB frame=141505 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=94.9 ts=1)
+[TestProgress] 17:35:54.597 HB frame=150217 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=99.9 ts=1)
+[TestProgress] 17:35:59.598 HB frame=159378 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=104.9 ts=1)
+[TestProgress] 17:36:04.598 HB frame=168745 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=109.9 ts=1)
+[TestProgress] 17:36:09.598 HB frame=177345 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=114.9 ts=1)
+[TestProgress] 17:36:14.599 HB frame=184584 dt=0.0008 unscaledDt=0.0008 state=noGM enemies=0 (t=119.9 ts=1)
+[TestProgress] 17:36:19.599 HB frame=192824 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=124.9 ts=1)
+[TestProgress] 17:36:24.600 HB frame=201772 dt=0.0008 unscaledDt=0.0008 state=noGM enemies=0 (t=129.9 ts=1)
+[TestProgress] 17:36:29.600 HB frame=210758 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=134.9 ts=1)
+[TestProgress] 17:36:34.600 HB frame=220240 dt=0.0008 unscaledDt=0.0008 state=noGM enemies=0 (t=139.9 ts=1)
+[TestProgress] 17:36:39.601 HB frame=229344 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=144.9 ts=1)
+[TestProgress] 17:36:44.602 HB frame=238523 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=149.9 ts=1)
+[TestProgress] 17:36:49.601 HB frame=248150 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=154.9 ts=1)
+[TestProgress] 17:36:54.602 HB frame=257579 dt=0.0007 unscaledDt=0.0007 state=noGM enemies=0 (t=159.9 ts=1)
+[TestProgress] 17:36:59.602 HB frame=266869 dt=0.0006 unscaledDt=0.0006 state=noGM enemies=0 (t=164.9 ts=1)
+[TestProgress] 17:37:04.602 HB frame=276347 dt=0.0005 unscaledDt=0.0005 state=noGM enemies=0 (t=169.9 ts=1)
+[TestProgress] 17:37:09.602 HB frame=285762 dt=0.0005 unscaledDt=0.0005 state=noGM enemies=0 (t=174.9 ts=1)
+[TestProgress] 17:37:14.603 HB frame=295076 dt=0.0005 unscaledDt=0.0005 state=noGM enemies=0 (t=179.9 ts=1)
+[TestProgress] 17:37:19.603 HB frame=304339 dt=0.0005 unscaledDt=0.0005 state=noGM enemies=0 (t=184.9 ts=1)
+[TestProgress] 17:37:24.603 HB frame=313682 dt=0.0005 unscaledDt=0.0005 state=noGM enemies=0 (t=189.9 ts=1)
+[TestProgress] 17:37:26.301 END Passed 140.9s CCT.Tests.CoffeeLabPlayTests.OriginTins_All28_TinStaysClearOfScoop_OneScoop (t=191.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1101" name="OtherTabs_PanelsShareCraftSafeInset_WideContentStaysInCenteredBand" fullname="CCT.Tests.CoffeeLabPlayTests.OtherTabs_PanelsShareCraftSafeInset_WideContentStaysInCenteredBand" methodname="OtherTabs_PanelsShareCraftSafeInset_WideContentStaysInCenteredBand" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="1829014734" result="Passed" start-time="2026-11-24 08:37:26Z" end-time="2026-11-24 08:37:26Z" duration="0.164769" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:37:26.301 START CCT.Tests.CoffeeLabPlayTests.OtherTabs_PanelsShareCraftSafeInset_WideContentStaysInCenteredBand (t=191.6 ts=1)
+[TestProgress] 17:37:26.467 END Passed 0.2s CCT.Tests.CoffeeLabPlayTests.OtherTabs_PanelsShareCraftSafeInset_WideContentStaysInCenteredBand (t=191.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1102" name="RecipesTab_SummaryFitsOneLine_ClearOfFirstExampleRow" fullname="CCT.Tests.CoffeeLabPlayTests.RecipesTab_SummaryFitsOneLine_ClearOfFirstExampleRow" methodname="RecipesTab_SummaryFitsOneLine_ClearOfFirstExampleRow" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="35538289" result="Skipped" label="Ignored" start-time="2026-11-24 08:37:26Z" end-time="2026-11-24 08:37:26Z" duration="0.071848" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <reason>
+                <message><![CDATA[요약 줄은 넓은 배치에만 있다(좁은 창은 버튼 줄).]]></message>
+              </reason>
+              <output><![CDATA[[TestProgress] 17:37:26.467 START CCT.Tests.CoffeeLabPlayTests.RecipesTab_SummaryFitsOneLine_ClearOfFirstExampleRow (t=191.7 ts=1)
+[TestProgress] 17:37:26.539 END Skipped:Ignored 0.1s CCT.Tests.CoffeeLabPlayTests.RecipesTab_SummaryFitsOneLine_ClearOfFirstExampleRow (t=191.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1110" name="SteamedMilk_PoursIntoCupFirst_EspressoLandsOnTop" fullname="CCT.Tests.CoffeeLabPlayTests.SteamedMilk_PoursIntoCupFirst_EspressoLandsOnTop" methodname="SteamedMilk_PoursIntoCupFirst_EspressoLandsOnTop" classname="CCT.Tests.CoffeeLabPlayTests" runstate="Runnable" seed="1624346221" result="Passed" start-time="2026-11-24 08:37:26Z" end-time="2026-11-24 08:37:37Z" duration="11.384153" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:37:26.539 START CCT.Tests.CoffeeLabPlayTests.SteamedMilk_PoursIntoCupFirst_EspressoLandsOnTop (t=191.8 ts=1)
+[TestProgress] 17:37:29.604 HB frame=318964 dt=0.0015 unscaledDt=0.0015 state=noGM enemies=0 (t=194.9 ts=1)
+[TestProgress] 17:37:34.605 HB frame=329145 dt=0.0018 unscaledDt=0.0018 state=noGM enemies=0 (t=199.9 ts=1)
+[TestProgress] 17:37:37.924 END Passed 11.4s CCT.Tests.CoffeeLabPlayTests.SteamedMilk_PoursIntoCupFirst_EspressoLandsOnTop (t=203.2 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1134" name="DrinkChipLayoutEvidenceCapture" fullname="CCT.Tests.DrinkChipLayoutEvidenceCapture" classname="CCT.Tests.DrinkChipLayoutEvidenceCapture" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-24 08:37:37Z" end-time="2026-11-24 08:37:39Z" duration="1.575878" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1138" name="BossIncomingAndFight_Standard" fullname="CCT.Tests.DrinkChipLayoutEvidenceCapture.BossIncomingAndFight_Standard" methodname="BossIncomingAndFight_Standard" classname="CCT.Tests.DrinkChipLayoutEvidenceCapture" runstate="Runnable" seed="909045664" result="Passed" start-time="2026-11-24 08:37:37Z" end-time="2026-11-24 08:37:38Z" duration="0.472125" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:37:37.926 START CCT.Tests.DrinkChipLayoutEvidenceCapture.BossIncomingAndFight_Standard (t=203.2 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-3b688e05ab45470caa01042f20962448\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-3b688e05ab45470caa01042f20962448\save.json (source=Fresh, v2)
+[ChipLayoutEvidence] gin_boss_incoming 1280x720 chipVisible=True badgeAtTop=True badge='보스 접근 6초 · 그라인더 골렘' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.667)
+[ChipLayoutEvidence] shot gin_boss_incoming_1280x720.png 1280x720
+[ChipLayoutEvidence] gin_boss_incoming 1920x1080 chipVisible=True badgeAtTop=True badge='보스 접근 6초 · 그라인더 골렘' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 1)
+[ChipLayoutEvidence] shot gin_boss_incoming_1920x1080.png 1920x1080
+[ChipLayoutEvidence] gin_boss_incoming 1024x768 chipVisible=True badgeAtTop=True badge='보스 접근 6초 · 그라인더 골렘' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.533)
+[ChipLayoutEvidence] shot gin_boss_incoming_1024x768.png 1024x768
+[ChipLayoutEvidence] gin_boss_fight 1280x720 chipVisible=True badgeAtTop=True badge='보스전 · 그라인더 골렘 · 위험 1' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.667)
+[ChipLayoutEvidence] shot gin_boss_fight_1280x720.png 1280x720
+[ChipLayoutEvidence] gin_boss_fight 1920x1080 chipVisible=True badgeAtTop=True badge='보스전 · 그라인더 골렘 · 위험 1' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 1)
+[ChipLayoutEvidence] shot gin_boss_fight_1920x1080.png 1920x1080
+[ChipLayoutEvidence] gin_boss_fight 1024x768 chipVisible=True badgeAtTop=True badge='보스전 · 그라인더 골렘 · 위험 1' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.533)
+[ChipLayoutEvidence] shot gin_boss_fight_1024x768.png 1024x768
+[TestProgress] 17:37:38.398 END Passed 0.5s CCT.Tests.DrinkChipLayoutEvidenceCapture.BossIncomingAndFight_Standard (t=203.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1140" name="GinBuild_MasterEndless" fullname="CCT.Tests.DrinkChipLayoutEvidenceCapture.GinBuild_MasterEndless" methodname="GinBuild_MasterEndless" classname="CCT.Tests.DrinkChipLayoutEvidenceCapture" runstate="Runnable" seed="1920607411" result="Passed" start-time="2026-11-24 08:37:38Z" end-time="2026-11-24 08:37:38Z" duration="0.244569" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:37:38.398 START CCT.Tests.DrinkChipLayoutEvidenceCapture.GinBuild_MasterEndless (t=203.7 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-92e5178f45dc4971ab179293944fd607\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-92e5178f45dc4971ab179293944fd607\save.json (source=Fresh, v2)
+[ChipLayoutEvidence] gin_master 1280x720 chipVisible=True badgeAtTop=False badge='마스터 도전 · 주기 1 · 웨이브 1 · 재료 모으기 1/5 · 처리 0/8
+체력 100% · 공격 100% · 약화 0% · 제출 0잔 · 칵테일 0종 공격 +0%' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=-8.8px(canvas 0.667)
+[ChipLayoutEvidence] shot gin_master_1280x720.png 1280x720
+[ChipLayoutEvidence] gin_master 1920x1080 chipVisible=True badgeAtTop=False badge='마스터 도전 · 주기 1 · 웨이브 1 · 재료 모으기 1/5 · 처리 0/8
+체력 100% · 공격 100% · 약화 0% · 제출 0잔 · 칵테일 0종 공격 +0%' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=-8.8px(canvas 1)
+[ChipLayoutEvidence] shot gin_master_1920x1080.png 1920x1080
+[ChipLayoutEvidence] gin_master 1024x768 chipVisible=True badgeAtTop=False badge='마스터 도전 · 주기 1 · 웨이브 1 · 재료 모으기 1/5 · 처리 0/8
+체력 100% · 공격 100% · 약화 0% · 제출 0잔 · 칵테일 0종 공격 +0%' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=-9.6px(canvas 0.533)
+[ChipLayoutEvidence] shot gin_master_1024x768.png 1024x768
+[TestProgress] 17:37:38.644 END Passed 0.2s CCT.Tests.DrinkChipLayoutEvidenceCapture.GinBuild_MasterEndless (t=203.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1135" name="GinBuild_Standard" fullname="CCT.Tests.DrinkChipLayoutEvidenceCapture.GinBuild_Standard" methodname="GinBuild_Standard" classname="CCT.Tests.DrinkChipLayoutEvidenceCapture" runstate="Runnable" seed="961694059" result="Passed" start-time="2026-11-24 08:37:38Z" end-time="2026-11-24 08:37:38Z" duration="0.204094" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:37:38.644 START CCT.Tests.DrinkChipLayoutEvidenceCapture.GinBuild_Standard (t=203.7 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-6e45f173c56f44e7b499dd7865003341\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-6e45f173c56f44e7b499dd7865003341\save.json (source=Fresh, v2)
+[ChipLayoutEvidence] gin_standard 1280x720 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.667)
+[ChipLayoutEvidence] shot gin_standard_1280x720.png 1280x720
+[ChipLayoutEvidence] gin_standard 1920x1080 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 1)
+[ChipLayoutEvidence] shot gin_standard_1920x1080.png 1920x1080
+[ChipLayoutEvidence] gin_standard 1024x768 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 진 빌드' rows=[공격력 +2%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.533)
+[ChipLayoutEvidence] shot gin_standard_1024x768.png 1024x768
+[TestProgress] 17:37:38.848 END Passed 0.2s CCT.Tests.DrinkChipLayoutEvidenceCapture.GinBuild_Standard (t=203.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1136" name="LongNameManyEffects_Standard" fullname="CCT.Tests.DrinkChipLayoutEvidenceCapture.LongNameManyEffects_Standard" methodname="LongNameManyEffects_Standard" classname="CCT.Tests.DrinkChipLayoutEvidenceCapture" runstate="Runnable" seed="1061931507" result="Passed" start-time="2026-11-24 08:37:38Z" end-time="2026-11-24 08:37:39Z" duration="0.229791" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:37:38.849 START CCT.Tests.DrinkChipLayoutEvidenceCapture.LongNameManyEffects_Standard (t=203.9 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-4ff8f3011a11455b8d7ea80635cdc3d4\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-4ff8f3011a11455b8d7ea80635cdc3d4\save.json (source=Fresh, v2)
+[ChipLayoutEvidence] longname_many_standard 1280x720 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 한밤의블루큐라소진레몬셰이킹특제' rows=[공격력 +5% | 공격 속도 +3% | 치명타 확률 +2%p | 최대 체력 +3%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.667)
+[ChipLayoutEvidence] shot longname_many_standard_1280x720.png 1280x720
+[ChipLayoutEvidence] longname_many_standard 1920x1080 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 한밤의블루큐라소진레몬셰이킹특제' rows=[공격력 +5% | 공격 속도 +3% | 치명타 확률 +2%p | 최대 체력 +3%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 1)
+[ChipLayoutEvidence] shot longname_many_standard_1920x1080.png 1920x1080
+[ChipLayoutEvidence] longname_many_standard 1024x768 chipVisible=True badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='준비 음료 · 한밤의블루큐라소진레몬셰이킹특제' rows=[공격력 +5% | 공격 속도 +3% | 치명타 확률 +2%p | 최대 체력 +3%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.533)
+[ChipLayoutEvidence] shot longname_many_standard_1024x768.png 1024x768
+[TestProgress] 17:37:39.079 END Passed 0.2s CCT.Tests.DrinkChipLayoutEvidenceCapture.LongNameManyEffects_Standard (t=204.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1137" name="NoDrink_Standard" fullname="CCT.Tests.DrinkChipLayoutEvidenceCapture.NoDrink_Standard" methodname="NoDrink_Standard" classname="CCT.Tests.DrinkChipLayoutEvidenceCapture" runstate="Runnable" seed="1247124828" result="Passed" start-time="2026-11-24 08:37:39Z" end-time="2026-11-24 08:37:39Z" duration="0.175227" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:37:39.079 START CCT.Tests.DrinkChipLayoutEvidenceCapture.NoDrink_Standard (t=204.2 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-aa0b2ac398c34dcea7753adee70127ab\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-aa0b2ac398c34dcea7753adee70127ab\save.json (source=Fresh, v2)
+[ChipLayoutEvidence] nopanel_standard 1280x720 chipVisible=False badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='' rows=[] state='' overlap=n/a
+[ChipLayoutEvidence] shot nopanel_standard_1280x720.png 1280x720
+[ChipLayoutEvidence] nopanel_standard 1920x1080 chipVisible=False badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='' rows=[] state='' overlap=n/a
+[ChipLayoutEvidence] shot nopanel_standard_1920x1080.png 1920x1080
+[ChipLayoutEvidence] nopanel_standard 1024x768 chipVisible=False badgeAtTop=True badge='다음 보스 2:30 · 구간 1/4' chipTitle='' rows=[] state='' overlap=n/a
+[ChipLayoutEvidence] shot nopanel_standard_1024x768.png 1024x768
+[TestProgress] 17:37:39.254 END Passed 0.2s CCT.Tests.DrinkChipLayoutEvidenceCapture.NoDrink_Standard (t=204.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1139" name="TeaHouse_Boss6s_LongNameThreeEffects" fullname="CCT.Tests.DrinkChipLayoutEvidenceCapture.TeaHouse_Boss6s_LongNameThreeEffects" methodname="TeaHouse_Boss6s_LongNameThreeEffects" classname="CCT.Tests.DrinkChipLayoutEvidenceCapture" runstate="Runnable" seed="550556141" result="Passed" start-time="2026-11-24 08:37:39Z" end-time="2026-11-24 08:37:39Z" duration="0.244494" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:37:39.255 START CCT.Tests.DrinkChipLayoutEvidenceCapture.TeaHouse_Boss6s_LongNameThreeEffects (t=204.3 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-edbda70dce3c4ea8981ac15bd6262d55\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\chip-evidence-edbda70dce3c4ea8981ac15bd6262d55\save.json (source=Fresh, v2)
+[ChipLayoutEvidence]   tea rects chip=(x:4.78, y:1.13, width:5.56, height:1.92) badge=(x:5.00, y:3.19, width:5.33, height:0.40) overlap=False
+[ChipLayoutEvidence]   tea rects chip=(x:4.78, y:1.13, width:5.56, height:1.92) points=(x:5.33, y:3.72, width:5.00, height:0.47) overlap=False
+[ChipLayoutEvidence]   tea rects chip=(x:4.78, y:1.13, width:5.56, height:1.92) info=(x:6.78, y:4.23, width:3.56, height:1.00) overlap=False
+[ChipLayoutEvidence]   tea rects badge=(x:5.00, y:3.19, width:5.33, height:0.40) points=(x:5.33, y:3.72, width:5.00, height:0.47) overlap=False
+[ChipLayoutEvidence]   tea rects badge=(x:5.00, y:3.19, width:5.33, height:0.40) info=(x:6.78, y:4.23, width:3.56, height:1.00) overlap=False
+[ChipLayoutEvidence]   tea rects points=(x:5.33, y:3.72, width:5.00, height:0.47) info=(x:6.78, y:4.23, width:3.56, height:1.00) overlap=False
+[ChipLayoutEvidence] tea_boss6s_longname 1280x720 chipVisible=True badgeAtTop=True badge='보스 접근 6초 · 개완 수호자' chipTitle='준비 음료 · 그레나딘 시럽 셰이킹' rows=[공격력 +1% | 공격 속도 +1% | 최대 체력 +1%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.667)
+[ChipLayoutEvidence] shot tea_boss6s_longname_1280x720.png 1280x720
+[ChipLayoutEvidence]   tea rects chip=(x:4.78, y:1.13, width:5.56, height:1.92) badge=(x:5.00, y:3.19, width:5.33, height:0.40) overlap=False
+[ChipLayoutEvidence]   tea rects chip=(x:4.78, y:1.13, width:5.56, height:1.92) points=(x:5.33, y:3.72, width:5.00, height:0.47) overlap=False
+[ChipLayoutEvidence]   tea rects chip=(x:4.78, y:1.13, width:5.56, height:1.92) info=(x:6.78, y:4.23, width:3.56, height:1.00) overlap=False
+[ChipLayoutEvidence]   tea rects badge=(x:5.00, y:3.19, width:5.33, height:0.40) points=(x:5.33, y:3.72, width:5.00, height:0.47) overlap=False
+[ChipLayoutEvidence]   tea rects badge=(x:5.00, y:3.19, width:5.33, height:0.40) info=(x:6.78, y:4.23, width:3.56, height:1.00) overlap=False
+[ChipLayoutEvidence]   tea rects points=(x:5.33, y:3.72, width:5.00, height:0.47) info=(x:6.78, y:4.23, width:3.56, height:1.00) overlap=False
+[ChipLayoutEvidence] tea_boss6s_longname 1920x1080 chipVisible=True badgeAtTop=True badge='보스 접근 6초 · 개완 수호자' chipTitle='준비 음료 · 그레나딘 시럽 셰이킹' rows=[공격력 +1% | 공격 속도 +1% | 최대 체력 +1%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 1)
+[ChipLayoutEvidence] shot tea_boss6s_longname_1920x1080.png 1920x1080
+[ChipLayoutEvidence]   tea rects chip=(x:2.54, y:1.85, width:5.21, height:1.78) badge=(x:3.75, y:3.73, width:4.00, height:0.34) overlap=False
+[ChipLayoutEvidence]   tea rects chip=(x:2.54, y:1.85, width:5.21, height:1.78) points=(x:4.00, y:4.17, width:3.75, height:0.35) overlap=False
+[ChipLayoutEvidence]   tea rects chip=(x:2.54, y:1.85, width:5.21, height:1.78) info=(x:5.08, y:4.55, width:2.67, height:0.75) overlap=False
+[ChipLayoutEvidence]   tea rects badge=(x:3.75, y:3.73, width:4.00, height:0.34) points=(x:4.00, y:4.17, width:3.75, height:0.35) overlap=False
+[ChipLayoutEvidence]   tea rects badge=(x:3.75, y:3.73, width:4.00, height:0.34) info=(x:5.08, y:4.55, width:2.67, height:0.75) overlap=False
+[ChipLayoutEvidence]   tea rects points=(x:4.00, y:4.17, width:3.75, height:0.35) info=(x:5.08, y:4.55, width:2.67, height:0.75) overlap=False
+[ChipLayoutEvidence] tea_boss6s_longname 1024x768 chipVisible=True badgeAtTop=True badge='보스 접근 6초 · 개완 수호자' chipTitle='준비 음료 · 그레나딘 시럽 셰이킹' rows=[공격력 +1% | 공격 속도 +1% | 최대 체력 +1%] state='적용 중 · 지금 포기하면 음료 보존 (처치 0/5)' overlap=ok gap=0.1px(canvas 0.533)
+[ChipLayoutEvidence] shot tea_boss6s_longname_1024x768.png 1024x768
+[TestProgress] 17:37:39.499 END Passed 0.2s CCT.Tests.DrinkChipLayoutEvidenceCapture.TeaHouse_Boss6s_LongNameThreeEffects (t=204.6 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1151" name="DrinkLabPlayTests" fullname="CCT.Tests.DrinkLabPlayTests" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" testcasecount="33" result="Passed" start-time="2026-11-24 08:37:39Z" end-time="2026-11-24 08:39:23Z" duration="103.596079" total="33" passed="33" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1180" name="Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport" fullname="CCT.Tests.DrinkLabPlayTests.Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport" methodname="Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="128028130" result="Passed" start-time="2026-11-24 08:37:39Z" end-time="2026-11-24 08:37:46Z" duration="7.275652" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:37:39.518 START CCT.Tests.DrinkLabPlayTests.Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport (t=204.6 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_settings_30f071cab2b64c528c501d234560f8dd.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\cct_playmode_session_ae1e7e6c65cd469fbe25a2c76ed8c2a8.json (source=Original, v2)
+[TestProgress] 17:37:39.605 HB frame=330591 dt=0.0019 unscaledDt=0.0019 state=noGM enemies=0 (t=204.7 ts=1)
+[TestProgress] 17:37:44.609 HB frame=332985 dt=0.0134 unscaledDt=0.0134 state=noGM enemies=0 (t=209.7 ts=1)
+[TestProgress] 17:37:46.794 END Passed 7.3s CCT.Tests.DrinkLabPlayTests.Camera_FollowsProcess_PourKeepsBothInView_FinalGlassCentered_SmoothNoTeleport (t=211.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1154" name="Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest" fullname="CCT.Tests.DrinkLabPlayTests.Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest" methodname="Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1750187220" result="Passed" start-time="2026-11-24 08:37:46Z" end-time="2026-11-24 08:37:47Z" duration="0.443659" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:37:46.794 START CCT.Tests.DrinkLabPlayTests.Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest (t=211.9 ts=1)
+gin w976 new=281.25 old14765b3=281.25 box=286
+rum w976 new=281.25 old14765b3=281.25 box=286
+blue_curacao w976 new=281.25 old14765b3=281.25 box=286
+grenadine w976 new=281.25 old14765b3=281.25 box=286
+black_tea w976 new=281.25 old14765b3=281.25 box=286
+green_tea w976 new=281.25 old14765b3=281.25 box=286
+lemon_juice w976 new=281.25 old14765b3=281.25 box=286
+honey w976 new=281.25 old14765b3=281.25 box=286
+coffee_bean w976 new=321.75 old14765b3=321.75 box=326
+steamed_milk w976 new=321.75 old14765b3=321.75 box=326
+absinthe w976 new=362.25 old14765b3=362.25 box=367
+creme_cassis w976 new=362.25 old14765b3=362.25 box=367
+limoncello w976 new=321.75 old14765b3=321.75 box=326
+white_tea w976 new=321.75 old14765b3=321.75 box=326
+oolong_tea w976 new=321.75 old14765b3=321.75 box=326
+jasmine_tea w976 new=321.75 old14765b3=321.75 box=326
+chamomile_flower w976 new=321.75 old14765b3=321.75 box=326
+ethiopia_yirgacheffe_kochere w976 new=321.75 old14765b3=321.75 box=326
+colombia_huila_vergel w976 new=321.75 old14765b3=321.75 box=326
+brazil_mantiqueira_alves_lima w976 new=321.75 old14765b3=321.75 box=326
+lime_juice w976 new=321.75 old14765b3=321.75 box=326
+simple_syrup w976 new=321.75 old14765b3=321.75 box=326
+dry_vermouth w976 new=321.75 old14765b3=321.75 box=326
+darjeeling_tea w976 new=321.75 old14765b3=321.75 box=326
+anxi_tieguanyin w976 new=321.75 old14765b3=321.75 box=326
+pu_er_tea w976 new=321.75 old14765b3=321.75 box=326
+panama_esmeralda_geisha w976 new=321.75 old14765b3=321.75 box=326
+colombia_huila_san_pedro_geisha w976 new=321.75 old14765b3=321.75 box=326
+colombia_la_esperanza_bourbon w976 new=321.75 old14765b3=321.75 box=326
+cachaca w976 new=321.75 old14765b3=321.75 box=326
+vodka w976 new=321.75 old14765b3=321.75 box=326
+tequila_blanco w976 new=321.75 old14765b3=321.75 box=326
+mezcal w976 new=321.75 old14765b3=321.75 box=326
+bourbon_whiskey w976 new=321.75 old14765b3=321.75 box=326
+rye_whiskey w976 new=321.75 old14765b3=321.75 box=326
+cognac w976 new=321.75 old14765b3=321.75 box=326
+triple_sec w976 new=321.75 old14765b3=321.75 box=326
+sweet_vermouth w976 new=321.75 old14765b3=321.75 box=326
+campari w976 new=321.75 old14765b3=321.75 box=326
+coffee_liqueur w976 new=321.75 old14765b3=321.75 box=326
+peach_liqueur w976 new=321.75 old14765b3=321.75 box=326
+elderflower_liqueur w976 new=321.75 old14765b3=321.75 box=326
+tonic_water w976 new=321.75 old14765b3=321.75 box=326
+soda_water w976 new=321.75 old14765b3=321.75 box=326
+cola w976 new=321.75 old14765b3=321.75 box=326
+orange_juice w976 new=321.75 old14765b3=321.75 box=326
+pineapple_juice w976 new=321.75 old14765b3=321.75 box=326
+assam_tea w976 new=321.75 old14765b3=321.75 box=326
+nilgiri_tea w976 new=321.75 old14765b3=321.75 box=326
+ceylon_uva_tea w976 new=321.75 old14765b3=321.75 box=326
+longjing_tea w976 new=321.75 old14765b3=321.75 box=326
+biluochun_tea w976 new=321.75 old14765b3=321.75 box=326
+huangshan_maofeng_tea w976 new=321.75 old14765b3=321.75 box=326
+anji_baicha w976 new=321.75 old14765b3=321.75 box=326
+da_hong_pao w976 new=321.75 old14765b3=321.75 box=326
+wuyi_rougui w976 new=321.75 old14765b3=321.75 box=326
+dong_ding_tea w976 new=321.75 old14765b3=321.75 box=326
+oriental_beauty_tea w976 new=321.75 old14765b3=321.75 box=326
+uji_matcha w976 new=321.75 old14765b3=321.75 box=326
+sencha_tea w976 new=281.25 old14765b3=281.25 box=286
+gyokuro_tea w976 new=321.75 old14765b3=321.75 box=326
+genmaicha_tea w976 new=321.75 old14765b3=321.75 box=326
+hojicha_tea w976 new=281.25 old14765b3=281.25 box=286
+kukicha_tea w976 new=321.75 old14765b3=321.75 box=326
+lapsang_souchong_tea w976 new=321.75 old14765b3=321.75 box=326
+coffee_ethiopia_guji w976 new=321.75 old14765b3=321.75 box=326
+coffee_ethiopia_sidama w976 new=321.75 old14765b3=321.75 box=326
+coffee_kenya_nyeri w976 new=321.75 old14765b3=321.75 box=326
+coffee_rwanda w976 new=321.75 old14765b3=321.75 box=326
+coffee_burundi w976 new=321.75 old14765b3=321.75 box=326
+coffee_uganda w976 new=321.75 old14765b3=321.75 box=326
+coffee_indonesia_gayo w976 new=321.75 old14765b3=321.75 box=326
+coffee_indonesia_java w976 new=321.75 old14765b3=321.75 box=326
+coffee_vietnam_dalat w976 new=321.75 old14765b3=321.75 box=326
+coffee_india_malabar w976 new=321.75 old14765b3=321.75 box=326
+coffee_costa_rica_tarrazu w976 new=321.75 old14765b3=321.75 box=326
+coffee_guatemala_antigua w976 new=321.75 old14765b3=321.75 box=326
+coffee_honduras_marcala w976 new=321.75 old14765b3=321.75 box=326
+coffee_peru_chanchamayo w976 new=321.75 old14765b3=321.75 box=326
+coffee_mexico_chiapas w976 new=321.75 old14765b3=321.75 box=326
+coffee_jamaica_blue_mountain w976 new=321.75 old14765b3=321.75 box=326
+coffee_brazil_cerrado w976 new=321.75 old14765b3=321.75 box=326
+coffee_colombia_narino w976 new=321.75 old14765b3=321.75 box=326
+coffee_el_salvador w976 new=321.75 old14765b3=321.75 box=326
+coffee_nicaragua w976 new=321.75 old14765b3=321.75 box=326
+coffee_tanzania w976 new=321.75 old14765b3=321.75 box=326
+coffee_bolivia w976 new=321.75 old14765b3=321.75 box=326
+narrow=True ruleW=1312 ruleH=97/150
+[TestProgress] 17:37:47.238 END Passed 0.4s CCT.Tests.DrinkLabPlayTests.Codex_78SupplyHelpAndSourceText_FitInsideBoxes_WideAndNarrowest (t=212.3 ts=1)
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1168" name="CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator" fullname="CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-24 08:37:47Z" end-time="2026-11-24 08:38:00Z" duration="13.745738" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <test-case id="1164" name="CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Shake)" fullname="CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Shake)" methodname="CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="333346431" result="Passed" start-time="2026-11-24 08:37:47Z" end-time="2026-11-24 08:37:52Z" duration="5.596506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:37:47.240 START CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Shake) (t=212.3 ts=1)
+[TestProgress] 17:37:49.610 HB frame=339239 dt=0.0025 unscaledDt=0.0025 state=noGM enemies=0 (t=214.7 ts=1)
+[TestProgress] 17:37:52.837 END Passed 5.6s CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Shake) (t=217.9 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1165" name="CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Stir)" fullname="CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Stir)" methodname="CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1848650614" result="Passed" start-time="2026-11-24 08:37:52Z" end-time="2026-11-24 08:37:57Z" duration="4.494598" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:37:52.838 START CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Stir) (t=217.9 ts=1)
+[TestProgress] 17:37:54.612 HB frame=344740 dt=0.0024 unscaledDt=0.0024 state=noGM enemies=0 (t=219.7 ts=1)
+[TestProgress] 17:37:57.333 END Passed 4.5s CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Stir) (t=222.4 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1166" name="CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Build)" fullname="CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Build)" methodname="CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="611087581" result="Passed" start-time="2026-11-24 08:37:57Z" end-time="2026-11-24 08:37:59Z" duration="1.824074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:37:57.333 START CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Build) (t=222.4 ts=1)
+[TestProgress] 17:37:59.158 END Passed 1.8s CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Build) (t=224.2 ts=1)
+]]></output>
+              </test-case>
+              <test-case id="1167" name="CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Layer)" fullname="CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Layer)" methodname="CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1433390415" result="Passed" start-time="2026-11-24 08:37:59Z" end-time="2026-11-24 08:38:00Z" duration="1.826136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[TestProgress] 17:37:59.158 START CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Layer) (t=224.2 ts=1)
+[TestProgress] 17:37:59.618 HB frame=346700 dt=0.0155 unscaledDt=0.0155 state=noGM enemies=0 (t=224.7 ts=1)
+[TestProgress] 17:38:00.984 END Passed 1.8s CCT.Tests.DrinkLabPlayTests.CraftEachTechnique_MotionCompletes_FinalColorMatchesCalculator(Layer) (t=226.1 ts=1)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1155" name="CraftShortage_78SourceLine_GrowsToFitText_NotTruncated" fullname="CCT.Tests.DrinkLabPlayTests.CraftShortage_78SourceLine_GrowsToFitText_NotTruncated" methodname="CraftShortage_78SourceLine_GrowsToFitText_NotTruncated" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1268460610" result="Passed" start-time="2026-11-24 08:38:00Z" end-time="2026-11-24 08:38:01Z" duration="0.088789" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:00.984 START CCT.Tests.DrinkLabPlayTests.CraftShortage_78SourceLine_GrowsToFitText_NotTruncated (t=226.1 ts=1)
+CostSrc_grenadine need=87.8 row=98
+CostSrc_gin need=58.5 row=98
+[TestProgress] 17:38:01.074 END Passed 0.1s CCT.Tests.DrinkLabPlayTests.CraftShortage_78SourceLine_GrowsToFitText_NotTruncated (t=226.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1171" name="Depart_RevealThenRunWithBuff" fullname="CCT.Tests.DrinkLabPlayTests.Depart_RevealThenRunWithBuff" methodname="Depart_RevealThenRunWithBuff" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1603642595" result="Passed" start-time="2026-11-24 08:38:01Z" end-time="2026-11-24 08:38:03Z" duration="2.144898" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:01.074 START CCT.Tests.DrinkLabPlayTests.Depart_RevealThenRunWithBuff (t=226.2 ts=1)
+[TestProgress] 17:38:03.219 END Passed 2.1s CCT.Tests.DrinkLabPlayTests.Depart_RevealThenRunWithBuff (t=228.3 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1172" name="DepartSaveFailure_DoesNotStart_ThenNoDrinkChoiceKeepsDrink" fullname="CCT.Tests.DrinkLabPlayTests.DepartSaveFailure_DoesNotStart_ThenNoDrinkChoiceKeepsDrink" methodname="DepartSaveFailure_DoesNotStart_ThenNoDrinkChoiceKeepsDrink" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1731978552" result="Passed" start-time="2026-11-24 08:38:03Z" end-time="2026-11-24 08:38:03Z" duration="0.059387" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:03.219 START CCT.Tests.DrinkLabPlayTests.DepartSaveFailure_DoesNotStart_ThenNoDrinkChoiceKeepsDrink (t=228.3 ts=1)
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinkplay_c47c14e60ecd43eba6e5ab243b46ff46\drinks.json: IOException: 주입
+[Drinks] 저장 실패 C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\drinkplay_c47c14e60ecd43eba6e5ab243b46ff46\drinks.json: IOException: 주입
+[TestProgress] 17:38:03.280 END Passed 0.1s CCT.Tests.DrinkLabPlayTests.DepartSaveFailure_DoesNotStart_ThenNoDrinkChoiceKeepsDrink (t=228.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1152" name="DragPour_TenthPrecision_SplitPours_ReleaseAndLeaveStop" fullname="CCT.Tests.DrinkLabPlayTests.DragPour_TenthPrecision_SplitPours_ReleaseAndLeaveStop" methodname="DragPour_TenthPrecision_SplitPours_ReleaseAndLeaveStop" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1414398983" result="Passed" start-time="2026-11-24 08:38:03Z" end-time="2026-11-24 08:38:05Z" duration="2.287994" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:03.280 START CCT.Tests.DrinkLabPlayTests.DragPour_TenthPrecision_SplitPours_ReleaseAndLeaveStop (t=228.4 ts=1)
+[TestProgress] 17:38:04.620 HB frame=365768 dt=0.0027 unscaledDt=0.0027 state=noGM enemies=0 (t=229.7 ts=1)
+[TestProgress] 17:38:05.567 END Passed 2.3s CCT.Tests.DrinkLabPlayTests.DragPour_TenthPrecision_SplitPours_ReleaseAndLeaveStop (t=230.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1156" name="FreshSave_ExamplePresetsSelectable_NoConsumption" fullname="CCT.Tests.DrinkLabPlayTests.FreshSave_ExamplePresetsSelectable_NoConsumption" methodname="FreshSave_ExamplePresetsSelectable_NoConsumption" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1637332973" result="Passed" start-time="2026-11-24 08:38:05Z" end-time="2026-11-24 08:38:05Z" duration="0.125352" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:05.567 START CCT.Tests.DrinkLabPlayTests.FreshSave_ExamplePresetsSelectable_NoConsumption (t=230.6 ts=1)
+[TestProgress] 17:38:05.694 END Passed 0.1s CCT.Tests.DrinkLabPlayTests.FreshSave_ExamplePresetsSelectable_NoConsumption (t=230.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1153" name="IntermediateColours_StreamJiggerDumpAndAccumulatedMix" fullname="CCT.Tests.DrinkLabPlayTests.IntermediateColours_StreamJiggerDumpAndAccumulatedMix" methodname="IntermediateColours_StreamJiggerDumpAndAccumulatedMix" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1855138755" result="Passed" start-time="2026-11-24 08:38:05Z" end-time="2026-11-24 08:38:19Z" duration="13.821571" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:05.695 START CCT.Tests.DrinkLabPlayTests.IntermediateColours_StreamJiggerDumpAndAccumulatedMix (t=230.8 ts=1)
+[TestProgress] 17:38:09.623 HB frame=367257 dt=0.0041 unscaledDt=0.0041 state=noGM enemies=0 (t=234.7 ts=1)
+[TestProgress] 17:38:14.625 HB frame=368664 dt=0.0024 unscaledDt=0.0024 state=noGM enemies=0 (t=239.7 ts=1)
+[TestProgress] 17:38:19.516 END Passed 13.8s CCT.Tests.DrinkLabPlayTests.IntermediateColours_StreamJiggerDumpAndAccumulatedMix (t=244.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1163" name="KindFilter_ListsOnlyUsableIngredients_AndSwitchClearsDraft" fullname="CCT.Tests.DrinkLabPlayTests.KindFilter_ListsOnlyUsableIngredients_AndSwitchClearsDraft" methodname="KindFilter_ListsOnlyUsableIngredients_AndSwitchClearsDraft" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1468743722" result="Passed" start-time="2026-11-24 08:38:19Z" end-time="2026-11-24 08:38:19Z" duration="0.085612" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:19.517 START CCT.Tests.DrinkLabPlayTests.KindFilter_ListsOnlyUsableIngredients_AndSwitchClearsDraft (t=244.6 ts=1)
+[TestProgress] 17:38:19.603 END Passed 0.1s CCT.Tests.DrinkLabPlayTests.KindFilter_ListsOnlyUsableIngredients_AndSwitchClearsDraft (t=244.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1182" name="Laptop_OpensWithoutHands_InputBlockedDuringMotion_UnlockEquipHireOnce_Closes" fullname="CCT.Tests.DrinkLabPlayTests.Laptop_OpensWithoutHands_InputBlockedDuringMotion_UnlockEquipHireOnce_Closes" methodname="Laptop_OpensWithoutHands_InputBlockedDuringMotion_UnlockEquipHireOnce_Closes" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1994677445" result="Passed" start-time="2026-11-24 08:38:19Z" end-time="2026-11-24 08:38:20Z" duration="1.141542" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:19.603 START CCT.Tests.DrinkLabPlayTests.Laptop_OpensWithoutHands_InputBlockedDuringMotion_UnlockEquipHireOnce_Closes (t=244.7 ts=1)
+[TestProgress] 17:38:19.625 HB frame=374461 dt=0.0001 unscaledDt=0.0001 state=noGM enemies=0 (t=244.7 ts=1)
+[TestProgress] 17:38:20.744 END Passed 1.1s CCT.Tests.DrinkLabPlayTests.Laptop_OpensWithoutHands_InputBlockedDuringMotion_UnlockEquipHireOnce_Closes (t=245.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1183" name="Laptop_SkipJumpsToOpen" fullname="CCT.Tests.DrinkLabPlayTests.Laptop_SkipJumpsToOpen" methodname="Laptop_SkipJumpsToOpen" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="87381602" result="Passed" start-time="2026-11-24 08:38:20Z" end-time="2026-11-24 08:38:20Z" duration="0.014827" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:20.744 START CCT.Tests.DrinkLabPlayTests.Laptop_SkipJumpsToOpen (t=245.8 ts=1)
+[TestProgress] 17:38:20.760 END Passed 0.0s CCT.Tests.DrinkLabPlayTests.Laptop_SkipJumpsToOpen (t=245.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1174" name="Ledger_BottleJiggerShaker_ConservedEveryFrame_JiggerKeepsContentsUntilItFlows" fullname="CCT.Tests.DrinkLabPlayTests.Ledger_BottleJiggerShaker_ConservedEveryFrame_JiggerKeepsContentsUntilItFlows" methodname="Ledger_BottleJiggerShaker_ConservedEveryFrame_JiggerKeepsContentsUntilItFlows" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1540475097" result="Passed" start-time="2026-11-24 08:38:20Z" end-time="2026-11-24 08:38:24Z" duration="3.341760" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:20.760 START CCT.Tests.DrinkLabPlayTests.Ledger_BottleJiggerShaker_ConservedEveryFrame_JiggerKeepsContentsUntilItFlows (t=245.8 ts=1)
+[TestProgress] 17:38:24.102 END Passed 3.3s CCT.Tests.DrinkLabPlayTests.Ledger_BottleJiggerShaker_ConservedEveryFrame_JiggerKeepsContentsUntilItFlows (t=249.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1158" name="LivePreview_IncludesInJiggerDose_NoDoubleCountAfterTransfer" fullname="CCT.Tests.DrinkLabPlayTests.LivePreview_IncludesInJiggerDose_NoDoubleCountAfterTransfer" methodname="LivePreview_IncludesInJiggerDose_NoDoubleCountAfterTransfer" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="662707540" result="Passed" start-time="2026-11-24 08:38:24Z" end-time="2026-11-24 08:38:27Z" duration="2.914339" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:24.103 START CCT.Tests.DrinkLabPlayTests.LivePreview_IncludesInJiggerDose_NoDoubleCountAfterTransfer (t=249.2 ts=1)
+[TestProgress] 17:38:24.627 HB frame=385090 dt=0.0026 unscaledDt=0.0026 state=noGM enemies=0 (t=249.7 ts=1)
+[TestProgress] 17:38:27.018 END Passed 2.9s CCT.Tests.DrinkLabPlayTests.LivePreview_IncludesInJiggerDose_NoDoubleCountAfterTransfer (t=252.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1159" name="MidTransfer_CraftBlocked_SelectionQueued_RepeatedCyclesExact" fullname="CCT.Tests.DrinkLabPlayTests.MidTransfer_CraftBlocked_SelectionQueued_RepeatedCyclesExact" methodname="MidTransfer_CraftBlocked_SelectionQueued_RepeatedCyclesExact" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1077249121" result="Passed" start-time="2026-11-24 08:38:27Z" end-time="2026-11-24 08:38:31Z" duration="4.731567" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:27.018 START CCT.Tests.DrinkLabPlayTests.MidTransfer_CraftBlocked_SelectionQueued_RepeatedCyclesExact (t=252.1 ts=1)
+[TestProgress] 17:38:29.643 HB frame=386690 dt=0.0169 unscaledDt=0.0169 state=noGM enemies=0 (t=254.7 ts=1)
+[TestProgress] 17:38:31.750 END Passed 4.7s CCT.Tests.DrinkLabPlayTests.MidTransfer_CraftBlocked_SelectionQueued_RepeatedCyclesExact (t=256.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1160" name="Panel_NoRebuildWhileSameIngredientPours" fullname="CCT.Tests.DrinkLabPlayTests.Panel_NoRebuildWhileSameIngredientPours" methodname="Panel_NoRebuildWhileSameIngredientPours" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="777185600" result="Passed" start-time="2026-11-24 08:38:31Z" end-time="2026-11-24 08:38:32Z" duration="1.159359" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:31.750 START CCT.Tests.DrinkLabPlayTests.Panel_NoRebuildWhileSameIngredientPours (t=256.8 ts=1)
+[TestProgress] 17:38:32.910 END Passed 1.2s CCT.Tests.DrinkLabPlayTests.Panel_NoRebuildWhileSameIngredientPours (t=258.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1185" name="PaperUi_ReceiptShowsLiveMeasureThenConfirmedLine" fullname="CCT.Tests.DrinkLabPlayTests.PaperUi_ReceiptShowsLiveMeasureThenConfirmedLine" methodname="PaperUi_ReceiptShowsLiveMeasureThenConfirmedLine" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="682958241" result="Passed" start-time="2026-11-24 08:38:32Z" end-time="2026-11-24 08:38:35Z" duration="2.697788" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:32.911 START CCT.Tests.DrinkLabPlayTests.PaperUi_ReceiptShowsLiveMeasureThenConfirmedLine (t=258.0 ts=1)
+[TestProgress] 17:38:34.645 HB frame=388412 dt=0.0030 unscaledDt=0.0030 state=noGM enemies=0 (t=259.7 ts=1)
+[TestProgress] 17:38:35.608 END Passed 2.7s CCT.Tests.DrinkLabPlayTests.PaperUi_ReceiptShowsLiveMeasureThenConfirmedLine (t=260.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1184" name="PaperUi_TearMotionOnlyAfterSuccessfulSave_NoItemsCreated" fullname="CCT.Tests.DrinkLabPlayTests.PaperUi_TearMotionOnlyAfterSuccessfulSave_NoItemsCreated" methodname="PaperUi_TearMotionOnlyAfterSuccessfulSave_NoItemsCreated" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1830770957" result="Passed" start-time="2026-11-24 08:38:35Z" end-time="2026-11-24 08:38:36Z" duration="0.912850" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:35.609 START CCT.Tests.DrinkLabPlayTests.PaperUi_TearMotionOnlyAfterSuccessfulSave_NoItemsCreated (t=260.7 ts=1)
+[TestProgress] 17:38:36.522 END Passed 0.9s CCT.Tests.DrinkLabPlayTests.PaperUi_TearMotionOnlyAfterSuccessfulSave_NoItemsCreated (t=261.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1161" name="Pour_StopsAtStockAndAtCocktailLimit" fullname="CCT.Tests.DrinkLabPlayTests.Pour_StopsAtStockAndAtCocktailLimit" methodname="Pour_StopsAtStockAndAtCocktailLimit" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1552431524" result="Passed" start-time="2026-11-24 08:38:36Z" end-time="2026-11-24 08:38:36Z" duration="0.067431" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:36.522 START CCT.Tests.DrinkLabPlayTests.Pour_StopsAtStockAndAtCocktailLimit (t=261.6 ts=1)
+[TestProgress] 17:38:36.591 END Passed 0.1s CCT.Tests.DrinkLabPlayTests.Pour_StopsAtStockAndAtCocktailLimit (t=261.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1181" name="RecipeDrawer_OpenPickPullReturnDelete_PagesAndIgnoresRapidReselect" fullname="CCT.Tests.DrinkLabPlayTests.RecipeDrawer_OpenPickPullReturnDelete_PagesAndIgnoresRapidReselect" methodname="RecipeDrawer_OpenPickPullReturnDelete_PagesAndIgnoresRapidReselect" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="461291591" result="Passed" start-time="2026-11-24 08:38:36Z" end-time="2026-11-24 08:38:38Z" duration="1.444308" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:36.591 START CCT.Tests.DrinkLabPlayTests.RecipeDrawer_OpenPickPullReturnDelete_PagesAndIgnoresRapidReselect (t=261.7 ts=1)
+[TestProgress] 17:38:38.035 END Passed 1.4s CCT.Tests.DrinkLabPlayTests.RecipeDrawer_OpenPickPullReturnDelete_PagesAndIgnoresRapidReselect (t=263.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1173" name="Recipes_SaveCopyImportPreviewInUi" fullname="CCT.Tests.DrinkLabPlayTests.Recipes_SaveCopyImportPreviewInUi" methodname="Recipes_SaveCopyImportPreviewInUi" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="763639995" result="Passed" start-time="2026-11-24 08:38:38Z" end-time="2026-11-24 08:38:38Z" duration="0.132669" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:38.036 START CCT.Tests.DrinkLabPlayTests.Recipes_SaveCopyImportPreviewInUi (t=263.1 ts=1)
+[TestProgress] 17:38:38.168 END Passed 0.1s CCT.Tests.DrinkLabPlayTests.Recipes_SaveCopyImportPreviewInUi (t=263.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1157" name="ReferencePour_LipOverJiggerMouth_VerticalStreamEndsInsideJigger" fullname="CCT.Tests.DrinkLabPlayTests.ReferencePour_LipOverJiggerMouth_VerticalStreamEndsInsideJigger" methodname="ReferencePour_LipOverJiggerMouth_VerticalStreamEndsInsideJigger" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1068286778" result="Passed" start-time="2026-11-24 08:38:38Z" end-time="2026-11-24 08:38:40Z" duration="2.501808" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:38.168 START CCT.Tests.DrinkLabPlayTests.ReferencePour_LipOverJiggerMouth_VerticalStreamEndsInsideJigger (t=263.2 ts=1)
+[TestProgress] 17:38:39.644 HB frame=395811 dt=0.0030 unscaledDt=0.0030 state=noGM enemies=0 (t=264.7 ts=1)
+[TestProgress] 17:38:40.671 END Passed 2.5s CCT.Tests.DrinkLabPlayTests.ReferencePour_LipOverJiggerMouth_VerticalStreamEndsInsideJigger (t=265.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1169" name="SkipMotion_SameResult" fullname="CCT.Tests.DrinkLabPlayTests.SkipMotion_SameResult" methodname="SkipMotion_SameResult" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="600020584" result="Passed" start-time="2026-11-24 08:38:40Z" end-time="2026-11-24 08:38:40Z" duration="0.085719" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:40.672 START CCT.Tests.DrinkLabPlayTests.SkipMotion_SameResult (t=265.7 ts=1)
+[TestProgress] 17:38:40.757 END Passed 0.1s CCT.Tests.DrinkLabPlayTests.SkipMotion_SameResult (t=265.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1179" name="SourceBottle_LevelDrops_FullerBottleFlowsEarlier" fullname="CCT.Tests.DrinkLabPlayTests.SourceBottle_LevelDrops_FullerBottleFlowsEarlier" methodname="SourceBottle_LevelDrops_FullerBottleFlowsEarlier" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="713666198" result="Passed" start-time="2026-11-24 08:38:40Z" end-time="2026-11-24 08:38:44Z" duration="3.350110" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:40.757 START CCT.Tests.DrinkLabPlayTests.SourceBottle_LevelDrops_FullerBottleFlowsEarlier (t=265.8 ts=1)
+[TestProgress] 17:38:44.108 END Passed 3.4s CCT.Tests.DrinkLabPlayTests.SourceBottle_LevelDrops_FullerBottleFlowsEarlier (t=269.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1176" name="Stir_BarspoonEveryPoseInsideWalls_FrameRateIndependent" fullname="CCT.Tests.DrinkLabPlayTests.Stir_BarspoonEveryPoseInsideWalls_FrameRateIndependent" methodname="Stir_BarspoonEveryPoseInsideWalls_FrameRateIndependent" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="74577480" result="Passed" start-time="2026-11-24 08:38:44Z" end-time="2026-11-24 08:38:48Z" duration="4.613776" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:44.108 START CCT.Tests.DrinkLabPlayTests.Stir_BarspoonEveryPoseInsideWalls_FrameRateIndependent (t=269.2 ts=1)
+[StirSweep] screen=640x480 vesselH=256.0 scale=0.4444
+[TestProgress] 17:38:46.507 HB frame=397182 dt=0.3333 unscaledDt=2.3068 state=noGM enemies=0 (t=269.6 ts=1)
+[TestProgress] 17:38:48.723 END Passed 4.6s CCT.Tests.DrinkLabPlayTests.Stir_BarspoonEveryPoseInsideWalls_FrameRateIndependent (t=271.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1175" name="Stir_BarspoonTipStaysAboveFloorAndInsideWalls" fullname="CCT.Tests.DrinkLabPlayTests.Stir_BarspoonTipStaysAboveFloorAndInsideWalls" methodname="Stir_BarspoonTipStaysAboveFloorAndInsideWalls" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="752256560" result="Passed" start-time="2026-11-24 08:38:48Z" end-time="2026-11-24 08:38:53Z" duration="4.535783" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:48.723 START CCT.Tests.DrinkLabPlayTests.Stir_BarspoonTipStaysAboveFloorAndInsideWalls (t=271.8 ts=1)
+[TestProgress] 17:38:51.507 HB frame=399068 dt=0.0025 unscaledDt=0.0025 state=noGM enemies=0 (t=274.6 ts=1)
+[TestProgress] 17:38:53.259 END Passed 4.5s CCT.Tests.DrinkLabPlayTests.Stir_BarspoonTipStaysAboveFloorAndInsideWalls (t=276.4 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1178" name="TeaLid_OpensForLeavesAndWater_ClosedWhileSteepingAndPouring" fullname="CCT.Tests.DrinkLabPlayTests.TeaLid_OpensForLeavesAndWater_ClosedWhileSteepingAndPouring" methodname="TeaLid_OpensForLeavesAndWater_ClosedWhileSteepingAndPouring" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="363918716" result="Passed" start-time="2026-11-24 08:38:53Z" end-time="2026-11-24 08:39:05Z" duration="12.302150" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:38:53.260 START CCT.Tests.DrinkLabPlayTests.TeaLid_OpensForLeavesAndWater_ClosedWhileSteepingAndPouring (t=276.4 ts=1)
+[TestProgress] 17:38:56.508 HB frame=407459 dt=0.0004 unscaledDt=0.0004 state=noGM enemies=0 (t=279.6 ts=1)
+[TestProgress] 17:39:01.507 HB frame=416946 dt=0.0017 unscaledDt=0.0017 state=noGM enemies=0 (t=284.6 ts=1)
+[TestProgress] 17:39:05.562 END Passed 12.3s CCT.Tests.DrinkLabPlayTests.TeaLid_OpensForLeavesAndWater_ClosedWhileSteepingAndPouring (t=288.7 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1177" name="TeaPour_StrainedLeavesStayInPot_ExtractMovesToCup" fullname="CCT.Tests.DrinkLabPlayTests.TeaPour_StrainedLeavesStayInPot_ExtractMovesToCup" methodname="TeaPour_StrainedLeavesStayInPot_ExtractMovesToCup" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="390542565" result="Passed" start-time="2026-11-24 08:39:05Z" end-time="2026-11-24 08:39:14Z" duration="8.954417" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:05.562 START CCT.Tests.DrinkLabPlayTests.TeaPour_StrainedLeavesStayInPot_ExtractMovesToCup (t=288.7 ts=1)
+[TestProgress] 17:39:06.508 HB frame=420862 dt=0.0004 unscaledDt=0.0004 state=noGM enemies=0 (t=289.6 ts=1)
+[TestProgress] 17:39:11.508 HB frame=426803 dt=0.0028 unscaledDt=0.0028 state=noGM enemies=0 (t=294.6 ts=1)
+[TestProgress] 17:39:14.517 END Passed 9.0s CCT.Tests.DrinkLabPlayTests.TeaPour_StrainedLeavesStayInPot_ExtractMovesToCup (t=297.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1170" name="TeaSteep_ColorChangesFromWaterToBrew" fullname="CCT.Tests.DrinkLabPlayTests.TeaSteep_ColorChangesFromWaterToBrew" methodname="TeaSteep_ColorChangesFromWaterToBrew" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="933825367" result="Passed" start-time="2026-11-24 08:39:14Z" end-time="2026-11-24 08:39:22Z" duration="8.437061" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:14.518 START CCT.Tests.DrinkLabPlayTests.TeaSteep_ColorChangesFromWaterToBrew (t=297.6 ts=1)
+[TestProgress] 17:39:16.509 HB frame=432656 dt=0.0017 unscaledDt=0.0017 state=noGM enemies=0 (t=299.6 ts=1)
+[TestProgress] 17:39:21.512 HB frame=437622 dt=0.0038 unscaledDt=0.0038 state=noGM enemies=0 (t=304.6 ts=1)
+[TestProgress] 17:39:22.955 END Passed 8.4s CCT.Tests.DrinkLabPlayTests.TeaSteep_ColorChangesFromWaterToBrew (t=306.1 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1162" name="TypedAmount_BoundariesAndPaste" fullname="CCT.Tests.DrinkLabPlayTests.TypedAmount_BoundariesAndPaste" methodname="TypedAmount_BoundariesAndPaste" classname="CCT.Tests.DrinkLabPlayTests" runstate="Runnable" seed="1690009717" result="Passed" start-time="2026-11-24 08:39:22Z" end-time="2026-11-24 08:39:23Z" duration="0.140642" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:22.956 START CCT.Tests.DrinkLabPlayTests.TypedAmount_BoundariesAndPaste (t=306.1 ts=1)
+[TestProgress] 17:39:23.096 END Passed 0.1s CCT.Tests.DrinkLabPlayTests.TypedAmount_BoundariesAndPaste (t=306.2 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1360" name="MasterPrepPlayTests" fullname="CCT.Tests.MasterPrepPlayTests" classname="CCT.Tests.MasterPrepPlayTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-24 08:39:23Z" end-time="2026-11-24 08:39:44Z" duration="21.687526" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1363" name="BrewWindow_QualityFx_CaptionInsideWindow_ReleasedOnClose_EmptyOnFirstOpen" fullname="CCT.Tests.MasterPrepPlayTests.BrewWindow_QualityFx_CaptionInsideWindow_ReleasedOnClose_EmptyOnFirstOpen" methodname="BrewWindow_QualityFx_CaptionInsideWindow_ReleasedOnClose_EmptyOnFirstOpen" classname="CCT.Tests.MasterPrepPlayTests" runstate="Runnable" seed="1003473942" result="Passed" start-time="2026-11-24 08:39:23Z" end-time="2026-11-24 08:39:23Z" duration="0.069713" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:23.099 START CCT.Tests.MasterPrepPlayTests.BrewWindow_QualityFx_CaptionInsideWindow_ReleasedOnClose_EmptyOnFirstOpen (t=306.2 ts=1)
+[TestProgress] 17:39:23.169 END Passed 0.1s CCT.Tests.MasterPrepPlayTests.BrewWindow_QualityFx_CaptionInsideWindow_ReleasedOnClose_EmptyOnFirstOpen (t=306.2 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1364" name="Fair_Density_ThirtySixInBurstsOfFour_SameSide_PlanMatches" fullname="CCT.Tests.MasterPrepPlayTests.Fair_Density_ThirtySixInBurstsOfFour_SameSide_PlanMatches" methodname="Fair_Density_ThirtySixInBurstsOfFour_SameSide_PlanMatches" classname="CCT.Tests.MasterPrepPlayTests" runstate="Runnable" seed="612928796" result="Passed" start-time="2026-11-24 08:39:23Z" end-time="2026-11-24 08:39:29Z" duration="6.812200" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:23.169 START CCT.Tests.MasterPrepPlayTests.Fair_Density_ThirtySixInBurstsOfFour_SameSide_PlanMatches (t=306.2 ts=1)
+[TestProgress] 17:39:26.512 HB frame=458918 dt=0.0000 unscaledDt=0.0002 state=Playing enemies=0 (t=306.2 ts=0)
+[TestProgress] 17:39:29.982 END Passed 6.8s CCT.Tests.MasterPrepPlayTests.Fair_Density_ThirtySixInBurstsOfFour_SameSide_PlanMatches (t=309.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1365" name="GiveUp_FromPrep_EndsCleanly" fullname="CCT.Tests.MasterPrepPlayTests.GiveUp_FromPrep_EndsCleanly" methodname="GiveUp_FromPrep_EndsCleanly" classname="CCT.Tests.MasterPrepPlayTests" runstate="Runnable" seed="832770858" result="Passed" start-time="2026-11-24 08:39:29Z" end-time="2026-11-24 08:39:30Z" duration="0.764160" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:29.982 START CCT.Tests.MasterPrepPlayTests.GiveUp_FromPrep_EndsCleanly (t=309.5 ts=1)
+[RunHistory] 경로: C:\Users\user\AppData\Local\Temp\DefaultCompany\CocktailCoffeeTea\cct_playmode_session_ae1e7e6c65cd469fbe25a2c76ed8c2a8.run-history.json (source=Fresh, 0판)
+[TestProgress] 17:39:30.747 END Passed 0.8s CCT.Tests.MasterPrepPlayTests.GiveUp_FromPrep_EndsCleanly (t=309.5 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1362" name="NextWavePlan_PreviewedDuringWave_IsTheOneSpawned_AndChoicePreviewsAreRealPlans" fullname="CCT.Tests.MasterPrepPlayTests.NextWavePlan_PreviewedDuringWave_IsTheOneSpawned_AndChoicePreviewsAreRealPlans" methodname="NextWavePlan_PreviewedDuringWave_IsTheOneSpawned_AndChoicePreviewsAreRealPlans" classname="CCT.Tests.MasterPrepPlayTests" runstate="Runnable" seed="1184654112" result="Passed" start-time="2026-11-24 08:39:30Z" end-time="2026-11-24 08:39:40Z" duration="10.014195" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:30.747 START CCT.Tests.MasterPrepPlayTests.NextWavePlan_PreviewedDuringWave_IsTheOneSpawned_AndChoicePreviewsAreRealPlans (t=309.5 ts=1)
+[TestProgress] 17:39:31.512 HB frame=484737 dt=0.0016 unscaledDt=0.0002 state=Playing enemies=0 (t=316.7 ts=10)
+[TestProgress] 17:39:36.513 HB frame=512034 dt=0.0022 unscaledDt=0.0002 state=Playing enemies=0 (t=366.7 ts=10)
+[TestProgress] 17:39:40.762 END Passed 10.0s CCT.Tests.MasterPrepPlayTests.NextWavePlan_PreviewedDuringWave_IsTheOneSpawned_AndChoicePreviewsAreRealPlans (t=405.8 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1361" name="Prep_FreezesTimeSpawnDamage_BrewAndPauseReturnToPrep_SamePlan_ThenSpawnsPlanInOrder" fullname="CCT.Tests.MasterPrepPlayTests.Prep_FreezesTimeSpawnDamage_BrewAndPauseReturnToPrep_SamePlan_ThenSpawnsPlanInOrder" methodname="Prep_FreezesTimeSpawnDamage_BrewAndPauseReturnToPrep_SamePlan_ThenSpawnsPlanInOrder" classname="CCT.Tests.MasterPrepPlayTests" runstate="Runnable" seed="1716203412" result="Passed" start-time="2026-11-24 08:39:40Z" end-time="2026-11-24 08:39:44Z" duration="4.021938" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:40.762 START CCT.Tests.MasterPrepPlayTests.Prep_FreezesTimeSpawnDamage_BrewAndPauseReturnToPrep_SamePlan_ThenSpawnsPlanInOrder (t=405.8 ts=1)
+[TestProgress] 17:39:41.513 HB frame=536687 dt=0.0000 unscaledDt=0.0002 state=Playing enemies=1 (t=405.8 ts=0)
+[TestProgress] 17:39:44.784 END Passed 4.0s CCT.Tests.MasterPrepPlayTests.Prep_FreezesTimeSpawnDamage_BrewAndPauseReturnToPrep_SamePlan_ThenSpawnsPlanInOrder (t=415.8 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1536" name="TeaDrinkAuraPlayTests" fullname="CCT.Tests.TeaDrinkAuraPlayTests" classname="CCT.Tests.TeaDrinkAuraPlayTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 08:39:44Z" end-time="2026-11-24 08:39:44Z" duration="0.144147" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1538" name="MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides" fullname="CCT.Tests.TeaDrinkAuraPlayTests.MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides" methodname="MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides" classname="CCT.Tests.TeaDrinkAuraPlayTests" runstate="Runnable" seed="11262866" result="Failed" start-time="2026-11-24 08:39:44Z" end-time="2026-11-24 08:39:44Z" duration="0.069508" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1.0d +/- 0.0010000000474974513d
+  But was:  0.0d
+]]></message>
+                <stack-trace><![CDATA[at CCT.Tests.TeaDrinkAuraPlayTests+<MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides>d__4.MoveNext () [0x00264] in C:\Users\user\orca\workspaces\CocktailCoffeeTea\levelup-menu-unity\Assets\_Project\Tests\PlayMode\TeaDrinkAuraPlayTests.cs:65
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[TestProgress] 17:39:44.786 START CCT.Tests.TeaDrinkAuraPlayTests.MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides (t=415.8 ts=1)
+[TestProgress] 17:39:44.855 END Failed 0.1s CCT.Tests.TeaDrinkAuraPlayTests.MasterDrink_ShowsAura_LowEffectsSimple_RunEndHides (t=415.9 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1537" name="NoDrink_NoAura_And_Bartender_HasNone" fullname="CCT.Tests.TeaDrinkAuraPlayTests.NoDrink_NoAura_And_Bartender_HasNone" methodname="NoDrink_NoAura_And_Bartender_HasNone" classname="CCT.Tests.TeaDrinkAuraPlayTests" runstate="Runnable" seed="1580657618" result="Passed" start-time="2026-11-24 08:39:44Z" end-time="2026-11-24 08:39:44Z" duration="0.072710" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:44.855 START CCT.Tests.TeaDrinkAuraPlayTests.NoDrink_NoAura_And_Bartender_HasNone (t=415.9 ts=1)
+[TestProgress] 17:39:44.928 END Passed 0.1s CCT.Tests.TeaDrinkAuraPlayTests.NoDrink_NoAura_And_Bartender_HasNone (t=415.9 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1569" name="UiReadability14PlayTests" fullname="CCT.Tests.UiReadability14PlayTests" classname="CCT.Tests.UiReadability14PlayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-24 08:39:44Z" end-time="2026-11-24 08:39:45Z" duration="0.396482" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1571" name="FourDebuffs_StatusBlock_BelowIcons_ClearOfGaugeBarsAndLeftPanels" fullname="CCT.Tests.UiReadability14PlayTests.FourDebuffs_StatusBlock_BelowIcons_ClearOfGaugeBarsAndLeftPanels" methodname="FourDebuffs_StatusBlock_BelowIcons_ClearOfGaugeBarsAndLeftPanels" classname="CCT.Tests.UiReadability14PlayTests" runstate="Runnable" seed="715598562" result="Passed" start-time="2026-11-24 08:39:44Z" end-time="2026-11-24 08:39:45Z" duration="0.184226" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:44.930 START CCT.Tests.UiReadability14PlayTests.FourDebuffs_StatusBlock_BelowIcons_ClearOfGaugeBarsAndLeftPanels (t=415.9 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\ui14-70abedf2bddd4edaba26394027a32c63\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\ui14-70abedf2bddd4edaba26394027a32c63\save.json (source=Fresh, v2)
+[TestProgress] 17:39:45.114 END Passed 0.2s CCT.Tests.UiReadability14PlayTests.FourDebuffs_StatusBlock_BelowIcons_ClearOfGaugeBarsAndLeftPanels (t=416.0 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1570" name="MasterPrep_PanelBrewButtonAndNotice_DoNotCoverTallDrinkChip" fullname="CCT.Tests.UiReadability14PlayTests.MasterPrep_PanelBrewButtonAndNotice_DoNotCoverTallDrinkChip" methodname="MasterPrep_PanelBrewButtonAndNotice_DoNotCoverTallDrinkChip" classname="CCT.Tests.UiReadability14PlayTests" runstate="Runnable" seed="384511643" result="Passed" start-time="2026-11-24 08:39:45Z" end-time="2026-11-24 08:39:45Z" duration="0.210027" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:45.115 START CCT.Tests.UiReadability14PlayTests.MasterPrep_PanelBrewButtonAndNotice_DoNotCoverTallDrinkChip (t=416.0 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\ui14-4a65a5461ee34c7db2173ceecc0b74d7\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\ui14-4a65a5461ee34c7db2173ceecc0b74d7\save.json (source=Fresh, v2)
+[TestProgress] 17:39:45.325 END Passed 0.2s CCT.Tests.UiReadability14PlayTests.MasterPrep_PanelBrewButtonAndNotice_DoNotCoverTallDrinkChip (t=416.1 ts=1)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1591" name="UiReadabilityScreensEvidenceCapture" fullname="CCT.Tests.UiReadabilityScreensEvidenceCapture" classname="CCT.Tests.UiReadabilityScreensEvidenceCapture" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-24 08:39:45Z" end-time="2026-11-24 08:39:46Z" duration="1.088599" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1592" name="Codex_And_PermanentShop" fullname="CCT.Tests.UiReadabilityScreensEvidenceCapture.Codex_And_PermanentShop" methodname="Codex_And_PermanentShop" classname="CCT.Tests.UiReadabilityScreensEvidenceCapture" runstate="Runnable" seed="858615385" result="Passed" start-time="2026-11-24 08:39:45Z" end-time="2026-11-24 08:39:45Z" duration="0.473291" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:45.326 START CCT.Tests.UiReadabilityScreensEvidenceCapture.Codex_And_PermanentShop (t=416.1 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\ui14s-df9099f497b842b48d974e14959c92d1\settings.json (source=Defaults)
+[Save] save.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\ui14s-df9099f497b842b48d974e14959c92d1\save.json (source=Fresh, v2)
+[Ui14Screens] shot codex_1280x720.png 1280x720
+[Ui14Screens] shot codex_1024x768.png 1024x768
+[Ui14Screens] shot codex_1920x1080.png 1920x1080
+[Ui14Screens] shot codex_detail_1280x720.png 1280x720
+[Ui14Screens] shot codex_detail_1024x768.png 1024x768
+[Ui14Screens] shot codex_detail_1920x1080.png 1920x1080
+[Ui14Screens] shot permanent_shop_1280x720.png 1280x720
+[Ui14Screens] shot permanent_shop_1024x768.png 1024x768
+[Ui14Screens] shot permanent_shop_1920x1080.png 1920x1080
+[TestProgress] 17:39:45.800 END Passed 0.5s CCT.Tests.UiReadabilityScreensEvidenceCapture.Codex_And_PermanentShop (t=416.6 ts=1)
+]]></output>
+            </test-case>
+            <test-case id="1593" name="DrinkLab_Tabs_And_Drawer" fullname="CCT.Tests.UiReadabilityScreensEvidenceCapture.DrinkLab_Tabs_And_Drawer" methodname="DrinkLab_Tabs_And_Drawer" classname="CCT.Tests.UiReadabilityScreensEvidenceCapture" runstate="Runnable" seed="1195024701" result="Passed" start-time="2026-11-24 08:39:45Z" end-time="2026-11-24 08:39:46Z" duration="0.612757" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TestProgress] 17:39:45.800 START CCT.Tests.UiReadabilityScreensEvidenceCapture.DrinkLab_Tabs_And_Drawer (t=416.6 ts=1)
+[Settings] settings.json 경로: C:/Users/user/AppData/Local/Temp/DefaultCompany/CocktailCoffeeTea\ui14s-469bec81f4cf453fa6d23eeb66a222ee\settings.json (source=Defaults)
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_craft_1280x720.png 1280x720
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_craft_1024x768.png 1024x768
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_craft_1920x1080.png 1920x1080
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_codex_1280x720.png 1280x720
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_codex_1024x768.png 1024x768
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_codex_1920x1080.png 1920x1080
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_recipes_1280x720.png 1280x720
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_recipes_1024x768.png 1024x768
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_recipes_1920x1080.png 1920x1080
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_orders_1280x720.png 1280x720
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_orders_1024x768.png 1024x768
+[Ui14Screens] notice=첫 제조용 재료 세트를 창고에 넣었습니다. 연구 포인트 10을 받았습니다(노트북 연구).
+[Ui14Screens] shot lab_orders_1920x1080.png 1920x1080
+[TestProgress] 17:39:46.414 END Passed 0.6s CCT.Tests.UiReadabilityScreensEvidenceCapture.DrinkLab_Tabs_And_Drawer (t=417.2 ts=1)
+Saving results to: C:/Users/user/AppData/LocalLow/DefaultCompany/CocktailCoffeeTea\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
