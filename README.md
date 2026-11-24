@@ -12,6 +12,18 @@ Windows PC 데모 공개 · 싱글플레이 · Unity · 개발 중
 
 *Mix, brew, survive. A pixel-art action roguelike about cocktails, tea, and coffee.*
 
+## 2026-11-24 개발 현황
+
+**공개 Windows 데모는 r7b입니다.** 아래 변경은 별도 개발 브랜치에서 검수한 내용입니다.
+
+- 출발 전에 만든 음료의 효과를 강화했습니다. 숨은 실제 칵테일 레시피를 완성하면 전용 픽셀 연출과 함께 한 판에 한 번 쓸 수 있는 효과를 얻습니다.
+- 차 소믈리에의 카드 중복 성장, 활의 화상·빙결·감전·중독 화살, 총알 유도와 바텐더의 3회 적중 폭발을 추가했습니다.
+- 전투 중 물기와 얼룩을 청소하는 규칙, 최종 보스의 원거리·후반 패턴, 카드별 메뉴판 전달 연출과 전투 HUD 가독성을 개선했습니다.
+
+Unity 검수 빌드에서 EditMode 1,148건, PlayMode 538건이 통과했습니다. 실패는 0건입니다. 최신 실행본에서 실제 창의 Q 입력과 연속 애니메이션은 미검증입니다.
+
+[검수 브랜치](https://github.com/hyungjin-yu/cocktail-coffee-tea-roguelike/tree/hyungjin-yu/levelup-menu-unity) · [Unity 검수 기록](https://github.com/hyungjin-yu/cocktail-coffee-tea-roguelike/blob/a7ccdaa95e7015f1069ebfde346854164b778a88/Docs/Verification/signature-2026-11-27/README.md)
+
 ## 한 잔의 준비가 다음 전투로
 
 바텐더와 티 소믈리에 중 직업을 고르고 전투에 나서세요. 재료를 모으고, 음료를 만들고, 카드와 연구로 다음 성장을 선택합니다. 완성한 음료는 전투에 가져가거나 손님의 주문에 맞춰 판매할 수 있습니다.
