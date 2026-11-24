@@ -189,11 +189,11 @@ namespace CCT.Tests
             foreach (var id in new[] { "finesse_1", "finesse_2", "finesse_3", "finesse_4" }) Assert.IsTrue(DrinkLab.UnlockTrait(id, out var e), e);
             Assert.IsTrue(DrinkLab.EquipTrait("finesse_4", out var e2), e2);
             Assert.IsTrue(DrinkLab.EquipTrait("finesse_1", out e2), e2);
-            var preview = DrinkCalculator.Buff(HpAtkDrink());
+            var preview = DrinkCalculator.DepartureBuff(HpAtkDrink()); // #25 출발 잔 값
             StartGame(true);
             CollectionAssert.AreEquivalent(new[] { "finesse_4", "finesse_1" }, game.MasteryTraits);
             foreach (DrinkStat s in Enum.GetValues(typeof(DrinkStat)))
-                Assert.AreEqual(preview[s] > 0f ? Mathf.Min(DrinkRules.Cap(s), preview[s] * 1.05f) : preview[s], game.DrinkBuff[s], 1e-6f, s.ToString());
+                Assert.AreEqual(preview[s] > 0f ? Mathf.Min(DrinkRules.DepartureCap(s), preview[s] * 1.05f) : preview[s], game.DrinkBuff[s], 1e-6f, s.ToString());
             Assert.IsNotNull(game.Player.Mastery);
             Assert.IsTrue(game.Player.Mastery.Has("finesse_1"));
             Assert.IsFalse(game.Player.Mastery.Has("finesse_2"), "해금만 하고 장착 안 한 특성은 효과 없음");
@@ -205,7 +205,7 @@ namespace CCT.Tests
         public void Buff_AppliedOnceAtEntry_MatchesPreview_NotReappliedByPauseOrCards()
         {
             var recipe = HpAtkDrink();
-            var preview = DrinkCalculator.Buff(recipe);
+            var preview = DrinkCalculator.DepartureBuff(recipe); // #25 출발 잔: 미리보기(제조 화면)와 런 적용이 같은 출발 배율 계산
             StartGame(true, recipe);
             Assert.IsNotNull(game.DrinkBuff);
             Assert.AreEqual(preview.Describe(), game.DrinkBuff.Describe(), "미리보기와 실제 적용이 같은 계산기");

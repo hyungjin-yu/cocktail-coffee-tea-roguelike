@@ -91,7 +91,7 @@ namespace CCT.Tests
             Assert.IsTrue(DrinkLab.PracticeGranted, "저장 후 다시 읽어도 지급 완료");
             Assert.IsFalse(DrinkLab.GrantPracticeKit(out _, out _));
             StringAssert.Contains($"\"schemaVersion\": {DrinkStore.CurrentVersion}", File.ReadAllText(Path.Combine(dir, "drinks.json")));
-            Assert.AreEqual(DrinkStore.PracticeVersion, DrinkStore.CurrentVersion);
+            Assert.GreaterOrEqual(DrinkStore.CurrentVersion, DrinkStore.PracticeVersion); // 2026-11-24 #25 v7(시그니처)도 실습 플래그 유지
 
             // 실습 잔(지급분 포함) → 판매 불가, 코인 0, 마시기용 준비 음료는 유지
             if (got.Count > 0)

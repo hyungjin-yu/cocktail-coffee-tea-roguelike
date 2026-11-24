@@ -564,6 +564,15 @@ namespace CCT
             return true;
         }
 
+        /// <summary>2026-11-24 #25 시그니처 경직(솔트 림·화이트 아웃): 일반·정예만, 검 경직 쿨다운과 무관하게 최소 seconds 동안 멈춘다(더 긴 쪽 유지, 중첩 없음).
+        /// 검 경직 쿨다운(staggerReadyAt)은 바꾸지 않는다. 보스·사망은 false.</summary>
+        public bool ApplySignatureHold(float seconds)
+        {
+            if (dead || def == null || def.IsBoss || seconds <= 0f) return false;
+            staggerRemaining = Mathf.Max(staggerRemaining, seconds);
+            return true;
+        }
+
         /// <summary>피격 플래시가 끝나면 돌아갈 색. 보스 텔레그래프 표시에도 쓴다.</summary>
         public Color BaseColor { get; set; }
 

@@ -175,12 +175,44 @@ namespace CCT
             st != null && r != null && st.kind == r.Kind.ToString() && (st.technique == null || st.technique == r.Technique.ToString());
 
         /// <summary>72 §4 기교4: 양수 버프만 ×k, 항목별 음료 상한 유지(새 사본).</summary>
-        public static DrinkBuff ScalePositive(DrinkBuff b, float k)
+        public static DrinkBuff ScalePositive(DrinkBuff b, float k) => ScalePositive(b, k, false);
+
+        /// <summary>departure = true면 출발 잔 상한(DepartureCap)으로 자른다(#25 — 출발 잔에 숙련 배율을 걸 때 기본 상한으로 깎이지 않게).</summary>
+        public static DrinkBuff ScalePositive(DrinkBuff b, float k, bool departure)
         {
             var r = new DrinkBuff();
             if (b == null) return r;
             foreach (DrinkStat s in Enum.GetValues(typeof(DrinkStat)))
-                r[s] = b[s] > 0f ? Mathf.Min(DrinkRules.Cap(s), b[s] * k) : b[s];
+                r[s] = b[s] > 0f ? Mathf.Min(departure ? DrinkRules.DepartureCap(s) : DrinkRules.Cap(s), b[s] * k) : b[s];
+            return r;
+        }
+
+        /// <summary>#25 출발 잔: 기본 계산(전문·숙련 배율까지 적용된 값)을 DepartureScale배로 키우고 출발 잔 상한으로 자른다(새 사본).
+        /// 기본 계산은 항목 상한(Cap) 안이므로 결과는 항상 DepartureCap 이하다.</summary>
+        public static DrinkBuff ForDeparture(DrinkBuff b)
+        {
+            var r = new DrinkBuff();
+            if (b == null) return r;
+            foreach (DrinkStat s in Enum.GetValues(typeof(DrinkStat)))
+                r[s] = b[s] > 0f ? Mathf.Min(DrinkRules.DepartureCap(s), b[s] * DrinkRules.DepartureScale) : b[s];
+            return r;
+        }
+
+        /// <summary>#25 출발 전에 만들어 마시는 잔의 효과(미리보기·출발·런 적용 공통). 기본 계산 → 출발 배율.</summary>
+        public static DrinkBuff DepartureBuff(DrinkRecipe r, string specialtyId = null) =>
+            ForDeparture(string.IsNullOrEmpty(specialtyId) ? Buff(r) : Buff(r, specialtyId));
+
+        /// <summary>#25 출발 잔 + 런 잔 합산. 항목별 합을 출발 잔 상한으로 자른다 — 런 잔을 몇 번 바꿔 마셔도 같은 능력치가 상한을 넘지 않는다.
+        /// 둘 중 하나가 null이면 다른 쪽 사본(둘 다 null이면 null).</summary>
+        public static DrinkBuff Combine(DrinkBuff departure, DrinkBuff runCup)
+        {
+            if (departure == null && runCup == null) return null;
+            var r = new DrinkBuff();
+            foreach (DrinkStat s in Enum.GetValues(typeof(DrinkStat)))
+            {
+                float v = (departure != null ? Mathf.Max(0f, departure[s]) : 0f) + (runCup != null ? Mathf.Max(0f, runCup[s]) : 0f);
+                r[s] = Mathf.Min(DrinkRules.DepartureCap(s), v);
+            }
             return r;
         }
 

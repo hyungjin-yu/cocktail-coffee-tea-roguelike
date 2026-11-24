@@ -26,6 +26,10 @@ namespace CCT
         public List<DrinkAmount> fromStockNormal = new List<DrinkAmount>();
         public List<DrinkAmount> fromStockEndless = new List<DrinkAmount>();
 
+        /// <summary>2026-11-24 #25(v7) 제조 확정 때 판정한 정식 레시피 id(아니면 ""). 발견 기록은 잔을 실제로 쓸 때(마심·제출) 남긴다 —
+        /// 보관 잔은 정산 때 로비 재고가 환원되므로 보관만으로는 발견되지 않는다(무료 반복 탐색 방지).</summary>
+        public string signatureId = "";
+
         /// <summary>2026-11-12 차 우림 계보(게임 규칙): 첫 우림 잔의 cupId. 비어 있으면(기존 저장) 자기 자신이 계보 시작.</summary>
         public string teaLineage = "";
         /// <summary>우림 단계 1~3(차만). 0 = 기존 저장 잔 → 1번째로 본다.</summary>
@@ -151,7 +155,8 @@ namespace CCT
                     if (!need.ContainsKey(s.id)) { need[s.id] = 0; order.Add(s.id); }
                     need[s.id] = (int)Math.Min(int.MaxValue, (long)need[s.id] + s.amount);
                 }
-                var cup = new RunCup { runId = runId, cupId = Guid.NewGuid().ToString("N"), recipe = copy, quality = DrinkQuality.Of(copy), recipeKey = RecipeKey(copy) };
+                var cup = new RunCup { runId = runId, cupId = Guid.NewGuid().ToString("N"), recipe = copy, quality = DrinkQuality.Of(copy), recipeKey = RecipeKey(copy),
+                    signatureId = DrinkSignatures.Match(copy)?.id ?? "" }; // #25 실제 제조 확정 판정(미리보기 아님)
                 if (copy.Kind == DrinkKind.Tea) { cup.teaSteep = 1; cup.teaLineage = cup.cupId; } // 새로 우리기 = 새 계보 1번째
                 foreach (var id in order)
                 {
@@ -215,20 +220,29 @@ namespace CCT
         }
 
         /// <summary>보관 잔을 마시기/제출로 확정(한 번만). 다른 런·이미 쓴 잔·정산된 런은 거부.</summary>
-        public static bool UseRunCup(string runId, string cupId, string newState, out string error)
+        public static bool UseRunCup(string runId, string cupId, string newState, out string error) =>
+            UseRunCup(runId, cupId, newState, out error, out _);
+
+        /// <summary>#25: 정식 레시피 잔을 실제로 쓰면(마심·제출) 같은 저장 사건에서 발견을 기록한다. firstDiscovery = 이번에 처음 발견.</summary>
+        public static bool UseRunCup(string runId, string cupId, string newState, out string error, out bool firstDiscovery)
         {
             error = null;
+            firstDiscovery = false;
+            bool first = false;
             if (newState != RunCup.Drunk && newState != RunCup.Submitted) { error = "알 수 없는 사용입니다."; return false; }
             if (string.IsNullOrEmpty(runId) || IsSettled(runId)) { error = "이 판은 이미 정산되었습니다."; return false; }
             var cup = Data.runCups.Find(c => c != null && c.runId == runId && c.cupId == cupId);
             if (cup == null || !cup.IsHeld) { error = "이미 사용했거나 없는 잔입니다."; return false; }
-            return Transact(d =>
+            bool ok = Transact(d =>
             {
                 var dc = d.runCups.Find(c => c != null && c.runId == runId && c.cupId == cupId);
                 if (dc == null || !dc.IsHeld) return false;
                 dc.state = newState;
+                first = DrinkSignatures.Get(dc.signatureId) != null && RecordDiscovery(d, dc.signatureId, dc.recipe);
                 return true;
             }, out error);
+            if (ok) firstDiscovery = first;
+            return ok;
         }
 
         /// <summary>

@@ -230,6 +230,10 @@ namespace CCT
             public string Message;
             public DrinkBuff Buff;
             public Dictionary<string, int> Shortages;
+            /// <summary>#25 이 제조가 정식 레시피면 그 id(아니면 null).</summary>
+            public string SignatureId;
+            /// <summary>#25 이번 제조로 처음 발견했다(공개 연출은 이때만 길게).</summary>
+            public bool FirstDiscovery;
         }
 
         /// <summary>제조 확정 — 여기서만 재료를 차감하고, 준비 음료와 같은 저장 트랜잭션으로 기록한다.</summary>
@@ -246,6 +250,9 @@ namespace CCT
             var copy = recipe.Clone();
             copy.name = DrinkValidator.SanitizeName(copy.name, DefaultName(copy));
             string specialty = ActiveSpecialtyFor(copy);
+            // #25 정식 레시피 판정은 실제 제조 확정(재료 차감과 같은 저장 사건)에서만 — 미리보기·불러오기에서는 하지 않는다.
+            var signature = DrinkSignatures.Match(copy);
+            bool firstDiscovery = false;
             bool ok = Transact(d =>
             {
                 // 2026-11-10 출처 장부: 일반 출처 우선 소모, 부족분만 끝없는 출처. 쓴 끝없는 출처 양을 음료에 기록(판매 불가 표시).
@@ -262,13 +269,19 @@ namespace CCT
                 {
                     state = PreparedDrink.Ready, drinkId = Guid.NewGuid().ToString("N"), recipe = copy,
                     preparedUtc = DateTime.UtcNow.ToString("o"), specialtyId = specialty, endlessAmounts = endlessUsed,
+                    signatureId = signature != null ? signature.id : "",
                 };
+                firstDiscovery = signature != null && RecordDiscovery(d, signature.id, copy);
                 // 72 §5 직원 채용 조건(제조 누적)은 같은 거래로 센다.
                 if (copy.Kind == DrinkKind.Tea) d.research.teaCrafts++; else if (copy.Kind == DrinkKind.Coffee) d.research.coffeeCrafts++; else d.research.cocktailCrafts++;
                 return true;
             }, out var error);
             if (!ok) return new CraftResult { Status = CraftStatus.SaveFailed, Message = error };
-            return new CraftResult { Status = CraftStatus.Crafted, Message = "음료를 준비했습니다.", Buff = DrinkCalculator.Buff(copy, specialty) };
+            return new CraftResult
+            {
+                Status = CraftStatus.Crafted, Message = "음료를 준비했습니다.", Buff = DrinkCalculator.DepartureBuff(copy, specialty),
+                SignatureId = signature?.id, FirstDiscovery = firstDiscovery,
+            };
         }
 
         public static string DefaultName(DrinkRecipe r)
@@ -364,12 +377,12 @@ namespace CCT
             RecoverAbandoned(ticket ?? runId);
             liveRunId = runId;
             var p = data.prepared;
-            if (p.state == PreparedDrink.InRun && p.runId == runId) return DrinkCalculator.Buff(p.recipe, p.specialtyId);
+            if (p.state == PreparedDrink.InRun && p.runId == runId) return DrinkCalculator.DepartureBuff(p.recipe, p.specialtyId);
             if (ticket != null && p.state == PreparedDrink.InRun && p.runId == ticket)
             {
                 // 출발 전에 디스크에 확정한 음용(출발 표) → 실제 runId로 바꾼다. 실패해도 디스크는 InRun(표)이라 강제 종료 시 소비로 복구된다.
                 CommitEvent(d => d.prepared.runId = runId);
-                return DrinkCalculator.Buff(data.prepared.recipe, data.prepared.specialtyId);
+                return DrinkCalculator.DepartureBuff(data.prepared.recipe, data.prepared.specialtyId);
             }
             if (skip) return null; // 사용자가 "음료 없이 출발"을 고름 — Ready 그대로 보존
             if (p.state != PreparedDrink.Ready) return null;
@@ -387,7 +400,7 @@ namespace CCT
                 Debug.LogWarning($"[Drinks] 입장 음용 기록 실패 — 버프 없이 시작: {error}");
                 return null;
             }
-            return DrinkCalculator.Buff(data.prepared.recipe, data.prepared.specialtyId);
+            return DrinkCalculator.DepartureBuff(data.prepared.recipe, data.prepared.specialtyId);
         }
 
         // ───── 출발(선택 화면 → 런) ─────
@@ -489,7 +502,9 @@ namespace CCT
             if (string.IsNullOrEmpty(runId)) return null;
             if (IsSettled(runId)) return data.lastSettlement != null && data.lastSettlement.runId == runId ? data.lastSettlement : null;
             var drink = DrinkInRun(runId);
-            bool preserve = explicitAbandon && kind == RunEndKind.Abandoned && drink != null && !drink.locked && kills < PreserveKillLimit;
+            // #25 시그니처를 쓴 잔은 사용 순간 locked — 아래 조건으로도 한 번 더 막는다(포기 보존으로 효과만 쓰고 잔을 돌려받지 못함).
+            bool preserve = explicitAbandon && kind == RunEndKind.Abandoned && drink != null && !drink.locked && kills < PreserveKillLimit
+                && string.IsNullOrEmpty(drink.signatureUsedRunId);
             var settlement = new DrinkSettlement { runId = runId, utc = DateTime.UtcNow.ToString("o") };
             CommitEvent(d =>
             {
@@ -589,6 +604,61 @@ namespace CCT
             });
             if (drinkRecovered) sessionNotice = string.IsNullOrEmpty(sessionNotice) ? NoticeRecovered : sessionNotice + " " + NoticeRecovered;
             return true;
+        }
+
+        // ───── 2026-11-24 #25 정식 레시피 발견·시그니처 사용 ─────
+
+        /// <summary>발견한 정식 레시피 기록(저장 목록 — 화면은 읽기만).</summary>
+        public static IReadOnlyList<DrinkSignatureRecord> DiscoveredSignatures => Data.signatures;
+        public static bool IsDiscovered(string signatureId) => !string.IsNullOrEmpty(signatureId) && Data.signatures.Exists(s => s != null && s.id == signatureId);
+        public static int DiscoveredCount
+        {
+            get { int n = 0; foreach (var d in DrinkSignatures.All) if (IsDiscovered(d.id)) n++; return n; }
+        }
+
+        /// <summary>같은 저장 사건 안에서 첫 발견을 기록한다. 이미 있으면 false(기록·첫 배합은 바꾸지 않음).</summary>
+        static bool RecordDiscovery(DrinkSaveData d, string signatureId, DrinkRecipe recipe)
+        {
+            d.signatures ??= new List<DrinkSignatureRecord>();
+            if (d.signatures.Exists(s => s != null && s.id == signatureId)) return false;
+            d.signatures.Add(new DrinkSignatureRecord { id = signatureId, utc = DateTime.UtcNow.ToString("o"), firstRecipe = recipe != null ? recipe.Clone() : new DrinkRecipe() });
+            return true;
+        }
+
+        /// <summary>이 런에서 시그니처를 이미 썼는가(디스크 기록 기준 — 재시작·복구 후에도 유지).</summary>
+        public static bool SignatureUsedIn(string runId) => !string.IsNullOrEmpty(runId) && Data.signatureUsedRunIds.Contains(runId);
+
+        /// <summary>
+        /// 시그니처 1회 사용을 **효과보다 먼저** 디스크에 확정한다. 출발 잔 출처면 같은 사건에서 잔을 이 런에 귀속(locked)시켜
+        /// 처치 0~4 포기 보존으로 잔을 돌려받지 못하게 한다. 런당 1회(같은 runId 두 번째는 거부). 저장 실패면 false — 호출자는 효과를 내지 않는다(다시 누르면 재시도).
+        /// </summary>
+        public static bool CommitSignatureUse(string runId, string signatureId, bool fromPrepared, out string error)
+        {
+            error = null;
+            EnsureLoaded();
+            if (string.IsNullOrEmpty(runId) || DrinkSignatures.Get(signatureId) == null) { error = "쓸 수 있는 시그니처가 없습니다."; return false; }
+            if (IsSettled(runId)) { error = "이 판은 이미 정산되었습니다."; return false; }
+            if (SignatureUsedIn(runId)) { error = "이번 판의 시그니처는 이미 사용했습니다."; return false; }
+            if (fromPrepared)
+            {
+                var p = DrinkInRun(runId);
+                if (p == null || p.signatureId != signatureId) { error = "이번 판에 마신 출발 음료의 시그니처가 아닙니다."; return false; }
+            }
+            bool ok = Transact(d =>
+            {
+                d.signatureUsedRunIds ??= new List<string>();
+                if (d.signatureUsedRunIds.Contains(runId)) return false;
+                d.signatureUsedRunIds.Add(runId);
+                if (d.signatureUsedRunIds.Count > 200) d.signatureUsedRunIds.RemoveRange(0, d.signatureUsedRunIds.Count - 200);
+                if (fromPrepared && d.prepared.state == PreparedDrink.InRun && d.prepared.runId == runId)
+                {
+                    d.prepared.locked = true;
+                    d.prepared.signatureUsedRunId = runId;
+                }
+                return true;
+            }, out var saveError);
+            if (!ok) error = string.IsNullOrEmpty(saveError) ? "저장하지 못해 시그니처를 쓰지 않았습니다. 다시 눌러 주세요." : saveError;
+            return ok;
         }
 
         // ───── 2026-11-15 피드백 24 목표 음료 ─────

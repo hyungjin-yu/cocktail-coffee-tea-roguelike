@@ -527,6 +527,22 @@ namespace CCT
             _ => 0f,
         };
 
+        /// <summary>2026-11-24 #25 출발 잔 체감 배율(가안). 출발 전에 만들어 마신 음료는 같은 배합의 기본 계산(Cap 기준) × 이 배율.</summary>
+        public const float DepartureScale = 2.5f;
+
+        /// <summary>#25 출발 잔 효과 상한(가안, 기본 상한의 약 2.5배). 출발 잔 + 런 잔 합산도 이 상한을 넘지 않는다(같은 능력치 중첩 폭주 방지).</summary>
+        public static float DepartureCap(DrinkStat s) => s switch
+        {
+            DrinkStat.Attack => 0.25f,
+            DrinkStat.AttackSpeed => 0.20f,
+            DrinkStat.CritChance => 0.12f,
+            DrinkStat.MaxHp => 0.25f,
+            DrinkStat.CooldownReduction => 0.12f,
+            DrinkStat.MoveSpeed => 0.12f,
+            DrinkStat.Range => 0.20f,
+            _ => 0f,
+        };
+
         /// <summary>0.1 단위 정수 → 1 단위로 반올림(중간값은 0에서 먼 쪽). 23.5 → 24, 23.4 → 23.</summary>
         public static int ToUnits(int tenths) => IntNum.Round(tenths / (double)TenthsPerUnit);
 

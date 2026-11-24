@@ -221,8 +221,10 @@ namespace CCT
             // 69 준비 음료: 입장 시 한 번만 적용(카드 선택·일시정지·화면 전환에서 다시 적용하지 않음). 최대 체력이 바뀌므로 플레이어 생성 전.
             // 72 §4 숙련 특성: 출발 때 장착한 것만 런 시작 스냅샷(런 중 노트북 교체·저장 변경과 무관).
             MasteryTraits = DrinkLab.EquippedTraitsSnapshot();
-            DrinkBuff = DrinkLab.BeginRun(RunId);
-            if (DrinkBuff != null && MasteryTraits.Contains("finesse_4")) DrinkBuff = DrinkCalculator.ScalePositive(DrinkBuff, 1.05f); // 한 잔의 집중(항목 상한 유지)
+            DepartureDrinkBuff = DrinkLab.BeginRun(RunId); // #25 출발 잔(출발 배율·출발 상한 적용 값)
+            if (DepartureDrinkBuff != null && MasteryTraits.Contains("finesse_4")) DepartureDrinkBuff = DrinkCalculator.ScalePositive(DepartureDrinkBuff, 1.05f, true); // 한 잔의 집중(출발 잔 상한 유지)
+            RunCupDrinkBuff = null;
+            DrinkBuff = DepartureDrinkBuff;
             activeDrinkApplied = DrinkBuff != null ? DrinkCalculator.ApplyTracked(Stats, DrinkBuff) : null; // 2026-11-11 같은 적용 + 교체용 증가량 기록
             normalKillsSinceBundle = 0; normalBundles = 0; eliteBundles = 0; rpKills = 0; midBossKills = 0; finalBossKills = 0;
 
@@ -238,6 +240,7 @@ namespace CCT
             Player = CreatePlayer(preset, weapon);
             if (job == Job.Bartender) RushAura = MixingRushAura.Attach(Player, this); // 2026-11-22 피드백 D(6) 혼합 러시 오라(표시 전용)
             Player.Mastery = MasteryRuntime.Attach(Player, MasteryTraits);
+            BeginSignatureRun(); // #25 정식 레시피 시그니처(출발 잔이 정식 레시피면 1회 충전 — 플레이어 생성 후)
             // 81 마신 커피만 추출법별 전투 리듬을 붙인다(입장 1회 — 칵테일·차·무음료는 null).
             var coffee = DrinkBuff != null ? DrinkLab.DrinkInRun(RunId)?.recipe : null;
             Player.Coffee = coffee != null && coffee.Kind == DrinkKind.Coffee ? CoffeeBrewRuntime.Attach(Player, coffee.coffeeMethod) : null;
@@ -262,6 +265,7 @@ namespace CCT
             Hud = HudView.Create(canvas.transform, this);
             // 69 준비 음료·보스 음료 재료 표시. 카드 선택·안내·일시정지·결과 창보다 먼저(뒤에) 만들어 어떤 창도 덮지 않게 한다(hudfix).
             DrinkHud = DrinkRunHud.Create(canvas.transform, this);
+            SignatureSlot = SignatureHud.Create(canvas.transform, this); // #25 시그니처 칸(충전·사용한 것이 있을 때만 보임)
             // 2026-11-11 (카드·결과·일시정지 창보다 먼저 만들어 그 창들이 HUD를 덮게 한다) 마스터 도전: 끝없는 모드 런은 10웨이브 주기 루프(유한 웨이브 목표)로 진행한다.
             MasterFreezeActive = false; MasterBrewOpen = false; MasterPrepActive = false;
             Master = IsEndless ? MasterChallengeDirector.Attach(this) : null;
@@ -364,6 +368,8 @@ namespace CCT
             // 08:31 "K: 커피 트리(포인트0이어도 조회), 시간정지" — Pause/카운트다운/다른 보상창 중에는
             // 위에서 이미 걸러진다. 실제로 여는 건 프레임 끝(ResolveEndOfFrame).
             if (kb != null && kb.kKey.wasPressedThisFrame) RequestCoffeeTree();
+            // #25 시그니처 1회 사용: Q(이동 WASD 옆 — 기존 입력·InputSystem_Actions 어디에도 쓰지 않는 키). HUD 칸 클릭과 같은 경로.
+            if (kb != null && kb.qKey.wasPressedThisFrame && Signature != null && (Signature.Charged != null || Signature.Used)) TryUseSignature();
 
             RunTime += Time.deltaTime;
             RunTimePrecise += Time.deltaTime;
@@ -729,8 +735,12 @@ namespace CCT
         }
 
         // ───── 69 음료 제조 ─────
-        /// <summary>이번 런 입장 때 마신 준비 음료의 버프(없으면 null). 런 동안 한 번만 적용된 값.</summary>
+        /// <summary>지금 적용 중인 음료 효과 합계(#25: 출발 잔 + 마지막으로 마신 런 잔, 항목별 출발 잔 상한).</summary>
         public DrinkBuff DrinkBuff { get; private set; }
+        /// <summary>#25 출발 잔 효과(런 내내 고정 — 런 잔을 마셔도 지워지지 않음). 없으면 null.</summary>
+        public DrinkBuff DepartureDrinkBuff { get; private set; }
+        /// <summary>#25 마지막으로 마신 런 잔 효과(런 잔끼리만 교체). 없으면 null.</summary>
+        public DrinkBuff RunCupDrinkBuff { get; private set; }
         public DrinkRunHud DrinkHud { get; private set; }
         public PlayerEffectMarkers Markers { get; private set; }
         public RunAmbience Ambience { get; private set; }
@@ -1062,14 +1072,18 @@ namespace CCT
         {
             error = null;
             if (Master == null || cup == null || State == GameState.GameOver || Player == null) { error = "지금은 마실 수 없습니다."; return false; }
-            if (!DrinkLab.UseRunCup(RunId, cup.cupId, RunCup.Drunk, out error)) return false;
-            var buff = DrinkCalculator.Buff(cup.recipe);
-            if (DrinkQuality.GradeOf(cup.quality) == DrinkQuality.Grade.Best) buff = DrinkCalculator.ScalePositive(buff, 1.05f); // 최고 품질만 ×1.05(항목 상한 유지)
-            if (MasteryTraits.Contains("finesse_4")) buff = DrinkCalculator.ScalePositive(buff, 1.05f); // 로비 음료와 같은 숙련 규칙
+            if (!DrinkLab.UseRunCup(RunId, cup.cupId, RunCup.Drunk, out error, out bool firstDiscovery)) return false;
+            var cupBuff = DrinkCalculator.Buff(cup.recipe);
+            if (DrinkQuality.GradeOf(cup.quality) == DrinkQuality.Grade.Best) cupBuff = DrinkCalculator.ScalePositive(cupBuff, 1.05f); // 최고 품질만 ×1.05(항목 상한 유지)
+            if (MasteryTraits.Contains("finesse_4")) cupBuff = DrinkCalculator.ScalePositive(cupBuff, 1.05f); // 로비 음료와 같은 숙련 규칙
+            // #25 출발 잔은 그대로 두고 런 잔 몫만 교체: (출발 + 새 런 잔)을 항목별 출발 잔 상한으로 자른 합계를 다시 적용한다.
+            var buff = DrinkCalculator.Combine(DepartureDrinkBuff, cupBuff);
             float prevHp = Player.Hp;
             DrinkCalculator.Revert(Stats, activeDrinkApplied);
             activeDrinkApplied = DrinkCalculator.ApplyTracked(Stats, buff);
             DrinkBuff = buff;
+            RunCupDrinkBuff = cupBuff;
+            OfferSignatureFromRunCup(cup, firstDiscovery); // #25 정식 레시피 런 잔: 이번 판 시그니처가 아직 쓰이지 않았을 때만 충전(교체)
             ActiveRunCup = cup;
             CoffeeBrewRuntime.Detach(Player);
             if (cup.Kind == DrinkKind.Coffee) Player.Coffee = CoffeeBrewRuntime.Attach(Player, cup.recipe.coffeeMethod);
@@ -1078,6 +1092,40 @@ namespace CCT
             Player.PreserveHpAfterDrinkSwap(prevHp);
             Master.NotifyChanged();
             return true;
+        }
+
+        // ───── 2026-11-24 #25 정식 레시피 시그니처(판당 1회) ─────
+        public SignatureRuntime Signature { get; private set; }
+        public SignatureHud SignatureSlot { get; private set; }
+
+        /// <summary>런 시작: 플레이어에 시그니처 런타임을 붙이고, 이번 판에 마신 출발 잔이 정식 레시피면 1회 충전한다(이미 쓴 runId면 충전 없음).</summary>
+        void BeginSignatureRun()
+        {
+            if (Player == null) return;
+            Signature = SignatureRuntime.Attach(Player, this);
+            var drink = DrinkBuff != null ? DrinkLab.DrinkInRun(RunId) : null;
+            var def = drink != null ? DrinkSignatures.Get(drink.signatureId) : null;
+            if (def != null) Signature.Charge(def, true);
+        }
+
+        /// <summary>런 잔을 마신 직후: 정식 레시피면 (아직 이번 판에 쓰지 않았을 때만) 충전을 이 잔으로 교체한다. 첫 발견이면 공개 연출.</summary>
+        void OfferSignatureFromRunCup(RunCup cup, bool firstDiscovery)
+        {
+            var def = cup != null ? DrinkSignatures.Get(cup.signatureId) : null;
+            if (def == null || Signature == null) return;
+            bool charged = Signature.Charge(def, false);
+            if (firstDiscovery) SignatureRevealOverlay.Play(def);
+            else if (charged) SignatureRevealOverlay.PlayShort(def);
+        }
+
+        /// <summary>Q 키·HUD 클릭 공용. 성공하면 true. 결과 문구는 시그니처 칸에 2.5초 표시.</summary>
+        public bool TryUseSignature()
+        {
+            if (Signature == null) return false;
+            bool ok = Signature.TryUse();
+            SignatureSlot?.ShowMessage(Signature.LastMessage);
+            if (ok) { AudioService.PlaySfx("ui_confirm"); Hud?.ShowBanner($"시그니처 · {Signature.UsedDef.effectName}", Signature.UsedDef.effectShort, 1.6f); }
+            return ok;
         }
 
         /// <summary>2026-11-12 런 음료 보조 특성 적용(마시기 성공 직후 한 번). 차 1번째 공격 속도는 전용 슬롯만 덮어쓴다(다른 스탯 재계산과 독립).</summary>
@@ -1105,7 +1153,8 @@ namespace CCT
             if (Master == null || cup == null || State == GameState.GameOver) { error = "지금은 제출할 수 없습니다."; return false; }
             if (!Master.State.CanSubmit) { error = "박람회 도전을 접수한 뒤에는 이번 박람회에 더 제출할 수 없습니다."; return false; }
             if (!cup.Submittable) { error = "이어 우린 차(2·3번째, 재료 0)는 박람회에 제출할 수 없습니다."; return false; }
-            if (!DrinkLab.UseRunCup(RunId, cup.cupId, RunCup.Submitted, out error)) return false;
+            if (!DrinkLab.UseRunCup(RunId, cup.cupId, RunCup.Submitted, out error, out bool submitDiscovery)) return false;
+            if (submitDiscovery) SignatureRevealOverlay.Play(DrinkSignatures.Get(cup.signatureId)); // #25 제출한 정식 레시피 잔도 실제 사용 = 첫 발견 공개(시그니처 충전은 마신 잔만)
             Master.State.TrySubmit(MasterRules.SubmitPoints(cup.Kind, cup.quality));
             Master.NotifyChanged();
             return true;

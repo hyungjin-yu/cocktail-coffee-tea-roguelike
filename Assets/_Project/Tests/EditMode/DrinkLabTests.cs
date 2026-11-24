@@ -623,7 +623,8 @@ namespace CCT.Tests
             var plain = DrinkCalculator.Buff(stir)[DrinkStat.Attack];
             var r = DrinkLab.Craft(stir);
             Assert.AreEqual(DrinkLab.CraftStatus.Crafted, r.Status, r.Message);
-            Assert.AreEqual(Mathf.Min(DrinkRules.Cap(DrinkStat.Attack), plain * 1.08f), r.Buff[DrinkStat.Attack], 1e-6f, "스터링 전문: 공격력 ×1.08");
+            float staffed = Mathf.Min(DrinkRules.Cap(DrinkStat.Attack), plain * 1.08f);
+            Assert.AreEqual(Mathf.Min(DrinkRules.DepartureCap(DrinkStat.Attack), staffed * DrinkRules.DepartureScale), r.Buff[DrinkStat.Attack], 1e-6f, "스터링 전문: 공격력 ×1.08 → #25 출발 배율");
             Assert.AreEqual("staff_cocktail_aroma", DrinkLab.Prepared.specialtyId);
             Assert.AreEqual(1, DrinkLab.Research.cocktailCrafts);
             Assert.IsTrue(DrinkLab.SetSpecialty("", out e));

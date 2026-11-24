@@ -32,6 +32,7 @@ namespace CCT
 
         public const float CodexCellMinWidth = 216f, CodexCellHeight = 236f, CodexCellIcon = 128f, CodexDetailIcon = 192f;
         public const string CodexLockedLabel = "미발견";
+        public const float SignatureBookButtonW = 250f;
         public const string CodexLockedHint = "플레이 중 획득하면 등록됩니다";
         public const string CodexEmptyText = "조건에 맞는 재료가 없습니다 — 검색어를 지우거나 필터를 초기화하세요.";
 
@@ -106,7 +107,9 @@ namespace CCT
             DrinkPaperUi.Button(bar, "ClearSearch", new Vector2(0f, 1f), new Vector2(sx, 0f), new Vector2(150f, rowH), "지우기", DrinkPaperUi.Small,
                 () => SetCodexQuery(""));
             DrinkPaperUi.Button(bar, "ResetFilters", new Vector2(1f, 1f), Vector2.zero, new Vector2(190f, rowH), "필터 초기화", DrinkPaperUi.Small, ResetCodexFilters);
-            codexCount = UiFactory.AddText(UiFactory.Place("ResultCount", bar, new Vector2(1f, 1f), new Vector2(-200f, 0f), new Vector2(Mathf.Max(200f, listW - sx - 160f - 200f - 20f), rowH)),
+            // #25 정식 레시피 도감 버튼(발견 수만 — 미발견 정보 없음). 필터 초기화 왼쪽, 결과 수는 그만큼 왼쪽으로.
+            DrinkPaperUi.Button(bar, "SignatureBook", new Vector2(1f, 1f), new Vector2(-200f, 0f), new Vector2(SignatureBookButtonW, rowH), SignatureBookButtonLabel(), DrinkPaperUi.Small, OpenSignatureBook);
+            codexCount = UiFactory.AddText(UiFactory.Place("ResultCount", bar, new Vector2(1f, 1f), new Vector2(-210f - SignatureBookButtonW, 0f), new Vector2(Mathf.Max(160f, listW - sx - 160f - 200f - 30f - SignatureBookButtonW), rowH)),
                 "", DrinkPaperUi.Small, TextAnchor.MiddleRight, new Color(1f, 0.92f, 0.78f));
             codexCount.raycastTarget = false;
 
@@ -263,6 +266,7 @@ namespace CCT
             if (codexDetail == null || !codexDetail.gameObject.activeSelf) return;
             codexDetail.gameObject.SetActive(false);
             CodexDetailId = null;
+            SignatureBookOpen = false; // #25
             // 닫으면 연 칸으로 포커스·스크롤 위치 그대로(격자를 다시 만들지 않음).
             var cell = codexGrid != null && codexReturnId != null ? codexGrid.Find("Cell_" + codexReturnId) : null;
             if (cell != null && EventSystem.current != null) EventSystem.current.SetSelectedGameObject(cell.gameObject);
@@ -323,7 +327,7 @@ namespace CCT
                 $"<b>맛·향</b>: {def.taste}\n" +
                 $"{colorWords}\n" +
                 $"<b>사용</b>: {def.UseLabel} · 단위 {def.Unit}\n" +
-                $"<b>게임 효과</b>: {DrinkRules.StatName(ingredientEffect)} (상한 {DrinkBuff.Pct(ingredientEffect, DrinkRules.Cap(ingredientEffect))})\n" +
+                $"<b>게임 효과</b>: {DrinkRules.StatName(ingredientEffect)} (출발 잔 상한 {DrinkBuff.Pct(ingredientEffect, DrinkRules.DepartureCap(ingredientEffect))} · 런 잔 {DrinkBuff.Pct(ingredientEffect, DrinkRules.Cap(ingredientEffect))})\n" +
                 $"<b>착색</b> {(def.tint > 2f ? "강함" : def.tint > 0.5f ? "보통" : "약함")} · <b>탁도</b> {(def.turbidity > 0.3f ? "높음" : def.turbidity > 0.05f ? "약간" : "맑음")} · <b>밀도</b> {IntNum.Round(def.density * 1000f)}g/L\n" +
                 $"<b>획득처</b>: {DrinkLab.SourceText(def.id)}" + (seen ? "" : "\n아직 보유한 적이 없어 제조에 쓸 수 없습니다.");
             float scrollTop = 144f, closeH = 66f, scrollH = H - scrollTop - closeH - 60f;
