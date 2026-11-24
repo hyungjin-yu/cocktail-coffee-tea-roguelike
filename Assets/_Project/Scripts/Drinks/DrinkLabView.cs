@@ -1107,7 +1107,7 @@ namespace CCT
                            $"효과 · 뜸 동안 이동 속도 +{IntNum.Percent(CoffeeBrewRuntime.PourBloomMoveSpeed)}%, 붓기 동안 사거리 +{IntNum.Percent(CoffeeBrewRuntime.PourPourRange)}%";
                 case CoffeeBrewMethod.MokaPot:
                     return $"{title}\n행동 · 직접 타격마다 증기압 +1(최대 {CoffeeBrewRuntime.MokaHeatMax}), 타격 없이 {IntNum.Duration(CoffeeBrewRuntime.MokaHeatDecaySeconds)}마다 −1\n" +
-                           $"효과 · 가득 차면 증기 폭발: 반경 {IntNum.Distance(CoffeeBrewRuntime.MokaBurstRadius)} 안 적에게 기본 피해 {IntNum.Multiplier(CoffeeBrewRuntime.MokaBurstDamageScale)}, {IntNum.Duration(CoffeeBrewRuntime.MokaStaggerSeconds)} 경직";
+                           $"효과 · 가득 차면 증기 폭발: 반경 {IntNum.Distance(CoffeeBrewRuntime.MokaBurstRadius)} 안 적에게 기본 피해 {IntNum.Multiplier(CoffeeBrewRuntime.MokaBurstDamageScale)}, {IntNum.Duration(CoffeeBrewRuntime.MokaStaggerSeconds)} 경직(일반 적이 멈춤)";
                 default:
                     return "";
             }

@@ -79,10 +79,10 @@ namespace CCT.Tests
             return Rect.MinMaxRect(c[0].x, c[0].y, c[2].x, c[2].y);
         }
 
-        IEnumerator Start(RunMode mode, bool director)
+        IEnumerator Start(RunMode mode, bool director, Job job = Job.Bartender, WeaponKind weapon = WeaponKind.Rapier)
         {
             RunModeSelection.Current = mode;
-            game = GameBootstrap.Build(Job.Bartender, WeaponKind.Rapier);
+            game = GameBootstrap.Build(job, weapon);
             yield return null;
             foreach (var s in game.GetComponentsInChildren<EnemySpawner>()) s.enabled = false;
             if (game.Director != null) game.Director.enabled = director;
@@ -92,7 +92,7 @@ namespace CCT.Tests
             yield return null;
         }
 
-        IEnumerator Shots(string tag)
+        IEnumerator Shots(string tag, Action extra = null)
         {
             foreach (var (w, h) in Sizes)
             {
@@ -115,6 +115,7 @@ namespace CCT.Tests
                         overlap = c.Overlaps(b) ? "OVERLAP" : $"ok gap={b.yMin - c.yMax:0.0}px(canvas {canvas.scaleFactor:0.###})";
                         Assert.IsFalse(c.Overlaps(b), $"{tag} {w}x{h}: 칩이 배지와 겹침");
                     }
+                    extra?.Invoke();
                     Line($"{tag} {w}x{h} chipVisible={hud.ChipVisible} badgeAtTop={badge.AtTop} badge='{badge.Text}' chipTitle='{hud.ChipTitle.text}' rows=[{rows}] state='{hud.ChipStateText}' overlap={overlap}");
                 });
             }
@@ -157,6 +158,44 @@ namespace CCT.Tests
             game.Director.SpawnNow(spec);
             yield return null; yield return null;
             yield return Shots("gin_boss_fight");
+        }
+
+        static Transform FindUnder(Transform root, string name)
+        {
+            foreach (var t in root.GetComponentsInChildren<Transform>(true)) if (t.name == name) return t;
+            return null;
+        }
+
+        /// <summary>2026-11-24 사용자 HUD 캡처 재현: 차 소믈리에(찻집)·우림 연구 라벨+게이지·보스 접근 6초·긴 이름 3효과 준비 음료(셰이킹).
+        /// 효과 수치는 레시피에서 계산된 실제 값(로그에 행 그대로) — 같은 구조의 테스트 데이터. 칩·구간 배지·우림 포인트 라벨·경과 시간 칸이 서로 겹치지 않음을 단언한다.</summary>
+        [UnityTest]
+        public IEnumerator TeaHouse_Boss6s_LongNameThreeEffects()
+        {
+            var r = Recipe("그레나딘 시럽 셰이킹", (DrinkIngredients.Gin, 40), (DrinkIngredients.Grenadine, 30), (DrinkIngredients.Rum, 20));
+            r.technique = (int)DrinkTechnique.Shake;
+            Reserve(r);
+            yield return Start(RunMode.Standard, true, Job.TeaSommelier, WeaponKind.Bow);
+            var spec = game.Director.NextSpec;
+            Assert.IsNotNull(spec);
+            game.SetRunTimeForTests(spec.time - 6f);
+            yield return null;
+            yield return Shots("tea_boss6s_longname", () =>
+            {
+                var hudRoot = game.Hud.transform;
+                var points = FindUnder(hudRoot, "CoffeePoints") as RectTransform;
+                var info = FindUnder(hudRoot, "Info") as RectTransform;
+                var badge = (RectTransform)game.Hud.PhaseBadge.transform;
+                var chip = game.DrinkHud.ChipRect;
+                var named = new[] { ("chip", chip), ("badge", badge), ("points", points), ("info", info) };
+                for (int i = 0; i < named.Length; i++)
+                    for (int j = i + 1; j < named.Length; j++)
+                    {
+                        if (named[i].Item2 == null || named[j].Item2 == null || !named[i].Item2.gameObject.activeInHierarchy || !named[j].Item2.gameObject.activeInHierarchy) continue;
+                        var a = WorldRect(named[i].Item2); var b = WorldRect(named[j].Item2);
+                        Line($"  tea rects {named[i].Item1}={a} {named[j].Item1}={b} overlap={a.Overlaps(b)}");
+                        Assert.IsFalse(a.Overlaps(b), $"{named[i].Item1} ↔ {named[j].Item1} 겹침");
+                    }
+            });
         }
 
         [UnityTest]

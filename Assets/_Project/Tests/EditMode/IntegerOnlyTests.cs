@@ -61,9 +61,10 @@ namespace CCT.Tests
             Assert.AreEqual(13, IntNum.Percent(0.125), "12.5% → 13%(중간값)");
             Assert.AreEqual(33, IntNum.Percent(1 / 3.0));
             Assert.AreEqual(67, IntNum.Percent(2 / 3.0));
-            Assert.AreEqual("500ms", IntNum.Duration(0.5f));
-            Assert.AreEqual("350ms", IntNum.Duration(0.35f));
-            Assert.AreEqual("1500ms", IntNum.Duration(1.5f));
+            Assert.AreEqual("0.5초", IntNum.Duration(0.5f));
+            Assert.AreEqual("0.25초", IntNum.Duration(Balance.SwordStaggerSeconds));
+            Assert.AreEqual("0.35초", IntNum.Duration(0.35f));
+            Assert.AreEqual("1.5초", IntNum.Duration(1.5f));
             Assert.AreEqual("3초", IntNum.Duration(3f));
             Assert.AreEqual("250cm", IntNum.Distance(2.5f));
             Assert.AreEqual("260cm", IntNum.Distance(CoffeeBrewRuntime.MokaBurstRadius));

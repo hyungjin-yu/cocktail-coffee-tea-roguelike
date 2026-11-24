@@ -25,6 +25,8 @@ namespace CCT
             public Text nameText;
             public Text descText;
             public Text flavorText;
+            /// <summary>도감 정리: 등급(왼쪽 flavorText)과 분리한 획득 상태(오른쪽 정렬, 발견한 카드만 "발견함").</summary>
+            public Text statusText;
             public Image icon;
             public GameObject lockBadge;
         }
@@ -34,6 +36,8 @@ namespace CCT
             public PermanentSkillData skill;
             public Text nameText;
             public Text descText;
+            /// <summary>효과(descText)와 분리한 해금 상태 줄: "해금됨" / "미해금 · 비용 N" / "비활성(선행 확인 필요)".</summary>
+            public Text statusText;
         }
 
         /// <summary>07:169 커피 노드 — 처음부터 이름/효과/선행 표시, "최초 획득" 기록만 구분(카드의 "???" 미발견, 영구의
@@ -45,6 +49,10 @@ namespace CCT
             public Text descText;
             public Text prereqText;
             public Image icon;
+            /// <summary>그림 칸 위 "해금 기록"/"기록 없음" 칩(그림이 없는 노드는 null — 그때는 설명 아래 줄에 상태를 붙인다).</summary>
+            public GameObject recordChip;
+            public Text recordChipText;
+            public bool acquired;
         }
 
         public const string CoffeeAcquiredLabel = "최초 획득 기록 있음";
@@ -57,6 +65,7 @@ namespace CCT
             public Func<SaveData, int> getCount;
             public Text headerText;
             public Text varietyText;
+            public Button button;
         }
 
         // QA 2026-10-05(720p): 목록 글자가 ~8px로 08:49 "720p에서도 본문 환산 최소16px(1080기준24)" 미달 —
@@ -130,10 +139,37 @@ namespace CCT
         public (string name, string desc, string prereq) GetCoffeeText(string skillId)
         {
             var entry = coffeeEntries.Find(e => e.skill.id == skillId);
-            return entry == null ? (null, null, null) : (entry.nameText.text, entry.descText.text, entry.prereqText.text);
+            if (entry == null) return (null, null, null);
+            // 상태 칩이 따로 있으면 desc에는 효과만 있다 — 테스트·접근성용으로 상태 문구를 이어 돌려준다.
+            string status = entry.acquired ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel;
+            string desc = entry.recordChip != null ? entry.descText.text + "\n" + status : entry.descText.text;
+            return (entry.nameText.text, desc, entry.prereqText.text);
         }
         /// <summary>테스트용 — 영구 강화 항목 설명(상태 포함).</summary>
-        public string GetPermanentText(string skillId) => skillEntries.Find(e => e.skill.id == skillId)?.descText.text;
+        public string GetPermanentText(string skillId)
+        {
+            var e = skillEntries.Find(x => x.skill.id == skillId);
+            return e == null ? null : e.descText.text + "\n" + e.statusText.text;
+        }
+        /// <summary>테스트용 — 카드 행의 등급(왼쪽)·획득 상태(오른쪽) 글.</summary>
+        public (string rarity, string status) GetCardMeta(string cardId)
+        {
+            var e = cardEntries.Find(x => x.card.id == cardId);
+            return e == null ? (null, null) : (e.flavorText.text, e.statusText.text);
+        }
+        /// <summary>테스트용 — 재료 칸 머리줄·이름 줄.</summary>
+        public (string header, string names) GetMaterialText(IngredientType type)
+        {
+            var e = materialEntries.Find(x => x.type == type);
+            return e == null ? (null, null) : (e.headerText.text, e.varietyText.text);
+        }
+        public bool OpenMaterialDetailForTests(IngredientType type)
+        {
+            var e = materialEntries.Find(x => x.type == type);
+            if (e == null || e.button == null) return false;
+            e.button.onClick.Invoke();
+            return true;
+        }
         /// <summary>테스트/버튼 공용 진입점 — 08:95 4탭.</summary>
         public void SelectAllTab() => SetTab(Tab.All);
         public void SelectCocktailTab() => SetTab(Tab.Cocktail);
@@ -283,6 +319,22 @@ namespace CCT
         {
             var slotRt = UiFactory.Place($"Material_{label}", parent, new Vector2(0.5f, 0.5f), new Vector2(x, 0f),
                 new Vector2(590f, MaterialSlotHeight));
+            // 종류 이름 전체는 눌러서(키보드 Enter 포함) 상세에서 본다 — 줄에는 수집 종류와 누적량을 우선 보인다.
+            var slotBg = slotRt.gameObject.AddComponent<Image>();
+            slotBg.sprite = SpriteFactory.Square;
+            slotBg.color = new Color(1f, 1f, 1f, 0.03f);
+            var slotButton = slotRt.gameObject.AddComponent<Button>();
+            UiFactory.AddFocusSfx(slotButton);
+            slotButton.targetGraphic = slotBg;
+            var slotColors = slotButton.colors;
+            slotColors.highlightedColor = new Color(1f, 1f, 1f, 4f);
+            slotColors.selectedColor = new Color(0.4f, 1f, 1f, 6f);
+            slotButton.colors = slotColors;
+            slotButton.onClick.AddListener(() =>
+            {
+                detailReturnFocus = slotRt.gameObject;
+                ShowMaterialDetail(label, type, getCount);
+            });
 
             var icon = Resources.Load<Sprite>(iconPath);
             if (icon != null)
@@ -308,7 +360,7 @@ namespace CCT
 
             materialEntries.Add(new MaterialEntry
             {
-                label = label, type = type, getCount = getCount, headerText = headerText, varietyText = varietyText,
+                label = label, type = type, getCount = getCount, headerText = headerText, varietyText = varietyText, button = slotButton,
             });
         }
 
@@ -353,10 +405,13 @@ namespace CCT
                     TextAnchor.UpperLeft, true);
                 var flavorText = RowText(rowRt, "Flavor", ArtTextLeft, -RowNameHeight - RowDescHeight, ColumnWidth - ArtTextLeft - 8f, RowFlavorHeight,
                     MinBodyFontSize, TextAnchor.MiddleLeft, true);
+                // 등급(왼쪽)과 획득 상태(오른쪽)를 서로 다른 글로 — 이전 "획득 · 일반"은 둘을 한 줄에 섞었다.
+                var statusText = RowText(rowRt, "Status", ArtTextLeft, -RowNameHeight - RowDescHeight, ColumnWidth - ArtTextLeft - 8f, RowFlavorHeight,
+                    MinBodyFontSize, TextAnchor.MiddleRight, true);
 
                 cardEntries.Add(new CardEntry
                 {
-                    card = card, icon = cardIcon, nameText = nameText, descText = descText, flavorText = flavorText, lockBadge = lockBadge,
+                    card = card, icon = cardIcon, nameText = nameText, descText = descText, flavorText = flavorText, statusText = statusText, lockBadge = lockBadge,
                 });
                 trackInto.Add(rowRt.gameObject);
             }
@@ -393,9 +448,12 @@ namespace CCT
                 var nameText = RowText(rowRt, "Name", textLeft, 0f, ColumnWidth - textLeft, RowNameHeight, RowNameFontSize,
                     TextAnchor.MiddleLeft, true);
                 var descText = RowText(rowRt, "Desc", textLeft, -RowNameHeight, ColumnWidth - textLeft,
-                    RowDescHeight + RowFlavorHeight, MinBodyFontSize, TextAnchor.UpperLeft, true);
+                    RowDescHeight, MinBodyFontSize, TextAnchor.UpperLeft, true);
+                // 효과(위)와 해금 상태(아래 줄)를 분리 — 이전에는 "효과  ·  미해금"이 한 글에 섞여 줄바꿈에서 상태가 묻혔다.
+                var statusText = RowText(rowRt, "Status", textLeft, -RowNameHeight - RowDescHeight, ColumnWidth - textLeft,
+                    RowFlavorHeight, MinBodyFontSize, TextAnchor.MiddleLeft, true);
 
-                skillEntries.Add(new SkillEntry { skill = skill, nameText = nameText, descText = descText });
+                skillEntries.Add(new SkillEntry { skill = skill, nameText = nameText, descText = descText, statusText = statusText });
             }
 
             return ordered.Count;
@@ -420,13 +478,15 @@ namespace CCT
                 var art = ResearchIcons.Research(skill.id, Job.Bartender);
                 Image icon = art != null ? ArtCell(rowRt, art) : null;
                 float left = icon != null ? ArtTextLeft : 0f, width = icon != null ? ColumnWidth - ArtTextLeft - 8f : ColumnWidth;
+                GameObject chip = null; Text chipText = null;
+                if (icon != null) chip = RecordChip(rowRt, out chipText);
                 var nameText = RowText(rowRt, "Name", left, 0f, width, RowNameHeight, RowNameFontSize, TextAnchor.MiddleLeft, icon != null);
                 var descText = RowText(rowRt, "Desc", left, -RowNameHeight, width, RowDescHeight, MinBodyFontSize,
                     TextAnchor.UpperLeft, icon != null);
                 var prereqText = RowText(rowRt, "Prereq", left, -RowNameHeight - RowDescHeight, width, RowFlavorHeight,
                     MinBodyFontSize, TextAnchor.MiddleLeft, icon != null);
                 prereqText.color = new Color(0.7f, 0.68f, 0.75f);
-                coffeeEntries.Add(new CoffeeEntry { skill = skill, nameText = nameText, descText = descText, prereqText = prereqText, icon = icon });
+                coffeeEntries.Add(new CoffeeEntry { skill = skill, nameText = nameText, descText = descText, prereqText = prereqText, icon = icon, recordChip = chip, recordChipText = chipText });
             }
             return ordered.Count;
         }
@@ -465,6 +525,16 @@ namespace CCT
         /// 같은 그림을 어두운 실루엣으로(피드백 3) 보여 바탕과 구분된다.</summary>
         public const float ArtCellSize = 112f, ArtCellLeft = 12f, ArtTextLeft = ArtCellLeft + ArtCellSize + 12f;
         public const string LockedLabel = "미발견";
+        public const string FoundLabel = "발견함";
+
+        /// <summary>도감 카드 효과 줄. 효과 이름·부호·단위가 읽히게 — 재료 게이지 카드는 "필요량"이 무엇의 필요량인지 풀어 쓴다
+        /// (PlayerStats.GaugeNeedMultiplier는 레벨업 재료 게이지가 한 칸 차는 데 모아야 하는 재료 양에 곱해진다). 수치는 카드 데이터 값 그대로.</summary>
+        public static string EffectText(CardData card)
+        {
+            if (card != null && card.effects != null && card.effects.Length == 1 && card.effects[0].type == CardEffectType.GaugeNeedPercent)
+                return "게이지를 채우는 데 필요한 재료 " + StatStyle.Value(card.effects[0]);
+            return CardEducationSummary.Effect(card);
+        }
         public const string LockedHint = "플레이 중 획득하면 등록됩니다";
 
         static string CategoryLabel(CardCategory c) => c == CardCategory.Cocktail ? "칵테일" : c == CardCategory.Tea ? "차" : "하이브리드";
@@ -500,6 +570,22 @@ namespace CCT
             // 2026-11-16 최종 아트: 칩 왼쪽 자물쇠(28) + 글(자물쇠 오른쪽). 글자와 모양 둘 다로 잠금 표시.
             if (UiFactory.AddLockIcon(rt, new Vector2(4f, 0f), 28f) != null) labelRt.offsetMin = new Vector2(34f, labelRt.offsetMin.y); // 글 칸 78 ≥ "미발견" 24pt 약 72
             rt.gameObject.SetActive(false);
+            return rt.gameObject;
+        }
+
+        public const string RecordChipHas = "해금 기록", RecordChipNone = "기록 없음";
+
+        /// <summary>직업 연구 그림 칸 위 칩: 한 번이라도 해금한 기록이 있는지(비밀 아님 — 이름·효과는 항상 보임). 4글자 24pt가 칩 안에 들어간다.</summary>
+        static GameObject RecordChip(RectTransform row, out Text label)
+        {
+            var rt = UiFactory.Place("RecordChip", row, new Vector2(0f, 0.5f), new Vector2(ArtCellLeft, ArtCellSize * 0.5f - 22f), new Vector2(ArtCellSize, 44f));
+            rt.pivot = new Vector2(0f, 0.5f);
+            var bg = rt.gameObject.AddComponent<Image>();
+            bg.sprite = SpriteFactory.Square;
+            bg.color = new Color(0.12f, 0.1f, 0.14f, 0.92f);
+            bg.raycastTarget = false;
+            label = UiFactory.AddText(UiFactory.Stretch("Label", rt), "", MinBodyFontSize, TextAnchor.MiddleCenter, Color.white);
+            label.raycastTarget = false;
             return rt.gameObject;
         }
 
@@ -562,11 +648,14 @@ namespace CCT
                     entry.nameText.text = entry.card.displayName;
                     entry.nameText.color = has ? RarityTable.Color(entry.card.rarity) : new Color(1f, 0.85f, 0.6f);
                     entry.descText.text = has
-                        ? CardEducationSummary.Effect(entry.card)
+                        ? EffectText(entry.card)
                         : "해금: 레이피어 시작 · 칵테일 3 + 차 3 누적";
                     entry.descText.color = has ? new Color(0.92f, 0.9f, 0.84f) : new Color(0.8f, 0.78f, 0.74f);
-                    entry.flavorText.text = has ? $"획득 · {RarityTable.Label(entry.card.rarity)}" : $"{LockedLabel} · {category}";
-                    entry.flavorText.color = has ? new Color(0.62f, 0.86f, 0.66f) : new Color(1f, 0.86f, 0.6f, 0.85f);
+                    // 등급과 획득 상태를 분리: 왼쪽 = 등급(발견 후) / 분류, 오른쪽 = 발견함(그림 위 "미발견" 칩과 중복해 쓰지 않는다).
+                    entry.flavorText.text = has ? $"등급 {RarityTable.Label(entry.card.rarity)}" : $"{category} 카드";
+                    entry.flavorText.color = has ? RarityTable.Color(entry.card.rarity) : new Color(1f, 0.86f, 0.6f, 0.85f);
+                    entry.statusText.text = has ? FoundLabel : "";
+                    entry.statusText.color = new Color(0.62f, 0.86f, 0.66f);
                     continue;
                 }
 
@@ -574,11 +663,13 @@ namespace CCT
                 entry.nameText.color = has ? RarityTable.Color(entry.card.rarity) : new Color(1f, 1f, 1f, 0.55f);
 
                 // 그리드에는 짧은 게임 효과만 — 긴 설명·음료 지식·출처는 클릭 상세(피드백 2).
-                entry.descText.text = has ? CardEducationSummary.Effect(entry.card) : LockedHint;
+                entry.descText.text = has ? EffectText(entry.card) : LockedHint;
                 entry.descText.color = has ? new Color(0.92f, 0.9f, 0.84f) : new Color(0.75f, 0.75f, 0.78f, 0.8f);
 
-                entry.flavorText.text = has ? $"획득 · {RarityTable.Label(entry.card.rarity)}" : $"{LockedLabel} · {category} 카드";
-                entry.flavorText.color = has ? new Color(0.62f, 0.86f, 0.66f) : new Color(1f, 0.86f, 0.6f, 0.85f);
+                entry.flavorText.text = has ? $"등급 {RarityTable.Label(entry.card.rarity)}" : $"{category} 카드";
+                entry.flavorText.color = has ? RarityTable.Color(entry.card.rarity) : new Color(1f, 0.86f, 0.6f, 0.85f);
+                entry.statusText.text = has ? FoundLabel : "";
+                entry.statusText.color = new Color(0.62f, 0.86f, 0.66f);
             }
             // 커피 노드: 저장된 id 중 실제 노드와 일치하는 것만 센다(알 수 없는 id는 표시·집계 제외, 저장 목록은 보존).
             var acquiredSkills = new HashSet<string>(save.discoveredSkillIds ?? new List<string>());
@@ -586,12 +677,20 @@ namespace CCT
             foreach (var entry in coffeeEntries)
             {
                 bool has = acquiredSkills.Contains(entry.skill.id);
+                entry.acquired = has;
                 if (has) coffeeFound++;
                 entry.nameText.text = $"{entry.skill.displayName}  ({SkillData.BranchLabel(entry.skill.branch)} {entry.skill.tier}단계)";
                 entry.nameText.color = has ? new Color(0.95f, 0.8f, 0.55f) : new Color(1f, 1f, 1f, 0.6f);
                 if (entry.icon != null) entry.icon.color = has ? Color.white : new Color(1f, 1f, 1f, 0.55f); // 커피 노드는 비밀 아님 — 흐림만
-                entry.descText.text = $"{entry.skill.description}\n{(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}";
-                entry.descText.color = has ? new Color(0.8f, 0.8f, 0.8f) : new Color(1f, 1f, 1f, 0.55f);
+                // 효과(설명)와 해금 기록을 분리: 그림이 있으면 그림 위 칩에, 없으면 설명 아래 줄에.
+                if (entry.recordChip != null)
+                {
+                    entry.descText.text = entry.skill.description;
+                    entry.recordChipText.text = has ? RecordChipHas : RecordChipNone;
+                    entry.recordChipText.color = has ? new Color(0.62f, 0.86f, 0.66f) : new Color(1f, 0.86f, 0.6f);
+                }
+                else entry.descText.text = $"{entry.skill.description}\n{(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}";
+                entry.descText.color = has ? new Color(0.85f, 0.85f, 0.85f) : new Color(1f, 1f, 1f, 0.7f);
                 entry.prereqText.text = (entry.skill.prerequisite != null
                     ? $"선행: {entry.skill.prerequisite.displayName}"
                     : "선행: 없음") + $" · 티: {JobStudyTheme.Name(entry.skill, Job.TeaSommelier)}";
@@ -613,32 +712,82 @@ namespace CCT
                 entry.effectText.color = new Color(0.6f, 0.85f, 0.95f);
             }
 
-            countLabel.text = $"발견한 카드: {found} / {cardEntries.Count}   ·   연구 최초 획득: {coffeeFound} / {coffeeEntries.Count}   ·   히든: {hiddenFound} / {hiddenEntries.Count}";
 
             // 영구 강화는 카드와 달리 비밀이 아님(강화 화면에서 항상 전체 정보가 보임) — "???" 대신
             // 이름/효과를 그대로 보여주고 해금 여부만 색과 상태 문구로 구분한다.
+            int permanentUnlocked = 0;
             foreach (var entry in skillEntries)
             {
                 bool has = permanentTree.IsUnlocked(entry.skill);
                 bool inactive = permanentTree.IsInactiveLegacy(entry.skill);
+                if (has) permanentUnlocked++;
                 entry.nameText.text = entry.skill.displayName;
-                entry.nameText.color = has ? new Color(0.6f, 1f, 0.7f) : new Color(1f, 1f, 1f, 0.6f);
-                entry.descText.text = $"{entry.skill.description}  ·  {(has ? "해금됨" : inactive ? "비활성(선행 확인 필요)" : "미해금")}";
-                entry.descText.color = has ? new Color(0.75f, 0.75f, 0.75f) : new Color(1f, 1f, 1f, 0.35f);
+                entry.nameText.color = has ? new Color(0.6f, 1f, 0.7f) : new Color(1f, 1f, 1f, 0.75f);
+                // 효과와 해금 상태를 두 줄로 — 해금 전 효과도 읽히도록 흐리기만 하지 않고 대비를 유지한다.
+                entry.descText.text = entry.skill.description;
+                entry.descText.color = has ? new Color(0.85f, 0.85f, 0.85f) : new Color(1f, 1f, 1f, 0.7f);
+                entry.statusText.text = has ? "해금됨" : inactive ? "비활성(선행 확인 필요)" : $"미해금 · 비용 {entry.skill.cost}";
+                entry.statusText.color = has ? new Color(0.6f, 1f, 0.7f) : inactive ? new Color(1f, 0.7f, 0.5f) : new Color(1f, 0.86f, 0.6f, 0.95f);
             }
+
+            // 상단 집계: "발견"(카드·히든)과 "해금"(영구 강화)·"해금 기록"(직업 연구)을 다른 말로 구분하고 항목마다 이름을 붙인다.
+            countLabel.text = $"카드 발견 {found}/{cardEntries.Count}  ·  히든 스킬 발견 {hiddenFound}/{hiddenEntries.Count}  ·  직업 연구 해금 기록 {coffeeFound}/{coffeeEntries.Count}  ·  영구 강화 해금 {permanentUnlocked}/{skillEntries.Count}";
 
             var discoveredVarieties = new HashSet<string>(save.discoveredMaterialVarietyIds);
             foreach (var entry in materialEntries)
             {
                 var varieties = MaterialVarieties.For(entry.type);
                 int foundVarieties = varieties.Count(v => discoveredVarieties.Contains(v.id));
-                entry.headerText.text = $"{entry.label} — 총 {entry.getCount(save)}개 수집 ({foundVarieties}/{varieties.Count}종)";
-
-                var names = varieties.Select(v => discoveredVarieties.Contains(v.id)
-                    ? $"<color=#E8E8E8>{v.displayName}</color>"
-                    : "<color=#6A6A6A>???</color>");
-                entry.varietyText.text = string.Join(", ", names);
+                // 종류 수(발견/전체)와 누적량을 앞에: "칵테일 재료 6/6종 · 누적 3038개". 이름은 일부만 미리 보이고 전체는 눌러서(상세).
+                entry.headerText.text = $"{entry.label} {foundVarieties}/{varieties.Count}종 · 누적 {entry.getCount(save)}개";
+                entry.varietyText.text = VarietyPreview(varieties, discoveredVarieties);
             }
+        }
+
+        /// <summary>미리보기 이름 글자 예산(공백 포함, 590폭 2줄 안에서 "외 N종"까지 들어가는 양).</summary>
+        const int VarietyPreviewChars = 15;
+
+        /// <summary>발견한 품종 이름을 예산 안에서만 나열하고 나머지는 "외 N종", 미발견은 이름 없이 "미발견 N종". 이름이 다 안 보이면 상세 안내.</summary>
+        static string VarietyPreview(List<MaterialVariety> varieties, HashSet<string> discovered)
+        {
+            var shown = new List<string>();
+            int used = 0, found = 0;
+            bool full = false;
+            foreach (var v in varieties)
+            {
+                if (!discovered.Contains(v.id)) continue;
+                found++;
+                int cost = v.displayName.Length + (shown.Count > 0 ? 2 : 0);
+                if (full || (shown.Count > 0 && used + cost > VarietyPreviewChars)) { full = true; continue; } // 순서대로 앞에서부터만 보인다
+                shown.Add(v.displayName);
+                used += cost;
+            }
+            int hidden = found - shown.Count, locked = varieties.Count - found;
+            var sb = new System.Text.StringBuilder();
+            if (shown.Count > 0) sb.Append("<color=#E8E8E8>").Append(string.Join(", ", shown)).Append("</color>");
+            if (hidden > 0) sb.Append(" <color=#E8E8E8>외 ").Append(hidden).Append("종</color>");
+            if (locked > 0) sb.Append(shown.Count > 0 ? " · " : "").Append("<color=#A09AA8>미발견 ").Append(locked).Append("종</color>");
+            if (shown.Count == 0 && locked == 0) return "";
+            sb.Append("  <color=#A09AA8>(눌러서 보기)</color>");
+            return sb.ToString();
+        }
+
+        void ShowMaterialDetail(string label, IngredientType type, Func<SaveData, int> getCount)
+        {
+            var save = PermanentProgress.Current;
+            var discovered = new HashSet<string>(save.discoveredMaterialVarietyIds);
+            var varieties = MaterialVarieties.For(type);
+            int found = varieties.Count(v => discovered.Contains(v.id));
+            var sb = new System.Text.StringBuilder();
+            sb.Append($"종류 {found}/{varieties.Count}종 발견 · 지금까지 누적 수집 {getCount(save)}개");
+            foreach (var v in varieties)
+            {
+                // 미발견 품종은 이름·설명을 숨긴다(발견 전에는 ??? 하나만).
+                if (discovered.Contains(v.id)) sb.Append($"\n· {v.displayName} — {v.flavorText}");
+                else sb.Append($"\n· ??? — {LockedLabel}");
+            }
+            sb.Append("\n런에서 이 재료를 주울 때마다 종류가 무작위로 정해지고, 처음 나온 종류는 영구히 기록됩니다.");
+            ShowDetail($"{label} 종류", sb.ToString());
         }
 
         /// <summary>2026-11-21 데스크톱 Esc: 항목 상세가 열려 있으면 상세만, 아니면 뒤로 버튼과 같은 경로로 닫는다. 처리했으면 true.</summary>
@@ -785,7 +934,7 @@ namespace CCT
             if (!has && card.category != CardCategory.Hybrid)
             {
                 // 피드백 3: 미획득도 안내 상세 — 획득 경로(카드 창)만 알리고 이름·효과는 공개하지 않는다.
-                ShowDetail("???", $"{category} 카드 · {LockedLabel}\n{LockedHint}.\n런에서 {(card.category == CardCategory.Tea ? "찻잎" : "칵테일 재료")} 게이지가 차면 열리는 카드 창에서 이 카드를 고르면 이름·효과·음료 지식이 기록됩니다.");
+                ShowDetail("???", $"{category} 카드 · {LockedLabel}\n{LockedHint}.\n획득 방법: 런에서 {(card.category == CardCategory.Tea ? "찻잎" : "칵테일 재료")} 게이지가 차면 열리는 카드 창에서 고르기 (이름·효과·음료 지식이 기록됨)");
                 return;
             }
             if (!has)
@@ -801,7 +950,7 @@ namespace CCT
         {
             var tree = new PermanentSkillTree(skillEntries.Select(e => e.skill), PermanentProgress.Current.unlockedPermanentSkillIds);
             string state = tree.IsUnlocked(skill) ? "해금됨" : tree.IsInactiveLegacy(skill) ? "비활성(선행 확인 필요)" : "미해금";
-            ShowDetail(skill.displayName, $"영구 강화 · 비용 {skill.cost}\n{skill.description}\n{PermanentSkillView.Conditions(skill)}\n{PermanentSkillView.Target(skill)}\n다음 런부터 적용 · 해금이 늘수록 더 많은 적이 등장합니다.\n{state}");
+            ShowDetail(skill.displayName, $"영구 강화 · 상태: {state} · 비용 {skill.cost}\n효과: {skill.description}\n{PermanentSkillView.Conditions(skill)}\n{PermanentSkillView.Target(skill)}\n다음 런부터 적용 · 해금이 늘수록 더 많은 적이 등장합니다.");
         }
 
         void ShowCoffeeDetail(SkillData skill)
@@ -809,7 +958,7 @@ namespace CCT
             bool has = (PermanentProgress.Current.discoveredSkillIds ?? new List<string>()).Contains(skill.id);
             string prereq = skill.prerequisite != null ? skill.prerequisite.displayName : "없음";
             ShowDetail(skill.displayName + " / " + JobStudyTheme.Name(skill, Job.TeaSommelier),
-                $"직업 연구 · {SkillData.BranchLabel(skill.branch)} {skill.tier}단계 · 선행 {prereq}\n{skill.description}\n연구 효과는 이번 런 동안 적용됩니다.\n{(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}");
+                $"직업 연구 · {SkillData.BranchLabel(skill.branch)} {skill.tier}단계 · 선행 {prereq}\n{(has ? CoffeeAcquiredLabel : CoffeeNotAcquiredLabel)}\n효과: {skill.description}\n연구 효과는 이번 런 동안 적용됩니다.");
         }
 
         void Update()

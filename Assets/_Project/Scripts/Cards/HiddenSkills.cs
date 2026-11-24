@@ -79,7 +79,7 @@ namespace CCT
             D(HiddenSkill.VipService, "vip_service", "VIP 접객", HiddenTier.Three, "올드패션드 1 + 보이숙차 1 + 커피 풀바디 로스트", "보이숙차",
                 "보스에게 직접 타격 피해 +15%", r => r.Stacks("scotch_rocks") >= 1 && r.Stacks("aged_puerh") >= 1 && r.Coffee("full_body_roast")),
             D(HiddenSkill.HerbGarden, "herb_garden", "허브 정원", HiddenTier.Three, "카모마일 인퓨전 2 + 루이보스 인퓨전 1 + 커피 부드러운 여운", "루이보스 인퓨전",
-                "500ms 이상 멈추면 회복량 200%", r => r.Stacks("chamomile") >= 2 && r.Stacks("ginseng_root") >= 1 && r.Coffee("mellow_finish")),
+                "0.5초 이상 멈추면 회복량 200%", r => r.Stacks("chamomile") >= 2 && r.Stacks("ginseng_root") >= 1 && r.Coffee("mellow_finish")),
             D(HiddenSkill.PoisonGarden, "poison_garden", "여운 정원", HiddenTier.Three, "녹차의 떫은 여운 2 + 홍차의 떫은 여운 1 + 커피 리스트레토", "홍차의 떫은 여운",
                 "여운 피해를 받는 적의 접촉 피해 -15%", r => r.Stacks("nettle_tea") >= 2 && r.Stacks("nightshade_blend") >= 1 && r.Coffee("ristretto")),
             D(HiddenSkill.FireShow, "fire_show", "불꽃 쇼", HiddenTier.Three, "플레임드 제스트 2 + 블루 블레이저 1 + 커피 에스프레소 샷", "블루 블레이저",
@@ -89,7 +89,7 @@ namespace CCT
             D(HiddenSkill.ThickMug, "thick_mug", "두꺼운 머그", HiddenTier.Three, "얼음과 희석 2 + 찻잔 예열 2 + 커피 보온 컵", "커피 보온 컵",
                 "최대 체력 100 초과분 20당 피해 +1% (최대 +20%)", r => r.Stacks("ice_cube") >= 2 && r.Stacks("warm_cup") >= 2 && r.Coffee("insulated_cup")),
             D(HiddenSkill.TrayGuard, "tray_guard", "쟁반 방패", HiddenTier.Three, "얼음과 희석 1 + 찻잔 예열 1 + 커피 넓은 트레이", "커피 넓은 트레이",
-                "접촉 피격 시 그 적에게 기본 피해 100% 반격 (적마다 500ms)", r => r.Stacks("ice_cube") >= 1 && r.Stacks("warm_cup") >= 1 && r.Coffee("wide_tray")),
+                "접촉 피격 시 그 적에게 기본 피해 100% 반격 (같은 적에게는 0.5초에 한 번)", r => r.Stacks("ice_cube") >= 1 && r.Stacks("warm_cup") >= 1 && r.Coffee("wide_tray")),
             D(HiddenSkill.LongSteep, "long_steep", "오래 우린 향", HiddenTier.Three, "플레임드 제스트 1 + 녹차의 떫은 여운 1 + 커피 균형 추출", "커피 균형 추출",
                 "화상·여운 피해 지속 시간 +1초", r => r.Stacks("molotov") >= 1 && r.Stacks("nettle_tea") >= 1 && r.Coffee("balanced_extraction")),
 
@@ -101,7 +101,7 @@ namespace CCT
                 "보스 등장 시 2초 무적 + 체력 15% 회복",
                 r => r.Coffee("balanced_extraction") && r.Coffee("mellow_finish") && r.Coffee("wide_tray")),
             D(HiddenSkill.BarTempo, "bar_tempo", "바 템포 마스터", HiddenTier.Hard, "셰이킹 4 + 공부차 우림 4 + 커피 리스트레토", "셰이킹",
-                "이동 중 피해 +10%, 500ms 이상 멈추면 받는 피해 -10%",
+                "이동 중 피해 +10%, 0.5초 이상 멈추면 받는 피해 -10%",
                 r => r.Stacks("mixing_tempo") >= 4 && r.Stacks("brew_rhythm") >= 4 && r.Coffee("ristretto")),
         };
 

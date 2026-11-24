@@ -478,7 +478,7 @@ namespace CCT.Tests
             {
                 [CoffeeBrewMethod.EspressoMachine] = new[] { "1초 멈춰 서서", "움직이면 취소", "샷 3초", "공격 속도 +30%", "4초 재충전" },
                 [CoffeeBrewMethod.PourOver] = new[] { "뜸 2초", "붓기 4초", "이동 속도 +15%", "사거리 +20%" },
-                [CoffeeBrewMethod.MokaPot] = new[] { "직접 타격마다 증기압 +1", "최대 10", "1500ms마다 −1", "반경 260cm", "기본 피해 120%", "350ms 경직" },
+                [CoffeeBrewMethod.MokaPot] = new[] { "직접 타격마다 증기압 +1", "최대 10", "1.5초마다 −1", "반경 260cm", "기본 피해 120%", "0.35초 경직" },
             };
             // 좁은 창에서는 추출 도구 버튼이 영수증 서랍 안에 있다 — 실제 조작처럼 서랍을 연 뒤 고른다(넓은 창에서는 영향 없음).
             lab.SetReceiptOpen(true);

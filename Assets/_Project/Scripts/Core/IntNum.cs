@@ -7,7 +7,7 @@ namespace CCT
     /// - 일반 반올림: 중간값은 0에서 먼 쪽(MidpointRounding.AwayFromZero). Mathf.RoundToInt(짝수 반올림)를 표시에 쓰지 않는다.
     /// - 남은 시간: 올림(Ceil) — 0초가 보이는 순간 = 실제로 끝난 순간.
     /// - 배율: 정수 퍼센트(1.5배 → 150%).
-    /// - 1초 미만이거나 소수가 남는 고정 지속시간 설명: 밀리초 정수(0.5초 → 500ms).
+    /// - 1초 미만이거나 소수가 남는 고정 지속시간 설명: 초 단위 소수 표기(2026-11-24 사용자 지시 — ms는 플레이어에게 안 보임, 0.5초 → "0.5초", 0.25초 → "0.25초").
     /// - 거리(월드 1 = 1m, 보스 방향 표시와 같은 단위): 고정 반경 설명은 cm 정수(2.5 → 250cm). 좌표·물리는 그대로 float.
     /// - 초당 회복(HP/초): 분당 회복 정수(1.2/초 → 분당 72).
     /// 엔진 연속값(좌표·deltaTime·보간·오디오)은 바꾸지 않고, 의미 있는 수치만 경계에서 정수화한다.
@@ -59,11 +59,12 @@ namespace CCT
         /// <summary>정수 퍼센트값을 비율로 되돌린다(15 → 0.15). 실제 적용값을 표시값과 맞출 때 쓴다.</summary>
         public static float QuantizePercent(float fraction) => Percent(fraction) / 100f;
 
-        /// <summary>고정 지속시간 설명: 정수 초면 "3초", 아니면 "500ms"/"1500ms".</summary>
+        /// <summary>고정 지속시간 설명: 정수 초면 "3초", 아니면 초 단위 소수 "0.5초"/"0.25초"/"1.5초"(밀리초 정밀도, 끝자리 0 생략). 실제 시간 값은 바꾸지 않는다.</summary>
         public static string Duration(double seconds)
         {
             int ms = Round(seconds * 1000.0);
-            return ms % 1000 == 0 ? (ms / 1000) + "초" : ms + "ms";
+            if (ms % 1000 == 0) return (ms / 1000) + "초";
+            return (ms / 1000.0).ToString("0.###", System.Globalization.CultureInfo.InvariantCulture) + "초";
         }
 
         /// <summary>월드 거리(1 = 1m) → cm 정수(2.5 → 250).</summary>

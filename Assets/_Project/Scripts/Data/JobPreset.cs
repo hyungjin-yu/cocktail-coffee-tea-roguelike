@@ -43,7 +43,7 @@ namespace CCT
         };
         public static readonly WeaponPreset Sword = new WeaponPreset
         {
-            kind = WeaponKind.Sword, name = "검", description = "넓게 베기 · 피해 +25%.\n맞은 일반 몹 250ms 경직(보스 제외).\n근접 강화 카드를 사용.",
+            kind = WeaponKind.Sword, name = "검", description = "넓게 베기 · 피해 +25%.\n맞은 일반 몬스터가 0.25초 동안\n움직임을 멈춥니다 (보스 제외).\n근접 강화 카드를 사용.",
             iconResourcePath = "Icons/Weapons/sword", heldLengthRatio = 0.65f,
         };
         public static readonly WeaponPreset Bow = new WeaponPreset

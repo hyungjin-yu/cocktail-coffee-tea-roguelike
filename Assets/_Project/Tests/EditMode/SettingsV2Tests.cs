@@ -602,7 +602,7 @@ namespace CCT.Tests
             StringAssert.DoesNotContain("???", n.name);
             StringAssert.DoesNotContain("미해금", n.desc, "영구 '미해금' 문구와 구분");
             StringAssert.StartsWith("선행:", n.prereq);
-            StringAssert.Contains("연구 최초 획득: 1 / 15", codex.CountText, "unknown id는 집계 제외");
+            StringAssert.Contains("직업 연구 해금 기록 1/15", codex.CountText, "unknown id는 집계 제외");
 
             StringAssert.Contains("비활성", codex.GetPermanentText("perfect_crema"), "선행 빠진 옛 노드는 비활성");
             Assert.AreEqual("???", codex.GetCardText("dry_gin").name, "카드 미발견은 ???");
