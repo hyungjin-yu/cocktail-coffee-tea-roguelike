@@ -16,7 +16,8 @@ namespace CCT.Tests
         [Test]
         public void EveryTeaCard_HasOneLinePerStage_2ToItsRealMaxStacks_KindsMatchRule()
         {
-            var tea = CardDatabase.LoadAll().Where(c => c.category == CardCategory.Tea).ToList();
+            // #21 속성 화살 4종(기본 활 전용 차 카드)은 자체 레벨 규칙(ArrowElementRules)이라 18종 단계표 대상이 아니다.
+            var tea = CardDatabase.LoadAll().Where(c => c.category == CardCategory.Tea && !(c.effects != null && c.effects.Any(e => e.type >= CardEffectType.ArrowBurn && e.type <= CardEffectType.ArrowPoison))).ToList();
             Assert.AreEqual(18, tea.Count, "차 카드 18종");
             CollectionAssert.AreEquivalent(tea.Select(c => c.id), TeaCardStages.CardIds, "표 = 차 카드 전체(칵테일·하이브리드 없음)");
             foreach (var card in tea)

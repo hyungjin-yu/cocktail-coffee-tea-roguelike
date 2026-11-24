@@ -38,8 +38,6 @@ namespace CCT
         DamageReduction,
         /// <summary>줍기 반경 가산치 (07:141 wide_tray/zero_waste 등).</summary>
         PickupRadiusFlat,
-        /// <summary>총 전용 — 탄환 유도 단계(+1). 저장 호환을 위해 enum 맨 뒤에 추가. 카드 데이터에는 쓰지 않고, 총을 고른 런에서만 사거리 카드를 이 효과로 치환한다(CardEffectsView).</summary>
-        BulletHoming,
         // ── 2026-11-24 #21 속성 화살(기본 활 전용 카드). 저장 호환: 끝에만 추가(기존 정수 값 불변). 능력치 줄(StatStyle)이 아니라 행동 설명 카드로 보인다.
         /// <summary>화상 화살 레벨 — 짧고 빠른 지속 피해.</summary>
         ArrowBurn,
@@ -49,6 +47,8 @@ namespace CCT
         ArrowShock,
         /// <summary>중독 화살 레벨 — 오래 가고 상한까지 쌓이는 지속 피해.</summary>
         ArrowPoison,
+        /// <summary>총 전용 — 탄환 유도 단계(+1). 저장 호환을 위해 enum 맨 뒤에 추가(#21 속성 화살 15~18이 먼저 확정되어 통합 시 19). 카드 데이터에는 쓰지 않고, 총을 고른 런에서만 사거리 카드를 이 효과로 치환한다(CardEffectsView).</summary>
+        BulletHoming,
     }
 
     [Serializable]
