@@ -19,7 +19,7 @@ namespace CCT.Tests
     public class IntegerOnlyPlayTests
     {
         // 소수점(1.5, 1,5)만 잡는다. 천 단위 구분(1,850m — 콤마 뒤 정확히 세 자리)은 정수 표기라 제외.
-        static readonly Regex Decimal = new Regex(@"\d\.\d|\d,(?!\d{3}(?!\d))\d");
+        static readonly Regex Decimal = new Regex(@"\d\.\d(?!\d*초)|\d,(?!\d{3}(?!\d))\d"); // 2026-11-24: 초 단위 소수("0.25초")는 허용
         string dir, evidence;
         readonly StringBuilder log = new StringBuilder();
 
