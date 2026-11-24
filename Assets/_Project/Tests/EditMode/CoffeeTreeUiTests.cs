@@ -178,7 +178,7 @@ namespace CCT.Tests
             StringAssert.StartsWith("✓ 해금됨", unlocked.text);
             StringAssert.Contains("다음 2단계 비용 1", unlocked.text, "다음 단계가 있으면 비용 표시");
             var locked = view.transform.Find("Node_pour_over/Status");
-            if (locked != null) StringAssert.StartsWith("🔒 선행 필요:", locked.GetComponent<Text>().text);
+            if (locked != null) StringAssert.StartsWith("잠김 · 선행 필요:", locked.GetComponent<Text>().text);
         }
     }
 }

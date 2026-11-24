@@ -297,7 +297,7 @@ namespace CCT
             detailTitle.text=n.displayName;
             detailEffect.text=n.description;
             var nextNode=owned?NextStep(tree,n):null;
-            detailState.text=owned?(nextNode==null?"✓ 완료 (최대 단계) · 다음 런부터 적용 중":"✓ 강화됨 · 다음 런부터 적용 중"):reason==null?$"▶ 강화 가능 · 구매 후 잔액 {tree.BalanceAfter(n,save.specialtyPoints)}":"🔒 잠김 · "+reason;
+            detailState.text=owned?(nextNode==null?"✓ 완료 (최대 단계) · 다음 런부터 적용 중":"✓ 강화됨 · 다음 런부터 적용 중"):reason==null?$"▶ 강화 가능 · 구매 후 잔액 {tree.BalanceAfter(n,save.specialtyPoints)}":"잠김 · "+reason;
             detailState.color=owned?Owned:reason==null?Gold:Locked;
             string prereq=n.Prerequisites.Any()?string.Join(" · ",n.Prerequisites.Select(p=>p.displayName+(tree.IsUnlocked(p)?" ✓":" (미구매)"))):"없음";
             var lines=new List<string>

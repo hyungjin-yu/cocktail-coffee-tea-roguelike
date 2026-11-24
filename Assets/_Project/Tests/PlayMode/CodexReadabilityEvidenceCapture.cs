@@ -151,15 +151,15 @@ namespace CCT.Tests
             var skills = DefaultSkills.CreateRuntime();
             var tree = new SkillTree(skills);
             var stats = new PlayerStats();
-            int pts = 1;
+            int pts = 2;
             var canvas = UiFactory.CreateCanvas(null, "Coffee20", 100);
             var view = SkillTreeView.Create(canvas.transform);
             view.Show(tree, () => pts, n => { if (pts < 1 || !tree.IsAvailable(n)) return false; pts--; tree.Unlock(n, stats); return true; }, () => { });
-            yield return Shots(canvas, "coffee_tree_1pt_before");
+            yield return Shots(canvas, "coffee_tree_2pt_before");
             var first = skills.First(n => n.prerequisite == null);
             view.Choose(first);
             Line($"coffee tree after buy pts={pts} status=" + view.transform.Find("Node_" + first.id + "/Status").GetComponent<Text>().text);
-            yield return Shots(canvas, "coffee_tree_0pt_after_purchase");
+            yield return Shots(canvas, "coffee_tree_1pt_after_purchase");
             UnityEngine.Object.Destroy(canvas.gameObject);
         }
 

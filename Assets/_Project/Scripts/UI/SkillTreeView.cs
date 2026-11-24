@@ -271,11 +271,11 @@ namespace CCT
                         break;
                     case CoffeeNodeState.NotEnoughPoints:
                         fill = Kraft; text = DarkCoffee; statusColor = Danger;
-                        slot.status.text = $"✗ 포인트 부족 · 비용 {SkillTree.NodeCost} (보유 {points}, 원두 게이지로 획득)";
+                        slot.status.text = $"포인트 부족 · 비용 {SkillTree.NodeCost} (보유 {points}, 원두 게이지로 획득)";
                         break;
                     default:
                         fill = Wood; text = Cream; statusColor = Kraft;
-                        slot.status.text = slot.data.prerequisite != null ? $"🔒 선행 필요: {JobStudyTheme.Name(slot.data.prerequisite, CurrentJob)}" : "🔒 선행 스킬 필요";
+                        slot.status.text = slot.data.prerequisite != null ? $"잠김 · 선행 필요: {JobStudyTheme.Name(slot.data.prerequisite, CurrentJob)}" : "잠김 · 선행 스킬 필요";
                         break;
                 }
                 UiFactory.SetChoice(slot.background, state == CoffeeNodeState.Unlocked, fill);
