@@ -31,6 +31,11 @@ namespace CCT
         bool original;
         float remainingDistance = float.PositiveInfinity;
         string projectileArtId;
+        /// <summary>#23 발사 묶음 번호(0 = 세지 않음). PlayerProjectileWeapon.Fire가 SpawnVolleyId로 넘긴 값을 생성 때 복사한다.</summary>
+        int volleyId;
+        /// <summary>#23 무기가 한 번의 발사 동안만 설정하는 발사 묶음 번호(그 외 생성 — 원형 파열 파편·보조 활 등 — 은 0).</summary>
+        public static int SpawnVolleyId;
+        public int VolleyId => volleyId;
 
         /// <param name="artId">04 §8 탄 아트(bullet/arrow/tea_arrow). 없거나 미반입이면 노란 원 placeholder.</param>
         public static void Spawn(Vector2 position, Vector2 direction, float speed, float damage, int pierceCount,
@@ -71,6 +76,7 @@ namespace CCT
             p.original = original;
             p.projectileArtId = artId;
             p.remainingDistance = maxDistance;
+            p.volleyId = SpawnVolleyId;
             if (excluded != null) p.alreadyHit.Add(excluded);
             if (original && owner != null && IsArrowArt(artId)) ApplyArrowElement(go, sr, ArrowElementOf(owner.Stats), art);
         }
@@ -208,6 +214,7 @@ namespace CCT
                 else enemy.TakeDamage(dealt, HitKind.Effect, at);
                 hidden?.AfterDirectHit(enemy);
                 alreadyHit.Add(enemy);
+                if (volleyId != 0 && owner != null) owner.HiddenRuntime?.OnGunVolleyHit(volleyId, hit.point); // #23 같은 발사는 1회만 센다
                 if (original && owner != null && owner.FinalForms.Has(AttackFinalForm.Pierce))
                 {
                     Vector2 impact = hit.point;

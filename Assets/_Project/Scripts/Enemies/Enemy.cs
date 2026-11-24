@@ -564,6 +564,34 @@ namespace CCT
             return true;
         }
 
+        // 2026-11-24 #18 히든 개편: 얼음 찻잔 파동 정지(검 경직과 별개 타이머 — 서로의 쿨다운을 막지 않는다). 일반 적만.
+        float hiddenFreezeRemaining;
+        float hiddenFreezeReadyAt = float.MinValue;
+        public bool HiddenFrozen => hiddenFreezeRemaining > 0f;
+        public float HiddenFreezeRemaining => Mathf.Max(0f, hiddenFreezeRemaining);
+        /// <returns>실제로 정지가 걸렸으면 true(보스·사망·같은 적 재사용 대기 중은 false).</returns>
+        public bool TryHiddenFreeze(float seconds, float cooldown)
+        {
+            if (dead || def == null || def.IsBoss || seconds <= 0f || Time.time < hiddenFreezeReadyAt) return false;
+            hiddenFreezeRemaining = seconds;
+            hiddenFreezeReadyAt = Time.time + cooldown;
+            return true;
+        }
+
+        // 2026-11-24 #18 근거리 산탄 밀어내기: 일반 적만 한 번에 위치를 옮긴다(속도·패턴은 그대로, 다음 물리 스텝에서 전투 구역 안으로 다시 맞춘다).
+        float shoveReadyAt = float.MinValue;
+        /// <returns>실제로 밀었으면 true(보스·사망·같은 적 재사용 대기 중은 false).</returns>
+        public bool TryShove(Vector2 delta, float cooldown)
+        {
+            if (dead || def == null || def.IsBoss || Time.time < shoveReadyAt) return false;
+            shoveReadyAt = Time.time + cooldown;
+            Vector2 to = (Vector2)transform.position + delta;
+            to = new Vector2(BattleArena.ClampX(to.x, def.radius), Mathf.Clamp(to.y, Balance.DepthMin, Balance.DepthMax));
+            if (rb != null) rb.position = to;
+            transform.position = new Vector3(to.x, to.y, transform.position.z);
+            return true;
+        }
+
         /// <summary>피격 플래시가 끝나면 돌아갈 색. 보스 텔레그래프 표시에도 쓴다.</summary>
         public Color BaseColor { get; set; }
 
@@ -898,7 +926,10 @@ namespace CCT
 
             Vector2 toPlayer = player.Position - rb.position;
             if (staggerRemaining > 0f) staggerRemaining -= Time.fixedDeltaTime;
-            if (driver != null && driver.TryGetVelocity(rb.position, player.Position, out var driven))
+            if (hiddenFreezeRemaining > 0f) hiddenFreezeRemaining -= Time.fixedDeltaTime;
+            if (HiddenFrozen)
+                rb.linearVelocity = Vector2.zero; // #18 얼음 찻잔 정지: 일반 적만 걸리므로 보스 패턴 이동과 충돌하지 않는다
+            else if (driver != null && driver.TryGetVelocity(rb.position, player.Position, out var driven))
                 rb.linearVelocity = driven; // 돌진·보스 패턴 이동은 경직이 끊지 않는다
             else
                 rb.linearVelocity = Staggered ? Vector2.zero : toPlayer.normalized * def.speed * StatusSpeedMultiplier * DrinkSlowMultiplier;
@@ -906,6 +937,7 @@ namespace CCT
             if (Harmless) return; // 2026-11-11 보상 몬스터: 접촉·자폭 경로 자체를 건너뛴다(0 피해 호출·피격 무적·보호막 소모도 없음)
             if (!HasArrived) return; // 보스 등장 안내 1초 동안은 접촉 피해 없음 (06:24)
             if (Staggered) return; // 48 검 경직: 짧은 동안 접촉 피해·자폭 없음
+            if (HiddenFrozen) return; // #18 얼음 찻잔 정지: 정지 동안 접촉 피해·자폭 없음
 
             float touch = def.radius + PlayerController.Radius + 0.15f;
             if (toPlayer.sqrMagnitude <= touch * touch)

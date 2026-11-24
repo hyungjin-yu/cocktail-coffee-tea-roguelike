@@ -70,6 +70,14 @@ namespace CCT
             int count = 1 + stats.extraThrusts;
             float damage = stats.Damage;
             int pierce = stats.pierceCount;
+            // #23 바텐더 총 근거리 산탄: 이 발사에서 나가는 탄(다중 발사·교차 확산 보조탄)이 같은 발사 번호를 공유한다. 히든이 없으면 0.
+            PlayerProjectile.SpawnVolleyId = player.HiddenRuntime != null ? player.HiddenRuntime.NextGunVolley() : 0;
+            try { FireVolley(origin, baseDir, count, damage, pierce); }
+            finally { PlayerProjectile.SpawnVolleyId = 0; }
+        }
+
+        void FireVolley(Vector2 origin, Vector2 baseDir, int count, float damage, int pierce)
+        {
             if (count <= 1)
             {
                 PlayerProjectile.Spawn(origin, baseDir, ProjectileSpeed, damage, pierce, transform.parent, projectileArtId, player, true);

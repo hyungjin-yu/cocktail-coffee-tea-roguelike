@@ -225,7 +225,7 @@ namespace CCT
             if (p.Hidden.Has(HiddenSkill.IcedCup))
                 list.Add(rt.BarrierReady
                     ? new ActiveEffect { id = "iced_cup", label = "보호막", value = "준비", kind = ActiveEffectKind.Ready, order = 25,
-                        accent = new Color(0.6f, 0.95f, 1f), detail = $"{Name(HiddenSkill.IcedCup)} · 다음 단발 피해 1회 차단" }
+                        accent = new Color(0.6f, 0.95f, 1f), detail = $"{Name(HiddenSkill.IcedCup)} · 다음 단발 피해 1회 차단 · 막으면 {IntNum.Distance(HiddenSkillRuntime.FrostRadius)} 안 일반 적 {IntNum.Duration(HiddenSkillRuntime.FrostFreezeSeconds)} 정지" }
                     : new ActiveEffect { id = "iced_cup", label = "보호막", value = $"{IntNum.RemainingSeconds(rt.BarrierRemaining)}초",
                         kind = ActiveEffectKind.Timed, remaining = rt.BarrierRemaining, duration = HiddenSkillRuntime.BarrierInterval, order = 48,
                         accent = new Color(0.55f, 0.7f, 0.75f), detail = $"{Name(HiddenSkill.IcedCup)} · 보호막 재충전 {IntNum.RemainingSeconds(rt.BarrierRemaining)}초" });
@@ -238,9 +238,18 @@ namespace CCT
                 list.Add(new ActiveEffect { id = "shake_rhythm", label = "콤보", value = $"{rt.Combo}/{HiddenSkillRuntime.ComboMax}",
                     kind = ActiveEffectKind.Stack, stacks = rt.Combo, maxStacks = HiddenSkillRuntime.ComboMax, order = 20,
                     accent = new Color(1f, 0.8f, 0.4f), detail = $"{Name(HiddenSkill.ShakeRhythm)} · 콤보 {rt.Combo}/{HiddenSkillRuntime.ComboMax} · 직접 피해 +{rt.Combo * 2}%" });
-            if (rt.BitterWakeActive)
+            if (p.Hidden.Has(HiddenSkill.BitterWake) && rt.AwakenRemaining > 0f)
+                list.Add(new ActiveEffect { id = "bitter_wake", label = "각성", value = $"공속+{IntNum.Percent(p.Stats.hiddenAttackSpeed)}%", kind = ActiveEffectKind.Timed,
+                    remaining = rt.AwakenRemaining, duration = HiddenSkillRuntime.AwakenSeconds, order = 14,
+                    accent = new Color(1f, 0.4f, 0.35f), detail = $"{Name(HiddenSkill.BitterWake)} · 각성 {IntNum.RemainingSeconds(rt.AwakenRemaining)}초 · 공격 속도 +{IntNum.Percent(p.Stats.hiddenAttackSpeed)}% · 다음 각성까지 {IntNum.RemainingSeconds(rt.AwakenCooldownRemaining)}초" });
+            else if (rt.BitterWakeActive)
                 list.Add(new ActiveEffect { id = "bitter_wake", label = "각성", value = "공속+25%", kind = ActiveEffectKind.Run, order = 15,
                     accent = new Color(1f, 0.55f, 0.45f), detail = $"{Name(HiddenSkill.BitterWake)} · 체력 35% 이하 동안 공격 속도 +25%" });
+            // #18 완벽한 한 잔: 7타 리듬 누적 칸(0이면 숨김).
+            if (p.Hidden.Has(HiddenSkill.PerfectCup) && rt.PerfectCount > 0)
+                list.Add(new ActiveEffect { id = "perfect_cup", label = "완벽", value = $"{rt.PerfectCount}/{HiddenSkillRuntime.PerfectEvery}",
+                    kind = ActiveEffectKind.Stack, stacks = rt.PerfectCount, maxStacks = HiddenSkillRuntime.PerfectEvery, order = 19,
+                    accent = new Color(1f, 0.85f, 0.3f), detail = $"{Name(HiddenSkill.PerfectCup)} · {rt.PerfectCount}/{HiddenSkillRuntime.PerfectEvery} · {HiddenSkillRuntime.PerfectEvery}번째 직접 타격 피해 ×{IntNum.Round(HiddenSkillRuntime.PerfectMultiplier)}" });
             if (p.Hidden.Has(HiddenSkill.WeekendRush) && rt.SpeedBurstRemaining > 0f)
                 list.Add(new ActiveEffect { id = "weekend_rush", label = "질주", value = "이속+15%", kind = ActiveEffectKind.Timed,
                     remaining = rt.SpeedBurstRemaining, duration = HiddenSkillRuntime.SpeedBurstSeconds, order = 10,
@@ -256,6 +265,13 @@ namespace CCT
                         accent = new Color(1f, 0.75f, 0.55f), detail = $"{Name(HiddenSkill.BarTempo)} · 이동 중 직접 피해 +10%" });
             if (p.Hidden.Has(HiddenSkill.ThickMug))
             {
+                // #18 머그 강타: 준비 = 굵은 띠, 재충전 = 남은 시간 막대.
+                list.Add(rt.MugReady
+                    ? new ActiveEffect { id = "thick_mug_smash", label = "강타", value = "준비", kind = ActiveEffectKind.Ready, order = 26,
+                        accent = new Color(0.95f, 0.75f, 0.5f), detail = $"{Name(HiddenSkill.ThickMug)} · 다음 직접 타격에 최대 체력 {IntNum.Percent(HiddenSkillRuntime.MugHpFraction)}% 추가 피해(보스 {IntNum.Percent(HiddenSkillRuntime.MugBossHpFraction)}%)" }
+                    : new ActiveEffect { id = "thick_mug_smash", label = "강타", value = $"{IntNum.RemainingSeconds(rt.MugRemaining)}초", kind = ActiveEffectKind.Timed,
+                        remaining = rt.MugRemaining, duration = HiddenSkillRuntime.MugInterval, order = 50,
+                        accent = new Color(0.7f, 0.6f, 0.5f), detail = $"{Name(HiddenSkill.ThickMug)} · 머그 강타 재충전 {IntNum.RemainingSeconds(rt.MugRemaining)}초" });
                 int pct = IntNum.Percent(HiddenSkillRuntime.ThickMugBonus(p.MaxHp));
                 if (pct > 0)
                     list.Add(new ActiveEffect { id = "thick_mug", label = "머그", value = $"피해+{pct}%", kind = ActiveEffectKind.Run, order = 55,
@@ -263,8 +279,11 @@ namespace CCT
             }
             // 히든 칸마다 모티프 그림(기존 아트) — 템포는 정지/이동 상태에 따라 그림도 바뀐다. 음료·커피 칸(이미 그림 있음)은 그대로.
             foreach (var e in list)
+            {
+                if (e.icon == null && e.id == "thick_mug_smash") { e.icon = HiddenIcon("thick_mug"); continue; } // #18 같은 히든의 강타 칸
                 if (e.icon == null && (HiddenIconArt(e.id) != null || e.id == "thick_mug"))
                     e.icon = HiddenIcon(e.id, e.id == "bar_tempo" && !rt.Standing);
+            }
         }
 
         /// <summary>칸 수 상한: 앞에서 max-1개 + "+N" 묶음 칸(상세 창에서 모두 보기). max 이하면 그대로.</summary>
