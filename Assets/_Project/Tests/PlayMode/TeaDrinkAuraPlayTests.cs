@@ -58,7 +58,8 @@ namespace CCT.Tests
             Assert.IsTrue(res.Ok, res.Message);
             Assert.IsFalse(game.TeaAura.Showing, "제조만으로는 오라 없음(마시기 전)");
             Assert.IsTrue(game.DrinkRunCup(res.Cup, out var err), err);
-            for (int i = 0; i < 40; i++) yield return null;
+            float waitUntil = Time.realtimeSinceStartup + 3f;
+            while (game.TeaAura.Fade < 1f && Time.realtimeSinceStartup < waitUntil) yield return null;
             Assert.IsTrue(game.TeaAura.Showing, $"실제 음용 후 오라 (state={game.State} job={game.Job} buff={(game.DrinkBuff != null)} dead={game.Player.IsDead} fade={game.TeaAura.Fade} ts={Time.timeScale})");
             Assert.AreEqual(TeaDrinkAura.Ripples, game.TeaAura.VisibleRipples);
             Assert.AreEqual(TeaDrinkAura.Wisps, game.TeaAura.VisibleWisps);
@@ -71,7 +72,8 @@ namespace CCT.Tests
             Assert.AreEqual(1, game.TeaAura.VisibleRipples, "저이펙트: 단순 고리 하나");
             Assert.AreEqual(children, game.TeaAura.transform.childCount, "자식 수 불변(스폰 누수 없음)");
             game.GiveUp();
-            for (int i = 0; i < 40; i++) yield return null;
+            float endWait = Time.realtimeSinceStartup + 3f;
+            while (game.TeaAura.Showing && Time.realtimeSinceStartup < endWait) yield return null;
             Assert.IsFalse(game.TeaAura.Showing, "런 종료 후 오라 사라짐");
         }
     }

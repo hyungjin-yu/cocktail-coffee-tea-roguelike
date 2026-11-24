@@ -134,7 +134,7 @@ namespace CCT
             lastBuff = want ? buff : null;
 
             // 꺼질 때는 런 종료(timeScale 0)에서도 사라지도록 실시간 기준을 함께 쓴다.
-            float fdt = want ? dt : Mathf.Max(dt, Time.unscaledDeltaTime);
+            float fdt = Mathf.Max(dt, Time.unscaledDeltaTime); // 투명도만 실시간도 따른다 — 마스터 준비처럼 시간이 멈춘 구간에서 마셔도 오라가 나타난다(위상 clock은 게임 시간 그대로)
             fade = Mathf.MoveTowards(fade, want ? 1f : 0f, fdt / FadeSeconds);
             if (!want && fade <= 0f)
             {
