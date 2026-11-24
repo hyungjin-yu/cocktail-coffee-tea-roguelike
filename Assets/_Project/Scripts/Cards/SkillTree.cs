@@ -31,6 +31,14 @@ namespace CCT
 
         public bool IsUnlocked(SkillData node) => unlocked.Contains(node);
 
+        /// <summary>같은 갈래에서 이 노드를 선행으로 하는 아직 안 푼 다음 단계(없으면 null = 이 갈래 최대 단계).</summary>
+        public SkillData NextStep(SkillData node)
+        {
+            foreach (var n in nodes)
+                if (n != null && n.prerequisite == node && n.branch == node.branch && !unlocked.Contains(n)) return n;
+            return null;
+        }
+
         public bool IsAvailable(SkillData node) =>
             !unlocked.Contains(node) && (node.prerequisite == null || unlocked.Contains(node.prerequisite));
 

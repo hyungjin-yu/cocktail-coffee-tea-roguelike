@@ -261,19 +261,21 @@ namespace CCT
                 {
                     case CoffeeNodeState.Unlocked:
                         fill = TeaGreen; text = Cream; statusColor = Cream;
-                        slot.status.text = "해금됨";
+                        var next = tree.NextStep(slot.data);
+                        // 색 외에 기호·문구: ✓ 해금됨 + 다음 단계(있으면)와 비용 / 이 갈래 최대 단계.
+                        slot.status.text = next == null ? "✓ 해금됨 · 이 갈래 최대 단계" : $"✓ 해금됨 · 다음 {next.tier}단계 비용 {SkillTree.NodeCost}";
                         break;
                     case CoffeeNodeState.Available:
                         fill = Cream; text = DarkCoffee; statusColor = Bean;
-                        slot.status.text = $"해금 가능 · 비용 {SkillTree.NodeCost}";
+                        slot.status.text = $"▶ 해금 가능 · 비용 {SkillTree.NodeCost} (보유 {points})";
                         break;
                     case CoffeeNodeState.NotEnoughPoints:
                         fill = Kraft; text = DarkCoffee; statusColor = Danger;
-                        slot.status.text = $"포인트 부족 · 비용 {SkillTree.NodeCost}";
+                        slot.status.text = $"✗ 포인트 부족 · 비용 {SkillTree.NodeCost} (보유 {points}, 원두 게이지로 획득)";
                         break;
                     default:
                         fill = Wood; text = Cream; statusColor = Kraft;
-                        slot.status.text = "선행 스킬 필요";
+                        slot.status.text = slot.data.prerequisite != null ? $"🔒 선행 필요: {JobStudyTheme.Name(slot.data.prerequisite, CurrentJob)}" : "🔒 선행 스킬 필요";
                         break;
                 }
                 UiFactory.SetChoice(slot.background, state == CoffeeNodeState.Unlocked, fill);
@@ -285,6 +287,8 @@ namespace CCT
                 slot.name.color = text;
                 slot.desc.color = text;
                 slot.status.color = statusColor;
+                slot.status.resizeTextForBestFit = true; slot.status.resizeTextMinSize = 15; slot.status.resizeTextMaxSize = 24;
+                slot.status.horizontalOverflow = HorizontalWrapMode.Wrap; slot.status.verticalOverflow = VerticalWrapMode.Truncate;
                 // 그림 상태: 선행 필요 = 흐림, 포인트 부족 = 약간 흐림(상태는 바탕·문구로도 구분 — 색만으로 구분하지 않음).
                 if (slot.icon != null) slot.icon.color = state == CoffeeNodeState.Unlocked || state == CoffeeNodeState.Available ? Color.white
                     : state == CoffeeNodeState.NotEnoughPoints ? new Color(1f, 1f, 1f, 0.8f) : new Color(0.7f, 0.7f, 0.7f, 0.55f);

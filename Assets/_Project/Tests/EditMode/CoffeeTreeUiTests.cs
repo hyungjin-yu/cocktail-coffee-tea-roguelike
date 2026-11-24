@@ -172,9 +172,13 @@ namespace CCT.Tests
             StringAssert.Contains("남은 커피 포인트 1", view.PointsLabel);
 
             var status = view.transform.Find("Node_ristretto/Status").GetComponent<Text>();
-            StringAssert.Contains("해금 가능", status.text, "선행이 풀린 노드는 즉시 가능 상태로");
+            StringAssert.StartsWith("▶ 해금 가능", status.text, "선행이 풀린 노드는 즉시 가능 상태로(기호+문구)");
+            StringAssert.Contains("보유 1", status.text);
             var unlocked = view.transform.Find("Node_espresso_shot/Status").GetComponent<Text>();
-            Assert.AreEqual("해금됨", unlocked.text);
+            StringAssert.StartsWith("✓ 해금됨", unlocked.text);
+            StringAssert.Contains("다음 2단계 비용 1", unlocked.text, "다음 단계가 있으면 비용 표시");
+            var locked = view.transform.Find("Node_pour_over/Status");
+            if (locked != null) StringAssert.StartsWith("🔒 선행 필요:", locked.GetComponent<Text>().text);
         }
     }
 }
