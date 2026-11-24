@@ -21,6 +21,9 @@ namespace CCT
         float invulnerable;
         float lastMaxHp;
         Vector2 knockbackVelocity;
+        Vector2 slideVelocity;
+        /// <summary>시험·QA: 직전 물리 틱의 이동 속도(넉백 제외).</summary>
+        public Vector2 MoveVelocity => slideVelocity;
         float knockbackRemaining;
 
         public event Action Died;
@@ -142,6 +145,9 @@ namespace CCT
             if (IsDead) return;
 
             Vector2 velocity = input * stats.MoveSpeed;
+            // 2026-11-24 #22 물기 미끄러짐: 현재 이동 방향으로 짧게 미끄러지는 관성(서 있으면 힘 없음). 아니면 입력 그대로.
+            if (stats.FloorSlip) velocity = FloorHazardRules.SlipStep(slideVelocity, velocity, stats.MoveSpeed, Time.fixedDeltaTime);
+            slideVelocity = velocity;
             if (knockbackRemaining > 0f)
             {
                 knockbackRemaining -= Time.fixedDeltaTime;

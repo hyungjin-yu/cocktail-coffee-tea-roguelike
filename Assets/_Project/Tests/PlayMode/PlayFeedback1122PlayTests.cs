@@ -171,7 +171,7 @@ namespace CCT.Tests
         }
 
         [UnityTest]
-        public IEnumerator DebuffMobs_ScheduledAt120_BitterMistPulseDebuffsInRange_GlassThiefBlocksHealAndFlees()
+        public IEnumerator DebuffMobs_AutoReplacedByFloorHazardsAt120_ManualMistPulseDebuffsInRange_GlassThiefBlocksHealAndFlees()
         {
             yield return Run(Job.TeaSommelier, WeaponKind.Bow); // 공용: 차 모드에서도
             game.Director.enabled = false;
@@ -181,11 +181,14 @@ namespace CCT.Tests
             yield return null; yield return null;
             Assert.AreEqual(0, spawner.DebuffSpawns, "120초 전 없음");
             game.SetRunTimeForTests(121f);
-            yield return null; yield return null;
-            Assert.AreEqual(1, spawner.DebuffSpawns, "120초 첫 등장");
+            for (int i = 0; i < 10 && spawner.Hazards.Spawned == 0; i++) yield return null;
+            // 2026-11-24 #22: 정규 런 자동 등장은 바닥 위험(물기·얼룩)으로 대체 — 몹은 수동 경로(SpawnDebuffMob)로만 검증한다.
+            Assert.AreEqual(0, spawner.DebuffSpawns, "120초 디버프 몹 자동 등장 없음(#22 대체)");
+            Assert.AreEqual(1, spawner.Hazards.Spawned, "120초 바닥 위험 첫 차례");
             spawner.enabled = false;
-            var mist = Enemy.Active.Find(e => e.Def == EnemyDef.BitterMist);
-            Assert.IsNotNull(mist);
+            spawner.Hazards.ClearAll();
+            var mist = spawner.SpawnDebuffMob(game.RunTime);
+            Assert.AreSame(EnemyDef.BitterMist, mist.Def);
             var driver = mist.GetComponent<BitterMistDriver>();
             Assert.IsNotNull(driver);
             mist.Invulnerable = true; // 주기 관찰 동안 플레이어 자동 공격에 죽지 않게(시험 격리)

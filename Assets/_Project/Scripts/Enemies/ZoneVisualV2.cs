@@ -86,6 +86,9 @@ namespace CCT
         float life, age, baseAlpha = 1f;
         Vector3 fullScale;
         Transform visual;
+        /// <summary>2026-11-24 #22 바닥 위험: 색 틴트(기본 흰색 = 원본 그대로)와 알파 배율(청소 진행 표시). 경계·크기는 바꾸지 않는다.</summary>
+        public Color Tint = Color.white;
+        public float AlphaScale = 1f;
 
         /// <summary>활성 장판: 판정 원과 같은 경계, 0.15초 나타남, 마지막 0.35초 가장자리 수축·투명화로 "곧 사라짐".</summary>
         public static bool AttachActive(GameObject zone, string id, float radius, float lifetime, int sortingOrder)
@@ -122,7 +125,7 @@ namespace CCT
             if (age < FadeInSeconds) { float t = age / FadeInSeconds; a *= t; k = Mathf.Lerp(0.85f, 1f, t); }
             float left = life - age;
             if (left < FadeOutSeconds) { float t = Mathf.Clamp01(left / FadeOutSeconds); a *= t; k = Mathf.Lerp(0.8f, 1f, t); }
-            sr.color = new Color(1f, 1f, 1f, a);
+            sr.color = new Color(Tint.r, Tint.g, Tint.b, a * AlphaScale);
             visual.localScale = fullScale * k;
         }
 
@@ -140,6 +143,26 @@ namespace CCT
         Vector3 fullScale;
         float duration, age;
         Color tint;
+        bool manual;
+        float progress;
+
+        /// <summary>2026-11-24 #22 바닥 위험 청소 링: 시간으로 진행하지 않고 호출부가 0~1 진행을 넣는다(스스로 사라지지 않음).
+        /// 바깥 테두리 = 판정 경계, 안쪽 링이 진행만큼 차오른다.</summary>
+        public static ZoneTelegraphV2 SpawnManual(Vector2 position, float radius, Color tint, Transform parent = null)
+        {
+            var t = Spawn(position, radius, float.MaxValue, tint, parent);
+            if (t == null) return null;
+            t.manual = true;
+            t.progress = 0f;
+            t.Apply();
+            return t;
+        }
+
+        public float Progress
+        {
+            get => manual ? progress : ProgressForTests;
+            set { progress = Mathf.Clamp01(value); if (manual) Apply(); }
+        }
 
         public static ZoneTelegraphV2 Spawn(Vector2 position, float radius, float seconds, Color tint, Transform parent = null)
         {
@@ -163,15 +186,15 @@ namespace CCT
             innerAnim.Bind(t.innerSr);
             innerAnim.Play(t.outerSr.GetComponent<SpriteAnimator>().Current, true);
             t.Apply();
-            Destroy(go, t.duration);
+            if (seconds < float.MaxValue) Destroy(go, t.duration);
             return t;
         }
 
-        void Update() { age += Time.deltaTime; Apply(); }
+        void Update() { if (manual) return; age += Time.deltaTime; Apply(); }
 
         void Apply()
         {
-            float p = Mathf.Clamp01(age / duration);
+            float p = manual ? progress : Mathf.Clamp01(age / duration);
             outerSr.color = new Color(tint.r, tint.g, tint.b, Mathf.Lerp(0.55f, 1f, p));
             inner.localScale = new Vector3(fullScale.x * p, fullScale.y * p, 1f);
             inner.localPosition = outerSr.transform.localPosition * p;

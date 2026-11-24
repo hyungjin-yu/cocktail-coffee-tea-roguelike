@@ -6,6 +6,8 @@ namespace CCT
     /// 2026-11-22 주인 결정(피드백 13): 바텐더·차 공용 디버프 몹의 등장 일정. 기존 몹 추첨표(EnemyRoster)·시드 난수는 건드리지 않는
     /// 별도 고정 일정이다: 정규 모드에서 FirstSeconds(120초)부터 IntervalSeconds(30초)마다 한 마리, 쓴맛 안개 → 빈 잔 도둑 번갈아,
     /// 동시에 MaxAlive(2)마리까지, 보스전 중에는 쉰다. 끝없는(마스터 도전) 모드는 이번 범위 밖(등장 없음).
+    /// 2026-11-24 #22: 정규 런의 자동 등장은 바닥 위험(FloorHazardRules — 물기·얼룩)으로 대체되어 EnemySpawner.AutoDebuffMobs = false가 기본.
+    /// 몹 정의·아트·계열 분류·드라이버·수동 생성 경로(SpawnDebuffMob, QA 투어)는 그대로 두어 기존 시험·되돌리기와 호환한다.
     /// </summary>
     public static class DebuffMobSchedule
     {
