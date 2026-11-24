@@ -54,6 +54,28 @@ namespace CCT.Editor
                 bow.textureCompression = TextureImporterCompression.Uncompressed;
                 return;
             }
+            if (assetPath.Contains("/Resources/ArtExtra/arrow_element/"))
+            {
+                // 2026-11-24 #21 속성 화살(ArtSource/elemental-arrows-2026-11-24/manifest.json): 128 PPU·점 필터·무압축.
+                // 화살 128×128·명중/활성/표식 64×64 = 가운데 피벗, 감전 연쇄 128×48 = 시작 앵커 (8,24) → 정규화 (0.0625, 0.5).
+                var el = (TextureImporter)assetImporter;
+                el.textureType = TextureImporterType.Sprite;
+                el.spriteImportMode = SpriteImportMode.Single;
+                var es = new TextureImporterSettings();
+                el.ReadTextureSettings(es);
+                bool chain = assetPath.Contains("/shock_chain");
+                es.spriteAlignment = (int)(chain ? SpriteAlignment.Custom : SpriteAlignment.Center);
+                if (chain) es.spritePivot = new Vector2(8f / 128f, 24f / 48f);
+                es.spritePixelsPerUnit = 128f;
+                es.spriteMeshType = SpriteMeshType.FullRect;
+                el.SetTextureSettings(es);
+                el.mipmapEnabled = false;
+                el.filterMode = FilterMode.Point;
+                el.wrapMode = TextureWrapMode.Clamp;
+                el.alphaIsTransparency = true;
+                el.textureCompression = TextureImporterCompression.Uncompressed;
+                return;
+            }
             if (assetPath.Contains("/Resources/ArtExtra/vfx_arrow_tail/"))
             {
                 // 2026-11-17 피드백 19 화살 전용 꼬리(Codex 납품 예정 32×16, 3프레임): 화살과 같은 PPU 128, 피벗 = 앞쪽 연결 소켓(30/32, 8/16).

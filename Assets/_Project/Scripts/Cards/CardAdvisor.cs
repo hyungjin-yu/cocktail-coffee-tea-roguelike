@@ -209,6 +209,7 @@ namespace CCT
             bool ranged = ctx.weapon.IsRanged();
             if (card.weaponRestriction == WeaponRestriction.MeleeOnly && ranged) return false;
             if (card.weaponRestriction == WeaponRestriction.RangedOnly && !ranged) return false;
+            if (card.weaponRestriction == WeaponRestriction.BowOnly && ctx.weapon != WeaponKind.Bow) return false;
             if (card.effects != null)
                 foreach (var e in card.effects)
                 {
@@ -225,6 +226,8 @@ namespace CCT
                 reasons.Add(new Reason { score = 12, text = $"{WeaponName(ctx.weapon)} 전용 강화" });
             else if (card.weaponRestriction == WeaponRestriction.RangedOnly && ranged)
                 reasons.Add(new Reason { score = 12, text = $"{WeaponName(ctx.weapon)} 전용 강화" });
+            else if (card.weaponRestriction == WeaponRestriction.BowOnly && ctx.weapon == WeaponKind.Bow)
+                reasons.Add(new Reason { score = 12, text = "활 전용 강화" });
         }
 
         public static string WeaponName(WeaponKind w) => w switch

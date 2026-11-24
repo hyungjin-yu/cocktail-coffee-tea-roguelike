@@ -70,7 +70,8 @@ namespace CCT.Tests
 
         static void AssertMatchesSpec(IEnumerable<CardData> source, string label)
         {
-            var basic = source.Where(c => c != null && c.category != CardCategory.Hybrid).ToList();
+            // 2026-11-24 #21 기본 활 전용 속성 화살(BowOnly)은 07 §3 기본 34장 밖의 별도 목록 — ArrowElementTests가 따로 검사.
+            var basic = source.Where(c => c != null && c.category != CardCategory.Hybrid && c.weaponRestriction != WeaponRestriction.BowOnly).ToList();
             Assert.AreEqual(34, basic.Count, $"{label}: 기본 카드 34장");
             Assert.AreEqual(34, basic.Select(c => c.id).Distinct().Count(), $"{label}: ID 중복 없음");
             Assert.AreEqual(16, Spec.Count(r => r.cat == CardCategory.Cocktail));

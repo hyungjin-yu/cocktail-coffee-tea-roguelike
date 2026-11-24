@@ -103,7 +103,8 @@ namespace CCT.Tests
             created.AddRange(pool.Where(c => !UnityEditor.EditorUtility.IsPersistent(c)));
 
             Assert.AreEqual(16, pool.Count(c => c.category == CardCategory.Cocktail), "07:53 칵테일16");
-            Assert.AreEqual(18, pool.Count(c => c.category == CardCategory.Tea), "07:53 차18");
+            Assert.AreEqual(18, pool.Count(c => c.category == CardCategory.Tea && c.weaponRestriction != WeaponRestriction.BowOnly), "07:53 차18");
+            Assert.AreEqual(4, pool.Count(c => c.category == CardCategory.Tea && c.weaponRestriction == WeaponRestriction.BowOnly), "#21 기본 활 전용 속성 화살 4");
             Assert.AreEqual(1, pool.Count(c => c.category == CardCategory.Hybrid), "07:112 하이브리드1");
             Assert.AreEqual(pool.Count, pool.Select(c => c.id).Distinct().Count(), "ID 중복 없음");
         }

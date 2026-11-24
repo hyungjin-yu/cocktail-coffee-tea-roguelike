@@ -1299,7 +1299,7 @@ namespace CCT.Tests
                     if (t != null) AssertFirstLinesVisible(t, 1, $"{row.name} {extra}");
                 }
             }
-            Assert.AreEqual(35 + 24 + 15 + 24, names, "32: 카드35 + 영구24 + 커피15 + 41 히든24행 모두 검사");
+            Assert.AreEqual(39 + 24 + 15 + 24, names, "32: 카드35 + #21 속성 화살4 + 영구24 + 커피15 + 41 히든24행 모두 검사");
 
             // 상세: 가장 긴 카드의 전문(발견 상태)이 닫기 버튼 위 상자 안에 전부 보인다.
             var longest = CardDatabase.LoadAll().OrderByDescending(c => (c.description + c.flavorText).Length).First();

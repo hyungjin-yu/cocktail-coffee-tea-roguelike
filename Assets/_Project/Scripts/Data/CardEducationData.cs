@@ -323,6 +323,43 @@ namespace CCT
                     card.educationArtId = "";
                     card.flavorText = card.realWorldFact;
                     break;
+                // ── 2026-11-24 #21 기본 활 전용 속성 화살. 기존 카드에 이미 쓰인 출처만 다시 인용(새 출처 없음) — 문장은 그 출처 범위 안에서 짧게.
+                case "arrow_burn":
+                    card.realWorldFact = "녹차는 잎을 찌거나 덖는 열로 산화를 멈춰 만듭니다.";
+                    card.gameplayConnection = "덖는 짧은 열기 → 짧은 화상";
+                    card.sourceName = "Oregon State University · Tea";
+                    card.sourceUrl = "https://lpi.oregonstate.edu/mic/food-beverages/tea";
+                    card.additionalSources = "";
+                    card.educationArtId = "";
+                    card.flavorText = card.realWorldFact;
+                    break;
+                case "arrow_freeze":
+                    card.realWorldFact = "물 온도와 시간은 우림에 영향을 줍니다. 찬물은 더 천천히 우러납니다.";
+                    card.gameplayConnection = "차가운 물 → 잠깐 멈춤";
+                    card.sourceName = "UK Tea & Infusions Association · The perfect brew";
+                    card.sourceUrl = "https://www.tea.co.uk/make-a-perfect-brew";
+                    card.additionalSources = "";
+                    card.educationArtId = "";
+                    card.flavorText = card.realWorldFact;
+                    break;
+                case "arrow_shock":
+                    card.realWorldFact = "찻잎에는 카페인이 들어 있고 양은 차와 우림 조건에 따라 다릅니다.";
+                    card.gameplayConnection = "번지는 각성 → 전기 연쇄";
+                    card.sourceName = "Oregon State University · Tea";
+                    card.sourceUrl = "https://lpi.oregonstate.edu/mic/food-beverages/tea";
+                    card.additionalSources = "";
+                    card.educationArtId = "";
+                    card.flavorText = card.realWorldFact;
+                    break;
+                case "arrow_poison":
+                    card.realWorldFact = "오래 우리면 떫은맛이 강해질 수 있습니다. 차의 독성을 뜻하지 않습니다.";
+                    card.gameplayConnection = "쌓이는 떫은맛 → 누적 중독";
+                    card.sourceName = "Ippodo Tea · Tea bitterness and astringency";
+                    card.sourceUrl = "https://ippodotea.com/blogs/frequently-asked-questions/help-my-tea-is-bitter";
+                    card.additionalSources = "";
+                    card.educationArtId = "";
+                    card.flavorText = card.realWorldFact;
+                    break;
                 default: throw new ArgumentException("Unknown educational card: " + card.id);
             }
         }

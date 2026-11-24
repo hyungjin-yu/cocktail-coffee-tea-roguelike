@@ -25,6 +25,11 @@ namespace CCT
         string shotSfxId = "shot_gun";
         /// <summary>04 §8: 총=bullet, 활=arrow.</summary>
         string projectileArtId = "bullet";
+        /// <summary>2026-11-24 #21: 기본 활일 때만 속성 화살을 싣는다(총은 같은 컴포넌트지만 false).</summary>
+        bool isBow;
+        /// <summary>발사 묶음 번호(1부터). 같은 묶음의 같은 속성은 같은 적에게 한 번만 발동.</summary>
+        int volley;
+        static int volleySeed;
 
         public void Init(PlayerStats stats, PlayerController player, WeaponKind weapon = WeaponKind.Gun)
         {
@@ -32,7 +37,12 @@ namespace CCT
             this.player = player;
             shotSfxId = weapon == WeaponKind.Bow ? "shot_bow" : "shot_gun";
             projectileArtId = weapon == WeaponKind.Bow ? "arrow" : "bullet";
+            isBow = weapon == WeaponKind.Bow;
+            if (isBow) ArrowQueuePreview.Attach(player, stats); // #21 머리 위 다음 화살 미리보기(속성 없으면 숨김)
         }
+
+        /// <summary>실제로 나가는 원래 화살 한 발의 속성(기본 활 + 속성 카드 보유 시 대기열 맨 앞을 소비). 없으면 None.</summary>
+        ArrowElementKind NextElement() => isBow ? stats.ConsumeArrowElement() : ArrowElementKind.None;
 
         float AcquireRange => stats.Range + RangedBonusRange + AcquireMargin;
         /// <summary>2026-11-09 표식용(읽기 전용): 지금 조준 사거리(여유 거리 제외).</summary>
@@ -68,6 +78,7 @@ namespace CCT
             AudioService.PlaySfx(shotSfxId, origin);
 
             int count = 1 + stats.extraThrusts;
+            volley = ++volleySeed == 0 ? ++volleySeed : volleySeed; // 0 = 묶음 없음이라 건너뜀
             float damage = stats.Damage;
             int pierce = stats.pierceCount;
             // #23 바텐더 총 근거리 산탄: 이 발사에서 나가는 탄(다중 발사·교차 확산 보조탄)이 같은 발사 번호를 공유한다. 히든이 없으면 0.
@@ -81,7 +92,8 @@ namespace CCT
             int homing = stats.gunHoming ? stats.homingLevel : 0; // 총 전용 유도 — 활은 사거리 카드가 그대로 사거리
             if (count <= 1)
             {
-                PlayerProjectile.Spawn(origin, baseDir, ProjectileSpeed, damage, pierce, transform.parent, projectileArtId, player, true, null, 2f, float.PositiveInfinity, homing);
+                PlayerProjectile.Spawn(origin, baseDir, ProjectileSpeed, damage, pierce, transform.parent, projectileArtId, player, true, null, 2f, float.PositiveInfinity, homing,
+                    element: NextElement(), volley: volley);
                 FireFinalSides(origin, baseDir, 0f, damage, homing);
                 return;
             }
@@ -93,7 +105,8 @@ namespace CCT
             for (int i = 0; i < count; i++)
             {
                 var dir = Quaternion.Euler(0f, 0f, startAngle + step * i) * baseDir;
-                PlayerProjectile.Spawn(origin, dir, ProjectileSpeed, damage, pierce, transform.parent, projectileArtId, player, true, null, 2f, float.PositiveInfinity, homing);
+                PlayerProjectile.Spawn(origin, dir, ProjectileSpeed, damage, pierce, transform.parent, projectileArtId, player, true, null, 2f, float.PositiveInfinity, homing,
+                    element: NextElement(), volley: volley);
             }
             FireFinalSides(origin, baseDir, spread, damage, homing);
         }

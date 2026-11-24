@@ -1,0 +1,1636 @@
+{
+  "schemaVersion": 1,
+  "nominalPixelsPerUnit": 128,
+  "filtering": "Point",
+  "anchorConvention": "pixel edges from top left; normalized pivots from bottom left",
+  "clips": {
+    "burn/arrow": {
+      "source": "burn/arrow/source.aseprite",
+      "frames": [
+        "burn/arrow/00.png",
+        "burn/arrow/01.png",
+        "burn/arrow/02.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          66
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        85,
+        95,
+        105
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          36,
+          116,
+          84
+        ],
+        [
+          18,
+          36,
+          116,
+          84
+        ],
+        [
+          18,
+          36,
+          116,
+          84
+        ]
+      ],
+      "reducedEffects": "burn/arrow_low",
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "burn/arrow_low": {
+      "source": "burn/arrow_low/source.aseprite",
+      "frames": [
+        "burn/arrow_low/00.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          66
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          36,
+          116,
+          84
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "burn/tea_arrow": {
+      "source": "burn/tea_arrow/source.aseprite",
+      "frames": [
+        "burn/tea_arrow/00.png",
+        "burn/tea_arrow/01.png",
+        "burn/tea_arrow/02.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          65
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        85,
+        95,
+        105
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          36,
+          116,
+          90
+        ],
+        [
+          18,
+          36,
+          116,
+          90
+        ],
+        [
+          18,
+          36,
+          116,
+          90
+        ]
+      ],
+      "reducedEffects": "burn/tea_arrow_low",
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "burn/tea_arrow_low": {
+      "source": "burn/tea_arrow_low/source.aseprite",
+      "frames": [
+        "burn/tea_arrow_low/00.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          65
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          36,
+          116,
+          90
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "burn/hit": {
+      "source": "burn/hit/source.aseprite",
+      "frames": [
+        "burn/hit/00.png",
+        "burn/hit/01.png",
+        "burn/hit/02.png",
+        "burn/hit/03.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        40,
+        55,
+        70,
+        75
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          16,
+          48,
+          44
+        ],
+        [
+          16,
+          14,
+          50,
+          44
+        ],
+        [
+          14,
+          12,
+          52,
+          44
+        ],
+        [
+          12,
+          10,
+          54,
+          32
+        ]
+      ],
+      "reducedEffects": "burn/mark",
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "burn/active": {
+      "source": "burn/active/source.aseprite",
+      "frames": [
+        "burn/active/00.png",
+        "burn/active/01.png",
+        "burn/active/02.png",
+        "burn/active/03.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        150,
+        175,
+        150,
+        175
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          22,
+          20,
+          44,
+          44
+        ],
+        [
+          22,
+          18,
+          44,
+          44
+        ],
+        [
+          22,
+          16,
+          44,
+          44
+        ],
+        [
+          22,
+          14,
+          44,
+          44
+        ]
+      ],
+      "reducedEffects": "burn/mark",
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "burn/mark": {
+      "source": "burn/mark/source.aseprite",
+      "frames": [
+        "burn/mark/00.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          22,
+          20,
+          44,
+          44
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "freeze/arrow": {
+      "source": "freeze/arrow/source.aseprite",
+      "frames": [
+        "freeze/arrow/00.png",
+        "freeze/arrow/01.png",
+        "freeze/arrow/02.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          66
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        85,
+        95,
+        105
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          42,
+          116,
+          84
+        ],
+        [
+          18,
+          42,
+          116,
+          84
+        ],
+        [
+          18,
+          42,
+          116,
+          84
+        ]
+      ],
+      "reducedEffects": "freeze/arrow_low",
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "freeze/arrow_low": {
+      "source": "freeze/arrow_low/source.aseprite",
+      "frames": [
+        "freeze/arrow_low/00.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          66
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          42,
+          116,
+          84
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "freeze/tea_arrow": {
+      "source": "freeze/tea_arrow/source.aseprite",
+      "frames": [
+        "freeze/tea_arrow/00.png",
+        "freeze/tea_arrow/01.png",
+        "freeze/tea_arrow/02.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          65
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        85,
+        95,
+        105
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          40,
+          116,
+          90
+        ],
+        [
+          18,
+          40,
+          116,
+          90
+        ],
+        [
+          18,
+          40,
+          116,
+          90
+        ]
+      ],
+      "reducedEffects": "freeze/tea_arrow_low",
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "freeze/tea_arrow_low": {
+      "source": "freeze/tea_arrow_low/source.aseprite",
+      "frames": [
+        "freeze/tea_arrow_low/00.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          65
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          40,
+          116,
+          90
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "freeze/hit": {
+      "source": "freeze/hit/source.aseprite",
+      "frames": [
+        "freeze/hit/00.png",
+        "freeze/hit/01.png",
+        "freeze/hit/02.png",
+        "freeze/hit/03.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        40,
+        55,
+        70,
+        75
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          12,
+          10,
+          52,
+          44
+        ],
+        [
+          10,
+          8,
+          54,
+          44
+        ],
+        [
+          8,
+          6,
+          56,
+          44
+        ],
+        [
+          6,
+          4,
+          58,
+          46
+        ]
+      ],
+      "reducedEffects": "freeze/mark",
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "freeze/active": {
+      "source": "freeze/active/source.aseprite",
+      "frames": [
+        "freeze/active/00.png",
+        "freeze/active/01.png",
+        "freeze/active/02.png",
+        "freeze/active/03.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        150,
+        175,
+        150,
+        175
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          20,
+          20,
+          46,
+          44
+        ],
+        [
+          20,
+          20,
+          46,
+          44
+        ],
+        [
+          20,
+          20,
+          46,
+          44
+        ],
+        [
+          20,
+          20,
+          46,
+          44
+        ]
+      ],
+      "reducedEffects": "freeze/mark",
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "freeze/mark": {
+      "source": "freeze/mark/source.aseprite",
+      "frames": [
+        "freeze/mark/00.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          20,
+          20,
+          46,
+          44
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "shock/arrow": {
+      "source": "shock/arrow/source.aseprite",
+      "frames": [
+        "shock/arrow/00.png",
+        "shock/arrow/01.png",
+        "shock/arrow/02.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          66
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        85,
+        95,
+        105
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          36,
+          116,
+          84
+        ],
+        [
+          18,
+          38,
+          116,
+          84
+        ],
+        [
+          18,
+          38,
+          116,
+          84
+        ]
+      ],
+      "reducedEffects": "shock/arrow_low",
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "shock/arrow_low": {
+      "source": "shock/arrow_low/source.aseprite",
+      "frames": [
+        "shock/arrow_low/00.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          66
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          38,
+          116,
+          84
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "shock/tea_arrow": {
+      "source": "shock/tea_arrow/source.aseprite",
+      "frames": [
+        "shock/tea_arrow/00.png",
+        "shock/tea_arrow/01.png",
+        "shock/tea_arrow/02.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          65
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        85,
+        95,
+        105
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          36,
+          116,
+          90
+        ],
+        [
+          18,
+          38,
+          116,
+          90
+        ],
+        [
+          18,
+          38,
+          116,
+          90
+        ]
+      ],
+      "reducedEffects": "shock/tea_arrow_low",
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "shock/tea_arrow_low": {
+      "source": "shock/tea_arrow_low/source.aseprite",
+      "frames": [
+        "shock/tea_arrow_low/00.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          65
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          38,
+          116,
+          90
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "shock/hit": {
+      "source": "shock/hit/source.aseprite",
+      "frames": [
+        "shock/hit/00.png",
+        "shock/hit/01.png",
+        "shock/hit/02.png",
+        "shock/hit/03.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        40,
+        55,
+        70,
+        75
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          12,
+          12,
+          56,
+          46
+        ],
+        [
+          10,
+          12,
+          58,
+          46
+        ],
+        [
+          8,
+          12,
+          60,
+          46
+        ],
+        [
+          6,
+          12,
+          62,
+          44
+        ]
+      ],
+      "reducedEffects": "shock/mark",
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "shock/active": {
+      "source": "shock/active/source.aseprite",
+      "frames": [
+        "shock/active/00.png",
+        "shock/active/01.png",
+        "shock/active/02.png",
+        "shock/active/03.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        150,
+        175,
+        150,
+        175
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          20,
+          22,
+          46,
+          46
+        ],
+        [
+          20,
+          22,
+          48,
+          46
+        ],
+        [
+          20,
+          22,
+          46,
+          46
+        ],
+        [
+          20,
+          22,
+          46,
+          46
+        ]
+      ],
+      "reducedEffects": "shock/mark",
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "shock/mark": {
+      "source": "shock/mark/source.aseprite",
+      "frames": [
+        "shock/mark/00.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          20,
+          22,
+          46,
+          46
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "poison/arrow": {
+      "source": "poison/arrow/source.aseprite",
+      "frames": [
+        "poison/arrow/00.png",
+        "poison/arrow/01.png",
+        "poison/arrow/02.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          66
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        85,
+        95,
+        105
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          42,
+          116,
+          84
+        ],
+        [
+          18,
+          44,
+          116,
+          84
+        ],
+        [
+          18,
+          46,
+          116,
+          84
+        ]
+      ],
+      "reducedEffects": "poison/arrow_low",
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "poison/arrow_low": {
+      "source": "poison/arrow_low/source.aseprite",
+      "frames": [
+        "poison/arrow_low/00.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          66
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          42,
+          116,
+          84
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "poison/tea_arrow": {
+      "source": "poison/tea_arrow/source.aseprite",
+      "frames": [
+        "poison/tea_arrow/00.png",
+        "poison/tea_arrow/01.png",
+        "poison/tea_arrow/02.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          65
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        85,
+        95,
+        105
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          40,
+          116,
+          90
+        ],
+        [
+          18,
+          40,
+          116,
+          90
+        ],
+        [
+          18,
+          40,
+          116,
+          90
+        ]
+      ],
+      "reducedEffects": "poison/tea_arrow_low",
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "poison/tea_arrow_low": {
+      "source": "poison/tea_arrow_low/source.aseprite",
+      "frames": [
+        "poison/tea_arrow_low/00.png"
+      ],
+      "sizePx": [
+        128,
+        128
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          64,
+          64
+        ],
+        "fletchSocket": [
+          18,
+          65
+        ],
+        "tip": [
+          116,
+          67
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          18,
+          40,
+          116,
+          90
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Stock",
+        "Element"
+      ]
+    },
+    "poison/hit": {
+      "source": "poison/hit/source.aseprite",
+      "frames": [
+        "poison/hit/00.png",
+        "poison/hit/01.png",
+        "poison/hit/02.png",
+        "poison/hit/03.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        40,
+        55,
+        70,
+        75
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          14,
+          18,
+          54,
+          46
+        ],
+        [
+          12,
+          16,
+          56,
+          46
+        ],
+        [
+          10,
+          14,
+          58,
+          46
+        ],
+        [
+          8,
+          12,
+          60,
+          46
+        ]
+      ],
+      "reducedEffects": "poison/mark",
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "poison/active": {
+      "source": "poison/active/source.aseprite",
+      "frames": [
+        "poison/active/00.png",
+        "poison/active/01.png",
+        "poison/active/02.png",
+        "poison/active/03.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        150,
+        175,
+        150,
+        175
+      ],
+      "loop": true,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          14,
+          20,
+          52,
+          46
+        ],
+        [
+          14,
+          20,
+          52,
+          46
+        ],
+        [
+          14,
+          20,
+          52,
+          46
+        ],
+        [
+          14,
+          18,
+          52,
+          46
+        ]
+      ],
+      "reducedEffects": "poison/mark",
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "poison/mark": {
+      "source": "poison/mark/source.aseprite",
+      "frames": [
+        "poison/mark/00.png"
+      ],
+      "sizePx": [
+        64,
+        64
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          32,
+          32
+        ]
+      },
+      "direction": "none",
+      "frameMs": [
+        100
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          22,
+          22,
+          44,
+          44
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Secondary",
+        "Motif"
+      ]
+    },
+    "shock/chain": {
+      "source": "shock/chain/source.aseprite",
+      "frames": [
+        "shock/chain/00.png",
+        "shock/chain/01.png",
+        "shock/chain/02.png",
+        "shock/chain/03.png"
+      ],
+      "sizePx": [
+        128,
+        48
+      ],
+      "pivotNormalized": [
+        0.0625,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          8,
+          24
+        ],
+        "start": [
+          8,
+          24
+        ],
+        "end": [
+          120,
+          24
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        45,
+        45,
+        55,
+        65
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          8,
+          2,
+          122,
+          42
+        ],
+        [
+          8,
+          4,
+          122,
+          44
+        ],
+        [
+          8,
+          6,
+          122,
+          46
+        ],
+        [
+          8,
+          20,
+          122,
+          28
+        ]
+      ],
+      "reducedEffects": "shock/chain_low",
+      "layers": [
+        "Branches",
+        "Arc"
+      ]
+    },
+    "shock/chain_low": {
+      "source": "shock/chain_low/source.aseprite",
+      "frames": [
+        "shock/chain_low/00.png"
+      ],
+      "sizePx": [
+        128,
+        48
+      ],
+      "pivotNormalized": [
+        0.0625,
+        0.5
+      ],
+      "anchorsPxTopLeft": {
+        "pivot": [
+          8,
+          24
+        ],
+        "start": [
+          8,
+          24
+        ],
+        "end": [
+          120,
+          24
+        ]
+      },
+      "direction": "+X",
+      "frameMs": [
+        70
+      ],
+      "loop": false,
+      "frameAlphaBoundsPxTopLeft": [
+        [
+          8,
+          10,
+          122,
+          30
+        ]
+      ],
+      "reducedEffects": null,
+      "layers": [
+        "Branches",
+        "Arc"
+      ]
+    }
+  }
+}

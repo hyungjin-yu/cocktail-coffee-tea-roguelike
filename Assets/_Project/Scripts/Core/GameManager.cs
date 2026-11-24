@@ -429,7 +429,7 @@ namespace CCT
             var card = cards?.FindInPool(id);
             if (card == null) return false;
             if (Job == Job.TeaSommelier && card.category == CardCategory.Cocktail) return false;
-            return CardSystem.IsWeaponCompatible(card, Weapon.IsRanged());
+            return CardSystem.IsWeaponCompatible(card, Weapon.IsRanged(), Weapon == WeaponKind.Bow);
         }
 
         public HiddenReachability Reachability(HiddenSkillDef def) => HiddenRequirements.Reachability(def, Job, Weapon, CardObtainable);
@@ -813,7 +813,7 @@ namespace CCT
 
         bool BeginLevelUp(CardCategory category)
         {
-            var offers = cards.Draw(category, Weapon.IsRanged(), 3, RunTime, completedCardChoices);
+            var offers = cards.Draw(category, Weapon.IsRanged(), 3, RunTime, completedCardChoices, Weapon == WeaponKind.Bow);
             if (offers.Count == 0) return false; // 이 카테고리 카드가 모두 소진됨 — 다음 대기열로
 
             LastOpenedCardCategory = category;

@@ -454,6 +454,10 @@ namespace CCT
                     case CardEffectType.PierceCount: s += 22f * e.value; break;
                     case CardEffectType.FlameLevel: s += 20f * e.value; break;
                     case CardEffectType.PoisonLevel: s += 20f * e.value; break;
+                    case CardEffectType.ArrowBurn:
+                    case CardEffectType.ArrowFreeze:
+                    case CardEffectType.ArrowShock:
+                    case CardEffectType.ArrowPoison: s += 20f * e.value; break;
                     case CardEffectType.MaxHpFlat: s += e.value * 0.75f * survival; break;
                     case CardEffectType.RegenBonus: s += e.value * 11f * survival; break;
                     case CardEffectType.MoveSpeedPercent: s += e.value * 90f; break;

@@ -39,6 +39,39 @@ namespace CCT
         public int pierceCount;
         /// <summary>영구 강화(스페셜티) 전용 — 커피 원두 획득량 % 보너스. GameManager.BeanGainMultiplier가 읽는다.</summary>
         public float beanGainPercent;
+        /// <summary>2026-11-24 #21 속성 화살 레벨(기본 활 전용 카드). 0이면 그 속성 화살이 나가지 않는다. 실제 규칙은 ArrowElementRules.</summary>
+        public int arrowBurnLevel, arrowFreezeLevel, arrowShockLevel, arrowPoisonLevel;
+
+        // ── #21 속성 화살 순환(사용자 확정 2026-11-24): 화상 → 빙결 → 감전 → 중독 → 화상 고정 순서. 얻은 속성만 돌고 없는 속성은 건너뛴다.
+        // 같은 카드를 또 고르면 순서 칸은 그대로, 레벨만 오른다(기존 중첩 규칙). 원래 화살이 실제로 한 발 나갈 때마다 한 칸 소비
+        // (발사 실패·대상 없음이면 소비 없음). 하나도 없으면 기본 화살. 런마다 새 PlayerStats라 런 종료 시 초기화.
+        public static readonly ArrowElementKind[] ArrowCycle = { ArrowElementKind.Burn, ArrowElementKind.Freeze, ArrowElementKind.Shock, ArrowElementKind.Poison };
+        /// <summary>다음 화살이 찾기 시작할 ArrowCycle 칸(0~3).</summary>
+        int arrowCursor;
+        public bool HasArrowElement => arrowBurnLevel > 0 || arrowFreezeLevel > 0 || arrowShockLevel > 0 || arrowPoisonLevel > 0;
+        /// <summary>앞에서 i번째로 나갈 화살의 속성(소비 없이 미리보기 — 실제 소비와 같은 계산). 없으면 None.</summary>
+        public ArrowElementKind PeekArrowElement(int i)
+        {
+            if (!HasArrowElement || i < 0) return ArrowElementKind.None;
+            int c = arrowCursor;
+            for (int n = 0; ; n++)
+            {
+                var k = NextOwned(ref c);
+                if (n == i) return k;
+            }
+        }
+        /// <summary>한 발 소비: 커서부터 처음 만나는 보유 속성을 돌려주고 커서를 그 다음 칸으로.</summary>
+        public ArrowElementKind ConsumeArrowElement() => HasArrowElement ? NextOwned(ref arrowCursor) : ArrowElementKind.None;
+        ArrowElementKind NextOwned(ref int cursor)
+        {
+            for (int step = 0; step < ArrowCycle.Length; step++)
+            {
+                var k = ArrowCycle[(cursor + step) % ArrowCycle.Length];
+                if (ArrowElementRules.Level(this, k) > 0) { cursor = (cursor + step + 1) % ArrowCycle.Length; return k; }
+            }
+            return ArrowElementKind.None;
+        }
+        void GainArrowLevel(ref int level, float value) => level = Mathf.Min(ArrowElementRules.MaxLevel, level + Mathf.RoundToInt(value));
         /// <summary>받은 피해 감소율 (0~0.25로 clamp). 단발/장판 피해 모두에 적용, 0.8초 무적과는 별개.</summary>
         public float damageReduction;
         /// <summary>줍기 반경 가산치 (커피 노드 wide_tray/zero_waste 등).</summary>
@@ -190,6 +223,10 @@ namespace CCT
                 case CardEffectType.BeanGainPercent: beanGainPercent += effect.value; break;
                 case CardEffectType.DamageReduction: damageReduction += effect.value; break;
                 case CardEffectType.PickupRadiusFlat: pickupRadiusFlat += effect.value; break;
+                case CardEffectType.ArrowBurn: GainArrowLevel(ref arrowBurnLevel, effect.value); break;
+                case CardEffectType.ArrowFreeze: GainArrowLevel(ref arrowFreezeLevel, effect.value); break;
+                case CardEffectType.ArrowShock: GainArrowLevel(ref arrowShockLevel, effect.value); break;
+                case CardEffectType.ArrowPoison: GainArrowLevel(ref arrowPoisonLevel, effect.value); break;
                 case CardEffectType.BulletHoming: homingLevel = Mathf.Min(GunHoming.MaxLevel, homingLevel + Mathf.RoundToInt(effect.value)); break;
             }
             Changed?.Invoke();
