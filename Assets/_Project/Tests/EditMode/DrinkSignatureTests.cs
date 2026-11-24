@@ -373,6 +373,80 @@ namespace CCT.Tests
             Assert.IsFalse(game.TryUseSignature());
         }
 
+        // ───── #25 아트 연결(ArtSource/signature-drinks-2026-11-24) ─────
+
+        [Test]
+        public void ArtTable_MatchesArtSourceManifest_Durations()
+        {
+            var manifest = Path.Combine(Application.dataPath, "..", "ArtSource", "signature-drinks-2026-11-24", "manifest.json");
+            Assume.That(File.Exists(manifest), "ArtSource 반입 필요");
+            var text = File.ReadAllText(manifest);
+            foreach (var c in SignatureArt.All)
+            {
+                var m = System.Text.RegularExpressions.Regex.Match(text, "\"" + c.name + @""":\s*\{[^{}]*?""frame_px"":\s*\[\s*(\d+),\s*(\d+)\s*\][^{}]*?""frames_ms"":\s*\[([^\]]*)\]");
+                Assert.IsTrue(m.Success, c.name);
+                Assert.AreEqual(int.Parse(m.Groups[1].Value), c.framePx.x, c.name);
+                Assert.AreEqual(int.Parse(m.Groups[2].Value), c.framePx.y, c.name);
+                var ms = Array.ConvertAll(m.Groups[3].Value.Replace(",", " ").Split((char[])null, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+                CollectionAssert.AreEqual(ms, c.durationsMs, c.name);
+            }
+            Assert.AreEqual(SignatureRevealOverlay.FullSeconds * 1000f, SignatureArt.Get("iba_margarita_discovery").TotalMs, 1f, "최초 발견 2.6초 = 시트 길이");
+            Assert.AreEqual(450, SignatureArt.Get("salt_ring").TotalMs);
+            Assert.AreEqual(350, SignatureArt.Get("whiteout_edge").TotalMs);
+            Assert.AreEqual("salt_ring_low", SignatureArt.Resolve("salt_ring", true));
+            Assert.AreEqual("iba_white_lady_discovery_low", SignatureArt.DiscoveryClip("iba_white_lady", true));
+            Assert.IsNull(SignatureArt.DiscoveryClip("iba_negroni", false), "1차 3종 외 발견 아트 없음");
+            int frames = 0; foreach (var c in SignatureArt.All) frames += c.durationsMs.Length;
+            Assert.AreEqual(SignatureArt.TotalFrames, frames);
+        }
+
+        [Test]
+        public void ArtResources_Load_SaltRimDiameterMatchesRadius()
+        {
+            foreach (var c in SignatureArt.All) Assert.IsNotNull(SignatureArt.Load(c.name), "Resources/SignatureDrinks 프레임: " + c.name);
+            Assert.AreEqual(SignatureRuntime.SaltRimRadius * 2f, SignatureArt.Load("salt_ring")[0].bounds.size.x, 0.01f, "표시 지름 8 = 반경 4");
+            Assert.AreEqual(SignatureRuntime.SaltRimRadius * 2f, SignatureArt.Load("salt_ring_low")[0].bounds.size.x, 0.01f);
+            Assert.AreEqual(FilterMode.Point, SignatureArt.Load("iba_sidecar_discovery")[0].texture.filterMode);
+            Assert.Greater(SignatureArt.Load("whiteout_edge")[0].border.x, 0f, "서리는 9분할(가장자리만)");
+        }
+
+        [Test]
+        public void WhiteOut_IceBadge_OnlyOnActuallyHeldNormalEnemies_NotBoss()
+        {
+            StartGame(WhiteLady());
+            var at = game.Player.Position;
+            var mob = Enemy.SpawnAt(at + new Vector2(1.5f, 0f), EnemyDef.Brute, 1f, null, null);
+            var boss = Enemy.SpawnAt(at + new Vector2(0f, 1f), new EnemyDef { name = "시험 보스", hp = 1000f, boss = BossKind.Mid }, 1f, null, null);
+            try
+            {
+                Assert.IsTrue(game.TryUseSignature(), game.Signature.LastMessage);
+                var badges = UnityEngine.Object.FindObjectsByType<SignatureVfx.IceBadge>(FindObjectsSortMode.None);
+                Assume.That(SignatureArt.Load("whiteout_hold") != null, "아트 임포트 후 배지 검사");
+                Assert.AreEqual(1, game.Signature.LastHeld, "경직이 실제로 걸린 적은 일반 1마리");
+                Assert.AreEqual(1, badges.Length);
+                Assert.AreSame(mob, badges[0].Target, "보스에는 배지 없음(쓰러진 적은 ApplySignatureHold가 false — EditMode에서 Destroy 오류를 피하려 처치 경우는 PlayMode 항목)");
+                Assert.IsFalse(boss.Staggered);
+                foreach (var b in badges) UnityEngine.Object.DestroyImmediate(b.gameObject);
+            }
+            finally
+            {
+                foreach (var e in new[] { mob, boss }) if (e != null) UnityEngine.Object.DestroyImmediate(e.gameObject);
+            }
+        }
+
+        [Test]
+        public void SidecarAndSaltRim_PlayArtClips_LowEffectsUsesLowClips()
+        {
+            StartGame(Sidecar());
+            Assert.IsTrue(game.TryUseSignature(), game.Signature.LastMessage);
+            Assert.AreEqual(HitFeedback.LowEffects ? "sidecar_low" : "sidecar_wind", SignatureVfx.LastPlayed);
+            Assert.AreEqual(SignatureRuntime.SidecarSeconds, game.Signature.ActiveRemaining, 1e-4f, "5초 질주");
+            Assert.IsNotNull(UnityEngine.Object.FindFirstObjectByType<SignatureVfx.SidecarTrail>());
+            SignatureVfx.SaltRim(Vector2.zero, Color.white);
+            Assert.AreEqual(HitFeedback.LowEffects ? "salt_ring_low" : "salt_ring", SignatureVfx.LastPlayed, "아트 임포트 후 솔트 림 클립(저이펙트는 정적 고리)");
+            foreach (var s in UnityEngine.Object.FindObjectsByType<SignatureVfx.Sequence>(FindObjectsSortMode.None)) UnityEngine.Object.DestroyImmediate(s.gameObject);
+        }
+
         [Test]
         public void NoSignatureDrink_HudHiddenAndNoCharge()
         {
