@@ -440,7 +440,7 @@ namespace CCT
             int n = Mathf.Min(3, list.Count);
             bool hasStage = stage.Length > 0;
             float h = n <= 2 && !hasStage ? 44f : 30f; int font = n <= 2 && !hasStage ? 30 : 24;
-            const float StageH = 26f;
+            const float StageH = 32f;
             // P5(감사 S-10): 효과가 한 줄뿐이고 실제 최종값이 바로 계산되는 능력치면(StatStyle.Preview) 아래 둘째 줄에 "현재 → 선택 후".
             // 상자(92) = 효과 줄 44 + 미리보기 30. 추정이 필요한 능력치·여러 효과 카드는 미리보기 없음.
             var stats = GameManager.Instance != null ? GameManager.Instance.Stats : null;
@@ -469,8 +469,8 @@ namespace CCT
                 float y = -top - n * h - (preview.Length > 0 ? PreviewH : 0f);
                 var srt = UiFactory.Place("TeaStage", slot.effects, new Vector2(0.5f, 1f), new Vector2(0f, y), new Vector2(400f, StageH));
                 srt.pivot = new Vector2(0.5f, 1f);
-                var st = UiFactory.AddText(srt, stage, 22, TextAnchor.MiddleCenter, StatStyle.JobColorTea);
-                st.resizeTextForBestFit = true; st.resizeTextMinSize = 15; st.resizeTextMaxSize = 22;
+                var st = UiFactory.AddText(srt, stage, 24, TextAnchor.MiddleCenter, StatStyle.JobColorTea);
+                st.resizeTextForBestFit = true; st.resizeTextMinSize = 18; st.resizeTextMaxSize = 24;
                 st.verticalOverflow = VerticalWrapMode.Truncate;
                 st.raycastTarget = false;
             }

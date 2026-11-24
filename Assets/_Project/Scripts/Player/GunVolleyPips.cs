@@ -13,7 +13,7 @@ namespace CCT
     /// </summary>
     public sealed class GunVolleyPips : MonoBehaviour
     {
-        public const float PipLength = 0.22f, PipSpacing = 0.2f, HeadMargin = 0.22f, DefaultHeadTop = 1.2f;
+        public const float PipLength = 0.38f, PipSpacing = 0.3f, HeadMargin = 0.22f, DefaultHeadTop = 1.2f;
         public static readonly Color EmptyColor = new Color(0.12f, 0.1f, 0.14f, 0.85f);
         public static readonly Color FillColor = new Color(1f, 0.86f, 0.42f, 1f);
 
