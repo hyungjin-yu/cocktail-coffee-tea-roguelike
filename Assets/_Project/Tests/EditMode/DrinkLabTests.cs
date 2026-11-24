@@ -157,7 +157,7 @@ namespace CCT.Tests
             Assert.AreEqual(hp, stats.MaxHp, 1e-4f, "체력 재료 없음");
             stats.attackSpeedPercent = 50f; stats.drinkCooldownReduction = 1f;
             Assert.AreEqual(0.12f, stats.AttackInterval, 1e-5f, "기존 최소 공격 간격 유지");
-            Assert.AreEqual(0.95f, stats.CooldownScale, 1e-6f, "재사용 감소는 상한 5%로 제한");
+            Assert.AreEqual(1f - DrinkRules.DepartureCap(DrinkStat.CooldownReduction), stats.CooldownScale, 1e-6f, "재사용 감소는 #25 출발+런 잔 합산 상한(12%)으로 제한");
         }
 
         // ───── 색 ─────

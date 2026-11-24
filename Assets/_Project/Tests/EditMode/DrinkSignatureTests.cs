@@ -32,6 +32,7 @@ namespace CCT.Tests
             if (root != null) UnityEngine.Object.DestroyImmediate(root);
             if (createdCamera != null) UnityEngine.Object.DestroyImmediate(createdCamera);
             Time.timeScale = 1f;
+            Enemy.Active.RemoveAll(e => e == null);
             SignatureRevealOverlay.SkipForTests = false;
             DrinkStore.FaultHookForTests = null;
             DrinkLab.SetPathForTests(null);
@@ -58,6 +59,9 @@ namespace CCT.Tests
         {
             foreach (var s in r.steps) DrinkLab.Data.Add(s.id, s.amount * times);
         }
+
+        /// <summary>EditMode에서는 OnEnable이 돌지 않아 Enemy.Active에 안 들어간다(통합 검수에서 확인: Active=0) — 실제 런과 같게 등록한다.</summary>
+        static Enemy Register(Enemy e) { if (e != null && !Enemy.Active.Contains(e)) Enemy.Active.Add(e); return e; }
 
         void StartGame(DrinkRecipe drink, RunMode mode = RunMode.Standard)
         {
@@ -259,12 +263,12 @@ namespace CCT.Tests
             StartGame(Margarita());
             Assert.IsNotNull(game.Signature);
             Assert.AreEqual("iba_margarita", game.Signature.Charged?.id);
-            var near = Enemy.SpawnAt(game.Player.Position + new Vector2(1f, 0f), EnemyDef.Brute, 1f, null, null);
+            var near = Register(Enemy.SpawnAt(game.Player.Position + new Vector2(1f, 0f), EnemyDef.Brute, 1f, null, null));
             try
             {
                 float hp0 = near.Hp;
                 Assert.IsTrue(game.TryUseSignature(), game.Signature.LastMessage);
-                Assert.Less(near.Hp, hp0, "솔트 림 피해");
+                Assert.Less(near.Hp, hp0, $"솔트 림 피해 (affected={game.Signature.LastAffected} dmg={game.Stats.Damage} inv={near.Invulnerable} active={Enemy.Active.Count} dead={near.IsDead} def={near.Def?.name} hp={near.Hp}/{near.MaxHp})");
                 Assert.IsTrue(near.Staggered, "일반 적 경직");
                 Assert.IsTrue(game.Signature.Used);
                 Assert.IsNull(game.Signature.Charged);
@@ -341,8 +345,8 @@ namespace CCT.Tests
         [Test]
         public void BossDamage_CappedAt12PercentMaxHp()
         {
-            var boss = Enemy.SpawnAt(Vector2.zero, new EnemyDef { name = "시험 보스", hp = 1000f, boss = BossKind.Mid }, 1f, null, null);
-            var mob = Enemy.SpawnAt(Vector2.zero, EnemyDef.Brute, 1f, null, null);
+            var boss = Register(Enemy.SpawnAt(Vector2.zero, new EnemyDef { name = "시험 보스", hp = 1000f, boss = BossKind.Mid }, 1f, null, null));
+            var mob = Register(Enemy.SpawnAt(Vector2.zero, EnemyDef.Brute, 1f, null, null));
             try
             {
                 Assert.AreEqual(boss.MaxHp * SignatureRuntime.BossDamageCapFraction, SignatureRuntime.CappedDamage(boss, 1e6f), 1e-3f);
@@ -415,8 +419,8 @@ namespace CCT.Tests
         {
             StartGame(WhiteLady());
             var at = game.Player.Position;
-            var mob = Enemy.SpawnAt(at + new Vector2(1.5f, 0f), EnemyDef.Brute, 1f, null, null);
-            var boss = Enemy.SpawnAt(at + new Vector2(0f, 1f), new EnemyDef { name = "시험 보스", hp = 1000f, boss = BossKind.Mid }, 1f, null, null);
+            var mob = Register(Enemy.SpawnAt(at + new Vector2(1.5f, 0f), EnemyDef.Brute, 1f, null, null));
+            var boss = Register(Enemy.SpawnAt(at + new Vector2(0f, 1f), new EnemyDef { name = "시험 보스", hp = 1000f, boss = BossKind.Mid }, 1f, null, null));
             try
             {
                 Assert.IsTrue(game.TryUseSignature(), game.Signature.LastMessage);
