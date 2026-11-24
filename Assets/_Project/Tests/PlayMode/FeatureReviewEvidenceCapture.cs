@@ -118,9 +118,8 @@ namespace CCT.Tests
             CardData C(string id) => CardDatabase.LoadAll().First(c => c.id == id);
             var offers = new List<CardOffer> { new CardOffer { card = C("green_tea"), currentStacks = 0 }, new CardOffer { card = C("oolong"), currentStacks = 1 }, new CardOffer { card = C("aged_puerh"), currentStacks = 2 } };
             game.CardView.Show(offers, o => { });
-            float until = Time.realtimeSinceStartup + 8f;
-            while (Time.realtimeSinceStartup < until && !(game.CardView.EntranceDone(0) && game.CardView.EntranceDone(1) && game.CardView.EntranceDone(2))) yield return null;
-            yield return new WaitForSecondsRealtime(0.5f);
+            for (int fr = 0; fr < 6000 && !(game.CardView.EntranceDone(0) && game.CardView.EntranceDone(1) && game.CardView.EntranceDone(2)); fr++) yield return null;
+            for (int fr = 0; fr < 30; fr++) yield return null;
             Line($"tea19 stage lines: [{game.CardView.StageLine(0)}] [{game.CardView.StageLine(1)}] [{game.CardView.StageLine(2)}]");
             var cardCanvas = game.CardView.GetComponentInParent<Canvas>().rootCanvas;
             foreach (var (w, h) in Sizes) yield return SkinEvidenceCapture.CaptureTo(dir, Line, Camera.main, new[] { cardCanvas }, w, h, $"t19_card_stage_{w}x{h}");
