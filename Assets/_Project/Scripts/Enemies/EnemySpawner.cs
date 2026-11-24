@@ -19,7 +19,13 @@ namespace CCT
             this.game = game;
             this.player = player;
             cam = Camera.main;
+            Hazards = FloorHazardSystem.Create(transform, game, player, cam);
         }
+
+        /// <summary>2026-11-24 #22 바닥 위험(정규 모드). 스포너 자식이라 런과 함께 사라진다.</summary>
+        public FloorHazardSystem Hazards { get; private set; }
+        /// <summary>2026-11-22 디버프 몹 자동 일정(DebuffMobSchedule). #22로 기본 꺼짐 — 되돌릴 때 true. 수동 SpawnDebuffMob은 그대로 동작.</summary>
+        public static bool AutoDebuffMobs = false;
 
         void Update()
         {
@@ -37,7 +43,9 @@ namespace CCT
                 SpawnOne(t);
             }
 
-            TickDebuffMobs(t);
+            // 2026-11-24 #22: 정규 런의 디버프 몹 자동 등장은 바닥 위험(물기·얼룩)으로 대체. 몹 정의·도감·수동 생성(SpawnDebuffMob)은 유지.
+            if (AutoDebuffMobs) TickDebuffMobs(t);
+            Hazards?.TickSchedule(t);
 
             // 보스전 중에는 웨이브를 쉬어서 난이도가 과하게 겹치지 않게 한다
             if (game.ActiveBoss == null)

@@ -29,6 +29,13 @@ namespace CCT
         readonly List<Rect> hazards = new List<Rect>();
         Canvas canvas;
 
+        /// <summary>2026-11-24 #22: 몹이 아닌 위험(바닥 물기·얼룩 구역)도 같은 판정에 넣는다. 등록한 쪽이 사라질 때 해제한다.</summary>
+        static readonly List<IHudHazard> registered = new List<IHudHazard>();
+        public static void Register(IHudHazard h) { if (h != null && !registered.Contains(h)) registered.Add(h); }
+        public static void Unregister(IHudHazard h) { if (h != null) registered.Remove(h); }
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetRegistered() => registered.Clear();
+
         public int PanelCount => panels.Count;
         public int HazardCount => hazards.Count;
 
@@ -96,6 +103,8 @@ namespace CCT
                 if (src == null || !src.TryGetHudHazardBounds(out var b)) continue;
                 hazards.Add(WorldToScreen(cam, b));
             }
+            foreach (var h in registered)
+                if (h != null && h.TryGetHudHazardBounds(out var rb)) hazards.Add(WorldToScreen(cam, rb));
         }
 
         static readonly Vector3[] corners = new Vector3[4];

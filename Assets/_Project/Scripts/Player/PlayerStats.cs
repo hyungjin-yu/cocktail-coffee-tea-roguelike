@@ -97,6 +97,14 @@ namespace CCT
             attackSlowMultiplier = AttackSlowed ? Mathf.Min(attackSlowMultiplier, multiplier) : multiplier;
             attackSlowRemaining = Mathf.Max(attackSlowRemaining, duration);
         }
+        // ───── 2026-11-24 #22 바닥 위험: 시간으로 줄지 않는 상태(해제는 FloorHazardSystem이 청소 시에만) ─────
+        /// <summary>물기 — 미끄러짐(이동 관성, PlayerController가 FloorHazardRules.SlipStep 적용).</summary>
+        public bool FloorSlip { get; private set; }
+        /// <summary>얼룩 — 스트레스(공격 속도 × FloorHazardRules.StressAttackMultiplier). 얼룩이 여러 곳이어도 겹치지 않는다.</summary>
+        public bool FloorStress { get; private set; }
+        public float FloorStressMultiplier => FloorStress ? FloorHazardRules.StressAttackMultiplier : 1f;
+        public void SetFloorHazards(bool slip, bool stress) { FloorSlip = slip; FloorStress = stress; }
+
         /// <summary>자연 회복(초당 회복)을 duration초 동안 0으로.</summary>
         public void BlockHeal(float duration) => healBlockRemaining = Mathf.Max(healBlockRemaining, duration);
 
@@ -151,7 +159,7 @@ namespace CCT
         public float MaxHp => baseMaxHp + maxHpFlat;
         public float Damage => baseDamage * (1f + DamageBonus);
         /// <summary>기본 공격 재사용 간격. 69 음료 재사용 시간 감소는 간격에 곱하고(공격 속도와 별개), 기존 최소 간격 0.12초 상한은 그대로.</summary>
-        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval * CooldownScale / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed + drinkTraitAttackSpeed)) / AttackSlowMultiplier);
+        public float AttackInterval => Mathf.Max(0.12f, baseAttackInterval * CooldownScale / (1f + Live(attackSpeedPercent + hiddenAttackSpeed + jobAttackSpeedPercent + masteryAttackSpeed + coffeeAttackSpeed + drinkTraitAttackSpeed)) / AttackSlowMultiplier / FloorStressMultiplier);
         public float Range => baseRange * (1f + Live(rangePercent + coffeeRangePercent));
         public float PickupRadius => basePickupRadius + pickupRadiusFlat;
         public float ExtraDropChance => Mathf.Clamp01(dropChancePercent);

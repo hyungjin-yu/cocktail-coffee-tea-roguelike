@@ -639,6 +639,9 @@ namespace CCT
                 stats.IsSlowed, stats.MoveSlowMultiplier, stats.SlowRemaining,
                 stats.AttackSlowed, stats.AttackSlowMultiplier, stats.AttackSlowRemaining,
                 stats.HealBlocked, stats.HealBlockRemaining);
+            // 2026-11-24 #22 바닥 위험: 계열·곳 수·청소 진행(시간 감소 없는 상태라 남은 초 대신 청소 안내).
+            var floor = game.Spawner != null && game.Spawner.Hazards != null ? game.Spawner.Hazards.StatusText : "";
+            if (floor.Length > 0) suppressed.text = suppressed.text.Length > 0 ? suppressed.text + " · " + floor : floor;
             bool showDebuff = suppressed.text.Length > 0;
             if (suppressedBack.activeSelf != showDebuff) suppressedBack.SetActive(showDebuff);
 
