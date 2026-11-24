@@ -132,8 +132,12 @@ namespace CCT
                 root.gameObject.SetActive(false);
                 shopView.Show();
             });
-            UiFactory.AddText(UiFactory.Stretch("Label", rt), $"영구 강화 (스페셜티 {specialty})", 26,
+            // 영구 강화 화면과 같은 판정(PermanentSkillView.Summary)으로 지금 살 수 있는 수를 알린다 — 살 것이 없으면 기존 한 줄.
+            int buyable = PermanentSkillView.Summary().buyable;
+            var shopLabel = UiFactory.AddText(UiFactory.Stretch("Label", rt),
+                buyable > 0 ? $"영구 강화 (스페셜티 {specialty})\n▶ 강화 가능 {buyable}개" : $"영구 강화 (스페셜티 {specialty})", 26,
                 TextAnchor.MiddleCenter, Color.white);
+            shopLabel.resizeTextForBestFit = true; shopLabel.resizeTextMinSize = 18; shopLabel.resizeTextMaxSize = 26;
             return button;
         }
 

@@ -229,7 +229,7 @@ namespace CCT.Tests
 
             string StatusOf(string id) => shop.transform.Find("Node_" + id + "/Chip/Status").GetComponent<Text>().text;
             Assert.AreEqual("스페셜티 3 부족", StatusOf("dark_roast_blend"), "선행 없음·잔액0: 부족 수");
-            Assert.AreEqual("선행 필요", StatusOf("perfect_crema"));
+            Assert.AreEqual("선행 강화 필요", StatusOf("perfect_crema"));
             foreach (var t in shop.GetComponentsInChildren<Text>(true))
                 StringAssert.DoesNotContain("잔액 -", t.text, t.name + ": 음수 잔액 표시 금지");
 

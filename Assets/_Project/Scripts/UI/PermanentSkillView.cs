@@ -219,16 +219,35 @@ namespace CCT
 
         int Available => PermanentProgress.Current.specialtyPoints - tree.SpentPoints;
 
-        /// <summary>구매 판정(TryUnlock)과 같은 순서의 이유. 음수 잔액 대신 부족한 스페셜티 수를 보인다(38).</summary>
-        string LockReason(PermanentSkillData n, int available)
+        /// <summary>구매 판정(TryUnlock)과 같은 순서의 이유. 음수 잔액 대신 부족한 스페셜티 수를 보인다(38).
+        /// 정적 — 카드·상세·출발 전 버튼이 모두 이 한 판정을 쓴다(구매 규칙 PermanentSkillTree.TryUnlock과 같은 조건 순서).</summary>
+        public static string LockReason(PermanentSkillTree tree, PermanentSkillData n, int available)
         {
             if(tree.IsInactiveLegacy(n))return "비활성 · 선행 확인";
             if(tree.HasDataErrors)return "데이터 오류 · 구매 잠금";
-            if(!tree.PrerequisitesMet(n))return "선행 필요";
+            if(!tree.PrerequisitesMet(n))return "선행 강화 필요";
             if(!tree.ClearsMet(n))return $"클리어 {n.minimumClears}회 필요";
             if(available<0)return "구매 잠금";
             if(available<n.cost)return $"스페셜티 {n.cost-available} 부족";
             return null;
+        }
+        string LockReason(PermanentSkillData n, int available) => LockReason(tree, n, available);
+
+        /// <summary>같은 갈래(그룹·갈래·무기)에서 이 노드를 선행으로 하는 아직 안 산 다음 단계. 없으면 null(= 최대 단계).</summary>
+        public static PermanentSkillData NextStep(PermanentSkillTree tree, PermanentSkillData n) =>
+            tree.Nodes.Where(c => c != null && c.group==n.group && c.branch==n.branch && c.weaponSpecific==n.weaponSpecific
+                    && (!n.weaponSpecific || c.targetWeapon==n.targetWeapon) && c.Prerequisites.Contains(n) && !tree.IsUnlocked(c))
+                .OrderBy(c => c.tier).FirstOrDefault();
+
+        /// <summary>지금 살 수 있는 강화 수와 잔액 — 출발 전 버튼 문구가 같은 판정을 쓴다.</summary>
+        public static (int available, int buyable) Summary()
+        {
+            var save=PermanentProgress.Current;
+            var all=PermanentSkillDatabase.LoadAll();
+            var t=new PermanentSkillTree(all,save.unlockedPermanentSkillIds,save.clearedRuns);
+            int avail=save.specialtyPoints-t.SpentPoints;
+            int n=all.Count(x=>!t.IsUnlocked(x)&&LockReason(t,x,avail)==null);
+            return (avail,n);
         }
 
         void Refresh()
@@ -244,10 +263,13 @@ namespace CCT
                 bool buyable=!owned&&reason==null;
                 UiFactory.SkinChip(s.chip,owned?"owned":buyable?"buyable":"locked");
                 s.lockIcon.gameObject.SetActive(!owned&&!buyable&&lockSprite!=null);
-                s.status.text=owned?"✓ 구매 완료":buyable?"구매 가능":reason;
+                var next=owned?NextStep(tree,s.data):null;
+                // 세 상태를 색뿐 아니라 칩 모양(스킨)·기호·문구로: ▶ 강화 가능(눌러서 구매) / ✓ 강화됨·완료 / 🔒 잠김 + 실제 이유.
+                s.status.text=owned?(next==null?"✓ 완료 (최대 단계)":"✓ 강화됨"):buyable?"▶ 강화 가능":reason;
                 s.status.color=owned?Owned:buyable?DarkInk:Locked;
                 s.status.rectTransform.offsetMin=new Vector2(s.lockIcon.gameObject.activeSelf?40:12,0);
-                s.cost.text=owned?$"비용 {s.data.cost} · 적용 중":$"비용 {s.data.cost} 스페셜티";
+                s.cost.text=owned?(next==null?$"적용 중 · 비용 {s.data.cost}":$"현재 {s.data.tier}단계 · 다음 비용 {next.cost}"):$"비용 {s.data.cost} 스페셜티";
+                s.cost.color=owned?Cream:buyable?Cream:new Color(1f,.82f,.7f);
                 UiFactory.SetChoice(s.background,false,Color.white);
             }
             var notices=new List<string>();
@@ -274,7 +296,8 @@ namespace CCT
             string reason=owned?null:LockReason(n,available);
             detailTitle.text=n.displayName;
             detailEffect.text=n.description;
-            detailState.text=owned?"✓ 구매 완료 · 다음 런부터 적용 중":reason==null?$"구매 가능 · 구매 후 잔액 {tree.BalanceAfter(n,save.specialtyPoints)}":"잠김 · "+reason;
+            var nextNode=owned?NextStep(tree,n):null;
+            detailState.text=owned?(nextNode==null?"✓ 완료 (최대 단계) · 다음 런부터 적용 중":"✓ 강화됨 · 다음 런부터 적용 중"):reason==null?$"▶ 강화 가능 · 구매 후 잔액 {tree.BalanceAfter(n,save.specialtyPoints)}":"🔒 잠김 · "+reason;
             detailState.color=owned?Owned:reason==null?Gold:Locked;
             string prereq=n.Prerequisites.Any()?string.Join(" · ",n.Prerequisites.Select(p=>p.displayName+(tree.IsUnlocked(p)?" ✓":" (미구매)"))):"없음";
             var lines=new List<string>
@@ -284,6 +307,12 @@ namespace CCT
                 $"클리어   {n.minimumClears}회 필요 (현재 {save.clearedRuns}회{(tree.ClearsMet(n)?" ✓":"")})",
                 n.weaponSpecific?$"적용 무기   {WeaponLabel(n.targetWeapon)}로 시작한 런만":"적용 무기   모든 시작 무기",
             };
+            if(owned&&nextNode!=null)
+            {
+                string nr=LockReason(nextNode,available);
+                lines.Insert(0,$"현재 {n.tier}단계 (비용 {n.cost}) → 다음 {nextNode.tier}단계 {nextNode.displayName} (비용 {nextNode.cost}) · {(nr==null?"지금 강화 가능":nr)}");
+            }
+            else if(owned)lines.Insert(0,$"현재 {n.tier}단계 (비용 {n.cost}) · 더 올릴 단계 없음");
             if(!owned&&reason==null)lines.Add(MobilePlatform.IsTouchUI ? "해금하려면 카드를 누르세요" : "해금하려면 카드를 선택하세요");
             detailBody.text=string.Join("\n",lines);
             detailForecast.text="영구 강화는 다음 런부터 적용됩니다.\n해금이 늘수록 더 많은 적이 등장합니다.";

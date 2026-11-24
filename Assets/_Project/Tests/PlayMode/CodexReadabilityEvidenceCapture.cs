@@ -119,6 +119,48 @@ namespace CCT.Tests
         }
 
         [UnityTest]
+        public IEnumerator PermanentShop_States()
+        {
+            PermanentProgress.AddSpecialty(9);
+            var canvas = UiFactory.CreateCanvas(null, "Perm17", 100);
+            var shop = PermanentSkillView.Create(canvas.transform, () => { });
+            shop.Show();
+            Line($"perm summary={PermanentSkillView.Summary()}");
+            yield return Shots(canvas, "perm17_before_purchase");
+            shop.TryBuy(shop.Nodes.First(n => n.id == "dark_roast_blend"));
+            Line("perm purchased=" + shop.LastPurchaseResult + " header=" + shop.HeaderText.Replace("
+", " | "));
+            shop.GetComponentInChildren<Button>(); // 갱신은 TryBuy → Refresh 안에서 이미 끝났다
+            yield return Shots(canvas, "perm17_after_purchase_next_step");
+            shop.SelectGroup(PermanentSkillGroup.Attack);
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("Node_dark_roast_blend"));
+            yield return Shots(canvas, "perm17_owned_detail");
+            shop.SelectGroup(PermanentSkillGroup.Master);
+            yield return Shots(canvas, "perm17_master_locked");
+            PermanentProgress.Current.clearedRuns = 5;
+            PermanentProgress.AddSpecialty(300);
+            foreach (var id in new[] { "perfect_crema", "precision_tools", "roast_profile", "master_service", "sturdy_tumbler", "veteran_instinct", "padded_apron", "restorative_break", "balanced_tray",
+                                       "bean_cupper", "skilled_roasting", "tidy_counter", "careful_sourcing", "origin_roastery", "master_blend" })
+                shop.TryBuy(shop.Nodes.First(n => n.id == id));
+            shop.SelectGroup(PermanentSkillGroup.Master);
+            yield return Shots(canvas, "perm17_master_complete");
+            UnityEngine.Object.Destroy(canvas.gameObject);
+        }
+
+        [UnityTest]
+        public IEnumerator CharacterSelect_PermanentButton_Buyable()
+        {
+            foreach (var v in UnityEngine.Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None)) UnityEngine.Object.DestroyImmediate(v.gameObject);
+            PermanentProgress.AddSpecialty(3);
+            var view = CharacterSelectView.Show((j, w) => { });
+            yield return null;
+            Line("char-select shop label=" + view.PermanentShopButton.GetComponentInChildren<Text>().text.Replace("
+", " / "));
+            yield return Shots(view.GetComponent<Canvas>(), "perm17_charselect_button_buyable");
+            UnityEngine.Object.DestroyImmediate(view.gameObject);
+        }
+
+        [UnityTest]
         public IEnumerator WeaponSelect_SwordCard()
         {
             foreach (var v in UnityEngine.Object.FindObjectsByType<CharacterSelectView>(FindObjectsSortMode.None)) UnityEngine.Object.DestroyImmediate(v.gameObject);
